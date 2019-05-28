@@ -1,10 +1,6 @@
 import React from "react";
-import styled from "styled-components";
+import Button from "@material-ui/core/Button";
 
-const Button = ({ label }) => <StyledButton>{label}</StyledButton>;
+const DxcButton = ({ label }) => <Button>{label}</Button>;
 
-const StyledButton = styled.button`
-  background: yellow;
-`;
-
-export default Button;
+export default DxcButton;
