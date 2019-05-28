@@ -1,0 +1,12 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "rules": {
+    "linebreak-style": 0,
+    "no-use-before-define": ["error", { "functions": false }],
+    "no-underscore-dangle": ["error", { "allow": ["_options", "_links"] }],
+    "react/jsx-one-expression-per-line": "allow",
+    "no-nested-ternary": "off",
+    "react/prop-types": "off",
+    "import/extensions": "allow"
+  }
+}
