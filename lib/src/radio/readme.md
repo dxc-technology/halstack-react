@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcRado } from "@diaas/dxc-react-cdk";
+import { DxcRadio } from "@diaas/dxc-react-cdk";
 
 <DxcRadio onChange={newValue => handleNewValue(newValue)} label="Test Radio" checked={checked} />;
 ```
@@ -81,7 +81,7 @@ The API properties are the following:
     <tr>
         <td>onChange</td>
         <td><code>function</code></td>
-        <td><code></code></td>
+        <td></td>
         <td>No</td>
         <td>This function will be called when the user clicks the radio. The event object will be passed as a parameter.<br>
         Current state can be accessed via event.target.checked</td>
