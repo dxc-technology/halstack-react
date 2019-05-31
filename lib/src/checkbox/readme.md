@@ -1,11 +1,11 @@
-# DXC Radio Component
+# DXC Checkbox Component
 
 ## Usage
 
 ```js
-import { DxcRadio } from "@diaas/dxc-react-cdk";
+import { DxcCheckbox } from "@diaas/dxc-react-cdk";
 
-<DxcRadio onChange={handleNewValue} label="Test Radio" checked={checked} />;
+<DxcCheckbox onChange={handleNewValue} label="Test Checkbox" checked={checked} />;
 ```
 
 ## Props
@@ -32,14 +32,14 @@ The API properties are the following:
         <td><code> any </code></td>
         <td></td>
         <td>No</td>
-        <td>Will be passed to the value attribute of the html input element. When inside a form, this value will be only submitted if the radio is checked </td>
+        <td>Will be passed to the value attribute of the html input element. When inside a form, this value will be only submitted if the checkbox is checked </td>
     </tr>
     <tr>
         <td>label</td>
         <td><code>string</code></td>
         <td></td>
         <td>No</td>
-        <td>Text to be placed next to the radio.</td>
+        <td>Text to be placed next to the checkbox.</td>
     </tr>
     </tr>
         <tr>
@@ -47,7 +47,7 @@ The API properties are the following:
         <td><code>string: 'before' | 'after'</code></td>
         <td><code>'before'</code></td>
         <td>No</td>
-        <td>Whether the label should appear after or before the radio.</td>
+        <td>Whether the label should appear after or before the checkbox.</td>
     </tr>
     <tr>
         <td>theme</td>
