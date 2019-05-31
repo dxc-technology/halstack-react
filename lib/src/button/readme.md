@@ -26,7 +26,7 @@ The API properties are the following:
     <tr>
         <td>theme: 'light' |'dark'</td>
         <td><code>'light'</code></td>
-        <td>Uses on of the available button modes.</td>
+        <td>Uses one of the available button modes.</td>
     </tr>
         <tr>
         <td>label: string</td>
