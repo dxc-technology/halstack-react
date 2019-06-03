@@ -5,12 +5,10 @@
 ```js
 import { DxcButton } from "@diaas/dxc-react-cdk";
 
-<DxcButton onChange={handleNewValue} label="Test Checkbox" checked={checked} />;
+<DxcButton onClick={handleClick} label="Test Button"/>;
 ```
 
 ## Props
-
-The API properties are the following:
 
 <table>
     <tr style="background-color: grey">
