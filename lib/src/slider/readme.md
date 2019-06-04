@@ -59,6 +59,6 @@ import { Slider } from "@diaas/dxc-react-cdk";
     <tr>
         <td>onDragEnd: function</td>
         <td></td>
-        <td>This function will be called when the slider changes its value, but only when it stops beign dragged. The new value will be passed as a parameter when this function is executed</td>
+        <td>This function will be called when the slider changes its value, but only when the thumb is released. The new value will be passed as a parameter when this function is executed</td>
     </tr>
 </table>
