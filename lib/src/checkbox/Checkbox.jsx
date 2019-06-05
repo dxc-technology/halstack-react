@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 
-const MyCheckbox = ({
+const DxcCheckbox = ({
   checked,
   value,
   label,
@@ -18,6 +18,7 @@ const MyCheckbox = ({
     <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition}>
       <Checkbox
         checked={checked}
+        inputProps={name={name}}
         onChange={e => onChange(!checked)}
         value={value}
         disabled={disabled}
@@ -89,7 +90,7 @@ const CheckboxBlackBack = styled.span`
   z-index: -1;
 `;
 
-MyCheckbox.propTypes = {
+DxcCheckbox.propTypes = {
   checked: PropTypes.bool,
   value: PropTypes.any,
   label: PropTypes.string,
@@ -101,4 +102,4 @@ MyCheckbox.propTypes = {
   onChange: PropTypes.func
 };
 
-export default MyCheckbox;
+export default DxcCheckbox;

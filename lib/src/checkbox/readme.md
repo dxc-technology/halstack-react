@@ -83,7 +83,53 @@ The API properties are the following:
         <td><code>function</code></td>
         <td></td>
         <td>No</td>
-        <td>This function will be called when the user clicks the radio. The event object will be passed as a parameter.<br>
-        Current state can be accessed via event.target.checked</td>
+        <td>This function will be called when the user clicks the radio. The new value will be passed as a parameter.<br>
+        </td>
     </tr>
 </table>
+
+## Examples
+
+- Basic checkbox - Light theme - Enabled - Label after checkbox - With ripple
+
+```js
+import React from "react";
+import { DxcCheckbox } from "@diaas/dxc-react-cdk";
+
+class App extends React.Component {
+  state = {
+    isChecked: true
+  };
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(checked) {
+    this.setState({
+      isChecked: checked
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <DxcCheckbox
+            checked={this.state.isChecked}
+            value="Checkbox1"
+            label="Checkbox1"
+            labelPosition="before"
+            theme="light"
+            name="Checkbox"
+            disabled={false}
+            disableRipple={false}
+            onChange={event => this.handleChange(event)}
+          />
+      </div>
+    );
+  }
+}
+export default App;
+
+
+```
