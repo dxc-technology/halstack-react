@@ -83,7 +83,7 @@ The API properties are the following:
         <td><code>function</code></td>
         <td></td>
         <td>No</td>
-        <td>This function will be called when the user clicks the radio. The new value will be passed as a parameter.<br>
+        <td>This function will be called when the user clicks the checkbox. The new value will be passed as a parameter.<br>
         </td>
     </tr>
 </table>
