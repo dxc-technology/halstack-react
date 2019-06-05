@@ -5,7 +5,7 @@
 ```js
 import { DxcButton } from "@diaas/dxc-react-cdk";
 
-<DxcButton onClick={handleClick} label="Test Button"/>;
+<DxcButton onClick={handleClick} label="Test Button" />;
 ```
 
 ## Props
@@ -59,3 +59,36 @@ import { DxcButton } from "@diaas/dxc-react-cdk";
     </tr>
 
 </table>
+
+## Examples
+
+- Basic button - Light theme - Enabled - Icon after label - With ripple
+
+```js
+import React from "react";
+
+import { DxcButton } from "@diaas/dxc-react-cdk";
+
+function App() {
+  const handleOnClick = event => {
+    console.log("Button clicked");
+  };
+
+  return (
+    <div>
+      <DxcButton
+        label="Basic"
+        mode="basic"
+        disabled={false}
+        theme="light"
+        disableRipple={false}
+        iconPosition="after"
+        iconSrc="/images/run_icon.png"
+        onClick={handleOnClick}
+      />
+    </div>
+  );
+}
+
+export default App;
+```
