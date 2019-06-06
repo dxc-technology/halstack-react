@@ -1,26 +1,43 @@
 import React from "react";
 
-import { DxcButton } from "@diaas/dxc-react-cdk";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import styled from "styled-components";
+
+import Header from "./common/Header";
+import SideMenu from "./common/SideMenu";
+
+import componentsList from "./componentsList";
 
 function App() {
-  const handleOnClick = event => {
-    console.log("Button clicked");
-  };
-
   return (
-    <div>
-      <DxcButton
-        label="Basic"
-        mode="basic"
-        disabled={false}
-        theme="light"
-        disableRipple={false}
-        iconPosition="after"
-        iconSrc="/images/run_icon.png"
-        onClick={handleOnClick}
-      />
-    </div>
+    <React.Fragment>
+      <Router>
+        <Header />
+        <Content>
+          <Route exact path="/" component={SideMenu} />
+          <Route path="/:screen" component={SideMenu} />
+          <ExamplePageContainer>
+            <Route exact path="/" component={componentsList[0].component} />
+            {componentsList.map(({ component, route }) => (
+              <Route path={`/${route}/`} component={component} />
+            ))}
+          </ExamplePageContainer>
+        </Content>
+      </Router>
+    </React.Fragment>
   );
 }
+
+const Content = styled.div`
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: row;
+`;
+
+const ExamplePageContainer = styled.div`
+  flex-grow: 1;
+  padding: 30px 100px;
+`;
 
 export default App;
