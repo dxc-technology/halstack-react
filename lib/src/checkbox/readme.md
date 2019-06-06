@@ -117,8 +117,8 @@ class App extends React.Component {
         <DxcCheckbox
             checked={this.state.isChecked}
             value="Checkbox1"
-            label="Checkbox1"
-            labelPosition="before"
+            label="Checkbox 1"
+            labelPosition="after"
             theme="light"
             name="Checkbox"
             disabled={false}

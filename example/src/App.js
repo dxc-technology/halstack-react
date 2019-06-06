@@ -20,7 +20,7 @@ function App() {
           <ExamplePageContainer>
             <Route exact path="/" component={componentsList[0].component} />
             {componentsList.map(({ component, route }) => (
-              <Route path={`/${route}/`} component={component} />
+              <Route key={component} path={`/${route}/`} component={component} />
             ))}
           </ExamplePageContainer>
         </Content>
