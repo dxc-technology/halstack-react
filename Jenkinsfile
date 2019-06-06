@@ -2,7 +2,7 @@ pipeline {
     agent {
       dockerfile {
         args '-u root:root'
-        filename 'Dockerfile'
+        filename 'docker/Dockerfile'
         reuseNode true
       }
     }
@@ -22,7 +22,6 @@ pipeline {
                 sh '''
                     cd lib
                     npm install
-                    npm install --global rollup
                 '''
             }
         }
