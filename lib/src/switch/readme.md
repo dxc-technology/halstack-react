@@ -86,3 +86,49 @@ The API properties are the following:
         <td>This function will be called when the user clicks the radio. The new value will be passed as a parameter.<br>
     </tr>
 </table>
+
+## Examples
+
+- Basic switch - Light theme - Enabled - Label after switch - With ripple
+
+```js
+import React from "react";
+import { DxcSwitch } from "@diaas/dxc-react-cdk";
+
+class App extends React.Component {
+  state = {
+    isChecked: true
+  };
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(checked) {
+    this.setState({
+      isChecked: checked
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <DxcSwitch
+            checked={this.state.isChecked}
+            value="Switch1"
+            label="Switch 1"
+            labelPosition="after"
+            theme="light"
+            name="Checkbox"
+            disabled={false}
+            disableRipple={false}
+            onChange={event => this.handleChange(event)}
+          />
+      </div>
+    );
+  }
+}
+export default App;
+
+
+```
