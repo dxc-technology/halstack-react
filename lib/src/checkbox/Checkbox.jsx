@@ -56,7 +56,7 @@ const CheckboxContainer = styled.span`
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiButtonBase-root {
     padding: 10px 10px;
-    margin: 0px 5px;
+    margin: 0px 3px;
     color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
     :hover {
       background-color: transparent;
@@ -73,6 +73,10 @@ const CheckboxContainer = styled.span`
     .MuiTouchRipple-child {
       background-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
     }
+    .MuiSvgIcon-root {
+      width: 26.6px;
+      height: 26.6px;
+    }
   }
 `;
 
@@ -83,11 +87,11 @@ const CheckboxBlackBack = styled.span`
       : props.theme === "light" && props.checked === true
       ? "#000000"
       : "#FFFFFF"};
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   position: absolute;
-  left: ${props => (props.labelPosition === "before" ? "unset" : "19px")};
-  right: ${props => (props.labelPosition === "before" ? "19px" : "unset")};
+  left: ${props => (props.labelPosition === "before" ? "unset" : "18px")};
+  right: ${props => (props.labelPosition === "before" ? "18px" : "unset")};
   z-index: -1;
 `;
 
