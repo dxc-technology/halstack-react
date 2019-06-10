@@ -1,5 +1,9 @@
 {
-  "extends": ["airbnb", "prettier"],
+  "env": {
+    "jest/globals": true
+  },
+  "extends": ["airbnb", "prettier", "plugin:jest/recommended"],
+  "plugins": ["jest"],
   "rules": {
     "linebreak-style": 0,
     "no-use-before-define": ["error", { "functions": false }],
