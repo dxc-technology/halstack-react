@@ -1,9 +1,10 @@
 import React from "react";
-import { DxcCheckbox } from "@diaas/dxc-react-cdk";
+import { DxcSwitch } from "@diaas/dxc-react-cdk";
 import styled from "styled-components";
-class CheckboxExamples extends React.Component {
+class SwitchExamples extends React.Component {
   state = {
-    isChecked: true
+    toggled: true,
+    toggled1: true
   };
   constructor() {
     super();
@@ -11,19 +12,19 @@ class CheckboxExamples extends React.Component {
   }
   handleChange(checked) {
     this.setState({
-      isChecked: checked
+      toggled: checked
     });
   }
   render() {
     return (
       <div>
-        <h1>Checkbox Component</h1>
+        <h1>Switch Component</h1>
         <h2>Basic Example</h2>
-        <CheckboxExamplesContainer>
-          <DxcCheckbox
-            checked={this.state.isChecked}
-            value="Checkbox1"
-            label="Checkbox1"
+        <SwicthExamplesContainer>
+          <DxcSwitch
+            checked={this.state.toggled}
+            value="value1"
+            label="value1"
             labelPosition="after"
             theme="light"
             name="Checkbox"
@@ -31,10 +32,10 @@ class CheckboxExamples extends React.Component {
             disableRipple={false}
             onChange={event => this.handleChange(event)}
           />
-          <DxcCheckbox
-            checked={this.state.isChecked}
-            value="Checkbox2"
-            label="Checkbox2"
+          <DxcSwitch
+            checked={this.state.toggled}
+            value="value2"
+            label="value2"
             labelPosition="after"
             theme="light"
             name="Checkbox"
@@ -42,10 +43,10 @@ class CheckboxExamples extends React.Component {
             disableRipple={false}
             onChange={event => this.handleChange(event)}
           />
-          <DxcCheckbox
-            checked={this.state.isChecked}
-            value="Checkbox3"
-            label="Checkbox3"
+          <DxcSwitch
+            checked={this.state.toggled}
+            value="value3"
+            label="value3"
             labelPosition="before"
             theme="light"
             name="Checkbox"
@@ -53,10 +54,10 @@ class CheckboxExamples extends React.Component {
             disableRipple={false}
             onChange={event => this.handleChange(event)}
           />
-          <DxcCheckbox
-            checked={this.state.isChecked}
-            value="Checkbox4"
-            label="Checkbox4"
+          <DxcSwitch
+            checked={this.state.toggled}
+            value="value4"
+            label="value4"
             labelPosition="before"
             theme="light"
             name="Checkbox"
@@ -64,12 +65,12 @@ class CheckboxExamples extends React.Component {
             disableRipple={false}
             onChange={event => this.handleChange(event)}
           />
-        </CheckboxExamplesContainer>
+        </SwicthExamplesContainer>
         <div style={{ display: "inline-flex", background: "black" }}>
-          <DxcCheckbox
-            checked={this.state.isChecked}
-            value="Checkbox1"
-            label="Checkbox1"
+        <DxcSwitch
+            checked={this.state.toggled}
+            value="value1"
+            label="value1"
             labelPosition="after"
             theme="dark"
             name="Checkbox"
@@ -77,10 +78,10 @@ class CheckboxExamples extends React.Component {
             disableRipple={false}
             onChange={event => this.handleChange(event)}
           />
-          <DxcCheckbox
-            checked={this.state.isChecked}
-            value="Checkbox2"
-            label="Checkbox2"
+          <DxcSwitch
+            checked={this.state.toggled}
+            value="value2"
+            label="value2"
             labelPosition="after"
             theme="dark"
             name="Checkbox"
@@ -88,10 +89,10 @@ class CheckboxExamples extends React.Component {
             disableRipple={false}
             onChange={event => this.handleChange(event)}
           />
-          <DxcCheckbox
-            checked={this.state.isChecked}
-            value="Checkbox3"
-            label="Checkbox3"
+          <DxcSwitch
+            checked={this.state.toggled}
+            value="value3"
+            label="value3"
             labelPosition="before"
             theme="dark"
             name="Checkbox"
@@ -99,10 +100,10 @@ class CheckboxExamples extends React.Component {
             disableRipple={false}
             onChange={event => this.handleChange(event)}
           />
-          <DxcCheckbox
-            checked={this.state.isChecked}
-            value="Checkbox4"
-            label="Checkbox4"
+          <DxcSwitch
+            checked={this.state.toggled}
+            value="value4"
+            label="value4"
             labelPosition="before"
             theme="dark"
             name="Checkbox"
@@ -116,7 +117,7 @@ class CheckboxExamples extends React.Component {
   }
 }
 
-const CheckboxExamplesContainer = styled.div`
+const SwicthExamplesContainer = styled.div`
   display: flex;
 `;
-export default CheckboxExamples;
+export default SwitchExamples;

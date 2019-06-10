@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
 
-const MyCheckbox = ({
+const DxcCheckbox = ({
   checked,
   value,
   label,
@@ -18,6 +18,7 @@ const MyCheckbox = ({
     <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition}>
       <Checkbox
         checked={checked}
+        inputProps={name={name}}
         onChange={e => onChange(!checked)}
         value={value}
         disabled={disabled}
@@ -26,7 +27,7 @@ const MyCheckbox = ({
       <LabelContainer
         labelPosition={labelPosition}
         theme={theme}
-        onClick={disabled === true ? e => {} : e => handler({ type, checked, handler, name })}
+        onClick={disabled === true ? e => {} : e => onChange(!checked)}
       >
         {label}
       </LabelContainer>
@@ -47,14 +48,15 @@ const LabelContainer = styled.span`
 `;
 
 const CheckboxContainer = styled.span`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   cursor: pointer;
   max-height: 42px;
   position: relative;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiButtonBase-root {
-    padding: 10px 15px;
+    padding: 10px 10px;
+    margin: 0px 3px;
     color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
     :hover {
       background-color: transparent;
@@ -66,10 +68,14 @@ const CheckboxContainer = styled.span`
       }
     }
     &.Mui-disabled {
-      color: #666666;
+      color: ${props => (props.theme === "dark" ? "#666666" : "#B2B2B2")};
     }
     .MuiTouchRipple-child {
       background-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
+    }
+    .MuiSvgIcon-root {
+      width: 26.6px;
+      height: 26.6px;
     }
   }
 `;
@@ -81,15 +87,15 @@ const CheckboxBlackBack = styled.span`
       : props.theme === "light" && props.checked === true
       ? "#000000"
       : "#FFFFFF"};
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   position: absolute;
-  left: ${props => (props.labelPosition === "before" ? "none" : "18px")};
-  right: ${props => (props.labelPosition === "before" ? "18px" : "none")};
+  left: ${props => (props.labelPosition === "before" ? "unset" : "18px")};
+  right: ${props => (props.labelPosition === "before" ? "18px" : "unset")};
   z-index: -1;
 `;
 
-MyCheckbox.propTypes = {
+DxcCheckbox.propTypes = {
   checked: PropTypes.bool,
   value: PropTypes.any,
   label: PropTypes.string,
@@ -101,4 +107,4 @@ MyCheckbox.propTypes = {
   onChange: PropTypes.func
 };
 
-export default MyCheckbox;
+export default DxcCheckbox;
