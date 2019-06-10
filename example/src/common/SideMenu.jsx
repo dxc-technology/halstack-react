@@ -12,7 +12,7 @@ export default function SideMenu(props) {
       <Title>DXC Components React</Title>
       <LinksList>
         {componentsList.map(({ title, route }) => (
-          <StyledLink isSelected={screen === route}>
+          <StyledLink key={title} isSelected={screen === route}>
             <Link to={`/${route}`}>{title}</Link>
           </StyledLink>
         ))}
