@@ -7,16 +7,6 @@ pipeline {
       }
     }
     stages {
-        stage('.npmrc') {
-          steps {
-            // Insert .npmrc
-            withCredentials([file(credentialsId: 'npmrc', variable: 'CONFIG')]) {
-                sh '''
-                    cat ${CONFIG} > ~/.npmrc
-                '''
-            }
-          }
-        }
         stage('Install dependencies') {
             steps {
                 sh '''
@@ -58,10 +48,10 @@ pipeline {
                         }
 
                         // ADD HERE NEW VERSION ON PACKAGE.JSON
-                        sh "sed -i -e 's/1.0.0/'${env.RELEASE_NUMBER}'/g' ./lib/package.json"
-                        sh "sed -i -e s+./dist/index.js+./index.js+ ./lib/package.json"
-                        sh "sed -i -e s+./dist/index.es.js+./index.es.js+ ./lib/package.json"
-                        sh "cat ./lib/package.json"
+                        sh "sed -i -e 's/1.0.0/'${env.RELEASE_NUMBER}'/g' ./package.json"
+                        sh "sed -i -e s+./dist/index.js+./index.js+ ./package.json"
+                        sh "sed -i -e s+./dist/index.es.js+./index.es.js+ ./package.json"
+                        sh "cat ./package.json"
 
                         // TAG IF IS STABLE
                         if (isStable) {
@@ -82,8 +72,8 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'CONFIG')]) {
                       sh '''
                       cat ${CONFIG} > ~/.npmrc
-                      cp ./lib/package.json ./lib/dist/package.json
-                      cd ./lib/dist
+                      cp ./package.json ./dist/package.json
+                      cd ./dist
                       npm config set @diaas:registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
                       npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
                       '''
@@ -97,14 +87,14 @@ pipeline {
                 // Insert .npmrc
                 withCredentials([file(credentialsId: 'npmrc', variable: 'CONFIG')]) {
                     // ADD HERE NEW VERSION ON PACKAGE.JSON
-                    sh "sed -i -e 's/1.0.0/'0.0.0-beta.${BUILD_ID}'/g' ./lib/package.json"
-                    sh "sed -i -e s+./dist/index.js+./index.js+ ./lib/package.json"
-                    sh "sed -i -e s+./dist/index.es.js+./index.es.js+ ./lib/package.json"
-                    sh "cat ./lib/package.json"
+                    sh "sed -i -e 's/1.0.0/'0.0.0-beta.${BUILD_ID}'/g' ./package.json"
+                    sh "sed -i -e s+./dist/index.js+./index.js+ ./package.json"
+                    sh "sed -i -e s+./dist/index.es.js+./index.es.js+ ./package.json"
+                    sh "cat ./package.json"
                     sh '''
                     cat ${CONFIG} > ~/.npmrc
-                    cp ./lib/package.json ./lib/dist/package.json
-                    cd ./lib/dist
+                    cp ./package.json ./dist/package.json
+                    cd ./dist
                     npm config set @diaas:registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag beta
                     '''
