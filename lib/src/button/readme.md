@@ -26,7 +26,7 @@ import { DxcButton } from "@diaas/dxc-react-cdk";
         <td><code>'light'</code></td>
         <td>Uses one of the available button modes.</td>
     </tr>
-        <tr>
+    <tr>
         <td>label: string</td>
         <td><code>'basic'</code></td>
         <td>Text to be placed next to the button.</td>
@@ -36,8 +36,7 @@ import { DxcButton } from "@diaas/dxc-react-cdk";
         <td></td>
         <td>URL of the icon that will be placed next to the button label.</td>
     </tr>
-    </tr>
-        <tr>
+    <tr>
         <td>iconPosition: 'before' | 'after'</td>
         <td><code>'before'</code></td>
         <td>Whether the icon should appear after or before the label.</td>
