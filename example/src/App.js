@@ -1,8 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
-import styled from "styled-components";
 
 import Header from "./common/Header";
 import SideMenu from "./common/SideMenu";
