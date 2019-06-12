@@ -10,7 +10,6 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 sh '''
-                    cd lib
                     npm install
                 '''
             }
@@ -18,7 +17,6 @@ pipeline {
         stage('Running rollup') {
             steps {
                 sh '''
-                    cd lib
                     rollup -c
                 '''
             }
