@@ -14,9 +14,9 @@ pipeline {
                 '''
             }
         }
-        stage{
+        stage('Deploy Storybook and Artifact'){
             parallel{
-                stage{
+                stage('Deploy Artifact'){
                     stages{
                         stage('Running rollup') {
                             steps {
@@ -105,7 +105,7 @@ pipeline {
                         }
                     }
                 }
-                stage{
+                stage('Deploy Storybook'){
                     stages{
                         stage('Build Storybook') {
                             steps {
