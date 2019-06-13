@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const DxcButton = ({ label, mode, disabled, theme, disableRipple, iconPosition = "after", iconSrc, onClick }) => {
+const DxcButton = ({ label="", mode="basic", disabled=false, theme="light", disableRipple=false, iconPosition = "after", iconSrc="", onClick="" }) => {
   return (
     <DxCButton mode={mode} theme={theme} disabled={disabled} onClick={() => onClick()} iconPosition={iconPosition}>
       <Button disabled={disabled} disableRipple={disableRipple}>
@@ -15,14 +15,14 @@ const DxcButton = ({ label, mode, disabled, theme, disableRipple, iconPosition =
 };
 
 DxcButton.propTypes = {
-  label: PropTypes.string.isRequired,
-  mode: PropTypes.oneOf(["basic", "outlined", "raised", "flat"]).isRequired,
-  disabled: PropTypes.bool.isRequired,
-  theme: PropTypes.oneOf(["dark", "light"]).isRequired,
-  disableRipple: PropTypes.bool.isRequired,
-  iconPosition: PropTypes.oneOf(["after", "before"]).isRequired,
-  onClick: PropTypes.func.isRequired,
-  iconSrc: PropTypes.string.isRequired
+  label: PropTypes.string,
+  mode: PropTypes.oneOf(["basic", "outlined", "raised", "flat"]),
+  disabled: PropTypes.bool,
+  theme: PropTypes.oneOf(["dark", "light"]),
+  disableRipple: PropTypes.bool,
+  iconPosition: PropTypes.oneOf(["after", "before"]),
+  onClick: PropTypes.func,
+  iconSrc: PropTypes.string
 };
 const LabelContainer = styled.div`
   line-height: 18px;
@@ -51,7 +51,7 @@ const DxCButton = styled.span`
     min-width: 122px;
     max-width: 420px;
     min-height: 43px;
-    color: #000000;
+    
     line-height: 1;
     margin: 15px;
     font-family: "Open Sans", sans-serif;
@@ -62,17 +62,20 @@ const DxCButton = styled.span`
           background-color: #ffed00;
           &:hover{
             background-color: ${(theme === "light" && "#000000") || "#212121"};
-            color: #ffed00
+            color: #ffed00; 
           }
           &:disabled{ 
-            background-color:#ffed0078;
+            background-color:#ffed00;
             opacity:0.5;
+            color: #666;
           }
-          &:active{
-            background-color:#666666;
+          .MuiButton-label {
+            z-index: 5
+          }
+          .MuiTouchRipple-child {
+            background-color: #fff;
           }
         `;
-        // eslint-disable-next-line no-else-return
       } else if (mode === "outlined") {
         return `
           background-color: transparent;
@@ -90,11 +93,14 @@ const DxCButton = styled.span`
             color:${(theme === "light" && "#000") || "#FFFFFF"};
             opacity:0.5;
           }
+          .MuiButton-label {
+            z-index: 5
+          }
         `;
       } else if (mode === "flat") {
         return `
           background-color: ${(theme === "light" && "transparent") || "#000000"};
-          color: ${(theme === "light" && "#d9d9d9") || "#FFFFFF"};
+          color: ${(theme === "light" && "#000") || "#FFFFFF"};
           &:hover{
             background-color: #e5e5e5;
             color: #000000;
@@ -103,6 +109,9 @@ const DxCButton = styled.span`
             background-color:${(theme === "light" && "#d9d9d9") || "#666666"};
             opacity:0.5;
             color:${(theme === "light" && "#000000") || "#d9d9d9"};
+          }
+          .MuiButton-label {
+            z-index: 5
           }
         `;
       } else {
@@ -114,9 +123,16 @@ const DxCButton = styled.span`
             color:#ffed00;
           }
           &:disabled{ 
-            background-color:"#ffed0078";
+            background-color:#ffed00;
             opacity:0.5;
             box-shadow:none;
+            color: #666;
+          }
+          .MuiButton-label {
+            z-index: 5
+          }
+          .MuiTouchRipple-child {
+            background-color: #fff;
           }
         `;
       }
