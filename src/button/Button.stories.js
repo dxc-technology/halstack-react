@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select, text } from "@storybook/addon-knobs";
+import logo from '../../.storybook/public/run_icon_black.png';
 
 import buttonMD from "./readme.md";
 
@@ -16,9 +17,9 @@ storiesOf("Form Components|Button", module).add(
     <div>
       <h3>Light</h3>
       <div>
-        <Button mode={"basic"} theme={"light"} label={"Test Button"} onClick={onClick} />
-        <Button mode={"raised"} theme={"light"} label={"Test Button"} onClick={onClick} />
-        <Button mode={"flat"} theme={"light"} label={"Test Button"} onClick={onClick} />
+        <Button mode={"basic"} theme={"light"} label={"Test Button"} onClick={onClick}/>
+        <Button mode={"raised"} theme={"light"} label={"Test Button"} onClick={onClick}/>
+        <Button mode={"flat"} theme={"light"} label={"Test Button"} onClick={onClick}/>
         <Button mode={"outlined"} theme={"light"} label={"Test Button"} onClick={onClick} />
       </div>
       <div>
@@ -42,6 +43,19 @@ storiesOf("Form Components|Button", module).add(
           <Button disabled mode={"outlined"} theme={"dark"} label={"Test Button"} onClick={onClick} />
         </div>
       </div>
+      <h3>With icon</h3>
+      <div>
+        <Button mode={"basic"} theme={"light"} label={"Test Button"} onClick={onClick} iconPosition="after" iconSrc={logo}/>
+        <Button mode={"raised"} theme={"light"} label={"Test Button"} onClick={onClick} iconPosition="after" iconSrc={logo} />
+        <Button mode={"flat"} theme={"light"} label={"Test Button"} onClick={onClick} iconSrc={logo}/>
+        <Button mode={"outlined"} theme={"light"} label={"Test Button"} onClick={onClick}  iconPosition="after" iconSrc={logo}/>
+      </div>
+      <div>
+        <Button disabled mode={"basic"} theme={"light"} label={"Test Button"} onClick={onClick}  iconPosition="after" iconSrc={logo}/>
+        <Button disabled mode={"raised"} theme={"light"} label={"Test Button"} onClick={onClick}  iconPosition="after" iconSrc={logo}/>
+        <Button disabled mode={"flat"} theme={"light"} label={"Test Button"} onClick={onClick}  iconPosition="after" iconSrc={logo}/>
+        <Button disabled mode={"outlined"} theme={"light"} label={"Test Button"} onClick={onClick}  iconPosition="after" iconSrc={logo}/>
+      </div>
     </div>
   ),
   {
@@ -50,10 +64,11 @@ storiesOf("Form Components|Button", module).add(
 );
 
 const knobProps = () => ({
-  label: text('label', 'Test Button'),
+  label: text("label", "Test Button"),
   mode: select("mode", { basic: "basic", raised: "raised", flat: "flat", outlined: "outlined" }, "basic"),
   theme: select("theme", { light: "light", dark: "dark" }, "light"),
-  disabled: boolean("disabled", false)
+  disabled: boolean("disabled", false),
+  iconPosition: select("icon poistion",{ before: "before", after: "after" }, "before"),
 });
 
 storiesOf("Form Components|Button", module).add(
@@ -62,7 +77,7 @@ storiesOf("Form Components|Button", module).add(
     const props = knobProps();
     return (
       <div style={{ background: (props.theme === "dark" && "black") || "transparent" }}>
-        <Button {...props} onClick={onClick} />
+        <Button {...props} onClick={onClick} iconSrc={logo}/>
       </div>
     );
   },
