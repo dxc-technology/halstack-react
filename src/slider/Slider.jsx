@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "@material-ui/lab/Slider";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
@@ -15,30 +15,45 @@ const DxcSlider = ({
   onChange,
   onDragEnd,
   disabled,
-  required,
-  theme = "light"
+  theme = "light",
+  marks
 }) => {
+  const [innerValue, setInnerValue] = useState(0);
+
+  const handlerSliderChange = (event, newValue) => {
+    const valueToCheck = value !== undefined ? value : innerValue;
+    if (valueToCheck !== newValue) {
+      setInnerValue(newValue);
+      onChange(newValue);
+    } 
+  }
+  const handlerInputChange = (event) => {
+    setInnerValue(event.target.value > maxValue ? maxValue : event.target.value);
+    onChange(event.target.value > maxValue ? maxValue : event.target.value)
+  } 
+  
+
   return (
     <SliderContainer theme={theme}>
       {showLimitsValues && <MinLabelContainer theme={theme}>{minValue}</MinLabelContainer>}
       <Slider
-        value={value}
+        value={value >= 0 || innerValue}
         min={minValue}
         max={maxValue}
-        onChange={(event, value) => onChange(value)}
-        onDragEnd={(event, value) => onDragEnd(value)}
+        onChange={handlerSliderChange}
+        onChangeCommitted={(event, value) => onDragEnd(value)}
         step={step}
+        marks={marks || []}
         disabled={disabled}
-        required={required}
       />
       {showLimitsValues && <MaxLabelContainer theme={theme}>{maxValue}</MaxLabelContainer>}
       {showInput && (
         <StyledTextInput theme={theme}>
           <TextField
             name={name}
-            value={value}
+            value={value >= 0 || innerValue}
             disabled={disabled}
-            onChange={event => onChange(event.target.value > maxValue ? maxValue : event.target.value)}
+            onChange={handlerInputChange}
           />
         </StyledTextInput>
       )}
@@ -46,18 +61,17 @@ const DxcSlider = ({
   );
 };
 DxcSlider.propTypes = {
-  minValue: PropTypes.number.isRequired,
-  maxValue: PropTypes.number.isRequired,
-  step: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-  showLimitsValues: PropTypes.bool.isRequired,
-  showInput: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onDragEnd: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  required: PropTypes.bool.isRequired,
-  theme: PropTypes.oneOf(["dark", "light"]).isRequired
+  minValue: PropTypes.number,
+  maxValue: PropTypes.number,
+  step: PropTypes.number,
+  value: PropTypes.number,
+  showLimitsValues: PropTypes.bool,
+  showInput: PropTypes.bool,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  onDragEnd: PropTypes.func,
+  disabled: PropTypes.bool,
+  theme: PropTypes.oneOf(["dark", "light"])
 };
 
 const StyledTextInput = styled.div`
@@ -75,17 +89,45 @@ const SliderContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 15px 15px 15px 15px;
+
+  .MultiSlider-root {
+    display: flex;
+    align-items: center;
+  }
   .MuiSlider-container {
     padding: 30px 24px;
+  }
+
+  .Mui-disabled {
+    & .MuiSlider-thumb {
+      height: 14px;
+      width: 14px;
+      background-color: #d9d9d9;
+      top: 38%;
+    }
+    & .MuiSlider-track {
+      background-color: #d9d9d9;
+    }
+    & > .MuiSlider-mark.MuiSlider-markActive {
+      background-color: #d9d9d9 !important;
+    }
+    & > .MuiSlider-mark {
+      background-color: #d9d9d9;
+      width: 4px;
+      height: 4px;
+      border-radius: 18px;
+    }
   }
   .MuiSlider-thumb {
     height: 14px;
     width: 14px;
     background-color: ${props => (props.theme === "light" && "#000") || "#d9d9d9"};
+    top: 45%;
     :hover,
-    &.Mui-focused.Mui-focusVisible {
+    &.Mui-focusVisible {
       box-shadow: none;
     }
+
     :hover:not(:active) {
       box-shadow: ${props => (props.theme === "light" && "0px 0px 0px 18px #66666633") || "0px 0px 0px 18px #d9d9d933"};
     }
@@ -94,13 +136,30 @@ const SliderContainer = styled.div`
       background-color: ${props => (props.theme === "light" && "#000") || "#ffed00"};
       width: 18px;
       height: 18px;
+      top: 32%;
     }
   }
   .MuiSlider-track {
     background-color: ${props => (props.theme === "light" && "#000000") || "#d9d9d9"};
+    height: 1px;
+    top: 52%;
   }
+
   .MuiSlider-track.MuiSlider-trackAfter {
-    background-color: "#000000";
+    background-color: #000000;
+  }
+  .MuiSlider-rail {
+    background-color: ${props => (props.theme === "light" && "#d9d9d9") || "#d9d9d9"};
+    top: 50%;
+  }
+  .MuiSlider-mark.MuiSlider-markActive {
+    background-color: #000000;
+  }
+  .MuiSlider-mark {
+    background-color: #000000;
+    width: 4px;
+    height: 4px;
+    border-radius: 18px;
   }
 `;
 
