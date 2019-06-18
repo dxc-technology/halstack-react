@@ -18,7 +18,6 @@ pipeline {
             }
         }
         stage('.npmrc') {
-            when { branch 'master' }
             steps {
                 withCredentials([file(credentialsId: 'npmrc', variable: 'CONFIG')]) {
                     sh '''
