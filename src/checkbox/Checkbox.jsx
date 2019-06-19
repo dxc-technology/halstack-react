@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 
-const DxcCheckbox = ({ checked, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required }) => {
+const DxcCheckbox = ({ checked, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required=false }) => {
   const [innerChecked, setInnerChecked] = useState(0);
 
   const handlerCheckboxChange = value => {
