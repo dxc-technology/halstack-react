@@ -1,26 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 
-const DxcSwitch = ({
-  checked,
-  value,
-  label,
-  labelPosition,
-  theme,
-  name,
-  disabled,
-  disableRipple,
-  onChange
-}) => {
+const DxcSwitch = ({ checked, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required }) => {
+  const [innerChecked, setInnerChecked] = useState(0);
+
+  const handlerSwitchChange = value => {
+    const checked = value.target.checked === undefined ? !innerChecked : value.target.checked;
+    setInnerChecked(checked);
+    onChange(checked);
+  };
+
   return (
     <SwitchContainer theme={theme} disabled={disabled} labelPosition={labelPosition}>
       <Switch
-        checked={checked}
-        checked={checked}
+        checked={checked || innerChecked}
         inputProps={(name = { name })}
-        onChange={e => onChange(!checked)}
+        onChange={handlerSwitchChange}
         value={value}
         disabled={disabled}
         disableRipple={disableRipple}
@@ -28,21 +25,28 @@ const DxcSwitch = ({
       <LabelContainer
         labelPosition={labelPosition}
         theme={theme}
-        onClick={disabled === true ? e => {} : e => onChange(!checked)}
+        onClick={disabled === true ? e => {} : handlerSwitchChange}
       >
+        {required && <RequiredSpan>*</RequiredSpan>}
         {label}
       </LabelContainer>
     </SwitchContainer>
   );
 };
 
+const RequiredSpan = styled.span`
+  color: #ee2222;
+  margin-right: 5px;
+  cursor: default;
+`;
+
 const SwitchContainer = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
   .MuiSwitch-root {
-    align-items:center;
+    align-items: center;
     width: 60px;
     height: 45px;
     margin: 3px;
