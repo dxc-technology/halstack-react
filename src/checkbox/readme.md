@@ -79,6 +79,14 @@ The API properties are the following:
         <td>If true, the ripple effect will be disabled.</td>
     </tr>
     <tr>
+        <td>required</td>
+        <td><code>boolean</code></td>
+        <td>false</td>
+        <td>No</td>
+        <td>If true, a red asterisk will appear before the label to indicate to the user that the field is required.<br>
+        </td>
+    </tr>
+    <tr>
         <td>onChange</td>
         <td><code>function</code></td>
         <td></td>
