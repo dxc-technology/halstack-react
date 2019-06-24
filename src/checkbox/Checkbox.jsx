@@ -2,8 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
+import DxcRequired from "../common/RequiredComponent";
 
-const DxcCheckbox = ({ checked, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required=false }) => {
+const DxcCheckbox = ({
+  checked,
+  value,
+  label,
+  labelPosition,
+  theme,
+  name,
+  disabled,
+  disableRipple,
+  onChange,
+  required = false
+}) => {
   const [innerChecked, setInnerChecked] = useState(0);
 
   const handlerCheckboxChange = value => {
@@ -26,36 +38,38 @@ const DxcCheckbox = ({ checked, value, label, labelPosition, theme, name, disabl
         labelPosition={labelPosition}
         theme={theme}
         onClick={disabled === true ? e => {} : handlerCheckboxChange}
+        disabled={disabled}
       >
-        {required && <RequiredSpan>*</RequiredSpan>}
+        {required && <DxcRequired theme={theme}/>}
         {label}
       </LabelContainer>
-      <CheckboxBlackBack labelPosition={labelPosition} disabled={disabled} checked={checked} theme={theme} />
+      <CheckboxBlackBack
+        labelPosition={labelPosition}
+        disabled={disabled}
+        checked={checked || innerChecked}
+        theme={theme}
+      />
     </CheckboxContainer>
   );
 };
-const RequiredSpan = styled.span`
-  color: #ee2222;
-  margin-right: 5px;
-  cursor: default;
-`;
 const LabelContainer = styled.span`
   color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
+  cursor: default;
 `;
 
 const CheckboxContainer = styled.span`
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
-  max-height: 42px;
+  cursor:not-allowed;
   position: relative;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiButtonBase-root {
     padding: 10px 10px;
     margin: 0px 3px;
     color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
+
     :hover {
       background-color: transparent;
     }
