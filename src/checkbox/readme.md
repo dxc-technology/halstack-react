@@ -52,6 +52,11 @@ import { DxcCheckbox } from "@diaas/dxc-react-cdk";
         <td>If true, the component will be disabled.</td>
     </tr>
     <tr>
+        <td>required: boolean</td>
+        <td><code>false</code></td>
+        <td>If true, a red asterisk will appear before the label to indicate to the user that the field is required.</td>
+    </tr>
+    <tr>
         <td>disableRipple: boolean</td>
         <td><code>false</code></td>
         <td>If true, the ripple effect will be disabled.</td>

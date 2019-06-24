@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
+import DxcRequired from "../common/RequiredComponent.jsx";
 
 const DxcCheckbox = ({
   checked,
@@ -12,14 +13,23 @@ const DxcCheckbox = ({
   name,
   disabled,
   disableRipple,
-  onChange
+  onChange,
+  required = false
 }) => {
+  const [innerChecked, setInnerChecked] = useState(0);
+
+  const handlerCheckboxChange = value => {
+    const checked = value.target.checked === undefined ? !innerChecked : value.target.checked;
+    setInnerChecked(checked);
+    onChange(checked);
+  };
+
   return (
     <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition}>
       <Checkbox
-        checked={checked}
-        inputProps={name={name}}
-        onChange={e => onChange(!checked)}
+        checked={checked || innerChecked}
+        inputProps={(name = { name })}
+        onChange={handlerCheckboxChange}
         value={value}
         disabled={disabled}
         disableRipple={disableRipple}
@@ -27,37 +37,39 @@ const DxcCheckbox = ({
       <LabelContainer
         labelPosition={labelPosition}
         theme={theme}
-        onClick={disabled === true ? e => {} : e => onChange(!checked)}
+        onClick={disabled === true ? e => {} : handlerCheckboxChange}
+        disabled={disabled}
       >
+        {required && <DxcRequired theme={theme}/>}
         {label}
       </LabelContainer>
       <CheckboxBlackBack
         labelPosition={labelPosition}
         disabled={disabled}
-        checked={checked}
+        checked={checked || innerChecked}
         theme={theme}
       />
     </CheckboxContainer>
   );
 };
-
 const LabelContainer = styled.span`
   color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
+  cursor: default;
 `;
 
 const CheckboxContainer = styled.span`
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
-  max-height: 42px;
+  cursor:not-allowed;
   position: relative;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiButtonBase-root {
     padding: 10px 10px;
     margin: 0px 3px;
     color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
+
     :hover {
       background-color: transparent;
     }
@@ -82,11 +94,7 @@ const CheckboxContainer = styled.span`
 
 const CheckboxBlackBack = styled.span`
   background-color: ${props =>
-    props.disabled == true
-      ? "#FFFFFF"
-      : props.theme === "light" && props.checked === true
-      ? "#000000"
-      : "#FFFFFF"};
+    props.disabled == true ? "#FFFFFF" : props.theme === "light" && props.checked === true ? "#000000" : "#FFFFFF"};
   width: 17px;
   height: 17px;
   position: absolute;
@@ -104,7 +112,8 @@ DxcCheckbox.propTypes = {
   name: PropTypes.string,
   disabled: PropTypes.bool,
   disableRipple: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  required: PropTypes.bool
 };
 
 export default DxcCheckbox;
