@@ -26,8 +26,9 @@ const DxcSwitch = ({ checked, value, label, labelPosition, theme, name, disabled
         labelPosition={labelPosition}
         theme={theme}
         onClick={disabled === true ? e => {} : handlerSwitchChange}
+        disabled={disabled}
       >
-        {required && <RequiredSpan>*</RequiredSpan>}
+        {required && <RequiredSpan theme={theme}>*</RequiredSpan>}
         {label}
       </LabelContainer>
     </SwitchContainer>
@@ -35,16 +36,16 @@ const DxcSwitch = ({ checked, value, label, labelPosition, theme, name, disabled
 };
 
 const RequiredSpan = styled.span`
-  color: #ee2222;
+  color: ${props => (props.theme === "dark" ? "#FF6161" : "#ee2222")};
   margin-right: 5px;
   cursor: default;
 `;
 
 const SwitchContainer = styled.div`
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
-  cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
+  cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
   .MuiSwitch-root {
     align-items: center;
     width: 60px;
@@ -114,6 +115,7 @@ const LabelContainer = styled.span`
   color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
+  cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
 `;
 
 DxcSwitch.propTypes = {
