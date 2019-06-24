@@ -1,11 +1,11 @@
-# DXC Radio Component
+# DXC Select Component
 
 ## Usage
 
 ```js
-import { DxcRadio } from "@diaas/dxc-react-cdk";
+import { DxcSelect } from "@diaas/dxc-react-cdk";
 
-<DxcRadio onChange={handleNewValue} label="Test Radio" checked={checked} />;
+<DxcSelect onChange={handleNewValue} label="Test Radio" checked={checked} />;
 ```
 
 ## Props
@@ -17,12 +17,22 @@ import { DxcRadio } from "@diaas/dxc-react-cdk";
         <td>Description</td>
     </tr>
     <tr>
-        <td>checked: boolean</td>
-        <td><code>false</code></td>
-        <td>If true, the component is checked.</td>
+        <td>options: object[]</td>
+        <td><code>[]</code></td>
+        <td>An array of objects representing the selectable options. Each object must have a "value" property with the value of that option, and a "label" property with the displayed value.</td>
     </tr>
     <tr>
-        <td>value: any</td>
+        <td>value: object | object[]</td>
+        <td><code>[]</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>multiple: boolean</td>
+        <td><code>false</code></td>
+        <td>If true, the select component will support multiple selection. In that case, value must be an array of strings with the keys of the selected values</td>
+    </tr>
+    <tr>
+        <td>value: string | []</td>
         <td></td>
         <td>Will be passed to the value attribute of the html input element. When inside a form, this value will be only submitted if the radio is checked </td>
     </tr>
@@ -50,11 +60,6 @@ import { DxcRadio } from "@diaas/dxc-react-cdk";
         <td>disabled: boolean</td>
         <td><code>false</code></td>
         <td>If true, the component will be disabled.</td>
-    </tr>
-    <tr>
-        <td>required: boolean</td>
-        <td><code>false</code></td>
-        <td>If true, a red asterisk will appear before the label to indicate to the user that the field is required.</td>
     </tr>
     <tr>
         <td>disableRipple: boolean</td>
