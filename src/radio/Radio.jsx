@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Radio from "@material-ui/core/Radio";
-import PropTypes from "prop-types";
-import DxcRequired from "../common/RequiredComponent";
+import DxcRequired from "../common/RequiredComponent.jsx";
 
 const DxcRadio = ({
   checked,
