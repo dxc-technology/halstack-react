@@ -18,10 +18,10 @@ const DxcCheckbox = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
 
-  const handlerCheckboxChange = value => {
-    const checked = value.target.checked === undefined ? !innerChecked : value.target.checked;
-    setInnerChecked(checked);
-    onChange(checked);
+  const handlerCheckboxChange = checkboxValue => {
+    const isChecked = checkboxValue.target.checked === undefined ? !innerChecked : checkboxValue.target.checked;
+    setInnerChecked(isChecked);
+    onChange(isChecked);
   };
 
   return (
@@ -94,7 +94,7 @@ const CheckboxContainer = styled.span`
 
 const CheckboxBlackBack = styled.span`
   background-color: ${props =>
-    props.disabled == true ? "#FFFFFF" : props.theme === "light" && props.checked === true ? "#000000" : "#FFFFFF"};
+    props.disabled === true ? "#FFFFFF" : props.theme === "light" && props.checked === true ? "#000000" : "#FFFFFF"};
   width: 17px;
   height: 17px;
   position: absolute;

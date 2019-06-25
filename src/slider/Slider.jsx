@@ -25,13 +25,12 @@ const DxcSlider = ({
     if (valueToCheck !== newValue) {
       setInnerValue(newValue);
       onChange(newValue);
-    } 
-  }
-  const handlerInputChange = (event) => {
+    }
+  };
+  const handlerInputChange = event => {
     setInnerValue(event.target.value > maxValue ? maxValue : event.target.value);
-    onChange(event.target.value > maxValue ? maxValue : event.target.value)
-  } 
-  
+    onChange(event.target.value > maxValue ? maxValue : event.target.value);
+  };
 
   return (
     <SliderContainer theme={theme}>
@@ -41,7 +40,7 @@ const DxcSlider = ({
         min={minValue}
         max={maxValue}
         onChange={handlerSliderChange}
-        onChangeCommitted={(event, value) => onDragEnd(value)}
+        onChangeCommitted={(event, selectedValue) => onDragEnd(selectedValue)}
         step={step}
         marks={marks || []}
         disabled={disabled}
@@ -49,12 +48,7 @@ const DxcSlider = ({
       {showLimitsValues && <MaxLabelContainer theme={theme}>{maxValue}</MaxLabelContainer>}
       {showInput && (
         <StyledTextInput theme={theme}>
-          <TextField
-            name={name}
-            value={value >= 0 || innerValue}
-            disabled={disabled}
-            onChange={handlerInputChange}
-          />
+          <TextField name={name} value={value >= 0 || innerValue} disabled={disabled} onChange={handlerInputChange} />
         </StyledTextInput>
       )}
     </SliderContainer>
@@ -71,7 +65,8 @@ DxcSlider.propTypes = {
   onChange: PropTypes.func,
   onDragEnd: PropTypes.func,
   disabled: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "light"])
+  theme: PropTypes.oneOf(["dark", "light"]),
+  marks: PropTypes.bool
 };
 
 const StyledTextInput = styled.div`
@@ -127,7 +122,9 @@ const SliderContainer = styled.div`
     &.Mui-focusVisible {
       box-shadow: none;
     }
-
+    &.MuiSlider-active {
+      box-shadow: none;
+    }
     :hover:not(:active) {
       box-shadow: ${props => (props.theme === "light" && "0px 0px 0px 18px #66666633") || "0px 0px 0px 18px #d9d9d933"};
     }
@@ -136,7 +133,7 @@ const SliderContainer = styled.div`
       background-color: ${props => (props.theme === "light" && "#000") || "#ffed00"};
       width: 18px;
       height: 18px;
-      top: 32%;
+      top: 35%;
     }
   }
   .MuiSlider-track {
