@@ -3,13 +3,13 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 
-const DxcSwitch = ({ checked, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required }) => {
+const DxcSwitch = ({ checked=false, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required }) => {
   const [innerChecked, setInnerChecked] = useState(0);
 
-  const handlerSwitchChange = value => {
-    const checked = value.target.checked === undefined ? !innerChecked : value.target.checked;
-    setInnerChecked(checked);
-    onChange(checked);
+  const handlerSwitchChange = newValue => {
+    const switchChecked = newValue.target.checked === undefined ? !innerChecked : newValue.target.checked;
+    setInnerChecked(switchChecked);
+    onChange(switchChecked);
   };
 
   return (
@@ -25,7 +25,7 @@ const DxcSwitch = ({ checked, value, label, labelPosition, theme, name, disabled
       <LabelContainer
         labelPosition={labelPosition}
         theme={theme}
-        onClick={disabled === true ? e => {} : handlerSwitchChange}
+        onClick={disabled === true ? () => {} : handlerSwitchChange}
         disabled={disabled}
       >
         {required && <RequiredSpan theme={theme}>*</RequiredSpan>}
@@ -127,7 +127,8 @@ DxcSwitch.propTypes = {
   name: PropTypes.string,
   disabled: PropTypes.bool,
   disableRipple: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  required: PropTypes.bool
 };
 
 export default DxcSwitch;
