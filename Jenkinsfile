@@ -17,6 +17,13 @@ pipeline {
                     }
             }
         }
+        stage('Install dependencies') {
+            steps {
+                sh '''
+                    npm install
+                '''
+            }
+        }
         stage('.npmrc') {
             steps {
                 withCredentials([file(credentialsId: 'npmrc', variable: 'CONFIG')]) {
@@ -24,13 +31,6 @@ pipeline {
                         cat ${CONFIG} > ~/.npmrc
                     '''
                 }
-            }
-        }
-        stage('Install dependencies') {
-            steps {
-                sh '''
-                    npm install
-                '''
             }
         }
         stage('Deploy Storybook and Artifact'){
