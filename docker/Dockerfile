@@ -1,6 +1,6 @@
 FROM node:8.12-alpine
 
-RUN apk add --update git bash curl
+RUN apk add --update git bash openssh curl chromium ruby ruby-full
 
 RUN npm config set unsafe-perm true
 
