@@ -15,10 +15,10 @@
     "styled-components": "^4.3.1"
   },
   "dependencies": {
-    "@material-ui/core": "^4.0.1",
+    "@material-ui/core": "^4.1.1",
+    "@material-ui/lab": "^4.0.0-alpha.16",
     "@material-ui/styles": "^4.0.2",
-    "prop-types": "^15.7.2",
-    "@material-ui/lab": "^4.0.0-alpha.15"
+    "prop-types": "^15.7.2"
   },
   "scripts": {
     "build": "rollup -c",
@@ -46,6 +46,7 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.7.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "jest": "^24.8.0",

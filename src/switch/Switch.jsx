@@ -1,26 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 
-const DxcSwitch = ({
-  checked,
-  value,
-  label,
-  labelPosition,
-  theme,
-  name,
-  disabled,
-  disableRipple,
-  onChange
-}) => {
+const DxcSwitch = ({ checked=false, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required }) => {
+  const [innerChecked, setInnerChecked] = useState(0);
+
+  const handlerSwitchChange = newValue => {
+    const switchChecked = newValue.target.checked === undefined ? !innerChecked : newValue.target.checked;
+    setInnerChecked(switchChecked);
+    onChange(switchChecked);
+  };
+
   return (
     <SwitchContainer theme={theme} disabled={disabled} labelPosition={labelPosition}>
       <Switch
-        checked={checked}
-        checked={checked}
+        checked={checked || innerChecked}
         inputProps={(name = { name })}
-        onChange={e => onChange(!checked)}
+        onChange={handlerSwitchChange}
         value={value}
         disabled={disabled}
         disableRipple={disableRipple}
@@ -28,21 +25,29 @@ const DxcSwitch = ({
       <LabelContainer
         labelPosition={labelPosition}
         theme={theme}
-        onClick={disabled === true ? e => {} : e => onChange(!checked)}
+        onClick={disabled === true ? () => {} : handlerSwitchChange}
+        disabled={disabled}
       >
+        {required && <RequiredSpan theme={theme}>*</RequiredSpan>}
         {label}
       </LabelContainer>
     </SwitchContainer>
   );
 };
 
+const RequiredSpan = styled.span`
+  color: ${props => (props.theme === "dark" ? "#FF6161" : "#ee2222")};
+  margin-right: 5px;
+  cursor: default;
+`;
+
 const SwitchContainer = styled.div`
-  display: flex;
-  align-items: center;
+  display: inline-flex;
+  align-items: baseline;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
-  cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
+  cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
   .MuiSwitch-root {
-    align-items:center;
+    align-items: center;
     width: 60px;
     height: 45px;
     margin: 3px;
@@ -110,6 +115,7 @@ const LabelContainer = styled.span`
   color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
+  cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
 `;
 
 DxcSwitch.propTypes = {
@@ -121,7 +127,8 @@ DxcSwitch.propTypes = {
   name: PropTypes.string,
   disabled: PropTypes.bool,
   disableRipple: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  required: PropTypes.bool
 };
 
 export default DxcSwitch;
