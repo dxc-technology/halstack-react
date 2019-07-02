@@ -11,7 +11,17 @@
     <tr>
         <td>options: object[]</td>
         <td><code>[]</code></td>
-        <td>An array of objects representing the selectable options. Each object must have a "value" property with the value of that option, and a "label" property with the displayed value.</td>
+        <td>An array of objects representing the selectable options. Each object has the following properties:
+        <ul>
+            <li><b>value</b>: Option inner value</li>
+            <li><b>label</b>: Option display value</li>
+            <li><b>iconSrc</b>: URL of the icon that will be placed next to the option label</li>
+        </ul>
+    </tr>
+    <tr>
+        <td>iconPosition: 'before' | 'after'</td>
+        <td><code>'before'</code></td>
+        <td>In case options include an icon, whether the icon should appear after or before the label.</td>
     </tr>
     <tr>
         <td>value: string | string[]</td>
