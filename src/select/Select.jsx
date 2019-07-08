@@ -3,14 +3,19 @@ import Select from "@material-ui/core/Select";
 import styled from "styled-components";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+
 import DxcCheckbox from "../checkbox/Checkbox";
 
-import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent.jsx";
 
 const useStyles = makeStyles(() => ({
+  root: {
+    minWidth: "210px"
+  },
   dropdownStyle: {
-    boxShadow: "0px 8px 10px 0px rgba(217,217,217,1)"
+    boxShadow: "0px 8px 10px 0px rgba(217,217,217,1)",
+    minWidth: "210px !important",
   },
   itemList: {
     color: "#666666",
@@ -72,10 +77,20 @@ const DxcSelect = ({
       .map(optionToRender => optionToRender.label)
       .join(", ");
   };
-
+  const getLabelForSingleSelect = selected => {
+    const selectedItem = options.filter(option => option.value === selected)[0];
+    return (
+      <SelectedIconContainer iconPosition={iconPosition}>
+        {selectedItem.iconSrc && <ListIcon src={selectedItem.iconSrc} />}{" "}
+        <SelectedLabelContainer iconPosition={iconPosition} theme={theme} disabled={disabled}>
+          {selectedItem.label}
+        </SelectedLabelContainer>
+      </SelectedIconContainer>
+    );
+  };
   const getRenderValue = selected => {
     return (
-      (multiple && labelForMultipleSelect(selected)) || options.filter(option => option.value === selected)[0].label
+      (multiple && labelForMultipleSelect(selected)) || getLabelForSingleSelect(selected)
     );
   };
   const isChecked = (checkedValue, option) => {
@@ -105,7 +120,8 @@ const DxcSelect = ({
             <MenuItem value={option.value} disableRipple={disableRipple}>
               {multiple && <DxcCheckbox checked={isChecked(selectedValue, option)} />}
               <OptionContainer iconPosition={iconPosition}>
-                {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />} {option.label}
+                {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
+                <span>{option.label}</span>
               </OptionContainer>
             </MenuItem>
           );
@@ -114,11 +130,19 @@ const DxcSelect = ({
     </SelectContainer>
   );
 };
+const SelectedIconContainer = styled.div`
+  display: flex;
+  flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
+  justify-content: ${props => (props.iconPosition === "before" && "flex-start") || "flex-end"};
+`;
+const SelectedLabelContainer = styled.span`
+  margin-left: ${props => (props.iconPosition === "after" && "0px") || "10px"};
+  margin-right: ${props => (props.iconPosition === "before" && "0px") || "10px"};
+`;
 const OptionContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
-  padding-bottom: 5px;
 `;
 
 const ListIcon = styled.img`
@@ -133,6 +157,9 @@ const SelectContainer = styled.div`
     min-width: 230px;
     display: flex;
     color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
+    :focus{
+      background-color: transparent;
+    }
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;

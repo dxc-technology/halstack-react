@@ -1,7 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import listIcon from "../../.storybook/public/run_icon_black.png";
+import amazon from "../../.storybook/public/amazon.svg";
+import ebay from "../../.storybook/public/ebay.svg";
+import apple from "../../.storybook/public/apple.svg";
 
 import selectMD from "./readme.md";
 
@@ -14,18 +16,35 @@ onChange.toString = () => "onChangeHandler";
 const selectOptions = [
   {
     value: 1,
-    label: "First Item",
-    iconSrc: listIcon
+    label: "Amazon",
+    iconSrc: amazon
   },
   {
     value: 2,
-    label: "Second Item",
-    iconSrc: listIcon
+    label: "Ebay",
+    iconSrc: ebay
   },
   {
     value: 3,
-    label: "Third Item",
-    iconSrc: listIcon
+    label: "Apple",
+    iconSrc: apple
+  }
+];
+const selectOptionsWithoutLabel = [
+  {
+    value: 1,
+    label: "",
+    iconSrc: amazon
+  },
+  {
+    value: 2,
+    label: "",
+    iconSrc: ebay
+  },
+  {
+    value: 3,
+    label: "",
+    iconSrc: apple
   }
 ];
 
@@ -33,7 +52,7 @@ storiesOf("Form Components|Select", module).add(
   "Component",
   () => (
     <div>
-      <h3>Light</h3>
+      <h2>Light</h2>
       <div>
         <Select
           disabled={false}
@@ -43,16 +62,16 @@ storiesOf("Form Components|Select", module).add(
           options={selectOptions}
           required={false}
           onChange={onChange}
-          iconPosition="after"
+          iconPosition="before"
         />
       </div>
-      <p>Multiple</p>
+      <h4>Multiple</h4>
       <div>
         <Select
           disabled={false}
           theme="light"
           multiple={true}
-          name="selectName3"
+          name="selectNameMultiple"
           label="Select Multiple"
           options={selectOptions}
           required={false}
@@ -60,19 +79,62 @@ storiesOf("Form Components|Select", module).add(
           iconPosition="after"
         />
       </div>
-      <h3>Dark</h3>
+      <h4>Only Icons</h4>
+      <div>
+        <Select
+          disabled={false}
+          theme="light"
+          multiple={true}
+          name="selectNameOnlyIcons"
+          label="Only icons"
+          options={selectOptionsWithoutLabel}
+          required={false}
+          onChange={onChange}
+          iconPosition="after"
+        />
+      </div>
+      <h2>Dark</h2>
       <div style={{ background: "black" }}>
         <Select
           disabled={false}
           theme="dark"
-          name="selectName2"
+          name="selectNameDark"
           label="Select Label Dark"
           options={selectOptions}
           required={false}
           onChange={onChange}
           iconPosition="before"
         />
+     
+      <h4>Multiple</h4>
+      <div>
+        <Select
+          disabled={false}
+          theme="dark"
+          multiple={true}
+          name="selectNameMultipleDark"
+          label="Select Multiple"
+          options={selectOptions}
+          required={false}
+          onChange={onChange}
+          iconPosition="after"
+        />
       </div>
+      <h4>Only Icons</h4>
+      <div>
+        <Select
+          disabled={false}
+          theme="dark"
+          multiple={true}
+          name="selectNameOnlyIconsDark"
+          label="Only icons"
+          options={selectOptionsWithoutLabel}
+          required={false}
+          onChange={onChange}
+          iconPosition="after"
+        />
+      </div>
+    </div>
     </div>
   ),
   {
@@ -109,7 +171,7 @@ storiesOf("Form Components|Select", module).add("Controlled Component", () => {
       {
         value: 1,
         label: "First Item",
-        iconSrc: listIcon
+        iconSrc: apple
       }
     ],
     disabled: false,
