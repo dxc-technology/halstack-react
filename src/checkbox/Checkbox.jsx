@@ -16,7 +16,7 @@ const DxcCheckbox = ({
   onChange,
   required = false
 }) => {
-  const [innerChecked, setInnerChecked] = useState(0);
+  const [innerChecked, setInnerChecked] = useState(false);
 
   const handlerCheckboxChange = checkboxValue => {
     const isChecked = checkboxValue.target.checked === undefined ? !innerChecked : checkboxValue.target.checked;

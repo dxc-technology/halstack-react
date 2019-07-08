@@ -3,6 +3,7 @@ import Select from "@material-ui/core/Select";
 import styled from "styled-components";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
+import DxcCheckbox from "../checkbox/Checkbox";
 
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent.jsx";
@@ -48,18 +49,41 @@ const DxcSelect = ({
   disabled,
   options,
   theme = "light",
-  disableRipple=false,
-  iconPosition = "after"
+  disableRipple = false,
+  iconPosition = "after",
+  multiple = false
 }) => {
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = (multiple && useState([])) || useState("");
   const classes = useStyles();
+
   const handleSelectChange = selectedOption => {
-    setSelectedValue(selectedOption.target.value);
-    onChange(selectedOption.target.value);
+    if (multiple) {
+      setSelectedValue(selectedOption.target.value);
+      onChange(selectedOption.target.value);
+    } else {
+      setSelectedValue(selectedOption.target.value);
+      onChange(selectedOption.target.value);
+    }
+  };
+
+  const labelForMultipleSelect = selected => {
+    return options
+      .filter(x => selected.includes(x.value))
+      .map(optionToRender => optionToRender.label)
+      .join(", ");
+  };
+
+  const getRenderValue = selected => {
+    return (
+      (multiple && labelForMultipleSelect(selected)) || options.filter(option => option.value === selected)[0].label
+    );
+  };
+  const isChecked = (checkedValue, option) => {
+    return checkedValue.findIndex(element => element === option.value) !== -1;
   };
 
   return (
-    <SelectContainer>
+    <SelectContainer theme={theme}>
       <LabelContainer theme={theme} disabled={disabled}>
         {required && <DxcRequired theme={theme} />}
         {label}
@@ -67,8 +91,10 @@ const DxcSelect = ({
       <Select
         name={name}
         theme={theme}
+        multiple={multiple}
+        renderValue={getRenderValue}
         onChange={handleSelectChange}
-        value={value || selectedValue}
+        value={(value && value.length && value) || selectedValue}
         disabled={disabled}
         MenuProps={{
           classes: { paper: classes.dropdownStyle, list: classes.itemList }
@@ -77,6 +103,7 @@ const DxcSelect = ({
         {options.map(option => {
           return (
             <MenuItem value={option.value} disableRipple={disableRipple}>
+              {multiple && <DxcCheckbox checked={isChecked(selectedValue, option)} />}
               <OptionContainer iconPosition={iconPosition}>
                 {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />} {option.label}
               </OptionContainer>
@@ -91,7 +118,7 @@ const OptionContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
-  padding-bottom:5px;
+  padding-bottom: 5px;
 `;
 
 const ListIcon = styled.img`
@@ -105,12 +132,22 @@ const SelectContainer = styled.div`
   .MuiSelect-select {
     min-width: 230px;
     display: flex;
+    color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid;
+    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   }
   .MuiInput-underline:after {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid;
+    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+  }
+  .MuiInput-underline:before {
+    border-bottom: 1px solid;
+    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+  }
+  .MuiSelect-icon {
+    color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
   }
 `;
 const LabelContainer = styled.span`
@@ -132,8 +169,9 @@ DxcSelect.propTypes = {
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.any,
-      label: PropTypes.any
+      value: PropTypes.any.isRequired,
+      label: PropTypes.any.isRequired,
+      iconSrc: PropTypes.string
     })
   )
 };
