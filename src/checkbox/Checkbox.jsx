@@ -89,18 +89,21 @@ const CheckboxContainer = styled.span`
       width: 26.6px;
       height: 26.6px;
     }
+    .MuiIconButton-label {
+      z-index: 1;
+    }
   }
 `;
 
 const CheckboxBlackBack = styled.span`
   background-color: ${props =>
-    props.disabled === true ? "#FFFFFF" : props.theme === "light" && props.checked === true ? "#000000" : "#FFFFFF"};
+    props.disabled === true ? "transparent" : props.theme === "light" && props.checked === true ? "#000000" : "transparent"};
   width: 17px;
   height: 17px;
   position: absolute;
   left: ${props => (props.labelPosition === "before" ? "unset" : "18px")};
   right: ${props => (props.labelPosition === "before" ? "18px" : "unset")};
-  z-index: -1;
+  z-index: 0;
 `;
 
 DxcCheckbox.propTypes = {
