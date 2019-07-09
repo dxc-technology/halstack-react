@@ -4,6 +4,7 @@ import { action } from "@storybook/addon-actions";
 import amazon from "../../.storybook/public/amazon.svg";
 import ebay from "../../.storybook/public/ebay.svg";
 import apple from "../../.storybook/public/apple.svg";
+import { boolean, select, text,object } from "@storybook/addon-knobs";
 
 import selectMD from "./readme.md";
 
@@ -11,7 +12,6 @@ import Select from "./Select";
 
 const onChange = action("onChange");
 onChange.toString = () => "onChangeHandler";
-
 
 const selectOptions = [
   {
@@ -105,36 +105,36 @@ storiesOf("Form Components|Select", module).add(
           onChange={onChange}
           iconPosition="before"
         />
-     
-      <h4>Multiple</h4>
-      <div>
-        <Select
-          disabled={false}
-          theme="dark"
-          multiple={true}
-          name="selectNameMultipleDark"
-          label="Select Multiple"
-          options={selectOptions}
-          required={false}
-          onChange={onChange}
-          iconPosition="after"
-        />
+
+        <h4>Multiple</h4>
+        <div>
+          <Select
+            disabled={false}
+            theme="dark"
+            multiple={true}
+            name="selectNameMultipleDark"
+            label="Select Multiple"
+            options={selectOptions}
+            required={false}
+            onChange={onChange}
+            iconPosition="after"
+          />
+        </div>
+        <h4>Only Icons</h4>
+        <div>
+          <Select
+            disabled={false}
+            theme="dark"
+            multiple={true}
+            name="selectNameOnlyIconsDark"
+            label="Only icons"
+            options={selectOptionsWithoutLabel}
+            required={false}
+            onChange={onChange}
+            iconPosition="after"
+          />
+        </div>
       </div>
-      <h4>Only Icons</h4>
-      <div>
-        <Select
-          disabled={false}
-          theme="dark"
-          multiple={true}
-          name="selectNameOnlyIconsDark"
-          label="Only icons"
-          options={selectOptionsWithoutLabel}
-          required={false}
-          onChange={onChange}
-          iconPosition="after"
-        />
-      </div>
-    </div>
     </div>
   ),
   {
@@ -143,7 +143,6 @@ storiesOf("Form Components|Select", module).add(
 );
 
 storiesOf("Form Components|Select", module).add("Controlled Component", () => {
-  
   class ControlledStory extends React.Component {
     constructor(props) {
       super(props);
@@ -186,3 +185,26 @@ storiesOf("Form Components|Select", module).add("Controlled Component", () => {
 
   return <ControlledStory {...props} />;
 });
+
+const knobProps = () => ({
+  label: text("label", "Test Select"),
+  theme: select("theme", { light: "light", dark: "dark" }, "light"),
+  disabled: boolean("disabled", false),
+  required: boolean("required", false),
+  iconPosition: select("icon poistion", { before: "before", after: "after" }, "before")
+});
+
+storiesOf("Form Components|Select", module).add(
+  "Knobs example",
+  () => {
+    const props = knobProps();
+    return (
+      <div style={{ background: (props.theme === "dark" && "black") || "transparent" }}>
+        <Select {...props} options={selectOptions} onChange={onChange} />
+      </div>
+    );
+  },
+  {
+    notes: { markdown: selectMD }
+  }
+);
