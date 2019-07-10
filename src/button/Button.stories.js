@@ -17,30 +17,30 @@ storiesOf("Form Components|Button", module).add(
     <div>
       <h3>Light</h3>
       <div>
-        <Button mode="basic" theme="light" label="Test Button" onClick={onClick} />
-        <Button mode="raised" theme="light" label="Test Button" onClick={onClick} />
-        <Button mode="flat" theme="light" label="Test Button" onClick={onClick} />
-        <Button mode="outlined" theme="light" label="Test Button" onClick={onClick} />
+        <Button mode="basic" theme="light" label="Basic Button" onClick={onClick} />
+        <Button mode="raised" theme="light" label="Raised Button" onClick={onClick} />
+        <Button mode="flat" theme="light" label="Flat Button" onClick={onClick} />
+        <Button mode="outlined" theme="light" label="Outlined Button" onClick={onClick} />
       </div>
       <div>
-        <Button disabled mode="basic" theme="light" label="Test Button" onClick={onClick} />
-        <Button disabled mode="raised" theme="light" label="Test Button" onClick={onClick} />
-        <Button disabled mode="flat" theme="light" label="Test Button" onClick={onClick} />
-        <Button disabled mode="outlined" theme="light" label="Test Button" onClick={onClick} />
+        <Button disabled mode="basic" theme="light" label="Basic Button" onClick={onClick} />
+        <Button disabled mode="raised" theme="light" label="Raised Button" onClick={onClick} />
+        <Button disabled mode="flat" theme="light" label="Flat Button" onClick={onClick} />
+        <Button disabled mode="outlined" theme="light" label="Outlined Button" onClick={onClick} />
       </div>
       <h3>Dark</h3>
       <div style={{ background: "black" }}>
         <div>
-          <Button mode="basic" theme="dark" label="Test Button" onClick={onClick} />
-          <Button mode="raised" theme="dark" label="Test Button" onClick={onClick} />
-          <Button mode="flat" theme="dark" label="Test Button" onClick={onClick} />
-          <Button mode="outlined" theme="dark" label="Test Button" onClick={onClick} />
+          <Button mode="basic" theme="dark" label="Basic Button" onClick={onClick} />
+          <Button mode="raised" theme="dark" label="Raised Button" onClick={onClick} />
+          <Button mode="flat" theme="dark" label="Flat Button" onClick={onClick} />
+          <Button mode="outlined" theme="dark" label="Outlined Button" onClick={onClick} />
         </div>
         <div>
-          <Button disabled mode="basic" theme="dark" label="Test Button" onClick={onClick} />
-          <Button disabled mode="raised" theme="dark" label="Test Button" onClick={onClick} />
-          <Button disabled mode="flat" theme="dark" label="Test Button" onClick={onClick} />
-          <Button disabled mode="outlined" theme="dark" label="Test Button" onClick={onClick} />
+          <Button disabled mode="basic" theme="dark" label="Basic Button" onClick={onClick} />
+          <Button disabled mode="raised" theme="dark" label="Raised Button" onClick={onClick} />
+          <Button disabled mode="flat" theme="dark" label="Flat Button" onClick={onClick} />
+          <Button disabled mode="outlined" theme="dark" label="Outlined Button" onClick={onClick} />
         </div>
       </div>
       <h3>With icon</h3>
@@ -48,7 +48,7 @@ storiesOf("Form Components|Button", module).add(
         <Button
           mode="basic"
           theme="light"
-          label="Test Button"
+          label="Basic Button"
           onClick={onClick}
           iconPosition="after"
           iconSrc={logo}
@@ -56,16 +56,16 @@ storiesOf("Form Components|Button", module).add(
         <Button
           mode="raised"
           theme="light"
-          label="Test Button"
+          label="Raised Button"
           onClick={onClick}
           iconPosition="after"
           iconSrc={logo}
         />
-        <Button mode="flat" theme="light" label="Test Button" onClick={onClick} iconSrc={logo} />
+        <Button mode="flat" theme="light" label="Flat Button" onClick={onClick} iconSrc={logo} />
         <Button
           mode="outlined"
           theme="light"
-          label="Test Button"
+          label="Outlined Button"
           onClick={onClick}
           iconPosition="after"
           iconSrc={logo}
@@ -76,7 +76,7 @@ storiesOf("Form Components|Button", module).add(
           disabled
           mode="basic"
           theme="light"
-          label="Test Button"
+          label="Basic Button"
           onClick={onClick}
           iconPosition="after"
           iconSrc={logo}
@@ -85,7 +85,7 @@ storiesOf("Form Components|Button", module).add(
           disabled
           mode="raised"
           theme="light"
-          label="Test Button"
+          label="Raised Button"
           onClick={onClick}
           iconPosition="after"
           iconSrc={logo}
@@ -94,7 +94,7 @@ storiesOf("Form Components|Button", module).add(
           disabled
           mode="flat"
           theme="light"
-          label="Test Button"
+          label="Flat Button"
           onClick={onClick}
           iconPosition="after"
           iconSrc={logo}
@@ -103,7 +103,7 @@ storiesOf("Form Components|Button", module).add(
           disabled
           mode="outlined"
           theme="light"
-          label="Test Button"
+          label="Outlined Button"
           onClick={onClick}
           iconPosition="after"
           iconSrc={logo}

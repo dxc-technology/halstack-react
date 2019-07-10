@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 import React from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -37,6 +38,9 @@ const ButtonIcon = styled.img`
 `;
 const DxCButton = styled.span`
   display: inline-block;
+  margin: 15px;
+  cursor:${props => (props.disabled  && "not-allowed") || "pointer"};
+
   .MuiButtonBase-root {
     .MuiButton-label {
       display: flex;
@@ -53,13 +57,13 @@ const DxCButton = styled.span`
     min-height: 43px;
     
     line-height: 1;
-    margin: 15px;
     font-family: "Open Sans", sans-serif;
     ${props => {
       const { mode, theme } = props;
       if (mode === "basic") {
         return `
           background-color: #ffed00;
+          color: #000;
           &:hover{
             background-color: ${(theme === "light" && "#000000") || "#212121"};
             color: #ffed00; 
@@ -67,7 +71,8 @@ const DxCButton = styled.span`
           &:disabled{ 
             background-color:#ffed00;
             opacity:0.5;
-            color: #666;
+            color: #000;
+            cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
@@ -89,12 +94,15 @@ const DxCButton = styled.span`
           }
           &:disabled{ 
             background-color:${(theme === "light" && "transparent") || "#000000"};
-            border-color:${(theme === "light" && "#000") || "#FFFFFF"};
-            color:${(theme === "light" && "#000") || "#FFFFFF"};
-            opacity:0.5;
+            border-color:${(theme === "light" && "#d9d9d9") || "#666666"};
+            color:${(theme === "light" && "#d9d9d9") || "#666666"};
+            cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
+          }
+          .MuiTouchRipple-child{
+            background-color:${(theme === "light" && "#d9d9d9") || "#666666"};
           }
         `;
       } else if (mode === "flat") {
@@ -102,16 +110,20 @@ const DxCButton = styled.span`
           background-color: ${(theme === "light" && "transparent") || "#000000"};
           color: ${(theme === "light" && "#000") || "#FFFFFF"};
           &:hover{
-            background-color: #e5e5e5;
+            background-color: #d9d9d9;
             color: #000000;
           }
           &:disabled{ 
             background-color:${(theme === "light" && "#d9d9d9") || "#666666"};
             opacity:0.5;
             color:${(theme === "light" && "#000000") || "#d9d9d9"};
+            cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
+          }
+          .MuiTouchRipple-child{
+            background-color:${(theme === "light" && "#d9d9d9") || "#ffffff"};
           }
         `;
       } else {
@@ -127,6 +139,7 @@ const DxCButton = styled.span`
             opacity:0.5;
             box-shadow:none;
             color: #666;
+            cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
