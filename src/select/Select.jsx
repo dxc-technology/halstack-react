@@ -3,13 +3,19 @@ import Select from "@material-ui/core/Select";
 import styled from "styled-components";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
-
 import PropTypes from "prop-types";
+
+import DxcCheckbox from "../checkbox/Checkbox";
+
 import DxcRequired from "../common/RequiredComponent.jsx";
 
 const useStyles = makeStyles(() => ({
+  root: {
+    minWidth: "210px"
+  },
   dropdownStyle: {
-    boxShadow: "0px 8px 10px 0px rgba(217,217,217,1)"
+    boxShadow: "0px 8px 10px 0px rgba(217,217,217,1)",
+    minWidth: "210px !important",
   },
   itemList: {
     color: "#666666",
@@ -48,18 +54,51 @@ const DxcSelect = ({
   disabled,
   options,
   theme = "light",
-  disableRipple=false,
-  iconPosition = "after"
+  disableRipple = false,
+  iconPosition = "after",
+  multiple = false
 }) => {
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = (multiple && useState([])) || useState("");
   const classes = useStyles();
+
   const handleSelectChange = selectedOption => {
-    setSelectedValue(selectedOption.target.value);
-    onChange(selectedOption.target.value);
+    if (multiple) {
+      setSelectedValue(selectedOption.target.value);
+      onChange(selectedOption.target.value);
+    } else {
+      setSelectedValue(selectedOption.target.value);
+      onChange(selectedOption.target.value);
+    }
+  };
+
+  const labelForMultipleSelect = selected => {
+    return options
+      .filter(x => selected.includes(x.value))
+      .map(optionToRender => optionToRender.label)
+      .join(", ");
+  };
+  const getLabelForSingleSelect = selected => {
+    const selectedItem = options.filter(option => option.value === selected)[0];
+    return (
+      <SelectedIconContainer iconPosition={iconPosition}>
+        {selectedItem.iconSrc && <ListIcon src={selectedItem.iconSrc} />}{" "}
+        <SelectedLabelContainer iconPosition={iconPosition} theme={theme} disabled={disabled}>
+          {selectedItem.label}
+        </SelectedLabelContainer>
+      </SelectedIconContainer>
+    );
+  };
+  const getRenderValue = selected => {
+    return (
+      (multiple && labelForMultipleSelect(selected)) || getLabelForSingleSelect(selected)
+    );
+  };
+  const isChecked = (checkedValue, option) => {
+    return checkedValue.findIndex(element => element === option.value) !== -1;
   };
 
   return (
-    <SelectContainer>
+    <SelectContainer theme={theme}>
       <LabelContainer theme={theme} disabled={disabled}>
         {required && <DxcRequired theme={theme} />}
         {label}
@@ -67,8 +106,10 @@ const DxcSelect = ({
       <Select
         name={name}
         theme={theme}
+        multiple={multiple}
+        renderValue={getRenderValue}
         onChange={handleSelectChange}
-        value={value || selectedValue}
+        value={(value && value.length && value) || selectedValue}
         disabled={disabled}
         MenuProps={{
           classes: { paper: classes.dropdownStyle, list: classes.itemList }
@@ -77,8 +118,10 @@ const DxcSelect = ({
         {options.map(option => {
           return (
             <MenuItem value={option.value} disableRipple={disableRipple}>
+              {multiple && <DxcCheckbox checked={isChecked(selectedValue, option)} />}
               <OptionContainer iconPosition={iconPosition}>
-                {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />} {option.label}
+                {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
+                <span>{option.label}</span>
               </OptionContainer>
             </MenuItem>
           );
@@ -87,11 +130,19 @@ const DxcSelect = ({
     </SelectContainer>
   );
 };
+const SelectedIconContainer = styled.div`
+  display: flex;
+  flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
+  justify-content: ${props => (props.iconPosition === "before" && "flex-start") || "flex-end"};
+`;
+const SelectedLabelContainer = styled.span`
+  margin-left: ${props => (props.iconPosition === "after" && "0px") || "10px"};
+  margin-right: ${props => (props.iconPosition === "before" && "0px") || "10px"};
+`;
 const OptionContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
-  padding-bottom:5px;
 `;
 
 const ListIcon = styled.img`
@@ -105,12 +156,25 @@ const SelectContainer = styled.div`
   .MuiSelect-select {
     min-width: 230px;
     display: flex;
+    color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
+    :focus{
+      background-color: transparent;
+    }
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid;
+    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   }
   .MuiInput-underline:after {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid;
+    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+  }
+  .MuiInput-underline:before {
+    border-bottom: 1px solid;
+    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+  }
+  .MuiSelect-icon {
+    color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
   }
 `;
 const LabelContainer = styled.span`
@@ -132,8 +196,9 @@ DxcSelect.propTypes = {
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.any,
-      label: PropTypes.any
+      value: PropTypes.any.isRequired,
+      label: PropTypes.any.isRequired,
+      iconSrc: PropTypes.string
     })
   )
 };
