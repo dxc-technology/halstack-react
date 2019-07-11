@@ -1,9 +1,7 @@
 pipeline {
     agent {
         dockerfile {
-            args '-u root:root'
             filename 'docker/Dockerfile'
-            reuseNode false
         }
     }
     stages {
@@ -14,6 +12,14 @@ pipeline {
                         sh "echo 'machine github.dxc.com' >> ~/.netrc"
                         sh "echo 'login ${GIT_USER}' >> ~/.netrc"
                         sh "echo 'password ${GIT_PASSWORD}' >> ~/.netrc"
+                        sh "git config --global user.email 'jenkins@dxc.com'"
+                        sh "git config --global user.name 'Jenkins User'"
+                    }
+                    script {
+                        env.OLD_RELEASE_NUMBER = sh (
+                            script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
+                            returnStdout: true
+                        ).trim()
                     }
             }
         }
@@ -29,8 +35,8 @@ pipeline {
                                 parameters: [
                                     choice(
                                         name: 'type',
-                                        choices: "release\nno-release",
-                                        description: 'If release is selected, a new release will be released. For the release, the package.json version will be taken so it`s your responsability to change that version. When you select release option, a tag is created in GitHub with that version, the release is pointed to that tag and release notes will be added. Also is important to note that the created package for the release is going to be uploaded to Artifactory. There are only 2 possible prereleases: beta and rc. Any other prerelease is going to be ignored. To continue without releasing, select no-release. After 10 minutes, if you don`t select any choice the default selected option will be `no-release`' 
+                                        choices: "major\nminor\npatch\npremajor\npreminor\nprepatch\nprerelease\nno-release",
+                                        description: "Version to bump from: ${OLD_RELEASE_NUMBER}. If release is selected, a new release will be released. When you select release option, a tag is created in GitHub with that version, the release is pointed to that tag and release notes will be added. Also is important to note that the created package for the release is going to be uploaded to Artifactory. To continue without releasing, select no-release. After 10 minutes, if you don`t select any choice the default selected option will be `no-release`"
                                     )
                                 ]
                         }
@@ -42,7 +48,7 @@ pipeline {
         }
         stage('Password to continue') {
             when {
-                expression { env.RELEASE_OPTION == 'release' } 
+                expression { env.RELEASE_OPTION == 'major' | env.RELEASE_OPTION == 'minor' | env.RELEASE_OPTION == 'patch' | env.RELEASE_OPTION == 'premajor' | env.RELEASE_OPTION == 'preminor' | env.RELEASE_OPTION == 'prepatch' |env.RELEASE_OPTION == 'prerelease' } 
             }
             steps {
                 script {
@@ -53,8 +59,28 @@ pipeline {
                             env.RELEASE_VALID = 'valid';
                         } else {
                             env.RELEASE_VALID = 'invalid';
+                            env.RELEASE_TYPE = 'no-release'
                             echo 'Invalid password. The version will not be released.'
                         }
+                    }
+                }
+            }
+        }
+        stage('Release versioning') {
+            when {
+                expression { env.RELEASE_VALID == 'valid' } 
+            }
+            steps {
+                script {
+                    if (env.RELEASE_OPTION == 'premajor' | env.RELEASE_OPTION == 'preminor' | env.RELEASE_OPTION == 'prepatch' | env.RELEASE_OPTION == 'prerelease') {
+                        env.RELEASE_TYPE = input message: 'Select a pre-release type', ok: 'Continue',
+                        parameters: [
+                            choice(
+                                name: 'type',
+                                choices: "beta\nrc",
+                                description: 'BETA when the version could have some errors. RC if the version is completely ready to release.' 
+                            )
+                        ]
                     }
                 }
             }
@@ -105,7 +131,7 @@ pipeline {
             when { branch 'master' }
             steps {
                 // Publish library to npm repository
-                sh "sed -i -e 's/0.0.0/'0.0.0-alpha.${BUILD_ID}'/g' ./dist/package.json"
+                sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./dist/package.json"
                 sh '''
                     cd ./dist
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
@@ -142,21 +168,41 @@ pipeline {
                 }
             }
         }
-        stage('Create git tag and release') {
+        stage('Tagging version') {
             when {
                 expression { env.RELEASE_VALID == 'valid' } 
             }
             steps {
                 script {
+                    if (env.BUILD_ID == 1) {
+                        sh "git checkout -b ${GIT_BRANCH}"
+                    } else {
+                        sh "git checkout ${GIT_BRANCH}"
+                        sh "git reset --hard origin/${GIT_BRANCH}"
+                        sh "git tag | xargs git tag -d"
+                    }
+                    sh "git pull origin ${GIT_BRANCH}"
+                    if (env.RELEASE_OPTION == 'major') {
+                        sh "npm version major"
+                    } else if (env.RELEASE_OPTION == 'minor') {
+                        sh "npm version minor"
+                    } else if (env.RELEASE_OPTION == 'patch') {
+                        sh "npm version patch"
+                    } else if (env.RELEASE_OPTION == 'premajor') {
+                        sh "npm version premajor --preid=${RELEASE_TYPE}"
+                    } else if (env.RELEASE_OPTION == 'preminor') {
+                        sh "npm version preminor --preid=${RELEASE_TYPE}"
+                    } else if (env.RELEASE_OPTION == 'prepatch') {
+                        sh "npm version prepatch --preid=${RELEASE_TYPE}"
+                    } else if (env.RELEASE_OPTION == 'prerelease') {
+                        sh "npm version prerelease --preid=${RELEASE_TYPE}"
+                    }
                     env.RELEASE_NUMBER = sh (
-                        script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
-                        returnStdout: true
-                    ).trim()
-                    sh '''
-                        gitUrlWithCreds="$(echo "${GIT_URL}" | sed -e 's!://!://'${GIT_USER}:${GIT_PASSWORD}'@!')"
-                        git tag "${RELEASE_NUMBER}" "${GIT_COMMIT}"
-                        git push "${gitUrlWithCreds}" "${RELEASE_NUMBER}"
-                    '''
+                            script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
+                            returnStdout: true
+                        ).trim()
+                    sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${RELEASE_NUMBER}'/g' dist/package.json"
+                    sh "git push --tags"
                 }
             }
         }
@@ -169,6 +215,9 @@ pipeline {
                     try {
                         sh "github_changelog_generator --github-site='https://github.dxc.com' --github-api='https://github.dxc.com/api/v3/' --token d53a75471da39b66fafb25dfcc9613c069de337e"
                         sh "cat CHANGELOG.md"
+                        sh "git add CHANGELOG.md package.json"
+                        sh "git commit -m 'New release: ${RELEASE_NUMBER}'"
+                        sh "git push origin ${GIT_BRANCH}"
                         sh "showdown makehtml -i CHANGELOG.md -o CHANGELOG.html"
                         sh "gren release --api-url=https://github.dxc.com/api/v3 --token=d53a75471da39b66fafb25dfcc9613c069de337e --override"
                     } catch(err) {
@@ -184,8 +233,6 @@ pipeline {
             steps {
                 script {
                     // Publish library to npm repository
-                    sh "sed -i -e 's/0.0.0/'${RELEASE_NUMBER}'/g' ./dist/package.json"
-                    sh "cat ./dist/package.json"
                     try {
                         env.RELEASE_TYPE = sh (
                             script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]' | grep -o '[a-z].*[^.0-9]'",
@@ -224,14 +271,14 @@ pipeline {
                 ]]) {
                     withAWS(role:"arn:aws:iam::665158502186:role/ISS_DIAAS_PowerUser"){
                         sh '''
-                            aws s3 rm s3://diaas-react-storybook/ --recursive
-                            aws s3 cp ./storybook-static/ s3://diaas-react-storybook/ --recursive
+                            aws s3 rm s3://diaas-react-storybook/${RELEASE_NUMBER}/ --recursive
+                            aws s3 cp ./storybook-static/ s3://diaas-react-storybook/${RELEASE_NUMBER}/ --recursive
                         '''
                     }
                 }
                 // Zipping storybook
                 sh '''
-                    rm -rf storybook-static.zip
+                    rm -rf storybook.zip
                 '''
                 zip zipFile: 'storybook.zip', archive: false, dir: './storybook-static'
                 // Uploading storybook to Artifactory (diaas-generic)
@@ -263,9 +310,9 @@ pipeline {
                     script: 'git --no-pager show -s --format=\'%ae\'',
                     returnStdout: true
                 ).trim()
-                if (BRANCH_NAME ==~ /^.*\b(release)\b.*$/) {
+                if (BRANCH_NAME ==~ /^.*\b(release)\b.*$/ && env.RELEASE_VALID == 'valid') {
                     emailext mimeType: 'text/html', subject: "New DXC react CDK Release! Check out the new changes in this version: ${env.RELEASE_NUMBER} :)", body: '${FILE,path="./CHANGELOG.html"}', to: 'gvigilrodrig@dxc.com; jsuarezardid@dxc.com',from: 'gvigilrodrig@dxc.com'
-                } else {
+                } else if (GIT_USER != 'jenkins@dxc.com') {
                     emailext subject: 'Your changes passed succesfully all the stages, you are a really good developer! YES, YOU ARE :)', body: "Commit: ${GIT_COMMIT}\n Url: ${GIT_URL}\n Branch: ${GIT_BRANCH}", to: "${GIT_USER}",from: 'gvigilrodrig@dxc.com'
                 }
             }
