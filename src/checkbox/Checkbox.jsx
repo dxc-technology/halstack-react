@@ -40,7 +40,7 @@ const DxcCheckbox = ({
         onClick={disabled === true ? e => {} : handlerCheckboxChange}
         disabled={disabled}
       >
-        {required && <DxcRequired theme={theme}/>}
+        {required && <DxcRequired theme={theme} />}
         {label}
       </LabelContainer>
       <CheckboxBlackBack
@@ -62,7 +62,7 @@ const LabelContainer = styled.span`
 const CheckboxContainer = styled.span`
   display: inline-flex;
   align-items: center;
-  cursor:not-allowed;
+  cursor: not-allowed;
   position: relative;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiButtonBase-root {
@@ -96,8 +96,12 @@ const CheckboxContainer = styled.span`
 `;
 
 const CheckboxBlackBack = styled.span`
-  background-color: ${props =>
-    props.disabled === true ? "transparent" : props.theme === "light" && props.checked === true ? "#000000" : "transparent"};
+    background-color: ${props =>
+      props.checked !== true
+        ? "transparent"
+        : props.theme === "light" && props.disabled === true
+        ? "ffffff"
+        : "#000000"};
   width: 17px;
   height: 17px;
   position: absolute;
