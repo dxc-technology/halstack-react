@@ -43,8 +43,8 @@
         <td>If true, the ripple effect will be disabled.</td>
     </tr>
     <tr>
-        <td>onChange: function</td>
+        <td>onSelectOption: function</td>
         <td></td>
-        <td>This function will be called every time the selection changes. The string with the key of the selected value will be passed as a parameter to this function. If multiple selection is allowed, an array of keys will be passed</td>
+        <td>This function will be called every time the selection changes. The string with the key of the selected value will be passed as a parameter to this function.</td>
     </tr>
 </table>
