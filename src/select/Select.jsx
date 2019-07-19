@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   },
   dropdownStyle: {
     boxShadow: "0px 8px 10px 0px rgba(217,217,217,1)",
-    minWidth: "210px !important",
+    minWidth: "210px !important"
   },
   itemList: {
     color: "#666666",
@@ -71,30 +71,42 @@ const DxcSelect = ({
     }
   };
 
-  const labelForMultipleSelect = selected => {
-    return options
+  const getLabelForSingleSelect = selected => {
+    const selectedItem = options.filter(option => option.value === selected)[0];
+    return (
+      <SelectedIconContainer iconPosition={iconPosition} multiple={multiple}>
+        {selectedItem.iconSrc && <ListIcon src={selectedItem.iconSrc} />}{" "}
+        {selectedItem.label && (
+          <SelectedLabelContainer iconPosition={iconPosition} theme={theme} disabled={disabled}>
+            {selectedItem.label}
+          </SelectedLabelContainer>
+        )}
+      </SelectedIconContainer>
+    );
+  };
+  const getSelectedValuesWithLabel = (optionsList, selected) => {
+    return optionsList
       .filter(x => selected.includes(x.value))
       .map(optionToRender => optionToRender.label)
       .join(", ");
   };
-  const getLabelForSingleSelect = selected => {
-    const selectedItem = options.filter(option => option.value === selected)[0];
-    return (
-      <SelectedIconContainer iconPosition={iconPosition}>
-        {selectedItem.iconSrc && <ListIcon src={selectedItem.iconSrc} />}{" "}
-        <SelectedLabelContainer iconPosition={iconPosition} theme={theme} disabled={disabled}>
-          {selectedItem.label}
-        </SelectedLabelContainer>
-      </SelectedIconContainer>
-    );
+
+  const getSelectedValuesWithIcons = (optionsList, selected) => {
+    return options
+      .filter(x => selected.includes(x.value))
+      .map(optionToRender => getLabelForSingleSelect(optionToRender.value));
+  };
+
+  const labelForMultipleSelect = selected => {
+    return options.findIndex(option => !option.label) !== -1
+      ? getSelectedValuesWithIcons(options, selected)
+      : getSelectedValuesWithLabel(options, selected);
   };
   const getRenderValue = selected => {
-    return (
-      (multiple && labelForMultipleSelect(selected)) || getLabelForSingleSelect(selected)
-    );
+    return (multiple && labelForMultipleSelect(selected)) || getLabelForSingleSelect(selected);
   };
   const isChecked = (checkedValue, option) => {
-    return checkedValue.findIndex(element => element === option.value) !== -1;
+    return (checkedValue && checkedValue.findIndex(element => element === option.value) !== -1) || false;
   };
 
   return (
@@ -134,6 +146,15 @@ const SelectedIconContainer = styled.div`
   display: flex;
   flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
   justify-content: ${props => (props.iconPosition === "before" && "flex-start") || "flex-end"};
+  margin-right: ${props => (props.multiple && "15px") || "0px"};
+  &::before {
+    content: '${props => (props.iconPosition === "after" && ",") || ""}'; 
+    margin: 0 4px;
+  }
+  &::after {
+    content: '${props => (props.iconPosition === "before" && ",") || ""}'; 
+    margin: 0 4px;
+  }
 `;
 const SelectedLabelContainer = styled.span`
   margin-left: ${props => (props.iconPosition === "after" && "0px") || "10px"};
@@ -148,6 +169,8 @@ const OptionContainer = styled.div`
 const ListIcon = styled.img`
   max-height: 20px;
   max-width: 20px;
+  width: 20px;
+  height: 20px;
   margin-left: ${props => (props.iconPosition === "after" && "10px") || "0px"};
   margin-right: ${props => (props.iconPosition === "before" && "10px") || "0px"};
 `;
@@ -157,8 +180,15 @@ const SelectContainer = styled.div`
     min-width: 230px;
     display: flex;
     color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
-    :focus{
+    
+    :focus {
       background-color: transparent;
+    }
+    & > *:last-child::after {
+      content: unset;
+    }
+    & > *:not(:last-child)::after {
+      content: ',';
     }
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {

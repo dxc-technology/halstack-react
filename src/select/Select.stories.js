@@ -30,6 +30,20 @@ const selectOptions = [
     iconSrc: apple
   }
 ];
+const selectOptionsWithoutIcon = [
+  {
+    value: 1,
+    label: "Amazon"
+  },
+  {
+    value: 2,
+    label: "Ebay"
+  },
+  {
+    value: 3,
+    label: "Apple"
+  }
+];
 const selectOptionsWithoutLabel = [
   {
     value: 1,
@@ -59,7 +73,7 @@ storiesOf("Form Components|Select", module).add(
           theme="light"
           name="selectName"
           label="Select Label"
-          options={selectOptions}
+          options={selectOptionsWithoutIcon}
           required={false}
           onChange={onChange}
           iconPosition="before"
@@ -73,7 +87,7 @@ storiesOf("Form Components|Select", module).add(
           multiple={true}
           name="selectNameMultiple"
           label="Select Multiple"
-          options={selectOptions}
+          options={selectOptionsWithoutIcon}
           required={false}
           onChange={onChange}
           iconPosition="after"
@@ -90,7 +104,7 @@ storiesOf("Form Components|Select", module).add(
           options={selectOptionsWithoutLabel}
           required={false}
           onChange={onChange}
-          iconPosition="after"
+          iconPosition="before"
         />
       </div>
       <h2>Dark</h2>
@@ -179,7 +193,7 @@ storiesOf("Form Components|Select", module).add("Controlled Component", () => {
     multiple: true,
     options: selectOptions,
     required: false,
-    iconPosition: "after",
+    iconPosition: "before",
     label: "Select label"
   };
 
@@ -192,6 +206,8 @@ const knobProps = () => ({
   disabled: boolean("disabled", false),
   required: boolean("required", false),
   iconPosition: select("icon poistion", { before: "before", after: "after" }, "before")
+  // ,
+  // multiple: boolean("multiple", false)
 });
 
 storiesOf("Form Components|Select", module).add(
