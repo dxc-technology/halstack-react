@@ -23,7 +23,7 @@ storiesOf("Form Components|Text", module).add(
       <h3>Light</h3>
       <div>
         <InputText
-          disabled={true}
+          disabled={false}
           label="Normal Input"
           error={false}
           value="Test Value"
@@ -42,7 +42,7 @@ storiesOf("Form Components|Text", module).add(
           required={true}
         />
         <InputText
-          disabled={true}
+          disabled={false}
           label="With Prefix text"
           prefix="Kg"
           onChange={onChange}
@@ -75,7 +75,7 @@ storiesOf("Form Components|Text", module).add(
           onClickIcon={onClickIcon}
         />
       </div>
-      {/* <h3>Dark</h3>
+      <h3>Dark</h3>
       <div style={{ background: "black" }}>
         <InputText
           disabled={false}
@@ -135,45 +135,36 @@ storiesOf("Form Components|Text", module).add(
           onBlur={onBlur}
           onClickIcon={onClickIcon}
         />
-      </div> */}
+      </div>
     </div>
   ),
   {
     notes: { markdown: inputTextMD }
   }
 );
-storiesOf("Form Components|Text", module).add("Controlled Component", () => {
-  class ControlledStory extends React.Component {
-    constructor(props) {
-      super(props);
-
-      this.state = {
-        value: []
-      };
-    }
-
-    onInputBlur = value => this.setState({ value });
-    onValueChange = value => this.setState({ value });
-
-    render() {
-      const props = {
-        ...this.props,
-        onBlur: this.onInputBlur,
-        onChange: this.onValueChange,
-        value: this.state.value
-      };
-
-      return <InputText {...props} />;
-    }
-  }
-
-  const props = {
-    disabled: false,
-    theme: "light",
-    name: "inputText_name",
-    assistiveText: "Helper text",
-    label: "Test label"
-  };
-
-  return <ControlledStory {...props} />;
+const knobProps = () => ({
+  label: text("Label", "Test Label"),
+  theme: select("Theme", { light: "light", dark: "dark" }, "light"),
+  assistiveText: text("Assistive text", "Helper text"),
+  disabled: boolean("Disabled", false),
+  prefix:text("Prefix word", "€"),
+  sufix:text("Sufix word", "Kg"),
+  disableRipple: boolean("disableRipple", false),
+  required: boolean("Required", false),
+  error: boolean("Error", false),
 });
+
+storiesOf("Form Components|Text", module).add(
+  "Knobs example",
+  () => {
+    const props = knobProps();
+    return (
+      <div style={{ background: (props.theme === "dark" && "black") || "transparent" }}>
+        <InputText {...props} onChange={onChange} onBlur={onBlur} onClickIcon={onClickIcon} />
+      </div>
+    );
+  },
+  {
+    notes: { markdown: inputTextMD }
+  }
+);
