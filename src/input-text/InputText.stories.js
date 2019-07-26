@@ -74,6 +74,14 @@ storiesOf("Form Components|Text", module).add(
           onBlur={onBlur}
           onClickIcon={onClickIcon}
         />
+        <InputText
+          disabled={false}
+          label="Multiple"
+          multiple={true}
+          onChange={onChange}
+          onBlur={onBlur}
+          onClickIcon={onClickIcon}
+        />
       </div>
       <h3>Dark</h3>
       <div style={{ background: "black" }}>
@@ -135,6 +143,17 @@ storiesOf("Form Components|Text", module).add(
           onBlur={onBlur}
           onClickIcon={onClickIcon}
         />
+        <InputText
+          disabled={false}
+          label="Multiple"
+          multiple={true}
+          sufix="€"
+          prefix="Kg"
+          theme="dark"
+          onChange={onChange}
+          onBlur={onBlur}
+          onClickIcon={onClickIcon}
+        />
       </div>
     </div>
   ),
@@ -147,11 +166,10 @@ const knobProps = () => ({
   theme: select("Theme", { light: "light", dark: "dark" }, "light"),
   assistiveText: text("Assistive text", "Helper text"),
   disabled: boolean("Disabled", false),
-  prefix:text("Prefix word", "€"),
-  sufix:text("Sufix word", "Kg"),
-  disableRipple: boolean("disableRipple", false),
+  prefix: text("Prefix word", ""),
+  sufix: text("Sufix word", ""),
   required: boolean("Required", false),
-  error: boolean("Error", false),
+  error: boolean("Error", false)
 });
 
 storiesOf("Form Components|Text", module).add(

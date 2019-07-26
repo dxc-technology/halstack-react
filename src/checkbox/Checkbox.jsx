@@ -5,14 +5,14 @@ import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent.jsx";
 
 const DxcCheckbox = ({
-  checked,
+  checked = false,
   value,
-  label,
-  labelPosition,
-  theme,
-  name,
-  disabled,
-  disableRipple,
+  label ="",
+  labelPosition = "before",
+  theme = "light",
+  name = "",
+  disabled = false,
+  disableRipple = false,
   onChange,
   required = false
 }) => {
@@ -25,7 +25,7 @@ const DxcCheckbox = ({
   };
 
   return (
-    <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition}>
+    <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
       <Checkbox
         checked={checked || innerChecked}
         inputProps={(name = { name })}
@@ -34,6 +34,8 @@ const DxcCheckbox = ({
         disabled={disabled}
         disableRipple={disableRipple}
       />
+      {required && <DxcRequired theme={theme} />}
+
       {label && (
         <LabelContainer
           labelPosition={labelPosition}
@@ -41,7 +43,6 @@ const DxcCheckbox = ({
           onClick={disabled === true ? e => {} : handlerCheckboxChange}
           disabled={disabled}
         >
-          {required && <DxcRequired theme={theme} />}
           {label}
         </LabelContainer>
       )}
@@ -58,13 +59,13 @@ const LabelContainer = styled.span`
   color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
-  cursor: default;
+  cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
 `;
 
 const CheckboxContainer = styled.span`
   display: inline-flex;
   align-items: center;
-  /* cursor: not-allowed; */
+  cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
   position: relative;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiButtonBase-root {
