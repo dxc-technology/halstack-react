@@ -109,6 +109,7 @@ const DxcSelect = ({
     return (checkedValue && checkedValue.findIndex(element => element === option.value) !== -1) || false;
   };
 
+
   return (
     <SelectContainer theme={theme}>
       <LabelContainer theme={theme} disabled={disabled}>
@@ -129,8 +130,13 @@ const DxcSelect = ({
       >
         {options.map(option => {
           return (
-            <MenuItem value={option.value} disableRipple={disableRipple}>
-              {multiple && <DxcCheckbox checked={isChecked(selectedValue, option)} />}
+            <MenuItem value={option.value} disableRipple={disableRipple} onClick={checkboxSelected}>
+              {multiple && (
+                <DxcCheckbox
+                  disableRipple={true}
+                  checked={isChecked(selectedValue, option)}
+                />
+              )}
               <OptionContainer iconPosition={iconPosition}>
                 {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
                 <span>{option.label}</span>
@@ -176,11 +182,14 @@ const ListIcon = styled.img`
 `;
 
 const SelectContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
   .MuiSelect-select {
     min-width: 230px;
+    width: 230px;
     display: flex;
     color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
-    
+
     :focus {
       background-color: transparent;
     }
@@ -188,8 +197,13 @@ const SelectContainer = styled.div`
       content: unset;
     }
     & > *:not(:last-child)::after {
-      content: ',';
+      content: ",";
     }
+  }
+  .MuiInputBase-root{
+    min-height: 34px;
+    width: 230px;
+    min-width: 230px;
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;

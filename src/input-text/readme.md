@@ -69,18 +69,24 @@
         <td>If true, the input will change its appearence, showing that the value is valid.</td>
     </tr>
     <tr>
-        <td>disableRipple: boolean</td>
+        <td>multiple: boolean</td>
         <td><code>false</code></td>
-        <td>If true, the ripple effect will be disabled.</td>
+        <td>If true, a resizable text area will be displayed.</td>
     </tr>
+
     <tr>
         <td>onChange: function</td>
         <td></td>
-        <td>This function will be called when the user changes the value of the input. The new value will be passed as a parameter.
+        <td>This function will be called when the user changes the value of the input. The new value will be passed as a parameter.</td>
     </tr>
     <tr>
         <td>onBlur: function</td>
         <td></td>
-        <td>This function will be called when the focus moves away from the input. The input value will be passed as a parameter.
+        <td>This function will be called when the focus moves away from the input. The input value will be passed as a parameter.</td>
+    </tr>
+    <tr>
+        <td>onClickIcon: function</td>
+        <td></td>
+        <td>This function will be called when either of the two icons, prefixIcon or sufixIcon, is clicked.</td>
     </tr>
 </table>
