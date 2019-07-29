@@ -135,19 +135,19 @@ storiesOf("Form Components|Select", module).add(
           />
         </div>
         <h4>Only Icons</h4>
-        <div>
-          <Select
-            disabled={false}
-            theme="dark"
-            multiple={true}
-            name="selectNameOnlyIconsDark"
-            label="Only icons"
-            options={selectOptionsWithoutLabel}
-            required={false}
-            onChange={onChange}
-            iconPosition="after"
-          />
-        </div>
+      <div>
+        <Select
+          disabled={false}
+          theme="dark"
+          multiple={true}
+          name="selectNameOnlyIcons"
+          label="Only icons"
+          options={selectOptionsWithoutLabel}
+          required={false}
+          onChange={onChange}
+          iconPosition="before"
+        />
+      </div>
       </div>
     </div>
   ),
