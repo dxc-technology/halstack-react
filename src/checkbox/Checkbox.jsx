@@ -56,10 +56,11 @@ const DxcCheckbox = ({
   );
 };
 const LabelContainer = styled.span`
-  color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+  color: ${props => (props.disabled ? (props.theme === "dark" ? "#666" : "#D9D9D9") : (props.theme === "dark" ? "#FFFFFF" : "#000000"))};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
+  font-family: "Open Sans", sans-serif;
 `;
 
 const CheckboxContainer = styled.span`
@@ -83,7 +84,7 @@ const CheckboxContainer = styled.span`
       }
     }
     &.Mui-disabled {
-      color: ${props => (props.theme === "dark" ? "#666666" : "#B2B2B2")};
+      color: ${props => (props.theme === "dark" ? "#666" : "#D9D9D9")};
     }
     .MuiTouchRipple-child {
       background-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
