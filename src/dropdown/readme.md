@@ -15,22 +15,44 @@
         <ul>
             <li><b>label</b>: Option display value</li>
             <li><b>iconSrc</b>: URL of the icon that will be placed next to the option label (Optional)</li>
+            <li><b>value</b>: Option inner value</li>
+            <li><b>options</b>: array for nested</li>
         </ul>
     </tr>
     <tr>
-        <td>iconPosition: 'before' | 'after'</td>
+        <td>optionsIconPosition: 'before' | 'after'</td>
         <td><code>'before'</code></td>
         <td>In case options include an icon, whether the icon should appear after or before the label.</td>
     </tr>
     <tr>
+        <td>iconSrc: string</td>
+        <td><code></code></td>
+        <td></td>
+    </tr>
+        <tr>
+        <td>iconPosition: 'before' | 'after'</td>
+        <td><code>'before'</code></td>
+        <td>Whether the icon should appear after or before the label.</td>
+    </tr>
+    <tr>
         <td>label: string</td>
         <td></td>
-        <td>Text to be placed when the list of options is not displayed.</td>
+        <td>Text to be placed within the dropdown.</td>
     </tr>
     <tr>
         <td>theme: 'light' | 'dark'</td>
         <td><code>'light'</code></td>
         <td>Uses one of the available component themes.</td>
+    </tr>
+    <tr>
+        <td>mode: 'basic' | 'outlined'</td>
+        <td><code>'basic'</code></td>
+        <td>Uses one of the available component modes.</td>
+    </tr>
+    <tr>
+        <td>showCaret: boolean</td>
+        <td><code>true</code></td>
+        <td>Whether the arrow next to the labe must be displayed or not.</td>
     </tr>
     <tr>
         <td>disabled: boolean</td>
