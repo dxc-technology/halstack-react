@@ -152,6 +152,7 @@ const DxcMenu = styled(Menu)`
 const DropdownContainer = styled.span``;
 
 const DropdownTrigger = styled.button`
+  cursor: pointer;
   min-height: 48px;
   display: flex;
   justify-content: space-between;
