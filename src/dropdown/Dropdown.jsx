@@ -107,7 +107,7 @@ const DxcMenu = styled(Menu)`
         ? "#FFFFFF"
         : props.theme === "dark" && props.mode === "basic"
         ? "#000000"
-        : "red"};
+        : "#000000"};
 
     background-color: ${props =>
       props.theme === "light" && props.mode === "outlined"
@@ -118,7 +118,7 @@ const DxcMenu = styled(Menu)`
         ? "#000000"
         : props.theme === "dark" && props.mode === "basic"
         ? "#FFFFFF"
-        : "red"};
+        : "#FFFFFF"};
 
     color: ${props =>
       props.theme === "light" && props.mode === "outlined"
@@ -129,7 +129,7 @@ const DxcMenu = styled(Menu)`
         ? "#FFFFFF"
         : props.theme === "dark" && props.mode === "basic"
         ? "#000000"
-        : "red"};
+        : "#000000"};
 
     margin-top: ${props => (props.mode === "outlined" ? "-2px" : "2px")};
     border-radius: 2px;
@@ -172,7 +172,7 @@ const DropdownTrigger = styled.button`
       ? "#FFFFFF"
       : props.theme === "dark" && props.mode === "basic"
       ? "#000000"
-      : "red"};
+      : "#000000"};
 
   background-color: ${props =>
     props.theme === "light" && props.mode === "outlined"
@@ -183,7 +183,7 @@ const DropdownTrigger = styled.button`
       ? "#000000"
       : props.theme === "dark" && props.mode === "basic"
       ? "#FFFFFF"
-      : "red"};
+      : "#FFFFFF"};
 
   color: ${props =>
     props.theme === "light" && props.mode === "outlined"
@@ -194,7 +194,7 @@ const DropdownTrigger = styled.button`
       ? "#FFFFFF"
       : props.theme === "dark" && props.mode === "basic"
       ? "#000000"
-      : "red"};
+      : "#000000"};
 
   border: ${props => (props.mode === "outlined" ? "2px solid" : "none")};
   border-radius: 2px;
