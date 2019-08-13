@@ -17,6 +17,7 @@
             <li><b>label</b>: Option display value</li>
             <li><b>iconSrc</b>: URL of the icon that will be placed next to the option label</li>
         </ul>
+        </td>
     </tr>
     <tr>
         <td>iconPosition: 'before' | 'after'</td>

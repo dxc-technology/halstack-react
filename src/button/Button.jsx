@@ -123,7 +123,7 @@ const DxCButton = styled.span`
             z-index: 5
           }
           .MuiTouchRipple-child{
-            background-color:${(theme === "light" && "#d9d9d9") || "#ffffff"};
+            background-color:${(theme === "light" && "#EEE") || "#EEE"};
           }
         `;
       } else {
