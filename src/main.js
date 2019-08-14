@@ -4,5 +4,6 @@ import DxcDropdown from "./dropdown/Dropdown.jsx";
 import DxcSwitch from "./switch/Switch.jsx";
 import DxcSlider from "./slider/Slider.jsx";
 import DxcRadio from "./radio/Radio.jsx";
+import DxcDate from "./date/Date.jsx";
 
-export { DxcButton, DxcCheckbox, DxcDropdown, DxcSwitch, DxcSlider, DxcRadio };
+export { DxcButton, DxcCheckbox, DxcDropdown, DxcSwitch, DxcSlider, DxcRadio, DxcDate };
