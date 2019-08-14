@@ -202,7 +202,7 @@ const StyledDPicker = styled.span`
     }
     .MuiIconButton-root:not(.Mui-disabled) {
       .defaultIcon {
-        fill: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+        fill: ${props => (props.theme === "dark" ? "#FFED00" : "#000000")};
       }
     }
   }

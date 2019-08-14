@@ -68,6 +68,16 @@ storiesOf("Form Components|Date", module).add(
           invalid={true}
           disabled={true}
         />
+        <Date
+          name="date6"
+          format="dd/MM/yy"
+          label="Required Date"
+          theme="light"
+          assistiveText="Assistive text"
+          onInputChange={event => console.log(event)}
+          onChange={onChange}
+          required={true}
+        />
       </div>
 
       <div style={{ background: "black", height: "150px" }}>
@@ -82,7 +92,7 @@ storiesOf("Form Components|Date", module).add(
         />
         <Date
           name="date2"
-          format="dd/MM/yy"
+          format="dd/MM/yyyy"
           value={moment("03/12/1995", "DD/MM/YYYY")}
           label="Default value"
           theme="dark"
@@ -122,6 +132,16 @@ storiesOf("Form Components|Date", module).add(
           onChange={onChange}
           invalid={true}
           disabled={true}
+        />
+        <Date
+          name="date6"
+          format="dd/MM/yy"
+          label="Required Date"
+          theme="dark"
+          assistiveText="Assistive text"
+          onInputChange={event => console.log(event)}
+          onChange={onChange}
+          required={true}
         />
       </div>
     </div>
