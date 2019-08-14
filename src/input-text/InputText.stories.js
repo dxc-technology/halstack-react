@@ -76,8 +76,8 @@ storiesOf("Form Components|Text", module).add(
         />
         <InputText
           disabled={false}
-          label="Multiple"
-          multiple={true}
+          label="Multiline"
+          multiline={true}
           onChange={onChange}
           onBlur={onBlur}
           onClickIcon={onClickIcon}
@@ -145,8 +145,8 @@ storiesOf("Form Components|Text", module).add(
         />
         <InputText
           disabled={false}
-          label="Multiple"
-          multiple={true}
+          label="Multiline"
+          multiline={true}
           sufix="€"
           prefix="Kg"
           theme="dark"
