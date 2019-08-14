@@ -42,7 +42,7 @@ const DxcDate = ({
   const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : null);
 
   return (
-    <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
+    <ThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={fLocale}>
         <StyledDPicker invalid={invalid} theme={theme} required={required} dissableRipple={dissableRipple}>
           <KeyboardDatePicker
@@ -213,14 +213,6 @@ const lightTheme = createMuiTheme({
     primary: {
       main: "#000",
       dark: "#000"
-    }
-  }
-});
-const darkTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#d9d9d9",
-      dark: "#d9d9d9"
     }
   }
 });
