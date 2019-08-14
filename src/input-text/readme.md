@@ -69,7 +69,7 @@
         <td>If true, the input will change its appearence, showing that the value is valid.</td>
     </tr>
     <tr>
-        <td>multiple: boolean</td>
+        <td>multiline: boolean</td>
         <td><code>false</code></td>
         <td>If true, a resizable text area will be displayed.</td>
     </tr>
