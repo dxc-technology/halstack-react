@@ -168,7 +168,7 @@ storiesOf("Form Components|Date", module).add(
     const props = knobProps();
     return (
       <div style={{ background: (props.theme === "dark" && "black") || "transparent"  }}>
-        <Date {...props} />
+        <Date {...props} onChange={onChange}/>
       </div>
     );
   },
