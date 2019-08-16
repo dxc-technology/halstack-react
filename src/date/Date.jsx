@@ -221,7 +221,7 @@ const lightTheme = createMuiTheme({
 
 DxcDate.propTypes = {
 
-  value: PropTypes.instanceOf(moment),
+  value: PropTypes.object,
   format: PropTypes.string,
   label: PropTypes.string,
   theme: PropTypes.oneOf(["light", "dark", ""]),
