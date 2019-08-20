@@ -130,7 +130,7 @@ const DxcSelect = ({
       >
         {options.map(option => {
           return (
-            <MenuItem value={option.value} disableRipple={disableRipple} onClick={checkboxSelected}>
+            <MenuItem value={option.value} disableRipple={disableRipple}>
               {multiple && (
                 <DxcCheckbox
                   disableRipple={true}

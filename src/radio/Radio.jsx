@@ -49,7 +49,8 @@ const RadioContainer = styled.span`
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
   .MuiButtonBase-root {
-    color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+    padding: 0px;
+    margin: 10px 15px;
     &.Mui-disabled {
       color: ${props => (props.theme === "dark" ? "#666666" : "#B2B2B2")};
     }

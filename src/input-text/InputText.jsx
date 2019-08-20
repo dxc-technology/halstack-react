@@ -20,7 +20,7 @@ const DxcInputText = ({
   onBlur = "",
   error = false,
   required = false,
-  multiple = false
+  multiline = false
 }) => {
   const [innerValue, setInnerValue] = useState("");
 
@@ -34,9 +34,9 @@ const DxcInputText = ({
   };
 
   return (
-    <TextContainer prefixIconSrc={prefixIconSrc} prefix={prefix} required={required} theme={theme} multiple={multiple}>
-      {(prefixIconSrc && !multiple) && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickIcon} />}
-      {(prefix && !multiple) && (
+    <TextContainer prefixIconSrc={prefixIconSrc} prefix={prefix} required={required} theme={theme} multiline={multiline}>
+      {(prefixIconSrc && !multiline) && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickIcon} />}
+      {(prefix && !multiline) && (
         <PrefixLabel theme={theme} disabled={disabled}>
           {prefix}
         </PrefixLabel>
@@ -45,7 +45,7 @@ const DxcInputText = ({
         error={error}
         value={value || innerValue}
         name={name}
-        multiline={multiple}
+        multiline={multiline}
         disabled={disabled}
         label={label}
         helperText={assistiveText}
@@ -55,7 +55,7 @@ const DxcInputText = ({
         InputProps={{
           endAdornment: (sufix || sufixIconSrc) && (
             <InputAdornment position="end">
-              {((sufixIconSrc && !multiple) && <SufixIcon disabled={disabled} src={sufixIconSrc} onClick={onClickIcon} />) || !multiple && sufix}
+              {((sufixIconSrc && !multiline) && <SufixIcon disabled={disabled} src={sufixIconSrc} onClick={onClickIcon} />) || !multiline && sufix}
             </InputAdornment>
           )
         }}
@@ -112,7 +112,7 @@ const TextContainer = styled.div`
       &.Mui-disabled{
         opacity:0.5;
       }
-      padding-left: ${props => ((props.prefixIconSrc || props.prefix && !props.multiple) && "32px") || "inherit"};
+      padding-left: ${props => ((props.prefixIconSrc || props.prefix && !props.multiline) && "32px") || "inherit"};
       &.Mui-focused {
         color: ${props => (props.theme === "light" ? "#000" : "#ffffff")};
         &.MuiInputLabel-shrink {
@@ -154,7 +154,7 @@ const TextContainer = styled.div`
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
-      height: ${props => (!props.multiple ? "34px" : "auto")};
+      height: ${props => (!props.multiline ? "34px" : "auto")};
       min-width: 230px;
       min-height: 34px;
       &::before{
@@ -219,7 +219,7 @@ const TextContainer = styled.div`
         }
       }
       .MuiInputBase-input {
-        padding-left: ${props => (((props.prefixIconSrc || props.prefix && !props.multiple)) && "32px") || "inherit"};
+        padding-left: ${props => (((props.prefixIconSrc || props.prefix && !props.multiline)) && "32px") || "inherit"};
         color: ${props => (props.theme === "light" ? "#666" : "#fff")};
         &.Mui-disabled {
           cursor: not-allowed;
@@ -271,7 +271,7 @@ DxcInputText.propTypes = {
   sufixIconSrc: PropTypes.string,
   required: PropTypes.bool,
   error: PropTypes.bool,
-  multiple: PropTypes.bool,
+  multiline: PropTypes.bool,
   onClickIcon: PropTypes.func,
   onChange: PropTypes.func,
   onBlur: PropTypes.func
