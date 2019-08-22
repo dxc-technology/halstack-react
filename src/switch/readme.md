@@ -41,7 +41,7 @@ The API properties are the following:
         <td>No</td>
         <td>Text to be placed next to the switch.</td>
     </tr>
-    </tr>
+    <tr>
         <tr>
         <td>labelPosition</td>
         <td><code>string: 'before' | 'after'</code></td>
