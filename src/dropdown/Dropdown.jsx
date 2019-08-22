@@ -36,11 +36,21 @@ const DxcDropdown = ({
   }
 
   return (
-    <DropdownContainer>
-      <DropdownTrigger onClick={handleClickListItem} mode={mode} theme={theme} label={label}>
-        <DropdownTriggerLabel iconPosition={iconPosition}>
-          {iconSrc && <ListIcon src={iconSrc} iconPosition={iconPosition} />} <span>{label}</span>
-        </DropdownTriggerLabel>
+    <span>
+      <DropdownTrigger
+        opened={anchorEl === null ? false : true}
+        onClick={handleClickListItem}
+        mode={mode}
+        theme={theme}
+        label={label}
+        caretHidden={caretHidden}
+      >
+        <DropdownTriggerContainer iconPosition={iconPosition}>
+          {iconSrc && <ListIcon src={iconSrc} iconPosition={iconPosition} />}
+          <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
+            {label}
+          </DropdownTriggerLabel>
+        </DropdownTriggerContainer>
         <CaretIcon
           caretHidden={caretHidden}
           src={
@@ -82,13 +92,12 @@ const DxcDropdown = ({
             disableRipple={disableRipple}
             onClick={event => handleMenuItemClick(option)}
           >
-            {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={optionsIconPosition} />}
-            {""}
-            <span>{option.label}</span>
+            {option.iconSrc && <ListIcon label={label} src={option.iconSrc} iconPosition={optionsIconPosition} />}
+            <span className="optionLabel">{option.label}</span>
           </MenuItem>
         ))}
       </DxcMenu>
-    </DropdownContainer>
+    </span>
   );
 };
 
@@ -132,7 +141,10 @@ const DxcMenu = styled(Menu)`
         : "#000000"};
 
     margin-top: ${props => (props.mode === "outlined" ? "-2px" : "2px")};
-    border-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     .MuiList-padding {
       padding-top: 0px;
       padding-bottom: 0px;
@@ -141,30 +153,79 @@ const DxcMenu = styled(Menu)`
       display: flex;
       flex-direction: ${props => (props.optionsIconPosition === "after" && "row-reverse") || "row"};
       justify-content: ${props => (props.optionsIconPosition === "after" && "flex-end") || ""};
+      font-size: 16px;
+      font-family: "Open Sans", sans-serif;
+      cursor: pointer;
+      .optionLabel {
+        margin-right: ${props => {
+          if (props.optionsIconPosition === "after") {
+            return "10px";
+          } else {
+            return "0px";
+          }
+        }};
+        margin-left: ${props => {
+          if (props.optionsIconPosition === "before") {
+            return "10px";
+          } else {
+            return "0px";
+          }
+        }};
+      }
     }
     .MuiListItem-button:hover {
-      background-color: #d9d9d9;
+      background-color: #eeeeee;
       color: #000;
     }
   }
 `;
 
-const DropdownContainer = styled.span``;
-
 const DropdownTrigger = styled.button`
   cursor: pointer;
-  min-height: 48px;
-  display: flex;
+  height: 46px;
+  min-height: 46px;
+  min-height: 46px;
+  display: inline-flex;
   justify-content: space-between;
   align-items: center;
   min-width: ${props => (props.label === "" ? "0px" : "230px")};
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
-  margin-left: 15px;
-  border-color: ${props =>
-    props.theme === "light" && props.mode === "outlined"
+  padding: ${props => {
+    if (props.caretHidden === true && props.label === "") {
+      if (props.mode === "outlined") {
+        return "8px 13px";
+      } else {
+        return "10px 15px";
+      }
+    } else {
+      if (props.mode === "outlined") {
+        return "8px 13px 8px 18px";
+      } else {
+        return "10px 15px 10px 20px";
+      }
+    }
+  }};
+  margin: 15px;
+  &:focus {
+    outline: none;
+  }
+
+  background-color: ${props =>
+    props.theme === "light" && props.mode === "outlined" && !props.opened
+      ? "#FFFFFF"
+      : props.theme === "light" && props.mode === "basic" && !props.opened
+      ? "#000000"
+      : props.theme === "dark" && props.mode === "outlined" && !props.opened
+      ? "#000000"
+      : props.theme === "dark" && props.mode === "basic" && !props.opened
+      ? "#FFFFFF"
+      :props.theme === "light" && props.mode === "basic"  && props.opened
+      ? "#212121"
+      : props.theme === "dark" && props.mode === "outlined" && props.opened
+      ? "#212121"
+      : "#EEEEEE"};
+
+  color: ${props =>
+    props.theme === "light" && props.mode === "outlined" 
       ? "#000000"
       : props.theme === "light" && props.mode === "basic"
       ? "#FFFFFF"
@@ -174,18 +235,7 @@ const DropdownTrigger = styled.button`
       ? "#000000"
       : "#000000"};
 
-  background-color: ${props =>
-    props.theme === "light" && props.mode === "outlined"
-      ? "#FFFFFF"
-      : props.theme === "light" && props.mode === "basic"
-      ? "#000000"
-      : props.theme === "dark" && props.mode === "outlined"
-      ? "#000000"
-      : props.theme === "dark" && props.mode === "basic"
-      ? "#FFFFFF"
-      : "#FFFFFF"};
-
-  color: ${props =>
+  border-color: ${props =>
     props.theme === "light" && props.mode === "outlined"
       ? "#000000"
       : props.theme === "light" && props.mode === "basic"
@@ -198,9 +248,28 @@ const DropdownTrigger = styled.button`
 
   border: ${props => (props.mode === "outlined" ? "2px solid" : "none")};
   border-radius: 2px;
+  border-bottom-right-radius: ${props => (props.opened === true ? "0px" : "2px")};
+  border-bottom-left-radius: ${props => (props.opened === true ? "0px" : "2px")};
 `;
 
 const DropdownTriggerLabel = styled.span`
+  margin-right: ${props => {
+    if (props.iconPosition === "after" && props.label !== "") {
+      return "10px";
+    } else {
+      return "0px";
+    }
+  }};
+  margin-left: ${props => {
+    if (props.iconPosition === "before" && props.label !== "") {
+      return "10px";
+    } else {
+      return "0px";
+    }
+  }};
+`;
+
+const DropdownTriggerContainer = styled.span`
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.iconPosition === "after" && "row-reverse") || "row"};
@@ -213,12 +282,11 @@ const ListIcon = styled.img`
   max-width: 20px;
   width: 20px;
   height: 20px;
-  margin-left: ${props => (props.iconPosition === "after" && "10px") || "0px"};
-  margin-right: ${props => (props.iconPosition === "before" && "10px") || "0px"};
 `;
 
 const CaretIcon = styled.img`
   display: ${props => (props.caretHidden === true ? "none" : "block")};
+  margin-left: 10px;
 `;
 
 DxcDropdown.propTypes = {
