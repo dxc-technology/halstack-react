@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import PropTypes from "prop-types";
+import "../common/OpenSans.css";
 
 const DxcInputText = ({
   label = "",
@@ -34,9 +35,15 @@ const DxcInputText = ({
   };
 
   return (
-    <TextContainer prefixIconSrc={prefixIconSrc} prefix={prefix} required={required} theme={theme} multiline={multiline}>
-      {(prefixIconSrc && !multiline) && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickIcon} />}
-      {(prefix && !multiline) && (
+    <TextContainer
+      prefixIconSrc={prefixIconSrc}
+      prefix={prefix}
+      required={required}
+      theme={theme}
+      multiline={multiline}
+    >
+      {prefixIconSrc && !multiline && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickIcon} />}
+      {prefix && !multiline && (
         <PrefixLabel theme={theme} disabled={disabled}>
           {prefix}
         </PrefixLabel>
@@ -55,7 +62,10 @@ const DxcInputText = ({
         InputProps={{
           endAdornment: (sufix || sufixIconSrc) && (
             <InputAdornment position="end">
-              {((sufixIconSrc && !multiline) && <SufixIcon disabled={disabled} src={sufixIconSrc} onClick={onClickIcon} />) || !multiline && sufix}
+              {(sufixIconSrc && !multiline && (
+                <SufixIcon disabled={disabled} src={sufixIconSrc} onClick={onClickIcon} />
+              )) ||
+                (!multiline && sufix)}
             </InputAdornment>
           )
         }}
@@ -75,6 +85,7 @@ const PrefixIcon = styled.img`
 `;
 const PrefixLabel = styled.span`
   position: absolute;
+  font-family: "Open Sans", sans-serif;
   color: ${props => (props.theme === "light" ? "#666" : "#ffed00")};
   top: 42px;
   left: 15px;
@@ -100,6 +111,10 @@ const TextContainer = styled.div`
 
   .MuiTextField-root {
     margin:15px;
+    font-family: "Open Sans", sans-serif;
+    .MuiFormHelperText-root {
+      font-family: "Open Sans", sans-serif;
+    }
     .MuiFormLabel-root {
       font-size: 16px;
       top: 3px;
@@ -112,7 +127,7 @@ const TextContainer = styled.div`
       &.Mui-disabled{
         opacity:0.5;
       }
-      padding-left: ${props => ((props.prefixIconSrc || props.prefix && !props.multiline) && "32px") || "inherit"};
+      padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
       &.Mui-focused {
         color: ${props => (props.theme === "light" ? "#000" : "#ffffff")};
         &.MuiInputLabel-shrink {
@@ -127,6 +142,7 @@ const TextContainer = styled.div`
         cursor: not-allowed;
       }
       &.MuiInputLabel-shrink {
+        font-family: "Open Sans", sans-serif;
         transform: ${props =>
           props.prefixIconSrc ||
           (props.prefix && "translate(8px, 1.5px) scale(0.75);") ||
@@ -137,6 +153,7 @@ const TextContainer = styled.div`
       }
 
       &:not(.MuiInputLabel-shrink)  {
+        font-family: "Open Sans", sans-serif;
         color: ${props => (props.theme === "light" ? "#666" : "#d9d9d9")};
         & + div, & + div + p {
           color: ${props => (props.theme === "light" ? "#666" : "#d9d9d9")};
@@ -154,6 +171,7 @@ const TextContainer = styled.div`
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
+      font-family: "Open Sans", sans-serif;
       height: ${props => (!props.multiline ? "34px" : "auto")};
       min-width: 230px;
       min-height: 34px;
@@ -219,7 +237,7 @@ const TextContainer = styled.div`
         }
       }
       .MuiInputBase-input {
-        padding-left: ${props => (((props.prefixIconSrc || props.prefix && !props.multiline)) && "32px") || "inherit"};
+        padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
         color: ${props => (props.theme === "light" ? "#666" : "#fff")};
         &.Mui-disabled {
           cursor: not-allowed;
@@ -230,7 +248,8 @@ const TextContainer = styled.div`
         color: ${props => (props.theme === "light" ? "#d9d9d9" : "#666")};
         &.MuiInputAdornment-positionEnd{
           & > p {
-          color:${props => (props.theme === "light" ? "#d9d9d9" : "#ffed00")};
+            font-family: "Open Sans", sans-serif;
+            color:${props => (props.theme === "light" ? "#d9d9d9" : "#ffed00")};
           }
         }
         &.Mui-disabled {

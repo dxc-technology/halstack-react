@@ -9,6 +9,8 @@ import DxcCheckbox from "../checkbox/Checkbox";
 
 import DxcRequired from "../common/RequiredComponent.jsx";
 
+import "../common/OpenSans.css";
+
 const useStyles = makeStyles(() => ({
   root: {
     minWidth: "210px"
@@ -109,7 +111,6 @@ const DxcSelect = ({
     return (checkedValue && checkedValue.findIndex(element => element === option.value) !== -1) || false;
   };
 
-
   return (
     <SelectContainer theme={theme}>
       <LabelContainer theme={theme} disabled={disabled}>
@@ -131,12 +132,7 @@ const DxcSelect = ({
         {options.map(option => {
           return (
             <MenuItem value={option.value} disableRipple={disableRipple}>
-              {multiple && (
-                <DxcCheckbox
-                  disableRipple={true}
-                  checked={isChecked(selectedValue, option)}
-                />
-              )}
+              {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, option)} />}
               <OptionContainer iconPosition={iconPosition}>
                 {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
                 <span>{option.label}</span>
@@ -163,10 +159,12 @@ const SelectedIconContainer = styled.div`
   }
 `;
 const SelectedLabelContainer = styled.span`
+  font-family: "Open Sans", sans-serif;
   margin-left: ${props => (props.iconPosition === "after" && "0px") || "10px"};
   margin-right: ${props => (props.iconPosition === "before" && "0px") || "10px"};
 `;
 const OptionContainer = styled.div`
+  font-family: "Open Sans", sans-serif;
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
@@ -200,7 +198,7 @@ const SelectContainer = styled.div`
       content: ",";
     }
   }
-  .MuiInputBase-root{
+  .MuiInputBase-root {
     min-height: 34px;
     width: 230px;
     min-width: 230px;
@@ -222,6 +220,7 @@ const SelectContainer = styled.div`
   }
 `;
 const LabelContainer = styled.span`
+  font-family: "Open Sans", sans-serif;
   color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};

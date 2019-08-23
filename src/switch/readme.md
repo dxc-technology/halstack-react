@@ -42,7 +42,6 @@ The API properties are the following:
         <td>Text to be placed next to the switch.</td>
     </tr>
     <tr>
-        <tr>
         <td>labelPosition</td>
         <td><code>string: 'before' | 'after'</code></td>
         <td><code>'before'</code></td>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent.jsx";
+import "../common/OpenSans.css"
 
 const DxcCheckbox = ({
   checked = false,
