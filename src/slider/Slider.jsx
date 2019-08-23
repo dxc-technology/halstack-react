@@ -3,6 +3,7 @@ import Slider from "@material-ui/lab/Slider";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import "../common/OpenSans.css";
 
 const DxcSlider = ({
   minValue = 0,
@@ -161,12 +162,14 @@ const SliderContainer = styled.div`
 `;
 
 const MinLabelContainer = styled.span`
+  font-family: "Open Sans", sans-serif;
   color: ${props => (props.theme === "light" && "#000000") || "#d9d9d9"};
   font-size: 16px;
   margin: 5px 15px 5px;
 `;
 
 const MaxLabelContainer = styled.span`
+  font-family: "Open Sans", sans-serif;
   color: ${props => (props.theme === "light" && "#000000") || "#d9d9d9"};
   font-size: 14px;
   margin: 0px 0px 5px 15px;

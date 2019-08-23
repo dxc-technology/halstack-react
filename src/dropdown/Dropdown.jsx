@@ -7,6 +7,7 @@ import caretUp from "./baseline-arrow_drop_up.svg";
 import caretDown from "./baseline-arrow_drop_down.svg";
 import caretUpWh from "./baseline-arrow_drop_up_wh.svg";
 import caretDownWh from "./baseline-arrow_drop_down_wh.svg";
+import "../common/OpenSans.css"
 
 const DxcDropdown = ({
   options,
@@ -182,6 +183,8 @@ const DxcMenu = styled(Menu)`
 
 const DropdownTrigger = styled.button`
   cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
   height: 46px;
   min-height: 46px;
   min-height: 46px;
