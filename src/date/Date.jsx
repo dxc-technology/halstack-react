@@ -36,7 +36,9 @@ const DxcDate = ({
     value = moment(date).format("DD-MM-YYYY");
     var check = moment(value, "DD-MM-YYYY", true).isValid();
     if (check) {
-      onChange(date);
+      if(typeof onChange === "function") {
+        onChange(date);
+      }
     }
   }
   const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : null);
@@ -217,6 +219,21 @@ const lightTheme = createMuiTheme({
   }
 });
 
-DxcDate.propTypes = {};
+DxcDate.propTypes = {
+
+  value: PropTypes.object,
+  format: PropTypes.string,
+  label: PropTypes.string,
+  theme: PropTypes.oneOf(["light", "dark", ""]),
+  name: PropTypes.string,
+  iconSrc: PropTypes.string,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
+  assistiveText: PropTypes.string,
+  invalid: PropTypes.bool,
+  dissableRipple: PropTypes.bool,
+  onInputChange: PropTypes.func,
+  onChange: PropTypes.func
+};
 
 export default DxcDate;
