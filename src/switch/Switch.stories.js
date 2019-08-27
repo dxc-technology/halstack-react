@@ -48,7 +48,7 @@ storiesOf("Form Components|Switch", module).add(
             label="Disabled"
             labelPosition="after"
             theme="dark"
-            disabled={false}
+            disabled={true}
             onChange={onChange}
           />
           <Switch

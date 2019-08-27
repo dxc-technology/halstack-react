@@ -72,6 +72,22 @@ storiesOf("Form Components|Dropdown", module).add(
           optionsIconPosition="after">
         </Dropdown>
         <Dropdown 
+          options={optionsWithoutIcon}
+          onSelectOption={selectOption}
+          label="Basic dropdown"
+          theme="light"
+          mode={"basic"}
+          optionsIconPosition="before">
+        </Dropdown>
+        <Dropdown 
+          options={optionsWithoutIcon}
+          onSelectOption={selectOption}
+          label="Outlined dropdown"
+          theme="light"
+          mode="outlined"
+          optionsIconPosition="after">
+        </Dropdown>
+        <Dropdown 
           options={optionsWithIcon}
           onSelectOption={selectOption}
           iconSrc={amazon}
@@ -91,8 +107,28 @@ storiesOf("Form Components|Dropdown", module).add(
           caretHidden={true}
           optionsIconPosition="after">
         </Dropdown>
+        <Dropdown 
+          options={optionsWithIcon}
+          onSelectOption={selectOption}
+          iconSrc={amazon}
+          label=""
+          theme="light"
+          mode="basic"
+          caretHidden={false}
+          optionsIconPosition="before">
+        </Dropdown>
+        <Dropdown 
+          options={optionsWithIcon}
+          onSelectOption={selectOption}
+          iconSrc={amazon}
+          label=""
+          theme="light"
+          mode="outlined"
+          caretHidden={false}
+          optionsIconPosition="after">
+        </Dropdown>
       </div>
-      <div style={{ background: "black", display: "flex", paddingTop: "50px", height: "200px"}}>
+      <div style={{ background: "black", display: "flex", height: "250px"}}>
         <Dropdown 
           options={optionsWithIcon}
           onSelectOption={selectOption}
@@ -106,6 +142,22 @@ storiesOf("Form Components|Dropdown", module).add(
           options={optionsWithIcon}
           onSelectOption={selectOption}
           iconSrc={amazon}
+          label="Outlined dropdown"
+          theme="dark"
+          mode="outlined"
+          optionsIconPosition="after">
+        </Dropdown>
+        <Dropdown 
+          options={optionsWithoutIcon}
+          onSelectOption={selectOption}
+          label="Basic dropdown"
+          theme="dark"
+          mode="basic"
+          optionsIconPosition="before">
+        </Dropdown>
+        <Dropdown 
+          options={optionsWithoutIcon}
+          onSelectOption={selectOption}
           label="Outlined dropdown"
           theme="dark"
           mode="outlined"
@@ -129,6 +181,26 @@ storiesOf("Form Components|Dropdown", module).add(
           theme="dark"
           mode="outlined"
           caretHidden={true}
+          optionsIconPosition="after">
+        </Dropdown>
+        <Dropdown 
+          options={optionsWithIcon}
+          onSelectOption={selectOption}
+          iconSrc={amazon}
+          label=""
+          theme="dark"
+          mode="basic"
+          caretHidden={false}
+          optionsIconPosition="before">
+        </Dropdown>
+        <Dropdown 
+          options={optionsWithIcon}
+          onSelectOption={selectOption}
+          iconSrc={amazon}
+          label=""
+          theme="dark"
+          mode="outlined"
+          caretHidden={false}
           optionsIconPosition="after">
         </Dropdown>
       </div>
