@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
+import "../common/OpenSans.css"
 
 const DxcSwitch = ({ checked=false, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required }) => {
   const [innerChecked, setInnerChecked] = useState(0);
@@ -116,6 +117,7 @@ const LabelContainer = styled.span`
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
+  font-family: "Open Sans", sans-serif;
 `;
 
 DxcSwitch.propTypes = {

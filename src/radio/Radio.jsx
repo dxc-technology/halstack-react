@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Radio from "@material-ui/core/Radio";
 import DxcRequired from "../common/RequiredComponent.jsx";
+import "../common/OpenSans.css";
 
 const DxcRadio = ({
   checked,
@@ -34,7 +35,7 @@ const DxcRadio = ({
         disableRipple={disableRipple}
       />
       <LabelContainer labelPosition={labelPosition} theme={theme} disabled={disabled}>
-      {required && <DxcRequired theme={theme}/>}
+        {required && <DxcRequired theme={theme} />}
         {label}
       </LabelContainer>
     </RadioContainer>
@@ -86,6 +87,7 @@ const RadioContainer = styled.span`
   }
 `;
 const LabelContainer = styled.span`
+  font-family: "Open Sans", sans-serif;
   color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};

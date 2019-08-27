@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import "../common/OpenSans.css"
 
 const DxcButton = ({ label="", mode="basic", disabled=false, theme="light", disableRipple=false, iconPosition = "after", iconSrc="", onClick="" }) => {
   return (

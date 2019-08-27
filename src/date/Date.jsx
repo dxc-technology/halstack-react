@@ -8,6 +8,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import fLocale from "date-fns/locale/es";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import "../common/OpenSans.css"
 
 const DxcDate = ({
   value,
@@ -83,6 +84,9 @@ const DxcDate = ({
 const StyledDPicker = styled.span`
   .MuiFormControl-root {
     margin: 10px;
+    .MuiInputBase-input {
+      font-family: "Open Sans", sans-serif;
+    }
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
         if (props.invalid) return "#D0011B";
@@ -104,6 +108,7 @@ const StyledDPicker = styled.span`
       color: #d0011b;
     }
     .MuiFormLabel-root {
+      font-family: "Open Sans", sans-serif;
       &::before {
           content: "*";
           color: #D0011B;
@@ -157,6 +162,9 @@ const StyledDPicker = styled.span`
     .MuiInput-underline.Mui-disabled:not(.Mui-error):before {
       border-color: ${props => (props.theme === "dark" ? "#757575" : "#666666")};
       border-bottom-style: solid;
+    }
+    .MuiFormHelperText-root {
+      font-family: "Open Sans", sans-serif;
     }
     .MuiFormHelperText-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
@@ -216,6 +224,10 @@ const lightTheme = createMuiTheme({
       main: "#000",
       dark: "#000"
     }
+  },
+  typography: {
+    fontFamily:
+    '"Open Sans", sans-serif'
   }
 });
 
