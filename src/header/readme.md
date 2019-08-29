@@ -14,6 +14,11 @@
         <td>Uses one of the available component themes.</td>
     </tr>
     <tr>
+        <td>underline: boolean</td>
+        <td><code>false</code></td>
+        <td>Wether a contrast line should appear at the bottom of the header.</td>
+    </tr>
+    <tr>
         <td>logoSrc: string</td>
         <td></td>
         <td>The path of an icon to replace the default dxc logo.</td>
