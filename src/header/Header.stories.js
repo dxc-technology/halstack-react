@@ -38,7 +38,7 @@ storiesOf("Form Components|Header", module).add(
     <div style={{ background: "lightgrey" }}>
       <div>
         <div style={{ marginBottom: "20px" }}>
-          <DxcHeader theme="light" mode="basic">
+          <DxcHeader theme="light" underlined={false}>
             <DxcDropdown theme={"light"} onSelectOption={selectOption} options={optionsWithoutIcon} />
             <DxcDropdown
               theme={"light"}
@@ -56,7 +56,7 @@ storiesOf("Form Components|Header", module).add(
           </DxcHeader>
         </div>
         <div>
-          <DxcHeader theme="light" mode="outlined">
+          <DxcHeader theme="light" underlined={true}>
             <DxcDropdown theme={"light"} onSelectOption={selectOption} options={optionsWithoutIcon} mode="outlined" />
             <DxcDropdown
               theme={"light"}
@@ -77,7 +77,7 @@ storiesOf("Form Components|Header", module).add(
       </div>
       <div style={{ paddingTop: "20px", height: "200px" }}>
         <div>
-          <DxcHeader theme="dark" mode="basic">
+          <DxcHeader theme="dark" underlined={false}>
             <DxcDropdown theme={"dark"} onSelectOption={selectOption} options={optionsWithoutIcon} mode="basic" />
             <DxcDropdown
               theme={"dark"}
@@ -96,7 +96,7 @@ storiesOf("Form Components|Header", module).add(
           </DxcHeader>
         </div>
         <div style={{ marginTop: "20px" }}>
-          <DxcHeader theme="dark" mode="outlined">
+          <DxcHeader theme="dark" underlined={true}>
             <DxcDropdown theme={"dark"} onSelectOption={selectOption} options={optionsWithoutIcon} mode="outlined" />
             <DxcDropdown
               theme={"dark"}
@@ -124,7 +124,7 @@ storiesOf("Form Components|Header", module).add(
 
 const knobProps = () => ({
   theme: select("Theme", { light: "light", dark: "dark" }, "light"),
-  mode: select("Mode", { basic: "basic", outlined: "outlined" }, "basic")
+  underlined: boolean("Underlined", false)
 });
 
 storiesOf("Form Components|Header", module).add(
@@ -141,7 +141,7 @@ storiesOf("Form Components|Header", module).add(
         <DxcHeader {...props}>
           <DxcDropdown
             theme={props.theme}
-            mode={props.mode}
+            mode={props.underlined ? "outlined": "basic"}
             onSelectOption={selectOption}
             options={optionsWithoutIcon}
             label="Dropdown"
