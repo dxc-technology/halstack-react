@@ -58,7 +58,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label="Basic dropdown"
-          theme={"light"}
+          theme="light"
           mode={"basic"}
           optionsIconPosition="before">
         </Dropdown>
@@ -67,7 +67,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label="Outlined dropdown"
-          theme={"light"}
+          theme="light"
           mode="outlined"
           optionsIconPosition="after">
         </Dropdown>
@@ -75,7 +75,7 @@ storiesOf("Form Components|Dropdown", module).add(
           options={optionsWithoutIcon}
           onSelectOption={selectOption}
           label="Basic dropdown"
-          theme={"light"}
+          theme="light"
           mode={"basic"}
           optionsIconPosition="before">
         </Dropdown>
@@ -83,7 +83,7 @@ storiesOf("Form Components|Dropdown", module).add(
           options={optionsWithoutIcon}
           onSelectOption={selectOption}
           label="Outlined dropdown"
-          theme={"light"}
+          theme="light"
           mode="outlined"
           optionsIconPosition="after">
         </Dropdown>
@@ -92,7 +92,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label=""
-          theme={"light"}
+          theme="light"
           mode="basic"
           caretHidden={true}
           optionsIconPosition="before">
@@ -102,7 +102,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label=""
-          theme={"light"}
+          theme="light"
           mode="outlined"
           caretHidden={true}
           optionsIconPosition="after">
@@ -112,7 +112,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label=""
-          theme={"light"}
+          theme="light"
           mode="basic"
           caretHidden={false}
           optionsIconPosition="before">
@@ -122,7 +122,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label=""
-          theme={"light"}
+          theme="light"
           mode="outlined"
           caretHidden={false}
           optionsIconPosition="after">
@@ -134,7 +134,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label="Basic dropdown"
-          theme={"dark"}
+          theme="dark"
           mode="basic"
           optionsIconPosition="before">
         </Dropdown>
@@ -143,7 +143,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label="Outlined dropdown"
-          theme={"dark"}
+          theme="dark"
           mode="outlined"
           optionsIconPosition="after">
         </Dropdown>
@@ -151,7 +151,7 @@ storiesOf("Form Components|Dropdown", module).add(
           options={optionsWithoutIcon}
           onSelectOption={selectOption}
           label="Basic dropdown"
-          theme={"dark"}
+          theme="dark"
           mode="basic"
           optionsIconPosition="before">
         </Dropdown>
@@ -159,7 +159,7 @@ storiesOf("Form Components|Dropdown", module).add(
           options={optionsWithoutIcon}
           onSelectOption={selectOption}
           label="Outlined dropdown"
-          theme={"dark"}
+          theme="dark"
           mode="outlined"
           optionsIconPosition="after">
         </Dropdown>
@@ -168,7 +168,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label=""
-          theme={"dark"}
+          theme="dark"
           mode="basic"
           caretHidden={true}
           optionsIconPosition="before">
@@ -178,7 +178,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label=""
-          theme={"dark"}
+          theme="dark"
           mode="outlined"
           caretHidden={true}
           optionsIconPosition="after">
@@ -188,7 +188,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label=""
-          theme={"dark"}
+          theme="dark"
           mode="basic"
           caretHidden={false}
           optionsIconPosition="before">
@@ -198,7 +198,7 @@ storiesOf("Form Components|Dropdown", module).add(
           onSelectOption={selectOption}
           iconSrc={amazon}
           label=""
-          theme={"dark"}
+          theme="dark"
           mode="outlined"
           caretHidden={false}
           optionsIconPosition="after">
