@@ -13,9 +13,14 @@
         <td><code>'light'</code></td>
         <td>Uses one of the available component themes.</td>
     </tr>
+     <tr>
+        <td>mode: 'basic' | 'outlined'</td>
+        <td><code>'basic'</code></td>
+        <td>Uses one of the available component modes.</td>
+    </tr>
     <tr>
         <td>logoSrc: string</td>
-        <td></td>
+        <td><code>'default'</code></td>
         <td>The path of an icon to replace the default dxc logo.</td>
     </tr>
 </table>
