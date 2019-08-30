@@ -141,12 +141,20 @@ storiesOf("Form Components|Header", module).add(
         <DxcHeader {...props}>
           <DxcDropdown
             theme={props.theme}
-            mode={props.underlined ? "outlined": "basic"}
+            mode={props.underlined ? "outlined" : "basic"}
             onSelectOption={selectOption}
             options={optionsWithoutIcon}
             label="Dropdown"
           />
         </DxcHeader>
+
+        <div
+          style={{
+            marginTop: "20px"
+          }}
+        >
+          <DxcHeader {...props}></DxcHeader>
+        </div>
       </div>
     );
   },
