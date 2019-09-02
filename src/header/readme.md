@@ -20,7 +20,7 @@
     </tr>
     <tr>
         <td>logoSrc: string</td>
-        <td></td>
+        <td><code>'default'</code></td>
         <td>The path of an icon to replace the default dxc logo.</td>
     </tr>
 </table>

@@ -293,13 +293,6 @@ const CaretIcon = styled.img`
 `;
 
 DxcDropdown.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.any.isRequired,
-      label: PropTypes.any.isRequired,
-      iconSrc: PropTypes.string
-    })
-  ),
   optionsIconPosition: PropTypes.oneOf(["after", "before", ""]),
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["after", "before", ""]),
@@ -308,7 +301,14 @@ DxcDropdown.propTypes = {
   mode: PropTypes.oneOf(["basic", "outlined", ""]),
   caretHidden: PropTypes.bool,
   disableRipple: PropTypes.bool,
-  onSelectOption: PropTypes.func
+  onSelectOption: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.any.isRequired,
+      label: PropTypes.any.isRequired,
+      iconSrc: PropTypes.string
+    })
+  )
 };
 
 export default DxcDropdown;
