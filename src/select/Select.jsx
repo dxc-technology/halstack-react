@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-import DxcCheckbox from "../checkbox/Checkbox";
+import DxcCheckbox from "../checkbox/Checkbox.jsx";
 
 import DxcRequired from "../common/RequiredComponent.jsx";
 
