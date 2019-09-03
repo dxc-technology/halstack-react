@@ -38,7 +38,7 @@ const DxcSwitch = ({ checked=false, value, label, labelPosition, theme, name, di
 
 const RequiredSpan = styled.span`
   color: ${props => (props.theme === "dark" ? "#FF6161" : "#ee2222")};
-  margin-right: 5px;
+  margin-right: 1px;
   cursor: default;
 `;
 
@@ -52,13 +52,22 @@ const SwitchContainer = styled.div`
     width: 60px;
     height: 45px;
     margin: 3px;
+
+    .MuiSwitch-track {
+      /*Enabled and unchecked bar*/
+      background-color: #666666;
+      opacity: 1;
+      height: 12px;
+      opacity: 0.4;
+    }
+
     .MuiIconButton-root {
       /*Enabled and unchecked*/
       top: unset;
       .MuiSwitch-thumb {
-        /*Only for ball*/
-        width: 26px;
-        height: 26px;
+        /*Only for thumb in all states*/
+        width: 24px;
+        height: 24px;
       }
       color: #ffffff;
       &:hover {
@@ -76,14 +85,14 @@ const SwitchContainer = styled.div`
           color: ${props => (props.theme === "dark" ? "#B3B3B3" : "#C1C1C1")};
           + .MuiSwitch-track {
             /*Disabled and checked bar*/
-            background-color: ${props => (props.theme === "dark" ? "#3D3D3D" : "#EFEFEF")};
-            opacity: 1;
+            background-color: #D9D9D9;
+            opacity: 0.4;
           }
         }
         + .MuiSwitch-track {
           /*Disabled and unchecked bar*/
-          background-color: ${props => (props.theme === "dark" ? "#3D3D3D" : "#F4F4F4")};
-          opacity: 1;
+          background-color: #D9D9D9;
+          opacity: 0.4;
         }
       }
       &.Mui-checked {
@@ -100,14 +109,9 @@ const SwitchContainer = styled.div`
         + .MuiSwitch-track {
           /*Enabled and checked bar*/
           background-color: #666666;
+          opacity: 1;
         }
       }
-    }
-    .MuiSwitch-track {
-      /*Enabled and unchecked bar*/
-      background-color: ${props => (props.theme === "dark" ? "#292929" : "#C2C2C2")};
-      opacity: 1;
-      height: 12px;
     }
   }
 `;
@@ -116,7 +120,7 @@ const LabelContainer = styled.span`
   color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
-  cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
+  cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
 `;
 
