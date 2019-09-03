@@ -69,23 +69,13 @@ storiesOf("Form Components|Footer", module).add(
   }
 );
 
-const knobProps = () => ({
-  bottomLinks: object("Bottom Links", bottom),
-  copyright: text("copyright", "© DXC Technology 2019. All rights reserved.")
-});
+const knobProps = () => ({});
 
 storiesOf("Form Components|Footer", module).add(
   "Knobs example",
   () => {
     const props = knobProps();
-    return (
-      <div>
-        <DxcFooter
-          {...props}
-          socialLinks={social}
-        ></DxcFooter>
-      </div>
-    );
+    return <div></div>;
   },
   {
     notes: { markdown: dropdownMD }
