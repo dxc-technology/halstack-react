@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import "../common/OpenSans.css";
-import { text, boolean, select } from "@storybook/addon-knobs";
+import { text, object } from "@storybook/addon-knobs";
 
 import linkedin from "./linkedin.svg";
 import facebook from "./facebook.svg";
@@ -57,6 +57,9 @@ storiesOf("Form Components|Footer", module).add(
       <div style={{ marginTop: "20px" }}>
         <DxcFooter copyright="© DXC Technology 2019. All rights reserved." bottomLinks={bottom} socialLinks={social}>
           <DxcInputText assistiveText="text input component" label="Footer Child" theme="dark" />
+          <DxcInputText assistiveText="text input component" label="Footer Child" theme="dark" />
+          <DxcInputText assistiveText="text input component" label="Footer Child" theme="dark" />
+          <DxcInputText assistiveText="text input component" label="Footer Child" theme="dark" />
         </DxcFooter>
       </div>
     </div>
@@ -66,13 +69,23 @@ storiesOf("Form Components|Footer", module).add(
   }
 );
 
-const knobProps = () => ({});
+const knobProps = () => ({
+  bottomLinks: object("Bottom Links", bottom),
+  copyright: text("copyright", "© DXC Technology 2019. All rights reserved.")
+});
 
 storiesOf("Form Components|Footer", module).add(
   "Knobs example",
   () => {
     const props = knobProps();
-    return <div></div>;
+    return (
+      <div>
+        <DxcFooter
+          {...props}
+          socialLinks={social}
+        ></DxcFooter>
+      </div>
+    );
   },
   {
     notes: { markdown: dropdownMD }
