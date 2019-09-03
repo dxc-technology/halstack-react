@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import defaultIcon from "./dxc_logo_white.png";
-import "../common/OpenSans.css"
+import "../common/OpenSans.css";
 
 import PropTypes from "prop-types";
 
@@ -22,15 +22,15 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", logoSrc
 
   return (
     <FooterContainer position="static">
-      <div className="footerHeader">
+      <FooterHeader>
         <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? defaultIcon : logoSrc} />
-        <div className="socialLinksContainer">{socialLink}</div>
-      </div>
-      <div className="childComponents">{children}</div>
-      <span className="footerFooter">
-        <div className="bottomLinks">{bottomLink}</div>
-        <div className="copyright">{copyright}</div>
-      </span>
+        <div>{socialLink}</div>
+      </FooterHeader>
+      <ChildComponents>{children}</ChildComponents>
+      <FooterFooter className="footerFooter">
+        <BottomLinks>{bottomLink}</BottomLinks>
+        <Copyright>{copyright}</Copyright>
+      </FooterFooter>
     </FooterContainer>
   );
 };
@@ -45,27 +45,31 @@ const FooterContainer = styled(AppBar)`
   &.MuiAppBar-colorPrimary {
     background-color: #000000;
   }
+`;
 
-  .footerHeader {
-    display: flex;
-    justify-content: space-between;
-  }
-  .footerFooter {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-  .bottomLinks {
-    padding-top: 6px;
-    border-top: 2px solid #FFED00;
-    display: inline-flex;
-  }
-  .childComponents {
-    min-height: 15px;
-  }
-  .copyright {
-    font-size: 12px;
-  }
+const FooterHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const FooterFooter = styled.span`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+`;
+
+const BottomLinks = styled.div`
+  padding-top: 6px;
+  border-top: 2px solid #ffed00;
+  display: inline-flex;
+`;
+
+const ChildComponents = styled.div`
+  min-height: 15px;
+`;
+
+const Copyright = styled.div`
+  font-size: 12px;
 `;
 
 const LogoIcon = styled.img`
