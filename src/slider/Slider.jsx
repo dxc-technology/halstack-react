@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
+import colors from "../common/variables.js";
 
 const DxcSlider = ({
   minValue = 0,
@@ -76,7 +77,7 @@ const StyledTextInput = styled.div`
     font-size: 16px;
     width: 50px;
     .MuiInputBase-input {
-      color: ${props => (props.theme === "light" && "#000000") || "#ffffff"};
+      color: ${props => (props.theme === "light" && colors.black) || colors.white};
     }
   }
 `;
@@ -98,17 +99,17 @@ const SliderContainer = styled.div`
     & .MuiSlider-thumb {
       height: 14px;
       width: 14px;
-      background-color: #d9d9d9;
+      background-color: ${colors.lightGrey};
       top: 38%;
     }
     & .MuiSlider-track {
-      background-color: #d9d9d9;
+      background-color: ${colors.lightGrey};
     }
     & > .MuiSlider-mark.MuiSlider-markActive {
-      background-color: #d9d9d9 !important;
+      background-color: ${colors.lightGrey} !important;
     }
     & > .MuiSlider-mark {
-      background-color: #d9d9d9;
+      background-color: ${colors.lightGrey};
       width: 4px;
       height: 4px;
       border-radius: 18px;
@@ -117,7 +118,7 @@ const SliderContainer = styled.div`
   .MuiSlider-thumb {
     height: 14px;
     width: 14px;
-    background-color: ${props => (props.theme === "light" && "#000") || "#d9d9d9"};
+    background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
     top: 45%;
     :hover,
     &.Mui-focusVisible {
@@ -131,30 +132,30 @@ const SliderContainer = styled.div`
     }
     :active {
       box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
-      background-color: ${props => (props.theme === "light" && "#000") || "#ffed00"};
+      background-color: ${props => (props.theme === "light" && colors.black) || colors.yellow};
       width: 18px;
       height: 18px;
       top: 35%;
     }
   }
   .MuiSlider-track {
-    background-color: ${props => (props.theme === "light" && "#000000") || "#d9d9d9"};
+    background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
     height: 1px;
     top: 52%;
   }
 
   .MuiSlider-track.MuiSlider-trackAfter {
-    background-color: #000000;
+    background-color: ${colors.black};
   }
   .MuiSlider-rail {
-    background-color: ${props => (props.theme === "light" && "#d9d9d9") || "#d9d9d9"};
+    background-color: ${props => (props.theme === "light" && colors.lightGrey) || colors.lightGrey};
     top: 50%;
   }
   .MuiSlider-mark.MuiSlider-markActive {
-    background-color: #000000;
+    background-color: ${colors.black};
   }
   .MuiSlider-mark {
-    background-color: #000000;
+    background-color: ${colors.black};
     width: 4px;
     height: 4px;
     border-radius: 18px;
@@ -163,14 +164,14 @@ const SliderContainer = styled.div`
 
 const MinLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "light" && "#000000") || "#d9d9d9"};
+  color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
   font-size: 16px;
   margin: 5px 15px 5px;
 `;
 
 const MaxLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "light" && "#000000") || "#d9d9d9"};
+  color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
   font-size: 14px;
   margin: 0px 0px 5px 15px;
 `;
