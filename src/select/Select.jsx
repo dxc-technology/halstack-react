@@ -10,6 +10,7 @@ import DxcCheckbox from "../checkbox/Checkbox.jsx";
 import DxcRequired from "../common/RequiredComponent.jsx";
 
 import "../common/OpenSans.css";
+import colors from "../common/variables.js"
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles(() => ({
     minWidth: "210px !important"
   },
   itemList: {
-    color: "#666666",
+    color: colors.darkGrey,
     "&.MuiList-padding": {
       paddingTop: "10px",
       paddingBottom: "10px"
@@ -32,16 +33,16 @@ const useStyles = makeStyles(() => ({
       paddingLeft: "20px",
       fontSize: "16px",
       "&:hover": {
-        backgroundColor: "#EEEEEE",
-        color: "#666"
+        backgroundColor: colors.darkWhite,
+        color: colors.darkGrey
       },
       "&:active": {
-        backgroundColor: "#D9D9D9 ",
-        color: "black"
+        backgroundColor: colors.lightGrey,
+        color: colors.black
       },
       "&.Mui-selected": {
-        backgroundColor: "#D9D9D9 ",
-        color: "black"
+        backgroundColor: colors.lightGrey,
+        color: colors.black
       }
     }
   }
@@ -186,7 +187,7 @@ const SelectContainer = styled.div`
     min-width: 230px;
     width: 230px;
     display: flex;
-    color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
+    color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
 
     :focus {
       background-color: transparent;
@@ -205,23 +206,23 @@ const SelectContainer = styled.div`
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;
-    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+    border-bottom-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
   }
   .MuiInput-underline:after {
     border-bottom: 1px solid;
-    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+    border-bottom-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
   }
   .MuiInput-underline:before {
     border-bottom: 1px solid;
-    border-bottom-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+    border-bottom-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
   }
   .MuiSelect-icon {
-    color: ${props => (props.theme === "dark" ? "#fff" : "#000")};
+    color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
   }
 `;
 const LabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+  color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};

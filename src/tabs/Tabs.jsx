@@ -4,6 +4,7 @@ import Tab from "@material-ui/core/Tab";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
+import colors from "../common/variables.js";
 
 const DxcTabs = ({
   mode = "filled",
@@ -61,19 +62,19 @@ const DxCTabs = styled.div`
       margin: 15px;
     }
     .MuiTabs-flexContainer {
-      border-bottom: ${props => (props.mode === "filled" ? "1.5px solid #d9d9d9" : "1.5px solid #d9d9d9")};
+      border-bottom: ${props => (props.mode === "filled" ? "1.5px solid " + colors.lightGrey : "1.5px solid " + colors.lightGrey)};
     }
     .MuiButtonBase-root {
       height: 48px;
       font-family:"Open Sans", sans-serif;
       /* height: 64px cuando vengan con icono y texto */
       min-width: 180px;
-      background-color: ${props => (props.mode === "filled" ? "#d9d9d9" : "transparent")};
-      color: #666;
+      background-color: ${props => (props.mode === "filled" ? colors.lightGrey : "transparent")};
+      color: ${colors.darkGrey};
       opacity: 0.5;
       &.Mui-selected {
-        background-color: ${props => (props.mode === "filled" ? "#000" : "transparent")};
-        color: ${props => (props.mode === "filled" ? "#fff" : "#000")};
+        background-color: ${props => (props.mode === "filled" ? colors.black : "transparent")};
+        color: ${props => (props.mode === "filled" ? colors.white : colors.black)};
         opacity: 1;
       }
       &.Mui-disabled {
@@ -82,7 +83,7 @@ const DxCTabs = styled.div`
       }
     }
     .MuiTabs-indicator {
-      background-color: ${props => (props.mode === "filled" ? "transparent" : "#000")};
+      background-color: ${props => (props.mode === "filled" ? "transparent" : colors.black)};
     }
   }
 `;

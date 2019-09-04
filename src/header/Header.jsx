@@ -7,6 +7,8 @@ import DefaultBlack from "./dxc_logo_black.png";
 
 import PropTypes from "prop-types";
 
+import colors from "../common/variables.js";
+
 const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", children }) => {
   return (
     <HeaderContainer theme={theme} underlined={underlined} position="static">
@@ -33,36 +35,36 @@ const HeaderContainer = styled(AppBar)`
   &.MuiAppBar-colorPrimary {
     background-color: ${props =>
       props.theme === "light" && props.underlined === true
-        ? "#FFFFFF"
+        ? colors.white
         : props.theme === "light" && props.underlined === false
-        ? "#000000"
+        ? colors.black
         : props.theme === "dark" && props.underlined === true
-        ? "#000000"
+        ? colors.black
         : props.theme === "dark" && props.underlined === false
-        ? "#FFFFFF"
-        : "#FFFFFF"};
+        ? colors.white
+        : colors.white};
 
     color: ${props =>
       props.theme === "light" && props.underlined === true
-        ? "#000000"
+        ? colors.black
         : props.theme === "light" && props.underlined === false
-        ? "#FFFFFF"
+        ? colors.white
         : props.theme === "dark" && props.underlined === true
-        ? "#FFFFFF"
+        ? colors.white
         : props.theme === "dark" && props.underlined === false
-        ? "#000000"
-        : "#000000"};
+        ? colors.black
+        : colors.black};
 
     border-bottom: ${props =>
       props.theme === "light" && props.underlined === true
-        ? "solid #000000 2px;"
+        ? "solid " + colors.black + " 2px"
         : props.theme === "light" && props.underlined === false
         ? "none"
         : props.theme === "dark" && props.underlined === true
-        ? "solid #FFFFFF 2px"
+        ? "solid " + colors.white + " 2px"
         : props.theme === "dark" && props.underlined === false
         ? "none"
-        : "solid #000000 2px"};
+        : "solid " + colors.black + " 2px"};
 
     font-family: "Open Sans", sans-serif;
 
