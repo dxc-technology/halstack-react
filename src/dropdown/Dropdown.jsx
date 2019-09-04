@@ -7,7 +7,8 @@ import caretUp from "./baseline-arrow_drop_up.svg";
 import caretDown from "./baseline-arrow_drop_down.svg";
 import caretUpWh from "./baseline-arrow_drop_up_wh.svg";
 import caretDownWh from "./baseline-arrow_drop_down_wh.svg";
-import "../common/OpenSans.css"
+import "../common/OpenSans.css";
+import colors from "../common/variables.js";
 
 const DxcDropdown = ({
   options,
@@ -110,36 +111,36 @@ const DxcMenu = styled(Menu)`
 
     border-color: ${props =>
       props.theme === "light" && props.mode === "outlined"
-        ? "#000000"
+        ? colors.black
         : props.theme === "light" && props.mode === "basic"
-        ? "#FFFFFF"
+        ? colors.white
         : props.theme === "dark" && props.mode === "outlined"
-        ? "#FFFFFF"
+        ? colors.white
         : props.theme === "dark" && props.mode === "basic"
-        ? "#000000"
-        : "#000000"};
+        ? colors.black
+        : colors.black};
 
     background-color: ${props =>
       props.theme === "light" && props.mode === "outlined"
-        ? "#FFFFFF"
+        ? colors.white
         : props.theme === "light" && props.mode === "basic"
-        ? "#000000"
+        ? colors.black
         : props.theme === "dark" && props.mode === "outlined"
-        ? "#000000"
+        ? colors.black
         : props.theme === "dark" && props.mode === "basic"
-        ? "#FFFFFF"
-        : "#FFFFFF"};
+        ? colors.white
+        : colors.white};
 
     color: ${props =>
       props.theme === "light" && props.mode === "outlined"
-        ? "#000000"
+        ? colors.black
         : props.theme === "light" && props.mode === "basic"
-        ? "#FFFFFF"
+        ? colors.white
         : props.theme === "dark" && props.mode === "outlined"
-        ? "#FFFFFF"
+        ? colors.white
         : props.theme === "dark" && props.mode === "basic"
-        ? "#000000"
-        : "#000000"};
+        ? colors.black
+        : colors.black};
 
     margin-top: ${props => (props.mode === "outlined" ? "-2px" : "2px")};
     border-bottom-left-radius: 2px;
@@ -175,8 +176,8 @@ const DxcMenu = styled(Menu)`
       }
     }
     .MuiListItem-button:hover {
-      background-color: #eeeeee;
-      color: #000;
+      background-color: ${colors.darkWhite};
+      color: ${colors.black};
     }
   }
 `;
@@ -214,40 +215,40 @@ const DropdownTrigger = styled.button`
 
   background-color: ${props =>
     props.theme === "light" && props.mode === "outlined" && !props.opened
-      ? "#FFFFFF"
+      ? colors.white
       : props.theme === "light" && props.mode === "basic" && !props.opened
-      ? "#000000"
+      ? colors.black
       : props.theme === "dark" && props.mode === "outlined" && !props.opened
-      ? "#000000"
+      ? colors.black
       : props.theme === "dark" && props.mode === "basic" && !props.opened
-      ? "#FFFFFF"
-      :props.theme === "light" && props.mode === "basic"  && props.opened
-      ? "#212121"
+      ? colors.white
+      : props.theme === "light" && props.mode === "basic" && props.opened
+      ? colors.lightBlack
       : props.theme === "dark" && props.mode === "outlined" && props.opened
-      ? "#212121"
-      : "#EEEEEE"};
+      ? colors.lightBlack
+      : colors.darkWhite};
 
   color: ${props =>
-    props.theme === "light" && props.mode === "outlined" 
-      ? "#000000"
+    props.theme === "light" && props.mode === "outlined"
+      ? colors.black
       : props.theme === "light" && props.mode === "basic"
-      ? "#FFFFFF"
+      ? colors.white
       : props.theme === "dark" && props.mode === "outlined"
-      ? "#FFFFFF"
+      ? colors.white
       : props.theme === "dark" && props.mode === "basic"
-      ? "#000000"
-      : "#000000"};
+      ? colors.black
+      : colors.black};
 
   border-color: ${props =>
     props.theme === "light" && props.mode === "outlined"
-      ? "#000000"
+      ? colors.black
       : props.theme === "light" && props.mode === "basic"
-      ? "#FFFFFF"
+      ? colors.white
       : props.theme === "dark" && props.mode === "outlined"
-      ? "#FFFFFF"
+      ? colors.white
       : props.theme === "dark" && props.mode === "basic"
-      ? "#000000"
-      : "#000000"};
+      ? colors.black
+      : colors.black};
 
   border: ${props => (props.mode === "outlined" ? "2px solid" : "none")};
   border-radius: 2px;

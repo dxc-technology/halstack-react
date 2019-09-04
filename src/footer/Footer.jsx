@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import defaultIcon from "./dxc_logo_white.png";
 import "../common/OpenSans.css";
+import colors from "../common/variables.js"
 
 import PropTypes from "prop-types";
 
@@ -43,7 +44,7 @@ const FooterContainer = styled(AppBar)`
   }
 
   &.MuiAppBar-colorPrimary {
-    background-color: #000000;
+  background-color: ${colors.black};
   }
 `;
 
@@ -60,7 +61,7 @@ const FooterFooter = styled.span`
 
 const BottomLinks = styled.div`
   padding-top: 6px;
-  border-top: 2px solid #ffed00;
+  border-top: 2px solid ${colors.yellow};;
   display: inline-flex;
 `;
 
@@ -82,7 +83,7 @@ const SocialIcon = styled.img`
     margin-left: 16px;
     height: 25px;
     width: 25px;
-    fill: white;
+    fill: ${colors.white};;
   }
 `;
 
@@ -97,10 +98,25 @@ const Point = styled.span`
 
 const BottomLink = styled.a`
   text-decoration: none;
-  color: #ffffff;
+  color: ${colors.white};;
   font-size: 12px;
 `;
 
-DxcFooter.propTypes = {};
+DxcFooter.propTypes = {
+  logo: PropTypes.string,
+  socialLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      logoSrc: PropTypes.string.isRequired,
+      href: PropTypes.string
+    })
+  ),
+  bottomLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      href: PropTypes.string
+    })
+  ),
+  copyright: PropTypes.string
+};
 
 export default DxcFooter;

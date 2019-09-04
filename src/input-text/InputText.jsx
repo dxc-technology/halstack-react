@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
+import colors from "../common/variables.js"
 
 const DxcInputText = ({
   label = "",
@@ -86,7 +87,7 @@ const PrefixIcon = styled.img`
 const PrefixLabel = styled.span`
   position: absolute;
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "light" ? "#666" : "#ffed00")};
+  color: ${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
   top: 42px;
   left: 15px;
   max-height: 20px;
@@ -118,10 +119,10 @@ const TextContainer = styled.div`
     .MuiFormLabel-root {
       font-size: 16px;
       top: 3px;
-      color: ${props => (props.theme === "light" ? "#000" : "#d9d9d9")};
+      color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
       &::before {
         content:'${props => (props.required && "*") || ""}';
-        color:#fa0303;
+        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         font-size: 18px; 
       }
       &.Mui-disabled{
@@ -129,7 +130,7 @@ const TextContainer = styled.div`
       }
       padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
       &.Mui-focused {
-        color: ${props => (props.theme === "light" ? "#000" : "#ffffff")};
+        color: ${props => (props.theme === "light" ? colors.black : colors.white)};
         &.MuiInputLabel-shrink {
           transform: ${props =>
             props.prefixIconSrc ||
@@ -138,7 +139,7 @@ const TextContainer = styled.div`
         }
       }
       &.Mui-disabled {
-        color: ${props => (props.theme === "light" ? "#d9d9d9" : "#666")};
+        color: ${props => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
         cursor: not-allowed;
       }
       &.MuiInputLabel-shrink {
@@ -149,23 +150,23 @@ const TextContainer = styled.div`
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
-        color: ${props => (props.theme === "light" ? "#d0011b" : "#ff6161")};
+        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
       }
 
       &:not(.MuiInputLabel-shrink)  {
         font-family: "Open Sans", sans-serif;
-        color: ${props => (props.theme === "light" ? "#666" : "#d9d9d9")};
+        color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
         & + div, & + div + p {
-          color: ${props => (props.theme === "light" ? "#666" : "#d9d9d9")};
+          color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
         }
       }
 
       &.MuiInputLabel-shrink {
         & + div::before {
-          border-color: ${props => (props.theme === "light" ? "#000" : "#d9d9d9")};
+          border-color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
         }
         & + div + p {
-          color: ${props => (props.theme === "light" ? "#666" : "#d9d9d9")};
+          color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
         }
         
       }
@@ -176,10 +177,10 @@ const TextContainer = styled.div`
       min-width: 230px;
       min-height: 34px;
       &::before{
-        border-bottom: ${props => (props.theme === "light" ? "1px solid #000" : "1px solid #d9d9d9")};
+        border-bottom: ${props => (props.theme === "light" ? "1px solid " + colors.black : "1px solid " + colors.lightGrey)};
       }
       &:not(.Mui-error)::before, &:not(&.Mui-focused)::before {
-        border-bottom: ${props => (props.theme === "light" ? "1px solid #000" : "1px solid #d9d9d9")};
+        border-bottom: ${props => (props.theme === "light" ? "1px solid " + colors.black : "1px solid " + colors.lightGrey)};
       }
 
       .MuiInputBase-inputMultiline {
@@ -194,12 +195,12 @@ const TextContainer = styled.div`
         }
 
         ::-webkit-scrollbar-track {
-          background-color: #D9D9D9;
+          background-color: ${colors.lightGrey};
           border-radius: 3px;
         }
 
         ::-webkit-scrollbar-thumb {
-          background-color: #666;
+          background-color: ${colors.darkGrey};
           border-radius: 3px;
         }
       }
@@ -207,7 +208,7 @@ const TextContainer = styled.div`
       &.Mui-error {
         &::before {
           border-width: 1px;
-          border-color: ${props => (props.theme === "light" ? "#d0011b" : "#FF6161")};
+          border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         }
         &::after {
           transform: scaleX(0);
@@ -217,39 +218,39 @@ const TextContainer = styled.div`
       &.Mui-focused {
         &::after {
           border-width: 2px;
-          border-color: ${props => (props.theme === "light" ? "#000" : "#fff")};
+          border-color: ${props => (props.theme === "light" ? colors.black : colors.white)};
           transform: scaleX(1);
         }
         
         &.Mui-error::after {
-          border-color: ${props => (props.theme === "light" ? "#d0011b" : "#FF6161")};
+          border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         }
       }
 
       &.Mui-disabled {
-        color: ${props => (props.theme === "light" ? "#d9d9d9" : "#666")};
+        color: ${props => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
         opacity:0.5;
         cursor: not-allowed;
         
         &::before {
-          border-bottom: ${props => (props.theme === "light" ? "1px solid #d9d9d9" : "1px solid #666")};
+          border-bottom: ${props => (props.theme === "light" ? "1px solid " + colors.lightGrey : "1px solid " + colors.darkGrey)};
           border-bottom-style: solid;
         }
       }
       .MuiInputBase-input {
         padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
-        color: ${props => (props.theme === "light" ? "#666" : "#fff")};
+        color: ${props => (props.theme === "light" ? colors.darkGrey : colors.white)};
         &.Mui-disabled {
           cursor: not-allowed;
         }
       }
       .MuiInputAdornment-root {
         height: 20px;
-        color: ${props => (props.theme === "light" ? "#d9d9d9" : "#666")};
+        color: ${props => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
         &.MuiInputAdornment-positionEnd{
           & > p {
             font-family: "Open Sans", sans-serif;
-            color:${props => (props.theme === "light" ? "#d9d9d9" : "#ffed00")};
+            color:${props => (props.theme === "light" ? colors.lightGrey : colors.yellow)};
           }
         }
         &.Mui-disabled {
@@ -259,14 +260,14 @@ const TextContainer = styled.div`
       }
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before{
-        border-bottom: ${props => (props.theme === "light" ? "1px solid #000" : "1px solid #fff")};
+        border-bottom: ${props => (props.theme === "light" ? "1px solid " + colors.black : "1px solid " + colors.white)};
       }
       
     }
 
     & > p {
       &.Mui-error {
-        color: ${props => (props.theme === "light" ? "#d0011b !important" : "#FF6161 !important")};
+        color: ${props => (props.theme === "light" ? colors.darkRed + " !important" : colors.lightRed + " !important")};
       }
       &.Mui-disabled{
         opacity:0.5;

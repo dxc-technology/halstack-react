@@ -8,7 +8,8 @@ import DateFnsUtils from "@date-io/date-fns";
 import fLocale from "date-fns/locale/es";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css"
+import "../common/OpenSans.css";
+import colors from "../common/variables.js";
 
 const DxcDate = ({
   value,
@@ -37,7 +38,7 @@ const DxcDate = ({
     value = moment(date).format("DD-MM-YYYY");
     var check = moment(value, "DD-MM-YYYY", true).isValid();
     if (check) {
-      if(typeof onChange === "function") {
+      if (typeof onChange === "function") {
         onChange(date);
       }
     }
@@ -89,38 +90,38 @@ const StyledDPicker = styled.span`
     }
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
-        if (props.invalid) return "#D0011B";
+        if (props.invalid) return props.theme === "light" ? colors.darkRed : colors.lightRed;
         else {
           if (props.theme === "dark") {
-            return "#FFFFFF";
+            return colors.white;
           } else {
-            return "#000000";
+            return colors.black;
           }
         }
       }};
     }
     .MuiFormLabel-root.Mui-disabled {
       color: ${props => {
-        if (props.theme === "dark") return "#757575";
+        if (props.theme === "dark") return colors.darkGrey;
       }};
     }
     .MuiFormLabel-root.Mui-error {
-      color: #d0011b;
+      color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
     }
     .MuiFormLabel-root {
       font-family: "Open Sans", sans-serif;
       &::before {
-          content: "*";
-          color: #D0011B;
-          display: ${props => (props.required ? "" : "none")};
+        content: "*";
+        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        display: ${props => (props.required ? "" : "none")};
       }
     }
     .MuiInput-underline:not(.Mui-disabled):not(.Mui-error):before {
       border-color: ${props => {
         if (props.invalid) {
-          return "#D0011B";
+          return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
-          return "#666666";
+          return colors.darkGrey;
         }
       }};
       border-bottom-width: ${props => {
@@ -130,12 +131,12 @@ const StyledDPicker = styled.span`
     .MuiInput-underline:not(.Mui-disabled):not(.Mui-error):after {
       border-color: ${props => {
         if (props.invalid) {
-          return "#D0011B";
+          return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
           if (props.theme === "dark") {
-            return "#FFFFFF";
+            return colors.white;
           } else {
-            return "#000000";
+            return colors.black;
           }
         }
       }};
@@ -146,11 +147,11 @@ const StyledDPicker = styled.span`
     .MuiInput-underline:hover:not(.Mui-disabled):not(.Mui-error):before {
       border-color: ${props => {
         if (props.invalid) {
-          return "#D0011B";
+          return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
-          if (props.theme === "dark") return "#757575";
+          if (props.theme === "dark") return colors.darkGrey;
           else {
-            return "#111111";
+            return colors.darkGrey;;
           }
         }
       }};
@@ -160,7 +161,7 @@ const StyledDPicker = styled.span`
       }};
     }
     .MuiInput-underline.Mui-disabled:not(.Mui-error):before {
-      border-color: ${props => (props.theme === "dark" ? "#757575" : "#666666")};
+      border-color: ${colors.darkGrey};
       border-bottom-style: solid;
     }
     .MuiFormHelperText-root {
@@ -169,12 +170,12 @@ const StyledDPicker = styled.span`
     .MuiFormHelperText-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
         if (props.invalid) {
-          return "#D0011B";
+          return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
           if (props.theme === "dark") {
-            return "#FFFFFF";
+            return colors.white;
           } else {
-            return "#000000";
+            return colors.black;
           }
         }
       }};
@@ -182,23 +183,23 @@ const StyledDPicker = styled.span`
     .MuiFormHelperText-root.Mui-disabled {
       color: ${props => {
         if (props.theme === "dark") {
-          return "#757575";
+          return colors.darkGrey;
         }
       }};
     }
     .MuiInputBase-input:not(.Mui-disabled) {
-      color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+      color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
     }
     .MuiInputBase-input.Mui-disabled {
       cursor: not-allowed;
       color: ${props => {
         if (props.theme === "dark") {
-          return "#757575";
+          return colors.darkGrey;
         }
       }};
     }
     .MuiButtonBase-root:not(.Mui-disabled) {
-      color: #000;
+    color: ${colors.black};
       .MuiTouchRipple-root {
         display: ${props => (props.dissableRipple ? "none" : "")};
       }
@@ -207,12 +208,12 @@ const StyledDPicker = styled.span`
       pointer-events: all !important;
       cursor: not-allowed;
       .defaultIcon {
-        fill: ${props => (props.theme === "dark" ? "#757575" : "rgba(0, 0, 0, 0.26)")};
+        fill: ${props => (props.theme === "dark" ? colors.darkGrey : "rgba(0, 0, 0, 0.26)")};
       }
     }
     .MuiIconButton-root:not(.Mui-disabled) {
       .defaultIcon {
-        fill: ${props => (props.theme === "dark" ? "#FFED00" : "#000000")};
+        fill: ${props => (props.theme === "dark" ? colors.yellow : colors.black)};
       }
     }
   }
@@ -221,18 +222,16 @@ const StyledDPicker = styled.span`
 const lightTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#000",
-      dark: "#000"
+      main: colors.black,
+      dark: colors.black
     }
   },
   typography: {
-    fontFamily:
-    '"Open Sans", sans-serif'
+    fontFamily: '"Open Sans", sans-serif'
   }
 });
 
 DxcDate.propTypes = {
-
   value: PropTypes.object,
   format: PropTypes.string,
   label: PropTypes.string,

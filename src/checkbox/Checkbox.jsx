@@ -3,12 +3,13 @@ import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent.jsx";
-import "../common/OpenSans.css"
+import "../common/OpenSans.css";
+import colors from "../common/variables.js";
 
 const DxcCheckbox = ({
   checked = false,
   value,
-  label ="",
+  label = "",
   labelPosition = "before",
   theme = "light",
   name = "",
@@ -57,7 +58,14 @@ const DxcCheckbox = ({
   );
 };
 const LabelContainer = styled.span`
-  color: ${props => (props.disabled ? (props.theme === "dark" ? "#666" : "#D9D9D9") : (props.theme === "dark" ? "#FFFFFF" : "#000000"))};
+  color: ${props =>
+    props.disabled
+      ? props.theme === "dark"
+        ? colors.darkGrey
+        : colors.lightGrey
+      : props.theme === "dark"
+      ? colors.white
+      : colors.black};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
@@ -73,22 +81,22 @@ const CheckboxContainer = styled.span`
   .MuiButtonBase-root {
     padding: 10px 10px;
     margin: 0px 3px;
-    color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
+    color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
 
     :hover {
       background-color: transparent;
     }
     &.Mui-checked {
-      color: #ffed00;
+      color: ${colors.yellow};
       &:hover {
         background-color: transparent;
       }
     }
     &.Mui-disabled {
-      color: ${props => (props.theme === "dark" ? "#666" : "#D9D9D9")};
+      color: ${props => (props.theme === "dark" ? colors.darkGrey : colors.lightGrey)};
     }
     .MuiTouchRipple-child {
-      background-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
+      background-color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
     }
     .MuiSvgIcon-root {
       width: 26.6px;
@@ -102,7 +110,7 @@ const CheckboxContainer = styled.span`
 
 const CheckboxBlackBack = styled.span`
   background-color: ${props =>
-    props.checked !== true ? "transparent" : props.theme === "light" && props.disabled === true ? "ffffff" : "#000000"};
+    props.checked !== true ? "transparent" : props.theme === "light" && props.disabled === true ? colors.white : colors.black};
   width: 17px;
   height: 17px;
   position: absolute;
