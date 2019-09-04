@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", logoSrc = "default", children }) => {
   const socialLink = socialLinks.map(link => (
     <a href={link && link.href ? link.href : ""}>
-      <SocialIcon src={link && link.logoSrc ? link.logoSrc : ""} />
+      {(link && link.logoSrc) && <SocialIcon src={link.logoSrc}/>}
     </a>
   ));
 
