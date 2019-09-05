@@ -62,7 +62,7 @@ const DxCTabs = styled.div`
       margin: 15px;
     }
     .MuiTabs-flexContainer {
-      border-bottom: ${props => (props.mode === "filled" ? "1.5px solid " + colors.lightGrey : "1.5px solid " + colors.lightGrey)};
+      border-bottom: 1.5px solid ${colors.lightGrey};
     }
     .MuiButtonBase-root {
       height: 48px;

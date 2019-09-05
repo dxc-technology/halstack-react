@@ -48,13 +48,14 @@ const DxcDate = ({
   return (
     <ThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={fLocale}>
-        <StyledDPicker invalid={invalid} theme={theme} required={required} dissableRipple={dissableRipple}>
+        <StyledDPicker invalid={invalid} theme={theme} dissableRipple={dissableRipple}>
           <KeyboardDatePicker
             name={name}
             disabled={disabled}
             value={selectedDate}
             label={label}
             variant="inline"
+            required={required}
             keyboardIcon={
               iconSrc !== "" ? (
                 <img src={iconSrc} />
@@ -110,10 +111,11 @@ const StyledDPicker = styled.span`
     }
     .MuiFormLabel-root {
       font-family: "Open Sans", sans-serif;
-      &::before {
-        content: "*";
+      display: flex;
+      flex-direction: row-reverse;
+      .MuiFormLabel-asterisk {
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
-        display: ${props => (props.required ? "" : "none")};
+        margin-right: 1px;
       }
     }
     .MuiInput-underline:not(.Mui-disabled):not(.Mui-error):before {
