@@ -8,10 +8,10 @@ import colors from "../common/variables.js"
 import PropTypes from "prop-types";
 
 const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", logoSrc = "default", children }) => {
-  const socialLink = socialLinks.map(link => (
-    <a href={link && link.href ? link.href : ""}>
+  const socialLink = socialLinks.map((link, index) => (
+    <SocialAnchor index={index} href={link && link.href ? link.href : ""}>
       {(link && link.logoSrc) && <SocialIcon src={link.logoSrc}/>}
-    </a>
+    </SocialAnchor>
   ));
 
   const bottomLink = bottomLinks.map((link, index) => (
@@ -78,9 +78,16 @@ const LogoIcon = styled.img`
   width: auto;
 `;
 
+const SocialAnchor = styled.a`
+  & {
+    display: inline-flex;
+    margin-left: ${props => (props.index == 0 ? "0px" : "15px")};
+  }
+`;
+
 const SocialIcon = styled.img`
   & {
-    margin-left: 16px;
+    display: inline-flex;
     height: 25px;
     width: 25px;
     fill: ${colors.white};;
