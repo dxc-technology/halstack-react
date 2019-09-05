@@ -177,10 +177,10 @@ const TextContainer = styled.div`
       min-width: 230px;
       min-height: 34px;
       &::before{
-        border-bottom: ${props => (props.theme === "light" ? "1px solid " + colors.black : "1px solid " + colors.lightGrey)};
+        border-bottom: ${props => (props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`)};
       }
       &:not(.Mui-error)::before, &:not(&.Mui-focused)::before {
-        border-bottom: ${props => (props.theme === "light" ? "1px solid " + colors.black : "1px solid " + colors.lightGrey)};
+        border-bottom: ${props => (props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`)};
       }
 
       .MuiInputBase-inputMultiline {
@@ -233,7 +233,7 @@ const TextContainer = styled.div`
         cursor: not-allowed;
         
         &::before {
-          border-bottom: ${props => (props.theme === "light" ? "1px solid " + colors.lightGrey : "1px solid " + colors.darkGrey)};
+          border-bottom: ${props => (props.theme === "light" ? `1px solid ${colors.lightGrey}` : `1px solid ${colors.darkGrey}`)};
           border-bottom-style: solid;
         }
       }
@@ -260,7 +260,7 @@ const TextContainer = styled.div`
       }
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before{
-        border-bottom: ${props => (props.theme === "light" ? "1px solid " + colors.black : "1px solid " + colors.white)};
+        border-bottom: ${props => (props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.white}`)};
       }
       
     }
