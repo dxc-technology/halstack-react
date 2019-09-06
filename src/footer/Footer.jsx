@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import AppBar from "@material-ui/core/AppBar";
 import defaultIcon from "./dxc_logo_white.png";
 import "../common/OpenSans.css";
 import colors from "../common/variables.js"
@@ -22,7 +21,7 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", logoSrc
   ));
 
   return (
-    <FooterContainer position="static">
+    <FooterContainer>
       <FooterHeader>
         <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? defaultIcon : logoSrc} />
         <div>{socialLink}</div>
@@ -36,15 +35,11 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", logoSrc
   );
 };
 
-const FooterContainer = styled(AppBar)`
+const FooterContainer = styled.div`
   & {
     padding: 20px 60px 20px 20px;
-    min-height: 120px;
     font-family: "Open Sans", sans-serif;
-  }
-
-  &.MuiAppBar-colorPrimary {
-  background-color: ${colors.black};
+    background-color: ${colors.black};
   }
 `;
 
@@ -71,6 +66,7 @@ const ChildComponents = styled.div`
 
 const Copyright = styled.div`
   font-size: 12px;
+  color: ${colors.white};
 `;
 
 const LogoIcon = styled.img`
@@ -101,6 +97,7 @@ const Point = styled.span`
     }
   }};
   margin: 0px 10px;
+  color: ${colors.white};
 `;
 
 const BottomLink = styled.a`
