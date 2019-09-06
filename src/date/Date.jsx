@@ -222,11 +222,53 @@ const StyledDPicker = styled.span`
 `;
 
 const lightTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: colors.black,
-      dark: colors.black
-    }
+  overrides: {
+    MuiPickersToolbar: {
+      toolbar: {
+        backgroundColor: colors.white,
+        color: colors.black
+      }
+    },
+    MuiPickersToolbarText: {
+      toolbarTxt: {
+        color: colors.black
+      },
+      toolbarBtnSelected: {
+        color: colors.black
+      }
+    },
+    MuiPickersCalendarHeader: {
+      switchHeader: {
+        backgroundColor: colors.white,
+        color: colors.black,
+      },
+    },
+    MuiPickersDay: {
+      day: {
+        color: colors.black,
+      },
+      daySelected: {
+        backgroundColor: colors.black,
+        color: colors.yellow,
+        '&:hover': {
+          backgroundColor: colors.black
+        }
+      },
+    },
+    MuiPickersYear: {
+      yearSelected: {
+        color: colors.yellow,
+        backgroundColor: colors.black,
+        margin: '0px 100px',
+        borderRadius: '20px',
+        fontSize: '16px'
+      }
+    },
+    MuiPickersModal: {
+      dialogAction: {
+        color: colors.yellow
+      },
+    },
   },
   typography: {
     fontFamily: '"Open Sans", sans-serif'
