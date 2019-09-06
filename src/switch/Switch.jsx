@@ -2,9 +2,21 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
-import "../common/OpenSans.css"
+import "../common/OpenSans.css";
+import colors from "../common/variables.js";
 
-const DxcSwitch = ({ checked=false, value, label, labelPosition, theme, name, disabled, disableRipple, onChange, required }) => {
+const DxcSwitch = ({
+  checked = false,
+  value,
+  label,
+  labelPosition,
+  theme,
+  name,
+  disabled,
+  disableRipple,
+  onChange,
+  required
+}) => {
   const [innerChecked, setInnerChecked] = useState(0);
 
   const handlerSwitchChange = newValue => {
@@ -37,14 +49,14 @@ const DxcSwitch = ({ checked=false, value, label, labelPosition, theme, name, di
 };
 
 const RequiredSpan = styled.span`
-  color: ${props => (props.theme === "dark" ? "#FF6161" : "#ee2222")};
+  color: ${props => (props.theme === "dark" ? colors.lightRed : colors.darkRed)};
   margin-right: 1px;
   cursor: default;
 `;
 
 const SwitchContainer = styled.div`
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
   .MuiSwitch-root {
@@ -55,7 +67,7 @@ const SwitchContainer = styled.div`
 
     .MuiSwitch-track {
       /*Enabled and unchecked bar*/
-      background-color: #666666;
+      background-color: ${colors.darkGrey};
       opacity: 1;
       height: 12px;
       opacity: 0.4;
@@ -69,46 +81,46 @@ const SwitchContainer = styled.div`
         width: 24px;
         height: 24px;
       }
-      color: #ffffff;
+      color: ${colors.white};
       &:hover {
         background-color: transparent;
       }
       .MuiTouchRipple-child {
-        background-color: ${props => (props.theme === "dark" ? "#FFED00" : "#666666")};
+        background-color: ${props => (props.theme === "dark" ? colors.yellow : colors.darkGrey)};
         opacity: 1;
       }
       &.Mui-disabled {
         /*Disabled*/
-        color: ${props => (props.theme === "dark" ? "#B3B3B3" : "#FFFFFF")};
+        color: ${props => (props.theme === "dark" ? "#B3B3B3" : colors.white)};
         &.Mui-checked {
           /*Disabled and checked*/
           color: ${props => (props.theme === "dark" ? "#B3B3B3" : "#C1C1C1")};
           + .MuiSwitch-track {
             /*Disabled and checked bar*/
-            background-color: #D9D9D9;
+            background-color: ${colors.lightGrey};
             opacity: 0.4;
           }
         }
         + .MuiSwitch-track {
           /*Disabled and unchecked bar*/
-          background-color: #D9D9D9;
+          background-color: ${colors.lightGrey};
           opacity: 0.4;
         }
       }
       &.Mui-checked {
         /*Enabled and checked*/
-        color: ${props => (props.theme === "dark" ? "#FFED00" : "#000000")};
+        color: ${props => (props.theme === "dark" ? colors.yellow : colors.black)};
         transform: translateX(35%);
         &:hover {
           background-color: transparent;
         }
         .MuiTouchRipple-child {
-          background-color: #666666;
+          background-color: ${colors.darkGrey};
           opacity: 1;
         }
         + .MuiSwitch-track {
           /*Enabled and checked bar*/
-          background-color: #666666;
+          background-color: ${colors.darkGrey};
           opacity: 1;
         }
       }
@@ -117,7 +129,7 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+  color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Radio from "@material-ui/core/Radio";
 import DxcRequired from "../common/RequiredComponent.jsx";
 import "../common/OpenSans.css";
+import colors from "../common/variables.js";
 
 const DxcRadio = ({
   checked,
@@ -19,7 +20,7 @@ const DxcRadio = ({
   const [innerChecked, setInnerChecked] = useState(0);
 
   const handlerRadioChange = value => {
-    const checked = value.target.checked === undefined ? !innerChecked : value.target.checked;
+    const checked = innerChecked !== true ? true : value.target.checked;
     setInnerChecked(checked);
     onChange(checked);
   };
@@ -27,14 +28,14 @@ const DxcRadio = ({
     <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
       <Radio
         checked={checked || innerChecked}
-        inputProps={(name = { name })}
+        name={name}
         onChange={handlerRadioChange}
         value={value}
         label={label}
         disabled={disabled}
         disableRipple={disableRipple}
       />
-      <LabelContainer labelPosition={labelPosition} theme={theme} disabled={disabled}>
+      <LabelContainer checked={checked || innerChecked} labelPosition={labelPosition} theme={theme} disabled={disabled} onClick={!disabled && handlerRadioChange}>
         {required && <DxcRequired theme={theme} />}
         {label}
       </LabelContainer>
@@ -51,36 +52,49 @@ const RadioContainer = styled.span`
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
   .MuiButtonBase-root {
     padding: 0px;
-    margin: 10px 15px;
+    margin: 0px 5px;
+    width: 40px;
+    height: 40px;
     &.Mui-disabled {
-      color: ${props => (props.theme === "dark" ? "#666666" : "#B2B2B2")};
+      color: ${props => (props.theme === "dark" ? colors.darkGrey : colors.lightGrey)};
     }
     .MuiIconButton-label {
-      color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+      .MuiSvgIcon-root {
+        height: 20px;
+        width: 20px;
+      }
+      color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
       > div > :nth-child(2) path {
-        color: ${props => (props.theme === "dark" ? "#FFED00" : "#000000")};
+        color: ${props => (props.theme === "dark" ? colors.yellow : colors.black)};
       }
     }
     &.Mui-disabled {
       .MuiIconButton-label {
-        color: #666666;
+        color: ${props => (props.theme === "dark" ? colors.darkGrey : colors.lightGrey)};
         > div > :nth-child(2) path {
-          color: #666666;
+          color: ${props => (props.theme === "dark" ? colors.darkGrey : colors.lightGrey)};
         }
       }
     }
     &.Mui-focusVisible {
-      background-color: #66666610;
+      background-color: ${colors.darkGrey};
+      opacity: 0.1;
     }
     :hover {
       background-color: transparent;
     }
-    .MuiTouchRipple-child {
-      background-color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#666666")};
+    .MuiTouchRipple-ripple {
+      height: 40px !important;
+      width: 40px !important;
+      top: 0px !important;
+      left: 0px !important;
+      .MuiTouchRipple-child {
+        background-color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
+      }
     }
   }
   .MuiRadio-colorSecondary.Mui-checked {
-    color: ${props => (props.theme === "dark" ? "#FFED00" : "#000000")};
+    color: ${props => (props.theme === "dark" ? colors.yellow : colors.black)};
     :hover {
       background-color: transparent;
     }
@@ -88,9 +102,15 @@ const RadioContainer = styled.span`
 `;
 const LabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "dark" ? "#FFFFFF" : "#000000")};
+  color: ${props => {
+    if(props.disabled) {
+      return (props.theme === "dark" ? colors.darkGrey : colors.lightGrey);
+    } else {
+      return (props.theme === "dark" ? colors.white : colors.black);
+    }
+  }};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
-  cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
+  cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
 `;
 export default DxcRadio;
