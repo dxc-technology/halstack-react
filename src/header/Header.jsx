@@ -57,14 +57,14 @@ const HeaderContainer = styled(AppBar)`
 
     border-bottom: ${props =>
       props.theme === "light" && props.underlined === true
-        ? "solid " + colors.black + " 2px"
+        ? `solid ${colors.black}  2px`
         : props.theme === "light" && props.underlined === false
         ? "none"
         : props.theme === "dark" && props.underlined === true
-        ? "solid " + colors.white + " 2px"
+        ? `solid ${colors.white}  2px`
         : props.theme === "dark" && props.underlined === false
         ? "none"
-        : "solid " + colors.black + " 2px"};
+        : `solid ${colors.black}  2px`};
 
     font-family: "Open Sans", sans-serif;
 

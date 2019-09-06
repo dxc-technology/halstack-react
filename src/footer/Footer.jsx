@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import AppBar from "@material-ui/core/AppBar";
 import defaultIcon from "./dxc_logo_white.png";
 import "../common/OpenSans.css";
 import colors from "../common/variables.js"
@@ -8,10 +7,10 @@ import colors from "../common/variables.js"
 import PropTypes from "prop-types";
 
 const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", logoSrc = "default", children }) => {
-  const socialLink = socialLinks.map(link => (
-    <a href={link && link.href ? link.href : ""}>
+  const socialLink = socialLinks.map((link, index) => (
+    <SocialAnchor index={index} href={link && link.href ? link.href : ""}>
       {(link && link.logoSrc) && <SocialIcon src={link.logoSrc}/>}
-    </a>
+    </SocialAnchor>
   ));
 
   const bottomLink = bottomLinks.map((link, index) => (
@@ -22,7 +21,7 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", logoSrc
   ));
 
   return (
-    <FooterContainer position="static">
+    <FooterContainer>
       <FooterHeader>
         <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? defaultIcon : logoSrc} />
         <div>{socialLink}</div>
@@ -36,15 +35,11 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", logoSrc
   );
 };
 
-const FooterContainer = styled(AppBar)`
+const FooterContainer = styled.div`
   & {
     padding: 20px 60px 20px 20px;
-    min-height: 120px;
     font-family: "Open Sans", sans-serif;
-  }
-
-  &.MuiAppBar-colorPrimary {
-  background-color: ${colors.black};
+    background-color: ${colors.black};
   }
 `;
 
@@ -71,6 +66,7 @@ const ChildComponents = styled.div`
 
 const Copyright = styled.div`
   font-size: 12px;
+  color: ${colors.white};
 `;
 
 const LogoIcon = styled.img`
@@ -78,9 +74,16 @@ const LogoIcon = styled.img`
   width: auto;
 `;
 
+const SocialAnchor = styled.a`
+  & {
+    display: inline-flex;
+    margin-left: ${props => (props.index == 0 ? "0px" : "15px")};
+  }
+`;
+
 const SocialIcon = styled.img`
   & {
-    margin-left: 16px;
+    display: inline-flex;
     height: 25px;
     width: 25px;
     fill: ${colors.white};;
@@ -94,6 +97,7 @@ const Point = styled.span`
     }
   }};
   margin: 0px 10px;
+  color: ${colors.white};
 `;
 
 const BottomLink = styled.a`
