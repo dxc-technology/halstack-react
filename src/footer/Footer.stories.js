@@ -4,9 +4,9 @@ import { action } from "@storybook/addon-actions";
 import "../common/OpenSans.css";
 import { text, object } from "@storybook/addon-knobs";
 
-import linkedin from "./linkedin.svg";
-import facebook from "./facebook.svg";
-import twitter from "./twitter.svg";
+import linkedin from "../../.storybook/public/linkedin.svg";
+import facebook from "../../.storybook/public/facebook.svg";
+import twitter from "../../.storybook/public/twitter.svg";
 
 import DxcInputText from "../input-text/InputText";
 
