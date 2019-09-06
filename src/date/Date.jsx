@@ -5,7 +5,6 @@ import { ThemeProvider } from "@material-ui/styles";
 import { createMuiTheme } from "@material-ui/core";
 import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
-import fLocale from "date-fns/locale/es";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
@@ -47,7 +46,7 @@ const DxcDate = ({
 
   return (
     <ThemeProvider theme={lightTheme}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={fLocale}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <StyledDPicker invalid={invalid} theme={theme} dissableRipple={dissableRipple}>
           <KeyboardDatePicker
             name={name}
