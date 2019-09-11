@@ -22,7 +22,7 @@ const DxcDialog = ({
       open={isVisible}
       theme={theme}
       onChange={handleChange}
-      overlay={overlay === true ? "true" : "false"}
+      overlay={overlay}
     >
       {isCloseVisible && (
         <CloseIconContainer>
@@ -39,7 +39,7 @@ const DxcDialog = ({
 
 const DialogContainer = styled(Dialog)`
   .MuiBackdrop-root {
-    background-color: ${props => (props.overlay === "true" ? "#000000B3" : "transparent")};
+    background-color: ${props => (props.overlay === true ? "#000000B3" : "transparent")};
   }
   .MuiDialog-paperWidthSm {
     max-width: 80%;
