@@ -9,5 +9,6 @@ import DxcRadio from "./radio/Radio.jsx";
 import DxcDate from "./date/Date.jsx";
 import DxcHeader from "./header/Header.jsx";
 import DxcTabs from "./tabs/Tabs.jsx";
+import DxcDialog from "./dialog/Dialog.jsx"
 
-export { DxcButton, DxcCheckbox, DxcSelect, DxcInput, DxcDropdown, DxcSwitch, DxcSlider, DxcRadio, DxcDate, DxcHeader, DxcTabs };
+export { DxcButton, DxcCheckbox, DxcSelect, DxcInput, DxcDropdown, DxcSwitch, DxcSlider, DxcRadio, DxcDate, DxcHeader, DxcTabs, DxcDialog };

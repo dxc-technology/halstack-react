@@ -26,7 +26,7 @@ const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", c
             : logoSrc
         }
       />
-      <div className="ChildComponents">{children}</div>
+      <div>{children}</div>
     </HeaderContainer>
   );
 };
