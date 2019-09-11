@@ -32,7 +32,7 @@ const DxcDialog = ({
           </CloseIcon>
         </CloseIconContainer>
       )}
-      <div style={{fontFamily:"Open Sans, sans serif"}}>{children}</div>
+      <div>{children}</div>
     </DialogContainer>
   );
 };
