@@ -28,5 +28,10 @@
         <td><code>'light'</code></td>
         <td>Uses one of the available component themes.</td>
     </tr>
+    <tr>
+        <td>overlay: boolean</td>
+        <td>true</td>
+        <td>If true, the modal will be over a darker background</td>
+    </tr>
 </table>
 
