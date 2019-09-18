@@ -11,7 +11,7 @@ const DxcCard = ({ children, imagePosition = "before", imageSrc = "", mode = "de
     <DxcCardContainer imagePosition={imagePosition} imageSrc={imageSrc} mode={mode} theme={theme} onClick={() => onClick()}>
       <Card>
         <ImageContainer imagePosition={imagePosition}>
-          {imageSrc !== "" && <LogoIcon imageSrc={imageSrc} src={imageSrc} imagePosition={imagePosition} />}
+          {imageSrc !== "" && <Image imageSrc={imageSrc} src={imageSrc} imagePosition={imagePosition} />}
         </ImageContainer>
         {children && <ChildComponent imagePosition={imagePosition}>{children}</ChildComponent>}
       </Card>
@@ -130,7 +130,7 @@ const DxcCardContainer = styled.span`
   }
 `;
 
-const LogoIcon = styled.img`
+const Image = styled.img`
   object-fit: contain;
   width: 100%;
 `;
