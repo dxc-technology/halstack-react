@@ -167,7 +167,6 @@ storiesOf("Form Components|Dialog", module).add(
       <div>
         <p style={{ fontFamily: "Open Sans, sans serif" }}>Check visible</p>
         <DxcDialog onClose={close} {...props}>
-          {" "}
           This is a knobs example
         </DxcDialog>
       </div>

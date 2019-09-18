@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
+import colors from "../common/variables.js";
 
 import PropTypes from "prop-types";
 
@@ -39,12 +40,12 @@ const DxcDialog = ({
 
 const DialogContainer = styled(Dialog)`
   .MuiBackdrop-root {
-    background-color: ${props => (props.overlay === true ? "#000000B3" : "transparent")};
+    background-color: ${props => (props.overlay === true ? colors.black + "B3" : "transparent")};
   }
   .MuiDialog-paperWidthSm {
     max-width: 80%;
     min-width: 800px;
-    box-shadow: 0px 1px 3px #00000033;
+    box-shadow: 0px 1px 3px ${colors.black}33;
     padding: 40px 40px 30px 40px;
   }
 `;
@@ -63,6 +64,12 @@ const CloseIcon = styled.svg`
   right: 24px;
 `;
 
-DxcDialog.propTypes = {};
+DxcDialog.propTypes = {
+  theme: PropTypes.oneOf(["light", "dark", ""]),
+  isVisible: PropTypes.bool,
+  isCloseVisible: PropTypes.bool,
+  onClose: PropTypes.func,
+  overlay: PropTypes.bool
+};
 
 export default DxcDialog;
