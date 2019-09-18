@@ -62,8 +62,20 @@ const DxcCardContainer = styled.span`
         return colors.white;
       }
     }};
-    max-width: 400px;
-    max-height: 374px;
+    max-width: ${props => {
+      if (props.theme === "dark" && props.mode === "alternative") {
+        return "396px";
+      } else {
+        return "400px"
+      }
+    }};
+    max-height: ${props => {
+      if (props.theme === "dark" && props.mode === "alternative") {
+        return "370px";
+      } else {
+        return "374px";
+      }
+    }};
     background-color: ${props => {
       if (props.theme === "light" && props.mode === "default") {
         return colors.white;
