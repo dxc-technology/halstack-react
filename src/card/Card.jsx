@@ -22,6 +22,7 @@ const DxcCard = ({ children, imagePosition = "before", imageSrc = "", mode = "de
 const DxcCardContainer = styled.span`
   & {
     font-size: 14px;
+    font-family: "Open Sans", sans-serif;
   }
   .MuiCard-root {
     cursor: pointer;
