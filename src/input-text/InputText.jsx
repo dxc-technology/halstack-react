@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js"
+import colors from "../common/variables.js";
 
 const DxcInputText = ({
   label = "",
@@ -58,7 +58,7 @@ const DxcInputText = ({
         label={label}
         helperText={assistiveText}
         onChange={handlerInputChange}
-        onBlur={handlerInputBlur}
+        onBlur={(onBlur && handlerInputBlur) || null}
         rowsMax="4"
         InputProps={{
           endAdornment: (sufix || sufixIconSrc) && (
@@ -76,7 +76,7 @@ const DxcInputText = ({
 };
 const PrefixIcon = styled.img`
   position: absolute;
-  top: 44px;
+  top: 36px;
   left: 14px;
   width: 20px;
   max-height: 20px;
@@ -88,7 +88,7 @@ const PrefixLabel = styled.span`
   position: absolute;
   font-family: "Open Sans", sans-serif;
   color: ${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
-  top: 42px;
+  top: 36px;
   left: 15px;
   max-height: 20px;
   max-width: 20px;
@@ -115,10 +115,11 @@ const TextContainer = styled.div`
     font-family: "Open Sans", sans-serif;
     .MuiFormHelperText-root {
       font-family: "Open Sans", sans-serif;
+      margin-top: 6px;
     }
     .MuiFormLabel-root {
       font-size: 16px;
-      top: 3px;
+      top: -2px;
       color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
       &::before {
         content:'${props => (props.required && "*") || ""}';
@@ -134,7 +135,7 @@ const TextContainer = styled.div`
         &.MuiInputLabel-shrink {
           transform: ${props =>
             props.prefixIconSrc ||
-            (props.prefix && "translate(8px, 1.5px) scale(0.75);") ||
+            ((props.prefix || props.sufix) && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
             "translate(0, 1.5px) scale(0.75);"};
         }
       }
@@ -145,7 +146,7 @@ const TextContainer = styled.div`
       &.MuiInputLabel-shrink {
         font-family: "Open Sans", sans-serif;
         transform: ${props =>
-          props.prefixIconSrc ||
+          (props.prefixIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
           (props.prefix && "translate(8px, 1.5px) scale(0.75);") ||
           "translate(0, 1.5px) scale(0.75);"};
       }
@@ -177,10 +178,15 @@ const TextContainer = styled.div`
       min-width: 230px;
       min-height: 34px;
       &::before{
-        border-bottom: ${props => (props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`)};
+        border-bottom: ${props =>
+          props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
       }
       &:not(.Mui-error)::before, &:not(&.Mui-focused)::before {
-        border-bottom: ${props => (props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`)};
+        border-bottom: ${props =>
+          props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
+      }
+      &::after{
+        border-bottom: ${props => (props.theme === "light" ? "2px solid #000" : "2px solid #d9d9d9")};
       }
 
       .MuiInputBase-inputMultiline {
@@ -233,13 +239,15 @@ const TextContainer = styled.div`
         cursor: not-allowed;
         
         &::before {
-          border-bottom: ${props => (props.theme === "light" ? `1px solid ${colors.lightGrey}` : `1px solid ${colors.darkGrey}`)};
+          border-bottom: ${props =>
+            props.theme === "light" ? `1px solid ${colors.lightGrey}` : `1px solid ${colors.darkGrey}`};
           border-bottom-style: solid;
         }
       }
       .MuiInputBase-input {
         padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
         color: ${props => (props.theme === "light" ? colors.darkGrey : colors.white)};
+         text-overflow: ellipsis;
         &.Mui-disabled {
           cursor: not-allowed;
         }
@@ -260,7 +268,8 @@ const TextContainer = styled.div`
       }
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before{
-        border-bottom: ${props => (props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.white}`)};
+        border-bottom: ${props =>
+          props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.white}`};
       }
       
     }
