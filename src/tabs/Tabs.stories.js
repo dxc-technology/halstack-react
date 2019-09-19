@@ -24,7 +24,7 @@ storiesOf("Form Components|Tabs", module).add(
           <Tab label="Tab ONE" iconSrc="" disabled={false}>
             <h1>Content ONE</h1>
           </Tab>
-          <Tab label="Tab TWO" iconSrc="" disabled={true}>
+          <Tab label="Tab TWO" iconSrc="" disabled={false}>
             Content TWO
           </Tab>
           <Tab label="Tab THREE" iconSrc="" disabled={false}>
@@ -54,27 +54,45 @@ storiesOf("Form Components|Tabs", module).add(
 const knobProps = () => ({
   mode: select("mode", { filled: "filled", underlined: "underlined" }, "filled"),
   theme: select("theme", { light: "light", dark: "dark" }, "light"),
-  label: text("label", "Test Button"),
   activeTabIndex: number("Tab Active", 0),
-  disabled: boolean("disabled", false),
-  iconPosition: select("icon poistion", { before: "before", after: "after" }, "before")
+});
+const knobTab1Props = () => ({
+  label: text("First Tab Label", "Tab 1"),
+  disabled: boolean("First Tab Disabled", false)
+});
+const knobTab2Props = () => ({
+  label: text("Second Tab Label", "Tab 2"),
+  disabled: boolean("Second Tab Disabled", false)
+});
+const knobTab3Props = () => ({
+  label: text("Third Tab Label", "Tab 3"),
+  disabled: boolean("Third Tab Disabled", false)
 });
 
-// storiesOf("Form Components|Tabs", module).add(
-//   "Knobs example",
-//   () => {
-//     const props = knobProps();
-//     return (
-//       <div style={{ background: (props.theme === "dark" && "black") || "transparent" }}>
-//         <Tabs {...props} activeTabIndexChange={onChange}>
-//         <Tab label="Tab THREE" iconSrc="" disabled={false}>
-//             Content THREE
-//           </Tab>
-//         </Tabs>
-//       </div>
-//     );
-//   },
-//   {
-//     notes: { markdown: tabsMD }
-//   }
-// );
+storiesOf("Form Components|Tabs", module).add(
+  "Knobs example",
+  () => {
+    const props = knobProps();
+    const tab1Props = knobTab1Props();
+    const tab2Props = knobTab2Props();
+    const tab3Props = knobTab3Props();
+    return (
+      <div style={{ background: (props.theme === "dark" && "black") || "transparent" }}>
+        <Tabs {...props} activeTabIndexChange={onChange}>
+          <Tab {...tab1Props} iconSrc={amazon}>
+            Content ONE
+          </Tab>
+          <Tab {...tab2Props} iconSrc={ebay}>
+            Content TWO
+          </Tab>
+          <Tab {...tab3Props} iconSrc={apple}>
+            Content THREE
+          </Tab>
+        </Tabs>
+      </div>
+    );
+  },
+  {
+    notes: { markdown: tabsMD }
+  }
+);

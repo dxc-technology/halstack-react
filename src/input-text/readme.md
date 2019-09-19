@@ -73,7 +73,6 @@
         <td><code>false</code></td>
         <td>If true, a resizable text area will be displayed.</td>
     </tr>
-
     <tr>
         <td>onChange: function</td>
         <td></td>
