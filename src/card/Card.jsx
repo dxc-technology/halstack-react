@@ -8,7 +8,13 @@ import colors from "../common/variables.js";
 
 const DxcCard = ({ children, imagePosition = "before", imageSrc = "", mode = "default", theme = "light", onClick }) => {
   return (
-    <DxcCardContainer imagePosition={imagePosition} imageSrc={imageSrc} mode={mode} theme={theme} onClick={() => onClick()}>
+    <DxcCardContainer
+      imagePosition={imagePosition}
+      imageSrc={imageSrc}
+      mode={mode}
+      theme={theme}
+      onClick={() => onClick()}
+    >
       <Card>
         <ImageContainer imagePosition={imagePosition}>
           {imageSrc !== "" && <Image imageSrc={imageSrc} src={imageSrc} imagePosition={imagePosition} />}
@@ -29,16 +35,11 @@ const DxcCardContainer = styled.span`
     margin: 20px;
     display: inline-flex;
     align-items: ${props =>
-      props.imagePosition === "before"
+      props.imagePosition === "before" || props.imagePosition === "after"
         ? "stretch"
-        : props.imagePosition === "after"
-        ? "stretch"
-        : props.imagePosition === "above"
+        : props.imagePosition === "above" || props.imagePosition === "below"
         ? "center"
-        : props.imagePosition === "below"
-        ? "center"
-        : "center"
-    };
+        : "center"};
     flex-direction: ${props =>
       props.imagePosition === "before"
         ? "row"
@@ -51,22 +52,13 @@ const DxcCardContainer = styled.span`
         : "row"};
   }
   .MuiPaper-root {
-    color: ${props => {
-      if (props.theme === "light" && props.mode === "default") {
-        return colors.black;
-      } else if (props.theme === "light" && props.mode === "alternative") {
-        return colors.white;
-      } else if (props.theme === "dark" && props.mode === "default") {
-        return colors.white;
-      } else if (props.theme === "dark" && props.mode === "alternative") {
-        return colors.white;
-      }
-    }};
+    color: ${props => (props.theme === "dark" ? colors.white : props.mode === "default" ? colors.black : colors.white)};
+
     max-width: ${props => {
       if (props.theme === "dark" && props.mode === "alternative") {
         return "396px";
       } else {
-        return "400px"
+        return "400px";
       }
     }};
     max-height: ${props => {
@@ -76,17 +68,8 @@ const DxcCardContainer = styled.span`
         return "374px";
       }
     }};
-    background-color: ${props => {
-      if (props.theme === "light" && props.mode === "default") {
-        return colors.white;
-      } else if (props.theme === "light" && props.mode === "alternative") {
-        return colors.black;
-      } else if (props.theme === "dark" && props.mode === "default") {
-        return colors.lightBlack;
-      } else if (props.theme === "dark" && props.mode === "alternative") {
-        return colors.black;
-      }
-    }};
+    background-color: ${props =>
+      props.mode === "alternative" ? colors.black : props.theme === "dark" ? colors.lightBlack : colors.white};
 
     border: ${props => {
       if (props.theme === "dark" && props.mode === "alternative") {
@@ -138,12 +121,12 @@ const Image = styled.img`
 const ImageContainer = styled.div`
   display: inline-flex;
   max-height: ${props => {
-    if(props.imagePosition === "below" || props.imagePosition === "above") {
+    if (props.imagePosition === "below" || props.imagePosition === "above") {
       return "120px";
     }
   }};
   max-width: ${props => {
-    if(props.imagePosition === "after" || props.imagePosition === "before") {
+    if (props.imagePosition === "after" || props.imagePosition === "before") {
       return "140px";
     }
   }};
@@ -152,9 +135,9 @@ const ImageContainer = styled.div`
 const ChildComponent = styled.div`
   padding: 20px;
   width: ${props => {
-    if(props.imagePosition === "below" || props.imagePosition === "above") {
+    if (props.imagePosition === "below" || props.imagePosition === "above") {
       return "calc(100% - 40px)";
-    } else if(props.imagePosition === "after" || props.imagePosition === "before") {
+    } else if (props.imagePosition === "after" || props.imagePosition === "before") {
       return "calc(100% - 140px - 40px)";
     }
   }};
