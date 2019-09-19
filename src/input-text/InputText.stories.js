@@ -169,7 +169,8 @@ const knobProps = () => ({
   prefix: text("Prefix word", ""),
   sufix: text("Sufix word", ""),
   required: boolean("Required", false),
-  error: boolean("Error", false)
+  error: boolean("Error", false),
+  multiline: boolean("Multiline", false)
 });
 
 storiesOf("Form Components|Text", module).add(

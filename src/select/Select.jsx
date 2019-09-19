@@ -23,14 +23,12 @@ const useStyles = makeStyles(() => ({
   itemList: {
     color: colors.darkGrey,
     "&.MuiList-padding": {
-      paddingTop: "10px",
       paddingBottom: "10px"
     },
     "& li": {
       paddingTop: "10px",
-      paddingBottom: "10px",
       paddingRight: "20px",
-      paddingLeft: "20px",
+      paddingLeft: "10px",
       fontSize: "16px",
       "&:hover": {
         backgroundColor: colors.darkWhite,
@@ -77,10 +75,15 @@ const DxcSelect = ({
   const getLabelForSingleSelect = selected => {
     const selectedItem = options.filter(option => option.value === selected)[0];
     return (
-      <SelectedIconContainer iconPosition={iconPosition} multiple={multiple}>
+      <SelectedIconContainer iconPosition={iconPosition} multiple={multiple} label={selectedItem.label}>
         {selectedItem.iconSrc && <ListIcon src={selectedItem.iconSrc} />}{" "}
         {selectedItem.label && (
-          <SelectedLabelContainer iconPosition={iconPosition} theme={theme} disabled={disabled}>
+          <SelectedLabelContainer
+            iconSrc={selectedItem.iconSrc}
+            iconPosition={iconPosition}
+            theme={theme}
+            disabled={disabled}
+          >
             {selectedItem.label}
           </SelectedLabelContainer>
         )}
@@ -116,7 +119,7 @@ const DxcSelect = ({
     <SelectContainer theme={theme}>
       <LabelContainer theme={theme} disabled={disabled}>
         {required && <DxcRequired theme={theme} />}
-        {label}
+        <span>{label}</span>
       </LabelContainer>
       <Select
         name={name}
@@ -132,7 +135,7 @@ const DxcSelect = ({
       >
         {options.map(option => {
           return (
-            <MenuItem value={option.value} disableRipple={disableRipple}>
+            <MenuItem id={option.value} value={option.value} disableRipple={disableRipple}>
               {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, option)} />}
               <OptionContainer iconPosition={iconPosition}>
                 {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
@@ -149,9 +152,9 @@ const SelectedIconContainer = styled.div`
   display: flex;
   flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
   justify-content: ${props => (props.iconPosition === "before" && "flex-start") || "flex-end"};
-  margin-right: ${props => (props.multiple && "15px") || "0px"};
+  margin-right: ${props => (props.multiple && props.label && "15px") || "0px"};
   &::before {
-    content: '${props => (props.iconPosition === "after" && ",") || ""}'; 
+    content: '${props => ((props.iconPosition === "after" && props.multiple) && ",") || ""}'; 
     margin: 0 4px;
   }
   &::after {
@@ -161,8 +164,8 @@ const SelectedIconContainer = styled.div`
 `;
 const SelectedLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  margin-left: ${props => (props.iconPosition === "after" && "0px") || "10px"};
-  margin-right: ${props => (props.iconPosition === "before" && "0px") || "10px"};
+  margin-left: ${props => ((props.iconPosition === "after" || !props.iconSrc) && "0px") || "10px"};
+  margin-right: ${props => ((props.iconPosition === "before" || !props.iconSrc) && "0px") || "10px"};
 `;
 const OptionContainer = styled.div`
   font-family: "Open Sans", sans-serif;
@@ -185,10 +188,11 @@ const SelectContainer = styled.div`
   align-items: center;
   .MuiSelect-select {
     min-width: 230px;
+    min-height: 34px;
     width: 230px;
     display: flex;
     color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
-
+    align-items: center;
     :focus {
       background-color: transparent;
     }
@@ -198,11 +202,15 @@ const SelectContainer = styled.div`
     & > *:not(:last-child)::after {
       content: ",";
     }
+    &.Mui-disabled {
+      cursor: not-allowed !important;
+    }
   }
   .MuiInputBase-root {
     min-height: 34px;
     width: 230px;
     min-width: 230px;
+    
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;
@@ -222,7 +230,14 @@ const SelectContainer = styled.div`
 `;
 const LabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+  color: ${props =>
+    props.theme === "dark" && props.disabled
+      ? colors.darkGrey
+      : props.theme === "dark" && !props.disabled
+      ? colors.black
+      : props.theme === "light" && props.disabled
+      ? colors.lightGrey
+      : colors.black};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};

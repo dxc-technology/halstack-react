@@ -35,7 +35,7 @@ const DxcRadio = ({
         disabled={disabled}
         disableRipple={disableRipple}
       />
-      <LabelContainer checked={checked || innerChecked} labelPosition={labelPosition} theme={theme} disabled={disabled} onClick={!disabled && handlerRadioChange}>
+      <LabelContainer checked={checked || innerChecked} labelPosition={labelPosition} theme={theme} disabled={disabled} onClick={!disabled && handlerRadioChange || null}>
         {required && <DxcRequired theme={theme} />}
         {label}
       </LabelContainer>

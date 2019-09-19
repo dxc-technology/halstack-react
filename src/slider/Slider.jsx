@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
+import DxcInput from "../input-text/InputText.jsx";
 import colors from "../common/variables.js";
 
 const DxcSlider = ({
@@ -30,8 +31,8 @@ const DxcSlider = ({
     }
   };
   const handlerInputChange = event => {
-    setInnerValue(event.target.value > maxValue ? maxValue : event.target.value);
-    onChange(event.target.value > maxValue ? maxValue : event.target.value);
+    setInnerValue(event > maxValue ? maxValue : event);
+    onChange(event > maxValue ? maxValue : event);
   };
 
   return (
@@ -50,7 +51,7 @@ const DxcSlider = ({
       {showLimitsValues && <MaxLabelContainer theme={theme}>{maxValue}</MaxLabelContainer>}
       {showInput && (
         <StyledTextInput theme={theme}>
-          <TextField name={name} value={value >= 0 || innerValue} disabled={disabled} onChange={handlerInputChange} />
+          <DxcInput name={name} value={value >= 0 || innerValue} disabled={disabled} onChange={handlerInputChange} />
         </StyledTextInput>
       )}
     </SliderContainer>
@@ -60,7 +61,7 @@ DxcSlider.propTypes = {
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
   step: PropTypes.number,
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   showLimitsValues: PropTypes.bool,
   showInput: PropTypes.bool,
   name: PropTypes.string,
@@ -133,15 +134,15 @@ const SliderContainer = styled.div`
     :active {
       box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
       background-color: ${props => (props.theme === "light" && colors.black) || colors.yellow};
-      width: 18px;
-      height: 18px;
-      top: 35%;
+      top: 45%;
+      transform: scale(1.25);
+      transform-origin: center;
     }
   }
   .MuiSlider-track {
     background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
-    height: 1px;
-    top: 52%;
+    height: 2px;
+    top: 50%;
   }
 
   .MuiSlider-track.MuiSlider-trackAfter {
@@ -156,9 +157,10 @@ const SliderContainer = styled.div`
   }
   .MuiSlider-mark {
     background-color: ${colors.black};
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     border-radius: 18px;
+    top: 40%;
   }
 `;
 
