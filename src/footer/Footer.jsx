@@ -56,7 +56,7 @@ const FooterFooter = styled.span`
 
 const BottomLinks = styled.div`
   padding-top: 6px;
-  border-top: 2px solid ${colors.yellow};;
+  border-top: 2px solid ${colors.yellow};
   display: inline-flex;
 `;
 
@@ -102,7 +102,7 @@ const Point = styled.span`
 
 const BottomLink = styled.a`
   text-decoration: none;
-  color: ${colors.white};;
+  color: ${colors.white};
   font-size: 12px;
 `;
 
