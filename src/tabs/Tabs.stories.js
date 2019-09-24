@@ -22,26 +22,62 @@ storiesOf("Form Components|Tabs", module).add(
       <div>
         <Tabs activeTabIndex={0} activeTabIndexChange={onChange} mode="underlined">
           <Tab label="Tab ONE" iconSrc="" disabled={false}>
-            <h1>Content ONE</h1>
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam class orci, est lectus eros praesent
+              rhoncus dui etiam nascetur a mauris, luctus bibendum facilisis senectus sodales lobortis condimentum porta
+              posuere. Massa varius ac imperdiet mauris quis rhoncus, nisl interdum gravida ullamcorper aliquam aptent
+              pellentesque, consequat leo quam nec montes. Ridiculus mollis augue nam erat volutpat nibh congue, nostra
+              habitasse dignissim pulvinar libero iaculis taciti et, bibendum morbi potenti lobortis purus laoreet.
+            </div>
           </Tab>
           <Tab label="Tab TWO" iconSrc="" disabled={false}>
-            Content TWO
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam class orci, est lectus eros praesent
+              rhoncus dui etiam nascetur a mauris, luctus bibendum facilisis senectus sodales lobortis condimentum porta
+              posuere. Massa varius ac imperdiet mauris quis rhoncus, nisl interdum gravida ullamcorper aliquam aptent
+              pellentesque, consequat leo quam nec montes. Ridiculus mollis augue nam erat volutpat nibh congue, nostra
+              habitasse dignissim pulvinar libero iaculis taciti et, bibendum morbi potenti lobortis purus laoreet.
+            </div>
           </Tab>
           <Tab label="Tab THREE" iconSrc="" disabled={false}>
-            Content THREE
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam class orci, est lectus eros praesent
+              rhoncus dui etiam nascetur a mauris, luctus bibendum facilisis senectus sodales lobortis condimentum porta
+              posuere. Massa varius ac imperdiet mauris quis rhoncus, nisl interdum gravida ullamcorper aliquam aptent
+              pellentesque, consequat leo quam nec montes. Ridiculus mollis augue nam erat volutpat nibh congue, nostra
+              habitasse dignissim pulvinar libero iaculis taciti et, bibendum morbi potenti lobortis purus laoreet.
+            </div>
           </Tab>
         </Tabs>
       </div>
       <div>
         <Tabs activeTabIndex={0} activeTabIndexChange={onChange} mode="filled">
           <Tab label="Label 1" iconSrc={amazon} disabled={false}>
-            <h1>Filled ONE</h1>
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam class orci, est lectus eros praesent
+              rhoncus dui etiam nascetur a mauris, luctus bibendum facilisis senectus sodales lobortis condimentum porta
+              posuere. Massa varius ac imperdiet mauris quis rhoncus, nisl interdum gravida ullamcorper aliquam aptent
+              pellentesque, consequat leo quam nec montes. Ridiculus mollis augue nam erat volutpat nibh congue, nostra
+              habitasse dignissim pulvinar libero iaculis taciti et, bibendum morbi potenti lobortis purus laoreet.
+            </div>
           </Tab>
           <Tab label="Label 2" iconSrc={ebay} disabled={false}>
-            Filled TWO
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam class orci, est lectus eros praesent
+              rhoncus dui etiam nascetur a mauris, luctus bibendum facilisis senectus sodales lobortis condimentum porta
+              posuere. Massa varius ac imperdiet mauris quis rhoncus, nisl interdum gravida ullamcorper aliquam aptent
+              pellentesque, consequat leo quam nec montes. Ridiculus mollis augue nam erat volutpat nibh congue, nostra
+              habitasse dignissim pulvinar libero iaculis taciti et, bibendum morbi potenti lobortis purus laoreet.
+            </div>
           </Tab>
           <Tab label="Label 3" iconSrc={apple} disabled={true}>
-            Filled THREE
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam class orci, est lectus eros praesent
+              rhoncus dui etiam nascetur a mauris, luctus bibendum facilisis senectus sodales lobortis condimentum porta
+              posuere. Massa varius ac imperdiet mauris quis rhoncus, nisl interdum gravida ullamcorper aliquam aptent
+              pellentesque, consequat leo quam nec montes. Ridiculus mollis augue nam erat volutpat nibh congue, nostra
+              habitasse dignissim pulvinar libero iaculis taciti et, bibendum morbi potenti lobortis purus laoreet.
+            </div>
           </Tab>
         </Tabs>
       </div>
@@ -54,7 +90,7 @@ storiesOf("Form Components|Tabs", module).add(
 const knobProps = () => ({
   mode: select("mode", { filled: "filled", underlined: "underlined" }, "filled"),
   theme: select("theme", { light: "light", dark: "dark" }, "light"),
-  activeTabIndex: number("Tab Active", 0),
+  activeTabIndex: number("Tab Active", 0)
 });
 const knobTab1Props = () => ({
   label: text("First Tab Label", "Tab 1"),
