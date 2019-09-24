@@ -51,7 +51,13 @@ const DxcSlider = ({
       {showLimitsValues && <MaxLabelContainer theme={theme}>{maxValue}</MaxLabelContainer>}
       {showInput && (
         <StyledTextInput theme={theme}>
-          <DxcInput name={name} value={value >= 0 || innerValue} disabled={disabled} onChange={handlerInputChange} />
+          <DxcInput
+            name={name}
+            theme={theme}
+            value={value >= 0 || innerValue}
+            disabled={disabled}
+            onChange={handlerInputChange}
+          />
         </StyledTextInput>
       )}
     </SliderContainer>
@@ -96,6 +102,12 @@ const SliderContainer = styled.div`
     padding: 30px 24px;
   }
 
+  .MuiSlider-root.Mui-disabled {
+    opacity: ${props => (props.theme === "light" && 1) || 0.3};
+    color: ${colors.lightGrey};
+    cursor: not-allowed;
+  }
+
   .Mui-disabled {
     & .MuiSlider-thumb {
       height: 14px;
@@ -111,9 +123,12 @@ const SliderContainer = styled.div`
     }
     & > .MuiSlider-mark {
       background-color: ${colors.lightGrey};
-      width: 4px;
-      height: 4px;
+      width: 6px;
+      height: 6px;
       border-radius: 18px;
+    }
+    & .MuiSlider-rail {
+      opacity: 1;
     }
   }
   .MuiSlider-thumb {
@@ -151,16 +166,17 @@ const SliderContainer = styled.div`
   .MuiSlider-rail {
     background-color: ${props => (props.theme === "light" && colors.lightGrey) || colors.lightGrey};
     top: 50%;
+    opacity: 0.54;
   }
   .MuiSlider-mark.MuiSlider-markActive {
-    background-color: ${colors.black};
+    background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
   }
   .MuiSlider-mark {
-    background-color: ${colors.black};
+    background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
     width: 6px;
     height: 6px;
     border-radius: 18px;
-    top: 40%;
+    top: ${props => (props.theme === "light" && "40%") || "44%"};
   }
 `;
 
