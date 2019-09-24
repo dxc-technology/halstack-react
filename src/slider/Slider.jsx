@@ -109,7 +109,7 @@ const SliderContainer = styled.div`
   }
 
   .Mui-disabled {
-    .MuiSlider-thumb {
+    & .MuiSlider-thumb {
       height: 14px;
       width: 14px;
       background-color: ${colors.lightGrey};
