@@ -91,12 +91,12 @@ const StyledDPicker = styled.span`
     }
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
-        if (props.invalid) return props.theme === "light" ? colors.darkRed : colors.lightRed;
+        if (props.invalid) return props.theme === "light" ? colors.darkRed+"!important" : colors.lightRed+"!important";
         else {
           if (props.theme === "dark") {
-            return colors.white;
+            return colors.lightGrey;
           } else {
-            return colors.black;
+            return colors.darkGrey;
           }
         }
       }};
@@ -123,7 +123,11 @@ const StyledDPicker = styled.span`
         if (props.invalid) {
           return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
-          return colors.darkGrey;
+          if (props.theme === "dark") {
+            return colors.lightGrey;
+          } else {
+            return colors.darkGrey;
+          }
         }
       }};
     }
@@ -145,7 +149,7 @@ const StyledDPicker = styled.span`
         if (props.invalid) {
           return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
-          if (props.theme === "dark") return colors.darkGrey;
+          if (props.theme === "dark") return colors.lightGrey;
           else {
             return colors.darkGrey;
           }
@@ -165,9 +169,9 @@ const StyledDPicker = styled.span`
           return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
           if (props.theme === "dark") {
-            return colors.white;
+            return colors.lightGrey;
           } else {
-            return colors.black;
+            return colors.darkGrey;
           }
         }
       }};
@@ -210,6 +214,18 @@ const StyledDPicker = styled.span`
     .MuiIconButton-root:not(.Mui-disabled) {
       .defaultIcon {
         fill: ${props => (props.theme === "dark" ? colors.yellow : colors.black)};
+      }
+    }
+    label.MuiFormLabel-root.Mui-focused:not(.Mui-error):not(.Mui-disabled),
+    label.MuiFormLabel-root.MuiFormLabel-filled:not(.Mui-error):not(.Mui-disabled) {
+      color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+      & + .MuiInputBase-root {
+        &:before {
+          border-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+        }
+        & + p.MuiFormHelperText-root {
+          color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+        }
       }
     }
   }
