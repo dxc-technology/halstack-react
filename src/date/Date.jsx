@@ -61,8 +61,8 @@ const DxcDate = ({
               ) : (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   className="defaultIcon"
                 >
@@ -85,6 +85,7 @@ const DxcDate = ({
 const StyledDPicker = styled.span`
   .MuiFormControl-root {
     margin: 10px;
+    width: 230px;
     .MuiInputBase-input {
       font-family: "Open Sans", sans-serif;
     }
@@ -125,9 +126,6 @@ const StyledDPicker = styled.span`
           return colors.darkGrey;
         }
       }};
-      border-bottom-width: ${props => {
-        if (props.invalid) return "2px";
-      }};
     }
     .MuiInput-underline:not(.Mui-disabled):not(.Mui-error):after {
       border-color: ${props => {
@@ -141,9 +139,6 @@ const StyledDPicker = styled.span`
           }
         }
       }};
-      border-bottom-width: ${props => {
-        if (props.invalid) return "2px";
-      }};
     }
     .MuiInput-underline:hover:not(.Mui-disabled):not(.Mui-error):before {
       border-color: ${props => {
@@ -152,13 +147,9 @@ const StyledDPicker = styled.span`
         } else {
           if (props.theme === "dark") return colors.darkGrey;
           else {
-            return colors.darkGrey;;
+            return colors.darkGrey;
           }
         }
-      }};
-      border-bottom-width: ${props => {
-        if (props.invalid) return "2px";
-        else return "1px";
       }};
     }
     .MuiInput-underline.Mui-disabled:not(.Mui-error):before {
@@ -200,9 +191,13 @@ const StyledDPicker = styled.span`
       }};
     }
     .MuiButtonBase-root:not(.Mui-disabled) {
-    color: ${colors.black};
+      color: ${colors.black};
+
       .MuiTouchRipple-root {
         display: ${props => (props.dissableRipple ? "none" : "")};
+        .MuiTouchRipple-child {
+          background-color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
+        }
       }
     }
     .MuiIconButton-root.Mui-disabled {
@@ -228,6 +223,21 @@ const lightTheme = createMuiTheme({
         color: colors.black
       }
     },
+    MuiIconButton: {
+      root: {
+        height: "36px",
+        width: "36px",
+        padding: "0px"
+      }
+    },
+    MuiPickersBasePicker: {
+      pickerView: {
+        minWidth: "unset",
+        maxWidth: "unset",
+        minHeight: "unset",
+        padding: "0px 10px"
+      }
+    },
     MuiPickersToolbarText: {
       toolbarTxt: {
         color: colors.black
@@ -239,35 +249,38 @@ const lightTheme = createMuiTheme({
     MuiPickersCalendarHeader: {
       switchHeader: {
         backgroundColor: colors.white,
-        color: colors.black,
-      },
+        color: colors.black
+      }
     },
     MuiPickersDay: {
+      current: {
+        color: colors.black
+      },
       day: {
-        color: colors.black,
+        color: colors.black
       },
       daySelected: {
         backgroundColor: colors.black,
         color: colors.yellow,
-        '&:hover': {
+        "&:hover": {
           backgroundColor: colors.black
         }
-      },
+      }
     },
     MuiPickersYear: {
       yearSelected: {
         color: colors.yellow,
         backgroundColor: colors.black,
-        margin: '0px 100px',
-        borderRadius: '20px',
-        fontSize: '16px'
+        margin: "0px 100px",
+        borderRadius: "20px",
+        fontSize: "16px"
       }
     },
     MuiPickersModal: {
       dialogAction: {
         color: colors.yellow
-      },
-    },
+      }
+    }
   },
   typography: {
     fontFamily: '"Open Sans", sans-serif'
