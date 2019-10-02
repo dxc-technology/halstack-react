@@ -1,3 +1,4 @@
+import DxcAccordion from "./accordion/Accordion.jsx";
 import DxcButton from "./button/Button.jsx";
 import DxcCheckbox from "./checkbox/Checkbox.jsx";
 import DxcSelect from "./select/Select.jsx";
@@ -13,6 +14,7 @@ import DxcDialog from "./dialog/Dialog.jsx";
 import DxcCard from "./card/Card.jsx";
 
 export {
+  DxcAccordion,
   DxcButton,
   DxcCheckbox,
   DxcSelect,
