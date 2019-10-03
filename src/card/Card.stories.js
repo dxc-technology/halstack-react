@@ -4,6 +4,8 @@ import { action } from "@storybook/addon-actions";
 import { boolean, select, text } from "@storybook/addon-knobs";
 
 import lighthouse from "../../.storybook/public/pwa-lighthouse.png";
+import kevin from "../../.storybook/public/kevin-mueller.jpg";
+import dylan from "../../.storybook/public/dylan-ferreira.jpg";
 
 import DxcCard from "./Card.jsx";
 
@@ -17,32 +19,32 @@ storiesOf("Form Components|Card", module).add(
   () => (
     <div>
       <div style={{ display: "inline-flex", alignItems: "center" }}>
-        <DxcCard onClick={onClick} imageSrc={lighthouse}>
-          <div style={{ width: "150px" }}>Card Example</div>
+        <DxcCard onClick={onClick} imageSrc={kevin}>
+          <div>Card Example</div>
         </DxcCard>
         <DxcCard onClick={onClick} imageSrc={lighthouse} imagePosition={"after"} mode={"alternative"}>
-          <div style={{ width: "150px"}}>Card Example</div>
+          <div>Card Example</div>
         </DxcCard>
-        <DxcCard onClick={onClick} imageSrc={lighthouse} imagePosition={"above"} mode={"alternative"}>
-          <div style={{ width: "150px"}}>Card Example</div>
+        <DxcCard onClick={onClick} imageSrc={kevin} imagePosition={"above"} mode={"alternative"}>
+          <div>Card Example</div>
         </DxcCard>
         <DxcCard onClick={onClick} imageSrc={lighthouse} imagePosition={"below"}>
-          <div style={{ width: "150px" }}>Card Example</div>
+          <div>Card Example</div>
         </DxcCard>
       </div>
 
       <div style={{ display: "inline-flex", background: "black", alignItems: "center" }}>
-        <DxcCard onClick={onClick} imageSrc={lighthouse} theme={"dark"}>
-          <div style={{ width: "150px"}}>Card Example</div>
+        <DxcCard onClick={onClick} imageSrc={kevin} theme={"dark"}>
+          <div>Card Example</div>
         </DxcCard>
         <DxcCard onClick={onClick} imageSrc={lighthouse} theme={"dark"} imagePosition={"after"} mode={"alternative"}>
-          <div style={{ width: "150px"}}>Card Example</div>
+          <div>Card Example</div>
         </DxcCard>
-        <DxcCard onClick={onClick} imageSrc={lighthouse} theme={"dark"} imagePosition={"above"} mode={"alternative"}>
-          <div style={{ width: "150px"}}>Card Example</div>
+        <DxcCard onClick={onClick} imageSrc={kevin} theme={"dark"} imagePosition={"above"} mode={"alternative"}>
+          <div>Card Example</div>
         </DxcCard>
         <DxcCard onClick={onClick} imageSrc={lighthouse} theme={"dark"} imagePosition={"below"}>
-          <div style={{ width: "150px"}}>Card Example</div>
+          <div>Card Example</div>
         </DxcCard>
       </div>
     </div>
@@ -72,10 +74,11 @@ storiesOf("Form Components|Card", module).add(
           background: (props.theme === "dark" && "black") || "transparent",
           display: "flex",
           alignItems: "center",
-          flexWrap: "wrap"
+          flexWrap: "wrap",
+          margin: "10px"
         }}
       >
-        <DxcCard {...props} onClick={onClick} imageSrc={lighthouse}>
+        <DxcCard {...props} onClick={onClick}>
           <div
             style={{
               fontFamily: "Open Sans, sans serif"
@@ -99,17 +102,20 @@ storiesOf("Form Components|Card", module).add(
           </div>
         </DxcCard>
 
-        <DxcCard {...props} onClick={onClick} imageSrc={lighthouse}>
-          <p
+        <DxcCard {...props} onClick={onClick} imageSrc={kevin}>
+          <div
             style={{
               fontFamily: "Open Sans, sans serif"
             }}
           >
-            Content
-          </p>
+            <h1>Content</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipiscing elit, cras potenti.</p>
+          </div>
         </DxcCard>
 
-        <DxcCard {...props} onClick={onClick} imageSrc={lighthouse}></DxcCard>
+        <DxcCard {...props} onClick={onClick} imageSrc={dylan}></DxcCard>
+
+        <DxcCard {...props} onClick={onClick} imageSrc={kevin}></DxcCard>
       </div>
     );
   },
