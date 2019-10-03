@@ -5,7 +5,7 @@
 ```js
 import { DxcAccordion } from "@diaas/dxc-react-cdk";
 
-<DxcAccordion />;
+<DxcAccordion onChange={handleOnChange} label="Test Accordion" />;
 ```
 
 ## Props
@@ -42,7 +42,7 @@ import { DxcAccordion } from "@diaas/dxc-react-cdk";
         <td>If true, the component will be disabled.</td>
     </tr>
     <tr>
-        <td>onClick: function</td>
+        <td>onChange: function</td>
         <td></td>
         <td>This function will be called when the user clicks the icon to open/close the panel. The state of the panel(opened/closed) should be passed as a parameter.</td>
     </tr>
@@ -56,5 +56,36 @@ import { DxcAccordion } from "@diaas/dxc-react-cdk";
 
 ## Examples
 
+- Basic accordion - Light theme - Enabled - With assistive text - Icon after label
 
+```js
+import React from "react";
+
+import { DxcAccordion } from "@diaas/dxc-react-cdk";
+
+function App() {
+  const handleOnChange = event => {
+    console.log("Accordion clicked");
+  };
+
+  return (
+    <div>
+      <Accordion
+        theme="light"
+        label="Fifth accordion"
+        assistiveText="Extra information"
+        iconPosition="after"
+        iconSrc={logo}
+        onChange={onChange}
+      >
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
+          lobortis eget.
+        </div>
+      </Accordion>
+    </div>
+  );
+}
+
+export default App;
 ```
