@@ -7,11 +7,11 @@ import { text, boolean, select } from "@storybook/addon-knobs";
 import dialogMD from "./readme.md";
 import "../common/OpenSans.css";
 
-import DxcDialog from "./Dialog.jsx";
-import DxcButton from "../button/Button.jsx";
-import DxcSwitch from "../switch/Switch.jsx";
-import DxcDate from "../date/Date.jsx";
-import DxcText from "../input-text/InputText.jsx";
+import DxcDialog from "./Dialog";
+import DxcButton from "../button/Button";
+import DxcSwitch from "../switch/Switch";
+import DxcDate from "../date/Date";
+import DxcText from "../input-text/InputText";
 
 const onChange = action("onChange");
 onChange.toString = () => "onChangeHandler";

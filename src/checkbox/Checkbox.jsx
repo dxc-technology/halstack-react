@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
-import DxcRequired from "../common/RequiredComponent.jsx";
+import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 
