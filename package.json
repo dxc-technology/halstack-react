@@ -7,8 +7,7 @@
     "email": "DigitalInsurance@dxc.com",
     "url": "https://dxc.com"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.es.js",
+  "main": "./dist/main.js",
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
