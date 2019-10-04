@@ -130,7 +130,7 @@ pipeline {
             when { branch 'master' }
             steps {
                 // Publish library to npm repository
-                sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./dist/package.json"
+                sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./package.json"
                 sh '''
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
                 '''
@@ -199,7 +199,7 @@ pipeline {
                             script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
                             returnStdout: true
                         ).trim()
-                    sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${RELEASE_NUMBER}'/g' dist/package.json"
+                    sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${RELEASE_NUMBER}'/g' package.json"
                     sh "git push --tags"
                 }
             }
@@ -242,12 +242,10 @@ pipeline {
                     
                     if (env.RELEASE_TYPE == 'beta' | env.RELEASE_TYPE == 'rc') {
                         sh '''
-                            cd ./dist
                             npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag ${RELEASE_TYPE}
                         '''
                     } else {
                         sh '''
-                            cd ./dist
                             npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
                         '''
                     }
