@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Radio from "@material-ui/core/Radio";
-import DxcRequired from "../common/RequiredComponent.jsx";
+import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 

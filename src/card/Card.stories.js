@@ -7,7 +7,7 @@ import lighthouse from "../../.storybook/public/pwa-lighthouse.png";
 import kevin from "../../.storybook/public/kevin-mueller.jpg";
 import dylan from "../../.storybook/public/dylan-ferreira.jpg";
 
-import DxcCard from "./Card.jsx";
+import DxcCard from "./Card";
 
 import cardMD from "./readme.md";
 
