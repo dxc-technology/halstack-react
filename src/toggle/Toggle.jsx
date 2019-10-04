@@ -25,6 +25,7 @@ const DxcToggle = ({
       selected={selected}
       label={label}
       mode={mode}
+      iconPosition={iconPosition}
       value
       onClick={() => {
         if (!disabled) onClick(selected);
@@ -32,7 +33,7 @@ const DxcToggle = ({
     >
       <ToggleButton disabled={disabled} disableRipple={disableRipple} selected={selected} label={label} value>
         <ContentContainer iconPosition={iconPosition} label={label} iconSrc={iconSrc}>
-          {iconSrc !== "" && <IconContainer label={label} src={iconSrc}></IconContainer>}
+          {iconSrc !== "" && <IconContainer iconPosition={iconPosition} label={label} src={iconSrc}></IconContainer>}
           {label !== "" && <LabelContainer>{label}</LabelContainer>}
         </ContentContainer>
       </ToggleButton>
@@ -130,13 +131,15 @@ const ContentContainer = styled.span`
   line-height: 1;
   display: flex;
   align-items: center;
+  flex-direction: ${props => (props.iconPosition === "after" ? 'row-reverse' : "row")};
 `;
 
 const IconContainer = styled.img`
   width: 20px;
   height: 20px;
   line-height: 1;
-  margin-right: ${props => (props.label !== "" ? "10px" : "")};
+  margin-right: ${props => (props.label !== "" && props.iconPosition === "before" ? "10px" : "")};
+  margin-left: ${props => (props.label !== "" && props.iconPosition === "after" ? "10px" : "")};
 `;
 
 const LabelContainer = styled.span``;
