@@ -45,11 +45,17 @@ storiesOf("Form Components|Toggle", module).add(
       return (
         <div>
           <h3>Light</h3>
-          <div style={{ width:"100%", display: "inline-flex", alignItems: "center" }}>
+          <div style={{ width: "100%", display: "inline-flex", alignItems: "center" }}>
             <DxcToggle iconSrc={amazon} label="Toggle 1" selected={selected} onClick={click}></DxcToggle>
             <DxcToggle label="Toggle 2" selected={selected1} disabled={true} onClick={click1}></DxcToggle>
             <DxcToggle iconSrc={amazon} selected={selected2} onClick={click2}></DxcToggle>
-            <DxcToggle label="Disabled Ripple" disableRipple={true} iconSrc={amazon} selected={selected2} onClick={click2}></DxcToggle>
+            <DxcToggle
+              label="Disabled Ripple"
+              disableRipple={true}
+              iconSrc={amazon}
+              selected={selected2}
+              onClick={click2}
+            ></DxcToggle>
 
             <DxcToggle
               iconSrc={amazon}
@@ -61,15 +67,29 @@ storiesOf("Form Components|Toggle", module).add(
             ></DxcToggle>
             <DxcToggle label="Toggle 2" mode="outlined" selected={selected1} onClick={click1}></DxcToggle>
             <DxcToggle iconSrc={amazon} mode="outlined" selected={selected2} onClick={click2}></DxcToggle>
-            <DxcToggle label="Disabled Ripple" disableRipple={true} iconSrc={amazon} mode="outlined" selected={selected2} onClick={click2}></DxcToggle>
+            <DxcToggle
+              label="Disabled Ripple"
+              disableRipple={true}
+              iconSrc={amazon}
+              mode="outlined"
+              selected={selected2}
+              onClick={click2}
+            ></DxcToggle>
           </div>
 
           <h3>Dark</h3>
-          <div style={{ width:"100%", display: "inline-flex", background: "black", alignItems: "center" }}>
+          <div style={{ width: "100%", display: "inline-flex", background: "black", alignItems: "center" }}>
             <DxcToggle theme="dark" iconSrc={amazon} label="Toggle 1" selected={selected} onClick={click}></DxcToggle>
             <DxcToggle theme="dark" label="Toggle 2" selected={selected1} disabled={true} onClick={click1}></DxcToggle>
             <DxcToggle theme="dark" iconSrc={amazon} selected={selected2} onClick={click2}></DxcToggle>
-            <DxcToggle label="Disabled Ripple" disableRipple={true} theme="dark" iconSrc={amazon} selected={selected2} onClick={click2}></DxcToggle>
+            <DxcToggle
+              label="Disabled Ripple"
+              disableRipple={true}
+              theme="dark"
+              iconSrc={amazon}
+              selected={selected2}
+              onClick={click2}
+            ></DxcToggle>
 
             <DxcToggle
               theme="dark"
@@ -82,7 +102,15 @@ storiesOf("Form Components|Toggle", module).add(
             ></DxcToggle>
             <DxcToggle theme="dark" label="Toggle 2" mode="outlined" selected={selected1} onClick={click1}></DxcToggle>
             <DxcToggle theme="dark" iconSrc={amazon} mode="outlined" selected={selected2} onClick={click2}></DxcToggle>
-            <DxcToggle label="Disabled Ripple" disableRipple={true} theme="dark" iconSrc={amazon} mode="outlined" selected={selected2} onClick={click2}></DxcToggle>
+            <DxcToggle
+              label="Disabled Ripple"
+              disableRipple={true}
+              theme="dark"
+              iconSrc={amazon}
+              mode="outlined"
+              selected={selected2}
+              onClick={click2}
+            ></DxcToggle>
           </div>
         </div>
       );
@@ -102,14 +130,14 @@ const knobProps = () => ({
   disabled: boolean("Disabled", false),
   disableRipple: boolean("Disable ripple", false),
   selected: boolean("Selected", false),
-  label: text("Label", "label"),
+  label: text("Label", "label")
 });
 
 storiesOf("Form Components|Toggle", module).add(
   "Knobs example",
   () => {
     const props = knobProps();
-    
+
     return (
       <div
         style={{
@@ -118,7 +146,9 @@ storiesOf("Form Components|Toggle", module).add(
           alignItems: "center",
           flexWrap: "wrap"
         }}
-      ><DxcToggle {...props} iconSrc={amazon}></DxcToggle></div>
+      >
+        <DxcToggle {...props} iconSrc={amazon}></DxcToggle>
+      </div>
     );
   },
   {
