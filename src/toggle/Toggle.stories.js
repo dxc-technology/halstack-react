@@ -97,6 +97,7 @@ storiesOf("Form Components|Toggle", module).add(
 
 const knobProps = () => ({
   theme: select("Theme", { light: "light", dark: "dark" }, "light"),
+  iconPosition: select("Icon Position", { after: "after", before: "before" }, "before"),
   mode: select("Mode", { default: "basic", alternative: "outlined" }, "basic"),
   disabled: boolean("Disabled", false),
   disableRipple: boolean("Disable ripple", false),
