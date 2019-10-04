@@ -26,17 +26,17 @@
     "prop-types": "^15.7.2"
   },
   "scripts": {
-    "build": "rollup -c",
-    "start": "rollup -c -w",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest",
-    "test:watch": "npm test -- --watch --coverage"
+    "test:watch": "npm test -- --watch --coverage",
+    "build": "babel src --out-dir dist --copy-files"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-a11y": "^5.1.3",
     "@storybook/addon-actions": "^5.1.3",
@@ -46,7 +46,6 @@
     "@storybook/addons": "^5.1.3",
     "@storybook/react": "^5.1.3",
     "babel-jest": "^24.8.0",
-    "babel-loader": "^8.0.6",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.3.0",
@@ -56,10 +55,6 @@
     "eslint-plugin-react": "^7.13.0",
     "jest": "^24.8.0",
     "react-test-renderer": "^16.8.6",
-    "rollup": "^1.12.4",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-url": "^2.2.1",
     "storybook-addon-jsx": "^7.1.2",
     "styled-components": ">= 4.3.1"
   }

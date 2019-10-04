@@ -95,8 +95,7 @@ pipeline {
         stage('Build dxc-react-cdk library') {
             steps {
                 sh '''
-                    rollup -c
-                    cp package.json ./dist/package.json
+                    npm run build
                 '''
             }
         }
@@ -110,7 +109,7 @@ pipeline {
         stage('Test library') {
             steps {
                 sh '''
-                    echo 'Add the f***ing tests!!'
+                    echo 'Add tests'
                 '''
             }
         }
@@ -133,7 +132,6 @@ pipeline {
                 // Publish library to npm repository
                 sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./dist/package.json"
                 sh '''
-                    cd ./dist
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
                 '''
             }
