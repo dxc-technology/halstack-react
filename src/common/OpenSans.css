@@ -1,7 +1,7 @@
 
  @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-Light.ttf')
+    src: url('./fonts/OpenSans-Light.ttf')
       format('truetype');
     font-style: normal;
     font-weight: 200;
@@ -9,7 +9,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-Regular.ttf')
+    src: url('./fonts/OpenSans-Regular.ttf')
       format('truetype');
     font-style: normal;
     font-weight: 400;
@@ -17,7 +17,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-SemiBold.ttf')
+    src: url('./fonts/OpenSans-SemiBold.ttf')
       format('truetype');
     font-style: normal;
     font-weight: 600;
@@ -25,7 +25,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-Bold.ttf')
+    src: url('./fonts/OpenSans-Bold.ttf')
       format('truetype');
     font-style: normal;
     font-weight: 700;
@@ -33,7 +33,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-ExtraBold.ttf')
+    src: url('./fonts/OpenSans-ExtraBold.ttf')
       format('truetype');
     font-style: normal;
     font-weight: 800;
@@ -41,7 +41,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-LightItalic.ttf')
+    src: url('./fonts/OpenSans-LightItalic.ttf')
       format('truetype');
     font-style: italic;
     font-weight: 200;
@@ -49,7 +49,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-Italic.ttf')
+    src: url('./fonts/OpenSans-Italic.ttf')
       format('truetype');
     font-style: italic;
     font-weight: 400;
@@ -57,7 +57,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-SemiBoldItalic.ttf')
+    src: url('./fonts/OpenSans-SemiBoldItalic.ttf')
       format('truetype');
     font-style: italic;
     font-weight: 600;
@@ -65,7 +65,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-BoldItalic.ttf')
+    src: url('./fonts/OpenSans-BoldItalic.ttf')
       format('truetype');
     font-style: italic;
     font-weight: 700;
@@ -73,7 +73,7 @@
   
   @font-face {
     font-family: 'Open Sans';
-    src: url('../../public/fonts/OpenSans-ExtraBoldItalic.ttf')
+    src: url('./fonts/OpenSans-ExtraBoldItalic.ttf')
       format('truetype');
     font-style: italic;
     font-weight: 800;
