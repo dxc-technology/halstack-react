@@ -19,10 +19,6 @@ const DxcDialog = ({
     isVisible = open;
   };
 
-  const handleClose = () => {
-    setOpen(false);
-    isVisible = open;
-  };
   return (
     <DialogContainer open={isVisible} theme={theme} onChange={handleChange} onClose={onClose} overlay={overlay}>
       {isCloseVisible && (
