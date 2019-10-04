@@ -26,7 +26,7 @@ const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", c
             : logoSrc
         }
       />
-      <div>{children}</div>
+      <ChildContainer>{children}</ChildContainer>
     </HeaderContainer>
   );
 };
@@ -99,6 +99,11 @@ const LogoIcon = styled.img`
       return "auto";
     }
   }};
+`;
+
+const ChildContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 DxcHeader.propTypes = {
