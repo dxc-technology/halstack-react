@@ -27,6 +27,11 @@ import { DxcToggle } from "@diaas/dxc-react-cdk";
         <td>Uses on of the available toggle modes.</td>
     </tr>
     <tr>
+        <td>iconPosition: 'before' | 'after'</td>
+        <td><code>'before'</code></td>
+        <td>Changes the position of the icon.</td>
+    </tr>
+    <tr>
         <td>theme: 'light' |'dark'</td>
         <td><code>'light'</code></td>
         <td>Uses one of the available component themes.</td>
@@ -61,5 +66,15 @@ import { DxcToggle } from "@diaas/dxc-react-cdk";
 
 ## Examples
 
-
+```js
+import { DxcToggle } from "@diaas/dxc-react-cdk";
+<DxcToggle
+  label="Disabled Ripple"
+  disableRipple={true}
+  theme="dark"
+  iconSrc={amazon}
+  mode="outlined"
+  selected={selected}
+  onClick={click}
+></DxcToggle>;
 ```
