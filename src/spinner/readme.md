@@ -5,7 +5,7 @@
 ```js
 import { DxcSpinner } from "@diaas/dxc-react-cdk";
 
-<DxcSpinner onClick={handleClick} label="Test Button" />;
+<Spinner theme="dark" label="Processing..." />;
 ```
 
 ## Props
@@ -18,7 +18,7 @@ import { DxcSpinner } from "@diaas/dxc-react-cdk";
     </tr>
     <tr>
         <td>label: string</td>
-        <td><code></code></td>
+        <td></td>
         <td>Text to be placed inside the spinner.</td>
     </tr>
     <tr>
@@ -38,13 +38,28 @@ import { DxcSpinner } from "@diaas/dxc-react-cdk";
     </tr>
     <tr>
         <td>showValue: boolean</td>
-        <td></td>
+        <td>false</td>
         <td>If true the value is displayed inside the spinner</td>
     </tr>
 </table>
 
 ## Examples
 
-```
+```js
+import React from "react";
 
+import { DxcSpinner } from "@diaas/dxc-react-cdk";
+
+function App() {
+  return (
+    <div>
+        <Spinner theme="light" label="Processing..." overlay={false} />
+    </div>
+    <div>
+        <Spinner theme="dark" label="Processing..." overlay={false} showValue value={52} />
+    </div>
+  );
+}
+
+export default App;
 ```
