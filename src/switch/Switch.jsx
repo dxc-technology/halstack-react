@@ -129,7 +129,7 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+  color: ${props => (props.disabled ? props.theme === "dark" ? colors.darkGrey : colors.lightGrey : props.theme === "dark" ? colors.white : colors.black)};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
   margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
