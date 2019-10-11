@@ -7,17 +7,17 @@ import colors from "../common/variables.js";
 
 const DxcSpinner = ({ label = "", theme = "light", overlay = true, value, showValue = false }) => {
   return (
-    <BackgroundSpinner overlay={overlay}>
-      <DXCSpinner showValue={showValue}>
+    <BackgroundSpinner theme={theme} overlay={overlay}>
+      <DXCSpinner overlay={overlay} showValue={showValue}>
         <SpinnerLabel theme={theme} overlay={overlay}>
           {label}
         </SpinnerLabel>
         <SpinnerProgress theme={theme} overlay={overlay} showValue={showValue}>
-          {value !== "" && (value >= 0 && value <= 100) ? value : value < 0 ? 0 : 100}%
+          {value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}%
         </SpinnerProgress>
         <CircularProgress
           variant={showValue ? "determinate" : "indeterminate"}
-          value={value !== "" && (value >= 0 && value <= 100) ? value : value < 0 ? 0 : 100}
+          value={value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}
         />
       </DXCSpinner>
     </BackgroundSpinner>
@@ -34,6 +34,14 @@ DxcSpinner.propTypes = {
 
 const BackgroundSpinner = styled.div`
   background-color: ${props => (props.overlay === true ? colors.black.concat("B3") : "transparent")};
+  background-color: ${props =>
+    props.overlay === true ? `${colors.black}B3` : props.theme === "dark" ? `${colors.black}` : `${colors.white}`};
+  width: ${props => (props.overlay === true ? "100%" : "")};
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: ${props => (props.overlay === true ? "center" : "")};
+  height: ${props => (props.overlay === true ? "100vh" : "")};
+  align-items: ${props => (props.overlay === true ? "center" : "")};
 `;
 
 const DXCSpinner = styled.div`
@@ -44,6 +52,8 @@ const DXCSpinner = styled.div`
   margin-top: 34px;
   margin-left: 111px;
   margin-right: 111px;
+  margin-bottom: 34px;
+  z-index: ${props => (props.overlay === true ? "100" : "")};
 
   .MuiCircularProgress-colorPrimary {
     color: ${colors.yellow};
