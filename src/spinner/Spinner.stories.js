@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, select, text, number } from "@storybook/addon-knobs";
@@ -10,10 +11,10 @@ storiesOf("Form Components|Spinner", module).add(
     <div>
       <h3>Undertermined spinner</h3>
       <div style={{ display: "flex", width: "1440px", height: "204px" }}>
-        <Spinner theme="dark" label="Processing..." />
-        <Spinner theme="light" label="Loading..." />
-        <Spinner theme="light" label="Loading..." />
-        <Spinner theme="light" label="Loading..." />
+        <Spinner theme="light" label="Processing..." overlay={false} />
+        <Spinner theme="light" label="Loading..." overlay={false} />
+        <Spinner theme="light" label="Loading..." overlay={false} />
+        <Spinner theme="light" label="Loading..." overlay={false} />
       </div>
       <h3>Dark</h3>
       <div style={{ display: "flex", backgroundColor: "black", width: "1440px", height: "204px" }}>
@@ -36,11 +37,8 @@ storiesOf("Form Components|Spinner", module).add(
         <Spinner theme="dark" label="Loading..." overlay={false} />
       </div>
       <h3>Overlay</h3>
-      <div style={{ display: "flex", width: "1440px", height: "204px" }}>
-        <Spinner theme="dark" label="Processing..." overlay />
+      <div style={{ display: "flex" }}>
         <Spinner theme="dark" label="Loading..." overlay />
-        <Spinner theme="dark" label="Loading..." overlay />
-        <Spinner theme="dark" label="Loading..." overlay showValue value={10} />
       </div>
     </div>
   ),
