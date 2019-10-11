@@ -61,6 +61,12 @@ storiesOf("Form Components|Progress Bar", module).add(
           </div>
         </div>
       </div>
+      <div>
+        <h3>Overlay</h3>
+        <div style={{ display: "flex" }}>
+          <ProgressBar theme="dark" label="Loading..." overlay showValue value={33} />
+        </div>
+      </div>
     </div>
   ),
   {
