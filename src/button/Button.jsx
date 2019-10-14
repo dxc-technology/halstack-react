@@ -104,8 +104,12 @@ const DxCButton = styled.span`
             z-index: 5
           }
           .MuiTouchRipple-child{
-            background-color:${(theme === "light" && colors.lightGrey) || colors.darkGrey};
+            background-color:${(theme === "light" && colors.darkGrey) || colors.lightGrey};
           }
+          .MuiTouchRipple-root {
+            border-radius: 2px;
+          }
+          
         `;
       } else if (mode === "flat") {
         return `
@@ -125,7 +129,7 @@ const DxCButton = styled.span`
             z-index: 5
           }
           .MuiTouchRipple-child{
-            background-color:${(theme === "light" && "#EEE") || "#EEE"};
+            background-color:${(theme === "light" && colors.darkGrey) || colors.darkGrey};
           }
         `;
       } else {

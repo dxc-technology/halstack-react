@@ -9,6 +9,7 @@ import colors from "../common/variables.js";
 const DxcCard = ({ children, imagePosition = "before", imageSrc = "", mode = "default", theme = "light", onClick }) => {
   return (
     <DxcCardContainer
+      child={children}
       imagePosition={imagePosition}
       imageSrc={imageSrc}
       mode={mode}
@@ -16,10 +17,10 @@ const DxcCard = ({ children, imagePosition = "before", imageSrc = "", mode = "de
       onClick={() => onClick()}
     >
       <Card>
-        <ImageContainer imagePosition={imagePosition}>
-          {imageSrc !== "" && <Image imageSrc={imageSrc} src={imageSrc} imagePosition={imagePosition} />}
-        </ImageContainer>
-        {children && <ChildComponent imagePosition={imagePosition}>{children}</ChildComponent>}
+        {imageSrc !== "" && <ImageContainer child={children} imagePosition={imagePosition}>
+          <Image child={children} imageSrc={imageSrc} src={imageSrc} imagePosition={imagePosition} />
+        </ImageContainer> }
+        {children && <ChildComponent imageSrc={imageSrc} imagePosition={imagePosition}>{children}</ChildComponent>}
       </Card>
     </DxcCardContainer>
   );
@@ -101,32 +102,37 @@ const DxcCardContainer = styled.span`
   .MuiPaper-elevation1:hover {
     box-shadow: ${props => {
       if (props.theme === "dark" && props.mode === "default") {
-        return `0px 3px 6px ${colors.white}29`;
+        return `0px 3px 6px ${colors.white}50`;
       } else if (props.theme === "dark" && props.mode === "alternative") {
         return `0px 3px 6px ${colors.white}29`;
       } else if (props.theme === "light" && props.mode === "default") {
         return `0px 3px 6px ${colors.black}66`;
       } else if (props.theme === "light" && props.mode === "alternative") {
-        return `0px 3px 6px ${colors.black}66`;
+        return `0px 3px 6px ${colors.black}80`;
       }
     }};
   }
 `;
 
 const Image = styled.img`
-  object-fit: contain;
+  object-fit: ${props => {
+    if (props.child) {
+      return "contain";
+    }
+    return "cover";
+  }};
   width: 100%;
 `;
 
 const ImageContainer = styled.div`
   display: inline-flex;
   max-height: ${props => {
-    if (props.imagePosition === "below" || props.imagePosition === "above") {
+    if (props.child && (props.imagePosition === "below" || props.imagePosition === "above")) {
       return "120px";
     }
   }};
   max-width: ${props => {
-    if (props.imagePosition === "after" || props.imagePosition === "before") {
+    if (props.child && (props.imagePosition === "after" || props.imagePosition === "before")) {
       return "140px";
     }
   }};
@@ -135,14 +141,14 @@ const ImageContainer = styled.div`
 const ChildComponent = styled.div`
   padding: 20px;
   width: ${props => {
-    if (props.imagePosition === "below" || props.imagePosition === "above") {
+    if (props.imageSrc !== "" && (props.imagePosition === "below" || props.imagePosition === "above")) {
       return "calc(100% - 40px)";
-    } else if (props.imagePosition === "after" || props.imagePosition === "before") {
+    } else if (props.imageSrc !== "" && (props.imagePosition === "after" || props.imagePosition === "before")) {
       return "calc(100% - 140px - 40px)";
     }
   }};
   overflow: hidden;
-  height: calc(100% - 120px - 40px);
+  height: ${props => ( props.imageSrc !== "" ? "calc(100% - 120px - 40px)" : "")};
 `;
 
 DxcCard.propTypes = {

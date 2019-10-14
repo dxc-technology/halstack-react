@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import DxcInput from "../input-text/InputText.jsx";
+import DxcInput from "../input-text/InputText";
 import colors from "../common/variables.js";
 
 const DxcSlider = ({

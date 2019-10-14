@@ -1,0 +1,17 @@
+.storybook/
+docker/
+node_modules/
+public/
+scripts/
+src/
+storybook-static/
+.babelrc
+.dockerignore
+.eslintignore
+.eslintrc.json
+.gitignore
+.npmignore
+.prettierrc
+Jenkinsfile
+package-lock.json
+storybook.zip
