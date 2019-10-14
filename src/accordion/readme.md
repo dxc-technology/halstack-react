@@ -16,10 +16,15 @@ import { DxcAccordion } from "@diaas/dxc-react-cdk";
         <td>Default</td>
         <td>Description</td>
     </tr>
+     <tr>
+        <td>mode: 'default'|'alternative'</td>
+        <td><code>'default'</code></td>
+        <td>Mode for the color of the accordion.</td>
+    </tr>
     <tr>
         <td>label: string</td>
         <td></td>
-        <td>The panel label</td>
+        <td>The panel label.</td>
     </tr>
     <tr>
         <td>iconSrc: string</td>
