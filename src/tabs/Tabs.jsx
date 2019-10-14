@@ -34,7 +34,7 @@ const DxcTabs = ({
     return tab.props.label;
   }
   return (
-    <DxCTabs mode={mode}>
+    <DxCTabs mode={mode} theme={theme}>
       <Tabs value={activeTabIndex || value} onChange={handleChange} variant="scrollable" scrollButtons="off">
         {props.children.map(tab => {
           return (
@@ -60,30 +60,44 @@ const DxCTabs = styled.div`
   .MuiTabs-root {
     .MuiTabs-scroller {
       margin: 15px;
-    }
-    .MuiTabs-flexContainer {
-      border-bottom: 1.5px solid ${colors.lightGrey};
+      .MuiTabs-flexContainer {
+        border-bottom: 1.5px solid ${colors.lightGrey};
+      }
     }
     .MuiButtonBase-root {
-      height: 48px;
-      font-family:"Open Sans", sans-serif;
+      padding: 12px;
+      min-height: 48px;
+      height: auto;
+      font-family: "Open Sans", sans-serif;
+      font-size: 16px;
       /* height: 64px cuando vengan con icono y texto */
       min-width: 180px;
-      background-color: ${props => (props.mode === "filled" ? colors.lightGrey : "transparent")};
-      color: ${colors.darkGrey};
-      opacity: 0.5;
+      background-color: ${props =>
+        props.mode === "filled" ? (props.theme === "dark" ? colors.darkGrey : colors.lightGrey) : "transparent"};
+      color: ${props =>
+        props.mode === "filled" ? (props.theme === "dark" ? colors.white : colors.darkGrey) : colors.darkGrey};
+      opacity: ${props =>
+        props.mode === "filled" ? (props.theme === "dark" ? 0.8 : 0.5) : 0.5};
+      &:hover:not(.Mui-selected):not(.Mui-disabled) {
+        opacity: ${props => (props.mode === "filled" ? props.theme === "light" ? 0.8 : 1 : 1)};
+        background-color: ${props => (props.mode === "filled" ? colors.darkGrey : "transparent")};
+        color: ${props => (props.mode === "filled" ? colors.white : colors.darkGrey)};
+      }
       &.Mui-selected {
-        background-color: ${props => (props.mode === "filled" ? colors.black : "transparent")};
-        color: ${props => (props.mode === "filled" ? colors.white : colors.black)};
+        background-color: ${props =>
+          props.mode === "filled" ? (props.theme === "dark" ? colors.white : colors.black) : "transparent"};
+        color: ${props =>
+          props.mode === "filled" ? (props.theme === "dark" ? colors.black : colors.white) : colors.black};
         opacity: 1;
       }
       &.Mui-disabled {
         cursor: not-allowed !important;
         pointer-events: all;
+        opacity: ${props => (props.mode === "underlined" ? "0.4" : "")};
       }
     }
     .MuiTabs-indicator {
-      background-color: ${props => (props.mode === "filled" ? "transparent" : colors.black)};
+      background-color: ${props => (props.mode === "filled" ? colors.yellow : colors.black)};
     }
   }
 `;
