@@ -14,7 +14,7 @@ storiesOf("Form Components|Accordion", module).add(
   () => (
     <div>
       <h3>Light</h3>
-      <div>
+      <div style={{ marginBottom: "50px" }}>
         <Accordion label="First accordion" onChange={onChange}>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
@@ -60,28 +60,35 @@ storiesOf("Form Components|Accordion", module).add(
           </div>
         </Accordion>
       </div>
-      <h3>Dark</h3>
-      <div>
-        <Accordion theme="dark" label="First accordion" onChange={onChange}>
+      <div style={{ marginBottom: "50px" }}>
+        <Accordion theme="light" mode="alternative" label="First accordion" onChange={onChange}>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-            leo lobortis eget.
+            leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </div>
         </Accordion>
-        <Accordion theme="dark" disabled label="Second accordion" onChange={onChange}>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-            leo lobortis eget.
-          </div>
-        </Accordion>
-        <Accordion theme="dark" label="Third accordion" assistiveText="Extra information" onChange={onChange}>
+        <Accordion theme="light" mode="alternative" disabled label="Second accordion" onChange={onChange}>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget.
           </div>
         </Accordion>
         <Accordion
-          theme="dark"
+          theme="light"
+          mode="alternative"
+          label="Third accordion"
+          assistiveText="Extra information"
+          onChange={onChange}
+        >
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </div>
+        </Accordion>
+        <Accordion
+          theme="light"
+          mode="alternative"
           label="Fourth accordion"
           assistiveText="Extra information"
           iconPosition="before"
@@ -94,7 +101,8 @@ storiesOf("Form Components|Accordion", module).add(
           </div>
         </Accordion>
         <Accordion
-          theme="dark"
+          theme="light"
+          mode="alternative"
           label="Fifth accordion"
           assistiveText="Extra information"
           iconPosition="after"
@@ -107,6 +115,109 @@ storiesOf("Form Components|Accordion", module).add(
           </div>
         </Accordion>
       </div>
+      <h3>Dark</h3>
+      <div>
+        <div style={{ background: "black", paddingTop: "50px", paddingBottom: "50px" }}>
+          <Accordion label="First accordion" onChange={onChange}>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+          <Accordion theme="dark" disabled label="Second accordion" onChange={onChange}>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+          <Accordion theme="dark" label="Third accordion" onChange={onChange} assistiveText="Extra information">
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+          <Accordion
+            theme="dark"
+            label="Fourth accordion"
+            assistiveText="Extra information"
+            iconPosition="before"
+            iconSrc={logo}
+            onChange={onChange}
+          >
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+          <Accordion
+            theme="dark"
+            label="Fifth accordion"
+            assistiveText="Extra information"
+            iconPosition="after"
+            iconSrc={logo}
+            onChange={onChange}
+          >
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+        </div>
+        <div style={{ background: "black", paddingBottom: "50px" }}>
+          <Accordion theme="dark" mode="alternative" label="First accordion" onChange={onChange}>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+          <Accordion theme="dark" mode="alternative" disabled label="Second accordion" onChange={onChange}>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+          <Accordion
+            theme="dark"
+            mode="alternative"
+            label="Third accordion"
+            assistiveText="Extra information"
+            onChange={onChange}
+          >
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+          <Accordion
+            theme="dark"
+            mode="alternative"
+            label="Fourth accordion"
+            assistiveText="Extra information"
+            iconPosition="before"
+            iconSrc={logo}
+            onChange={onChange}
+          >
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+          <Accordion
+            theme="dark"
+            mode="alternative"
+            label="Fifth accordion"
+            assistiveText="Extra information"
+            iconPosition="after"
+            iconSrc={logo}
+            onChange={onChange}
+          >
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+              leo lobortis eget.
+            </div>
+          </Accordion>
+        </div>
+      </div>
     </div>
   ),
   {
@@ -115,6 +226,7 @@ storiesOf("Form Components|Accordion", module).add(
 );
 
 const knobProps = () => ({
+  mode: select("mode", { default: "default", alternative: "alternative" }, "default"),
   label: text("label", "Test Accordion"),
   assistiveText: text("assistive text", "Extra information"),
   theme: select("theme", { light: "light", dark: "dark" }, "light"),
