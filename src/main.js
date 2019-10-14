@@ -1,21 +1,23 @@
-import DxcAccordion from "./accordion/Accordion.jsx";
-import DxcButton from "./button/Button.jsx";
-import DxcCheckbox from "./checkbox/Checkbox.jsx";
-import DxcSelect from "./select/Select.jsx";
-import DxcInput from "./input-text/InputText.jsx";
-import DxcDropdown from "./dropdown/Dropdown.jsx";
-import DxcSwitch from "./switch/Switch.jsx";
-import DxcSlider from "./slider/Slider.jsx";
-import DxcRadio from "./radio/Radio.jsx";
-import DxcDate from "./date/Date.jsx";
-import DxcHeader from "./header/Header.jsx";
-import DxcTabs from "./tabs/Tabs.jsx";
-import DxcDialog from "./dialog/Dialog.jsx";
-import DxcCard from "./card/Card.jsx";
+import DxcAccordion from "./accordion/Accordion";
+import DxcButton from "./button/Button";
+import DxcCard from "./card/Card";
+import DxcCheckbox from "./checkbox/Checkbox";
+import DxcDate from "./date/Date";
+import DxcDialog from "./dialog/Dialog";
+import DxcDropdown from "./dropdown/Dropdown";
+import DxcFooter from "./footer/Footer";
+import DxcHeader from "./header/Header";
+import DxcInput from "./input-text/InputText";
+import DxcRadio from "./radio/Radio";
+import DxcSelect from "./select/Select";
+import DxcSlider from "./slider/Slider";
+import DxcSwitch from "./switch/Switch";
+import DxcTabs from "./tabs/Tabs";
 
 export {
   DxcAccordion,
   DxcButton,
+  DxcFooter,
   DxcCheckbox,
   DxcSelect,
   DxcInput,
