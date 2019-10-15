@@ -83,6 +83,7 @@ const DxCTabs = styled.div`
         background-color: ${props => (props.mode === "filled" ? colors.darkGrey : "transparent")};
         color: ${props => (props.mode === "filled" ? colors.white : colors.darkGrey)};
       }
+      
       &.Mui-selected {
         background-color: ${props =>
           props.mode === "filled" ? (props.theme === "dark" ? colors.white : colors.black) : "transparent"};
@@ -94,6 +95,9 @@ const DxCTabs = styled.div`
         cursor: not-allowed !important;
         pointer-events: all;
         opacity: ${props => (props.mode === "underlined" ? "0.4" : "")};
+      }
+      &:focus:not(.Mui-disabled) {
+        color: ${colors.lightGrey};
       }
     }
     .MuiTabs-indicator {
