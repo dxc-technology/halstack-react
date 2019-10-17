@@ -24,11 +24,6 @@
         <td>This function will be called when the user clicks the close button. If there is no function we should close the modal by default</td>
     </tr>
     <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td><code>'light'</code></td>
-        <td>Uses one of the available component themes.</td>
-    </tr>
-    <tr>
         <td>overlay: boolean</td>
         <td>true</td>
         <td>If true, the modal will be over a darker background</td>
