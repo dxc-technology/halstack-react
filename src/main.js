@@ -13,9 +13,9 @@ import DxcSelect from "./select/Select";
 import DxcSlider from "./slider/Slider";
 import DxcSwitch from "./switch/Switch";
 import DxcTabs from "./tabs/Tabs";
+import DxcSpinner from "./spinner/Spinner";
 
 export {
-  DxcAccordion,
   DxcButton,
   DxcFooter,
   DxcCheckbox,
@@ -29,5 +29,7 @@ export {
   DxcHeader,
   DxcTabs,
   DxcDialog,
-  DxcCard
+  DxcCard,
+  DxcAccordion,
+  DxcSpinner
 };
