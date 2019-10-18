@@ -18,7 +18,7 @@ import { DxcProgressBar } from "@diaas/dxc-react-cdk";
     </tr>
     <tr>
         <td>label: string</td>
-        <td><code></code></td>
+        <td></td>
         <td>Text to be placed above the progressbar.</td>
     </tr>
     <tr>
@@ -38,13 +38,26 @@ import { DxcProgressBar } from "@diaas/dxc-react-cdk";
     </tr>
     <tr>
         <td>showValue: boolean</td>
-        <td></td>
+        <td>false</td>
         <td>If true the value is displayed above the progressbar</td>
     </tr>
 </table>
 
 ## Examples
 
-```
+```js
+import React from "react";
+import { DxcSpinner } from "@diaas/dxc-react-cdk";
 
+function App() {
+  return (
+    <div>
+        <ProgressBar label="Loading..." theme="light" overlay={false} value={20} />
+    </div>
+    <div>
+        <ProgressBar label="Loading..." theme="dark" showValue value={52} />
+    </div>
+  );
+}
+export default App;
 ```

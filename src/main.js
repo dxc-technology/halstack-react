@@ -13,6 +13,7 @@ import DxcSelect from "./select/Select";
 import DxcSlider from "./slider/Slider";
 import DxcSwitch from "./switch/Switch";
 import DxcTabs from "./tabs/Tabs";
+import DxcProgressBar from "./progress-bar/ProgressBar";
 import DxcSpinner from "./spinner/Spinner";
 
 export {
@@ -30,6 +31,7 @@ export {
   DxcTabs,
   DxcDialog,
   DxcCard,
+  DxcProgressBar
   DxcAccordion,
   DxcSpinner
 };
