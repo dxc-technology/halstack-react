@@ -31,7 +31,7 @@ export {
   DxcTabs,
   DxcDialog,
   DxcCard,
-  DxcProgressBar
+  DxcProgressBar,
   DxcAccordion,
   DxcSpinner
 };
