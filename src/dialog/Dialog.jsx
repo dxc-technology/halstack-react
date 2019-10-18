@@ -6,7 +6,6 @@ import colors from "../common/variables.js";
 import PropTypes from "prop-types";
 
 const DxcDialog = ({
-  theme = "light",
   isVisible = false,
   isCloseVisible = false,
   onClose,
@@ -20,7 +19,7 @@ const DxcDialog = ({
   };
 
   return (
-    <DialogContainer open={isVisible} theme={theme} onChange={handleChange} onClose={onClose} overlay={overlay}>
+    <DialogContainer open={isVisible} onChange={handleChange} onClose={onClose} overlay={overlay}>
       {isCloseVisible && (
         <CloseIconContainer onClick={onClose}>
           <CloseIcon
