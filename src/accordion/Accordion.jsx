@@ -8,6 +8,7 @@ import colors from "../common/variables.js";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const DxcAccordion = ({
+  mode = "default",
   label = "",
   iconSrc = "",
   iconPosition = "before",
@@ -17,19 +18,21 @@ const DxcAccordion = ({
   theme = "light",
   children
 }) => {
-  const handlerAccordion = expanded => {
+  const handlerAccordion = (event, expanded) => {
     onChange(expanded);
   };
 
   return (
-    <DXCAccordion theme={theme} disabled={disabled}>
+    <DXCAccordion theme={theme} mode={mode} disabled={disabled}>
       <ExpansionPanel disabled={disabled} onChange={handlerAccordion}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <AccordionInfo iconPosition={iconPosition}>
             <AccordionLabel iconPosition={iconPosition}>{label}</AccordionLabel>
             {iconSrc && <AccordionIcon iconPosition={iconPosition} src={iconSrc} />}
           </AccordionInfo>
-          <AccordionAssistiveText theme={theme}>{assistiveText}</AccordionAssistiveText>
+          <AccordionAssistiveText theme={theme} mode={mode}>
+            {assistiveText}
+          </AccordionAssistiveText>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <AccordionText>{children}</AccordionText>
@@ -40,6 +43,7 @@ const DxcAccordion = ({
 };
 
 DxcAccordion.propTypes = {
+  mode: PropTypes.oneOf(["default", "alternative"]),
   label: PropTypes.string,
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["before", "after"]),
@@ -54,49 +58,58 @@ const DXCAccordion = styled.span`
   cursor: ${props => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
     width: 1217px;
-    height: 72px;
     left: 85px;
-    background-color: ${props => (props.theme === "light" && colors.white) || colors.black};
-    color: ${props => (props.theme === "light" && colors.darkGrey) || colors.white};
+    background-color: ${props => (props.mode === "alternative" && colors.black) || colors.white};
+    color: ${props => (props.mode === "default" && colors.darkGrey) || colors.white};
     box-shadow: 0px 6px 10px #00000024;
-    margin-bottom: 65px;
+    border: ${props => (props.theme === "dark" && props.mode === "alternative" ? `2px solid ${colors.white}` : "")};
+    margin-bottom: 5px;
+    display: block;
     :hover {
-      background-color: ${props => (props.theme === "light" && colors.lightGrey) || colors.lightBlack};
-      color: ${props => (props.theme === "light" && colors.black) || colors.white};
+      background-color: ${props => (props.mode === "default" && colors.lightGrey) || colors.lightBlack};
+      color: ${props => (props.mode === "default" && colors.black) || colors.white};
       opacity: 1;
+    }
+
+    .MuiButtonBase-root {
+      height: 72px;
+    }
+
+    .MuiExpansionPanelSummary-root.Mui-expanded {
+      border-bottom: ${props =>
+        (props.mode === "default" && `2px solid ${colors.lightGrey}`) || `2px solid ${colors.white}`};
     }
   }
 
+  .MuiCollapse-hidden {
+    display: none;
+  }
+
   .MuiPaper-root.Mui-expanded {
-    margin-bottom: 65px !important;
     border-radius: 4px 4px 0px 0px;
   }
 
   .MuiPaper-root.Mui-disabled {
-    background-color: ${props => (props.theme === "light" && colors.white) || colors.black};
-    opacity: ${props => (props.theme === "light" && 1) || 0.3};
+    background-color: ${props => (props.mode === "default" && colors.white) || colors.black};
+    opacity: ${props => (props.mode === "default" && 1) || 0.3};
   }
 
   .MuiCollapse-container {
-    background-color: ${props => (props.theme === "light" && colors.white) || colors.black};
-    color: ${props => (props.theme === "light" && colors.black) || colors.white};
-    box-shadow: 0px 6px 10px #00000024;
+    background-color: ${props => (props.mode === "default" && colors.white) || colors.black};
+    color: ${props => (props.mode === "default" && colors.black) || colors.white};
+    box-shadow: 0px 6px 10px ${colors.white}24;
     border-radius: 0px 0px 4px 4px;
     height: 72px;
     margin-top: 1px;
+    margin-bottom: 10px;
   }
 
   .MuiSvgIcon-root {
-    color: ${props => (props.theme === "light" && colors.darkGrey) || colors.white};
+    color: ${props => (props.mode === "default" && colors.darkGrey) || colors.white};
   }
 
   .MuiExpansionPanelSummary-root {
     height: 72px;
-  }
-
-  .MuiExpansionPanelSummary-content.Mui-expanded div {
-    color: ${props => (props.theme === "light" && colors.black) || colors.white};
-    opacity: 1;
   }
 
   .MuiExpansionPanelDetails-root {
@@ -124,8 +137,8 @@ const AccordionAssistiveText = styled.div`
   font-size: 14px;
   font: Italic 14px/19px Open Sans;
   letter-spacing: 0.24px;
-  color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
-  opacity: ${props => (props.theme === "light" && 0.6) || 1};
+  color: ${props => (props.mode === "default" && colors.black) || colors.lightGrey};
+  opacity: ${props => (props.mode === "default" && 0.6) || 1};
 `;
 
 const AccordionIcon = styled.img`
