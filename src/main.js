@@ -14,9 +14,9 @@ import DxcSlider from "./slider/Slider";
 import DxcSwitch from "./switch/Switch";
 import DxcTabs from "./tabs/Tabs";
 import DxcProgressBar from "./progress-bar/ProgressBar";
+import DxcSpinner from "./spinner/Spinner";
 
 export {
-  DxcAccordion,
   DxcButton,
   DxcFooter,
   DxcCheckbox,
@@ -32,4 +32,6 @@ export {
   DxcDialog,
   DxcCard,
   DxcProgressBar
+  DxcAccordion,
+  DxcSpinner
 };
