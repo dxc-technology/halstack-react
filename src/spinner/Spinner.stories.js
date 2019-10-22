@@ -56,19 +56,8 @@ storiesOf("Form Components|Spinner", module).add(
             <div>
               <Button mode="basic" theme="light" label="Overlay Spinner" onClick={this.openSpinner} />
               {this.state.isVisible && (
-                <div
-                  onClick={this.openSpinner}
-                  style={{
-                    position: "fixed",
-                    backgroundColor: "#000000B3",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    zIndex: 1000
-                  }}
-                >
-                  <Spinner theme="light" label="Loading..." overlay/>
+                <div onClick={this.openSpinner}>
+                  <Spinner theme="light" label="Loading..." overlay />
                 </div>
               )}
             </div>
