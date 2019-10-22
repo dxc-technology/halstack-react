@@ -34,8 +34,6 @@ DxcSpinner.propTypes = {
 
 const BackgroundSpinner = styled.div`
   background-color: ${props => (props.overlay === true ? colors.black.concat("B3") : "transparent")};
-  background-color: ${props =>
-    props.overlay === true ? `${colors.black}B3` : props.theme === "dark" ? `${colors.black}` : `${colors.white}`};
   display: flex;
   flex-wrap: wrap;
   justify-content: ${props => (props.overlay === true ? "center" : "")};
@@ -53,7 +51,6 @@ const DXCSpinner = styled.div`
   border: 9px solid white;
   width: 120px;
   height: 120px;
-  margin-top: 34px;
   z-index: ${props => (props.overlay === true ? "100" : "")};
 
   .MuiCircularProgress-colorPrimary {
