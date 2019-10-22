@@ -8,7 +8,7 @@ import colors from "../common/variables.js";
 const DxcSpinner = ({ label = "", theme = "light", overlay = true, value, showValue = false }) => {
   return (
     <BackgroundSpinner theme={theme} overlay={overlay}>
-      <DXCSpinner overlay={overlay} showValue={showValue}>
+      <DXCSpinner overlay={overlay} showValue={showValue} label={label}>
         <SpinnerLabel theme={theme} overlay={overlay}>
           {label}
         </SpinnerLabel>
@@ -50,16 +50,20 @@ const DXCSpinner = styled.div`
   width: 120px;
   height: 120px;
   margin-top: 34px;
-  margin-left: 111px;
-  margin-right: 111px;
-  margin-bottom: 34px;
   z-index: ${props => (props.overlay === true ? "100" : "")};
 
   .MuiCircularProgress-colorPrimary {
     color: ${colors.yellow};
     width: 140px !important;
     height: 140px !important;
-    margin-top: ${props => (props.showValue === true && "-90px") || "-76px"};
+    margin-top: ${props =>
+      props.label === "" && props.showValue === false
+        ? "-62px"
+        : props.label !== "" && props.showValue === false
+        ? "-76px"
+        : props.label === "" && props.showValue === true
+        ? "-76px"
+        : "-90px"};
     margin-left: -10px;
   }
 `;

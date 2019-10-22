@@ -3,44 +3,81 @@ import { storiesOf } from "@storybook/react";
 import { boolean, select, text, number } from "@storybook/addon-knobs";
 import spinnerMD from "./readme.md";
 import Spinner from "./Spinner";
+import Button from "../button/Button";
 
 storiesOf("Form Components|Spinner", module).add(
   "Types",
-  () => (
-    <div>
-      <h3>Undertermined spinner</h3>
-      <div style={{ display: "flex", width: "1440px", height: "204px" }}>
-        <Spinner theme="light" label="Processing..." overlay={false} />
-        <Spinner theme="light" label="Loading..." overlay={false} />
-        <Spinner theme="light" label="Loading..." overlay={false} />
-        <Spinner theme="light" label="Loading..." overlay={false} />
-      </div>
-      <h3>Dark</h3>
-      <div style={{ display: "flex", backgroundColor: "black", width: "1440px", height: "204px" }}>
-        <Spinner theme="dark" label="Processing..." overlay={false} showValue value={52} />
-        <Spinner theme="dark" label="Loading..." overlay={false} />
-        <Spinner theme="dark" label="Loading..." overlay={false} />
-        <Spinner theme="dark" label="Loading..." overlay={false} />
-      </div>
-      <h3>No overlay</h3>
-      <div style={{ display: "flex", backgroundColor: "white", width: "1440px", height: "204px" }}>
-        <Spinner theme="light" label="Processing..." overlay={false} />
-        <Spinner theme="light" label="Loading..." overlay={false} />
-        <Spinner theme="light" label="Loading..." overlay={false} showValue value={30} />
-        <Spinner theme="light" label="Loading..." overlay={false} />
-      </div>{" "}
-      <div style={{ display: "flex", backgroundColor: "black", width: "1440px", height: "204px" }}>
-        <Spinner theme="dark" label="Processing..." overlay={false} />
-        <Spinner theme="dark" label="Loading..." overlay={false} showValue value={20} />
-        <Spinner theme="dark" label="Loading..." overlay={false} />
-        <Spinner theme="dark" label="Loading..." overlay={false} />
-      </div>
-      <h3>Overlay</h3>
-      <div style={{ display: "flex" }}>
-        <Spinner theme="dark" label="Loading..." overlay />
-      </div>
-    </div>
-  ),
+  () => {
+    class ControlledStory extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.state = {
+          isVisible: false
+        };
+      }
+      openSpinner = () => {
+        this.setState({ isVisible: !this.state.isVisible });
+      };
+
+      render() {
+        return (
+          <div>
+            <h3>Undetermined spinner</h3>
+            <div
+              style={{
+                display: "flex",
+                width: "1440px",
+                height: "204px",
+                justifyContent: "space-around"
+              }}
+            >
+              <Spinner theme="light" overlay={false} />
+              <Spinner theme="light" label="Loading..." overlay={false} />
+              <Spinner theme="light" overlay={false} showValue value={12} />
+              <Spinner theme="light" label="Loading..." overlay={false} showValue value={34} />
+            </div>
+            <h3>Dark</h3>
+            <div
+              style={{
+                display: "flex",
+                backgroundColor: "black",
+                width: "1440px",
+                height: "204px",
+                justifyContent: "space-around"
+              }}
+            >
+              <Spinner theme="dark" label="" overlay={false} />
+              <Spinner theme="dark" label="Loading..." overlay={false} />
+              <Spinner theme="dark" overlay={false} showValue value={32} />
+              <Spinner theme="dark" label="Loading..." overlay={false} showValue value={72} />
+            </div>
+            <h3>Overlay</h3>
+            <div>
+              <Button mode="basic" theme="light" label="Overlay Spinner" onClick={this.openSpinner} />
+              {this.state.isVisible && (
+                <div
+                  onClick={this.openSpinner}
+                  style={{
+                    position: "fixed",
+                    backgroundColor: "#000000B3",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 1000
+                  }}
+                >
+                  <Spinner theme="light" label="Loading..." overlay/>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      }
+    }
+    return <ControlledStory />;
+  },
   {
     notes: { markdown: spinnerMD }
   }
