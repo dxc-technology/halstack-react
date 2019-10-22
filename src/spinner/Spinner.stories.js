@@ -32,10 +32,20 @@ storiesOf("Form Components|Spinner", module).add(
                 justifyContent: "space-around"
               }}
             >
-              <Spinner theme="light" overlay={false} />
-              <Spinner theme="light" label="Loading..." overlay={false} />
-              <Spinner theme="light" overlay={false} showValue value={12} />
-              <Spinner theme="light" label="Loading..." overlay={false} showValue value={34} />
+              <div
+                style={{
+                  marginTop: "34px",
+                  display: "flex",
+                  width: "1440px",
+                  height: "170px",
+                  justifyContent: "space-around"
+                }}
+              >
+                <Spinner theme="light" overlay={false} />
+                <Spinner theme="light" label="Loading..." overlay={false} />
+                <Spinner theme="light" overlay={false} showValue value={12} />
+                <Spinner theme="light" label="Loading..." overlay={false} showValue value={34} />
+              </div>
             </div>
             <h3>Dark</h3>
             <div
@@ -47,10 +57,21 @@ storiesOf("Form Components|Spinner", module).add(
                 justifyContent: "space-around"
               }}
             >
-              <Spinner theme="dark" label="" overlay={false} />
-              <Spinner theme="dark" label="Loading..." overlay={false} />
-              <Spinner theme="dark" overlay={false} showValue value={32} />
-              <Spinner theme="dark" label="Loading..." overlay={false} showValue value={72} />
+              <div
+                style={{
+                  marginTop: "34px",
+                  display: "flex",
+                  backgroundColor: "black",
+                  width: "1440px",
+                  height: "170px",
+                  justifyContent: "space-around"
+                }}
+              >
+                <Spinner theme="dark" label="" overlay={false} />
+                <Spinner theme="dark" label="Loading..." overlay={false} />
+                <Spinner theme="dark" overlay={false} showValue value={32} />
+                <Spinner theme="dark" label="Loading..." overlay={false} showValue value={72} />
+              </div>
             </div>
             <h3>Overlay</h3>
             <div>
