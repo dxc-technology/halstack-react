@@ -9,10 +9,17 @@ import PropTypes from "prop-types";
 
 import colors from "../common/variables.js";
 
-const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", children }) => {
+const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", onClick="", children }) => {
+  function onClickHandle() {
+    if (typeof onClick === "function") {
+      onClick();
+    }
+  }
   return (
     <HeaderContainer theme={theme} underlined={underlined} position="static">
       <LogoIcon
+        onLogoClick={onClick}
+        onClick={() => onClickHandle()}
         logoSrc={logoSrc}
         src={
           theme === "light" && underlined && logoSrc === "default"
@@ -99,6 +106,14 @@ const LogoIcon = styled.img`
       return "auto";
     }
   }};
+
+  cursor: ${props => {
+    if (props.onLogoClick === "") {
+      return "default";
+    } else {
+      return "pointer";
+    }
+  }};
 `;
 
 const ChildContainer = styled.div`
@@ -109,8 +124,8 @@ const ChildContainer = styled.div`
 DxcHeader.propTypes = {
   logoSrc: PropTypes.string,
   theme: PropTypes.oneOf(["light", "dark", ""]),
-  underlined: PropTypes.bool
+  underlined: PropTypes.bool,
+  onClick: PropTypes.func
 };
-
 
 export default DxcHeader;
