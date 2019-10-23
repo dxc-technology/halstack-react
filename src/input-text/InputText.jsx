@@ -28,11 +28,15 @@ const DxcInputText = ({
 
   const handlerInputChange = event => {
     setInnerValue(event.target.value);
-    onChange(event.target.value);
+    if (onChange) {
+      onChange(event.target.value);
+    }
   };
   const handlerInputBlur = event => {
     setInnerValue(event.target.value);
-    onBlur(event.target.value);
+    if (onBlur) {
+      onBlur(event.target.value);
+    }
   };
 
   return (
@@ -51,7 +55,7 @@ const DxcInputText = ({
       )}
       <TextField
         error={error}
-        value={value || innerValue}
+        value={(value != null && value) || innerValue}
         name={name}
         multiline={multiline}
         disabled={disabled}
@@ -108,7 +112,6 @@ const SufixIcon = styled.img`
 const TextContainer = styled.div`
   position: relative;
   display: inline-flex;
-  margin: 15px;
 
   .MuiTextField-root {
     margin:15px;
