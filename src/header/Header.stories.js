@@ -15,7 +15,8 @@ const selectOption = option => {
 };
 
 const onChange = action("onChange");
-onChange.toString = () => "onChangeHandler";
+
+const onClick = action("headerLogo Clicked");
 
 const optionsWithoutIcon = [
   {
@@ -38,7 +39,7 @@ storiesOf("Form Components|Header", module).add(
     <div style={{ background: "lightgrey" }}>
       <div>
         <div style={{ marginBottom: "20px" }}>
-          <DxcHeader theme="light" underlined={false}>
+          <DxcHeader theme="light" underlined={false} onClick={onClick}>
             <DxcDropdown theme={"light"} onSelectOption={selectOption} options={optionsWithoutIcon} />
             <DxcDropdown
               theme={"light"}
@@ -56,7 +57,7 @@ storiesOf("Form Components|Header", module).add(
           </DxcHeader>
         </div>
         <div>
-          <DxcHeader theme="light" underlined={true}>
+          <DxcHeader theme="light" underlined={true} onClick={onClick}>
             <DxcDropdown theme={"light"} onSelectOption={selectOption} options={optionsWithoutIcon} mode="outlined" />
             <DxcDropdown
               theme={"light"}
