@@ -52,7 +52,7 @@ storiesOf("Form Components|Dropdown", module).add(
   "Component",
   () => (
     <div>
-      <div style={{ height: "200px", display: "flex"}}>
+      <div style={{ height: "200px", display: "flex", flexWrap: "wrap"}}>
         <Dropdown 
           options={optionsWithoutIcon}
           onSelectOption={selectOption}
@@ -128,7 +128,7 @@ storiesOf("Form Components|Dropdown", module).add(
           optionsIconPosition="after">
         </Dropdown>
       </div>
-      <div style={{ background: "black", display: "flex", height: "250px"}}>
+      <div style={{ background: "black", display: "flex", height: "250px", flexWrap: "wrap"}}>
         <Dropdown 
           options={optionsWithIcon}
           onSelectOption={selectOption}
