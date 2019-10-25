@@ -54,10 +54,11 @@ DxcAccordion.propTypes = {
   children: PropTypes.string
 };
 
-const DXCAccordion = styled.span`
+const DXCAccordion = styled.div`
+  min-width: 280px;
+  margin: 1px;
   cursor: ${props => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
-    width: 1217px;
     left: 85px;
     background-color: ${props => (props.mode === "alternative" && colors.black) || colors.white};
     color: ${props => (props.mode === "default" && colors.darkGrey) || colors.white};
@@ -65,28 +66,69 @@ const DXCAccordion = styled.span`
     border: ${props => (props.theme === "dark" && props.mode === "alternative" ? `2px solid ${colors.white}` : "")};
     margin-bottom: 5px;
     display: block;
-    :hover {
-      background-color: ${props => (props.mode === "default" && colors.lightGrey) || colors.lightBlack};
+    position: static;
+    width: 100%;
+    border-radius: 4px;
+
+    &.Mui-expanded {
+      border-radius: 4px;
       color: ${props => (props.mode === "default" && colors.black) || colors.white};
-      opacity: 1;
+      .MuiSvgIcon-root {
+          color: ${props => (props.mode === "default" && colors.black) || colors.white};
+        }
     }
 
     .MuiButtonBase-root {
+      border-radius: 4px;
       height: 72px;
+      :hover {
+        background-color: ${props => (props.mode === "default" && colors.lightGrey) || colors.lightBlack};
+        color: ${props => (props.mode === "default" && colors.black) || colors.white};
+
+        .MuiSvgIcon-root {
+          color: ${props => (props.mode === "default" && colors.black) || colors.white};
+        }
+      }
+
+      &.Mui-expanded {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        .MuiSvgIcon-root {
+          opacity: 1;
+        }
+      }
+
+      &.MuiIconButton-root {
+        height: auto;
+      }
+
+      .MuiExpansionPanelSummary-root.Mui-expanded {
+        border-bottom: ${props =>
+          (props.mode === "default" && `1px solid ${colors.lightGrey}`) || `1px solid ${colors.white}`};
+      }
+
+      .MuiExpansionPanelSummary-content {
+        padding-right: 30px;
+        &.Mui-expanded {
+          div:nth-child(2) {
+            opacity: 1;
+          }
+        }
+        :hover {
+          div {
+            opacity: 1;
+          }
+        }
+      }
     }
 
-    .MuiExpansionPanelSummary-root.Mui-expanded {
-      border-bottom: ${props =>
-        (props.mode === "default" && `2px solid ${colors.lightGrey}`) || `2px solid ${colors.white}`};
+    .MuiTouchRipple-root {
+      display: none;
     }
   }
 
   .MuiCollapse-hidden {
     display: none;
-  }
-
-  .MuiPaper-root.Mui-expanded {
-    border-radius: 4px 4px 0px 0px;
   }
 
   .MuiPaper-root.Mui-disabled {
@@ -100,8 +142,6 @@ const DXCAccordion = styled.span`
     box-shadow: 0px 6px 10px ${colors.white}24;
     border-radius: 0px 0px 4px 4px;
     height: 72px;
-    margin-top: 1px;
-    margin-bottom: 10px;
   }
 
   .MuiSvgIcon-root {
@@ -110,11 +150,11 @@ const DXCAccordion = styled.span`
 
   .MuiExpansionPanelSummary-root {
     height: 72px;
+    padding: 0 30px;
   }
 
   .MuiExpansionPanelDetails-root {
-    padding-bottom: 8px;
-    margin: 12px 12px 12px 0;
+    padding: 30px;
   }
 `;
 
@@ -126,7 +166,6 @@ const AccordionInfo = styled.div`
 `;
 
 const AccordionLabel = styled.div`
-  margin-top: 2px;
   flex-grow: ${props => (props.iconPosition === "after" && "0") || "1"};
 `;
 
@@ -137,13 +176,12 @@ const AccordionAssistiveText = styled.div`
   font-size: 14px;
   font: Italic 14px/19px Open Sans;
   letter-spacing: 0.24px;
-  color: ${props => (props.mode === "default" && colors.black) || colors.lightGrey};
-  opacity: ${props => (props.mode === "default" && 0.6) || 1};
 `;
 
 const AccordionIcon = styled.img`
-  max-height: 15px;
-  max-width: 15px;
+  max-height: 20px;
+  max-width: 20px;
+  margin-bottom: 2px;
   margin-left: ${props => (props.iconPosition === "after" && "10px") || "0px"};
   margin-right: ${props => (props.iconPosition === "before" && "10px") || "0px"};
 `;
