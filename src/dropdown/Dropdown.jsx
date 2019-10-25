@@ -48,7 +48,7 @@ const DxcDropdown = ({
         caretHidden={caretHidden}
       >
         <DropdownTriggerContainer iconPosition={iconPosition}>
-          {iconSrc && <ListIcon src={iconSrc} iconPosition={iconPosition} />}
+          {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
           <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
             {label}
           </DropdownTriggerLabel>
@@ -94,7 +94,7 @@ const DxcDropdown = ({
             disableRipple={disableRipple}
             onClick={event => handleMenuItemClick(option)}
           >
-            {option.iconSrc && <ListIcon label={label} src={option.iconSrc} iconPosition={optionsIconPosition} />}
+            {option.iconSrc && <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />}
             <span className="optionLabel">{option.label}</span>
           </MenuItem>
         ))}
@@ -104,6 +104,15 @@ const DxcDropdown = ({
 };
 
 const DxcMenu = styled(Menu)`
+
+  .MuiMenuItem-gutters {
+    padding: 0px 20px
+  }
+  .MuiMenuItem-root {
+    min-height: 46px;
+    height: auto;
+  }
+
   .MuiPaper-root {
     min-width: ${props => (props.mode === "outlined" ? "226px" : "230px")};
 
@@ -158,22 +167,6 @@ const DxcMenu = styled(Menu)`
       font-size: 16px;
       font-family: "Open Sans", sans-serif;
       cursor: pointer;
-      .optionLabel {
-        margin-right: ${props => {
-          if (props.optionsIconPosition === "after") {
-            return "10px";
-          } else {
-            return "0px";
-          }
-        }};
-        margin-left: ${props => {
-          if (props.optionsIconPosition === "before") {
-            return "10px";
-          } else {
-            return "0px";
-          }
-        }};
-      }
     }
     .MuiListItem-button:hover {
       background-color: ${colors.darkWhite};
@@ -186,8 +179,7 @@ const DropdownTrigger = styled.button`
   cursor: pointer;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  height: 46px;
-  min-height: 46px;
+  height: auto;
   min-height: 46px;
   display: inline-flex;
   justify-content: space-between;
@@ -257,20 +249,7 @@ const DropdownTrigger = styled.button`
 `;
 
 const DropdownTriggerLabel = styled.span`
-  margin-right: ${props => {
-    if (props.iconPosition === "after" && props.label !== "") {
-      return "10px";
-    } else {
-      return "0px";
-    }
-  }};
-  margin-left: ${props => {
-    if (props.iconPosition === "before" && props.label !== "") {
-      return "10px";
-    } else {
-      return "0px";
-    }
-  }};
+    text-align: left;
 `;
 
 const DropdownTriggerContainer = styled.span`
@@ -286,6 +265,20 @@ const ListIcon = styled.img`
   max-width: 20px;
   width: 20px;
   height: 20px;
+  margin-right: ${props => {
+    if (props.iconPosition === "before" && props.label !== "") {
+      return "10px";
+    } else {
+      return "0px";
+    }
+  }};
+  margin-left: ${props => {
+    if (props.iconPosition === "after" && props.label !== "") {
+      return "10px";
+    } else {
+      return "0px";
+    }
+  }};
 `;
 
 const CaretIcon = styled.img`
