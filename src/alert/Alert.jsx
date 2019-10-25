@@ -135,10 +135,11 @@ const DialogInfoText = styled.div`
   display: flex;
   flex-direction: row;
   margin-left: ${props => (props.children !== null ? "12px" : "10px")};
-  margin-top: ${props => (props.children !== null ? "14px" : "16px")};
+  margin-top: 16px;
   margin-bottom: 16px;
   margin-right: ${props => (props.children !== null ? "12px" : "16px")};
   overflow: hidden;
+  flex-grow: 1;
 `;
 
 const CloseDialogIcon = styled.div`
