@@ -10,7 +10,7 @@
     </tr>
     <tr>
         <td>type: 'info' | 'confirm' | 'warning' | 'error'</td>
-        <td><code>'basic'</code></td>
+        <td><code>'info'</code></td>
         <td>Uses on of the available alert types.</td>
     </tr>
     <tr>
@@ -33,16 +33,16 @@
     <tr>
         <td>isVisible: boolean</td>
         <td>true</td>
-        <td>If true, the alert should be visible</td>
+        <td>If true, the alert should be visible.</td>
     </tr>
     <tr>
         <td>inlineText: string</td>
         <td></td>
-        <td>Text to display after icon and alert type and before content</td>
+        <td>Text to display after icon and alert type and before content.</td>
     </tr>
     <tr>
         <td>onClose: function</td>
         <td></td>
-        <td>This function will be called when the user clicks the close button. If there is no function we should close the alert by default</td>
+        <td>This function will be called when the user clicks the close button. If there is no function we should close the alert by default.</td>
     </tr>
 </table>
