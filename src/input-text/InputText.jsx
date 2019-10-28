@@ -15,7 +15,7 @@ const DxcInputText = ({
   disabled = false,
   prefix = "",
   sufix = "",
-  prefixIconSrc = "",
+  prefixIconSrc,
   sufixIconSrc = "",
   onClickIcon = "",
   onChange = "",
@@ -132,13 +132,13 @@ const TextContainer = styled.div`
       &.Mui-disabled{
         opacity:0.5;
       }
-      padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
+      padding-left: ${props => ((props.prefixIconSrc && !props.multiline || (props.prefix && !props.multiline)) && "32px") || ""};
       &.Mui-focused {
         color: ${props => (props.theme === "light" ? colors.black : colors.white)};
         &.MuiInputLabel-shrink {
           transform: ${props =>
-            props.prefixIconSrc ||
-            ((props.prefix || props.sufix) && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
+            props.prefixIconSrc && !props.multiline ||
+            ((props.prefix && !props.multiline  || props.sufix && !props.multiline )&& "translate(8px, 1.5px) scale(0.75);") ||
             "translate(0, 1.5px) scale(0.75);"};
         }
       }
@@ -149,8 +149,8 @@ const TextContainer = styled.div`
       &.MuiInputLabel-shrink {
         font-family: "Open Sans", sans-serif;
         transform: ${props =>
-          (props.prefixIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
-          (props.prefix && "translate(8px, 1.5px) scale(0.75);") ||
+          (props.prefixIconSrc && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
+          (props.prefix && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
@@ -248,7 +248,7 @@ const TextContainer = styled.div`
         }
       }
       .MuiInputBase-input {
-        padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
+        padding-left: ${props => ((props.prefixIconSrc && !props.multiline || (props.prefix && !props.multiline)) && "32px") || "inherit"};
         color: ${props => (props.theme === "light" ? colors.darkGrey : colors.white)};
          text-overflow: ellipsis;
         &.Mui-disabled {
@@ -256,6 +256,7 @@ const TextContainer = styled.div`
         }
       }
       .MuiInputAdornment-root {
+
         height: 20px;
         color: ${props => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
         &.MuiInputAdornment-positionEnd{
