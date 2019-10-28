@@ -53,7 +53,6 @@ storiesOf("Form Components|Alert", module).add(
                 inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget."
                 isVisible={this.state.isVisibleInfoAlert}
-                onClose={this.setVisibleInfoAlert}
               />
               <Alert
                 type="warning"
@@ -69,7 +68,6 @@ storiesOf("Form Components|Alert", module).add(
                 inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
             leo lobortis eget."
                 isVisible={this.state.isVisibleSuccessAlert}
-                onClose={this.setVisibleSuccessAlert}
               >
                 <div>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet
