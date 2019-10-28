@@ -16,7 +16,7 @@ const DxcSpinner = ({ label = "", theme = "light", overlay = true, value, showVa
           {value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}%
         </SpinnerProgress>
         <CircularProgress
-          variant={showValue ? "determinate" : "indeterminate"}
+          variant={showValue ? "static" : "indeterminate"}
           value={value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}
         />
       </DXCSpinner>
@@ -48,7 +48,7 @@ const BackgroundSpinner = styled.div`
 
 const DXCSpinner = styled.div`
   border-radius: 80px;
-  border: 9px solid white;
+  border: 6px solid white;
   width: 120px;
   height: 120px;
   z-index: ${props => (props.overlay === true ? "100" : "")};
@@ -61,11 +61,16 @@ const DXCSpinner = styled.div`
       props.label === "" && props.showValue === false
         ? "-62px"
         : props.label !== "" && props.showValue === false
-        ? "-76px"
+        ? "-75.6px"
         : props.label === "" && props.showValue === true
-        ? "-76px"
-        : "-90px"};
+        ? "-75.6px"
+        : "-89.5px"};
     margin-left: -10px;
+  }
+
+  .MuiCircularProgress-circle {
+    stroke-width: 1.9px;
+    r: 19.8;
   }
 `;
 
