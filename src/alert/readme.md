@@ -19,7 +19,7 @@
         <td>Uses on of the available alert modes:
             <ul>
                 <li>
-                    <strong>inline:</strong> if onClose function is received, close button should be visible and the fuction should be executed whe its clicked.
+                    <strong>inline:</strong> if onClose function is received, close button should be visible and the function should be executed whe its clicked.
                     There is no overlay layer. 
                     Position should be decided by the user.
                 </li>

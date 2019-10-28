@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
