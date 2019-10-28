@@ -1,3 +1,4 @@
+import DxcAlert from "./alert/Alert";
 import DxcAccordion from "./accordion/Accordion";
 import DxcButton from "./button/Button";
 import DxcCard from "./card/Card";
@@ -17,6 +18,7 @@ import DxcProgressBar from "./progress-bar/ProgressBar";
 import DxcSpinner from "./spinner/Spinner";
 
 export {
+  DxcAlert,
   DxcButton,
   DxcFooter,
   DxcCheckbox,
