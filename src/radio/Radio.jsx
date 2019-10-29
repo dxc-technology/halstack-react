@@ -27,7 +27,7 @@ const DxcRadio = ({
   return (
     <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
       <Radio
-        checked={checked || innerChecked}
+        checked={(checked != null && checked) || innerChecked}
         name={name}
         onChange={handlerRadioChange}
         value={value}
