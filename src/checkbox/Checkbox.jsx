@@ -29,7 +29,7 @@ const DxcCheckbox = ({
   return (
     <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
       <Checkbox
-        checked={checked || innerChecked}
+        checked={(checked != null && checked) || innerChecked}
         inputProps={(name = { name })}
         onChange={handlerCheckboxChange}
         value={value}

@@ -127,7 +127,7 @@ const DxcSelect = ({
         multiple={multiple}
         renderValue={getRenderValue}
         onChange={handleSelectChange}
-        value={(value && value.length && value) || selectedValue}
+        value={(value!=null &&value && value.length && value) || selectedValue}
         disabled={disabled}
         MenuProps={{
           classes: { paper: classes.dropdownStyle, list: classes.itemList }
