@@ -41,10 +41,17 @@ storiesOf("Form Components|Spinner", module).add(
                   justifyContent: "space-around"
                 }}
               >
-                <Spinner theme="light" overlay={false} />
-                <Spinner theme="light" label="Loading..." overlay={false} />
-                <Spinner theme="light" overlay={false} showValue value={12} />
-                <Spinner theme="light" label="Loading..." overlay={false} showValue value={34} />
+                <Spinner theme="light" />
+                <Spinner theme="light" label="Loading..." />
+                <Spinner theme="light" showValue value={12} />
+                <Spinner theme="light" label="Loading..." showValue value={34} />
+                <div
+                  style={{
+                    marginTop: "46px"
+                  }}
+                >
+                  <Spinner theme="light" mode="small" />
+                </div>
               </div>
             </div>
             <h3>Dark</h3>
@@ -67,10 +74,17 @@ storiesOf("Form Components|Spinner", module).add(
                   justifyContent: "space-around"
                 }}
               >
-                <Spinner theme="dark" label="" overlay={false} />
-                <Spinner theme="dark" label="Loading..." overlay={false} />
-                <Spinner theme="dark" overlay={false} showValue value={32} />
-                <Spinner theme="dark" label="Loading..." overlay={false} showValue value={72} />
+                <Spinner theme="dark" label="" />
+                <Spinner theme="dark" label="Loading..." />
+                <Spinner theme="dark" showValue value={32} />
+                <Spinner theme="dark" label="Loading..." showValue value={34} />
+                <div
+                  style={{
+                    marginTop: "46px"
+                  }}
+                >
+                  <Spinner theme="dark" mode="small" />
+                </div>
               </div>
             </div>
             <h3>Overlay</h3>
@@ -78,7 +92,7 @@ storiesOf("Form Components|Spinner", module).add(
               <Button mode="basic" theme="light" label="Overlay Spinner" onClick={this.openSpinner} />
               {this.state.isVisible && (
                 <div onClick={this.openSpinner}>
-                  <Spinner theme="light" label="Loading..." overlay />
+                  <Spinner theme="light" label="Loading..." mode="overlay" />
                 </div>
               )}
             </div>
@@ -96,8 +110,8 @@ storiesOf("Form Components|Spinner", module).add(
 const knobProps = () => ({
   label: text("label", "Loading..."),
   theme: select("theme", { light: "light", dark: "dark" }, "light"),
+  mode: select("mode", { large: "large", small: "small", overlay: "overlay" }, "large"),
   value: number("value", ""),
-  overlay: boolean("overlay", false),
   showValue: boolean("show value", false)
 });
 
