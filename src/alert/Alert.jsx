@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import colors from "../common/variables.js";
-import closeIcon from "../../.storybook/public/close.svg";
-import errorIcon from "../../.storybook/public/error.svg";
-import infoIcon from "../../.storybook/public/info.svg";
-import successIcon from "../../.storybook/public/success.svg";
-import warningIcon from "../../.storybook/public/warning.svg";
+import closeIcon from "./close.svg";
+import errorIcon from "./error.svg";
+import infoIcon from "./info.svg";
+import successIcon from "./success.svg";
+import warningIcon from "./warning.svg";
 
 const DxcAlert = ({ type = "info", mode = "inline", isVisible = false, inlineText = "", onClose, children }) => {
   const [open, setOpen] = useState(false);
