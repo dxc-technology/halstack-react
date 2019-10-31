@@ -23,5 +23,11 @@
         <td><code>'default'</code></td>
         <td>The path of an icon to replace the default dxc logo.</td>
     </tr>
+    <tr>
+        <td>onClick: function</td>
+        <td></td>
+        <td>This function will be called when the user clicks the header logo.<br>
+        </td>
+    </tr>
 </table>
 
