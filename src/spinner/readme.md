@@ -27,9 +27,9 @@ import { DxcSpinner } from "@diaas/dxc-react-cdk";
         <td>Uses one of the available component themes.</td>
     </tr>
     <tr>
-        <td>overlay: boolean</td>
-        <td>true</td>
-        <td>If true, the spinner will be over a darker background</td>
+        <td>mode: 'large' | 'small' | 'overlay' </td>
+        <td>large</td>
+        <td>The spinner can have overlay or small or large size. <td>
     </tr>
     <tr>
         <td>value: string</td>
