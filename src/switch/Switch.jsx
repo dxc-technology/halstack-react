@@ -28,7 +28,7 @@ const DxcSwitch = ({
   return (
     <SwitchContainer theme={theme} disabled={disabled} labelPosition={labelPosition}>
       <Switch
-        checked={checked || innerChecked}
+        checked={(checked!=null && checked) || innerChecked}
         inputProps={(name = { name })}
         onChange={handlerSwitchChange}
         value={value}
