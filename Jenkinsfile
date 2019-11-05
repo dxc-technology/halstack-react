@@ -4,6 +4,10 @@ pipeline {
             filename 'docker/Dockerfile'
         }
     }
+    environment  {
+        REPO_NAME = 'diaas-react-cdk'
+        SERVICE_NAME='dxc-react-cdk'
+    } 
     stages {
         stage('Git') {
             steps {
@@ -21,6 +25,20 @@ pipeline {
                             returnStdout: true
                         ).trim()
                     }
+            }
+        }
+        stage('Check repo name'){
+            steps{
+                script{
+                    withCredentials([usernamePassword(credentialsId:"pdxc-jenkins", passwordVariable:"GIT_PASSWORD", usernameVariable:"GIT_USER")]) {
+                        env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')                          
+                           
+                        def check=checkRepoName(env.GIT_REPO_NAME,"${REPO_NAME}");
+                        if (!check){
+                            error "This pipeline stops here! Please check the environment variables"
+                        } 
+                    }
+                }
             }
         }
         stage('Release type') {
@@ -161,7 +179,7 @@ pipeline {
                 // Uploading storybook to Artifactory (diaas-generic)
                 withCredentials([usernamePassword(credentialsId:"diaas-rw", passwordVariable:"ARTIF_PASSWORD", usernameVariable:"ARTIF_USER")]) {
                   sh '''
-                        curl -u${ARTIF_USER}:${ARTIF_PASSWORD} -T ./storybook.zip "https://artifactory.csc.com/artifactory/diaas-generic/dxc-react-cdk/storybook/storybook-bundle.${BRANCH_NAME}.${BUILD_ID}.zip"
+                        curl -u${ARTIF_USER}:${ARTIF_PASSWORD} -T ./storybook.zip "https://artifactory.csc.com/artifactory/diaas-generic/"${SERVICE_NAME}"/storybook/storybook-bundle.${BRANCH_NAME}.${BUILD_ID}.zip"
                   '''
                 }
             }
@@ -280,7 +298,7 @@ pipeline {
                 // Uploading storybook to Artifactory (diaas-generic)
                 withCredentials([usernamePassword(credentialsId:"diaas-rw", passwordVariable:"ARTIF_PASSWORD", usernameVariable:"ARTIF_USER")]) {
                   sh '''
-                        curl -u${ARTIF_USER}:${ARTIF_PASSWORD} -T ./storybook.zip "https://artifactory.csc.com/artifactory/diaas-generic/dxc-react-cdk/storybook/storybook-bundle.${BRANCH_NAME}.${BUILD_ID}.zip"
+                        curl -u${ARTIF_USER}:${ARTIF_PASSWORD} -T ./storybook.zip "https://artifactory.csc.com/artifactory/diaas-generic/"${SERVICE_NAME}"/storybook/storybook-bundle.${BRANCH_NAME}.${BUILD_ID}.zip"
                   '''
                 }
             }
@@ -314,4 +332,10 @@ pipeline {
             }
         }
     }
+}
+Boolean checkRepoName(repoName, hardcodeRepoName){
+    if (hardcodeRepoName == repoName){
+        return true
+    }
+    return false
 }
