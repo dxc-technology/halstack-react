@@ -27,13 +27,13 @@ storiesOf("Form Components|Progress Bar", module).add(
               <h3>Determined and undetermined progress bar</h3>
               <div>
                 <div style={{ display: "flex", flexDirection: "row" }}>
-                  <div style={{ display: "flex", flexDirection: "column", margin: "40px" }}>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
                     <ProgressBar label="Loading..." theme="light" overlay={false} showValue value={0} />
                     <ProgressBar label="Loading..." theme="light" overlay={false} showValue value={15} />
                     <ProgressBar label="Loading..." theme="light" overlay={false} showValue value={52} />
                     <ProgressBar label="Loading..." theme="light" overlay={false} showValue value={80} />
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", margin: "40px" }}>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
                     <ProgressBar label="Loading..." theme="light" overlay={false} value={0} />
                     <ProgressBar label="Loading..." theme="light" overlay={false} value={15} />
                     <ProgressBar label="Loading..." theme="light" overlay={false} value={52} />
@@ -45,13 +45,13 @@ storiesOf("Form Components|Progress Bar", module).add(
             <div>
               <h3>Dark</h3>
               <div style={{ display: "flex", flexDirection: "row", background: "black" }}>
-                <div style={{ display: "flex", flexDirection: "column", margin: "40px" }}>
+                <div style={{ display: "flex", flexDirection: "column"}}>
                   <ProgressBar label="Loading..." theme="dark" overlay={false} showValue value={0} />
                   <ProgressBar label="Loading..." theme="dark" overlay={false} showValue value={15} />
                   <ProgressBar label="Loading..." theme="dark" overlay={false} showValue value={52} />
                   <ProgressBar label="Loading..." theme="dark" overlay={false} showValue value={80} />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", margin: "40px" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
                   <ProgressBar label="Loading..." theme="dark" overlay={false} value={0} />
                   <ProgressBar label="Loading..." theme="dark" overlay={false} value={15} />
                   <ProgressBar label="Loading..." theme="dark" overlay={false} value={52} />
@@ -62,13 +62,13 @@ storiesOf("Form Components|Progress Bar", module).add(
             <div>
               <h3>Simplified</h3>
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <div style={{ display: "flex", flexDirection: "column", margin: "40px" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
                   <ProgressBar theme="light" overlay={false} />
                   <ProgressBar theme="light" overlay={false} />
                   <ProgressBar theme="light" overlay={false} />
                   <ProgressBar theme="light" overlay={false} />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", margin: "40px" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
                   <ProgressBar theme="light" overlay={false} showValue value={0} />
                   <ProgressBar theme="light" overlay={false} showValue value={20} />
                   <ProgressBar theme="light" overlay={false} showValue value={30} />
@@ -85,7 +85,6 @@ storiesOf("Form Components|Progress Bar", module).add(
                     onClick={this.openProgressBar}
                     style={{
                       position: "fixed",
-                      backgroundColor: "#000000B3",
                       top: 0,
                       left: 0,
                       right: 0,
