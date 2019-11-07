@@ -1,4 +1,4 @@
-# DXC Date Component
+# DXC Tabs Component
 
 ## Tab Group Props
 
@@ -38,6 +38,17 @@
         <td></td>
         <td>This function will be called when the user clicks on a tab. The index of the clicked tab will be passed as a parameter.</td>
     </tr>
+    <tr>
+        <td>stepper: boolean</td>
+        <td><code>false</code></td>
+        <td>If true, the component should be rendered as a Stepper component.</td>
+    </tr>
+    <tr>
+        <td>orientation: 'horizontal' | 'vertical'</td>
+        <td><code>'horizontal'</code></td>
+        <td>Only if stepper, this parameter shows the stepper orientation.</td>
+    </tr>
+
 </table>
 
 ## Tab Props
