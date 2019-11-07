@@ -41,19 +41,22 @@ const BackgroundProgressBar = styled.div`
       : props.theme === "dark"
       ? `${colors.black}`
       : `${colors.white}`};
-  width: ${props => (props.overlay === true ? "100%" : "658px")};
+  width: ${props => (props.overlay === true ? "100%" : "80%")};
   display: flex;
   flex-wrap: wrap;
   justify-content: ${props => (props.overlay === true ? "center" : "")};
   height: ${props => (props.overlay === true ? "100vh" : "")};
   align-items: ${props => (props.overlay === true ? "center" : "")};
+  min-width: 685px;
+  max-width: ${props => (props.overlay === true ? "100%" : "80%")};
+  margin: ${props => (props.overlay === false ? "15px" : "")};
 `;
 
 const DXCProgressBar = styled.div`
   margin-bottom: 12px;
+  z-index: ${props => (props.overlay === true && "100") || "0"};
+  width: ${props => (props.overlay === true ? "80%" : "100%")};
   .MuiLinearProgress-root {
-    min-width: 685px;
-    max-width: 80%;
     height: 9px;
     background-color: ${props =>
       ((props.theme === "dark" || props.overlay === true) && `${colors.white}4D`) || `${colors.black}4D`};
@@ -63,7 +66,6 @@ const DXCProgressBar = styled.div`
   .MuiLinearProgress-bar {
     background-color: ${colors.yellow};
   }
-  z-index: ${props => (props.overlay === true && "100") || "0"};
 `;
 
 const InfoProgressBar = styled.div`
@@ -71,6 +73,7 @@ const InfoProgressBar = styled.div`
   flex-direction: row;
   width: 685px;
   flex-wrap: wrap;
+  width: 100%;
 `;
 
 const ProgressBarLabel = styled.div`
@@ -78,12 +81,17 @@ const ProgressBarLabel = styled.div`
   font-size: 12px;
   flex-grow: 1;
   color: ${props => ((props.theme === "dark" || props.overlay === true) && colors.white) || colors.black};
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const ProgressBarProgress = styled.div`
   font-size: 12px;
   color: ${props => ((props.theme === "dark" || props.overlay === true) && colors.white) || colors.black};
   display: ${props => (props.value !== "" && props.showValue === true && "block") || "none"};
+  width: 5%;
+  text-align: right;
 `;
 
 export default DxcProgressBar;
