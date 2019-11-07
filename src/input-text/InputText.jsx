@@ -13,9 +13,9 @@ const DxcInputText = ({
   theme = "light",
   assistiveText = "",
   disabled = false,
-  prefix = "",
+  prefijo = "",
   sufix = "",
-  prefixIconSrc,
+  prefijoIconSrc = "",
   sufixIconSrc = "",
   onClickIcon = "",
   onChange = "",
@@ -41,16 +41,16 @@ const DxcInputText = ({
 
   return (
     <TextContainer
-      prefixIconSrc={prefixIconSrc}
-      prefix={prefix}
+      prefijoIconSrc={prefijoIconSrc}
+      prefijo={prefijo}
       required={required}
       theme={theme}
       multiline={multiline}
     >
-      {prefixIconSrc && !multiline && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickIcon} />}
-      {prefix && !multiline && (
+      {prefijoIconSrc && !multiline && <PrefixIcon src={prefijoIconSrc} disabled={disabled} onClick={onClickIcon} />}
+      {prefijo && !multiline && (
         <PrefixLabel theme={theme} disabled={disabled}>
-          {prefix}
+          {prefijo}
         </PrefixLabel>
       )}
       <TextField
@@ -79,9 +79,9 @@ const DxcInputText = ({
   );
 };
 const PrefixIcon = styled.img`
-  position: absolute;
-  top: 36px;
-  left: 14px;
+  position: relative;
+  top: 23px;
+  left: 18px;
   width: 20px;
   max-height: 20px;
   max-width: 20px;
@@ -89,11 +89,11 @@ const PrefixIcon = styled.img`
   opacity: ${props => (props.disabled && 0.5) || 1};
 `;
 const PrefixLabel = styled.span`
-  position: absolute;
+  position: relative;
+  top: 23px;
+  left: 18px;
   font-family: "Open Sans", sans-serif;
   color: ${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
-  top: 36px;
-  left: 15px;
   max-height: 20px;
   max-width: 20px;
   opacity: ${props => (props.disabled && 0.5) || 1};
@@ -110,19 +110,15 @@ const SufixIcon = styled.img`
 `;
 
 const TextContainer = styled.div`
-  position: relative;
-  display: inline-flex;
-
+  margin: 15px;
+  display: inline-block;
   .MuiTextField-root {
-    margin:15px;
     font-family: "Open Sans", sans-serif;
     .MuiFormHelperText-root {
       font-family: "Open Sans", sans-serif;
-      margin-top: 6px;
     }
     .MuiFormLabel-root {
       font-size: 16px;
-      top: -2px;
       color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
       &::before {
         content:'${props => (props.required && "*") || ""}';
@@ -132,13 +128,13 @@ const TextContainer = styled.div`
       &.Mui-disabled{
         opacity:0.5;
       }
-      padding-left: ${props => ((props.prefixIconSrc && !props.multiline || (props.prefix && !props.multiline)) && "32px") || ""};
+      padding-left: ${props => ((props.prefijoIconSrc || (props.prefijo && !props.multiline)) && "32px") || "inherit"};
       &.Mui-focused {
         color: ${props => (props.theme === "light" ? colors.black : colors.white)};
         &.MuiInputLabel-shrink {
           transform: ${props =>
-            props.prefixIconSrc && !props.multiline ||
-            ((props.prefix && !props.multiline  || props.sufix && !props.multiline )&& "translate(8px, 1.5px) scale(0.75);") ||
+            props.prefijoIconSrc ||
+            ((props.prefijo || props.sufix) && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
             "translate(0, 1.5px) scale(0.75);"};
         }
       }
@@ -149,8 +145,8 @@ const TextContainer = styled.div`
       &.MuiInputLabel-shrink {
         font-family: "Open Sans", sans-serif;
         transform: ${props =>
-          (props.prefixIconSrc && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
-          (props.prefix && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
+          (props.prefijoIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
+          (props.prefijo && "translate(8px, 1.5px) scale(0.75);") ||
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
@@ -177,9 +173,8 @@ const TextContainer = styled.div`
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
       font-family: "Open Sans", sans-serif;
-      height: ${props => (!props.multiline ? "34px" : "auto")};
+      ${props => (props.multiline ? "height: auto;" : "")}
       min-width: 230px;
-      min-height: 34px;
       &::before{
         border-bottom: ${props =>
           props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
@@ -248,7 +243,7 @@ const TextContainer = styled.div`
         }
       }
       .MuiInputBase-input {
-        padding-left: ${props => ((props.prefixIconSrc && !props.multiline || (props.prefix && !props.multiline)) && "32px") || "inherit"};
+        padding-left: ${props => ((props.prefijoIconSrc || (props.prefijo && !props.multiline)) && "32px") || "inherit"};
         color: ${props => (props.theme === "light" ? colors.darkGrey : colors.white)};
          text-overflow: ellipsis;
         &.Mui-disabled {
@@ -262,7 +257,8 @@ const TextContainer = styled.div`
         &.MuiInputAdornment-positionEnd{
           & > p {
             font-family: "Open Sans", sans-serif;
-            color:${props => (props.theme === "light" ? colors.lightGrey : colors.yellow)};
+            color:${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
+            margin-right: 8px;
           }
         }
         &.Mui-disabled {
@@ -298,9 +294,9 @@ DxcInputText.propTypes = {
   theme: PropTypes.oneOf(["light", "dark", ""]),
   assistiveText: PropTypes.string,
   disabled: PropTypes.bool,
-  prefix: PropTypes.string,
+  prefijo: PropTypes.string,
   sufix: PropTypes.string,
-  prefixIconSrc: PropTypes.string,
+  prefijoIconSrc: PropTypes.string,
   sufixIconSrc: PropTypes.string,
   required: PropTypes.bool,
   error: PropTypes.bool,
