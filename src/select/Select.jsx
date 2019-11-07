@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+
 import styled from "styled-components";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,7 +13,7 @@ import DxcCheckbox from "../checkbox/Checkbox";
 import DxcRequired from "../common/RequiredComponent";
 
 import "../common/OpenSans.css";
-import colors from "../common/variables.js"
+import colors from "../common/variables.js";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -117,34 +120,36 @@ const DxcSelect = ({
 
   return (
     <SelectContainer theme={theme}>
-      <LabelContainer theme={theme} disabled={disabled}>
-        {required && <DxcRequired theme={theme} />}
-        <span>{label}</span>
-      </LabelContainer>
-      <Select
-        name={name}
-        theme={theme}
-        multiple={multiple}
-        renderValue={getRenderValue}
-        onChange={handleSelectChange}
-        value={(value!=null &&value && value.length && value) || selectedValue}
-        disabled={disabled}
-        MenuProps={{
-          classes: { paper: classes.dropdownStyle, list: classes.itemList }
-        }}
-      >
-        {options.map(option => {
-          return (
-            <MenuItem id={option.value} value={option.value} disableRipple={disableRipple}>
-              {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, option)} />}
-              <OptionContainer iconPosition={iconPosition}>
-                {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
-                <span>{option.label}</span>
-              </OptionContainer>
-            </MenuItem>
-          );
-        })}
-      </Select>
+      <FormControl>
+        <InputLabel>
+          {required && <DxcRequired theme={theme} />}
+          {label}
+        </InputLabel>
+        <Select
+          name={name}
+          theme={theme}
+          multiple={multiple}
+          renderValue={getRenderValue}
+          onChange={handleSelectChange}
+          value={(value!=null && value && value.length && value) || selectedValue}
+          disabled={disabled}
+          MenuProps={{
+            classes: { paper: classes.dropdownStyle, list: classes.itemList }
+          }}
+        >
+          {options.map(option => {
+            return (
+              <MenuItem id={option.value} value={option.value} disableRipple={disableRipple}>
+                {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, option)} />}
+                <OptionContainer iconPosition={iconPosition}>
+                  {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
+                  <span>{option.label}</span>
+                </OptionContainer>
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
     </SelectContainer>
   );
 };
@@ -154,7 +159,7 @@ const SelectedIconContainer = styled.div`
   justify-content: ${props => (props.iconPosition === "before" && "flex-start") || "flex-end"};
   margin-right: ${props => (props.multiple && props.label && "15px") || "0px"};
   &::before {
-    content: '${props => ((props.iconPosition === "after" && props.multiple) && ",") || ""}'; 
+    content: '${props => (props.iconPosition === "after" && props.multiple && ",") || ""}'; 
     margin: 0 4px;
   }
   &::after {
@@ -184,11 +189,27 @@ const ListIcon = styled.img`
 `;
 
 const SelectContainer = styled.div`
-  display: inline-flex;
-  align-items: center;
+  margin: 15px;
+  display: inline-block;
+  .MuiFormLabel-root {
+    font-size: 16px;
+      color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+      &::before {
+        content:'${props => (props.required && "*") || ""}';
+        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        font-size: 18px; 
+      }
+      &.Mui-disabled{
+        opacity:0.5;
+      }
+      &.Mui-focused{
+        font-size: 16px;
+        color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
+      }
+      padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
+  }
   .MuiSelect-select {
     min-width: 230px;
-    min-height: 34px;
     width: 230px;
     display: flex;
     color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
@@ -207,10 +228,8 @@ const SelectContainer = styled.div`
     }
   }
   .MuiInputBase-root {
-    min-height: 34px;
     width: 230px;
     min-width: 230px;
-    
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;
@@ -234,7 +253,7 @@ const LabelContainer = styled.span`
     props.theme === "dark" && props.disabled
       ? colors.darkGrey
       : props.theme === "dark" && !props.disabled
-      ? colors.black
+      ? colors.white
       : props.theme === "light" && props.disabled
       ? colors.lightGrey
       : colors.black};

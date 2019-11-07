@@ -44,7 +44,7 @@ storiesOf("Form Components|Text", module).add(
         <InputText
           disabled={false}
           label="With Prefix text"
-          prefix="Kg"
+          prefijo="Kg"
           onChange={onChange}
           onBlur={onBlur}
           assistiveText="Assistive Text Here"
@@ -53,7 +53,7 @@ storiesOf("Form Components|Text", module).add(
         <InputText
           disabled={true}
           label="With Prefix icon"
-          prefixIconSrc={logo}
+          prefijoIconSrc={logo}
           onChange={onChange}
           onBlur={onBlur}
           onClickIcon={onClickIcon}
@@ -110,7 +110,7 @@ storiesOf("Form Components|Text", module).add(
           disabled={false}
           theme="dark"
           label="With Prefix text"
-          prefix="Kg"
+          prefijo="Kg"
           onChange={onChange}
           onBlur={onBlur}
           assistiveText="Assistive Text Here"
@@ -120,7 +120,7 @@ storiesOf("Form Components|Text", module).add(
           disabled={false}
           theme="dark"
           label="With Prefix icon"
-          prefixIconSrc={logo}
+          prefijoIconSrc={logo}
           onChange={onChange}
           onBlur={onBlur}
           onClickIcon={onClickIcon}
@@ -148,7 +148,7 @@ storiesOf("Form Components|Text", module).add(
           label="Multiline"
           multiline={true}
           sufix="€"
-          prefix="Kg"
+          prefijo="Kg"
           theme="dark"
           onChange={onChange}
           onBlur={onBlur}
@@ -166,7 +166,7 @@ const knobProps = () => ({
   theme: select("Theme", { light: "light", dark: "dark" }, "light"),
   assistiveText: text("Assistive text", "Helper text"),
   disabled: boolean("Disabled", false),
-  prefix: text("Prefix word", ""),
+  prefijo: text("Prefix word", ""),
   sufix: text("Sufix word", ""),
   required: boolean("Required", false),
   error: boolean("Error", false),
