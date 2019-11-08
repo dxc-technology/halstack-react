@@ -104,6 +104,7 @@ const SufixIcon = styled.img`
   left: 0;
   max-height: 20px;
   max-width: 20px;
+  margin-right: 8px;
   width: 20px;
   opacity: ${props => (props.disabled && 0.5) || 1};
   cursor: ${props => (props.disabled && "not-allowed") || "default"};
@@ -244,7 +245,7 @@ const TextContainer = styled.div`
       }
       .MuiInputBase-input {
         padding-left: ${props => ((props.prefijoIconSrc || (props.prefijo && !props.multiline)) && "32px") || "inherit"};
-        color: ${props => (props.theme === "light" ? colors.darkGrey : colors.white)};
+        color: ${props => (props.theme === "light" ? colors.black : colors.white)};
          text-overflow: ellipsis;
         &.Mui-disabled {
           cursor: not-allowed;
