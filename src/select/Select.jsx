@@ -20,8 +20,9 @@ const useStyles = makeStyles(() => ({
     minWidth: "210px"
   },
   dropdownStyle: {
-    boxShadow: "0px 8px 10px 0px rgba(217,217,217,1)",
-    minWidth: "210px !important"
+    boxShadow: "0px 2px 10px 0px rgba(217,217,217,1)",
+    minWidth: "210px !important",
+    width: "230px"
   },
   itemList: {
     color: colors.darkGrey,
@@ -119,10 +120,9 @@ const DxcSelect = ({
   };
 
   return (
-    <SelectContainer theme={theme}>
+    <SelectContainer theme={theme} required={required}>
       <FormControl>
-        <InputLabel>
-          {required && <DxcRequired theme={theme} />}
+        <InputLabel disabled={disabled}>
           {label}
         </InputLabel>
         <Select
@@ -131,10 +131,15 @@ const DxcSelect = ({
           multiple={multiple}
           renderValue={getRenderValue}
           onChange={handleSelectChange}
-          value={(value!=null && value && value.length && value) || selectedValue}
+          value={(value != null && value && value.length && value) || selectedValue}
           disabled={disabled}
           MenuProps={{
-            classes: { paper: classes.dropdownStyle, list: classes.itemList }
+            classes: { paper: classes.dropdownStyle, list: classes.itemList },
+            getContentAnchorEl: null,
+            anchorOrigin: {
+              vertical: "bottom",
+              horizontal: "left"
+            }
           }}
         >
           {options.map(option => {
@@ -159,8 +164,9 @@ const SelectedIconContainer = styled.div`
   justify-content: ${props => (props.iconPosition === "before" && "flex-start") || "flex-end"};
   margin-right: ${props => (props.multiple && props.label && "15px") || "0px"};
   &::before {
-    content: '${props => (props.iconPosition === "after" && props.multiple && ",") || ""}'; 
+    /* content: '${props => (props.iconPosition === "after" && props.multiple && ",") || ""}';  */
     margin: 0 4px;
+    ${props => props.iconPosition === "after" && props.multiple && "content:','"};
   }
   &::after {
     content: '${props => (props.iconPosition === "before" && ",") || ""}'; 
@@ -224,12 +230,24 @@ const SelectContainer = styled.div`
       content: ",";
     }
     &.Mui-disabled {
-      cursor: not-allowed !important;
+      color: ${props => (props.theme === "light" ? colors.yellow : colors.darkGrey)};
+        opacity:0.5;
+        cursor: not-allowed;
     }
   }
   .MuiInputBase-root {
     width: 230px;
     min-width: 230px;
+    &.Mui-disabled {
+        opacity:0.5;
+        cursor: not-allowed;
+    }
+  }
+  .MuiInput-underline{
+    &.Mui-disabled:before{
+      border-bottom-style: solid;
+      opacity: 0.5;
+    }
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;

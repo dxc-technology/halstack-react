@@ -53,6 +53,7 @@ const BackgroundSpinner = styled.div`
 `;
 
 const DXCSpinner = styled.div`
+  font-family: "Open Sans", sans-serif;
   border-radius: 80px;
   border: 6px solid white;
   width: ${props => (props.mode === "small" && "30px") || "120px"};
@@ -69,10 +70,10 @@ const DXCSpinner = styled.div`
         : props.mode === "small"
         ? "-7px"
         : props.label !== "" && props.showValue === false
-        ? "-75.6px"
+        ? "-78.6px"
         : props.label === "" && props.showValue === true
-        ? "-75.75px"
-        : "-89.7px"};
+        ? "-77.75px"
+        : "-95.7px"};
     margin-left: ${props => (props.mode === "small" && "-7px !important") || "-10px !important"};
   }
 

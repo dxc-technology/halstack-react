@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
+import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 import closeIcon from "./close.svg";
 import errorIcon from "./error.svg";
@@ -57,6 +58,7 @@ DxcAlert.propTypes = {
 };
 
 const AlertContainer = styled(Dialog)`
+    font-family: "Open Sans", sans-serif;
   .MuiDialog-container {
     display: ${props => (props.mode === "modal" ? "flex" : "block")};
     justify-content: ${props => (props.mode === "modal" ? "center" : "")};
