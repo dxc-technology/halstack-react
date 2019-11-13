@@ -117,6 +117,7 @@ const TextContainer = styled.div`
     font-family: "Open Sans", sans-serif;
     .MuiFormHelperText-root {
       font-family: "Open Sans", sans-serif;
+      margin-top: 6px;
     }
     .MuiFormLabel-root {
       font-size: 16px;
