@@ -50,6 +50,7 @@ const BackgroundProgressBar = styled.div`
   min-width: 685px;
   max-width: ${props => (props.overlay === true ? "100%" : "80%")};
   margin: ${props => (props.overlay === false ? "15px" : "")};
+  font-family: "Open Sans", sans-serif;
 `;
 
 const DXCProgressBar = styled.div`

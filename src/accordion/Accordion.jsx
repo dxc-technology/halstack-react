@@ -4,6 +4,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import PropTypes from "prop-types";
+import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
@@ -57,6 +58,7 @@ DxcAccordion.propTypes = {
 const DXCAccordion = styled.div`
   min-width: 280px;
   margin: 1px;
+  font-family: "Open Sans", sans-serif;
   cursor: ${props => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
     left: 85px;
