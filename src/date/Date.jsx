@@ -88,9 +88,15 @@ const StyledDPicker = styled.span`
     .MuiInputBase-input {
       font-family: "Open Sans", sans-serif;
     }
+    .MuiFormLabel-root {
+      max-width: 200px;
+      height: 16px;
+      overflow: hidden;
+    }
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
-        if (props.invalid) return props.theme === "light" ? colors.darkRed+"!important" : colors.lightRed+"!important";
+        if (props.invalid)
+          return props.theme === "light" ? colors.darkRed + "!important" : colors.lightRed + "!important";
         else {
           if (props.theme === "dark") {
             return colors.lightGrey;
@@ -193,6 +199,10 @@ const StyledDPicker = styled.span`
         }
       }};
     }
+    .MuiIconButton-root {
+      height: 32px;
+      width: 32px;
+    }
     .MuiButtonBase-root:not(.Mui-disabled) {
       color: ${colors.black};
 
@@ -232,6 +242,23 @@ const StyledDPicker = styled.span`
 
 const lightTheme = createMuiTheme({
   overrides: {
+    MuiPickersYearSelection: {
+      container: {
+        "&::-webkit-scrollbar": {
+          width: "3px"
+        },
+
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: colors.lightGrey,
+          borderRadius: "3px"
+        },
+
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: colors.darkGrey,
+          borderRadius: "3px"
+        }
+      }
+    },
     MuiPickersToolbar: {
       toolbar: {
         backgroundColor: colors.white,
