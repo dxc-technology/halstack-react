@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { ThemeProvider } from "@material-ui/styles";
-import { createMuiTheme } from "@material-ui/core";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled from "styled-components";
@@ -45,7 +44,7 @@ const DxcDate = ({
   const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : null);
 
   return (
-    <ThemeProvider theme={lightTheme}>
+    <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <StyledDPicker invalid={invalid} theme={theme} dissableRipple={dissableRipple}>
           <KeyboardDatePicker
@@ -78,7 +77,7 @@ const DxcDate = ({
           />
         </StyledDPicker>
       </MuiPickersUtilsProvider>
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 };
 
