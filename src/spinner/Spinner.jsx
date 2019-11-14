@@ -10,7 +10,7 @@ const DxcSpinner = ({ label = "", theme = "light", value, showValue = false, mod
     <BackgroundSpinner theme={theme} mode={mode}>
       <DXCSpinner showValue={showValue} label={label} mode={mode}>
         {label && mode !== "small" && (
-          <SpinnerLabel theme={theme} mode={mode}>
+          <SpinnerLabel showValue={showValue} theme={theme} mode={mode}>
             {label}
           </SpinnerLabel>
         )}
@@ -55,7 +55,7 @@ const BackgroundSpinner = styled.div`
 const DXCSpinner = styled.div`
   font-family: "Open Sans", sans-serif;
   border-radius: 80px;
-  border: 6px solid white;
+  border: ${props => (props.mode === "small" && "6px solid white") || "8.5px solid white;"};
   width: ${props => (props.mode === "small" && "30px") || "120px"};
   height: ${props => (props.mode === "small" && "30px") || "120px"};
   z-index: ${props => (props.mode === "overlay" ? "100" : "")};
@@ -70,25 +70,27 @@ const DXCSpinner = styled.div`
         : props.mode === "small"
         ? "-7px"
         : props.label !== "" && props.showValue === false
-        ? "-78.6px"
+        ? "-78.5px"
         : props.label === "" && props.showValue === true
-        ? "-77.75px"
-        : "-95.7px"};
+        ? "-78.75px"
+        : "-88.5px"};
     margin-left: ${props => (props.mode === "small" && "-7px !important") || "-10px !important"};
   }
 
   .MuiCircularProgress-circle {
-    stroke-width: ${props => (props.mode === "small" && "6.2px") || "1.98px"};
-    r: ${props => (props.mode === "small" && "18.2") || "19.8"};
+    stroke-width: ${props => (props.mode === "small" && "6.2px") || "2.7px"};
+    r: ${props => (props.mode === "small" && "18.2") || "20.2"};
   }
 `;
 
 const SpinnerLabel = styled.div`
-  margin-top: ${props => (!props.showValue && "52px") || "6px"};
+  margin-top: ${props => (props.showValue === false && "52px") || "45px"};
   color: ${props => (props.theme === "dark" || props.mode === "overlay" ? colors.white : colors.black)};
   text-transform: uppercase;
   font-size: 12px;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const SpinnerProgress = styled.div`
