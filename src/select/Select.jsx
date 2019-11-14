@@ -122,9 +122,7 @@ const DxcSelect = ({
   return (
     <SelectContainer theme={theme} required={required}>
       <FormControl>
-        <InputLabel disabled={disabled}>
-          {label}
-        </InputLabel>
+        <InputLabel disabled={disabled}>{label}</InputLabel>
         <Select
           name={name}
           theme={theme}
@@ -164,7 +162,6 @@ const SelectedIconContainer = styled.div`
   justify-content: ${props => (props.iconPosition === "before" && "flex-start") || "flex-end"};
   margin-right: ${props => (props.multiple && props.label && "15px") || "0px"};
   &::before {
-    /* content: '${props => (props.iconPosition === "after" && props.multiple && ",") || ""}';  */
     margin: 0 4px;
     ${props => props.iconPosition === "after" && props.multiple && "content:','"};
   }
@@ -200,6 +197,7 @@ const SelectContainer = styled.div`
   .MuiFormLabel-root {
     font-size: 16px;
       color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+      margin-top: -3px;
       &::before {
         content:'${props => (props.required && "*") || ""}';
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
@@ -207,6 +205,7 @@ const SelectContainer = styled.div`
       }
       &.Mui-disabled{
         opacity:0.5;
+        color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
       }
       &.Mui-focused{
         font-size: 16px;
@@ -217,6 +216,7 @@ const SelectContainer = styled.div`
   .MuiSelect-select {
     min-width: 230px;
     width: 230px;
+    height: 20px;
     display: flex;
     color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
     align-items: center;
@@ -230,7 +230,7 @@ const SelectContainer = styled.div`
       content: ",";
     }
     &.Mui-disabled {
-      color: ${props => (props.theme === "light" ? colors.yellow : colors.darkGrey)};
+      color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
         opacity:0.5;
         cursor: not-allowed;
     }
