@@ -96,7 +96,7 @@ const StyledDPicker = styled.span`
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
         if (props.invalid)
-          return props.theme === "light" ? colors.darkRed + "!important" : colors.lightRed + "!important";
+          return props.theme === "light" ? `${colors.darkRed} !important` : `${colors.lightRed} !important`;
         else {
           if (props.theme === "dark") {
             return colors.lightGrey;
@@ -118,6 +118,8 @@ const StyledDPicker = styled.span`
       font-family: "Open Sans", sans-serif;
       display: flex;
       flex-direction: row-reverse;
+      justify-content: flex-end;
+      white-space: nowrap;
       .MuiFormLabel-asterisk {
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         margin-right: 1px;
@@ -150,6 +152,8 @@ const StyledDPicker = styled.span`
       }};
     }
     .MuiInput-underline:hover:not(.Mui-disabled):not(.Mui-error):before {
+      
+      border-bottom: 1px solid;
       border-color: ${props => {
         if (props.invalid) {
           return props.theme === "light" ? colors.darkRed : colors.lightRed;
@@ -277,7 +281,8 @@ const lightTheme = createMuiTheme({
         minWidth: "unset",
         maxWidth: "unset",
         minHeight: "unset",
-        padding: "0px 10px"
+        padding: "0px 10px",
+        height: "316px"
       }
     },
     MuiPickersToolbarText: {
@@ -292,6 +297,11 @@ const lightTheme = createMuiTheme({
       switchHeader: {
         backgroundColor: colors.white,
         color: colors.black
+      }
+    },
+    MuiPickersCalendar: {
+      week: {
+        marginBottom: "2px",
       }
     },
     MuiPickersDay: {
