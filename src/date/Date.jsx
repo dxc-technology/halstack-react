@@ -118,6 +118,8 @@ const StyledDPicker = styled.span`
       font-family: "Open Sans", sans-serif;
       display: flex;
       flex-direction: row-reverse;
+      justify-content: flex-end;
+      white-space: nowrap;
       .MuiFormLabel-asterisk {
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         margin-right: 1px;
