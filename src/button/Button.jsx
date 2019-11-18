@@ -27,7 +27,7 @@ DxcButton.propTypes = {
   onClick: PropTypes.func,
   iconSrc: PropTypes.string
 };
-const LabelContainer = styled.div`
+const LabelContainer = styled.span`
   line-height: 18px;
   font-size: 14px;
 `;
