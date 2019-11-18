@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Slider from "@material-ui/lab/Slider";
-import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
@@ -53,7 +52,7 @@ const DxcSlider = ({
         disabled={disabled}
       />
       {showLimitsValues && (
-        <MaxLabelContainer theme={theme} disabled={disabled}>
+        <MaxLabelContainer theme={theme} disabled={disabled} step={step}>
           {maxValue}
         </MaxLabelContainer>
       )}
@@ -215,7 +214,7 @@ const MaxLabelContainer = styled.span`
       ? colors.lightGrey
       : colors.black};
   font-size: 16px;
-  margin-left:20px;
+  margin-left: ${props => (props.step === 1 ? "15px" : "20px")};
 `;
 
 export default DxcSlider;
