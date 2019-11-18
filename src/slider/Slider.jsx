@@ -201,7 +201,7 @@ const MinLabelContainer = styled.span`
       ? colors.lightGrey
       : colors.black};
   font-size: 16px;
-  margin: 5px 15px 5px;
+  margin-right: 15px;
 `;
 
 const MaxLabelContainer = styled.span`
@@ -215,7 +215,7 @@ const MaxLabelContainer = styled.span`
       ? colors.lightGrey
       : colors.black};
   font-size: 16px;
-  margin: 0px 0px 5px 15px;
+  margin-left:20px;
 `;
 
 export default DxcSlider;
