@@ -45,14 +45,7 @@ storiesOf("Form Components|Button", module).add(
       </div>
       <h3>With icon</h3>
       <div>
-        <Button
-          mode="basic"
-          theme="light"
-          label="Basic Button"
-          onClick={onClick}
-          iconPosition="after"
-          iconSrc={logo}
-        />
+        <Button mode="basic" theme="light" label="Basic Button" onClick={onClick} iconPosition="after" iconSrc={logo} />
         <Button
           mode="raised"
           theme="light"
@@ -121,7 +114,8 @@ const knobProps = () => ({
   mode: select("mode", { basic: "basic", raised: "raised", flat: "flat", outlined: "outlined" }, "basic"),
   theme: select("theme", { light: "light", dark: "dark" }, "light"),
   disabled: boolean("disabled", false),
-  iconPosition: select("icon poistion", { before: "before", after: "after" }, "before")
+  iconPosition: select("icon position", { before: "before", after: "after" }, "before"),
+  icon: boolean("With Icon", true)
 });
 
 storiesOf("Form Components|Button", module).add(
@@ -130,7 +124,9 @@ storiesOf("Form Components|Button", module).add(
     const props = knobProps();
     return (
       <div style={{ background: (props.theme === "dark" && "black") || "transparent" }}>
-        <Button {...props} onClick={onClick} iconSrc={logo} />
+        {(props.icon && <Button {...props} onClick={onClick} iconSrc={logo} />) || (
+          <Button {...props} onClick={onClick} />
+        )}
       </div>
     );
   },
