@@ -124,13 +124,9 @@ const StyledDPicker = styled.span`
     .MuiInput-underline:not(.Mui-disabled):not(.Mui-error):before {
       border-color: ${props => {
         if (props.invalid) {
-          return props.theme === "light" ? colors.darkRed : colors.lightRed;
+          return props.theme === "light" ? `${colors.darkRed} !important` : `${colors.lightRed} !important`;
         } else {
-          if (props.theme === "dark") {
-            return colors.lightGrey;
-          } else {
-            return colors.darkGrey;
-          }
+          return props.theme === "dark" ? colors.lightGrey : colors.darkGrey;
         }
       }};
     }
@@ -139,11 +135,7 @@ const StyledDPicker = styled.span`
         if (props.invalid) {
           return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
-          if (props.theme === "dark") {
-            return colors.white;
-          } else {
-            return colors.black;
-          }
+          return props.theme === "dark" ? colors.white : colors.black;
         }
       }};
     }
@@ -154,10 +146,7 @@ const StyledDPicker = styled.span`
         if (props.invalid) {
           return props.theme === "light" ? colors.darkRed : colors.lightRed;
         } else {
-          if (props.theme === "dark") return colors.lightGrey;
-          else {
-            return colors.darkGrey;
-          }
+          return props.theme === "dark" ? colors.lightGrey : colors.darkGrey;
         }
       }};
     }
@@ -171,13 +160,9 @@ const StyledDPicker = styled.span`
     .MuiFormHelperText-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
         if (props.invalid) {
-          return props.theme === "light" ? colors.darkRed : colors.lightRed;
+          return props.theme === "light" ? `${colors.darkRed} !important` : `${colors.lightRed} !important`;
         } else {
-          if (props.theme === "dark") {
-            return colors.lightGrey;
-          } else {
-            return colors.darkGrey;
-          }
+          return props.theme === "dark" ? colors.lightGrey : colors.darkGrey;
         }
       }};
     }
