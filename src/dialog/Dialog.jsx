@@ -29,7 +29,7 @@ const DxcDialog = ({ isVisible = false, isCloseVisible = false, onClose, childre
 
 const DialogContainer = styled(Dialog)`
   overflow: unset;
-  
+
   .MuiBackdrop-root {
     background-color: ${props => (props.overlay === true ? colors.black + "B3" : "transparent")};
   }
@@ -44,19 +44,6 @@ const DialogContainer = styled(Dialog)`
 const Children = styled.div`
   overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: ${colors.lightGrey};
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${colors.darkGrey};
-    border-radius: 3px;
-  }
   ::-webkit-scrollbar {
     width: 3px;
   }
@@ -69,6 +56,22 @@ const Children = styled.div`
   ::-webkit-scrollbar-thumb {
     background-color: ${colors.darkGrey};
     border-radius: 3px;
+  }
+
+  & * {
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: ${colors.lightGrey};
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${colors.darkGrey};
+      border-radius: 3px;
+    }
   }
 `;
 
