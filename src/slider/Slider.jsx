@@ -37,7 +37,11 @@ const DxcSlider = ({
 
   return (
     <SliderContainer theme={theme}>
-      {showLimitsValues && <MinLabelContainer theme={theme}>{minValue}</MinLabelContainer>}
+      {showLimitsValues && (
+        <MinLabelContainer theme={theme} disabled={disabled}>
+          {minValue}
+        </MinLabelContainer>
+      )}
       <Slider
         value={value >= 0 || innerValue}
         min={minValue}
@@ -48,7 +52,11 @@ const DxcSlider = ({
         marks={marks || []}
         disabled={disabled}
       />
-      {showLimitsValues && <MaxLabelContainer theme={theme}>{maxValue}</MaxLabelContainer>}
+      {showLimitsValues && (
+        <MaxLabelContainer theme={theme} disabled={disabled}>
+          {maxValue}
+        </MaxLabelContainer>
+      )}
       {showInput && (
         <StyledTextInput theme={theme}>
           <DxcInput
@@ -93,6 +101,8 @@ const SliderContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 15px 15px 15px 15px;
+  min-width: 185px;
+  max-width: 100%;
 
   .MultiSlider-root {
     display: flex;
@@ -113,7 +123,7 @@ const SliderContainer = styled.div`
       height: 14px;
       width: 14px;
       background-color: ${colors.lightGrey};
-      top: 38%;
+      top: 35%;
     }
     & .MuiSlider-track {
       background-color: ${colors.lightGrey};
@@ -182,15 +192,29 @@ const SliderContainer = styled.div`
 
 const MinLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
+  color: ${props =>
+    props.theme === "dark" && props.disabled
+      ? colors.darkGrey
+      : props.theme === "dark"
+      ? colors.white
+      : props.theme === "light" && props.disabled
+      ? colors.lightGrey
+      : colors.black};
   font-size: 16px;
   margin: 5px 15px 5px;
 `;
 
 const MaxLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
-  font-size: 14px;
+  color: ${props =>
+    props.theme === "dark" && props.disabled
+      ? colors.darkGrey
+      : props.theme === "dark"
+      ? colors.white
+      : props.theme === "light" && props.disabled
+      ? colors.lightGrey
+      : colors.black};
+  font-size: 16px;
   margin: 0px 0px 5px 15px;
 `;
 
