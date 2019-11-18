@@ -154,8 +154,17 @@ const StyledDPicker = styled.span`
       border-color: ${colors.darkGrey};
       border-bottom-style: solid;
     }
+    .MuiInput-underline.Mui-error:before {
+      border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+    }
+    .MuiInput-underline.Mui-error:after {
+      border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+    }
     .MuiFormHelperText-root {
       font-family: "Open Sans", sans-serif;
+      &.Mui-error {
+        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+      }
     }
     .MuiFormHelperText-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
