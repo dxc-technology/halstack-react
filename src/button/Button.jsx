@@ -38,7 +38,7 @@ const ButtonIcon = styled.img`
   margin-left: ${props => (props.iconPosition === "after" && "10px") || "0px"};
   margin-right: ${props => (props.iconPosition === "before" && "10px") || "0px"};
 `;
-const DxCButton = styled.span`
+const DxCButton = styled.div`
   display: inline-block;
   margin: 15px;
   cursor:${props => (props.disabled  && "not-allowed") || "pointer"};
@@ -48,7 +48,9 @@ const DxCButton = styled.span`
       display: flex;
       flex-direction: ${props => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
+      min-width: 62px;
     }
+    letter-spacing: 1px;
     box-shadow: none;
     font-size: 14px;
     font-weight: 500;
@@ -86,7 +88,7 @@ const DxCButton = styled.span`
       } else if (mode === "outlined") {
         return `
           background-color: transparent;
-          padding: 10px 30px;
+          padding: 10px 28px;
           color: ${(theme === "light" && colors.black) || colors.white};
           border: 2px solid;
           border-color: ${(theme === "light" && colors.black) || colors.white};
@@ -135,6 +137,7 @@ const DxCButton = styled.span`
       } else {
         return `
           background-color: ${colors.yellow};
+          color: ${colors.black}
           box-shadow: 0px 1.5px 3px 0px rgba(0, 0, 0, 0.16);
           &:hover{
             background-color:${(theme === "light" && colors.black) || colors.lightBlack};
