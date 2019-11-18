@@ -94,13 +94,7 @@ const StyledDPicker = styled.span`
       overflow: hidden;
     }
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
-      color: ${props => {
-        if (props.theme === "dark") {
-          return colors.lightGrey;
-        } else {
-          return colors.darkGrey;
-        }
-      }};
+      color: ${props => (props.theme === "dark" ? colors.lightGrey : colors.darkGrey)};
     }
     .MuiInputLabel-shrink:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
