@@ -15,7 +15,7 @@ import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   root: {
     minWidth: "210px"
   },
@@ -24,15 +24,13 @@ const useStyles = makeStyles(() => ({
     minWidth: "210px !important",
     width: "230px"
   },
-  itemList: {
+  itemList: multiple => ({
     color: colors.darkGrey,
     "&.MuiList-padding": {
       paddingBottom: "10px"
     },
     "& li": {
-      paddingTop: "10px",
-      paddingRight: "20px",
-      paddingLeft: "10px",
+      padding: multiple ? "0 20px 0 5px" : "10px 20px 10px 20px",
       fontSize: "16px",
       "&:hover": {
         backgroundColor: colors.darkWhite,
@@ -47,8 +45,8 @@ const useStyles = makeStyles(() => ({
         color: colors.black
       }
     }
-  }
-}));
+  })
+});
 
 const DxcSelect = ({
   value,
@@ -64,7 +62,7 @@ const DxcSelect = ({
   multiple = false
 }) => {
   const [selectedValue, setSelectedValue] = (multiple && useState([])) || useState("");
-  const classes = useStyles();
+  const classes = useStyles(multiple);
 
   const handleSelectChange = selectedOption => {
     if (multiple) {
