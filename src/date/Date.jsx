@@ -95,15 +95,17 @@ const StyledDPicker = styled.span`
     }
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
+        if (props.theme === "dark") {
+          return colors.lightGrey;
+        } else {
+          return colors.darkGrey;
+        }
+      }};
+    }
+    .MuiInputLabel-shrink:not(.Mui-disabled):not(.Mui-error) {
+      color: ${props => {
         if (props.invalid)
           return props.theme === "light" ? `${colors.darkRed} !important` : `${colors.lightRed} !important`;
-        else {
-          if (props.theme === "dark") {
-            return colors.lightGrey;
-          } else {
-            return colors.darkGrey;
-          }
-        }
       }};
     }
     .MuiFormLabel-root.Mui-disabled {
