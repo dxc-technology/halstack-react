@@ -10,8 +10,6 @@ import PropTypes from "prop-types";
 
 import DxcCheckbox from "../checkbox/Checkbox";
 
-import DxcRequired from "../common/RequiredComponent";
-
 import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 
@@ -27,7 +25,8 @@ const useStyles = makeStyles({
   itemList: multiple => ({
     color: colors.darkGrey,
     "&.MuiList-padding": {
-      paddingBottom: "10px"
+      paddingBottom: "0px",
+      paddingTop: "0px"
     },
     "& li": {
       padding: multiple ? "0 20px 0 5px" : "10px 20px 10px 20px",
@@ -144,7 +143,7 @@ const DxcSelect = ({
                 {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, option)} />}
                 <OptionContainer iconPosition={iconPosition}>
                   {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
-                  <span>{option.label}</span>
+                  <LabelCont>{option.label}</LabelCont>
                 </OptionContainer>
               </MenuItem>
             );
@@ -154,11 +153,18 @@ const DxcSelect = ({
     </SelectContainer>
   );
 };
+const LabelCont = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 const SelectedIconContainer = styled.div`
   display: flex;
   flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
   justify-content: ${props => (props.iconPosition === "before" && "flex-start") || "flex-end"};
   margin-right: ${props => (props.multiple && props.label && "15px") || "0px"};
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   &::before {
     margin: 0 4px;
     ${props => props.iconPosition === "after" && props.multiple && "content:','"};
@@ -172,12 +178,17 @@ const SelectedLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
   margin-left: ${props => ((props.iconPosition === "after" || !props.iconSrc) && "0px") || "10px"};
   margin-right: ${props => ((props.iconPosition === "before" || !props.iconSrc) && "0px") || "10px"};
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 `;
 const OptionContainer = styled.div`
   font-family: "Open Sans", sans-serif;
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.iconPosition === "before" && "row") || "row-reverse"};
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const ListIcon = styled.img`
@@ -263,20 +274,6 @@ const SelectContainer = styled.div`
     color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
   }
 `;
-const LabelContainer = styled.span`
-  font-family: "Open Sans", sans-serif;
-  color: ${props =>
-    props.theme === "dark" && props.disabled
-      ? colors.darkGrey
-      : props.theme === "dark" && !props.disabled
-      ? colors.white
-      : props.theme === "light" && props.disabled
-      ? colors.lightGrey
-      : colors.black};
-  margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
-  margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
-  cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
-`;
 
 DxcSelect.propTypes = {
   label: PropTypes.string,
@@ -294,7 +291,7 @@ DxcSelect.propTypes = {
       label: PropTypes.any.isRequired,
       iconSrc: PropTypes.string
     })
-  )
+  ),
+  multiple: PropTypes.bool
 };
-
 export default DxcSelect;
