@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 import colors from "../common/variables.js";
 
-const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", onClick="", children }) => {
+const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", onClick = "", children }) => {
   function onClickHandle() {
     if (typeof onClick === "function") {
       onClick();
@@ -17,22 +17,23 @@ const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", o
   }
   return (
     <HeaderContainer theme={theme} underlined={underlined} position="static">
-      <LogoIcon
-        onLogoClick={onClick}
-        onClick={() => onClickHandle()}
-        logoSrc={logoSrc}
-        src={
-          theme === "light" && underlined && logoSrc === "default"
-            ? DefaultBlack
-            : theme === "light" && !underlined && logoSrc === "default"
-            ? DefaultWhite
-            : theme === "dark" && underlined && logoSrc === "default"
-            ? DefaultWhite
-            : theme === "dark" && !underlined && logoSrc === "default"
-            ? DefaultBlack
-            : logoSrc
-        }
-      />
+      <a onClick={() => onClickHandle()}>
+        <LogoIcon
+          onLogoClick={onClick}
+          logoSrc={logoSrc}
+          src={
+            theme === "light" && underlined && logoSrc === "default"
+              ? DefaultBlack
+              : theme === "light" && !underlined && logoSrc === "default"
+              ? DefaultWhite
+              : theme === "dark" && underlined && logoSrc === "default"
+              ? DefaultWhite
+              : theme === "dark" && !underlined && logoSrc === "default"
+              ? DefaultBlack
+              : logoSrc
+          }
+        />
+      </a>
       <ChildContainer>{children}</ChildContainer>
     </HeaderContainer>
   );
@@ -84,7 +85,7 @@ const HeaderContainer = styled(AppBar)`
     }
   }
   & {
-    min-height: ${props => (props.underlined === true ? "62px" : "64px")};
+    min-height: 64px;
   }
   &.MuiAppBar-root {
     flex-direction: row;
@@ -119,6 +120,7 @@ const LogoIcon = styled.img`
 const ChildContainer = styled.div`
   display: flex;
   align-items: center;
+  max-width: calc(100% - 200px);
 `;
 
 DxcHeader.propTypes = {
