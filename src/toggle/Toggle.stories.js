@@ -17,29 +17,61 @@ storiesOf("Form Components|Toggle", module).add(
   () => {
     const ControlledStory = ({}) => {
       const [selected, setSelected] = useState(false);
-      const [selected1, setSelected1] = useState(false);
-      const [selected2, setSelected2] = useState(false);
+      const [selected1, setselected1] = useState(false);
+      const [selected2, setselected2] = useState(false);
+      const [selected3, setselected3] = useState(false);
+      const [selected4, setselected4] = useState(false);
+      const [selected5, setselected5] = useState(false);
+
+      const [selected6, setSelected6] = useState(false);
+      const [selected7, setselected7] = useState(false);
+      const [selected8, setselected8] = useState(false);
+      const [selected9, setselected9] = useState(false);
+      const [selected10, setselected10] = useState(false);
+      const [selected11, setselected11] = useState(false);
 
       const click = value => {
         setSelected(!value);
-        if (!value) {
-          setSelected2(false);
-        }
       };
 
       const click1 = value => {
-        setSelected1(!value);
-        if (!value) {
-          setSelected2(false);
-        }
+        setselected1(!value);
       };
 
       const click2 = value => {
-        setSelected2(!value);
-        if (!value) {
-          setSelected(false);
-          setSelected1(false);
-        }
+        setselected2(!value);
+      };
+
+      const click3 = value => {
+        setselected3(!value);
+      };
+      const click4 = value => {
+        setselected4(!value);
+      };
+      const click5 = value => {
+        setselected5(!value);
+      };
+
+      const click6 = value => {
+        setSelected6(!value);
+      };
+
+      const click7 = value => {
+        setselected7(!value);
+      };
+
+      const click8 = value => {
+        setselected8(!value);
+      };
+
+      const click9 = value => {
+        setselected9(!value);
+      };
+      const click10 = value => {
+        setselected10(!value);
+      };
+      const click11 = value => {
+        setselected11(!value);
       };
 
       return (
@@ -47,8 +79,8 @@ storiesOf("Form Components|Toggle", module).add(
           <h3>Light</h3>
           <div style={{ width: "100%", display: "inline-flex", alignItems: "center" }}>
             <DxcToggle iconSrc={amazon} label="Toggle 1" selected={selected} onClick={click}></DxcToggle>
-            <DxcToggle label="Toggle 2" selected={selected1} disabled={true} onClick={click1}></DxcToggle>
-            <DxcToggle iconSrc={amazon} selected={selected2} onClick={click2}></DxcToggle>
+            <DxcToggle label="Toggle 2" selected={true} disabled={true}></DxcToggle>
+            <DxcToggle iconSrc={amazon} selected={selected1} onClick={click1}></DxcToggle>
             <DxcToggle
               label="Disabled Ripple"
               disableRipple={true}
@@ -61,34 +93,33 @@ storiesOf("Form Components|Toggle", module).add(
               iconSrc={amazon}
               label="Toggle 1"
               mode="outlined"
-              selected={selected}
+              selected={false}
               disabled={true}
-              onClick={click}
             ></DxcToggle>
-            <DxcToggle label="Toggle 2" mode="outlined" selected={selected1} onClick={click1}></DxcToggle>
-            <DxcToggle iconSrc={amazon} mode="outlined" selected={selected2} onClick={click2}></DxcToggle>
+            <DxcToggle label="Toggle 2" mode="outlined" selected={selected3} onClick={click3}></DxcToggle>
+            <DxcToggle iconSrc={amazon} mode="outlined" selected={selected4} onClick={click4}></DxcToggle>
             <DxcToggle
               label="Disabled Ripple"
               disableRipple={true}
               iconSrc={amazon}
               mode="outlined"
-              selected={selected2}
-              onClick={click2}
+              selected={selected5}
+              onClick={click5}
             ></DxcToggle>
           </div>
 
           <h3>Dark</h3>
           <div style={{ width: "100%", display: "inline-flex", background: "black", alignItems: "center" }}>
-            <DxcToggle theme="dark" iconSrc={amazon} label="Toggle 1" selected={selected} onClick={click}></DxcToggle>
-            <DxcToggle theme="dark" label="Toggle 2" selected={selected1} disabled={true} onClick={click1}></DxcToggle>
-            <DxcToggle theme="dark" iconSrc={amazon} selected={selected2} onClick={click2}></DxcToggle>
+            <DxcToggle theme="dark" iconSrc={amazon} label="Toggle 1" selected={selected6} onClick={click6}></DxcToggle>
+            <DxcToggle theme="dark" label="Toggle 2" selected={false} disabled={true}></DxcToggle>
+            <DxcToggle theme="dark" iconSrc={amazon} selected={selected7} onClick={click7}></DxcToggle>
             <DxcToggle
               label="Disabled Ripple"
               disableRipple={true}
               theme="dark"
               iconSrc={amazon}
-              selected={selected2}
-              onClick={click2}
+              selected={selected8}
+              onClick={click8}
             ></DxcToggle>
 
             <DxcToggle
@@ -96,20 +127,19 @@ storiesOf("Form Components|Toggle", module).add(
               iconSrc={amazon}
               label="Toggle 1"
               mode="outlined"
-              selected={selected}
+              selected={true}
               disabled={true}
-              onClick={click}
             ></DxcToggle>
-            <DxcToggle theme="dark" label="Toggle 2" mode="outlined" selected={selected1} onClick={click1}></DxcToggle>
-            <DxcToggle theme="dark" iconSrc={amazon} mode="outlined" selected={selected2} onClick={click2}></DxcToggle>
+            <DxcToggle theme="dark" label="Toggle 2" mode="outlined" selected={selected9} onClick={click9}></DxcToggle>
+            <DxcToggle theme="dark" iconSrc={amazon} mode="outlined" selected={selected10} onClick={click10}></DxcToggle>
             <DxcToggle
               label="Disabled Ripple"
               disableRipple={true}
               theme="dark"
               iconSrc={amazon}
               mode="outlined"
-              selected={selected2}
-              onClick={click2}
+              selected={selected11}
+              onClick={click11}
             ></DxcToggle>
           </div>
         </div>
