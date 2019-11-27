@@ -10,6 +10,7 @@
     "no-underscore-dangle": ["error", { "allow": ["_options", "_links"] }],
     "react/jsx-one-expression-per-line": "allow",
     "no-nested-ternary": "off",
-    "import/extensions": "allow"
+    "import/extensions": "allow",
+    "import/no-unresolved": ["error", { "ignore": ["react", "styled-components"] }]
   }
 }
