@@ -13,6 +13,6 @@ const colors = {
   lightYellow: "#FCF2BD",
   lightPink: "#F9CFCF",
   lightGreen: "#DBF1C4"
-}
+};
 
 export default colors;
