@@ -60,7 +60,7 @@ const DxcSelect = ({
   iconPosition = "after",
   multiple = false
 }) => {
-  const [selectedValue, setSelectedValue] = (multiple && useState([])) || useState("");
+  const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
   const classes = useStyles(multiple);
 
   const handleSelectChange = selectedOption => {
@@ -180,7 +180,6 @@ const SelectedLabelContainer = styled.span`
   margin-right: ${props => ((props.iconPosition === "before" || !props.iconSrc) && "0px") || "10px"};
   overflow: hidden;
   text-overflow: ellipsis;
-
 `;
 const OptionContainer = styled.div`
   font-family: "Open Sans", sans-serif;

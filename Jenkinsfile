@@ -105,23 +105,20 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                sh '''
-                    npm install
-                '''
+                dir("lib") {
+                    sh '''
+                        npm install
+                    '''
+                }
             }
         }
         stage('Build dxc-react-cdk library') {
             steps {
-                sh '''
-                    npm run build
-                '''
-            }
-        }
-        stage('Build dxc-react-cdk storybook') {
-            steps {
-                sh '''
-                    npm run build-storybook
-                '''
+                dir("lib") {
+                    sh '''
+                        npm run build
+                    '''
+                }
             }
         }
         stage('Test library') {
@@ -147,40 +144,12 @@ pipeline {
         stage('Publish dxc-react-cdk alpha version to Artifactory ') {
             when { branch 'master' }
             steps {
-                // Publish library to npm repository
-                sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./package.json"
-                sh '''
-                    npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
-                '''
-            }
-        }
-        stage('Deploy storybook to dev and publish to Artifactory') {
-            when { branch 'master' }
-            steps {
-                // Deploying storybook to dev-diaas-react-storybook environment
-                withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'DIAAS-AWS-CLI',
-                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-                ]]) {
-                    withAWS(role:"arn:aws:iam::665158502186:role/ISS_DIAAS_PowerUser"){
-                        sh '''
-                            aws s3 rm s3://dev-diaas-react-storybook/ --recursive
-                            aws s3 cp ./storybook-static/ s3://dev-diaas-react-storybook/ --recursive
-                        '''
-                    }
-                }
-                // Zipping storybook
-                sh '''
-                    rm -rf storybook.zip
-                '''
-                zip zipFile: 'storybook.zip', archive: false, dir: './storybook-static'
-                // Uploading storybook to Artifactory (diaas-generic)
-                withCredentials([usernamePassword(credentialsId:"diaas-rw", passwordVariable:"ARTIF_PASSWORD", usernameVariable:"ARTIF_USER")]) {
-                  sh '''
-                        curl -u${ARTIF_USER}:${ARTIF_PASSWORD} -T ./storybook.zip "https://artifactory.csc.com/artifactory/diaas-generic/"${SERVICE_NAME}"/storybook/storybook-bundle.${BRANCH_NAME}.${BUILD_ID}.zip"
-                  '''
+                dir("lib") {
+                    // Publish library to npm repository
+                    sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./package.json"
+                    sh '''
+                        npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
+                    '''
                 }
             }
         }
@@ -189,36 +158,38 @@ pipeline {
                 expression { env.RELEASE_VALID == 'valid' } 
             }
             steps {
-                script {
-                    if (env.BUILD_ID == 1) {
-                        sh "git checkout -b ${GIT_BRANCH}"
-                    } else {
-                        sh "git checkout ${GIT_BRANCH}"
-                        sh "git reset --hard origin/${GIT_BRANCH}"
-                        sh "git tag | xargs git tag -d"
+                dir("lib") {
+                    script {
+                        if (env.BUILD_ID == 1) {
+                            sh "git checkout -b ${GIT_BRANCH}"
+                        } else {
+                            sh "git checkout ${GIT_BRANCH}"
+                            sh "git reset --hard origin/${GIT_BRANCH}"
+                            sh "git tag | xargs git tag -d"
+                        }
+                        sh "git pull origin ${GIT_BRANCH}"
+                        if (env.RELEASE_OPTION == 'major') {
+                            sh "npm version major"
+                        } else if (env.RELEASE_OPTION == 'minor') {
+                            sh "npm version minor"
+                        } else if (env.RELEASE_OPTION == 'patch') {
+                            sh "npm version patch"
+                        } else if (env.RELEASE_OPTION == 'premajor') {
+                            sh "npm version premajor --preid=${RELEASE_TYPE}"
+                        } else if (env.RELEASE_OPTION == 'preminor') {
+                            sh "npm version preminor --preid=${RELEASE_TYPE}"
+                        } else if (env.RELEASE_OPTION == 'prepatch') {
+                            sh "npm version prepatch --preid=${RELEASE_TYPE}"
+                        } else if (env.RELEASE_OPTION == 'prerelease') {
+                            sh "npm version prerelease --preid=${RELEASE_TYPE}"
+                        }
+                        env.RELEASE_NUMBER = sh (
+                                script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
+                                returnStdout: true
+                            ).trim()
+                        sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${RELEASE_NUMBER}'/g' package.json"
+                        sh "git push --tags"
                     }
-                    sh "git pull origin ${GIT_BRANCH}"
-                    if (env.RELEASE_OPTION == 'major') {
-                        sh "npm version major"
-                    } else if (env.RELEASE_OPTION == 'minor') {
-                        sh "npm version minor"
-                    } else if (env.RELEASE_OPTION == 'patch') {
-                        sh "npm version patch"
-                    } else if (env.RELEASE_OPTION == 'premajor') {
-                        sh "npm version premajor --preid=${RELEASE_TYPE}"
-                    } else if (env.RELEASE_OPTION == 'preminor') {
-                        sh "npm version preminor --preid=${RELEASE_TYPE}"
-                    } else if (env.RELEASE_OPTION == 'prepatch') {
-                        sh "npm version prepatch --preid=${RELEASE_TYPE}"
-                    } else if (env.RELEASE_OPTION == 'prerelease') {
-                        sh "npm version prerelease --preid=${RELEASE_TYPE}"
-                    }
-                    env.RELEASE_NUMBER = sh (
-                            script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
-                            returnStdout: true
-                        ).trim()
-                    sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${RELEASE_NUMBER}'/g' package.json"
-                    sh "git push --tags"
                 }
             }
         }
@@ -227,17 +198,19 @@ pipeline {
                 expression { env.RELEASE_VALID == 'valid' } 
             }
             steps {
-                script {
-                    try {
-                        sh "github_changelog_generator --github-site='https://github.dxc.com' --github-api='https://github.dxc.com/api/v3/' --token d53a75471da39b66fafb25dfcc9613c069de337e"
-                        sh "cat CHANGELOG.md"
-                        sh "git add CHANGELOG.md package.json"
-                        sh "git commit -m 'New release: ${RELEASE_NUMBER}'"
-                        sh "git push origin ${GIT_BRANCH}"
-                        sh "showdown makehtml -i CHANGELOG.md -o CHANGELOG.html"
-                        sh "gren release --api-url=https://github.dxc.com/api/v3 --token=d53a75471da39b66fafb25dfcc9613c069de337e --override"
-                    } catch(err) {
-                        echo "GREN Release Notes failed!"
+                dir("lib") {
+                    script {
+                        try {
+                            sh "github_changelog_generator --github-site='https://github.dxc.com' --github-api='https://github.dxc.com/api/v3/' --token d53a75471da39b66fafb25dfcc9613c069de337e"
+                            sh "cat CHANGELOG.md"
+                            sh "git add CHANGELOG.md package.json"
+                            sh "git commit -m 'New release: ${RELEASE_NUMBER}'"
+                            sh "git push origin ${GIT_BRANCH}"
+                            sh "showdown makehtml -i CHANGELOG.md -o CHANGELOG.html"
+                            sh "gren release --api-url=https://github.dxc.com/api/v3 --token=d53a75471da39b66fafb25dfcc9613c069de337e --override"
+                        } catch(err) {
+                            echo "GREN Release Notes failed!"
+                        }
                     }
                 }
             }
@@ -247,59 +220,29 @@ pipeline {
                 expression { env.RELEASE_VALID == 'valid' } 
             }
             steps {
-                script {
-                    // Publish library to npm repository
-                    try {
-                        env.RELEASE_TYPE = sh (
-                            script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]' | grep -o '[a-z].*[^.0-9]'",
-                            returnStdout: true
-                        ).trim()
-                    } catch(err) {
-                        env.RELEASE_TYPE = ''
+                dir("lib") {
+                    script {
+                        // Publish library to npm repository
+                        try {
+                            env.RELEASE_TYPE = sh (
+                                script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]' | grep -o '[a-z].*[^.0-9]'",
+                                returnStdout: true
+                            ).trim()
+                        } catch(err) {
+                            env.RELEASE_TYPE = ''
+                        }
+                        
+                        if (env.RELEASE_TYPE == 'beta' | env.RELEASE_TYPE == 'rc') {
+                            sh '''
+                                npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag ${RELEASE_TYPE}
+                            '''
+                        } else {
+                            sh '''
+                                npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
+                            '''
+                        }
+                        
                     }
-                    
-                    if (env.RELEASE_TYPE == 'beta' | env.RELEASE_TYPE == 'rc') {
-                        sh '''
-                            npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag ${RELEASE_TYPE}
-                        '''
-                    } else {
-                        sh '''
-                            npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
-                        '''
-                    }
-                    
-                }
-            }
-        }
-        stage('Deploy storybook to demo and publish to Artifactory') {
-            when {
-                expression { env.RELEASE_VALID == 'valid' } 
-            }
-            steps {
-                // Deploying storybook to dev-diaas-react-storybook environment
-                withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'DIAAS-AWS-CLI',
-                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-                ]]) {
-                    withAWS(role:"arn:aws:iam::665158502186:role/ISS_DIAAS_PowerUser"){
-                        sh '''
-                            aws s3 rm s3://diaas-react-storybook/${RELEASE_NUMBER}/ --recursive
-                            aws s3 cp ./storybook-static/ s3://diaas-react-storybook/${RELEASE_NUMBER}/ --recursive
-                        '''
-                    }
-                }
-                // Zipping storybook
-                sh '''
-                    rm -rf storybook.zip
-                '''
-                zip zipFile: 'storybook.zip', archive: false, dir: './storybook-static'
-                // Uploading storybook to Artifactory (diaas-generic)
-                withCredentials([usernamePassword(credentialsId:"diaas-rw", passwordVariable:"ARTIF_PASSWORD", usernameVariable:"ARTIF_USER")]) {
-                  sh '''
-                        curl -u${ARTIF_USER}:${ARTIF_PASSWORD} -T ./storybook.zip "https://artifactory.csc.com/artifactory/diaas-generic/"${SERVICE_NAME}"/storybook/storybook-bundle.${BRANCH_NAME}.${BUILD_ID}.zip"
-                  '''
                 }
             }
         }
