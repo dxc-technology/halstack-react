@@ -105,20 +105,18 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                dir("lib") {
-                    sh '''
-                        npm install
-                    '''
-                }
+                sh '''
+                    cd lib
+                    npm install
+                '''
             }
         }
         stage('Build dxc-react-cdk library') {
             steps {
-                dir("lib") {
-                    sh '''
-                        npm run build
-                    '''
-                }
+                sh '''
+                    cd lib
+                    npm run build
+                '''
             }
         }
         stage('Test library') {
@@ -144,75 +142,11 @@ pipeline {
         stage('Publish dxc-react-cdk alpha version to Artifactory ') {
             when { branch 'master' }
             steps {
-                dir("lib") {
-                    // Publish library to npm repository
-                    sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./package.json"
-                    sh '''
-                        npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
-                    '''
-                }
-            }
-        }
-        stage('Tagging version') {
-            when {
-                expression { env.RELEASE_VALID == 'valid' } 
-            }
-            steps {
-                dir("lib") {
-                    script {
-                        if (env.BUILD_ID == 1) {
-                            sh "git checkout -b ${GIT_BRANCH}"
-                        } else {
-                            sh "git checkout ${GIT_BRANCH}"
-                            sh "git reset --hard origin/${GIT_BRANCH}"
-                            sh "git tag | xargs git tag -d"
-                        }
-                        sh "git pull origin ${GIT_BRANCH}"
-                        if (env.RELEASE_OPTION == 'major') {
-                            sh "npm version major"
-                        } else if (env.RELEASE_OPTION == 'minor') {
-                            sh "npm version minor"
-                        } else if (env.RELEASE_OPTION == 'patch') {
-                            sh "npm version patch"
-                        } else if (env.RELEASE_OPTION == 'premajor') {
-                            sh "npm version premajor --preid=${RELEASE_TYPE}"
-                        } else if (env.RELEASE_OPTION == 'preminor') {
-                            sh "npm version preminor --preid=${RELEASE_TYPE}"
-                        } else if (env.RELEASE_OPTION == 'prepatch') {
-                            sh "npm version prepatch --preid=${RELEASE_TYPE}"
-                        } else if (env.RELEASE_OPTION == 'prerelease') {
-                            sh "npm version prerelease --preid=${RELEASE_TYPE}"
-                        }
-                        env.RELEASE_NUMBER = sh (
-                                script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
-                                returnStdout: true
-                            ).trim()
-                        sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${RELEASE_NUMBER}'/g' package.json"
-                        sh "git push --tags"
-                    }
-                }
-            }
-        }
-        stage('Generating release notes') {
-            when {
-                expression { env.RELEASE_VALID == 'valid' } 
-            }
-            steps {
-                dir("lib") {
-                    script {
-                        try {
-                            sh "github_changelog_generator --github-site='https://github.dxc.com' --github-api='https://github.dxc.com/api/v3/' --token d53a75471da39b66fafb25dfcc9613c069de337e"
-                            sh "cat CHANGELOG.md"
-                            sh "git add CHANGELOG.md package.json"
-                            sh "git commit -m 'New release: ${RELEASE_NUMBER}'"
-                            sh "git push origin ${GIT_BRANCH}"
-                            sh "showdown makehtml -i CHANGELOG.md -o CHANGELOG.html"
-                            sh "gren release --api-url=https://github.dxc.com/api/v3 --token=d53a75471da39b66fafb25dfcc9613c069de337e --override"
-                        } catch(err) {
-                            echo "GREN Release Notes failed!"
-                        }
-                    }
-                }
+                sh '''
+                    cd lib
+                    sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./package.json
+                    npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
+                '''
             }
         }
         stage('Publish dxc-react-cdk version to Artifactory ') {
@@ -220,29 +154,29 @@ pipeline {
                 expression { env.RELEASE_VALID == 'valid' } 
             }
             steps {
-                dir("lib") {
-                    script {
-                        // Publish library to npm repository
-                        try {
-                            env.RELEASE_TYPE = sh (
-                                script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]' | grep -o '[a-z].*[^.0-9]'",
-                                returnStdout: true
-                            ).trim()
-                        } catch(err) {
-                            env.RELEASE_TYPE = ''
-                        }
-                        
-                        if (env.RELEASE_TYPE == 'beta' | env.RELEASE_TYPE == 'rc') {
-                            sh '''
-                                npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag ${RELEASE_TYPE}
-                            '''
-                        } else {
-                            sh '''
-                                npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
-                            '''
-                        }
-                        
+                script {
+                    // Publish library to npm repository
+                    try {
+                        env.RELEASE_TYPE = sh (
+                            script: "cd lib && grep 'version' package.json | grep -o '[0-9.].*[^\",]' | grep -o '[a-z].*[^.0-9]'",
+                            returnStdout: true
+                        ).trim()
+                    } catch(err) {
+                        env.RELEASE_TYPE = ''
                     }
+                    
+                    if (env.RELEASE_TYPE == 'beta' | env.RELEASE_TYPE == 'rc') {
+                        sh '''
+                            cd lib
+                            npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag ${RELEASE_TYPE}
+                        '''
+                    } else {
+                        sh '''
+                            cd lib
+                            npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
+                        '''
+                    }
+                    
                 }
             }
         }
