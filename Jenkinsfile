@@ -20,13 +20,11 @@ pipeline {
                         sh "git config --global user.name 'Jenkins User'"
                     }
                     script {
-                        env.OLD_RELEASE_NUMBER = "0.0.0"
+                        env.OLD_RELEASE_NUMBER = sh (
+                            script: "cd lib && grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
+                            returnStdout: true
+                        ).trim()
                     }
-                    sh '''
-                        echo 'Old number ${OLD_RELEASE_NUMBER}'
-                        echo 'Password ${BUILD_ID}'
-                    '''
-
             }
         }
         stage('Check repo name'){
@@ -146,7 +144,6 @@ pipeline {
             steps {
                 sh '''
                     cd lib
-                    echo 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g'
                     sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./package.json
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
                 '''
