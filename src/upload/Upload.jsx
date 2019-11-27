@@ -14,11 +14,7 @@ const DxcUpload = ({ callbackUpload }) => {
     return files
       .filter(file => file.status === "pending")
       .map(file => {
-        const fileInfo = {};
-        fileInfo.name = file.name;
-        fileInfo.type = file.type;
-        fileInfo.image = file.image;
-        fileInfo.status = file.status;
+        const fileInfo = { name: file.name, type: file.type, image: file.image, status: file.status };
         fileInfo.deleteFile = () => {
           const uploadFiles = [];
           files.forEach(item => uploadFiles.push(item));
@@ -105,22 +101,21 @@ const DxcUpload = ({ callbackUpload }) => {
     });
   };
 
+  const filesToUpload = getFilesToUpload();
+  const transactionFiles = getTransactionsFiles();
+
   return (
     <DXCUpload>
-      {getTransactionsFiles() && getTransactionsFiles().length !== 0 && (
-        <Transactions transactions={getTransactionsFiles()} />
-      )}
-      {(getFilesToUpload() &&
-        getFilesToUpload().length === 0 &&
-        getTransactionsFiles() &&
-        getTransactionsFiles().length === 0 && <DragAndDropArea dashed={false} addFile={onDragHandler} />) ||
-        (getFilesToUpload() &&
-          getFilesToUpload().length === 0 &&
-          getTransactionsFiles() &&
-          getTransactionsFiles().length !== 0 && <DragAndDropArea dashed addFile={onDragHandler} />)}
+      {transactionFiles && transactionFiles.length !== 0 && <Transactions transactions={transactionFiles} />}
+      {(filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length === 0 && (
+        <DragAndDropArea dashed={false} addFile={onDragHandler} />
+      )) ||
+        (filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length !== 0 && (
+          <DragAndDropArea dashed addFile={onDragHandler} />
+        ))}
 
-      {getFilesToUpload() && getFilesToUpload().length !== 0 && (
-        <FilesToUpload filesToUpload={getFilesToUpload()} addFile={onDragHandler} onUpload={onUploadHandler} />
+      {filesToUpload && filesToUpload.length !== 0 && (
+        <FilesToUpload filesToUpload={filesToUpload} addFile={onDragHandler} onUpload={onUploadHandler} />
       )}
     </DXCUpload>
   );
