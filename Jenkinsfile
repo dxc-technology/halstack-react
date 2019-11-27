@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Git') {
             steps {
+                dir("lib") {
                     withCredentials([usernamePassword(credentialsId:"pdxc-jenkins", passwordVariable:"GIT_PASSWORD", usernameVariable:"GIT_USER")]) {
                         sh "touch ~/.netrc"
                         sh "echo 'machine github.dxc.com' >> ~/.netrc"
@@ -25,6 +26,7 @@ pipeline {
                             returnStdout: true
                         ).trim()
                     }
+                }
             }
         }
         stage('Check repo name'){
