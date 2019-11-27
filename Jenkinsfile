@@ -24,7 +24,7 @@ pipeline {
                     }
                     sh '''
                         echo 'Old number ${OLD_RELEASE_NUMBER}'
-                        echo 'Password ${GIT_PASSWORD}'
+                        echo 'Password ${BUILD_ID}'
                     '''
 
             }
