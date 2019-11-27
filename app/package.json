@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@diaas/dxc-react-cdk": "file:../lib",
+    "@reach/router": "^1.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0",
