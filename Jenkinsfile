@@ -11,7 +11,6 @@ pipeline {
     stages {
         stage('Git') {
             steps {
-                dir("lib") {
                     withCredentials([usernamePassword(credentialsId:"pdxc-jenkins", passwordVariable:"GIT_PASSWORD", usernameVariable:"GIT_USER")]) {
                         sh "touch ~/.netrc"
                         sh "echo 'machine github.dxc.com' >> ~/.netrc"
@@ -22,11 +21,10 @@ pipeline {
                     }
                     script {
                         env.OLD_RELEASE_NUMBER = sh (
-                            script: "grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
+                            script: "cd lib && grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
                             returnStdout: true
                         ).trim()
                     }
-                }
             }
         }
         stage('Check repo name'){
