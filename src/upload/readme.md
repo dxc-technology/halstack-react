@@ -4,7 +4,6 @@
 
 ```js
 import { DxcUpload } from "@diaas/dxc-react-cdk";
-
 ```
 
 ## Props
@@ -26,4 +25,13 @@ import { DxcUpload } from "@diaas/dxc-react-cdk";
 ## Examples
 
 ```js
+import React from "react";
+
+import { DxcUpload } from "@diaas/dxc-react-cdk";
+
+function App() {
+  return <Upload callbackUpload={callbackFunc} />;
+}
+
+export default App;
 ```

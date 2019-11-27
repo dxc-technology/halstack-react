@@ -16,6 +16,7 @@ import DxcSwitch from "./switch/Switch";
 import DxcTabs from "./tabs/Tabs";
 import DxcProgressBar from "./progress-bar/ProgressBar";
 import DxcSpinner from "./spinner/Spinner";
+import DxcUpload from "./upload/Upload";
 
 export {
   DxcAlert,
@@ -35,5 +36,6 @@ export {
   DxcCard,
   DxcProgressBar,
   DxcAccordion,
-  DxcSpinner
+  DxcSpinner,
+  DxcUpload
 };
