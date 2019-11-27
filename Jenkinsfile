@@ -20,10 +20,7 @@ pipeline {
                         sh "git config --global user.name 'Jenkins User'"
                     }
                     script {
-                        env.OLD_RELEASE_NUMBER = sh (
-                            script: "cd lib && grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
-                            returnStdout: true
-                        ).trim()
+                        env.OLD_RELEASE_NUMBER = "0.0.0"
                     }
             }
         }
