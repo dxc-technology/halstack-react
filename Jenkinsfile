@@ -21,7 +21,7 @@ pipeline {
                     }
                     script {
                         env.OLD_RELEASE_NUMBER = sh (
-                            script: "cd lib && grep 'version' package.json | grep -o '[0-9.].*[^\",]'",
+                            script: "grep 'version' lib/package.json | grep -o '[0-9.].*[^\",]'",
                             returnStdout: true
                         ).trim()
                     }
