@@ -144,6 +144,7 @@ pipeline {
             steps {
                 sh '''
                     cd lib
+                    echo 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g'
                     sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./package.json
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
                 '''
