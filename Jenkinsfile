@@ -22,6 +22,10 @@ pipeline {
                     script {
                         env.OLD_RELEASE_NUMBER = "0.0.0"
                     }
+                    sh '''
+                        echo 'Old number ${OLD_RELEASE_NUMBER}'
+                    '''
+
             }
         }
         stage('Check repo name'){
