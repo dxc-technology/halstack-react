@@ -30,6 +30,8 @@ const MainContainer = styled.div`
 const Content = styled.div`
   margin: 50px;
   background: white;
+  flex-grow: 1;
+  border: 1px dashed #cccccc;
 `;
 
 export default App;

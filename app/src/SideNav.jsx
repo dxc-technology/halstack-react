@@ -8,9 +8,11 @@ function SideNav() {
   return (
     <SideNavContainer>
       <Title>React Components</Title>
-      {paths.map(path => (
-        <Link to={path.path}>{path.name}</Link>
-      ))}
+      <Links>
+        {paths.map(path => (
+          <Link to={path.path}>{path.name}</Link>
+        ))}
+      </Links>
     </SideNavContainer>
   );
 }
@@ -18,13 +20,21 @@ function SideNav() {
 const SideNavContainer = styled.div`
   background: black;
   color: white;
-  padding: 20px;
+  padding: 20px 30px 20px 20px;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+
   & a {
     color: white;
     text-decoration: none;
   }
+`;
+
+const Links = styled.div`
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.h1`
