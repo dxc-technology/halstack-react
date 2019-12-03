@@ -25,7 +25,7 @@
                 </li>
                 <li>
                     <strong>modal:</strong> In this mode it will be always an overlay layer behind the alert. 
-                    <br>If onClose function is received it will be called if the X button is clicked or if the user clicks outside of the component. The alert should be displayed in the middle of the screen.
+                    If onClose function is received it will be called if the X button is clicked or if the user clicks outside of the component. The alert should be displayed in the middle of the screen.
                 </li>
             </ul>
         </td>
