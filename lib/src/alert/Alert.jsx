@@ -24,27 +24,32 @@ const DxcAlert = ({ type = "info", mode = "inline", isVisible = false, inlineTex
   };
 
   return (
-    <div>
-      <AlertContainer
-        style={{ position: "static" }}
-        mode={mode}
-        type={type}
-        inlineText={inlineText}
-        open={isVisible}
-        onClose={handleClose}
-      >
-        <DialogInfo>
-          <DialogIcon type={type} />
-          <DialogInfoText>
-            <DialogType type={type}>{getTypeText(type)}</DialogType>
-            {inlineText && "-"}
-            <DialogText>{inlineText}</DialogText>
-            {onClose && <CloseDialogIcon onClick={onClose} />}
-          </DialogInfoText>
-        </DialogInfo>
-        {children && <DialogContent>{children}</DialogContent>}
-      </AlertContainer>
-    </div>
+    <AlertContainer
+      style={{ position: "static" }}
+      mode={mode}
+      type={type}
+      inlineText={inlineText}
+      open={isVisible}
+      onClose={handleClose}
+    >
+      <DialogInfo>
+        <DialogIcon
+          src={
+            (type === "info" && infoIcon) ||
+            (type === "confirm" && successIcon) ||
+            (type === "warning" && warningIcon) ||
+            (type === "error" && errorIcon)
+          }
+        />
+        <DialogInfoText>
+          <DialogType type={type}>{getTypeText(type)}</DialogType>
+          {inlineText && inlineText !== "" && "-"}
+          <DialogText>{inlineText}</DialogText>
+          {onClose && <CloseDialogIcon src={closeIcon} onClick={onClose} />}
+        </DialogInfoText>
+      </DialogInfo>
+      {children && <DialogContent>{children}</DialogContent>}
+    </AlertContainer>
   );
 };
 
@@ -58,7 +63,7 @@ DxcAlert.propTypes = {
 };
 
 const AlertContainer = styled(Dialog)`
-    font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
   .MuiDialog-container {
     display: ${props => (props.mode === "modal" ? "flex" : "block")};
     justify-content: ${props => (props.mode === "modal" ? "center" : "")};
@@ -73,9 +78,12 @@ const AlertContainer = styled(Dialog)`
 
   .MuiPaper-root {
     font-size: 12px;
-    min-width: ${props => (props.children !== null && "348px") || "590px"};
-    max-width: ${props => (props.children !== null && "590") || "810"};
-    height: ${props => (props.children === null && "48px") || ""};
+    min-width: ${props =>
+      (props.children && props.children.filter(child => child === undefined).length === 0 && "348px") || "590px"};
+    max-width: ${props =>
+      (props.children && props.children.filter(child => child === undefined).length === 0 && "590px") || "810px"};
+    min-height: ${props =>
+      (props.children && props.children.filter(child => child === undefined).length === 0 && "92px") || "48px"};
     overflow: hidden;
     box-shadow: 0px 3px 6px #00000012;
     border-radius: 4px;
@@ -102,52 +110,37 @@ const DialogInfo = styled.div`
   display: flex;
   flex-direction: row;
   height: 48px;
+  align-items: center;
 `;
 
 const DialogType = styled.div`
   text-transform: uppercase;
-  margin-right: 10px;
+  padding-right: 10px;
   font-weight: bold;
-  margin-top: 2px;
-  flex-grow: 1;
 `;
 
 const DialogText = styled.div`
-  margin-left: 10px;
-  margin-top: 2px;
-  margin-right: 10px;
+  padding-left: 10px;
   flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
-const DialogIcon = styled.div`
-  width: 41px;
-  height: 21px;
-  margin-left: 12px;
-  background: ${props =>
-    (props.type === "info" && `url('${infoIcon}') no-repeat padding-box`) ||
-    ((props.type === "confirm" && `url('${successIcon}') no-repeat padding-box`) ||
-      ((props.type === "warning" && `url('${warningIcon}') no-repeat padding-box`) ||
-        (props.type === "error" && `url('${errorIcon}') no-repeat padding-box`)))};
-  margin-top: 14px;
-  margin-bottom: 14px;
+const DialogIcon = styled.img`
+  padding-left: 12px;
 `;
 
 const DialogInfoText = styled.div`
   display: flex;
   flex-direction: row;
-  margin-left: ${props => (props.children !== null ? "12px" : "10px")};
-  margin-top: 16px;
-  margin-bottom: 16px;
-  margin-right: ${props => (props.children !== null ? "12px" : "16px")};
+  padding-left: 12px;
+  padding-right: 12px;
   overflow: hidden;
   flex-grow: 1;
 `;
 
-const CloseDialogIcon = styled.div`
-  margin-top: -1px;
-  width: 26px;
-  height: 18px;
-  background: url("${closeIcon}") no-repeat padding-box;
+const CloseDialogIcon = styled.img`
   cursor: pointer;
 `;
 
