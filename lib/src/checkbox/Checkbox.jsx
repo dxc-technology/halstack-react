@@ -7,7 +7,7 @@ import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 
 const DxcCheckbox = ({
-  checked = false,
+  checked,
   value,
   label = "",
   labelPosition = "before",
@@ -21,15 +21,23 @@ const DxcCheckbox = ({
   const [innerChecked, setInnerChecked] = useState(false);
 
   const handlerCheckboxChange = checkboxValue => {
-    const isChecked = checkboxValue.target.checked === undefined ? !innerChecked : checkboxValue.target.checked;
-    setInnerChecked(isChecked);
-    onChange(isChecked);
+    if (checked === undefined) {
+      const isChecked = checkboxValue.target.checked === undefined ? !innerChecked : checkboxValue.target.checked;
+      setInnerChecked(isChecked);
+      if (typeof onChange === "function") {
+        onChange(isChecked);
+      }
+    } else {
+      if (typeof onChange === "function") {
+        onChange(!checked);
+      }
+    }
   };
 
   return (
     <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
       <Checkbox
-        checked={(checked != null && checked) || innerChecked}
+        checked={checked != undefined ? checked : innerChecked}
         inputProps={(name = { name })}
         onChange={handlerCheckboxChange}
         value={value}
@@ -51,7 +59,7 @@ const DxcCheckbox = ({
       <CheckboxBlackBack
         labelPosition={labelPosition}
         disabled={disabled}
-        checked={checked || innerChecked}
+        checked={checked != undefined ? checked : innerChecked}
         theme={theme}
       />
     </CheckboxContainer>
@@ -110,7 +118,11 @@ const CheckboxContainer = styled.span`
 
 const CheckboxBlackBack = styled.span`
   background-color: ${props =>
-    props.checked !== true ? "transparent" : props.theme === "light" && props.disabled === true ? colors.white : colors.black};
+    props.checked !== true
+      ? "transparent"
+      : props.theme === "light" && props.disabled === true
+      ? colors.white
+      : colors.black};
   width: 17px;
   height: 17px;
   position: absolute;
