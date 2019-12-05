@@ -4,6 +4,11 @@ import Alert from "./pages/Alert";
 
 export default [
   {
+    path: "alert",
+    name: "Alert",
+    component: Alert
+  },
+  {
     path: "button",
     name: "Button",
     component: Button
@@ -12,10 +17,5 @@ export default [
     path: "checkbox",
     name: "Checkbox",
     component: Checkbox
-  },
-  {
-    path: "alert",
-    name: "Alert",
-    component: Alert
   }
 ];
