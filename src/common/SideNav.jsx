@@ -37,9 +37,9 @@ const SideNavContainer = styled.div`
 const NavLink = styled.div`
   padding: 3px 0px;
   & a {
-    color: black;
     text-decoration: none;
     font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
+    color: ${({ isActive }) => (isActive && "black") || "gray"};
   }
 `;
 

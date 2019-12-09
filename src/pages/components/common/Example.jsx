@@ -1,20 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "./liveEditorTheme";
+import hideIcon from "./hide-icon.svg";
+import editIcon from "./edit-icon.svg";
 
 function Example({ title, example }) {
   const [isCodeVisible, changeIsCodeVisble] = useState(false);
+
+  const codeFildRef = useRef(null);
+
+  useEffect(() => {
+    //Accessing DOM manually to add focus to the textArea inside the LiveEditor of react-live
+    if (codeFildRef.current && isCodeVisible) {
+      codeFildRef.current.children[0].children[0].focus();
+    }
+  }, [codeFildRef, isCodeVisible]);
+
+  const toggleCodeClick = () => {
+    changeIsCodeVisble(!isCodeVisible);
+  };
+
   return (
     <StyledExample>
       <Title>
         <TitleText>{title}</TitleText>
-        <CodeButton
-          onClick={() => {
-            changeIsCodeVisble(!isCodeVisible);
-          }}
-        >
-          Edit Code
+        <CodeButton onClick={toggleCodeClick}>
+          <IconToggleCode
+            src={(isCodeVisible && hideIcon) || editIcon}
+          ></IconToggleCode>
+          {(isCodeVisible && "Hide") || "Edit"} Code
         </CodeButton>
       </Title>
       <LiveProvider scope={example.scope} theme={theme} code={example.code}>
@@ -24,8 +39,11 @@ function Example({ title, example }) {
             <LiveError />
           </StyledError>
         </StyledPreviewError>
-
-        {isCodeVisible && <LiveEditor />}
+        {isCodeVisible && (
+          <div ref={codeFildRef}>
+            <LiveEditor />
+          </div>
+        )}
       </LiveProvider>
     </StyledExample>
   );
@@ -53,6 +71,8 @@ const TitleText = styled.h3`
 `;
 
 const CodeButton = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 12px;
   font-weight: normal;
   text-transform: uppercase;
@@ -61,11 +81,15 @@ const CodeButton = styled.div`
   padding: 0px 10px;
 `;
 
+const IconToggleCode = styled.img`
+  max-width: 20px;
+  max-height: 20px;
+  margin: 0px 10px;
+`;
+
 const StyledPreviewError = styled.div`
   margin-bottom: 20px;
 `;
-
-const StyledPreview = styled.div``;
 
 const StyledError = styled.div`
   color: red;
