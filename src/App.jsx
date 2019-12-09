@@ -1,8 +1,9 @@
 import React from "react";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import styled from "styled-components";
-import { DxcFooter, DxcHeader } from "@diaas/dxc-react-cdk";
+import { DxcFooter } from "@diaas/dxc-react-cdk";
 
+import Header from "./common/Header";
 import Components from "./pages/components/Components";
 import Docs from "./pages/docs/Docs";
 import Overview from "./pages/overview/Overview";
@@ -10,13 +11,7 @@ import Overview from "./pages/overview/Overview";
 function App() {
   return (
     <MainContainer>
-      <DxcHeader>
-        <HeaderLinks>
-          <Link to="overview">Overview</Link>
-          <Link to="components">Components</Link>
-          <Link to="docs">Docs</Link>
-        </HeaderLinks>
-      </DxcHeader>
+      <Header></Header>
       <Content>
         <StyledRouter>
           <Components path="/components/*"></Components>
@@ -48,19 +43,6 @@ const MainContainer = styled.div`
 const Content = styled.div`
   display: flex;
   min-height: calc(100vh - 64px - 119px);
-`;
-
-const HeaderLinks = styled.div`
-  display: flex;
-  flex-grow: 1;
-
-  & a {
-    color: white;
-    text-decoration: none;
-    margin-left: 100px;
-    font-size: 14px;
-    letter-spacing: 1px;
-  }
 `;
 
 export default App;

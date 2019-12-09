@@ -10,7 +10,7 @@ function Components() {
     <ComponentsContainer>
       <SideNav title="React Components" paths={paths}></SideNav>
       <Content>
-        <StyledRouter>
+        <StyledRouter primary={false}>
           {paths.map(path => (
             <path.component path={path.path}></path.component>
           ))}

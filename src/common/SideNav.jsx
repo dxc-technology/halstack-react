@@ -1,16 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "@reach/router";
+import { Link, Location } from "@reach/router";
 
 function SideNav({ icon, title, paths }) {
   return (
     <SideNavContainer>
       <Title>{title}</Title>
-      <Links>
-        {paths.map(path => (
-          <Link to={path.path}>{path.name}</Link>
-        ))}
-      </Links>
+      <Location>
+        {({ location }) => (
+          <Links>
+            {paths.map(path => (
+              <NavLink
+                isActive={location.pathname.startsWith(
+                  `/components/${path.path}`
+                )}
+              >
+                <Link to={path.path}>{path.name}</Link>
+              </NavLink>
+            ))}
+          </Links>
+        )}
+      </Location>
     </SideNavContainer>
   );
 }
@@ -22,10 +32,14 @@ const SideNavContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+`;
 
+const NavLink = styled.div`
+  padding: 3px 0px;
   & a {
     color: black;
     text-decoration: none;
+    font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
   }
 `;
 
