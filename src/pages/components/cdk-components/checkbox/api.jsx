@@ -11,10 +11,12 @@ const checkboxPropsTable = () => {
       </tr>
       <tr>
         <td>checked: boolean</td>
+        <td></td>
         <td>
-          <code>false</code>
+          If true, the component is checked. If undefined the component will be
+          uncontrolled which means that this value will be managed by the
+          component by its own.
         </td>
-        <td>If true, the component is checked.</td>
       </tr>
       <tr>
         <td>value: any</td>
