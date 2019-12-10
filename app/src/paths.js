@@ -1,6 +1,7 @@
 import Button from "./pages/Button";
 import Checkbox from "./pages/Checkbox";
 import Alert from "./pages/Alert";
+import Switch from "./pages/Switch";
 
 export default [
   {
@@ -17,5 +18,10 @@ export default [
     path: "checkbox",
     name: "Checkbox",
     component: Checkbox
+  },
+  {
+    path: "switch",
+    name: "Switch",
+    component: Switch
   }
 ];
