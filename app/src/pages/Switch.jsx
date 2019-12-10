@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcCheckbox } from "@diaas/dxc-react-cdk";
+import { DxcSwitch } from "@diaas/dxc-react-cdk";
 
 function App() {
   const [checked, changeChecked] = useState(false);
@@ -12,8 +12,8 @@ function App() {
       <div
         style={{ width: "100%", display: "inline-flex", alignItems: "center" }}
       >
-        <DxcCheckbox checked={checked} label="Controlled" onChange={onChange} />
-        <DxcCheckbox label="Uncontrolled" />
+        <DxcSwitch checked={checked} label="Controlled" onChange={onChange} />
+        <DxcSwitch label="Uncontrolled" />
       </div>
 
       <div
@@ -21,16 +21,15 @@ function App() {
           width: "100%",
           display: "inline-flex",
           alignItems: "center",
-          background: "#666666"
+          background: "#000000"
         }}
       >
-        <DxcCheckbox
+        <DxcSwitch
           theme="dark"
           checked={checked}
           label="Controlled"
-          onChange={onChange}
         />
-        <DxcCheckbox theme="dark" label="Uncontrolled" />
+        <DxcSwitch theme="dark" label="Uncontrolled" />
       </div>
     </div>
   );
