@@ -6,7 +6,7 @@ import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 
 const DxcSwitch = ({
-  checked = false,
+  checked,
   value,
   label,
   labelPosition,
@@ -20,15 +20,23 @@ const DxcSwitch = ({
   const [innerChecked, setInnerChecked] = useState(0);
 
   const handlerSwitchChange = newValue => {
-    const switchChecked = newValue.target.checked === undefined ? !innerChecked : newValue.target.checked;
-    setInnerChecked(switchChecked);
-    onChange(switchChecked);
+    if (checked === undefined) {
+      const isChecked = newValue.target.checked === undefined ? !innerChecked : newValue.target.checked;
+      setInnerChecked(isChecked);
+      if (typeof onChange === "function") {
+        onChange(isChecked);
+      }
+    } else {
+      if (typeof onChange === "function") {
+        onChange(!checked);
+      }
+    }
   };
 
   return (
     <SwitchContainer theme={theme} disabled={disabled} labelPosition={labelPosition}>
       <Switch
-        checked={(checked!=null && checked) || innerChecked}
+        checked={checked != undefined ? checked : innerChecked}
         inputProps={(name = { name })}
         onChange={handlerSwitchChange}
         value={value}
