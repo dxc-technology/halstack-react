@@ -1,5 +1,5 @@
 import Button from "./cdk-components/button/Button";
-import Checkbox from "./cdk-components/Checkbox";
+import Checkbox from "./cdk-components/checkbox/Checkbox";
 
 export default [
   {
