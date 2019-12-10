@@ -10,7 +10,7 @@ class App extends React.Component {
       isVisibleWarningAlert: true,
       isVisibleSuccessAlert: true,
       isVisibleErrorAlert: true,
-      isVisibleOverlayAlert: false
+      isVisibleModalAlert: false
     };
   }
 
@@ -30,8 +30,8 @@ class App extends React.Component {
     this.setState({ isVisibleErrorAlert: !this.state.isVisibleErrorAlert });
   };
 
-  setVisibleOverlayAlert = () => {
-    this.setState({ isVisibleOverlayAlert: !this.state.isVisibleOverlayAlert });
+  setVisibleModalAlert = () => {
+    this.setState({ isVisibleModalAlert: !this.state.isVisibleModalAlert });
   };
 
   render() {
@@ -43,78 +43,77 @@ class App extends React.Component {
             flexDirection: "column"
           }}
         >
-          <DxcAlert
-            type="info"
-            mode="inline"
-            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-                leo lobortis eget."
-            isVisible={this.state.isVisibleInfoAlert}
-          />
-          <DxcAlert
-            type="warning"
-            mode="inline"
-            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-                leo lobortis eget."
-            isVisible={this.state.isVisibleWarningAlert}
-            onClose={this.setVisibleWarningAlert}
-          />
-          <DxcAlert
-            type="confirm"
-            mode="inline"
-            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-                leo lobortis eget."
-            isVisible={this.state.isVisibleSuccessAlert}
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </div>
-          </DxcAlert>
-          <DxcAlert
-            type="error"
-            mode="inline"
-            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-                leo lobortis eget."
-            isVisible={this.state.isVisibleErrorAlert}
-            onClose={this.setVisibleErrorAlert}
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </div>
-          </DxcAlert>
+          {this.state.isVisibleInfoAlert && (
+            <DxcAlert
+              type="info"
+              mode="inline"
+              inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+            />
+          )}
+          {this.state.isVisibleWarningAlert && (
+            <DxcAlert
+              type="warning"
+              mode="inline"
+              inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+              onClose={this.setVisibleWarningAlert}
+            />
+          )}
+          {this.state.isVisibleSuccessAlert && (
+            <DxcAlert
+              type="confirm"
+              mode="inline"
+              inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+            >
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAlert>
+          )}
+          {this.state.isVisibleErrorAlert && (
+            <DxcAlert
+              type="error"
+              mode="inline"
+              inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+              onClose={this.setVisibleErrorAlert}
+            >
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAlert>
+          )}
         </div>
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="Overlay Alert"
-          onClick={this.setVisibleOverlayAlert}
-        />
-        <div onClick={this.setVisibleOverlayAlert}>
-          <DxcAlert
-            type="info"
-            mode="modal"
-            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-                leo lobortis eget."
-            isVisible={this.state.isVisibleOverlayAlert}
-            onClose={this.setVisibleOverlayAlert}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 1000
-            }}
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </div>
-          </DxcAlert>
+        <div>
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="Overlay Alert"
+            onClick={this.setVisibleModalAlert}
+          />
+        </div>
+        <div onClick={this.setVisibleModalAlert}>
+          {this.state.isVisibleModalAlert && (
+            <DxcAlert
+              type="info"
+              mode="modal"
+              inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+              onClose={this.setVisibleModalAlert}
+            >
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAlert>
+          )}
         </div>
       </div>
     );

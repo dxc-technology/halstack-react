@@ -31,11 +31,6 @@
         </td>
     </tr>
     <tr>
-        <td>isVisible: boolean</td>
-        <td>true</td>
-        <td>If true, the alert should be visible.</td>
-    </tr>
-    <tr>
         <td>inlineText: string</td>
         <td></td>
         <td>Text to display after icon and alert type and before content.</td>
