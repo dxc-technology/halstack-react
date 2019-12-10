@@ -8,10 +8,10 @@ const code = `() => {
     };
   
     return (
-      <div style={{background:'#000000'}}>
+      <div>
         <DxcCheckbox
         checked={checked}
-        theme="dark"
+        required={true}
         label="Checkbox"
         onChange={onChange}
         />

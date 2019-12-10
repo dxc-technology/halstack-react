@@ -8,6 +8,9 @@ import CheckboxPropsTable from "./api.jsx";
 import controlled from "./examples/controlledCheckbox";
 import uncontrolled from "./examples/uncontrolledCheckbox";
 import themed from "./examples/themedCheckbox";
+import labelPosition from "./examples/labelPosition";
+import disabled from "./examples/disabledCheckbox";
+import required from "./examples/requiredCheckbox";
 
 function Checkbox() {
   return (
@@ -21,7 +24,10 @@ function Checkbox() {
         <DocTitle size={2}>Elements</DocTitle>
         <Example title="Controlled Checkbox" example={controlled}></Example>
         <Example title="Uncontrolled Checkbox" example={uncontrolled}></Example>
-        <Example title="Themed Checkbox" example={themed}></Example>
+        <Example title="Label Position Checkbox" example={labelPosition}></Example>
+        <Example title="Disabled Checkbox" example={disabled}></Example>
+        <Example title="Required Checkbox" example={required}></Example>
+        <Example title="Dark Themed Checkbox" example={themed}></Example>
       </Section>
     </ComponentDoc>
   );

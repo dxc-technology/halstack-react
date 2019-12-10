@@ -6,14 +6,25 @@ const code = `() => {
     const onChange = (newValue) => {
         changeChecked(newValue);
     };
+
+    const [checked1, changeChecked1] = useState(false);
+    const onChange1 = (newValue) => {
+        changeChecked1(newValue);
+    };
   
     return (
-      <div style={{background:'#000000'}}>
+      <div>
         <DxcCheckbox
-        checked={checked}
-        theme="dark"
-        label="Checkbox"
-        onChange={onChange}
+          checked={checked}
+          label="Label before"
+          onChange={onChange}
+        />
+
+        <DxcCheckbox
+          checked={checked1}
+          labelPosition="after"
+          label="Label after"
+          onChange={onChange1}
         />
       </div>
     );
