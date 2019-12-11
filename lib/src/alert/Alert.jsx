@@ -80,7 +80,7 @@ const AlertContainer = styled.div`
     (props.type === "info" && colors.lightBlue) ||
     (props.type === "confirm" && colors.lightGreen) ||
     (props.type === "warning" && colors.lightYellow) ||
-    (props.type === "error" && colors.lightPink)};
+    (props.type === "error" && colors.lightPink) || colors.lightPink};
 `;
 
 const AlertInfo = styled.div`
