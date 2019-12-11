@@ -2,16 +2,12 @@ import { DxcCheckbox } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-    const onChange = (newValue) => {
-        console.log(newValue);
-    };
+  const onChange = newValue => {
+    console.log(newValue);
+  };
 
-    return (
-      <div>
-        <DxcCheckbox label="Checkbox" onChange={onChange}/>
-      </div>
-    );
-  }`;
+  return <DxcCheckbox label="Checkbox" onChange={onChange} />;
+}`;
 
 const scope = {
   DxcCheckbox,
