@@ -17,12 +17,13 @@ const DxcRadio = ({
   onChange,
   required = false
 }) => {
-  const [innerChecked, setInnerChecked] = useState(0);
+  const [innerChecked, setInnerChecked] = useState(false);
 
   const handlerRadioChange = value => {
-    const checked = innerChecked !== true ? true : value.target.checked;
-    setInnerChecked(checked);
-    onChange(checked);
+    if (checked == null) {
+      setInnerChecked(true);
+    }
+    onChange(true);
   };
   return (
     <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
@@ -35,7 +36,13 @@ const DxcRadio = ({
         disabled={disabled}
         disableRipple={disableRipple}
       />
-      <LabelContainer checked={checked || innerChecked} labelPosition={labelPosition} theme={theme} disabled={disabled} onClick={!disabled && handlerRadioChange || null}>
+      <LabelContainer
+        checked={checked || innerChecked}
+        labelPosition={labelPosition}
+        theme={theme}
+        disabled={disabled}
+        onClick={(!disabled && handlerRadioChange) || null}
+      >
         {required && <DxcRequired theme={theme} />}
         {label}
       </LabelContainer>
@@ -103,10 +110,10 @@ const RadioContainer = styled.span`
 const LabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
   color: ${props => {
-    if(props.disabled) {
-      return (props.theme === "dark" ? colors.darkGrey : colors.lightGrey);
+    if (props.disabled) {
+      return props.theme === "dark" ? colors.darkGrey : colors.lightGrey;
     } else {
-      return (props.theme === "dark" ? colors.white : colors.black);
+      return props.theme === "dark" ? colors.white : colors.black;
     }
   }};
   margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
