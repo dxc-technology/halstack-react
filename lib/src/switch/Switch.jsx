@@ -65,7 +65,7 @@ const RequiredSpan = styled.span`
 const SwitchContainer = styled.div`
   display: inline-flex;
   align-items: center;
-  flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
+  flex-direction: ${props => (props.labelPosition === "after" ? "row" : "row-reverse")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
   .MuiSwitch-root {
     align-items: center;

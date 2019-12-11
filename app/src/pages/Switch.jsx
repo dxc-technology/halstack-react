@@ -12,7 +12,7 @@ function App() {
       <div
         style={{ width: "100%", display: "inline-flex", alignItems: "center" }}
       >
-        <DxcSwitch checked={checked} label="Controlled" onChange={onChange} />
+        <DxcSwitch checked={checked} labelPosition="after" label="Controlled" onChange={onChange} />
         <DxcSwitch label="Uncontrolled" />
       </div>
 
