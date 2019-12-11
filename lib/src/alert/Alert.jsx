@@ -23,7 +23,7 @@ const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, ch
               (type === "info" && infoIcon) ||
               (type === "confirm" && successIcon) ||
               (type === "warning" && warningIcon) ||
-              (type === "error" && errorIcon)
+              (type === "error" && errorIcon) || errorIcon
             }
           />
           <AlertInfoText>
