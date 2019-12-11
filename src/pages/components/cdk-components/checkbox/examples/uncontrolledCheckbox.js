@@ -7,11 +7,11 @@ const code = `() => {
   };
 
   return <DxcCheckbox label="Checkbox" onChange={onChange} />;
-};
+}`;
 
 const scope = {
   DxcCheckbox,
   useState
-}`;
+};
 
 export default { code, scope };
