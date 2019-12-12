@@ -6,52 +6,35 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 
-const DxcTabs = ({
-  mode = "filled",
-  theme = "light",
-  showDotIndicator = false,
-  disableRipple = false,
-  activeTabIndex = 0,
-  activeTabIndexChange = "",
-  ...props
-}) => {
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    activeTabIndexChange(newValue);
-  };
-  function getTabIcon(tab) {
-    return tab.props.iconSrc;
-  }
-  function getTabDisabled(tab) {
-    return tab.props.disabled;
-  }
-  function getTabContent(children, value) {
-    return children[value].props.children;
-  }
+const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick }) => {
+  const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
 
-  function getTabLabel(tab) {
-    return tab.props.label;
-  }
+  const handleChange = (event, newValue) => {
+    if (activeTabIndex == null) {
+      setInnerActiveTabIndex(newValue);
+    }
+    onTabClick(newValue);
+  };
+
   return (
     <DxCTabs mode={mode} theme={theme}>
-      <Tabs value={activeTabIndex || value} onChange={handleChange} variant="scrollable" scrollButtons="off">
-        {props.children.map(tab => {
+      <Tabs
+        value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
+        onChange={handleChange}
+        variant="scrollable"
+        scrollButtons="off"
+      >
+        {tabs.map(tab => {
           return (
             <Tab
-              label={getTabLabel(tab)}
-              icon={getTabIcon(tab) && <TabIcon src={getTabIcon(tab)} />}
-              disabled={getTabDisabled(tab)}
+              label={tab.label}
+              icon={tab.iconSrc && <TabIcon src={tab.iconSrc} />}
+              disabled={tab.isDisabled}
               disableRipple={disableRipple}
             />
           );
         })}
       </Tabs>
-      <TabContentContainer>
-        {props.children.map((tab, indice) => {
-          return value === indice ? getTabContent(props.children, value) : "";
-        })}
-      </TabContentContainer>
     </DxCTabs>
   );
 };
@@ -76,14 +59,13 @@ const DxCTabs = styled.div`
         props.mode === "filled" ? (props.theme === "dark" ? colors.darkGrey : colors.lightGrey) : "transparent"};
       color: ${props =>
         props.mode === "filled" ? (props.theme === "dark" ? colors.white : colors.darkGrey) : colors.darkGrey};
-      opacity: ${props =>
-        props.mode === "filled" ? (props.theme === "dark" ? 0.8 : 0.5) : 0.5};
+      opacity: ${props => (props.mode === "filled" ? (props.theme === "dark" ? 0.8 : 0.5) : 0.5)};
       &:hover:not(.Mui-selected):not(.Mui-disabled) {
-        opacity: ${props => (props.mode === "filled" ? props.theme === "light" ? 0.8 : 1 : 1)};
+        opacity: ${props => (props.mode === "filled" ? (props.theme === "light" ? 0.8 : 1) : 1)};
         background-color: ${props => (props.mode === "filled" ? colors.darkGrey : "transparent")};
         color: ${props => (props.mode === "filled" ? colors.white : colors.darkGrey)};
       }
-      
+
       &.Mui-selected {
         background-color: ${props =>
           props.mode === "filled" ? (props.theme === "dark" ? colors.white : colors.black) : "transparent"};
@@ -106,21 +88,33 @@ const DxCTabs = styled.div`
   }
 `;
 
-const TabContentContainer = styled.div`
-  margin: 15px;
-`;
 const TabIcon = styled.img`
   max-height: 22px;
   max-width: 22px;
 `;
+
 DxcTabs.propTypes = {
   mode: PropTypes.oneOf(["filled", "underlined"]),
   theme: PropTypes.oneOf(["light", "dark"]),
-  showDotIndicator: PropTypes.bool,
   disableRipple: PropTypes.bool,
   activeTabIndex: PropTypes.number,
-  activeTabIndexChange: PropTypes.func,
-  children: PropTypes.string
+  onTabClick: PropTypes.func,
+  tabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      iconSrc: PropTypes.string,
+      isDisabled: PropTypes.boolean
+    })
+  )
+};
+
+DxcTabs.defaultProps = {
+  mode: "filled",
+  theme: "light",
+  disableRipple: false,
+  activeTabIndex: null,
+  tabs: [],
+  onTabClick: () => {}
 };
 
 export default DxcTabs;
