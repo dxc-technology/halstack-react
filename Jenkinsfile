@@ -146,7 +146,7 @@ pipeline {
                 sh '''
                     cd lib
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
-                    cat ./root/.npm/_logs/2019-12-12T11_18_51_931Z-debug.log
+                    cat ~/root/.npm/_logs/2019-12-12T11_18_51_931Z-debug.log
                 '''
             }
         }
