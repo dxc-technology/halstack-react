@@ -89,6 +89,9 @@ const IconToggleCode = styled.img`
 
 const StyledPreviewError = styled.div`
   margin-bottom: 20px;
+  box-shadow: inset 0 0 10px #0000000d;
+  border: 1px dashed #dcdcdc;
+  border-radius: 5px;
 `;
 
 const StyledError = styled.div`
