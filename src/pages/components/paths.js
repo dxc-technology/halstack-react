@@ -4,6 +4,7 @@ import Switch from "./cdk-components/switch/Switch";
 import Alert from "./cdk-components/alert/Alert";
 import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
+import Tabs from "./cdk-components/tabs/Tabs";
 
 
 export default [
@@ -36,5 +37,10 @@ export default [
     path: "dropdown",
     name: "Dropdown",
     component: Dropdown
+  },
+  {
+    path: "tabs",
+    name: "Tabs",
+    component: Tabs
   }
 ];

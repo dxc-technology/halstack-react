@@ -92,6 +92,7 @@ const StyledPreviewError = styled.div`
   box-shadow: inset 0 0 10px #0000000d;
   border: 1px dashed #dcdcdc;
   border-radius: 5px;
+  overflow: hidden;
 `;
 
 const StyledError = styled.div`
