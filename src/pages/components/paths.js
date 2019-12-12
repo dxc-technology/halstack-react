@@ -3,7 +3,7 @@ import Checkbox from "./cdk-components/checkbox/Checkbox";
 import Switch from "./cdk-components/switch/Switch";
 import Alert from "./cdk-components/alert/Alert";
 import Radio from "./cdk-components/radio/Radio";
-
+import Upload from "./cdk-components/upload/Upload";
 
 export default [
   {
@@ -22,13 +22,18 @@ export default [
     component: Checkbox
   },
   {
-    path: "switch",
-    name: "Switch",
-    component: Switch
+    path: "upload",
+    name: "Upload",
+    component: Upload
   },
   {
     path: "radio",
     name: "Radio Button",
     component: Radio
+  },
+  {
+    path: "switch",
+    name: "Switch",
+    component: Switch
   }
 ];
