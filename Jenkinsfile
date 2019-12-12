@@ -133,7 +133,6 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'npmrc', variable: 'CONFIG')]) {
                     sh '''
-                        cat ${CONFIG}
                         cat ${CONFIG} > ~/.npmrc
                         npm config set @diaas:registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
                     '''
@@ -146,7 +145,7 @@ pipeline {
                 sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./lib/package.json"
                 sh '''
                     cd lib
-                    npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
+                    npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm-local/ --tag alpha
 
                 '''
             }
