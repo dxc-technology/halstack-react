@@ -142,6 +142,8 @@ pipeline {
         stage('Publish dxc-react-cdk alpha version to Artifactory ') {
             when { branch 'master' }
             steps {
+                sh "pwd"
+                sh "ls"
                 sh "cat ~/root/.npm/_logs/2019-12-12T11_18_51_931Z-debug.log"
                 sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./lib/package.json"
                 sh '''
