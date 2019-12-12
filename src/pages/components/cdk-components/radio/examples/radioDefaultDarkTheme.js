@@ -3,23 +3,23 @@ import { useState } from "react";
 
 const code = `() => {
   const [checked, changeChecked] = useState(true);
-  const onChange = (newValue) => {
-      changeChecked(newValue);
+  const onChange = newValue => {
+    changeChecked(newValue);
   };
 
-    return (
-      <div>
-      <div style={{background:'#000000'}}>
-      <DxcRadio   
-      checked={checked}
-      theme="dark"
-      label="Radio Label"
-      onChange={onChange}
-    />  
-    </div>
+  return (
+    <div>
+      <div style={{ background: "#000000" }}>
+        <DxcRadio
+          checked={checked}
+          theme="dark"
+          label="Radio Label"
+          onChange={onChange}
+        />
       </div>
-    );
-  }`;
+    </div>
+  );
+}`;
 
 const scope = {
   DxcRadio,
