@@ -97,7 +97,7 @@ const DxcUpload = ({ callbackUpload }) => {
           })
           .finally();
       }
-      setFiles(uploadedFiles);
+      setFiles(uploadedFiles); 
     });
   };
 
