@@ -142,6 +142,7 @@ pipeline {
         stage('Publish dxc-react-cdk alpha version to Artifactory ') {
             when { branch 'master' }
             steps {                
+                sh "sed -i -e 's/${OLD_RELEASE_NUMBER}/'${OLD_RELEASE_NUMBER}-alpha.${BUILD_ID}'/g' ./lib/package.json"
                 sh '''
                     cd lib
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag alpha
