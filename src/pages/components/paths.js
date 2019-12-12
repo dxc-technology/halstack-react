@@ -22,11 +22,6 @@ export default [
     component: Checkbox
   },
   {
-    path: "upload",
-    name: "Upload",
-    component: Upload
-  },
-  {
     path: "radio",
     name: "Radio Button",
     component: Radio
@@ -35,5 +30,10 @@ export default [
     path: "switch",
     name: "Switch",
     component: Switch
+  },
+  {
+    path: "upload",
+    name: "Upload",
+    component: Upload
   }
 ];

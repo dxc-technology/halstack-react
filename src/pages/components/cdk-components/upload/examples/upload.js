@@ -1,9 +1,8 @@
 import { DxcUpload } from "@diaas/dxc-react-cdk";
 
 const code = `() => {
-  async function callbackFunc() {
-    const result = await new Promise(resolve => setTimeout(resolve, 1000));
-    return result;
+  async function callbackFunc(file) {
+    return new Promise(resolve => setTimeout(resolve, 1000));
   }
 
   return <DxcUpload callbackUpload={callbackFunc} />;
