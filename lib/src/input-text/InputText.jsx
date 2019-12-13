@@ -7,16 +7,16 @@ import "../common/OpenSans.css";
 import colors from "../common/variables.js";
 
 const DxcInputText = ({
-  label = "",
+  label = " ",
   name = "",
   value = "",
   theme = "light",
-  assistiveText = "",
+  assistiveText = " ",
   disabled = false,
-  prefijo = "",
-  sufix = "",
-  prefijoIconSrc = "",
-  sufixIconSrc = "",
+  prefix = "",
+  suffix = "",
+  prefixIconSrc = "",
+  suffixIconSrc = "",
   onClickIcon = "",
   onChange = "",
   onBlur = "",
@@ -41,16 +41,16 @@ const DxcInputText = ({
 
   return (
     <TextContainer
-      prefijoIconSrc={prefijoIconSrc}
-      prefijo={prefijo}
+      prefixIconSrc={prefixIconSrc}
+      prefix={prefix}
       required={required}
       theme={theme}
       multiline={multiline}
     >
-      {prefijoIconSrc && !multiline && <PrefixIcon src={prefijoIconSrc} disabled={disabled} onClick={onClickIcon} />}
-      {prefijo && !multiline && (
+      {prefixIconSrc && !multiline && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickIcon} />}
+      {prefix && !multiline && (
         <PrefixLabel theme={theme} disabled={disabled}>
-          {prefijo}
+          {prefix}
         </PrefixLabel>
       )}
       <TextField
@@ -65,12 +65,12 @@ const DxcInputText = ({
         onBlur={(onBlur && handlerInputBlur) || null}
         rowsMax="4"
         InputProps={{
-          endAdornment: (sufix || sufixIconSrc) && (
+          endAdornment: (suffix || suffixIconSrc) && (
             <InputAdornment position="end">
-              {(sufixIconSrc && !multiline && (
-                <SufixIcon disabled={disabled} src={sufixIconSrc} onClick={onClickIcon} />
+              {(suffixIconSrc && !multiline && (
+                <suffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickIcon} />
               )) ||
-                (!multiline && sufix)}
+                (!multiline && suffix)}
             </InputAdornment>
           )
         }}
@@ -79,7 +79,7 @@ const DxcInputText = ({
   );
 };
 const PrefixIcon = styled.img`
-  position: relative;
+  position: absolute;
   top: 23px;
   left: 18px;
   width: 20px;
@@ -89,9 +89,9 @@ const PrefixIcon = styled.img`
   opacity: ${props => (props.disabled && 0.5) || 1};
 `;
 const PrefixLabel = styled.span`
-  position: relative;
-  top: 23px;
-  left: 18px;
+  position: absolute;
+  top: 20px;
+  left: 0px;
   font-family: "Open Sans", sans-serif;
   color: ${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
   max-height: 20px;
@@ -99,7 +99,7 @@ const PrefixLabel = styled.span`
   opacity: ${props => (props.disabled && 0.5) || 1};
 `;
 
-const SufixIcon = styled.img`
+const suffixIcon = styled.img`
   top: 23px;
   left: 0;
   max-height: 20px;
@@ -113,6 +113,9 @@ const SufixIcon = styled.img`
 const TextContainer = styled.div`
   margin: 15px;
   display: inline-block;
+  position: relative;
+  max-height: 74px;
+  height: 74px;
   .MuiTextField-root {
     font-family: "Open Sans", sans-serif;
     .MuiFormHelperText-root {
@@ -125,18 +128,18 @@ const TextContainer = styled.div`
       &::before {
         content:'${props => (props.required && "*") || ""}';
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
-        font-size: 18px; 
+        font-size: 16px; 
       }
       &.Mui-disabled{
         opacity:0.5;
       }
-      padding-left: ${props => ((props.prefijoIconSrc || (props.prefijo && !props.multiline)) && "32px") || "inherit"};
+      padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
       &.Mui-focused {
         color: ${props => (props.theme === "light" ? colors.black : colors.white)};
         &.MuiInputLabel-shrink {
           transform: ${props =>
-            props.prefijoIconSrc ||
-            ((props.prefijo || props.sufix) && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
+            props.prefixIconSrc ||
+            ((props.prefix || props.suffix) && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
             "translate(0, 1.5px) scale(0.75);"};
         }
       }
@@ -147,8 +150,8 @@ const TextContainer = styled.div`
       &.MuiInputLabel-shrink {
         font-family: "Open Sans", sans-serif;
         transform: ${props =>
-          (props.prefijoIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
-          (props.prefijo && "translate(8px, 1.5px) scale(0.75);") ||
+          (props.prefixIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
+          (props.prefix && "translate(8px, 1.5px) scale(0.75);") ||
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
@@ -245,12 +248,16 @@ const TextContainer = styled.div`
         }
       }
       .MuiInputBase-input {
-        padding-left: ${props => ((props.prefijoIconSrc || (props.prefijo && !props.multiline)) && "32px") || "inherit"};
+        padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
         color: ${props => (props.theme === "light" ? colors.black : colors.white)};
          text-overflow: ellipsis;
         &.Mui-disabled {
           cursor: not-allowed;
-        }
+        };
+        width: ${props =>
+          (props.suffix !== "" || props.suffixIconSrc !== "") && (props.prefix !== "" || props.prefixIconSrc !== "")
+            ? "160px"
+            : "100%"};
       }
       .MuiInputAdornment-root {
 
@@ -261,6 +268,7 @@ const TextContainer = styled.div`
             font-family: "Open Sans", sans-serif;
             color:${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
             margin-right: 8px;
+            margin-bottom: 1px;
           }
         }
         &.Mui-disabled {
@@ -296,10 +304,10 @@ DxcInputText.propTypes = {
   theme: PropTypes.oneOf(["light", "dark", ""]),
   assistiveText: PropTypes.string,
   disabled: PropTypes.bool,
-  prefijo: PropTypes.string,
-  sufix: PropTypes.string,
-  prefijoIconSrc: PropTypes.string,
-  sufixIconSrc: PropTypes.string,
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
+  prefixIconSrc: PropTypes.string,
+  suffixIconSrc: PropTypes.string,
   required: PropTypes.bool,
   error: PropTypes.bool,
   multiline: PropTypes.bool,
