@@ -6,12 +6,18 @@ import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
 import Tabs from "./cdk-components/tabs/Tabs";
 import Upload from "./cdk-components/upload/Upload";
+import Accordion from "./cdk-components/accordion/Accordion";
 
 export default [
   {
     path: "alert",
     name: "Alert",
     component: Alert
+  },
+  {
+    path: "accordion",
+    name: "Accordion",
+    component: Accordion
   },
   {
     path: "button",
