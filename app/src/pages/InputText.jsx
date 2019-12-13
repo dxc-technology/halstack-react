@@ -1,0 +1,48 @@
+import React, { useState } from "react";
+import { DxcInput } from "@diaas/dxc-react-cdk";
+
+function App() {
+  const [inputValue, changeInput] = useState("");
+  const onChange = newValue => {
+    changeInput(newValue);
+  };
+  return (
+    <div>
+      <div>
+        <DxcInput
+          prefix={"pr"}
+          assistiveText={"assistive text"}
+          label={"label"}
+          suffix={"suf"}
+          onChange={onChange}
+          value={inputValue}
+          required={true}
+        ></DxcInput>
+        <DxcInput
+          prefix={"pr"}
+          assistiveText={"assistive text"}
+          label={"label"}
+          suffix={"suf"}
+        ></DxcInput>
+      </div>
+      <div>
+        <DxcInput
+          assistiveText={"assistive text"}
+          label={"label"}
+          suffix={"suf"}
+          onChange={onChange}
+          required={true}
+          value={inputValue}
+        ></DxcInput>
+        <DxcInput
+          assistiveText={"assistive text"}
+          label={"label"}
+          onChange={onChange}
+          value={inputValue}
+        ></DxcInput>
+      </div>
+    </div>
+  );
+}
+
+export default App;

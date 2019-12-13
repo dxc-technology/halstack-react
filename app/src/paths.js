@@ -22,6 +22,11 @@ export default [
     component: Checkbox
   },
   {
+    path: "inputText",
+    name: "Input Text",
+    component: InputText
+  },
+  {
     path: "upload",
     name: "Upload",
     component: Upload
