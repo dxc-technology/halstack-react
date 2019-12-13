@@ -5,7 +5,7 @@ import Alert from "./cdk-components/alert/Alert";
 import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
 import Tabs from "./cdk-components/tabs/Tabs";
-
+import Upload from "./cdk-components/upload/Upload";
 
 export default [
   {
@@ -24,9 +24,9 @@ export default [
     component: Checkbox
   },
   {
-    path: "switch",
-    name: "Switch",
-    component: Switch
+    path: "dropdown",
+    name: "Dropdown",
+    component: Dropdown
   },
   {
     path: "radio",
@@ -34,13 +34,19 @@ export default [
     component: Radio
   },
   {
-    path: "dropdown",
-    name: "Dropdown",
-    component: Dropdown
+    path: "switch",
+    name: "Switch",
+    component: Switch
   },
+
   {
     path: "tabs",
     name: "Tabs",
     component: Tabs
+  },
+  {
+    path: "upload",
+    name: "Upload",
+    component: Upload
   }
 ];
