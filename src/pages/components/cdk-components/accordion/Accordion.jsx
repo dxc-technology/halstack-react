@@ -1,0 +1,36 @@
+import React from "react";
+import ComponentDoc from "../../common/ComponentDoc";
+import DocTitle from "../../common/DocTitle";
+import Example from "../../common/Example";
+import AlertPropsTable from "./api.jsx";
+import Section from "../../common/Section";
+import defaultAccordion from "./examples/default";
+import alternative from "./examples/alternative";
+import disabled from "./examples/disabled";
+import assitiveText from "./examples/assitiveText";
+import icon from "./examples/icon";
+import dark from "./examples/dark";
+
+function Accordion() {
+  return (
+    <ComponentDoc>
+      <DocTitle size={1}>Accordion</DocTitle>
+      <Section>
+        <DocTitle size={2}>Props</DocTitle>
+        <AlertPropsTable />
+      </Section>
+      <Section>
+        <DocTitle size={2}>Elements</DocTitle>
+        <Example title="Default Accordion" example={defaultAccordion}></Example>
+        <Example title="Alternative Accordion" example={alternative}></Example>
+        <Example title="Disabled Accordion" example={disabled}></Example>
+        <Example title="Accordion with assistive text" example={assitiveText}></Example>
+        <Example title="Accordion with icon" example={icon}></Example>
+        <Example title="Dark theme Accordion" example={dark}></Example>
+
+      </Section>
+    </ComponentDoc>
+  );
+}
+
+export default Accordion;
