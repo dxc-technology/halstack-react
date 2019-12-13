@@ -68,7 +68,7 @@ const DxcInputText = ({
           endAdornment: (suffix || suffixIconSrc) && (
             <InputAdornment position="end">
               {(suffixIconSrc && !multiline && (
-                <suffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickIcon} />
+                <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickIcon} />
               )) ||
                 (!multiline && suffix)}
             </InputAdornment>
@@ -80,8 +80,8 @@ const DxcInputText = ({
 };
 const PrefixIcon = styled.img`
   position: absolute;
-  top: 23px;
-  left: 18px;
+  top: 20px;
+  left: 0px;
   width: 20px;
   max-height: 20px;
   max-width: 20px;
@@ -99,7 +99,7 @@ const PrefixLabel = styled.span`
   opacity: ${props => (props.disabled && 0.5) || 1};
 `;
 
-const suffixIcon = styled.img`
+const SuffixIcon = styled.img`
   top: 23px;
   left: 0;
   max-height: 20px;
