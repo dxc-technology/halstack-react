@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DxcInput } from "@diaas/dxc-react-cdk";
+import iconSrcPath from "./house24px.svg";
 
 function App() {
   const [inputValue, changeInput] = useState("");
@@ -39,6 +40,8 @@ function App() {
           label={"label"}
           onChange={onChange}
           value={inputValue}
+          suffixIconSrc={iconSrcPath}
+          prefixIconSrc={iconSrcPath}
         ></DxcInput>
       </div>
     </div>
