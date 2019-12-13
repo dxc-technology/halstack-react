@@ -3,6 +3,7 @@ import Checkbox from "./pages/Checkbox";
 import Alert from "./pages/Alert";
 import Switch from "./pages/Switch";
 import Upload from "./pages/Upload";
+import InputText from "./pages/InputText";
 import Tabs from "./pages/Tabs";
 
 export default [
