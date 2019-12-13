@@ -6,6 +6,7 @@ import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
 import Tabs from "./cdk-components/tabs/Tabs";
 import Upload from "./cdk-components/upload/Upload";
+import Input from "./cdk-components/input/Input";
 
 export default [
   {
@@ -27,6 +28,11 @@ export default [
     path: "dropdown",
     name: "Dropdown",
     component: Dropdown
+  },
+  {
+    path: "input",
+    name: "Input",
+    component: Input
   },
   {
     path: "radio",
