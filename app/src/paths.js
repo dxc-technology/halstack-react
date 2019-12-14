@@ -5,6 +5,7 @@ import Switch from "./pages/Switch";
 import Upload from "./pages/Upload";
 import InputText from "./pages/InputText";
 import Tabs from "./pages/Tabs";
+import TabsForSections from "./pages/TabsForSections";
 
 export default [
   {
@@ -41,5 +42,10 @@ export default [
     path: "tabs",
     name: "Tabs",
     component: Tabs
+  },
+  {
+    path: "tabs-for-sections",
+    name: "Tabs for sections",
+    component: TabsForSections
   }
 ];
