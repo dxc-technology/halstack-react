@@ -23,7 +23,7 @@ function App() {
 
 const MainContainer = styled.div`
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   background: #efefef;
 `;
 
