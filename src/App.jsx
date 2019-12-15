@@ -11,7 +11,9 @@ import Overview from "./pages/overview/Overview";
 function App() {
   return (
     <MainContainer>
-      <Header></Header>
+      <StyledHeader>
+        <Header></Header>
+      </StyledHeader>
       <Content>
         <StyledRouter>
           <Components path="/components/*"></Components>
@@ -35,12 +37,19 @@ const StyledRouter = styled(Router)`
   width: 100%;
 `;
 
+const StyledHeader = styled.div`
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+`;
+
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 const Content = styled.div`
+  margin-top: 64px;
   display: flex;
   min-height: calc(100vh - 64px - 119px);
 `;
