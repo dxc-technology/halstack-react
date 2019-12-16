@@ -8,7 +8,7 @@ import paths from "./paths.js";
 function Components() {
   return (
     <ComponentsContainer>
-      <SideNav title="React Components" paths={paths}></SideNav>
+      <SideNav title="React Components"></SideNav>
       <Content>
         <StyledRouter primary={false}>
           {paths.map(path => (

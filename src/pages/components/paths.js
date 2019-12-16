@@ -9,55 +9,72 @@ import Upload from "./cdk-components/upload/Upload";
 import Input from "./cdk-components/input/Input";
 import Accordion from "./cdk-components/accordion/Accordion";
 
+export const types = {
+  FORMS: "Forms",
+  NAVIGATION: "Navigation",
+  LAYOUT: "Layout",
+  UTILS: "Utilities"
+};
+
 export default [
   {
     path: "alert",
     name: "Alert",
-    component: Alert
+    component: Alert,
+    type: types.UTILS
   },
   {
     path: "accordion",
     name: "Accordion",
-    component: Accordion
+    component: Accordion,
+    type: types.UTILS
   },
   {
     path: "button",
     name: "Button",
-    component: Button
+    component: Button,
+    type: types.FORMS
   },
   {
     path: "checkbox",
     name: "Checkbox",
-    component: Checkbox
+    component: Checkbox,
+    type: types.FORMS
   },
   {
     path: "dropdown",
     name: "Dropdown",
-    component: Dropdown
+    component: Dropdown,
+    type: types.FORMS
   },
   {
     path: "input",
     name: "Input",
-    component: Input
+    component: Input,
+    type: types.FORMS
   },
   {
     path: "radio",
     name: "Radio Button",
-    component: Radio
+    component: Radio,
+    type: types.FORMS
   },
   {
     path: "switch",
     name: "Switch",
-    component: Switch
+    component: Switch,
+    type: types.FORMS
   },
   {
     path: "tabs",
     name: "Tabs",
-    component: Tabs
+    component: Tabs,
+    type: types.NAVIGATION
   },
   {
     path: "upload",
     name: "Upload",
-    component: Upload
+    component: Upload,
+    type: types.UTILS
   }
 ];
