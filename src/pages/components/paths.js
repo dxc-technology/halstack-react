@@ -8,6 +8,7 @@ import Tabs from "./cdk-components/tabs/Tabs";
 import Upload from "./cdk-components/upload/Upload";
 import Input from "./cdk-components/input/Input";
 import Accordion from "./cdk-components/accordion/Accordion";
+import Select from "./cdk-components/select/Select";
 import Slider from "./cdk-components/slider/Slider";
 
 export default [
@@ -45,6 +46,11 @@ export default [
     path: "radio",
     name: "Radio Button",
     component: Radio
+  },
+  {
+    path: "select",
+    name: "Select",
+    component: Select
   },
   {
     path: "switch",
