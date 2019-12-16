@@ -11,11 +11,12 @@ import Accordion from "./cdk-components/accordion/Accordion";
 import Select from "./cdk-components/select/Select";
 import Slider from "./cdk-components/slider/Slider";
 import Toggle from "./cdk-components/toggle/Toggle";
-
+import TabbedSections from "./cdk-components/tabbed-sections/TabbedSections";
 
 export const types = {
   FORMS: "Forms",
   NAVIGATION: "Navigation",
+  LAYOUT: "Layout",
   UTILS: "Utilities"
 };
 
@@ -97,5 +98,11 @@ export default [
     name: "Upload",
     component: Upload,
     type: types.UTILS
+  },
+  {
+    path: "tabbed-sections",
+    name: "Tabbed Sections",
+    component: TabbedSections,
+    type: types.LAYOUT
   }
 ];
