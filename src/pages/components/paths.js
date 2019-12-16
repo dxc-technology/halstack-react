@@ -8,6 +8,10 @@ import Tabs from "./cdk-components/tabs/Tabs";
 import Upload from "./cdk-components/upload/Upload";
 import Input from "./cdk-components/input/Input";
 import Accordion from "./cdk-components/accordion/Accordion";
+import Select from "./cdk-components/select/Select";
+import Slider from "./cdk-components/slider/Slider";
+import Toggle from "./cdk-components/toggle/Toggle";
+
 
 export const types = {
   FORMS: "Forms",
@@ -18,15 +22,15 @@ export const types = {
 
 export default [
   {
-    path: "alert",
-    name: "Alert",
-    component: Alert,
-    type: types.UTILS
-  },
-  {
     path: "accordion",
     name: "Accordion",
     component: Accordion,
+    type: types.UTILS
+  },
+  {
+    path: "alert",
+    name: "Alert",
+    component: Alert,
     type: types.UTILS
   },
   {
@@ -60,9 +64,21 @@ export default [
     type: types.FORMS
   },
   {
+    path: "select",
+    name: "Select",
+    component: Select,
+    type: types.FORMS
+  },
+  {
     path: "switch",
     name: "Switch",
     component: Switch,
+    type: types.FORMS
+  },
+  {
+    path: "slider",
+    name: "Slider",
+    component: Slider,
     type: types.FORMS
   },
   {
@@ -70,6 +86,12 @@ export default [
     name: "Tabs",
     component: Tabs,
     type: types.NAVIGATION
+  },
+  {
+    path: "toggle",
+    name: "Toggle",
+    component: Toggle,
+    type: types.FORMS
   },
   {
     path: "upload",
