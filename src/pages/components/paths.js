@@ -16,7 +16,6 @@ import Toggle from "./cdk-components/toggle/Toggle";
 export const types = {
   FORMS: "Forms",
   NAVIGATION: "Navigation",
-  LAYOUT: "Layout",
   UTILS: "Utilities"
 };
 
