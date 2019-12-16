@@ -1,4 +1,6 @@
 import React from "react";
+import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../common/DocTitle";
 import Example from "../../common/Example";
@@ -15,20 +17,47 @@ function Accordion() {
   return (
     <ComponentDoc>
       <DocTitle size={1}>Accordion</DocTitle>
-      <Section>
-        <DocTitle size={2}>Props</DocTitle>
-        <AlertPropsTable />
-      </Section>
-      <Section>
-        <DocTitle size={2}>Elements</DocTitle>
-        <Example title="Default Accordion" example={defaultAccordion}></Example>
-        <Example title="Alternative Accordion" example={alternative}></Example>
-        <Example title="Disabled Accordion" example={disabled}></Example>
-        <Example title="Accordion with assistive text" example={assitiveText}></Example>
-        <Example title="Accordion with icon" example={icon}></Example>
-        <Example title="Dark theme Accordion" example={dark}></Example>
-
-      </Section>
+      <DxcTabsForSections
+        stickAtPx={64}
+        tabsMode="underlined"
+        sections={[
+          {
+            tabLabel: "Props",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Props</DocTitle>
+                <AlertPropsTable />
+              </Section>
+            )
+          },
+          {
+            tabLabel: "Examples",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Examples</DocTitle>
+                <Example
+                  title="Default Accordion"
+                  example={defaultAccordion}
+                ></Example>
+                <Example
+                  title="Alternative Accordion"
+                  example={alternative}
+                ></Example>
+                <Example
+                  title="Disabled Accordion"
+                  example={disabled}
+                ></Example>
+                <Example
+                  title="Accordion with assistive text"
+                  example={assitiveText}
+                ></Example>
+                <Example title="Accordion with icon" example={icon}></Example>
+                <Example title="Dark theme Accordion" example={dark}></Example>
+              </Section>
+            )
+          }
+        ]}
+      ></DxcTabsForSections>
     </ComponentDoc>
   );
 }

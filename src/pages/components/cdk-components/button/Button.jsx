@@ -1,5 +1,5 @@
 import React from "react";
-import DxcTabsForSections from "./../../../../common/TabsForSections";
+import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
@@ -28,10 +28,10 @@ function Button() {
             )
           },
           {
-            tabLabel: "Elements",
+            tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Elements</DocTitle>
+                <DocTitle size={2}>Examples</DocTitle>
                 <Example title="Default Button" example={modes}></Example>
                 <Example title="Disabled Button" example={disabled}></Example>
                 <Example title="Default Button" example={modes}></Example>

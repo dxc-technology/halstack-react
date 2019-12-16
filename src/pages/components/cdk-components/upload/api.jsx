@@ -5,9 +5,9 @@ const checkboxPropsTable = () => {
   return (
     <PropsTable>
       <tr>
-        <td>Name</td>
-        <td>Default</td>
-        <td>Description</td>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
       </tr>
       <tr>
         <td>onUpload: function</td>
