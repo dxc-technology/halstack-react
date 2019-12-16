@@ -6,6 +6,8 @@ import Upload from "./pages/Upload";
 import InputText from "./pages/InputText";
 import Tabs from "./pages/Tabs";
 import TabsForSections from "./pages/TabsForSections";
+import Toggle from "./pages/Toggle";
+import Radio from "./pages/Radio";
 
 export default [
   {
@@ -29,14 +31,19 @@ export default [
     component: InputText
   },
   {
-    path: "upload",
-    name: "Upload",
-    component: Upload
+    path: "radio",
+    name: "Radio",
+    component: Radio
   },
-  {
+    {
     path: "switch",
     name: "Switch",
     component: Switch
+  },
+  {
+    path: "toggle",
+    name: "Toggle",
+    component: Toggle
   },
   {
     path: "tabs",
@@ -47,5 +54,10 @@ export default [
     path: "tabs-for-sections",
     name: "Tabs for sections",
     component: TabsForSections
+  },
+  {
+    path: "upload",
+    name: "Upload",
+    component: Upload
   }
 ];
