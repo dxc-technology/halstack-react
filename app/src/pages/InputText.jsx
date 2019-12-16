@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DxcInput } from "@diaas/dxc-react-cdk";
-import iconSrcPath from "./house24px.svg";
+import iconSrcPath from "../images/home.svg";
 
 function App() {
   const [inputValue, changeInput] = useState("");
