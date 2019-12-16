@@ -6,8 +6,14 @@ import Upload from "./pages/Upload";
 import InputText from "./pages/InputText";
 import Tabs from "./pages/Tabs";
 import TabsForSections from "./pages/TabsForSections";
+import Accordion from "./pages/Accordion";
 
 export default [
+  {
+    path: "accordion",
+    name: "Accordion",
+    component: Accordion
+  },
   {
     path: "alert",
     name: "Alert",
