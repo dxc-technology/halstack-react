@@ -10,6 +10,8 @@ import Input from "./cdk-components/input/Input";
 import Accordion from "./cdk-components/accordion/Accordion";
 import Select from "./cdk-components/select/Select";
 import Slider from "./cdk-components/slider/Slider";
+import Toggle from "./cdk-components/toggle/Toggle";
+
 
 export default [
   {
@@ -66,6 +68,11 @@ export default [
     path: "tabs",
     name: "Tabs",
     component: Tabs
+  },
+  {
+    path: "toggle",
+    name: "Toggle",
+    component: Toggle
   },
   {
     path: "upload",
