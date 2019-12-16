@@ -7,6 +7,7 @@ import InputText from "./pages/InputText";
 import Tabs from "./pages/Tabs";
 import TabsForSections from "./pages/TabsForSections";
 import Accordion from "./pages/Accordion";
+import Slider from "./pages/Slider";
 
 export default [
   {
@@ -38,6 +39,11 @@ export default [
     path: "upload",
     name: "Upload",
     component: Upload
+  },
+  {
+    path: "slider",
+    name: "Slider",
+    component: Slider
   },
   {
     path: "switch",
