@@ -8,17 +8,18 @@ import Tabs from "./cdk-components/tabs/Tabs";
 import Upload from "./cdk-components/upload/Upload";
 import Input from "./cdk-components/input/Input";
 import Accordion from "./cdk-components/accordion/Accordion";
+import Slider from "./cdk-components/slider/Slider";
 
 export default [
-  {
-    path: "alert",
-    name: "Alert",
-    component: Alert
-  },
   {
     path: "accordion",
     name: "Accordion",
     component: Accordion
+  },
+  {
+    path: "alert",
+    name: "Alert",
+    component: Alert
   },
   {
     path: "button",
@@ -49,6 +50,11 @@ export default [
     path: "switch",
     name: "Switch",
     component: Switch
+  },
+  {
+    path: "slider",
+    name: "Slider",
+    component: Slider
   },
   {
     path: "tabs",
