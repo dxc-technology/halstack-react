@@ -34,6 +34,8 @@ function Button() {
                 <DocTitle size={2}>Elements</DocTitle>
                 <Example title="Default Button" example={modes}></Example>
                 <Example title="Disabled Button" example={disabled}></Example>
+                <Example title="Default Button" example={modes}></Example>
+                <Example title="Disabled Button" example={disabled}></Example>
               </Section>
             )
           }
