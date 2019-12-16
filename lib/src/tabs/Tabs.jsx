@@ -41,8 +41,8 @@ const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick 
 
 const DxCTabs = styled.div`
   .MuiTabs-root {
+    background: white;
     .MuiTabs-scroller {
-      margin: 15px;
       .MuiTabs-flexContainer {
         border-bottom: 1.5px solid ${colors.lightGrey};
       }

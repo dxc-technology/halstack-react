@@ -1,28 +1,30 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import useScrollSpy from "react-use-scrollspy";
 
 import DxcTabs from "../tabs/Tabs";
 
-const DxcTabsForSections = ({ tabsMode, tabsTheme, disableTabsRipple, sections }) => {
-  const tabs = [{ label: "tab 1" }, { label: "tab 2" }, { label: "tab 3" }];
-  //const refs = [useRef(null), useRef(null), useRef(null)];
-  const refs = sections.map(() => useRef(null));
+const TABS_HEIGHT = 54;
+
+const DxcTabsForSections = ({ tabsMode, tabsTheme, disableTabsRipple, sections, stickAtPx }) => {
+  const tabs = sections.map(section => ({ label: section.tabLabel }));
+
+  const refs = sections.map(() => React.createRef());
 
   const activeTab = useScrollSpy({
-    sectionElementRefs: refs
+    sectionElementRefs: refs,
+    offsetPx: -stickAtPx - TABS_HEIGHT
   });
 
-  const onTabClick = tabId =>
-    refs[tabId].current.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+  const onTabClick = tabId => {
+    const topOfElement = refs[tabId].current.offsetTop - stickAtPx - TABS_HEIGHT + 5;
+    window.scroll({ top: topOfElement, behavior: "smooth" });
+  };
 
   return (
     <React.Fragment>
-      <StyledTabs>
+      <StyledTabs stickAtPx={stickAtPx}>
         <DxcTabs
           mode={tabsMode}
           theme={tabsTheme}
@@ -45,6 +47,7 @@ DxcTabsForSections.propTypes = {
   tabsMode: DxcTabs.propTypes.mode,
   tabsTheme: DxcTabs.propTypes.theme,
   disableTabsRipple: DxcTabs.propTypes.disableRipple,
+  stickAtPx: PropTypes.number,
   sections: PropTypes.arrayOf(
     PropTypes.shape({
       tabLabel: PropTypes.string,
@@ -57,11 +60,17 @@ DxcTabsForSections.defaultProps = {
   tabsMode: DxcTabs.defaultProps.mode,
   tabsTheme: DxcTabs.defaultProps.theme,
   disableTabsRipple: DxcTabs.defaultProps.disableRipple,
+  stickAtPx: 0,
   sections: []
 };
 
 const StyledTabs = styled.div`
-  position: sticky;
-  top: 0px;
+  z-index: 10;
+  ${({ stickAtPx }) =>
+    stickAtPx &&
+    `
+    position: sticky;
+    top: ${stickAtPx}px;
+  `}
 `;
 export default DxcTabsForSections;
