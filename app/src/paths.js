@@ -7,6 +7,7 @@ import InputText from "./pages/InputText";
 import Tabs from "./pages/Tabs";
 import TabsForSections from "./pages/TabsForSections";
 import Accordion from "./pages/Accordion";
+import Slider from "./pages/Slider";
 import Toggle from "./pages/Toggle";
 import Radio from "./pages/Radio";
 import Select from "./pages/Select";
@@ -46,6 +47,11 @@ export default [
     path: "select",
     name: "Select",
     component: Select
+  },
+  {
+    path: "slider",
+    name: "Slider",
+    component: Slider
   },
   {
     path: "switch",
