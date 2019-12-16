@@ -28,7 +28,7 @@ const DxcToggle = ({
       iconPosition={iconPosition}
       value
       onClick={() => {
-        if (!disabled) onClick(selected);
+        if (!disabled) onClick(!selected);
       }}
     >
       <ToggleButton disabled={disabled} disableRipple={disableRipple} selected={selected} label={label} value>
@@ -46,6 +46,7 @@ const DxcToggleContainer = styled.div`
     margin: 15px;
     opacity: ${props => (props.disabled ? "0.5" : "1")};
     cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
+    display: inline-block;
   }
 
   .MuiToggleButton-label {
