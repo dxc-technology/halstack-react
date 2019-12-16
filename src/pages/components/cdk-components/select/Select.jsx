@@ -1,6 +1,6 @@
 import React from "react";
 import ComponentDoc from "../../common/ComponentDoc";
-import DocTitle from "../../common/DocTitle";
+import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import InputPropsTable from "./api.jsx";
