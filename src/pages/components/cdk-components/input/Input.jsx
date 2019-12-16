@@ -1,4 +1,6 @@
 import React from "react";
+import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../common/DocTitle";
 import Section from "../../common/Section";
@@ -14,17 +16,42 @@ function Input() {
   return (
     <ComponentDoc>
       <DocTitle size={1}>Input</DocTitle>
-      <Section>
-        <DocTitle size={2}>Props</DocTitle>
-        <InputPropsTable />
-      </Section>
-      <Section>
-        <DocTitle size={2}>Elements</DocTitle>
-        <Example title="Controlled Input" example={controlled}></Example>
-        <Example title="Uncontrolled Input" example={uncontrolled}></Example>
-        <Example title="Labeled Input" example={labeled}></Example>
-        <Example title="Dark Themed Input" example={darkTheme}></Example>
-      </Section>
+      <DxcTabsForSections
+        stickAtPx={64}
+        tabsMode="underlined"
+        sections={[
+          {
+            tabLabel: "Props",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Props</DocTitle>
+                <InputPropsTable />
+              </Section>
+            )
+          },
+          {
+            tabLabel: "Examples",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Examples</DocTitle>
+                <Example
+                  title="Controlled Input"
+                  example={controlled}
+                ></Example>
+                <Example
+                  title="Uncontrolled Input"
+                  example={uncontrolled}
+                ></Example>
+                <Example title="Labeled Input" example={labeled}></Example>
+                <Example
+                  title="Dark Themed Input"
+                  example={darkTheme}
+                ></Example>
+              </Section>
+            )
+          }
+        ]}
+      ></DxcTabsForSections>
     </ComponentDoc>
   );
 }

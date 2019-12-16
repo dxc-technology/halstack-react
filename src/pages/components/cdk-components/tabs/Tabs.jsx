@@ -1,4 +1,6 @@
 import React from "react";
+import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../common/DocTitle";
 import Section from "../../common/Section";
@@ -16,18 +18,49 @@ function Tabs() {
   return (
     <ComponentDoc>
       <DocTitle size={1}>Tabs</DocTitle>
-      <Section>
-        <DocTitle size={2}>Props</DocTitle>
-        <TabsPropsTable />
-      </Section>
-      <Section>
-        <DocTitle size={2}>Elements</DocTitle>
-        <Example title="Controlled Tabs" example={controlledTabs}></Example>
-        <Example title="Uncontrolled Tabs" example={uncontrolledTabs}></Example>
-        <Example title="Dark Theme Tabs" example={darkThemeTabs}></Example>
-        <Example title="Underlined Tabs" example={underlinedTabs}></Example>
-        <Example title="Tabs with content" example={withContentTabs}></Example>
-      </Section>
+      <DxcTabsForSections
+        stickAtPx={64}
+        tabsMode="underlined"
+        sections={[
+          {
+            tabLabel: "Props",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Props</DocTitle>
+                <TabsPropsTable />
+              </Section>
+            )
+          },
+          {
+            tabLabel: "Examples",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Examples</DocTitle>
+                <Example
+                  title="Controlled Tabs"
+                  example={controlledTabs}
+                ></Example>
+                <Example
+                  title="Uncontrolled Tabs"
+                  example={uncontrolledTabs}
+                ></Example>
+                <Example
+                  title="Dark Theme Tabs"
+                  example={darkThemeTabs}
+                ></Example>
+                <Example
+                  title="Underlined Tabs"
+                  example={underlinedTabs}
+                ></Example>
+                <Example
+                  title="Tabs with content"
+                  example={withContentTabs}
+                ></Example>
+              </Section>
+            )
+          }
+        ]}
+      ></DxcTabsForSections>
     </ComponentDoc>
   );
 }

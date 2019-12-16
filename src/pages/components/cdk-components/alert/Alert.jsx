@@ -1,4 +1,6 @@
 import React from "react";
+import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../common/DocTitle";
 import Example from "../../common/Example";
@@ -16,26 +18,42 @@ function Alert() {
   return (
     <ComponentDoc>
       <DocTitle size={1}>Alert</DocTitle>
-      <Section>
-        <DocTitle size={2}>Props</DocTitle>
-        <AlertPropsTable />
-      </Section>
-      <Section>
-        <DocTitle size={2}>Elements</DocTitle>
-        <Example title="Information Alert" example={inlineInfo}></Example>
-        <Example title="Success Alert" example={inlineSuccess}></Example>
-        <Example title="Warning Alert" example={inlineWarning}></Example>
-        <Example title="Error Alert" example={inlineError}></Example>
-        <Example title="Modal alert" example={modal}></Example>
-        <Example
-          title="Closable inline alert"
-          example={closableInline}
-        ></Example>
-        <Example
-          title="Non closable inline alert"
-          example={nonClosableInline}
-        ></Example>
-      </Section>
+      <DxcTabsForSections
+        stickAtPx={64}
+        tabsMode="underlined"
+        sections={[
+          {
+            tabLabel: "Props",
+            section: () => (
+              <Section>
+              <DocTitle size={2}>Props</DocTitle>
+              <AlertPropsTable />
+            </Section>
+                  )
+          },
+          {
+            tabLabel: "Examples",
+            section: () => (
+              <Section>
+              <DocTitle size={2}>Examples</DocTitle>
+              <Example title="Information Alert" example={inlineInfo}></Example>
+              <Example title="Success Alert" example={inlineSuccess}></Example>
+              <Example title="Warning Alert" example={inlineWarning}></Example>
+              <Example title="Error Alert" example={inlineError}></Example>
+              <Example title="Modal alert" example={modal}></Example>
+              <Example
+                title="Closable inline alert"
+                example={closableInline}
+              ></Example>
+              <Example
+                title="Non closable inline alert"
+                example={nonClosableInline}
+              ></Example>
+            </Section>
+                        )
+          }
+        ]}
+      ></DxcTabsForSections>
     </ComponentDoc>
   );
 }
