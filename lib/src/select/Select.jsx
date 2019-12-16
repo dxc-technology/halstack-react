@@ -112,8 +112,18 @@ const DxcSelect = ({
   const getRenderValue = selected => {
     return (multiple && labelForMultipleSelect(selected)) || getLabelForSingleSelect(selected);
   };
-  const isChecked = (checkedValue, option) => {
-    return (checkedValue && checkedValue.findIndex(element => element === option.value) !== -1) || false;
+  const isChecked = (checkedValue, value, option) => {
+    if (value !== undefined) {
+      let result = false;
+      value.map(val => {
+        if (val === option.value) {
+          result = true;
+        }
+      });
+      return result;
+    } else if (checkedValue) {
+      return checkedValue.findIndex(element => element === option.value) !== -1 || false;
+    }
   };
 
   return (
@@ -126,7 +136,7 @@ const DxcSelect = ({
           multiple={multiple}
           renderValue={getRenderValue}
           onChange={handleSelectChange}
-          value={(value != null && value && value.length && value) || selectedValue}
+          value={value !== undefined ? value : selectedValue}
           disabled={disabled}
           MenuProps={{
             classes: { paper: classes.dropdownStyle, list: classes.itemList },
@@ -140,7 +150,7 @@ const DxcSelect = ({
           {options.map(option => {
             return (
               <MenuItem id={option.value} value={option.value} disableRipple={disableRipple}>
-                {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, option)} />}
+                {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, value, option)} />}
                 <OptionContainer iconPosition={iconPosition}>
                   {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
                   <LabelCont>{option.label}</LabelCont>
@@ -277,7 +287,11 @@ const SelectContainer = styled.div`
 DxcSelect.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
+  ]),
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   disableRipple: PropTypes.bool,
