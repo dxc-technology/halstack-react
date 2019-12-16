@@ -2,7 +2,7 @@ import React from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
-import DocTitle from "../../common/DocTitle";
+import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import CheckboxPropsTable from "./api.jsx";
