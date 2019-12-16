@@ -1,6 +1,6 @@
 import React from "react";
 import { DxcAccordion } from "@diaas/dxc-react-cdk";
-import logo from "../images/home.svg";
+import homeLogo from "../images/home.svg";
 
 function App() {
   const onChange = () => {};
@@ -41,7 +41,7 @@ function App() {
           label="Fourth accordion"
           assistiveText="Extra information"
           iconPosition="before"
-          iconSrc={logo}
+          iconSrc={homeLogo}
           onChange={onChange}
         >
           <div>
@@ -54,7 +54,7 @@ function App() {
           label="Fifth accordion"
           assistiveText="Extra information"
           iconPosition="after"
-          iconSrc={logo}
+          iconSrc={homeLogo}
           onChange={onChange}
         >
           <div>
@@ -107,7 +107,7 @@ function App() {
           label="Fourth accordion"
           assistiveText="Extra information"
           iconPosition="before"
-          iconSrc={logo}
+          iconSrc={homeLogo}
           onChange={onChange}
         >
           <div>
@@ -121,7 +121,7 @@ function App() {
           label="Fifth accordion"
           assistiveText="Extra information"
           iconPosition="after"
-          iconSrc={logo}
+          iconSrc={homeLogo}
           onChange={onChange}
         >
           <div>
@@ -175,7 +175,7 @@ function App() {
             label="Fourth accordion"
             assistiveText="Extra information"
             iconPosition="before"
-            iconSrc={logo}
+            iconSrc={homeLogo}
             onChange={onChange}
           >
             <div>
@@ -189,7 +189,7 @@ function App() {
             label="Fifth accordion"
             assistiveText="Extra information"
             iconPosition="after"
-            iconSrc={logo}
+            iconSrc={homeLogo}
             onChange={onChange}
           >
             <div>
@@ -244,7 +244,7 @@ function App() {
             label="Fourth accordion"
             assistiveText="Extra information"
             iconPosition="before"
-            iconSrc={logo}
+            iconSrc={homeLogo}
             onChange={onChange}
           >
             <div>
@@ -259,7 +259,7 @@ function App() {
             label="Fifth accordion"
             assistiveText="Extra information"
             iconPosition="after"
-            iconSrc={logo}
+            iconSrc={homeLogo}
             onChange={onChange}
           >
             <div>
