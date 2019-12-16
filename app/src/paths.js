@@ -9,6 +9,7 @@ import TabsForSections from "./pages/TabsForSections";
 import Accordion from "./pages/Accordion";
 import Toggle from "./pages/Toggle";
 import Radio from "./pages/Radio";
+import Select from "./pages/Select";
 
 export default [
   {
@@ -41,7 +42,12 @@ export default [
     name: "Radio",
     component: Radio
   },
-    {
+  {
+    path: "select",
+    name: "Select",
+    component: Select
+  },
+  {
     path: "switch",
     name: "Switch",
     component: Switch
