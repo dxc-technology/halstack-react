@@ -138,23 +138,8 @@ const Link = styled.a`
   letter-spacing: initial;
 `;
 
-const Title = styled.h3`
-  border-bottom: 1px solid black;
-`;
-
-const CodeBlock = styled.h3`
-  font-family: Monaco, Menlo, Consolas, "Droid Sans Mono", Inconsolata,
-    "Courier New", monospace;
-  line-height: 1.6;
-  background: gray;
-  padding: 10px;
-`;
-
 const Introduction = styled.div`
   padding: 0px 0px 50px 0px;
-  color: gray;
-  font-size: 16px;
-  letter-spacing: 1px;
   max-width: 800px;
 
   & li {
