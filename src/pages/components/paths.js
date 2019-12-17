@@ -14,6 +14,7 @@ import Toggle from "./cdk-components/toggle/Toggle";
 import TabbedSections from "./cdk-components/tabbed-sections/TabbedSections";
 import Card from "./cdk-components/card/Card";
 import Dialog from "./cdk-components/dialog/Dialog";
+import ProgressBar from "./cdk-components/progressBar/progressBar";
 
 export const types = {
   FORMS: "Forms",
@@ -69,6 +70,12 @@ export default [
     path: "input",
     name: "Input",
     component: Input,
+    type: types.FORMS
+  },
+  {
+    path: "progressBar",
+    name: "Progress Bar",
+    component: ProgressBar,
     type: types.FORMS
   },
   {
