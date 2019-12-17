@@ -5,18 +5,16 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import InputPropsTable from "./api.jsx";
 
-import TogglePropsTable from "./api.jsx";
+import defaultHeader from "./examples/default.js";
+import dark from "./examples/dark.js";
+import outlined from "./examples/outlined.js";
 
-import defaultToggle from "././examples/default";
-import disabledToggle from "././examples/disableToggle";
-import toggleWithIcons from "././examples/toggleWithIcons";
-import toggleDarkTheme from "././examples/toggleDarkTheme";
-
-function Dropdown() {
+function Input() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Toggle</DocTitle>
+      <DocTitle size={1}>Header</DocTitle>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -26,7 +24,7 @@ function Dropdown() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
-                <TogglePropsTable />
+                <InputPropsTable />
               </Section>
             )
           },
@@ -36,21 +34,11 @@ function Dropdown() {
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example
-                  title="Default toggle"
-                  example={defaultToggle}
+                  title="Default Header"
+                  example={defaultHeader}
                 ></Example>
-                <Example
-                  title="Disabled toggle"
-                  example={disabledToggle}
-                ></Example>
-                <Example
-                  title="Toggle with Icons"
-                  example={toggleWithIcons}
-                ></Example>
-                <Example
-                  title="Toggle themed"
-                  example={toggleDarkTheme}
-                ></Example>
+                <Example title="Dark Header" example={dark}></Example>
+                <Example title="Outlined Header" example={outlined}></Example>
               </Section>
             )
           }
@@ -60,4 +48,4 @@ function Dropdown() {
   );
 }
 
-export default Dropdown;
+export default Input;
