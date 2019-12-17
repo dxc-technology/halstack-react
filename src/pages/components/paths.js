@@ -13,6 +13,7 @@ import Slider from "./cdk-components/slider/Slider";
 import Toggle from "./cdk-components/toggle/Toggle";
 import TabbedSections from "./cdk-components/tabbed-sections/TabbedSections";
 import Card from "./cdk-components/card/Card";
+import Dialog from "./cdk-components/dialog/Dialog";
 
 export const types = {
   FORMS: "Forms",
@@ -51,6 +52,12 @@ export default [
     name: "Checkbox",
     component: Checkbox,
     type: types.FORMS
+  },
+  {
+    path: "dialog",
+    name: "Dialog",
+    component: Dialog,
+    type: types.UTILS
   },
   {
     path: "dropdown",
