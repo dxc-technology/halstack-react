@@ -23,14 +23,18 @@ const DxcSlider = ({
   const [innerValue, setInnerValue] = useState(0);
 
   const handlerSliderChange = (event, newValue) => {
-    const valueToCheck = value !== undefined ? value : innerValue;
-    if (valueToCheck !== newValue) {
-      setInnerValue(newValue);
-      onChange(newValue);
+    if (value == null) {
+      const valueToCheck = value !== undefined ? value : innerValue;
+      if (valueToCheck !== newValue) {
+        setInnerValue(newValue);
+      }
     }
+    onChange(newValue);
   };
   const handlerInputChange = event => {
-    setInnerValue(event > maxValue ? maxValue : event);
+    if (value == null) {
+      setInnerValue(event > maxValue ? maxValue : event);
+    }
     onChange(event > maxValue ? maxValue : event);
   };
 
@@ -42,7 +46,7 @@ const DxcSlider = ({
         </MinLabelContainer>
       )}
       <Slider
-        value={value >= 0 || innerValue}
+        value={(value != null && value >= 0 && value) || innerValue}
         min={minValue}
         max={maxValue}
         onChange={handlerSliderChange}
@@ -61,7 +65,7 @@ const DxcSlider = ({
           <DxcInput
             name={name}
             theme={theme}
-            value={value >= 0 || innerValue}
+            value={(value != null && value >= 0 && value) || innerValue}
             disabled={disabled}
             onChange={handlerInputChange}
           />
