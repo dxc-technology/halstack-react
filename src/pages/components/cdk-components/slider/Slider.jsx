@@ -6,6 +6,8 @@ import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import AlertPropsTable from "./api.jsx";
 import Section from "../../common/Section";
+import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
 import discrete from "./examples/discrete";
 import continuous from "./examples/continuous";
 import disabled from "./examples/disabled";
@@ -35,6 +37,8 @@ function Slider() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
+                <Example title="Controlled Slider" example={controlled}></Example>
+                <Example title="Uncontrolled Slider" example={uncontrolled}></Example>
                 <Example title="Discrete Slider" example={discrete}></Example>
                 <Example
                   title="Continuous Slider"
