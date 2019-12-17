@@ -3,20 +3,20 @@ import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
-import Section from "../../common/Section";
 import Example from "../../common/Example";
+import Section from "../../common/Section";
 
-import TogglePropsTable from "./api.jsx";
+import ProgressBarPropsTable from "./api.jsx";
 
-import defaultToggle from "././examples/default";
-import disabledToggle from "././examples/disableToggle";
-import toggleWithIcons from "././examples/toggleWithIcons";
-import toggleDarkTheme from "././examples/toggleDarkTheme";
+import defaultProgressBar from "./examples/progressUndeterminedDefault";
+import determinedDefaultProgressBar from "./examples/progressDeterminedDefault";
+import darkThemeProgressBar from "./examples/darkThemeProgressBar";
+import progressWithOverlay from "./examples/progressWithOverlay";
 
-function Dropdown() {
+function ProgressBar() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Toggle</DocTitle>
+      <DocTitle size={1}>Progress Bar</DocTitle>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -26,7 +26,7 @@ function Dropdown() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
-                <TogglePropsTable />
+                <ProgressBarPropsTable />
               </Section>
             )
           },
@@ -36,20 +36,20 @@ function Dropdown() {
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example
-                  title="Default toggle"
-                  example={defaultToggle}
+                  title="Undetermined default Progress Bar"
+                  example={defaultProgressBar}
                 ></Example>
                 <Example
-                  title="Disabled toggle"
-                  example={disabledToggle}
+                  title="Determined default Progress Bar"
+                  example={determinedDefaultProgressBar}
                 ></Example>
                 <Example
-                  title="Toggle with Icons"
-                  example={toggleWithIcons}
+                  title="Dark themed progress bar"
+                  example={darkThemeProgressBar}
                 ></Example>
                 <Example
-                  title="Toggle themed"
-                  example={toggleDarkTheme}
+                  title="With Overlay"
+                  example={progressWithOverlay}
                 ></Example>
               </Section>
             )
@@ -59,5 +59,4 @@ function Dropdown() {
     </ComponentDoc>
   );
 }
-
-export default Dropdown;
+export default ProgressBar;
