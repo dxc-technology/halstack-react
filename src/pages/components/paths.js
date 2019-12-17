@@ -12,6 +12,10 @@ import Select from "./cdk-components/select/Select";
 import Slider from "./cdk-components/slider/Slider";
 import Toggle from "./cdk-components/toggle/Toggle";
 import TabbedSections from "./cdk-components/tabbed-sections/TabbedSections";
+import Card from "./cdk-components/card/Card";
+import Dialog from "./cdk-components/dialog/Dialog";
+import ProgressBar from "./cdk-components/progressBar/progressBar";
+import Header from "./cdk-components/header/Header";
 
 export const types = {
   FORMS: "Forms",
@@ -40,10 +44,22 @@ export default [
     type: types.FORMS
   },
   {
+    path: "card",
+    name: "Card",
+    component: Card,
+    type: types.LAYOUT
+  },
+  {
     path: "checkbox",
     name: "Checkbox",
     component: Checkbox,
     type: types.FORMS
+  },
+  {
+    path: "dialog",
+    name: "Dialog",
+    component: Dialog,
+    type: types.UTILS
   },
   {
     path: "dropdown",
@@ -52,9 +68,21 @@ export default [
     type: types.FORMS
   },
   {
+    path: "header",
+    name: "Header",
+    component: Header,
+    type: types.NAVIGATION
+  },
+  {
     path: "input",
     name: "Input",
     component: Input,
+    type: types.FORMS
+  },
+  {
+    path: "progressBar",
+    name: "Progress Bar",
+    component: ProgressBar,
     type: types.FORMS
   },
   {
@@ -70,15 +98,15 @@ export default [
     type: types.FORMS
   },
   {
-    path: "switch",
-    name: "Switch",
-    component: Switch,
-    type: types.FORMS
-  },
-  {
     path: "slider",
     name: "Slider",
     component: Slider,
+    type: types.FORMS
+  },
+  {
+    path: "switch",
+    name: "Switch",
+    component: Switch,
     type: types.FORMS
   },
   {
