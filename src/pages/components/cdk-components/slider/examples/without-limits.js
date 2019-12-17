@@ -1,13 +1,18 @@
 import { DxcSlider } from "@diaas/dxc-react-cdk";
+import { useState } from "react";
 
 const code = `() => {
-  const onChange = () => {};
-  const onDragEnd = () => {};
+  const [value, changeValue] = useState(0);
+  const onChange = newValue => {
+    changeValue(newValue);
+  };
+  const onDragEnd = ()=> {};
 
   return (
     <DxcSlider
       minValue={0}
       maxValue={100}
+      value={value}
       name="input"
       step={1}
       onChange={onChange}
@@ -17,7 +22,8 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcSlider
+  DxcSlider,
+  useState
 };
 
 export default { code, scope };
