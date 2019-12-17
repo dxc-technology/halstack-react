@@ -15,6 +15,7 @@ import TabbedSections from "./cdk-components/tabbed-sections/TabbedSections";
 import Card from "./cdk-components/card/Card";
 import Dialog from "./cdk-components/dialog/Dialog";
 import ProgressBar from "./cdk-components/progressBar/progressBar";
+import Header from "./cdk-components/header/Header";
 
 export const types = {
   FORMS: "Forms",
@@ -67,6 +68,12 @@ export default [
     type: types.FORMS
   },
   {
+    path: "header",
+    name: "Header",
+    component: Header,
+    type: types.NAVIGATION
+  },
+  {
     path: "input",
     name: "Input",
     component: Input,
@@ -91,15 +98,15 @@ export default [
     type: types.FORMS
   },
   {
-    path: "switch",
-    name: "Switch",
-    component: Switch,
-    type: types.FORMS
-  },
-  {
     path: "slider",
     name: "Slider",
     component: Slider,
+    type: types.FORMS
+  },
+  {
+    path: "switch",
+    name: "Switch",
+    component: Switch,
     type: types.FORMS
   },
   {
