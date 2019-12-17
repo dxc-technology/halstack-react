@@ -3,7 +3,7 @@ import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
-import DocTitle from "../../common/DocTitle";
+import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import CardPropsTable from "./api.jsx";
 
