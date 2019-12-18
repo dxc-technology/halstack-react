@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const inputPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -89,7 +89,7 @@ const inputPropsTable = () => {
         <td></td>
         <td>This function will be called when either of the two icons, prefixIcon or sufixIcon, is clicked.</td>
     </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 

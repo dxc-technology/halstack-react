@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const checkboxPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -29,7 +29,7 @@ const checkboxPropsTable = () => {
         <td>true</td>
         <td>If true, the modal will be over a darker background</td>
     </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 

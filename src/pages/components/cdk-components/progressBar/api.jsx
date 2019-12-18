@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const progressBarPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -34,7 +34,7 @@ const progressBarPropsTable = () => {
         <td>false</td>
         <td>If true the value is displayed above the progressbar</td>
     </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 
