@@ -50,6 +50,11 @@ const BackgroundProgressBar = styled.div`
   min-width: 685px;
   max-width: ${props => (props.overlay === true ? "100%" : "80%")};
   margin: ${props => (props.overlay === false ? "15px" : "")};
+  position: ${props => (props.overlay === true ? "fixed" : "")};
+  top: ${props => (props.overlay === true ? "0" : "")};
+  bottom: ${props => (props.overlay === true ? "0" : "")};
+  left: ${props => (props.overlay === true ? "0" : "")};
+  right: ${props => (props.overlay === true ? "0" : "")};
   font-family: "Open Sans", sans-serif;
 `;
 
