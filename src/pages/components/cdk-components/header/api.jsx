@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const alertPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -40,7 +40,7 @@ const alertPropsTable = () => {
           <br></br>
         </td>
       </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 

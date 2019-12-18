@@ -1,11 +1,12 @@
 import React from "react";
-import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+import { DxcTabsForSections, DxcCard } from "@diaas/dxc-react-cdk";
 import styled from "styled-components";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import DocTitle from "../../common/DocTitle";
 import Section from "../components/common/Section";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import githubLogo from "./github-logo.png";
 
 function Install() {
   return (
@@ -79,56 +80,91 @@ function UseComponents() {
   );
 }
 
+function Support() {
+  return (
+    <Section>
+      <DocTitle size={2}>Support</DocTitle>
+      <p>Our main support channel is GitHub issues.</p>
+      <div>
+        <DxcCard imageSrc={githubLogo}>
+          <p>Github</p>
+        </DxcCard>
+      </div>
+    </Section>
+  );
+}
+
+function Contributing() {
+  return (
+    <Section>
+      <DocTitle size={2}>Contributing</DocTitle>
+      <p>Our main support channel is GitHub issues.</p>
+      <div>
+        <DxcCard imageSrc={githubLogo}>
+          <p>Github</p>
+        </DxcCard>
+      </div>
+    </Section>
+  );
+}
+
 function Overview() {
   return (
-    <div>
-      <Content>
-        <DocTitle size={1}>Overview</DocTitle>
-        <Introduction>
-          <p>
-            DXC React Components is a library of reusable elements, made with
-            the purpose of helping React developers with the task of
-            implementing User Interfaces that follow the{" "}
-            <Link href="https://developer.dxc.com" target="_blank">
-              DXC Design Guidelines
-            </Link>{" "}
-            right out of the box.
-          </p>
-          <ul>
-            <li>
-              It increases <b>visual and behavioral consistency</b> across the
-              applications using the library.
-            </li>
-            <li>
-              It <b>cuts down development</b> time, taking the responsability of
-              implementing the Design Guidelines away from the developer, and
-              allowing him to focus on providing business value.
-            </li>
-          </ul>
-        </Introduction>
-        <DxcTabsForSections
-          stickAtPx={64}
-          tabsMode="underlined"
-          sections={[
-            {
-              tabLabel: "Install",
-              section: Install
-            },
-            {
-              tabLabel: "Use Components",
-              section: UseComponents
-            }
-          ]}
-        ></DxcTabsForSections>
-      </Content>
-    </div>
+    <Content>
+      <DocTitle size={1}>Overview</DocTitle>
+      <Introduction>
+        <p>
+          DXC React Components is a library of reusable elements, made with the
+          purpose of helping React developers with the task of implementing User
+          Interfaces that follow the{" "}
+          <Link href="https://developer.dxc.com" target="_blank">
+            DXC Design Guidelines
+          </Link>{" "}
+          right out of the box.
+        </p>
+        <ul>
+          <li>
+            It increases <b>visual and behavioral consistency</b> across the
+            applications using the library.
+          </li>
+          <li>
+            It <b>cuts down development</b> time, taking the responsability of
+            implementing the Design Guidelines away from the developer, and
+            allowing him to focus on providing business value.
+          </li>
+        </ul>
+      </Introduction>
+      <DxcTabsForSections
+        stickAtPx={64}
+        tabsMode="underlined"
+        sections={[
+          {
+            tabLabel: "Install",
+            section: Install
+          },
+          {
+            tabLabel: "Use Components",
+            section: UseComponents
+          },
+          {
+            tabLabel: "Support",
+            section: Support
+          },
+          {
+            tabLabel: "Contributing",
+            section: Contributing
+          }
+
+        ]}
+      ></DxcTabsForSections>
+    </Content>
   );
 }
 
 const Content = styled.div`
   max-width: 1120px;
   margin: 0px auto;
-  padding: 0px 20px;
+  padding: 50px 20px;
 `;
 
 const Link = styled.a`

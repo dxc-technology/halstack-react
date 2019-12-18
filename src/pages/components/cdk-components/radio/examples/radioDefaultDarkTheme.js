@@ -8,15 +8,13 @@ const code = `() => {
   };
 
   return (
-    <div>
-      <div style={{ background: "#000000" }}>
-        <DxcRadio
-          checked={checked}
-          theme="dark"
-          label="Radio Label"
-          onChange={onChange}
-        />
-      </div>
+    <div style={{ background: "#000000" }}>
+      <DxcRadio
+        checked={checked}
+        theme="dark"
+        label="Radio Label"
+        onChange={onChange}
+      />
     </div>
   );
 }`;
