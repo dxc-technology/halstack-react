@@ -14,6 +14,7 @@ import Radio from "./pages/Radio";
 import Select from "./pages/Select";
 import Dropdown from "./pages/Dropdown";
 import ProgressBar from "./pages/ProgressBar";
+import Spinner from "./pages/Spinner";
 
 export default [
   {
@@ -65,6 +66,11 @@ export default [
     path: "slider",
     name: "Slider",
     component: Slider
+  },
+  {
+    path: "spinner",
+    name: "Spinner",
+    component: Spinner
   },
   {
     path: "switch",
