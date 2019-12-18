@@ -16,6 +16,7 @@ import Dropdown from "./pages/Dropdown";
 import ProgressBar from "./pages/ProgressBar";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
+import Spinner from "./pages/Spinner";
 
 export default [
   {
@@ -77,6 +78,11 @@ export default [
     path: "slider",
     name: "Slider",
     component: Slider
+  },
+  {
+    path: "spinner",
+    name: "Spinner",
+    component: Spinner
   },
   {
     path: "switch",
