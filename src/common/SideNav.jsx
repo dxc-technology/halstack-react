@@ -1,13 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, Location } from "@reach/router";
+
 import paths from "../pages/components/paths.js";
 import { types } from "../pages/components/paths.js";
+import reactIcon from "./react-icon.png";
 
-function SideNav({ icon, title }) {
+function SideNav({ title }) {
   return (
     <SideNavContainer>
-      <Title>{title}</Title>
+      <Title>
+        {title}
+        <ReactLogo src={reactIcon} alt="React Logo"></ReactLogo>
+      </Title>
       <Location>
         {({ location }) => (
           <Links>
@@ -39,10 +44,31 @@ function SideNav({ icon, title }) {
 const SideNavContainer = styled.div`
   background: #f8f8f8;
   color: black;
-  padding: 20px 30px 20px 20px;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px - 40px);
+  overflow-y: auto;
+  padding: 20px 50px 20px 30px;
+  ::-webkit-scrollbar {
+    width: 3px;
+    margin: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: #eeeeee;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: #d3d3d3;
+  }
+`;
+
+const ReactLogo = styled.img`
+  max-width: 28px;
+  margin-left: 8px;
 `;
 
 const NavLink = styled.div`
@@ -75,8 +101,13 @@ const Links = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 20px;
-  margin: 10px 0px 30px 0px;
+  font-size: 24px;
+  margin: 20px 0px 40px 0px;
+  display: flex;
+  align-items: center;
+  color: #646464;
+  font-weight: normal;
+  line-height: 18px;
 `;
 
 export default SideNav;
