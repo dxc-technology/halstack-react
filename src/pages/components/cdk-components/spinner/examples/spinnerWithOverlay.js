@@ -1,4 +1,4 @@
-import { DxcProgressBar, DxcButton } from "@diaas/dxc-react-cdk";
+import { DxcSpinner, DxcButton } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
@@ -13,13 +13,13 @@ const code = `() => {
         <DxcButton
           mode="basic"
           theme="light"
-          label="ProgressBar with overlay"
+          label="Spinner with overlay"
           onClick={handleVisibility}
         />
       </div>
       <div onClick={handleVisibility}>
         {isVisible && (
-          <DxcProgressBar label="Loading" overlay={true} showValue value={45} />
+            <DxcSpinner theme="light" label="Loading..." mode="overlay" />
         )}
       </div>
     </div>
@@ -27,7 +27,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcProgressBar,
+  DxcSpinner,
   DxcButton,
   useState
 };
