@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const spinnerPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
             <tr>
         <td>label: string</td>
         <td></td>
@@ -29,7 +29,7 @@ const spinnerPropsTable = () => {
         <td>false</td>
         <td>If true the value is displayed inside the spinner</td>
     </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 
