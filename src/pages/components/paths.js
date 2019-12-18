@@ -96,7 +96,8 @@ export default [
   {
     path: "radio",
     name: "Radio Button",
-    component: Radio
+    component: Radio,
+    type: types.FORMS
   },
   {
     path: "select",

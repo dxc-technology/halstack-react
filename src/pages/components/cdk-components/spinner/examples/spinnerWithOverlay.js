@@ -13,7 +13,7 @@ const code = `() => {
         <DxcButton
           mode="basic"
           theme="light"
-          label="ProgressBar with overlay"
+          label="Spinner with overlay"
           onClick={handleVisibility}
         />
       </div>
