@@ -4,6 +4,7 @@ import Alert from "./pages/Alert";
 import Switch from "./pages/Switch";
 import Upload from "./pages/Upload";
 import InputText from "./pages/InputText";
+import Table from "./pages/Table";
 import Tabs from "./pages/Tabs";
 import TabsForSections from "./pages/TabsForSections";
 import Accordion from "./pages/Accordion";
@@ -69,6 +70,11 @@ export default [
     path: "switch",
     name: "Switch",
     component: Switch
+  },
+  {
+    path: "table",
+    name: "Table",
+    component: Table
   },
   {
     path: "toggle",
