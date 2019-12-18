@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const tabbedSectionsPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -59,7 +59,7 @@ const tabbedSectionsPropsTable = () => {
         </td>
         <td>The number of pixels from the top of the parent container, where the tabs will stick when scrolling.</td>
       </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 

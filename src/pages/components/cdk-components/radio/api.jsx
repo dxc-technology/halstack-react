@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const radioPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -81,7 +81,7 @@ const radioPropsTable = () => {
           new value will be passed as a parameter.
         </td>
       </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 
