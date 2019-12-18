@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const checkboxPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <td>Name</td>
         <td>Default</td>
@@ -80,7 +80,7 @@ const checkboxPropsTable = () => {
           parameter when this function is executed
         </td>
       </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 
