@@ -98,23 +98,21 @@ class App extends React.Component {
             onClick={this.setVisibleModalAlert}
           />
         </div>
-        <div onClick={this.setVisibleModalAlert}>
-          {this.state.isVisibleModalAlert && (
-            <DxcAlert
-              type="info"
-              mode="modal"
-              inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        {this.state.isVisibleModalAlert && (
+          <DxcAlert
+            type="info"
+            mode="modal"
+            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
         leo lobortis eget."
-              onClose={this.setVisibleModalAlert}
-            >
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </div>
-            </DxcAlert>
-          )}
-        </div>
+            onClose={this.setVisibleModalAlert}
+          >
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </div>
+          </DxcAlert>
+        )}
       </div>
     );
   }
