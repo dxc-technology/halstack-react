@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { DxcProgressBar, DxcButton } from "@diaas/dxc-react-cdk";
 
 function App() {
-    const [isVisible, changeIsVisible] = useState(false);
+  const [isVisible, changeIsVisible] = useState(false);
   const handleVisibility = () => {
     changeIsVisible(!isVisible);
   };
@@ -143,9 +143,24 @@ function App() {
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <DxcProgressBar theme="light" overlay={false} showValue value={0} />
-            <DxcProgressBar theme="light" overlay={false} showValue value={20} />
-            <DxcProgressBar theme="light" overlay={false} showValue value={30} />
-            <DxcProgressBar theme="light" overlay={false} showValue value={50} />
+            <DxcProgressBar
+              theme="light"
+              overlay={false}
+              showValue
+              value={20}
+            />
+            <DxcProgressBar
+              theme="light"
+              overlay={false}
+              showValue
+              value={30}
+            />
+            <DxcProgressBar
+              theme="light"
+              overlay={false}
+              showValue
+              value={50}
+            />
           </div>
         </div>
       </div>
