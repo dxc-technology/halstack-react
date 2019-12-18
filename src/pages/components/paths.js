@@ -16,6 +16,7 @@ import Card from "./cdk-components/card/Card";
 import Dialog from "./cdk-components/dialog/Dialog";
 import ProgressBar from "./cdk-components/progressBar/progressBar";
 import Header from "./cdk-components/header/Header";
+import Footer from "./cdk-components/footer/Footer";
 
 export const types = {
   FORMS: "Forms",
@@ -68,6 +69,12 @@ export default [
     type: types.FORMS
   },
   {
+    path: "footer",
+    name: "Footer",
+    component: Footer,
+    type: types.NAVIGATION
+  },
+  {
     path: "header",
     name: "Header",
     component: Header,
@@ -116,6 +123,12 @@ export default [
     type: types.NAVIGATION
   },
   {
+    path: "tabbed-sections",
+    name: "Tabbed Sections",
+    component: TabbedSections,
+    type: types.LAYOUT
+  },
+  {
     path: "toggle",
     name: "Toggle",
     component: Toggle,
@@ -126,11 +139,5 @@ export default [
     name: "Upload",
     component: Upload,
     type: types.UTILS
-  },
-  {
-    path: "tabbed-sections",
-    name: "Tabbed Sections",
-    component: TabbedSections,
-    type: types.LAYOUT
   }
 ];
