@@ -15,15 +15,17 @@ const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, ch
   };
 
   return (
-    <OverlayContainer mode={mode}>
-      <AlertContainer mode={mode} type={type} onClose={onClose}>
+    <AlertModal mode={mode}>
+      {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
+      <AlertContainer mode={mode} type={type}>
         <AlertInfo>
           <AlertIcon
             src={
               (type === "info" && infoIcon) ||
               (type === "confirm" && successIcon) ||
               (type === "warning" && warningIcon) ||
-              (type === "error" && errorIcon) || errorIcon
+              (type === "error" && errorIcon) ||
+              errorIcon
             }
           />
           <AlertInfoText>
@@ -35,7 +37,7 @@ const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, ch
         </AlertInfo>
         {children && <AlertContent>{children}</AlertContent>}
       </AlertContainer>
-    </OverlayContainer>
+    </AlertModal>
   );
 };
 
@@ -47,18 +49,25 @@ DxcAlert.propTypes = {
   children: PropTypes.string
 };
 
-const OverlayContainer = styled.div`
-  background-color: ${props => (props.mode === "modal" ? `${colors.black}B3` : `${colors.white}`)};
-  display: ${props => (props.mode === "modal" ? "flex" : "")};
-  justify-content: ${props => (props.mode === "modal" ? "center" : "")};
-  align-items: ${props => (props.mode === "modal" ? "center" : "")};
-  top: ${props => (props.mode === "modal" ? 0 : "")};
-  bottom: ${props => (props.mode === "modal" ? 0 : "")};
-  right: ${props => (props.mode === "modal" ? 0 : "")};
-  left: ${props => (props.mode === "modal" ? 0 : "")};
+const AlertModal = styled.div`
   width: ${props => (props.mode === "modal" ? "100%" : "")};
   height: ${props => (props.mode === "modal" ? "100%" : "")};
+  justify-content: ${props => (props.mode === "modal" ? "center" : "")};
+  align-items: ${props => (props.mode === "modal" ? "center" : "")};
+  top: ${props => (props.mode === "modal" ? "0" : "")};
+  left: ${props => (props.mode === "modal" ? "0" : "")};
   position: ${props => (props.mode === "modal" ? "fixed" : "")};
+  display: ${props => (props.mode === "modal" ? "flex" : "")};
+  z-index: 200;
+`;
+
+const OverlayContainer = styled.div`
+  background-color: ${props => (props.mode === "modal" ? `${colors.black}B3` : `${colors.white}`)};
+  position: ${props => (props.mode === "modal" ? "fixed" : "")};
+  top: ${props => (props.mode === "modal" ? "0" : "")};
+  bottom: ${props => (props.mode === "modal" ? "0" : "")};
+  left: ${props => (props.mode === "modal" ? "0" : "")};
+  right: ${props => (props.mode === "modal" ? "0" : "")};
 `;
 
 const AlertContainer = styled.div`
@@ -80,7 +89,9 @@ const AlertContainer = styled.div`
     (props.type === "info" && colors.lightBlue) ||
     (props.type === "confirm" && colors.lightGreen) ||
     (props.type === "warning" && colors.lightYellow) ||
-    (props.type === "error" && colors.lightPink) || colors.lightPink};
+    (props.type === "error" && colors.lightPink) ||
+    colors.lightPink};
+  z-index: 300;
 `;
 
 const AlertInfo = styled.div`
