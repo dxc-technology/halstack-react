@@ -19,7 +19,7 @@ const code = `() => {
       </div>
       <div onClick={handleVisibility}>
         {isVisible && (
-            <DxcProgressBar label="Loading" overlay={true} showValue value={45}/>
+          <DxcProgressBar label="Loading" overlay={true} showValue value={45} />
         )}
       </div>
     </div>
