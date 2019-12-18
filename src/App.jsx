@@ -5,7 +5,6 @@ import { DxcFooter } from "@diaas/dxc-react-cdk";
 
 import Header from "./common/Header";
 import Components from "./pages/components/Components";
-import Docs from "./pages/docs/Docs";
 import Overview from "./pages/overview/Overview";
 
 function App() {
@@ -17,8 +16,8 @@ function App() {
       <Content>
         <StyledRouter>
           <Components path="/components/*"></Components>
-          <Docs path="/docs"></Docs>
           <Overview path="/overview"></Overview>
+          <Overview path="/"></Overview>
         </StyledRouter>
       </Content>
       <DxcFooter
