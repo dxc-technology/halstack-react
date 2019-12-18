@@ -14,6 +14,8 @@ import Radio from "./pages/Radio";
 import Select from "./pages/Select";
 import Dropdown from "./pages/Dropdown";
 import ProgressBar from "./pages/ProgressBar";
+import Header from "./pages/Header";
+import Footer from "./pages/Footer";
 
 export default [
   {
@@ -40,6 +42,16 @@ export default [
     path: "dropdown",
     name: "Dropdown",
     component: Dropdown
+  },
+  {
+    path: "footer",
+    name: "Footer",
+    component: Footer
+  },
+  {
+    path: "header",
+    name: "Header",
+    component: Header
   },
   {
     path: "inputText",
