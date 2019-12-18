@@ -8,14 +8,12 @@ const code = `() => {
   };
 
   return (
-    <div>
-      <DxcRadio
-        checked={checked}
-        label="Radio Required"
-        required={true}
-        onChange={onChange}
-      />
-    </div>
+    <DxcRadio
+      checked={checked}
+      label="Radio Required"
+      required={true}
+      onChange={onChange}
+    />
   );
 }`;
 

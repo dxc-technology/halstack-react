@@ -9,15 +9,13 @@ const code = `() => {
   };
 
   return (
-    <div>
-      <div style={{ background: "#000000" }}>
-        <DxcToggle
-          label="Default toggle"
-          selected={selected}
-          theme="dark"
-          onClick={onClick}
-        ></DxcToggle>
-      </div>
+    <div style={{ background: "#000000" }}>
+      <DxcToggle
+        label="Default toggle"
+        selected={selected}
+        theme="dark"
+        onClick={onClick}
+      ></DxcToggle>
     </div>
   );
 }`;
