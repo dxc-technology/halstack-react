@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const dropdownPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -103,7 +103,7 @@ const dropdownPropsTable = () => {
           parameter to this function.
         </td>
       </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 
