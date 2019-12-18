@@ -1,18 +1,13 @@
 import React from "react";
-import { DxcTable } from "@diaas/dxc-react-cdk";
+import PropsTable from "../../common/PropsTable";
 
-const progressBarPropsTable = () => {
+const spinnerPropsTable = () => {
   return (
-    <DxcTable>
-      <tr>
-        <th>Name</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-    <tr>
+    <PropsTable>
+            <tr>
         <td>label: string</td>
         <td></td>
-        <td>Text to be placed above the progressbar.</td>
+        <td>Text to be placed inside the spinner.</td>
     </tr>
     <tr>
         <td>theme: 'light' |'dark'</td>
@@ -20,9 +15,9 @@ const progressBarPropsTable = () => {
         <td>Uses one of the available component themes.</td>
     </tr>
     <tr>
-        <td>overlay: boolean</td>
-        <td>true</td>
-        <td>If true, the progressbar will be over a darker background</td>
+        <td>mode: 'large' | 'small' | 'overlay' </td>
+        <td>large</td>
+        <td>The spinner can have overlay or small or large size. </td>
     </tr>
     <tr>
         <td>value: string</td>
@@ -32,10 +27,10 @@ const progressBarPropsTable = () => {
     <tr>
         <td>showValue: boolean</td>
         <td>false</td>
-        <td>If true the value is displayed above the progressbar</td>
+        <td>If true the value is displayed inside the spinner</td>
     </tr>
-    </DxcTable>
+    </PropsTable>
   );
 };
 
-export default progressBarPropsTable;
+export default spinnerPropsTable;

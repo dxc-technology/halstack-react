@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Location } from "@reach/router";
 import styled from "styled-components";
 import { DxcHeader } from "@diaas/dxc-react-cdk";
+import githubLogo from "./github-logo.png";
 
 function App() {
   return (
@@ -15,8 +16,23 @@ function App() {
             <HeaderLink isActive={location.pathname.startsWith("/components")}>
               <Link to="components">Components</Link>
             </HeaderLink>
-            <HeaderLink isActive={location.pathname.startsWith("/docs")}>
-              <Link to="docs">Docs</Link>
+            <HeaderLink>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://developer.dxc.com"
+              >
+                Design Guidelines
+              </a>
+            </HeaderLink>
+            <HeaderLink>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.dxc.com/DIaaS/diaas-react-cdk"
+              >
+                <img src={githubLogo} alt="GitHub logo"></img>
+              </a>
             </HeaderLink>
           </HeaderLinks>
         )}
@@ -28,6 +44,7 @@ function App() {
 const HeaderLinks = styled.div`
   display: flex;
   flex-grow: 1;
+  align-items: center;
 `;
 
 const HeaderLink = styled.div`

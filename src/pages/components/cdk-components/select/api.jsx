@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const inputPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -70,7 +70,7 @@ const inputPropsTable = () => {
         <td></td>
         <td>This function will be called every time the selection changes. The string with the key of the selected value will be passed as a parameter to this function. If multiple selection is allowed, an array of keys will be passed</td>
     </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 
