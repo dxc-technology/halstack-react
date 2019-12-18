@@ -6,11 +6,7 @@ const code = `() => {
     console.log(newValue);
   };
 
-  return (
-    <div>
-      <DxcRadio label="Radio Label" onChange={onChange} />
-    </div>
-  );
+  return <DxcRadio label="Radio Label" onChange={onChange} />;
 }`;
 
 const scope = {

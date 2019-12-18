@@ -16,7 +16,7 @@ const code = `() => {
   };
 
   return (
-    <div style={{display:'flex'}}>
+    <div style={{ display: "flex" }}>
       <DxcToggle
         iconSrc={favoriteIcon}
         selected={selected}
