@@ -19,7 +19,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcHeader theme="light" underlined={true} onClick={onClick}>a
+    <DxcHeader theme="light" underlined={true} onClick={onClick}>
       <DxcDropdown
         theme={"light"}
         onSelectOption={selectOption}
