@@ -2,7 +2,7 @@ import { DxcToggle } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-    const [selected, changeSelected] = useState(true);
+  const [selected, changeSelected] = useState(true);
 
   const onClick = newValue => {
     changeSelected(newValue);
