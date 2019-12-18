@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const checkboxPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -20,7 +20,7 @@ const checkboxPropsTable = () => {
           'catch' (in this case we would receive the error message as a string).
         </td>
       </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 

@@ -17,6 +17,7 @@ import Dialog from "./cdk-components/dialog/Dialog";
 import ProgressBar from "./cdk-components/progressBar/progressBar";
 import Header from "./cdk-components/header/Header";
 import Footer from "./cdk-components/footer/Footer";
+import Table from "./cdk-components/table/Table";
 
 export const types = {
   FORMS: "Forms",
@@ -115,6 +116,12 @@ export default [
     name: "Switch",
     component: Switch,
     type: types.FORMS
+  },
+  {
+    path: "table",
+    name: "Table",
+    component: Table,
+    type: types.UTILS
   },
   {
     path: "tabs",

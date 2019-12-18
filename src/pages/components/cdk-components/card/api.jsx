@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const buttonPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -35,7 +35,7 @@ const buttonPropsTable = () => {
         </td>
         <td>Uses one of the available component themes.</td>
       </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 

@@ -1,9 +1,9 @@
 import React from "react";
-import PropsTable from "../../common/PropsTable";
+import { DxcTable } from "@diaas/dxc-react-cdk";
 
 const alertPropsTable = () => {
   return (
-    <PropsTable>
+    <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
@@ -53,7 +53,7 @@ const alertPropsTable = () => {
           there is no function we should close the alert by default.
         </td>
       </tr>
-    </PropsTable>
+    </DxcTable>
   );
 };
 
