@@ -18,6 +18,7 @@ import ProgressBar from "./cdk-components/progressBar/progressBar";
 import Header from "./cdk-components/header/Header";
 import Footer from "./cdk-components/footer/Footer";
 import Table from "./cdk-components/table/Table";
+import Spinner from "./cdk-components/spinner/Spinner";
 
 export const types = {
   FORMS: "Forms",
@@ -91,7 +92,7 @@ export default [
     path: "progressBar",
     name: "Progress Bar",
     component: ProgressBar,
-    type: types.FORMS
+    type: types.UTILS
   },
   {
     path: "radio",
@@ -110,6 +111,12 @@ export default [
     name: "Slider",
     component: Slider,
     type: types.FORMS
+  },
+  {
+    path: "spinner",
+    name: "Spinner",
+    component: Spinner,
+    type: types.UTILS
   },
   {
     path: "switch",
