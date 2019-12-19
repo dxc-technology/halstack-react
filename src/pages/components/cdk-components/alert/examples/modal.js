@@ -17,7 +17,6 @@ const code = `() => {
           onClick={handleVisibility}
         />
       </div>
-      <div onClick={handleVisibility}>
         {isVisible && (
           <DxcAlert
             type="info"
@@ -31,7 +30,6 @@ const code = `() => {
             </div>
           </DxcAlert>
         )}
-      </div>
     </div>
   );
 }`;
