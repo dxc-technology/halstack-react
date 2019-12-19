@@ -1,24 +1,20 @@
 import { DxcInput } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
-import suffixPath from "./images/house-24px.svg";
-import prefixPath from "./images/text_fields-24px.svg";
 
 const code = `() => {
-  const [value, changeValue] = useState("");
+  const [value, changeValue] = useState("Default");
   const onChange = newValue => {
     changeValue(newValue);
   };
 
   return (
-    <div style={{ background: "#000000" }}>
+    <div style={{height: "200px"}}>
       <DxcInput
         label="Input label"
-        suffix={"suf"}
-        prefix={"pre"}
         assistiveText={"assistive text"}
         value={value}
         onChange={onChange}
-        theme="dark"
+        multiline={true}
       />
     </div>
   );
@@ -26,9 +22,7 @@ const code = `() => {
 
 const scope = {
   DxcInput,
-  useState,
-  suffixPath,
-  prefixPath
+  useState
 };
 
 export default { code, scope };
