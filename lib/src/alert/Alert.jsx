@@ -92,6 +92,7 @@ const AlertContainer = styled.div`
     (props.type === "error" && colors.lightPink) ||
     colors.lightPink};
   z-index: 300;
+  cursor: default;
 `;
 
 const AlertInfo = styled.div`
