@@ -1,7 +1,7 @@
 import { DxcInput } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
-import suffixPath from "./house-24px.svg";
-import prefixPath from "./text_fields-24px.svg";
+import suffixPath from "./images/house-24px.svg";
+import prefixPath from "./images/text_fields-24px.svg";
 
 const code = `() => {
   const [value, changeValue] = useState("");

@@ -11,6 +11,7 @@ import controlled from "./examples/controlledInput";
 import uncontrolled from "./examples/uncontrolledInput";
 import labeled from "./examples/lebeledInput";
 import darkTheme from "./examples/darkThemed";
+import multiline from "./examples/multilineInput";
 
 function Input() {
   return (
@@ -46,6 +47,10 @@ function Input() {
                 <Example
                   title="Dark Themed Input"
                   example={darkTheme}
+                ></Example>
+                <Example
+                  title="Multilined Input"
+                  example={multiline}
                 ></Example>
               </Section>
             )
