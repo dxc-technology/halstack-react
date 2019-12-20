@@ -7,6 +7,14 @@ function App() {
   const onChange = newValue => {
     changeInput(newValue);
   };
+  const onSuffixClick = () => {
+    changeInput("suffix Clicked");
+  };
+
+  const onPrefixClick = () => {
+    changeInput("prefix Clicked");
+  };
+
   return (
     <div>
       <div>
@@ -18,6 +26,8 @@ function App() {
           onChange={onChange}
           value={inputValue}
           required={true}
+          onClickSuffix={onSuffixClick}
+          onClickPrefix={onPrefixClick}
         ></DxcInput>
         <DxcInput
           prefix={"pr"}
@@ -34,6 +44,8 @@ function App() {
           onChange={onChange}
           required={true}
           value={inputValue}
+          onClickSuffix={onSuffixClick}
+          onClickPrefix={onPrefixClick}
         ></DxcInput>
         <DxcInput
           assistiveText={"assistive text"}
@@ -42,6 +54,8 @@ function App() {
           value={inputValue}
           suffixIconSrc={iconSrcPath}
           prefixIconSrc={iconSrcPath}
+          onClickSuffix={onSuffixClick}
+          onClickPrefix={onPrefixClick}
         ></DxcInput>
       </div>
     </div>
