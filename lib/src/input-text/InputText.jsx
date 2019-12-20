@@ -17,7 +17,8 @@ const DxcInputText = ({
   suffix = "",
   prefixIconSrc = "",
   suffixIconSrc = "",
-  onClickIcon = "",
+  onClickPrefix = "",
+  onClickSuffix = "",
   onChange = "",
   onBlur = "",
   error = false,
@@ -47,9 +48,9 @@ const DxcInputText = ({
       theme={theme}
       multiline={multiline}
     >
-      {prefixIconSrc && !multiline && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickIcon} />}
+      {prefixIconSrc && !multiline && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
       {prefix && !multiline && (
-        <PrefixLabel theme={theme} disabled={disabled}>
+        <PrefixLabel theme={theme} disabled={disabled} onClick={onClickPrefix}>
           {prefix}
         </PrefixLabel>
       )}
@@ -66,9 +67,9 @@ const DxcInputText = ({
         rowsMax="4"
         InputProps={{
           endAdornment: (suffix || suffixIconSrc) && (
-            <InputAdornment position="end">
+            <InputAdornment position="end" onClick={onClickSuffix}>
               {(suffixIconSrc && !multiline && (
-                <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickIcon} />
+                <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickSuffix} />
               )) ||
                 (!multiline && suffix)}
             </InputAdornment>
@@ -87,6 +88,13 @@ const PrefixIcon = styled.img`
   max-width: 20px;
   z-index: 1;
   opacity: ${props => (props.disabled && 0.5) || 1};
+  cursor: ${props => {
+    if (props.onClickPrefix !== "" && !props.disabled) {
+      return "pointer";
+    } else {
+      return "default";
+    }
+  }};
 `;
 const PrefixLabel = styled.span`
   position: absolute;
@@ -97,6 +105,14 @@ const PrefixLabel = styled.span`
   max-height: 20px;
   max-width: 20px;
   opacity: ${props => (props.disabled && 0.5) || 1};
+  z-index: 1;
+  cursor: ${props => {
+    if (props.onClickPrefix !== "" && !props.disabled) {
+      return "pointer";
+    } else {
+      return "default";
+    }
+  }};
 `;
 
 const SuffixIcon = styled.img`
@@ -107,7 +123,13 @@ const SuffixIcon = styled.img`
   margin-right: 8px;
   width: 20px;
   opacity: ${props => (props.disabled && 0.5) || 1};
-  cursor: ${props => (props.disabled && "not-allowed") || "default"};
+  cursor: ${props => {
+    if (props.onClickSuffix !== "" && !props.disabled) {
+      return "pointer";
+    } else {
+      return "default";
+    }
+  }};
 `;
 
 const TextContainer = styled.div`
@@ -260,7 +282,6 @@ const TextContainer = styled.div`
             : "100%"};
       }
       .MuiInputAdornment-root {
-
         height: 20px;
         color: ${props => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
         &.MuiInputAdornment-positionEnd{
@@ -269,6 +290,13 @@ const TextContainer = styled.div`
             color:${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
             margin-right: 8px;
             margin-bottom: 1px;
+            cursor: ${props => {
+              if (props.onClickSuffix !== "" && !props.disabled) {
+                return "pointer";
+              } else {
+                return "default";
+              }
+            }};
           }
         }
         &.Mui-disabled {
