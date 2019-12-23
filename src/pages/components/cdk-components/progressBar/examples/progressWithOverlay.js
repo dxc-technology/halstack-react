@@ -3,25 +3,31 @@ import { useState } from "react";
 
 const code = `() => {
   const [isVisible, changeIsVisible] = useState(false);
-  const handleVisibility = () => {
-    changeIsVisible(!isVisible);
+  const showModal = () => {
+    changeIsVisible(true);
+    fetchData().then(() => {
+      changeIsVisible(false);
+    });
+  };
+
+  const fetchData = () => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 3000);
+    });
   };
 
   return (
     <div>
-      <div>
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="ProgressBar with overlay"
-          onClick={handleVisibility}
-        />
-      </div>
-      <div onClick={handleVisibility}>
-        {isVisible && (
-          <DxcProgressBar label="Loading" overlay={true} showValue value={45} />
-        )}
-      </div>
+      <DxcButton
+        mode="basic"
+        theme="light"
+        label="Show Progress Bar for 3 seconds"
+        onClick={showModal}
+      />
+
+      {isVisible && <DxcProgressBar label="Loading" overlay={true} />}
     </div>
   );
 }`;

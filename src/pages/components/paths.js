@@ -68,7 +68,7 @@ export default [
     path: "dropdown",
     name: "Dropdown",
     component: Dropdown,
-    type: types.FORMS
+    type: types.UTILS
   },
   {
     path: "footer",
@@ -84,7 +84,7 @@ export default [
   },
   {
     path: "input",
-    name: "Input",
+    name: "Text field",
     component: Input,
     type: types.FORMS
   },

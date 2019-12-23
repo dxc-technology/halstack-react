@@ -36,19 +36,19 @@ function ProgressBar() {
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example
-                  title="Undetermined default Progress Bar"
+                  title="Undeterminate default Progress Bar"
                   example={defaultProgressBar}
                 ></Example>
                 <Example
-                  title="Determined default Progress Bar"
+                  title="Determinate default Progress Bar"
                   example={determinedDefaultProgressBar}
                 ></Example>
                 <Example
-                  title="Dark themed progress bar"
+                  title="Dark theme Progress Bar"
                   example={darkThemeProgressBar}
                 ></Example>
                 <Example
-                  title="With Overlay"
+                  title="Progress Bar with Overlay"
                   example={progressWithOverlay}
                 ></Example>
               </Section>

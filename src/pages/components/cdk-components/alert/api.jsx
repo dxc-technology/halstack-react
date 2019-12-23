@@ -25,17 +25,17 @@ const alertPropsTable = () => {
           Uses on of the available alert modes:
           <ul>
             <li>
-              <strong>inline:</strong> if onClose function is received, close
-              button should be visible and the function should be executed whe
-              its clicked. There is no overlay layer. Position should be decided
-              by the user.
+              <strong>inline:</strong> If onClose function is received, close
+              button will be visible and the function will be executed when it's
+              clicked. There is no overlay layer. Position should be decided by
+              the user.
             </li>
             <li>
-              <strong>modal:</strong> In this mode it will be always an overlay
-              layer behind the alert. If onClose function is received it will be
-              called if the X button is clicked or if the user clicks outside of
-              the component. The alert should be displayed in the middle of the
-              screen.
+              <strong>modal:</strong> The alert will be displayed in the middle
+              of the screen with an overlay layer behind. The onClose function
+              will be executed when the X button or the overlay is clicked. The
+              user has the responsibility of hidding the modal in the onClose
+              function, otherwise the modal will remain visible.
             </li>
           </ul>
         </td>
@@ -51,6 +51,14 @@ const alertPropsTable = () => {
         <td>
           This function will be called when the user clicks the close button. If
           there is no function we should close the alert by default.
+        </td>
+      </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          The details section of the alert. Can be used to render custom content
+          in this area.
         </td>
       </tr>
     </DxcTable>

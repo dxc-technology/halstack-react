@@ -40,13 +40,13 @@ function Alert() {
               <Example title="Success Alert" example={inlineSuccess}></Example>
               <Example title="Warning Alert" example={inlineWarning}></Example>
               <Example title="Error Alert" example={inlineError}></Example>
-              <Example title="Modal alert" example={modal}></Example>
+              <Example title="Modal Alert" example={modal}></Example>
               <Example
-                title="Closable inline alert"
+                title="Closable inline Alert"
                 example={closableInline}
               ></Example>
               <Example
-                title="Non closable inline alert"
+                title="Non closable inline Alert"
                 example={nonClosableInline}
               ></Example>
             </Section>

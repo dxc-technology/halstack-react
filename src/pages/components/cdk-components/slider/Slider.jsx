@@ -50,7 +50,7 @@ function Slider() {
                   example={withoutLimits}
                 ></Example>
                 <Example title="Slider with input" example={input}></Example>
-                <Example title="Dark Theme Slider" example={dark}></Example>
+                <Example title="Dark theme Slider" example={dark}></Example>
               </Section>
             )
           }

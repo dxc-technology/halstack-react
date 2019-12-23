@@ -35,12 +35,12 @@ function Input() {
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example
-                  title="Default Select"
-                  example={defaultSelect}
-                ></Example>
-                <Example
                   title="Controlled Select"
                   example={controlled}
+                ></Example>
+                <Example
+                  title="Uncontrolled Select"
+                  example={defaultSelect}
                 ></Example>
                 <Example
                   title="Multiple Select"
@@ -51,7 +51,7 @@ function Input() {
                   example={withIcons}
                 ></Example>
                 <Example
-                  title="Dark themed Select"
+                  title="Dark theme Select"
                   example={darkThemed}
                 ></Example>
               </Section>

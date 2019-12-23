@@ -24,7 +24,7 @@ const tabbedSectionsPropsTable = () => {
             <li>
               <b>section</b>: React component for the section that will be
               linked to the tab. Each section will be rendered right bellow the
-              previous one, and clicking in the tab will scroll the user to its associted
+              previous one, and clicking in the tab will scroll the user to its associated
               section.
             </li>
           </ul>

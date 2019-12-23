@@ -22,6 +22,7 @@ function SideNav({ title }) {
                 <ComponentsList>
                   {paths
                     .filter(path => path.type === types[type])
+                    .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
                     .map(path => (
                       <NavLink
                         isActive={location.pathname.startsWith(

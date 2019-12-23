@@ -14,7 +14,11 @@ const radioPropsTable = () => {
         <td>
           <code>false</code>
         </td>
-        <td>If true, the component is checked.</td>
+        <td>
+          If true, the radio is selected. If undefined the component will be
+          uncontrolled and the value will be managed internally by the
+          component.
+        </td>
       </tr>
       <tr>
         <td>value: any</td>
@@ -22,7 +26,7 @@ const radioPropsTable = () => {
         <td>
           Will be passed to the value attribute of the html input element. When
           inside a form, this value will be only submitted if the radio is
-          checked{" "}
+          checked.
         </td>
       </tr>
       <tr>
@@ -62,8 +66,7 @@ const radioPropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, a red asterisk will appear before the label to indicate to
-          the user that the field is required.
+          If true, the radio will change its appearence, showing that the value is required.
         </td>
       </tr>
       <tr>
@@ -77,8 +80,8 @@ const radioPropsTable = () => {
         <td>onChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the radio. The
-          new value will be passed as a parameter.
+          This function will be called when the user clicks the radio. The new
+          value will be passed as a parameter.
         </td>
       </tr>
     </DxcTable>

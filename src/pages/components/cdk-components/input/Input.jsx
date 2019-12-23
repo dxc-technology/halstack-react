@@ -43,15 +43,15 @@ function Input() {
                   title="Uncontrolled Input"
                   example={uncontrolled}
                 ></Example>
-                <Example title="Labeled Input" example={labeled}></Example>
                 <Example
-                  title="Dark Themed Input"
+                  title="Input with prefix/suffix"
+                  example={labeled}
+                ></Example>
+                <Example
+                  title="Dark theme Input"
                   example={darkTheme}
                 ></Example>
-                <Example
-                  title="Multilined Input"
-                  example={multiline}
-                ></Example>
+                <Example title="Multilined Input" example={multiline}></Example>
               </Section>
             )
           }

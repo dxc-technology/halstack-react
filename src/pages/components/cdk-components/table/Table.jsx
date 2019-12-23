@@ -11,7 +11,7 @@ import defaultTable from "./examples/defaultTable";
 function Tabs() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Tabs</DocTitle>
+      <DocTitle size={1}>Table</DocTitle>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

@@ -2,8 +2,8 @@ import { DxcDropdown } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  const selectOption = () => {
-    console.log("selected");
+  const selectOption = (value) => {
+    console.log(value);
   };
 
   const options = [
@@ -26,7 +26,7 @@ const code = `() => {
       <DxcDropdown
         options={options}
         theme="dark"
-        label="Dark Theme Dropdown"
+        label="Dark theme Dropdown"
         onSelectOption={selectOption}
       ></DxcDropdown>
     </div>

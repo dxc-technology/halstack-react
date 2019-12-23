@@ -8,9 +8,7 @@ const code = `() => {
   };
 
   return (
-    <div>
-      <DxcRadio checked={checked} label="Radio Label" onChange={onChange} />
-    </div>
+    <DxcRadio checked={checked} label="Radio Label" onChange={onChange} />
   );
 }`;
 

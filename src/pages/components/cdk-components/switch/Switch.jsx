@@ -45,12 +45,12 @@ function Switch() {
                   example={uncontrolled}
                 ></Example>
                 <Example
-                  title="Label Position Switch"
+                  title="Label position Switch"
                   example={labelPosition}
                 ></Example>
                 <Example title="Disabled Switch" example={disabled}></Example>
                 <Example title="Required Switch" example={required}></Example>
-                <Example title="Dark Themed Switch" example={themed}></Example>
+                <Example title="Dark theme Switch" example={themed}></Example>
               </Section>
             )
           }

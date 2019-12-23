@@ -5,11 +5,11 @@ import linkedinLogo from "./images/linkedin.svg";
 import { useState } from "react";
 
 const code = `() => {
-  const selectOption = () => {
-    console.log("selected");
+  const selectOption = (value) => {
+    console.log(value);
   };
 
-  const optionsWithIcon = [
+  const options = [
     {
       value: 1,
       label: "Facebook",
@@ -29,9 +29,10 @@ const code = `() => {
 
   return (
     <DxcDropdown
-      options={optionsWithIcon}
+      options={options}
       onSelectOption={selectOption}
-      label="Basic dropdown"
+      iconSrc={twitterLogo}
+      label="Dropdown with icons"
     ></DxcDropdown>
   );
 }`;

@@ -12,7 +12,11 @@ const switchPropsTable = () => {
       <tr>
         <td>checked: boolean</td>
         <td></td>
-        <td>If true, the component is checked.</td>
+        <td>
+          If true, the component is checked. If undefined, the component will be
+          uncontrolled and the value will be managed internally by the
+          component.
+        </td>
       </tr>
       <tr>
         <td>value: any</td>
@@ -20,7 +24,7 @@ const switchPropsTable = () => {
         <td>
           Will be passed to the value attribute of the html input element. When
           inside a form, this value will be only submitted if the switch is
-          checked{" "}
+          checked.
         </td>
       </tr>
       <tr>
@@ -44,8 +48,7 @@ const switchPropsTable = () => {
       </tr>
       <tr>
         <td>name: string</td>
-        <td>
-        </td>
+        <td></td>
         <td>Name attribute of the input element.</td>
       </tr>
       <tr>
@@ -54,6 +57,16 @@ const switchPropsTable = () => {
           <code>false</code>
         </td>
         <td>If true, the component will be disabled.</td>
+      </tr>
+      <tr>
+        <td>required: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>
+          If true, the switch will change its appearence, showing that the value
+          is required.
+        </td>
       </tr>
       <tr>
         <td>disableRipple: boolean</td>

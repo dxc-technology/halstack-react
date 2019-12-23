@@ -2,8 +2,8 @@ import { DxcSelect } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  const onChange = (value) => {
-    console.log("selected " + value);
+  const onChange = (newValue) => {
+    console.log(newValue);
   };
 
   const optionsWithoutIcon = [
@@ -25,7 +25,7 @@ const code = `() => {
     <DxcSelect
       options={optionsWithoutIcon}
       onChange={onChange}
-      label="Basic uncontrolled select"
+      label="Uncontrolled Select"
     ></DxcSelect>
   );
 }`;
