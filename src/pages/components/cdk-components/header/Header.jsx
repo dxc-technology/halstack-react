@@ -10,6 +10,7 @@ import InputPropsTable from "./api.jsx";
 import defaultHeader from "./examples/default.js";
 import dark from "./examples/dark.js";
 import outlined from "./examples/outlined.js";
+import children from "./examples/children.js";
 
 function Input() {
   return (
@@ -39,6 +40,10 @@ function Input() {
                 ></Example>
                 <Example title="Dark Header" example={dark}></Example>
                 <Example title="Outlined Header" example={outlined}></Example>
+                <Example
+                  title="Header with children"
+                  example={children}
+                ></Example>
               </Section>
             )
           }
