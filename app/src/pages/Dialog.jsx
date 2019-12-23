@@ -29,7 +29,7 @@ class App extends React.Component {
           onClick={this.setDialog1Visible}
         ></DxcButton>
         {this.state.isDialog1Visible && (
-          <DxcDialog isCloseVisible={true} onClose={this.setDialog1Visible}>
+          <DxcDialog isCloseVisible={true} onCloseClick={this.setDialog1Visible}>
             Close Icon
           </DxcDialog>
         )}
