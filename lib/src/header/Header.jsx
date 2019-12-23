@@ -120,7 +120,8 @@ const LogoIcon = styled.img`
 const ChildContainer = styled.div`
   display: flex;
   align-items: center;
-  max-width: calc(100% - 200px);
+  flex-grow: 1;
+  justify-content: flex-end;
 `;
 
 DxcHeader.propTypes = {
