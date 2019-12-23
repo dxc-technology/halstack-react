@@ -10,7 +10,12 @@ const code = `() => {
         type="warning"
         mode="inline"
         inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
-      />
+      >
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          malesuada lacus ex, sit amet blandit leo lobortis eget.
+        </div>
+      </DxcAlert>
     );
   }
   return null;
