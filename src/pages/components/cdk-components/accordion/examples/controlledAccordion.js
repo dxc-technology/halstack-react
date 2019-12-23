@@ -2,15 +2,16 @@ import { DxcAccordion } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  const [isExpanded, changeIsExpanded] = useState(false);
+  const [isExpanded, changeIsExpanded] = useState(true);
   const onChange = newValue => {
     changeIsExpanded(newValue);
   };
 
+
   return (
     <div style={{ margin: "15px" }}>
       <DxcAccordion
-        label="Alternative Accordion"
+        label="Controlled Accordion"
         mode="alternative"
         isExpanded={isExpanded}
         onChange={onChange}
