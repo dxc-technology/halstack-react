@@ -9,7 +9,7 @@ import DialogPropsTable from "./api.jsx";
 
 import defaultDialog from "./examples/defaultDialog.js"
 import modalDialog from "./examples/modalDialog.js"
-import onCloseDialog from "./examples/onCloseDialog.js"
+import buttonCloseDialog from "./examples/closeButtonDialog.js"
 
 function Dialog() {
   return (
@@ -42,8 +42,8 @@ function Dialog() {
                   example={modalDialog}
                 ></Example>
                 <Example
-                  title="onClose Dialog"
-                  example={onCloseDialog}
+                  title="Close button Dialog"
+                  example={buttonCloseDialog}
                 ></Example>
               </Section>
             )
