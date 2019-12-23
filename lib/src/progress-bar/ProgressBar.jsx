@@ -58,7 +58,6 @@ const BackgroundProgressBar = styled.div`
 `;
 
 const DXCProgressBar = styled.div`
-  margin-bottom: 12px;
   z-index: ${props => (props.overlay === true && "100") || "0"};
   width: ${props => (props.overlay === true ? "80%" : "100%")};
   .MuiLinearProgress-root {
