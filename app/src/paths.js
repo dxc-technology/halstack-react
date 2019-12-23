@@ -61,7 +61,7 @@ export default [
   },
   {
     path: "progressBar",
-    name: "ProgressBar",
+    name: "Progress bar",
     component: ProgressBar
   },
   {
