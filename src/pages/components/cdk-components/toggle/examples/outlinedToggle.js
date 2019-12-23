@@ -3,15 +3,16 @@ import { useState } from "react";
 
 const code = `() => {
   const [selected, changeSelected] = useState(true);
+
   const onClick = newValue => {
     changeSelected(newValue);
   };
 
   return (
     <DxcToggle
-      label="Disabled toggle"
+      label="Outlined toggle"
       selected={selected}
-      disabled={true}
+      mode="outlined"
       onClick={onClick}
     ></DxcToggle>
   );

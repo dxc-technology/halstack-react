@@ -5,7 +5,6 @@ const code = `() => {
   const onChange = (newValue) => {
     console.log(newValue);
   };
-
   const optionsWithoutIcon = [
     {
       value: 1,
