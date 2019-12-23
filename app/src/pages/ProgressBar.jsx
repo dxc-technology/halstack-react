@@ -12,7 +12,13 @@ function App() {
         <h3>Determined and undetermined progress bar</h3>
         <div>
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                margin: "15px"
+              }}
+            >
               <DxcProgressBar
                 label="Loading..."
                 theme="light"
@@ -42,7 +48,13 @@ function App() {
                 value={80}
               />
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                margin: "15px"
+              }}
+            >
               <DxcProgressBar
                 label="Loading..."
                 theme="light"
@@ -75,7 +87,9 @@ function App() {
       <div
         style={{ display: "flex", flexDirection: "row", background: "black" }}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", margin: "15px" }}
+        >
           <DxcProgressBar
             label="Loading..."
             theme="dark"
@@ -105,7 +119,9 @@ function App() {
             value={80}
           />
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", margin: "15px" }}
+        >
           <DxcProgressBar
             label="Loading..."
             theme="dark"
@@ -135,13 +151,17 @@ function App() {
       <div>
         <h3>Simplified</h3>
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", margin: "15px" }}
+          >
             <DxcProgressBar theme="light" overlay={false} />
             <DxcProgressBar theme="light" overlay={false} />
             <DxcProgressBar theme="light" overlay={false} />
             <DxcProgressBar theme="light" overlay={false} />
           </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", margin: "15px" }}
+          >
             <DxcProgressBar theme="light" overlay={false} showValue value={0} />
             <DxcProgressBar
               theme="light"
