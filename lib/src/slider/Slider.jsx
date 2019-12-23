@@ -29,13 +29,17 @@ const DxcSlider = ({
         setInnerValue(newValue);
       }
     }
+    if (typeof onChange === "function") {
     onChange(newValue);
+  }
   };
   const handlerInputChange = event => {
     if (value == null) {
       setInnerValue(event > maxValue ? maxValue : event);
     }
-    onChange(event > maxValue ? maxValue : event);
+    if (typeof onChange === "function") {
+      onChange(event > maxValue ? maxValue : event);
+    }
   };
 
   return (
@@ -50,7 +54,7 @@ const DxcSlider = ({
         min={minValue}
         max={maxValue}
         onChange={handlerSliderChange}
-        onChangeCommitted={(event, selectedValue) => onDragEnd(selectedValue)}
+        onChangeCommitted={onDragEnd && ((event, selectedValue) => onDragEnd(selectedValue))}
         step={step}
         marks={marks || []}
         disabled={disabled}
