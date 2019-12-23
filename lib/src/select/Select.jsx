@@ -66,14 +66,19 @@ const DxcSelect = ({
   const handleSelectChange = selectedOption => {
     if (multiple) {
       setSelectedValue(selectedOption.target.value);
-      onChange(selectedOption.target.value);
+      if (typeof onChange === "function") {
+        onChange(selectedOption.target.value);
+      }
     } else {
       setSelectedValue(selectedOption.target.value);
-      onChange(selectedOption.target.value);
+      if (typeof onChange === "function") {
+        onChange(selectedOption.target.value);
+      }
     }
   };
 
   const getLabelForSingleSelect = selected => {
+    console.log("getLabelForSingleSelect " + selected);
     const selectedItem = options.filter(option => option.value === selected)[0];
     return (
       <SelectedIconContainer iconPosition={iconPosition} multiple={multiple} label={selectedItem.label}>
@@ -177,11 +182,11 @@ const SelectedIconContainer = styled.div`
 
   &::before {
     margin: 0 4px;
-    ${props => props.iconPosition === "after" && props.multiple && "content:','"};
+    ${props => props.iconPosition === "after" && props.label && props.label !== "" && props.multiple && "content:','"};
   }
   &::after {
-    content: '${props => (props.iconPosition === "before" && ",") || ""}'; 
-    margin: 0 4px;
+    content: '${props => (props.iconPosition === "before" && props.label && props.label !== "" && ",") || ""}'; 
+    margin: '${props => (props.label && props.label !== "" && "0 4px") || ""}';
   }
 `;
 const SelectedLabelContainer = styled.span`
@@ -244,7 +249,7 @@ const SelectContainer = styled.div`
     & > *:last-child::after {
       content: unset;
     }
-    & > *:not(:last-child)::after {
+    & > *:not(:last-child)::before {
       content: ",";
     }
     &.Mui-disabled {
