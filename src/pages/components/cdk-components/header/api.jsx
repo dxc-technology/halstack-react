@@ -40,6 +40,14 @@ const alertPropsTable = () => {
           <br></br>
         </td>
       </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          The right section of the header. Can be used to render custom content
+          in this area.
+        </td>
+      </tr>
     </DxcTable>
   );
 };

@@ -36,11 +36,11 @@ function Dropdown() {
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example
-                  title="Default dropdown"
+                  title="Default Dropdown"
                   example={defaultDropdown}
                 ></Example>
                 <Example
-                  title="Outlined dropdown"
+                  title="Outlined Dropdown"
                   example={outlinedDropdown}
                 ></Example>
                 <Example
@@ -48,7 +48,7 @@ function Dropdown() {
                   example={imagesDropdown}
                 ></Example>
                 <Example
-                  title="Dark Theme dropdown"
+                  title="Dark theme Dropdown"
                   example={darkThemeDropdown}
                 ></Example>
               </Section>

@@ -27,7 +27,7 @@ const code = `() => {
     <DxcSelect
       options={optionsWithoutIcon}
       onChange={onChange}
-      label="Basic select"
+      label="Controlled Select"
       value={value}
     ></DxcSelect>
   );

@@ -45,13 +45,13 @@ function Checkbox() {
                   example={uncontrolled}
                 ></Example>
                 <Example
-                  title="Label Position Checkbox"
+                  title="Label position Checkbox"
                   example={labelPosition}
                 ></Example>
                 <Example title="Disabled Checkbox" example={disabled}></Example>
                 <Example title="Required Checkbox" example={required}></Example>
                 <Example
-                  title="Dark Themed Checkbox"
+                  title="Dark theme Checkbox"
                   example={themed}
                 ></Example>
               </Section>

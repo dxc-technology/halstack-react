@@ -19,17 +19,14 @@ const dropdownPropsTable = () => {
           following properties:
           <ul>
             <li>
-              <b>label</b>: Option display value
+              <b>label</b>: Option display value.
             </li>
             <li>
               <b>iconSrc</b>: URL of the icon that will be placed next to the
-              option label (Optional)
+              option label.
             </li>
             <li>
-              <b>value</b>: Option inner value
-            </li>
-            <li>
-              <b>options</b>: array for nested
+              <b>value</b>: Option inner value.
             </li>
           </ul>
         </td>
@@ -40,8 +37,8 @@ const dropdownPropsTable = () => {
           <code>'before'</code>
         </td>
         <td>
-          In case options include an icon, whether the icon should appear after
-          or before the label.
+          In case options include icons, whether the icon should appear after or
+          before the label.
         </td>
       </tr>
       <tr>
@@ -49,10 +46,7 @@ const dropdownPropsTable = () => {
         <td>
           <code></code>
         </td>
-        <td>
-          URL of the icon that will be placed next to the option label
-          (Optional)
-        </td>
+        <td>URL of the icon that will be placed next to the dropdown label.</td>
       </tr>
       <tr>
         <td>iconPosition: 'before' | 'after'</td>
@@ -85,7 +79,7 @@ const dropdownPropsTable = () => {
         <td>
           <code>true</code>
         </td>
-        <td>Whether the arrow next to the labe must be displayed or not.</td>
+        <td>Whether the arrow next to the label must be displayed or not.</td>
       </tr>
       <tr>
         <td>disableRipple: boolean</td>
@@ -99,8 +93,7 @@ const dropdownPropsTable = () => {
         <td></td>
         <td>
           This function will be called every time the selection changes. The
-          string with the key of the selected value will be passed as a
-          parameter to this function.
+          value of the selected option will be passed as a parameter.
         </td>
       </tr>
     </DxcTable>

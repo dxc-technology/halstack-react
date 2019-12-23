@@ -23,10 +23,9 @@ const dropdownPropsTable = () => {
             </li>
             <li>
               <b>iconSrc</b>: URL of the icon to be displayed in the tab.
-              (Optional)
             </li>
             <li>
-              <b>isDisabled</b>: Whether the tab is disabled.
+              <b>isDisabled</b>: Whether the tab is disabled or not.
             </li>
           </ul>
         </td>
@@ -56,7 +55,9 @@ const dropdownPropsTable = () => {
       <tr>
         <td>activeTabIndex: number</td>
         <td></td>
-        <td>The index of the active tab.</td>
+        <td>The index of the active tab. If undefined, the component will be
+          uncontrolled and the active tab will be managed internally by the
+          component.</td>
       </tr>
       <tr>
         <td>onTabClick: function</td>

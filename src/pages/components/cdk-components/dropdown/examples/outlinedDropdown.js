@@ -2,11 +2,11 @@ import { DxcDropdown } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  const selectOption = () => {
-    console.log("selected");
+  const selectOption = (value) => {
+    console.log(value);
   };
 
-  const optionsWithoutIcon = [
+  const options = [
     {
       value: 1,
       label: "Amazon"
@@ -23,9 +23,9 @@ const code = `() => {
 
   return (
     <DxcDropdown
-      options={optionsWithoutIcon}
+      options={options}
       onSelectOption={selectOption}
-      label="Outlined dropdown"
+      label="Outlined Dropdown"
       mode={"outlined"}
     ></DxcDropdown>
   );

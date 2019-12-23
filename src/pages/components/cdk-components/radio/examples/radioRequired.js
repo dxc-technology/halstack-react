@@ -10,7 +10,7 @@ const code = `() => {
   return (
     <DxcRadio
       checked={checked}
-      label="Radio Required"
+      label="Required Radio"
       required={true}
       onChange={onChange}
     />

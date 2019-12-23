@@ -36,11 +36,11 @@ function Dropdown() {
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example
-                  title="Default toggle"
+                  title="Default Toggle"
                   example={defaultToggle}
                 ></Example>
                 <Example
-                  title="Disabled toggle"
+                  title="Disabled Toggle"
                   example={disabledToggle}
                 ></Example>
                 <Example
@@ -48,7 +48,7 @@ function Dropdown() {
                   example={toggleWithIcons}
                 ></Example>
                 <Example
-                  title="Toggle themed"
+                  title="Dark theme Toggle"
                   example={toggleDarkTheme}
                 ></Example>
               </Section>

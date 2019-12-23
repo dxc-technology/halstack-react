@@ -7,7 +7,7 @@ const code = `() => {
     changeChecked(newValue);
   };
 
-  return <DxcSwitch checked={checked} label="Checkbox" onChange={onChange} />;
+  return <DxcSwitch checked={checked} label="Switch" onChange={onChange} />;
 }`;
 
 const scope = {

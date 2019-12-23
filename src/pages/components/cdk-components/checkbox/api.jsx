@@ -14,8 +14,8 @@ const checkboxPropsTable = () => {
         <td></td>
         <td>
           If true, the component is checked. If undefined the component will be
-          uncontrolled which means that this value will be managed by the
-          component by its own.
+          uncontrolled and the value will be managed internally by the
+          component.
         </td>
       </tr>
       <tr>
@@ -24,7 +24,7 @@ const checkboxPropsTable = () => {
         <td>
           Will be passed to the value attribute of the html input element. When
           inside a form, this value will be only submitted if the checkbox is
-          checked{" "}
+          checked.
         </td>
       </tr>
       <tr>
@@ -64,8 +64,7 @@ const checkboxPropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, a red asterisk will appear before the label to indicate to
-          the user that the field is required.
+          If true, the checkbox will change its appearence, showing that the value is required.
         </td>
       </tr>
       <tr>

@@ -12,7 +12,7 @@ const code = `() => {
       <DxcSwitch
         checked={checked}
         theme="dark"
-        label="Checkbox"
+        label="Switch"
         onChange={onChange}
       />
     </div>

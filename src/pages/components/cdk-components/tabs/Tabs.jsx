@@ -45,7 +45,7 @@ function Tabs() {
                   example={uncontrolledTabs}
                 ></Example>
                 <Example
-                  title="Dark Theme Tabs"
+                  title="Dark theme Tabs"
                   example={darkThemeTabs}
                 ></Example>
                 <Example

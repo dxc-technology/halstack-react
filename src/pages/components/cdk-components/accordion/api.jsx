@@ -10,11 +10,18 @@ const alertPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>mode: 'default'|'alternative'</td>
+        <td>mode: 'default' | 'alternative'</td>
         <td>
           <code>'default'</code>
         </td>
         <td>Mode for the color of the accordion.</td>
+      </tr>
+      <tr>
+        <td>theme: 'light' |'dark'</td>
+        <td>
+          <code>'light'</code>
+        </td>
+        <td>Uses one of the available component themes.</td>
       </tr>
       <tr>
         <td>label: string</td>
@@ -50,16 +57,9 @@ const alertPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user clicks the icon to
-          open/close the panel. The state of the panel(opened/closed) should be
+          open/close the panel. The state of the panel (opened/closed) should be
           passed as a parameter.
         </td>
-      </tr>
-      <tr>
-        <td>theme: 'light' |'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available button modes.</td>
       </tr>
     </DxcTable>
   );

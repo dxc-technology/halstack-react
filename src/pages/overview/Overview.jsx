@@ -87,7 +87,7 @@ function Support() {
       <p>Our main support channel is GitHub issues.</p>
       <div>
         <DxcCard imageSrc={githubLogo}>
-          <p>Github</p>
+        <h1>Content</h1>
         </DxcCard>
       </div>
     </Section>

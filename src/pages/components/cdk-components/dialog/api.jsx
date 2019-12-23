@@ -8,27 +8,33 @@ const checkboxPropsTable = () => {
         <th>Name</th>
         <th>Default</th>
         <th>Description</th>
-    </tr>
-    <tr>
-        <td>isVisible: boolean</td>
-        <td>true</td>
-        <td>If true, the modal should be visible</td>
-    </tr>
-    <tr>
+      </tr>
+      <tr>
         <td>isCloseVisible: boolean</td>
         <td>true</td>
-        <td>If true, the close button should be visible</td>
-    </tr>
-    <tr>
-        <td>onClose: function</td>
+        <td>If true, the close 'x' button will be visible.</td>
+      </tr>
+      <tr>
+        <td>onCloseClick: function</td>
         <td></td>
-        <td>This function will be called when the user clicks the close button. If there is no function we should close the modal by default</td>
-    </tr>
-    <tr>
+        <td>
+          This function will be called when the user clicks the close 'x'
+          button. The user has the responsibility of hidding the modal.
+        </td>
+      </tr>
+      <tr>
+        <td>onBackgroundClick: function</td>
+        <td></td>
+        <td>
+          This function will be called when the user clicks background of the
+          modal button. The user has the responsibility of hidding the modal.
+        </td>
+      </tr>
+      <tr>
         <td>overlay: boolean</td>
         <td>true</td>
-        <td>If true, the modal will be over a darker background</td>
-    </tr>
+        <td>If true, the dialog will be displayed over a darker background.</td>
+      </tr>
     </DxcTable>
   );
 };

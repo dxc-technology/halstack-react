@@ -11,7 +11,7 @@ const code = `() => {
     <DxcSwitch
       checked={checked}
       required={true}
-      label="Checkbox"
+      label="Switch"
       onChange={onChange}
     />
   );

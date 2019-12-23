@@ -39,6 +39,11 @@ const alertPropsTable = () => {
         <td></td>
         <td>The text that will be displayed as copyright disclaimer.</td>
     </tr>
+    <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>The center section of the footer. Can be used to render custom content in this area.</td>
+    </tr>
     </DxcTable>
   );
 };

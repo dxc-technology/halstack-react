@@ -35,7 +35,10 @@ const checkboxPropsTable = () => {
         <td>
           <code>0</code>
         </td>
-        <td>The selected value.</td>
+        <td>
+          The selected value. If undefined, the component will be uncontrolled
+          and the value will be managed internally by the component.
+        </td>
       </tr>
       <tr>
         <td>showLimitValues: boolean</td>
@@ -68,7 +71,7 @@ const checkboxPropsTable = () => {
         <td>
           This function will be called when the slider changes its value, as
           it's being dragged. The new value will be passed as a parameter when
-          this function is executed
+          this function is executed.
         </td>
       </tr>
       <tr>
@@ -77,7 +80,7 @@ const checkboxPropsTable = () => {
         <td>
           This function will be called when the slider changes its value, but
           only when the thumb is released. The new value will be passed as a
-          parameter when this function is executed
+          parameter when this function is executed.
         </td>
       </tr>
     </DxcTable>

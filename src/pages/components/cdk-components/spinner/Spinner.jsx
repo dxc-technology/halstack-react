@@ -36,11 +36,11 @@ function Spinner() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
-                <Example title="Undetermined spinner" example={defaultSpinner}></Example>
-                <Example title="Determined spinner" example={valueSpinner}></Example>
-                <Example title="Small spinner" example={smallSpinner}></Example>
-                <Example title="Themed spinner" example={darkSpinner}></Example>
-                <Example title="Themed spinner" example={spinnerWithOverlay}></Example>
+                <Example title="Undetermined Spinner" example={defaultSpinner}></Example>
+                <Example title="Determined Spinner" example={valueSpinner}></Example>
+                <Example title="Small Spinner" example={smallSpinner}></Example>
+                <Example title="Dark theme Spinner" example={darkSpinner}></Example>
+                <Example title="Spinner with Overlay" example={spinnerWithOverlay}></Example>
               </Section>
             )
           }

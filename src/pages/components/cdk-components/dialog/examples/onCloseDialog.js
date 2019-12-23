@@ -12,7 +12,7 @@ const code = `() => {
       <DxcButton
         mode="basic"
         theme="light"
-        label="Dialog Button"
+        label="Open Dialog"
         onClick={onClick}
       />
       <DxcDialog isVisible={visible} onClose={onClick}>

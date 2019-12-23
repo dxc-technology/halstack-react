@@ -3,25 +3,33 @@ import { useState } from "react";
 
 const code = `() => {
   const [isVisible, changeIsVisible] = useState(false);
-  const handleVisibility = () => {
-    changeIsVisible(!isVisible);
+  const showModal = () => {
+    changeIsVisible(true);
+    fetchData().then(() => {
+      changeIsVisible(false);
+    });
+  };
+
+  const fetchData = () => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 3000);
+    });
   };
 
   return (
     <div>
-      <div>
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="Spinner with overlay"
-          onClick={handleVisibility}
-        />
-      </div>
-      <div onClick={handleVisibility}>
-        {isVisible && (
-            <DxcSpinner theme="light" label="Loading..." mode="overlay" />
-        )}
-      </div>
+      <DxcButton
+        mode="basic"
+        theme="light"
+        label="Show Spinner for 3 seconds"
+        onClick={showModal}
+      />
+
+      {isVisible && (
+        <DxcSpinner theme="light" label="Loading..." mode="overlay" />
+      )}
     </div>
   );
 }`;
