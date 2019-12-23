@@ -83,21 +83,23 @@ const DxcUpload = ({ callbackUpload }) => {
     uploadedFiles.forEach(file => {
       if (file.status === "pending") {
         file.status = "processing";
-        callbackUpload(file)
-          .then(() => {
-            file.status = "success";
-            uploadedFiles = getTransactionsFiles();
-            setFiles(uploadedFiles);
-          })
-          .catch(err => {
-            file.status = "error";
-            file.message = err;
-            uploadedFiles = getTransactionsFiles();
-            setFiles(uploadedFiles);
-          })
-          .finally();
+        if (typeof callbackUpload === "function") {
+          callbackUpload(file)
+            .then(() => {
+              file.status = "success";
+              uploadedFiles = getTransactionsFiles();
+              setFiles(uploadedFiles);
+            })
+            .catch(err => {
+              file.status = "error";
+              file.message = err;
+              uploadedFiles = getTransactionsFiles();
+              setFiles(uploadedFiles);
+            })
+            .finally();
+        }
       }
-      setFiles(uploadedFiles); 
+      setFiles(uploadedFiles);
     });
   };
 
