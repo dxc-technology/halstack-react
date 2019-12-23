@@ -8,7 +8,6 @@ const code = `() => {
   const selectOption = (value) => {
     console.log(value);
   };
-
   const options = [
     {
       value: 1,

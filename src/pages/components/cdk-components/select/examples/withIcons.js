@@ -7,11 +7,9 @@ import linkedinLogoPath from "./images/linkedin.svg";
 
 const code = `() => {
   const [value, changeValue] = useState();
-
   const onChange = (newValue) => {
     changeValue(newValue);
   };
-
   const optionsWithIcons = [
     {
       value: 1,

@@ -3,11 +3,9 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, changeValue] = useState([]);
-
   const onChange = newValue => {
     changeValue(newValue);
   };
-
   const optionsWithoutIcon = [
     {
       value: 1,
