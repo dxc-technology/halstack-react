@@ -53,8 +53,9 @@ const SideNavContainer = styled.div`
   height: calc(100vh - 64px - 40px);
   overflow-y: auto;
   padding: 20px 50px 20px 30px;
+  width: 170px;
   ::-webkit-scrollbar {
-    width: 3px;
+    width: 2px;
     margin: 5px;
   }
   ::-webkit-scrollbar-track {
