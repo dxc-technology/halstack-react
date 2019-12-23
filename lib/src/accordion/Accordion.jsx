@@ -17,16 +17,27 @@ const DxcAccordion = ({
   disabled = false,
   onChange = "",
   theme = "light",
-  isExpanded = false,
+  isExpanded,
   children
 }) => {
-  const handlerAccordion = (event, expanded) => {
-    onChange(expanded);
+  const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
+
+  const handlerAccordion = () => {
+    if (isExpanded == null) {
+      setInnerIsExpanded(!innerIsExpanded);
+    }
+    if (typeof onChange === "function") {
+      onChange(isExpanded == null ? !innerIsExpanded : !isExpanded);
+    }
   };
 
   return (
     <DXCAccordion theme={theme} mode={mode} disabled={disabled}>
-      <ExpansionPanel disabled={disabled} onChange={handlerAccordion} expanded={isExpanded}>
+      <ExpansionPanel
+        disabled={disabled}
+        onChange={handlerAccordion}
+        expanded={isExpanded != null ? isExpanded : innerIsExpanded}
+      >
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <AccordionInfo iconPosition={iconPosition}>
             <AccordionLabel iconPosition={iconPosition}>{label}</AccordionLabel>

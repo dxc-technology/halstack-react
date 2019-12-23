@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { DxcAccordion } from "@diaas/dxc-react-cdk";
 import homeLogo from "../images/home.svg";
 
 function App() {
-  const onChange = () => {};
+  const [isExpanded, changeIsExpanded] = useState(true);
+  const onChange = newValue => {
+    changeIsExpanded(newValue);
+  };
 
   return (
     <div>
       <h3>Light</h3>
       <div style={{ marginBottom: "50px" }}>
         <DxcAccordion
-          label="First accordion"
+          label="First accordion uncontrolled"
           onChange={onChange}
-          isExpanded={true}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -21,10 +23,9 @@ function App() {
         </DxcAccordion>
         <DxcAccordion
           theme="light"
-          disabled
-          label="Second accordion"
+          label="Second accordion controlled"
           onChange={onChange}
-          isExpanded={false}
+          isExpanded={isExpanded}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -34,8 +35,9 @@ function App() {
         <DxcAccordion
           label="Third accordion"
           onChange={onChange}
+          disabled
           assistiveText="Extra information"
-          isExpanded={false}
+          isExpanded={isExpanded}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -49,7 +51,7 @@ function App() {
           iconPosition="before"
           iconSrc={homeLogo}
           onChange={onChange}
-          isExpanded={true}
+          isExpanded={isExpanded}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -63,7 +65,7 @@ function App() {
           iconPosition="after"
           iconSrc={homeLogo}
           onChange={onChange}
-          isExpanded={false}
+          isExpanded={isExpanded}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
