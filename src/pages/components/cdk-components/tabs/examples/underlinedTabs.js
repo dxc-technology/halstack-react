@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const code = `() => {
   const [activeTab, setActiveTab] = useState(0);
-
   const onTabClick = i => {
     setActiveTab(i);
   };

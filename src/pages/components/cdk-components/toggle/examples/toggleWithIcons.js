@@ -7,7 +7,6 @@ import visibilityIcon from "./images/visibility.svg";
 const code = `() => {
   const [selected, changeSelected] = useState(false);
   const [selected2, changeSelected2] = useState(false);
-
   const onClick = newValue => {
     changeSelected(newValue);
   };
