@@ -12,6 +12,7 @@ import defaultToggle from "././examples/default";
 import disabledToggle from "././examples/disableToggle";
 import toggleWithIcons from "././examples/toggleWithIcons";
 import toggleDarkTheme from "././examples/toggleDarkTheme";
+import outlinedToggle from "././examples/outlinedToggle";
 
 function Dropdown() {
   return (
@@ -46,6 +47,10 @@ function Dropdown() {
                 <Example
                   title="Toggle with Icons"
                   example={toggleWithIcons}
+                ></Example>
+                <Example
+                  title="Outlined Toggle"
+                  example={outlinedToggle}
                 ></Example>
                 <Example
                   title="Dark theme Toggle"
