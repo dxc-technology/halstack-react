@@ -17,6 +17,7 @@ const DxcAccordion = ({
   disabled = false,
   onChange = "",
   theme = "light",
+  isExpanded = false,
   children
 }) => {
   const handlerAccordion = (event, expanded) => {
@@ -25,7 +26,7 @@ const DxcAccordion = ({
 
   return (
     <DXCAccordion theme={theme} mode={mode} disabled={disabled}>
-      <ExpansionPanel disabled={disabled} onChange={handlerAccordion}>
+      <ExpansionPanel disabled={disabled} onChange={handlerAccordion} expanded={isExpanded}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <AccordionInfo iconPosition={iconPosition}>
             <AccordionLabel iconPosition={iconPosition}>{label}</AccordionLabel>
@@ -52,6 +53,7 @@ DxcAccordion.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
   theme: PropTypes.oneOf(["light", "dark"]),
+  isExpanded: PropTypes.bool,
   children: PropTypes.string
 };
 

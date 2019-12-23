@@ -17,6 +17,7 @@ import ProgressBar from "./pages/ProgressBar";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import Spinner from "./pages/Spinner";
+import Dialog from "./pages/Dialog";
 
 export default [
   {
@@ -38,6 +39,11 @@ export default [
     path: "checkbox",
     name: "Checkbox",
     component: Checkbox
+  },
+  {
+    path: "dialog",
+    name: "Dialog",
+    component: Dialog
   },
   {
     path: "dropdown",
