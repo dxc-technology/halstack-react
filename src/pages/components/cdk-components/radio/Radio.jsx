@@ -11,7 +11,7 @@ import RadioPropsTable from "./api.jsx";
 import controlledRadio from "./examples/controlledRadio";
 import unControlledRadio from "./examples/uncontrolledRadio";
 
-import radioLabelBefore from "./examples/radioLabelBefore";
+import radioLabelPosition from "./examples/radioLabelPosition";
 import radioRequired from "./examples/radioRequired";
 import radioDisabled from "./examples/radioDisabled";
 import radioDefaultDark from "././examples/radioDefaultDarkTheme";
@@ -48,8 +48,8 @@ function Radio() {
                   example={unControlledRadio}
                 ></Example>
                 <Example
-                  title="Label Before"
-                  example={radioLabelBefore}
+                  title="Label Position"
+                  example={radioLabelPosition}
                 ></Example>
                 <Example
                   title="Required Radio"

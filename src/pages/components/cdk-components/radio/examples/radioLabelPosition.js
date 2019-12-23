@@ -8,12 +8,19 @@ const code = `() => {
   };
 
   return (
-    <DxcRadio
-      checked={checked}
-      label="Label Before"
-      labelPosition="before"
-      onChange={onChange}
-    />
+    <div>
+      <DxcRadio
+        checked={checked}
+        label="Label Before"
+        labelPosition="before"
+        onChange={onChange}
+      />
+      <DxcRadio
+        checked={checked}
+        label="Label After"
+        onChange={onChange}
+      />
+    </div>
   );
 }`;
 
