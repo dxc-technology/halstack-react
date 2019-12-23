@@ -2,9 +2,15 @@ import React from "react";
 import { DxcSlider } from "@diaas/dxc-react-cdk";
 
 function App() {
-  const onChange = () => {};
-  const onDragEnd = () => {};
-  const onChangeInput = () => {};
+  const onChange = newValue => {
+    console.log('onChange '+ newValue);
+  };
+  const onDragEnd = newValue => {
+    console.log('onDragEnd '+ newValue);
+  };
+  const onChangeInput = newValue => {
+    console.log('onChangeInput '+ newValue);
+  };
 
   return (
     <div>
@@ -23,9 +29,6 @@ function App() {
             theme="light"
             step={1}
             marks={false}
-            onChange={onChange}
-            onDragEnd={onDragEnd}
-            onChangeInput={onChangeInput}
           />
         </div>
         <div>
@@ -39,8 +42,8 @@ function App() {
             disabled={false}
             required={true}
             theme="light"
-            step={10}
-            marks={true}
+            step={1}
+            marks={false}
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
