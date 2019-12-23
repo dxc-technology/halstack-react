@@ -5,7 +5,7 @@ import colors from "../common/variables.js";
 
 import PropTypes from "prop-types";
 
-const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = true, onOverlayClick }) => {
+const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = true, onBackgroundClick }) => {
 
   const handleClose = () => {
     if (typeof onCloseClick === "function") {
@@ -14,8 +14,8 @@ const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = t
   };
 
   const handleOverlayClick = () => {
-    if (typeof onOverlayClick === "function") {
-      onOverlayClick();
+    if (typeof onBackgroundClick === "function") {
+      onBackgroundClick();
     }
   };
 

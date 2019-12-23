@@ -39,7 +39,7 @@ class App extends React.Component {
           onClick={this.setDialog2Visible}
         ></DxcButton>
         {this.state.isDialog2Visible && (
-          <DxcDialog onOverlayClick={this.setDialog2Visible}>
+          <DxcDialog onBackgroundClick={this.setDialog2Visible}>
             Overlay close
           </DxcDialog>
         )}
