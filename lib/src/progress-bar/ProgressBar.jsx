@@ -39,17 +39,16 @@ const BackgroundProgressBar = styled.div`
     props.overlay === true || (props.overlay === true && props.theme === "dark")
       ? `${colors.black}B3`
       : props.theme === "dark"
-      ? `${colors.black}`
+      ? "transparent"
       : `${colors.white}`};
-  width: ${props => (props.overlay === true ? "100%" : "80%")};
+  width: ${props => (props.overlay === true ? "100%" : "")};
   display: flex;
   flex-wrap: wrap;
   justify-content: ${props => (props.overlay === true ? "center" : "")};
   height: ${props => (props.overlay === true ? "100vh" : "")};
   align-items: ${props => (props.overlay === true ? "center" : "")};
   min-width: 685px;
-  max-width: ${props => (props.overlay === true ? "100%" : "80%")};
-  margin: ${props => (props.overlay === false ? "15px" : "")};
+  max-width: ${props => (props.overlay === true ? "100%" : "")};
   position: ${props => (props.overlay === true ? "fixed" : "")};
   top: ${props => (props.overlay === true ? "0" : "")};
   bottom: ${props => (props.overlay === true ? "0" : "")};
@@ -66,7 +65,6 @@ const DXCProgressBar = styled.div`
     height: 9px;
     background-color: ${props =>
       ((props.theme === "dark" || props.overlay === true) && `${colors.white}4D`) || `${colors.black}4D`};
-    margin-top: 8px;
     border-radius: 5px;
   }
   .MuiLinearProgress-bar {
@@ -90,6 +88,7 @@ const ProgressBarLabel = styled.div`
   width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 8px;
 `;
 
 const ProgressBarProgress = styled.div`
@@ -98,6 +97,7 @@ const ProgressBarProgress = styled.div`
   display: ${props => (props.value !== "" && props.showValue === true && "block") || "none"};
   width: 5%;
   text-align: right;
+  margin-bottom: 8px;
 `;
 
 export default DxcProgressBar;
