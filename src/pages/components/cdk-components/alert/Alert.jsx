@@ -11,7 +11,7 @@ import inlineSuccess from "./examples/inlineSuccess";
 import inlineWarning from "./examples/inlineWarning";
 import inlineError from "./examples/inlineError";
 import closableInline from "./examples/closableInline";
-import nonClosableInline from "./examples/nonClosableInline";
+import children from "./examples/children";
 import modal from "./examples/modal";
 
 function Alert() {
@@ -26,31 +26,40 @@ function Alert() {
             tabLabel: "Props",
             section: () => (
               <Section>
-              <DocTitle size={2}>Props</DocTitle>
-              <AlertPropsTable />
-            </Section>
-                  )
+                <DocTitle size={2}>Props</DocTitle>
+                <AlertPropsTable />
+              </Section>
+            )
           },
           {
             tabLabel: "Examples",
             section: () => (
               <Section>
-              <DocTitle size={2}>Examples</DocTitle>
-              <Example title="Information Alert" example={inlineInfo}></Example>
-              <Example title="Success Alert" example={inlineSuccess}></Example>
-              <Example title="Warning Alert" example={inlineWarning}></Example>
-              <Example title="Error Alert" example={inlineError}></Example>
-              <Example title="Modal Alert" example={modal}></Example>
-              <Example
-                title="Closable inline Alert"
-                example={closableInline}
-              ></Example>
-              <Example
-                title="Non closable inline Alert"
-                example={nonClosableInline}
-              ></Example>
-            </Section>
-                        )
+                <DocTitle size={2}>Examples</DocTitle>
+                <Example
+                  title="Information Alert"
+                  example={inlineInfo}
+                ></Example>
+                <Example
+                  title="Success Alert"
+                  example={inlineSuccess}
+                ></Example>
+                <Example
+                  title="Warning Alert"
+                  example={inlineWarning}
+                ></Example>
+                <Example title="Error Alert" example={inlineError}></Example>
+                <Example title="Modal Alert" example={modal}></Example>
+                <Example
+                  title="Closable inline Alert"
+                  example={closableInline}
+                ></Example>
+                <Example
+                  title="Alert with children"
+                  example={children}
+                ></Example>
+              </Section>
+            )
           }
         ]}
       ></DxcTabsForSections>

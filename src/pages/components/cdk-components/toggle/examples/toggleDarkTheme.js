@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const code = `() => {
   const [selected, changeSelected] = useState(true);
-
   const onClick = newValue => {
     changeSelected(newValue);
   };

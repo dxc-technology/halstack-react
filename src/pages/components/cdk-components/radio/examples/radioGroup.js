@@ -5,7 +5,6 @@ const code = `() => {
   const [checked, changeCheckedOption1] = useState(true);
   const [checked2, changeCheckedOption2] = useState(false);
   const [checked3, changeCheckedOption3] = useState(false);
-
   const onSelect = selectFunction => {
     changeCheckedOption1(false);
     changeCheckedOption2(false);
