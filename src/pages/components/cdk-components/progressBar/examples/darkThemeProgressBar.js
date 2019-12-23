@@ -3,9 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   return (
-    <div
-      style={{ background: "#000000", display: "inline-block", width: "100%" }}
-    >
+    <div style={{ background: "#000000" }}>
       <DxcProgressBar label="Loading" theme="dark" overlay={false} />
     </div>
   );
