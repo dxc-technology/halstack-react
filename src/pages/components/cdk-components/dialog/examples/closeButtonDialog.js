@@ -11,8 +11,8 @@ const code = `() => {
     <div>
       <DxcButton label="Open Dialog" onClick={onClick}></DxcButton>
       {isDialogVisible && (
-        <DxcDialog onBackgroundClick={onClick}>
-          Click on Background
+        <DxcDialog>
+            <DxcButton label="Close Dialog" onClick={onClick}></DxcButton>
         </DxcDialog>
       )}
     </div>
