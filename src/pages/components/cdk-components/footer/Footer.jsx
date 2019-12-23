@@ -6,7 +6,8 @@ import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import InputPropsTable from "./api.jsx";
-import footer from "./examples/footer.js";
+import defaultFooter from "./examples/default.js";
+import children from "./examples/children.js";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
-                <Example title="Footer" example={footer}></Example>
+                <Example title="Default Footer" example={defaultFooter}></Example>
+                <Example title="Footer with children" example={children}></Example>
               </Section>
             )
           }
