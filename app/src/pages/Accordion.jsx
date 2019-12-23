@@ -9,7 +9,11 @@ function App() {
     <div>
       <h3>Light</h3>
       <div style={{ marginBottom: "50px" }}>
-        <DxcAccordion label="First accordion" onChange={onChange}>
+        <DxcAccordion
+          label="First accordion"
+          onChange={onChange}
+          isExpanded={true}
+        >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
@@ -20,6 +24,7 @@ function App() {
           disabled
           label="Second accordion"
           onChange={onChange}
+          isExpanded={false}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -30,6 +35,7 @@ function App() {
           label="Third accordion"
           onChange={onChange}
           assistiveText="Extra information"
+          isExpanded={false}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -43,6 +49,7 @@ function App() {
           iconPosition="before"
           iconSrc={homeLogo}
           onChange={onChange}
+          isExpanded={true}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -56,6 +63,7 @@ function App() {
           iconPosition="after"
           iconSrc={homeLogo}
           onChange={onChange}
+          isExpanded={false}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
