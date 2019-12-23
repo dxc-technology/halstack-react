@@ -19,7 +19,6 @@ const code = `() => {
       logoSrc: facebookLogo
     }
   ];
-
   const bottom = [
     {
       href: "https://www.linkedin.com/company/dxctechnology",

@@ -9,7 +9,7 @@ import Section from "../../common/Section";
 import defaultAccordion from "./examples/default";
 import alternative from "./examples/alternative";
 import disabled from "./examples/disabled";
-import assitiveText from "./examples/assitiveText";
+import assistiveText from "./examples/assistiveText";
 import icon from "./examples/icon";
 import dark from "./examples/dark";
 
@@ -49,7 +49,7 @@ function Accordion() {
                 ></Example>
                 <Example
                   title="Accordion with assistive text"
-                  example={assitiveText}
+                  example={assistiveText}
                 ></Example>
                 <Example title="Accordion with icon" example={icon}></Example>
                 <Example title="Dark theme Accordion" example={dark}></Example>
