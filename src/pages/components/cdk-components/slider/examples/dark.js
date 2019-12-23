@@ -6,7 +6,6 @@ const code = `() => {
   const onChange = newValue => {
     changeValue(newValue);
   };
-  const onDragEnd = ()=> {};
 
   return (
     <div
@@ -21,7 +20,6 @@ const code = `() => {
         theme="dark"
         step={1}
         onChange={onChange}
-        onDragEnd={onDragEnd}
       />
     </div>
   );

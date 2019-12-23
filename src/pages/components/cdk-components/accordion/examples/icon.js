@@ -1,8 +1,12 @@
 import { DxcAccordion } from "@diaas/dxc-react-cdk";
+import { useState } from "react";
 import homeLogo from "./images/home.svg";
 
 const code = `() => {
-  const onChange = () => {};
+  const [isExpanded, changeIsExpanded] = useState(false);
+  const onChange = newValue => {
+    changeIsExpanded(newValue);
+  };
 
   return (
     <div style={{ margin: "15px" }}>
@@ -10,6 +14,7 @@ const code = `() => {
         label="Accordion with icon"
         onChange={onChange}
         iconSrc={homeLogo}
+        isExpanded={isExpanded}
         iconPosition="before"
       >
         <div>
@@ -23,6 +28,7 @@ const code = `() => {
 
 const scope = {
   DxcAccordion,
+  useState,
   homeLogo
 };
 

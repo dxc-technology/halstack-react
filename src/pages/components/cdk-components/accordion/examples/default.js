@@ -5,7 +5,7 @@ const code = `() => {
 
   return (
     <div style={{ margin: "15px" }}>
-      <DxcAccordion label="Default Accordion" onChange={onChange}>
+      <DxcAccordion label="Default Accordion Uncontrolled" onChange={onChange}>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           malesuada lacus ex, sit amet blandit leo lobortis eget.

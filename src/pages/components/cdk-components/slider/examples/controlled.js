@@ -3,21 +3,14 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, changeValue] = useState(0);
-  const onChange = newValue => {
-    changeValue(newValue);
-  };
-  const onDragEnd = ()=> {};
 
   return (
     <DxcSlider
       minValue={0}
       maxValue={100}
       showLimitsValues={true}
-      value={value}
       name="input"
       step={1}
-      onChange={onChange}
-      onDragEnd={onDragEnd}
     />
   );
 }`;

@@ -1,13 +1,18 @@
 import { DxcAccordion } from "@diaas/dxc-react-cdk";
+import { useState } from "react";
 
 const code = `() => {
-  const onChange = () => {};
+  const [isExpanded, changeIsExpanded] = useState(false);
+  const onChange = newValue => {
+    changeIsExpanded(newValue);
+  };
 
   return (
     <div style={{ margin: "15px" }}>
       <DxcAccordion
         label="Accordion with assistive text"
         onChange={onChange}
+        isExpanded={isExpanded}
         assistiveText="Assistive text"
       >
         <div>
@@ -20,7 +25,8 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcAccordion
+  DxcAccordion,
+  useState
 };
 
 export default { code, scope };
