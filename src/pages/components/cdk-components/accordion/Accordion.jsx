@@ -12,6 +12,8 @@ import disabled from "./examples/disabled";
 import assistiveText from "./examples/assistiveText";
 import icon from "./examples/icon";
 import dark from "./examples/dark";
+import controlledAccordion from "./examples/controlledAccordion";
+
 
 function Accordion() {
   return (
@@ -39,6 +41,11 @@ function Accordion() {
                   title="Default Accordion"
                   example={defaultAccordion}
                 ></Example>
+                <Example
+                  title="Controlled Accordion"
+                  example={controlledAccordion}
+                ></Example>
+
                 <Example
                   title="Alternative Accordion"
                   example={alternative}
