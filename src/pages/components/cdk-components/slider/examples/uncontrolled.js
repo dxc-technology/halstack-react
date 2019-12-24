@@ -4,7 +4,6 @@ const code = `() => {
   const onChange = newValue => {
     console.log(newValue);
   };
-  const onDragEnd = ()=> {};
 
   return (
     <DxcSlider
@@ -14,7 +13,6 @@ const code = `() => {
       name="input"
       step={1}
       onChange={onChange}
-      onDragEnd={onDragEnd}
     />
   );
 }`;

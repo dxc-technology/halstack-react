@@ -6,7 +6,6 @@ const code = `() => {
   const onChange = newValue => {
     changeValue(newValue);
   };
-  const onDragEnd = ()=> {};
 
   return (
     <DxcSlider
@@ -18,7 +17,6 @@ const code = `() => {
       step={5}
       marks={true}
       onChange={onChange}
-      onDragEnd={onDragEnd}
     />
   );
 }`;
