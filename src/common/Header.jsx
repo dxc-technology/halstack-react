@@ -9,7 +9,7 @@ function App() {
     <DxcHeader>
       <Location>
         {({ location }) => (
-          <HeaderLinks>
+          <React.Fragment>
             <HeaderLink isActive={location.pathname.startsWith("/overview")}>
               <Link to="overview">Overview</Link>
             </HeaderLink>
@@ -34,18 +34,12 @@ function App() {
                 <img src={githubLogo} alt="GitHub logo"></img>
               </a>
             </HeaderLink>
-          </HeaderLinks>
+          </React.Fragment>
         )}
       </Location>
     </DxcHeader>
   );
 }
-
-const HeaderLinks = styled.div`
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-`;
 
 const HeaderLink = styled.div`
   & a {
