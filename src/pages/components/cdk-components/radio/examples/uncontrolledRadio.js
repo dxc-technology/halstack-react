@@ -2,11 +2,11 @@ import { DxcRadio } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  const onChange = newValue => {
+  const onClick = newValue => {
     console.log(newValue);
   };
 
-  return <DxcRadio label="Radio Label" onChange={onChange} />;
+  return <DxcRadio label="Radio Label" onClick={onClick} />;
 }`;
 
 const scope = {
