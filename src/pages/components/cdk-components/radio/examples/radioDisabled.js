@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   const [checked, changeChecked] = useState(true);
-  const onChange = newValue => {
+  const onClick = newValue => {
     changeChecked(newValue);
   };
 
@@ -12,7 +12,7 @@ const code = `() => {
       checked={checked}
       label="Disabled Radio"
       disabled={true}
-      onChange={onChange}
+      onClick={onClick}
     />
   );
 }`;
