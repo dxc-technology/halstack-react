@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   const [checked, changeChecked] = useState(true);
-  const onChange = newValue => {
+  const onClick = newValue => {
     changeChecked(newValue);
   };
 
@@ -13,12 +13,12 @@ const code = `() => {
         checked={checked}
         label="Label Before"
         labelPosition="before"
-        onChange={onChange}
+        onClick={onClick}
       />
       <DxcRadio
         checked={checked}
         label="Label After"
-        onChange={onChange}
+        onClick={onClick}
       />
     </div>
   );

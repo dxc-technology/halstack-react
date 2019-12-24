@@ -3,12 +3,12 @@ import { useState } from "react";
 
 const code = `() => {
   const [checked, changeChecked] = useState(false);
-  const onChange = newValue => {
+  const onClick = newValue => {
     changeChecked(newValue);
   };
 
   return (
-    <DxcRadio checked={checked} label="Radio Label" onChange={onChange} />
+    <DxcRadio checked={checked} label="Radio Label" onClick={onClick} />
   );
 }`;
 
