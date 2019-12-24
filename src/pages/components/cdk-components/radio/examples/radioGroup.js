@@ -17,21 +17,21 @@ const code = `() => {
       <DxcRadio
         checked={checked}
         label="Option1"
-        onChange={() => {
+        onClick={() => {
           onSelect(changeCheckedOption1);
         }}
       />
       <DxcRadio
         checked={checked2}
         label="Option2"
-        onChange={() => {
+        onClick={() => {
           onSelect(changeCheckedOption2);
         }}
       />
       <DxcRadio
         checked={checked3}
         label="Option3"
-        onChange={() => {
+        onClick={() => {
           onSelect(changeCheckedOption3);
         }}
       />
