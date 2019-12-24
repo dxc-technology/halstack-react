@@ -7,10 +7,10 @@ function App() {
   const [checked2, changeCheckedOption2] = useState(false);
   const [checked3, changeCheckedOption3] = useState(false);
 
-  const onChange = newValue => {
+  const onClick = newValue => {
     changeChecked(newValue);
   };
-  const onChangeUncontrolled = newValue => {
+  const onClickUncontrolled = newValue => {
     console.log("Uncontrolled Checked");
   };
 
@@ -26,20 +26,20 @@ function App() {
       <div
         style={{ width: "100%", display: "inline-flex", alignItems: "center" }}
       >
-        <DxcRadio checked={checked} label="Controlled" onChange={onChange} />
-        <DxcRadio label="Uncontrolled" onChange={onChangeUncontrolled} />
+        <DxcRadio checked={checked} label="Controlled" onClick={onClick} />
+        <DxcRadio label="Uncontrolled" onClick={onClickUncontrolled} />
         <DxcRadio label="Disabled Radio" disabled={true} />
         <DxcRadio
           label="Required Radio"
           checked={checked}
           required={true}
-          onChange={onChange}
+          onClick={onClick}
         />
         <DxcRadio
           label="Label before"
           checked={checked}
           labelPosition="before"
-          onChange={onChange}
+          onClick={onClick}
         />
       </div>
       <div>
@@ -47,43 +47,43 @@ function App() {
         <DxcRadio
           checked={checked1}
           label="Option1"
-          onChange={() => {
+          onClick={() => {
             onSelect(changeCheckedOption1);
           }}
         />
         <DxcRadio
           checked={checked2}
           label="Option2"
-          onChange={() => {
+          onClick={() => {
             onSelect(changeCheckedOption2);
           }}
         />
         <DxcRadio
           checked={checked3}
           label="Option3"
-          onChange={() => {
+          onClick={() => {
             onSelect(changeCheckedOption3);
           }}
         />
       </div>
       <h3>Dark</h3>
       <div style={{ background: "black" }}>
-        <DxcRadio checked={checked} theme="dark" label="Controlled" onChange={onChange} />
-        <DxcRadio label="Uncontrolled" theme="dark" onChange={onChangeUncontrolled} />
+        <DxcRadio checked={checked} theme="dark" label="Controlled" onClick={onClick} />
+        <DxcRadio label="Uncontrolled" theme="dark" onClick={onClickUncontrolled} />
         <DxcRadio label="Disabled Radio"theme="dark" disabled={true} />
         <DxcRadio
           label="Required Radio"
           checked={checked}
           required={true}
           theme="dark"
-          onChange={onChange}
+          onClick={onClick}
         />
         <DxcRadio
           label="Label before"
           checked={checked}
           labelPosition="before"
           theme="dark"
-          onChange={onChange}
+          onClick={onClick}
         />
       </div>
     </div>

@@ -14,7 +14,7 @@ const DxcRadio = ({
   name,
   disabled,
   disableRipple,
-  onChange,
+  onClick,
   required = false
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
@@ -23,14 +23,16 @@ const DxcRadio = ({
     if (checked == null) {
       setInnerChecked(true);
     }
-    onChange(true);
+    if (typeof onClick === "function") {
+      onClick(true);
+    }
   };
   return (
     <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
       <Radio
         checked={(checked != null && checked) || innerChecked}
         name={name}
-        onChange={handlerRadioChange}
+        onClick={handlerRadioChange}
         value={value}
         label={label}
         disabled={disabled}
