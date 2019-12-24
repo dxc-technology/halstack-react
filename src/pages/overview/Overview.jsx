@@ -7,6 +7,7 @@ import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import DocTitle from "../../common/DocTitle";
 import Section from "../components/common/Section";
 import githubLogo from "./github-logo.png";
+import reactLogo from "../../common/react-icon.png";
 
 function Install() {
   return (
@@ -83,51 +84,50 @@ function UseComponents() {
 function Support() {
   return (
     <Section>
-      <DocTitle size={2}>Support and Feature Request</DocTitle>
-      <p>
-        For any questions or requests, our main support channel is GitHub
-        issues.
-      </p>
-      <Card>
-        <GithubIcon alt="Github logo" src={githubLogo}></GithubIcon>
-        <GithubText>GitHub Issues</GithubText>
-      </Card>
+      <StyledSupport>
+        <DocTitle size={2}>Support and Feature request</DocTitle>
+        <p>
+          For any questions or requests, our main support channel is GitHub
+          issues.
+        </p>
+        <GithubCard
+          href="https://github.dxc.com/DIaaS/diaas-react-cdk/issues"
+          target="_blank"
+        >
+          <GithubIcon alt="Github logo" src={githubLogo}></GithubIcon>
+          <GithubText>GitHub Issues</GithubText>
+        </GithubCard>
 
-      <p>
-        You are welcome to open an issue there at any time, but before doing it,
-        please consider the following.
-      </p>
-      <ul>
-        <li>
-          <p>
+        <p>
+          You are welcome to open an issue there at any time, but before doing
+          it, please consider the following:
+        </p>
+        <ul>
+          <li>
             Somebody else migh have already created an issue regarding your
-            question or feature request. Please use the search functionality and
-            avoid the creation of duplicated issues. In case you want to provide
-            your input or express your interest in a feature request, please do
-            it in the existing issue.
-          </p>
-        </li>
-        <li>
-          <p>
+            question or feature request. Please use the search functionality and{" "}
+            <b>avoid the creation of duplicated issues</b>. In case you want to
+            provide your input or express your interest in a feature request,
+            please do it in the existing issue.
+          </li>
+          <li>
             These components are built with the intention of helping developers
             with the most common use cases. But at the same time, we want to
             keep their APIs as simple and intuitive as possible. If you notice a
             missing feature, the team is always happy to discuss about it. But
-            please have in mind that we might decide to give it a lower priority
-            than what you could expect, or even reject it for the sake of API
-            simplicity.
-          </p>
-        </li>
-        <li>
-          <p>
-            In case you need a missing feature, or modify a component in any
-            way, you can always fork the repository or copy a component to your
-            application and take it up on your own. If you think this
-            modification would be useful as part of the library, we gratefully
-            accept contributions via pull request (see next section)
-          </p>
-        </li>
-      </ul>
+            please have in mind that we might decide to give it a{" "}
+            <b>lower priority</b> than what you could expect, or{" "}
+            <b>even reject</b> it for the sake of API simplicity.
+          </li>
+          <li>
+            In case you need a <b>missing feature</b>, or modify a component in
+            any way, you can always <b>fork</b> the repository or copy a
+            component to your application and take it up on your own. If you
+            think this modification would be useful as part of the library, we
+            gratefully accept contributions via pull request (see next section)
+          </li>
+        </ul>
+      </StyledSupport>
     </Section>
   );
 }
@@ -145,7 +145,30 @@ function Contributing() {
 function Overview() {
   return (
     <Content>
-      <DocTitle size={1}>Overview</DocTitle>
+      <OverviewHeader>
+        <ReactLogo src={reactLogo}></ReactLogo>
+        <HeaderTitles>
+          <Title>Dxc Components</Title>
+          <Subtitle>For React</Subtitle>
+        </HeaderTitles>
+      </OverviewHeader>
+      <LinksSection>
+        <GithubCard
+          href="https://github.dxc.com/DIaaS/diaas-react-cdk/issues"
+          target="_blank"
+        >
+          <GithubIcon alt="Github logo" src={githubLogo}></GithubIcon>
+          <GithubText>Design Guidelines</GithubText>
+        </GithubCard>
+        <GithubCard
+          href="https://github.dxc.com/DIaaS/diaas-react-cdk/issues"
+          target="_blank"
+        >
+          <GithubIcon alt="Github logo" src={githubLogo}></GithubIcon>
+          <GithubText>GitHub</GithubText>
+        </GithubCard>
+      </LinksSection>
+
       <Introduction>
         <p>
           DXC React Components is a library of reusable elements, made with the
@@ -196,23 +219,66 @@ const Content = styled.div`
   padding: 50px 20px;
 `;
 
-const Card = styled.div`
+const OverviewHeader = styled.div`
   display: flex;
+  margin: 40px 0px;
+`;
+
+const ReactLogo = styled.img`
+  width: 70px;
+  height: 70px;
+`;
+
+const HeaderTitles = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #000000;
+  margin-left: 10px;
+`;
+
+const Title = styled.h1`
+  margin: 0px;
+  font-size: 35px;
+  line-height: 40px;
+`;
+
+const Subtitle = styled.h2`
+  margin: 0px;
+  font-size: 25px;
+  line-height: 20px;
+  color: #474747;
+  font-weight: normal;
+`;
+
+const LinksSection = styled.div`
+  display: flex;
+  margin: 70px 0px 50px 0px;
+`;
+
+const GithubCard = styled.a`
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   display: inline-flex;
   align-items: center;
   border-radius: 4px;
-  cursor: pointer;
+  margin: 20px 20px 20px 0px;
+  overflow: hidden;
+  color: black;
+  text-decoration: none;
 `;
 
 const GithubIcon = styled.img`
-  padding: 10px;
+  padding: 5px 12px;
+  background: #232323;
+  max-width: 25px;
 `;
 
 const GithubText = styled.div`
-  padding: 0px 30px 0px 10px;
-  font-size: 18px;
-  font-weight: bold;
+  padding: 0px 30px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
 const Link = styled.a`
@@ -223,9 +289,14 @@ const Link = styled.a`
 `;
 
 const Introduction = styled.div`
-  padding: 0px 0px 50px 0px;
+  padding: 0px 0px 100px 0px;
   max-width: 800px;
+  & li {
+    margin-top: 30px;
+  }
+`;
 
+const StyledSupport = styled.div`
   & li {
     margin-top: 30px;
   }

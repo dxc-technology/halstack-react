@@ -2,29 +2,19 @@ import { DxcButton, DxcDialog } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  const [visible, setVisible] = useState(false);
-  const onClick = () => {
-    setVisible(!visible);
+  const [isDialogVisible, setDialogVisible] = useState(false);
+  const handleClick = () => {
+    setDialogVisible(!isDialogVisible);
   };
 
   return (
     <div>
-      <DxcButton
-        mode="basic"
-        theme="light"
-        label="Open Dialog"
-        onClick={onClick}
-      />
-      <DxcDialog isVisible={visible}>
-        <div style={{display:'flex', justifyContent: "center"}}>
-          <DxcButton
-            mode="basic"
-            theme="light"
-            label="Close Button"
-            onClick={onClick}
-          />
-        </div>
-      </DxcDialog>
+      <DxcButton label="Open Dialog" onClick={handleClick}></DxcButton>
+      {isDialogVisible && (
+        <DxcDialog overlay={false} isCloseVisible={true} onCloseClick={handleClick}>
+          Close Icon
+        </DxcDialog>
+      )}
     </div>
   );
 }`;
