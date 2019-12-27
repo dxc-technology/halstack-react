@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
 import PropTypes from "prop-types";
 
-const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = true, onBackgroundClick }) => {
-
+const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
   const handleClose = () => {
     if (typeof onCloseClick === "function") {
       onCloseClick();
@@ -20,7 +19,7 @@ const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = t
   };
 
   return (
-    <DialogContainer open={true} onClose={handleOverlayClick} overlay={overlay}>
+    <DialogContainer open={true} onClose={handleOverlayClick} overlay={overlay} padding={padding}>
       {isCloseVisible && (
         <CloseIconContainer onClick={handleClose}>
           <CloseIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -44,7 +43,15 @@ const DialogContainer = styled(Dialog)`
     max-width: 80%;
     min-width: 800px;
     box-shadow: 0px 1px 3px ${colors.black}33;
-    padding: 40px 60px 30px 40px;
+    padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+    padding-top: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+    padding-right: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+    padding-bottom: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+    padding-left: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
   }
 `;
 
@@ -97,6 +104,15 @@ const CloseIcon = styled.svg`
 `;
 
 DxcDialog.propTypes = {
+  padding: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ]),
   theme: PropTypes.oneOf(["light", "dark", ""]),
   isVisible: PropTypes.bool,
   isCloseVisible: PropTypes.bool,

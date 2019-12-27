@@ -4,7 +4,7 @@ import "../../common/OpenSans.css";
 import PropTypes from "prop-types";
 import FileToUpload from "../file-upload/FileToUpload";
 import ButtonsUpload from "../buttons-upload/ButtonsUpload";
-import colors from "../../common/variables.js";
+import {colors} from "../../common/variables.js";
 
 const DxcFilesToUpload = ({ filesToUpload, onUpload, addFile }) => {
   const handleDrag = e => {

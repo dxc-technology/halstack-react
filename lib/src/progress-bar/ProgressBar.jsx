@@ -3,12 +3,12 @@ import styled from "styled-components";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
-const DxcProgressBar = ({ label = "", theme = "light", overlay = true, value, showValue = false }) => {
+const DxcProgressBar = ({ label = "", theme = "light", overlay = true, value, showValue = false, margin }) => {
   return (
     <BackgroundProgressBar theme={theme} overlay={overlay}>
-      <DXCProgressBar theme={theme} overlay={overlay}>
+      <DXCProgressBar theme={theme} overlay={overlay} margin={margin}>
         <InfoProgressBar>
           <ProgressBarLabel theme={theme} overlay={overlay}>
             {label}
@@ -31,7 +31,16 @@ DxcProgressBar.propTypes = {
   theme: PropTypes.oneOf(["light", "dark"]),
   overlay: PropTypes.bool,
   value: PropTypes.number,
-  showValue: PropTypes.bool
+  showValue: PropTypes.bool,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 const BackgroundProgressBar = styled.div`
@@ -69,6 +78,15 @@ const DXCProgressBar = styled.div`
   .MuiLinearProgress-bar {
     background-color: ${colors.yellow};
   }
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 const InfoProgressBar = styled.div`

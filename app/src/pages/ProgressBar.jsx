@@ -25,6 +25,7 @@ function App() {
                 overlay={false}
                 showValue
                 value={0}
+                margin="medium"
               />
               <DxcProgressBar
                 label="Loading..."
@@ -32,6 +33,7 @@ function App() {
                 overlay={false}
                 showValue
                 value={15}
+                margin="medium"
               />
               <DxcProgressBar
                 label="Loading..."
@@ -39,6 +41,7 @@ function App() {
                 overlay={false}
                 showValue
                 value={52}
+                margin="medium"
               />
               <DxcProgressBar
                 label="Loading..."
@@ -46,6 +49,7 @@ function App() {
                 overlay={false}
                 showValue
                 value={80}
+                margin="medium"
               />
             </div>
             <div

@@ -7,7 +7,7 @@ function App() {
     return result;
   }
 
-  return <DxcUpload callbackUpload={callbackFunc} />;
+  return <DxcUpload margin="small" callbackUpload={callbackFunc} />;
 }
 
 export default App;

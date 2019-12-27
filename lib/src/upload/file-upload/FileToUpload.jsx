@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../../common/OpenSans.css";
 import styled from "styled-components";
-import colors from "../../common/variables.js";
+import {colors} from "../../common/variables.js";
 import closeIcon from "./close.svg";
 import defaultIcon from "./file-icon.svg";
 import videoIcon from "./video-icon.svg";

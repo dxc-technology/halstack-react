@@ -4,7 +4,7 @@ import { Card } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import {colors} from "../common/variables.js";
 
 const DxcCard = ({ children, imagePosition = "before", imageSrc = "", mode = "default", theme = "light", onClick }) => {
   return (

@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../../common/OpenSans.css";
-import colors from "../../common/variables.js";
+import {colors} from "../../common/variables.js";
 import uploadFile from "./upload_file.svg";
 import dropFile from "./upload_drop.svg";
 import Button from "../../button/Button";

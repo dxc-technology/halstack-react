@@ -3,12 +3,29 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import "../common/OpenSans.css"
-import colors from "../common/variables.js"
+import "../common/OpenSans.css";
+import { colors, spaces } from "../common/variables.js";
 
-const DxcButton = ({ label="", mode="basic", disabled=false, theme="light", disableRipple=false, iconPosition = "after", iconSrc="", onClick="" }) => {
+const DxcButton = ({
+  label = "",
+  mode = "basic",
+  disabled = false,
+  theme = "light",
+  disableRipple = false,
+  iconPosition = "after",
+  iconSrc = "",
+  onClick = "",
+  margin
+}) => {
   return (
-    <DxCButton mode={mode} theme={theme} disabled={disabled} onClick={() => onClick()} iconPosition={iconPosition}>
+    <DxCButton
+      margin={margin}
+      mode={mode}
+      theme={theme}
+      disabled={disabled}
+      onClick={() => onClick()}
+      iconPosition={iconPosition}
+    >
       <Button disabled={disabled} disableRipple={disableRipple}>
         <LabelContainer>{label}</LabelContainer>
         {iconSrc && <ButtonIcon iconPosition={iconPosition} src={iconSrc} />}
@@ -18,6 +35,15 @@ const DxcButton = ({ label="", mode="basic", disabled=false, theme="light", disa
 };
 
 DxcButton.propTypes = {
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ]),
   label: PropTypes.string,
   mode: PropTypes.oneOf(["basic", "outlined", "raised", "flat"]),
   disabled: PropTypes.bool,
@@ -39,9 +65,18 @@ const ButtonIcon = styled.img`
   margin-right: ${props => (props.iconPosition === "before" && "10px") || "0px"};
 `;
 const DxCButton = styled.div`
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   display: inline-block;
-  margin: 15px;
-  cursor:${props => (props.disabled  && "not-allowed") || "pointer"};
+  cursor: ${props => (props.disabled && "not-allowed") || "pointer"};
 
   .MuiButtonBase-root {
     .MuiButton-label {
@@ -59,7 +94,7 @@ const DxCButton = styled.div`
     min-width: 122px;
     max-width: 420px;
     min-height: 43px;
-    
+
     line-height: 1;
     font-family: "Open Sans", sans-serif;
     ${props => {

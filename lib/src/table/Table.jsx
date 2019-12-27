@@ -1,19 +1,40 @@
 import styled from "styled-components";
+import {colors, spaces} from "../common/variables.js";
+import React from "react";
 
-const DxcTable = styled.table`
+const DxcTable = ({ children, margin }) => {
+  return (
+    <DxcTableContainer margin={margin}>
+      {children}
+    </DxcTableContainer>
+  );
+};
+
+const DxcTableContainer = styled.table`
   border-collapse: collapse;
+
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   & tr {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid ${colors.lightGrey};
   }
 
   & tr:nth-child(odd) {
-    background-color: #eee;
+    background-color: ${colors.darkWhite};
   }
   & tr:nth-child(1) {
-    background-color: #fff;
+    background-color: ${colors.white};
   }
   & td {
-    color: #5a5a5a;
+    color: ${colors.darkGrey};
   }
   & th,
   td {
@@ -26,5 +47,7 @@ const DxcTable = styled.table`
     font-size: 14px;
   }
 `;
+
+
 
 export default DxcTable;

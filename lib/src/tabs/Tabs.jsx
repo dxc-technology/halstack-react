@@ -4,9 +4,9 @@ import Tab from "@material-ui/core/Tab";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import {colors, spaces} from "../common/variables.js";
 
-const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick }) => {
+const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick, margin }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -17,7 +17,7 @@ const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick 
   };
 
   return (
-    <DxCTabs mode={mode} theme={theme}>
+    <DxCTabs mode={mode} theme={theme} margin={margin}>
       <Tabs
         value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
         onChange={handleChange}
@@ -40,6 +40,15 @@ const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick 
 };
 
 const DxCTabs = styled.div`
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   .MuiTabs-root {
     background: white;
     .MuiTabs-scroller {
@@ -105,7 +114,16 @@ DxcTabs.propTypes = {
       iconSrc: PropTypes.string,
       isDisabled: PropTypes.boolean
     })
-  )
+  ),
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 DxcTabs.defaultProps = {
