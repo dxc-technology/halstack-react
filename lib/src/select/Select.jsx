@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import DxcCheckbox from "../checkbox/Checkbox";
 
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
 const useStyles = makeStyles({
   root: {
@@ -29,7 +29,6 @@ const useStyles = makeStyles({
       paddingTop: "0px"
     },
     "& li": {
-      padding: multiple ? "0 20px 0 5px" : "10px 20px 10px 20px",
       fontSize: "16px",
       "&:hover": {
         backgroundColor: colors.darkWhite,
@@ -58,7 +57,9 @@ const DxcSelect = ({
   theme = "light",
   disableRipple = false,
   iconPosition = "after",
-  multiple = false
+  multiple = false,
+  margin,
+  padding
 }) => {
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
   const classes = useStyles(multiple);
@@ -78,7 +79,6 @@ const DxcSelect = ({
   };
 
   const getLabelForSingleSelect = selected => {
-    console.log("getLabelForSingleSelect " + selected);
     const selectedItem = options.filter(option => option.value === selected)[0];
     return (
       <SelectedIconContainer iconPosition={iconPosition} multiple={multiple} label={selectedItem.label}>
@@ -132,13 +132,14 @@ const DxcSelect = ({
   };
 
   return (
-    <SelectContainer theme={theme} required={required}>
+    <SelectContainer margin={margin} theme={theme} required={required}>
       <FormControl>
         <InputLabel disabled={disabled}>{label}</InputLabel>
         <Select
           name={name}
           theme={theme}
           multiple={multiple}
+          padding={padding}
           renderValue={getRenderValue}
           onChange={handleSelectChange}
           value={value !== undefined ? value : selectedValue}
@@ -154,7 +155,7 @@ const DxcSelect = ({
         >
           {options.map(option => {
             return (
-              <MenuItem id={option.value} value={option.value} disableRipple={disableRipple}>
+              <MenuItem  padding={padding} id={option.value} value={option.value} disableRipple={disableRipple}>
                 {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, value, option)} />}
                 <OptionContainer iconPosition={iconPosition}>
                   {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
@@ -168,6 +169,7 @@ const DxcSelect = ({
     </SelectContainer>
   );
 };
+
 const LabelCont = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
@@ -215,7 +217,15 @@ const ListIcon = styled.img`
 `;
 
 const SelectContainer = styled.div`
-  margin: 15px;
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: inline-block;
   .MuiFormLabel-root {
     font-size: 16px;
@@ -310,6 +320,15 @@ DxcSelect.propTypes = {
       iconSrc: PropTypes.string
     })
   ),
-  multiple: PropTypes.bool
+  multiple: PropTypes.bool,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 export default DxcSelect;

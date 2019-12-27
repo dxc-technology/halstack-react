@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import DxcInput from "../input-text/InputText";
-import colors from "../common/variables.js";
+import {colors, spaces} from "../common/variables.js";
 
 const DxcSlider = ({
   minValue = 0,
@@ -18,7 +18,8 @@ const DxcSlider = ({
   onDragEnd,
   disabled,
   theme = "light",
-  marks
+  marks,
+  margin
 }) => {
   const [innerValue, setInnerValue] = useState(0);
 
@@ -43,7 +44,7 @@ const DxcSlider = ({
   };
 
   return (
-    <SliderContainer theme={theme}>
+    <SliderContainer theme={theme} margin={margin}>
       {showLimitsValues && (
         <MinLabelContainer theme={theme} disabled={disabled}>
           {minValue}
@@ -90,7 +91,16 @@ DxcSlider.propTypes = {
   onDragEnd: PropTypes.func,
   disabled: PropTypes.bool,
   theme: PropTypes.oneOf(["dark", "light"]),
-  marks: PropTypes.bool
+  marks: PropTypes.bool,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 const StyledTextInput = styled.div`
@@ -107,7 +117,17 @@ const StyledTextInput = styled.div`
 const SliderContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 15px 15px 15px 15px;
+  
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   min-width: 185px;
   max-width: 100%;
 

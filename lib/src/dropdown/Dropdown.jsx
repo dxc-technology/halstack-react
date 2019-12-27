@@ -8,7 +8,7 @@ import caretDown from "./baseline-arrow_drop_down.svg";
 import caretUpWh from "./baseline-arrow_drop_up_wh.svg";
 import caretDownWh from "./baseline-arrow_drop_down_wh.svg";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
 const DxcDropdown = ({
   options,
@@ -20,7 +20,9 @@ const DxcDropdown = ({
   mode = "basic",
   caretHidden = false,
   disableRipple = false,
-  onSelectOption
+  onSelectOption,
+  margin,
+  padding
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -46,6 +48,7 @@ const DxcDropdown = ({
         theme={theme}
         label={label}
         caretHidden={caretHidden}
+        margin={margin}
       >
         <DropdownTriggerContainer iconPosition={iconPosition}>
           {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
@@ -86,6 +89,7 @@ const DxcDropdown = ({
         optionsIconPosition={optionsIconPosition}
         mode={mode}
         theme={theme}
+        padding={padding}
       >
         {options.map(option => (
           <MenuItem
@@ -94,7 +98,9 @@ const DxcDropdown = ({
             disableRipple={disableRipple}
             onClick={event => handleMenuItemClick(option)}
           >
-            {option.iconSrc && <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />}
+            {option.iconSrc && (
+              <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
+            )}
             <span className="optionLabel">{option.label}</span>
           </MenuItem>
         ))}
@@ -104,9 +110,16 @@ const DxcDropdown = ({
 };
 
 const DxcMenu = styled(Menu)`
-
   .MuiMenuItem-gutters {
-    padding: 0px 20px
+    padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+    padding-top: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+    padding-right: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+    padding-bottom: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+    padding-left: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
   }
   .MuiMenuItem-root {
     min-height: 46px;
@@ -185,6 +198,17 @@ const DropdownTrigger = styled.button`
   justify-content: space-between;
   align-items: center;
   min-width: ${props => (props.label === "" ? "0px" : "230px")};
+
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   padding: ${props => {
     if (props.caretHidden === true && props.label === "") {
       if (props.mode === "outlined") {
@@ -200,7 +224,6 @@ const DropdownTrigger = styled.button`
       }
     }
   }};
-  margin: 15px;
   &:focus {
     outline: none;
   }
@@ -249,7 +272,7 @@ const DropdownTrigger = styled.button`
 `;
 
 const DropdownTriggerLabel = styled.span`
-    text-align: left;
+  text-align: left;
 `;
 
 const DropdownTriggerContainer = styled.span`
@@ -287,6 +310,24 @@ const CaretIcon = styled.img`
 `;
 
 DxcDropdown.propTypes = {
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ]),
+  padding: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ]),
   optionsIconPosition: PropTypes.oneOf(["after", "before", ""]),
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["after", "before", ""]),

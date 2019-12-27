@@ -3,12 +3,12 @@ import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import {colors, spaces} from "../common/variables.js";
 
-const DxcSpinner = ({ label = "", theme = "light", value, showValue = false, mode = "large" }) => {
+const DxcSpinner = ({ label = "", theme = "light", value, showValue = false, mode = "large", margin }) => {
   return (
     <BackgroundSpinner theme={theme} mode={mode}>
-      <DXCSpinner showValue={showValue} label={label} mode={mode}>
+      <DXCSpinner margin={margin} showValue={showValue} label={label} mode={mode}>
         {label && mode !== "small" && (
           <SpinnerLabel showValue={showValue} theme={theme} mode={mode}>
             {label}
@@ -35,7 +35,16 @@ DxcSpinner.propTypes = {
   theme: PropTypes.oneOf(["light", "dark"]),
   value: PropTypes.number,
   showValue: PropTypes.bool,
-  mode: PropTypes.oneOf(["large", "small", "overlay"])
+  mode: PropTypes.oneOf(["large", "small", "overlay"]),
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 const BackgroundSpinner = styled.div`
@@ -59,6 +68,16 @@ const DXCSpinner = styled.div`
   width: ${props => (props.mode === "small" && "30px") || "120px"};
   height: ${props => (props.mode === "small" && "30px") || "120px"};
   z-index: ${props => (props.mode === "overlay" ? "100" : "")};
+
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   .MuiCircularProgress-colorPrimary {
     color: ${colors.yellow};

@@ -26,16 +26,27 @@ function App() {
       <div
         style={{ width: "100%", display: "inline-flex", alignItems: "center" }}
       >
-        <DxcRadio checked={checked} label="Controlled" onClick={onClick} />
-        <DxcRadio label="Uncontrolled" onClick={onClickUncontrolled} />
-        <DxcRadio label="Disabled Radio" disabled={true} />
         <DxcRadio
+          margin="medium"
+          checked={checked}
+          label="Controlled"
+          onClick={onClick}
+        />
+        <DxcRadio
+          margin="medium"
+          label="Uncontrolled"
+          onClick={onClickUncontrolled}
+        />
+        <DxcRadio margin="medium" label="Disabled Radio" disabled={true} />
+        <DxcRadio
+          margin="medium"
           label="Required Radio"
           checked={checked}
           required={true}
           onClick={onClick}
         />
         <DxcRadio
+          margin="medium"
           label="Label before"
           checked={checked}
           labelPosition="before"
@@ -45,6 +56,7 @@ function App() {
       <div>
         <h4>Radio Group</h4>
         <DxcRadio
+          margin="medium"
           checked={checked1}
           label="Option1"
           onClick={() => {
@@ -52,6 +64,7 @@ function App() {
           }}
         />
         <DxcRadio
+          margin="medium"
           checked={checked2}
           label="Option2"
           onClick={() => {
@@ -59,6 +72,7 @@ function App() {
           }}
         />
         <DxcRadio
+          margin="medium"
           checked={checked3}
           label="Option3"
           onClick={() => {
@@ -68,10 +82,27 @@ function App() {
       </div>
       <h3>Dark</h3>
       <div style={{ background: "black" }}>
-        <DxcRadio checked={checked} theme="dark" label="Controlled" onClick={onClick} />
-        <DxcRadio label="Uncontrolled" theme="dark" onClick={onClickUncontrolled} />
-        <DxcRadio label="Disabled Radio"theme="dark" disabled={true} />
         <DxcRadio
+          margin="medium"
+          checked={checked}
+          theme="dark"
+          label="Controlled"
+          onClick={onClick}
+        />
+        <DxcRadio
+          margin="medium"
+          label="Uncontrolled"
+          theme="dark"
+          onClick={onClickUncontrolled}
+        />
+        <DxcRadio
+          margin="medium"
+          label="Disabled Radio"
+          theme="dark"
+          disabled={true}
+        />
+        <DxcRadio
+          margin="medium"
           label="Required Radio"
           checked={checked}
           required={true}
@@ -79,6 +110,7 @@ function App() {
           onClick={onClick}
         />
         <DxcRadio
+          margin="medium"
           label="Label before"
           checked={checked}
           labelPosition="before"

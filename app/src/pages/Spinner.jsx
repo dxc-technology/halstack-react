@@ -19,23 +19,21 @@ function App() {
       >
         <div
           style={{
-            marginTop: "34px",
             display: "flex",
             width: "1440px",
             height: "170px",
             justifyContent: "space-around"
           }}
         >
-          <DxcSpinner theme="light" />
-          <DxcSpinner theme="light" label="Loading..." />
-          <DxcSpinner theme="light" showValue value={12} />
-          <DxcSpinner theme="light" label="Loading..." showValue value={34} />
+          <DxcSpinner margin="xxlarge" theme="light" />
+          <DxcSpinner margin="xxlarge" theme="light" label="Loading..." />
+          <DxcSpinner margin="xxlarge" theme="light" showValue value={12} />
+          <DxcSpinner margin="xxlarge" theme="light" label="Loading..." showValue value={34} />
           <div
             style={{
-              marginTop: "46px"
             }}
           >
-            <DxcSpinner theme="light" mode="small" />
+            <DxcSpinner margin="xxlarge" theme="light" mode="small" />
           </div>
         </div>
       </div>

@@ -8,12 +8,17 @@ function App() {
   };
   return (
     <div>
-
       <div
         style={{ width: "100%", display: "inline-flex", alignItems: "center" }}
       >
-        <DxcSwitch checked={checked} labelPosition="after" label="Controlled" onChange={onChange} />
-        <DxcSwitch label="Uncontrolled" />
+        <DxcSwitch
+          margin="medium"
+          checked={checked}
+          labelPosition="after"
+          label="Controlled"
+          onChange={onChange}
+        />
+        <DxcSwitch margin="medium" label="Uncontrolled" />
       </div>
 
       <div
@@ -28,8 +33,9 @@ function App() {
           theme="dark"
           checked={checked}
           label="Controlled"
+          margin="medium"
         />
-        <DxcSwitch theme="dark" label="Uncontrolled" />
+        <DxcSwitch theme="dark" label="Uncontrolled" margin="medium" />
       </div>
     </div>
   );

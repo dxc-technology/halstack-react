@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import {colors, spaces} from "../common/variables.js";
 
 const DxcSwitch = ({
   checked,
@@ -15,7 +15,8 @@ const DxcSwitch = ({
   disabled,
   disableRipple,
   onChange,
-  required
+  required,
+  margin
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
 
@@ -34,7 +35,7 @@ const DxcSwitch = ({
   };
 
   return (
-    <SwitchContainer theme={theme} disabled={disabled} labelPosition={labelPosition}>
+    <SwitchContainer margin={margin} theme={theme} disabled={disabled} labelPosition={labelPosition}>
       <Switch
         checked={checked != undefined ? checked : innerChecked}
         inputProps={(name = { name })}
@@ -66,6 +67,17 @@ const SwitchContainer = styled.div`
   display: inline-flex;
   align-items: center;
   flex-direction: ${props => (props.labelPosition === "after" ? "row" : "row-reverse")};
+
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
   .MuiSwitch-root {
     align-items: center;
@@ -138,8 +150,6 @@ const SwitchContainer = styled.div`
 
 const LabelContainer = styled.span`
   color: ${props => (props.disabled ? props.theme === "dark" ? colors.darkGrey : colors.lightGrey : props.theme === "dark" ? colors.white : colors.black)};
-  margin-right: ${props => (props.labelPosition === "after" ? "15px" : "0px")};
-  margin-left: ${props => (props.labelPosition === "after" ? "0px" : "15px")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
 `;
@@ -154,7 +164,16 @@ DxcSwitch.propTypes = {
   disabled: PropTypes.bool,
   disableRipple: PropTypes.bool,
   onChange: PropTypes.func,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 export default DxcSwitch;

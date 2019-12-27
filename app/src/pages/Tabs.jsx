@@ -13,6 +13,7 @@ function Tabs() {
       activeTabIndex={activeTab}
       onTabClick={onTabClick}
       mode="underlined"
+      margin="medium"
       tabs={[
         {
           label: "Tab 1"

@@ -47,6 +47,7 @@ class App extends React.Component {
             <DxcAlert
               type="info"
               mode="inline"
+              margin="medium"
               inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
         leo lobortis eget."
             />
@@ -55,6 +56,7 @@ class App extends React.Component {
             <DxcAlert
               type="warning"
               mode="inline"
+              margin={{left: "medium", bottom: "medium"}}
               inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
         leo lobortis eget."
               onClose={this.setVisibleWarningAlert}
@@ -64,6 +66,7 @@ class App extends React.Component {
             <DxcAlert
               type="confirm"
               mode="inline"
+              margin={{left: "medium", bottom: "medium"}}
               inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
         leo lobortis eget."
             >
@@ -78,6 +81,7 @@ class App extends React.Component {
             <DxcAlert
               type="error"
               mode="inline"
+              margin={{left: "medium", bottom: "medium"}}
               inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
         leo lobortis eget."
               onClose={this.setVisibleErrorAlert}
@@ -95,6 +99,7 @@ class App extends React.Component {
             mode="basic"
             theme="light"
             label="Overlay Alert"
+            margin={{left: "medium", bottom: "medium"}}
             onClick={this.setVisibleModalAlert}
           />
         </div>

@@ -4,7 +4,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
 const DxcCheckbox = ({
   checked,
@@ -16,7 +16,8 @@ const DxcCheckbox = ({
   disabled = false,
   disableRipple = false,
   onChange,
-  required = false
+  required = false,
+  margin
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
 
@@ -35,7 +36,7 @@ const DxcCheckbox = ({
   };
 
   return (
-    <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
+    <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled} margin={margin}>
       <Checkbox
         checked={checked != undefined ? checked : innerChecked}
         inputProps={(name = { name })}
@@ -74,13 +75,21 @@ const LabelContainer = styled.span`
       : props.theme === "dark"
       ? colors.white
       : colors.black};
-  margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
-  margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
 `;
 
 const CheckboxContainer = styled.span`
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   display: inline-flex;
   align-items: center;
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
@@ -88,7 +97,7 @@ const CheckboxContainer = styled.span`
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiButtonBase-root {
     padding: 10px 10px;
-    margin: 0px 3px;
+    margin: 0px 2px;
     color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
 
     :hover {
@@ -126,8 +135,8 @@ const CheckboxBlackBack = styled.span`
   width: 17px;
   height: 17px;
   position: absolute;
-  left: ${props => (props.labelPosition === "before" ? "unset" : "18px")};
-  right: ${props => (props.labelPosition === "before" ? "18px" : "unset")};
+  left: ${props => (props.labelPosition === "before" ? "unset" : "17px")};
+  right: ${props => (props.labelPosition === "before" ? "17px" : "unset")};
   z-index: 0;
 `;
 
@@ -141,7 +150,16 @@ DxcCheckbox.propTypes = {
   disabled: PropTypes.bool,
   disableRipple: PropTypes.bool,
   onChange: PropTypes.func,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 export default DxcCheckbox;

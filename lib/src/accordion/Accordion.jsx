@@ -5,7 +5,7 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const DxcAccordion = ({
@@ -18,7 +18,9 @@ const DxcAccordion = ({
   onChange = "",
   theme = "light",
   isExpanded,
-  children
+  children,
+  margin,
+  padding
 }) => {
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
 
@@ -32,7 +34,7 @@ const DxcAccordion = ({
   };
 
   return (
-    <DXCAccordion theme={theme} mode={mode} disabled={disabled}>
+    <DXCAccordion padding={padding} margin={margin} theme={theme} mode={mode} disabled={disabled}>
       <ExpansionPanel
         disabled={disabled}
         onChange={handlerAccordion}
@@ -65,12 +67,40 @@ DxcAccordion.propTypes = {
   onChange: PropTypes.func,
   theme: PropTypes.oneOf(["light", "dark"]),
   isExpanded: PropTypes.bool,
-  children: PropTypes.string
+  children: PropTypes.string,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ]),
+  padding: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 const DXCAccordion = styled.div`
   min-width: 280px;
-  margin: 1px;
+
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   font-family: "Open Sans", sans-serif;
   cursor: ${props => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
@@ -79,7 +109,6 @@ const DXCAccordion = styled.div`
     color: ${props => (props.mode === "default" && colors.darkGrey) || colors.white};
     box-shadow: 0px 6px 10px #00000024;
     border: ${props => (props.theme === "dark" && props.mode === "alternative" ? `2px solid ${colors.white}` : "")};
-    margin-bottom: 5px;
     display: block;
     position: static;
     width: 100%;
@@ -156,7 +185,6 @@ const DXCAccordion = styled.div`
     color: ${props => (props.mode === "default" && colors.black) || colors.white};
     box-shadow: 0px 6px 10px ${colors.white}24;
     border-radius: 0px 0px 4px 4px;
-    height: 72px;
   }
 
   .MuiSvgIcon-root {
@@ -164,12 +192,19 @@ const DXCAccordion = styled.div`
   }
 
   .MuiExpansionPanelSummary-root {
-    height: 72px;
     padding: 0 30px;
   }
 
   .MuiExpansionPanelDetails-root {
-    padding: 30px;
+    padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+    padding-top: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+    padding-right: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+    padding-bottom: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+    padding-left: ${props =>
+      props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
   }
 `;
 

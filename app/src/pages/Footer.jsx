@@ -41,6 +41,7 @@ function App() {
       copyright="© DXC Technology 2019. All rights reserved."
       bottomLinks={bottom}
       socialLinks={social}
+      margin="large"
     ></DxcFooter>
   );
 }

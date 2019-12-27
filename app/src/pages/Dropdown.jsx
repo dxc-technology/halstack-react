@@ -48,17 +48,23 @@ function App() {
           options={optionsWithoutIcon}
           onSelectOption={selectOption}
           label="Basic dropdown"
+          margin="medium"
+          padding={{top:"small", left:"large", right:"large", bottom: "small"}}
         ></DxcDropdown>
         <DxcDropdown
           options={optionsWithIcon}
           onSelectOption={selectOption}
           label="Basic dropdown"
+          margin="medium"
+          padding={{top:"small", left:"large", right:"large", bottom: "small"}}
         ></DxcDropdown>
         <DxcDropdown
           options={optionsWithoutIcon}
           onSelectOption={selectOption}
           label="Outlined dropdown"
           mode={"outlined"}
+          margin="medium"
+          padding={{top:"small", left:"large", right:"large", bottom: "small"}}
         ></DxcDropdown>
       </div>
       <div
@@ -74,12 +80,16 @@ function App() {
           onSelectOption={selectOption}
           label="Basic dropdown"
           theme="dark"
+          margin="medium"
+          padding={{top:"small", left:"large", right:"large", bottom: "small"}}
         ></DxcDropdown>
         <DxcDropdown
           options={optionsWithIcon}
           onSelectOption={selectOption}
           label="Basic dropdown"
           theme="dark"
+          margin="medium"
+          padding={{top:"small", left:"large", right:"large", bottom: "small"}}
         ></DxcDropdown>
         <DxcDropdown
           options={optionsWithoutIcon}
@@ -87,6 +97,8 @@ function App() {
           label="Outlined dropdown"
           mode={"outlined"}
           theme="dark"
+          margin="medium"
+          padding={{top:"small", left:"large", right:"large", bottom: "small"}}
         ></DxcDropdown>
       </div>
     </div>

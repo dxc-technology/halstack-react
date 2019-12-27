@@ -28,12 +28,14 @@ function App() {
           required={true}
           onClickSuffix={onSuffixClick}
           onClickPrefix={onPrefixClick}
+          margin="medium"
         ></DxcInput>
         <DxcInput
           prefix={"pr"}
           assistiveText={"assistive text"}
           label={"label"}
           suffix={"suf"}
+          margin="medium"
         ></DxcInput>
       </div>
       <div>
@@ -46,6 +48,7 @@ function App() {
           value={inputValue}
           onClickSuffix={onSuffixClick}
           onClickPrefix={onPrefixClick}
+          margin="medium"
         ></DxcInput>
         <DxcInput
           assistiveText={"assistive text"}
@@ -56,6 +59,7 @@ function App() {
           prefixIconSrc={iconSrcPath}
           onClickSuffix={onSuffixClick}
           onClickPrefix={onPrefixClick}
+          margin="medium"
         ></DxcInput>
       </div>
     </div>

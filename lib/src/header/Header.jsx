@@ -7,16 +7,24 @@ import DefaultBlack from "./dxc_logo_black.png";
 
 import PropTypes from "prop-types";
 
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
-const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", onClick = "", children }) => {
+const DxcHeader = ({
+  theme = "light",
+  underlined = false,
+  logoSrc = "default",
+  onClick = "",
+  children,
+  margin,
+  padding
+}) => {
   function onClickHandle() {
     if (typeof onClick === "function") {
       onClick();
     }
   }
   return (
-    <HeaderContainer theme={theme} underlined={underlined} position="static">
+    <HeaderContainer theme={theme} underlined={underlined} position="static" margin={margin}>
       <a onClick={() => onClickHandle()}>
         <LogoIcon
           onLogoClick={onClick}
@@ -34,12 +42,16 @@ const DxcHeader = ({ theme = "light", underlined = false, logoSrc = "default", o
           }
         />
       </a>
-      <ChildContainer>{children}</ChildContainer>
+      <ChildContainer padding={padding}>{children}</ChildContainer>
     </HeaderContainer>
   );
 };
 
 const HeaderContainer = styled(AppBar)`
+  margin-bottom: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+
   &.MuiAppBar-colorPrimary {
     background-color: ${props =>
       props.theme === "light" && props.underlined === true
@@ -90,7 +102,7 @@ const HeaderContainer = styled(AppBar)`
   &.MuiAppBar-root {
     flex-direction: row;
     align-items: center;
-    padding: 0px 60px 0px 20px;
+    padding: 0px 0px 0px 20px;
     justify-content: space-between;
   }
 `;
@@ -122,13 +134,40 @@ const ChildContainer = styled.div`
   align-items: center;
   flex-grow: 1;
   justify-content: flex-end;
+  padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+  padding-top: ${props =>
+    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+  padding-right: ${props =>
+    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+  padding-bottom: ${props =>
+    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+  padding-left: ${props =>
+    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
 DxcHeader.propTypes = {
   logoSrc: PropTypes.string,
   theme: PropTypes.oneOf(["light", "dark", ""]),
   underlined: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ]),
+  padding: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 export default DxcHeader;
