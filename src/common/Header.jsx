@@ -6,7 +6,7 @@ import githubLogo from "./github-logo.png";
 
 function App() {
   return (
-    <DxcHeader>
+    <DxcHeader padding={{left:"medium", right:"medium"}}>
       <Location>
         {({ location }) => (
           <React.Fragment>
