@@ -4,7 +4,7 @@ import { ToggleButton } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
 const DxcToggle = ({
   label = "",
@@ -15,10 +15,12 @@ const DxcToggle = ({
   iconPosition = "before",
   disabled = false,
   onClick,
-  selected = false
+  selected = false,
+  margin
 }) => {
   return (
     <DxcToggleContainer
+      margin={margin}
       theme={theme}
       disabled={disabled}
       disableRipple={disableRipple}
@@ -43,7 +45,16 @@ const DxcToggle = ({
 
 const DxcToggleContainer = styled.div`
   & {
-    margin: 15px;
+    margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+    margin-top: ${props =>
+      props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    margin-right: ${props =>
+      props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    margin-bottom: ${props =>
+      props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    margin-left: ${props =>
+      props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+      
     opacity: ${props => (props.disabled ? "0.5" : "1")};
     cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
     display: inline-block;
@@ -132,7 +143,7 @@ const ContentContainer = styled.span`
   line-height: 1;
   display: flex;
   align-items: center;
-  flex-direction: ${props => (props.iconPosition === "after" ? 'row-reverse' : "row")};
+  flex-direction: ${props => (props.iconPosition === "after" ? "row-reverse" : "row")};
 `;
 
 const IconContainer = styled.img`
@@ -153,7 +164,16 @@ DxcToggle.propTypes = {
   selected: PropTypes.bool,
   disabled: PropTypes.bool,
   disableRipple: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 export default DxcToggle;

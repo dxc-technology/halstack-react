@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "../../common/OpenSans.css";
 import PropTypes from "prop-types";
 import Transaction from "../transaction/Transaction";
-import colors from "../../common/variables.js";
+import {colors} from "../../common/variables.js";
 
 const DxcTransactions = ({ transactions }) => {
   return (

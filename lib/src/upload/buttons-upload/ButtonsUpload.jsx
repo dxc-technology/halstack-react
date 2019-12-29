@@ -6,7 +6,7 @@ import "../../common/OpenSans.css";
 import Button from "../../button/Button";
 import uploadIcon from "./upload-button.svg";
 import dragAndDropIcon from "./drag-drop-icon.svg";
-import colors from "../../common/variables.js";
+import {colors} from "../../common/variables.js";
 
 const DxcButtonsUpload = ({ addFile, onUpload }) => {
   const selectFile = e => {

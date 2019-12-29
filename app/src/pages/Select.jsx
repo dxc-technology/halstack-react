@@ -72,6 +72,8 @@ function App() {
         value={inputValue}
         label={"Controlled Select"}
         options={optionsWithoutIcon}
+        margin="medium"
+        padding="medium"
       ></DxcSelect>
 
       <DxcSelect
@@ -80,12 +82,16 @@ function App() {
         label={"Controlled Select"}
         options={optionsWithoutIcon}
         multiple={true}
+        margin="medium"
+        padding="medium"
       ></DxcSelect>
 
       <DxcSelect
         label={"Controlled Select"}
         options={optionsWithIcon}
         multiple={true}
+        margin="medium"
+        padding="medium"
       ></DxcSelect>
 
       <DxcSelect
@@ -93,6 +99,8 @@ function App() {
         options={optionsWithIconAndLabels}
         multiple={true}
         iconPosition={"before"}
+        margin="medium"
+        padding="medium"
       ></DxcSelect>
     </div>
   );

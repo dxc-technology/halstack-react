@@ -18,6 +18,7 @@ import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import Spinner from "./pages/Spinner";
 import Dialog from "./pages/Dialog";
+import Date from "./pages/Date";
 
 export default [
   {
@@ -39,6 +40,11 @@ export default [
     path: "checkbox",
     name: "Checkbox",
     component: Checkbox
+  },
+  {
+    path: "date",
+    name: "Date",
+    component: Date
   },
   {
     path: "dialog",
