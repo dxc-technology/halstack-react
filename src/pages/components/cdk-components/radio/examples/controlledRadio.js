@@ -8,7 +8,12 @@ const code = `() => {
   };
 
   return (
-    <DxcRadio checked={checked} label="Radio Label" onClick={onClick} />
+    <DxcRadio
+      checked={checked}
+      label="Radio Label"
+      onClick={onClick}
+      margin="medium"
+    />
   );
 }`;
 

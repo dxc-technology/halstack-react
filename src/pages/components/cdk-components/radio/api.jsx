@@ -66,7 +66,8 @@ const radioPropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, the radio will change its appearence, showing that the value is required.
+          If true, the radio will change its appearence, showing that the value
+          is required.
         </td>
       </tr>
       <tr>
@@ -82,6 +83,16 @@ const radioPropsTable = () => {
         <td>
           This function will be called when the user clicks the radio. The new
           value will be passed as a parameter.
+        </td>
+      </tr>
+      <tr>
+        <td>margin: string | object</td>
+        <td></td>
+        <td>
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
         </td>
       </tr>
     </DxcTable>

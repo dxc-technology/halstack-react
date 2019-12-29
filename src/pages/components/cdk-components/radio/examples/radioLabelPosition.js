@@ -12,13 +12,15 @@ const code = `() => {
       <DxcRadio
         checked={checked}
         label="Label Before"
-        labelPosition="before"
         onClick={onClick}
+        margin="medium"
       />
       <DxcRadio
         checked={checked}
         label="Label After"
+        labelPosition="after"
         onClick={onClick}
+        margin="medium"
       />
     </div>
   );

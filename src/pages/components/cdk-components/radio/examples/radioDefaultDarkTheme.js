@@ -14,6 +14,7 @@ const code = `() => {
         theme="dark"
         label="Radio Label"
         onClick={onClick}
+        margin="medium"
       />
     </div>
   );
