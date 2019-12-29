@@ -8,7 +8,8 @@ import Example from "../../common/Example";
 import ButtonPropsTable from "./api.jsx";
 
 import modes from "./examples/modes";
-import disabled from "./examples/disabled";
+import withIcon from "./examples/withIcon";
+import darkTheme from "./examples/darkTheme";
 
 function Button() {
   return (
@@ -32,10 +33,9 @@ function Button() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
-                <Example title="Default Button" example={modes}></Example>
-                <Example title="Disabled Button" example={disabled}></Example>
-                <Example title="Default Button" example={modes}></Example>
-                <Example title="Disabled Button" example={disabled}></Example>
+                <Example title="Button Modes" example={modes}></Example>
+                <Example title="Button with Icon" example={withIcon}></Example>
+                <Example title="Dark theme Button" example={darkTheme}></Example>
               </Section>
             )
           }
