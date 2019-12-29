@@ -14,6 +14,7 @@ const code = `() => {
         theme="dark"
         label="Checkbox"
         onChange={onChange}
+        margin="medium"
       />
     </div>
   );
