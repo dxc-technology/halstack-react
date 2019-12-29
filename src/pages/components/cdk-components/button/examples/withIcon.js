@@ -1,4 +1,5 @@
 import { DxcButton } from "@diaas/dxc-react-cdk";
+import twitterLogoPath from "./images/twitter.svg";
 
 const code = `() => {
   const onClick = () => {
@@ -8,27 +9,16 @@ const code = `() => {
   return (
     <div>
       <DxcButton
-        mode="basic"
         label="Basic Button"
         onClick={onClick}
+        iconSrc={twitterLogoPath}
         margin="medium"
       />
       <DxcButton
-        mode="raised"
-        label="Raised Button"
+        label="Basic Button"
         onClick={onClick}
-        margin="medium"
-      />
-      <DxcButton
-        mode="flat"
-        label="Flat Button"
-        onClick={onClick}
-        margin="medium"
-      />
-      <DxcButton
-        mode="outlined"
-        label="Outlined Button"
-        onClick={onClick}
+        iconSrc={twitterLogoPath}
+        iconPosition="after"
         margin="medium"
       />
     </div>
@@ -36,7 +26,8 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcButton
+  DxcButton,
+  twitterLogoPath
 };
 
 export default { code, scope };
