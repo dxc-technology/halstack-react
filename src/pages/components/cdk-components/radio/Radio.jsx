@@ -12,8 +12,6 @@ import controlledRadio from "./examples/controlledRadio";
 import unControlledRadio from "./examples/uncontrolledRadio";
 
 import radioLabelPosition from "./examples/radioLabelPosition";
-import radioRequired from "./examples/radioRequired";
-import radioDisabled from "./examples/radioDisabled";
 import radioDefaultDark from "././examples/radioDefaultDarkTheme";
 import radioGroup from "././examples/radioGroup";
 
@@ -50,14 +48,6 @@ function Radio() {
                 <Example
                   title="Label Position"
                   example={radioLabelPosition}
-                ></Example>
-                <Example
-                  title="Required Radio"
-                  example={radioRequired}
-                ></Example>
-                <Example
-                  title="Disabled Radio"
-                  example={radioDisabled}
                 ></Example>
                 <Example
                   title="Dark theme Radio"

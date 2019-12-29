@@ -6,7 +6,7 @@ const code = `() => {
     console.log(newValue);
   };
 
-  return <DxcRadio label="Radio Label" onClick={onClick} />;
+  return <DxcRadio label="Radio Label" onClick={onClick} margin="medium" />;
 }`;
 
 const scope = {

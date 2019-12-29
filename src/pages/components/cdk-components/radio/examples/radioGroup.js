@@ -20,6 +20,7 @@ const code = `() => {
         onClick={() => {
           onSelect(changeCheckedOption1);
         }}
+        margin="medium"
       />
       <DxcRadio
         checked={checked2}
@@ -27,6 +28,7 @@ const code = `() => {
         onClick={() => {
           onSelect(changeCheckedOption2);
         }}
+        margin="medium"
       />
       <DxcRadio
         checked={checked3}
@@ -34,6 +36,7 @@ const code = `() => {
         onClick={() => {
           onSelect(changeCheckedOption3);
         }}
+        margin="medium"
       />
     </div>
   );
