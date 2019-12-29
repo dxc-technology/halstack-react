@@ -14,7 +14,7 @@ import imageIconError from "./image-icon-err.svg";
 import videoIconError from "./video-icon-err.svg";
 import audioIconError from "./audio-icon-err.svg";
 import Spinner from "../../spinner/Spinner";
-import colors from "../../common/variables.js";
+import {colors} from "../../common/variables.js";
 
 const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => {
   const icon =

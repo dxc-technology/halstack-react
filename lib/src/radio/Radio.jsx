@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Radio from "@material-ui/core/Radio";
+import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import {colors, spaces} from "../common/variables.js";
 
 const DxcRadio = ({
   checked,
@@ -15,7 +16,8 @@ const DxcRadio = ({
   disabled,
   disableRipple,
   onClick,
-  required = false
+  required = false,
+  margin
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
 
@@ -28,7 +30,7 @@ const DxcRadio = ({
     }
   };
   return (
-    <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled}>
+    <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled} margin={margin}>
       <Radio
         checked={(checked != null && checked) || innerChecked}
         name={name}
@@ -58,6 +60,15 @@ const RadioContainer = styled.span`
   max-height: 42px;
   position: relative;
   flex-direction: ${props => (props.labelPosition === "before" ? "row-reverse" : "row")};
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "default")};
   .MuiButtonBase-root {
     padding: 0px;
@@ -118,8 +129,29 @@ const LabelContainer = styled.span`
       return props.theme === "dark" ? colors.white : colors.black;
     }
   }};
-  margin-right: ${props => (props.labelPosition === "before" ? "0px" : "15px")};
-  margin-left: ${props => (props.labelPosition === "before" ? "15px" : "0px")};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
 `;
+
+DxcRadio.propTypes = {
+  checked: PropTypes.bool,
+  value: PropTypes.any,
+  label: PropTypes.string,
+  labelPosition: PropTypes.oneOf(["after", "before", ""]),
+  theme: PropTypes.oneOf(["light", "dark", ""]),
+  name: PropTypes.string,
+  disabled: PropTypes.bool,
+  disableRipple: PropTypes.bool,
+  onClick: PropTypes.func,
+  required: PropTypes.bool,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
+};
+
 export default DxcRadio;

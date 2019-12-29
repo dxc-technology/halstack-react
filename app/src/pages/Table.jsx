@@ -3,7 +3,7 @@ import { DxcTable } from "@diaas/dxc-react-cdk";
 
 function Table() {
   return (
-    <DxcTable>
+    <DxcTable margin="medium">
       <tr>
         <th>header 1</th>
         <th>header 2</th>

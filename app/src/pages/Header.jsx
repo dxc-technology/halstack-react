@@ -25,8 +25,8 @@ function App() {
   return (
     <div style={{ background: "lightgrey" }}>
       <div>
-        <div style={{ marginBottom: "20px" }}>
-          <DxcHeader theme="light" underlined={false} onClick={onClick}>
+        <div>
+          <DxcHeader margin="large" padding={{left:"large", right:"xlarge"}} theme="light" underlined={false} onClick={onClick}>
             <DxcDropdown
               theme={"light"}
               onSelectOption={selectOption}
@@ -36,7 +36,7 @@ function App() {
           </DxcHeader>
         </div>
         <div>
-          <DxcHeader theme="light" underlined={true} onClick={onClick}>
+          <DxcHeader margin="large" padding={{left:"large", right:"xlarge"}} theme="light" underlined={true} onClick={onClick}>
             <DxcDropdown
               theme={"light"}
               onSelectOption={selectOption}
@@ -47,9 +47,9 @@ function App() {
           </DxcHeader>
         </div>
       </div>
-      <div style={{ paddingTop: "20px", height: "200px" }}>
+      <div style={{ height: "200px" }}>
         <div>
-          <DxcHeader theme="dark" underlined={false}>
+          <DxcHeader margin="large" padding={{left:"large", right:"xlarge"}} theme="dark" underlined={false}>
             <DxcDropdown
               theme={"dark"}
               onSelectOption={selectOption}
@@ -59,8 +59,8 @@ function App() {
             />
           </DxcHeader>
         </div>
-        <div style={{ marginTop: "20px" }}>
-          <DxcHeader theme="dark" underlined={true}>
+        <div>
+          <DxcHeader margin="large" padding={{left:"large", right:"xlarge"}} theme="dark" underlined={true}>
             <DxcDropdown
               theme={"dark"}
               onSelectOption={selectOption}

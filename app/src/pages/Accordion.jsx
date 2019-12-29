@@ -11,10 +11,12 @@ function App() {
   return (
     <div>
       <h3>Light</h3>
-      <div style={{ marginBottom: "50px" }}>
+      <div>
         <DxcAccordion
           label="First accordion uncontrolled"
           onChange={onChange}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -26,6 +28,8 @@ function App() {
           label="Second accordion controlled"
           onChange={onChange}
           isExpanded={isExpanded}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -38,6 +42,8 @@ function App() {
           disabled
           assistiveText="Extra information"
           isExpanded={isExpanded}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -52,6 +58,8 @@ function App() {
           iconSrc={homeLogo}
           onChange={onChange}
           isExpanded={isExpanded}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -66,6 +74,8 @@ function App() {
           iconSrc={homeLogo}
           onChange={onChange}
           isExpanded={isExpanded}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -73,12 +83,14 @@ function App() {
           </div>
         </DxcAccordion>
       </div>
-      <div style={{ marginBottom: "50px" }}>
+      <div>
         <DxcAccordion
           theme="light"
           mode="alternative"
           label="First accordion"
           onChange={onChange}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -93,6 +105,8 @@ function App() {
           disabled
           label="Second accordion"
           onChange={onChange}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -105,6 +119,8 @@ function App() {
           label="Third accordion"
           assistiveText="Extra information"
           onChange={onChange}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -119,6 +135,8 @@ function App() {
           iconPosition="before"
           iconSrc={homeLogo}
           onChange={onChange}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -133,6 +151,8 @@ function App() {
           iconPosition="after"
           iconSrc={homeLogo}
           onChange={onChange}
+          margin={{ top: "small", bottom: "large" }}
+          padding="xxlarge"
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
@@ -144,12 +164,15 @@ function App() {
       <div>
         <div
           style={{
-            background: "black",
-            paddingTop: "50px",
-            paddingBottom: "50px"
+            background: "black"
           }}
         >
-          <DxcAccordion label="First accordion" onChange={onChange}>
+          <DxcAccordion
+            label="First accordion"
+            onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
+          >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -161,6 +184,8 @@ function App() {
             disabled
             label="Second accordion"
             onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -173,6 +198,8 @@ function App() {
             label="Third accordion"
             onChange={onChange}
             assistiveText="Extra information"
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -187,6 +214,8 @@ function App() {
             iconPosition="before"
             iconSrc={homeLogo}
             onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -201,6 +230,8 @@ function App() {
             iconPosition="after"
             iconSrc={homeLogo}
             onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -209,12 +240,14 @@ function App() {
             </div>
           </DxcAccordion>
         </div>
-        <div style={{ background: "black", paddingBottom: "50px" }}>
+        <div style={{ background: "black" }}>
           <DxcAccordion
             theme="dark"
             mode="alternative"
             label="First accordion"
             onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -228,6 +261,8 @@ function App() {
             disabled
             label="Second accordion"
             onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -241,6 +276,8 @@ function App() {
             label="Third accordion"
             assistiveText="Extra information"
             onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -256,6 +293,8 @@ function App() {
             iconPosition="before"
             iconSrc={homeLogo}
             onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -271,6 +310,8 @@ function App() {
             iconPosition="after"
             iconSrc={homeLogo}
             onChange={onChange}
+            margin={{ top: "small", bottom: "large" }}
+            padding="xxlarge"
           >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.

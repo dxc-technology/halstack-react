@@ -6,8 +6,9 @@ import PropTypes from "prop-types";
 import DragAndDropArea from "./dragAndDropArea/DragAndDropArea";
 import FilesToUpload from "./files-upload/FilesToUpload";
 import Transactions from "./transactions/Transactions";
+import {spaces} from "../common/variables.js";
 
-const DxcUpload = ({ callbackUpload }) => {
+const DxcUpload = ({ callbackUpload, margin }) => {
   const [files, setFiles] = useState([]);
 
   const getFilesToUpload = () => {
@@ -107,7 +108,7 @@ const DxcUpload = ({ callbackUpload }) => {
   const transactionFiles = getTransactionsFiles();
 
   return (
-    <DXCUpload>
+    <DXCUpload margin={margin}>
       {transactionFiles && transactionFiles.length !== 0 && <Transactions transactions={transactionFiles} />}
       {(filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length === 0 && (
         <DragAndDropArea dashed={false} addFile={onDragHandler} />
@@ -124,7 +125,16 @@ const DxcUpload = ({ callbackUpload }) => {
 };
 
 DxcUpload.propTypes = {
-  callbackUpload: PropTypes.func
+  callbackUpload: PropTypes.func,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 const DXCUpload = styled.div`
@@ -135,6 +145,15 @@ const DXCUpload = styled.div`
   border-radius: 4px;
   display: flex;
   flex-direction: row;
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
 export default DxcUpload;

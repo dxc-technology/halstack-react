@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 import closeIcon from "./close.svg";
 import errorIcon from "./error.svg";
 import infoIcon from "./info.svg";
 import successIcon from "./success.svg";
 import warningIcon from "./warning.svg";
 
-const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, children }) => {
+const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, children, margin }) => {
   const getTypeText = () => {
     return type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
   };
@@ -17,7 +17,7 @@ const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, ch
   return (
     <AlertModal mode={mode}>
       {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
-      <AlertContainer mode={mode} type={type}>
+      <AlertContainer mode={mode} type={type} margin={margin}>
         <AlertInfo>
           <AlertIcon
             src={
@@ -42,11 +42,20 @@ const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, ch
 };
 
 DxcAlert.propTypes = {
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ]),
   type: PropTypes.oneOf(["info", "confirm", "warning", "error"]),
   mode: PropTypes.oneOf(["inline", "modal"]),
   inlineText: PropTypes.string,
   onClose: PropTypes.func,
-  children: PropTypes.string
+  children: PropTypes.element
 };
 
 const AlertModal = styled.div`
@@ -71,7 +80,16 @@ const OverlayContainer = styled.div`
 `;
 
 const AlertContainer = styled.div`
-  margin: 15px;
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   font-size: 12px;
   overflow: hidden;
   box-shadow: 0px 3px 6px #00000012;

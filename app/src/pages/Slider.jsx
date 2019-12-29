@@ -29,6 +29,7 @@ function App() {
             theme="light"
             step={1}
             marks={false}
+            margin={{left:"medium"}}
           />
         </div>
         <div>
@@ -47,6 +48,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin="medium"
           />
         </div>
         <div>
@@ -65,6 +67,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin={{left:"medium", right:"xxlarge"}}
           />
         </div>
         <div>
@@ -83,6 +86,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin={{left:"medium"}}
           />
         </div>
         <div>
@@ -101,6 +105,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin="medium"
           />
         </div>
       </div>
@@ -122,6 +127,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin="medium"
           />
         </div>
         <div>
@@ -140,6 +146,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin="medium"
           />
         </div>
         <div>
@@ -158,6 +165,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin="medium"
           />
         </div>
         <div>
@@ -176,6 +184,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin="medium"
           />
         </div>
         <div>
@@ -196,6 +205,7 @@ function App() {
             onChange={onChange}
             onDragEnd={onDragEnd}
             onChangeInput={onChangeInput}
+            margin="medium"
           />
         </div>
       </div>

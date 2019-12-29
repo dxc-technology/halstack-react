@@ -7,7 +7,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import colors from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
 const DxcDate = ({
   value,
@@ -22,7 +22,8 @@ const DxcDate = ({
   invalid = false,
   dissableRipple = false,
   onInputChange,
-  onChange
+  onChange,
+  margin
 }) => {
   function handleMenuItemClick(date, event) {
     if (event === null) {
@@ -46,7 +47,7 @@ const DxcDate = ({
   return (
     <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <StyledDPicker invalid={invalid} theme={theme} dissableRipple={dissableRipple}>
+        <StyledDPicker margin={margin} invalid={invalid} theme={theme} dissableRipple={dissableRipple}>
           <KeyboardDatePicker
             name={name}
             disabled={disabled}
@@ -83,7 +84,15 @@ const DxcDate = ({
 
 const StyledDPicker = styled.span`
   .MuiFormControl-root {
-    margin: 10px;
+    margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+    margin-top: ${props =>
+      props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    margin-right: ${props =>
+      props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    margin-bottom: ${props =>
+      props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    margin-left: ${props =>
+      props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
     width: 230px;
     .MuiInputBase-input {
       font-family: "Open Sans", sans-serif;
@@ -140,7 +149,6 @@ const StyledDPicker = styled.span`
       }};
     }
     .MuiInput-underline:hover:not(.Mui-disabled):not(.Mui-error):before {
-      
       border-bottom: 1px solid;
       border-color: ${props => {
         if (props.invalid) {
@@ -291,7 +299,7 @@ const lightTheme = createMuiTheme({
     },
     MuiPickersCalendar: {
       week: {
-        marginBottom: "2px",
+        marginBottom: "2px"
       }
     },
     MuiPickersDay: {
