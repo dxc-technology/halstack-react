@@ -2,7 +2,18 @@ import { DxcInput } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  return <DxcInput label="Input label" assistiveText={"assistive text"}/>;
+  const onChange = newValue => {
+    console.log(newValue);
+  };
+
+  return (
+    <DxcInput
+      label="Input label"
+      assistiveText={"assistive text"}
+      onChange={onChange}
+      margin="medium"
+    />
+  );
 }`;
 
 const scope = {

@@ -19,6 +19,7 @@ const code = `() => {
         value={value}
         onChange={onChange}
         theme="dark"
+        margin="medium"
       />
     </div>
   );

@@ -18,6 +18,7 @@ const code = `() => {
         assistiveText={"assistive text"}
         value={value}
         onChange={onChange}
+        margin="medium"
       />
       <DxcInput
         label="Input label"
@@ -26,6 +27,7 @@ const code = `() => {
         assistiveText={"assistive text"}
         value={value}
         onChange={onChange}
+        margin="medium"
       />
     </div>
   );
