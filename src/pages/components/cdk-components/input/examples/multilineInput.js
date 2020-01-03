@@ -15,6 +15,7 @@ const code = `() => {
         value={value}
         onChange={onChange}
         multiline={true}
+        margin="medium"
       />
     </div>
   );
