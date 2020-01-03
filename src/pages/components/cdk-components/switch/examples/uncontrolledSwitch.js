@@ -6,7 +6,7 @@ const code = `() => {
     console.log(newValue);
   };
 
-  return <DxcSwitch label="Switch" onChange={onChange} />;
+  return <DxcSwitch label="Switch" onChange={onChange} margin="medium" />;
 }`;
 
 const scope = {

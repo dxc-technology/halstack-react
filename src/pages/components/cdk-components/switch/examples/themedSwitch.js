@@ -14,6 +14,7 @@ const code = `() => {
         theme="dark"
         label="Switch"
         onChange={onChange}
+        margin="medium"
       />
     </div>
   );
