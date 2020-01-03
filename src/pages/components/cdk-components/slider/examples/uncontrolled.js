@@ -13,6 +13,7 @@ const code = `() => {
       name="input"
       step={1}
       onChange={onChange}
+      margin="medium"
     />
   );
 }`;

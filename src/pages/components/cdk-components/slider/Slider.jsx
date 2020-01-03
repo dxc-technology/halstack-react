@@ -10,7 +10,6 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import discrete from "./examples/discrete";
 import continuous from "./examples/continuous";
-import disabled from "./examples/disabled";
 import withoutLimits from "./examples/without-limits";
 import input from "./examples/input";
 import dark from "./examples/dark";
@@ -44,7 +43,6 @@ function Slider() {
                   title="Continuous Slider"
                   example={continuous}
                 ></Example>
-                <Example title="Disabled Slider" example={disabled}></Example>
                 <Example
                   title="Slider without limit values"
                   example={withoutLimits}

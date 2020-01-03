@@ -20,6 +20,7 @@ const code = `() => {
         theme="dark"
         step={1}
         onChange={onChange}
+        margin="medium"
       />
     </div>
   );

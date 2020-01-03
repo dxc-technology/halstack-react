@@ -24,6 +24,7 @@ const code = `() => {
       onChange={onChange}
       onDragEnd={onDragEnd}
       onChangeInput={onChangeInput}
+      margin="medium"
     />
   );
 }`;
