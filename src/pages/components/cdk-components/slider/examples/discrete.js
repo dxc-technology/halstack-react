@@ -17,6 +17,7 @@ const code = `() => {
       step={5}
       marks={true}
       onChange={onChange}
+      margin="medium"
     />
   );
 }`;
