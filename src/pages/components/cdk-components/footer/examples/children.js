@@ -39,18 +39,12 @@ const code = `() => {
       copyright="© DXC Technology 2019. All rights reserved."
       bottomLinks={bottom}
       socialLinks={social}
+      padding="medium"
+      margin="medium"
     >
-      <div style={{ padding: "20px" }}>
-        <li>
-          <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
-        </li>
-        <li>
-          <a href="https://twitter.com/dxctechnology">Twitter</a>
-        </li>
-        <li>
-          <a href="https://www.facebook.com/DXCTechnology/">Facebook</a>
-        </li>
-      </div>
+      <div><a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a></div>
+      <div><a href="https://twitter.com/dxctechnology">Twitter</a></div>
+      <div><a href="https://www.facebook.com/DXCTechnology/">Facebook</a></div>
     </DxcFooter>
   );
 }`;

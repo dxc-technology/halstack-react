@@ -32,7 +32,7 @@ function App() {
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example title="Default Footer" example={defaultFooter}></Example>
-                <Example title="Footer with children" example={children}></Example>
+                <Example title="Footer with custom content" example={children}></Example>
               </Section>
             )
           }

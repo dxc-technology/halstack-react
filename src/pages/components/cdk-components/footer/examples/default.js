@@ -39,6 +39,7 @@ const code = `() => {
       copyright="© DXC Technology 2019. All rights reserved."
       bottomLinks={bottom}
       socialLinks={social}
+      margin="medium"
     ></DxcFooter>
   );
 }`;
