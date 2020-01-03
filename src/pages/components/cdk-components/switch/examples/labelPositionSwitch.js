@@ -15,9 +15,9 @@ const code = `() => {
     <div>
       <DxcSwitch
         checked={checked}
-        labelPosition="before"
         label="Label before"
         onChange={onChange}
+        margin="medium"
       />
 
       <DxcSwitch
@@ -25,6 +25,7 @@ const code = `() => {
         labelPosition="after"
         label="Label after"
         onChange={onChange1}
+        margin="medium"
       />
     </div>
   );

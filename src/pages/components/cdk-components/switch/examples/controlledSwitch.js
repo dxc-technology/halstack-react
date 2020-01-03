@@ -7,7 +7,14 @@ const code = `() => {
     changeChecked(newValue);
   };
 
-  return <DxcSwitch checked={checked} label="Switch" onChange={onChange} />;
+  return (
+    <DxcSwitch
+      checked={checked}
+      label="Switch"
+      onChange={onChange}
+      margin="medium"
+    />
+  );
 }`;
 
 const scope = {
