@@ -1,7 +1,7 @@
 import { DxcHeader, DxcDropdown, DxcSwitch } from "@diaas/dxc-react-cdk";
 
 const code = `() => {
-  return <DxcHeader theme="light" underlined={true} />
+  return <DxcHeader underlined={true} margin="medium" padding="medium" />;
 }`;
 
 const scope = {
