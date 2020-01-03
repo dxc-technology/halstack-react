@@ -39,9 +39,9 @@ function Input() {
                   example={defaultHeader}
                 ></Example>
                 <Example title="Dark Header" example={dark}></Example>
-                <Example title="Outlined Header" example={outlined}></Example>
+                <Example title="Underlined Header" example={outlined}></Example>
                 <Example
-                  title="Header with children"
+                  title="Header with custom content"
                   example={children}
                 ></Example>
               </Section>
