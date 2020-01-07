@@ -6,6 +6,14 @@ import styled from "styled-components";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 
+const sizes = {
+  small: "42px",
+  medium: "120px",
+  large: "240px", 
+  fillParent: "100%",
+  fitContent: "unset"
+};
+
 const DxcButton = ({
   label = "",
   mode = "basic",
@@ -15,7 +23,8 @@ const DxcButton = ({
   iconPosition = "after",
   iconSrc = "",
   onClick = "",
-  margin
+  margin,
+  size
 }) => {
   return (
     <DxCButton
@@ -25,6 +34,7 @@ const DxcButton = ({
       disabled={disabled}
       onClick={() => onClick()}
       iconPosition={iconPosition}
+      size={size}
     >
       <Button disabled={disabled} disableRipple={disableRipple}>
         <LabelContainer>{label}</LabelContainer>
@@ -35,6 +45,7 @@ const DxcButton = ({
 };
 
 DxcButton.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
@@ -83,7 +94,6 @@ const DxCButton = styled.div`
       display: flex;
       flex-direction: ${props => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
-      min-width: 62px;
     }
     letter-spacing: 1px;
     box-shadow: none;
@@ -91,8 +101,7 @@ const DxCButton = styled.div`
     font-weight: 500;
     padding: 12px 30px;
     border-radius: 4px;
-    min-width: 122px;
-    max-width: 420px;
+    width: ${props => (props.size ? sizes[props.size] : sizes.medium)};
     min-height: 43px;
 
     line-height: 1;

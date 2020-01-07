@@ -6,6 +6,13 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import {colors, spaces} from "../common/variables.js";
 
+const sizes = {
+  small: "42px",
+  medium: "240px",
+  large: "480px", 
+  fillParent: "100%"
+};
+
 const DxcInputText = ({
   label = " ",
   name = "",
@@ -24,7 +31,8 @@ const DxcInputText = ({
   error = false,
   required = false,
   multiline = false,
-  margin
+  margin,
+  size
 }) => {
   const [innerValue, setInnerValue] = useState("");
 
@@ -49,6 +57,7 @@ const DxcInputText = ({
       theme={theme}
       multiline={multiline}
       margin={margin}
+      size={size}
     >
       {prefixIconSrc && !multiline && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
       {prefix && !multiline && (
@@ -149,7 +158,9 @@ const TextContainer = styled.div`
   position: relative;
   max-height: 74px;
   height: 74px;
+  width: ${props => (props.size ? sizes[props.size] : sizes.medium)};
   .MuiTextField-root {
+    width: 100%;
     font-family: "Open Sans", sans-serif;
     .MuiFormHelperText-root {
       font-family: "Open Sans", sans-serif;
@@ -212,7 +223,6 @@ const TextContainer = styled.div`
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
       font-family: "Open Sans", sans-serif;
       ${props => (props.multiline ? "height: auto;" : "")}
-      min-width: 230px;
       &::before{
         border-bottom: ${props =>
           props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
@@ -287,10 +297,6 @@ const TextContainer = styled.div`
         &.Mui-disabled {
           cursor: not-allowed;
         };
-        width: ${props =>
-          (props.suffix !== "" || props.suffixIconSrc !== "") && (props.prefix !== "" || props.prefixIconSrc !== "")
-            ? "160px"
-            : "100%"};
       }
       .MuiInputAdornment-root {
         height: 20px;
@@ -353,6 +359,7 @@ DxcInputText.propTypes = {
   onClickIcon: PropTypes.func,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
