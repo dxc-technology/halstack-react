@@ -34,6 +34,16 @@ const spinnerPropsTable = () => {
         <td>false</td>
         <td>If true, the value is displayed inside the spinner.</td>
       </tr>
+       <tr>
+        <td>margin: string | object</td>
+        <td></td>
+        <td>
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
+        </td>
+      </tr>
     </DxcTable>
   );
 };

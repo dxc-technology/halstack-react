@@ -26,6 +26,8 @@ const code = `() => {
       onSelectOption={selectOption}
       label="Outlined Dropdown"
       mode={"outlined"}
+      margin="medium"
+      padding="small"
     ></DxcDropdown>
   );
 }`;

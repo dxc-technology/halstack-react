@@ -4,7 +4,7 @@ import { useState } from "react";
 const code = `() => {
   return (
     <div>
-      <DxcProgressBar label="Loading" overlay={false} />
+      <DxcProgressBar margin="medium" label="Loading" overlay={false} />
     </div>
   );
 }`;
