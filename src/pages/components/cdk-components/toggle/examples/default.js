@@ -12,6 +12,7 @@ const code = `() => {
       label="Default toggle"
       selected={selected}
       onClick={onClick}
+      margin="medium"
     ></DxcToggle>
   );
 }`;

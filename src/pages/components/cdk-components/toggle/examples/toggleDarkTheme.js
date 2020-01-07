@@ -14,6 +14,7 @@ const code = `() => {
         selected={selected}
         theme="dark"
         onClick={onClick}
+        margin="medium"
       ></DxcToggle>
     </div>
   );

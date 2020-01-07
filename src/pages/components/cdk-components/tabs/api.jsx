@@ -55,9 +55,11 @@ const dropdownPropsTable = () => {
       <tr>
         <td>activeTabIndex: number</td>
         <td></td>
-        <td>The index of the active tab. If undefined, the component will be
+        <td>
+          The index of the active tab. If undefined, the component will be
           uncontrolled and the active tab will be managed internally by the
-          component.</td>
+          component.
+        </td>
       </tr>
       <tr>
         <td>onTabClick: function</td>
@@ -65,6 +67,16 @@ const dropdownPropsTable = () => {
         <td>
           This function will be called when the user clicks on a tab. The index
           of the clicked tab will be passed as a parameter.
+        </td>
+      </tr>
+      <tr>
+        <td>margin: string | object</td>
+        <td></td>
+        <td>
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
         </td>
       </tr>
     </DxcTable>

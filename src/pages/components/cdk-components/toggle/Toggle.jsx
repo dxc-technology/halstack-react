@@ -9,7 +9,6 @@ import Example from "../../common/Example";
 import TogglePropsTable from "./api.jsx";
 
 import defaultToggle from "././examples/default";
-import disabledToggle from "././examples/disableToggle";
 import toggleWithIcons from "././examples/toggleWithIcons";
 import toggleDarkTheme from "././examples/toggleDarkTheme";
 import outlinedToggle from "././examples/outlinedToggle";
@@ -39,10 +38,6 @@ function Dropdown() {
                 <Example
                   title="Default Toggle"
                   example={defaultToggle}
-                ></Example>
-                <Example
-                  title="Disabled Toggle"
-                  example={disabledToggle}
                 ></Example>
                 <Example
                   title="Toggle with Icons"
