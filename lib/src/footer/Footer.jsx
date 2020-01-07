@@ -49,8 +49,7 @@ const FooterContainer = styled.div`
     font-family: "Open Sans", sans-serif;
     background-color: ${colors.black};
     margin-top: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-    margin-top: ${props =>
-      props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    
   }
 `;
 

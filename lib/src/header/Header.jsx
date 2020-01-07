@@ -49,8 +49,6 @@ const DxcHeader = ({
 
 const HeaderContainer = styled(AppBar)`
   margin-bottom: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-bottom: ${props =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
 
   &.MuiAppBar-colorPrimary {
     background-color: ${props =>
