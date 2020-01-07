@@ -30,7 +30,7 @@ class App extends React.Component {
           margin="medium"
         ></DxcButton>
         {this.state.isDialog1Visible && (
-          <DxcDialog padding="xxlarge" isCloseVisible={true} onCloseClick={this.setDialog1Visible}>
+          <DxcDialog isCloseVisible={true} onCloseClick={this.setDialog1Visible}>
             Close Icon
           </DxcDialog>
         )}

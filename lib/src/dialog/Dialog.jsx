@@ -19,7 +19,7 @@ const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = t
   };
 
   return (
-    <DialogContainer open={true} onClose={handleOverlayClick} overlay={overlay} padding={padding}>
+    <DialogContainer open={true} isCloseVisible={isCloseVisible} onClose={handleOverlayClick} overlay={overlay} padding={padding}>
       {isCloseVisible && (
         <CloseIconContainer onClick={handleClose}>
           <CloseIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -42,6 +42,7 @@ const DialogContainer = styled(Dialog)`
   .MuiDialog-paperWidthSm {
     max-width: 80%;
     min-width: 800px;
+    min-height: ${props => (props.isCloseVisible ? "72px" : "")};
     box-shadow: 0px 1px 3px ${colors.black}33;
     padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
     padding-top: ${props =>

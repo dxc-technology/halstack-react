@@ -13,7 +13,7 @@ import DxcCheckbox from "../checkbox/Checkbox";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     minWidth: "210px"
   },
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     minWidth: "210px !important",
     width: "230px"
   },
-  itemList: multiple => ({
+  itemList: props => ({
     color: colors.darkGrey,
     "&.MuiList-padding": {
       paddingBottom: "0px",
@@ -30,6 +30,10 @@ const useStyles = makeStyles({
     },
     "& li": {
       fontSize: "16px",
+      paddingTop: props.paddingTop,
+      paddingBottom: props.paddingBottom,
+      paddingLeft: props.paddingLeft,
+      paddingRight: props.paddingRight,
       "&:hover": {
         backgroundColor: colors.darkWhite,
         color: colors.darkGrey
@@ -44,7 +48,7 @@ const useStyles = makeStyles({
       }
     }
   })
-});
+}));
 
 const DxcSelect = ({
   value,
@@ -62,7 +66,14 @@ const DxcSelect = ({
   padding
 }) => {
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
-  const classes = useStyles(multiple);
+  const paddingValue = {
+    paddingTop: padding ? (typeof padding === "object" && padding.top ? spaces[padding.top] : spaces[padding]) : "",
+    paddingBottom: padding ? (typeof padding === "object" && padding.bottom ? spaces[padding.bottom] : spaces[padding]) : "",
+    paddingLeft: padding ? typeof padding === "object" && padding.left ? spaces[padding.left] : spaces[padding] : "",
+    paddingRight: padding ? typeof padding === "object" && padding.right ? spaces[padding.right] : spaces[padding] : ""
+  };
+  console.log(typeof padding === "object");
+  const classes = useStyles(paddingValue);
 
   const handleSelectChange = selectedOption => {
     if (multiple) {
@@ -155,7 +166,7 @@ const DxcSelect = ({
         >
           {options.map(option => {
             return (
-              <MenuItem  padding={padding} id={option.value} value={option.value} disableRipple={disableRipple}>
+              <MenuItem padding={padding} id={option.value} value={option.value} disableRipple={disableRipple}>
                 {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, value, option)} />}
                 <OptionContainer iconPosition={iconPosition}>
                   {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
