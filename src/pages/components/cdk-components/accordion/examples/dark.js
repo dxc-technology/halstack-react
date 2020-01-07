@@ -8,12 +8,14 @@ const code = `() => {
   };
 
   return (
-    <div style={{ padding: "15px", background: "#000000" }}>
+    <div style={{ paddingTop: "15px", paddingBottom: "15px", background: "#000000" }}>
       <DxcAccordion
         theme="light"
         label="Dark theme Accordion"
         isExpanded={isExpanded}
         onChange={onChange}
+        margin="medium"
+        padding="medium"
       >
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse

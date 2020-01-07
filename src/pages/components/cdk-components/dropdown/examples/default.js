@@ -25,6 +25,8 @@ const code = `() => {
       options={options}
       onSelectOption={selectOption}
       label="Default Dropdown"
+      margin="medium"
+      padding="small"
     ></DxcDropdown>
   );
 }`;

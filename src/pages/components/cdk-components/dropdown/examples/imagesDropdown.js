@@ -32,6 +32,8 @@ const code = `() => {
       onSelectOption={selectOption}
       iconSrc={twitterLogo}
       label="Dropdown with icons"
+      margin="medium"
+      padding="small"
     ></DxcDropdown>
   );
 }`;

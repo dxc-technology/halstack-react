@@ -9,13 +9,15 @@ const code = `() => {
   };
 
   return (
-    <div style={{ margin: "15px" }}>
+    <div>
       <DxcAccordion
         label="Accordion with icon"
         onChange={onChange}
         iconSrc={homeLogo}
         isExpanded={isExpanded}
         iconPosition="before"
+        margin="medium"
+        padding="medium"
       >
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse

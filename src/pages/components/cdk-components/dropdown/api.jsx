@@ -96,6 +96,26 @@ const dropdownPropsTable = () => {
           value of the selected option will be passed as a parameter.
         </td>
       </tr>
+      <tr>
+        <td>margin: string | object</td>
+        <td></td>
+        <td>
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
+        </td>
+      </tr>
+      <tr>
+        <td>padding: string | object</td>
+        <td></td>
+        <td>
+          Size of the padding to be applied to each option ('xxsmall' | 'xsmall'
+          | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass
+          an object with 'top', 'bottom', 'left' and 'right' properties in order
+          to specify different padding sizes.
+        </td>
+      </tr>
     </DxcTable>
   );
 };
