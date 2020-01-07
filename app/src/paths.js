@@ -19,6 +19,7 @@ import Footer from "./pages/Footer";
 import Spinner from "./pages/Spinner";
 import Dialog from "./pages/Dialog";
 import Date from "./pages/Date";
+import Box from "./pages/Box";
 
 export default [
   {
@@ -125,5 +126,10 @@ export default [
     path: "upload",
     name: "Upload",
     component: Upload
+  },
+  {
+    path: "box",
+    name: "Box",
+    component: Box
   }
 ];
