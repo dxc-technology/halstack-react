@@ -6,10 +6,11 @@ import visibilityIcon from "./images/visibility.svg";
 
 const code = `() => {
   const [selected, changeSelected] = useState(false);
-  const [selected2, changeSelected2] = useState(false);
   const onClick = newValue => {
     changeSelected(newValue);
   };
+
+  const [selected2, changeSelected2] = useState(false);
   const onClick2 = newValue => {
     changeSelected2(newValue);
   };
@@ -20,11 +21,13 @@ const code = `() => {
         iconSrc={favoriteIcon}
         selected={selected}
         onClick={onClick}
+        margin="medium"
       ></DxcToggle>
       <DxcToggle
         iconSrc={visibilityIcon}
         selected={selected2}
         onClick={onClick2}
+        margin="medium"
       ></DxcToggle>
     </div>
   );
