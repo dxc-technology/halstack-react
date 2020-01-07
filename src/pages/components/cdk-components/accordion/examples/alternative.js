@@ -8,12 +8,14 @@ const code = `() => {
   };
 
   return (
-    <div style={{ margin: "15px" }}>
+    <div>
       <DxcAccordion
         label="Alternative Accordion"
         mode="alternative"
         isExpanded={isExpanded}
         onChange={onChange}
+        margin="medium"
+        padding="medium"
       >
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse

@@ -34,6 +34,8 @@ const code = `() => {
       onChange={onChange}
       label="Select with Icons"
       value={value}
+      margin="medium"
+      padding="small"
     ></DxcSelect>
   );
 }`;

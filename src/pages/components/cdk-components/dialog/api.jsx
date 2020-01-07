@@ -35,6 +35,16 @@ const checkboxPropsTable = () => {
         <td>true</td>
         <td>If true, the dialog will be displayed over a darker background.</td>
       </tr>
+      <tr>
+        <td>padding: string | object</td>
+        <td></td>
+        <td>
+          Size of the padding to be applied to the component ('xxsmall' | 'xsmall'
+          | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass
+          an object with 'top', 'bottom', 'left' and 'right' properties in order
+          to specify different padding sizes.
+        </td>
+      </tr>
     </DxcTable>
   );
 };

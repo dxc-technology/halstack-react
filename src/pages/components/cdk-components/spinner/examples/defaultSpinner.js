@@ -2,7 +2,7 @@ import { DxcSpinner } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  return <DxcSpinner label="Loading..." />;
+  return <DxcSpinner margin="medium" label="Loading..." />;
 }`;
 
 const scope = {

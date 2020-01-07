@@ -27,6 +27,8 @@ const code = `() => {
         theme="dark"
         label="Dark theme Dropdown"
         onSelectOption={selectOption}
+        margin="medium"
+        padding="small"
       ></DxcDropdown>
     </div>
   );

@@ -11,7 +11,7 @@ const code = `() => {
     <div>
       <DxcButton label="Open Dialog" onClick={onClick}></DxcButton>
       {isDialogVisible && (
-        <DxcDialog>
+        <DxcDialog padding="medium">
             <DxcButton label="Close Dialog" onClick={onClick}></DxcButton>
         </DxcDialog>
       )}
