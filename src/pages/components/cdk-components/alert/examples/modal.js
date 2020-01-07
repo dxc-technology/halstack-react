@@ -15,6 +15,7 @@ const code = `() => {
           theme="light"
           label="Overlay Alert"
           onClick={handleVisibility}
+          margin="medium"
         />
       </div>
       {isVisible && (
@@ -23,6 +24,7 @@ const code = `() => {
           mode="modal"
           onClose={handleVisibility}
           inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+          margin="medium"
         ></DxcAlert>
       )}
     </div>
