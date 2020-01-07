@@ -73,7 +73,7 @@ function App() {
         label={"Controlled Select"}
         options={optionsWithoutIcon}
         margin="medium"
-        padding="medium"
+        padding={{top:"small", left:"medium", right:"medium", bottom: "small"}}
       ></DxcSelect>
 
       <DxcSelect
@@ -83,7 +83,7 @@ function App() {
         options={optionsWithoutIcon}
         multiple={true}
         margin="medium"
-        padding="medium"
+        padding="small"
       ></DxcSelect>
 
       <DxcSelect
@@ -91,7 +91,7 @@ function App() {
         options={optionsWithIcon}
         multiple={true}
         margin="medium"
-        padding="medium"
+        padding="small"
       ></DxcSelect>
 
       <DxcSelect
@@ -100,7 +100,7 @@ function App() {
         multiple={true}
         iconPosition={"before"}
         margin="medium"
-        padding="medium"
+        padding={{top:"xxsmall", left:"medium", right:"medium", bottom: "xxsmall"}}
       ></DxcSelect>
     </div>
   );
