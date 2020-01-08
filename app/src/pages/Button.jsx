@@ -14,6 +14,7 @@ function App() {
           label="Basic Button"
           margin="medium"
           onClick={onClick}
+          size="medium"
         />
         <DxcButton
           mode="raised"
@@ -21,6 +22,7 @@ function App() {
           label="Raised Button"
           margin={{right: "medium", bottom: "medium"}}
           onClick={onClick}
+          size="medium"
         />
         <DxcButton
           mode="flat"
@@ -28,6 +30,7 @@ function App() {
           label="Flat Button"
           margin={{right: "medium", bottom: "medium"}}
           onClick={onClick}
+          size="medium"
         />
         <DxcButton
           mode="outlined"
@@ -35,6 +38,7 @@ function App() {
           label="Outlined Button"
           margin={{right: "medium", bottom: "medium"}}
           onClick={onClick}
+          size="large"
         />
       </div>
       <div>
@@ -45,6 +49,7 @@ function App() {
           label="Basic Button"
           margin="medium"
           onClick={onClick}
+          size="medium"
         />
         <DxcButton
           disabled
@@ -53,6 +58,7 @@ function App() {
           label="Raised Button"
           margin={{right: "medium", bottom: "medium"}}
           onClick={onClick}
+          size="medium"
         />
         <DxcButton
           disabled
@@ -61,6 +67,7 @@ function App() {
           label="Flat Button"
           margin={{right: "medium", bottom: "medium"}}
           onClick={onClick}
+          size="medium"
         />
         <DxcButton
           disabled
@@ -69,6 +76,7 @@ function App() {
           label="Outlined Button"
           margin={{right: "medium", bottom: "medium"}}
           onClick={onClick}
+          size="large"
         />
       </div>
       <h3>Dark</h3>
@@ -80,6 +88,7 @@ function App() {
             label="Basic Button"
             margin="medium"
             onClick={onClick}
+            size="medium"
           />
           <DxcButton
             mode="raised"
@@ -87,6 +96,7 @@ function App() {
             label="Raised Button"
             margin={{right: "medium", bottom: "medium"}}
             onClick={onClick}
+            size="medium"
           />
           <DxcButton
             mode="flat"
@@ -94,6 +104,7 @@ function App() {
             label="Flat Button"
             margin={{right: "medium", bottom: "medium"}}
             onClick={onClick}
+            size="medium"
           />
           <DxcButton
             mode="outlined"
@@ -101,6 +112,7 @@ function App() {
             label="Outlined Button"
             margin={{right: "medium", bottom: "medium"}}
             onClick={onClick}
+            size="large"
           />
         </div>
         <div>
@@ -111,6 +123,7 @@ function App() {
             label="Basic Button"
             margin="medium"
             onClick={onClick}
+            size="fitContent"
           />
           <DxcButton
             disabled
@@ -119,6 +132,7 @@ function App() {
             label="Raised Button"
             margin={{right: "medium", bottom: "medium"}}
             onClick={onClick}
+            size="fitContent"
           />
           <DxcButton
             disabled
@@ -127,6 +141,7 @@ function App() {
             label="Flat Button"
             margin={{right: "medium", bottom: "medium"}}
             onClick={onClick}
+            size="medium"
           />
           <DxcButton
             disabled
@@ -135,6 +150,7 @@ function App() {
             label="Outlined Button"
             margin={{right: "medium", bottom: "medium"}}
             onClick={onClick}
+            size="large"
           />
         </div>
       </div>
