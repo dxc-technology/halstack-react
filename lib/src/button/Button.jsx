@@ -75,6 +75,7 @@ const DxCButton = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   display: inline-block;
+  width: ${props =>calculateWidth(props.margin, props.size)};
   cursor: ${props => (props.disabled && "not-allowed") || "pointer"};
 
   .MuiButtonBase-root {
@@ -89,7 +90,7 @@ const DxCButton = styled.div`
     font-weight: 500;
     padding: 12px 30px;
     border-radius: 4px;
-    width: ${props =>calculateWidth(props.margin, props.size)};
+    width: 100%;
     min-height: 43px;
 
     line-height: 1;
