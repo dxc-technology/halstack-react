@@ -28,7 +28,7 @@ function App() {
           required={true}
           onClickSuffix={onSuffixClick}
           onClickPrefix={onPrefixClick}
-          margin="medium"
+          margin={{top: "medium", bottom: "small", left: "medium", right: "large"}}
           size="large"
         ></DxcInput>
         <DxcInput
@@ -50,7 +50,7 @@ function App() {
             value={inputValue}
             onClickSuffix={onSuffixClick}
             onClickPrefix={onPrefixClick}
-            margin="medium"
+            margin={{top: "medium", bottom: "small", left: "medium", right: "large"}}
             size="fillParent"
           ></DxcInput>
         </div>

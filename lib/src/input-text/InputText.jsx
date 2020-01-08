@@ -4,14 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import {colors, spaces} from "../common/variables.js";
-
-const sizes = {
-  small: "42px",
-  medium: "240px",
-  large: "480px", 
-  fillParent: "100%"
-};
+import { colors, spaces, getMargin } from "../common/variables.js";
 
 const DxcInputText = ({
   label = " ",
@@ -32,7 +25,7 @@ const DxcInputText = ({
   required = false,
   multiline = false,
   margin,
-  size
+  size = "medium"
 }) => {
   const [innerValue, setInnerValue] = useState("");
 
@@ -90,6 +83,21 @@ const DxcInputText = ({
     </TextContainer>
   );
 };
+
+const sizes = {
+  small: "42px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 const PrefixIcon = styled.img`
   position: absolute;
   top: 20px;
@@ -158,7 +166,7 @@ const TextContainer = styled.div`
   position: relative;
   max-height: 74px;
   height: 74px;
-  width: ${props => (props.size ? sizes[props.size] : sizes.medium)};
+  width: ${props => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
     font-family: "Open Sans", sans-serif;
