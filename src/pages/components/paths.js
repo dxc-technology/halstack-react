@@ -19,6 +19,7 @@ import Header from "./cdk-components/header/Header";
 import Footer from "./cdk-components/footer/Footer";
 import Table from "./cdk-components/table/Table";
 import Spinner from "./cdk-components/spinner/Spinner";
+import Box from "./cdk-components/box/Box";
 
 export const types = {
   FORMS: "Forms",
@@ -140,6 +141,12 @@ export default [
     path: "tabbed-sections",
     name: "Tabbed Sections",
     component: TabbedSections,
+    type: types.LAYOUT
+  },
+  {
+    path: "box",
+    name: "Box",
+    component: Box,
     type: types.LAYOUT
   },
   {
