@@ -48,8 +48,8 @@ const inputPropsTable = () => {
           The key(s) of the selected value(s). If the select component doesn't
           allow multiple selection, value must be a string. If the select
           component allows multiple selection, value must be an array of
-          strings. If undefined, the component will be uncontrolled and the value
-          will be managed internally by the component.
+          strings. If undefined, the component will be uncontrolled and the
+          value will be managed internally by the component.
         </td>
       </tr>
       <tr>
@@ -112,6 +112,26 @@ const inputPropsTable = () => {
           string with the key of the selected value will be passed as a
           parameter to this function. If multiple selection is allowed, an array
           of keys will be passed
+        </td>
+      </tr>
+      <tr>
+        <td>margin: string | object</td>
+        <td></td>
+        <td>
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
+        </td>
+      </tr>
+      <tr>
+        <td>padding: string | object</td>
+        <td></td>
+        <td>
+          Size of the padding to be applied to each option ('xxsmall' | 'xsmall'
+          | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass
+          an object with 'top', 'bottom', 'left' and 'right' properties in order
+          to specify different padding sizes.
         </td>
       </tr>
     </DxcTable>

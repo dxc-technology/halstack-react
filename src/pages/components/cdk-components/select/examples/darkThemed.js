@@ -29,6 +29,8 @@ const code = `() => {
         label="Basic select"
         value={value}
         theme={"dark"}
+        margin="medium"
+        padding="small"
       ></DxcSelect>
     </div>
   );

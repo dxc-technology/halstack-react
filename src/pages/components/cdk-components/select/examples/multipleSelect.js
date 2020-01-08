@@ -28,6 +28,8 @@ const code = `() => {
       label="Multiple select"
       multiple={true}
       value={value}
+      margin="medium"
+      padding="small"
     ></DxcSelect>
   );
 }`;
