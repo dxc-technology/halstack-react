@@ -8,6 +8,8 @@ import Example from "../../common/Example";
 import ButtonPropsTable from "./api.jsx";
 
 import modes from "./examples/modes";
+import sized from "./examples/sizedButton";
+import filled from "./examples/fillParent";
 import withIcon from "./examples/withIcon";
 import darkTheme from "./examples/darkTheme";
 
@@ -36,6 +38,8 @@ function Button() {
                 <Example title="Button Modes" example={modes}></Example>
                 <Example title="Button with Icon" example={withIcon}></Example>
                 <Example title="Dark theme Button" example={darkTheme}></Example>
+                <Example title="Sized Button" example={sized}></Example>
+                <Example title="Filled Parent Button" example={filled}></Example>
               </Section>
             )
           }
