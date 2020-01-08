@@ -14,6 +14,7 @@ const DxcBox = ({ shadowDepth, margin, padding, display, children }) => {
 const StyledDxcBox = styled.div`
   display: ${({ display }) => display};
   border-radius: 4px;
+  overflow: hidden;
 
   box-shadow: ${({ shadowDepth }) =>
     shadowDepth === 1
