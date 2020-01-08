@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+import { DxcTabsForSections, DxcTag } from "@diaas/dxc-react-cdk";
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -7,6 +7,7 @@ import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import DocTitle from "../../common/DocTitle";
 import Section from "../components/common/Section";
 import githubLogo from "./github-logo.png";
+import dxcLogo from "./dxc-logo.png";
 import reactLogo from "../../common/react-icon.png";
 
 function Install() {
@@ -90,13 +91,12 @@ function Support() {
           For any questions or requests, our main support channel is GitHub
           issues.
         </p>
-        <GithubCard
-          href="https://github.dxc.com/DIaaS/diaas-react-cdk/issues"
-          target="_blank"
-        >
-          <GithubIcon alt="Github logo" src={githubLogo}></GithubIcon>
-          <GithubText>GitHub Issues</GithubText>
-        </GithubCard>
+        <DxcTag
+          margin={{ top: "medium", bottom: "medium", right: "medium" }}
+          linkHref="https://github.dxc.com/DIaaS/diaas-react-cdk/issues"
+          iconSrc={githubLogo}
+          label="GitHub Issues"
+        ></DxcTag>
 
         <p>
           You are welcome to open an issue there at any time, but before doing
@@ -153,22 +153,19 @@ function Overview() {
         </HeaderTitles>
       </OverviewHeader>
       <LinksSection>
-        <GithubCard
-          href="https://github.dxc.com/DIaaS/diaas-react-cdk/issues"
-          target="_blank"
-        >
-          <GithubIcon alt="Github logo" src={githubLogo}></GithubIcon>
-          <GithubText>Design Guidelines</GithubText>
-        </GithubCard>
-        <GithubCard
-          href="https://github.dxc.com/DIaaS/diaas-react-cdk/issues"
-          target="_blank"
-        >
-          <GithubIcon alt="Github logo" src={githubLogo}></GithubIcon>
-          <GithubText>GitHub</GithubText>
-        </GithubCard>
+        <DxcTag
+          margin={{ top: "medium", bottom: "medium", right: "medium" }}
+          linkHref="https://developer.dxc.com"
+          iconSrc={dxcLogo}
+          label="Design Guidelines"
+        ></DxcTag>
+        <DxcTag
+          margin={{ top: "medium", bottom: "medium", right: "medium" }}
+          linkHref="https://github.dxc.com/DIaaS/diaas-react-cdk"
+          iconSrc={githubLogo}
+          label="GitHub"
+        ></DxcTag>
       </LinksSection>
-
       <Introduction>
         <p>
           DXC React Components is a library of reusable elements, made with the
@@ -255,30 +252,6 @@ const Subtitle = styled.h2`
 const LinksSection = styled.div`
   display: flex;
   margin: 70px 0px 50px 0px;
-`;
-
-const GithubCard = styled.a`
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-  display: inline-flex;
-  align-items: center;
-  border-radius: 4px;
-  margin: 20px 20px 20px 0px;
-  overflow: hidden;
-  color: black;
-  text-decoration: none;
-`;
-
-const GithubIcon = styled.img`
-  padding: 5px 12px;
-  background: #232323;
-  max-width: 25px;
-`;
-
-const GithubText = styled.div`
-  padding: 0px 30px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 `;
 
 const Link = styled.a`
