@@ -6,7 +6,7 @@ const code = `() => {
     return new Promise(resolve => setTimeout(resolve, 1000));
   }
 
-  return <DxcUpload callbackUpload={callbackFunc} />;
+  return <DxcUpload margin="small" callbackUpload={callbackFunc} />;
 }`;
 
 const scope = {
