@@ -4,7 +4,8 @@ import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import "../common/OpenSans.css";
-import { colors, spaces, getMargin } from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const DxcButton = ({
   label = "",

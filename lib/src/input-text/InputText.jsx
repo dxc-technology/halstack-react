@@ -4,7 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { colors, spaces, getMargin } from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const DxcInputText = ({
   label = " ",
