@@ -20,6 +20,7 @@ import Footer from "./cdk-components/footer/Footer";
 import Table from "./cdk-components/table/Table";
 import Spinner from "./cdk-components/spinner/Spinner";
 import Box from "./cdk-components/box/Box";
+import Tag from "./cdk-components/tag/Tag";
 
 export const types = {
   FORMS: "Forms",
@@ -147,6 +148,12 @@ export default [
     path: "box",
     name: "Box",
     component: Box,
+    type: types.LAYOUT
+  },
+  {
+    path: "tag",
+    name: "Tag",
+    component: Tag,
     type: types.LAYOUT
   },
   {

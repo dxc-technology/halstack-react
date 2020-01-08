@@ -5,14 +5,16 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
-import BoxPropsTable from "./api.jsx";
+import TagPropsTable from "./api.jsx";
 
 import basicExample from "./examples/basicExample";
+import linkExample from "./examples/linkExample";
+import actionExample from "./examples/actionExample";
 
-function Box() {
+function Tag() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Box</DocTitle>
+      <DocTitle size={1}>Tag</DocTitle>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -22,7 +24,7 @@ function Box() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
-                <BoxPropsTable />
+                <TagPropsTable />
               </Section>
             )
           },
@@ -31,7 +33,9 @@ function Box() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
-                <Example title="Basic Example" example={basicExample}></Example>
+                <Example title="Basic Tag" example={basicExample}></Example>
+                <Example title="Tag with Link" example={linkExample}></Example>
+                <Example title="Tag with Action" example={actionExample}></Example>
               </Section>
             )
           }
@@ -41,4 +45,4 @@ function Box() {
   );
 }
 
-export default Box;
+export default Tag;
