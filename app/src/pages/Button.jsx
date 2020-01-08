@@ -20,7 +20,7 @@ function App() {
           mode="raised"
           theme="light"
           label="Raised Button"
-          margin={{right: "medium", bottom: "medium"}}
+          margin={{ right: "medium", bottom: "medium" }}
           onClick={onClick}
           size="medium"
         />
@@ -28,7 +28,7 @@ function App() {
           mode="flat"
           theme="light"
           label="Flat Button"
-          margin={{right: "medium", bottom: "medium"}}
+          margin={{ right: "medium", bottom: "medium" }}
           onClick={onClick}
           size="medium"
         />
@@ -36,7 +36,7 @@ function App() {
           mode="outlined"
           theme="light"
           label="Outlined Button"
-          margin={{right: "medium", bottom: "medium"}}
+          margin={{ right: "medium", bottom: "medium" }}
           onClick={onClick}
           size="large"
         />
@@ -56,7 +56,7 @@ function App() {
           mode="raised"
           theme="light"
           label="Raised Button"
-          margin={{right: "medium", bottom: "medium"}}
+          margin={{ right: "medium", bottom: "medium" }}
           onClick={onClick}
           size="medium"
         />
@@ -65,7 +65,7 @@ function App() {
           mode="flat"
           theme="light"
           label="Flat Button"
-          margin={{right: "medium", bottom: "medium"}}
+          margin={{ right: "medium", bottom: "medium" }}
           onClick={onClick}
           size="medium"
         />
@@ -74,7 +74,7 @@ function App() {
           mode="outlined"
           theme="light"
           label="Outlined Button"
-          margin={{right: "medium", bottom: "medium"}}
+          margin={{ right: "medium", bottom: "medium" }}
           onClick={onClick}
           size="large"
         />
@@ -94,7 +94,7 @@ function App() {
             mode="raised"
             theme="dark"
             label="Raised Button"
-            margin={{right: "medium", bottom: "medium"}}
+            margin={{ right: "medium", bottom: "medium" }}
             onClick={onClick}
             size="medium"
           />
@@ -102,7 +102,7 @@ function App() {
             mode="flat"
             theme="dark"
             label="Flat Button"
-            margin={{right: "medium", bottom: "medium"}}
+            margin={{ right: "medium", bottom: "medium" }}
             onClick={onClick}
             size="medium"
           />
@@ -110,7 +110,7 @@ function App() {
             mode="outlined"
             theme="dark"
             label="Outlined Button"
-            margin={{right: "medium", bottom: "medium"}}
+            margin={{ right: "medium", bottom: "medium" }}
             onClick={onClick}
             size="large"
           />
@@ -130,7 +130,7 @@ function App() {
             mode="raised"
             theme="dark"
             label="Raised Button"
-            margin={{right: "medium", bottom: "medium"}}
+            margin={{ right: "medium", bottom: "medium" }}
             onClick={onClick}
             size="fitContent"
           />
@@ -139,7 +139,7 @@ function App() {
             mode="flat"
             theme="dark"
             label="Flat Button"
-            margin={{right: "medium", bottom: "medium"}}
+            margin={{ right: "medium", bottom: "medium" }}
             onClick={onClick}
             size="medium"
           />
@@ -148,11 +148,25 @@ function App() {
             mode="outlined"
             theme="dark"
             label="Outlined Button"
-            margin={{right: "medium", bottom: "medium"}}
+            margin={{ right: "medium", bottom: "medium" }}
             onClick={onClick}
             size="large"
           />
         </div>
+      </div>
+      <div style={{width: "300px"}}>
+        <DxcButton
+          mode="basic"
+          label="Fill Parent Button"
+          margin={{
+            right: "medium",
+            bottom: "medium",
+            top: "large",
+            left: "medium"
+          }}
+          onClick={onClick}
+          size="fillParent"
+        />
       </div>
     </div>
   );
