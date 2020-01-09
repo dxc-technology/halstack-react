@@ -12,16 +12,17 @@ import DxcCheckbox from "../checkbox/Checkbox";
 
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    minWidth: "210px"
-  },
-  dropdownStyle: {
-    boxShadow: "0px 2px 10px 0px rgba(217,217,217,1)",
-    minWidth: "210px !important",
-    width: "230px"
-  },
+  root: props => ({
+    minWidth: props.width
+  }),
+  dropdownStyle: props => ({
+    boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.3)",
+    minWidth: props.width,
+    width: props.width
+  }),
   itemList: props => ({
     color: colors.darkGrey,
     "&.MuiList-padding": {
@@ -30,10 +31,10 @@ const useStyles = makeStyles(theme => ({
     },
     "& li": {
       fontSize: "16px",
-      paddingTop: props.paddingTop,
-      paddingBottom: props.paddingBottom,
-      paddingLeft: props.paddingLeft,
-      paddingRight: props.paddingRight,
+      paddingTop: props.paddingValue.paddingTop,
+      paddingBottom: props.paddingValue.paddingBottom,
+      paddingLeft: props.paddingValue.paddingLeft,
+      paddingRight: props.paddingValue.paddingRight,
       "&:hover": {
         backgroundColor: colors.darkWhite,
         color: colors.darkGrey
@@ -63,17 +64,26 @@ const DxcSelect = ({
   iconPosition = "after",
   multiple = false,
   margin,
-  padding
+  padding,
+  size = "medium"
 }) => {
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
   const paddingValue = {
     paddingTop: padding ? (typeof padding === "object" && padding.top ? spaces[padding.top] : spaces[padding]) : "",
-    paddingBottom: padding ? (typeof padding === "object" && padding.bottom ? spaces[padding.bottom] : spaces[padding]) : "",
-    paddingLeft: padding ? typeof padding === "object" && padding.left ? spaces[padding.left] : spaces[padding] : "",
-    paddingRight: padding ? typeof padding === "object" && padding.right ? spaces[padding.right] : spaces[padding] : ""
+    paddingBottom: padding
+      ? typeof padding === "object" && padding.bottom
+        ? spaces[padding.bottom]
+        : spaces[padding]
+      : "",
+    paddingLeft: padding ? (typeof padding === "object" && padding.left ? spaces[padding.left] : spaces[padding]) : "",
+    paddingRight: padding
+      ? typeof padding === "object" && padding.right
+        ? spaces[padding.right]
+        : spaces[padding]
+      : ""
   };
-  console.log(typeof padding === "object");
-  const classes = useStyles(paddingValue);
+  const selectValues = { paddingValue: paddingValue, width: calculateWidth(margin, size) };
+  const classes = useStyles(selectValues);
 
   const handleSelectChange = selectedOption => {
     if (multiple) {
@@ -107,6 +117,7 @@ const DxcSelect = ({
       </SelectedIconContainer>
     );
   };
+
   const getSelectedValuesWithLabel = (optionsList, selected) => {
     return optionsList
       .filter(x => selected.includes(x.value))
@@ -143,7 +154,7 @@ const DxcSelect = ({
   };
 
   return (
-    <SelectContainer margin={margin} theme={theme} required={required}>
+    <SelectContainer margin={margin} theme={theme} required={required} size={size}>
       <FormControl>
         <InputLabel disabled={disabled}>{label}</InputLabel>
         <Select
@@ -179,6 +190,20 @@ const DxcSelect = ({
       </FormControl>
     </SelectContainer>
   );
+};
+
+const sizes = {
+  small: "60px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
 };
 
 const LabelCont = styled.span`
@@ -255,13 +280,12 @@ const SelectContainer = styled.div`
         font-size: 16px;
         color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
       }
-      padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
   }
   .MuiSelect-select {
-    min-width: 230px;
-    width: 230px;
+    width: ${props => calculateWidth(props.margin, props.size)};
     height: 20px;
     display: flex;
+    padding-right: unset;
     color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
     align-items: center;
     :focus {
@@ -280,8 +304,7 @@ const SelectContainer = styled.div`
     }
   }
   .MuiInputBase-root {
-    width: 230px;
-    min-width: 230px;
+    width: ${props => calculateWidth(props.margin, props.size)};
     &.Mui-disabled {
         opacity:0.5;
         cursor: not-allowed;
@@ -311,6 +334,7 @@ const SelectContainer = styled.div`
 `;
 
 DxcSelect.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.oneOfType([
