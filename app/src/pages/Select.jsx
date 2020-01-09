@@ -84,14 +84,15 @@ function App() {
         multiple={true}
         margin="medium"
         padding="small"
+        size="large"
       ></DxcSelect>
 
       <DxcSelect
-        label={"Controlled Select"}
+        label={"Icons"}
         options={optionsWithIcon}
-        multiple={true}
         margin="medium"
-        padding="small"
+        padding="xxsmall"
+        size="small"
       ></DxcSelect>
 
       <DxcSelect
@@ -101,6 +102,7 @@ function App() {
         iconPosition={"before"}
         margin="medium"
         padding={{top:"xxsmall", left:"medium", right:"medium", bottom: "xxsmall"}}
+        size="large"
       ></DxcSelect>
     </div>
   );
