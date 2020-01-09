@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const DxcCheckbox = ({
   checked,
@@ -17,7 +18,8 @@ const DxcCheckbox = ({
   disableRipple = false,
   onChange,
   required = false,
-  margin
+  margin, 
+  size = "medium"
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
 
@@ -36,7 +38,7 @@ const DxcCheckbox = ({
   };
 
   return (
-    <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled} margin={margin}>
+    <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled} margin={margin} size={size}>
       <Checkbox
         checked={checked != undefined ? checked : innerChecked}
         inputProps={(name = { name })}
@@ -66,6 +68,22 @@ const DxcCheckbox = ({
     </CheckboxContainer>
   );
 };
+
+const sizes = {
+  small: "120px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
+  fitContent: "unset"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 const LabelContainer = styled.span`
   color: ${props =>
     props.disabled
@@ -89,6 +107,8 @@ const CheckboxContainer = styled.span`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
+  width: ${props =>calculateWidth(props.margin, props.size)};
 
   display: inline-flex;
   align-items: center;
