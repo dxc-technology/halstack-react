@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
 import {colors, spaces} from "../common/variables.js";
+import {getMargin} from "../common/utils.js"
 
 const DxcRadio = ({
   checked,
@@ -17,7 +18,8 @@ const DxcRadio = ({
   disableRipple,
   onClick,
   required = false,
-  margin
+  margin,
+  size = "medium"
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
 
@@ -30,7 +32,7 @@ const DxcRadio = ({
     }
   };
   return (
-    <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled} margin={margin}>
+    <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled} margin={margin} size={size}>
       <Radio
         checked={(checked != null && checked) || innerChecked}
         name={name}
@@ -54,7 +56,25 @@ const DxcRadio = ({
   );
 };
 
+const sizes = {
+  small: "120px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
+  fitContent: "unset"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 const RadioContainer = styled.span`
+
+  width: ${props =>calculateWidth(props.margin, props.size)};
+
   display: inline-flex;
   align-items: center;
   max-height: 42px;
@@ -133,6 +153,7 @@ const LabelContainer = styled.span`
 `;
 
 DxcRadio.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   checked: PropTypes.bool,
   value: PropTypes.any,
   label: PropTypes.string,
