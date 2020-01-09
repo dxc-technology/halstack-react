@@ -334,6 +334,7 @@ const SelectContainer = styled.div`
 `;
 
 DxcSelect.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.oneOfType([
