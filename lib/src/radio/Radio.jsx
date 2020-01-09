@@ -153,6 +153,7 @@ const LabelContainer = styled.span`
 `;
 
 DxcRadio.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   checked: PropTypes.bool,
   value: PropTypes.any,
   label: PropTypes.string,
