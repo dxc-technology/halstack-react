@@ -118,6 +118,15 @@ function App() {
           onClick={onClick}
         />
       </div>
+      <div style={{width: "150px"}}>
+        <DxcRadio
+          margin="medium"
+          checked={checked}
+          label="parent filled"
+          onClick={onClick}
+          size="fillParent"
+        />
+      </div>
     </div>
   );
 }

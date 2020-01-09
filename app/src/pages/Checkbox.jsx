@@ -13,11 +13,12 @@ function App() {
       >
         <DxcCheckbox
           checked={checked}
-          label="Controlled"
+          label="checkbox"
           onChange={onChange}
-          margin={{left: "medium"}}
+          margin="medium"
+          size="small"
         />
-        <DxcCheckbox margin={{left: "medium"}} label="Uncontrolled" />
+        <DxcCheckbox margin="medium" label="checkbox" size="small"/>
       </div>
 
       <div
@@ -29,13 +30,27 @@ function App() {
         }}
       >
         <DxcCheckbox
-          margin={{left: "medium"}}
+          margin="medium"
           theme="dark"
           checked={checked}
-          label="Controlled"
+          label="checkbox"
           onChange={onChange}
+          size="small"
         />
-        <DxcCheckbox margin={{left: "medium"}} theme="dark" label="Uncontrolled" />
+        <DxcCheckbox margin="medium" theme="dark" label="checkbox" size="small"/>
+      </div>
+
+      <div
+        style={{ width: "250px", display: "inline-flex", alignItems: "center" }}
+      >
+        <DxcCheckbox
+          checked={checked}
+          label="checkbox"
+          onChange={onChange}
+          margin={{left: "medium"}}
+          size="fillParent"
+          labelPosition="after"
+        />
       </div>
     </div>
   );
