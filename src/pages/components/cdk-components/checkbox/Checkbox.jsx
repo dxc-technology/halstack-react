@@ -11,6 +11,7 @@ import controlled from "./examples/controlledCheckbox";
 import uncontrolled from "./examples/uncontrolledCheckbox";
 import themed from "./examples/themedCheckbox";
 import labelPosition from "./examples/labelPosition";
+import sized from "./examples/sizedCheckbox";
 
 function Checkbox() {
   return (
@@ -49,6 +50,10 @@ function Checkbox() {
                 <Example
                   title="Dark theme Checkbox"
                   example={themed}
+                ></Example>
+                <Example
+                  title="Sized Checkbox"
+                  example={sized}
                 ></Example>
               </Section>
             )
