@@ -176,6 +176,7 @@ const IconContainer = styled.img`
 const LabelContainer = styled.span``;
 
 DxcToggle.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   theme: PropTypes.oneOf(["light", "dark", ""]),
   mode: PropTypes.oneOf(["basic", "outlined", ""]),
   iconPosition: PropTypes.oneOf(["before", "after", ""]),
