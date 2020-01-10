@@ -26,6 +26,7 @@ function App() {
         selected={selected}
         onClick={onClick}
         margin="medium"
+        size="large"
       ></DxcToggle>
       <DxcToggle
         label="Disabled toggle"
@@ -33,20 +34,24 @@ function App() {
         disabled={true}
         onClick={onClick}
         margin="medium"
+        size="medium"
       ></DxcToggle>
       <DxcToggle
         iconSrc={facebookPath}
         selected={selected3}
         onClick={onClick3}
         margin="medium"
+        size="small"
       ></DxcToggle>
-      <DxcToggle
-        label="Outlined toggle"
-        selected={selected4}
-        mode="outlined"
-        onClick={onClick4}
-        margin="medium"
-      ></DxcToggle>
+      <div style={{width: "200px"}}>
+        <DxcToggle
+          label="Outlined toggle"
+          selected={selected4}
+          mode="outlined"
+          onClick={onClick4}
+          margin="medium"
+        ></DxcToggle>
+      </div>
     </div>
   );
 }
