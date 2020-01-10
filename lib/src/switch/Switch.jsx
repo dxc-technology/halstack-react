@@ -182,6 +182,7 @@ const LabelContainer = styled.span`
 `;
 
 DxcSwitch.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   checked: PropTypes.bool,
   value: PropTypes.any,
   label: PropTypes.string,
