@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import DxcInput from "../input-text/InputText";
 import {colors, spaces} from "../common/variables.js";
+import {getMargin} from "../common/utils.js";
 
 const DxcSlider = ({
   minValue = 0,
@@ -19,7 +20,8 @@ const DxcSlider = ({
   disabled,
   theme = "light",
   marks,
-  margin
+  margin,
+  size
 }) => {
   const [innerValue, setInnerValue] = useState(0);
 
@@ -44,7 +46,7 @@ const DxcSlider = ({
   };
 
   return (
-    <SliderContainer theme={theme} margin={margin}>
+    <SliderContainer theme={theme} margin={margin} size={size}>
       {showLimitsValues && (
         <MinLabelContainer theme={theme} disabled={disabled}>
           {minValue}
@@ -73,12 +75,30 @@ const DxcSlider = ({
             value={(value != null && value >= 0 && value) || innerValue}
             disabled={disabled}
             onChange={handlerInputChange}
+            size="small"
+            margin={{left: "medium"}}
           />
         </StyledTextInput>
       )}
     </SliderContainer>
   );
 };
+
+const sizes = {
+  small: "60px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
+  fitcontent: "unset"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 DxcSlider.propTypes = {
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
@@ -105,9 +125,7 @@ DxcSlider.propTypes = {
 
 const StyledTextInput = styled.div`
   .MuiTextField-root {
-    margin-left: 15px;
     font-size: 16px;
-    width: 50px;
     .MuiInputBase-input {
       color: ${props => (props.theme === "light" && colors.black) || colors.white};
     }
@@ -128,8 +146,7 @@ const SliderContainer = styled.div`
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  min-width: 185px;
-  max-width: 100%;
+  width: ${props => calculateWidth(props.margin, props.size)};
 
   .MultiSlider-root {
     display: flex;
