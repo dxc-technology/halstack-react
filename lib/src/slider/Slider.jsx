@@ -100,6 +100,7 @@ const calculateWidth = (margin, size) => {
 };
 
 DxcSlider.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
   step: PropTypes.number,
