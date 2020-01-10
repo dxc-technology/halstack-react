@@ -14,6 +14,7 @@ import unControlledRadio from "./examples/uncontrolledRadio";
 import radioLabelPosition from "./examples/radioLabelPosition";
 import radioDefaultDark from "././examples/radioDefaultDarkTheme";
 import radioGroup from "././examples/radioGroup";
+import sized from "././examples/sizedRadio"
 
 function Radio() {
   return (
@@ -54,6 +55,7 @@ function Radio() {
                   example={radioDefaultDark}
                 ></Example>
                 <Example title="Radio Group" example={radioGroup}></Example>
+                <Example title="Sized Radio" example={sized}></Example>
               </Section>
             )
           }

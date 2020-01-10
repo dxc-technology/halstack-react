@@ -25,6 +25,7 @@ const code = `() => {
       options={optionsWithoutIcon}
       onChange={onChange}
       label="Uncontrolled Select"
+      margin="medium"
     ></DxcSelect>
   );
 }`;
