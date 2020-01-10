@@ -84,8 +84,9 @@ const DxcToggleContainer = styled.div`
     color: ${props => (props.theme === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
   }
   .MuiButtonBase-root {
+    width: 100%;
     padding: 0px 0px;
-    height: ${props => (props.mode === "outlined" ? "41px" : "43px")};
+    min-height: ${props => (props.mode === "outlined" ? "41px" : "43px")};
     background-color: ${props => (props.mode !== "outlined" ? colors.darkWhite : "transparent")};
     &:hover {
       background-color: ${props =>
