@@ -9,6 +9,7 @@ import caretUpWh from "./baseline-arrow_drop_up_wh.svg";
 import caretDownWh from "./baseline-arrow_drop_down_wh.svg";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const DxcDropdown = ({
   options,
@@ -22,7 +23,8 @@ const DxcDropdown = ({
   disableRipple = false,
   onSelectOption,
   margin,
-  padding
+  padding,
+  size="medium"
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -49,6 +51,7 @@ const DxcDropdown = ({
         label={label}
         caretHidden={caretHidden}
         margin={margin}
+        size={size}
       >
         <DropdownTriggerContainer iconPosition={iconPosition}>
           {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
@@ -90,6 +93,7 @@ const DxcDropdown = ({
         mode={mode}
         theme={theme}
         padding={padding}
+        size={size}
       >
         {options.map(option => (
           <MenuItem
@@ -109,6 +113,20 @@ const DxcDropdown = ({
   );
 };
 
+const sizes = {
+  small: "42px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 const DxcMenu = styled(Menu)`
   .MuiMenuItem-gutters {
     padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
@@ -120,6 +138,8 @@ const DxcMenu = styled(Menu)`
       props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
     padding-left: ${props =>
       props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+
+    width: ${props => props.mode === "outlined" ? `calc(${calculateWidth(props.padding, props.size)} - 4px)` : calculateWidth(props.padding, props.size)};
   }
   .MuiMenuItem-root {
     min-height: 46px;
@@ -127,7 +147,6 @@ const DxcMenu = styled(Menu)`
   }
 
   .MuiPaper-root {
-    min-width: ${props => (props.mode === "outlined" ? "226px" : "230px")};
 
     border: ${props => (props.mode === "outlined" ? "2px solid" : "transparent")};
 
@@ -197,7 +216,7 @@ const DropdownTrigger = styled.button`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  min-width: ${props => (props.label === "" ? "0px" : "230px")};
+  min-width: ${props => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
 
   margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${props =>
@@ -310,6 +329,7 @@ const CaretIcon = styled.img`
 `;
 
 DxcDropdown.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

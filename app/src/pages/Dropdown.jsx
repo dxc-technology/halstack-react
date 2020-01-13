@@ -99,6 +99,7 @@ function App() {
           theme="dark"
           margin="medium"
           padding={{top:"small", left:"large", right:"large", bottom: "small"}}
+          size="large"
         ></DxcDropdown>
       </div>
     </div>
