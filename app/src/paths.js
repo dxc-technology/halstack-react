@@ -39,6 +39,11 @@ export default [
     component: Button
   },
   {
+    path: "box",
+    name: "Box",
+    component: Box
+  },
+  {
     path: "checkbox",
     name: "Checkbox",
     component: Checkbox
@@ -109,9 +114,9 @@ export default [
     component: Table
   },
   {
-    path: "toggle",
-    name: "Toggle",
-    component: Toggle
+    path: "tag",
+    name: "Tag",
+    component: Tag
   },
   {
     path: "tabs",
@@ -124,18 +129,13 @@ export default [
     component: TabsForSections
   },
   {
+    path: "toggle",
+    name: "Toggle",
+    component: Toggle
+  },
+  {
     path: "upload",
     name: "Upload",
     component: Upload
-  },
-  {
-    path: "box",
-    name: "Box",
-    component: Box
-  },
-  {
-    path: "tag",
-    name: "Tag",
-    component: Tag
   }
 ];
