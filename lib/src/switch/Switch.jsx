@@ -3,7 +3,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 import "../common/OpenSans.css";
-import {colors, spaces} from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js"
 
 const DxcSwitch = ({
   checked,
@@ -16,7 +17,8 @@ const DxcSwitch = ({
   disableRipple,
   onChange,
   required,
-  margin
+  margin,
+  size="medium"
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
 
@@ -35,7 +37,7 @@ const DxcSwitch = ({
   };
 
   return (
-    <SwitchContainer margin={margin} theme={theme} disabled={disabled} labelPosition={labelPosition}>
+    <SwitchContainer margin={margin} theme={theme} disabled={disabled} labelPosition={labelPosition} size={size}>
       <Switch
         checked={checked != undefined ? checked : innerChecked}
         inputProps={(name = { name })}
@@ -57,6 +59,21 @@ const DxcSwitch = ({
   );
 };
 
+const sizes = {
+  small: "60px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
+  fitcontent: "unset"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 const RequiredSpan = styled.span`
   color: ${props => (props.theme === "dark" ? colors.lightRed : colors.darkRed)};
   margin-right: 1px;
@@ -64,6 +81,9 @@ const RequiredSpan = styled.span`
 `;
 
 const SwitchContainer = styled.div`
+
+  width: ${props => calculateWidth(props.margin, props.size)};
+
   display: inline-flex;
   align-items: center;
   flex-direction: ${props => (props.labelPosition === "after" ? "row" : "row-reverse")};
@@ -149,12 +169,20 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  color: ${props => (props.disabled ? props.theme === "dark" ? colors.darkGrey : colors.lightGrey : props.theme === "dark" ? colors.white : colors.black)};
+  color: ${props =>
+    props.disabled
+      ? props.theme === "dark"
+        ? colors.darkGrey
+        : colors.lightGrey
+      : props.theme === "dark"
+      ? colors.white
+      : colors.black};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
 `;
 
 DxcSwitch.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   checked: PropTypes.bool,
   value: PropTypes.any,
   label: PropTypes.string,
