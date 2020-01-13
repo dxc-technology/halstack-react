@@ -16,7 +16,8 @@ const DxcToggle = ({
   disabled = false,
   onClick,
   selected = false,
-  margin
+  margin,
+  size
 }) => {
   return (
     <DxcToggleContainer
@@ -29,6 +30,7 @@ const DxcToggle = ({
       mode={mode}
       iconPosition={iconPosition}
       value
+      size={size}
       onClick={() => {
         if (!disabled) onClick(!selected);
       }}
@@ -41,6 +43,21 @@ const DxcToggle = ({
       </ToggleButton>
     </DxcToggleContainer>
   );
+};
+
+const sizes = {
+  small: "42px",
+  medium: "120px",
+  large: "240px",
+  fillParent: "100%",
+  fitContent: "unset"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
 };
 
 const DxcToggleContainer = styled.div`
@@ -58,6 +75,7 @@ const DxcToggleContainer = styled.div`
     opacity: ${props => (props.disabled ? "0.5" : "1")};
     cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
     display: inline-block;
+    width: ${props => (calculateWidth(props.margin, props.size))};
   }
 
   .MuiToggleButton-label {
@@ -66,8 +84,9 @@ const DxcToggleContainer = styled.div`
     color: ${props => (props.theme === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
   }
   .MuiButtonBase-root {
+    width: 100%;
     padding: 0px 0px;
-    height: ${props => (props.mode === "outlined" ? "41px" : "43px")};
+    min-height: ${props => (props.mode === "outlined" ? "41px" : "43px")};
     background-color: ${props => (props.mode !== "outlined" ? colors.darkWhite : "transparent")};
     &:hover {
       background-color: ${props =>
@@ -157,6 +176,7 @@ const IconContainer = styled.img`
 const LabelContainer = styled.span``;
 
 DxcToggle.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   theme: PropTypes.oneOf(["light", "dark", ""]),
   mode: PropTypes.oneOf(["basic", "outlined", ""]),
   iconPosition: PropTypes.oneOf(["before", "after", ""]),
