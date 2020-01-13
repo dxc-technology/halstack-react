@@ -116,8 +116,7 @@ const DxcDropdown = ({
 const sizes = {
   small: "42px",
   medium: "240px",
-  large: "480px",
-  fillParent: "100%"
+  large: "480px"
 };
 
 const calculateWidth = (margin, size) => {
