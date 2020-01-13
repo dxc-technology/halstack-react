@@ -11,6 +11,7 @@ import controlled from "./examples/controlledSelect";
 import multipleSelect from "./examples/multipleSelect";
 import withIcons from "./examples/withIcons";
 import darkThemed from "./examples/darkThemed";
+import sized from "./examples/sizedSelect";
 
 function Input() {
   return (
@@ -53,6 +54,10 @@ function Input() {
                 <Example
                   title="Dark theme Select"
                   example={darkThemed}
+                ></Example>
+                <Example
+                  title="Sized Select"
+                  example={sized}
                 ></Example>
               </Section>
             )
