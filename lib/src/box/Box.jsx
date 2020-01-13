@@ -2,19 +2,39 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
+import "../common/OpenSans.css";
 
-const DxcBox = ({ shadowDepth, margin, padding, display, children }) => {
+const DxcBox = ({ shadowDepth, margin, padding, display, children, size }) => {
   return (
-    <StyledDxcBox shadowDepth={shadowDepth} display={display} margin={margin} padding={padding}>
+    <StyledDxcBox shadowDepth={shadowDepth} display={display} margin={margin} padding={padding} size={size}>
       {children}
     </StyledDxcBox>
   );
+};
+
+const sizes = {
+  small: "60px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
+  fitcontent: "unset"
+};
+
+const calculateWidth = (margin, size, padding) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")} -
+    ${getMargin(padding, "left")} - ${getMargin(padding, "right")})`;
+  }
+  return sizes[size];
 };
 
 const StyledDxcBox = styled.div`
   display: ${({ display }) => display};
   border-radius: 4px;
   overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+  width: ${props => calculateWidth(props.margin, props.size, props.padding)};
 
   box-shadow: ${({ shadowDepth }) =>
     shadowDepth === 1
