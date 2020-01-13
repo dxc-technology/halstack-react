@@ -178,7 +178,7 @@ const DxcSelect = ({
           {options.map(option => {
             return (
               <MenuItem padding={padding} id={option.value} value={option.value} disableRipple={disableRipple}>
-                {multiple && <DxcCheckbox disableRipple={true} checked={isChecked(selectedValue, value, option)} />}
+                {multiple && <DxcCheckbox size={"fitContent"} disableRipple={true} checked={isChecked(selectedValue, value, option)} />}
                 <OptionContainer iconPosition={iconPosition}>
                   {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
                   <LabelCont>{option.label}</LabelCont>
