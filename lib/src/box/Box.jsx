@@ -57,6 +57,7 @@ const StyledDxcBox = styled.div`
 `;
 
 DxcBox.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   display: PropTypes.string,
   shadowDepth: PropTypes.oneOf([0, 1, 2]),
   margin: PropTypes.oneOfType([
