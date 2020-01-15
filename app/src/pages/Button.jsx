@@ -1,172 +1,389 @@
 import React from "react";
 import { DxcButton } from "@diaas/dxc-react-cdk";
+import homeLogo from "../images/home.svg";
 
 function App() {
   const onClick = () => {};
 
   return (
     <div>
-      <h3>Light</h3>
       <div>
+        <h3>Button Component</h3>
+        <h4>Sizes</h4>
         <DxcButton
           mode="basic"
           theme="light"
-          label="Basic Button"
-          margin="medium"
+          label="Small"
           onClick={onClick}
-          size="medium"
+          size="small"
+          margin="small"
         />
         <DxcButton
-          mode="raised"
+          mode="basic"
           theme="light"
-          label="Raised Button"
-          margin={{ right: "medium", bottom: "medium" }}
+          label="Medium"
           onClick={onClick}
           size="medium"
+          margin="small"
         />
         <DxcButton
-          mode="flat"
+          mode="basic"
           theme="light"
-          label="Flat Button"
-          margin={{ right: "medium", bottom: "medium" }}
-          onClick={onClick}
-          size="medium"
-        />
-        <DxcButton
-          mode="outlined"
-          theme="light"
-          label="Outlined Button"
-          margin={{ right: "medium", bottom: "medium" }}
+          label="Large"
           onClick={onClick}
           size="large"
+          margin="small"
         />
-      </div>
-      <div>
         <DxcButton
-          disabled
           mode="basic"
           theme="light"
-          label="Basic Button"
-          margin="medium"
+          label="Fit Content"
           onClick={onClick}
-          size="medium"
+          size="fitContent"
+          margin="small"
         />
-        <DxcButton
-          disabled
-          mode="raised"
-          theme="light"
-          label="Raised Button"
-          margin={{ right: "medium", bottom: "medium" }}
-          onClick={onClick}
-          size="medium"
-        />
-        <DxcButton
-          disabled
-          mode="flat"
-          theme="light"
-          label="Flat Button"
-          margin={{ right: "medium", bottom: "medium" }}
-          onClick={onClick}
-          size="medium"
-        />
-        <DxcButton
-          disabled
-          mode="outlined"
-          theme="light"
-          label="Outlined Button"
-          margin={{ right: "medium", bottom: "medium" }}
-          onClick={onClick}
-          size="large"
-        />
-      </div>
-      <h3>Dark</h3>
-      <div style={{ background: "black" }}>
-        <div>
-          <DxcButton
-            mode="basic"
-            theme="dark"
-            label="Basic Button"
-            margin="medium"
-            onClick={onClick}
-            size="medium"
-          />
-          <DxcButton
-            mode="raised"
-            theme="dark"
-            label="Raised Button"
-            margin={{ right: "medium", bottom: "medium" }}
-            onClick={onClick}
-            size="medium"
-          />
-          <DxcButton
-            mode="flat"
-            theme="dark"
-            label="Flat Button"
-            margin={{ right: "medium", bottom: "medium" }}
-            onClick={onClick}
-            size="medium"
-          />
-          <DxcButton
-            mode="outlined"
-            theme="dark"
-            label="Outlined Button"
-            margin={{ right: "medium", bottom: "medium" }}
-            onClick={onClick}
-            size="large"
-          />
-        </div>
-        <div>
-          <DxcButton
-            disabled
-            mode="basic"
-            theme="dark"
-            label="Basic Button"
-            margin="medium"
-            onClick={onClick}
-            size="fitContent"
-          />
-          <DxcButton
-            disabled
-            mode="raised"
-            theme="dark"
-            label="Raised Button"
-            margin={{ right: "medium", bottom: "medium" }}
-            onClick={onClick}
-            size="fitContent"
-          />
-          <DxcButton
-            disabled
-            mode="flat"
-            theme="dark"
-            label="Flat Button"
-            margin={{ right: "medium", bottom: "medium" }}
-            onClick={onClick}
-            size="medium"
-          />
-          <DxcButton
-            disabled
-            mode="outlined"
-            theme="dark"
-            label="Outlined Button"
-            margin={{ right: "medium", bottom: "medium" }}
-            onClick={onClick}
-            size="large"
-          />
-        </div>
-      </div>
-      <div style={{width: "300px"}}>
         <DxcButton
           mode="basic"
-          label="Fill Parent Button"
-          margin={{
-            right: "medium",
-            bottom: "medium",
-            top: "large",
-            left: "medium"
-          }}
+          theme="light"
+          label="Fill Parent"
           onClick={onClick}
           size="fillParent"
+          margin="small"
         />
+      </div>
+      <div>
+        <h4>Margins</h4>
+        <DxcButton
+          mode="basic"
+          theme="light"
+          label="xxsmall"
+          onClick={onClick}
+          size="medium"
+          margin="xxsmall"
+        />
+        <DxcButton
+          mode="basic"
+          theme="light"
+          label="xsmall"
+          onClick={onClick}
+          size="medium"
+          margin="xsmall"
+        />
+        <DxcButton
+          mode="basic"
+          theme="light"
+          label="small"
+          onClick={onClick}
+          size="medium"
+          margin="small"
+        />
+        <DxcButton
+          mode="basic"
+          theme="light"
+          label="medium"
+          onClick={onClick}
+          size="medium"
+          margin="medium"
+        />
+        <DxcButton
+          mode="basic"
+          theme="light"
+          label="large"
+          onClick={onClick}
+          size="medium"
+          margin="large"
+        />
+        <DxcButton
+          mode="basic"
+          theme="light"
+          label="xlarge"
+          onClick={onClick}
+          size="medium"
+          margin="xlarge"
+        />
+        <DxcButton
+          mode="basic"
+          theme="light"
+          label="xxlarge"
+          onClick={onClick}
+          size="medium"
+          margin="xxlarge"
+        />
+      </div>
+      <h4>Basic Button</h4>
+      <div style={{ display: "flex" }}>
+        <div>
+          <DxcButton
+            mode="basic"
+            label="Button"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="But"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="But"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="ButL"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="ButM"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+      </div>
+      <h4>Raised Button</h4>
+      <div style={{ display: "flex" }}>
+        <div>
+          <DxcButton
+            mode="raised"
+            label="Button"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="raised"
+            theme="light"
+            label="But"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="raised"
+            theme="light"
+            label="But"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="raised"
+            theme="light"
+            label="ButL"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="raised"
+            theme="light"
+            label="ButM"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+      </div>
+      <h4>Flat Button</h4>
+      <div style={{ display: "flex" }}>
+        <div>
+          <DxcButton
+            mode="flat"
+            label="Button"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="flat"
+            theme="light"
+            label="But"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="flat"
+            theme="light"
+            label="But"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="flat"
+            theme="light"
+            label="ButL"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="flat"
+            theme="light"
+            label="ButM"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+      </div>
+      <h4>Outlined Button</h4>
+      <div style={{display:"flex"}}>
+        <div>
+          <DxcButton
+            mode="outlined"
+            label="Button"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="outlined"
+            theme="light"
+            label="But"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="outlined"
+            theme="light"
+            label="But"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="outlined"
+            theme="light"
+            label="ButL"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div>
+          <DxcButton
+            mode="outlined"
+            theme="light"
+            label="ButM"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+      </div>
+      <h4>Dark Theme</h4>
+      <div style={{display:"flex", "background":"black"}}>
+        <div>
+          <DxcButton
+            mode="basic"
+            label="Basic button"
+            theme="dark"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div>
+        <DxcButton
+            mode="raised"
+            label="Raised button"
+            theme="dark"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div>
+        <DxcButton
+            mode="flat"
+            label="Flat button"
+            theme="dark"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div>
+        <DxcButton
+            mode="outlined"
+            label="Outlined button"
+            theme="dark"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
       </div>
     </div>
   );
