@@ -31,7 +31,7 @@ const DxcButton = ({
     >
       <Button disabled={disabled} disableRipple={disableRipple}>
         <LabelContainer>{label}</LabelContainer>
-        {iconSrc && <ButtonIcon iconPosition={iconPosition} src={iconSrc} />}
+        {iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />}
       </Button>
     </DxCButton>
   );
@@ -60,8 +60,8 @@ const LabelContainer = styled.span`
 const ButtonIcon = styled.img`
   max-height: 15px;
   max-width: 15px;
-  margin-left: ${props => (props.iconPosition === "after" && "10px") || "0px"};
-  margin-right: ${props => (props.iconPosition === "before" && "10px") || "0px"};
+  margin-left: ${props => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
+  margin-right: ${props => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
 `;
 const DxCButton = styled.div`
   margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -75,7 +75,7 @@ const DxCButton = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   display: inline-block;
-  width: ${props =>calculateWidth(props.margin, props.size)};
+  width: ${props => calculateWidth(props.margin, props.size)};
   cursor: ${props => (props.disabled && "not-allowed") || "pointer"};
 
   .MuiButtonBase-root {
@@ -84,11 +84,13 @@ const DxCButton = styled.div`
       flex-direction: ${props => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
+    word-break: break-all;
     letter-spacing: 1px;
     box-shadow: none;
     font-size: 14px;
     font-weight: 500;
-    padding: 12px 30px;
+    padding: ${props => (props.size === "small" && "11px") || "12px 30px"};
+    min-width: ${props=>(props.size === "small" && "calc(100% - 22px)") || "unset"};
     border-radius: 4px;
     width: 100%;
     min-height: 43px;
