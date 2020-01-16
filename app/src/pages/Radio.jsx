@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <div>
+      <div className="test-case">
         <h4>Label before</h4>
         <DxcRadio
           label="Radio"
@@ -20,11 +20,11 @@ function App() {
         />
       </div>
 
-      <div>
+      <div className="test-case">
         <h4>Label after</h4>
         <DxcRadio label="Radio" checked={checked} onClick={onClick} />
       </div>
-      <div>
+      <div className="test-case">
         <h4>Light theme</h4>
         <DxcRadio label="Radio" checked={checked} onClick={onClick} />
       </div>
@@ -32,6 +32,7 @@ function App() {
       <div>
         <h4>Dark theme</h4>
         <div
+          className="test-case"
           style={{
             backgroundColor: "black"
           }}
@@ -45,17 +46,17 @@ function App() {
         </div>
       </div>
 
-      <div>
+      <div className="test-case">
         <h4>Color checked checkbox</h4>
         <DxcRadio label="Radio" checked={true} onClick={onClick} />
       </div>
 
-      <div>
+      <div className="test-case">
         <h4>Color unchecked checkbox</h4>
         <DxcRadio label="Radio" checked={checked} onClick={onClick} />
       </div>
 
-      <div>
+      <div className="test-case">
         <h4>Disabled checkbox</h4>
         <DxcRadio
           label="Radio"
@@ -65,7 +66,7 @@ function App() {
         />
       </div>
 
-      <div>
+      <div className="test-case">
         <h4>Required checkbox</h4>
         <DxcRadio
           label="Radio"
@@ -77,7 +78,7 @@ function App() {
 
       <div>
         <h4>Sizes</h4>
-        <div>
+        <div className="test-case">
           <h5>Small size - Label max size single line</h5>
           <DxcRadio
             label="Radio b"
@@ -87,7 +88,7 @@ function App() {
             size="small"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>Small size - Label min size multi line</h5>
           <DxcRadio
             label="Radio bu"
@@ -97,7 +98,7 @@ function App() {
             size="small"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>Medium size - Label max size single line</h5>
           <DxcRadio
             label="Radio button label siz"
@@ -107,7 +108,7 @@ function App() {
             size="medium"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>Medium size - Label min size multi line</h5>
           <DxcRadio
             label="Radio button label size"
@@ -117,7 +118,7 @@ function App() {
             size="medium"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>Large size - Label max size single line</h5>
           <DxcRadio
             label="Radio button label size example single line radio radio r"
@@ -127,7 +128,7 @@ function App() {
             size="large"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>Large size - Label min size multi line</h5>
           <DxcRadio
             label="Radio button label size example single line radio radio ra"
@@ -137,7 +138,7 @@ function App() {
             size="large"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>FillParent size - Label max size single line</h5>
           <DxcRadio
             label="Radio button label size example single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radi"
@@ -147,7 +148,7 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>FillParent size - Label min size multi line</h5>
           <DxcRadio
             label="Radio button label size example single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio"
@@ -157,7 +158,7 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>FillContent size - Label max size single line</h5>
           <DxcRadio
             label="Radio button label size example single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radi"
@@ -167,7 +168,7 @@ function App() {
             size="fillContent"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>FillContent size - Label min size multi line</h5>
           <DxcRadio
             label="Radio button label size example single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio"
@@ -181,7 +182,7 @@ function App() {
 
       <div>
         <h4>Margins</h4>
-        <div>
+        <div className="test-case">
           <h5>xxsmall margin</h5>
           <DxcRadio
             label="Radio"
@@ -191,7 +192,7 @@ function App() {
             margin="xxsmall"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>xsmall margin</h5>
           <DxcRadio
             label="Radio"
@@ -201,7 +202,7 @@ function App() {
             margin="xxsmall"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>Small margin</h5>
           <DxcRadio
             label="Radio"
@@ -211,7 +212,7 @@ function App() {
             margin="small"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>Medium margin</h5>
           <DxcRadio
             label="Radio"
@@ -221,7 +222,7 @@ function App() {
             margin="medium"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>Large margin</h5>
           <DxcRadio
             label="Radio"
@@ -231,7 +232,7 @@ function App() {
             margin="large"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>xlarge margin</h5>
           <DxcRadio
             label="Radio"
@@ -241,7 +242,7 @@ function App() {
             margin="xlarge"
           />
         </div>
-        <div>
+        <div className="test-case">
           <h5>xxlarge margin</h5>
           <DxcRadio
             label="Radio"
