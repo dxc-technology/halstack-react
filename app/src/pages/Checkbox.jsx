@@ -175,25 +175,25 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fillContent-size-single-line">
-          <h5>FillContent size - Label max size single line</h5>
+        <div className="test-case" id="fitContent-size-single-line">
+          <h5>FitContent size - Label max size single line</h5>
           <DxcCheckbox
             checked={checked}
-            label="FillContent size example label one single line checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox "
+            label="FitContent size example label one single line checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox "
             onChange={onChange}
             labelPosition="after"
-            size="fillContent"
+            size="fitContent"
           />
         </div>
-        <div className="test-case" id="fillContent-size-multi-line">
-          <h5>FillContent size - Label min size multi line</h5>
+        <div className="test-case" id="fitContent-size-multi-line">
+          <h5>FitContent size - Label min size multi line</h5>
           <DxcCheckbox
             checked={checked}
-            label="FillContent size example label one single line checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox c
+            label="FitContent size example label one single line checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox c
             "
             onChange={onChange}
             labelPosition="after"
-            size="fillContent"
+            size="fitContent"
           />
         </div>
       </div>
