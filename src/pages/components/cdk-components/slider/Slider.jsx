@@ -12,6 +12,7 @@ import discrete from "./examples/discrete";
 import continuous from "./examples/continuous";
 import withoutLimits from "./examples/without-limits";
 import input from "./examples/input";
+import disabled from "./examples/disabled";
 import dark from "./examples/dark";
 
 function Slider() {
@@ -36,8 +37,14 @@ function Slider() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
-                <Example title="Controlled Slider" example={controlled}></Example>
-                <Example title="Uncontrolled Slider" example={uncontrolled}></Example>
+                <Example
+                  title="Controlled Slider"
+                  example={controlled}
+                ></Example>
+                <Example
+                  title="Uncontrolled Slider"
+                  example={uncontrolled}
+                ></Example>
                 <Example title="Discrete Slider" example={discrete}></Example>
                 <Example
                   title="Continuous Slider"
@@ -48,6 +55,7 @@ function Slider() {
                   example={withoutLimits}
                 ></Example>
                 <Example title="Slider with input" example={input}></Example>
+                <Example title="Disabled Slider" example={disabled}></Example>
                 <Example title="Dark theme Slider" example={dark}></Example>
               </Section>
             )
