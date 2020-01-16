@@ -1,5 +1,4 @@
 import { DxcSlider } from "@diaas/dxc-react-cdk";
-import { useState } from "react";
 
 const code = `() => {
   const onChange = () => {};
@@ -18,8 +17,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcSlider,
-  useState
+  DxcSlider
 };
 
 export default { code, scope };
