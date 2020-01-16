@@ -8,7 +8,7 @@ function SideNav() {
   return (
     <SideNavContainer>
       <Title>React Components</Title>
-      <Links>
+      <Links id="links-list">
         {paths.map(path => (
           <Link to={path.path}>{path.name}</Link>
         ))}

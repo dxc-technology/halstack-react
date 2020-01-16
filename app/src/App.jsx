@@ -10,7 +10,7 @@ function App() {
   return (
     <MainContainer>
       <SideNav></SideNav>
-      <Content>
+      <Content id="tests-container">
         <Router>
           {paths.map(path => (
             <path.component path={path.path}></path.component>
