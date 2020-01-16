@@ -82,7 +82,7 @@ const DxcSelect = ({
         : spaces[padding]
       : ""
   };
-  const selectValues = { paddingValue: paddingValue, width: calculateWidth(margin, size) };
+  const selectValues = { paddingValue: paddingValue, width: "auto" };
   const classes = useStyles(selectValues);
 
   const handleSelectChange = selectedOption => {
@@ -253,6 +253,7 @@ const ListIcon = styled.img`
 `;
 
 const SelectContainer = styled.div`
+  width: ${props => calculateWidth(props.margin, props.size)};
   margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -263,6 +264,9 @@ const SelectContainer = styled.div`
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: inline-block;
+  .MuiFormControl-root {
+    width: 100%;
+  }
   .MuiFormLabel-root {
     font-size: 16px;
       color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
@@ -282,7 +286,7 @@ const SelectContainer = styled.div`
       }
   }
   .MuiSelect-select {
-    width: ${props => calculateWidth(props.margin, props.size)};
+    width: 100%;
     height: 20px;
     display: flex;
     padding-right: unset;
@@ -304,7 +308,7 @@ const SelectContainer = styled.div`
     }
   }
   .MuiInputBase-root {
-    width: ${props => calculateWidth(props.margin, props.size)};
+    width: 100%;
     &.Mui-disabled {
         opacity:0.5;
         cursor: not-allowed;
