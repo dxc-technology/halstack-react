@@ -66,6 +66,13 @@ const checkboxPropsTable = () => {
         <td>Name attribute of the input element.</td>
       </tr>
       <tr>
+        <td>disabled: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>If true, the component will be disabled.</td>
+      </tr>
+      <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
