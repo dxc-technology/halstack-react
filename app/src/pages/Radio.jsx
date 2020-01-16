@@ -65,7 +65,6 @@ function App() {
           checked={checked}
           onClick={onClick}
         />
-        Z
       </div>
 
       <div className="test-case" id="required-radio">
@@ -83,7 +82,7 @@ function App() {
         <div className="test-case" id="small-size-single-line">
           <h5>Small size - Label max size single line</h5>
           <DxcRadio
-            label="Radio b"
+            label="Small si"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -93,7 +92,7 @@ function App() {
         <div className="test-case" id="small-size-multi-line">
           <h5>Small size - Label min size multi line</h5>
           <DxcRadio
-            label="Radio bu"
+            label="Small siz"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -103,7 +102,7 @@ function App() {
         <div className="test-case" id="medium-size-single-line">
           <h5>Medium size - Label max size single line</h5>
           <DxcRadio
-            label="Radio button label siz"
+            label="Medium size example la"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -113,7 +112,7 @@ function App() {
         <div className="test-case" id="medium-size-multi-line">
           <h5>Medium size - Label min size multi line</h5>
           <DxcRadio
-            label="Radio button label size"
+            label="Medium size example lab"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -123,7 +122,7 @@ function App() {
         <div className="test-case" id="large-size-single-line">
           <h5>Large size - Label max size single line</h5>
           <DxcRadio
-            label="Radio button label size example single line radio radio r"
+            label="Large size example label one single line radio radio radi"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -133,7 +132,7 @@ function App() {
         <div className="test-case" id="large-size-multi-line">
           <h5>Large size - Label min size multi line</h5>
           <DxcRadio
-            label="Radio button label size example single line radio radio ra"
+            label="Large size example label one single line radio radio radio"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -143,7 +142,7 @@ function App() {
         <div className="test-case" id="fillParent-size-single-line">
           <h5>FillParent size - Label max size single line</h5>
           <DxcRadio
-            label="Radio button label size example single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radi"
+            label="FillParent size example label one single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio rad"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -153,31 +152,31 @@ function App() {
         <div className="test-case" id="fillParent-size-multi-line">
           <h5>FillParent size - Label min size multi line</h5>
           <DxcRadio
-            label="Radio button label size example single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio"
+            label="FillParent size example label one single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radi"
             required={true}
             checked={checked}
             onClick={onClick}
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fillContent-size-single-line">
-          <h5>FillContent size - Label max size single line</h5>
+        <div className="test-case" id="fitContent-size-single-line">
+          <h5>FitContent size - Label max size single line</h5>
           <DxcRadio
-            label="Radio button label size example single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radi"
+            label="FitContent size example label one single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio ra"
             required={true}
             checked={checked}
             onClick={onClick}
-            size="fillContent"
+            size="fitContent"
           />
         </div>
-        <div className="test-case" id="fillContent-size-multi-line">
-          <h5>FillContent size - Label min size multi line</h5>
+        <div className="test-case" id="fitContent-size-multi-line">
+          <h5>FitContent size - Label min size multi line</h5>
           <DxcRadio
-            label="Radio button label size example single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio"
+            label="FitContent size example label one single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio rad"
             required={true}
             checked={checked}
             onClick={onClick}
-            size="fillContent"
+            size="fitContent"
           />
         </div>
       </div>
