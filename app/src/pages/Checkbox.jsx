@@ -139,7 +139,7 @@ function App() {
           <h5>Large size - Label max size single line</h5>
           <DxcCheckbox
             checked={checked}
-            label="Large size example label one single line checkbox checkb"
+            label="Large size example label checkbox checkbox checkbox ch"
             onChange={onChange}
             labelPosition="after"
             size="large"
@@ -149,7 +149,7 @@ function App() {
           <h5>Large size - Label min size multi line</h5>
           <DxcCheckbox
             checked={checked}
-            label="Large size example label one single line checkbox checkbo"
+            label="Large size example label checkbox checkbox checkbox che"
             onChange={onChange}
             labelPosition="after"
             size="large"
@@ -159,7 +159,7 @@ function App() {
           <h5>FillParent size - Label max size single line</h5>
           <DxcCheckbox
             checked={checked}
-            label="FillParent size example label one single line checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox c"
+            label="FillParent size example label checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox check"
             onChange={onChange}
             labelPosition="after"
             size="fillParent"
@@ -169,7 +169,7 @@ function App() {
           <h5>FillParent size - Label min size multi line</h5>
           <DxcCheckbox
             checked={checked}
-            label="FillParent size example label one single line checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox ch"
+            label="FillParent size example label checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkb"
             onChange={onChange}
             labelPosition="after"
             size="fillParent"
@@ -179,7 +179,7 @@ function App() {
           <h5>FitContent size - Label max size single line</h5>
           <DxcCheckbox
             checked={checked}
-            label="FitContent size example label one single line checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox "
+            label="FitContent size example label checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox chec"
             onChange={onChange}
             labelPosition="after"
             size="fitContent"
@@ -189,8 +189,7 @@ function App() {
           <h5>FitContent size - Label min size multi line</h5>
           <DxcCheckbox
             checked={checked}
-            label="FitContent size example label one single line checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox c
-            "
+            label="FitContent size example label checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox checkbox check"
             onChange={onChange}
             labelPosition="after"
             size="fitContent"
