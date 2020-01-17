@@ -8,8 +8,8 @@ function App() {
   return (
     <div>
       <div>
-        <h3>Button Component</h3>
         <h4>Sizes</h4>
+        <div class="test-case" id="small-size">
         <DxcButton
           mode="basic"
           theme="light"
@@ -18,6 +18,8 @@ function App() {
           size="small"
           margin="small"
         />
+        </div>
+        <div class="test-case" id="medium-size">
         <DxcButton
           mode="basic"
           theme="light"
@@ -26,6 +28,8 @@ function App() {
           size="medium"
           margin="small"
         />
+        </div>
+        <div class="test-case" id="large-size">
         <DxcButton
           mode="basic"
           theme="light"
@@ -34,6 +38,8 @@ function App() {
           size="large"
           margin="small"
         />
+        </div>
+        <div class="test-case" id="fitContent-size">
         <DxcButton
           mode="basic"
           theme="light"
@@ -42,6 +48,8 @@ function App() {
           size="fitContent"
           margin="small"
         />
+        </div>
+        <div class="test-case" id="fillParent-size">
         <DxcButton
           mode="basic"
           theme="light"
@@ -50,69 +58,84 @@ function App() {
           size="fillParent"
           margin="small"
         />
+        </div>
       </div>
       <div>
         <h4>Margins</h4>
+        <div class="test-case" id="xxsmall-margin">
         <DxcButton
           mode="basic"
           theme="light"
           label="xxsmall"
           onClick={onClick}
-          size="medium"
+          size="large"
           margin="xxsmall"
         />
+        </div>
+        <div class="test-case" id="xsmall-margin">
         <DxcButton
           mode="basic"
           theme="light"
           label="xsmall"
           onClick={onClick}
-          size="medium"
+          size="large"
           margin="xsmall"
         />
+        </div>
+        <div class="test-case" id="small-margin">
         <DxcButton
           mode="basic"
           theme="light"
           label="small"
           onClick={onClick}
-          size="medium"
+          size="large"
           margin="small"
         />
+        </div>
+        <div class="test-case" id="medium-margin">
         <DxcButton
           mode="basic"
           theme="light"
           label="medium"
           onClick={onClick}
-          size="medium"
+          size="large"
           margin="medium"
         />
+        </div>
+        <div class="test-case" id="large-margin">
         <DxcButton
           mode="basic"
           theme="light"
           label="large"
           onClick={onClick}
-          size="medium"
+          size="large"
           margin="large"
         />
+        </div>
+        <div class="test-case" id="xlarge-margin">
         <DxcButton
           mode="basic"
           theme="light"
           label="xlarge"
           onClick={onClick}
-          size="medium"
+          size="large"
           margin="xlarge"
         />
+        </div>
+        <div class="test-case" id="xxlarge">
         <DxcButton
           mode="basic"
           theme="light"
           label="xxlarge"
           onClick={onClick}
-          size="medium"
+          size="large"
           margin="xxlarge"
         />
+        </div>
       </div>
-      <h4>Basic Button</h4>
-      <div style={{ display: "flex" }}>
-        <div>
+      <div>
+        <div class="test-case" id="basic-single-line">
+          <h4>Basic button single line</h4>
           <DxcButton
             mode="basic"
             label="Button"
@@ -120,7 +143,10 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div>
+        <div class="test-case" id="basic-max-line-icon-after">
+          <h4>
+            Basic button size medium - Label max size single line icon after
+          </h4>
           <DxcButton
             mode="basic"
             theme="light"
@@ -132,7 +158,10 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div>
+        <div class="test-case" id="basic-max-line-icon-before">
+          <h4>
+            Basic button size medium - Label max size single line icon before
+          </h4>
           <DxcButton
             mode="basic"
             theme="light"
@@ -144,7 +173,10 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div>
+        <div class="test-case" id="basic-min-multiline-icon-after">
+          <h4>
+            Basic button size medium - Label min size multi line icon after
+          </h4>
           <DxcButton
             mode="basic"
             theme="light"
@@ -156,7 +188,10 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div>
+        <div class="test-case" id="basic-min-multiline-icon-before">
+          <h4>
+            Basic button size medium - Label min size multi line icon before
+          </h4>
           <DxcButton
             mode="basic"
             theme="light"
@@ -168,217 +203,271 @@ function App() {
             margin="xsmall"
           />
         </div>
-      </div>
-      <h4>Raised Button</h4>
-      <div style={{ display: "flex" }}>
-        <div>
-          <DxcButton
-            mode="raised"
-            label="Button"
-            onClick={onClick}
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="raised"
-            theme="light"
-            label="But"
-            iconPosition="after"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="raised"
-            theme="light"
-            label="But"
-            iconPosition="before"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="raised"
-            theme="light"
-            label="ButL"
-            iconPosition="after"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="raised"
-            theme="light"
-            label="ButM"
-            iconPosition="before"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-      </div>
-      <h4>Flat Button</h4>
-      <div style={{ display: "flex" }}>
-        <div>
-          <DxcButton
-            mode="flat"
-            label="Button"
-            onClick={onClick}
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="flat"
-            theme="light"
-            label="But"
-            iconPosition="after"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="flat"
-            theme="light"
-            label="But"
-            iconPosition="before"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="flat"
-            theme="light"
-            label="ButL"
-            iconPosition="after"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="flat"
-            theme="light"
-            label="ButM"
-            iconPosition="before"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-      </div>
-      <h4>Outlined Button</h4>
-      <div style={{display:"flex"}}>
-        <div>
-          <DxcButton
-            mode="outlined"
-            label="Button"
-            onClick={onClick}
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="outlined"
-            theme="light"
-            label="But"
-            iconPosition="after"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="outlined"
-            theme="light"
-            label="But"
-            iconPosition="before"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="outlined"
-            theme="light"
-            label="ButL"
-            iconPosition="after"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div>
-          <DxcButton
-            mode="outlined"
-            theme="light"
-            label="ButM"
-            iconPosition="before"
-            onClick={onClick}
-            iconSrc={homeLogo}
-            size="medium"
-            margin="xsmall"
-          />
-        </div>
-      </div>
-      <h4>Dark Theme</h4>
-      <div style={{display:"flex", "background":"black"}}>
-        <div>
+        <div
+          class="test-case"
+          style={{ background: "black" }}
+          id="basic-dark-theme"
+        >
+          <h4 style={{ color: "white" }}>Basic button dark theme</h4>
           <DxcButton
             mode="basic"
-            label="Basic button"
+            label="Button"
             theme="dark"
             onClick={onClick}
             margin="xsmall"
           />
         </div>
-        <div>
-        <DxcButton
+      </div>
+      <div>
+        <div class="test-case" id="raised-single-line">
+          <h4>Raised button single line</h4>
+          <DxcButton
             mode="raised"
-            label="Raised button"
+            label="Button"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="raised-max-line-icon-after">
+          <h4>
+            Raised button size medium - Label max size single line icon after
+          </h4>
+          <DxcButton
+            mode="raised"
+            theme="light"
+            label="But"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="raised-max-line-icon-before">
+          <h4>
+            Raised button size medium - Label max size single line icon before
+          </h4>
+          <DxcButton
+            mode="raised"
+            theme="light"
+            label="But"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="raised-min-multiline-icon-after">
+          <h4>
+            Raised button size medium - Label min size multi line icon after
+          </h4>
+          <DxcButton
+            mode="raised"
+            theme="light"
+            label="ButL"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="raised-min-multiline-icon-before">
+          <h4>
+            Raised button size medium - Label min size multi line icon before
+          </h4>
+          <DxcButton
+            mode="raised"
+            theme="light"
+            label="ButM"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div
+          class="test-case"
+          style={{ background: "black" }}
+          id="raised-dark-theme"
+        >
+          <h4 style={{ color: "white" }}>Raised button dark theme</h4>
+          <DxcButton
+            mode="raised"
+            label="Button"
             theme="dark"
             onClick={onClick}
             margin="xsmall"
           />
         </div>
-        <div>
-        <DxcButton
+      </div>
+      <div>
+        <div class="test-case" id="flat-single-line">
+          <h4>Flat button single line</h4>
+          <DxcButton
             mode="flat"
-            label="Flat button"
+            label="Button"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="flat-max-line-icon-after">
+          <h4>
+            Flat button size medium - Label max size single line icon after
+          </h4>
+          <DxcButton
+            mode="flat"
+            theme="light"
+            label="But"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="flat-max-line-icon-before">
+          <h4>
+            Flat button size medium - Label max size single line icon before
+          </h4>
+          <DxcButton
+            mode="flat"
+            theme="light"
+            label="But"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="flat-min-multiline-icon-after">
+          <h4>
+            Flat button size medium - Label min size multi line icon after
+          </h4>
+          <DxcButton
+            mode="flat"
+            theme="light"
+            label="ButL"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="flat-min-multiline-icon-before">
+          <h4>
+            Flat button size medium - Label min size multi line icon before
+          </h4>
+          <DxcButton
+            mode="flat"
+            theme="light"
+            label="ButM"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div
+          class="test-case"
+          style={{ background: "black" }}
+          id="flat-dark-theme"
+        >
+          <h4 style={{ color: "white" }}>Flat button dark theme</h4>
+          <DxcButton
+            mode="flat"
+            label="Button"
             theme="dark"
             onClick={onClick}
             margin="xsmall"
           />
         </div>
-        <div>
-        <DxcButton
+      </div>
+      <div>
+        <div class="test-case" id="outlined-single-line">
+          <h4>Outlined button single line</h4>
+          <DxcButton
             mode="outlined"
-            label="Outlined button"
+            label="Button"
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="outlined-max-line-icon-after">
+          <h4>
+            Outlined button size medium - Label max size single line icon after
+          </h4>
+          <DxcButton
+            mode="outlined"
+            theme="light"
+            label="But"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="outlined-max-line-icon-before">
+          <h4>
+            Outlined button size medium - Label max size single line icon before
+          </h4>
+          <DxcButton
+            mode="outlined"
+            theme="light"
+            label="But"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="outlined-min-multiline-icon-after">
+          <h4>
+            Outlined button size medium - Label min size multi line icon after
+          </h4>
+          <DxcButton
+            mode="outlined"
+            theme="light"
+            label="ButL"
+            iconPosition="after"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div class="test-case" id="outlined-min-multiline-icon-before">
+          <h4>
+            Outlined button size medium - Label min size multi line icon before
+          </h4>
+
+          <DxcButton
+            mode="outlined"
+            theme="light"
+            label="ButM"
+            iconPosition="before"
+            onClick={onClick}
+            iconSrc={homeLogo}
+            size="medium"
+            margin="xsmall"
+          />
+        </div>
+        <div
+          class="test-case"
+          style={{ background: "black" }}
+          id="outlined-dark-theme"
+        >
+          <h4 style={{ color: "white" }}>Outlined button dark theme</h4>
+          <DxcButton
+            mode="outlined"
+            label="Button"
             theme="dark"
             onClick={onClick}
             margin="xsmall"
