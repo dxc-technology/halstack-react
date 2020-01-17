@@ -122,7 +122,7 @@ function App() {
         <div className="test-case" id="large-size-single-line">
           <h5>Large size - Label max size single line</h5>
           <DxcRadio
-            label="Large size example label one single line radio radio radi"
+            label="Large size example label radio radio radio radio radi"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -132,7 +132,7 @@ function App() {
         <div className="test-case" id="large-size-multi-line">
           <h5>Large size - Label min size multi line</h5>
           <DxcRadio
-            label="Large size example label one single line radio radio radio"
+            label="Large size example label radio radio radio radio radio"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -142,7 +142,7 @@ function App() {
         <div className="test-case" id="fillParent-size-single-line">
           <h5>FillParent size - Label max size single line</h5>
           <DxcRadio
-            label="FillParent size example label one single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio rad"
+            label="FillParent size example label radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio rad"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -152,7 +152,7 @@ function App() {
         <div className="test-case" id="fillParent-size-multi-line">
           <h5>FillParent size - Label min size multi line</h5>
           <DxcRadio
-            label="FillParent size example label one single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radi"
+            label="FillParent size example label radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radi"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -162,7 +162,7 @@ function App() {
         <div className="test-case" id="fitContent-size-single-line">
           <h5>FitContent size - Label max size single line</h5>
           <DxcRadio
-            label="FitContent size example label one single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio ra"
+            label="FitContent size example label radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio ra"
             required={true}
             checked={checked}
             onClick={onClick}
@@ -172,7 +172,7 @@ function App() {
         <div className="test-case" id="fitContent-size-multi-line">
           <h5>FitContent size - Label min size multi line</h5>
           <DxcRadio
-            label="FitContent size example label one single line radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio rad"
+            label="FitContent size example label radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio rad"
             required={true}
             checked={checked}
             onClick={onClick}
