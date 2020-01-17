@@ -180,7 +180,7 @@ const DxcSelect = ({
               <MenuItem padding={padding} id={option.value} value={option.value} disableRipple={disableRipple}>
                 {multiple && <DxcCheckbox size={"fitContent"} disableRipple={true} checked={isChecked(selectedValue, value, option)} />}
                 <OptionContainer iconPosition={iconPosition}>
-                  {option.iconSrc && <ListIcon src={option.iconSrc} iconPosition={iconPosition} />}{" "}
+                  {option.iconSrc && <ListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />}{" "}
                   <LabelCont>{option.label}</LabelCont>
                 </OptionContainer>
               </MenuItem>
@@ -248,8 +248,8 @@ const ListIcon = styled.img`
   max-width: 20px;
   width: 20px;
   height: 20px;
-  margin-left: ${props => (props.iconPosition === "after" && "10px") || "0px"};
-  margin-right: ${props => (props.iconPosition === "before" && "10px") || "0px"};
+  margin-left: ${props => (props.iconPosition === "after" && props.label!=="" && "10px") || "0px"};
+  margin-right: ${props => (props.iconPosition === "before" && props.label!=="" && "10px") || "0px"};
 `;
 
 const SelectContainer = styled.div`
@@ -334,6 +334,9 @@ const SelectContainer = styled.div`
   }
   .MuiSelect-icon {
     color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+  }
+  & label{
+    word-break: break-all;    
   }
 `;
 
