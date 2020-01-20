@@ -85,6 +85,15 @@ const togglePropsTable = () => {
           in order to specify different margin sizes.
         </td>
       </tr>
+      <tr>
+        <td>size: string | object</td>
+        <td>
+          <code>"medium"</code>
+        </td>
+        <td>
+          Size of the component ('small' | 'medium' | 'large'| 'fitContent' | 'fillParent').
+        </td>
+      </tr>
     </DxcTable>
   );
 };

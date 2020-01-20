@@ -39,6 +39,13 @@ const buttonPropsTable = () => {
           in order to specify different padding sizes.
         </td>
       </tr>
+      <tr>
+        <td>size: string | object</td>
+        <td></td>
+        <td>
+          Size of the component ('small' | 'medium' | 'large' | 'fillParent').
+        </td>
+      </tr>
     </DxcTable>
   );
 };
