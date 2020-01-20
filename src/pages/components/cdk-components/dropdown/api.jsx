@@ -116,6 +116,13 @@ const dropdownPropsTable = () => {
           to specify different padding sizes.
         </td>
       </tr>
+      <tr>
+        <td>size: string | object</td>
+        <td>
+          <code>"medium"</code>
+        </td>
+        <td>Size of the component ('small' | 'medium' | 'large').</td>
+      </tr>
     </DxcTable>
   );
 };
