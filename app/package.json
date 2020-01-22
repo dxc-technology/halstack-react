@@ -17,7 +17,8 @@
     "eject": "react-scripts eject",
     "cy:open": "cypress open",
     "cy:fast": "cypress run --spec 'cypress/integration/fast-visual-regression.js' --config video=false",
-    "cy:detailed": "cypress run --spec 'cypress/integration/detailed-visual-regression.js' --config video=false"
+    "cy:detailed": "cypress run --spec 'cypress/integration/detailed-visual-regression.js' --config video=false",
+    "cy:updateSnapshot":"cypress run --config video=false --env updateSnapshots=true"
   },
   "eslintConfig": {
     "extends": "react-app"
