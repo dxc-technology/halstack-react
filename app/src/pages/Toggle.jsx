@@ -1,35 +1,20 @@
 import React from "react";
 import { DxcToggle } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
-import facebookPath from "../images/facebook.svg";
+import icon from "../images/favorite.svg";
 
 function App() {
   const [selected, changeSelected] = useState(true);
-  const [selected2, changeSelected2] = useState(false);
-  const [selected3, changeSelected3] = useState(true);
-  const [selected4, changeSelected4] = useState(true);
 
   const onClick = newValue => {
     changeSelected(newValue);
-  };
-  const onClick3 = newValue => {
-    changeSelected3(newValue);
-  };
-  const onClick4 = newValue => {
-    changeSelected4(newValue);
   };
 
   return (
     <div>
       <div>
         <h4>Light theme</h4>
-        <div>
-          <DxcToggle
-            label="Toggle"
-            selected={selected}
-            onClick={onClick}
-          ></DxcToggle>
-        </div>
+        <DxcToggle label="Toggle" selected={selected} onClick={onClick} />
       </div>
 
       <div>
@@ -40,43 +25,372 @@ function App() {
             selected={selected}
             theme="dark"
             onClick={onClick}
-          ></DxcToggle>
+          />
+        </div>
+      </div>
+
+      <div>
+        <h4>Basic toggle</h4>
+        <DxcToggle label="Basic toggle" selected={selected} onClick={onClick} />
+      </div>
+
+      <div>
+        <h4>Outlined toggle</h4>
+        <DxcToggle
+          label="Outlined toggle"
+          mode="outlined"
+          selected={selected}
+          onClick={onClick}
+        />
+      </div>
+      <div>
+        <h4>Toggle with icon</h4>
+        <DxcToggle iconSrc={icon} selected={selected} onClick={onClick} />
+      </div>
+      <div>
+        <h4>Disabled toggle</h4>
+        <DxcToggle
+          label="Toggle"
+          disabled={true}
+          selected={selected}
+          onClick={onClick}
+        />
+      </div>
+
+      <div>
+        <h4>Sizes</h4>
+        <div class="test-case" id="small-size-single-line">
+          <h5>Small size - Label max size single line</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            size="small"
+          />
+        </div>
+        <div class="test-case" id="small-size-multi-line">
+          <h5>Small size - Label min size multiline</h5>
+          <DxcToggle
+            label="Toggle e"
+            selected={selected}
+            onClick={onClick}
+            size="small"
+          />
+        </div>
+
+        <div class="test-case" id="medium-size-single-line">
+          <h5>Medium size - Label max size single line</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            size="medium"
+          />
+        </div>
+        <div class="test-case" id="medium-size-multiline">
+          <h5>Medium size - Label min size multiline</h5>
+          <DxcToggle
+            label="Toggle e"
+            selected={selected}
+            onClick={onClick}
+            size="medium"
+          />
+        </div>
+        <div class="test-case" id="medium-size-single-line-icon-before">
+          <h5>Medium size - Label max size single line icon before</h5>
+          <DxcToggle
+            label="Toggle"
+            iconSrc={icon}
+            selected={selected}
+            onClick={onClick}
+            size="medium"
+          />
+        </div>
+        <div class="test-case" id="medium-size-multiline-icon-before">
+          <h5>Medium size - Label min size multiline icon before</h5>
+          <DxcToggle
+            label="Toggle e"
+            iconSrc={icon}
+            selected={selected}
+            onClick={onClick}
+            size="medium"
+          />
+        </div>
+        <div class="test-case" id="medium-size-single-line-icon-after">
+          <h5>Medium size - Label max size single line icon after</h5>
+          <DxcToggle
+            label="Toggle"
+            iconSrc={icon}
+            iconPosition="after"
+            selected={selected}
+            onClick={onClick}
+            size="medium"
+          />
+        </div>
+        <div class="test-case" id="medium-size-multiline-icon-after">
+          <h5>Medium size - Label min size multiline icon after</h5>
+          <DxcToggle
+            label="Toggle e"
+            iconSrc={icon}
+            iconPosition="after"
+            selected={selected}
+            onClick={onClick}
+            size="medium"
+          />
+        </div>
+
+        <div class="test-case" id="large-size-single-line">
+          <h5>Large size - Label max size single line</h5>
+          <DxcToggle
+            label="Toggle example toggl"
+            selected={selected}
+            onClick={onClick}
+            size="large"
+          />
+        </div>
+        <div class="test-case" id="large-size-multiline">
+          <h5>Large size - Label min size multiline</h5>
+          <DxcToggle
+            label="Toggle example toggle"
+            selected={selected}
+            onClick={onClick}
+            size="large"
+          />
+        </div>
+        <div class="test-case" id="large-size-single-line-icon-before">
+          <h5>Large size - Label max size single line icon before</h5>
+          <DxcToggle
+            label="Toggle example to"
+            iconSrc={icon}
+            selected={selected}
+            onClick={onClick}
+            size="large"
+          />
+        </div>
+        <div class="test-case" id="large-size-multiline-icon-before">
+          <h5>Large size - Label min size multiline icon before</h5>
+          <DxcToggle
+            label="Toggle example tog"
+            iconSrc={icon}
+            selected={selected}
+            onClick={onClick}
+            size="large"
+          />
+        </div>
+        <div class="test-case" id="large-size-single-line-icon-after">
+          <h5>Large size - Label max size single line icon after</h5>
+          <DxcToggle
+            label="Toggle example to"
+            iconSrc={icon}
+            iconPosition="after"
+            selected={selected}
+            onClick={onClick}
+            size="large"
+          />
+        </div>
+        <div class="test-case" id="large-size-multiline-icon-after">
+          <h5>Large size - Label min size multiline icon after</h5>
+          <DxcToggle
+            label="Toggle example tog"
+            iconSrc={icon}
+            iconPosition="after"
+            selected={selected}
+            onClick={onClick}
+            size="large"
+          />
+        </div>
+
+        <div class="test-case" id="fitContent-size-single-line">
+          <h5>FitContent size - Label max size single line</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle exam"
+            selected={selected}
+            onClick={onClick}
+            size="fitContent"
+          />
+        </div>
+
+        <div class="test-case" id="fitContent-size-multiline">
+          <h5>FitContent size - Label min size multiline</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle examp"
+            selected={selected}
+            onClick={onClick}
+            size="fitContent"
+          />
+        </div>
+
+        <div class="test-case" id="fitContent-size-single-line-icon-before">
+          <h5>FitContent size - Label max size single line icon before</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle e"
+            iconSrc={icon}
+            selected={selected}
+            onClick={onClick}
+            size="fitContent"
+          />
+        </div>
+        <div class="test-case" id="fitContent-size-multiline-icon-before">
+          <h5>FitContent size - Label min size multiline icon before</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle ex"
+            iconSrc={icon}
+            selected={selected}
+            onClick={onClick}
+            size="fitContent"
+          />
+        </div>
+        <div class="test-case" id="fitContent-size-single-line-icon-after">
+          <h5>FitContent size - Label max size single line icon after</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle e"
+            iconSrc={icon}
+            iconPosition="after"
+            selected={selected}
+            onClick={onClick}
+            size="fitContent"
+          />
+        </div>
+        <div class="test-case" id="fitContent-size-multiline-icon-after">
+          <h5>FitContent size - Label min size multiline icon after</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle ex"
+            iconSrc={icon}
+            iconPosition="after"
+            selected={selected}
+            onClick={onClick}
+            size="fitContent"
+          />
+        </div>
+
+        <div class="test-case" id="fillParent-size-single-line">
+          <h5>FillParent size - Label max size single line</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle exam"
+            selected={selected}
+            onClick={onClick}
+            size="fillParent"
+          />
+        </div>
+        <div class="test-case" id="fillParent-size-multiline">
+          <h5>FillParent size - Label min size multiline</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle examp"
+            selected={selected}
+            onClick={onClick}
+            size="fillParent"
+          />
+        </div>
+        <div class="test-case" id="fillParent-size-single-line-icon-before">
+          <h5>FillParent size - Label max size single line icon before</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle e"
+            iconSrc={icon}
+            selected={selected}
+            onClick={onClick}
+            size="fillParent"
+          />
+        </div>
+        <div class="test-case" id="fillParent-size-multiline-icon-before">
+          <h5>FillParent size - Label min size multiline icon before</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle ex"
+            iconSrc={icon}
+            selected={selected}
+            onClick={onClick}
+            size="fillParent"
+          />
+        </div>
+        <div class="test-case" id="fillParent-size-single-line-icon-after">
+          <h5>FillParent size - Label max size single line icon after</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle e"
+            iconSrc={icon}
+            iconPosition="after"
+            selected={selected}
+            onClick={onClick}
+            size="fillParent"
+          />
+        </div>
+        <div class="test-case" id="fillParent-size-multiline-icon-after">
+          <h5>FillParent size - Label min size multiline icon after</h5>
+          <DxcToggle
+            label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle ex"
+            iconSrc={icon}
+            iconPosition="after"
+            selected={selected}
+            onClick={onClick}
+            size="fillParent"
+          />
+        </div>
+      </div>
+      <div>
+        <h4>Margins</h4>
+        <div className="test-case" id="xxsmall-margin">
+          <h5>xxsmall margin</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            margin="xxsmall"
+          />
+        </div>
+        <div className="test-case" id="xsmall-margin">
+          <h5>xsmall margin</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            margin="xsmall"
+          />
+        </div>
+        <div className="test-case" id="small-margin">
+          <h5>Small margin</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            margin="small"
+          />
+        </div>
+        <div className="test-case" id="medium-margin">
+          <h5>Medium margin</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            margin="medium"
+          />
+        </div>
+        <div className="test-case" id="large-margin">
+          <h5>Large margin</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            margin="large"
+          />
+        </div>
+        <div className="test-case" id="xlarge-margin">
+          <h5>xlarge margin</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            margin="xlarge"
+          />
+        </div>
+        <div className="test-case" id="xxlarge-margin">
+          <h5>xxlarge margin</h5>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+            margin="xxlarge"
+          />
         </div>
       </div>
     </div>
-    // <div>
-    //   <DxcToggle
-    //     label="Default toggle"
-    //     selected={selected}
-    //     onClick={onClick}
-    //     margin="medium"
-    //     size="large"
-    //   ></DxcToggle>
-    //   <DxcToggle
-    //     label="Disabled toggle"
-    //     selected={selected2}
-    //     disabled={true}
-    //     onClick={onClick}
-    //     margin="medium"
-    //     size="medium"
-    //   ></DxcToggle>
-    //   <DxcToggle
-    //     iconSrc={facebookPath}
-    //     selected={selected3}
-    //     onClick={onClick3}
-    //     margin="medium"
-    //     size="small"
-    //   ></DxcToggle>
-    //   <div style={{width: "200px"}}>
-    //     <DxcToggle
-    //       label="Outlined toggle"
-    //       selected={selected4}
-    //       mode="outlined"
-    //       onClick={onClick4}
-    //       margin="medium"
-    //     ></DxcToggle>
-    //   </div>
-    // </div>
   );
 }
 
