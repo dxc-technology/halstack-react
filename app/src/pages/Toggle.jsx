@@ -21,38 +21,62 @@ function App() {
 
   return (
     <div>
-      <DxcToggle
-        label="Default toggle"
-        selected={selected}
-        onClick={onClick}
-        margin="medium"
-        size="large"
-      ></DxcToggle>
-      <DxcToggle
-        label="Disabled toggle"
-        selected={selected2}
-        disabled={true}
-        onClick={onClick}
-        margin="medium"
-        size="medium"
-      ></DxcToggle>
-      <DxcToggle
-        iconSrc={facebookPath}
-        selected={selected3}
-        onClick={onClick3}
-        margin="medium"
-        size="small"
-      ></DxcToggle>
-      <div style={{width: "200px"}}>
-        <DxcToggle
-          label="Outlined toggle"
-          selected={selected4}
-          mode="outlined"
-          onClick={onClick4}
-          margin="medium"
-        ></DxcToggle>
+      <div>
+        <h4>Light theme</h4>
+        <div>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            onClick={onClick}
+          ></DxcToggle>
+        </div>
+      </div>
+
+      <div>
+        <h4>Dark theme</h4>
+        <div style={{ background: "#000000" }}>
+          <DxcToggle
+            label="Toggle"
+            selected={selected}
+            theme="dark"
+            onClick={onClick}
+          ></DxcToggle>
+        </div>
       </div>
     </div>
+    // <div>
+    //   <DxcToggle
+    //     label="Default toggle"
+    //     selected={selected}
+    //     onClick={onClick}
+    //     margin="medium"
+    //     size="large"
+    //   ></DxcToggle>
+    //   <DxcToggle
+    //     label="Disabled toggle"
+    //     selected={selected2}
+    //     disabled={true}
+    //     onClick={onClick}
+    //     margin="medium"
+    //     size="medium"
+    //   ></DxcToggle>
+    //   <DxcToggle
+    //     iconSrc={facebookPath}
+    //     selected={selected3}
+    //     onClick={onClick3}
+    //     margin="medium"
+    //     size="small"
+    //   ></DxcToggle>
+    //   <div style={{width: "200px"}}>
+    //     <DxcToggle
+    //       label="Outlined toggle"
+    //       selected={selected4}
+    //       mode="outlined"
+    //       onClick={onClick4}
+    //       margin="medium"
+    //     ></DxcToggle>
+    //   </div>
+    // </div>
   );
 }
 

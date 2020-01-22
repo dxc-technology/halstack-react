@@ -123,7 +123,7 @@ function App() {
       <div>
         <h4>Sizes</h4>
         <div className="test-case" id="small-single-line-label-text">
-          <h5>Small size - Label and assistive text min size single line</h5>
+          <h5>Small size - Label and assistive text max size single line</h5>
           <DxcInput
             label="Label "
             value={inputValue}
@@ -134,7 +134,7 @@ function App() {
         </div>
         <div className="test-case" id="small-single-line-label-text-value">
           <h5>
-            Small size - Label, assistive text and value min size single line
+            Small size - Label, assistive text and value max size single line
           </h5>
           <DxcInput
             label="Label"
@@ -146,7 +146,7 @@ function App() {
         </div>
         <div className="test-case" id="small-single-line-min-size">
           <h5>
-            Small size - Label, assistive text and value max size single line
+            Small size - Label, assistive text and value min size single line
           </h5>
           <DxcInput
             label="Label i"
@@ -157,7 +157,7 @@ function App() {
           />
         </div>
         <div className="test-case" id="small-multi-line-label-text">
-          <h5>Small size - Label and assistive text min size multiline</h5>
+          <h5>Small size - Label and assistive text max size multiline</h5>
           <DxcInput
             label="Input"
             value={inputValue}
@@ -167,20 +167,9 @@ function App() {
             size="small"
           />
         </div>
-        <div className="test-case" id="small-multi-line-label-text">
-          <h5>Small size - Label and assistive text min size multiline</h5>
-          <DxcInput
-            label="Input"
-            value={inputValue}
-            multiline={true}
-            onChange={onChange}
-            size="small"
-          />
-        </div>
-
         <div className="test-case" id="small-multi-line-label-text-value">
           <h5>
-            Small size - Label, assistive text and value min size multiline
+            Small size - Label, assistive text and value max size multiline
           </h5>
           <DxcInput
             label="Input"
@@ -193,7 +182,7 @@ function App() {
         </div>
         <div className="test-case" id="small-multi-line-min-size">
           <h5>
-            Small size - Label, assistive text and value max size multiline
+            Small size - Label, assistive text and value min size multiline
           </h5>
           <DxcInput
             label="Input i"
@@ -204,8 +193,8 @@ function App() {
             size="small"
           />
         </div>
-        <div className="test-case" id="small-min-size-prefix">
-          <h5>Small size - Value min size single line with prefix</h5>
+        <div className="test-case" id="small-max-size-prefix">
+          <h5>Small size - Value max size single line with prefix</h5>
           <DxcInput
             value="I"
             prefix="pre"
@@ -214,8 +203,8 @@ function App() {
             size="small"
           />
         </div>
-        <div className="test-case" id="small-min-size-suffix">
-          <h5>Small size - Value min size single line with suffix</h5>
+        <div className="test-case" id="small-max-size-suffix">
+          <h5>Small size - Value max size single line with suffix</h5>
           <DxcInput
             value="I"
             suffix="suf"
@@ -224,9 +213,9 @@ function App() {
             size="small"
           />
         </div>
-        <div className="test-case" id="small-min-size-prefix-suffix">
+        <div className="test-case" id="small-max-size-prefix-suffix">
           <h5>
-            Small size - Value min size single line with prefix and suffix
+            Small size - Value max size single line with prefix and suffix
           </h5>
           <DxcInput
             value=""
@@ -239,7 +228,7 @@ function App() {
           />
         </div>
         <div className="test-case" id="medium-single-line-label-text">
-          <h5>Medium size - Label and assistive text min size single line</h5>
+          <h5>Medium size - Label and assistive text max size single line</h5>
           <DxcInput
             label="Input label input label input lab"
             value={inputValue}
@@ -250,7 +239,7 @@ function App() {
         </div>
         <div className="test-case" id="medium-single-line-label-text-value">
           <h5>
-            Medium size - Label, assistive text and value min size single line
+            Medium size - Label, assistive text and value max size single line
           </h5>
           <DxcInput
             label="Input label input label input lab"
@@ -262,7 +251,7 @@ function App() {
         </div>
         <div className="test-case" id="medium-single-line-min-size">
           <h5>
-            Medium size - Label, assistive text and value max size single line
+            Medium size - Label, assistive text and value min size single line
           </h5>
           <DxcInput
             label="Input label input label input labe"
@@ -273,7 +262,7 @@ function App() {
           />
         </div>
         <div className="test-case" id="medium-multi-line-label-text">
-          <h5>Medium size - Label and assistive text min size multiline</h5>
+          <h5>Medium size - Label and assistive text max size multiline</h5>
           <DxcInput
             label="Input label example input input"
             value={inputValue}
@@ -285,7 +274,7 @@ function App() {
         </div>
         <div className="test-case" id="medium-multi-line-label-text-value">
           <h5>
-            Medium size - Label, assistive text and value min size multiline
+            Medium size - Label, assistive text and value max size multiline
           </h5>
           <DxcInput
             label="Input label example input input"
@@ -298,7 +287,7 @@ function App() {
         </div>
         <div className="test-case" id="medium-multi-line-min-size">
           <h5>
-            Medium size - Label, assistive text and value max size multiline
+            Medium size - Label, assistive text and value min size multiline
           </h5>
           <DxcInput
             label="Input label example input input i"
@@ -309,8 +298,8 @@ function App() {
             size="medium"
           />
         </div>
-        <div className="test-case" id="medium-min-size-prefix">
-          <h5>Medium size - Value min size single line with prefix</h5>
+        <div className="test-case" id="medium-max-size-prefix">
+          <h5>Medium size - Value max size single line with prefix</h5>
           <DxcInput
             value="Input value input value inp"
             prefix="pre"
@@ -319,8 +308,8 @@ function App() {
             size="medium"
           />
         </div>
-        <div className="test-case" id="medium-min-size-suffix">
-          <h5>Medium size - Value min size single line with suffix</h5>
+        <div className="test-case" id="medium-max-size-suffix">
+          <h5>Medium size - Value max size single line with suffix</h5>
           <DxcInput
             value="Input value input value inp"
             suffix="suf"
@@ -329,9 +318,9 @@ function App() {
             size="medium"
           />
         </div>
-        <div className="test-case" id="medium-min-size-preffix-suffix">
+        <div className="test-case" id="medium-max-size-preffix-suffix">
           <h5>
-            Medium size - Value min size single line with prefix and suffix
+            Medium size - Value max size single line with prefix and suffix
           </h5>
           <DxcInput
             value="Input value input valu"
@@ -344,7 +333,7 @@ function App() {
           />
         </div>
         <div className="test-case" id="large-single-line-label-text">
-          <h5>Large size - Label and assistive text min size single line</h5>
+          <h5>Large size - Label and assistive text max size single line</h5>
           <DxcInput
             label="Input label input label input label input label input label input l"
             value={inputValue}
@@ -355,7 +344,7 @@ function App() {
         </div>
         <div className="test-case" id="large-single-line-label-text-value">
           <h5>
-            Large size - Label, assistive text and value min size single line
+            Large size - Label, assistive text and value max size single line
           </h5>
           <DxcInput
             label="Input label input label input label input label input label input l"
@@ -367,7 +356,7 @@ function App() {
         </div>
         <div className="test-case" id="large-single-line-min-size">
           <h5>
-            Large size - Label, assistive text and value max size single line
+            Large size - Label, assistive text and value min size single line
           </h5>
           <DxcInput
             label="Input label input label input label input label input label input la"
@@ -378,7 +367,7 @@ function App() {
           />
         </div>
         <div className="test-case" id="large-multi-line-label-text">
-          <h5>Large size - Label and assistive text min size multiline</h5>
+          <h5>Large size - Label and assistive text max size multiline</h5>
           <DxcInput
             label="Input label example input input input input input input input in"
             value={inputValue}
@@ -390,7 +379,7 @@ function App() {
         </div>
         <div className="test-case" id="large-multi-line-label-text-value">
           <h5>
-            Large size - Label, assistive text and value min size multiline
+            Large size - Label, assistive text and value max size multiline
           </h5>
           <DxcInput
             label="Input label example input input input input input input input in"
@@ -403,7 +392,7 @@ function App() {
         </div>
         <div className="test-case" id="large-multi-line-min-size">
           <h5>
-            Large size - Label, assistive text and value max size multiline
+            Large size - Label, assistive text and value min size multiline
           </h5>
           <DxcInput
             label="Input label example input input input input input input input inp"
@@ -414,8 +403,8 @@ function App() {
             size="large"
           />
         </div>
-        <div className="test-case" id="large-min-size-prefix">
-          <h5>Large size - Value min size single line with prefix</h5>
+        <div className="test-case" id="large-max-size-prefix">
+          <h5>Large size - Value max size single line with prefix</h5>
           <DxcInput
             value="Input value input value input value input value input value i"
             prefix="pre"
@@ -424,8 +413,8 @@ function App() {
             size="large"
           />
         </div>
-        <div className="test-case" id="large-min-size-suffix">
-          <h5>Large size - Value min size single line with suffix</h5>
+        <div className="test-case" id="large-max-size-suffix">
+          <h5>Large size - Value max size single line with suffix</h5>
           <DxcInput
             value="Input value input value input value input value input value i"
             suffix="suf"
@@ -434,9 +423,9 @@ function App() {
             size="large"
           />
         </div>
-        <div className="test-case" id="large-min-size-prefix-suffix">
+        <div className="test-case" id="large-max-size-prefix-suffix">
           <h5>
-            Large size - Value min size single line with prefix and suffix
+            Large size - Value max size single line with prefix and suffix
           </h5>
           <DxcInput
             value="Input value input value input value input value input v"
@@ -450,7 +439,7 @@ function App() {
         </div>
         <div className="test-case" id="fillParent-single-line-label-text">
           <h5>
-            FillParent size - Label and assistive text min size single line
+            FillParent size - Label and assistive text max size single line
           </h5>
           <DxcInput
             label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input i"
@@ -462,7 +451,7 @@ function App() {
         </div>
         <div className="test-case" id="fillParent-single-line-label-text-value">
           <h5>
-            FillParent size - Label, assistive text and value min size single
+            FillParent size - Label, assistive text and value max size single
             line
           </h5>
           <DxcInput
@@ -475,7 +464,7 @@ function App() {
         </div>
         <div className="test-case" id="fillParent-single-line-min-size">
           <h5>
-            FillParent size - Label, assistive text and value max size single
+            FillParent size - Label, assistive text and value min size single
             line
           </h5>
           <DxcInput
@@ -487,9 +476,7 @@ function App() {
           />
         </div>
         <div className="test-case" id="fillParent-multi-line-label-text">
-          <h5>
-            FillParent size - Label and assistive text min size multiline
-          </h5>
+          <h5>FillParent size - Label and assistive text max size multiline</h5>
           <DxcInput
             label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input i"
             value={inputValue}
@@ -501,7 +488,7 @@ function App() {
         </div>
         <div className="test-case" id="fillParent-multi-line-label-text-value">
           <h5>
-            FillParent size - Label, assistive text and value min size multiline
+            FillParent size - Label, assistive text and value max size multiline
           </h5>
           <DxcInput
             label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input i"
@@ -514,7 +501,7 @@ function App() {
         </div>
         <div className="test-case" id="fillParent-multi-line-min-size">
           <h5>
-            FillParent size - Label, assistive text and value max size multiline
+            FillParent size - Label, assistive text and value min size multiline
           </h5>
           <DxcInput
             label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input in"
@@ -525,8 +512,8 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fillParent-min-size-prefix">
-          <h5>FillParent size - Value min size single line with prefix</h5>
+        <div className="test-case" id="fillParent-max-size-prefix">
+          <h5>FillParent size - Value max size single line with prefix</h5>
           <DxcInput
             value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input va"
             prefix="pre"
@@ -535,8 +522,8 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fillParent-min-size-suffix">
-          <h5>FillParent size - Value min size single line with suffix</h5>
+        <div className="test-case" id="fillParent-max-size-suffix">
+          <h5>FillParent size - Value max size single line with suffix</h5>
           <DxcInput
             value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input v"
             suffix="suf"
@@ -545,9 +532,9 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fillParent-min-size-prefix-suffix">
+        <div className="test-case" id="fillParent-max-size-prefix-suffix">
           <h5>
-            FillParent size - Value min size single line with prefix and suffix
+            FillParent size - Value max size single line with prefix and suffix
           </h5>
           <DxcInput
             value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value in"
