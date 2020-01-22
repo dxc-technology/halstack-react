@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const DxcToggle = ({
   label = "",
@@ -71,11 +72,11 @@ const DxcToggleContainer = styled.div`
       props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
     margin-left: ${props =>
       props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-      
+
     opacity: ${props => (props.disabled ? "0.5" : "1")};
     cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
     display: inline-block;
-    width: ${props => (calculateWidth(props.margin, props.size))};
+    width: ${props => calculateWidth(props.margin, props.size)};
   }
 
   .MuiToggleButton-label {
