@@ -99,6 +99,7 @@ const DxcToggleContainer = styled.div`
   }
 
   .MuiToggleButton-root {
+    height: 43px;
     border: ${props =>
       props.mode === "basic"
         ? "none !important"
