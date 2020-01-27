@@ -165,8 +165,8 @@ const TextContainer = styled.div`
   
   display: inline-block;
   position: relative;
-  max-height: 74px;
-  height: 74px;
+  max-height:  ${props => (props.multiline === true && props.assistiveText !== "" ? "115px" : "74px")};
+  height: ${props => (props.multiline === true && props.assistiveText !== "" ? "115px" : "74px")};
   width: ${props => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
@@ -247,9 +247,9 @@ const TextContainer = styled.div`
       .MuiInputBase-inputMultiline {
         overflow: auto !important;
         min-height: 76px !important;
-        min-width: 230px !important;
+        min-width: ${props => calculateWidth(props.margin, "small")};
         max-height: 100px !important;
-        max-width: 726px !important;
+        max-width: ${props => calculateWidth(props.margin, props.size)};
         resize: both !important;
         ::-webkit-scrollbar {
           width: 3px;
