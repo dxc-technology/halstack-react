@@ -12,7 +12,7 @@ const DxcInputText = ({
   name = "",
   value = "",
   theme = "light",
-  assistiveText = " ",
+  assistiveText = "",
   disabled = false,
   prefix = "",
   suffix = "",
@@ -50,6 +50,7 @@ const DxcInputText = ({
       required={required}
       theme={theme}
       multiline={multiline}
+      assistiveText={assistiveText}
       margin={margin}
       size={size}
     >
