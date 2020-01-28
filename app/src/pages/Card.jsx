@@ -18,7 +18,13 @@ function App() {
       <div className="test-case" id="content-overflow">
         <h4>Content Overflow</h4>
         <DxcCard imageSrc={iceCream} imageCover>
-          asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfadsfasdfasdfasdfasdfadsfadsasdf asfda asdf asfd
+          Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+          esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+          id est laborum
         </DxcCard>
       </div>
 

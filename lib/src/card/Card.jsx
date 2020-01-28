@@ -104,6 +104,7 @@ const ImageContainer = styled.div`
 const CardContent = styled.div`
   flex-grow: 1;
   height: 100%;
+  overflow: hidden;
 `;
 
 DxcCard.propTypes = {
