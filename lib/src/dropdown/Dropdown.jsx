@@ -24,7 +24,7 @@ const DxcDropdown = ({
   onSelectOption,
   margin,
   padding,
-  size="medium"
+  size = "medium"
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -42,7 +42,7 @@ const DxcDropdown = ({
   }
 
   return (
-    <span>
+    <DxCDropdownContainer mode={mode} margin={margin} size={size}>
       <DropdownTrigger
         opened={anchorEl === null ? false : true}
         onClick={handleClickListItem}
@@ -61,6 +61,7 @@ const DxcDropdown = ({
         </DropdownTriggerContainer>
         <CaretIcon
           caretHidden={caretHidden}
+          margin={margin}
           src={
             theme === "light" && mode === "outlined"
               ? anchorEl === null
@@ -109,12 +110,12 @@ const DxcDropdown = ({
           </MenuItem>
         ))}
       </DxcMenu>
-    </span>
+    </DxCDropdownContainer>
   );
 };
 
 const sizes = {
-  small: "42px",
+  small: "60px",
   medium: "240px",
   large: "480px"
 };
@@ -125,7 +126,23 @@ const calculateWidth = (margin, size) => {
   }
   return sizes[size];
 };
-
+const DxCDropdownContainer = styled.div`
+  width: ${props =>
+    props.mode === "outlined"
+      ? `calc(${calculateWidth(props.padding, props.size)})`
+      : calculateWidth(props.padding, props.size)};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${props =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+`;
 const DxcMenu = styled(Menu)`
   .MuiMenuItem-gutters {
     padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
@@ -138,7 +155,10 @@ const DxcMenu = styled(Menu)`
     padding-left: ${props =>
       props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 
-    width: ${props => props.mode === "outlined" ? `calc(${calculateWidth(props.padding, props.size)} - 4px)` : calculateWidth(props.padding, props.size)};
+    width: ${props =>
+      props.mode === "outlined"
+        ? `calc(${calculateWidth(props.padding, props.size)} - 4px)`
+        : calculateWidth(props.padding, props.size)};
   }
   .MuiMenuItem-root {
     min-height: 46px;
@@ -146,7 +166,6 @@ const DxcMenu = styled(Menu)`
   }
 
   .MuiPaper-root {
-
     border: ${props => (props.mode === "outlined" ? "2px solid" : "transparent")};
 
     border-color: ${props =>
@@ -210,6 +229,7 @@ const DropdownTrigger = styled.button`
   cursor: pointer;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
+  width: 100%; /*by jsg*/
   height: auto;
   min-height: 46px;
   display: inline-flex;
@@ -217,16 +237,7 @@ const DropdownTrigger = styled.button`
   align-items: center;
   min-width: ${props => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
 
-  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${props =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${props =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${props =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${props =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
+  
   padding: ${props => {
     if (props.caretHidden === true && props.label === "") {
       if (props.mode === "outlined") {
@@ -291,6 +302,8 @@ const DropdownTrigger = styled.button`
 
 const DropdownTriggerLabel = styled.span`
   text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const DropdownTriggerContainer = styled.span`
@@ -299,6 +312,8 @@ const DropdownTriggerContainer = styled.span`
   flex-direction: ${props => (props.iconPosition === "after" && "row-reverse") || "row"};
   margin-left: 0px;
   margin-right: 0px;
+  width: calc(100% - 24px);
+  white-space:nowrap;
 `;
 
 const ListIcon = styled.img`
@@ -325,6 +340,7 @@ const ListIcon = styled.img`
 const CaretIcon = styled.img`
   display: ${props => (props.caretHidden === true ? "none" : "block")};
   margin-left: 10px;
+  margin-right: 10px;
 `;
 
 DxcDropdown.propTypes = {
