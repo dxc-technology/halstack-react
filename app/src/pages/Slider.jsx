@@ -151,7 +151,7 @@ function App() {
             name="input"
             theme="light"
             step={1}
-            size="fitParent"
+            size="fillParent"
           />
         </div>
         <div className="test-case" id="fitContent-size-slider">
