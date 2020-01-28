@@ -21,6 +21,7 @@ import Dialog from "./pages/Dialog";
 import Date from "./pages/Date";
 import Box from "./pages/Box";
 import Tag from "./pages/Tag";
+import Card from "./pages/Card";
 
 export default [
   {
@@ -42,6 +43,11 @@ export default [
     path: "box",
     name: "Box",
     component: Box
+  },
+  {
+    path: "card",
+    name: "Card",
+    component: Card
   },
   {
     path: "checkbox",
