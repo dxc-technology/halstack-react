@@ -286,7 +286,7 @@ const SelectContainer = styled.div`
       }
   }
   .MuiSelect-select {
-    width: 100%;
+    width: calc(100% - 24px);
     height: 20px;
     display: flex;
     padding-right: unset;
@@ -336,7 +336,9 @@ const SelectContainer = styled.div`
     color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
   }
   & label{
-    word-break: break-all;    
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: calc(100% - 24px);
   }
 `;
 
