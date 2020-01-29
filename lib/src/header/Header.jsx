@@ -106,17 +106,8 @@ const HeaderContainer = styled(AppBar)`
 `;
 
 const LogoIcon = styled.img`
-  height: ${props => {
-    if (props.logoSrc === "default") {
-      return "34px";
-    }
-  }};
-
-  width: ${props => {
-    if (props.logoSrc === "default") {
-      return "auto";
-    }
-  }};
+  max-height: 32px;
+  width: auto;
 
   cursor: ${props => {
     if (props.onLogoClick === "") {
@@ -128,6 +119,8 @@ const LogoIcon = styled.img`
 `;
 
 const ChildContainer = styled.div`
+  width: calc(100% - 186px);
+  overflow: hidden;
   display: flex;
   align-items: center;
   flex-grow: 1;

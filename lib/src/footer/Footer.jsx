@@ -23,8 +23,8 @@ const DxcFooter = ({
 
   const bottomLink = bottomLinks.map((link, index) => (
     <span>
-      <Point index={index}>·</Point>
       <BottomLink href={link && link.href ? link.href : ""}>{link && link.text ? link.text : ""}</BottomLink>
+      <Point index={index}>·</Point>
     </span>
   ));
 
@@ -49,7 +49,6 @@ const FooterContainer = styled.div`
     font-family: "Open Sans", sans-serif;
     background-color: ${colors.black};
     margin-top: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-    
   }
 `;
 
@@ -58,16 +57,21 @@ const FooterHeader = styled.div`
   justify-content: space-between;
 `;
 
-const FooterFooter = styled.span`
+const FooterFooter = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end;
 `;
 
 const BottomLinks = styled.div`
   padding-top: 6px;
   border-top: 2px solid ${colors.yellow};
   display: inline-flex;
+  flex-wrap: wrap;
+  max-width: 60%;
+  & > span:last-child span {
+    display: none;
+  }
 `;
 
 const ChildComponents = styled.div`
@@ -81,11 +85,14 @@ const ChildComponents = styled.div`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${props =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+  color: ${colors.white};
 `;
 
 const Copyright = styled.div`
   font-size: 12px;
   color: ${colors.white};
+  max-width: 40%;
+  text-align: right;
 `;
 
 const LogoIcon = styled.img`
@@ -110,11 +117,6 @@ const SocialIcon = styled.img`
 `;
 
 const Point = styled.span`
-  display: ${props => {
-    if (props.index == 0) {
-      return "none";
-    }
-  }};
   margin: 0px 10px;
   color: ${colors.white};
 `;
