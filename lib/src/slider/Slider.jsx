@@ -4,8 +4,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import DxcInput from "../input-text/InputText";
-import {colors, spaces} from "../common/variables.js";
-import {getMargin} from "../common/utils.js";
+import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const DxcSlider = ({
   minValue = 0,
@@ -33,8 +33,8 @@ const DxcSlider = ({
       }
     }
     if (typeof onChange === "function") {
-    onChange(newValue);
-  }
+      onChange(newValue);
+    }
   };
   const handlerInputChange = event => {
     if (value == null) {
@@ -76,7 +76,7 @@ const DxcSlider = ({
             disabled={disabled}
             onChange={handlerInputChange}
             size="small"
-            margin={{left: "medium"}}
+            margin={{ left: "medium" }}
           />
         </StyledTextInput>
       )}
@@ -85,7 +85,6 @@ const DxcSlider = ({
 };
 
 const sizes = {
-  small: "60px",
   medium: "240px",
   large: "480px",
   fillParent: "100%",
@@ -136,7 +135,7 @@ const StyledTextInput = styled.div`
 const SliderContainer = styled.div`
   display: flex;
   align-items: center;
-  
+
   margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
