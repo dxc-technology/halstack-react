@@ -5,7 +5,7 @@ import { spaces } from "../common/variables.js";
 
 import DxcBox from "../box/Box";
 
-const DxcTag = ({ iconSrc, label, margin, linkHref, onClick, iconBgColor, labelPosition, size="medium" }) => {
+const DxcTag = ({ iconSrc, label, margin, linkHref, onClick, iconBgColor, labelPosition, size = "medium" }) => {
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
     if (onClick) {
@@ -19,7 +19,7 @@ const DxcTag = ({ iconSrc, label, margin, linkHref, onClick, iconBgColor, labelP
         <IconContainer iconBgColor={iconBgColor}>
           <TagIcon src={iconSrc}></TagIcon>
         </IconContainer>
-        <TagLabel>{label}</TagLabel>
+        {size!=="small" && <TagLabel>{label}</TagLabel>}
       </TagContent>
     </DxcBox>
   );
@@ -60,7 +60,7 @@ const TagContent = styled.div`
   align-items: center;
   background-color: white;
   flex-direction: ${({ labelPosition }) => (labelPosition === "before" && "row-reverse") || "row"};
-  width: 100%;
+  width: 480px;
 `;
 
 const StyledLink = styled.a`
@@ -75,7 +75,7 @@ const TagIcon = styled.img`
 const IconContainer = styled.div`
   display: inline-flex;
   background: ${({ iconBgColor }) => iconBgColor};
-  min-width: 48px;
+  width: 48px;
   justify-content: center;
 `;
 
@@ -87,7 +87,7 @@ const TagLabel = styled.div`
   color: black;
   display: flex;
   justify-content: center;
-  width: 100%;
+  flex-grow: 1;
 `;
 
 DxcTag.propTypes = {

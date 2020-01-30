@@ -14,7 +14,7 @@ const DxcBox = ({ shadowDepth, margin, padding, display, children, size }) => {
 };
 
 const sizes = {
-  small: "60px",
+  small: "48px",
   medium: "240px",
   large: "480px",
   fillParent: "100%",
