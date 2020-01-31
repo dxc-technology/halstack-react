@@ -108,6 +108,7 @@ const HeaderContainer = styled(AppBar)`
 const LogoIcon = styled.img`
   max-height: 32px;
   width: auto;
+  vertical-align: middle;
 
   cursor: ${props => {
     if (props.onLogoClick === "") {
