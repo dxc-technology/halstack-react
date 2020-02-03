@@ -4,7 +4,7 @@ import Tab from "@material-ui/core/Tab";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import {colors, spaces} from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
 const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick, margin }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
@@ -86,9 +86,6 @@ const DxCTabs = styled.div`
         cursor: not-allowed !important;
         pointer-events: all;
         opacity: ${props => (props.mode === "underlined" ? "0.4" : "")};
-      }
-      &:focus:not(.Mui-disabled) {
-        color: ${colors.lightGrey};
       }
     }
     .MuiTabs-indicator {
