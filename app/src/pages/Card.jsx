@@ -7,15 +7,15 @@ import twitterIcon from "../images/twitter.svg";
 function App() {
   return (
     <div>
-      <div className="test-case" id="imageCover">
+      <div className="img-test-case" id="imageCover">
         <h4>Image Background Cover</h4>
         <DxcCard imageSrc={iceCream} imageCover></DxcCard>
       </div>
-      <div className="test-case" id="imagePosition-after">
+      <div className="img-test-case" id="imagePosition-after">
         <h4>Image Position After</h4>
         <DxcCard imageSrc={iceCream} imageCover imagePosition="after"></DxcCard>
       </div>
-      <div className="test-case" id="content-overflow">
+      <div className="img-test-case" id="content-overflow">
         <h4>Content Overflow</h4>
         <DxcCard imageSrc={iceCream} imageCover>
           Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididunt
@@ -29,26 +29,26 @@ function App() {
       </div>
 
       <h4>Themes</h4>
-      <div className="test-case" id="light-theme">
+      <div className="img-test-case" id="light-theme">
         <h4>Light theme</h4>
         <DxcCard theme="light" imageSrc={iceCream} imageCover>
           Lorem Ipsum
         </DxcCard>
       </div>
-      <div className="test-case" id="medium-theme">
+      <div className="img-test-case" id="medium-theme">
         <h4>Medium theme</h4>
         <DxcCard theme="medium" imageSrc={iceCream} imageCover>
           Lorem Ipsum
         </DxcCard>
       </div>
-      <div className="test-case" id="dark-theme">
+      <div className="img-test-case" id="dark-theme">
         <h4>Dark theme</h4>
         <DxcCard theme="dark" imageSrc={iceCream} imageCover>
           Lorem Ipsum
         </DxcCard>
       </div>
       <h4>Outlined Themes</h4>
-      <div className="test-case" id="outlined-light-theme">
+      <div className="img-test-case" id="outlined-light-theme">
         <h4>Outlined Light theme</h4>
         <DxcCard
           theme="light"
@@ -57,7 +57,7 @@ function App() {
           outlined
         ></DxcCard>
       </div>
-      <div className="test-case" id="outlined-medium-theme">
+      <div className="img-test-case" id="outlined-medium-theme">
         <h4>Outlined Medium theme</h4>
         <div
           style={{
@@ -73,7 +73,7 @@ function App() {
           ></DxcCard>
         </div>
       </div>
-      <div className="test-case" id="outlined-dark-theme">
+      <div className="img-test-case" id="outlined-dark-theme">
         <h4>Outlined Dark theme</h4>
         <div
           style={{
