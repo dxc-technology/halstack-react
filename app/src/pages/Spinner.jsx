@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { DxcSpinner, DxcButton } from "@diaas/dxc-react-cdk";
+import React from "react";
+import { DxcSpinner } from "@diaas/dxc-react-cdk";
 
 function App() {
   return (
