@@ -594,6 +594,49 @@ function App() {
             options={optionsWithIcon}
           ></DxcSelect>
         </div>
+        <div class="test-case" id="mandatory-no-value">
+          <h4>Mandatory select</h4>
+          <DxcSelect
+            onChange={onChange}
+            required={true}
+            size="medium"
+            label={"Multiple no value"}
+            options={optionsWithIcon}
+          ></DxcSelect>
+        </div>
+        <div class="test-case" id="mandatory-with-value">
+          <h4>Mandatory select with selected option</h4>
+          <DxcSelect
+            onChange={onChange}
+            value={1}
+            required={true}
+            size="medium"
+            label={"Mandatory Icons"}
+            options={optionsWithIcon}
+          ></DxcSelect>
+        </div>
+        <div class="test-case" id="disabled-no-value">
+          <h4>disabled select</h4>
+          <DxcSelect
+            onChange={onChange}
+            // value={1}
+            disabled={true}
+            size="medium"
+            label={"Disabled Icons"}
+            options={optionsWithIcon}
+          ></DxcSelect>
+        </div>
+        <div class="test-case" id="disabled-with-value">
+          <h4>disabled select with selected option</h4>
+          <DxcSelect
+            onChange={onChange}
+            value={1}
+            disabled={true}
+            size="medium"
+            label={"Disabled Icons"}
+            options={optionsWithIcon}
+          ></DxcSelect>
+        </div>
       </div>
       <DxcSelect
         onChange={onChange}
