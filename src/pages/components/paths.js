@@ -21,6 +21,7 @@ import Table from "./cdk-components/table/Table";
 import Spinner from "./cdk-components/spinner/Spinner";
 import Box from "./cdk-components/box/Box";
 import Tag from "./cdk-components/tag/Tag";
+import Date from "./cdk-components/date/Date";
 
 export const types = {
   FORMS: "Forms",
@@ -167,5 +168,11 @@ export default [
     name: "Upload",
     component: Upload,
     type: types.UTILS
+  },
+  {
+    path: "date",
+    name: "Date",
+    component: Date,
+    type: types.FORMS
   }
 ];
