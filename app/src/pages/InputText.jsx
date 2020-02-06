@@ -58,6 +58,17 @@ function App() {
         />
       </div>
 
+      <div className="test-case" id="invalid-text-input">
+        <h4>Invalid input text</h4>
+        <DxcInput
+          label="Input label"
+          value={inputValue}
+          assistiveText="assistive text"
+          onChange={onChange}
+          invalid={true}
+        />
+      </div>
+
       <div className="test-case" id="without-label-input">
         <h4>Without label</h4>
         <DxcInput
