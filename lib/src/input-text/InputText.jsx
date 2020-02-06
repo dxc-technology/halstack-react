@@ -22,7 +22,7 @@ const DxcInputText = ({
   onClickSuffix = "",
   onChange = "",
   onBlur = "",
-  error = false,
+  invalid = false,
   required = false,
   multiline = false,
   margin,
@@ -61,7 +61,7 @@ const DxcInputText = ({
         </PrefixLabel>
       )}
       <TextField
-        error={error}
+        error={invalid}
         value={(value != null && value) || innerValue}
         name={name}
         multiline={multiline}
@@ -364,7 +364,7 @@ DxcInputText.propTypes = {
   prefixIconSrc: PropTypes.string,
   suffixIconSrc: PropTypes.string,
   required: PropTypes.bool,
-  error: PropTypes.bool,
+  invalid: PropTypes.bool,
   multiline: PropTypes.bool,
   onClickIcon: PropTypes.func,
   onChange: PropTypes.func,
