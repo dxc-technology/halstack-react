@@ -10,7 +10,7 @@ import { getMargin } from "../common/utils.js";
 const DxcInputText = ({
   label = " ",
   name = "",
-  value = "",
+  value,
   theme = "light",
   assistiveText = "",
   disabled = false,
@@ -31,9 +31,12 @@ const DxcInputText = ({
   const [innerValue, setInnerValue] = useState("");
 
   const handlerInputChange = event => {
-    setInnerValue(event.target.value);
-    if (onChange) {
-      onChange(event.target.value);
+    if (value !== null && value !== "") {
+      if (typeof onChange === "function") {
+        onChange(event.target.value);
+      }
+    } else {
+      setInnerValue(event.target.value);
     }
   };
   const handlerInputBlur = event => {
