@@ -22,7 +22,6 @@ const DxcDate = ({
   invalid = false,
   dissableRipple = false,
   onInputChange,
-  onChange,
   margin
 }) => {
   function handleMenuItemClick(date, event) {
@@ -31,14 +30,16 @@ const DxcDate = ({
     } else {
       setSelectedDate(new Date(date));
     }
-    if (typeof onInputChange === "function") {
-      onInputChange(JSON.stringify(event));
-    }
+
     value = moment(date).format("DD-MM-YYYY");
     var check = moment(value, "DD-MM-YYYY", true).isValid();
     if (check) {
-      if (typeof onChange === "function") {
-        onChange(date);
+      if (typeof onInputChange === "function") {
+        onInputChange(date, event);
+      }
+    } else {
+      if (typeof onInputChange === "function") {
+        onInputChange(event);
       }
     }
   }
