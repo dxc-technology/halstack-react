@@ -4,8 +4,7 @@ import { DxcDate } from "@diaas/dxc-react-cdk";
 function App() {
   const [inputValue, changeInput] = useState(new Date("1995/12/03"));
   const onChange = (newValue, event) => {
-    console.log('String-> ' + event);
-    changeInput(newValue);
+    changeInput(newValue); 
   };
   const test = value => {
       changeInput(inputValue);
@@ -13,7 +12,7 @@ function App() {
   return (
     <div>
       <div>
-        <DxcDate margin="medium" format="dd-mm-yy" label="Date of birth" onInputChange={onChange} ></DxcDate>
+        <DxcDate margin="medium" label="Date of birth" onInputChange={onChange} ></DxcDate>
         <DxcDate margin="medium" label="Date of birth" value={inputValue} onInputChange={test}></DxcDate>
       </div>
       <div>
