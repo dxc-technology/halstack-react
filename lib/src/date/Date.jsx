@@ -24,7 +24,7 @@ const DxcDate = ({
   onInputChange,
   margin
 }) => {
-  const [innerDate, setInnerDate] = useState(new Date("1981-03-30"));
+  const [innerDate, setInnerDate] = useState(new Date(null));
   const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : innerDate);
 
   function handleMenuItemClick(date, event) {
