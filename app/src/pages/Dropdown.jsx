@@ -69,6 +69,22 @@ function App() {
             options={optionsWithoutIcon}
           ></DxcDropdown>
         </div>
+        <div className="test-case" id="fitContent-size">
+          <DxcDropdown
+            label="Fit Content"
+            size="fitContent"
+            margin="small"
+            options={optionsWithoutIcon}
+          ></DxcDropdown>
+        </div>
+        <div className="test-case" id="fillParent-size">
+          <DxcDropdown
+            label="Fill Parent"
+            size="fillParent"
+            margin="small"
+            options={optionsWithoutIcon}
+          ></DxcDropdown>
+        </div>
         <h4>Margin</h4>
         <div className="test-case" id="xxsmall-margin">
           <DxcDropdown
@@ -119,65 +135,6 @@ function App() {
             options={optionsWithoutIcon}
           ></DxcDropdown>
         </div>
-        {/* jsg test */}
-        <h4>padding</h4>
-        <div className="test-case" id="xxsmall-padding">
-          <DxcDropdown
-            label="xxSmall padding"
-            padding="xxsmall"
-            margin="xxsmall"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        <div className="test-case" id="xsmall-padding">
-          <DxcDropdown
-            label="xSmall padding"
-            padding="xsmall"
-            margin="xxsmall"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        <div className="test-case" id="small-padding">
-          <DxcDropdown
-            label="Small padding"
-            padding="small"
-            margin="xxsmall"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        <div className="test-case" id="medium-padding">
-          <DxcDropdown
-            label="Medium padding"
-            padding="medium"
-            margin="xxsmall"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        <div className="test-case" id="large-padding">
-          <DxcDropdown
-            label="Large padding"
-            padding="large"
-            margin="xxsmall"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        <div className="test-case" id="xlarge-padding">
-          <DxcDropdown
-            label="xLarge padding"
-            padding="xlarge"
-            margin="xxsmall"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        <div className="test-case" id="xxlarge-padding">
-          <DxcDropdown
-            label="xxLarge padding"
-            padding="xxlarge"
-            margin="xxsmall"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        {/* fin jsg test  */}
         <div className="test-case" id="mode-basic">
           <h4>Basic dropdown and label sizes</h4>
           <DxcDropdown
@@ -275,24 +232,12 @@ function App() {
           onSelectOption={selectOption}
           label="Basic dropdown"
           margin="medium"
-          padding={{
-            top: "small",
-            left: "large",
-            right: "large",
-            bottom: "small"
-          }}
         ></DxcDropdown>
         <DxcDropdown
           options={optionsWithIcon}
           onSelectOption={selectOption}
           label="Basic dropdown"
           margin="medium"
-          padding={{
-            top: "small",
-            left: "large",
-            right: "large",
-            bottom: "small"
-          }}
         ></DxcDropdown>
         <DxcDropdown
           options={optionsWithoutIcon}
@@ -300,12 +245,6 @@ function App() {
           label="Outlined dropdown"
           mode={"outlined"}
           margin="medium"
-          padding={{
-            top: "small",
-            left: "large",
-            right: "large",
-            bottom: "small"
-          }}
         ></DxcDropdown>
       </div>
       <div
@@ -322,12 +261,6 @@ function App() {
           label="Basic dropdown"
           theme="dark"
           margin="medium"
-          padding={{
-            top: "small",
-            left: "large",
-            right: "large",
-            bottom: "small"
-          }}
         ></DxcDropdown>
         <DxcDropdown
           options={optionsWithIcon}
@@ -335,12 +268,6 @@ function App() {
           label="Basic dropdown"
           theme="dark"
           margin="medium"
-          padding={{
-            top: "small",
-            left: "large",
-            right: "large",
-            bottom: "small"
-          }}
         ></DxcDropdown>
         <DxcDropdown
           options={optionsWithoutIcon}
@@ -349,12 +276,6 @@ function App() {
           mode={"outlined"}
           theme="dark"
           margin="medium"
-          padding={{
-            top: "small",
-            left: "large",
-            right: "large",
-            bottom: "small"
-          }}
           size="large"
         ></DxcDropdown>
       </div>
