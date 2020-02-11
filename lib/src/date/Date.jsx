@@ -24,27 +24,28 @@ const DxcDate = ({
   onInputChange,
   margin
 }) => {
+  const [innerDate, setInnerDate] = useState(new Date("1981-03-30"));
+  const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : innerDate);
+
   function handleMenuItemClick(date, event) {
     if (event === null) {
       setSelectedDate(null);
     } else {
       setSelectedDate(new Date(date));
     }
-
-    value = moment(date).format("DD-MM-YYYY");
-    var check = moment(value, "DD-MM-YYYY", true).isValid();
-    if (check) {
+    const check = moment(moment(date).format("DD-MM-YYYY"), "DD-MM-YYYY", true).isValid();
+    if (value === undefined) {
+      if (check) {
+        setInnerDate(date);
+      }
+    } else if (check) {
       if (typeof onInputChange === "function") {
         onInputChange(date, event);
       }
-    } else {
-      if (typeof onInputChange === "function") {
-        onInputChange(event);
-      }
+    } else if (typeof onInputChange === "function") {
+      onInputChange(event);
     }
   }
-  const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : null);
-
   return (
     <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
