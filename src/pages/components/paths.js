@@ -62,6 +62,12 @@ export default [
     type: types.FORMS
   },
   {
+    path: "date",
+    name: "Date",
+    component: Date,
+    type: types.FORMS
+  },
+  {
     path: "dialog",
     name: "Dialog",
     component: Dialog,
@@ -168,11 +174,5 @@ export default [
     name: "Upload",
     component: Upload,
     type: types.UTILS
-  },
-  {
-    path: "date",
-    name: "Date",
-    component: Date,
-    type: types.FORMS
   }
 ];
