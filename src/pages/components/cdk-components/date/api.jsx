@@ -10,9 +10,9 @@ const alertPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>value: date</td>
+        <td>value: string</td>
         <td></td>
-        <td>The value of the date component. Must be a Date object.</td>
+        <td>The value of the input element.</td>
       </tr>
       <tr>
         <td>format: string</td>
@@ -84,21 +84,12 @@ const alertPropsTable = () => {
         <td>If true, the ripple effect will be disabled.</td>
       </tr>
       <tr>
-        <td>onChange: function</td>
-        <td></td>
-        <td>
-          This function will be called when the user inputs a valid date in the
-          given format. This is, when he selects a date from the date picker or
-          when he types a letter completing a valid date. The new date object
-          will be passed to this function as a parameter.
-        </td>
-      </tr>
-      <tr>
         <td>onInputChange: function</td>
         <td></td>
         <td>
           This function will be called when the user types within the input. A
-          string with the current value will be passed to this function.
+          string with the current value will be passed to this function and also
+          a date object if the string typed is a valid date
         </td>
       </tr>
     </DxcTable>
