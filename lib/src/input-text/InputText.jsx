@@ -370,6 +370,8 @@ DxcInputText.propTypes = {
   invalid: PropTypes.bool,
   multiline: PropTypes.bool,
   onClickIcon: PropTypes.func,
+  onClickPrefix: PropTypes.func,
+  onClickSuffix: PropTypes.func,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
