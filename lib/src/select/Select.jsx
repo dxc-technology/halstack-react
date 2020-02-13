@@ -206,11 +206,11 @@ const SelectedIconContainer = styled.div`
 
   &::before {
     margin: 0 4px;
-    ${props => props.iconPosition === "after" && props.label && props.label !== "" && props.multiple && "content:','"};
+    ${props => props.iconPosition === "after" && (props.label !== "" || props.label === undefined) && "content:','"};
   }
   &::after {
-    content: '${props => (props.iconPosition === "before" && props.label && props.label !== "" && ",") || ""}'; 
-    margin: '${props => (props.label && props.label !== "" && "0 4px") || ""}';
+    margin: 0 4px;
+    ${props => props.iconPosition === "before" && (props.label !== "" || props.label === undefined) && "content:','"};
   }
 `;
 const SelectedLabelContainer = styled.span`
@@ -255,8 +255,11 @@ const SelectContainer = styled.div`
   }
   .MuiFormLabel-root {
     font-size: 16px;
-      color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
-      margin-top: -3px;
+    color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+    margin-top: -3px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
       &::before {
         content:'${props => (props.required && "*") || ""}';
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
@@ -284,8 +287,8 @@ const SelectContainer = styled.div`
     & > *:last-child::after {
       content: unset;
     }
-    & > *:not(:last-child)::before {
-      content: ",";
+    & > *:last-child::before {
+      content: unset;
     }
     &.Mui-disabled {
       color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
