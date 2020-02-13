@@ -5,19 +5,19 @@ const checkboxPropsTable = () => {
   return (
     <DxcTable>
       <tr>
-        <td>Name</td>
-        <td>Default</td>
-        <td>Description</td>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
       </tr>
       <tr>
-        <td>min: number</td>
+        <td>minValue: number</td>
         <td>
           <code>0</code>
         </td>
         <td>The minimum value available for selection.</td>
       </tr>
       <tr>
-        <td>max: number</td>
+        <td>maxValue: number</td>
         <td>
           <code>100</code>
         </td>
@@ -31,6 +31,13 @@ const checkboxPropsTable = () => {
         <td>The step interval between values available for selection.</td>
       </tr>
       <tr>
+        <td>theme: 'light' | 'dark'</td>
+        <td>
+          <code>'light'</code>
+        </td>
+        <td>Uses one of the available component themes.</td>
+      </tr>
+      <tr>
         <td>value: number</td>
         <td>
           <code>0</code>
@@ -41,7 +48,7 @@ const checkboxPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>showLimitValues: boolean</td>
+        <td>showLimitsValues: boolean</td>
         <td>
           <code>false</code>
         </td>
@@ -49,6 +56,13 @@ const checkboxPropsTable = () => {
           Whether the min/max value labels should be displayed next to the
           slider.
         </td>
+      </tr>
+      <tr>
+        <td>marks: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>Whether the marks between each step should be shown or not.</td>
       </tr>
       <tr>
         <td>showInput: boolean</td>
@@ -104,7 +118,7 @@ const checkboxPropsTable = () => {
         <td>size: string | object</td>
         <td></td>
         <td>
-          Size of the component ('small' | 'medium' | 'large' | 'fillParent' |
+          Size of the component ('medium' | 'large' | 'fillParent' |
           'fitContent').
         </td>
       </tr>
