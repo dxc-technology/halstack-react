@@ -7,7 +7,7 @@ import DxcTabs from "../tabs/Tabs";
 
 const TABS_HEIGHT = 54;
 
-const DxcTabsForSections = ({ tabsMode = "filled", tabsTheme = "light", disableTabsRipple = false, sections = [], stickAtPx = }) => {
+const DxcTabsForSections = ({ tabsMode = "filled", tabsTheme = "light", disableTabsRipple = false, sections = [], stickAtPx = 0}) => {
   const tabs = sections.map(section => ({ label: section.tabLabel }));
 
   const refs = sections.map(() => React.createRef());
