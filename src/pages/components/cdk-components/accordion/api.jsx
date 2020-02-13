@@ -53,6 +53,11 @@ const alertPropsTable = () => {
         <td>If true, the component will be disabled.</td>
       </tr>
       <tr>
+        <td>isExpanded: boolean</td>
+        <td></td>
+        <td>If true, the component will be expanded.</td>
+      </tr>
+      <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
@@ -75,10 +80,10 @@ const alertPropsTable = () => {
         <td>padding: string | object</td>
         <td></td>
         <td>
-          Size of the padding to be applied to the custom area ('xxsmall' | 'xsmall'
-          | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass
-          an object with 'top', 'bottom', 'left' and 'right' properties in order
-          to specify different padding sizes.
+          Size of the padding to be applied to the custom area ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different padding sizes.
         </td>
       </tr>
     </DxcTable>
