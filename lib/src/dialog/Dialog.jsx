@@ -5,7 +5,7 @@ import { colors, spaces } from "../common/variables.js";
 
 import PropTypes from "prop-types";
 
-const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
+const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
   const handleClose = () => {
     if (typeof onCloseClick === "function") {
       onCloseClick();
