@@ -78,7 +78,7 @@ const radioPropsTable = () => {
         <td>If true, the ripple effect will be disabled.</td>
       </tr>
       <tr>
-        <td>onChange: function</td>
+        <td>onClick: function</td>
         <td></td>
         <td>
           This function will be called when the user clicks the radio. The new
