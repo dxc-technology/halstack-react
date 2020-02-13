@@ -8,14 +8,14 @@ import {colors, spaces} from "../common/variables.js";
 import {getMargin} from "../common/utils.js"
 
 const DxcRadio = ({
-  checked,
+  checked = false,
   value,
   label,
-  labelPosition,
-  theme,
+  labelPosition = "before",
+  theme = "light",
   name,
-  disabled,
-  disableRipple,
+  disabled = false,
+  disableRipple = false,
   onClick,
   required = false,
   margin,

@@ -64,18 +64,18 @@ function App() {
       <div>
         <h4>Sizes</h4>
         <div className="test-case" id="small-size-single-line">
-          <h5>Small size - Label max size single line</h5>
+          <h5>Small size - Icon</h5>
           <DxcToggle
-            label="Toggle"
+            iconSrc={icon}
             selected={selected}
             onClick={onClick}
             size="small"
           />
         </div>
         <div className="test-case" id="small-size-multi-line">
-          <h5>Small size - Label min size multiline</h5>
+          <h5>Small size - Label</h5>
           <DxcToggle
-            label="Toggle e"
+            label="T"
             selected={selected}
             onClick={onClick}
             size="small"

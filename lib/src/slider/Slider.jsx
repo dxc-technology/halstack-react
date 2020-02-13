@@ -12,14 +12,14 @@ const DxcSlider = ({
   maxValue = 100,
   step = 1,
   value,
-  showLimitsValues,
-  showInput,
+  showLimitsValues = false,
+  showInput = false,
   name,
   onChange,
   onDragEnd,
-  disabled,
+  disabled = false,
   theme = "light",
-  marks,
+  marks = false,
   margin,
   size
 }) => {
