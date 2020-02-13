@@ -13,7 +13,7 @@ const DxcButton = ({
   disabled = false,
   theme = "light",
   disableRipple = false,
-  iconPosition = "after",
+  iconPosition = "before",
   iconSrc = "",
   onClick = "",
   margin,
