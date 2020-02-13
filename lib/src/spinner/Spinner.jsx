@@ -110,6 +110,7 @@ const SpinnerLabel = styled.div`
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const SpinnerProgress = styled.div`

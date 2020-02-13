@@ -12,21 +12,26 @@ function App() {
     <div>
       <div className="test-case" id="label-before">
         <h4>Label before</h4>
-        <DxcRadio
-          label="Radio"
-          labelPosition="before"
-          checked={checked}
-          onClick={onClick}
-        />
+        <DxcRadio label="Radio" checked={checked} onClick={onClick} />
       </div>
 
       <div className="test-case" id="label-after">
         <h4>Label after</h4>
-        <DxcRadio label="Radio" checked={checked} onClick={onClick} />
+        <DxcRadio
+          label="Radio"
+          checked={checked}
+          labelPosition="after"
+          onClick={onClick}
+        />
       </div>
       <div className="test-case" id="light-theme">
         <h4>Light theme</h4>
-        <DxcRadio label="Radio" checked={checked} onClick={onClick} />
+        <DxcRadio
+          label="Radio"
+          checked={checked}
+          labelPosition="after"
+          onClick={onClick}
+        />
       </div>
 
       <div>
@@ -42,6 +47,7 @@ function App() {
             checked={checked}
             theme="dark"
             label="Radio"
+            labelPosition="after"
             onClick={onClick}
           />
         </div>
@@ -49,12 +55,22 @@ function App() {
 
       <div className="test-case" id="color-checked">
         <h4>Color checked checkbox</h4>
-        <DxcRadio label="Radio" checked={true} onClick={onClick} />
+        <DxcRadio
+          label="Radio"
+          checked={true}
+          labelPosition="after"
+          onClick={onClick}
+        />
       </div>
 
       <div className="test-case" id="color-unchecked">
         <h4>Color unchecked checkbox</h4>
-        <DxcRadio label="Radio" checked={checked} onClick={onClick} />
+        <DxcRadio
+          label="Radio"
+          checked={checked}
+          labelPosition="after"
+          onClick={onClick}
+        />
       </div>
 
       <div className="test-case" id="disabled-radio">
@@ -63,6 +79,7 @@ function App() {
           label="Radio"
           disabled={true}
           checked={checked}
+          labelPosition="after"
           onClick={onClick}
         />
       </div>
@@ -73,6 +90,7 @@ function App() {
           label="Radio"
           required={true}
           checked={checked}
+          labelPosition="after"
           onClick={onClick}
         />
       </div>
@@ -85,6 +103,7 @@ function App() {
             label="Small si"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="small"
           />
@@ -95,6 +114,7 @@ function App() {
             label="Small siz"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="small"
           />
@@ -105,6 +125,7 @@ function App() {
             label="Medium size example la"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="medium"
           />
@@ -115,6 +136,7 @@ function App() {
             label="Medium size example lab"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="medium"
           />
@@ -125,6 +147,7 @@ function App() {
             label="Large size example label radio radio radio radio radi"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="large"
           />
@@ -135,6 +158,7 @@ function App() {
             label="Large size example label radio radio radio radio radio"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="large"
           />
@@ -145,6 +169,7 @@ function App() {
             label="FillParent size example label radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio rad"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="fillParent"
           />
@@ -155,6 +180,7 @@ function App() {
             label="FillParent size example label radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radi"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="fillParent"
           />
@@ -165,6 +191,7 @@ function App() {
             label="FitContent size example label radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio ra"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="fitContent"
           />
@@ -175,6 +202,7 @@ function App() {
             label="FitContent size example label radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio radio rad"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             size="fitContent"
           />
@@ -189,6 +217,7 @@ function App() {
             label="Radio"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             margin="xxsmall"
           />
@@ -199,6 +228,7 @@ function App() {
             label="Radio"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             margin="xxsmall"
           />
@@ -209,6 +239,7 @@ function App() {
             label="Radio"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             margin="small"
           />
@@ -219,6 +250,7 @@ function App() {
             label="Radio"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             margin="medium"
           />
@@ -229,6 +261,7 @@ function App() {
             label="Radio"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             margin="large"
           />
@@ -239,6 +272,7 @@ function App() {
             label="Radio"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             margin="xlarge"
           />
@@ -249,6 +283,7 @@ function App() {
             label="Radio"
             required={true}
             checked={checked}
+            labelPosition="after"
             onClick={onClick}
             margin="xxlarge"
           />

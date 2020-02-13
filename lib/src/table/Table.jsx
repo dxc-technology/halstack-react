@@ -1,13 +1,9 @@
 import styled from "styled-components";
-import {colors, spaces} from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 import React from "react";
 
 const DxcTable = ({ children, margin }) => {
-  return (
-    <DxcTableContainer margin={margin}>
-      {children}
-    </DxcTableContainer>
-  );
+  return <DxcTableContainer margin={margin}>{children}</DxcTableContainer>;
 };
 
 const DxcTableContainer = styled.table`
@@ -27,27 +23,37 @@ const DxcTableContainer = styled.table`
     border-bottom: 1px solid ${colors.lightGrey};
   }
 
-  & tr:nth-child(odd) {
-    background-color: ${colors.darkWhite};
-  }
-  & tr:nth-child(1) {
-    background-color: ${colors.white};
-  }
   & td {
     color: ${colors.darkGrey};
+    min-height: 48px;
   }
-  & th,
-  td {
-    padding: 12px 20px 12px 10px;
+
+  & th {
+    padding: 16px 20px 16px 40px;
+    min-height: 60px;
+  }
+
+  & td {
+    padding: 14px 20px 12px 40px;
   }
 
   & th {
     text-align: left;
     text-transform: uppercase;
     font-size: 14px;
+    font-weight: 100;
+    background-color: ${colors.black};
+    color: ${colors.white};
+  }
+
+  & th:first-child {
+    width: 20%;
+    border-radius: 4px 0px 0px 0px;
+  }
+
+  & th:nth-child(3) {
+    border-radius: 0px 4px 0px 0px;
   }
 `;
-
-
 
 export default DxcTable;

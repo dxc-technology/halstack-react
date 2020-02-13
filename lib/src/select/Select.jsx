@@ -31,10 +31,6 @@ const useStyles = makeStyles(theme => ({
     },
     "& li": {
       fontSize: "16px",
-      paddingTop: props.paddingValue.paddingTop,
-      paddingBottom: props.paddingValue.paddingBottom,
-      paddingLeft: props.paddingValue.paddingLeft,
-      paddingRight: props.paddingValue.paddingRight,
       "&:hover": {
         backgroundColor: colors.darkWhite,
         color: colors.darkGrey
@@ -56,33 +52,18 @@ const DxcSelect = ({
   name,
   onChange,
   label,
-  required,
-  disabled,
-  options,
+  required = false,
+  disabled = false,
+  options = [],
   theme = "light",
   disableRipple = false,
-  iconPosition = "after",
+  iconPosition = "before",
   multiple = false,
   margin,
-  padding,
   size = "medium"
 }) => {
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
-  const paddingValue = {
-    paddingTop: padding ? (typeof padding === "object" && padding.top ? spaces[padding.top] : spaces[padding]) : "",
-    paddingBottom: padding
-      ? typeof padding === "object" && padding.bottom
-        ? spaces[padding.bottom]
-        : spaces[padding]
-      : "",
-    paddingLeft: padding ? (typeof padding === "object" && padding.left ? spaces[padding.left] : spaces[padding]) : "",
-    paddingRight: padding
-      ? typeof padding === "object" && padding.right
-        ? spaces[padding.right]
-        : spaces[padding]
-      : ""
-  };
-  const selectValues = { paddingValue: paddingValue, width: "auto" };
+  const selectValues = { width: "auto" };
   const classes = useStyles(selectValues);
 
   const handleSelectChange = selectedOption => {
@@ -161,7 +142,6 @@ const DxcSelect = ({
           name={name}
           theme={theme}
           multiple={multiple}
-          padding={padding}
           renderValue={getRenderValue}
           onChange={handleSelectChange}
           value={value !== undefined ? value : selectedValue}
@@ -177,8 +157,14 @@ const DxcSelect = ({
         >
           {options.map(option => {
             return (
-              <MenuItem padding={padding} id={option.value} value={option.value} disableRipple={disableRipple}>
-                {multiple && <DxcCheckbox size={"fitContent"} disableRipple={true} checked={isChecked(selectedValue, value, option)} />}
+              <MenuItem id={option.value} value={option.value} disableRipple={disableRipple}>
+                {multiple && (
+                  <DxcCheckbox
+                    size={"fitContent"}
+                    disableRipple={true}
+                    checked={isChecked(selectedValue, value, option)}
+                  />
+                )}
                 <OptionContainer iconPosition={iconPosition}>
                   {option.iconSrc && <ListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />}{" "}
                   <LabelCont>{option.label}</LabelCont>
@@ -220,11 +206,11 @@ const SelectedIconContainer = styled.div`
 
   &::before {
     margin: 0 4px;
-    ${props => props.iconPosition === "after" && props.label && props.label !== "" && props.multiple && "content:','"};
+    ${props => props.iconPosition === "after" && (props.label !== "" || props.label === undefined) && "content:','"};
   }
   &::after {
-    content: '${props => (props.iconPosition === "before" && props.label && props.label !== "" && ",") || ""}'; 
-    margin: '${props => (props.label && props.label !== "" && "0 4px") || ""}';
+    margin: 0 4px;
+    ${props => props.iconPosition === "before" && (props.label !== "" || props.label === undefined) && "content:','"};
   }
 `;
 const SelectedLabelContainer = styled.span`
@@ -248,8 +234,8 @@ const ListIcon = styled.img`
   max-width: 20px;
   width: 20px;
   height: 20px;
-  margin-left: ${props => (props.iconPosition === "after" && props.label!=="" && "10px") || "0px"};
-  margin-right: ${props => (props.iconPosition === "before" && props.label!=="" && "10px") || "0px"};
+  margin-left: ${props => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
+  margin-right: ${props => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
 `;
 
 const SelectContainer = styled.div`
@@ -269,8 +255,11 @@ const SelectContainer = styled.div`
   }
   .MuiFormLabel-root {
     font-size: 16px;
-      color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
-      margin-top: -3px;
+    color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+    margin-top: -3px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
       &::before {
         content:'${props => (props.required && "*") || ""}';
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
@@ -298,8 +287,8 @@ const SelectContainer = styled.div`
     & > *:last-child::after {
       content: unset;
     }
-    & > *:not(:last-child)::before {
-      content: ",";
+    & > *:last-child::before {
+      content: unset;
     }
     &.Mui-disabled {
       color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};

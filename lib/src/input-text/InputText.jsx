@@ -10,7 +10,7 @@ import { getMargin } from "../common/utils.js";
 const DxcInputText = ({
   label = " ",
   name = "",
-  value = "",
+  value,
   theme = "light",
   assistiveText = "",
   disabled = false,
@@ -22,7 +22,7 @@ const DxcInputText = ({
   onClickSuffix = "",
   onChange = "",
   onBlur = "",
-  error = false,
+  invalid = false,
   required = false,
   multiline = false,
   margin,
@@ -31,9 +31,12 @@ const DxcInputText = ({
   const [innerValue, setInnerValue] = useState("");
 
   const handlerInputChange = event => {
-    setInnerValue(event.target.value);
-    if (onChange) {
-      onChange(event.target.value);
+    if (value !== null && value !== "") {
+      if (typeof onChange === "function") {
+        onChange(event.target.value);
+      }
+    } else {
+      setInnerValue(event.target.value);
     }
   };
   const handlerInputBlur = event => {
@@ -61,7 +64,7 @@ const DxcInputText = ({
         </PrefixLabel>
       )}
       <TextField
-        error={error}
+        error={invalid}
         value={(value != null && value) || innerValue}
         name={name}
         multiline={multiline}
@@ -364,9 +367,11 @@ DxcInputText.propTypes = {
   prefixIconSrc: PropTypes.string,
   suffixIconSrc: PropTypes.string,
   required: PropTypes.bool,
-  error: PropTypes.bool,
+  invalid: PropTypes.bool,
   multiline: PropTypes.bool,
   onClickIcon: PropTypes.func,
+  onClickPrefix: PropTypes.func,
+  onClickSuffix: PropTypes.func,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
