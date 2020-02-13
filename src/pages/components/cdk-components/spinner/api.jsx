@@ -5,9 +5,9 @@ const spinnerPropsTable = () => {
   return (
     <DxcTable>
       <tr>
-        <td>label: string</td>
-        <td></td>
-        <td>Text to be placed inside the spinner.</td>
+        <th>label: string</th>
+        <th></th>
+        <th>Text to be placed inside the spinner.</th>
       </tr>
       <tr>
         <td>theme: 'light' | 'dark'</td>
@@ -34,7 +34,7 @@ const spinnerPropsTable = () => {
         <td>false</td>
         <td>If true, the value is displayed inside the spinner.</td>
       </tr>
-       <tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>
