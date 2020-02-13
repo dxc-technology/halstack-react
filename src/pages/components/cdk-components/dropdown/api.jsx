@@ -107,13 +107,11 @@ const dropdownPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>padding: string | object</td>
+        <td>size: string | object</td>
         <td></td>
         <td>
-          Size of the padding to be applied to each option ('xxsmall' | 'xsmall'
-          | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass
-          an object with 'top', 'bottom', 'left' and 'right' properties in order
-          to specify different padding sizes.
+          Size of the component ('small' | 'medium' | 'large' | 'fitContent' |
+          'fillParent' ).
         </td>
       </tr>
       <tr>

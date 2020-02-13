@@ -25,9 +25,7 @@ const buttonPropsTable = () => {
       </tr>
       <tr>
         <td>label: string</td>
-        <td>
-          <code>'basic'</code>
-        </td>
+        <td></td>
         <td>Text to be placed next to the button.</td>
       </tr>
       <tr>

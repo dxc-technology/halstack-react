@@ -43,9 +43,7 @@ const togglePropsTable = () => {
       </tr>
       <tr>
         <td>label: string</td>
-        <td>
-          <code>'basic'</code>
-        </td>
+        <td></td>
         <td>Text to be placed on the toggle.</td>
       </tr>
       <tr>
@@ -91,7 +89,8 @@ const togglePropsTable = () => {
           <code>"medium"</code>
         </td>
         <td>
-          Size of the component ('small' | 'medium' | 'large'| 'fitContent' | 'fillParent').
+          Size of the component ('small' | 'medium' | 'large'| 'fitContent' |
+          'fillParent').
         </td>
       </tr>
     </DxcTable>
