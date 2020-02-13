@@ -22,28 +22,30 @@ const DxcDate = ({
   invalid = false,
   dissableRipple = false,
   onInputChange,
-  onChange,
   margin
 }) => {
+  const [innerDate, setInnerDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : innerDate);
+
   function handleMenuItemClick(date, event) {
     if (event === null) {
       setSelectedDate(null);
     } else {
       setSelectedDate(new Date(date));
     }
-    if (typeof onInputChange === "function") {
-      onInputChange(JSON.stringify(event));
-    }
-    value = moment(date).format("DD-MM-YYYY");
-    var check = moment(value, "DD-MM-YYYY", true).isValid();
-    if (check) {
-      if (typeof onChange === "function") {
-        onChange(date);
+    const check = moment(moment(date).format("DD-MM-YYYY"), "DD-MM-YYYY", true).isValid();
+    if (value === undefined) {
+      if (check) {
+        setInnerDate(date);
       }
+    } else if (check) {
+      if (typeof onInputChange === "function") {
+        onInputChange(date, event);
+      }
+    } else if (typeof onInputChange === "function") {
+      onInputChange(event);
     }
   }
-  const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : null);
-
   return (
     <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -104,6 +106,10 @@ const StyledDPicker = styled.span`
     }
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => (props.theme === "dark" ? colors.lightGrey : colors.darkGrey)};
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: block;
+      white-space: nowrap;
     }
     .MuiInputLabel-shrink:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
@@ -121,10 +127,6 @@ const StyledDPicker = styled.span`
     }
     .MuiFormLabel-root {
       font-family: "Open Sans", sans-serif;
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      white-space: nowrap;
       .MuiFormLabel-asterisk {
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         margin-right: 1px;
@@ -230,6 +232,12 @@ const StyledDPicker = styled.span`
     label.MuiFormLabel-root.Mui-focused:not(.Mui-error):not(.Mui-disabled),
     label.MuiFormLabel-root.MuiFormLabel-filled:not(.Mui-error):not(.Mui-disabled) {
       color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+      /* display: flex; */
+      /* flex-direction: row-reverse;
+      justify-content: flex-end; */
+
+      white-space: nowrap;
+
       & + .MuiInputBase-root {
         &:before {
           border-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
