@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import DragAndDropArea from "./dragAndDropArea/DragAndDropArea";
 import FilesToUpload from "./files-upload/FilesToUpload";
 import Transactions from "./transactions/Transactions";
-import {spaces} from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 
 const DxcUpload = ({ callbackUpload, margin }) => {
   const [files, setFiles] = useState([]);

@@ -6,7 +6,15 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 
-const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick, margin }) => {
+const DxcTabs = ({
+  mode = "filled",
+  theme = "light",
+  disableRipple = false,
+  activeTabIndex,
+  tabs = [],
+  onTabClick,
+  margin
+}) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
 
   const handleChange = (event, newValue) => {

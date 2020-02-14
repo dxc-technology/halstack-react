@@ -12,7 +12,7 @@ import { colors, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 
 const DxcDropdown = ({
-  options,
+  options = [],
   optionsIconPosition = "before",
   iconSrc = "",
   iconPosition = "before",
