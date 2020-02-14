@@ -30,7 +30,10 @@ class App extends React.Component {
           margin="medium"
         ></DxcButton>
         {this.state.isDialog1Visible && (
-          <DxcDialog isCloseVisible={true} onCloseClick={this.setDialog1Visible}>
+          <DxcDialog
+            isCloseVisible={true}
+            onCloseClick={this.setDialog1Visible}
+          >
             Close Icon
           </DxcDialog>
         )}
@@ -41,7 +44,11 @@ class App extends React.Component {
           margin="medium"
         ></DxcButton>
         {this.state.isDialog2Visible && (
-          <DxcDialog padding="xxlarge" onBackgroundClick={this.setDialog2Visible}>
+          <DxcDialog
+            padding="xxlarge"
+            onBackgroundClick={this.setDialog2Visible}
+            isCloseVisible={false}
+          >
             Overlay close
           </DxcDialog>
         )}
@@ -52,7 +59,7 @@ class App extends React.Component {
           margin="medium"
         ></DxcButton>
         {this.state.isDialog3Visible && (
-          <DxcDialog padding="xxlarge">
+          <DxcDialog padding="xxlarge" isCloseVisible={false}>
             <DxcButton
               label="Close"
               onClick={this.setDialog3Visible}

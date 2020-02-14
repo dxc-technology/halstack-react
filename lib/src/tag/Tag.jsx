@@ -5,7 +5,16 @@ import { spaces } from "../common/variables.js";
 
 import DxcBox from "../box/Box";
 
-const DxcTag = ({ iconSrc, label, margin, linkHref, onClick, iconBgColor, labelPosition, size = "medium" }) => {
+const DxcTag = ({
+  iconSrc,
+  label,
+  margin,
+  linkHref,
+  onClick,
+  iconBgColor = "black",
+  labelPosition = "after",
+  size = "medium"
+}) => {
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
     if (onClick) {
@@ -19,7 +28,7 @@ const DxcTag = ({ iconSrc, label, margin, linkHref, onClick, iconBgColor, labelP
         <IconContainer iconBgColor={iconBgColor}>
           <TagIcon src={iconSrc}></TagIcon>
         </IconContainer>
-        {size!=="small" && <TagLabel>{label}</TagLabel>}
+        {size !== "small" && <TagLabel>{label}</TagLabel>}
       </TagContent>
     </DxcBox>
   );
