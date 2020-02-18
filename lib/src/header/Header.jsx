@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
+import PropTypes from "prop-types";
 
 import DefaultWhite from "./dxc_logo_white.png";
 import DefaultBlack from "./dxc_logo_black.png";
-
-import PropTypes from "prop-types";
 
 import { colors, spaces } from "../common/variables.js";
 
