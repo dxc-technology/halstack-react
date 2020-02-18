@@ -128,7 +128,7 @@ const BottomLink = styled.a`
 `;
 
 DxcFooter.propTypes = {
-  logo: PropTypes.string,
+  logoSrc: PropTypes.string,
   socialLinks: PropTypes.arrayOf(
     PropTypes.shape({
       logoSrc: PropTypes.string.isRequired,
