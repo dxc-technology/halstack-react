@@ -21,6 +21,8 @@ import Dialog from "./pages/Dialog";
 import Date from "./pages/Date";
 import Box from "./pages/Box";
 import Tag from "./pages/Tag";
+import Paginator from "./pages/Paginator";
+
 
 export default [
   {
@@ -77,6 +79,11 @@ export default [
     path: "inputText",
     name: "Input Text",
     component: InputText
+  },
+  {
+    path: "paginator",
+    name: "Paginator",
+    component: Paginator
   },
   {
     path: "progressBar",
