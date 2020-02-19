@@ -20,16 +20,16 @@ const DxcButton = ({
   size
 }) => {
   return (
-    <DxCButton
-      margin={margin}
-      mode={mode}
-      theme={theme}
-      disabled={disabled}
-      onClick={() => onClick()}
-      iconPosition={iconPosition}
-      size={size}
-    >
-      <Button disabled={disabled} disableRipple={disableRipple}>
+    <DxCButton margin={margin} mode={mode} theme={theme} disabled={disabled} iconPosition={iconPosition} size={size}>
+      <Button
+        disabled={disabled}
+        disableRipple={disableRipple}
+        onClick={() => {
+          if (onClick) {
+            onClick();
+          }
+        }}
+      >
         <LabelContainer>{label}</LabelContainer>
         {iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />}
       </Button>
@@ -58,8 +58,8 @@ const LabelContainer = styled.span`
 `;
 
 const ButtonIcon = styled.img`
-  max-height: 15px;
-  max-width: 15px;
+  max-height: 20px;
+  max-width: 20px;
   margin-left: ${props => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
   margin-right: ${props => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
 `;
@@ -90,7 +90,7 @@ const DxCButton = styled.div`
     font-size: 14px;
     font-weight: 500;
     padding: ${props => (props.size === "small" && "11px") || "12px 30px"};
-    min-width: ${props=>(props.size === "small" && "calc(100% - 22px)") || "unset"};
+    min-width: ${props => (props.size === "small" && "calc(100% - 22px)") || "unset"};
     border-radius: 4px;
     width: 100%;
     min-height: 43px;
