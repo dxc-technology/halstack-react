@@ -17,7 +17,7 @@ const alertPropsTable = () => {
         <td>Uses one of the available component themes.</td>
       </tr>
       <tr>
-        <td>underline: boolean</td>
+        <td>underlined: boolean</td>
         <td>
           <code>false</code>
         </td>
