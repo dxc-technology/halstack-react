@@ -60,10 +60,10 @@ function App() {
           <div className="test-case" id="dark-theme">
             <DxcDate
               label="Input label"
-              value={inputValue}
               assistiveText="assistive text"
               onChange={onChange}
               theme="dark"
+              required
             />
           </div>
         </div>
