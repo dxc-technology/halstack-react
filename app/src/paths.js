@@ -23,6 +23,7 @@ import Box from "./pages/Box";
 import Tag from "./pages/Tag";
 import Card from "./pages/Card";
 import Paginator from "./pages/Paginator";
+import Sidenav from "./pages/Sidenav";
 
 export default [
   {
@@ -104,6 +105,11 @@ export default [
     path: "select",
     name: "Select",
     component: Select
+  },
+  {
+    path: "sidenav",
+    name: "Sidenav",
+    component: Sidenav
   },
   {
     path: "slider",
