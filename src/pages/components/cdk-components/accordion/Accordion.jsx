@@ -4,7 +4,7 @@ import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
-import AlertPropsTable from "./api.jsx";
+import AccordionPropsTable from "./api.jsx";
 import Section from "../../common/Section";
 import defaultAccordion from "./examples/default";
 import alternative from "./examples/alternative";
@@ -28,7 +28,7 @@ function Accordion() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
-                <AlertPropsTable />
+                <AccordionPropsTable />
               </Section>
             )
           },

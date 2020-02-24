@@ -22,6 +22,7 @@ import Spinner from "./cdk-components/spinner/Spinner";
 import Box from "./cdk-components/box/Box";
 import Tag from "./cdk-components/tag/Tag";
 import Date from "./cdk-components/date/Date";
+import Paginator from "./cdk-components/paginator/Paginator";
 
 export const types = {
   FORMS: "Forms",
@@ -42,6 +43,12 @@ export default [
     name: "Alert",
     component: Alert,
     type: types.UTILS
+  },
+  {
+    path: "box",
+    name: "Box",
+    component: Box,
+    type: types.LAYOUT
   },
   {
     path: "button",
@@ -98,6 +105,12 @@ export default [
     type: types.FORMS
   },
   {
+    path: "paginator",
+    name: "Paginator",
+    component: Paginator,
+    type: types.UTILS
+  },
+  {
     path: "progressBar",
     name: "Progress Bar",
     component: ProgressBar,
@@ -149,12 +162,6 @@ export default [
     path: "tabbed-sections",
     name: "Tabbed Sections",
     component: TabbedSections,
-    type: types.LAYOUT
-  },
-  {
-    path: "box",
-    name: "Box",
-    component: Box,
     type: types.LAYOUT
   },
   {
