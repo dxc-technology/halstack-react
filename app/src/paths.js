@@ -22,6 +22,7 @@ import Date from "./pages/Date";
 import Box from "./pages/Box";
 import Tag from "./pages/Tag";
 import Card from "./pages/Card";
+import Paginator from "./pages/Paginator";
 
 export default [
   {
@@ -83,6 +84,11 @@ export default [
     path: "inputText",
     name: "Input Text",
     component: InputText
+  },
+  {
+    path: "paginator",
+    name: "Paginator",
+    component: Paginator
   },
   {
     path: "progressBar",

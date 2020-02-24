@@ -20,6 +20,15 @@ function App() {
             iconBgColor="#50ABF1"
           ></DxcTag>
         </div>
+        <div className="test-case" id="fitcontent-size">
+          <DxcTag
+            margin="medium"
+            label="asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf"
+            iconSrc={inIcon}
+            size="fitcontent"
+            iconBgColor="#50ABF1"
+          ></DxcTag>
+        </div>
         <div className="test-case" id="medium-size">
           <DxcTag
             margin="medium"
@@ -174,7 +183,7 @@ function App() {
           <DxcTag
             iconSrc={twitterIcon}
             size="large"
-            label="large 12345678901234567890123456789012345"
+            label="large tag with text safsd asdfasdf asdsdd asdsdd asdsdd"
             labelPosition="before"
             iconBgColor="#50ABF1"
           ></DxcTag>
