@@ -44,7 +44,6 @@ function App() {
         <h4>Light theme and default icon</h4>
         <DxcHeader />
       </div>
-
       <div>
         <h4>Dark theme</h4>
         <div
@@ -194,6 +193,39 @@ function App() {
           <h5>xxlarge padding</h5>
           <DxcHeader padding={{ right: "xxlarge" }}>
             <DxcButton label={"Custom Button"} onClick={onClick} />
+          </DxcHeader>
+        </div>
+        <div>
+          <h5>multiple children</h5>
+          <DxcHeader padding={{ right: "xxsmall" }} logoSrc={yahooLogo}>
+            <DxcButton size="large" label={"Custom Button"} onClick={onClick} />
+            <p>Example 1</p>
+            <DxcButton
+              theme="dark"
+              mode="flat"
+              label={"Custom Button"}
+              onClick={onClick}
+            />
+            <DxcButton
+              mode="outlined"
+              theme="dark"
+              label={"Custom Button"}
+              onClick={onClick}
+            />
+            <DxcButton size="large" label={"Custom Button"} onClick={onClick} />
+            <p>Example 1</p>
+            <DxcButton
+              theme="dark"
+              mode="flat"
+              label={"Custom Button"}
+              onClick={onClick}
+            />
+            <DxcButton
+              mode="outlined"
+              theme="dark"
+              label={"Custom Button"}
+              onClick={onClick}
+            />
           </DxcHeader>
         </div>
       </div>
