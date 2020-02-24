@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
 
 import DefaultWhite from "./dxc_logo_white.png";
 import DefaultBlack from "./dxc_logo_black.png";
+import DefaultHamburguerWhite from "./hamb_menu_white.svg";
+import DefaultHamburguerBlack from "./hamb_menu_black.svg";
+import CloseIcon from "./close_icon.svg";
 
-import { colors, spaces } from "../common/variables.js";
+import { colors, spaces, responsiveSizes } from "../common/variables.js";
+import color from "@material-ui/core/colors/amber";
 
 const DxcHeader = ({
   theme = "light",
@@ -22,26 +26,90 @@ const DxcHeader = ({
       onClick();
     }
   }
+
+  const [isResponsive, setIsResponsive] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerWidth <= responsiveSizes.laptop && !isResponsive) {
+      setIsResponsive(true);
+    } else {
+      setIsResponsive(false);
+    }
+  };
+
+  const handleMenu = () => {
+    if (isResponsive && !isMenuVisible) {
+      setIsMenuVisible(!isMenuVisible);
+    } else {
+      setIsMenuVisible(!isMenuVisible);
+    }
+  };
+
+  const getLogoRendered = intoMenu => {
+    return (
+      <LogoIcon
+        logoSrc={logoSrc}
+        src={
+          (intoMenu && logoSrc === "default" && DefaultBlack) ||
+          (theme === "light" && underlined && logoSrc === "default")
+            ? DefaultBlack
+            : theme === "light" && !underlined && logoSrc === "default"
+            ? DefaultWhite
+            : theme === "dark" && underlined && logoSrc === "default"
+            ? DefaultWhite
+            : theme === "dark" && !underlined && logoSrc === "default"
+            ? DefaultBlack
+            : logoSrc
+        }
+      />
+    );
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <HeaderContainer theme={theme} underlined={underlined} position="static" margin={margin}>
-      <a onClick={() => onClickHandle()}>
-        <LogoIcon
-          onLogoClick={onClick}
-          logoSrc={logoSrc}
-          src={
-            theme === "light" && underlined && logoSrc === "default"
-              ? DefaultBlack
-              : theme === "light" && !underlined && logoSrc === "default"
-              ? DefaultWhite
-              : theme === "dark" && underlined && logoSrc === "default"
-              ? DefaultWhite
-              : theme === "dark" && !underlined && logoSrc === "default"
-              ? DefaultBlack
-              : logoSrc
+      <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
+      {isResponsive && (
+        <MainContainer>
+          <ChildContainer padding={padding}>
+            <HamburguerItem theme={theme} underlined={underlined} onClick={handleMenu}>
+              <HamburguerIcon
+                src={
+                  theme === "light" && underlined
+                    ? DefaultHamburguerBlack
+                    : theme === "light" && !underlined
+                    ? DefaultHamburguerWhite
+                    : theme === "dark" && underlined
+                    ? DefaultHamburguerWhite
+                    : DefaultHamburguerBlack
+                }
+              ></HamburguerIcon>
+              <HamburguerTitle>Menu</HamburguerTitle>
+            </HamburguerItem>
+          </ChildContainer>
+
+          {
+            <div>
+              <ResponsiveMenu hasVisibility={isMenuVisible} viewportWidth={window.innerWidth}>
+                {getLogoRendered(true)}
+                <MenuContent>{children}</MenuContent>
+                <img onClick={handleMenu} src={CloseIcon} className="closeIcon" />
+              </ResponsiveMenu>
+              <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} viewportWidth={window.innerWidth}></Overlay>
+            </div>
           }
-        />
-      </a>
-      <ChildContainer padding={padding}>{children}</ChildContainer>
+        </MainContainer>
+      )}
+      {!isResponsive && <ChildContainer padding={padding}>{children}</ChildContainer>}
     </HeaderContainer>
   );
 };
@@ -134,6 +202,103 @@ const ChildContainer = styled.div`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${props =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+`;
+
+const HamburguerItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 54px;
+  &:hover {
+    background-color: ${props =>
+      props.theme === "light" && props.underlined === true
+        ? colors.lightGrey
+        : props.theme === "light" && props.underlined === false
+        ? `${colors.darkGrey}80`
+        : props.theme === "dark" && props.underlined === true
+        ? `${colors.darkGrey}80`
+        : props.theme === "dark" && props.underlined === false
+        ? colors.lightGrey
+        : colors.lightGrey};
+  }
+  cursor: pointer;
+`;
+
+const HamburguerIcon = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+const HamburguerTitle = styled.span`
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+`;
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+`;
+
+const ResponsiveMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  background-color: ${colors.lightGrey};
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  color: ${colors.black};
+  width: ${props =>
+    props.viewportWidth <= responsiveSizes.laptop && props.viewportWidth > responsiveSizes.mobielLarge
+      ? "calc(60vw - 40px)"
+      : "calc(100vw - 40px)"};
+  height: 100vh;
+  padding: 20px;
+  transform: ${props => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
+  opacity: ${props => (props.hasVisibility ? "1" : "0.96")};
+  transition-property: transform, opacity;
+  transition-duration: 0.6s;
+  transition-timing-function: ease-in-out;
+
+  & > img:first-of-type {
+    position: absolute;
+    top: 23px;
+    left: 20px;
+  }
+
+  & > img:last-of-type {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    padding: ${spaces.xxsmall};
+  }
+`;
+
+const MenuContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  margin-top: 40px;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${colors.black}B3;
+  visibility: ${props => (props.hasVisibility ? "visible" : "hidden")};
+  opacity: ${props => (props.hasVisibility ? "1" : "0")};
+  display: ${props => (props.viewportWidth <= responsiveSizes.mobielLarge ? "none" : "")};
+  transition: opacity 0.2s 0.2s ease-in-out;
 `;
 
 DxcHeader.propTypes = {
