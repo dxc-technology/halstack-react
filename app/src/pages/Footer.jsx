@@ -4,7 +4,7 @@ import { DxcFooter, DxcInputText } from "@diaas/dxc-react-cdk";
 import linkedin from "../images/linkedin.svg";
 import facebook from "../images/facebook.svg";
 import twitter from "../images/twitter.svg";
-import dxcAssure from "../images/dxcassure_logo_wht.png";
+import dxcAssure from "../images/dxc_logo_wht.png";
 
 function App() {
   const social = [

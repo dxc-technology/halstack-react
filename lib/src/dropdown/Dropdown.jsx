@@ -33,13 +33,13 @@ const DxcDropdown = ({
   };
 
   useEffect(() => {
-    if (ref.current) window.addEventListener("resize", handleResize);
+    if (ref.current) ref.current.addEventListener("resize", handleResize);
     handleResize();
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      ref.current.removeEventListener("resize", handleResize);
     };
-  });
+  }, []);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
