@@ -253,7 +253,7 @@ const ResponsiveMenu = styled.div`
   z-index: 100;
   color: ${colors.black};
   width: ${props =>
-    props.viewportWidth <= responsiveSizes.laptop && props.viewportWidth > responsiveSizes.mobielLarge
+    props.viewportWidth <= responsiveSizes.laptop && props.viewportWidth > responsiveSizes.mobileLarge
       ? "calc(60vw - 40px)"
       : "calc(100vw - 40px)"};
   height: 100vh;
@@ -297,7 +297,7 @@ const Overlay = styled.div`
   background-color: ${colors.black}B3;
   visibility: ${props => (props.hasVisibility ? "visible" : "hidden")};
   opacity: ${props => (props.hasVisibility ? "1" : "0")};
-  display: ${props => (props.viewportWidth <= responsiveSizes.mobielLarge ? "none" : "")};
+  display: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "none" : "")};
   transition: opacity 0.2s 0.2s ease-in-out;
 `;
 
