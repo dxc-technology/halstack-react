@@ -8,6 +8,7 @@ const DxcTable = ({ children, margin }) => {
 
 const DxcTableContainer = styled.table`
   border-collapse: collapse;
+  width: 100%;
 
   margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${props =>

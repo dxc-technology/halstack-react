@@ -34,7 +34,7 @@ const DxcPaginator = ({
         <TotalItemsContainer>
           {minItemsPerPage} to {maxItemsPerPage} of {totalItems}
         </TotalItemsContainer>
-        {prevFunction && (
+        {firstFunction && (
           <DxcButton
             size="small"
             disabled={currentPageInternal === 1}
@@ -48,7 +48,7 @@ const DxcPaginator = ({
             }}
           />
         )}
-        {firstFunction && (
+        {prevFunction && (
           <DxcButton
             size="small"
             mode="flat"
@@ -101,11 +101,11 @@ const DxcPaginatorContainer = styled.div`
   display: flex;
   height: 64px;
   background-color: #eeeeee;
-  button{
-      &:disabled{
-          background-color: transparent !important;
-          opacity: 0.3 !important;
-      }
+  button {
+    &:disabled {
+      background-color: transparent !important;
+      opacity: 0.3 !important;
+    }
   }
 `;
 // const ItemsPageContainer = styled.span`
