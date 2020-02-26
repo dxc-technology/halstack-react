@@ -20,6 +20,12 @@ const DxcToggle = ({
   margin,
   size
 }) => {
+  const handlerToggleClick = () => {
+    if (!disabled && typeof onClick === "function") {
+      onClick(!selected);
+    }
+  };
+
   return (
     <DxcToggleContainer
       margin={margin}
@@ -32,9 +38,7 @@ const DxcToggle = ({
       iconPosition={iconPosition}
       value
       size={size}
-      onClick={() => {
-        if (!disabled) onClick(!selected);
-      }}
+      onClick={handlerToggleClick}
     >
       <ToggleButton disabled={disabled} disableRipple={disableRipple} selected={selected} label={label} value>
         <ContentContainer iconPosition={iconPosition} label={label} iconSrc={iconSrc}>

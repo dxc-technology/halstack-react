@@ -35,7 +35,7 @@ const DxcInputText = ({
       if (typeof onChange === "function") {
         onChange(event.target.value);
       }
-    } else {
+    } else if (typeof onChange === "function") {
       setInnerValue(event.target.value);
     }
   };
