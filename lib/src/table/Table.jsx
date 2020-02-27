@@ -48,12 +48,11 @@ const DxcTableContainer = styled.table`
   }
 
   & th:first-child {
-    width: 20%;
-    border-radius: 4px 0px 0px 0px;
+    border-top-left-radius: 4px;
   }
 
-  & th:nth-child(3) {
-    border-radius: 0px 4px 0px 0px;
+  & th:last-child {
+    border-top-right-radius: 4px;
   }
 `;
 

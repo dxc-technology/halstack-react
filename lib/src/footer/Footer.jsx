@@ -67,16 +67,7 @@ const DxcFooter = ({
           </FooterFooter>
         </div>
       )}
-      {isResponsiveTablet && (
-        <div>
-          <ChildComponents padding={padding}>{children}</ChildComponents>
-          <FooterFooter className="footerFooter">
-            <BottomLinks viewportWidth={window.innerWidth}>{bottomLink}</BottomLinks>
-            <Copyright viewportWidth={window.innerWidth}>{copyright}</Copyright>
-          </FooterFooter>
-        </div>
-      )}
-      {!isResponsiveTablet && !isResponsivePhone && (
+      {((!isResponsiveTablet && !isResponsivePhone) || isResponsiveTablet) && (
         <div>
           <ChildComponents padding={padding}>{children}</ChildComponents>
           <FooterFooter className="footerFooter">
