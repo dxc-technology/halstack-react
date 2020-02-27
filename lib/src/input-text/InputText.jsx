@@ -31,14 +31,22 @@ const DxcInputText = ({
   const [innerValue, setInnerValue] = useState("");
 
   const handlerInputChange = event => {
-    if (value !== null && value !== "") {
+    if (value === null || value === undefined) {
+      if (typeof onChange === "function") {
+        setInnerValue(event.target.value);
+        onChange(event.target.value);
+      } else {
+        setInnerValue(event.target.value);
+      }
+    } else if (onChange !== "") {
       if (typeof onChange === "function") {
         onChange(event.target.value);
+      } else {
+        setInnerValue(event.target.value);
       }
-    } else if (typeof onChange === "function") {
-      setInnerValue(event.target.value);
     }
   };
+
   const handlerInputBlur = event => {
     setInnerValue(event.target.value);
     if (onBlur) {
@@ -65,7 +73,7 @@ const DxcInputText = ({
       )}
       <TextField
         error={invalid}
-        value={(value != null && value) || innerValue}
+        value={(value !== null && value) || innerValue}
         name={name}
         multiline={multiline}
         disabled={disabled}
