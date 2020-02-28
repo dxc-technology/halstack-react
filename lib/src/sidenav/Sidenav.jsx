@@ -11,25 +11,31 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance }) =
 
   const [sidenavSize, setSidenavSize] = useState();
   const [isShown, setIsShown] = useState();
+  const [isResponsive, setIsResponsive] = useState();
 
   const handleVisbility = width => {
     setIsShown(width <= responsiveSizes.tablet ? false : true);
   };
 
   const handleResize = width => {
-    setSidenavSize(width);
+    if (width) {
+      setSidenavSize(width);
+      if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
+    }
+  };
+
+  const handleEventListener = () => {
+    handleResize(ref.current.offsetWidth);
   };
 
   useEffect(() => {
     if (ref.current) {
-      window.addEventListener("resize", () => {
-        handleResize(ref.current.offsetWidth);
-      });
+      window.addEventListener("resize", handleEventListener);
       handleResize(ref.current.offsetWidth);
       handleVisbility(ref.current.offsetWidth);
     }
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleEventListener);
     };
   }, []);
 
@@ -38,7 +44,13 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance }) =
   };
   return (
     <SidenavComponent ref={ref}>
-      <Sidenav navContent={navContent} isShown={isShown} padding={padding} mode={mode} sidenavSize={sidenavSize}>
+      <Sidenav
+        navContent={navContent}
+        isShown={isShown}
+        padding={padding}
+        mode={isResponsive ? "overlay" : mode}
+        sidenavSize={sidenavSize}
+      >
         {navContent}
         <ArrowTrigger onClick={handleSidenav} isShown={isShown} sidenavSize={sidenavSize} arrowDistance={arrowDistance}>
           <ArrowImage src={ArrowIcon} isShown={isShown}></ArrowImage>
@@ -55,13 +67,14 @@ const SidenavComponent = styled.div`
   display: flex;
   position: relative;
 `;
+
 const Sidenav = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
   background-color: #f8f8f8;
   height: 100%;
-  min-width: ${props => (props.sidenavSize <= responsiveSizes.tablet ? "60%" : "300px")};
+  width: ${props => (props.sidenavSize <= responsiveSizes.tablet ? "60%" : "300px")};
   box-sizing: border-box;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
   z-index: ${props => (props.mode === "overlay" ? "20" : "auto")};
