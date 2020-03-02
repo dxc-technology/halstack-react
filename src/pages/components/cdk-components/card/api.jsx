@@ -12,28 +12,73 @@ const buttonPropsTable = () => {
       <tr>
         <td>imageSrc: string</td>
         <td></td>
-        <td>URL of the image that will be placed inside the card component.</td>
+        <td>URL of the image that will be placed in the card component.</td>
       </tr>
       <tr>
-        <td>imagePosition: 'after' | 'before' | 'above' | 'below'</td>
+        <td>imageBgColor: string</td>
+        <td></td>
+        <td>Color of the image background.</td>
+      </tr>
+      <tr>
+        <td>imagePadding: string | object	</td>
+        <td></td>
+        <td>
+          Size of the padding to be applied to the image section of the
+          component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' |
+          'xlarge' | 'xxlarge'). You can pass an object with 'top', 'bottom',
+          'left' and 'right' properties in order to specify different padding
+          sizes.
+        </td>
+      </tr>
+      <tr>
+        <td>imagePosition: 'after' | 'before'</td>
         <td>
           <code>'before'</code>
         </td>
         <td>Whether the image should appear in relation to the content.</td>
       </tr>
       <tr>
-        <td>mode: 'default' | 'alternative'</td>
+        <td>linkHref: string</td>
+        <td></td>
         <td>
-          <code>'default'</code>
+          If defined, the tag will be displayed as an anchor, using this prop as
+          "href". Component will show some visual feedback on hover.
         </td>
-        <td>Uses on of the available card modes.</td>
       </tr>
       <tr>
-        <td>theme: 'light' | 'dark'</td>
+        <td>onClick: function</td>
+        <td></td>
+        <td>
+          This function will be called when the user clicks the tag. Component
+          will show some visual feedback on hover.
+        </td>
+      </tr>
+      <tr>
+        <td>imageCover: boolean</td>
+        <td></td>
+        <td>Whether the image must cover the whole image area of the card.</td>
+      </tr>
+      <tr>
+        <td>outlined: boolean</td>
+        <td></td>
+        <td>Whether the card must be outlined.</td>
+      </tr>
+      <tr>
+        <td>theme: 'dark' | 'medium' | 'light'</td>
         <td>
           <code>'light'</code>
         </td>
-        <td>Uses one of the available component themes.</td>
+        <td>Uses on of the available card themes.</td>
+      </tr>
+      <tr>
+        <td>margin: string | object</td>
+        <td></td>
+        <td>
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
+        </td>
       </tr>
     </DxcTable>
   );
