@@ -4,7 +4,12 @@ import iceCreamImagePath from "./images/ice-cream.jpg";
 
 const code = `() => {
   return (
-    <DxcCard imageSrc={iceCreamImagePath} imageCover={true} margin="small">
+    <DxcCard 
+      linkHref="https://www.dxc.com"
+      imageSrc={iceCreamImagePath} 
+      imageCover={true} 
+      margin="small"
+    >
       Lorem Ipsum
     </DxcCard>
   );
