@@ -6,15 +6,13 @@ const code = `() => {
   };
 
   return (
-    <div style={{ width: "250px" }}>
-      <DxcButton
-        mode="basic"
-        label="Filled Parent Button"
-        onClick={onClick}
-        margin="medium"
-        size="fillParent"
-      />
-    </div>
+    <DxcButton
+      mode="basic"
+      label="Fill Parent Button"
+      onClick={onClick}
+      margin="medium"
+      size="fillParent"
+    />
   );
 }`;
 
