@@ -42,23 +42,41 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance }) =
   const handleSidenav = () => {
     setIsShown(!isShown);
   };
+
   return (
     <SidenavComponent ref={ref}>
-      <Sidenav
-        navContent={navContent}
-        isShown={isShown}
-        padding={padding}
-        mode={isResponsive ? "overlay" : mode}
-        sidenavSize={sidenavSize}
-      >
-        {navContent}
-        <ArrowTrigger onClick={handleSidenav} isShown={isShown} sidenavSize={sidenavSize} arrowDistance={arrowDistance}>
-          <ArrowImage src={ArrowIcon} isShown={isShown}></ArrowImage>
-        </ArrowTrigger>
-      </Sidenav>
-      <PageContent pageContent={pageContent} padding={padding} isShown={isShown} mode={mode} sidenavSize={sidenavSize}>
-        {pageContent}
-      </PageContent>
+      {ref.current && (
+        <React.Fragment>
+          <Sidenav
+            navContent={navContent}
+            isShown={isShown}
+            padding={padding}
+            mode={isResponsive ? "overlay" : mode}
+            sidenavSize={sidenavSize}
+            isResponsive={isResponsive}
+          >
+            {navContent}
+            <ArrowTrigger
+              onClick={handleSidenav}
+              isShown={isShown}
+              sidenavSize={sidenavSize}
+              arrowDistance={arrowDistance}
+            >
+              <ArrowImage src={ArrowIcon} isShown={isShown}></ArrowImage>
+            </ArrowTrigger>
+          </Sidenav>
+          <PageContent
+            pageContent={pageContent}
+            padding={padding}
+            isShown={isShown}
+            mode={isResponsive ? "overlay" : mode}
+            sidenavSize={sidenavSize}
+            isResponsive={isResponsive}
+          >
+            {pageContent}
+          </PageContent>
+        </React.Fragment>
+      )}
     </SidenavComponent>
   );
 };
@@ -78,14 +96,7 @@ const Sidenav = styled.div`
   box-sizing: border-box;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
   z-index: ${props => (props.mode === "overlay" ? "20" : "auto")};
-  transform: ${props =>
-    props.isShown
-      ? "translateX(0)"
-      : !props.isShown && props.sidenavSize <= responsiveSizes.tablet
-      ? "translateX(-100%)"
-      : !props.isShown && props.sidenavSize > responsiveSizes.tablet
-      ? "translateX(-300px)"
-      : "translateX(-300px)"};
+  transform: ${props => (props.isShown ? "translateX(0)" : !props.isShown ? "translateX(-100%)" : "")};
   transition: transform 0.4s ease-in-out;
 `;
 
@@ -116,8 +127,7 @@ const PageContent = styled.div`
   flex-grow: 1;
   height: 100%;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
-  margin-left: ${props =>
-    props.isShown && props.mode === "push" && props.sidenavSize > responsiveSizes.tablet ? "300px" : "0"};
+  margin-left: ${props => (props.isShown && props.mode === "push" && !props.isResponsive ? "300px" : "0")};
   transition: margin 0.4s ease-in-out;
 `;
 
