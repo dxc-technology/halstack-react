@@ -17,7 +17,7 @@ const DxcPaginator = ({
   lastFunction,
   firstFunction
 }) => {
-  const totalPages = Math.round(totalItems / itemsPerPage);
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
   const minItemsPerPage =
     currentPageInternal === 1 ? currentPageInternal : (currentPageInternal - 1) * itemsPerPage + 1;
