@@ -39,7 +39,7 @@ function Button() {
                 <Example title="Button with Icon" example={withIcon}></Example>
                 <Example title="Dark theme Button" example={darkTheme}></Example>
                 <Example title="Sized Button" example={sized}></Example>
-                <Example title="Filled Parent Button" example={filled}></Example>
+                <Example title="Fill Parent Button" example={filled}></Example>
               </Section>
             )
           }
