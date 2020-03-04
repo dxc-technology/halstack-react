@@ -62,7 +62,7 @@ const DxcDate = ({
           <KeyboardDatePicker
             name={name}
             disabled={disabled}
-            value={selectedDate}
+            value={value || selectedDate}
             label={label}
             variant="inline"
             PopoverProps={{ anchorOrigin: { horizontal: "right", vertical: "bottom" } }}
@@ -260,9 +260,6 @@ const StyledDPicker = styled.span`
     label.MuiFormLabel-root.Mui-focused:not(.Mui-error):not(.Mui-disabled),
     label.MuiFormLabel-root.MuiFormLabel-filled:not(.Mui-error):not(.Mui-disabled) {
       color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
-      /* display: flex; */
-      /* flex-direction: row-reverse;
-      justify-content: flex-end; */
 
       white-space: nowrap;
 

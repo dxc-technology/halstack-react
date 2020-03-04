@@ -18,7 +18,7 @@ const DxcSwitch = ({
   onChange,
   required = false,
   margin,
-  size = "medium"
+  size = "fitContent"
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
 

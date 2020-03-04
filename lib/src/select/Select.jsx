@@ -100,10 +100,14 @@ const DxcSelect = ({
   };
 
   const getSelectedValuesWithLabel = (optionsList, selected) => {
-    return optionsList
-      .filter(x => selected.includes(x.value))
-      .map(optionToRender => optionToRender.label)
-      .join(", ");
+    return (
+      <MultipleLabelSelected>
+        {optionsList
+          .filter(x => selected.includes(x.value))
+          .map(optionToRender => optionToRender.label)
+          .join(", ")}
+      </MultipleLabelSelected>
+    );
   };
 
   const getSelectedValuesWithIcons = (optionsList, selected) => {
@@ -191,7 +195,11 @@ const calculateWidth = (margin, size) => {
   }
   return sizes[size];
 };
-
+const MultipleLabelSelected = styled.div`
+  width: calc(100% - 24px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 const LabelCont = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
@@ -203,6 +211,7 @@ const SelectedIconContainer = styled.div`
   margin-right: ${props => (props.multiple && props.label && "15px") || "0px"};
   overflow: hidden;
   text-overflow: ellipsis;
+  width: ${props => (!props.multiple && "calc(100% - 24px)") || "auto"};
 
   &::before {
     margin: 0 4px;
@@ -275,7 +284,7 @@ const SelectContainer = styled.div`
       }
   }
   .MuiSelect-select {
-    width: calc(100% - 24px);
+    width:100%;
     height: 20px;
     display: flex;
     padding-right: unset;

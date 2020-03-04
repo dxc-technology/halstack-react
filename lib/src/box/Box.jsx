@@ -5,7 +5,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import "../common/OpenSans.css";
 
-const DxcBox = ({ shadowDepth, margin, padding, display = "inline-flex", children, size }) => {
+const DxcBox = ({ shadowDepth, margin, padding, display = "inline-flex", children, size="fitContent" }) => {
   return (
     <StyledDxcBox shadowDepth={shadowDepth} display={display} margin={margin} padding={padding} size={size}>
       {children}
