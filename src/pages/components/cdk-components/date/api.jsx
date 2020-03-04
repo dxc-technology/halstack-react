@@ -92,6 +92,23 @@ const alertPropsTable = () => {
           a date object if the string typed is a valid date
         </td>
       </tr>
+      <tr>
+        <td>margin: string | object</td>
+        <td></td>
+        <td>
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
+        </td>
+      </tr>
+      <tr>
+        <td>size: string | object</td>
+        <td>
+          <code>'medium'</code>
+        </td>
+        <td>Size of the component ('medium' | 'large' | 'fillParent').</td>
+      </tr>
     </DxcTable>
   );
 };

@@ -14,6 +14,7 @@ import withoutLimits from "./examples/without-limits";
 import input from "./examples/input";
 import disabled from "./examples/disabled";
 import dark from "./examples/dark";
+import sized from "./examples/sized";
 
 function Slider() {
   return (
@@ -55,6 +56,7 @@ function Slider() {
                   example={withoutLimits}
                 ></Example>
                 <Example title="Slider with input" example={input}></Example>
+                <Example title="Sized Slider" example={sized}></Example>
                 <Example title="Disabled Slider" example={disabled}></Example>
                 <Example title="Dark theme Slider" example={dark}></Example>
               </Section>
