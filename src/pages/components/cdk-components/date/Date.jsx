@@ -9,6 +9,7 @@ import Section from "../../common/Section";
 import defaultDate from "./examples/default";
 import controlled from "./examples/controlledDate";
 import uncontrolled from "./examples/uncontrolledDate";
+import sized from "./examples/sized";
 
 function Accordion() {
   return (
@@ -38,6 +39,7 @@ function Accordion() {
                   title="Uncontrolled Date"
                   example={uncontrolled}
                 ></Example>
+                <Example title="Sized Date" example={sized}></Example>
               </Section>
             )
           }

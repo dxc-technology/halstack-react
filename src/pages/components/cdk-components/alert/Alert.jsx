@@ -10,6 +10,7 @@ import inlineInfo from "./examples/inlineInfo";
 import inlineSuccess from "./examples/inlineSuccess";
 import inlineWarning from "./examples/inlineWarning";
 import inlineError from "./examples/inlineError";
+import sized from "./examples/sized";
 import closableInline from "./examples/closableInline";
 import children from "./examples/children";
 import modal from "./examples/modal";
@@ -49,6 +50,7 @@ function Alert() {
                   example={inlineWarning}
                 ></Example>
                 <Example title="Error Alert" example={inlineError}></Example>
+                <Example title="Sized Alert" example={sized}></Example>
                 <Example title="Modal Alert" example={modal}></Example>
                 <Example
                   title="Closable inline Alert"

@@ -45,8 +45,8 @@ const buttonPropsTable = () => {
         <td>onClick: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the tag.
-          Component will show some visual feedback on hover.
+          This function will be called when the user clicks the tag. Component
+          will show some visual feedback on hover.
         </td>
       </tr>
       <tr>
@@ -62,10 +62,11 @@ const buttonPropsTable = () => {
       <tr>
         <td>size: string | object</td>
         <td>
-          <code>"medium"</code>
+          <code>'fitContent'</code>
         </td>
         <td>
-          Size of the component ('small' | 'medium' | 'large' | 'fillParent').
+          Size of the component ('small' | 'medium' | 'large' | 'fillParent' |
+          'fitContent').
         </td>
       </tr>
     </DxcTable>
