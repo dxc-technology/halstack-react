@@ -120,17 +120,11 @@ function App() {
         </div>
         <div className="test-case" id="max-size-oneline-without-value">
           <h5>Label Max size oneline with value</h5>
-          <DxcDate
-            label="Input label 123456789012"
-            onChange={onChange}
-          />
+          <DxcDate label="Input label 123456789012" onChange={onChange} />
         </div>
         <div className="test-case" id="min-size-multiline-without-value">
           <h5>Min size multiline with value</h5>
-          <DxcDate
-            label="Input label 1234567890123"
-            onChange={onChange}
-          />
+          <DxcDate label="Input label 1234567890123" onChange={onChange} />
         </div>
         <div className="test-case" id="min-size-oneline-assistiveText">
           <h5>Min size oneline assistive text</h5>
@@ -150,6 +144,41 @@ function App() {
             onChange={onChange}
           />
         </div>
+
+        <div>
+          <h4>Sizes</h4>
+          <div className="test-case" id="medium-size">
+            <h5>Medium size</h5>
+            <DxcDate
+              label="Label"
+              value={inputValue}
+              assistiveText="assistive text"
+              size="medium"
+              onInputChange={onChange}
+            />
+          </div>
+          <div className="test-case" id="large-size">
+            <h5>Large size</h5>
+            <DxcDate
+              label="Label"
+              value={inputValue}
+              assistiveText="assistive text"
+              size="large"
+              onInputChange={onChange}
+            />
+          </div>
+          <div className="test-case" id="fillParent-size">
+            <h5>FillParent size</h5>
+            <DxcDate
+              label="Label"
+              value={inputValue}
+              assistiveText="assistive text"
+              size="fillParent"
+              onInputChange={onChange}
+            />
+          </div>
+        </div>
+
         <div>
           <h4>Margins</h4>
           <div className="test-case" id="xxsmall-margin">

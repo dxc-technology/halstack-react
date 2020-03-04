@@ -203,6 +203,37 @@ function App() {
       </div>
 
       <div>
+        <h4>Sizes</h4>
+        <div className="test-case" id="large-size">
+          <h5>Large size</h5>
+          <DxcAlert
+            margin="xxsmall"
+            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+            size="large"
+          />
+        </div>
+        <div className="test-case" id="fitContent-size">
+          <h5>FitContent size</h5>
+          <DxcAlert
+            margin="xxsmall"
+            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+            size="fitContent"
+          />
+        </div>
+        <div className="test-case" id="fillParent-size">
+          <h5>FillParent size</h5>
+          <DxcAlert
+            margin="xxsmall"
+            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+            size="fillParent"
+          />
+        </div>
+      </div>
+
+      <div>
         <h4>Margins</h4>
         <div className="test-case" id="xxsmall-margin">
           <h5>xxsmall margin</h5>
