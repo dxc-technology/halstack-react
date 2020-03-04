@@ -18,7 +18,7 @@ const DxcToggle = ({
   onClick,
   selected = false,
   margin,
-  size
+  size = "fitContent"
 }) => {
   const handlerToggleClick = () => {
     if (!disabled && typeof onClick === "function") {

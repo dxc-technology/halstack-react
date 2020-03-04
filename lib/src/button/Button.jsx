@@ -55,6 +55,8 @@ const calculateWidth = (margin, size) => {
 const LabelContainer = styled.span`
   line-height: 18px;
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const ButtonIcon = styled.img`
@@ -84,7 +86,6 @@ const DxCButton = styled.div`
       flex-direction: ${props => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
-    word-break: break-all;
     letter-spacing: 1px;
     box-shadow: none;
     font-size: 14px;

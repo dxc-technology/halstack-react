@@ -19,7 +19,7 @@ const DxcRadio = ({
   onClick,
   required = false,
   margin,
-  size = "medium"
+  size = "fitContent"
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
 
