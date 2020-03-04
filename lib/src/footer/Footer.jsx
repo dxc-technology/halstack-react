@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -15,28 +15,38 @@ const DxcFooter = ({
   padding,
   margin
 }) => {
+  const ref = useRef(null);
+  const [refSize, setRefSize] = useState();
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
   const [isResponsivePhone, setIsResponsivePhone] = useState(false);
 
-  const handleResize = () => {
-    if (window.innerWidth <= responsiveSizes.tablet && window.innerWidth > responsiveSizes.mobileLarge) {
-      setIsResponsiveTablet(true);
-      setIsResponsivePhone(false);
-    } else if (window.innerWidth <= responsiveSizes.tablet && window.innerWidth <= responsiveSizes.mobileLarge) {
-      setIsResponsivePhone(true);
-      setIsResponsiveTablet(false);
-    } else {
-      setIsResponsiveTablet(false);
-      setIsResponsivePhone(false);
+  const handleResize = refWidth => {
+    console.log(refWidth);
+    if (ref.current) {
+      setRefSize(refWidth);
+      if (refWidth <= responsiveSizes.tablet && refWidth > responsiveSizes.mobileLarge) {
+        setIsResponsiveTablet(true);
+        setIsResponsivePhone(false);
+      } else if (refWidth <= responsiveSizes.tablet && refWidth <= responsiveSizes.mobileLarge) {
+        setIsResponsivePhone(true);
+        setIsResponsiveTablet(false);
+      } else {
+        setIsResponsiveTablet(false);
+        setIsResponsivePhone(false);
+      }
     }
   };
 
+  const handleEventListener = () => {
+    handleResize(ref.current.offsetWidth);
+  };
+
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    handleResize();
+    window.addEventListener("resize", handleEventListener);
+    handleResize(ref.current.offsetWidth);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleEventListener);
     };
   }, []);
 
@@ -54,16 +64,16 @@ const DxcFooter = ({
   ));
 
   return (
-    <FooterContainer margin={margin} viewportWidth={window.innerWidth}>
+    <FooterContainer margin={margin} refSize={refSize} ref={ref}>
       <FooterHeader>
         <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? defaultIcon : logoSrc} />
         <div>{socialLink}</div>
       </FooterHeader>
       {isResponsivePhone && (
         <div>
-          <FooterFooter className="footerFooter" viewportWidth={window.innerWidth}>
-            <BottomLinks viewportWidth={window.innerWidth}>{bottomLink}</BottomLinks>
-            <Copyright viewportWidth={window.innerWidth}>{copyright}</Copyright>
+          <FooterFooter className="footerFooter" refSize={refSize}>
+            <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
+            <Copyright refSize={refSize}>{copyright}</Copyright>
           </FooterFooter>
         </div>
       )}
@@ -71,8 +81,8 @@ const DxcFooter = ({
         <div>
           <ChildComponents padding={padding}>{children}</ChildComponents>
           <FooterFooter className="footerFooter">
-            <BottomLinks viewportWidth={window.innerWidth}>{bottomLink}</BottomLinks>
-            <Copyright viewportWidth={window.innerWidth}>{copyright}</Copyright>
+            <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
+            <Copyright refSize={refSize}>{copyright}</Copyright>
           </FooterFooter>
         </div>
       )}
@@ -83,7 +93,7 @@ const DxcFooter = ({
 const FooterContainer = styled.div`
   & {
     padding: ${props =>
-      props.viewportWidth <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px"};
+      props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px"};
     font-family: "Open Sans", sans-serif;
     background-color: ${colors.black};
     margin-top: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -99,8 +109,8 @@ const FooterFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  flex-direction: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "column" : "row")};
-  align-items: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "center" : "")};
+  flex-direction: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "column" : "row")};
+  align-items: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "")};
 `;
 
 const BottomLinks = styled.div`
@@ -108,12 +118,12 @@ const BottomLinks = styled.div`
   border-top: 2px solid ${colors.yellow};
   display: inline-flex;
   flex-wrap: wrap;
-  max-width: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "100%" : "60%")};
-  width: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "100%" : "")};
+  max-width: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "60%")};
+  width: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
   & > span:last-child span {
     display: none;
   }
-  margin: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "40px 0 40px 0" : "")};
+  margin: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "40px 0 40px 0" : "")};
 `;
 
 const ChildComponents = styled.div`
@@ -134,9 +144,9 @@ const ChildComponents = styled.div`
 const Copyright = styled.div`
   font-size: 12px;
   color: ${colors.white};
-  max-width: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "100%" : "40%")};
-  width: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "100%" : "")};
-  text-align: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "center" : "right")};
+  max-width: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
+  width: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
+  text-align: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "right")};
 `;
 
 const LogoIcon = styled.img`
