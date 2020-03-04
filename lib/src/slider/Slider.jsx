@@ -21,7 +21,7 @@ const DxcSlider = ({
   theme = "light",
   marks = false,
   margin,
-  size
+  size = "fillParent"
 }) => {
   const [innerValue, setInnerValue] = useState(0);
 
@@ -87,8 +87,7 @@ const DxcSlider = ({
 const sizes = {
   medium: "240px",
   large: "480px",
-  fillParent: "100%",
-  fitContent: "unset"
+  fillParent: "100%"
 };
 
 const calculateWidth = (margin, size) => {

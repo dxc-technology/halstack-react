@@ -4,7 +4,7 @@ import { DxcTag } from "@diaas/dxc-react-cdk";
 import twitterIcon from "../images/twitter.svg";
 import fbIcon from "../images/facebook.svg";
 import liIcon from "../images/linkedin.svg";
-import inIcon from "../images/dxcassure_logo_wht.png"
+import inIcon from "../images/dxcassure_logo_wht.png";
 
 function App() {
   return (
@@ -20,12 +20,12 @@ function App() {
             iconBgColor="#50ABF1"
           ></DxcTag>
         </div>
-        <div className="test-case" id="fitcontent-size">
+        <div className="test-case" id="fitContent-size">
           <DxcTag
             margin="medium"
             label="asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf"
             iconSrc={inIcon}
-            size="fitcontent"
+            size="fitContent"
             iconBgColor="#50ABF1"
           ></DxcTag>
         </div>
