@@ -762,6 +762,87 @@ function Table() {
             </tr>
           </DxcTable>
         </div>
+
+        <div className="test-case" id="horizontal-scroll">
+          <h5>Table with multiple columns and horizontal scroll</h5>
+          <DxcTable margin="xxsmall">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Default</th>
+                <th>Description</th>
+                <th>Description</th>
+                <th>Description</th>
+                <th>Description</th>
+                <th>Description</th>
+                <th>Description</th>
+                <th>Description</th>
+                <th>Description</th>
+                <th>Description</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>checked: boolean</td>
+                <td>
+                  <code>false</code>
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+                <td>
+                  If true, the radio is selected. If undefined the component
+                  will be uncontrolled and the value will be managed internally
+                  by the component.
+                </td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        </div>
       </div>
     </div>
   );
