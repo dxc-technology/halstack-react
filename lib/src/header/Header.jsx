@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
@@ -10,7 +10,6 @@ import DefaultHamburguerBlack from "./hamb_menu_black.svg";
 import CloseIcon from "./close_icon.svg";
 
 import { colors, spaces, responsiveSizes } from "../common/variables.js";
-import color from "@material-ui/core/colors/amber";
 
 const DxcHeader = ({
   theme = "light",
@@ -27,14 +26,21 @@ const DxcHeader = ({
     }
   }
 
-  const [isResponsive, setIsResponsive] = useState(false);
+  const ref = useRef(null);
+
+  const [refSize, setRefSize] = useState();
+  const [isResponsive, setIsResponsive] = useState();
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  const handleResize = () => {
-    if (window.innerWidth <= responsiveSizes.laptop && !isResponsive) {
-      setIsResponsive(true);
-    } else {
-      setIsResponsive(false);
+  const handleResize = refWidth => {
+    if (refWidth) {
+      console.log(refSize);
+      setRefSize(refWidth);
+      if (refWidth <= responsiveSizes.tablet && !isResponsive) {
+        setIsResponsive(true);
+      } else {
+        setIsResponsive(false);
+      }
     }
   };
 
@@ -66,17 +72,23 @@ const DxcHeader = ({
     );
   };
 
+  const handleEventListener = () => {
+    handleResize(ref.current.offsetWidth);
+  };
+
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    handleResize();
+    if (ref.current) {
+      window.addEventListener("resize", handleEventListener);
+      handleResize(ref.current.offsetWidth);
+    }
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleEventListener);
     };
   }, []);
 
   return (
-    <HeaderContainer theme={theme} underlined={underlined} position="static" margin={margin}>
+    <HeaderContainer theme={theme} underlined={underlined} position="static" margin={margin} ref={ref}>
       <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
       {isResponsive && (
         <MainContainer>
@@ -99,12 +111,12 @@ const DxcHeader = ({
 
           {
             <div>
-              <ResponsiveMenu hasVisibility={isMenuVisible} viewportWidth={window.innerWidth}>
+              <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                 {getLogoRendered(true)}
                 <MenuContent>{children}</MenuContent>
                 <img onClick={handleMenu} src={CloseIcon} className="closeIcon" />
               </ResponsiveMenu>
-              <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} viewportWidth={window.innerWidth}></Overlay>
+              <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
             </div>
           }
         </MainContainer>
@@ -253,7 +265,7 @@ const ResponsiveMenu = styled.div`
   z-index: 100;
   color: ${colors.black};
   width: ${props =>
-    props.viewportWidth <= responsiveSizes.laptop && props.viewportWidth > responsiveSizes.mobileLarge
+    props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge
       ? "calc(60vw - 40px)"
       : "calc(100vw - 40px)"};
   height: 100vh;
@@ -272,7 +284,7 @@ const ResponsiveMenu = styled.div`
 
   & > img:last-of-type {
     position: fixed;
-    top: 20px;
+    top: 23px;
     right: 20px;
     width: 24px;
     height: 24px;
@@ -297,7 +309,7 @@ const Overlay = styled.div`
   background-color: ${colors.black}B3;
   visibility: ${props => (props.hasVisibility ? "visible" : "hidden")};
   opacity: ${props => (props.hasVisibility ? "1" : "0")};
-  display: ${props => (props.viewportWidth <= responsiveSizes.mobileLarge ? "none" : "")};
+  display: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "none" : "")};
   transition: opacity 0.2s 0.2s ease-in-out;
 `;
 
