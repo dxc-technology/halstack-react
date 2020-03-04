@@ -8,6 +8,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const DxcDate = ({
   value,
@@ -20,9 +21,10 @@ const DxcDate = ({
   required = false,
   assistiveText = "",
   invalid = false,
-  dissableRipple = false,
+  disableRipple = false,
   onInputChange,
-  margin
+  margin,
+  size = "medium"
 }) => {
   const [innerDate, setInnerDate] = useState(null);
   const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : innerDate);
@@ -49,13 +51,21 @@ const DxcDate = ({
   return (
     <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <StyledDPicker margin={margin} invalid={invalid} theme={theme} dissableRipple={dissableRipple} required={required}>
+        <StyledDPicker
+          margin={margin}
+          invalid={invalid}
+          theme={theme}
+          disableRipple={disableRipple}
+          required={required}
+          size={size}
+        >
           <KeyboardDatePicker
             name={name}
             disabled={disabled}
             value={selectedDate}
             label={label}
             variant="inline"
+            PopoverProps={{ anchorOrigin: { horizontal: "right", vertical: "bottom" } }}
             keyboardIcon={
               iconSrc !== "" ? (
                 <img src={iconSrc} />
@@ -83,6 +93,19 @@ const DxcDate = ({
   );
 };
 
+const sizes = {
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 const StyledDPicker = styled.span`
   .MuiFormControl-root {
     margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -94,7 +117,7 @@ const StyledDPicker = styled.span`
       props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
     margin-left: ${props =>
       props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-    width: 230px;
+    width: ${props => calculateWidth(props.margin, props.size)};
     .MuiInputBase-input {
       font-family: "Open Sans", sans-serif;
     }
@@ -216,7 +239,7 @@ const StyledDPicker = styled.span`
       color: ${colors.black};
 
       .MuiTouchRipple-root {
-        display: ${props => (props.dissableRipple ? "none" : "")};
+        display: ${props => (props.disableRipple ? "none" : "")};
         .MuiTouchRipple-child {
           background-color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
         }
@@ -361,9 +384,19 @@ DxcDate.propTypes = {
   required: PropTypes.bool,
   assistiveText: PropTypes.string,
   invalid: PropTypes.bool,
-  dissableRipple: PropTypes.bool,
+  disableRipple: PropTypes.bool,
   onInputChange: PropTypes.func,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 export default DxcDate;
