@@ -10,6 +10,7 @@ import TagPropsTable from "./api.jsx";
 import basicExample from "./examples/basicExample";
 import linkExample from "./examples/linkExample";
 import actionExample from "./examples/actionExample";
+import sized from "./examples/sized";
 
 function Tag() {
   return (
@@ -35,7 +36,11 @@ function Tag() {
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example title="Basic Tag" example={basicExample}></Example>
                 <Example title="Tag with Link" example={linkExample}></Example>
-                <Example title="Tag with Action" example={actionExample}></Example>
+                <Example
+                  title="Tag with Action"
+                  example={actionExample}
+                ></Example>
+                <Example title="Sized Tag" example={sized}></Example>
               </Section>
             )
           }

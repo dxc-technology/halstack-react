@@ -13,6 +13,7 @@ const code = `() => {
       format="dd-MM-yyyy"
       value={value}
       margin="medium"
+      size="large"
       onInputChange={onChange}
     />
   );
