@@ -13,7 +13,7 @@ const DxcTag = ({
   onClick,
   iconBgColor = "black",
   labelPosition = "after",
-  size = "medium"
+  size = "fitContent"
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
