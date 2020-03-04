@@ -22,7 +22,7 @@ const code = `() => {
       <tr>
         <td>cell 7</td>
         <td>cell 8</td>
-        <td>longer cell example</td>
+        <td>Cell 9</td>
       </tr>
     </DxcTable>
   );

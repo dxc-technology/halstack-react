@@ -13,8 +13,12 @@ const code = `() => {
 
   return (
     <div>
-      <DxcCheckbox checked={checked} label="Label before" onChange={onChange}
-      margin="medium" />
+      <DxcCheckbox
+        checked={checked}
+        label="Label before"
+        onChange={onChange}
+        margin="medium"
+      />
 
       <DxcCheckbox
         checked={checked1}
