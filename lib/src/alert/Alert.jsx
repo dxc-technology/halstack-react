@@ -122,6 +122,10 @@ const AlertContainer = styled.div`
   font-family: "Open Sans", sans-serif;
   justify-content: ${props => (props.mode === "modal" ? "center" : "")};
   align-items: ${props => (props.mode === "modal" ? "center" : "")};
+  max-width: ${props =>
+    props.size === "fitContent"
+      ? calculateWidth(props.margin, "fillParent")
+      : calculateWidth(props.margin, props.size)};
   width: ${props => calculateWidth(props.margin, props.size)};
   min-height: ${props =>
     (props.children && props.children.filter(child => child === undefined).length === 0 && "92px") || "48px"};

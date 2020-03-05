@@ -21,7 +21,6 @@ const DxcFooter = ({
   const [isResponsivePhone, setIsResponsivePhone] = useState(false);
 
   const handleResize = refWidth => {
-    console.log(refWidth);
     if (ref.current) {
       setRefSize(refWidth);
       if (refWidth <= responsiveSizes.tablet && refWidth > responsiveSizes.mobileLarge) {
@@ -92,8 +91,7 @@ const DxcFooter = ({
 
 const FooterContainer = styled.div`
   & {
-    padding: ${props =>
-      props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px"};
+    padding: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px")};
     font-family: "Open Sans", sans-serif;
     background-color: ${colors.black};
     margin-top: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
