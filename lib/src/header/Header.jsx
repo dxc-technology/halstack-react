@@ -34,7 +34,6 @@ const DxcHeader = ({
 
   const handleResize = refWidth => {
     if (refWidth) {
-      console.log(refSize);
       setRefSize(refWidth);
       if (refWidth <= responsiveSizes.tablet && !isResponsive) {
         setIsResponsive(true);
