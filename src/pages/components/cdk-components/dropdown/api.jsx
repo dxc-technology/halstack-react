@@ -108,18 +108,11 @@ const dropdownPropsTable = () => {
       </tr>
       <tr>
         <td>size: string | object</td>
-        <td></td>
+        <td>"fitContent"</td>
         <td>
           Size of the component ('small' | 'medium' | 'large' | 'fitContent' |
           'fillParent' ).
         </td>
-      </tr>
-      <tr>
-        <td>size: string | object</td>
-        <td>
-          <code>"medium"</code>
-        </td>
-        <td>Size of the component ('small' | 'medium' | 'large').</td>
       </tr>
     </DxcTable>
   );

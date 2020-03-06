@@ -6,8 +6,7 @@ const code = `() => {
     console.log(newValue);
   };
 
-  return <DxcCheckbox label="Checkbox" onChange={onChange}
-  margin="medium" />;
+  return <DxcCheckbox label="Checkbox" onChange={onChange} margin="medium" />;
 }`;
 
 const scope = {
