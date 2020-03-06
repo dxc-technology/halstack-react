@@ -5,9 +5,15 @@ const spinnerPropsTable = () => {
   return (
     <DxcTable>
       <tr>
-        <th>label: string</th>
-        <th></th>
-        <th>Text to be placed inside the spinner.</th>
+        <th>Name</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+
+      <tr>
+        <td>label: string</td>
+        <td></td>
+        <td>Text to be placed inside the spinner.</td>
       </tr>
       <tr>
         <td>theme: 'light' | 'dark'</td>

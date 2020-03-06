@@ -49,7 +49,7 @@ const alertPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>margin: string | object</td>
+        <td>margin: string</td>
         <td></td>
         <td>
           Size of the bottom margin to be applied to the footer ('xxsmall' |
