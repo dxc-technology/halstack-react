@@ -6,7 +6,7 @@ import { colors, spaces, responsiveSizes } from "../common/variables.js";
 import "../common/OpenSans.css";
 import ArrowIcon from "./arrow_icon.svg";
 
-const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance }) => {
+const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, displayArrow = true }) => {
   const ref = useRef(null);
 
   const [sidenavSize, setSidenavSize] = useState();
@@ -56,14 +56,16 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance }) =
             isResponsive={isResponsive}
           >
             {navContent}
-            <ArrowTrigger
-              onClick={handleSidenav}
-              isShown={isShown}
-              sidenavSize={sidenavSize}
-              arrowDistance={arrowDistance}
-            >
-              <ArrowImage src={ArrowIcon} isShown={isShown}></ArrowImage>
-            </ArrowTrigger>
+            {displayArrow && (
+              <ArrowTrigger
+                onClick={handleSidenav}
+                isShown={isShown}
+                sidenavSize={sidenavSize}
+                arrowDistance={arrowDistance}
+              >
+                <ArrowImage src={ArrowIcon} isShown={isShown}></ArrowImage>
+              </ArrowTrigger>
+            )}
           </Sidenav>
           <PageContent
             pageContent={pageContent}
