@@ -71,7 +71,7 @@ const DxCTabs = styled.div`
       min-height: 48px;
       height: auto;
       font-family: "Open Sans", sans-serif;
-      font-size: 16px;
+      font-size: 14px;
       /* height: 64px cuando vengan con icono y texto */
       min-width: 180px;
       background-color: ${props =>
