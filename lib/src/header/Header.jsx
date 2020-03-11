@@ -261,7 +261,7 @@ const ResponsiveMenu = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 100;
+  z-index: 2000;
   color: ${colors.black};
   width: ${props =>
     props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge
@@ -310,6 +310,7 @@ const Overlay = styled.div`
   opacity: ${props => (props.hasVisibility ? "1" : "0")};
   display: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "none" : "")};
   transition: opacity 0.2s 0.2s ease-in-out;
+  z-index: 1600;
 `;
 
 DxcHeader.propTypes = {
