@@ -56,7 +56,7 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, dis
             isResponsive={isResponsive}
           >
             {navContent}
-            {displayArrow && (
+            {(displayArrow || isResponsive) && (
               <ArrowTrigger
                 onClick={handleSidenav}
                 isShown={isShown}
@@ -97,7 +97,7 @@ const Sidenav = styled.div`
   width: ${props => (props.sidenavSize <= responsiveSizes.tablet ? "60%" : "300px")};
   box-sizing: border-box;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
-  z-index: ${props => (props.mode === "overlay" ? "20" : "auto")};
+  z-index: ${props => (props.mode === "overlay" ? "400" : "auto")};
   transform: ${props => (props.isShown ? "translateX(0)" : !props.isShown ? "translateX(-100%)" : "")};
   transition: transform 0.4s ease-in-out;
 `;
@@ -131,6 +131,7 @@ const PageContent = styled.div`
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
   margin-left: ${props => (props.isShown && props.mode === "push" && !props.isResponsive ? "300px" : "0")};
   transition: margin 0.4s ease-in-out;
+  overflow-x: hidden;
 `;
 
 DxcSidenav.propTypes = {
