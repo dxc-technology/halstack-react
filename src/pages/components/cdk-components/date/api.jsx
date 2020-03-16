@@ -87,9 +87,20 @@ const alertPropsTable = () => {
         <td>onInputChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user types within the input. A
-          string with the current value will be passed to this function and also
-          a date object if the string typed is a valid date
+          This function will be called when the user types within the input. An
+          object including the current sring value and the date value (if the
+          string typed is a valid date) will be passed to this function. An
+          example of this object is: {"{ "}
+          <code>stringValue: value, dateValue: date</code>
+          {" }"}.
+        </td>
+      </tr>
+      <tr>
+        <td>onBlur: function</td>
+        <td></td>
+        <td>
+          This function will be called when the the input loses the focus. The
+          input value will be passed as a parameter.
         </td>
       </tr>
       <tr>

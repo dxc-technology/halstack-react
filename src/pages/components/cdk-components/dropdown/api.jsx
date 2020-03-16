@@ -108,7 +108,7 @@ const dropdownPropsTable = () => {
       </tr>
       <tr>
         <td>size: string | object</td>
-        <td>"fitContent"</td>
+        <td>'fitContent'</td>
         <td>
           Size of the component ('small' | 'medium' | 'large' | 'fitContent' |
           'fillParent' ).

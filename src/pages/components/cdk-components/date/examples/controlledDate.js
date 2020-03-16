@@ -3,8 +3,13 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, changeValue] = useState("01/01/2001");
+  const [isValid, changeIsValid] = useState(false);
+
   const onChange = newValue => {
     changeValue(newValue);
+    if (!newValue.dateValue) {
+      changeIsValid(true);
+    }
   };
 
   return (
