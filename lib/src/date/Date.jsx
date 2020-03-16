@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -23,31 +22,28 @@ const DxcDate = ({
   invalid = false,
   disableRipple = false,
   onInputChange,
+  onBlur = "",
   margin,
   size = "medium"
 }) => {
-  const [innerDate, setInnerDate] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : innerDate);
+  const [innerValue, setInnerValue] = useState("");
 
-  function handleMenuItemClick(date, event) {
-    if (event === null) {
-      setSelectedDate(null);
-    } else {
-      setSelectedDate(new Date(date));
+  function handleMenuItemClick(date, stringValue) {
+    if (value == null) {
+      setInnerValue(stringValue);
     }
-    const check = moment(moment(date).format("DD-MM-YYYY"), "DD-MM-YYYY", true).isValid();
-    if (value === undefined) {
-      if (check) {
-        setInnerDate(date);
-      }
-    } else if (check) {
-      if (typeof onInputChange === "function") {
-        onInputChange(date, event);
-      }
-    } else if (typeof onInputChange === "function") {
-      onInputChange(event);
+    if (typeof onInputChange === "function") {
+      onInputChange({ stringValue, dateValue: date && date.toJSON() ? date : null });
     }
   }
+
+  const handlerInputBlur = event => {
+    setInnerValue(event.target.value);
+    if (onBlur) {
+      onBlur(event.target.value);
+    }
+  };
+
   return (
     <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -58,11 +54,12 @@ const DxcDate = ({
           disableRipple={disableRipple}
           required={required}
           size={size}
+          onBlur={(onBlur && handlerInputBlur) || null}
         >
           <KeyboardDatePicker
             name={name}
             disabled={disabled}
-            value={value || selectedDate}
+            value={value === "" ? null : value != null ? value : innerValue}
             label={label}
             variant="inline"
             PopoverProps={{ anchorOrigin: { horizontal: "right", vertical: "bottom" } }}
@@ -383,6 +380,7 @@ DxcDate.propTypes = {
   invalid: PropTypes.bool,
   disableRipple: PropTypes.bool,
   onInputChange: PropTypes.func,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
   margin: PropTypes.oneOfType([

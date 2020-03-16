@@ -23,7 +23,7 @@ const DxcDropdown = ({
   disableRipple = false,
   onSelectOption,
   margin,
-  size = "medium"
+  size = "fitContent"
 }) => {
   const [width, setWidth] = useState();
 
