@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { DxcDate } from "@diaas/dxc-react-cdk";
 
 function App() {
-  const [inputValue, changeInput] = useState(new Date("1995/12/03"));
-  const onChange = (newValue, event) => {
-    changeInput(newValue);
+  const [inputValue, changeInput] = useState("1995/12/03");
+  const [isInvalid, changeIsInvalid] = useState(false);
+
+  const onChange = ({ stringValue, dateValue }) => {
+    dateValue != null ? changeInput(dateValue) : changeInput(stringValue);
+    changeIsInvalid(dateValue ? false : true);
   };
 
   return (
@@ -16,6 +19,7 @@ function App() {
           value={inputValue}
           assistiveText="assistive text"
           onInputChange={onChange}
+          invalid={isInvalid}
         />
       </div>
 
@@ -25,7 +29,7 @@ function App() {
           label="Input label"
           value={inputValue}
           assistiveText="assistive text"
-          onChange={onChange}
+          onInputChange={onChange}
           invalid={true}
         />
       </div>
@@ -35,13 +39,18 @@ function App() {
         <DxcDate
           value={inputValue}
           assistiveText="assistive text"
-          onChange={onChange}
+          onInputChange={onChange}
+          invalid={isInvalid}
         />
       </div>
 
       <div className="test-case" id="without-assistive-text-label-date">
         <h4>Without assistive text and label</h4>
-        <DxcDate value={inputValue} onChange={onChange} />
+        <DxcDate
+          value={inputValue}
+          onInputChange={onChange}
+          invalid={isInvalid}
+        />
       </div>
 
       <div className="test-case" id="light-theme">
@@ -50,7 +59,8 @@ function App() {
           label="Input label"
           value={inputValue}
           assistiveText="assistive text"
-          onChange={onChange}
+          onInputChange={onChange}
+          invalid={isInvalid}
         />
       </div>
 
@@ -61,7 +71,8 @@ function App() {
             <DxcDate
               label="Input label"
               assistiveText="assistive text"
-              onChange={onChange}
+              onInputChange={onChange}
+              invalid={false}
               theme="dark"
               required
             />
@@ -76,7 +87,8 @@ function App() {
           value={inputValue}
           disabled={true}
           assistiveText="assistive text"
-          onChange={onChange}
+          onInputChange={onChange}
+          invalid={isInvalid}
         />
       </div>
 
@@ -87,7 +99,8 @@ function App() {
           value={inputValue}
           required={true}
           assistiveText="assistive text"
-          onChange={onChange}
+          onInputChange={onChange}
+          invalid={isInvalid}
           margin="medium"
         />
       </div>
@@ -97,7 +110,8 @@ function App() {
           label="Input label"
           required={true}
           assistiveText="assistive text"
-          onChange={onChange}
+          onInputChange={onChange}
+          invalid={isInvalid}
           margin="medium"
         />
       </div>
@@ -107,7 +121,8 @@ function App() {
           <DxcDate
             label="Input label 123456789012"
             value={inputValue}
-            onChange={onChange}
+            onInputChange={onChange}
+            invalid={isInvalid}
           />
         </div>
         <div className="test-case" id="min-size-multiline-with-value">
@@ -115,16 +130,25 @@ function App() {
           <DxcDate
             label="Input label 1234567890123"
             value={inputValue}
-            onChange={onChange}
+            onInputChange={onChange}
+            invalid={isInvalid}
           />
         </div>
         <div className="test-case" id="max-size-oneline-without-value">
-          <h5>Label Max size oneline with value</h5>
-          <DxcDate label="Input label 123456789012" onChange={onChange} />
+          <h5>Label Max size oneline without value</h5>
+          <DxcDate
+            label="Input label 123456789012"
+            onInputChange={onChange}
+            invalid={isInvalid}
+          />
         </div>
         <div className="test-case" id="min-size-multiline-without-value">
-          <h5>Min size multiline with value</h5>
-          <DxcDate label="Input label 1234567890123" onChange={onChange} />
+          <h5>Min size multiline without value</h5>
+          <DxcDate
+            label="Input label 123456789012"
+            onInputChange={onChange}
+            invalid={isInvalid}
+          />
         </div>
         <div className="test-case" id="min-size-oneline-assistiveText">
           <h5>Min size oneline assistive text</h5>
@@ -132,7 +156,8 @@ function App() {
             label="Label"
             value={inputValue}
             assistiveText="Assistive test 12345678901234 56789012"
-            onChange={onChange}
+            onInputChange={onChange}
+            invalid={isInvalid}
           />
         </div>
         <div className="test-case" id="min-size-multiline-assistiveText">
@@ -141,7 +166,8 @@ function App() {
             label="Label"
             value={inputValue}
             assistiveText="Assistive test 12345678901234 567890123"
-            onChange={onChange}
+            onInputChange={onChange}
+            invalid={isInvalid}
           />
         </div>
 
@@ -155,6 +181,7 @@ function App() {
               assistiveText="assistive text"
               size="medium"
               onInputChange={onChange}
+              invalid={isInvalid}
             />
           </div>
           <div className="test-case" id="large-size">
@@ -165,6 +192,7 @@ function App() {
               assistiveText="assistive text"
               size="large"
               onInputChange={onChange}
+              invalid={isInvalid}
             />
           </div>
           <div className="test-case" id="fillParent-size">
@@ -175,6 +203,7 @@ function App() {
               assistiveText="assistive text"
               size="fillParent"
               onInputChange={onChange}
+              invalid={isInvalid}
             />
           </div>
         </div>
@@ -187,7 +216,8 @@ function App() {
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
-              onChange={onChange}
+              onInputChange={onChange}
+              invalid={isInvalid}
               margin="xxsmall"
             />
           </div>
@@ -198,7 +228,8 @@ function App() {
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
-              onChange={onChange}
+              onInputChange={onChange}
+              invalid={isInvalid}
               margin="xsmall"
             />
           </div>
@@ -209,7 +240,8 @@ function App() {
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
-              onChange={onChange}
+              onInputChange={onChange}
+              invalid={isInvalid}
               margin="small"
             />
           </div>
@@ -220,7 +252,8 @@ function App() {
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
-              onChange={onChange}
+              onInputChange={onChange}
+              invalid={isInvalid}
               margin="large"
             />
           </div>
@@ -231,7 +264,8 @@ function App() {
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
-              onChange={onChange}
+              onInputChange={onChange}
+              invalid={isInvalid}
               margin="xlarge"
             />
           </div>
@@ -242,7 +276,8 @@ function App() {
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
-              onChange={onChange}
+              onInputChange={onChange}
+              invalid={isInvalid}
               margin="xxlarge"
             />
           </div>
