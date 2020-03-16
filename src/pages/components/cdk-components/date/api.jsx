@@ -16,7 +16,7 @@ const alertPropsTable = () => {
       </tr>
       <tr>
         <td>format: string</td>
-        <td></td>
+        <td>'dd-MM-yyyy'</td>
         <td>
           The format in which the date value will be displayed. User must use
           this format when editing the input.
