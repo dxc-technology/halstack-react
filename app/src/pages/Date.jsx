@@ -72,7 +72,7 @@ function App() {
               label="Input label"
               assistiveText="assistive text"
               onInputChange={onChange}
-              invalid={false}
+              invalid={isInvalid}
               theme="dark"
               required
             />
