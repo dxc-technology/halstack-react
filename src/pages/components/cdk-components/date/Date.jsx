@@ -6,7 +6,6 @@ import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import DatePropsTable from "./api.jsx";
 import Section from "../../common/Section";
-import defaultDate from "./examples/default";
 import controlled from "./examples/controlledDate";
 import uncontrolled from "./examples/uncontrolledDate";
 import sized from "./examples/sized";
@@ -33,7 +32,6 @@ function Accordion() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
-                <Example title="Default Date" example={defaultDate}></Example>
                 <Example title="Controlled Date" example={controlled}></Example>
                 <Example
                   title="Uncontrolled Date"

@@ -2,26 +2,28 @@ import { DxcDate } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  const [value, changeValue] = useState("01/01/2001");
-  const [isValid, changeIsValid] = useState(false);
+  const [inputValue, changeInput] = useState("1995/12/03");
+  const [isInvalid, changeIsInvalid] = useState(false);
 
   const onChange = newValue => {
-    changeValue(newValue);
+    changeInput(newValue);
     if (!newValue.dateValue) {
-      changeIsValid(true);
+      changeIsInvalid(!isInvalid);
     }
   };
 
   return (
     <DxcDate
-      label="Date of birth"
-      format="dd-MM-yyyy"
-      value={value}
+      label="Input label"
+      value={inputValue}
       margin="medium"
+      assistiveText="assistive text"
       onInputChange={onChange}
+      invalid={isInvalid}
     />
   );
 }`;
+
 const scope = {
   DxcDate,
   useState
