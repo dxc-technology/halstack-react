@@ -2,7 +2,14 @@ import { DxcDate } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 
 const code = `() => {
-  return <DxcDate label="Date of birth" format="dd-MM-yyyy" margin="medium" />;
+  return (
+    <DxcDate
+      label="Date of birth"
+      format="dd-MM-yyyy"
+      assistiveText="assistive text"
+      margin="medium"
+    />
+  );
 }`;
 const scope = {
   DxcDate,
