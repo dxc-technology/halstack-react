@@ -147,7 +147,13 @@ const StyledDPicker = styled.span`
       }};
     }
     .MuiFormLabel-root.Mui-error {
-      color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+      color: ${props => {
+        if (props.invalid) {
+          return props.theme === "light" ? colors.darkRed : colors.lightRed;
+        } else {
+          return props.theme === "dark" ? colors.white : colors.darkGrey;
+        }
+      }}
     }
     .MuiFormLabel-root {
       font-family: "Open Sans", sans-serif;
@@ -193,12 +199,24 @@ const StyledDPicker = styled.span`
       border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
     }
     .MuiInput-underline.Mui-error:after {
-      border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+      border-color: ${props => {
+        if (props.invalid) {
+          return props.theme === "light" ? colors.darkRed : colors.lightRed;
+        } else {
+          return props.theme === "dark" ? colors.white : colors.darkGrey;
+        }
+      }}
     }
     .MuiFormHelperText-root {
       font-family: "Open Sans", sans-serif;
       &.Mui-error {
-        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        color: ${props => {
+          if (props.invalid) {
+            return props.theme === "light" ? colors.darkRed : colors.lightRed;
+          } else {
+            return props.theme === "dark" ? colors.white : colors.darkGrey;
+          }
+        }}
       }
     }
     .MuiFormHelperText-root:not(.Mui-disabled):not(.Mui-error) {
