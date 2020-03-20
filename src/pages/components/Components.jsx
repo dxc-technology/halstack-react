@@ -1,5 +1,5 @@
 import React from "react";
-import { Router } from "@reach/router";
+import { Router, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import SideNav from "../../common/SideNav";
@@ -10,11 +10,11 @@ function Components() {
     <ComponentsContainer>
       <SideNav title="React"></SideNav>
       <Content>
-        <StyledRouter primary={false}>
-          {paths.map(path => (
-            <path.component path={path.path}></path.component>
-          ))}
-        </StyledRouter>
+        {paths.map(path => (
+          <Route path={`/components/${path.path}`}>
+            <path.component></path.component>
+          </Route>
+        ))}
       </Content>
     </ComponentsContainer>
   );

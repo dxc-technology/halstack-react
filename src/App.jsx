@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter } from "@reach/router";
+import { HashRouter, Route } from "react-router-dom";
 import styled from "styled-components";
 import { DxcFooter } from "@diaas/dxc-react-cdk";
 
@@ -10,24 +10,30 @@ import Overview from "./pages/overview/Overview";
 function App() {
   return (
     <MainContainer>
-      <StyledHeader>
-        <Header></Header>
-      </StyledHeader>
-      <Content>
-        <StyledRouter>
-          <Components path="/components/*"></Components>
-          <Overview path="/overview"></Overview>
-          <Overview path="/"></Overview>
-        </StyledRouter>
-      </Content>
-      <DxcFooter
-        bottomLinks={[
-          { text: "Twitter", href: "http://www.google.com" },
-          { text: "Facebook", href: "http://www.google.com" },
-          { text: "Instagram", href: "http://www.google.com" }
-        ]}
-        copyright="© DXC Technology 2019. All rights reserved."
-      ></DxcFooter>
+      <HashRouter>
+        <StyledHeader>
+          <Header></Header>
+        </StyledHeader>
+        <Content>
+          <Route path="/components/">
+            <Components></Components>
+          </Route>
+          <Route exact path="/overview">
+            <Overview></Overview>
+          </Route>
+          <Route exact path="/">
+            <Overview></Overview>
+          </Route>
+        </Content>
+        <DxcFooter
+          bottomLinks={[
+            { text: "Twitter", href: "http://www.google.com" },
+            { text: "Facebook", href: "http://www.google.com" },
+            { text: "Instagram", href: "http://www.google.com" }
+          ]}
+          copyright="© DXC Technology 2019. All rights reserved."
+        ></DxcFooter>
+      </HashRouter>
     </MainContainer>
   );
 }
