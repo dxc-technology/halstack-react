@@ -1,42 +1,37 @@
 import React from "react";
-import { Link, Location } from "@reach/router";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { DxcHeader } from "@diaas/dxc-react-cdk";
 import githubLogo from "./github-logo.png";
 
 function App() {
+  const location = useLocation();
   return (
-    <DxcHeader padding={{left:"medium", right:"medium"}}>
-      <Location>
-        {({ location }) => (
-          <React.Fragment>
-            <HeaderLink isActive={location.pathname.startsWith("/overview")}>
-              <Link to="overview">Overview</Link>
-            </HeaderLink>
-            <HeaderLink isActive={location.pathname.startsWith("/components")}>
-              <Link to="components">Components</Link>
-            </HeaderLink>
-            <HeaderLink>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://developer.dxc.com"
-              >
-                Design Guidelines
-              </a>
-            </HeaderLink>
-            <HeaderLink>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.dxc.com/DIaaS/diaas-react-cdk"
-              >
-                <img src={githubLogo} alt="GitHub logo"></img>
-              </a>
-            </HeaderLink>
-          </React.Fragment>
-        )}
-      </Location>
+    <DxcHeader padding={{ left: "medium", right: "medium" }}>
+      <HeaderLink isActive={location.pathname.startsWith("/overview")}>
+        <Link to="/overview">Overview</Link>
+      </HeaderLink>
+      <HeaderLink isActive={location.pathname.startsWith("/components")}>
+        <Link to="/components">Components</Link>
+      </HeaderLink>
+      <HeaderLink>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://developer.dxc.com"
+        >
+          Design Guidelines
+        </a>
+      </HeaderLink>
+      <HeaderLink>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.dxc.com/DIaaS/diaas-react-cdk"
+        >
+          <img src={githubLogo} alt="GitHub logo"></img>
+        </a>
+      </HeaderLink>
     </DxcHeader>
   );
 }

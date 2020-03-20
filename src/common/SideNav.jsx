@@ -1,43 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, Location } from "@reach/router";
+import { Link, useLocation } from "react-router-dom";
 
 import paths from "../pages/components/paths.js";
 import { types } from "../pages/components/paths.js";
 import reactIcon from "./react-icon.png";
 
 function SideNav({ title }) {
+  const location = useLocation();
   return (
     <SideNavContainer>
       <Title>
         {title}
         <ReactLogo src={reactIcon} alt="React Logo"></ReactLogo>
       </Title>
-      <Location>
-        {({ location }) => (
-          <Links>
-            {Object.keys(types).map(type => (
-              <React.Fragment>
-                <ComponentType>{types[type]}</ComponentType>
-                <ComponentsList>
-                  {paths
-                    .filter(path => path.type === types[type])
-                    .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
-                    .map(path => (
-                      <NavLink
-                        isActive={location.pathname.startsWith(
-                          `/components/${path.path}`
-                        )}
-                      >
-                        <Link to={path.path}>{path.name}</Link>
-                      </NavLink>
-                    ))}
-                </ComponentsList>
-              </React.Fragment>
-            ))}
-          </Links>
-        )}
-      </Location>
+      <Links>
+        {Object.keys(types).map(type => (
+          <React.Fragment>
+            <ComponentType>{types[type]}</ComponentType>
+            <ComponentsList>
+              {paths
+                .filter(path => path.type === types[type])
+                .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
+                .map(path => (
+                  <NavLink
+                    isActive={location.pathname.startsWith(
+                      `/components/${path.path}`
+                    )}
+                  >
+                    <Link to={`/components/${path.path}`}>{path.name}</Link>
+                  </NavLink>
+                ))}
+            </ComponentsList>
+          </React.Fragment>
+        ))}
+      </Links>
     </SideNavContainer>
   );
 }
