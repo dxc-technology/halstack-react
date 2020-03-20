@@ -1,5 +1,5 @@
 import React from "react";
-import { Router } from "@reach/router";
+import { HashRouter } from "@reach/router";
 import styled from "styled-components";
 import { DxcFooter } from "@diaas/dxc-react-cdk";
 
@@ -32,7 +32,7 @@ function App() {
   );
 }
 
-const StyledRouter = styled(Router)`
+const StyledRouter = styled(HashRouter)`
   width: 100%;
 `;
 
