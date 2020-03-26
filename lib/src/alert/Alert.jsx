@@ -53,9 +53,11 @@ const DxcAlert = ({
 };
 
 const sizes = {
-  large: "480px",
+  small: "280px",
+  medium: "480px",
+  large: "820px",
   fillParent: "100%",
-  fitContent: "unset"
+  fitContent: "auto"
 };
 
 const calculateWidth = (margin, size) => {
