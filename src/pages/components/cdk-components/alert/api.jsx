@@ -76,7 +76,7 @@ const alertPropsTable = () => {
         <td>
           <code>'fitContent'</code>
         </td>
-        <td>Size of the component ('large' | 'fillParent' | 'fitContent').</td>
+        <td>Size of the component ('small' | 'medium' | 'large' | 'fillParent' | 'fitContent').</td>
       </tr>
     </DxcTable>
   );
