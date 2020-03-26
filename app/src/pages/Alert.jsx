@@ -204,6 +204,24 @@ function App() {
 
       <div>
         <h4>Sizes</h4>
+        <div className="test-case" id="small-size">
+          <h5>Small size</h5>
+          <DxcAlert
+            margin="xxsmall"
+            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+            size="small"
+          />
+        </div>
+        <div className="test-case" id="medium-size">
+          <h5>Medium size</h5>
+          <DxcAlert
+            margin="xxsmall"
+            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+            size="medium"
+          />
+        </div>
         <div className="test-case" id="large-size">
           <h5>Large size</h5>
           <DxcAlert
