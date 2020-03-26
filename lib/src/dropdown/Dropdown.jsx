@@ -118,7 +118,9 @@ const DxcDropdown = ({
         size={size}
         width={width}
 
-        role={undefined} transition disablePortal
+        role={undefined} 
+        transition 
+        disablePortal
         placement="bottom-start"
       >
         {({TransitionProps}) => (
