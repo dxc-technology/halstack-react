@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Popper from '@material-ui/core/Popper';
+import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { ClickAwayListener } from "@material-ui/core";
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import MenuList from '@material-ui/core/MenuList';
 import caretUp from "./baseline-arrow_drop_up.svg";
 import caretDown from "./baseline-arrow_drop_down.svg";
 import caretUpWh from "./baseline-arrow_drop_up_wh.svg";
@@ -14,7 +10,6 @@ import caretDownWh from "./baseline-arrow_drop_down_wh.svg";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-
 
 const DxcDropdown = ({
   options = [],
@@ -117,46 +112,20 @@ const DxcDropdown = ({
         theme={theme}
         size={size}
         width={width}
-
-        role={undefined} 
-        transition 
-        disablePortal
-        placement="bottom-start"
       >
-        {({TransitionProps}) => (
-          <Grow
-            {...TransitionProps}
+        {options.map(option => (
+          <MenuItem
+            key={option.value}
+            value={option.value}
+            disableRipple={disableRipple}
+            onClick={event => handleMenuItemClick(option)}
           >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleClose}>
-
-
-                  {options.map(option => (
-                    <MenuItem
-                      key={option.value}
-                      value={option.value}
-                      disableRipple={disableRipple}
-                      onClick={event => handleMenuItemClick(option)}
-                    >
-                      {option.iconSrc && (
-                      <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
-                    )}
-                      <span className="optionLabel">{option.label}</span>
-                    </MenuItem>
-                ))}
-
-
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-
-        
-
-
-        
+            {option.iconSrc && (
+              <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
+            )}
+            <span className="optionLabel">{option.label}</span>
+          </MenuItem>
+        ))}
       </DxcMenu>
     </DxCDropdownContainer>
   );
@@ -195,7 +164,7 @@ const DxCDropdownContainer = styled.div`
   display: inline-block;
 `;
 
-const DxcMenu = styled(Popper)`
+const DxcMenu = styled(Menu)`
   .MuiMenuItem-gutters {
     width: ${props =>
       props.mode === "outlined"
@@ -414,4 +383,4 @@ DxcDropdown.propTypes = {
   )
 };
 
-export default DxcDropdown;
+//export default DxcDropdown;
