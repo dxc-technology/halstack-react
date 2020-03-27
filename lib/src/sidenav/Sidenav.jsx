@@ -131,7 +131,6 @@ const PageContent = styled.div`
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
   margin-left: ${props => (props.isShown && props.mode === "push" && !props.isResponsive ? "300px" : "0")};
   transition: margin 0.4s ease-in-out;
-  overflow-x: hidden;
 `;
 
 DxcSidenav.propTypes = {
