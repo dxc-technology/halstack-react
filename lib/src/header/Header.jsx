@@ -199,7 +199,6 @@ const LogoIcon = styled.img`
 
 const ChildContainer = styled.div`
   width: calc(100% - 186px);
-  overflow: hidden;
   display: flex;
   align-items: center;
   flex-grow: 1;
