@@ -29,7 +29,7 @@ const DxcDropdown = ({
   onSelectOption,
   margin,
   size = "fitContent",
-  expandOnHover = true
+  expandOnHover = false
 }) => {
   const [width, setWidth] = useState();
 
