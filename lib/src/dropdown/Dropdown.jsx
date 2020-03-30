@@ -28,7 +28,8 @@ const DxcDropdown = ({
   disableRipple = false,
   onSelectOption,
   margin,
-  size = "fitContent"
+  size = "fitContent",
+  expandOnHover = true
 }) => {
   const [width, setWidth] = useState();
 
@@ -63,101 +64,105 @@ const DxcDropdown = ({
     setAnchorEl(null);
   }
 
+  const handleCloseOver = expandOnHover ? handleClose : undefined;
+
   return (
     <DxCDropdownContainer mode={mode} margin={margin} size={size} ref={ref}>
-      <DropdownTrigger
-        opened={anchorEl === null ? false : true}
-        onClick={handleClickListItem}
-        mode={mode}
-        theme={theme}
-        label={label}
-        caretHidden={caretHidden}
-        margin={margin}
-        size={size}
+      <div 
+        onMouseOver={expandOnHover ? handleClickListItem : undefined}
+        onMouseOut={handleCloseOver}
+        onFocus={handleCloseOver}
+        onBlur={handleCloseOver} 
       >
-        <DropdownTriggerContainer iconPosition={iconPosition}>
-          {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
-          <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
-            {label}
-          </DropdownTriggerLabel>
-        </DropdownTriggerContainer>
-        <CaretIcon
+        <DropdownTrigger
+          opened={anchorEl === null ? false : true}
+          onClick={handleClickListItem}
+          mode={mode}
+          theme={theme}
+          label={label}
           caretHidden={caretHidden}
           margin={margin}
-          src={
-            theme === "light" && mode === "outlined"
-              ? anchorEl === null
-                ? caretDown
-                : caretUp
-              : theme === "light" && mode === "basic"
-              ? anchorEl === null
-                ? caretDownWh
-                : caretUpWh
-              : theme === "dark" && mode === "basic"
-              ? anchorEl === null
-                ? caretDown
-                : caretUp
-              : theme === "dark" && mode === "outlined"
-              ? anchorEl === null
-                ? caretDownWh
-                : caretUpWh
-              : ""
-          }
-        />
-      </DropdownTrigger>
-      <DxcMenu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        getContentAnchorEl={null}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        transformOrigin={{ vertical: "top", horizontal: "left" }}
-        optionsIconPosition={optionsIconPosition}
-        mode={mode}
-        theme={theme}
-        size={size}
-        width={width}
+          size={size}
+        >
+          <DropdownTriggerContainer iconPosition={iconPosition}>
+            {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
+            <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
+              {label}
+            </DropdownTriggerLabel>
+          </DropdownTriggerContainer>
+          <CaretIcon
+            caretHidden={caretHidden}
+            margin={margin}
+            src={
+              theme === "light" && mode === "outlined"
+                ? anchorEl === null
+                  ? caretDown
+                  : caretUp
+                : theme === "light" && mode === "basic"
+                ? anchorEl === null
+                  ? caretDownWh
+                  : caretUpWh
+                : theme === "dark" && mode === "basic"
+                ? anchorEl === null
+                  ? caretDown
+                  : caretUp
+                : theme === "dark" && mode === "outlined"
+                ? anchorEl === null
+                  ? caretDownWh
+                  : caretUpWh
+                : ""
+            }
+          />
+        </DropdownTrigger>
+        <DxcMenu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          getContentAnchorEl={null}
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          transformOrigin={{ vertical: "top", horizontal: "left" }}
+          optionsIconPosition={optionsIconPosition}
+          mode={mode}
+          theme={theme}
+          size={size}
+          width={width}
 
-        role={undefined} 
-        transition 
-        disablePortal
-        placement="bottom-start"
-      >
-        {({TransitionProps}) => (
-          <Grow
-            {...TransitionProps}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleClose}>
-
-
-                  {options.map(option => (
-                    <MenuItem
-                      key={option.value}
-                      value={option.value}
-                      disableRipple={disableRipple}
-                      onClick={event => handleMenuItemClick(option)}
-                    >
-                      {option.iconSrc && (
-                      <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
-                    )}
-                      <span className="optionLabel">{option.label}</span>
-                    </MenuItem>
-                ))}
+          role={undefined} 
+          transition 
+          disablePortal
+          placement="bottom-start"
+        >
+          {({TransitionProps}) => (
+            <Grow
+              {...TransitionProps}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleClose}>
 
 
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
+                    {options.map(option => (
+                      <MenuItem
+                        key={option.value}
+                        value={option.value}
+                        disableRipple={disableRipple}
+                        onClick={event => handleMenuItemClick(option)}
+                      >
+                        {option.iconSrc && (
+                        <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
+                      )}
+                        <span className="optionLabel">{option.label}</span>
+                      </MenuItem>
+                  ))}
 
-        
 
-
-        
-      </DxcMenu>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </DxcMenu>
+      </div>
     </DxCDropdownContainer>
   );
 };
@@ -196,6 +201,8 @@ const DxCDropdownContainer = styled.div`
 `;
 
 const DxcMenu = styled(Popper)`
+  z-index: 1;
+
   .MuiMenuItem-gutters {
     width: ${props =>
       props.mode === "outlined"
@@ -404,6 +411,7 @@ DxcDropdown.propTypes = {
   mode: PropTypes.oneOf(["basic", "outlined", ""]),
   caretHidden: PropTypes.bool,
   disableRipple: PropTypes.bool,
+  expandOnHover: PropTypes.bool,
   onSelectOption: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({
