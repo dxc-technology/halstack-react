@@ -97,6 +97,13 @@ const dropdownPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>expandOnHover: boolean</td>
+        <td></td>
+        <td>
+          If true, the options are showed when the dropdown is hover.
+        </td>
+      </tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>

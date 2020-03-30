@@ -12,6 +12,7 @@ import defaultDropdown from "././examples/default";
 import outlinedDropdown from "./examples/outlinedDropdown";
 import imagesDropdown from "./examples/imagesDropdown";
 import darkThemeDropdown from "./examples/darkThemeDropdown";
+import expandOnHoverDropdown from "./examples/expandOnHoverDropdown";
 
 function Dropdown() {
   return (
@@ -38,6 +39,10 @@ function Dropdown() {
                 <Example
                   title="Default Dropdown"
                   example={defaultDropdown}
+                ></Example>
+                <Example
+                  title="Default Dropdown with expand on hover"
+                  example={expandOnHoverDropdown}
                 ></Example>
                 <Example
                   title="Outlined Dropdown"
