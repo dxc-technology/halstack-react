@@ -103,6 +103,13 @@ const inputPropsTable = () => {
         <td>If true, a resizable text area will be displayed.</td>
       </tr>
       <tr>
+        <td>isMasked: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>If true, a mask will be displayed.</td>
+      </tr>
+      <tr>
         <td>onChange: function</td>
         <td></td>
         <td>

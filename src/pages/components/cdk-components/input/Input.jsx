@@ -14,6 +14,7 @@ import darkTheme from "./examples/darkThemed";
 import multiline from "./examples/multilineInput";
 import fillParent from "./examples/fillParentInput";
 import sized from "./examples/sizedInput";
+import maskedInput from "./examples/maskedInput";
 
 function Input() {
   return (
@@ -44,6 +45,10 @@ function Input() {
                 <Example
                   title="Uncontrolled Input"
                   example={uncontrolled}
+                ></Example>
+                <Example
+                  title="Masked Input"
+                  example={maskedInput}
                 ></Example>
                 <Example
                   title="Input with prefix/suffix"
