@@ -27,7 +27,7 @@ const code = `() => {
       label="Default Dropdown"
       margin="medium"
       padding="small"
-      expandOnHover="true"
+      expandOnHover={true}
     ></DxcDropdown>
   );
 }`;
