@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -17,6 +17,9 @@ import dark from "./examples/dark";
 import sized from "./examples/sized";
 
 function Slider() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Slider</DocTitle>

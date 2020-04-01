@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -15,6 +15,9 @@ import darkSpinner from "./examples/darkSpinner";
 import spinnerWithOverlay from "./examples/spinnerWithOverlay";
 
 function Spinner() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Spinner</DocTitle>
