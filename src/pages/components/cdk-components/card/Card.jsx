@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect } from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -14,6 +14,9 @@ import linkCard from "./examples/linkCard";
 import actionCard from "./examples/actionCard";
 
 function Card() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Card</DocTitle>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
@@ -11,6 +11,9 @@ import pushSidenav from "./examples/pushSidenav";
 import fixedSidenav from "./examples/fixedSidenav";
 
 function Sidenav() {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, []);
     return (
         <ComponentDoc>
             <DocTitle size={1}>Sidenav</DocTitle>

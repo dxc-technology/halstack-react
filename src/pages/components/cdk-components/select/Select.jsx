@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
@@ -14,6 +14,9 @@ import darkThemed from "./examples/darkThemed";
 import sized from "./examples/sizedSelect";
 
 function Input() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Select</DocTitle>

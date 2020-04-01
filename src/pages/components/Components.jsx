@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { types } from "./paths.js";
@@ -58,7 +58,6 @@ function Components() {
   );
 }
 
-/**New */
 const SideNav = styled.div`
   width: 100%
 `;
@@ -87,13 +86,6 @@ const ReactLogo = styled.img`
   margin-left: 8px;
 `;
 
-/** */
-
-const ComponentsContainer = styled.div`
-  display: flex;
-  height: 100%;
-`;
-
 const ComponentType = styled.div`
   text-transform: uppercase;
   color: gray;
@@ -117,16 +109,6 @@ const NavLink = styled.div`
     font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
     color: ${({ isActive }) => (isActive && "black") || "gray"};
   }
-`;
-
-const StyledRouter = styled(Router)`
-  width: 100%;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-grow: 1;
-  height: 100%;
 `;
 
 export default Components;
