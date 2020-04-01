@@ -10,10 +10,12 @@ import reactIcon from "../../common/react-icon.png";
 function Components() {
   const location = useLocation();
   return (
+    <SideNav>
       <DxcSidenav
         padding="large"
         mode="push"
         arrowDistance="50vh"
+        displayArrow={false}
         navContent={
           <SideNavContainer>
             <Title>React
@@ -52,11 +54,18 @@ function Components() {
       >
 
       </DxcSidenav>
+      </SideNav>
   );
 }
 
 /**New */
-const SideNavContainer = styled.div``;
+const SideNav = styled.div`
+  width: 100%
+`;
+
+const SideNavContainer = styled.div`
+  margin-bottom: 40px;
+`;
 const SideNavContent = styled.div`
   display: flex;
   flex-grow: 1;
@@ -66,7 +75,6 @@ const SideNavContent = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
-  margin: 20px 0px 40px 0px;
   display: flex;
   align-items: center;
   color: #646464;
