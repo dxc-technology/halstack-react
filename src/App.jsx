@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { DxcFooter } from "@diaas/dxc-react-cdk";
 
 import Header from "./common/Header";
+import ScrollToTop from "./common/ScrollToTop";
 import Components from "./pages/components/Components";
 import Overview from "./pages/overview/Overview";
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <MainContainer>
       <HashRouter>
+        <ScrollToTop />
         <StyledHeader>
           <Header></Header>
         </StyledHeader>
