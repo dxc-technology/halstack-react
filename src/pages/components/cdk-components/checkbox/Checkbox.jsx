@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -14,9 +14,6 @@ import labelPosition from "./examples/labelPosition";
 import sized from "./examples/sizedCheckbox";
 
 function Checkbox() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Checkbox</DocTitle>
