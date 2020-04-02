@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 
 import TabsPropsTable from "./api.jsx";
 
@@ -17,7 +18,10 @@ import withContentTabs from "./examples/withContentTabs";
 function Tabs() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Tabs</DocTitle>
+      <ComponentHeader
+        title="Tabs"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

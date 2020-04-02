@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import DialogPropsTable from "./api.jsx";
 
 import defaultDialog from "./examples/defaultDialog.js"
@@ -14,7 +15,10 @@ import buttonCloseDialog from "./examples/closeButtonDialog.js"
 function Dialog() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Dialog</DocTitle>
+      <ComponentHeader
+        title="Dialog"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

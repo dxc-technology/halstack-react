@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import ButtonPropsTable from "./api.jsx";
 
 import modes from "./examples/modes";
@@ -16,7 +17,10 @@ import darkTheme from "./examples/darkTheme";
 function Button() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Button</DocTitle>
+      <ComponentHeader
+        title="Button"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
