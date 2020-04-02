@@ -7,10 +7,22 @@ function ComponentHeader({ title, status }) {
     return (
         <StyledHeader>
             <DocTitle size={1}>{title}</DocTitle>
-            <DxcTag
+            {status? 
+                <DxcTag
                 margin="medium"
                 label={status}
-            ></DxcTag>
+                iconBgColor= {
+                    status === 'ready' ? 
+                    '#24cb93' :
+                    status === 'experimental' ? 
+                    '#e0ac5b' :
+                    status === 'planned' ?
+                    '#5b78b7' :
+                    '#c34161'
+                }
+                ></DxcTag>
+            : ''}
+            
         </StyledHeader>
     );
 }
