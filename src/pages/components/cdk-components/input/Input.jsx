@@ -22,7 +22,7 @@ function Input() {
     <ComponentDoc>
       <ComponentHeader
         title="Input"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

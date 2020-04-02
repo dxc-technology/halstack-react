@@ -19,7 +19,7 @@ function Button() {
     <ComponentDoc>
       <ComponentHeader
         title="Button"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

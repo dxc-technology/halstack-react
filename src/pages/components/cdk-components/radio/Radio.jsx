@@ -22,7 +22,7 @@ function Radio() {
     <ComponentDoc>
       <ComponentHeader
         title="Radio"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

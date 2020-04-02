@@ -16,7 +16,7 @@ function Accordion() {
     <ComponentDoc>
       <ComponentHeader
         title="Date"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

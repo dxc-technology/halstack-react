@@ -18,7 +18,7 @@ function Switch() {
     <ComponentDoc>
       <ComponentHeader
         title="Switch"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

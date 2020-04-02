@@ -20,7 +20,7 @@ function Tabs() {
     <ComponentDoc>
       <ComponentHeader
         title="Tabs"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

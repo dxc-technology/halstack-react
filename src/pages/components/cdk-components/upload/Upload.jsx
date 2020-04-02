@@ -14,7 +14,7 @@ function Upload() {
     <ComponentDoc>
       <ComponentHeader
         title="Upload"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

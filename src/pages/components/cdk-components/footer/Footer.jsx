@@ -15,7 +15,7 @@ function App() {
     <ComponentDoc>
       <ComponentHeader
         title="Footer"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

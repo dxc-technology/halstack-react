@@ -15,7 +15,7 @@ function Button() {
     <ComponentDoc>
       <ComponentHeader
         title="Tabbed Sections"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

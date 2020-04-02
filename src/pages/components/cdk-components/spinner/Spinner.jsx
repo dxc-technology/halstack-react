@@ -20,7 +20,7 @@ function Spinner() {
     <ComponentDoc>
       <ComponentHeader
         title="Spinner"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
