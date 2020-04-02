@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
 
 import controlled from "./examples/controlledInput";
@@ -19,7 +20,10 @@ import maskedInput from "./examples/maskedInput";
 function Input() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Input</DocTitle>
+      <ComponentHeader
+        title="Input"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

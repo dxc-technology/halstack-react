@@ -4,6 +4,7 @@ import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import AlertPropsTable from "./api.jsx";
 import Section from "../../common/Section";
 import upload from "./examples/upload";
@@ -11,7 +12,10 @@ import upload from "./examples/upload";
 function Upload() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Upload</DocTitle>
+      <ComponentHeader
+        title="Upload"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

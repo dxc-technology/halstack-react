@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import Section from "../../common/Section";
+import ComponentHeader from "../../common/ComponentHeader";
 
 import ProgressBarPropsTable from "./api.jsx";
 
@@ -16,7 +17,10 @@ import progressWithOverlay from "./examples/progressWithOverlay";
 function ProgressBar() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Progress Bar</DocTitle>
+      <ComponentHeader
+        title="Progress Bar"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

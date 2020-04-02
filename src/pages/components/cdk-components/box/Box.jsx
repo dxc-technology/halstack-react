@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import BoxPropsTable from "./api.jsx";
 
 import basicExample from "./examples/basicExample";
@@ -12,7 +13,10 @@ import basicExample from "./examples/basicExample";
 function Box() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Box</DocTitle>
+      <ComponentHeader
+        title="Box"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

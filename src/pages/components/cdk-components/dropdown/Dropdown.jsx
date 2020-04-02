@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 
 import DropdownPropsTable from "./api.jsx";
 
@@ -17,7 +18,10 @@ import expandOnHoverDropdown from "./examples/expandOnHoverDropdown";
 function Dropdown() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Dropdown</DocTitle>
+      <ComponentHeader
+        title="Dropdown"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

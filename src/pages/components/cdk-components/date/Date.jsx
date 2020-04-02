@@ -6,6 +6,7 @@ import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import DatePropsTable from "./api.jsx";
 import Section from "../../common/Section";
+import ComponentHeader from "../../common/ComponentHeader";
 import controlled from "./examples/controlledDate";
 import uncontrolled from "./examples/uncontrolledDate";
 import sized from "./examples/sized";
@@ -13,7 +14,10 @@ import sized from "./examples/sized";
 function Accordion() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Date</DocTitle>
+      <ComponentHeader
+        title="Date"
+        status="Status"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
