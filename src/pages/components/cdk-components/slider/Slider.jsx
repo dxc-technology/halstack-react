@@ -22,7 +22,7 @@ function Slider() {
     <ComponentDoc>
       <ComponentHeader
         title="Slider"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

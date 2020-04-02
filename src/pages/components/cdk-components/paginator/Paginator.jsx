@@ -14,7 +14,7 @@ function Paginator() {
     <ComponentDoc>
       <ComponentHeader
         title="Paginator"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

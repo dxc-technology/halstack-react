@@ -15,7 +15,7 @@ function Box() {
     <ComponentDoc>
       <ComponentHeader
         title="Box"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

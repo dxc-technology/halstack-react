@@ -19,7 +19,7 @@ function Card() {
     <ComponentDoc>
       <ComponentHeader
         title="Card"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

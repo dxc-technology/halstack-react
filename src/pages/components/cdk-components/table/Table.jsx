@@ -15,7 +15,7 @@ function Tabs() {
     <ComponentDoc>
       <ComponentHeader
         title="Table"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

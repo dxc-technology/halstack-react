@@ -18,7 +18,7 @@ function Tag() {
     <ComponentDoc>
       <ComponentHeader
         title="Tag"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

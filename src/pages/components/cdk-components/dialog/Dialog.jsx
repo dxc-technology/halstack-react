@@ -17,7 +17,7 @@ function Dialog() {
     <ComponentDoc>
       <ComponentHeader
         title="Dialog"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

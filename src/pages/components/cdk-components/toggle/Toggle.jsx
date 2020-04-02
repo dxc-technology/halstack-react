@@ -19,7 +19,7 @@ function Dropdown() {
     <ComponentDoc>
       <ComponentHeader
         title="Toggle"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

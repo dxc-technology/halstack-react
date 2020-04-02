@@ -19,7 +19,7 @@ function ProgressBar() {
     <ComponentDoc>
       <ComponentHeader
         title="Progress Bar"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}

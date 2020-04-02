@@ -19,7 +19,7 @@ function Checkbox() {
     <ComponentDoc>
       <ComponentHeader
         title="Checkbox"
-        status="Status"
+        status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
