@@ -21,8 +21,8 @@ function Alert() {
     <ComponentDoc>
       <ComponentHeader
         title="Alert"
-        status="Status"
-      ></ComponentHeader>
+      >
+      </ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
