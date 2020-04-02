@@ -23,6 +23,7 @@ import Box from "./cdk-components/box/Box";
 import Tag from "./cdk-components/tag/Tag";
 import Date from "./cdk-components/date/Date";
 import Paginator from "./cdk-components/paginator/Paginator";
+import Sidenav from "./cdk-components/sidenav/Sidenav";
 
 export const types = {
   FORMS: "Forms",
@@ -127,6 +128,12 @@ export default [
     name: "Select",
     component: Select,
     type: types.FORMS
+  },
+  {
+    path: "sidenav",
+    name: "Sidenav",
+    component: Sidenav,
+    type: types.LAYOUT
   },
   {
     path: "slider",
