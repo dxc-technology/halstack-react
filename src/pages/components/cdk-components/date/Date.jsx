@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -11,9 +11,6 @@ import uncontrolled from "./examples/uncontrolledDate";
 import sized from "./examples/sized";
 
 function Accordion() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Date</DocTitle>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -16,9 +16,6 @@ import children from "./examples/children";
 import modal from "./examples/modal";
 
 function Alert() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Alert</DocTitle>

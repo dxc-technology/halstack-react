@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -13,9 +13,6 @@ import outlined from "./examples/outlined.js";
 import children from "./examples/children.js";
 
 function Input() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Header</DocTitle>

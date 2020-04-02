@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -9,9 +9,6 @@ import Section from "../../common/Section";
 import upload from "./examples/upload";
 
 function Upload() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Upload</DocTitle>

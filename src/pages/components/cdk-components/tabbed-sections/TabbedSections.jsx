@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 import ComponentDoc from "../../common/ComponentDoc";
@@ -10,9 +10,6 @@ import TabbedSectionsPropsTable from "./api.jsx";
 import tabbedSectionsExample from "./examples/tabbedSections";
 
 function Button() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, []);
   return (
     <ComponentDoc>
       <DocTitle size={1}>Tabbed Sections</DocTitle>
