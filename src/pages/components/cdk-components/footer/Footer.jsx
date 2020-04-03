@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
 import defaultFooter from "./examples/default.js";
 import children from "./examples/children.js";
@@ -12,7 +13,10 @@ import children from "./examples/children.js";
 function App() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Footer</DocTitle>
+      <ComponentHeader
+        title="Footer"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

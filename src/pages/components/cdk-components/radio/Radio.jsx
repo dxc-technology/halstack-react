@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import Section from "../../common/Section";
+import ComponentHeader from "../../common/ComponentHeader";
 
 import RadioPropsTable from "./api.jsx";
 
@@ -19,7 +20,10 @@ import sized from "././examples/sizedRadio"
 function Radio() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Radio</DocTitle>
+      <ComponentHeader
+        title="Radio"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import TabbedSectionsPropsTable from "./api.jsx";
 
 import tabbedSectionsExample from "./examples/tabbedSections";
@@ -12,7 +13,10 @@ import tabbedSectionsExample from "./examples/tabbedSections";
 function Button() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Tabbed Sections</DocTitle>
+      <ComponentHeader
+        title="Tabbed Sections"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

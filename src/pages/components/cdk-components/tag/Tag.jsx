@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import TagPropsTable from "./api.jsx";
 
 import basicExample from "./examples/basicExample";
@@ -15,7 +16,10 @@ import sized from "./examples/sized";
 function Tag() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Tag</DocTitle>
+      <ComponentHeader
+        title="Tag"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

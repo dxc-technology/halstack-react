@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import Section from "../../common/Section";
+import ComponentHeader from "../../common/ComponentHeader";
 
 import SpinnerPropsTable from "./api.jsx";
 
@@ -17,7 +18,10 @@ import spinnerWithOverlay from "./examples/spinnerWithOverlay";
 function Spinner() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Spinner</DocTitle>
+      <ComponentHeader
+        title="Spinner"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

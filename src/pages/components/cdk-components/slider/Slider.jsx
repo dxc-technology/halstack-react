@@ -6,6 +6,7 @@ import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import AlertPropsTable from "./api.jsx";
 import Section from "../../common/Section";
+import ComponentHeader from "../../common/ComponentHeader";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import discrete from "./examples/discrete";
@@ -19,7 +20,10 @@ import sized from "./examples/sized";
 function Slider() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Slider</DocTitle>
+      <ComponentHeader
+        title="Slider"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
