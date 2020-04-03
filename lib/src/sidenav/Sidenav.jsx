@@ -146,6 +146,7 @@ DxcSidenav.propTypes = {
   ]),
   navContent: PropTypes.object,
   pageContent: PropTypes.object,
-  arrowDistance: PropTypes.string
+  arrowDistance: PropTypes.string,
+  displayArrow: PropTypes.bool
 };
 export default DxcSidenav;
