@@ -5,13 +5,17 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import PaginatorPropsTable from "./api.jsx";
 import paginator from "./examples/paginator";
 
 function Paginator() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Paginator</DocTitle>
+      <ComponentHeader
+        title="Paginator"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

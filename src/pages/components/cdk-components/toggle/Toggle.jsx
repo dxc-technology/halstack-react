@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 
 import TogglePropsTable from "./api.jsx";
 
@@ -16,7 +17,10 @@ import outlinedToggle from "././examples/outlinedToggle";
 function Dropdown() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Toggle</DocTitle>
+      <ComponentHeader
+        title="Toggle"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

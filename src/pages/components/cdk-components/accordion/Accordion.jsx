@@ -6,6 +6,7 @@ import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import AccordionPropsTable from "./api.jsx";
 import Section from "../../common/Section";
+import ComponentHeader from "../../common/ComponentHeader";
 import defaultAccordion from "./examples/default";
 import alternative from "./examples/alternative";
 import disabled from "./examples/disabled";
@@ -18,7 +19,10 @@ import controlledAccordion from "./examples/controlledAccordion";
 function Accordion() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Accordion</DocTitle>
+      <ComponentHeader
+        title="Accordion"
+        status="planned"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

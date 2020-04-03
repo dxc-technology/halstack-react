@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import CheckboxPropsTable from "./api.jsx";
 
 import controlled from "./examples/controlledCheckbox";
@@ -16,7 +17,10 @@ import sized from "./examples/sizedCheckbox";
 function Checkbox() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Checkbox</DocTitle>
+      <ComponentHeader
+        title="Checkbox"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import CardPropsTable from "./api.jsx";
 
 import defaultCard from "./examples/defaultCard";
@@ -16,7 +17,10 @@ import actionCard from "./examples/actionCard";
 function Card() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Card</DocTitle>
+      <ComponentHeader
+        title="Card"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

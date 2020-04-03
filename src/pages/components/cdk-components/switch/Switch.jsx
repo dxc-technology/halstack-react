@@ -5,6 +5,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import SwitchPropsTable from "./api.jsx";
 
 import controlled from "./examples/controlledSwitch";
@@ -15,7 +16,10 @@ import labelPosition from "./examples/labelPositionSwitch";
 function Switch() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Switch</DocTitle>
+      <ComponentHeader
+        title="Switch"
+        status="ready"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

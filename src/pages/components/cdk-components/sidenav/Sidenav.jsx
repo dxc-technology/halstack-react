@@ -3,6 +3,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
+import ComponentHeader from "../../common/ComponentHeader";
 import SidenavPropsTable from "./api.jsx";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
@@ -13,7 +14,10 @@ import fixedSidenav from "./examples/fixedSidenav";
 function Sidenav() {
     return (
         <ComponentDoc>
-            <DocTitle size={1}>Sidenav</DocTitle>
+            <ComponentHeader
+                title="Sidenav"
+            >
+            </ComponentHeader>
             <DxcTabsForSections
                 stickAtPx={64}
                 tabsMode="underlined"

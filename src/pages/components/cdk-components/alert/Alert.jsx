@@ -6,6 +6,7 @@ import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import AlertPropsTable from "./api.jsx";
 import Section from "../../common/Section";
+import ComponentHeader from "../../common/ComponentHeader";
 import inlineInfo from "./examples/inlineInfo";
 import inlineSuccess from "./examples/inlineSuccess";
 import inlineWarning from "./examples/inlineWarning";
@@ -18,7 +19,10 @@ import modal from "./examples/modal";
 function Alert() {
   return (
     <ComponentDoc>
-      <DocTitle size={1}>Alert</DocTitle>
+      <ComponentHeader
+        title="Alert"
+      >
+      </ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
