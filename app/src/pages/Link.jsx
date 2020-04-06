@@ -9,7 +9,7 @@ function App() {
                 <h4>Default Link</h4>
                 <div className="test-case" id="default-link">
                     <p>
-                        This is a text with a <DxcLink href="#">Link</DxcLink> to another page.
+                        This is a text with a<DxcLink href="#" margin="xxsmall">Link</DxcLink>to another page.
                     </p>
                     
                 </div>
@@ -18,16 +18,17 @@ function App() {
                 <h4>Underline Link</h4>
                 <div className="test-case" id="underline-link">
                     <p>
-                        This is a text with a <DxcLink href="#" mode="underline">Link</DxcLink> to another page.
+                        This is a text with a<DxcLink href="#" margin="xxsmall" mode="underline">Link</DxcLink>to another page.
                     </p>
                 </div>
             </div>
             <div>
-                <h4>Default colored Link</h4>
+                <h4>Default colored Link with NewWindow</h4>
                 <div className="test-case" id="default-colored-link">
                     <DxcLink
                         href="#"
                         color={true}
+                        newWindow={true}
                     >
                         Link
                     </DxcLink>
@@ -47,10 +48,14 @@ function App() {
             </div>
             <div>
                 <h4>Dark theme - Default Link</h4>
-                <div className="test-case" id="default-dark-link">
+                <div 
+                    style={{ background: "#000000", padding: "25px 0px 25px 0px" }}
+                    className="test-case" 
+                    id="default-dark-link">
                     <DxcLink
                         href="#"
                         theme="dark"
+                        color={true}
                     >
                         Link
                     </DxcLink>
@@ -58,11 +63,15 @@ function App() {
             </div>
             <div>
                 <h4>Dark theme - Underline Link</h4>
-                <div className="test-case" id="underline-dark-link">
+                <div 
+                    style={{ background: "#000000", padding: "25px 0px 25px 0px" }}
+                    className="test-case" 
+                    id="underline-dark-link">
                     <DxcLink
                         href="#"
                         mode="underline"
                         theme="dark"
+                        color={true}
                     >
                         Link
                     </DxcLink>
@@ -141,7 +150,7 @@ function App() {
                         This is a text with a
                         <DxcLink
                             href="#"
-                            theme="dark"
+                            theme="light"
                             margin="xxsmall"
                             iconPosition="after"
                             iconSrc={homeLogo}
@@ -153,17 +162,18 @@ function App() {
                 </div>
                 <div className="test-case" id="icon-before">
                     <p>
-                        This is a text with a colored
+                        This is a text with a colored 
                         <DxcLink
                             href="#"
-                            theme="dark"
+                            theme="light"
                             iconPosition="before"
                             iconSrc={homeLogo}
                             color={true}
+                            margin="xxsmall"
                         >
                             Icon before
                         </DxcLink>
-                        the link.
+                         the link.
                     </p>
                 </div>
             </div>
