@@ -24,17 +24,13 @@ const DxcLink = ({
         iconPosition={iconPosition}
         target={newWindow? "_blank" : "_self"}
       >
-        {
-          iconSrc && iconPosition === "before" ?
-            <LinkIcon src={iconSrc} iconPosition={iconPosition}></LinkIcon> :
-            ""
-        }
         {children}
         {
-          iconSrc && iconPosition === "after" ?
-            <LinkIcon src={iconSrc} iconPosition={iconPosition}></LinkIcon> :
-            ""
+          iconSrc ? 
+            <LinkIcon src={iconSrc} color={color} theme={theme} iconPosition={iconPosition}></LinkIcon>
+          : ''
         }
+        
       </LinkText>
     );
 };
@@ -54,17 +50,20 @@ const LinkText = styled.a`
   text-decoration: ${ props => props.mode === "underline" ? "underline" : ""};
   color: ${ props => props.color ? 
             props.theme === "light" ? "#006BF6" : 
-            "#4797FF" : "inherit"};
+            "#4797FF" : "inherit"} !important;
   ${ props => props.mode === "basic" ? "text-decoration-color: transparent;" :  ""}
   
+  display: inline-flex;
+  flex-direction: ${ props => props.iconPosition === "after" ?  "row" : "row-reverse"};
+  justify-content: ${ props => props.iconPosition === "after" ? "flex-start" : "flex-end"};
+  align-items: center;
  
   max-width: 100%;
-  font-weight: 600;
   font-size: 16px;
 
   &:hover {
     ${props => props.mode === "basic" ?
-      `color: ${props.theme === "light" ? "#006BF6" : "#4797FF"};
+      `color: ${props.theme === "light" ? "#006BF6" : "#4797FF"} !important;
       text-decoration-color: ${props.theme === "light" ? "#006BF6" : "#4797FF"};`
       : ""
     }
@@ -74,18 +73,13 @@ const LinkText = styled.a`
   }
 
   &:visited {
-    color: ${ props => props.theme === "light" ? "#8800F6" : "#C175FF"};
+    color: ${ props => props.theme === "light" ? "#8800F6" : "#C175FF"} !important;
   }
 `;
 
 const LinkIcon = styled.img`
   width: 16px;
   height: 16px;
-  vertical-align: middle; 
-  display: inline-block;
-  fill: ${ props => props.color ? 
-    props.theme === "light" ? "#006BF6" : 
-    "#4797FF" : "inherit"};
   ${ props => props.iconPosition === "before" ? "margin-right" : "margin-left"}: 10px;
 `;
 
