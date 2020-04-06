@@ -28,6 +28,7 @@ const DxcTabs = ({
 
   return (
     <DxCTabs mode={mode} theme={theme} margin={margin}>
+      <Underline></Underline>
       <Tabs
         value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
         onChange={handleChange}
@@ -49,7 +50,17 @@ const DxcTabs = ({
   );
 };
 
+const Underline = styled.div`
+  left: 0px;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background-color: #d9d9d9;
+  z-index: 2;
+`;
 const DxCTabs = styled.div`
+  position: relative;
   margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -62,8 +73,8 @@ const DxCTabs = styled.div`
   .MuiTabs-root {
     background: white;
     .MuiTabs-scroller {
-      .MuiTabs-flexContainer {
-        border-bottom: 1.5px solid ${colors.lightGrey};
+      .MuiTabs-flexContainer + span {
+        z-index: 4;
       }
     }
     .MuiButtonBase-root {
