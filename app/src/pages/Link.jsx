@@ -9,7 +9,7 @@ function App() {
                 <h4>Default Link</h4>
                 <div className="test-case" id="default-link">
                     <p>
-                        This is a text with a<DxcLink href="#" margin="xxsmall">Link</DxcLink>to another page.
+                        This is a text with a<DxcLink href="#" margin="xxsmall" text="Link"></DxcLink>to another page.
                     </p>
                     
                 </div>
@@ -18,7 +18,7 @@ function App() {
                 <h4>Underline Link</h4>
                 <div className="test-case" id="underline-link">
                     <p>
-                        This is a text with a<DxcLink href="#" margin="xxsmall" mode="underline">Link</DxcLink>to another page.
+                        This is a text with a<DxcLink href="#" margin="xxsmall" mode="underline" text="Link"></DxcLink>to another page.
                     </p>
                 </div>
             </div>
@@ -29,8 +29,8 @@ function App() {
                         href="#"
                         color={true}
                         newWindow={true}
+                        text="Link"
                     >
-                        Link
                     </DxcLink>
                 </div>
             </div>
@@ -41,8 +41,8 @@ function App() {
                         href="#"   
                         mode="underline"
                         color={true}
+                        text="Link"
                     >
-                        Link
                     </DxcLink>
                 </div>
             </div>
@@ -56,8 +56,8 @@ function App() {
                         href="#"
                         theme="dark"
                         color={true}
+                        text="Link"
                     >
-                        Link
                     </DxcLink>
                 </div>
             </div>
@@ -72,8 +72,8 @@ function App() {
                         mode="underline"
                         theme="dark"
                         color={true}
+                        text="Link"
                     >
-                        Link
                     </DxcLink>
                 </div>
             </div>
@@ -84,8 +84,8 @@ function App() {
                         href="#"
                         theme="dark"
                         margin="xxsmall"
+                        text="Margin xxsmall"
                     >
-                        Margin xxsmall
                     </DxcLink>
                 </div>
                 <div className="test-case" id="margin-xsmall">
@@ -93,8 +93,8 @@ function App() {
                         href="#"
                         theme="dark"
                         margin="xsmall"
+                        text="Margin xsmall"
                     >
-                        Margin xsmall
                     </DxcLink>
                 </div>
                 <div className="test-case" id="margin-small">
@@ -102,8 +102,8 @@ function App() {
                         href="#"
                         theme="dark"
                         margin="small"
+                        text="Margin small"
                     >
-                        Margin small
                     </DxcLink>
                 </div>
                 <div className="test-case" id="margin-medium">
@@ -111,8 +111,8 @@ function App() {
                         href="#"
                         theme="dark"
                         margin="medium"
+                        text="Margin medium"
                     >
-                        Margin medium
                     </DxcLink>
                 </div>
                 <div className="test-case" id="margin-large">
@@ -120,8 +120,8 @@ function App() {
                         href="#"
                         theme="dark"
                         margin="large"
+                        text="Margin large"
                     >
-                        Margin large
                     </DxcLink>
                 </div>
                 <div className="test-case" id="margin-xlarge">
@@ -129,8 +129,8 @@ function App() {
                         href="#"
                         theme="dark"
                         margin="xlarge"
+                        text="Margin xlarge"
                     >
-                        Margin xlarge
                     </DxcLink>
                 </div>
                 <div className="test-case" id="margin-xxlarge">
@@ -138,8 +138,8 @@ function App() {
                         href="#"
                         theme="dark"
                         margin="xxlarge"
+                        text="Margin xxlarge"
                     >
-                        Margin xxlarge
                     </DxcLink>
                 </div>
             </div>
@@ -154,8 +154,8 @@ function App() {
                             margin="xxsmall"
                             iconPosition="after"
                             iconSrc={homeLogo}
+                            text="Icon after"
                         >
-                            Icon after
                         </DxcLink>
                         the link.
                     </p>
@@ -170,8 +170,8 @@ function App() {
                             iconSrc={homeLogo}
                             color={true}
                             margin="xxsmall"
+                            text="Icon before"
                         >
-                            Icon before
                         </DxcLink>
                          the link.
                     </p>

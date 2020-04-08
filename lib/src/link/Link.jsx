@@ -11,7 +11,7 @@ const DxcLink = ({
     href = "",
     theme = "light",
     newWindow = false,
-    children,
+    text = "",
     margin
 }) => {
     return (
@@ -24,7 +24,7 @@ const DxcLink = ({
         iconPosition={iconPosition}
         target={newWindow? "_blank" : "_self"}
       >
-        {children}
+        {text}
         {
           iconSrc ? 
             <LinkIcon src={iconSrc} color={color} theme={theme} iconPosition={iconPosition}></LinkIcon>
@@ -97,7 +97,8 @@ DxcLink.propTypes = {
       }),
       PropTypes.oneOf([...Object.keys(spaces)])
     ]),
-    newWindow: PropTypes.bool
+    newWindow: PropTypes.bool,
+    text: PropTypes.string
 };
 
 
