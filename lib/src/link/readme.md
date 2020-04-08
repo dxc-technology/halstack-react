@@ -9,15 +9,19 @@
         <td>Description</td>
     </tr>
     <tr>
-        <td>mode: 'basic' | 'underline'</td>
-        <td><code>basic</code></td>
-        <td>In the default mode the link only has a different color to indicate and distinguish it as a link from the rest of the content.
-        The underline mode stands out the link by the underline symbol rather than the color of the text.</td>
+        <td>underlined: 'boolean'</td>
+        <td><code>false</code></td>
+        <td>If true, the text is underlined.</td>
     </tr>
     <tr>
         <td>color: boolean</td>
         <td><code>false</code></td>
         <td>If true, the link have the default colors.</td>
+    </tr>
+    <tr>
+        <td>text: string</td>
+        <td></td>
+        <td>Link text.</td>
     </tr>
     <tr>
         <td>iconSrc: string</td>
