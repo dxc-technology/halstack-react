@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 
 const DxcLink = ({
-    mode = "basic",
+    underlined = false,
     color = false,
     iconSrc = "",
     iconPosition = "before",
@@ -16,7 +16,7 @@ const DxcLink = ({
 }) => {
     return (
       <LinkText 
-        mode={mode}
+        underlined={underlined}
         color={color}
         href={href}
         theme={theme}
@@ -47,9 +47,9 @@ const LinkText = styled.a`
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  text-decoration: ${ props => props.mode === "underline" ? "underline" : ""};
+  text-decoration: ${ props => props.underlined ? "underline" : ""};
   color: ${ props => props.color ? props.theme === "light" ? "#006BF6" : "#4797FF" : "inherit"} !important;
-  ${ props => props.mode === "basic" ? "text-decoration-color: transparent;" :  ""}
+  ${ props => !props.underlined ? "text-decoration-color: transparent;" :  ""}
   
   display: inline-flex;
   flex-direction: ${ props => props.iconPosition === "after" ?  "row" : "row-reverse"};
@@ -60,7 +60,7 @@ const LinkText = styled.a`
   font-size: 16px;
 
   &:hover {
-    ${props => props.mode === "basic" ?
+    ${props => !props.underlined ?
       `color: ${props.theme === "light" ? "#006BF6" : "#4797FF"} !important;
       text-decoration-color: ${props.theme === "light" ? "#006BF6" : "#4797FF"};`
       : ""
@@ -82,7 +82,7 @@ const LinkIcon = styled.img`
 `;
 
 DxcLink.propTypes = {
-    mode: PropTypes.oneOf(["basic", "underline"]),
+    underlined: PropTypes.bool,
     color: PropTypes.bool,
     iconSrc: PropTypes.string,
     iconPosition: PropTypes.oneOf(["after", "before"]),
