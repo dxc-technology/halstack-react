@@ -6,26 +6,32 @@ function Wizard() {
     return (
         <div>
             <div className="test-case" id="default-wizard">
-                <h4>Default wizards</h4>
+                <h4>Default wizard</h4>
                 <DxcWizard
                     margin="medium"
                     steps={[{}, {}, {}, {}, {}]}
                 >
                 </DxcWizard>
+            </div>
+            <div className="test-case" id="labels-wizard">
+                <h4>Wizard with labels</h4>
                 <DxcWizard
-                    margin="medium"
-                    steps={[
-                        {
-                            label: "First step"
-                        }, {
-                            label: "Second step"
-                        },
-                        {
-                            label: "Third step"
-                        }
-                    ]}
-                >
+                        margin="medium"
+                        steps={[
+                            {
+                                label: "First step"
+                            }, {
+                                label: "Second step"
+                            },
+                            {
+                                label: "Third step"
+                            }
+                        ]}
+                    >
                 </DxcWizard>
+            </div>
+            <div className="test-case" id="description-wizard">    
+                <h4>Wizard with descriptions</h4>
                 <DxcWizard
                     margin="medium"
                     steps={[
@@ -44,6 +50,9 @@ function Wizard() {
                     ]}
                 >
                 </DxcWizard>
+            </div>
+            <div className="test-case" id="icons-wizard">
+                <h4>Wizard with icons</h4>
                 <DxcWizard
                     margin="medium"
                     steps={[
@@ -64,11 +73,15 @@ function Wizard() {
                     ]}
                 >
                 </DxcWizard>
+            </div>
+            <div>
+                <h4>Dark theme wizard</h4>
                 <div
                     className="test-case"
-                    id="basic-dark-theme"
+                    id="dark-theme"
                     style={{ backgroundColor: "black" }}
                 >
+                    
                     <DxcWizard
                         margin="medium"
                         theme="dark"
@@ -91,34 +104,17 @@ function Wizard() {
                     </DxcWizard>
                 </div>
             </div>
-            <div className="test-case" id="vertical-wizard">
-                <h4>Vertical wizards</h4>
+            
+            <div className="test-case" id="numbers-vertical-wizard">
+                <h4>Vertical wizard</h4>
                 <DxcWizard
                     margin="medium"
                     mode="vertical"
                     steps={[{}, {},{}]}
                 ></DxcWizard>
-                <DxcWizard
-                    margin="medium"
-                    mode="vertical"
-                    steps={[
-                        {
-                            label: "First step",
-                            description: "This is the first step",
-                            iconSrc: homeIcon
-                        }, {
-                            label: "Second step",
-                            description: "This is the second step",
-                            iconSrc: homeIcon
-                        },
-                        {
-                            label: "Third step",
-                            description: "This is the final step",
-                            iconSrc: homeIcon
-                        }
-                    ]}
-                >
-                </DxcWizard>
+            </div>
+            <div className="test-case" id="vertical-wizard">
+                <h4>Vertical wizard with icons</h4>
                 <DxcWizard
                     margin="medium"
                     mode="vertical"
@@ -144,6 +140,9 @@ function Wizard() {
                     ]}
                 >
                 </DxcWizard>
+            </div>
+            <div>
+                <h4>Dark theme vertical wizard</h4>
                 <div
                     className="test-case"
                     id="basic-dark-theme"
