@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import ValidIcon from "./valid_icon.svg";
-import InvalidIcon from "./times-circle-regular.svg";
+import InvalidIcon from "./invalid_icon.svg";
 
 const DxcWizard = ({
     mode = "horizontal",
@@ -84,7 +84,7 @@ const StepsContainer = styled.div`
     display: inline-flex;
     flex-direction: ${props => props.mode === "vertical" ? "column" : "row"};
     justify-content: center";
-    ${props => props.mode === "vertical" ? "height: 500px" : "width: 80%"};
+    ${props => props.mode === "vertical" ? "height: 500px" : "width: 100%"};
 
     margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
     margin-top: ${props =>
@@ -128,14 +128,14 @@ const StepHeader = styled.div`
 `;
 
 const IconContainer = styled.div`
-    width: 36px;
-    height: 36px;
+    width: ${props => props.visited ? "32px" : "36px"};
+    height: ${props => props.visited ? "32px" : "36px"};
 
-    ${props=> props.visited? 
+    ${props => props.visited? 
         `border: 2px solid ${props.theme === "light" ? '#000000' : '#FFFFFF'};` : 
         `background: #D9D9D9 0% 0% no-repeat padding-box;`}
 
-    ${props=> props.current? 
+    ${props => props.current? 
         `background: #FFED00 0% 0% no-repeat padding-box;` : ''}
 
     border-radius: 45px;
