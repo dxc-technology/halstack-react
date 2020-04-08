@@ -8,7 +8,6 @@ function Wizard() {
             <div className="test-case" id="default-wizard">
                 <h4>Default wizard</h4>
                 <DxcWizard
-                    margin="medium"
                     steps={[{}, {}, {}, {}, {}]}
                 >
                 </DxcWizard>
@@ -16,7 +15,6 @@ function Wizard() {
             <div className="test-case" id="labels-wizard">
                 <h4>Wizard with labels</h4>
                 <DxcWizard
-                        margin="medium"
                         steps={[
                             {
                                 label: "First step"
@@ -33,7 +31,6 @@ function Wizard() {
             <div className="test-case" id="description-wizard">    
                 <h4>Wizard with descriptions</h4>
                 <DxcWizard
-                    margin="medium"
                     steps={[
                         {
                             label: "First step",
@@ -54,7 +51,6 @@ function Wizard() {
             <div className="test-case" id="icons-wizard">
                 <h4>Wizard with icons</h4>
                 <DxcWizard
-                    margin="medium"
                     steps={[
                         {
                             label: "First step",
@@ -83,7 +79,6 @@ function Wizard() {
                 >
                     
                     <DxcWizard
-                        margin="medium"
                         theme="dark"
                         steps={[
                             {
@@ -108,7 +103,6 @@ function Wizard() {
             <div className="test-case" id="numbers-vertical-wizard">
                 <h4>Vertical wizard</h4>
                 <DxcWizard
-                    margin="medium"
                     mode="vertical"
                     steps={[{}, {},{}]}
                 ></DxcWizard>
@@ -116,7 +110,6 @@ function Wizard() {
             <div className="test-case" id="vertical-wizard">
                 <h4>Vertical wizard with icons</h4>
                 <DxcWizard
-                    margin="medium"
                     mode="vertical"
                     currentStep={2}
                     steps={[
