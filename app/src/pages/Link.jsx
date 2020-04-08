@@ -18,7 +18,7 @@ function App() {
                 <h4>Underline Link</h4>
                 <div className="test-case" id="underline-link">
                     <p>
-                        This is a text with a<DxcLink href="#" margin="xxsmall" mode="underline" text="Link"></DxcLink>to another page.
+                        This is a text with a<DxcLink href="#" margin="xxsmall" underlined={true} text="Link"></DxcLink>to another page.
                     </p>
                 </div>
             </div>
@@ -39,7 +39,7 @@ function App() {
                 <div className="test-case" id="underline-colored-link">
                     <DxcLink
                         href="#"   
-                        mode="underline"
+                        underlined={true}
                         color={true}
                         text="Link"
                     >
@@ -69,7 +69,7 @@ function App() {
                     id="underline-dark-link">
                     <DxcLink
                         href="#"
-                        mode="underline"
+                        underlined={true}
                         theme="dark"
                         color={true}
                         text="Link"
