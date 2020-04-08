@@ -24,6 +24,7 @@ import Tag from "./pages/Tag";
 import Card from "./pages/Card";
 import Paginator from "./pages/Paginator";
 import Sidenav from "./pages/Sidenav";
+import Link from "./pages/Link";
 
 export default [
   {
@@ -85,6 +86,11 @@ export default [
     path: "inputText",
     name: "Input Text",
     component: InputText
+  },
+  {
+    path: "link",
+    name: "Link",
+    component: Link
   },
   {
     path: "paginator",
