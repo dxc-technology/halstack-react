@@ -8,6 +8,7 @@ function Wizard() {
             <div className="test-case" id="default-wizard">
                 <h4>Default wizard</h4>
                 <DxcWizard
+                    currentStep={0}
                     steps={[{}, {}, {}, {}, {}]}
                 >
                 </DxcWizard>
