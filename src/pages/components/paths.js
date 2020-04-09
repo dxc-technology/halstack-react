@@ -24,6 +24,7 @@ import Tag from "./cdk-components/tag/Tag";
 import Date from "./cdk-components/date/Date";
 import Paginator from "./cdk-components/paginator/Paginator";
 import Sidenav from "./cdk-components/sidenav/Sidenav";
+import Link from "./cdk-components/link/Link";
 
 export const types = {
   FORMS: "Forms",
@@ -104,6 +105,12 @@ export default [
     name: "Text field",
     component: Input,
     type: types.FORMS
+  },
+  {
+    path: "link",
+    name: "Link",
+    component: Link,
+    type: types.UTILS
   },
   {
     path: "paginator",
