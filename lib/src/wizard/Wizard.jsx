@@ -8,16 +8,18 @@ import InvalidIcon from "./invalid_icon.svg";
 const DxcWizard = ({
     mode = "horizontal",
     theme = "light",
-    currentStep = 0,
+    currentStep,
     onStepClick,
     steps,
     margin
 }) => {
-    const [current, setCurrentStep] = React.useState(currentStep);
+    const [innerCurrent, setInnerCurrentStep] = React.useState(currentStep || 0);
 
 
     const handleStepClick = (newValue) => {
-        setCurrentStep(newValue)
+        if (currentStep === undefined) { setInnerCurrentStep(newValue) }
+          
+        if (onStepClick) { onStepClick(newValue) }
     }
 
     return (
@@ -30,20 +32,20 @@ const DxcWizard = ({
                     lastStep={i === steps.length-1}
                   >
                     <Step
-                      onClick={() => onStepClick ? onStepClick(i) : handleStepClick(i)}
+                      onClick={() => handleStepClick(i)}
                       mode={mode}
                       disable={step.disable}
                       disabled={step.disable}
                     >
                       <StepHeader>
                         <IconContainer
-                          current={i === current}
-                          visited={i < current}
+                          current={i === innerCurrent}
+                          visited={i < innerCurrent}
                           theme={theme}
                         >
                           {
                               step.iconSrc ? <Icon src={step.iconSrc}></Icon> : 
-                              <Number previous={i <current} current={i === current} theme={theme}>{i+1}</Number>
+                              <Number previous={i <innerCurrent} current={i === innerCurrent} theme={theme}>{i+1}</Number>
                           }
                         </IconContainer>
                         {
@@ -56,7 +58,7 @@ const DxcWizard = ({
                       {
                           step.label || step.description ? 
                           (
-                            <InfoContainer active={i <= current} theme={theme}>
+                            <InfoContainer active={i <= innerCurrent} theme={theme}>
                               {
                                 step.label ? <Label>{step.label}</Label> : ''
                               }
