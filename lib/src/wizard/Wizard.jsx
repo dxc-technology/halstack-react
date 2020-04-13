@@ -14,10 +14,10 @@ const DxcWizard = ({
     margin
 }) => {
     const [innerCurrent, setInnerCurrentStep] = React.useState(currentStep || 0);
-
+    const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
 
     const handleStepClick = (newValue) => {
-        if (currentStep === undefined) { setInnerCurrentStep(newValue) }
+        if (currentStep == null) { setInnerCurrentStep(newValue) }
           
         if (onStepClick) { onStepClick(newValue) }
     }
@@ -39,13 +39,13 @@ const DxcWizard = ({
                     >
                       <StepHeader>
                         <IconContainer
-                          current={i === innerCurrent}
-                          visited={i < innerCurrent}
+                          current={i === renderedCurrent}
+                          visited={i < renderedCurrent}
                           theme={theme}
                         >
                           {
                               step.iconSrc ? <Icon src={step.iconSrc}></Icon> : 
-                              <Number previous={i <innerCurrent} current={i === innerCurrent} theme={theme}>{i+1}</Number>
+                              <Number previous={i <innerCurrent} current={i === renderedCurrent} theme={theme}>{i+1}</Number>
                           }
                         </IconContainer>
                         {

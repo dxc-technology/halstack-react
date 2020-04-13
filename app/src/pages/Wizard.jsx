@@ -3,12 +3,15 @@ import { DxcWizard } from "@diaas/dxc-react-cdk";
 import homeIcon from "../images/home.svg";
 
 function Wizard() {
+    const [myStep, setMyStep] = React.useState(1);
+
     return (
         <div>
             <div className="test-case" id="default-wizard">
                 <h4>Default wizard</h4>
                 <DxcWizard
-                    currentStep={0}
+                    currentStep={myStep}
+                    onStepClick={(i) => {console.log(i); setMyStep(myStep+1)}}
                     steps={[{}, {}, {}, {}, {}]}
                 >
                 </DxcWizard>
