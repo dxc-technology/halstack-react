@@ -48,7 +48,9 @@ const LinkText = styled.a`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   text-decoration: ${ props => props.underlined ? "underline" : ""};
-  color: ${ props => props.color ? props.theme === "light" ? "#006BF6" : "#4797FF" : "inherit"} !important;
+  color: ${ props => props.color ? 
+            props.theme === "light" ? "#006BF6" : "#4797FF" 
+            : props.theme === "dark" ? "#FFFFFF" : "inherit"} !important;
   ${ props => !props.underlined ? "text-decoration-color: transparent;" :  ""}
   
   display: inline-flex;
