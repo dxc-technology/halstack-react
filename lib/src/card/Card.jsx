@@ -1,162 +1,144 @@
-/* eslint-disable no-else-return */
-import React from "react";
-import { Card } from "@material-ui/core";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import styled from "styled-components";
-import "../common/OpenSans.css";
-import {colors} from "../common/variables.js";
+import PropTypes from "prop-types";
+import { spaces, colors } from "../common/variables.js";
 
-const DxcCard = ({ children, imagePosition = "before", imageSrc = "", mode = "default", theme = "light", onClick }) => {
+import DxcBox from "../box/Box";
+
+const DxcCard = ({
+  imageSrc,
+  children,
+  margin,
+  linkHref,
+  onClick, 
+  imageBgColor, 
+  imagePadding,
+  imagePosition,
+  theme,
+  outlined,
+  imageCover
+}) => {
+  const [isHovered, changeIsHovered] = useState(false);
+  const clickHandler = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  const tagContent = (
+    <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
+      <CardContainer theme={theme} hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
+        <ImageContainer imageBgColor={imageBgColor}>
+          <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
+        </ImageContainer>
+        <CardContent>{children}</CardContent>
+      </CardContainer>
+    </DxcBox>
+  );
+
   return (
-    <DxcCardContainer
-      child={children}
-      imagePosition={imagePosition}
-      imageSrc={imageSrc}
-      mode={mode}
-      theme={theme}
-      onClick={() => onClick()}
+    <StyledDxcCard
+      margin={margin}
+      onMouseEnter={() => changeIsHovered(true)}
+      onMouseLeave={() => changeIsHovered(false)}
+      onClick={clickHandler}
+      hasAction={onClick || linkHref}
     >
-      <Card>
-        {imageSrc !== "" && <ImageContainer child={children} imagePosition={imagePosition}>
-          <Image child={children} imageSrc={imageSrc} src={imageSrc} imagePosition={imagePosition} />
-        </ImageContainer> }
-        {children && <ChildComponent imageSrc={imageSrc} imagePosition={imagePosition}>{children}</ChildComponent>}
-      </Card>
-    </DxcCardContainer>
+      {(linkHref && <StyledLink href={linkHref}>{tagContent}</StyledLink>) || tagContent}
+    </StyledDxcCard>
   );
 };
 
-const DxcCardContainer = styled.span`
-  & {
-    font-size: 14px;
-    font-family: "Open Sans", sans-serif;
-  }
-  .MuiCard-root {
-    cursor: pointer;
-    margin: 20px;
-    display: inline-flex;
-    align-items: ${props =>
-      props.imagePosition === "before" || props.imagePosition === "after"
-        ? "stretch"
-        : props.imagePosition === "above" || props.imagePosition === "below"
-        ? "center"
-        : "center"};
-    flex-direction: ${props =>
-      props.imagePosition === "before"
-        ? "row"
-        : props.imagePosition === "after"
-        ? "row-reverse"
-        : props.imagePosition === "above"
-        ? "column"
-        : props.imagePosition === "below"
-        ? "column-reverse"
-        : "row"};
-  }
-  .MuiPaper-root {
-    color: ${props => (props.theme === "dark" ? colors.white : props.mode === "default" ? colors.black : colors.white)};
+const StyledDxcCard = styled.div`
+  display: inline-flex;
+  cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
 
-    max-width: ${props => {
-      if (props.theme === "dark" && props.mode === "alternative") {
-        return "396px";
-      } else {
-        return "400px";
-      }
-    }};
-    max-height: ${props => {
-      if (props.theme === "dark" && props.mode === "alternative") {
-        return "370px";
-      } else {
-        return "374px";
-      }
-    }};
-    background-color: ${props =>
-      props.mode === "alternative" ? colors.black : props.theme === "dark" ? colors.lightBlack : colors.white};
+  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
+  margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
+  margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
+  margin-bottom: ${({ margin }) => (margin && margin.bottom ? spaces[margin.bottom] : "")};
+  margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
+`;
 
-    border: ${props => {
-      if (props.theme === "dark" && props.mode === "alternative") {
-        return `solid ${colors.white} 2px`;
-      }
-    }};
-  }
-  .MuiPaper-root:hover {
-    border: ${props => {
-      if (props.theme === "dark" && props.mode === "alternative") {
-        return `solid ${colors.yellow} 2px`;
-      }
-    }};
-  }
-
-  .MuiPaper-elevation1 {
-    box-shadow: ${props => {
-      if (props.theme === "dark" && props.mode === "default") {
-        return `0px 3px 6px ${colors.lightGrey}29`;
-      } else if (props.theme === "dark" && props.mode === "alternative") {
-        return `0px 3px 6px ${colors.white}16`;
-      } else if (props.theme === "light" && props.mode === "default") {
-        return `0px 3px 6px ${colors.black}29`;
-      } else if (props.theme === "light" && props.mode === "alternative") {
-        return `0px 3px 6px ${colors.black}40`;
-      }
-    }};
-  }
-  .MuiPaper-elevation1:hover {
-    box-shadow: ${props => {
-      if (props.theme === "dark" && props.mode === "default") {
-        return `0px 3px 6px ${colors.white}50`;
-      } else if (props.theme === "dark" && props.mode === "alternative") {
-        return `0px 3px 6px ${colors.white}29`;
-      } else if (props.theme === "light" && props.mode === "default") {
-        return `0px 3px 6px ${colors.black}66`;
-      } else if (props.theme === "light" && props.mode === "alternative") {
-        return `0px 3px 6px ${colors.black}80`;
-      }
-    }};
+const borderSizePx = "2";
+const getBorder = (outlined, theme) => {
+  const color = theme === "dark" || theme === "medium" ? colors.white : colors.black;
+  return outlined ? `${borderSizePx}px solid ${color}` : "none";
+};
+const CardContainer = styled.div`
+  display: inline-flex;
+  background: ${({ theme }) => (theme === "dark" ? colors.black : theme === "medium" ? "#212121" : colors.white)};
+  color: ${({ theme }) => (theme === "dark" || theme === "medium" ? colors.white : colors.black)};
+  align-items: center;
+  flex-direction: ${({ imagePosition }) => (imagePosition === "before" && "row") || "row-reverse"};
+  height: ${({ outlined }) => (outlined ? `${220 - 2 * borderSizePx}px` : "220px")};
+  width: ${({ outlined }) => (outlined ? `${400 - 2 * borderSizePx}px` : "400px")};
+  border: ${({ outlined, theme }) => getBorder(outlined, theme)};
+  &:hover {
+    border-color: ${({hasAction}) => hasAction ? colors.yellow : "unset"};
   }
 `;
 
-const Image = styled.img`
-  object-fit: ${props => {
-    if (props.child) {
-      return "contain";
-    }
-    return "cover";
-  }};
-  width: 100%;
+const StyledLink = styled.a`
+  text-decoration: none;
+`;
+
+const TagImage = styled.img`
+  height: ${({ imagePadding }) =>
+    !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+  width: ${({ imagePadding }) =>
+    !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+  object-fit: ${({ cover }) => (cover ? "cover" : "contain")};
 `;
 
 const ImageContainer = styled.div`
+  width: 140px;
+  height: 100%;
+  flex-shrink: 0;
+  background: ${({ imageBgColor }) => imageBgColor};
+  justify-content: center;
+  align-items: center;
   display: inline-flex;
-  max-height: ${props => {
-    if (props.child && (props.imagePosition === "below" || props.imagePosition === "above")) {
-      return "120px";
-    }
-  }};
-  max-width: ${props => {
-    if (props.child && (props.imagePosition === "after" || props.imagePosition === "before")) {
-      return "140px";
-    }
-  }};
 `;
 
-const ChildComponent = styled.div`
-  padding: 20px;
-  width: ${props => {
-    if (props.imageSrc !== "" && (props.imagePosition === "below" || props.imagePosition === "above")) {
-      return "calc(100% - 40px)";
-    } else if (props.imageSrc !== "" && (props.imagePosition === "after" || props.imagePosition === "before")) {
-      return "calc(100% - 140px - 40px)";
-    }
-  }};
+const CardContent = styled.div`
+  flex-grow: 1;
+  height: 100%;
   overflow: hidden;
-  height: ${props => ( props.imageSrc !== "" ? "calc(100% - 120px - 40px)" : "")};
 `;
 
 DxcCard.propTypes = {
-  theme: PropTypes.oneOf(["light", "dark", ""]),
-  imagePosition: PropTypes.oneOf(["after", "before", "below", "above", ""]),
-  mode: PropTypes.oneOf(["default", "alternative", ""]),
   imageSrc: PropTypes.string,
-  onClick: PropTypes.func
+  imageBgColor: PropTypes.string,
+  imagePadding: PropTypes.oneOf([...Object.keys(spaces)]),
+  imagePosition: PropTypes.oneOf(["before", "after"]),
+  linkHref: PropTypes.string,
+  onClick: PropTypes.func,
+  outlined: PropTypes.bool,
+  imageCover: PropTypes.bool,
+  theme: PropTypes.oneOf(["dark", "medium", "light"]),
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
+};
+
+DxcCard.defaultProps = {
+  imageSrc: null,
+  margin: null,
+  theme: "light",
+  outlined: false,
+  imagePadding: null,
+  imageCover: false,
+  linkHref: null,
+  onClick: null,
+  imageBgColor: "black",
+  imagePosition: "before"
 };
 
 export default DxcCard;

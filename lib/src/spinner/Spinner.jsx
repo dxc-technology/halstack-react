@@ -3,7 +3,7 @@ import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import {colors, spaces} from "../common/variables.js";
+import { colors, spaces } from "../common/variables.js";
 
 const DxcSpinner = ({ label = "", theme = "light", value, showValue = false, mode = "large", margin }) => {
   return (
@@ -110,6 +110,7 @@ const SpinnerLabel = styled.div`
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const SpinnerProgress = styled.div`

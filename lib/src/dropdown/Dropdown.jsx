@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Menu from "@material-ui/core/Menu";
+import Popper from '@material-ui/core/Popper';
 import MenuItem from "@material-ui/core/MenuItem";
+import { ClickAwayListener } from "@material-ui/core";
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import MenuList from '@material-ui/core/MenuList';
 import caretUp from "./baseline-arrow_drop_up.svg";
 import caretDown from "./baseline-arrow_drop_down.svg";
 import caretUpWh from "./baseline-arrow_drop_up_wh.svg";
@@ -11,8 +15,9 @@ import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 
+
 const DxcDropdown = ({
-  options,
+  options = [],
   optionsIconPosition = "before",
   iconSrc = "",
   iconPosition = "before",
@@ -23,9 +28,25 @@ const DxcDropdown = ({
   disableRipple = false,
   onSelectOption,
   margin,
-  padding,
-  size = "medium"
+  size = "fitContent",
+  expandOnHover = false
 }) => {
+  const [width, setWidth] = useState();
+
+  const ref = useRef(null);
+  const handleResize = () => {
+    setWidth(ref.current.offsetWidth);
+  };
+
+  useEffect(() => {
+    if (ref.current) ref.current.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      ref.current.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   function handleClickListItem(event) {
@@ -33,7 +54,9 @@ const DxcDropdown = ({
   }
 
   function handleMenuItemClick(option) {
-    onSelectOption(option.value);
+    if (typeof onSelectOption === "function") {
+      onSelectOption(option.value);
+    }
     setAnchorEl(null);
   }
 
@@ -41,75 +64,105 @@ const DxcDropdown = ({
     setAnchorEl(null);
   }
 
+  const handleCloseOver = expandOnHover ? handleClose : undefined;
+
   return (
-    <DxCDropdownContainer mode={mode} margin={margin} size={size}>
-      <DropdownTrigger
-        opened={anchorEl === null ? false : true}
-        onClick={handleClickListItem}
-        mode={mode}
-        theme={theme}
-        label={label}
-        caretHidden={caretHidden}
-        margin={margin}
-        size={size}
+    <DxCDropdownContainer mode={mode} margin={margin} size={size} ref={ref}>
+      <div 
+        onMouseOver={expandOnHover ? handleClickListItem : undefined}
+        onMouseOut={handleCloseOver}
+        onFocus={handleCloseOver}
+        onBlur={handleCloseOver} 
       >
-        <DropdownTriggerContainer iconPosition={iconPosition}>
-          {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
-          <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
-            {label}
-          </DropdownTriggerLabel>
-        </DropdownTriggerContainer>
-        <CaretIcon
+        <DropdownTrigger
+          opened={anchorEl === null ? false : true}
+          onClick={handleClickListItem}
+          mode={mode}
+          theme={theme}
+          label={label}
           caretHidden={caretHidden}
           margin={margin}
-          src={
-            theme === "light" && mode === "outlined"
-              ? anchorEl === null
-                ? caretDown
-                : caretUp
-              : theme === "light" && mode === "basic"
-              ? anchorEl === null
-                ? caretDownWh
-                : caretUpWh
-              : theme === "dark" && mode === "basic"
-              ? anchorEl === null
-                ? caretDown
-                : caretUp
-              : theme === "dark" && mode === "outlined"
-              ? anchorEl === null
-                ? caretDownWh
-                : caretUpWh
-              : ""
-          }
-        />
-      </DropdownTrigger>
-      <DxcMenu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        getContentAnchorEl={null}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        transformOrigin={{ vertical: "top", horizontal: "left" }}
-        optionsIconPosition={optionsIconPosition}
-        mode={mode}
-        theme={theme}
-        padding={padding}
-        size={size}
-      >
-        {options.map(option => (
-          <MenuItem
-            key={option.value}
-            value={option.value}
-            disableRipple={disableRipple}
-            onClick={event => handleMenuItemClick(option)}
-          >
-            {option.iconSrc && (
-              <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
-            )}
-            <span className="optionLabel">{option.label}</span>
-          </MenuItem>
-        ))}
-      </DxcMenu>
+          size={size}
+        >
+          <DropdownTriggerContainer iconPosition={iconPosition}>
+            {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
+            <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
+              {label}
+            </DropdownTriggerLabel>
+          </DropdownTriggerContainer>
+          <CaretIcon
+            caretHidden={caretHidden}
+            margin={margin}
+            src={
+              theme === "light" && mode === "outlined"
+                ? anchorEl === null
+                  ? caretDown
+                  : caretUp
+                : theme === "light" && mode === "basic"
+                ? anchorEl === null
+                  ? caretDownWh
+                  : caretUpWh
+                : theme === "dark" && mode === "basic"
+                ? anchorEl === null
+                  ? caretDown
+                  : caretUp
+                : theme === "dark" && mode === "outlined"
+                ? anchorEl === null
+                  ? caretDownWh
+                  : caretUpWh
+                : ""
+            }
+          />
+        </DropdownTrigger>
+        <DxcMenu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          getContentAnchorEl={null}
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          transformOrigin={{ vertical: "top", horizontal: "left" }}
+          optionsIconPosition={optionsIconPosition}
+          mode={mode}
+          theme={theme}
+          size={size}
+          width={width}
+
+          role={undefined} 
+          transition 
+          disablePortal
+          placement="bottom-start"
+        >
+          {({TransitionProps}) => (
+            <Grow
+              {...TransitionProps}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleClose}>
+
+
+                    {options.map(option => (
+                      <MenuItem
+                        key={option.value}
+                        value={option.value}
+                        disableRipple={disableRipple}
+                        onClick={event => handleMenuItemClick(option)}
+                      >
+                        {option.iconSrc && (
+                        <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
+                      )}
+                        <span className="optionLabel">{option.label}</span>
+                      </MenuItem>
+                  ))}
+
+
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </DxcMenu>
+      </div>
     </DxCDropdownContainer>
   );
 };
@@ -117,7 +170,9 @@ const DxcDropdown = ({
 const sizes = {
   small: "60px",
   medium: "240px",
-  large: "480px"
+  large: "480px",
+  fillParent: "100%",
+  fitContent: "unset"
 };
 
 const calculateWidth = (margin, size) => {
@@ -129,8 +184,8 @@ const calculateWidth = (margin, size) => {
 const DxCDropdownContainer = styled.div`
   width: ${props =>
     props.mode === "outlined"
-      ? `calc(${calculateWidth(props.padding, props.size)})`
-      : calculateWidth(props.padding, props.size)};
+      ? `calc(${calculateWidth(props.margin, props.size)})`
+      : calculateWidth(props.margin, props.size)};
   text-overflow: ellipsis;
   overflow: hidden;
   margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -142,23 +197,17 @@ const DxCDropdownContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  display: inline-block;
 `;
-const DxcMenu = styled(Menu)`
-  .MuiMenuItem-gutters {
-    padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-    padding-top: ${props =>
-      props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-    padding-right: ${props =>
-      props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-    padding-bottom: ${props =>
-      props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-    padding-left: ${props =>
-      props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 
+const DxcMenu = styled(Popper)`
+  z-index: 1;
+
+  .MuiMenuItem-gutters {
     width: ${props =>
       props.mode === "outlined"
-        ? `calc(${calculateWidth(props.padding, props.size)} - 4px)`
-        : calculateWidth(props.padding, props.size)};
+        ? `calc(${calculateWidth(props.margin, props.size)} - 4px)`
+        : calculateWidth(props.margin, props.size)};
   }
   .MuiMenuItem-root {
     min-height: 46px;
@@ -166,6 +215,7 @@ const DxcMenu = styled(Menu)`
   }
 
   .MuiPaper-root {
+    min-width: ${props => `${props.width}px`};
     border: ${props => (props.mode === "outlined" ? "2px solid" : "transparent")};
 
     border-color: ${props =>
@@ -229,7 +279,7 @@ const DropdownTrigger = styled.button`
   cursor: pointer;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  width: 100%; /*by jsg*/
+  width: 100%;
   height: auto;
   min-height: 46px;
   display: inline-flex;
@@ -237,7 +287,6 @@ const DropdownTrigger = styled.button`
   align-items: center;
   min-width: ${props => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
 
-  
   padding: ${props => {
     if (props.caretHidden === true && props.label === "") {
       if (props.mode === "outlined") {
@@ -313,7 +362,7 @@ const DropdownTriggerContainer = styled.span`
   margin-left: 0px;
   margin-right: 0px;
   width: calc(100% - 24px);
-  white-space:nowrap;
+  white-space: nowrap;
 `;
 
 const ListIcon = styled.img`
@@ -354,15 +403,6 @@ DxcDropdown.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)])
   ]),
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)])
-  ]),
   optionsIconPosition: PropTypes.oneOf(["after", "before", ""]),
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["after", "before", ""]),
@@ -371,6 +411,7 @@ DxcDropdown.propTypes = {
   mode: PropTypes.oneOf(["basic", "outlined", ""]),
   caretHidden: PropTypes.bool,
   disableRipple: PropTypes.bool,
+  expandOnHover: PropTypes.bool,
   onSelectOption: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({

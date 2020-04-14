@@ -10,7 +10,7 @@ import { getMargin } from "../common/utils.js";
 const DxcInputText = ({
   label = " ",
   name = "",
-  value = "",
+  value,
   theme = "light",
   assistiveText = "",
   disabled = false,
@@ -22,20 +22,32 @@ const DxcInputText = ({
   onClickSuffix = "",
   onChange = "",
   onBlur = "",
-  error = false,
+  invalid = false,
   required = false,
   multiline = false,
+  isMasked = false,
   margin,
   size = "medium"
 }) => {
   const [innerValue, setInnerValue] = useState("");
 
   const handlerInputChange = event => {
-    setInnerValue(event.target.value);
-    if (onChange) {
-      onChange(event.target.value);
+    if (value === null || value === undefined) {
+      if (typeof onChange === "function") {
+        setInnerValue(event.target.value);
+        onChange(event.target.value);
+      } else {
+        setInnerValue(event.target.value);
+      }
+    } else if (onChange !== "") {
+      if (typeof onChange === "function") {
+        onChange(event.target.value);
+      } else {
+        setInnerValue(event.target.value);
+      }
     }
   };
+
   const handlerInputBlur = event => {
     setInnerValue(event.target.value);
     if (onBlur) {
@@ -61,8 +73,8 @@ const DxcInputText = ({
         </PrefixLabel>
       )}
       <TextField
-        error={error}
-        value={(value != null && value) || innerValue}
+        error={invalid}
+        value={(value !== null && value) || innerValue}
         name={name}
         multiline={multiline}
         disabled={disabled}
@@ -71,6 +83,7 @@ const DxcInputText = ({
         onChange={handlerInputChange}
         onBlur={(onBlur && handlerInputBlur) || null}
         rowsMax="4"
+        type={isMasked ? 'password' : 'text'}
         InputProps={{
           endAdornment: (suffix || suffixIconSrc) && (
             <InputAdornment position="end" onClick={onClickSuffix}>
@@ -364,9 +377,12 @@ DxcInputText.propTypes = {
   prefixIconSrc: PropTypes.string,
   suffixIconSrc: PropTypes.string,
   required: PropTypes.bool,
-  error: PropTypes.bool,
+  invalid: PropTypes.bool,
   multiline: PropTypes.bool,
+  isMasked: PropTypes.bool,
   onClickIcon: PropTypes.func,
+  onClickPrefix: PropTypes.func,
+  onClickSuffix: PropTypes.func,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   size: PropTypes.oneOf([...Object.keys(sizes)]),

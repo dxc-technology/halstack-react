@@ -3,13 +3,24 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
+
 import closeIcon from "./close.svg";
 import errorIcon from "./error.svg";
 import infoIcon from "./info.svg";
 import successIcon from "./success.svg";
 import warningIcon from "./warning.svg";
 
-const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, children, margin }) => {
+import { getMargin } from "../common/utils.js";
+
+const DxcAlert = ({
+  type = "info",
+  mode = "inline",
+  inlineText = "",
+  onClose,
+  children,
+  margin,
+  size = "fitContent"
+}) => {
   const getTypeText = () => {
     return type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
   };
@@ -17,7 +28,7 @@ const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, ch
   return (
     <AlertModal mode={mode}>
       {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
-      <AlertContainer mode={mode} type={type} margin={margin}>
+      <AlertContainer mode={mode} type={type} margin={margin} size={size}>
         <AlertInfo>
           <AlertIcon
             src={
@@ -41,6 +52,21 @@ const DxcAlert = ({ type = "info", mode = "inline", inlineText = "", onClose, ch
   );
 };
 
+const sizes = {
+  small: "280px",
+  medium: "480px",
+  large: "820px",
+  fillParent: "100%",
+  fitContent: "auto"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 DxcAlert.propTypes = {
   margin: PropTypes.oneOfType([
     PropTypes.shape({
@@ -55,7 +81,8 @@ DxcAlert.propTypes = {
   mode: PropTypes.oneOf(["inline", "modal"]),
   inlineText: PropTypes.string,
   onClose: PropTypes.func,
-  children: PropTypes.element
+  children: PropTypes.element,
+  size: PropTypes.oneOf([...Object.keys(sizes)])
 };
 
 const AlertModal = styled.div`
@@ -89,7 +116,7 @@ const AlertContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
+  display: ${props => (props.children && "inline-block") || "inline-flex"};
   font-size: 12px;
   overflow: hidden;
   box-shadow: 0px 3px 6px #00000012;
@@ -97,10 +124,11 @@ const AlertContainer = styled.div`
   font-family: "Open Sans", sans-serif;
   justify-content: ${props => (props.mode === "modal" ? "center" : "")};
   align-items: ${props => (props.mode === "modal" ? "center" : "")};
-  min-width: ${props =>
-    (props.children && props.children.filter(child => child === undefined).length === 0 && "348px") || "590px"};
   max-width: ${props =>
-    (props.children && props.children.filter(child => child === undefined).length === 0 && "590px") || "810px"};
+    props.size === "fitContent"
+      ? calculateWidth(props.margin, "fillParent")
+      : calculateWidth(props.margin, props.size)};
+  width: ${props => calculateWidth(props.margin, props.size)};
   min-height: ${props =>
     (props.children && props.children.filter(child => child === undefined).length === 0 && "92px") || "48px"};
   background-color: ${props =>
@@ -118,6 +146,7 @@ const AlertInfo = styled.div`
   flex-direction: row;
   height: 48px;
   align-items: center;
+  width: 100%;
 `;
 
 const AlertType = styled.div`

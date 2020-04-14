@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
+import PropTypes from "prop-types";
 import { colors, spaces } from "../common/variables.js";
 
-import PropTypes from "prop-types";
-
-const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
+const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
   const handleClose = () => {
     if (typeof onCloseClick === "function") {
       onCloseClick();
@@ -19,7 +18,13 @@ const DxcDialog = ({ isCloseVisible = false, onCloseClick, children, overlay = t
   };
 
   return (
-    <DialogContainer open={true} isCloseVisible={isCloseVisible} onClose={handleOverlayClick} overlay={overlay} padding={padding}>
+    <DialogContainer
+      open={true}
+      isCloseVisible={isCloseVisible}
+      onClose={handleOverlayClick}
+      overlay={overlay}
+      padding={padding}
+    >
       {isCloseVisible && (
         <CloseIconContainer onClick={handleClose}>
           <CloseIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -118,6 +123,8 @@ DxcDialog.propTypes = {
   isVisible: PropTypes.bool,
   isCloseVisible: PropTypes.bool,
   onClose: PropTypes.func,
+  onCloseClick: PropTypes.func,
+  onBackgroundClick: PropTypes.func,
   overlay: PropTypes.bool
 };
 

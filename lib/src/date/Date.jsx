@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 
 const DxcDate = ({
   value,
@@ -20,41 +20,49 @@ const DxcDate = ({
   required = false,
   assistiveText = "",
   invalid = false,
-  dissableRipple = false,
+  disableRipple = false,
   onInputChange,
-  onChange,
-  margin
+  onBlur = "",
+  margin,
+  size = "medium"
 }) => {
-  function handleMenuItemClick(date, event) {
-    if (event === null) {
-      setSelectedDate(null);
-    } else {
-      setSelectedDate(new Date(date));
+  const [innerValue, setInnerValue] = useState("");
+
+  function handleMenuItemClick(date, stringValue) {
+    if (value == null) {
+      setInnerValue(stringValue);
     }
     if (typeof onInputChange === "function") {
-      onInputChange(JSON.stringify(event));
-    }
-    value = moment(date).format("DD-MM-YYYY");
-    var check = moment(value, "DD-MM-YYYY", true).isValid();
-    if (check) {
-      if (typeof onChange === "function") {
-        onChange(date);
-      }
+      onInputChange({ stringValue, dateValue: date && date.toJSON() ? date : null });
     }
   }
-  const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : null);
+
+  const handlerInputBlur = event => {
+    setInnerValue(event.target.value);
+    if (onBlur) {
+      onBlur(event.target.value);
+    }
+  };
 
   return (
     <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <StyledDPicker margin={margin} invalid={invalid} theme={theme} dissableRipple={dissableRipple}>
+        <StyledDPicker
+          margin={margin}
+          invalid={invalid}
+          theme={theme}
+          disableRipple={disableRipple}
+          required={required}
+          size={size}
+          onBlur={(onBlur && handlerInputBlur) || null}
+        >
           <KeyboardDatePicker
             name={name}
             disabled={disabled}
-            value={selectedDate}
+            value={value === "" ? null : value != null ? value : innerValue}
             label={label}
             variant="inline"
-            required={required}
+            PopoverProps={{ anchorOrigin: { horizontal: "right", vertical: "bottom" } }}
             keyboardIcon={
               iconSrc !== "" ? (
                 <img src={iconSrc} />
@@ -82,6 +90,19 @@ const DxcDate = ({
   );
 };
 
+const sizes = {
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%"
+};
+
+const calculateWidth = (margin, size) => {
+  if (size === "fillParent") {
+    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+  }
+  return sizes[size];
+};
+
 const StyledDPicker = styled.span`
   .MuiFormControl-root {
     margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -93,7 +114,7 @@ const StyledDPicker = styled.span`
       props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
     margin-left: ${props =>
       props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-    width: 230px;
+    width: ${props => calculateWidth(props.margin, props.size)};
     .MuiInputBase-input {
       font-family: "Open Sans", sans-serif;
     }
@@ -101,9 +122,18 @@ const StyledDPicker = styled.span`
       max-width: 200px;
       height: 16px;
       overflow: hidden;
+      &::before {
+        content:'${props => (props.required && "*") || ""}';
+        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        font-size: 16px; 
+      }
     }
     .MuiFormLabel-root:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => (props.theme === "dark" ? colors.lightGrey : colors.darkGrey)};
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: block;
+      white-space: nowrap;
     }
     .MuiInputLabel-shrink:not(.Mui-disabled):not(.Mui-error) {
       color: ${props => {
@@ -117,17 +147,20 @@ const StyledDPicker = styled.span`
       }};
     }
     .MuiFormLabel-root.Mui-error {
-      color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+      color: ${props => {
+        if (props.invalid) {
+          return props.theme === "light" ? colors.darkRed : colors.lightRed;
+        } else {
+          return props.theme === "dark" ? colors.white : colors.darkGrey;
+        }
+      }}
     }
     .MuiFormLabel-root {
       font-family: "Open Sans", sans-serif;
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      white-space: nowrap;
-      .MuiFormLabel-asterisk {
+      &::before {
+        content:'${props => (props.required && "*") || ""}';
         color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
-        margin-right: 1px;
+        font-size: 16px; 
       }
     }
     .MuiInput-underline:not(.Mui-disabled):not(.Mui-error):before {
@@ -166,12 +199,24 @@ const StyledDPicker = styled.span`
       border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
     }
     .MuiInput-underline.Mui-error:after {
-      border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+      border-color: ${props => {
+        if (props.invalid) {
+          return props.theme === "light" ? colors.darkRed : colors.lightRed;
+        } else {
+          return props.theme === "dark" ? colors.white : colors.darkGrey;
+        }
+      }}
     }
     .MuiFormHelperText-root {
       font-family: "Open Sans", sans-serif;
       &.Mui-error {
-        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        color: ${props => {
+          if (props.invalid) {
+            return props.theme === "light" ? colors.darkRed : colors.lightRed;
+          } else {
+            return props.theme === "dark" ? colors.white : colors.darkGrey;
+          }
+        }}
       }
     }
     .MuiFormHelperText-root:not(.Mui-disabled):not(.Mui-error) {
@@ -209,7 +254,7 @@ const StyledDPicker = styled.span`
       color: ${colors.black};
 
       .MuiTouchRipple-root {
-        display: ${props => (props.dissableRipple ? "none" : "")};
+        display: ${props => (props.disableRipple ? "none" : "")};
         .MuiTouchRipple-child {
           background-color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
         }
@@ -230,6 +275,9 @@ const StyledDPicker = styled.span`
     label.MuiFormLabel-root.Mui-focused:not(.Mui-error):not(.Mui-disabled),
     label.MuiFormLabel-root.MuiFormLabel-filled:not(.Mui-error):not(.Mui-disabled) {
       color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+
+      white-space: nowrap;
+
       & + .MuiInputBase-root {
         &:before {
           border-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
@@ -348,9 +396,20 @@ DxcDate.propTypes = {
   required: PropTypes.bool,
   assistiveText: PropTypes.string,
   invalid: PropTypes.bool,
-  dissableRipple: PropTypes.bool,
+  disableRipple: PropTypes.bool,
   onInputChange: PropTypes.func,
-  onChange: PropTypes.func
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces))
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)])
+  ])
 };
 
 export default DxcDate;

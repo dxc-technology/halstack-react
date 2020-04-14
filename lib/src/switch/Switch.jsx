@@ -4,21 +4,21 @@ import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js"
+import { getMargin } from "../common/utils.js";
 
 const DxcSwitch = ({
   checked,
   value,
   label,
-  labelPosition,
-  theme,
+  labelPosition = "before",
+  theme = "light",
   name,
-  disabled,
-  disableRipple,
+  disabled = false,
+  disableRipple = false,
   onChange,
-  required,
+  required = false,
   margin,
-  size="medium"
+  size = "fitContent"
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
 
@@ -81,7 +81,6 @@ const RequiredSpan = styled.span`
 `;
 
 const SwitchContainer = styled.div`
-
   width: ${props => calculateWidth(props.margin, props.size)};
 
   display: inline-flex;

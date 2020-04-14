@@ -21,6 +21,10 @@ import Dialog from "./pages/Dialog";
 import Date from "./pages/Date";
 import Box from "./pages/Box";
 import Tag from "./pages/Tag";
+import Card from "./pages/Card";
+import Paginator from "./pages/Paginator";
+import Sidenav from "./pages/Sidenav";
+import Link from "./pages/Link";
 
 export default [
   {
@@ -42,6 +46,11 @@ export default [
     path: "box",
     name: "Box",
     component: Box
+  },
+  {
+    path: "card",
+    name: "Card",
+    component: Card
   },
   {
     path: "checkbox",
@@ -79,6 +88,16 @@ export default [
     component: InputText
   },
   {
+    path: "link",
+    name: "Link",
+    component: Link
+  },
+  {
+    path: "paginator",
+    name: "Paginator",
+    component: Paginator
+  },
+  {
     path: "progressBar",
     name: "Progress bar",
     component: ProgressBar
@@ -92,6 +111,11 @@ export default [
     path: "select",
     name: "Select",
     component: Select
+  },
+  {
+    path: "sidenav",
+    name: "Sidenav",
+    component: Sidenav
   },
   {
     path: "slider",
