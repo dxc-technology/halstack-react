@@ -18,8 +18,8 @@ const DxcCheckbox = ({
   disableRipple = false,
   onChange,
   required = false,
-  margin, 
-  size = "medium"
+  margin,
+  size = "fitContent"
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
 
@@ -38,7 +38,14 @@ const DxcCheckbox = ({
   };
 
   return (
-    <CheckboxContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled} margin={margin} size={size}>
+    <CheckboxContainer
+      id={name}
+      theme={theme}
+      labelPosition={labelPosition}
+      disabled={disabled}
+      margin={margin}
+      size={size}
+    >
       <Checkbox
         checked={checked != undefined ? checked : innerChecked}
         inputProps={(name = { name })}
@@ -108,7 +115,7 @@ const CheckboxContainer = styled.span`
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  width: ${props =>calculateWidth(props.margin, props.size)};
+  width: ${props => calculateWidth(props.margin, props.size)};
 
   display: inline-flex;
   align-items: center;
@@ -171,6 +178,7 @@ DxcCheckbox.propTypes = {
   disableRipple: PropTypes.bool,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

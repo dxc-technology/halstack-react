@@ -6,18 +6,29 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 
-const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick, margin }) => {
+const DxcTabs = ({
+  mode = "filled",
+  theme = "light",
+  disableRipple = false,
+  activeTabIndex,
+  tabs = [],
+  onTabClick,
+  margin
+}) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     if (activeTabIndex == null) {
       setInnerActiveTabIndex(newValue);
     }
-    onTabClick(newValue);
+    if (typeof onTabClick === "function") {
+      onTabClick(newValue);
+    }
   };
 
   return (
     <DxCTabs mode={mode} theme={theme} margin={margin}>
+      <Underline></Underline>
       <Tabs
         value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
         onChange={handleChange}
@@ -39,7 +50,17 @@ const DxcTabs = ({ mode, theme, disableRipple, activeTabIndex, tabs, onTabClick,
   );
 };
 
+const Underline = styled.div`
+  left: 0px;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background-color: #d9d9d9;
+  z-index: 2;
+`;
 const DxCTabs = styled.div`
+  position: relative;
   margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -52,8 +73,8 @@ const DxCTabs = styled.div`
   .MuiTabs-root {
     background: white;
     .MuiTabs-scroller {
-      .MuiTabs-flexContainer {
-        border-bottom: 1.5px solid ${colors.lightGrey};
+      .MuiTabs-flexContainer + span {
+        z-index: 4;
       }
     }
     .MuiButtonBase-root {
@@ -61,7 +82,7 @@ const DxCTabs = styled.div`
       min-height: 48px;
       height: auto;
       font-family: "Open Sans", sans-serif;
-      font-size: 16px;
+      font-size: 14px;
       /* height: 64px cuando vengan con icono y texto */
       min-width: 180px;
       background-color: ${props =>

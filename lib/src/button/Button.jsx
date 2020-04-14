@@ -13,23 +13,23 @@ const DxcButton = ({
   disabled = false,
   theme = "light",
   disableRipple = false,
-  iconPosition = "after",
+  iconPosition = "before",
   iconSrc = "",
   onClick = "",
   margin,
   size
 }) => {
   return (
-    <DxCButton
-      margin={margin}
-      mode={mode}
-      theme={theme}
-      disabled={disabled}
-      onClick={() => onClick()}
-      iconPosition={iconPosition}
-      size={size}
-    >
-      <Button disabled={disabled} disableRipple={disableRipple}>
+    <DxCButton margin={margin} mode={mode} theme={theme} disabled={disabled} iconPosition={iconPosition} size={size}>
+      <Button
+        disabled={disabled}
+        disableRipple={disableRipple}
+        onClick={() => {
+          if (onClick) {
+            onClick();
+          }
+        }}
+      >
         <LabelContainer>{label}</LabelContainer>
         {iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />}
       </Button>
@@ -55,11 +55,13 @@ const calculateWidth = (margin, size) => {
 const LabelContainer = styled.span`
   line-height: 18px;
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const ButtonIcon = styled.img`
-  max-height: 15px;
-  max-width: 15px;
+  max-height: 20px;
+  max-width: 20px;
   margin-left: ${props => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
   margin-right: ${props => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
 `;
@@ -84,13 +86,12 @@ const DxCButton = styled.div`
       flex-direction: ${props => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
-    word-break: break-all;
     letter-spacing: 1px;
     box-shadow: none;
     font-size: 14px;
     font-weight: 500;
     padding: ${props => (props.size === "small" && "11px") || "12px 30px"};
-    min-width: ${props=>(props.size === "small" && "calc(100% - 22px)") || "unset"};
+    min-width: ${props => (props.size === "small" && "calc(100% - 22px)") || "unset"};
     border-radius: 4px;
     width: 100%;
     min-height: 43px;

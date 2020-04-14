@@ -5,7 +5,16 @@ import { spaces } from "../common/variables.js";
 
 import DxcBox from "../box/Box";
 
-const DxcTag = ({ iconSrc, label, margin, linkHref, onClick, iconBgColor, labelPosition, size="medium" }) => {
+const DxcTag = ({
+  iconSrc,
+  label,
+  margin,
+  linkHref,
+  onClick,
+  iconBgColor = "black",
+  labelPosition = "after",
+  size = "fitContent"
+}) => {
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
     if (onClick) {
@@ -15,11 +24,11 @@ const DxcTag = ({ iconSrc, label, margin, linkHref, onClick, iconBgColor, labelP
 
   const tagContent = (
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
-      <TagContent labelPosition={labelPosition}>
+      <TagContent labelPosition={labelPosition} margin={margin} size={size}>
         <IconContainer iconBgColor={iconBgColor}>
           <TagIcon src={iconSrc}></TagIcon>
         </IconContainer>
-        <TagLabel>{label}</TagLabel>
+        {size !== "small" && <TagLabel>{label}</TagLabel>}
       </TagContent>
     </DxcBox>
   );
@@ -41,7 +50,12 @@ const sizes = {
   small: "42px",
   medium: "240px",
   large: "480px",
-  fillParent: "100%"
+  fillParent: "100%",
+  fitContent: "unset"
+};
+
+const calculateWidth = (size) => {
+  return sizes[size];
 };
 
 const StyledDxcTag = styled.div`
@@ -60,7 +74,7 @@ const TagContent = styled.div`
   align-items: center;
   background-color: white;
   flex-direction: ${({ labelPosition }) => (labelPosition === "before" && "row-reverse") || "row"};
-  width: 100%;
+  width: ${props => calculateWidth(props.size)};
 `;
 
 const StyledLink = styled.a`
@@ -75,7 +89,7 @@ const TagIcon = styled.img`
 const IconContainer = styled.div`
   display: inline-flex;
   background: ${({ iconBgColor }) => iconBgColor};
-  min-width: 48px;
+  width: 48px;
   justify-content: center;
 `;
 
@@ -85,9 +99,12 @@ const TagLabel = styled.div`
   text-transform: uppercase;
   letter-spacing: 1px;
   color: black;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  flex-grow: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  
 `;
 
 DxcTag.propTypes = {

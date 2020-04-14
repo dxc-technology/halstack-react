@@ -12,16 +12,16 @@ const DxcSlider = ({
   maxValue = 100,
   step = 1,
   value,
-  showLimitsValues,
-  showInput,
+  showLimitsValues = false,
+  showInput = false,
   name,
   onChange,
   onDragEnd,
-  disabled,
+  disabled = false,
   theme = "light",
-  marks,
+  marks = false,
   margin,
-  size
+  size = "fillParent"
 }) => {
   const [innerValue, setInnerValue] = useState(0);
 
@@ -87,8 +87,7 @@ const DxcSlider = ({
 const sizes = {
   medium: "240px",
   large: "480px",
-  fillParent: "100%",
-  fitContent: "unset"
+  fillParent: "100%"
 };
 
 const calculateWidth = (margin, size) => {

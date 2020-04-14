@@ -18,8 +18,14 @@ const DxcToggle = ({
   onClick,
   selected = false,
   margin,
-  size
+  size = "fitContent"
 }) => {
+  const handlerToggleClick = () => {
+    if (!disabled && typeof onClick === "function") {
+      onClick(!selected);
+    }
+  };
+
   return (
     <DxcToggleContainer
       margin={margin}
@@ -32,9 +38,7 @@ const DxcToggle = ({
       iconPosition={iconPosition}
       value
       size={size}
-      onClick={() => {
-        if (!disabled) onClick(!selected);
-      }}
+      onClick={handlerToggleClick}
     >
       <ToggleButton disabled={disabled} disableRipple={disableRipple} selected={selected} label={label} value>
         <ContentContainer iconPosition={iconPosition} label={label} iconSrc={iconSrc}>
@@ -85,8 +89,7 @@ const DxcToggleContainer = styled.div`
     color: ${props => (props.theme === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
   }
   .MuiButtonBase-root {
-    width: 100%;
-    padding: 0px 0px;
+    width: ${props => calculateWidth(props.margin, props.size)};
     min-height: ${props => (props.mode === "outlined" ? "41px" : "43px")};
     background-color: ${props => (props.mode !== "outlined" ? colors.darkWhite : "transparent")};
     &:hover {
@@ -99,6 +102,7 @@ const DxcToggleContainer = styled.div`
   }
 
   .MuiToggleButton-root {
+    min-width: 42px;
     height: 43px;
     border: ${props =>
       props.mode === "basic"
@@ -139,7 +143,7 @@ const DxcToggleContainer = styled.div`
   .MuiToggleButton-root:first-child,
   .MuiToggleButton-root:not(:first-child) {
     padding: ${props =>
-      props.label !== ""
+      props.label !== "" && props.size !== "small"
         ? props.mode === "outlined"
           ? "8px 30px "
           : "12px 30px"

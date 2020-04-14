@@ -144,7 +144,7 @@ function App() {
     <div>
       <div>
         <h4>Sizes</h4>
-        <div class="test-case" id="small-size">
+        <div className="test-case" id="small-size">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -153,7 +153,7 @@ function App() {
             size="small"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="medium-size">
+        <div className="test-case" id="medium-size">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -163,7 +163,7 @@ function App() {
             margin="xsmall"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="large-size">
+        <div className="test-case" id="large-size">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -173,7 +173,7 @@ function App() {
             margin="xsmall"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="fillParent-size">
+        <div className="test-case" id="fillParent-size">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -185,7 +185,7 @@ function App() {
       </div>
       <div>
         <h4>Margins</h4>
-        <div class="test-case" id="xxsmall-margin">
+        <div className="test-case" id="xxsmall-margin">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -194,7 +194,7 @@ function App() {
             margin="xxsmall"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="xsmall-margin">
+        <div className="test-case" id="xsmall-margin">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -203,7 +203,7 @@ function App() {
             margin="xsmall"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="small-margin">
+        <div className="test-case" id="small-margin">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -212,7 +212,7 @@ function App() {
             margin="small"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="medium-margin">
+        <div className="test-case" id="medium-margin">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -221,7 +221,7 @@ function App() {
             margin="medium"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="large-margin">
+        <div className="test-case" id="large-margin">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -230,7 +230,7 @@ function App() {
             margin="large"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="xlarge-margin">
+        <div className="test-case" id="xlarge-margin">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -239,7 +239,7 @@ function App() {
             margin="xlarge"
           ></DxcSelect>
         </div>
-        <div class="test-case" id="xxlarge-margin">
+        <div className="test-case" id="xxlarge-margin">
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -250,73 +250,7 @@ function App() {
         </div>
       </div>
       <div>
-        <h4>Padding</h4>
-        <div class="test-case" id="xxsmall-padding">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"xxSmall padding"}
-            options={optionsWithIconAndLabels}
-            padding="xxsmall"
-          ></DxcSelect>
-        </div>
-        <div class="test-case" id="xsmall-padding">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"xPadding margin"}
-            options={optionsWithIconAndLabels}
-            padding="xsmall"
-          ></DxcSelect>
-        </div>
-        <div class="test-case" id="small-padding">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Small padding"}
-            options={optionsWithIconAndLabels}
-            padding="small"
-          ></DxcSelect>
-        </div>
-        <div class="test-case" id="medium-padding">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Medium padding"}
-            options={optionsWithIconAndLabels}
-            padding="medium"
-          ></DxcSelect>
-        </div>
-        <div class="test-case" id="large-padding">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Large padding"}
-            options={optionsWithIconAndLabels}
-            padding="large"
-          ></DxcSelect>
-        </div>
-        <div class="test-case" id="xlarge-padding">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"xLarge padding"}
-            options={optionsWithIconAndLabels}
-            padding="xlarge"
-          ></DxcSelect>
-        </div>
-        <div class="test-case" id="xxlarge-padding">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"xxLarge padding"}
-            options={optionsWithIconAndLabels}
-            padding="xxlarge"
-          ></DxcSelect>
-        </div>
-      </div>
-      <div>
-        <div class="test-case" id="Medium-max-label-size-oneline">
+        <div className="test-case" id="Medium-max-label-size-oneline">
           <h4>Medium select - Max label size in one line</h4>
           <DxcSelect
             onChange={onChange}
@@ -326,7 +260,7 @@ function App() {
             options={optionsWithIconAndLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Medium-min-label-size-multiline">
+        <div className="test-case" id="Medium-min-label-size-multiline">
           <h4>Medium select - Min label size in multi line</h4>
           <DxcSelect
             onChange={onChange}
@@ -336,7 +270,7 @@ function App() {
             options={optionsWithIconAndLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Large-max-label-size-oneline">
+        <div className="test-case" id="Large-max-label-size-oneline">
           <h4>Large select - Max label size in one line</h4>
           <DxcSelect
             onChange={onChange}
@@ -348,7 +282,7 @@ function App() {
             options={optionsWithIconAndLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Large-min-label-size-multiline">
+        <div className="test-case" id="Large-min-label-size-multiline">
           <h4>Large select - Min label size in multi line</h4>
           <DxcSelect
             onChange={onChange}
@@ -361,7 +295,7 @@ function App() {
           ></DxcSelect>
         </div>
         <div
-          class="test-case"
+          className="test-case"
           id="Medium-select-max-size-selected-item-oneline"
         >
           <h4>Medium select - Max size selected option label oneline</h4>
@@ -374,7 +308,7 @@ function App() {
           ></DxcSelect>
         </div>
         <div
-          class="test-case"
+          className="test-case"
           id="Medium-select-min-size-selected-item-multiline"
         >
           <h4>Medium select - Min size selected option label multiline</h4>
@@ -386,7 +320,7 @@ function App() {
             options={longOptionLabels}
           />
         </div>
-        <div class="test-case" id="Large-select-max-size-selected-item-oneline">
+        <div className="test-case" id="Large-select-max-size-selected-item-oneline">
           <h4>Large select - Max size selected option label oneline</h4>
           <DxcSelect
             onChange={onChange}
@@ -397,7 +331,7 @@ function App() {
           ></DxcSelect>
         </div>
         <div
-          class="test-case"
+          className="test-case"
           id="Large-select-min-size-selected-item-multiline"
         >
           <h4>Large select - Min size selected option label multiline</h4>
@@ -409,7 +343,10 @@ function App() {
             options={longOptionLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Medium-select-Max-label-size-oneline-Icon-Before&Label">
+        <div
+          className="test-case"
+          id="Medium-select-Max-label-size-oneline-Icon-Before&Label"
+        >
           <h4>
             Medium select - Icon and label - Max label size oneline (Icon
             Before){" "}
@@ -424,12 +361,12 @@ function App() {
           ></DxcSelect>
         </div>
         <div
-          class="test-case"
+          className="test-case"
           id="Medium-select-Min-label-size-multiline-Icon-Before&Label-Multiline"
         >
           <h4>
             Medium select - Icon and label - Min label size multiline (Icon
-            Before) 
+            Before)
           </h4>
           <DxcSelect
             onChange={onChange}
@@ -440,9 +377,12 @@ function App() {
             options={optionsWithIconAndLabelsMaxLongMultiLine}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Large-select-Max-label-size-oneline-Icon-Before&Label">
+        <div
+          className="test-case"
+          id="Large-select-Max-label-size-oneline-Icon-Before&Label"
+        >
           <h4>
-            Large select - Icon and label - Max label size oneline (Icon Before){" "} 
+            Large select - Icon and label - Max label size oneline (Icon Before){" "}
           </h4>
           <DxcSelect
             onChange={onChange}
@@ -453,7 +393,10 @@ function App() {
             options={optionsWithIconAndLabelsMinLongOneLine}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Large-select-Min-label-size-multiline-Icon-Before&Label">
+        <div
+          className="test-case"
+          id="Large-select-Min-label-size-multiline-Icon-Before&Label"
+        >
           <h4>
             Large select - Icon and label - Min label size multiline (Icon
             Before){" "}
@@ -467,7 +410,10 @@ function App() {
             options={optionsWithIconAndLabelsMaxLongMultiLine}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Medium-select-Max-label-size-oneline-Icon-after&Label">
+        <div
+          className="test-case"
+          id="Medium-select-Max-label-size-oneline-Icon-after&Label"
+        >
           <h4>
             Medium select - Icon and label - Max label size oneline (Icon After){" "}
           </h4>
@@ -481,7 +427,7 @@ function App() {
           ></DxcSelect>
         </div>
         <div
-          class="test-case"
+          className="test-case"
           id="Medium-select-Min-label-size-multiline-Icon-after&Label-Multiline"
         >
           <h4>
@@ -497,7 +443,10 @@ function App() {
             options={optionsWithIconAndLabelsMaxLongMultiLine}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Large-select-Max-label-size-oneline-Icon-after&Label">
+        <div
+          className="test-case"
+          id="Large-select-Max-label-size-oneline-Icon-after&Label"
+        >
           <h4>
             Large select - Icon and label - Max label size oneline (Icon After){" "}
           </h4>
@@ -510,7 +459,10 @@ function App() {
             options={optionsWithIconAndLabelsMinLongOneLine}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Large-select-min-label-size-multiline-Icon-after&Label">
+        <div
+          className="test-case"
+          id="Large-select-min-label-size-multiline-Icon-after&Label"
+        >
           <h4>
             Large select - Icon and label - Min label size multiline (Icon
             After){" "}
@@ -524,10 +476,8 @@ function App() {
             options={optionsWithIconAndLabelsMaxLongMultiLine}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Medium-select-Max-label-size-oneline">
-          <h4>
-            Medium select - Only label - Max label size oneline
-          </h4>
+        <div className="test-case" id="Medium-select-Max-label-size-oneline">
+          <h4>Medium select - Only label - Max label size oneline</h4>
           <DxcSelect
             onChange={onChange}
             iconPosition="after"
@@ -536,10 +486,8 @@ function App() {
             options={longOptionLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Medium-select-Min-label-size-multiline">
-          <h4>
-            Medium select - Only label - Min label size multiline
-          </h4>
+        <div className="test-case" id="Medium-select-Min-label-size-multiline">
+          <h4>Medium select - Only label - Min label size multiline</h4>
           <DxcSelect
             onChange={onChange}
             iconPosition="after"
@@ -548,10 +496,8 @@ function App() {
             options={longOptionLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Large-select-Max-label-size-oneline">
-          <h4>
-            Large select - Only label - Max label size oneline
-          </h4>
+        <div className="test-case" id="Large-select-Max-label-size-oneline">
+          <h4>Large select - Only label - Max label size oneline</h4>
           <DxcSelect
             onChange={onChange}
             iconPosition="after"
@@ -560,10 +506,8 @@ function App() {
             options={longOptionLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="Large-select-Min-label-size-multiline">
-          <h4>
-            Large select - Only label - Min label size multiline
-          </h4>
+        <div className="test-case" id="Large-select-Min-label-size-multiline">
+          <h4>Large select - Only label - Min label size multiline</h4>
           <DxcSelect
             onChange={onChange}
             iconPosition="after"
@@ -572,18 +516,18 @@ function App() {
             options={longOptionLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="multiple-icons&labels">
+        <div className="test-case" id="multiple-icons&labels">
           <h4>Multiple select labels and icons selected</h4>
           <DxcSelect
             onChange={onChange}
-            value={[1, 2]}
+            value={[1, 2, 3]}
             multiple={true}
             size="medium"
             label={"Multiple Labels"}
             options={optionsWithIconAndLabels}
           ></DxcSelect>
         </div>
-        <div class="test-case" id="multiple icons">
+        <div className="test-case" id="multiple icons">
           <h4>Multiple select only icons selected</h4>
           <DxcSelect
             onChange={onChange}
@@ -594,6 +538,49 @@ function App() {
             options={optionsWithIcon}
           ></DxcSelect>
         </div>
+        <div className="test-case" id="mandatory-no-value">
+          <h4>Mandatory select</h4>
+          <DxcSelect
+            onChange={onChange}
+            required={true}
+            size="medium"
+            label={"Multiple no value"}
+            options={optionsWithIcon}
+          ></DxcSelect>
+        </div>
+        <div className="test-case" id="mandatory-with-value">
+          <h4>Mandatory select with selected option</h4>
+          <DxcSelect
+            onChange={onChange}
+            value={1}
+            required={true}
+            size="medium"
+            label={"Mandatory Icons"}
+            options={optionsWithIcon}
+          ></DxcSelect>
+        </div>
+        <div className="test-case" id="disabled-no-value">
+          <h4>disabled select</h4>
+          <DxcSelect
+            onChange={onChange}
+            // value={1}
+            disabled={true}
+            size="medium"
+            label={"Disabled Icons"}
+            options={optionsWithIcon}
+          ></DxcSelect>
+        </div>
+        <div className="test-case" id="disabled-with-value">
+          <h4>disabled select with selected option</h4>
+          <DxcSelect
+            onChange={onChange}
+            value={1}
+            disabled={true}
+            size="medium"
+            label={"Disabled Icons"}
+            options={optionsWithIcon}
+          ></DxcSelect>
+        </div>
       </div>
       <DxcSelect
         onChange={onChange}
@@ -601,12 +588,6 @@ function App() {
         label={"Controlled Select"}
         options={optionsWithoutIcon}
         margin="medium"
-        padding={{
-          top: "small",
-          left: "medium",
-          right: "medium",
-          bottom: "small"
-        }}
       ></DxcSelect>
 
       <DxcSelect
@@ -616,7 +597,6 @@ function App() {
         options={optionsWithoutIcon}
         multiple={true}
         margin="medium"
-        padding="small"
         size="large"
       ></DxcSelect>
 
@@ -624,7 +604,6 @@ function App() {
         label={"Icons"}
         options={optionsWithIcon}
         margin="medium"
-        padding="xxsmall"
         size="small"
       ></DxcSelect>
 
@@ -634,12 +613,6 @@ function App() {
         multiple={true}
         iconPosition={"before"}
         margin="medium"
-        padding={{
-          top: "xxsmall",
-          left: "medium",
-          right: "medium",
-          bottom: "xxsmall"
-        }}
         size="large"
       ></DxcSelect>
     </div>

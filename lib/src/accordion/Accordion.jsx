@@ -185,6 +185,7 @@ const DXCAccordion = styled.div`
     color: ${props => (props.mode === "default" && colors.black) || colors.white};
     box-shadow: 0px 6px 10px ${colors.white}24;
     border-radius: 0px 0px 4px 4px;
+    cursor: default;
   }
 
   .MuiSvgIcon-root {
