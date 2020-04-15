@@ -6,7 +6,6 @@ const code = `() => {
         <DxcLink
             href="#"
             theme="dark"
-            color={true}
             text="Dark theme Link"
         >
         </DxcLink>

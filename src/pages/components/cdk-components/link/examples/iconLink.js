@@ -4,17 +4,14 @@ import twitterLogoPath from "./images/twitter.svg";
 const code = `() => {
   return (
     <p>
-        This is a text with a
-        <DxcLink
+        This is a text with an <DxcLink
             href="#"
             theme="light"
-            margin="xxsmall"
             iconPosition="after"
             iconSrc={twitterLogoPath}
             text="Icon after"
         >
-        </DxcLink>
-        the link.
+        </DxcLink> the link.
     </p>
   );
 }`;
