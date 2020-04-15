@@ -9,25 +9,25 @@ function App() {
                 <h4>Default Link</h4>
                 <div className="test-case" id="default-link">
                     <p>
-                        This is a text with a<DxcLink href="#" margin="xxsmall" text="Link"></DxcLink>to another page.
+                        This is a text with a <DxcLink href="#" text="Link"></DxcLink> to another page.
                     </p>
                     
                 </div>
             </div>
             <div>
-                <h4>Underline Link</h4>
-                <div className="test-case" id="underline-link">
+                <h4>Not Underlined Link</h4>
+                <div className="test-case" id="not-underlined-link">
                     <p>
-                        This is a text with a<DxcLink href="#" margin="xxsmall" underlined={true} text="Link"></DxcLink>to another page.
+                        This is a text with a<DxcLink href="#" margin="xxsmall" underlined={false} text="Link"></DxcLink>to another page.
                     </p>
                 </div>
             </div>
             <div>
-                <h4>Default colored Link with NewWindow</h4>
-                <div className="test-case" id="default-colored-link">
+                <h4>Default inherited color Link with NewWindow</h4>
+                <div className="test-case" id="inherited-color-link">
                     <DxcLink
                         href="#"
-                        color={true}
+                        inheritColor={true}
                         newWindow={true}
                         text="Link"
                     >
@@ -35,12 +35,12 @@ function App() {
                 </div>
             </div>
             <div>
-                <h4>Underline colored Link</h4>
-                <div className="test-case" id="underline-colored-link">
+                <h4>Not Underline colored Link</h4>
+                <div className="test-case" id="not-underlined-colored-link">
                     <DxcLink
                         href="#"   
-                        underlined={true}
-                        color={true}
+                        underlined={false}
+                        inheritedColor={true}
                         text="Link"
                     >
                     </DxcLink>
@@ -55,23 +55,22 @@ function App() {
                     <DxcLink
                         href="#"
                         theme="dark"
-                        color={true}
                         text="Link"
                     >
                     </DxcLink>
                 </div>
             </div>
             <div>
-                <h4>Dark theme - Underline Link</h4>
+                <h4>Dark theme - Not underlined and Inherited color</h4>
                 <div 
                     style={{ background: "#000000", padding: "25px 0px 25px 0px" }}
                     className="test-case" 
-                    id="underline-dark-link">
+                    id="not-underlined-inherited-dark-link">
                     <DxcLink
                         href="#"
-                        underlined={true}
+                        underlined={false}
                         theme="dark"
-                        color={true}
+                        inheritColor={true}
                         text="Link"
                     >
                     </DxcLink>
@@ -140,33 +139,27 @@ function App() {
                 <h4>Icons</h4>
                 <div className="test-case" id="icon-after">
                     <p>
-                        This is a text with a
-                        <DxcLink
+                        This is a text with a <DxcLink
                             href="#"
                             theme="light"
-                            margin="xxsmall"
                             iconPosition="after"
                             iconSrc={homeLogo}
                             text="Icon after"
                         >
-                        </DxcLink>
-                        the link.
+                        </DxcLink> the link.
                     </p>
                 </div>
                 <div className="test-case" id="icon-before">
                     <p>
-                        This is a text with a colored 
-                        <DxcLink
+                        This is a text with a colored <DxcLink
                             href="#"
                             theme="light"
                             iconPosition="before"
                             iconSrc={homeLogo}
                             color={true}
-                            margin="xxsmall"
                             text="Icon before"
                         >
-                        </DxcLink>
-                         the link.
+                        </DxcLink> the link.
                     </p>
                 </div>
             </div>

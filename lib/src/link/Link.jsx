@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 
 const DxcLink = ({
-    underlined = false,
-    color = false,
+    underlined = true,
+    inheritColor = false,
     iconSrc = "",
     iconPosition = "before",
     href = "",
@@ -17,7 +17,7 @@ const DxcLink = ({
     return (
       <LinkText 
         underlined={underlined}
-        color={color}
+        inheritColor={inheritColor}
         href={href}
         theme={theme}
         margin={margin}
@@ -27,7 +27,7 @@ const DxcLink = ({
         {text}
         {
           iconSrc ? 
-            <LinkIcon src={iconSrc} color={color} theme={theme} iconPosition={iconPosition}></LinkIcon>
+            <LinkIcon src={iconSrc} theme={theme} iconPosition={iconPosition}></LinkIcon>
           : ''
         }
         
@@ -48,7 +48,7 @@ const LinkText = styled.a`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   text-decoration: ${ props => props.underlined ? "underline" : ""};
-  color: ${ props => props.color ? 
+  color: ${ props => !props.inheritColor ? 
             props.theme === "light" ? "#006BF6" : "#4797FF" 
             : props.theme === "dark" ? "#FFFFFF" : "inherit"} !important;
   ${ props => !props.underlined ? "text-decoration-color: transparent;" :  ""}
@@ -85,7 +85,7 @@ const LinkIcon = styled.img`
 
 DxcLink.propTypes = {
     underlined: PropTypes.bool,
-    color: PropTypes.bool,
+    inheritColor: PropTypes.bool,
     iconSrc: PropTypes.string,
     iconPosition: PropTypes.oneOf(["after", "before"]),
     href: PropTypes.string,
