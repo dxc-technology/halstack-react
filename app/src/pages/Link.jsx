@@ -139,7 +139,7 @@ function App() {
                 <h4>Icons</h4>
                 <div className="test-case" id="icon-after">
                     <p>
-                        This is a text with a <DxcLink
+                        This is a text with an <DxcLink
                             href="#"
                             theme="light"
                             iconPosition="after"
@@ -151,12 +151,13 @@ function App() {
                 </div>
                 <div className="test-case" id="icon-before">
                     <p>
-                        This is a text with a colored <DxcLink
+                        This is a text with an <DxcLink
                             href="#"
                             theme="light"
                             iconPosition="before"
                             iconSrc={homeLogo}
-                            color={true}
+                            inheritColor={true}
+                            underlined={false}
                             text="Icon before"
                         >
                         </DxcLink> the link.
