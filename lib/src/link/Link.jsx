@@ -49,9 +49,11 @@ const LinkText = styled.a`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   ${props => props.icon ? 
-    `text-decoration: none;
-    line-height: 95%;
-    border-bottom: ${props.underlined ? '1px solid' : ''};` :
+    props.underlined ? 
+      `text-decoration: none;
+      padding-bottom: 1px !important;
+      border-bottom: 1px solid;`
+      : '' :
     `text-decoration: ${props.underlined ? "underline" : ""};`
   }
   
@@ -67,6 +69,7 @@ const LinkText = styled.a`
  
   max-width: 100%;
   font-size: 16px;
+  padding-bottom: 2px;
 
   &:hover {
     ${props => !props.underlined ?
@@ -77,7 +80,7 @@ const LinkText = styled.a`
 
     ${props => !props.underlined && props.icon ?
       `text-decoration: none;
-      line-height: 95%;
+      padding-bottom: 1px !important;
       border-bottom: 1px solid` :
       `text-decoration: "underline";`
     }
