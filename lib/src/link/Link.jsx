@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 
 const DxcLink = ({
-    underlined = false,
-    color = false,
-    iconSrc = "",
+    underlined = true,
+    inheritColor = false,
+    iconSrc,
     iconPosition = "before",
     href = "",
     theme = "light",
@@ -17,17 +17,18 @@ const DxcLink = ({
     return (
       <LinkText 
         underlined={underlined}
-        color={color}
+        inheritColor={inheritColor}
         href={href}
         theme={theme}
         margin={margin}
         iconPosition={iconPosition}
+        icon={iconSrc}
         target={newWindow? "_blank" : "_self"}
       >
         {text}
         {
           iconSrc ? 
-            <LinkIcon src={iconSrc} color={color} theme={theme} iconPosition={iconPosition}></LinkIcon>
+            <LinkIcon src={iconSrc} theme={theme} iconPosition={iconPosition}></LinkIcon>
           : ''
         }
         
@@ -47,8 +48,14 @@ const LinkText = styled.a`
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  text-decoration: ${ props => props.underlined ? "underline" : ""};
-  color: ${ props => props.color ? 
+  ${props => props.icon ? 
+    `text-decoration: none;
+    line-height: 95%;
+    border-bottom: ${props.underlined ? '1px solid' : ''};` :
+    `text-decoration: ${props.underlined ? "underline" : ""};`
+  }
+  
+  color: ${ props => !props.inheritColor ? 
             props.theme === "light" ? "#006BF6" : "#4797FF" 
             : props.theme === "dark" ? "#FFFFFF" : "inherit"} !important;
   ${ props => !props.underlined ? "text-decoration-color: transparent;" :  ""}
@@ -67,8 +74,14 @@ const LinkText = styled.a`
       text-decoration-color: ${props.theme === "light" ? "#006BF6" : "#4797FF"};`
       : ""
     }
-    
-    text-decoration: "underline";
+
+    ${props => !props.underlined && props.icon ?
+      `text-decoration: none;
+      line-height: 95%;
+      border-bottom: 1px solid` :
+      `text-decoration: "underline";`
+    }
+
     cursor: pointer;
   }
 
@@ -80,12 +93,12 @@ const LinkText = styled.a`
 const LinkIcon = styled.img`
   width: 16px;
   height: 16px;
-  ${ props => props.iconPosition === "before" ? "margin-right" : "margin-left"}: 10px;
+  ${ props => props.iconPosition === "before" ? "margin-right" : "margin-left"}: 6px;
 `;
 
 DxcLink.propTypes = {
     underlined: PropTypes.bool,
-    color: PropTypes.bool,
+    inheritColor: PropTypes.bool,
     iconSrc: PropTypes.string,
     iconPosition: PropTypes.oneOf(["after", "before"]),
     href: PropTypes.string,
