@@ -82,7 +82,6 @@ function App() {
                 <div className="test-case" id="margin-xxsmall">
                     <DxcLink
                         href="#"
-                        theme="dark"
                         margin="xxsmall"
                         text="Margin xxsmall"
                     >
@@ -91,7 +90,6 @@ function App() {
                 <div className="test-case" id="margin-xsmall">
                     <DxcLink
                         href="#"
-                        theme="dark"
                         margin="xsmall"
                         text="Margin xsmall"
                     >
@@ -100,7 +98,6 @@ function App() {
                 <div className="test-case" id="margin-small">
                     <DxcLink
                         href="#"
-                        theme="dark"
                         margin="small"
                         text="Margin small"
                     >
@@ -109,7 +106,6 @@ function App() {
                 <div className="test-case" id="margin-medium">
                     <DxcLink
                         href="#"
-                        theme="dark"
                         margin="medium"
                         text="Margin medium"
                     >
@@ -118,7 +114,6 @@ function App() {
                 <div className="test-case" id="margin-large">
                     <DxcLink
                         href="#"
-                        theme="dark"
                         margin="large"
                         text="Margin large"
                     >
@@ -127,7 +122,6 @@ function App() {
                 <div className="test-case" id="margin-xlarge">
                     <DxcLink
                         href="#"
-                        theme="dark"
                         margin="xlarge"
                         text="Margin xlarge"
                     >
@@ -136,7 +130,6 @@ function App() {
                 <div className="test-case" id="margin-xxlarge">
                     <DxcLink
                         href="#"
-                        theme="dark"
                         margin="xxlarge"
                         text="Margin xxlarge"
                     >
