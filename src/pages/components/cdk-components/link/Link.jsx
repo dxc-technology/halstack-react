@@ -8,7 +8,7 @@ import ComponentHeader from "../../common/ComponentHeader";
 import LinkPropsTable from "./api.jsx";
 
 import defaultLink from "./examples/default";
-import underlinedLink from "./examples/underline";
+import undecoratedLink from "./examples/undecorated";
 import darkLink from "./examples/darkTheme";
 import iconLink from "./examples/iconLink";
 
@@ -42,8 +42,8 @@ function Link() {
                                 example={defaultLink}
                               ></Example>
                               <Example
-                                title="Underlined Link with new window"
-                                example={underlinedLink}
+                                title="Undecorated link with new window"
+                                example={undecoratedLink}
                               ></Example>
                               <Example
                                 title="Dark themed Link"
