@@ -36,6 +36,8 @@ const DxcWizard = ({
                       mode={mode}
                       disable={step.disabled}
                       disabled={step.disabled}
+                      first={i === 0}
+                      last={i === steps.length-1}
                     >
                       <StepHeader>
                         <IconContainer
@@ -115,7 +117,13 @@ const Step = styled.button`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: ${props => props.mode === "vertical" ? "25px 0" : "0 25px"};
+    margin: ${props => props.first? 
+      props.mode === "vertical" ? "0 0 25px 0" : "0 25px 0 0"
+      : props.last?
+      props.mode === "vertical" ? "25px 0 0 0" : "0 0 0 25px"
+      : props.mode === "vertical" ? "25px 0" : "0 25px"
+    }
+
     padding: 0px;
     ${props => props.disabled ? "cursor: not-allowed" : ''};
 
@@ -131,7 +139,7 @@ const Step = styled.button`
 const StepHeader = styled.div`
     position: relative;
     display: inline-flex;
-    padding: 3px;
+    padding-bottom: 3px;
 `;
 
 const IconContainer = styled.div`
