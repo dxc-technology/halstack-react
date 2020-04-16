@@ -62,7 +62,7 @@ const wizardPropsTable = () => {
               <b>disable</b>: Whether the step is disabled or not.
             </li>
             <li>
-              <b>disable</b>: Whether the step is valid or not.
+              <b>valid</b>: Whether the step is valid or not.
             </li>
           </ul>
         </td>
