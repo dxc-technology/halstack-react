@@ -25,6 +25,7 @@ import Date from "./cdk-components/date/Date";
 import Paginator from "./cdk-components/paginator/Paginator";
 import Sidenav from "./cdk-components/sidenav/Sidenav";
 import Link from "./cdk-components/link/Link";
+import Wizard from "./cdk-components/wizard/Wizard";
 
 export const types = {
   FORMS: "Forms",
@@ -195,5 +196,11 @@ export default [
     name: "Upload",
     component: Upload,
     type: types.UTILS
+  },
+  {
+    path: "wizard",
+    name: "Wizard",
+    component: Wizard,
+    type: types.NAVIGATION
   }
 ];
