@@ -121,6 +121,10 @@ const Step = styled.button`
     &:focus {
         outline: none;
     }
+
+    &:hover {
+      ${props => props.disable ? "" : "cursor: pointer"};
+    }
 `;
 
 const StepHeader = styled.div`
