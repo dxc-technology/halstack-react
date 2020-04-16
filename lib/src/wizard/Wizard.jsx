@@ -34,18 +34,19 @@ const DxcWizard = ({
                     <Step
                       onClick={() => handleStepClick(i)}
                       mode={mode}
-                      disable={step.disable}
-                      disabled={step.disable}
+                      disable={step.disabled}
+                      disabled={step.disabled}
                     >
                       <StepHeader>
                         <IconContainer
                           current={i === renderedCurrent}
                           visited={i < renderedCurrent}
                           theme={theme}
+                          disabled={step.disabled}
                         >
                           {
                               step.iconSrc ? <Icon src={step.iconSrc}></Icon> : 
-                              <Number previous={i <innerCurrent} current={i === renderedCurrent} theme={theme}>{i+1}</Number>
+                              <Number disabled={step.disabled} current={i === renderedCurrent} theme={theme}>{i+1}</Number>
                           }
                         </IconContainer>
                         {
@@ -113,17 +114,17 @@ const Step = styled.button`
     background: inherit;
     display: flex;
     justify-content: flex-start;
-    align-items: baseline;
+    align-items: center;
     margin: ${props => props.mode === "vertical" ? "25px 0" : "0 25px"};
     padding: 0px;
-    ${props => props.disable ? "cursor: not-allowed" : ''};
+    ${props => props.disabled ? "cursor: not-allowed" : ''};
 
     &:focus {
         outline: none;
     }
 
     &:hover {
-      ${props => props.disable ? "" : "cursor: pointer"};
+      ${props => props.disabled ? "" : "cursor: pointer"};
     }
 `;
 
@@ -134,12 +135,15 @@ const StepHeader = styled.div`
 `;
 
 const IconContainer = styled.div`
-    width: ${props => props.visited ? "32px" : "36px"};
-    height: ${props => props.visited ? "32px" : "36px"};
+    width: ${props => !props.current ? "32px" : "36px"};
+    height: ${props => !props.current ? "32px" : "36px"};
 
-    ${props => props.visited? 
+    ${props => !props.current && !props.disabled? 
         `border: 2px solid ${props.theme === "light" ? '#000000' : '#FFFFFF'};` : 
-        `background: #D9D9D9 0% 0% no-repeat padding-box;`}
+        ""}
+
+    ${props => props.disabled ? 
+        `background: #D9D9D9 0% 0% no-repeat padding-box;` : ""}
 
     ${props => props.current? 
         `background: #FFED00 0% 0% no-repeat padding-box;` : ''}
@@ -159,7 +163,7 @@ const Icon = styled.img`
 const Number = styled.p`
     font: Normal 16px/22px Open Sans;
     letter-spacing: 0.77px;
-    color: ${props => props.previous ? 
+    color: ${props => !props.current && !props.disabled ? 
         props.theme === "light" ? 
         '#000000' : '#FFFFFF' : 
         props.current ? 
@@ -218,7 +222,7 @@ DxcWizard.propTypes = {
             label: PropTypes.string,
             description: PropTypes.string,
             iconSrc: PropTypes.string,
-            disable: PropTypes.bool,
+            disabled: PropTypes.bool,
             valid: PropTypes.bool
         })
     ),
