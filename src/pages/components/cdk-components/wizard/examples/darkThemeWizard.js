@@ -21,7 +21,7 @@ const code = `() => {
                 {
                     label: "Forth step",
                     description: "Disable step",
-                    disable: true
+                    disabled: true
                 }
             ]}
             ></DxcWizard>
