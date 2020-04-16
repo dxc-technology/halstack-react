@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import DocTitle from "../../../common/DocTitle";
 import { DxcTag } from "@diaas/dxc-react-cdk";
+import ReadyIcon from "./ready.svg";
+import ExperimentalIcon from "./experimental.svg";
+import PlannedIcon from "./planned.svg";
 
 function ComponentHeader({ title, status }) {
     return (
@@ -20,6 +23,14 @@ function ComponentHeader({ title, status }) {
                     '#5b78b7' :
                     '#c34161'
                 }
+                iconSrc= {
+                    status === 'ready' ? 
+                    ReadyIcon :
+                    status === 'experimental' ? 
+                    ExperimentalIcon :
+                    status === 'planned' ?
+                    PlannedIcon : ""
+                }
                 ></DxcTag>
             : ''}
             
@@ -30,7 +41,7 @@ function ComponentHeader({ title, status }) {
 const StyledHeader = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: baseline;
 `;
 
