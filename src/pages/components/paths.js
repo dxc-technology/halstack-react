@@ -201,6 +201,6 @@ export default [
     path: "wizard",
     name: "Wizard",
     component: Wizard,
-    type: types.LAYOUT
+    type: types.NAVIGATION
   }
 ];
