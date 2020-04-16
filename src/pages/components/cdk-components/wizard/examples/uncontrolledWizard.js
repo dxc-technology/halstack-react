@@ -25,7 +25,7 @@ const code = `() => {
               {
                   label: "Forth step",
                   iconSrc: twitterLogoPath,
-                  disable: false
+                  disabled: false
               }
           ]}
         ></DxcWizard>
