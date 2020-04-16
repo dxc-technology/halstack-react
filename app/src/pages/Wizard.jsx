@@ -43,7 +43,7 @@ function Wizard() {
                         {
                             label: "Third step",
                             description: "This is the final step",
-                            disable: true
+                            disabled: true
                         }
                     ]}
                 >
@@ -59,7 +59,6 @@ function Wizard() {
                             iconSrc: homeIcon
                         }, {
                             label: "Second step",
-                            description: "This is the second step",
                             iconSrc: homeIcon
                         },
                         {
@@ -112,7 +111,7 @@ function Wizard() {
                 <h4>Vertical wizard with icons</h4>
                 <DxcWizard
                     mode="vertical"
-                    currentStep={2}
+                    currentStep={1}
                     steps={[
                         {
                             label: "First step",
@@ -129,7 +128,7 @@ function Wizard() {
                             label: "Third step",
                             description: "This is the final step",
                             iconSrc: homeIcon,
-                            disable: true
+                            disabled: true
                         }
                     ]}
                 >
@@ -153,7 +152,8 @@ function Wizard() {
                                 valid: true
                             }, {
                                 label: "Second step",
-                                description: "This is the second step"
+                                description: "This is the second step",
+                                disabled: true
                             },
                             {
                                 label: "Third step",
