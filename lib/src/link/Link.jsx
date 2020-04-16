@@ -22,7 +22,6 @@ const DxcLink = ({
         theme={theme}
         margin={margin}
         iconPosition={iconPosition}
-        icon={iconSrc}
         target={newWindow? "_blank" : "_self"}
       >
         {text}
@@ -48,14 +47,12 @@ const LinkText = styled.a`
   margin-left: ${props =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  ${props => props.icon ? 
-    props.underlined ? 
+  ${props => props.underlined ? 
       `text-decoration: none;
       padding-bottom: 1px !important;
       border-bottom: 1px solid;`
-      : '' :
-    `text-decoration: ${props.underlined ? "underline" : ""};`
-  }
+      : 
+      `text-decoration: none`};
   
   color: ${ props => !props.inheritColor ? 
             props.theme === "light" ? "#006BF6" : "#4797FF" 
@@ -72,18 +69,10 @@ const LinkText = styled.a`
   padding-bottom: 2px;
 
   &:hover {
-    ${props => !props.underlined ?
-      `color: ${props.theme === "light" ? "#006BF6" : "#4797FF"} !important;
-      text-decoration-color: ${props.theme === "light" ? "#006BF6" : "#4797FF"};`
-      : ""
-    }
-
-    ${props => !props.underlined && props.icon ?
-      `text-decoration: none;
-      padding-bottom: 1px !important;
-      border-bottom: 1px solid` :
-      `text-decoration: "underline";`
-    }
+    color: ${props=> props.theme === "light" ? "#006BF6" : "#4797FF"} !important;
+    text-decoration: none;
+    padding-bottom: 1px !important;
+    border-bottom: 1px solid;
 
     cursor: pointer;
   }
