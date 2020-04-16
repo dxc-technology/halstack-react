@@ -12,16 +12,16 @@ const linkPropsTable = () => {
             <tr>
                 <td>underlined: boolean</td>
                 <td>
-                    <code>false</code>
+                    <code>true</code>
                 </td>
                 <td>If true, the text is underlined.</td>
             </tr>
             <tr>
-                <td>color: boolean</td>
+                <td>inheritColor: boolean</td>
                 <td>
                     <code>false</code>
                 </td>
-                <td>If true, the link have the default colors.</td>
+                <td>If true, the color is inherited from parent.</td>
             </tr>
             <tr>
                 <td>text: string</td>
