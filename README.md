@@ -8,7 +8,7 @@ Assure React CDK is a npm library of reusable React components, made with the pu
 
 ## Usage
 
-Assure React CDK is a set of components distributed as a npm library. See the [documentation site](http://design-system-react-cdk-site.s3-website-us-east-1.amazonaws.com/) for details on how to use it.
+Assure React CDK is a set of reusable components distributed as a npm library. See the [documentation site](http://design-system-react-cdk-site.s3-website-us-east-1.amazonaws.com/) for details on how to use it.
 
 ## Contributing
 
@@ -23,7 +23,7 @@ The project is divided in two main folders. One is for the actual library, and t
 
 ### Library
 
-Contained in the lib folder.
+Contained in the `lib` folder.
 
 ```bash
 cd lib
@@ -35,7 +35,7 @@ Install the library dependencies.
 npm install
 ```
 
-Run the build process into dist folder, detecting and automatically building changes in src.
+Run the build process into `dist` folder, detecting and automatically building changes in src.
 
 ```bash
 npm run build:watch #'npm run build' if there is no need to watch for changes
@@ -43,13 +43,13 @@ npm run build:watch #'npm run build' if there is no need to watch for changes
 
 ### Example Application
 
-Contained in the app folder.
+Contained in the `app` folder.
 
 ```bash
 cd app # from the root folder
 ```
 
-Install the application dependencies. The Assure React CDK dependency is linked to the local lib folder. This one must have been built first.
+Install the application dependencies. The Assure React CDK dependency is linked to the local `lib` folder. This one must have been previously built.
 
 ```bash
 npm install
@@ -58,15 +58,6 @@ npm install
 Start the application.
 
 ```bash
-npm start # runs create-react-app dev server
-```
-
-The second part will be running the `example/` create-react-app that's linked to the local version of your module.
-
-```bash
-# (in another tab)
-cd example
-npm install
 npm start # runs create-react-app dev server
 ```
 
