@@ -1,6 +1,6 @@
 # Assure React CDK
 
-Assure React CDK is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Design Guidelines right out of the box.
+Assure React CDK is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Design Guidelines.
 
 - It increases visual and behavioral consistency across the applications using the library.
 
