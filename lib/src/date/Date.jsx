@@ -61,6 +61,7 @@ const DxcDate = ({
             disabled={disabled}
             value={value === "" ? null : value != null ? value : innerValue}
             label={label}
+            id={label}
             variant="inline"
             PopoverProps={{ anchorOrigin: { horizontal: "right", vertical: "bottom" } }}
             keyboardIcon={
@@ -386,7 +387,7 @@ const lightTheme = createMuiTheme({
 });
 
 DxcDate.propTypes = {
-  value: PropTypes.object,
+  value: PropTypes.string,
   format: PropTypes.string,
   label: PropTypes.string,
   theme: PropTypes.oneOf(["light", "dark", ""]),
