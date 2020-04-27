@@ -3,12 +3,42 @@ import { Route } from "react-router-dom";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { types } from "./paths.js";
-import { DxcSidenav } from "@diaas/dxc-react-cdk";
+import { DxcSidenav, DxcBox, DxcLink } from "@diaas/dxc-react-cdk";
 import paths from "./paths.js";
 import reactIcon from "../../common/react-icon.png";
+import DocTitle from "../../common/DocTitle";
+import ComponentDoc from "./common/ComponentDoc";
 
 function Components() {
   const location = useLocation();
+
+  const getComponentsLinks = (type) => 
+    <ComponentsLinksContainer>
+      {
+        paths.filter(path => path.type === type)
+        .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
+        .reduce((result, path, i, array) => {
+          if (i % 3 === 0) result.push(array.slice(i, i+3));
+          return result;
+        }, [])
+        .map((sublist) => 
+          <LinksColumn>
+            {sublist.map((path,i) => (
+              <li>
+                <DxcLink
+                  text={path.name}
+                  underlined={false}
+                  margin="xxsmall"
+                  href={`#/components/${path.path}`}
+                />
+              </li>
+            ))}
+          </LinksColumn>
+        )
+      }
+    </ComponentsLinksContainer>
+    
+
   return (
     <SideNav>
       <DxcSidenav
@@ -44,6 +74,62 @@ function Components() {
         }
         pageContent={
           <SideNavContent>
+            <Route exact path="/components">
+              <ComponentDoc>
+                <DocTitle size={1}>Overview</DocTitle>
+                <p>
+                  DXC Design System appears with the necessity of bringing consistency and efficiency 
+                  to our applications. A design system is a reference guide to aligned and improved 
+                  the work done regarding digital products within the organization. This involves the 
+                  basic principles of design and usability to the final implementation of the product 
+                  based on components already defined by the development team.
+                </p>
+                <ComponentTypeTitle>Forms</ComponentTypeTitle>
+                <p>
+                  DXC Design System appears with the necessity of bringing consistency and efficiency to our 
+                  applications. A design system is a reference guide to aligned and improved the work done 
+                  regarding digital products within the organization. This involves the basic principles of 
+                  design and usability to the final implementation of the product based on components already 
+                  defined by the development team. 
+                </p>
+                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
+                  {getComponentsLinks("Forms")}
+                </DxcBox>
+                <ComponentTypeTitle>Navigation</ComponentTypeTitle>
+                <p>
+                  DXC Design System appears with the necessity of bringing consistency and efficiency to our 
+                  applications. A design system is a reference guide to aligned and improved the work done 
+                  regarding digital products within the organization. This involves the basic principles of 
+                  design and usability to the final implementation of the product based on components already 
+                  defined by the development team. 
+                </p>
+                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
+                  {getComponentsLinks("Navigation")}
+                </DxcBox>
+                <ComponentTypeTitle>Layout</ComponentTypeTitle>
+                <p>
+                  DXC Design System appears with the necessity of bringing consistency and efficiency to our 
+                  applications. A design system is a reference guide to aligned and improved the work done 
+                  regarding digital products within the organization. This involves the basic principles of 
+                  design and usability to the final implementation of the product based on components already 
+                  defined by the development team. 
+                </p>
+                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
+                  {getComponentsLinks("Layout")}
+                </DxcBox>
+                <ComponentTypeTitle>Utilities</ComponentTypeTitle>
+                <p>
+                  DXC Design System appears with the necessity of bringing consistency and efficiency to our 
+                  applications. A design system is a reference guide to aligned and improved the work done 
+                  regarding digital products within the organization. This involves the basic principles of 
+                  design and usability to the final implementation of the product based on components already 
+                  defined by the development team. 
+                </p>
+                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
+                  {getComponentsLinks("Utilities")}
+                </DxcBox>
+              </ComponentDoc>
+            </Route>
             {paths.map(path => (
               <Route path={`/components/${path.path}`}>
                 <path.component></path.component>
@@ -109,6 +195,24 @@ const NavLink = styled.div`
     font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
     color: ${({ isActive }) => (isActive && "black") || "gray"};
   }
+`;
+
+const ComponentTypeTitle = styled.h2`
+  font-size: 30px;
+  font-weight: normal;
+  margin-bottom: 0;
+`;
+
+const ComponentsLinksContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const LinksColumn = styled.ul`
+  list-style-type:none;
+  padding: 0;
+  margin: 0;
+  margin-right: 100px;
 `;
 
 export default Components;
