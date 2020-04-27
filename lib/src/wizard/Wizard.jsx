@@ -88,7 +88,7 @@ const DxcWizard = ({
 const StepsContainer = styled.div`
     display: inline-flex;
     flex-direction: ${props => props.mode === "vertical" ? "column" : "row"};
-    justify-content: center";
+    justify-content: "center";
     ${props => props.mode === "vertical" ? "height: 500px" : "width: 100%"};
 
     margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -122,7 +122,7 @@ const Step = styled.button`
       : props.last?
       props.mode === "vertical" ? "25px 0 0 0" : "0 0 0 25px"
       : props.mode === "vertical" ? "25px 0" : "0 25px"
-    }
+    };
 
     padding: 0px;
     ${props => props.disabled ? "cursor: not-allowed" : ''};
@@ -143,18 +143,18 @@ const StepHeader = styled.div`
 `;
 
 const IconContainer = styled.div`
-    width: ${props => !props.current ? "32px" : "36px"};
-    height: ${props => !props.current ? "32px" : "36px"};
+    width: ${props => !props.current && !props.disabled ? "32px" : "36px"};
+    height: ${props => !props.current && !props.disabled ? "32px" : "36px"};
 
     ${props => !props.current && !props.disabled? 
         `border: 2px solid ${props.theme === "light" ? '#000000' : '#FFFFFF'};` : 
         ""}
 
     ${props => props.disabled ? 
-        `background: #D9D9D9 0% 0% no-repeat padding-box;` : ""}
+        "background: #D9D9D9 0% 0% no-repeat padding-box;" : ""}
 
     ${props => props.current? 
-        `background: #FFED00 0% 0% no-repeat padding-box;` : ''}
+        "background: #FFED00 0% 0% no-repeat padding-box;" : ''}
 
     border-radius: 45px;
 
@@ -175,8 +175,9 @@ const Number = styled.p`
         props.theme === "light" ? 
         '#000000' : '#FFFFFF' : 
         props.current ? 
-        '#000000' :'#666666'}
+        '#000000' :'#666666'};
     opacity: 1;
+    margin: 0;
 `;
 
 const ValidityIcon = styled.img`
