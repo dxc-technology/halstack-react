@@ -84,7 +84,7 @@ function Components() {
                   basic principles of design and usability to the final implementation of the product 
                   based on components already defined by the development team.
                 </p>
-                <DocTitle size={2}>Forms</DocTitle>
+                <ComponentTypeTitle>Forms</ComponentTypeTitle>
                 <p>
                   DXC Design System appears with the necessity of bringing consistency and efficiency to our 
                   applications. A design system is a reference guide to aligned and improved the work done 
@@ -92,10 +92,10 @@ function Components() {
                   design and usability to the final implementation of the product based on components already 
                   defined by the development team. 
                 </p>
-                <DxcBox padding="small">
+                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
                   {getComponentsLinks("Forms")}
                 </DxcBox>
-                <DocTitle size={2}>Navigation</DocTitle>
+                <ComponentTypeTitle>Navigation</ComponentTypeTitle>
                 <p>
                   DXC Design System appears with the necessity of bringing consistency and efficiency to our 
                   applications. A design system is a reference guide to aligned and improved the work done 
@@ -103,10 +103,10 @@ function Components() {
                   design and usability to the final implementation of the product based on components already 
                   defined by the development team. 
                 </p>
-                <DxcBox padding="small">
+                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
                   {getComponentsLinks("Navigation")}
                 </DxcBox>
-                <DocTitle size={2}>Layout</DocTitle>
+                <ComponentTypeTitle>Layout</ComponentTypeTitle>
                 <p>
                   DXC Design System appears with the necessity of bringing consistency and efficiency to our 
                   applications. A design system is a reference guide to aligned and improved the work done 
@@ -114,10 +114,10 @@ function Components() {
                   design and usability to the final implementation of the product based on components already 
                   defined by the development team. 
                 </p>
-                <DxcBox padding="small">
+                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
                   {getComponentsLinks("Layout")}
                 </DxcBox>
-                <DocTitle size={2}>Utilities</DocTitle>
+                <ComponentTypeTitle>Utilities</ComponentTypeTitle>
                 <p>
                   DXC Design System appears with the necessity of bringing consistency and efficiency to our 
                   applications. A design system is a reference guide to aligned and improved the work done 
@@ -125,7 +125,7 @@ function Components() {
                   design and usability to the final implementation of the product based on components already 
                   defined by the development team. 
                 </p>
-                <DxcBox padding="small">
+                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
                   {getComponentsLinks("Utilities")}
                 </DxcBox>
               </ComponentDoc>
@@ -195,6 +195,12 @@ const NavLink = styled.div`
     font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
     color: ${({ isActive }) => (isActive && "black") || "gray"};
   }
+`;
+
+const ComponentTypeTitle = styled.h2`
+  font-size: 30px;
+  font-weight: normal;
+  margin-bottom: 0;
 `;
 
 const ComponentsLinksContainer = styled.div`
