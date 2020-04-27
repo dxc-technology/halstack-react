@@ -6,53 +6,41 @@ function App() {
   return (
     <div>
       <DxcSidenav
-        padding="xlarge"
         mode="push"
+        padding="medium"
         navContent={
-          <ul>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-          </ul>
+          <div>
+            <p>Amazon</p>
+          </div>
+        }
+        pageContent={
+          <div>
+            <p>Lorem ipsum</p> 
+            <p>Lorem ipsum</p> 
+            <p>Lorem ipsum</p> 
+          </div>
+        }
+      >
+      </DxcSidenav>
+      <DxcFooter></DxcFooter>
+      <DxcSidenav
+        navContent={
+          <div>
+            <p>Lorem ipsum</p> 
+            <p>Lorem ipsum</p> 
+            <p>Lorem ipsum</p> 
+          </div>
         }
         pageContent={
           <div>
             <p>This is the content in the main area</p>
           </div>
         }
-        arrowDistance="20px"
       ></DxcSidenav>
       <DxcFooter></DxcFooter>
       <DxcSidenav
-        padding="xlarge"
-        navContent={
-          <ul>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-            <li>Text</li>
-          </ul>
-        }
-        pageContent={
-          <div>
-            <p>This is the content in the main area</p>
-          </div>
-        }
-        arrowDistance="20px"
-      ></DxcSidenav>
-      <DxcFooter></DxcFooter>
-      <DxcSidenav
-        padding="xlarge"
         mode="push"
+        padding="medium"
         displayArrow={false}
         navContent={
           <ul>
@@ -71,7 +59,6 @@ function App() {
             <p>This is the content in the main area</p>
           </div>
         }
-        arrowDistance="20px"
       ></DxcSidenav>
       <DxcFooter></DxcFooter>
     </div>
