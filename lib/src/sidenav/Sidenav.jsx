@@ -93,7 +93,7 @@ const Sidenav = styled.div`
   flex-direction: column;
   
   background-color: #f8f8f8;
-  height: 100%;
+  
   width: ${props => (props.sidenavSize <= responsiveSizes.tablet ? "60%" : "300px")};
   box-sizing: border-box;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
@@ -129,7 +129,8 @@ const PageContent = styled.div`
   flex-grow: 1;
   height: 100%;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
-  margin-left: ${props => (props.isShown && props.mode === "push" && !props.isResponsive ? "0" : "-300px")};
+  margin-left: ${props => (props.isShown && props.mode === "push" && !props.isResponsive ? "" : 
+                          !props.isResponsive ? "-300px" : "-60%")};
   transition: margin 0.4s ease-in-out;
 `;
 
