@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { DxcSidenav, DxcHeader } from "@diaas/dxc-react-cdk";
+import { DxcSidenav, DxcHeader, DxcFooter } from "@diaas/dxc-react-cdk";
 
 function App() {
   return (
@@ -8,7 +8,18 @@ function App() {
       <DxcSidenav
         padding="xlarge"
         mode="push"
-        navContent={<div>Ejemplo de sidenav</div>}
+        navContent={
+          <ul>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+          </ul>
+        }
         pageContent={
           <div>
             <p>This is the content in the main area</p>
@@ -16,6 +27,53 @@ function App() {
         }
         arrowDistance="20px"
       ></DxcSidenav>
+      <DxcFooter></DxcFooter>
+      <DxcSidenav
+        padding="xlarge"
+        navContent={
+          <ul>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+          </ul>
+        }
+        pageContent={
+          <div>
+            <p>This is the content in the main area</p>
+          </div>
+        }
+        arrowDistance="20px"
+      ></DxcSidenav>
+      <DxcFooter></DxcFooter>
+      <DxcSidenav
+        padding="xlarge"
+        mode="push"
+        displayArrow={false}
+        navContent={
+          <ul>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+            <li>Text</li>
+          </ul>
+        }
+        pageContent={
+          <div>
+            <p>This is the content in the main area</p>
+          </div>
+        }
+        arrowDistance="20px"
+      ></DxcSidenav>
+      <DxcFooter></DxcFooter>
     </div>
   );
 }
