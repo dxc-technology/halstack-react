@@ -64,7 +64,7 @@
         <td>If true, the ripple effect will be disabled.</td>
     </tr>
     <tr>
-        <td>onInputChange: function</td>
+        <td>onChange: function</td>
         <td></td>
         <td>This function will be called when the user types within the input. A string with the current value will be passed to this function and also a date object if the string typed is a valid date<br>
         </td>
