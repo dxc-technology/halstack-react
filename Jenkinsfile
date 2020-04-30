@@ -111,6 +111,7 @@ pipeline {
                 '''
             }
         }
+       
         stage('Build dxc-react-cdk library') {
             steps {
                 sh '''
@@ -119,10 +120,11 @@ pipeline {
                 '''
             }
         }
-        stage('Test library') {
+        stage('Running tests') {
             steps {
                 sh '''
-                    echo 'Add tests'
+                    cd lib
+                    npm run test
                 '''
             }
         }
