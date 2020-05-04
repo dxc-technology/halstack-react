@@ -26,6 +26,7 @@ const DxcDate = ({
   invalid = false,
   disableRipple = false,
   onChange,
+  placeholder = false,
   onBlur = "",
   margin,
   size = "medium",
@@ -76,7 +77,6 @@ const DxcDate = ({
       setAnchorEl(event.currentTarget);
     }
   };
-
   return (
     <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -93,6 +93,7 @@ const DxcDate = ({
             assistiveText={assistiveText}
             margin={margin}
             size={size}
+            placeholder={placeholder ? format : null}
             value={value == null ? innerValue : value}
             onClickSuffix={openCalendar}
             onChange={onChangeInput}
@@ -121,7 +122,6 @@ const DxcDate = ({
                   variant="static"
                   value={getValueForPicker()}
                   onChange={(date) => handleMenuItemClick(date)}
-                  
                   format={format}
                   disabled={disabled}
                 />
@@ -284,7 +284,7 @@ const lightTheme = createMuiTheme({
 });
 
 DxcDate.propTypes = {
-  value: PropTypes.object,
+  value: PropTypes.string,
   format: PropTypes.string,
   label: PropTypes.string,
   theme: PropTypes.oneOf(["light", "dark", ""]),
@@ -292,6 +292,7 @@ DxcDate.propTypes = {
   iconSrc: PropTypes.string,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
+  placeholder: PropTypes.bool,
   assistiveText: PropTypes.string,
   invalid: PropTypes.bool,
   disableRipple: PropTypes.bool,
