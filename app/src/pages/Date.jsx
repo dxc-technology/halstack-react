@@ -10,7 +10,7 @@ function App() {
     changeIsInvalid(dateValue ? false : true);
   };
   const onBlur = (stringValue) => {
-     changeInput(stringValue);
+    changeInput(stringValue);
   };
 
   return (
@@ -26,7 +26,8 @@ function App() {
           margin="xxsmall"
           size="medium"
           invalid={isInvalid}
-          onBlur={onBlur}
+          placeholder
+           onBlur={onBlur}
           format="MM-dd-yyyy"
         />
       </div>

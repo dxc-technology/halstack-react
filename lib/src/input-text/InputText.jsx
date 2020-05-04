@@ -26,12 +26,13 @@ const DxcInputText = ({
   required = false,
   multiline = false,
   isMasked = false,
+  placeholder = "",
   margin,
-  size = "medium"
+  size = "medium",
 }) => {
   const [innerValue, setInnerValue] = useState("");
 
-  const handlerInputChange = event => {
+  const handlerInputChange = (event) => {
     if (value === null || value === undefined) {
       if (typeof onChange === "function") {
         setInnerValue(event.target.value);
@@ -48,7 +49,7 @@ const DxcInputText = ({
     }
   };
 
-  const handlerInputBlur = event => {
+  const handlerInputBlur = (event) => {
     setInnerValue(event.target.value);
     if (onBlur) {
       onBlur(event.target.value);
@@ -74,7 +75,7 @@ const DxcInputText = ({
       )}
       <TextField
         error={invalid}
-        value={(value !== null && value) || innerValue}
+        value={value !== null ? value : innerValue}
         name={name}
         multiline={multiline}
         disabled={disabled}
@@ -83,7 +84,8 @@ const DxcInputText = ({
         onChange={handlerInputChange}
         onBlur={(onBlur && handlerInputBlur) || null}
         rowsMax="4"
-        type={isMasked ? 'password' : 'text'}
+        placeholder={placeholder}
+        type={isMasked ? "password" : "text"}
         InputProps={{
           endAdornment: (suffix || suffixIconSrc) && (
             <InputAdornment position="end" onClick={onClickSuffix}>
@@ -103,7 +105,7 @@ const sizes = {
   small: "42px",
   medium: "240px",
   large: "480px",
-  fillParent: "100%"
+  fillParent: "100%",
 };
 
 const calculateWidth = (margin, size) => {
@@ -121,8 +123,8 @@ const PrefixIcon = styled.img`
   max-height: 20px;
   max-width: 20px;
   z-index: 1;
-  opacity: ${props => (props.disabled && 0.5) || 1};
-  cursor: ${props => {
+  opacity: ${(props) => (props.disabled && 0.5) || 1};
+  cursor: ${(props) => {
     if (props.onClickPrefix !== "" && !props.disabled) {
       return "pointer";
     } else {
@@ -135,12 +137,12 @@ const PrefixLabel = styled.span`
   top: 20px;
   left: 0px;
   font-family: "Open Sans", sans-serif;
-  color: ${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
+  color: ${(props) => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
   max-height: 20px;
   max-width: 20px;
-  opacity: ${props => (props.disabled && 0.5) || 1};
+  opacity: ${(props) => (props.disabled && 0.5) || 1};
   z-index: 1;
-  cursor: ${props => {
+  cursor: ${(props) => {
     if (props.onClickPrefix !== "" && !props.disabled) {
       return "pointer";
     } else {
@@ -156,8 +158,8 @@ const SuffixIcon = styled.img`
   max-width: 20px;
   margin-right: 8px;
   width: 20px;
-  opacity: ${props => (props.disabled && 0.5) || 1};
-  cursor: ${props => {
+  opacity: ${(props) => (props.disabled && 0.5) || 1};
+  cursor: ${(props) => {
     if (props.onClickSuffix !== "" && !props.disabled) {
       return "pointer";
     } else {
@@ -167,21 +169,21 @@ const SuffixIcon = styled.img`
 `;
 
 const TextContainer = styled.div`
-  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${props =>
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${props =>
+  margin-right: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${props =>
+  margin-bottom: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${props =>
+  margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   
   display: inline-block;
   position: relative;
-  max-height:  ${props => (props.multiline === true && props.assistiveText !== "" ? "115px" : "74px")};
-  height: ${props => (props.multiline === true && props.assistiveText !== "" ? "115px" : "74px")};
-  width: ${props => calculateWidth(props.margin, props.size)};
+  max-height:  ${(props) => (props.multiline === true && props.assistiveText !== "" ? "115px" : "74px")};
+  height: ${(props) => (props.multiline === true && props.assistiveText !== "" ? "115px" : "74px")};
+  width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
     font-family: "Open Sans", sans-serif;
@@ -191,79 +193,79 @@ const TextContainer = styled.div`
     }
     .MuiFormLabel-root {
       font-size: 16px;
-      color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
+      color: ${(props) => (props.theme === "light" ? colors.black : colors.lightGrey)};
       &::before {
-        content:'${props => (props.required && "*") || ""}';
-        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        content:'${(props) => (props.required && "*") || ""}';
+        color: ${(props) => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         font-size: 16px; 
       }
       &.Mui-disabled{
         opacity:0.5;
       }
-      padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
+      padding-left: ${(props) => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
       &.Mui-focused {
-        color: ${props => (props.theme === "light" ? colors.black : colors.white)};
+        color: ${(props) => (props.theme === "light" ? colors.black : colors.white)};
         &.MuiInputLabel-shrink {
-          transform: ${props =>
+          transform: ${(props) =>
             props.prefixIconSrc ||
             ((props.prefix || props.suffix) && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
             "translate(0, 1.5px) scale(0.75);"};
         }
       }
       &.Mui-disabled {
-        color: ${props => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
         cursor: not-allowed;
       }
       &.MuiInputLabel-shrink {
         font-family: "Open Sans", sans-serif;
-        transform: ${props =>
+        transform: ${(props) =>
           (props.prefixIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
           (props.prefix && "translate(8px, 1.5px) scale(0.75);") ||
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
-        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        color: ${(props) => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
       }
 
       &:not(.MuiInputLabel-shrink)  {
         font-family: "Open Sans", sans-serif;
-        color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+        color: ${(props) => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
         & + div, & + div + p {
-          color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+          color: ${(props) => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
         }
       }
 
       &.MuiInputLabel-shrink {
         & + div::before {
-          border-color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
+          border-color: ${(props) => (props.theme === "light" ? colors.black : colors.lightGrey)};
         }
         & + div + p {
-          color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+          color: ${(props) => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
         }
         
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
       font-family: "Open Sans", sans-serif;
-      ${props => (props.multiline ? "height: auto;" : "")}
+      ${(props) => (props.multiline ? "height: auto;" : "")}
       &::before{
-        border-bottom: ${props =>
+        border-bottom: ${(props) =>
           props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
       }
       &:not(.Mui-error)::before, &:not(&.Mui-focused)::before {
-        border-bottom: ${props =>
+        border-bottom: ${(props) =>
           props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
       }
       &::after{
-        border-bottom: ${props => (props.theme === "light" ? "2px solid #000" : "2px solid #d9d9d9")};
+        border-bottom: ${(props) => (props.theme === "light" ? "2px solid #000" : "2px solid #d9d9d9")};
       }
 
       .MuiInputBase-inputMultiline {
         overflow: auto !important;
         min-height: 76px !important;
-        min-width: ${props => calculateWidth(props.margin, "small")};
+        min-width: ${(props) => calculateWidth(props.margin, "small")};
         max-height: 100px !important;
-        max-width: ${props => calculateWidth(props.margin, props.size)};
+        max-width: ${(props) => calculateWidth(props.margin, props.size)};
         resize: both !important;
         ::-webkit-scrollbar {
           width: 3px;
@@ -283,7 +285,7 @@ const TextContainer = styled.div`
       &.Mui-error {
         &::before {
           border-width: 1px;
-          border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+          border-color: ${(props) => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         }
         &::after {
           transform: scaleX(0);
@@ -293,29 +295,30 @@ const TextContainer = styled.div`
       &.Mui-focused {
         &::after {
           border-width: 2px;
-          border-color: ${props => (props.theme === "light" ? colors.black : colors.white)};
+          border-color: ${(props) => (props.theme === "light" ? colors.black : colors.white)};
           transform: scaleX(1);
         }
         
         &.Mui-error::after {
-          border-color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+          border-color: ${(props) => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
         }
       }
 
       &.Mui-disabled {
-        color: ${props => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
         opacity:0.5;
         cursor: not-allowed;
         
         &::before {
-          border-bottom: ${props =>
+          border-bottom: ${(props) =>
             props.theme === "light" ? `1px solid ${colors.lightGrey}` : `1px solid ${colors.darkGrey}`};
           border-bottom-style: solid;
         }
       }
       .MuiInputBase-input {
-        padding-left: ${props => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
-        color: ${props => (props.theme === "light" ? colors.black : colors.white)};
+        padding-left: ${(props) =>
+          ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
+        color: ${(props) => (props.theme === "light" ? colors.black : colors.white)};
          text-overflow: ellipsis;
         &.Mui-disabled {
           cursor: not-allowed;
@@ -323,14 +326,14 @@ const TextContainer = styled.div`
       }
       .MuiInputAdornment-root {
         height: 20px;
-        color: ${props => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
         &.MuiInputAdornment-positionEnd{
           & > p {
             font-family: "Open Sans", sans-serif;
-            color:${props => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
+            color:${(props) => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
             margin-right: 8px;
             margin-bottom: 1px;
-            cursor: ${props => {
+            cursor: ${(props) => {
               if (props.onClickSuffix !== "" && !props.disabled) {
                 return "pointer";
               } else {
@@ -346,7 +349,7 @@ const TextContainer = styled.div`
       }
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before{
-        border-bottom: ${props =>
+        border-bottom: ${(props) =>
           props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.white}`};
       }
       
@@ -354,7 +357,8 @@ const TextContainer = styled.div`
 
     & > p {
       &.Mui-error {
-        color: ${props => (props.theme === "light" ? colors.darkRed + " !important" : colors.lightRed + " !important")};
+        color: ${(props) =>
+          props.theme === "light" ? colors.darkRed + " !important" : colors.lightRed + " !important"};
       }
       &.Mui-disabled{
         opacity:0.5;
@@ -378,6 +382,7 @@ DxcInputText.propTypes = {
   suffixIconSrc: PropTypes.string,
   required: PropTypes.bool,
   invalid: PropTypes.bool,
+  placeholder: PropTypes.string,
   multiline: PropTypes.bool,
   isMasked: PropTypes.bool,
   onClickIcon: PropTypes.func,
@@ -391,10 +396,10 @@ DxcInputText.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
 };
 
 export default DxcInputText;
