@@ -126,12 +126,14 @@ const ArrowImage = styled.img`
 `;
 
 const PageContent = styled.div`
+  box-sizing: border-box;
   flex-grow: 1;
   height: 100%;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
   margin-left: ${props => (props.isShown && props.mode === "push" && !props.isResponsive ? "" : 
                           !props.isResponsive ? "-300px" : "-60%")};
   transition: margin 0.4s ease-in-out;
+  width: ${props => (props.isShown && props.mode === "push" ? "calc(100% - 300px)" : "calc(100%)")};
 `;
 
 DxcSidenav.propTypes = {
