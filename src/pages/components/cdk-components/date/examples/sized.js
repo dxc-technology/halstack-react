@@ -3,19 +3,22 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, changeValue] = useState("01/01/2001");
-  const onChange = newValue => {
-    changeValue(newValue);
+  const onChange = ({ stringValue, dateValue }) => {
+    changeValue(stringValue);
   };
 
   return (
     <DxcDate
-      label="Date of birth"
-      format="dd-MM-yyyy"
-      value={value}
-      margin="medium"
-      size="large"
-      onInputChange={onChange}
-    />
+    label="Input label"
+    value={value}
+    assistiveText="assistive text"
+    onChange={onChange}
+    margin="xxsmall"
+    size="medium"
+    placeholder
+    format="MM-dd-yyyy"
+  />
+
   );
 }`;
 const scope = {
