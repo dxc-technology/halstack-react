@@ -123,7 +123,6 @@ const DxcDate = ({
                   variant="static"
                   value={getValueForPicker()}
                   onChange={(date) => handleMenuItemClick(date)}
-                  
                   format={format}
                   disabled={disabled}
                 />
@@ -294,6 +293,7 @@ DxcDate.propTypes = {
   iconSrc: PropTypes.string,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
+  placeholder: PropTypes.bool,
   assistiveText: PropTypes.string,
   invalid: PropTypes.bool,
   disableRipple: PropTypes.bool,

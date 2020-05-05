@@ -24,6 +24,7 @@ import Tag from "./pages/Tag";
 import Card from "./pages/Card";
 import Paginator from "./pages/Paginator";
 import Sidenav from "./pages/Sidenav";
+import Wizard from "./pages/Wizard";
 import Link from "./pages/Link";
 
 export default [
@@ -161,5 +162,10 @@ export default [
     path: "upload",
     name: "Upload",
     component: Upload
+  },
+  {
+    path: "wizard",
+    name: "Wizard",
+    component: Wizard
   }
 ];

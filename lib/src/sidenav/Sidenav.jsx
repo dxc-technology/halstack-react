@@ -91,9 +91,9 @@ const SidenavComponent = styled.div`
 const Sidenav = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+  
   background-color: #f8f8f8;
-  height: 100%;
+  
   width: ${props => (props.sidenavSize <= responsiveSizes.tablet ? "60%" : "300px")};
   box-sizing: border-box;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
@@ -126,11 +126,14 @@ const ArrowImage = styled.img`
 `;
 
 const PageContent = styled.div`
+  box-sizing: border-box;
   flex-grow: 1;
   height: 100%;
   padding: ${props => (props.padding ? spaces[props.padding] : "")};
-  margin-left: ${props => (props.isShown && props.mode === "push" && !props.isResponsive ? "300px" : "0")};
+  margin-left: ${props => (props.isShown && props.mode === "push" && !props.isResponsive ? "" : 
+                          !props.isResponsive ? "-300px" : "-60%")};
   transition: margin 0.4s ease-in-out;
+  width: ${props => (props.isShown && props.mode === "push" ? "calc(100% - 300px)" : "calc(100%)")};
 `;
 
 DxcSidenav.propTypes = {
