@@ -25,7 +25,6 @@ function App() {
           invalid={isInvalid}
           margin="xxsmall"
           size="medium"
-          invalid={isInvalid}
           placeholder
            onBlur={onBlur}
           format="MM-dd-yyyy"
