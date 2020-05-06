@@ -26,7 +26,7 @@ const DxcInputText = ({
   required = false,
   multiline = false,
   isMasked = false,
-  placeholder = "",
+  placeholder="",
   margin,
   size = "medium",
 }) => {
@@ -85,7 +85,7 @@ const DxcInputText = ({
         onBlur={(onBlur && handlerInputBlur) || null}
         rowsMax="4"
         placeholder={placeholder}
-        type={isMasked ? "password" : "text"}
+        type={isMasked ? 'password' : 'text'}
         InputProps={{
           endAdornment: (suffix || suffixIconSrc) && (
             <InputAdornment position="end" onClick={onClickSuffix}>
