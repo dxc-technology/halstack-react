@@ -84,7 +84,7 @@ const DxcDropdown = ({
           margin={margin}
           size={size}
         >
-          <DropdownTriggerContainer iconPosition={iconPosition}>
+          <DropdownTriggerContainer iconPosition={iconPosition} caretHidden={caretHidden}>
             {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
             <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
               {label}
@@ -361,7 +361,7 @@ const DropdownTriggerContainer = styled.span`
   flex-direction: ${props => (props.iconPosition === "after" && "row-reverse") || "row"};
   margin-left: 0px;
   margin-right: 0px;
-  width: calc(100% - 24px);
+  width: ${props => props.caretHidden ? "100%" : "calc(100% - 44px)"};
   white-space: nowrap;
 `;
 
