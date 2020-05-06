@@ -75,9 +75,9 @@ const dropdownPropsTable = () => {
         <td>Uses one of the available component modes.</td>
       </tr>
       <tr>
-        <td>showCaret: boolean</td>
+        <td>caretHidden: boolean</td>
         <td>
-          <code>true</code>
+          <code>false</code>
         </td>
         <td>Whether the arrow next to the label must be displayed or not.</td>
       </tr>
