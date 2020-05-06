@@ -54,10 +54,10 @@ const DxcDropdown = ({
   }
 
   function handleMenuItemClick(option) {
+    setAnchorEl(null);
     if (typeof onSelectOption === "function") {
       onSelectOption(option.value);
     }
-    setAnchorEl(null);
   }
 
   function handleClose() {

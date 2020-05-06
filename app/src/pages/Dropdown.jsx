@@ -59,6 +59,7 @@ function App() {
             size="medium"
             margin="small"
             options={optionsWithoutIcon}
+            expandOnHover={true}
           ></DxcDropdown>
         </div>
         <div className="test-case" id="large-size">
