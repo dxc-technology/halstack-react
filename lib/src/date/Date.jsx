@@ -77,6 +77,7 @@ const DxcDate = ({
       setAnchorEl(event.currentTarget);
     }
   };
+
   return (
     <MuiThemeProvider theme={lightTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -93,7 +94,7 @@ const DxcDate = ({
             assistiveText={assistiveText}
             margin={margin}
             size={size}
-            placeholder={placeholder ? format : null}
+            placeholder={placeholder ? format.toUpperCase() : null}
             value={value == null ? innerValue : value}
             onClickSuffix={openCalendar}
             onChange={onChangeInput}
