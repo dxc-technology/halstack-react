@@ -84,7 +84,7 @@ const alertPropsTable = () => {
         <td>If true, the ripple effect will be disabled.</td>
       </tr>
       <tr>
-        <td>onInputChange: function</td>
+        <td>onChange: function</td>
         <td></td>
         <td>
           This function will be called when the user types within the input. An
