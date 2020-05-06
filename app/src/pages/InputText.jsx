@@ -131,6 +131,27 @@ function App() {
         />
       </div>
 
+      <div className="test-case" id="multiline-without-assistive">
+        <h4>Multiline without assistive text</h4>
+        <DxcInput
+          label="Input label"
+          value={inputValue}
+          onChange={onChange}
+          multiline={true}
+        />
+      </div>
+
+      <div className="test-case" id="multiline-with-assistive">
+        <h4>Multiline with assistive text</h4>
+        <DxcInput
+          label="Input label"
+          value={inputValue}
+          onChange={onChange}
+          multiline={true}
+          assistiveText="assistive text"
+        />
+      </div>
+
       <div>
         <h4>Sizes</h4>
         <div className="test-case" id="small-single-line-label-text">

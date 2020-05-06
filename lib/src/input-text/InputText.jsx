@@ -181,8 +181,8 @@ const TextContainer = styled.div`
   
   display: inline-block;
   position: relative;
-  max-height:  ${(props) => (props.multiline === true && props.assistiveText !== "" ? "115px" : "74px")};
-  height: ${(props) => (props.multiline === true && props.assistiveText !== "" ? "115px" : "74px")};
+  max-height:  ${(props) => (props.multiline === true ? "120px" : "74px")};
+  height: ${(props) => (props.multiline === true ? "120px" : "74px")};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
