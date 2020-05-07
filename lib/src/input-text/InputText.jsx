@@ -24,9 +24,8 @@ const DxcInputText = ({
   onBlur = "",
   invalid = false,
   required = false,
-  multiline = false,
   isMasked = false,
-  placeholder="",
+  placeholder = "",
   margin,
   size = "medium",
 }) => {
@@ -62,13 +61,12 @@ const DxcInputText = ({
       prefix={prefix}
       required={required}
       theme={theme}
-      multiline={multiline}
       assistiveText={assistiveText}
       margin={margin}
       size={size}
     >
-      {prefixIconSrc && !multiline && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
-      {prefix && !multiline && (
+      {prefixIconSrc && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
+      {prefix && (
         <PrefixLabel theme={theme} disabled={disabled} onClick={onClickPrefix}>
           {prefix}
         </PrefixLabel>
@@ -77,24 +75,20 @@ const DxcInputText = ({
         error={invalid}
         value={value !== null ? value : innerValue}
         name={name}
-        multiline={multiline}
         disabled={disabled}
         label={label}
         helperText={assistiveText}
         onChange={handlerInputChange}
         onBlur={(onBlur && handlerInputBlur) || null}
-        rowsMax="4"
         placeholder={placeholder}
-        type={isMasked ? 'password' : 'text'}
+        type={isMasked ? "password" : "text"}
         InputProps={{
           endAdornment: (suffix || suffixIconSrc) && (
             <InputAdornment position="end" onClick={onClickSuffix}>
-              {(suffixIconSrc && !multiline && (
-                <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickSuffix} />
-              )) ||
-                (!multiline && suffix)}
+              {(suffixIconSrc && <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickSuffix} />) ||
+                suffix}
             </InputAdornment>
-          )
+          ),
         }}
       />
     </TextContainer>
@@ -127,9 +121,8 @@ const PrefixIcon = styled.img`
   cursor: ${(props) => {
     if (props.onClickPrefix !== "" && !props.disabled) {
       return "pointer";
-    } else {
-      return "default";
     }
+    return "default";
   }};
 `;
 const PrefixLabel = styled.span`
@@ -145,9 +138,8 @@ const PrefixLabel = styled.span`
   cursor: ${(props) => {
     if (props.onClickPrefix !== "" && !props.disabled) {
       return "pointer";
-    } else {
-      return "default";
     }
+    return "default";
   }};
 `;
 
@@ -162,9 +154,8 @@ const SuffixIcon = styled.img`
   cursor: ${(props) => {
     if (props.onClickSuffix !== "" && !props.disabled) {
       return "pointer";
-    } else {
-      return "default";
     }
+    return "default";
   }};
 `;
 
@@ -181,8 +172,7 @@ const TextContainer = styled.div`
   
   display: inline-block;
   position: relative;
-  max-height:  ${(props) => (props.multiline === true ? "120px" : "74px")};
-  height: ${(props) => (props.multiline === true ? "120px" : "74px")};
+  height: auto;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
@@ -202,13 +192,13 @@ const TextContainer = styled.div`
       &.Mui-disabled{
         opacity:0.5;
       }
-      padding-left: ${(props) => ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
+      padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
       &.Mui-focused {
         color: ${(props) => (props.theme === "light" ? colors.black : colors.white)};
         &.MuiInputLabel-shrink {
           transform: ${(props) =>
             props.prefixIconSrc ||
-            ((props.prefix || props.suffix) && !props.multiline && "translate(8px, 1.5px) scale(0.75);") ||
+            ((props.prefix || props.suffix) && "translate(8px, 1.5px) scale(0.75);") ||
             "translate(0, 1.5px) scale(0.75);"};
         }
       }
@@ -247,7 +237,6 @@ const TextContainer = styled.div`
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
       font-family: "Open Sans", sans-serif;
-      ${(props) => (props.multiline ? "height: auto;" : "")}
       &::before{
         border-bottom: ${(props) =>
           props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
@@ -258,28 +247,6 @@ const TextContainer = styled.div`
       }
       &::after{
         border-bottom: ${(props) => (props.theme === "light" ? "2px solid #000" : "2px solid #d9d9d9")};
-      }
-
-      .MuiInputBase-inputMultiline {
-        overflow: auto !important;
-        min-height: 76px !important;
-        min-width: ${(props) => calculateWidth(props.margin, "small")};
-        max-height: 100px !important;
-        max-width: ${(props) => calculateWidth(props.margin, props.size)};
-        resize: both !important;
-        ::-webkit-scrollbar {
-          width: 3px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background-color: ${colors.lightGrey};
-          border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background-color: ${colors.darkGrey};
-          border-radius: 3px;
-        }
       }
 
       &.Mui-error {
@@ -316,8 +283,7 @@ const TextContainer = styled.div`
         }
       }
       .MuiInputBase-input {
-        padding-left: ${(props) =>
-          ((props.prefixIconSrc || (props.prefix && !props.multiline)) && "32px") || "inherit"};
+        padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
         color: ${(props) => (props.theme === "light" ? colors.black : colors.white)};
          text-overflow: ellipsis;
         &.Mui-disabled {
@@ -336,9 +302,8 @@ const TextContainer = styled.div`
             cursor: ${(props) => {
               if (props.onClickSuffix !== "" && !props.disabled) {
                 return "pointer";
-              } else {
-                return "default";
               }
+              return "default";
             }};
           }
         }
@@ -383,7 +348,6 @@ DxcInputText.propTypes = {
   required: PropTypes.bool,
   invalid: PropTypes.bool,
   placeholder: PropTypes.string,
-  multiline: PropTypes.bool,
   isMasked: PropTypes.bool,
   onClickIcon: PropTypes.func,
   onClickPrefix: PropTypes.func,
