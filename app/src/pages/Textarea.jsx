@@ -14,7 +14,6 @@ function App() {
         <DxcTextarea
           label="Textarea label"
           value={inputValue}
-          numRows={4}
           onChange={onChange}
         />
       </div>
