@@ -6,6 +6,7 @@ import { spaces } from "../common/variables.js";
 const DxcLink = ({
     underlined = true,
     inheritColor = false,
+    disabled = false,
     iconSrc,
     iconPosition = "before",
     href = "",
@@ -18,6 +19,7 @@ const DxcLink = ({
       <LinkText 
         underlined={underlined}
         inheritColor={inheritColor}
+        disabled={disabled}
         href={href}
         theme={theme}
         margin={margin}
@@ -54,10 +56,11 @@ const LinkText = styled.a`
       : 
       `text-decoration: none`};
   
-  color: ${ props => !props.inheritColor ? 
+  color: ${ props => props.disabled ? props.theme === "light" ? "#525252" : "#959595" : !props.inheritColor ?
             props.theme === "light" ? "#006BF6" : "#4797FF" 
             : props.theme === "dark" ? "#FFFFFF" : "inherit"} !important;
   ${ props => !props.underlined ? "text-decoration-color: transparent;" :  ""}
+  ${ props => props.disabled ? "pointer-events: none;" : ""}
   
   display: inline-flex;
   flex-direction: ${ props => props.iconPosition === "after" ?  "row" : "row-reverse"};
@@ -78,7 +81,10 @@ const LinkText = styled.a`
   }
 
   &:visited {
-    color: ${ props => props.theme === "light" ? "#8800F6" : "#C175FF"} !important;
+    ${
+      props => !props.disabled ? 
+      `color: ${props.theme === "light" ? "#8800F6" : "#C175FF"} !important; ` : ""
+    }
   }
 `;
 
@@ -91,6 +97,7 @@ const LinkIcon = styled.img`
 DxcLink.propTypes = {
     underlined: PropTypes.bool,
     inheritColor: PropTypes.bool,
+    disabled: PropTypes.bool,
     iconSrc: PropTypes.string,
     iconPosition: PropTypes.oneOf(["after", "before"]),
     href: PropTypes.string,
