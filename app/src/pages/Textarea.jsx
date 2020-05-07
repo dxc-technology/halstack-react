@@ -26,7 +26,7 @@ function App() {
 
       <div className="test-case" id="dark-theme">
         <h4>Dark theme</h4>
-        <div style={{ background: "#000000", height: "140px" }}>
+        <div style={{ background: "#000000" }}>
           <DxcTextarea
             label="Textarea label"
             value={inputValue}
