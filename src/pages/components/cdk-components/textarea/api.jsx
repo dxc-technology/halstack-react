@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@diaas/dxc-react-cdk";
 
-const inputPropsTable = () => {
+const textareaPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -31,32 +31,6 @@ const inputPropsTable = () => {
         <td>Assistive text to be placed bellow the input.</td>
       </tr>
       <tr>
-        <td>prefix: string</td>
-        <td></td>
-        <td>
-          Prefix to be placed before the input value. Use prefixIconSrc in case
-          the prefix is an icon.
-        </td>
-      </tr>
-      <tr>
-        <td>suffix: string</td>
-        <td></td>
-        <td>
-          Suffix to be placed after the input value. Use suffixIconSrc in case
-          the suffix is an icon.
-        </td>
-      </tr>
-      <tr>
-        <td>prefixIconSrc: string</td>
-        <td></td>
-        <td>Path of the icon to be placed before the input value.</td>
-      </tr>
-      <tr>
-        <td>suffixIconSrc: string</td>
-        <td></td>
-        <td>Path of the icon to be placed after the input value.</td>
-      </tr>
-      <tr>
         <td>theme: 'light' | 'dark'</td>
         <td>
           <code>'light'</code>
@@ -69,9 +43,14 @@ const inputPropsTable = () => {
         <td>Name attribute of the input element.</td>
       </tr>
       <tr>
+        <td>numRows: number</td>
+        <td>4</td>
+        <td>Number of rows of the textarea.</td>
+      </tr>
+      <tr>
         <td>placeholder: string</td>
         <td></td>
-        <td>Text to be put as placeholder in the input.</td>
+        <td>Text to be put as placeholder in the textarea.</td>
       </tr>
       <tr>
         <td>disabled: boolean</td>
@@ -101,13 +80,6 @@ const inputPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>isMasked: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>If true, a mask will be displayed.</td>
-      </tr>
-      <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
@@ -121,22 +93,6 @@ const inputPropsTable = () => {
         <td>
           This function will be called when the the input loses the focus. The
           input value will be passed as a parameter.
-        </td>
-      </tr>
-      <tr>
-        <td>onClickPrefix: function</td>
-        <td></td>
-        <td>
-          This function will be called when the prefix (text or icon) is
-          clicked.
-        </td>
-      </tr>
-      <tr>
-        <td>onClickSuffix: function</td>
-        <td></td>
-        <td>
-          This function will be called when the suffix (text or icon) is
-          clicked.
         </td>
       </tr>
       <tr>
@@ -162,4 +118,4 @@ const inputPropsTable = () => {
   );
 };
 
-export default inputPropsTable;
+export default textareaPropsTable;
