@@ -26,11 +26,8 @@ import Paginator from "./pages/Paginator";
 import Sidenav from "./pages/Sidenav";
 import Wizard from "./pages/Wizard";
 import Link from "./pages/Link";
-<<<<<<< HEAD
 import Heading from "./pages/Heading";
-=======
 import Textarea from "./pages/Textarea";
->>>>>>> 9fd6c41fe786318208caa69b9653a146e17fe91c
 
 export default [
   {
