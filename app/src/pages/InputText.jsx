@@ -4,7 +4,7 @@ import icon from "../images/home.svg";
 
 function App() {
   const [inputValue, changeInput] = useState("");
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     changeInput(newValue);
   };
   const onSuffixClick = () => {
@@ -167,43 +167,7 @@ function App() {
             size="small"
           />
         </div>
-        <div className="test-case" id="small-multi-line-label-text">
-          <h5>Small size - Label and assistive text max size multiline</h5>
-          <DxcInput
-            label="Input"
-            value={inputValue}
-            multiline={true}
-            assistiveText="assistive"
-            onChange={onChange}
-            size="small"
-          />
-        </div>
-        <div className="test-case" id="small-multi-line-label-text-value">
-          <h5>
-            Small size - Label, assistive text and value max size multiline
-          </h5>
-          <DxcInput
-            label="Input"
-            value="Input"
-            multiline={true}
-            assistiveText="assistive"
-            onChange={onChange}
-            size="small"
-          />
-        </div>
-        <div className="test-case" id="small-multi-line-min-size">
-          <h5>
-            Small size - Label, assistive text and value min size multiline
-          </h5>
-          <DxcInput
-            label="Input i"
-            value="Input v"
-            assistiveText="assistive t"
-            multiline={true}
-            onChange={onChange}
-            size="small"
-          />
-        </div>
+
         <div className="test-case" id="small-max-size-prefix">
           <h5>Small size - Value max size single line with prefix</h5>
           <DxcInput
@@ -272,43 +236,7 @@ function App() {
             size="medium"
           />
         </div>
-        <div className="test-case" id="medium-multi-line-label-text">
-          <h5>Medium size - Label and assistive text max size multiline</h5>
-          <DxcInput
-            label="Input label example input input"
-            value={inputValue}
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text"
-            onChange={onChange}
-            size="medium"
-          />
-        </div>
-        <div className="test-case" id="medium-multi-line-label-text-value">
-          <h5>
-            Medium size - Label, assistive text and value max size multiline
-          </h5>
-          <DxcInput
-            label="Input label example input input"
-            value="Input label example input input"
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text"
-            onChange={onChange}
-            size="medium"
-          />
-        </div>
-        <div className="test-case" id="medium-multi-line-min-size">
-          <h5>
-            Medium size - Label, assistive text and value min size multiline
-          </h5>
-          <DxcInput
-            label="Input label example input input i"
-            value="Input label example input input i"
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text a"
-            onChange={onChange}
-            size="medium"
-          />
-        </div>
+
         <div className="test-case" id="medium-max-size-prefix">
           <h5>Medium size - Value max size single line with prefix</h5>
           <DxcInput
@@ -377,43 +305,7 @@ function App() {
             size="large"
           />
         </div>
-        <div className="test-case" id="large-multi-line-label-text">
-          <h5>Large size - Label and assistive text max size multiline</h5>
-          <DxcInput
-            label="Input label example input input input input input input input in"
-            value={inputValue}
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text assistive text assistive text assistive tex"
-            onChange={onChange}
-            size="large"
-          />
-        </div>
-        <div className="test-case" id="large-multi-line-label-text-value">
-          <h5>
-            Large size - Label, assistive text and value max size multiline
-          </h5>
-          <DxcInput
-            label="Input label example input input input input input input input in"
-            value="Input value input value input value input value input value input"
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text assistive text assistive text assistive tex"
-            onChange={onChange}
-            size="large"
-          />
-        </div>
-        <div className="test-case" id="large-multi-line-min-size">
-          <h5>
-            Large size - Label, assistive text and value min size multiline
-          </h5>
-          <DxcInput
-            label="Input label example input input input input input input input inp"
-            value="Input value input value input value input value input value input v"
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text assistive text assistive text assistive text"
-            onChange={onChange}
-            size="large"
-          />
-        </div>
+
         <div className="test-case" id="large-max-size-prefix">
           <h5>Large size - Value max size single line with prefix</h5>
           <DxcInput
@@ -486,43 +378,7 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fillParent-multi-line-label-text">
-          <h5>FillParent size - Label and assistive text max size multiline</h5>
-          <DxcInput
-            label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input i"
-            value={inputValue}
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistiv"
-            onChange={onChange}
-            size="fillParent"
-          />
-        </div>
-        <div className="test-case" id="fillParent-multi-line-label-text-value">
-          <h5>
-            FillParent size - Label, assistive text and value max size multiline
-          </h5>
-          <DxcInput
-            label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input i"
-            value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value i"
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistiv"
-            onChange={onChange}
-            size="fillParent"
-          />
-        </div>
-        <div className="test-case" id="fillParent-multi-line-min-size">
-          <h5>
-            FillParent size - Label, assistive text and value min size multiline
-          </h5>
-          <DxcInput
-            label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input in"
-            value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value in"
-            multiline={true}
-            assistiveText="assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive"
-            onChange={onChange}
-            size="fillParent"
-          />
-        </div>
+
         <div className="test-case" id="fillParent-max-size-prefix">
           <h5>FillParent size - Value max size single line with prefix</h5>
           <DxcInput
