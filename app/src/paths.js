@@ -26,6 +26,7 @@ import Paginator from "./pages/Paginator";
 import Sidenav from "./pages/Sidenav";
 import Wizard from "./pages/Wizard";
 import Link from "./pages/Link";
+import Textarea from "./pages/Textarea";
 
 export default [
   {
@@ -152,6 +153,11 @@ export default [
     path: "tabs-for-sections",
     name: "Tabs for sections",
     component: TabsForSections
+  },
+  {
+    path: "textarea",
+    name: "Textarea",
+    component: Textarea
   },
   {
     path: "toggle",
