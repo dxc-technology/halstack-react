@@ -164,6 +164,31 @@ function App() {
                     </p>
                 </div>
             </div>
+            <div>
+                <h4>Disabled</h4>
+                <div className="test-case" id="disabled-light-link">
+                    <DxcLink
+                        href="#"
+                        theme="light"
+                        disabled={true}
+                        underlined={true}
+                        text="Disabled link"
+                    ></DxcLink>{" "}
+                </div>
+                <div
+                style={{ background: "#000000", padding: "25px 0px 25px 0px" }}
+                className="test-case"
+                id="disabled-dark-link"
+                >
+                    <DxcLink
+                        href="#"
+                        theme="dark"
+                        disabled={true}
+                        underlined={false}
+                        text="Dark disabled link"
+                    ></DxcLink>
+                </div>
+            </div>
         </div>
     );
 }
