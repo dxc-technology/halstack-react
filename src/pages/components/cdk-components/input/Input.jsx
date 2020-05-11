@@ -12,7 +12,6 @@ import controlled from "./examples/controlledInput";
 import uncontrolled from "./examples/uncontrolledInput";
 import labeled from "./examples/lebeledInput";
 import darkTheme from "./examples/darkThemed";
-import multiline from "./examples/multilineInput";
 import fillParent from "./examples/fillParentInput";
 import sized from "./examples/sizedInput";
 import maskedInput from "./examples/maskedInput";
@@ -62,7 +61,6 @@ function Input() {
                   title="Dark theme Input"
                   example={darkTheme}
                 ></Example>
-                <Example title="Multilined Input" example={multiline}></Example>
                 <Example title="Sized Input" example={sized}></Example>
                 <Example title="Fill Parent Input" example={fillParent}></Example>
               </Section>
