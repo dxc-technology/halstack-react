@@ -11,7 +11,7 @@ import defaultHeadings from "./examples/defaultHeadings";
 import darkHeadings from "./examples/darkHeadings";
 import weightHeadings from "./examples/weightHeadings";
 
-function Link() {
+function Heading() {
     return (
         <ComponentDoc>
             <ComponentHeader
@@ -58,4 +58,4 @@ function Link() {
     );
 }
 
-export default Link;
+export default Heading;
