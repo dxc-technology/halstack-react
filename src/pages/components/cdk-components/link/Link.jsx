@@ -11,6 +11,7 @@ import defaultLink from "./examples/default";
 import undecoratedLink from "./examples/undecorated";
 import darkLink from "./examples/darkTheme";
 import iconLink from "./examples/iconLink";
+import disabledLink from "./examples/disabledLink";
 
 function Link() {
     return (
@@ -48,6 +49,10 @@ function Link() {
                               <Example
                                 title="Dark themed Link"
                                 example={darkLink}
+                              ></Example>
+                              <Example
+                                title="Disabled Link"
+                                example={disabledLink}
                               ></Example>
                               <Example
                                 title="Link with icon"
