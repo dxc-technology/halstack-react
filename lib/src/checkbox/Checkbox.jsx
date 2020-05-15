@@ -40,7 +40,7 @@ const DxcCheckbox = ({
   return (
     <CheckboxContainer
       id={name}
-      theme={theme}
+      brightness={theme}
       labelPosition={labelPosition}
       disabled={disabled}
       margin={margin}
@@ -54,12 +54,12 @@ const DxcCheckbox = ({
         disabled={disabled}
         disableRipple={disableRipple}
       />
-      {required && <DxcRequired theme={theme} />}
+      {required && <DxcRequired brightness={theme} />}
 
       {label && (
         <LabelContainer
           labelPosition={labelPosition}
-          theme={theme}
+          brightness={theme}
           onClick={disabled === true ? e => {} : handlerCheckboxChange}
           disabled={disabled}
         >
@@ -70,7 +70,7 @@ const DxcCheckbox = ({
         labelPosition={labelPosition}
         disabled={disabled}
         checked={checked != undefined ? checked : innerChecked}
-        theme={theme}
+        brightness={theme}
       />
     </CheckboxContainer>
   );
@@ -94,10 +94,10 @@ const calculateWidth = (margin, size) => {
 const LabelContainer = styled.span`
   color: ${props =>
     props.disabled
-      ? props.theme === "dark"
+      ? props.brightness === "dark"
         ? colors.darkGrey
         : colors.lightGrey
-      : props.theme === "dark"
+      : props.brightness === "dark"
       ? colors.white
       : colors.black};
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
@@ -125,7 +125,7 @@ const CheckboxContainer = styled.span`
   .MuiButtonBase-root {
     padding: 10px 10px;
     margin: 0px 2px;
-    color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
+    color: ${props => (props.brightness === "dark" ? colors.white : colors.darkGrey)};
 
     :hover {
       background-color: transparent;
@@ -137,10 +137,10 @@ const CheckboxContainer = styled.span`
       }
     }
     &.Mui-disabled {
-      color: ${props => (props.theme === "dark" ? colors.darkGrey : colors.lightGrey)};
+      color: ${props => (props.brightness === "dark" ? colors.darkGrey : colors.lightGrey)};
     }
     .MuiTouchRipple-child {
-      background-color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
+      background-color: ${props => (props.brightness === "dark" ? colors.white : colors.darkGrey)};
     }
     .MuiSvgIcon-root {
       width: 26.6px;
@@ -156,7 +156,7 @@ const CheckboxBlackBack = styled.span`
   background-color: ${props =>
     props.checked !== true
       ? "transparent"
-      : props.theme === "light" && props.disabled === true
+      : props.brightness === "light" && props.disabled === true
       ? colors.white
       : colors.black};
   width: 17px;

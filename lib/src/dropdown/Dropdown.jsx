@@ -78,7 +78,7 @@ const DxcDropdown = ({
           opened={anchorEl === null ? false : true}
           onClick={handleClickListItem}
           mode={mode}
-          theme={theme}
+          brightness={theme}
           label={label}
           caretHidden={caretHidden}
           margin={margin}
@@ -123,7 +123,7 @@ const DxcDropdown = ({
           transformOrigin={{ vertical: "top", horizontal: "left" }}
           optionsIconPosition={optionsIconPosition}
           mode={mode}
-          theme={theme}
+          brightness={theme}
           size={size}
           width={width}
 
@@ -219,35 +219,35 @@ const DxcMenu = styled(Popper)`
     border: ${props => (props.mode === "outlined" ? "2px solid" : "transparent")};
 
     border-color: ${props =>
-      props.theme === "light" && props.mode === "outlined"
+      props.brightness === "light" && props.mode === "outlined"
         ? colors.black
-        : props.theme === "light" && props.mode === "basic"
+        : props.brightness === "light" && props.mode === "basic"
         ? colors.white
-        : props.theme === "dark" && props.mode === "outlined"
+        : props.brightness === "dark" && props.mode === "outlined"
         ? colors.white
-        : props.theme === "dark" && props.mode === "basic"
+        : props.brightness === "dark" && props.mode === "basic"
         ? colors.black
         : colors.black};
 
     background-color: ${props =>
-      props.theme === "light" && props.mode === "outlined"
+      props.brightness === "light" && props.mode === "outlined"
         ? colors.white
-        : props.theme === "light" && props.mode === "basic"
+        : props.brightness === "light" && props.mode === "basic"
         ? colors.black
-        : props.theme === "dark" && props.mode === "outlined"
+        : props.brightness === "dark" && props.mode === "outlined"
         ? colors.black
-        : props.theme === "dark" && props.mode === "basic"
+        : props.brightness === "dark" && props.mode === "basic"
         ? colors.white
         : colors.white};
 
     color: ${props =>
-      props.theme === "light" && props.mode === "outlined"
+      props.brightness === "light" && props.mode === "outlined"
         ? colors.black
-        : props.theme === "light" && props.mode === "basic"
+        : props.brightness === "light" && props.mode === "basic"
         ? colors.white
-        : props.theme === "dark" && props.mode === "outlined"
+        : props.brightness === "dark" && props.mode === "outlined"
         ? colors.white
-        : props.theme === "dark" && props.mode === "basic"
+        : props.brightness === "dark" && props.mode === "basic"
         ? colors.black
         : colors.black};
 
@@ -307,39 +307,39 @@ const DropdownTrigger = styled.button`
   }
 
   background-color: ${props =>
-    props.theme === "light" && props.mode === "outlined" && !props.opened
+    props.brightness === "light" && props.mode === "outlined" && !props.opened
       ? colors.white
-      : props.theme === "light" && props.mode === "basic" && !props.opened
+      : props.brightness === "light" && props.mode === "basic" && !props.opened
       ? colors.black
-      : props.theme === "dark" && props.mode === "outlined" && !props.opened
+      : props.brightness === "dark" && props.mode === "outlined" && !props.opened
       ? colors.black
-      : props.theme === "dark" && props.mode === "basic" && !props.opened
+      : props.brightness === "dark" && props.mode === "basic" && !props.opened
       ? colors.white
-      : props.theme === "light" && props.mode === "basic" && props.opened
+      : props.brightness === "light" && props.mode === "basic" && props.opened
       ? colors.lightBlack
-      : props.theme === "dark" && props.mode === "outlined" && props.opened
+      : props.brightness === "dark" && props.mode === "outlined" && props.opened
       ? colors.lightBlack
       : colors.darkWhite};
 
   color: ${props =>
-    props.theme === "light" && props.mode === "outlined"
+    props.brightness === "light" && props.mode === "outlined"
       ? colors.black
-      : props.theme === "light" && props.mode === "basic"
+      : props.brightness === "light" && props.mode === "basic"
       ? colors.white
-      : props.theme === "dark" && props.mode === "outlined"
+      : props.brightness === "dark" && props.mode === "outlined"
       ? colors.white
-      : props.theme === "dark" && props.mode === "basic"
+      : props.brightness === "dark" && props.mode === "basic"
       ? colors.black
       : colors.black};
 
   border-color: ${props =>
-    props.theme === "light" && props.mode === "outlined"
+    props.brightness === "light" && props.mode === "outlined"
       ? colors.black
-      : props.theme === "light" && props.mode === "basic"
+      : props.brightness === "light" && props.mode === "basic"
       ? colors.white
-      : props.theme === "dark" && props.mode === "outlined"
+      : props.brightness === "dark" && props.mode === "outlined"
       ? colors.white
-      : props.theme === "dark" && props.mode === "basic"
+      : props.brightness === "dark" && props.mode === "basic"
       ? colors.black
       : colors.black};
 

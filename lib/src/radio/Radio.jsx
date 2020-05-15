@@ -32,7 +32,7 @@ const DxcRadio = ({
     }
   };
   return (
-    <RadioContainer id={name} theme={theme} labelPosition={labelPosition} disabled={disabled} margin={margin} size={size}>
+    <RadioContainer id={name} brightness={theme} labelPosition={labelPosition} disabled={disabled} margin={margin} size={size}>
       <Radio
         checked={(checked != null && checked) || innerChecked}
         name={name}
@@ -45,11 +45,11 @@ const DxcRadio = ({
       <LabelContainer
         checked={checked || innerChecked}
         labelPosition={labelPosition}
-        theme={theme}
+        brightness={theme}
         disabled={disabled}
         onClick={(!disabled && handlerRadioChange) || null}
       >
-        {required && <DxcRequired theme={theme} />}
+        {required && <DxcRequired brightness={theme} />}
         {label}
       </LabelContainer>
     </RadioContainer>
@@ -96,23 +96,23 @@ const RadioContainer = styled.span`
     width: 40px;
     height: 40px;
     &.Mui-disabled {
-      color: ${props => (props.theme === "dark" ? colors.darkGrey : colors.lightGrey)};
+      color: ${props => (props.brightness === "dark" ? colors.darkGrey : colors.lightGrey)};
     }
     .MuiIconButton-label {
       .MuiSvgIcon-root {
         height: 24px;
         width: 24px;
       }
-      color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+      color: ${props => (props.brightness === "dark" ? colors.white : colors.black)};
       > div > :nth-child(2) path {
-        color: ${props => (props.theme === "dark" ? colors.yellow : colors.black)};
+        color: ${props => (props.brightness === "dark" ? colors.yellow : colors.black)};
       }
     }
     &.Mui-disabled {
       .MuiIconButton-label {
-        color: ${props => (props.theme === "dark" ? colors.darkGrey : colors.lightGrey)};
+        color: ${props => (props.brightness === "dark" ? colors.darkGrey : colors.lightGrey)};
         > div > :nth-child(2) path {
-          color: ${props => (props.theme === "dark" ? colors.darkGrey : colors.lightGrey)};
+          color: ${props => (props.brightness === "dark" ? colors.darkGrey : colors.lightGrey)};
         }
       }
     }
@@ -129,12 +129,12 @@ const RadioContainer = styled.span`
       top: 0px !important;
       left: 0px !important;
       .MuiTouchRipple-child {
-        background-color: ${props => (props.theme === "dark" ? colors.white : colors.darkGrey)};
+        background-color: ${props => (props.brightness === "dark" ? colors.white : colors.darkGrey)};
       }
     }
   }
   .MuiRadio-colorSecondary.Mui-checked {
-    color: ${props => (props.theme === "dark" ? colors.yellow : colors.black)};
+    color: ${props => (props.brightness === "dark" ? colors.yellow : colors.black)};
     :hover {
       background-color: transparent;
     }
@@ -144,9 +144,9 @@ const LabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
   color: ${props => {
     if (props.disabled) {
-      return props.theme === "dark" ? colors.darkGrey : colors.lightGrey;
+      return props.brightness === "dark" ? colors.darkGrey : colors.lightGrey;
     } else {
-      return props.theme === "dark" ? colors.white : colors.black;
+      return props.brightness === "dark" ? colors.white : colors.black;
     }
   }};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};

@@ -20,7 +20,7 @@ const DxcButton = ({
   size
 }) => {
   return (
-    <DxCButton margin={margin} mode={mode} theme={theme} disabled={disabled} iconPosition={iconPosition} size={size}>
+    <DxCButton margin={margin} mode={mode} brightness={theme} disabled={disabled} iconPosition={iconPosition} size={size}>
       <Button
         disabled={disabled}
         disableRipple={disableRipple}
@@ -99,13 +99,13 @@ const DxCButton = styled.div`
     line-height: 1;
     font-family: "Open Sans", sans-serif;
     ${props => {
-      const { mode, theme } = props;
+      const { mode, brightness } = props;
       if (mode === "basic") {
         return `
           background-color: ${colors.yellow};
           color: ${colors.black};
           &:hover{
-            background-color: ${(theme === "light" && colors.black) || colors.lightBlack};
+            background-color: ${(brightness === "light" && colors.black) || colors.lightBlack};
             color: ${colors.yellow}; 
           }
           &:disabled{ 
@@ -125,24 +125,24 @@ const DxCButton = styled.div`
         return `
           background-color: transparent;
           padding: 10px 28px;
-          color: ${(theme === "light" && colors.black) || colors.white};
+          color: ${(brightness === "light" && colors.black) || colors.white};
           border: 2px solid;
-          border-color: ${(theme === "light" && colors.black) || colors.white};
+          border-color: ${(brightness === "light" && colors.black) || colors.white};
           &:hover{
             border-color: ${colors.yellow};
             background-color: transparent;
           }
           &:disabled{ 
-            background-color:${(theme === "light" && "transparent") || colors.black};
-            border-color:${(theme === "light" && colors.lightGrey) || colors.darkGrey};
-            color:${(theme === "light" && colors.lightGrey) || colors.darkGrey};
+            background-color:${(brightness === "light" && "transparent") || colors.black};
+            border-color:${(brightness === "light" && colors.lightGrey) || colors.darkGrey};
+            color:${(brightness === "light" && colors.lightGrey) || colors.darkGrey};
             cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
           }
           .MuiTouchRipple-child{
-            background-color:${(theme === "light" && colors.darkGrey) || colors.lightGrey};
+            background-color:${(brightness === "light" && colors.darkGrey) || colors.lightGrey};
           }
           .MuiTouchRipple-root {
             border-radius: 2px;
@@ -151,23 +151,23 @@ const DxCButton = styled.div`
         `;
       } else if (mode === "flat") {
         return `
-          background-color: ${(theme === "light" && "transparent") || colors.black};
-          color: ${(theme === "light" && colors.black) || colors.white};
+          background-color: ${(brightness === "light" && "transparent") || colors.black};
+          color: ${(brightness === "light" && colors.black) || colors.white};
           &:hover{
             background-color: ${colors.lightGrey};
             color: ${colors.black};
           }
           &:disabled{ 
-            background-color:${(theme === "light" && colors.lightGrey) || colors.darkGrey};
+            background-color:${(brightness === "light" && colors.lightGrey) || colors.darkGrey};
             opacity:0.5;
-            color:${(theme === "light" && colors.black) || colors.lightGrey};
+            color:${(brightness === "light" && colors.black) || colors.lightGrey};
             cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
           }
           .MuiTouchRipple-child{
-            background-color:${(theme === "light" && colors.darkGrey) || colors.darkGrey};
+            background-color:${(brightness === "light" && colors.darkGrey) || colors.darkGrey};
           }
         `;
       } else {
@@ -176,7 +176,7 @@ const DxCButton = styled.div`
           color: ${colors.black}
           box-shadow: 0px 1.5px 3px 0px rgba(0, 0, 0, 0.16);
           &:hover{
-            background-color:${(theme === "light" && colors.black) || colors.lightBlack};
+            background-color:${(brightness === "light" && colors.black) || colors.lightBlack};
             color:${colors.yellow};
           }
           &:disabled{ 

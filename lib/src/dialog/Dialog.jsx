@@ -42,21 +42,21 @@ const DialogContainer = styled(Dialog)`
   overflow: unset;
 
   .MuiBackdrop-root {
-    background-color: ${props => (props.overlay === true ? colors.black + "B3" : "transparent")};
+    background-color: ${(props) => (props.overlay === true ? colors.black + "B3" : "transparent")};
   }
   .MuiDialog-paperWidthSm {
     max-width: 80%;
     min-width: 800px;
-    min-height: ${props => (props.isCloseVisible ? "72px" : "")};
+    min-height: ${(props) => (props.isCloseVisible ? "72px" : "")};
     box-shadow: 0px 1px 3px ${colors.black}33;
-    padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-    padding-top: ${props =>
+    padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+    padding-top: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-    padding-right: ${props =>
+    padding-right: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-    padding-bottom: ${props =>
+    padding-bottom: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-    padding-left: ${props =>
+    padding-left: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
   }
 `;
@@ -115,17 +115,16 @@ DxcDialog.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
+    PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  theme: PropTypes.oneOf(["light", "dark", ""]),
   isVisible: PropTypes.bool,
   isCloseVisible: PropTypes.bool,
   onClose: PropTypes.func,
   onCloseClick: PropTypes.func,
   onBackgroundClick: PropTypes.func,
-  overlay: PropTypes.bool
+  overlay: PropTypes.bool,
 };
 
 export default DxcDialog;

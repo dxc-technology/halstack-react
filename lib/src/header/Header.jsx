@@ -87,12 +87,12 @@ const DxcHeader = ({
   }, []);
 
   return (
-    <HeaderContainer theme={theme} underlined={underlined} position="static" margin={margin} ref={ref}>
+    <HeaderContainer brightness={theme} underlined={underlined} position="static" margin={margin} ref={ref}>
       <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
       {isResponsive && (
         <MainContainer>
           <ChildContainer padding={padding}>
-            <HamburguerItem theme={theme} underlined={underlined} onClick={handleMenu}>
+            <HamburguerItem brightness={theme} underlined={underlined} onClick={handleMenu}>
               <HamburguerIcon
                 src={
                   theme === "light" && underlined
@@ -130,35 +130,35 @@ const HeaderContainer = styled(AppBar)`
 
   &.MuiAppBar-colorPrimary {
     background-color: ${props =>
-      props.theme === "light" && props.underlined === true
+      props.brightness === "light" && props.underlined === true
         ? colors.white
-        : props.theme === "light" && props.underlined === false
+        : props.brightness === "light" && props.underlined === false
         ? colors.black
-        : props.theme === "dark" && props.underlined === true
+        : props.brightness === "dark" && props.underlined === true
         ? colors.black
-        : props.theme === "dark" && props.underlined === false
+        : props.brightness === "dark" && props.underlined === false
         ? colors.white
         : colors.white};
 
     color: ${props =>
-      props.theme === "light" && props.underlined === true
+      props.brightness === "light" && props.underlined === true
         ? colors.black
-        : props.theme === "light" && props.underlined === false
+        : props.brightness === "light" && props.underlined === false
         ? colors.white
-        : props.theme === "dark" && props.underlined === true
+        : props.brightness === "dark" && props.underlined === true
         ? colors.white
-        : props.theme === "dark" && props.underlined === false
+        : props.brightness === "dark" && props.underlined === false
         ? colors.black
         : colors.black};
 
     border-bottom: ${props =>
-      props.theme === "light" && props.underlined === true
+      props.brightness === "light" && props.underlined === true
         ? `solid ${colors.black}  2px`
-        : props.theme === "light" && props.underlined === false
+        : props.brightness === "light" && props.underlined === false
         ? "none"
-        : props.theme === "dark" && props.underlined === true
+        : props.brightness === "dark" && props.underlined === true
         ? `solid ${colors.white}  2px`
-        : props.theme === "dark" && props.underlined === false
+        : props.brightness === "dark" && props.underlined === false
         ? "none"
         : `solid ${colors.black}  2px`};
 
@@ -222,13 +222,13 @@ const HamburguerItem = styled.div`
   width: 54px;
   &:hover {
     background-color: ${props =>
-      props.theme === "light" && props.underlined === true
+      props.brightness === "light" && props.underlined === true
         ? colors.lightGrey
-        : props.theme === "light" && props.underlined === false
+        : props.brightness === "light" && props.underlined === false
         ? `${colors.darkGrey}80`
-        : props.theme === "dark" && props.underlined === true
+        : props.brightness === "dark" && props.underlined === true
         ? `${colors.darkGrey}80`
-        : props.theme === "dark" && props.underlined === false
+        : props.brightness === "dark" && props.underlined === false
         ? colors.lightGrey
         : colors.lightGrey};
   }

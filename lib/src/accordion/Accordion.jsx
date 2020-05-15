@@ -34,7 +34,7 @@ const DxcAccordion = ({
   };
 
   return (
-    <DXCAccordion padding={padding} margin={margin} theme={theme} mode={mode} disabled={disabled}>
+    <DXCAccordion padding={padding} margin={margin} brightness={theme} mode={mode} disabled={disabled}>
       <ExpansionPanel
         disabled={disabled}
         onChange={handlerAccordion}
@@ -45,7 +45,7 @@ const DxcAccordion = ({
             <AccordionLabel iconPosition={iconPosition}>{label}</AccordionLabel>
             {iconSrc && <AccordionIcon iconPosition={iconPosition} src={iconSrc} />}
           </AccordionInfo>
-          <AccordionAssistiveText theme={theme} mode={mode}>
+          <AccordionAssistiveText brightness={theme} mode={mode}>
             {assistiveText}
           </AccordionAssistiveText>
         </ExpansionPanelSummary>
@@ -108,7 +108,7 @@ const DXCAccordion = styled.div`
     background-color: ${props => (props.mode === "alternative" && colors.black) || colors.white};
     color: ${props => (props.mode === "default" && colors.darkGrey) || colors.white};
     box-shadow: 0px 6px 10px #00000024;
-    border: ${props => (props.theme === "dark" && props.mode === "alternative" ? `2px solid ${colors.white}` : "")};
+    border: ${props => (props.brightness === "dark" && props.mode === "alternative" ? `2px solid ${colors.white}` : "")};
     display: block;
     position: static;
     width: 100%;

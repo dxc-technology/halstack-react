@@ -29,7 +29,7 @@ const DxcToggle = ({
   return (
     <DxcToggleContainer
       margin={margin}
-      theme={theme}
+      brightness={theme}
       disabled={disabled}
       disableRipple={disableRipple}
       selected={selected}
@@ -86,7 +86,7 @@ const DxcToggleContainer = styled.div`
   .MuiToggleButton-label {
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
-    color: ${props => (props.theme === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
+    color: ${props => (props.brightness === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
   }
   .MuiButtonBase-root {
     width: ${props => calculateWidth(props.margin, props.size)};
@@ -94,9 +94,9 @@ const DxcToggleContainer = styled.div`
     background-color: ${props => (props.mode !== "outlined" ? colors.darkWhite : "transparent")};
     &:hover {
       background-color: ${props =>
-        props.mode === "basic" ? colors.lightGrey : props.theme === "dark" ? colors.darkGrey : colors.darkWhite};
+        props.mode === "basic" ? colors.lightGrey : props.brightness === "dark" ? colors.darkGrey : colors.darkWhite};
       .MuiToggleButton-label {
-        color: ${props => (props.theme === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
+        color: ${props => (props.brightness === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
       }
     }
   }
@@ -107,9 +107,9 @@ const DxcToggleContainer = styled.div`
     border: ${props =>
       props.mode === "basic"
         ? "none !important"
-        : props.theme === "dark" && !props.selected
+        : props.brightness === "dark" && !props.selected
         ? `2px solid ${colors.white} !important`
-        : props.theme === "dark" && props.selected
+        : props.brightness === "dark" && props.selected
         ? `2px solid ${colors.yellow} !important`
         : `2px solid ${colors.black} !important`};
 
@@ -118,21 +118,21 @@ const DxcToggleContainer = styled.div`
 
   .MuiToggleButton-root.Mui-selected {
     background-color: ${props =>
-      props.mode === "outlined" ? (props.theme === "light" ? colors.darkWhite : "transparent") : colors.yellow};
+      props.mode === "outlined" ? (props.brightness === "light" ? colors.darkWhite : "transparent") : colors.yellow};
     &:hover {
       background-color: ${props =>
-        props.mode === "basic" && props.theme === "light"
+        props.mode === "basic" && props.brightness === "light"
           ? colors.black
-          : props.mode === "basic" && props.theme === "dark"
+          : props.mode === "basic" && props.brightness === "dark"
           ? colors.lightBlack
-          : props.theme === "light"
+          : props.brightness === "light"
           ? colors.lightGrey
           : colors.darkGrey};
       .MuiToggleButton-label {
         color: ${props =>
           props.mode === "basic"
             ? colors.yellow
-            : props.theme === "dark" && props.mode === "outlined"
+            : props.brightness === "dark" && props.mode === "outlined"
             ? colors.white
             : colors.black};
       }

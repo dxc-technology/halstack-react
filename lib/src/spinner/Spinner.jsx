@@ -7,15 +7,15 @@ import { colors, spaces } from "../common/variables.js";
 
 const DxcSpinner = ({ label = "", theme = "light", value, showValue = false, mode = "large", margin }) => {
   return (
-    <BackgroundSpinner theme={theme} mode={mode}>
+    <BackgroundSpinner brightness={theme} mode={mode}>
       <DXCSpinner margin={margin} showValue={showValue} label={label} mode={mode}>
         {label && mode !== "small" && (
-          <SpinnerLabel showValue={showValue} theme={theme} mode={mode}>
+          <SpinnerLabel showValue={showValue} brightness={theme} mode={mode}>
             {label}
           </SpinnerLabel>
         )}
         {value && mode !== "small" && (
-          <SpinnerProgress theme={theme} mode={mode} showValue={showValue} label={label}>
+          <SpinnerProgress brightness={theme} mode={mode} showValue={showValue} label={label}>
             {value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}%
           </SpinnerProgress>
         )}
@@ -104,7 +104,7 @@ const DXCSpinner = styled.div`
 
 const SpinnerLabel = styled.div`
   margin-top: ${props => (props.showValue === false && "52px") || "45px"};
-  color: ${props => (props.theme === "dark" || props.mode === "overlay" ? colors.white : colors.black)};
+  color: ${props => (props.brightness === "dark" || props.mode === "overlay" ? colors.white : colors.black)};
   text-transform: uppercase;
   font-size: 12px;
   text-align: center;
@@ -116,7 +116,7 @@ const SpinnerLabel = styled.div`
 const SpinnerProgress = styled.div`
   margin-top: ${props => (props.label === "" && "52px") || ""};
   display: ${props => (props.value !== "" && props.showValue === true && "block") || "none"};
-  color: ${props => (props.theme === "dark" || props.mode === "overlay" ? colors.white : colors.black)};
+  color: ${props => (props.brightness === "dark" || props.mode === "overlay" ? colors.white : colors.black)};
   font-size: 12px;
   text-align: center;
 `;

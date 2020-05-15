@@ -149,35 +149,35 @@ const StyledDPicker = styled.div`
     margin-top: 6px;
 
     border-color: ${(props) =>
-      props.theme === "light" && props.mode === "outlined"
+      props.brightness === "light" && props.mode === "outlined"
         ? colors.black
-        : props.theme === "light" && props.mode === "basic"
+        : props.brightness === "light" && props.mode === "basic"
         ? colors.white
-        : props.theme === "dark" && props.mode === "outlined"
+        : props.brightness === "dark" && props.mode === "outlined"
         ? colors.white
-        : props.theme === "dark" && props.mode === "basic"
+        : props.brightness === "dark" && props.mode === "basic"
         ? colors.black
         : colors.black};
 
     background-color: ${(props) =>
-      props.theme === "light" && props.mode === "outlined"
+      props.brightness === "light" && props.mode === "outlined"
         ? colors.white
-        : props.theme === "light" && props.mode === "basic"
+        : props.brightness === "light" && props.mode === "basic"
         ? colors.black
-        : props.theme === "dark" && props.mode === "outlined"
+        : props.brightness === "dark" && props.mode === "outlined"
         ? colors.black
-        : props.theme === "dark" && props.mode === "basic"
+        : props.brightness === "dark" && props.mode === "basic"
         ? colors.white
         : colors.white};
 
     color: ${(props) =>
-      props.theme === "light" && props.mode === "outlined"
+      props.brightness === "light" && props.mode === "outlined"
         ? colors.black
-        : props.theme === "light" && props.mode === "basic"
+        : props.brightness === "light" && props.mode === "basic"
         ? colors.white
-        : props.theme === "dark" && props.mode === "outlined"
+        : props.brightness === "dark" && props.mode === "outlined"
         ? colors.white
-        : props.theme === "dark" && props.mode === "basic"
+        : props.brightness === "dark" && props.mode === "basic"
         ? colors.black
         : colors.black};
 

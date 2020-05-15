@@ -27,7 +27,7 @@ const DxcCard = ({
 
   const tagContent = (
     <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
-      <CardContainer theme={theme} hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
+      <CardContainer brightness={theme} hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
         <ImageContainer imageBgColor={imageBgColor}>
           <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
         </ImageContainer>
@@ -61,19 +61,19 @@ const StyledDxcCard = styled.div`
 `;
 
 const borderSizePx = "2";
-const getBorder = (outlined, theme) => {
-  const color = theme === "dark" || theme === "medium" ? colors.white : colors.black;
+const getBorder = (outlined, brightness) => {
+  const color = brightness === "dark" || brightness === "medium" ? colors.white : colors.black;
   return outlined ? `${borderSizePx}px solid ${color}` : "none";
 };
 const CardContainer = styled.div`
   display: inline-flex;
-  background: ${({ theme }) => (theme === "dark" ? colors.black : theme === "medium" ? "#212121" : colors.white)};
-  color: ${({ theme }) => (theme === "dark" || theme === "medium" ? colors.white : colors.black)};
+  background: ${({ brightness }) => (brightness === "dark" ? colors.black : brightness === "medium" ? "#212121" : colors.white)};
+  color: ${({ brightness }) => (brightness === "dark" || brightness === "medium" ? colors.white : colors.black)};
   align-items: center;
   flex-direction: ${({ imagePosition }) => (imagePosition === "before" && "row") || "row-reverse"};
   height: ${({ outlined }) => (outlined ? `${220 - 2 * borderSizePx}px` : "220px")};
   width: ${({ outlined }) => (outlined ? `${400 - 2 * borderSizePx}px` : "400px")};
-  border: ${({ outlined, theme }) => getBorder(outlined, theme)};
+  border: ${({ outlined, brightness }) => getBorder(outlined, brightness)};
   &:hover {
     border-color: ${({hasAction}) => hasAction ? colors.yellow : "unset"};
   }

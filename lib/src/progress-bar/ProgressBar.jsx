@@ -7,13 +7,13 @@ import { colors, spaces } from "../common/variables.js";
 
 const DxcProgressBar = ({ label = "", theme = "light", overlay = true, value, showValue = false, margin }) => {
   return (
-    <BackgroundProgressBar theme={theme} overlay={overlay}>
-      <DXCProgressBar theme={theme} overlay={overlay} margin={margin}>
+    <BackgroundProgressBar brightness={theme} overlay={overlay}>
+      <DXCProgressBar brightness={theme} overlay={overlay} margin={margin}>
         <InfoProgressBar>
-          <ProgressBarLabel theme={theme} overlay={overlay}>
+          <ProgressBarLabel brightness={theme} overlay={overlay}>
             {label}
           </ProgressBarLabel>
-          <ProgressBarProgress theme={theme} overlay={overlay} showValue={showValue}>
+          <ProgressBarProgress brightness={theme} overlay={overlay} showValue={showValue}>
             {value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100} %
           </ProgressBarProgress>
         </InfoProgressBar>
@@ -45,9 +45,9 @@ DxcProgressBar.propTypes = {
 
 const BackgroundProgressBar = styled.div`
   background-color: ${props =>
-    props.overlay === true || (props.overlay === true && props.theme === "dark")
+    props.overlay === true || (props.overlay === true && props.brightness === "dark")
       ? `${colors.black}B3`
-      : props.theme === "dark"
+      : props.brightness === "dark"
       ? "transparent"
       : `${colors.white}`};
   width: ${props => (props.overlay === true ? "100%" : "")};
@@ -72,7 +72,7 @@ const DXCProgressBar = styled.div`
   .MuiLinearProgress-root {
     height: 9px;
     background-color: ${props =>
-      ((props.theme === "dark" || props.overlay === true) && `${colors.white}4D`) || `${colors.black}4D`};
+      ((props.brightness === "dark" || props.overlay === true) && `${colors.white}4D`) || `${colors.black}4D`};
     border-radius: 5px;
   }
   .MuiLinearProgress-bar {
@@ -101,7 +101,7 @@ const ProgressBarLabel = styled.div`
   text-transform: uppercase;
   font-size: 12px;
   flex-grow: 1;
-  color: ${props => ((props.theme === "dark" || props.overlay === true) && colors.white) || colors.black};
+  color: ${props => ((props.brightness === "dark" || props.overlay === true) && colors.white) || colors.black};
   width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -110,7 +110,7 @@ const ProgressBarLabel = styled.div`
 
 const ProgressBarProgress = styled.div`
   font-size: 12px;
-  color: ${props => ((props.theme === "dark" || props.overlay === true) && colors.white) || colors.black};
+  color: ${props => ((props.brightness === "dark" || props.overlay === true) && colors.white) || colors.black};
   display: ${props => (props.value !== "" && props.showValue === true && "block") || "none"};
   width: 5%;
   text-align: right;
