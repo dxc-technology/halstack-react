@@ -27,7 +27,7 @@ const DxcTabs = ({
   };
 
   return (
-    <DxCTabs mode={mode} theme={theme} margin={margin}>
+    <DxCTabs mode={mode} brightness={theme} margin={margin}>
       <Underline></Underline>
       <Tabs
         value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
@@ -86,21 +86,21 @@ const DxCTabs = styled.div`
       /* height: 64px cuando vengan con icono y texto */
       min-width: 180px;
       background-color: ${props =>
-        props.mode === "filled" ? (props.theme === "dark" ? colors.darkGrey : colors.lightGrey) : "transparent"};
+        props.mode === "filled" ? (props.brightness === "dark" ? colors.darkGrey : colors.lightGrey) : "transparent"};
       color: ${props =>
-        props.mode === "filled" ? (props.theme === "dark" ? colors.white : colors.darkGrey) : colors.darkGrey};
-      opacity: ${props => (props.mode === "filled" ? (props.theme === "dark" ? 0.8 : 0.5) : 0.5)};
+        props.mode === "filled" ? (props.brightness === "dark" ? colors.white : colors.darkGrey) : colors.darkGrey};
+      opacity: ${props => (props.mode === "filled" ? (props.brightness === "dark" ? 0.8 : 0.5) : 0.5)};
       &:hover:not(.Mui-selected):not(.Mui-disabled) {
-        opacity: ${props => (props.mode === "filled" ? (props.theme === "light" ? 0.8 : 1) : 1)};
+        opacity: ${props => (props.mode === "filled" ? (props.brightness === "light" ? 0.8 : 1) : 1)};
         background-color: ${props => (props.mode === "filled" ? colors.darkGrey : "transparent")};
         color: ${props => (props.mode === "filled" ? colors.white : colors.darkGrey)};
       }
 
       &.Mui-selected {
         background-color: ${props =>
-          props.mode === "filled" ? (props.theme === "dark" ? colors.white : colors.black) : "transparent"};
+          props.mode === "filled" ? (props.brightness === "dark" ? colors.white : colors.black) : "transparent"};
         color: ${props =>
-          props.mode === "filled" ? (props.theme === "dark" ? colors.black : colors.white) : colors.black};
+          props.mode === "filled" ? (props.brightness === "dark" ? colors.black : colors.white) : colors.black};
         opacity: 1;
       }
       &.Mui-disabled {

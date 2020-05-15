@@ -37,7 +37,7 @@ const DxcSwitch = ({
   };
 
   return (
-    <SwitchContainer margin={margin} theme={theme} disabled={disabled} labelPosition={labelPosition} size={size}>
+    <SwitchContainer margin={margin} brightness={theme} disabled={disabled} labelPosition={labelPosition} size={size}>
       <Switch
         checked={checked != undefined ? checked : innerChecked}
         inputProps={(name = { name })}
@@ -48,11 +48,11 @@ const DxcSwitch = ({
       />
       <LabelContainer
         labelPosition={labelPosition}
-        theme={theme}
+        brightness={theme}
         onClick={disabled === true ? () => {} : handlerSwitchChange}
         disabled={disabled}
       >
-        {required && <RequiredSpan theme={theme}>*</RequiredSpan>}
+        {required && <RequiredSpan brightness={theme}>*</RequiredSpan>}
         {label}
       </LabelContainer>
     </SwitchContainer>
@@ -75,7 +75,7 @@ const calculateWidth = (margin, size) => {
 };
 
 const RequiredSpan = styled.span`
-  color: ${props => (props.theme === "dark" ? colors.lightRed : colors.darkRed)};
+  color: ${props => (props.brightness === "dark" ? colors.lightRed : colors.darkRed)};
   margin-right: 1px;
   cursor: default;
 `;
@@ -125,15 +125,15 @@ const SwitchContainer = styled.div`
         background-color: transparent;
       }
       .MuiTouchRipple-child {
-        background-color: ${props => (props.theme === "dark" ? colors.yellow : colors.darkGrey)};
+        background-color: ${props => (props.brightness === "dark" ? colors.yellow : colors.darkGrey)};
         opacity: 1;
       }
       &.Mui-disabled {
         /*Disabled*/
-        color: ${props => (props.theme === "dark" ? "#B3B3B3" : colors.white)};
+        color: ${props => (props.brightness === "dark" ? "#B3B3B3" : colors.white)};
         &.Mui-checked {
           /*Disabled and checked*/
-          color: ${props => (props.theme === "dark" ? "#B3B3B3" : "#C1C1C1")};
+          color: ${props => (props.brightness === "dark" ? "#B3B3B3" : "#C1C1C1")};
           + .MuiSwitch-track {
             /*Disabled and checked bar*/
             background-color: ${colors.lightGrey};
@@ -148,7 +148,7 @@ const SwitchContainer = styled.div`
       }
       &.Mui-checked {
         /*Enabled and checked*/
-        color: ${props => (props.theme === "dark" ? colors.yellow : colors.black)};
+        color: ${props => (props.brightness === "dark" ? colors.yellow : colors.black)};
         transform: translateX(35%);
         &:hover {
           background-color: transparent;
@@ -170,10 +170,10 @@ const SwitchContainer = styled.div`
 const LabelContainer = styled.span`
   color: ${props =>
     props.disabled
-      ? props.theme === "dark"
+      ? props.brightness === "dark"
         ? colors.darkGrey
         : colors.lightGrey
-      : props.theme === "dark"
+      : props.brightness === "dark"
       ? colors.white
       : colors.black};
   cursor: ${props => (props.disabled === true ? "not-allowed" : "pointer")};

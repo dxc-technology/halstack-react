@@ -21,7 +21,7 @@ const DxcLink = ({
         inheritColor={inheritColor}
         disabled={disabled}
         href={href}
-        theme={theme}
+        brightness={theme}
         margin={margin}
         iconPosition={iconPosition}
         target={newWindow? "_blank" : "_self"}
@@ -29,7 +29,7 @@ const DxcLink = ({
         {text}
         {
           iconSrc ? 
-            <LinkIcon src={iconSrc} theme={theme} iconPosition={iconPosition}></LinkIcon>
+            <LinkIcon src={iconSrc} brightness={theme} iconPosition={iconPosition}></LinkIcon>
           : ''
         }
         
@@ -56,9 +56,9 @@ const LinkText = styled.a`
       : 
       `text-decoration: none`};
   
-  color: ${ props => props.disabled ? props.theme === "light" ? "#525252" : "#959595" : !props.inheritColor ?
-            props.theme === "light" ? "#006BF6" : "#4797FF" 
-            : props.theme === "dark" ? "#FFFFFF" : "inherit"} !important;
+  color: ${ props => props.disabled ? props.brightness === "light" ? "#525252" : "#959595" : !props.inheritColor ?
+            props.brightness === "light" ? "#006BF6" : "#4797FF" 
+            : props.brightness === "dark" ? "#FFFFFF" : "inherit"} !important;
   ${ props => !props.underlined ? "text-decoration-color: transparent;" :  ""}
   ${ props => props.disabled ? "pointer-events: none;" : ""}
   
@@ -72,7 +72,7 @@ const LinkText = styled.a`
   padding-bottom: 2px;
 
   &:hover {
-    color: ${props=> props.theme === "light" ? "#006BF6" : "#4797FF"} !important;
+    color: ${props=> props.brightness === "light" ? "#006BF6" : "#4797FF"} !important;
     text-decoration: none;
     padding-bottom: 1px !important;
     border-bottom: 1px solid;
@@ -83,7 +83,7 @@ const LinkText = styled.a`
   &:visited {
     ${
       props => !props.disabled ? 
-      `color: ${props.theme === "light" ? "#8800F6" : "#C175FF"} !important; ` : ""
+      `color: ${props.brightness === "light" ? "#8800F6" : "#C175FF"} !important; ` : ""
     }
   }
 `;

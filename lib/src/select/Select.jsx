@@ -89,7 +89,7 @@ const DxcSelect = ({
           <SelectedLabelContainer
             iconSrc={selectedItem.iconSrc}
             iconPosition={iconPosition}
-            theme={theme}
+            brightness={theme}
             disabled={disabled}
           >
             {selectedItem.label}
@@ -139,12 +139,12 @@ const DxcSelect = ({
   };
 
   return (
-    <SelectContainer margin={margin} theme={theme} required={required} size={size}>
+    <SelectContainer margin={margin} brightness={theme} required={required} size={size}>
       <FormControl>
         <InputLabel disabled={disabled}>{label}</InputLabel>
         <Select
           name={name}
-          theme={theme}
+          brightness={theme}
           multiple={multiple}
           renderValue={getRenderValue}
           onChange={handleSelectChange}
@@ -264,23 +264,23 @@ const SelectContainer = styled.div`
   }
   .MuiFormLabel-root {
     font-size: 16px;
-    color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+    color: ${props => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
     margin-top: -3px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
       &::before {
         content:'${props => (props.required && "*") || ""}';
-        color: ${props => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        color: ${props => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
         font-size: 18px; 
       }
       &.Mui-disabled{
         opacity:0.5;
-        color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+        color: ${props => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
       }
       &.Mui-focused{
         font-size: 16px;
-        color: ${props => (props.theme === "light" ? colors.black : colors.lightGrey)};
+        color: ${props => (props.brightness === "light" ? colors.black : colors.lightGrey)};
       }
   }
   .MuiSelect-select {
@@ -288,7 +288,7 @@ const SelectContainer = styled.div`
     height: 20px;
     display: flex;
     padding-right: unset;
-    color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+    color: ${props => (props.brightness === "dark" ? colors.white : colors.black)};
     align-items: center;
     :focus {
       background-color: transparent;
@@ -300,7 +300,7 @@ const SelectContainer = styled.div`
       content: unset;
     }
     &.Mui-disabled {
-      color: ${props => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+      color: ${props => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
         opacity:0.5;
         cursor: not-allowed;
     }
@@ -320,18 +320,18 @@ const SelectContainer = styled.div`
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;
-    border-bottom-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+    border-bottom-color: ${props => (props.brightness === "dark" ? colors.white : colors.black)};
   }
   .MuiInput-underline:after {
     border-bottom: 1px solid;
-    border-bottom-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+    border-bottom-color: ${props => (props.brightness === "dark" ? colors.white : colors.black)};
   }
   .MuiInput-underline:before {
     border-bottom: 1px solid;
-    border-bottom-color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+    border-bottom-color: ${props => (props.brightness === "dark" ? colors.white : colors.black)};
   }
   .MuiSelect-icon {
-    color: ${props => (props.theme === "dark" ? colors.white : colors.black)};
+    color: ${props => (props.brightness === "dark" ? colors.white : colors.black)};
   }
   & label{
     text-overflow: ellipsis;

@@ -60,14 +60,14 @@ const DxcInputText = ({
       prefixIconSrc={prefixIconSrc}
       prefix={prefix}
       required={required}
-      theme={theme}
+      brightness={theme}
       assistiveText={assistiveText}
       margin={margin}
       size={size}
     >
       {prefixIconSrc && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
       {prefix && (
-        <PrefixLabel theme={theme} disabled={disabled} onClick={onClickPrefix}>
+        <PrefixLabel brightness={theme} disabled={disabled} onClick={onClickPrefix}>
           {prefix}
         </PrefixLabel>
       )}
@@ -130,7 +130,7 @@ const PrefixLabel = styled.span`
   top: 20px;
   left: 0px;
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
+  color: ${(props) => (props.brightness === "light" ? colors.darkGrey : colors.yellow)};
   max-height: 20px;
   max-width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
@@ -183,10 +183,10 @@ const TextContainer = styled.div`
     }
     .MuiFormLabel-root {
       font-size: 16px;
-      color: ${(props) => (props.theme === "light" ? colors.black : colors.lightGrey)};
+      color: ${(props) => (props.brightness === "light" ? colors.black : colors.lightGrey)};
       &::before {
         content:'${(props) => (props.required && "*") || ""}';
-        color: ${(props) => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        color: ${(props) => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
         font-size: 16px; 
       }
       &.Mui-disabled{
@@ -194,7 +194,7 @@ const TextContainer = styled.div`
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
       &.Mui-focused {
-        color: ${(props) => (props.theme === "light" ? colors.black : colors.white)};
+        color: ${(props) => (props.brightness === "light" ? colors.black : colors.white)};
         &.MuiInputLabel-shrink {
           transform: ${(props) =>
             props.prefixIconSrc ||
@@ -203,7 +203,7 @@ const TextContainer = styled.div`
         }
       }
       &.Mui-disabled {
-        color: ${(props) => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.brightness === "light" ? colors.lightGrey : colors.darkGrey)};
         cursor: not-allowed;
       }
       &.MuiInputLabel-shrink {
@@ -214,23 +214,23 @@ const TextContainer = styled.div`
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
-        color: ${(props) => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+        color: ${(props) => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
       }
 
       &:not(.MuiInputLabel-shrink)  {
         font-family: "Open Sans", sans-serif;
-        color: ${(props) => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+        color: ${(props) => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
         & + div, & + div + p {
-          color: ${(props) => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+          color: ${(props) => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
         }
       }
 
       &.MuiInputLabel-shrink {
         & + div::before {
-          border-color: ${(props) => (props.theme === "light" ? colors.black : colors.lightGrey)};
+          border-color: ${(props) => (props.brightness === "light" ? colors.black : colors.lightGrey)};
         }
         & + div + p {
-          color: ${(props) => (props.theme === "light" ? colors.darkGrey : colors.lightGrey)};
+          color: ${(props) => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
         }
         
       }
@@ -239,20 +239,20 @@ const TextContainer = styled.div`
       font-family: "Open Sans", sans-serif;
       &::before{
         border-bottom: ${(props) =>
-          props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
+          props.brightness === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
       }
       &:not(.Mui-error)::before, &:not(&.Mui-focused)::before {
         border-bottom: ${(props) =>
-          props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
+          props.brightness === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
       }
       &::after{
-        border-bottom: ${(props) => (props.theme === "light" ? "2px solid #000" : "2px solid #d9d9d9")};
+        border-bottom: ${(props) => (props.brightness === "light" ? "2px solid #000" : "2px solid #d9d9d9")};
       }
 
       &.Mui-error {
         &::before {
           border-width: 1px;
-          border-color: ${(props) => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+          border-color: ${(props) => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
         }
         &::after {
           transform: scaleX(0);
@@ -262,29 +262,29 @@ const TextContainer = styled.div`
       &.Mui-focused {
         &::after {
           border-width: 2px;
-          border-color: ${(props) => (props.theme === "light" ? colors.black : colors.white)};
+          border-color: ${(props) => (props.brightness === "light" ? colors.black : colors.white)};
           transform: scaleX(1);
         }
         
         &.Mui-error::after {
-          border-color: ${(props) => (props.theme === "light" ? colors.darkRed : colors.lightRed)};
+          border-color: ${(props) => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
         }
       }
 
       &.Mui-disabled {
-        color: ${(props) => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.brightness === "light" ? colors.lightGrey : colors.darkGrey)};
         opacity:0.5;
         cursor: not-allowed;
         
         &::before {
           border-bottom: ${(props) =>
-            props.theme === "light" ? `1px solid ${colors.lightGrey}` : `1px solid ${colors.darkGrey}`};
+            props.brightness === "light" ? `1px solid ${colors.lightGrey}` : `1px solid ${colors.darkGrey}`};
           border-bottom-style: solid;
         }
       }
       .MuiInputBase-input {
         padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
-        color: ${(props) => (props.theme === "light" ? colors.black : colors.white)};
+        color: ${(props) => (props.brightness === "light" ? colors.black : colors.white)};
          text-overflow: ellipsis;
         &.Mui-disabled {
           cursor: not-allowed;
@@ -292,11 +292,11 @@ const TextContainer = styled.div`
       }
       .MuiInputAdornment-root {
         height: 20px;
-        color: ${(props) => (props.theme === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.brightness === "light" ? colors.lightGrey : colors.darkGrey)};
         &.MuiInputAdornment-positionEnd{
           & > p {
             font-family: "Open Sans", sans-serif;
-            color:${(props) => (props.theme === "light" ? colors.darkGrey : colors.yellow)};
+            color:${(props) => (props.brightness === "light" ? colors.darkGrey : colors.yellow)};
             margin-right: 8px;
             margin-bottom: 1px;
             cursor: ${(props) => {
@@ -315,7 +315,7 @@ const TextContainer = styled.div`
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before{
         border-bottom: ${(props) =>
-          props.theme === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.white}`};
+          props.brightness === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.white}`};
       }
       
     }
@@ -323,7 +323,7 @@ const TextContainer = styled.div`
     & > p {
       &.Mui-error {
         color: ${(props) =>
-          props.theme === "light" ? colors.darkRed + " !important" : colors.lightRed + " !important"};
+          props.brightness === "light" ? colors.darkRed + " !important" : colors.lightRed + " !important"};
       }
       &.Mui-disabled{
         opacity:0.5;
