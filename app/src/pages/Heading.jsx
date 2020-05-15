@@ -73,6 +73,30 @@ function App() {
           <DxcHeading text="Hello world!" level={5} weight="bold"/>
         </div>
       </div>
+      <div>
+        <h4>Headings with margin</h4>
+        <div className="test-case" id="heading-margin-xxsmall">
+          <DxcHeading text="Hello world!" level={5} margin="xxsmall" />
+        </div>
+        <div className="test-case" id="heading-margin-xsmall">
+          <DxcHeading text="Hello world!" level={5} margin="xsmall" />
+        </div>
+        <div className="test-case" id="heading-margin-small">
+          <DxcHeading text="Hello world!" level={5} margin="small" />
+        </div>
+        <div className="test-case" id="heading-margin-medium">
+          <DxcHeading text="Hello world!" level={5} margin="medium" />
+        </div>
+        <div className="test-case" id="heading-margin-large">
+          <DxcHeading text="Hello world!" level={5} margin="large" />
+        </div>
+        <div className="test-case" id="heading-margin-xlarge">
+          <DxcHeading text="Hello world!" level={5} margin="xlarge" />
+        </div>
+        <div className="test-case" id="heading-margin-xxlarge">
+          <DxcHeading text="Hello world!" level={5} margin="xxlarge" />
+        </div>
+      </div>
     </div>
   );
 }
