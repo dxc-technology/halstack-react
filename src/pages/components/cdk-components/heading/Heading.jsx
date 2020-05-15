@@ -5,19 +5,17 @@ import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
-import LinkPropsTable from "./api.jsx";
+import HeadingPropsTable from "./api.jsx";
 
-import defaultLink from "./examples/default";
-import undecoratedLink from "./examples/undecorated";
-import darkLink from "./examples/darkTheme";
-import iconLink from "./examples/iconLink";
-import disabledLink from "./examples/disabledLink";
+import defaultHeadings from "./examples/defaultHeadings";
+import darkHeadings from "./examples/darkHeadings";
+import weightHeadings from "./examples/weightHeadings";
 
-function Link() {
+function Heading() {
     return (
         <ComponentDoc>
             <ComponentHeader
-              title="Link"
+              title="Heading"
               status="ready"
             ></ComponentHeader>
             <DxcTabsForSections
@@ -29,7 +27,7 @@ function Link() {
                       section: () => (
                           <Section>
                               <DocTitle size={2}>Props</DocTitle>
-                              <LinkPropsTable />
+                              <HeadingPropsTable />
                           </Section>
                       )
                   },
@@ -39,24 +37,16 @@ function Link() {
                           <Section>
                               <DocTitle size={2}>Examples</DocTitle>
                               <Example
-                                title="Default Link"
-                                example={defaultLink}
+                                title="Default Headings"
+                                example={defaultHeadings}
                               ></Example>
                               <Example
-                                title="Undecorated link with new window"
-                                example={undecoratedLink}
+                                title="Dark Headings"
+                                example={darkHeadings}
                               ></Example>
                               <Example
-                                title="Dark themed Link"
-                                example={darkLink}
-                              ></Example>
-                              <Example
-                                title="Disabled Link"
-                                example={disabledLink}
-                              ></Example>
-                              <Example
-                                title="Link with icon"
-                                example={iconLink}
+                                title="Headings with different weights"
+                                example={weightHeadings}
                               ></Example>
                           </Section>
                       )
@@ -68,4 +58,4 @@ function Link() {
     );
 }
 
-export default Link;
+export default Heading;

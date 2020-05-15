@@ -27,6 +27,7 @@ import Sidenav from "./cdk-components/sidenav/Sidenav";
 import Link from "./cdk-components/link/Link";
 import Wizard from "./cdk-components/wizard/Wizard";
 import Textarea from "./cdk-components/textarea/Textarea";
+import Heading from "./cdk-components/heading/Heading";
 
 export const types = {
   FORMS: "Forms",
@@ -101,6 +102,12 @@ export default [
     name: "Header",
     component: Header,
     type: types.NAVIGATION,
+  },
+  {
+    path: "heading",
+    name: "Heading",
+    component: Heading,
+    type: types.UTILS,
   },
   {
     path: "input",
