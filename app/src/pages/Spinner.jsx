@@ -1,5 +1,22 @@
 import React from "react";
-import { DxcSpinner } from "@diaas/dxc-react-cdk";
+import { DxcSpinner, ThemeContext } from "@diaas/dxc-react-cdk";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   return (
@@ -68,6 +85,12 @@ function App() {
           <h5>xxlarge margin</h5>
           <DxcSpinner margin="xxlarge" showValue value={66} />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Spinner</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcSpinner showValue value={66} />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

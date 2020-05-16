@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcInputText = ({
   label = " ",
@@ -30,6 +31,7 @@ const DxcInputText = ({
   size = "medium",
 }) => {
   const [innerValue, setInnerValue] = useState("");
+  const colorsTheme = useContext(ThemeContext) || colors;
 
   const handlerInputChange = (event) => {
     if (value === null || value === undefined) {
@@ -56,42 +58,44 @@ const DxcInputText = ({
   };
 
   return (
-    <TextContainer
-      prefixIconSrc={prefixIconSrc}
-      prefix={prefix}
-      required={required}
-      brightness={theme}
-      assistiveText={assistiveText}
-      margin={margin}
-      size={size}
-    >
-      {prefixIconSrc && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
-      {prefix && (
-        <PrefixLabel brightness={theme} disabled={disabled} onClick={onClickPrefix}>
-          {prefix}
-        </PrefixLabel>
-      )}
-      <TextField
-        error={invalid}
-        value={value !== null ? value : innerValue}
-        name={name}
-        disabled={disabled}
-        label={label}
-        helperText={assistiveText}
-        onChange={handlerInputChange}
-        onBlur={(onBlur && handlerInputBlur) || null}
-        placeholder={placeholder}
-        type={isMasked ? "password" : "text"}
-        InputProps={{
-          endAdornment: (suffix || suffixIconSrc) && (
-            <InputAdornment position="end" onClick={onClickSuffix}>
-              {(suffixIconSrc && <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickSuffix} />) ||
-                suffix}
-            </InputAdornment>
-          ),
-        }}
-      />
-    </TextContainer>
+    <ThemeProvider theme={colorsTheme}>
+      <TextContainer
+        prefixIconSrc={prefixIconSrc}
+        prefix={prefix}
+        required={required}
+        brightness={theme}
+        assistiveText={assistiveText}
+        margin={margin}
+        size={size}
+      >
+        {prefixIconSrc && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
+        {prefix && (
+          <PrefixLabel brightness={theme} disabled={disabled} onClick={onClickPrefix}>
+            {prefix}
+          </PrefixLabel>
+        )}
+        <TextField
+          error={invalid}
+          value={value !== null ? value : innerValue}
+          name={name}
+          disabled={disabled}
+          label={label}
+          helperText={assistiveText}
+          onChange={handlerInputChange}
+          onBlur={(onBlur && handlerInputBlur) || null}
+          placeholder={placeholder}
+          type={isMasked ? "password" : "text"}
+          InputProps={{
+            endAdornment: (suffix || suffixIconSrc) && (
+              <InputAdornment position="end" onClick={onClickSuffix}>
+                {(suffixIconSrc && <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickSuffix} />) ||
+                  suffix}
+              </InputAdornment>
+            ),
+          }}
+        />
+      </TextContainer>
+    </ThemeProvider>
   );
 };
 
@@ -130,7 +134,7 @@ const PrefixLabel = styled.span`
   top: 20px;
   left: 0px;
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => (props.brightness === "light" ? colors.darkGrey : colors.yellow)};
+  color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.yellow)};
   max-height: 20px;
   max-width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
@@ -183,10 +187,10 @@ const TextContainer = styled.div`
     }
     .MuiFormLabel-root {
       font-size: 16px;
-      color: ${(props) => (props.brightness === "light" ? colors.black : colors.lightGrey)};
+      color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.lightGrey)};
       &::before {
         content:'${(props) => (props.required && "*") || ""}';
-        color: ${(props) => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
+        color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
         font-size: 16px; 
       }
       &.Mui-disabled{
@@ -194,7 +198,7 @@ const TextContainer = styled.div`
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
       &.Mui-focused {
-        color: ${(props) => (props.brightness === "light" ? colors.black : colors.white)};
+        color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.white)};
         &.MuiInputLabel-shrink {
           transform: ${(props) =>
             props.prefixIconSrc ||
@@ -203,7 +207,7 @@ const TextContainer = styled.div`
         }
       }
       &.Mui-disabled {
-        color: ${(props) => (props.brightness === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.brightness === "light" ? props.theme.lightGrey : props.theme.darkGrey)};
         cursor: not-allowed;
       }
       &.MuiInputLabel-shrink {
@@ -214,23 +218,23 @@ const TextContainer = styled.div`
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
-        color: ${(props) => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
+        color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
       }
 
       &:not(.MuiInputLabel-shrink)  {
         font-family: "Open Sans", sans-serif;
-        color: ${(props) => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
+        color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
         & + div, & + div + p {
-          color: ${(props) => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
+          color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
         }
       }
 
       &.MuiInputLabel-shrink {
         & + div::before {
-          border-color: ${(props) => (props.brightness === "light" ? colors.black : colors.lightGrey)};
+          border-color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.lightGrey)};
         }
         & + div + p {
-          color: ${(props) => (props.brightness === "light" ? colors.darkGrey : colors.lightGrey)};
+          color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
         }
         
       }
@@ -239,11 +243,11 @@ const TextContainer = styled.div`
       font-family: "Open Sans", sans-serif;
       &::before{
         border-bottom: ${(props) =>
-          props.brightness === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
+          props.brightness === "light" ? `1px solid ${props.theme.black}` : `1px solid ${props.theme.lightGrey}`};
       }
       &:not(.Mui-error)::before, &:not(&.Mui-focused)::before {
         border-bottom: ${(props) =>
-          props.brightness === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.lightGrey}`};
+          props.brightness === "light" ? `1px solid ${props.theme.black}` : `1px solid ${props.theme.lightGrey}`};
       }
       &::after{
         border-bottom: ${(props) => (props.brightness === "light" ? "2px solid #000" : "2px solid #d9d9d9")};
@@ -252,7 +256,7 @@ const TextContainer = styled.div`
       &.Mui-error {
         &::before {
           border-width: 1px;
-          border-color: ${(props) => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
+          border-color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
         }
         &::after {
           transform: scaleX(0);
@@ -262,29 +266,29 @@ const TextContainer = styled.div`
       &.Mui-focused {
         &::after {
           border-width: 2px;
-          border-color: ${(props) => (props.brightness === "light" ? colors.black : colors.white)};
+          border-color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.white)};
           transform: scaleX(1);
         }
         
         &.Mui-error::after {
-          border-color: ${(props) => (props.brightness === "light" ? colors.darkRed : colors.lightRed)};
+          border-color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
         }
       }
 
       &.Mui-disabled {
-        color: ${(props) => (props.brightness === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.brightness === "light" ? props.theme.lightGrey : props.theme.darkGrey)};
         opacity:0.5;
         cursor: not-allowed;
         
         &::before {
           border-bottom: ${(props) =>
-            props.brightness === "light" ? `1px solid ${colors.lightGrey}` : `1px solid ${colors.darkGrey}`};
+            props.brightness === "light" ? `1px solid ${props.theme.lightGrey}` : `1px solid ${props.theme.darkGrey}`};
           border-bottom-style: solid;
         }
       }
       .MuiInputBase-input {
         padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
-        color: ${(props) => (props.brightness === "light" ? colors.black : colors.white)};
+        color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.white)};
          text-overflow: ellipsis;
         &.Mui-disabled {
           cursor: not-allowed;
@@ -292,11 +296,11 @@ const TextContainer = styled.div`
       }
       .MuiInputAdornment-root {
         height: 20px;
-        color: ${(props) => (props.brightness === "light" ? colors.lightGrey : colors.darkGrey)};
+        color: ${(props) => (props.brightness === "light" ? props.theme.lightGrey : props.theme.darkGrey)};
         &.MuiInputAdornment-positionEnd{
           & > p {
             font-family: "Open Sans", sans-serif;
-            color:${(props) => (props.brightness === "light" ? colors.darkGrey : colors.yellow)};
+            color:${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.yellow)};
             margin-right: 8px;
             margin-bottom: 1px;
             cursor: ${(props) => {
@@ -315,7 +319,7 @@ const TextContainer = styled.div`
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before{
         border-bottom: ${(props) =>
-          props.brightness === "light" ? `1px solid ${colors.black}` : `1px solid ${colors.white}`};
+          props.brightness === "light" ? `1px solid ${props.theme.black}` : `1px solid ${props.theme.white}`};
       }
       
     }
@@ -323,7 +327,7 @@ const TextContainer = styled.div`
     & > p {
       &.Mui-error {
         color: ${(props) =>
-          props.brightness === "light" ? colors.darkRed + " !important" : colors.lightRed + " !important"};
+          props.brightness === "light" ? props.theme.darkRed + " !important" : props.theme.lightRed + " !important"};
       }
       &.Mui-disabled{
         opacity:0.5;

@@ -1,14 +1,31 @@
 import React from "react";
-import { DxcSlider } from "@diaas/dxc-react-cdk";
+import { DxcSlider, ThemeContext } from "@diaas/dxc-react-cdk";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     console.log("onChange " + newValue);
   };
-  const onDragEnd = newValue => {
+  const onDragEnd = (newValue) => {
     console.log("onDragEnd " + newValue);
   };
-  const onChangeInput = newValue => {
+  const onChangeInput = (newValue) => {
     console.log("onChangeInput " + newValue);
   };
 
@@ -33,7 +50,7 @@ function App() {
           className="test-case"
           id="dark-theme"
           style={{
-            backgroundColor: "black"
+            backgroundColor: "black",
           }}
         >
           <DxcSlider
@@ -261,6 +278,21 @@ function App() {
             margin="xxlarge"
           />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Slider</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcSlider
+            minValue={0}
+            maxValue={100}
+            showLimitsValues={true}
+            showInput={false}
+            name="input"
+            theme="light"
+            step={1}
+            margin="medium"
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

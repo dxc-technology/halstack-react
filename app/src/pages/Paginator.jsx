@@ -6,10 +6,10 @@ function App() {
   const [page, changePage] = useState(1);
 
   const prevClick = () => {
-      changePage(page - 1);
+    changePage(page - 1);
   };
   const firstClick = () => {
-      changePage(1);
+    changePage(1);
   };
   const nextClick = () => {
     changePage(page + 1);
@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <div className="test-case" id="normal-status">
-      <h4>Normal Status</h4>
+        <h4>Normal Status</h4>
         <DxcPaginator
           currentPage={page}
           itemsPerPage={10}

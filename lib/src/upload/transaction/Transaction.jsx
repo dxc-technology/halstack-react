@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import "../../common/OpenSans.css";
 import Tooltip from "@material-ui/core/Tooltip";
 import successIcon from "./success-icon.svg";
@@ -14,9 +14,11 @@ import imageIconError from "./image-icon-err.svg";
 import videoIconError from "./video-icon-err.svg";
 import audioIconError from "./audio-icon-err.svg";
 import Spinner from "../../spinner/Spinner";
-import {colors} from "../../common/variables.js";
+import { colors } from "../../common/variables.js";
+import ThemeContext from "../../ThemeContext.js";
 
 const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => {
+  const colorsTheme = useContext(ThemeContext) || colors;
   const icon =
     (status === "error" &&
       ((type.includes("image") && imageIconError) ||
@@ -29,29 +31,31 @@ const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => 
     defaultIcon;
 
   return (
-    <DXCTransaction status={status}>
-      <FileImage src={icon} />
-      {(status === "processing" && (
-        <Prueba>
-          <FileName>{name}</FileName>
-          <Spinner mode="small" />
-        </Prueba>
-      )) ||
-        (status === "success" && (
+    <ThemeProvider theme={colorsTheme}>
+      <DXCTransaction status={status}>
+        <FileImage src={icon} />
+        {(status === "processing" && (
           <Prueba>
             <FileName>{name}</FileName>
-            <FileStatus status={status} />
+            <Spinner mode="small" />
           </Prueba>
         )) ||
-        (status === "error" && (
-          <Prueba>
-            <Tooltip title={message}>
+          (status === "success" && (
+            <Prueba>
               <FileName>{name}</FileName>
-            </Tooltip>
-            <FileStatus status={status} />
-          </Prueba>
-        ))}
-    </DXCTransaction>
+              <FileStatus status={status} />
+            </Prueba>
+          )) ||
+          (status === "error" && (
+            <Prueba>
+              <Tooltip title={message}>
+                <FileName>{name}</FileName>
+              </Tooltip>
+              <FileStatus status={status} />
+            </Prueba>
+          ))}
+      </DXCTransaction>
+    </ThemeProvider>
   );
 };
 
@@ -59,7 +63,7 @@ DxcTransaction.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   status: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.string,
 };
 
 const DXCTransaction = styled.div`
@@ -68,7 +72,7 @@ const DXCTransaction = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 16px;
-  color: ${props => props.status === "error" && `${colors.red}`};
+  color: ${(props) => props.status === "error" && `${props.theme.red}`};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -83,7 +87,7 @@ const FileImage = styled.img`
   width: 24px;
   margin-right: 16px;
   svg {
-    fill: ${props => (props.status === "error" && "#D0011B") || `${colors.lightGrey}`};
+    fill: ${(props) => (props.status === "error" && "#D0011B") || `${props.theme.lightGrey}`};
   }
 `;
 
@@ -99,7 +103,7 @@ const FileName = styled.div`
 const FileStatus = styled.div`
   width: 25px;
   height: 20px;
-  background: ${props =>
+  background: ${(props) =>
     (props.status === "success" && `url('${successIcon}') no-repeat padding-box`) ||
     (props.status === "error" && `url('${errorIcon}') no-repeat padding-box`)};
 `;

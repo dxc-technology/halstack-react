@@ -1,260 +1,277 @@
 import React from "react";
-import { DxcFooter, DxcInputText } from "@diaas/dxc-react-cdk";
+import { DxcFooter, ThemeContext } from "@diaas/dxc-react-cdk";
 
 import linkedin from "../images/linkedin.svg";
 import facebook from "../images/facebook.svg";
 import twitter from "../images/twitter.svg";
 import dxcAssure from "../images/dxc_logo_wht.png";
 
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
+
 function App() {
   const social = [
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
-    }
+      logoSrc: facebook,
+    },
   ];
   const socialLarge = [
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
+      logoSrc: facebook,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logoSrc: linkedin
+      logoSrc: linkedin,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logoSrc: twitter
+      logoSrc: twitter,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logoSrc: facebook
-    }
+      logoSrc: facebook,
+    },
   ];
   const bottom = [
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin"
+      text: "Linkedin",
     },
     {
       href: "https://twitter.com/dxctechnology",
-      text: "Twitter"
+      text: "Twitter",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook"
-    }
+      text: "Facebook",
+    },
   ];
 
   const bottomLarge = [
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin"
+      text: "Linkedin",
     },
     {
       href: "https://twitter.com/dxctechnology",
-      text: "Twitter"
+      text: "Twitter",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook"
+      text: "Facebook",
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin1"
+      text: "Linkedin1",
     },
     {
       href: "https://twitter.com/dxctechnology",
-      text: "Twitter1"
+      text: "Twitter1",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook1"
+      text: "Facebook1",
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin2"
+      text: "Linkedin2",
     },
     {
       href: "https://twitter.com/dxctechnology",
-      text: "Twitter2"
+      text: "Twitter2",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook2"
+      text: "Facebook2",
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin3"
+      text: "Linkedin3",
     },
     {
       href: "https://twitter.com/dxctechnology",
-      text: "Twitter3"
+      text: "Twitter3",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook3"
+      text: "Facebook3",
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin4"
+      text: "Linkedin4",
     },
     {
       href: "https://twitter.com/dxctechnology",
-      text: "Twitter4"
+      text: "Twitter4",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook4"
+      text: "Facebook4",
     },
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin5"
+      text: "Linkedin5",
     },
     {
       href: "https://twitter.com/dxctechnology",
-      text: "Twitter5"
+      text: "Twitter5",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook5"
+      text: "Facebook5",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook6"
+      text: "Facebook6",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook7"
+      text: "Facebook7",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook6"
+      text: "Facebook6",
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook7"
-    }
+      text: "Facebook7",
+    },
   ];
 
   return (
@@ -519,6 +536,19 @@ function App() {
             socialLinks={socialLarge}
             margin="large"
           ></DxcFooter>
+        </div>
+      </div>
+      <div>
+        <h4>Custom Footer</h4>
+        <div className="test-case" id="custom-colors">
+          <ThemeContext.Provider value={colors}>
+            <DxcFooter
+              copyright="© DXC Technology 2020. All rights reserved."
+              bottomLinks={bottom}
+              socialLinks={social}
+              margin="large"
+            ></DxcFooter>
+          </ThemeContext.Provider>
         </div>
       </div>
     </div>

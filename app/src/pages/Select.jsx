@@ -1,143 +1,162 @@
 import React, { useState } from "react";
-import { DxcSelect } from "@diaas/dxc-react-cdk";
+import { DxcSelect, ThemeContext } from "@diaas/dxc-react-cdk";
 import homePath from "../images/home.svg";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const [inputValue, changeInput] = useState(1);
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     changeInput(newValue);
   };
 
   const [inputMultipleValue, changeMultipleInput] = useState([1, 2]);
-  const onChangeMultiple = newValue => {
+  const onChangeMultiple = (newValue) => {
     changeMultipleInput(newValue);
   };
 
   const optionsWithoutIcon = [
     {
       value: 1,
-      label: "Amazon"
+      label: "Amazon",
     },
     {
       value: 2,
-      label: "Ebay"
+      label: "Ebay",
     },
     {
       value: 3,
-      label: "Apple"
+      label: "Apple",
     },
     {
       value: 4,
-      label: "Google"
-    }
+      label: "Google",
+    },
   ];
 
   const optionsWithIcon = [
     {
       value: 1,
-      iconSrc: homePath
+      iconSrc: homePath,
     },
     {
       value: 2,
-      iconSrc: homePath
+      iconSrc: homePath,
     },
     {
       value: 3,
-      iconSrc: homePath
-    }
+      iconSrc: homePath,
+    },
   ];
 
   const optionsWithIconAndLabels = [
     {
       value: 1,
       iconSrc: homePath,
-      label: "Home"
+      label: "Home",
     },
     {
       value: 2,
       iconSrc: homePath,
-      label: "House"
+      label: "House",
     },
     {
       value: 3,
       iconSrc: homePath,
-      label: "Home is the selected option for this select component of the Csss"
-    }
+      label:
+        "Home is the selected option for this select component of the Csss",
+    },
   ];
   const optionsWithIconAndLabelsMinLongOneLine = [
     {
       value: 1,
       iconSrc: homePath,
-      label: "Ho"
+      label: "Ho",
     },
     {
       value: 2,
       iconSrc: homePath,
-      label: "Housesssssssssssssssssss"
+      label: "Housesssssssssssssssssss",
     },
     {
       value: 3,
       iconSrc: homePath,
-      label: "Home is the selected option for this select component12"
+      label: "Home is the selected option for this select component12",
     },
     {
       value: 4,
       iconSrc: homePath,
-      label: "Housessssssssssssssssss"
+      label: "Housessssssssssssssssss",
     },
     {
       value: 5,
       iconSrc: homePath,
-      label: "Home is the selected opt"
-    }
+      label: "Home is the selected opt",
+    },
   ];
   const optionsWithIconAndLabelsMaxLongMultiLine = [
     {
       value: 1,
       iconSrc: homePath,
-      label: "Hom"
+      label: "Hom",
     },
     {
       value: 2,
       iconSrc: homePath,
-      label: "Housesssssssssssssssssss"
+      label: "Housesssssssssssssssssss",
     },
     {
       value: 3,
       iconSrc: homePath,
-      label: "Home is the selected option for this select component123"
-    }
+      label: "Home is the selected option for this select component123",
+    },
   ];
 
   const longOptionLabels = [
     {
       value: 1,
-      label: "Home is the selected option for this select component of the Css"
+      label: "Home is the selected option for this select component of the Css",
     },
     {
       value: 2,
-      label: "Houses"
+      label: "Houses",
     },
     {
       value: 3,
-      label: "Housess"
+      label: "Housess",
     },
     {
       value: 4,
-      label: "Habitatsssssssssssssssssssss"
+      label: "Habitatsssssssssssssssssssss",
     },
     {
       value: 5,
-      label: "Habitatssssssssssssssssssssss"
+      label: "Habitatssssssssssssssssssssss",
     },
     {
       value: 6,
-      label: "Home is the selected option for this select component of the Csss"
+      label:
+        "Home is the selected option for this select component of the Csss",
     },
     {
       value: 7,
-      label: "Home is the selected option for this select component of this"
-    }
+      label: "Home is the selected option for this select component of this",
+    },
   ];
 
   return (
@@ -320,7 +339,10 @@ function App() {
             options={longOptionLabels}
           />
         </div>
-        <div className="test-case" id="Large-select-max-size-selected-item-oneline">
+        <div
+          className="test-case"
+          id="Large-select-max-size-selected-item-oneline"
+        >
           <h4>Large select - Max size selected option label oneline</h4>
           <DxcSelect
             onChange={onChange}
@@ -615,6 +637,20 @@ function App() {
         margin="medium"
         size="large"
       ></DxcSelect>
+
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Select</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcSelect
+            onChange={onChange}
+            value={inputValue}
+            label={"Medium"}
+            options={optionsWithIconAndLabels}
+            size="medium"
+            margin="xsmall"
+          ></DxcSelect>
+        </ThemeContext.Provider>
+      </div>
     </div>
   );
 }
