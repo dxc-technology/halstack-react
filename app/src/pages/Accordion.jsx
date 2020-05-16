@@ -1,11 +1,27 @@
 import React, { useState } from "react";
-import { DxcAccordion } from "@diaas/dxc-react-cdk";
+import { DxcAccordion, DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
 import homeIcon from "../images/home.svg";
 import facebookIcon from "../images/facebook.svg";
 
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 function App() {
   const [isExpanded, changeIsExpanded] = useState(true);
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     changeIsExpanded(newValue);
   };
 
@@ -40,7 +56,7 @@ function App() {
         <div
           style={{
             background: "#000000",
-            padding: "25px 0px 25px 0px"
+            padding: "25px 0px 25px 0px",
           }}
           className="test-case"
           id="dark-theme-default"
@@ -539,6 +555,19 @@ function App() {
             lacus.
           </div>
         </DxcAccordion>
+      </div>
+
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Accordion</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcAccordion label="Accordion" onChange={onChange} padding="medium">
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </div>
+          </DxcAccordion>
+        </ThemeContext.Provider>
       </div>
     </div>
   );

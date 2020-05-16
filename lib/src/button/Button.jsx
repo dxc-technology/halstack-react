@@ -1,11 +1,12 @@
 /* eslint-disable no-else-return */
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcButton = ({
   label = "",
@@ -17,23 +18,34 @@ const DxcButton = ({
   iconSrc = "",
   onClick = "",
   margin,
-  size
+  size,
 }) => {
+  const colorsTheme = useContext(ThemeContext) || colors;
+
   return (
-    <DxCButton margin={margin} mode={mode} brightness={theme} disabled={disabled} iconPosition={iconPosition} size={size}>
-      <Button
+    <ThemeProvider theme={colorsTheme}>
+      <DxCButton
+        margin={margin}
+        mode={mode}
+        brightness={theme}
         disabled={disabled}
-        disableRipple={disableRipple}
-        onClick={() => {
-          if (onClick) {
-            onClick();
-          }
-        }}
+        iconPosition={iconPosition}
+        size={size}
       >
-        <LabelContainer>{label}</LabelContainer>
-        {iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />}
-      </Button>
-    </DxCButton>
+        <Button
+          disabled={disabled}
+          disableRipple={disableRipple}
+          onClick={() => {
+            if (onClick) {
+              onClick();
+            }
+          }}
+        >
+          <LabelContainer>{label}</LabelContainer>
+          {iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />}
+        </Button>
+      </DxCButton>
+    </ThemeProvider>
   );
 };
 
@@ -42,7 +54,7 @@ const sizes = {
   medium: "120px",
   large: "240px",
   fillParent: "100%",
-  fitContent: "unset"
+  fitContent: "unset",
 };
 
 const calculateWidth = (margin, size) => {
@@ -62,87 +74,87 @@ const LabelContainer = styled.span`
 const ButtonIcon = styled.img`
   max-height: 20px;
   max-width: 20px;
-  margin-left: ${props => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
-  margin-right: ${props => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
+  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
+  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
 `;
 const DxCButton = styled.div`
-  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${props =>
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${props =>
+  margin-right: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${props =>
+  margin-bottom: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${props =>
+  margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   display: inline-block;
-  width: ${props => calculateWidth(props.margin, props.size)};
-  cursor: ${props => (props.disabled && "not-allowed") || "pointer"};
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
 
   .MuiButtonBase-root {
     .MuiButton-label {
       display: flex;
-      flex-direction: ${props => (props.iconPosition === "after" && "row") || "row-reverse"};
+      flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
     letter-spacing: 1px;
     box-shadow: none;
     font-size: 14px;
     font-weight: 500;
-    padding: ${props => (props.size === "small" && "11px") || "12px 30px"};
-    min-width: ${props => (props.size === "small" && "calc(100% - 22px)") || "unset"};
+    padding: ${(props) => (props.size === "small" && "11px") || "12px 30px"};
+    min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
     border-radius: 4px;
     width: 100%;
     min-height: 43px;
 
     line-height: 1;
     font-family: "Open Sans", sans-serif;
-    ${props => {
+    ${(props) => {
       const { mode, brightness } = props;
       if (mode === "basic") {
         return `
-          background-color: ${colors.yellow};
-          color: ${colors.black};
+          background-color: ${props.theme.yellow};
+          color: ${props.theme.black};
           &:hover{
-            background-color: ${(brightness === "light" && colors.black) || colors.lightBlack};
-            color: ${colors.yellow}; 
+            background-color: ${(brightness === "light" && props.theme.black) || props.theme.lightBlack};
+            color: ${props.theme.yellow}; 
           }
           &:disabled{ 
-            background-color:${colors.yellow};
+            background-color:${props.theme.yellow};
             opacity:0.5;
-            color: ${colors.black};
+            color: ${props.theme.black};
             cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
           }
           .MuiTouchRipple-child {
-            background-color: ${colors.white};
+            background-color: ${props.theme.white};
           }
         `;
       } else if (mode === "outlined") {
         return `
           background-color: transparent;
           padding: 10px 28px;
-          color: ${(brightness === "light" && colors.black) || colors.white};
+          color: ${(brightness === "light" && props.theme.black) || props.theme.white};
           border: 2px solid;
-          border-color: ${(brightness === "light" && colors.black) || colors.white};
+          border-color: ${(brightness === "light" && props.theme.black) || props.theme.white};
           &:hover{
-            border-color: ${colors.yellow};
+            border-color: ${props.theme.yellow};
             background-color: transparent;
           }
           &:disabled{ 
-            background-color:${(brightness === "light" && "transparent") || colors.black};
-            border-color:${(brightness === "light" && colors.lightGrey) || colors.darkGrey};
-            color:${(brightness === "light" && colors.lightGrey) || colors.darkGrey};
+            background-color:${(brightness === "light" && "transparent") || props.theme.black};
+            border-color:${(brightness === "light" && props.theme.lightGrey) || props.theme.darkGrey};
+            color:${(brightness === "light" && props.theme.lightGrey) || props.theme.darkGrey};
             cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
           }
           .MuiTouchRipple-child{
-            background-color:${(brightness === "light" && colors.darkGrey) || colors.lightGrey};
+            background-color:${(brightness === "light" && props.theme.darkGrey) || props.theme.lightGrey};
           }
           .MuiTouchRipple-root {
             border-radius: 2px;
@@ -151,46 +163,46 @@ const DxCButton = styled.div`
         `;
       } else if (mode === "flat") {
         return `
-          background-color: ${(brightness === "light" && "transparent") || colors.black};
-          color: ${(brightness === "light" && colors.black) || colors.white};
+          background-color: ${(brightness === "light" && "transparent") || props.theme.black};
+          color: ${(brightness === "light" && props.theme.black) || props.theme.white};
           &:hover{
-            background-color: ${colors.lightGrey};
-            color: ${colors.black};
+            background-color: ${props.theme.lightGrey};
+            color: ${props.theme.black};
           }
           &:disabled{ 
-            background-color:${(brightness === "light" && colors.lightGrey) || colors.darkGrey};
+            background-color:${(brightness === "light" && props.theme.lightGrey) || props.theme.darkGrey};
             opacity:0.5;
-            color:${(brightness === "light" && colors.black) || colors.lightGrey};
+            color:${(brightness === "light" && props.theme.black) || props.theme.lightGrey};
             cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
           }
           .MuiTouchRipple-child{
-            background-color:${(brightness === "light" && colors.darkGrey) || colors.darkGrey};
+            background-color:${(brightness === "light" && props.theme.darkGrey) || props.theme.darkGrey};
           }
         `;
       } else {
         return `
-          background-color: ${colors.yellow};
-          color: ${colors.black}
+          background-color: ${props.theme.yellow};
+          color: ${props.theme.black}
           box-shadow: 0px 1.5px 3px 0px rgba(0, 0, 0, 0.16);
           &:hover{
-            background-color:${(brightness === "light" && colors.black) || colors.lightBlack};
-            color:${colors.yellow};
+            background-color:${(brightness === "light" && props.theme.black) || props.theme.lightBlack};
+            color:${props.theme.yellow};
           }
           &:disabled{ 
-            background-color:${colors.yellow};
+            background-color:${props.theme.yellow};
             opacity:0.5;
             box-shadow:none;
-            color: ${colors.darkGrey};
+            color: ${props.theme.darkGrey};
             cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
           }
           .MuiTouchRipple-child {
-            background-color: ${colors.white};
+            background-color: ${props.theme.white};
           }
         `;
       }
@@ -205,9 +217,9 @@ DxcButton.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
+    PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   label: PropTypes.string,
   mode: PropTypes.oneOf(["basic", "outlined", "raised", "flat"]),
@@ -216,7 +228,7 @@ DxcButton.propTypes = {
   disableRipple: PropTypes.bool,
   iconPosition: PropTypes.oneOf(["after", "before"]),
   onClick: PropTypes.func,
-  iconSrc: PropTypes.string
+  iconSrc: PropTypes.string,
 };
 
 export default DxcButton;

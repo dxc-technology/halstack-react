@@ -1,25 +1,47 @@
 import React, { useState } from "react";
-import { DxcTabs, DxcButton, DxcToggle, DxcSwitch } from "@diaas/dxc-react-cdk";
+import {
+  DxcTabs,
+  DxcButton,
+  DxcToggle,
+  ThemeContext,
+} from "@diaas/dxc-react-cdk";
 import facebookIcon from "../images/facebook.svg";
 import linkedinIcon from "../images/linkedin.svg";
 import twitterIcon from "../images/twitter.svg";
 
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
+
 function Tabs() {
   const [activeTab, setActiveTab] = useState(0);
 
-  const onTabClick = i => {
+  const onTabClick = (i) => {
     setActiveTab(i);
   };
 
   const onClick = () => {};
 
   const [selected, changeSelected] = useState(true);
-  const onClickToggle = newValue => {
+  const onClickToggle = (newValue) => {
     changeSelected(newValue);
   };
 
   const [checked, changeChecked] = useState(false);
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     changeChecked(newValue);
   };
 
@@ -32,14 +54,14 @@ function Tabs() {
           onTabClick={onTabClick}
           tabs={[
             {
-              label: "Tab 1"
+              label: "Tab 1",
             },
             {
-              label: "Tab 2"
+              label: "Tab 2",
             },
             {
-              label: "Tab 3"
-            }
+              label: "Tab 3",
+            },
           ]}
         />
       </div>
@@ -56,14 +78,14 @@ function Tabs() {
             theme="dark"
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
+                label: "Tab 2",
               },
               {
-                label: "Tab 3"
-              }
+                label: "Tab 3",
+              },
             ]}
           />
         </div>
@@ -76,14 +98,14 @@ function Tabs() {
           mode="underlined"
           tabs={[
             {
-              label: "Tab 1"
+              label: "Tab 1",
             },
             {
-              label: "Tab 2"
+              label: "Tab 2",
             },
             {
-              label: "Tab 3"
-            }
+              label: "Tab 3",
+            },
           ]}
         />
       </div>
@@ -94,14 +116,14 @@ function Tabs() {
           onTabClick={onTabClick}
           tabs={[
             {
-              iconSrc: linkedinIcon
+              iconSrc: linkedinIcon,
             },
             {
-              iconSrc: facebookIcon
+              iconSrc: facebookIcon,
             },
             {
-              iconSrc: twitterIcon
-            }
+              iconSrc: twitterIcon,
+            },
           ]}
         />
       </div>
@@ -113,16 +135,16 @@ function Tabs() {
           tabs={[
             {
               label: "LinkedIn",
-              iconSrc: linkedinIcon
+              iconSrc: linkedinIcon,
             },
             {
               label: "Facebook",
-              iconSrc: facebookIcon
+              iconSrc: facebookIcon,
             },
             {
               label: "Twitter",
-              iconSrc: twitterIcon
-            }
+              iconSrc: twitterIcon,
+            },
           ]}
         />
       </div>
@@ -134,16 +156,16 @@ function Tabs() {
           tabs={[
             {
               label: "Tab 1",
-              isDisabled: true
+              isDisabled: true,
             },
             {
               label: "Tab 2",
-              isDisabled: true
+              isDisabled: true,
             },
             {
               label: "Tab 3",
-              isDisabled: true
-            }
+              isDisabled: true,
+            },
           ]}
         />
       </div>
@@ -155,14 +177,14 @@ function Tabs() {
             onTabClick={onTabClick}
             tabs={[
               {
-                label: "Example label tab max siz"
+                label: "Example label tab max siz",
               },
               {
-                label: "Example label tab max siz"
+                label: "Example label tab max siz",
               },
               {
-                label: "Example label tab max siz"
-              }
+                label: "Example label tab max siz",
+              },
             ]}
           />
         </div>
@@ -175,14 +197,14 @@ function Tabs() {
             onTabClick={onTabClick}
             tabs={[
               {
-                label: "Example label tab min size m"
+                label: "Example label tab min size m",
               },
               {
-                label: "Example label tab min size m"
+                label: "Example label tab min size m",
               },
               {
-                label: "Example label tab min size m"
-              }
+                label: "Example label tab min size m",
+              },
             ]}
           />
         </div>
@@ -195,11 +217,11 @@ function Tabs() {
             onTabClick={onTabClick}
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
-              }
+                label: "Tab 2",
+              },
             ]}
           />
           {activeTab === 0 && (
@@ -424,14 +446,14 @@ function Tabs() {
             margin="xxsmall"
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
+                label: "Tab 2",
               },
               {
-                label: "Tab 3"
-              }
+                label: "Tab 3",
+              },
             ]}
           />
         </div>
@@ -443,14 +465,14 @@ function Tabs() {
             margin="xsmall"
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
+                label: "Tab 2",
               },
               {
-                label: "Tab 3"
-              }
+                label: "Tab 3",
+              },
             ]}
           />
         </div>
@@ -462,14 +484,14 @@ function Tabs() {
             margin="small"
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
+                label: "Tab 2",
               },
               {
-                label: "Tab 3"
-              }
+                label: "Tab 3",
+              },
             ]}
           />
         </div>
@@ -481,14 +503,14 @@ function Tabs() {
             margin="medium"
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
+                label: "Tab 2",
               },
               {
-                label: "Tab 3"
-              }
+                label: "Tab 3",
+              },
             ]}
           />
         </div>
@@ -500,14 +522,14 @@ function Tabs() {
             margin="large"
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
+                label: "Tab 2",
               },
               {
-                label: "Tab 3"
-              }
+                label: "Tab 3",
+              },
             ]}
           />
         </div>
@@ -519,14 +541,14 @@ function Tabs() {
             margin="xlarge"
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
+                label: "Tab 2",
               },
               {
-                label: "Tab 3"
-              }
+                label: "Tab 3",
+              },
             ]}
           />
         </div>
@@ -538,17 +560,37 @@ function Tabs() {
             margin="xxlarge"
             tabs={[
               {
-                label: "Tab 1"
+                label: "Tab 1",
               },
               {
-                label: "Tab 2"
+                label: "Tab 2",
               },
               {
-                label: "Tab 3"
-              }
+                label: "Tab 3",
+              },
             ]}
           />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Tabs</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcTabs
+            activeTabIndex={activeTab}
+            onTabClick={onTabClick}
+            tabs={[
+              {
+                label: "Tab 1",
+              },
+              {
+                label: "Tab 2",
+              },
+              {
+                label: "Tab 3",
+              },
+            ]}
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

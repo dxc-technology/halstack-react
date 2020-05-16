@@ -1,11 +1,12 @@
 /* eslint-disable no-else-return */
-import React from "react";
+import React, { useContext } from "react";
 import { ToggleButton } from "@material-ui/lab";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcToggle = ({
   label = "",
@@ -18,8 +19,10 @@ const DxcToggle = ({
   onClick,
   selected = false,
   margin,
-  size = "fitContent"
+  size = "fitContent",
 }) => {
+  const colorsTheme = useContext(ThemeContext) || colors;
+
   const handlerToggleClick = () => {
     if (!disabled && typeof onClick === "function") {
       onClick(!selected);
@@ -27,26 +30,28 @@ const DxcToggle = ({
   };
 
   return (
-    <DxcToggleContainer
-      margin={margin}
-      brightness={theme}
-      disabled={disabled}
-      disableRipple={disableRipple}
-      selected={selected}
-      label={label}
-      mode={mode}
-      iconPosition={iconPosition}
-      value
-      size={size}
-      onClick={handlerToggleClick}
-    >
-      <ToggleButton disabled={disabled} disableRipple={disableRipple} selected={selected} label={label} value>
-        <ContentContainer iconPosition={iconPosition} label={label} iconSrc={iconSrc}>
-          {iconSrc !== "" && <IconContainer iconPosition={iconPosition} label={label} src={iconSrc}></IconContainer>}
-          {label !== "" && <LabelContainer>{label}</LabelContainer>}
-        </ContentContainer>
-      </ToggleButton>
-    </DxcToggleContainer>
+    <ThemeProvider theme={colorsTheme}>
+      <DxcToggleContainer
+        margin={margin}
+        brightness={theme}
+        disabled={disabled}
+        disableRipple={disableRipple}
+        selected={selected}
+        label={label}
+        mode={mode}
+        iconPosition={iconPosition}
+        value
+        size={size}
+        onClick={handlerToggleClick}
+      >
+        <ToggleButton disabled={disabled} disableRipple={disableRipple} selected={selected} label={label} value>
+          <ContentContainer iconPosition={iconPosition} label={label} iconSrc={iconSrc}>
+            {iconSrc !== "" && <IconContainer iconPosition={iconPosition} label={label} src={iconSrc}></IconContainer>}
+            {label !== "" && <LabelContainer>{label}</LabelContainer>}
+          </ContentContainer>
+        </ToggleButton>
+      </DxcToggleContainer>
+    </ThemeProvider>
   );
 };
 
@@ -55,7 +60,7 @@ const sizes = {
   medium: "120px",
   large: "240px",
   fillParent: "100%",
-  fitContent: "unset"
+  fitContent: "unset",
 };
 
 const calculateWidth = (margin, size) => {
@@ -67,36 +72,36 @@ const calculateWidth = (margin, size) => {
 
 const DxcToggleContainer = styled.div`
   & {
-    margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-    margin-top: ${props =>
+    margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+    margin-top: ${(props) =>
       props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-    margin-right: ${props =>
+    margin-right: ${(props) =>
       props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-    margin-bottom: ${props =>
+    margin-bottom: ${(props) =>
       props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-    margin-left: ${props =>
+    margin-left: ${(props) =>
       props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-    opacity: ${props => (props.disabled ? "0.5" : "1")};
-    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
+    opacity: ${(props) => (props.disabled ? "0.5" : "1")};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
     display: inline-block;
-    width: ${props => calculateWidth(props.margin, props.size)};
+    width: ${(props) => calculateWidth(props.margin, props.size)};
   }
 
   .MuiToggleButton-label {
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
-    color: ${props => (props.brightness === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
+    color: ${(props) => (props.brightness === "dark" && props.mode === "outlined" ? props.theme.white : props.theme.black)};
   }
   .MuiButtonBase-root {
-    width: ${props => calculateWidth(props.margin, props.size)};
-    min-height: ${props => (props.mode === "outlined" ? "41px" : "43px")};
-    background-color: ${props => (props.mode !== "outlined" ? colors.darkWhite : "transparent")};
+    width: ${(props) => calculateWidth(props.margin, props.size)};
+    min-height: ${(props) => (props.mode === "outlined" ? "41px" : "43px")};
+    background-color: ${(props) => (props.mode !== "outlined" ? props.theme.darkWhite : "transparent")};
     &:hover {
-      background-color: ${props =>
-        props.mode === "basic" ? colors.lightGrey : props.brightness === "dark" ? colors.darkGrey : colors.darkWhite};
+      background-color: ${(props) =>
+        props.mode === "basic" ? props.theme.lightGrey : props.brightness === "dark" ? props.theme.darkGrey : props.theme.darkWhite};
       .MuiToggleButton-label {
-        color: ${props => (props.brightness === "dark" && props.mode === "outlined" ? colors.white : colors.black)};
+        color: ${(props) => (props.brightness === "dark" && props.mode === "outlined" ? props.theme.white : props.theme.black)};
       }
     }
   }
@@ -104,37 +109,37 @@ const DxcToggleContainer = styled.div`
   .MuiToggleButton-root {
     min-width: 42px;
     height: 43px;
-    border: ${props =>
+    border: ${(props) =>
       props.mode === "basic"
         ? "none !important"
         : props.brightness === "dark" && !props.selected
-        ? `2px solid ${colors.white} !important`
+        ? `2px solid ${props.theme.white} !important`
         : props.brightness === "dark" && props.selected
-        ? `2px solid ${colors.yellow} !important`
-        : `2px solid ${colors.black} !important`};
+        ? `2px solid ${props.theme.yellow} !important`
+        : `2px solid ${props.theme.black} !important`};
 
     border-radius: 4px !important;
   }
 
   .MuiToggleButton-root.Mui-selected {
-    background-color: ${props =>
-      props.mode === "outlined" ? (props.brightness === "light" ? colors.darkWhite : "transparent") : colors.yellow};
+    background-color: ${(props) =>
+      props.mode === "outlined" ? (props.brightness === "light" ? props.theme.darkWhite : "transparent") : props.theme.yellow};
     &:hover {
-      background-color: ${props =>
+      background-color: ${(props) =>
         props.mode === "basic" && props.brightness === "light"
-          ? colors.black
+          ? props.theme.black
           : props.mode === "basic" && props.brightness === "dark"
-          ? colors.lightBlack
+          ? props.theme.lightBlack
           : props.brightness === "light"
-          ? colors.lightGrey
-          : colors.darkGrey};
+          ? props.theme.lightGrey
+          : props.theme.darkGrey};
       .MuiToggleButton-label {
-        color: ${props =>
+        color: ${(props) =>
           props.mode === "basic"
-            ? colors.yellow
+            ? props.theme.yellow
             : props.brightness === "dark" && props.mode === "outlined"
-            ? colors.white
-            : colors.black};
+            ? props.theme.white
+            : props.theme.black};
       }
     }
   }
@@ -142,7 +147,7 @@ const DxcToggleContainer = styled.div`
   .MuiToggleButton-root:last-child,
   .MuiToggleButton-root:first-child,
   .MuiToggleButton-root:not(:first-child) {
-    padding: ${props =>
+    padding: ${(props) =>
       props.label !== "" && props.size !== "small"
         ? props.mode === "outlined"
           ? "8px 30px "
@@ -153,14 +158,14 @@ const DxcToggleContainer = styled.div`
   }
 
   .MuiTouchRipple-child {
-    background-color: ${props =>
+    background-color: ${(props) =>
       props.mode === "basic"
         ? props.selected === false
-          ? colors.yellow
-          : colors.darkWhite
+          ? props.theme.yellow
+          : props.theme.darkWhite
         : props.selected === false
-        ? colors.lightGrey
-        : colors.white};
+        ? props.theme.lightGrey
+        : props.theme.white};
   }
 `;
 
@@ -168,15 +173,15 @@ const ContentContainer = styled.span`
   line-height: 1;
   display: flex;
   align-items: center;
-  flex-direction: ${props => (props.iconPosition === "after" ? "row-reverse" : "row")};
+  flex-direction: ${(props) => (props.iconPosition === "after" ? "row-reverse" : "row")};
 `;
 
 const IconContainer = styled.img`
   width: 20px;
   height: 20px;
   line-height: 1;
-  margin-right: ${props => (props.label !== "" && props.iconPosition === "before" ? "10px" : "")};
-  margin-left: ${props => (props.label !== "" && props.iconPosition === "after" ? "10px" : "")};
+  margin-right: ${(props) => (props.label !== "" && props.iconPosition === "before" ? "10px" : "")};
+  margin-left: ${(props) => (props.label !== "" && props.iconPosition === "after" ? "10px" : "")};
 `;
 
 const LabelContainer = styled.span``;
@@ -196,10 +201,10 @@ DxcToggle.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
 };
 
 export default DxcToggle;

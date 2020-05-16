@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces, colors } from "../common/variables.js";
 
 import DxcBox from "../box/Box";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcCard = ({
   imageSrc,
   children,
   margin,
   linkHref,
-  onClick, 
-  imageBgColor, 
+  onClick,
+  imageBgColor,
   imagePadding,
   imagePosition,
   theme,
   outlined,
-  imageCover
+  imageCover,
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
+  const colorsTheme = useContext(ThemeContext) || colors;
+
   const clickHandler = () => {
     if (onClick) {
       onClick();
@@ -27,7 +30,12 @@ const DxcCard = ({
 
   const tagContent = (
     <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
-      <CardContainer brightness={theme} hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
+      <CardContainer
+        brightness={theme}
+        hasAction={onClick || linkHref}
+        outlined={outlined}
+        imagePosition={imagePosition}
+      >
         <ImageContainer imageBgColor={imageBgColor}>
           <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
         </ImageContainer>
@@ -37,15 +45,17 @@ const DxcCard = ({
   );
 
   return (
-    <StyledDxcCard
-      margin={margin}
-      onMouseEnter={() => changeIsHovered(true)}
-      onMouseLeave={() => changeIsHovered(false)}
-      onClick={clickHandler}
-      hasAction={onClick || linkHref}
-    >
-      {(linkHref && <StyledLink href={linkHref}>{tagContent}</StyledLink>) || tagContent}
-    </StyledDxcCard>
+    <ThemeProvider theme={colorsTheme}>
+      <StyledDxcCard
+        margin={margin}
+        onMouseEnter={() => changeIsHovered(true)}
+        onMouseLeave={() => changeIsHovered(false)}
+        onClick={clickHandler}
+        hasAction={onClick || linkHref}
+      >
+        {(linkHref && <StyledLink href={linkHref}>{tagContent}</StyledLink>) || tagContent}
+      </StyledDxcCard>
+    </ThemeProvider>
   );
 };
 
@@ -61,21 +71,23 @@ const StyledDxcCard = styled.div`
 `;
 
 const borderSizePx = "2";
-const getBorder = (outlined, brightness) => {
-  const color = brightness === "dark" || brightness === "medium" ? colors.white : colors.black;
-  return outlined ? `${borderSizePx}px solid ${color}` : "none";
+const getBorder = (props) => {
+  const color = props.brightness === "dark" || props.brightness === "medium" ? props.theme.white : props.theme.black;
+  return props.outlined ? `${borderSizePx}px solid ${color}` : "none";
 };
 const CardContainer = styled.div`
   display: inline-flex;
-  background: ${({ brightness }) => (brightness === "dark" ? colors.black : brightness === "medium" ? "#212121" : colors.white)};
-  color: ${({ brightness }) => (brightness === "dark" || brightness === "medium" ? colors.white : colors.black)};
+  background: ${(props) =>
+    props.brightness === "dark" ? props.theme.black : props.brightness === "medium" ? "#212121" : props.theme.white};
+  color: ${(props) =>
+    props.brightness === "dark" || props.brightness === "medium" ? props.theme.white : props.theme.black};
   align-items: center;
   flex-direction: ${({ imagePosition }) => (imagePosition === "before" && "row") || "row-reverse"};
   height: ${({ outlined }) => (outlined ? `${220 - 2 * borderSizePx}px` : "220px")};
   width: ${({ outlined }) => (outlined ? `${400 - 2 * borderSizePx}px` : "400px")};
-  border: ${({ outlined, brightness }) => getBorder(outlined, brightness)};
+  border: ${(props) => getBorder(props)};
   &:hover {
-    border-color: ${({hasAction}) => hasAction ? colors.yellow : "unset"};
+    border-color: ${(props) => (props.hasAction ? props.theme.yellow : "unset")};
   }
 `;
 
@@ -122,10 +134,10 @@ DxcCard.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
 };
 
 DxcCard.defaultProps = {
@@ -138,7 +150,7 @@ DxcCard.defaultProps = {
   linkHref: null,
   onClick: null,
   imageBgColor: "black",
-  imagePosition: "before"
+  imagePosition: "before",
 };
 
 export default DxcCard;

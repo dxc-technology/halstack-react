@@ -1,36 +1,43 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import "../../common/OpenSans.css";
 import PropTypes from "prop-types";
 import Transaction from "../transaction/Transaction";
-import {colors} from "../../common/variables.js";
+import { colors } from "../../common/variables.js";
+import ThemeContext from "../../ThemeContext.js";
 
 const DxcTransactions = ({ transactions }) => {
+  const colorsTheme = useContext(ThemeContext) || colors;
+
   return (
-    <DXCTransactions>
-      <TransactionsText>
-        <TransactionsTitle>Files uploaded</TransactionsTitle>
-        <TransactionsSubTitle>
-          <TransactionsNumber>{transactions && transactions.filter(file => file.status === "success").length}</TransactionsNumber>{" "}
-          documents in total
-        </TransactionsSubTitle>
-      </TransactionsText>
-      {transactions.map(transaction => {
-        return (
-          <Transaction
-            name={transaction.name}
-            type={transaction.type}
-            status={transaction.status}
-            message={transaction.message}
-          />
-        );
-      })}
-    </DXCTransactions>
+    <ThemeProvider theme={colorsTheme}>
+      <DXCTransactions>
+        <TransactionsText>
+          <TransactionsTitle>Files uploaded</TransactionsTitle>
+          <TransactionsSubTitle>
+            <TransactionsNumber>
+              {transactions && transactions.filter((file) => file.status === "success").length}
+            </TransactionsNumber>{" "}
+            documents in total
+          </TransactionsSubTitle>
+        </TransactionsText>
+        {transactions.map((transaction) => {
+          return (
+            <Transaction
+              name={transaction.name}
+              type={transaction.type}
+              status={transaction.status}
+              message={transaction.message}
+            />
+          );
+        })}
+      </DXCTransactions>
+    </ThemeProvider>
   );
 };
 
 DxcTransactions.propTypes = {
-  transactions: PropTypes.array
+  transactions: PropTypes.array,
 };
 
 const DXCTransactions = styled.div`
@@ -40,18 +47,18 @@ const DXCTransactions = styled.div`
   padding-top: 46px;
   padding-left: 65px;
   border-radius: 4px 0px 4px 4px;
-  box-shadow: 0px 0px 1px ${colors.black}29;
+  box-shadow: 0px 0px 1px ${(props) => props.theme.black}29;
   overflow: auto;
   ::-webkit-scrollbar {
     width: 3px;
   }
   ::-webkit-scrollbar-track {
     border-radius: 3px;
-    background-color: ${colors.lightGrey};
+    background-color: ${(props) => props.theme.lightGrey};
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 3px;
-    background-color: ${colors.darkGrey};
+    background-color: ${(props) => props.theme.darkGrey};
   }
 `;
 
@@ -68,7 +75,7 @@ const TransactionsTitle = styled.span`
 
 const TransactionsSubTitle = styled.span`
   font-size: 12px;
-  color: ${colors.darkGrey};
+  color: ${(props) => props.theme.darkGrey};
 `;
 
 const TransactionsNumber = styled.span`

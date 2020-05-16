@@ -1,5 +1,22 @@
 import React, { useState } from "react";
-import { DxcDate } from "@diaas/dxc-react-cdk";
+import { DxcDate, ThemeContext } from "@diaas/dxc-react-cdk";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const [inputValue, changeInput] = useState("");
@@ -26,7 +43,7 @@ function App() {
           margin="xxsmall"
           size="medium"
           placeholder
-           onBlur={onBlur}
+          onBlur={onBlur}
           format="MM-dd-yyyy"
         />
       </div>
@@ -292,6 +309,23 @@ function App() {
             />
           </div>
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Date</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcDate
+            label="Input label"
+            value={inputValue}
+            assistiveText="assistive text"
+            onChange={onChange}
+            invalid={isInvalid}
+            margin="xxsmall"
+            size="medium"
+            placeholder
+            onBlur={onBlur}
+            format="MM-dd-yyyy"
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );
