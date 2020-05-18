@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcAccordion, DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcAccordion, ThemeContext } from "@diaas/dxc-react-cdk";
 import homeIcon from "../images/home.svg";
 import facebookIcon from "../images/facebook.svg";
 
