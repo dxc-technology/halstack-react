@@ -19,7 +19,7 @@ const DxcAlert = ({
   onClose,
   children,
   margin,
-  size = "fitContent"
+  size = "fitContent",
 }) => {
   const getTypeText = () => {
     return type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
@@ -43,7 +43,11 @@ const DxcAlert = ({
             <AlertType type={type}>{getTypeText(type)}</AlertType>
             {inlineText && inlineText !== "" && "-"}
             <AlertText>{inlineText}</AlertText>
-            {onClose && <CloseAlertIcon src={closeIcon} onClick={onClose} />}
+            {onClose && (
+              <CloseAlertIcon onClick={onClose}>
+                <CloseImg src={closeIcon} />
+              </CloseAlertIcon>
+            )}
           </AlertInfoText>
         </AlertInfo>
         {children && <AlertContent>{children}</AlertContent>}
@@ -57,7 +61,7 @@ const sizes = {
   medium: "480px",
   large: "820px",
   fillParent: "100%",
-  fitContent: "auto"
+  fitContent: "auto",
 };
 
 const calculateWidth = (margin, size) => {
@@ -73,65 +77,65 @@ DxcAlert.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
+    PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   type: PropTypes.oneOf(["info", "confirm", "warning", "error"]),
   mode: PropTypes.oneOf(["inline", "modal"]),
   inlineText: PropTypes.string,
   onClose: PropTypes.func,
   children: PropTypes.element,
-  size: PropTypes.oneOf([...Object.keys(sizes)])
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
 };
 
 const AlertModal = styled.div`
-  width: ${props => (props.mode === "modal" ? "100%" : "")};
-  height: ${props => (props.mode === "modal" ? "100%" : "")};
-  justify-content: ${props => (props.mode === "modal" ? "center" : "")};
-  align-items: ${props => (props.mode === "modal" ? "center" : "")};
-  top: ${props => (props.mode === "modal" ? "0" : "")};
-  left: ${props => (props.mode === "modal" ? "0" : "")};
-  position: ${props => (props.mode === "modal" ? "fixed" : "")};
-  display: ${props => (props.mode === "modal" ? "flex" : "")};
+  width: ${(props) => (props.mode === "modal" ? "100%" : "")};
+  height: ${(props) => (props.mode === "modal" ? "100%" : "")};
+  justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
+  align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
+  top: ${(props) => (props.mode === "modal" ? "0" : "")};
+  left: ${(props) => (props.mode === "modal" ? "0" : "")};
+  position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
+  display: ${(props) => (props.mode === "modal" ? "flex" : "")};
   z-index: 200;
 `;
 
 const OverlayContainer = styled.div`
-  background-color: ${props => (props.mode === "modal" ? `${colors.black}B3` : `${colors.white}`)};
-  position: ${props => (props.mode === "modal" ? "fixed" : "")};
-  top: ${props => (props.mode === "modal" ? "0" : "")};
-  bottom: ${props => (props.mode === "modal" ? "0" : "")};
-  left: ${props => (props.mode === "modal" ? "0" : "")};
-  right: ${props => (props.mode === "modal" ? "0" : "")};
+  background-color: ${(props) => (props.mode === "modal" ? `${colors.black}B3` : `${colors.white}`)};
+  position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
+  top: ${(props) => (props.mode === "modal" ? "0" : "")};
+  bottom: ${(props) => (props.mode === "modal" ? "0" : "")};
+  left: ${(props) => (props.mode === "modal" ? "0" : "")};
+  right: ${(props) => (props.mode === "modal" ? "0" : "")};
 `;
 
 const AlertContainer = styled.div`
-  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${props =>
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${props =>
+  margin-right: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${props =>
+  margin-bottom: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${props =>
+  margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: ${props => (props.children && "inline-block") || "inline-flex"};
+  display: ${(props) => (props.children && "inline-block") || "inline-flex"};
   font-size: 12px;
   overflow: hidden;
   box-shadow: 0px 3px 6px #00000012;
   border-radius: 4px;
   font-family: "Open Sans", sans-serif;
-  justify-content: ${props => (props.mode === "modal" ? "center" : "")};
-  align-items: ${props => (props.mode === "modal" ? "center" : "")};
-  max-width: ${props =>
+  justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
+  align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
+  max-width: ${(props) =>
     props.size === "fitContent"
       ? calculateWidth(props.margin, "fillParent")
       : calculateWidth(props.margin, props.size)};
-  width: ${props => calculateWidth(props.margin, props.size)};
-  min-height: ${props =>
-    (props.children && props.children.filter(child => child === undefined).length === 0 && "92px") || "48px"};
-  background-color: ${props =>
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  min-height: ${(props) =>
+    (props.children && props.children.filter((child) => child === undefined).length === 0 && "92px") || "48px"};
+  background-color: ${(props) =>
     (props.type === "info" && colors.lightBlue) ||
     (props.type === "confirm" && colors.lightGreen) ||
     (props.type === "warning" && colors.lightYellow) ||
@@ -182,8 +186,16 @@ const AlertContent = styled.div`
   overflow-y: auto;
 `;
 
-const CloseAlertIcon = styled.img`
+const CloseAlertIcon = styled.button`
   cursor: pointer;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  height: 20px;
+  width: 20px;
 `;
+
+const CloseImg = styled.img``;
 
 export default DxcAlert;
