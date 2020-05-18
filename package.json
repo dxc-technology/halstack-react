@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@diaas/dxc-react-cdk": "0.0.0-alpha.285",
+    "@diaas/dxc-react-cdk": "0.0.0-alpha.286",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-live": "^2.2.2",
