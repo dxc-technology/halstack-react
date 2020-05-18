@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Slider from "@material-ui/lab/Slider";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import DxcInput from "../input-text/InputText";
 import { colors, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcSlider = ({
   minValue = 0,
@@ -21,9 +22,10 @@ const DxcSlider = ({
   theme = "light",
   marks = false,
   margin,
-  size = "fillParent"
+  size = "fillParent",
 }) => {
   const [innerValue, setInnerValue] = useState(0);
+  const colorsTheme = useContext(ThemeContext) || colors;
 
   const handlerSliderChange = (event, newValue) => {
     if (value == null) {
@@ -36,7 +38,7 @@ const DxcSlider = ({
       onChange(newValue);
     }
   };
-  const handlerInputChange = event => {
+  const handlerInputChange = (event) => {
     if (value == null) {
       setInnerValue(event > maxValue ? maxValue : event);
     }
@@ -46,48 +48,50 @@ const DxcSlider = ({
   };
 
   return (
-    <SliderContainer theme={theme} margin={margin} size={size}>
-      {showLimitsValues && (
-        <MinLabelContainer theme={theme} disabled={disabled}>
-          {minValue}
-        </MinLabelContainer>
-      )}
-      <Slider
-        value={(value != null && value >= 0 && value) || innerValue}
-        min={minValue}
-        max={maxValue}
-        onChange={handlerSliderChange}
-        onChangeCommitted={onDragEnd && ((event, selectedValue) => onDragEnd(selectedValue))}
-        step={step}
-        marks={marks || []}
-        disabled={disabled}
-      />
-      {showLimitsValues && (
-        <MaxLabelContainer theme={theme} disabled={disabled} step={step}>
-          {maxValue}
-        </MaxLabelContainer>
-      )}
-      {showInput && (
-        <StyledTextInput theme={theme}>
-          <DxcInput
-            name={name}
-            theme={theme}
-            value={(value != null && value >= 0 && value) || innerValue}
-            disabled={disabled}
-            onChange={handlerInputChange}
-            size="small"
-            margin={{ left: "medium" }}
-          />
-        </StyledTextInput>
-      )}
-    </SliderContainer>
+    <ThemeProvider theme={colorsTheme}>
+      <SliderContainer brightness={theme} margin={margin} size={size}>
+        {showLimitsValues && (
+          <MinLabelContainer brightness={theme} disabled={disabled}>
+            {minValue}
+          </MinLabelContainer>
+        )}
+        <Slider
+          value={(value != null && value >= 0 && value) || innerValue}
+          min={minValue}
+          max={maxValue}
+          onChange={handlerSliderChange}
+          onChangeCommitted={onDragEnd && ((event, selectedValue) => onDragEnd(selectedValue))}
+          step={step}
+          marks={marks || []}
+          disabled={disabled}
+        />
+        {showLimitsValues && (
+          <MaxLabelContainer brightness={theme} disabled={disabled} step={step}>
+            {maxValue}
+          </MaxLabelContainer>
+        )}
+        {showInput && (
+          <StyledTextInput brightness={theme}>
+            <DxcInput
+              name={name}
+              brightness={theme}
+              value={(value != null && value >= 0 && value) || innerValue}
+              disabled={disabled}
+              onChange={handlerInputChange}
+              size="small"
+              margin={{ left: "medium" }}
+            />
+          </StyledTextInput>
+        )}
+      </SliderContainer>
+    </ThemeProvider>
   );
 };
 
 const sizes = {
   medium: "240px",
   large: "480px",
-  fillParent: "100%"
+  fillParent: "100%",
 };
 
 const calculateWidth = (margin, size) => {
@@ -116,17 +120,17 @@ DxcSlider.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
 };
 
 const StyledTextInput = styled.div`
   .MuiTextField-root {
     font-size: 16px;
     .MuiInputBase-input {
-      color: ${props => (props.theme === "light" && colors.black) || colors.white};
+      color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.white};
     }
   }
 `;
@@ -135,17 +139,17 @@ const SliderContainer = styled.div`
   display: flex;
   align-items: center;
 
-  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${props =>
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${props =>
+  margin-right: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${props =>
+  margin-bottom: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${props =>
+  margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  width: ${props => calculateWidth(props.margin, props.size)};
+  width: ${(props) => calculateWidth(props.margin, props.size)};
 
   .MultiSlider-root {
     display: flex;
@@ -156,8 +160,8 @@ const SliderContainer = styled.div`
   }
 
   .MuiSlider-root.Mui-disabled {
-    opacity: ${props => (props.theme === "light" && 1) || 0.3};
-    color: ${colors.lightGrey};
+    opacity: ${(props) => (props.brightness === "light" && 1) || 0.3};
+    color: ${(props) => props.theme.lightGrey};
     cursor: not-allowed;
   }
 
@@ -165,17 +169,17 @@ const SliderContainer = styled.div`
     & .MuiSlider-thumb {
       height: 14px;
       width: 14px;
-      background-color: ${colors.lightGrey};
+      background-color: ${(props) => props.theme.lightGrey};
       top: 35%;
     }
     & .MuiSlider-track {
-      background-color: ${colors.lightGrey};
+      background-color: ${(props) => props.theme.lightGrey};
     }
     & > .MuiSlider-mark.MuiSlider-markActive {
-      background-color: ${colors.lightGrey} !important;
+      background-color: ${(props) => props.theme.lightGrey} !important;
     }
     & > .MuiSlider-mark {
-      background-color: ${colors.lightGrey};
+      background-color: ${(props) => props.theme.lightGrey};
       width: 6px;
       height: 6px;
       border-radius: 18px;
@@ -187,7 +191,7 @@ const SliderContainer = styled.div`
   .MuiSlider-thumb {
     height: 14px;
     width: 14px;
-    background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
+    background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.lightGrey};
     top: 45%;
     :hover,
     &.Mui-focusVisible {
@@ -197,68 +201,69 @@ const SliderContainer = styled.div`
       box-shadow: none;
     }
     :hover:not(:active) {
-      box-shadow: ${props => (props.theme === "light" && "0px 0px 0px 18px #66666633") || "0px 0px 0px 18px #d9d9d933"};
+      box-shadow: ${(props) =>
+        (props.brightness === "light" && "0px 0px 0px 18px #66666633") || "0px 0px 0px 18px #d9d9d933"};
     }
     :active {
       box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
-      background-color: ${props => (props.theme === "light" && colors.black) || colors.yellow};
+      background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.yellow};
       top: 45%;
       transform: scale(1.25);
       transform-origin: center;
     }
   }
   .MuiSlider-track {
-    background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
+    background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.lightGrey};
     height: 2px;
     top: 50%;
   }
 
   .MuiSlider-track.MuiSlider-trackAfter {
-    background-color: ${colors.black};
+    background-color: ${(props) => props.theme.black};
   }
   .MuiSlider-rail {
-    background-color: ${props => (props.theme === "light" && colors.lightGrey) || colors.lightGrey};
+    background-color: ${(props) => (props.brightness === "light" && props.theme.lightGrey) || props.theme.lightGrey};
     top: 50%;
     opacity: 0.54;
   }
   .MuiSlider-mark.MuiSlider-markActive {
-    background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
+    background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.lightGrey};
   }
   .MuiSlider-mark {
-    background-color: ${props => (props.theme === "light" && colors.black) || colors.lightGrey};
+    background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.lightGrey};
     width: 6px;
     height: 6px;
     border-radius: 18px;
-    top: ${props => (props.theme === "light" && "40%") || "44%"};
+    top: ${(props) => (props.brightness === "light" && "40%") || "44%"};
   }
 `;
 
 const MinLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props =>
-    props.theme === "dark" && props.disabled
-      ? colors.darkGrey
-      : props.theme === "dark"
-      ? colors.white
-      : props.theme === "light" && props.disabled
-      ? colors.lightGrey
-      : colors.black};
+  color: ${(props) =>
+    props.brightness === "dark" && props.disabled
+      ? props.theme.darkGrey
+      : props.brightness === "dark"
+      ? props.theme.white
+      : props.brightness === "light" && props.disabled
+      ? props.theme.lightGrey
+      : props.theme.black};
   font-size: 16px;
   margin-right: 15px;
 `;
 
 const MaxLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${props =>
-    props.theme === "dark" && props.disabled
-      ? colors.darkGrey
-      : props.theme === "dark"
-      ? colors.white
-      : props.theme === "light" && props.disabled
-      ? colors.lightGrey
-      : colors.black};
+  color: ${(props) =>
+    props.brightness === "dark" && props.disabled
+      ? props.theme.darkGrey
+      : props.brightness === "dark"
+      ? props.theme.white
+      : props.brightness === "light" && props.disabled
+      ? props.theme.lightGrey
+      : props.theme.black};
   font-size: 16px;
-  margin-left: ${props => (props.step === 1 ? "15px" : "20px")};
+  margin-left: ${(props) => (props.step === 1 ? "15px" : "20px")};
 `;
 
 export default DxcSlider;

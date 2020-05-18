@@ -1,9 +1,26 @@
 import React, { useState } from "react";
-import { DxcCheckbox } from "@diaas/dxc-react-cdk";
+import { DxcCheckbox, ThemeContext } from "@diaas/dxc-react-cdk";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const [checked, changeChecked] = useState(false);
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     changeChecked(newValue);
   };
   return (
@@ -12,7 +29,6 @@ function App() {
         <h4>Label before</h4>
         <DxcCheckbox checked={checked} label="Checkbox " onChange={onChange} />
       </div>
-
       <div className="test-case" id="label-after">
         <h4>Label after</h4>
         <DxcCheckbox
@@ -31,14 +47,13 @@ function App() {
           labelPosition="after"
         />
       </div>
-
       <div>
         <h4>Dark theme</h4>
         <div
           className="test-case"
           id="dark-theme"
           style={{
-            backgroundColor: "black"
+            backgroundColor: "black",
           }}
         >
           <DxcCheckbox
@@ -50,7 +65,6 @@ function App() {
           />
         </div>
       </div>
-
       <div className="test-case" id="color-checked">
         <h4>Color checked checkbox</h4>
         <DxcCheckbox
@@ -60,7 +74,6 @@ function App() {
           labelPosition="after"
         />
       </div>
-
       <div className="test-case" id="color-unchecked">
         <h4>Color unchecked checkbox</h4>
         <DxcCheckbox
@@ -70,7 +83,6 @@ function App() {
           labelPosition="after"
         />
       </div>
-
       <div className="test-case" id="disabled-checkbox">
         <h4>Disabled checkbox</h4>
         <DxcCheckbox
@@ -81,7 +93,6 @@ function App() {
           disabled={true}
         />
       </div>
-
       <div className="test-case" id="required-checkbox">
         <h4>Required checkbox</h4>
         <DxcCheckbox
@@ -92,7 +103,6 @@ function App() {
           required={true}
         />
       </div>
-
       <div>
         <h4>Sizes</h4>
         <div className="test-case" id="small-size-single-line">
@@ -196,7 +206,6 @@ function App() {
           />
         </div>
       </div>
-
       <div>
         <h4>Margins</h4>
         <div className="test-case" id="xxsmall-margin">
@@ -269,6 +278,16 @@ function App() {
             margin="xxlarge"
           />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Checkbox</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcCheckbox
+            checked={checked}
+            label="Checkbox "
+            onChange={onChange}
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

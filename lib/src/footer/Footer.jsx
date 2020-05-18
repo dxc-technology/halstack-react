@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
 import defaultIcon from "./dxc_logo_wht.png";
 import "../common/OpenSans.css";
 import { colors, spaces, responsiveSizes } from "../common/variables.js";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcFooter = ({
   socialLinks = [],
@@ -13,14 +14,15 @@ const DxcFooter = ({
   logoSrc = "default",
   children,
   padding,
-  margin
+  margin,
 }) => {
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
   const [isResponsivePhone, setIsResponsivePhone] = useState(false);
+  const colorsTheme = useContext(ThemeContext) || colors;
 
-  const handleResize = refWidth => {
+  const handleResize = (refWidth) => {
     if (ref.current) {
       setRefSize(refWidth);
       if (refWidth <= responsiveSizes.tablet && refWidth > responsiveSizes.mobileLarge) {
@@ -63,38 +65,41 @@ const DxcFooter = ({
   ));
 
   return (
-    <FooterContainer margin={margin} refSize={refSize} ref={ref}>
-      <FooterHeader>
-        <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? defaultIcon : logoSrc} />
-        <div>{socialLink}</div>
-      </FooterHeader>
-      {isResponsivePhone && (
-        <div>
-          <FooterFooter className="footerFooter" refSize={refSize}>
-            <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
-            <Copyright refSize={refSize}>{copyright}</Copyright>
-          </FooterFooter>
-        </div>
-      )}
-      {((!isResponsiveTablet && !isResponsivePhone) || isResponsiveTablet) && (
-        <div>
-          <ChildComponents padding={padding}>{children}</ChildComponents>
-          <FooterFooter className="footerFooter">
-            <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
-            <Copyright refSize={refSize}>{copyright}</Copyright>
-          </FooterFooter>
-        </div>
-      )}
-    </FooterContainer>
+    <ThemeProvider theme={colorsTheme}>
+      <FooterContainer margin={margin} refSize={refSize} ref={ref}>
+        <FooterHeader>
+          <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? defaultIcon : logoSrc} />
+          <div>{socialLink}</div>
+        </FooterHeader>
+        {isResponsivePhone && (
+          <div>
+            <FooterFooter className="footerFooter" refSize={refSize}>
+              <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
+              <Copyright refSize={refSize}>{copyright}</Copyright>
+            </FooterFooter>
+          </div>
+        )}
+        {((!isResponsiveTablet && !isResponsivePhone) || isResponsiveTablet) && (
+          <div>
+            <ChildComponents padding={padding}>{children}</ChildComponents>
+            <FooterFooter className="footerFooter">
+              <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
+              <Copyright refSize={refSize}>{copyright}</Copyright>
+            </FooterFooter>
+          </div>
+        )}
+      </FooterContainer>
+    </ThemeProvider>
   );
 };
 
 const FooterContainer = styled.div`
   & {
-    padding: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px")};
+    padding: ${(props) =>
+      props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px"};
     font-family: "Open Sans", sans-serif;
-    background-color: ${colors.black};
-    margin-top: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+    background-color: ${(props) => props.theme.black};
+    margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   }
 `;
 
@@ -107,44 +112,44 @@ const FooterFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  flex-direction: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "column" : "row")};
-  align-items: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "")};
+  flex-direction: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "column" : "row")};
+  align-items: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "")};
 `;
 
 const BottomLinks = styled.div`
   padding-top: 6px;
-  border-top: 2px solid ${colors.yellow};
+  border-top: 2px solid ${(props) => props.theme.yellow};
   display: inline-flex;
   flex-wrap: wrap;
-  max-width: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "60%")};
-  width: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
+  max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "60%")};
+  width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
   & > span:last-child span {
     display: none;
   }
-  margin: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "40px 0 40px 0" : "")};
+  margin: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "40px 0 40px 0" : "")};
 `;
 
 const ChildComponents = styled.div`
   min-height: 15px;
-  padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-  padding-top: ${props =>
+  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+  padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${props =>
+  padding-right: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${props =>
+  padding-bottom: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${props =>
+  padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
-  color: ${colors.white};
+  color: ${(props) => props.theme.white};
   overflow: hidden;
 `;
 
 const Copyright = styled.div`
   font-size: 12px;
-  color: ${colors.white};
-  max-width: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
-  width: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
-  text-align: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "right")};
+  color: ${(props) => props.theme.white};
+  max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
+  width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
+  text-align: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "right")};
 `;
 
 const LogoIcon = styled.img`
@@ -155,7 +160,7 @@ const LogoIcon = styled.img`
 const SocialAnchor = styled.a`
   & {
     display: inline-flex;
-    margin-left: ${props => (props.index === 0 ? "0px" : "15px")};
+    margin-left: ${(props) => (props.index === 0 ? "0px" : "15px")};
   }
 `;
 
@@ -164,18 +169,18 @@ const SocialIcon = styled.img`
     display: inline-flex;
     height: 25px;
     width: 25px;
-    fill: ${colors.white};
+    fill: ${(props) => props.theme.white};
   }
 `;
 
 const Point = styled.span`
   margin: 0px 10px;
-  color: ${colors.white};
+  color: ${(props) => props.theme.white};
 `;
 
 const BottomLink = styled.a`
   text-decoration: none;
-  color: ${colors.white};
+  color: ${(props) => props.theme.white};
   font-size: 12px;
 `;
 
@@ -184,13 +189,13 @@ DxcFooter.propTypes = {
   socialLinks: PropTypes.arrayOf(
     PropTypes.shape({
       logoSrc: PropTypes.string.isRequired,
-      href: PropTypes.string
+      href: PropTypes.string,
     })
   ),
   bottomLinks: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
-      href: PropTypes.string
+      href: PropTypes.string,
     })
   ),
   copyright: PropTypes.string,
@@ -199,19 +204,19 @@ DxcFooter.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
+    PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   padding: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
 };
 
 export default DxcFooter;

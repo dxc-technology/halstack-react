@@ -1,6 +1,22 @@
-import React from "react";
-import { useState } from "react";
-import { DxcAlert, DxcButton } from "@diaas/dxc-react-cdk";
+import React, { useState } from "react";
+import { DxcAlert, DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const [isVisible, changeIsVisible] = useState(false);
@@ -39,7 +55,7 @@ function App() {
               onClose={handleVisibility}
               inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
               margin="medium"
-            ></DxcAlert>
+            />
           )}
         </div>
       </div>
@@ -309,6 +325,17 @@ function App() {
         leo lobortis eget."
           />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h5>Custom alert</h5>
+        <ThemeContext.Provider value={colors}>
+          <DxcAlert
+            margin="xxsmall"
+            type="info"
+            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+        leo lobortis eget."
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

@@ -1,9 +1,26 @@
 import React, { useState } from "react";
-import { DxcSwitch } from "@diaas/dxc-react-cdk";
+import { DxcSwitch, ThemeContext } from "@diaas/dxc-react-cdk";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const [checked, changeChecked] = useState(false);
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     changeChecked(newValue);
   };
   return (
@@ -44,7 +61,7 @@ function App() {
           className="test-case"
           id="dark-theme"
           style={{
-            backgroundColor: "black"
+            backgroundColor: "black",
           }}
         >
           <DxcSwitch
@@ -284,6 +301,17 @@ function App() {
             margin="xlarge"
           />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Switch</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcSwitch
+            checked={checked}
+            labelPosition="before"
+            label="Switch"
+            onChange={onChange}
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );
