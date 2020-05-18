@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { DxcDropdown, DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
+import React from "react";
+import { DxcDropdown, ThemeContext } from "@diaas/dxc-react-cdk";
 import facebookPath from "../images/facebook.svg";
 import linkedinPath from "../images/linkedin.svg";
 import twitterPath from "../images/twitter.svg";
