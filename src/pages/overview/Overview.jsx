@@ -82,6 +82,63 @@ function UseComponents() {
   );
 }
 
+function CustomThemes() {
+  return (
+    <Section>
+      <DocTitle size={2}>Custom Themes</DocTitle>
+      <p>
+        If the colors of a component's theme do not match your wishes or
+        requirements, you can modify them in order to customize the component.
+      </p>
+
+      <p>
+        You will need to create an object with your colors preferences. Please
+        note that the keys of those colors should be the same as in the
+        following code. You will also need to import ThemeContext, and use it to
+        wrap the component and pass your colors array as the value property.
+      </p>
+
+      <p>This is an example that includes the necessary code:</p>
+
+      <SyntaxHighlighter language="javascript" style={docco}>
+        {`
+  import { DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
+
+  const colors = {
+    black: "#171515",
+    lightBlack: "#302C2C",
+    mediumBlack: "#1A1818",
+    white: "#F3E3E3",
+    darkWhite: "#E0D5D5",
+    darkGrey: "#4F4F4A",
+    mediumGrey: "#84847A",
+    lightGrey: "#AEAEA3",
+    lighterGrey: "#D0D0C2",
+    darkRed: "#DA2918",
+    lightRed: "#B64439",
+    lightBlue: "#5BD5E6",
+    yellow: "#F1F110",
+    lightYellow: "#F5F57A",
+    lightPink: "#F57AB0",
+    lightGreen: "#66E250",
+  };
+
+  const MyComponent = () => {
+    return (
+      <ThemeContext.Provider value={colors}>
+        <DxcButton mode="basic" label="Basic Button" ></DxcButton>
+      </ThemeContext.Provider>
+    );
+  };
+
+  export default MyComponent;
+
+`}
+      </SyntaxHighlighter>
+    </Section>
+  );
+}
+
 function Support() {
   return (
     <Section>
@@ -194,16 +251,20 @@ function Overview() {
         sections={[
           {
             tabLabel: "Install",
-            section: Install
+            section: Install,
           },
           {
             tabLabel: "Use Components",
-            section: UseComponents
+            section: UseComponents,
+          },
+          {
+            tabLabel: "Custom Themes",
+            section: CustomThemes,
           },
           {
             tabLabel: "Support",
-            section: Support
-          }
+            section: Support,
+          },
         ]}
       ></DxcTabsForSections>
     </Content>
