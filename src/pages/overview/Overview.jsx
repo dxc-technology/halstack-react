@@ -95,7 +95,7 @@ function CustomThemes() {
         You will need to create an object with your colors preferences. Please
         note that the keys of those colors should be the same as in the
         following code. You will also need to import ThemeContext, and use it to
-        wrap the component and pass your colors array as the value property.
+        wrap the component and pass your colors object as the value property.
       </p>
 
       <p>This is an example that includes the necessary code:</p>
