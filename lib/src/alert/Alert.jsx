@@ -1,16 +1,15 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
-
 import closeIcon from "./close.svg";
 import errorIcon from "./error.svg";
 import infoIcon from "./info.svg";
 import successIcon from "./success.svg";
 import warningIcon from "./warning.svg";
-
 import { getMargin } from "../common/utils.js";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcAlert = ({
   type = "info",
@@ -21,38 +20,42 @@ const DxcAlert = ({
   margin,
   size = "fitContent",
 }) => {
+  const colorsTheme = useContext(ThemeContext) || colors;
+
   const getTypeText = () => {
     return type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
   };
 
   return (
-    <AlertModal mode={mode}>
-      {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
-      <AlertContainer mode={mode} type={type} margin={margin} size={size}>
-        <AlertInfo>
-          <AlertIcon
-            src={
-              (type === "info" && infoIcon) ||
-              (type === "confirm" && successIcon) ||
-              (type === "warning" && warningIcon) ||
-              (type === "error" && errorIcon) ||
-              errorIcon
-            }
-          />
-          <AlertInfoText>
-            <AlertType type={type}>{getTypeText(type)}</AlertType>
-            {inlineText && inlineText !== "" && "-"}
-            <AlertText>{inlineText}</AlertText>
-            {onClose && (
-              <CloseAlertIcon onClick={onClose}>
-                <CloseImg src={closeIcon} />
-              </CloseAlertIcon>
-            )}
-          </AlertInfoText>
-        </AlertInfo>
-        {children && <AlertContent>{children}</AlertContent>}
-      </AlertContainer>
-    </AlertModal>
+    <ThemeProvider theme={colorsTheme}>
+      <AlertModal mode={mode}>
+        {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
+        <AlertContainer mode={mode} type={type} margin={margin} size={size}>
+          <AlertInfo>
+            <AlertIcon
+              src={
+                (type === "info" && infoIcon) ||
+                (type === "confirm" && successIcon) ||
+                (type === "warning" && warningIcon) ||
+                (type === "error" && errorIcon) ||
+                errorIcon
+              }
+            />
+            <AlertInfoText>
+              <AlertType type={type}>{getTypeText(type)}</AlertType>
+              {inlineText && inlineText !== "" && "-"}
+              <AlertText>{inlineText}</AlertText>
+              {onClose && (
+                <CloseAlertIcon onClick={onClose}>
+                  <CloseImg src={closeIcon} />
+                </CloseAlertIcon>
+              )}
+            </AlertInfoText>
+          </AlertInfo>
+          {children && <AlertContent>{children}</AlertContent>}
+        </AlertContainer>
+      </AlertModal>
+    </ThemeProvider>
   );
 };
 
@@ -102,7 +105,7 @@ const AlertModal = styled.div`
 `;
 
 const OverlayContainer = styled.div`
-  background-color: ${(props) => (props.mode === "modal" ? `${colors.black}B3` : `${colors.white}`)};
+  background-color: ${(props) => (props.mode === "modal" ? `${props.theme.mediumBlack}` : `${props.theme.white}`)};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
   bottom: ${(props) => (props.mode === "modal" ? "0" : "")};
@@ -136,11 +139,11 @@ const AlertContainer = styled.div`
   min-height: ${(props) =>
     (props.children && props.children.filter((child) => child === undefined).length === 0 && "92px") || "48px"};
   background-color: ${(props) =>
-    (props.type === "info" && colors.lightBlue) ||
-    (props.type === "confirm" && colors.lightGreen) ||
-    (props.type === "warning" && colors.lightYellow) ||
-    (props.type === "error" && colors.lightPink) ||
-    colors.lightPink};
+    (props.type === "info" && props.theme.lightBlue) ||
+    (props.type === "confirm" && props.theme.lightGreen) ||
+    (props.type === "warning" && props.theme.lightYellow) ||
+    (props.type === "error" && props.theme.lightPink) ||
+    props.theme.lightPink};
   z-index: 300;
   cursor: default;
 `;

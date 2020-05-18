@@ -26,6 +26,7 @@ import Paginator from "./pages/Paginator";
 import Sidenav from "./pages/Sidenav";
 import Wizard from "./pages/Wizard";
 import Link from "./pages/Link";
+import Heading from "./pages/Heading";
 import Textarea from "./pages/Textarea";
 
 export default [
@@ -83,6 +84,11 @@ export default [
     path: "header",
     name: "Header",
     component: Header
+  },
+  {
+    path: "heading",
+    name: "Heading",
+    component: Heading
   },
   {
     path: "inputText",

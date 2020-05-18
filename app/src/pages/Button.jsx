@@ -1,6 +1,23 @@
 import React from "react";
-import { DxcButton } from "@diaas/dxc-react-cdk";
+import { DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
 import homeLogo from "../images/home.svg";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const onClick = () => {};
@@ -10,127 +27,127 @@ function App() {
       <div>
         <h4>Sizes</h4>
         <div class="test-case" id="small-size">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="Small"
-          onClick={onClick}
-          size="small"
-          margin="small"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="Small"
+            onClick={onClick}
+            size="small"
+            margin="small"
+          />
         </div>
         <div class="test-case" id="medium-size">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="Medium"
-          onClick={onClick}
-          size="medium"
-          margin="small"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="Medium"
+            onClick={onClick}
+            size="medium"
+            margin="small"
+          />
         </div>
         <div class="test-case" id="large-size">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="Large"
-          onClick={onClick}
-          size="large"
-          margin="small"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="Large"
+            onClick={onClick}
+            size="large"
+            margin="small"
+          />
         </div>
         <div class="test-case" id="fitContent-size">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="Fit Content"
-          onClick={onClick}
-          size="fitContent"
-          margin="small"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="Fit Content"
+            onClick={onClick}
+            size="fitContent"
+            margin="small"
+          />
         </div>
         <div class="test-case" id="fillParent-size">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="Fill Parent"
-          onClick={onClick}
-          size="fillParent"
-          margin="small"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="Fill Parent"
+            onClick={onClick}
+            size="fillParent"
+            margin="small"
+          />
         </div>
       </div>
       <div>
         <h4>Margins</h4>
         <div class="test-case" id="xxsmall-margin">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="xxsmall"
-          onClick={onClick}
-          size="large"
-          margin="xxsmall"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="xxsmall"
+            onClick={onClick}
+            size="large"
+            margin="xxsmall"
+          />
         </div>
         <div class="test-case" id="xsmall-margin">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="xsmall"
-          onClick={onClick}
-          size="large"
-          margin="xsmall"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="xsmall"
+            onClick={onClick}
+            size="large"
+            margin="xsmall"
+          />
         </div>
         <div class="test-case" id="small-margin">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="small"
-          onClick={onClick}
-          size="large"
-          margin="small"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="small"
+            onClick={onClick}
+            size="large"
+            margin="small"
+          />
         </div>
         <div class="test-case" id="medium-margin">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="medium"
-          onClick={onClick}
-          size="large"
-          margin="medium"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="medium"
+            onClick={onClick}
+            size="large"
+            margin="medium"
+          />
         </div>
         <div class="test-case" id="large-margin">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="large"
-          onClick={onClick}
-          size="large"
-          margin="large"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="large"
+            onClick={onClick}
+            size="large"
+            margin="large"
+          />
         </div>
         <div class="test-case" id="xlarge-margin">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="xlarge"
-          onClick={onClick}
-          size="large"
-          margin="xlarge"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="xlarge"
+            onClick={onClick}
+            size="large"
+            margin="xlarge"
+          />
         </div>
         <div class="test-case" id="xxlarge">
-        <DxcButton
-          mode="basic"
-          theme="light"
-          label="xxlarge"
-          onClick={onClick}
-          size="large"
-          margin="xxlarge"
-        />
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="xxlarge"
+            onClick={onClick}
+            size="large"
+            margin="xxlarge"
+          />
         </div>
       </div>
       <div>
@@ -473,6 +490,19 @@ function App() {
             margin="xsmall"
           />
         </div>
+      </div>
+      <div class="test-case" id="custom-colors">
+        <h4>Custom Button</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcButton
+            mode="basic"
+            theme="light"
+            label="Custom Button"
+            onClick={onClick}
+            size="large"
+            margin="small"
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

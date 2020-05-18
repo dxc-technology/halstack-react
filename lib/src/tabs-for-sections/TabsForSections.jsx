@@ -27,7 +27,7 @@ const DxcTabsForSections = ({ tabsMode = "filled", tabsTheme = "light", disableT
       <StyledTabs stickAtPx={stickAtPx}>
         <DxcTabs
           mode={tabsMode}
-          theme={tabsTheme}
+          brightness={tabsTheme}
           disableRipple={disableTabsRipple}
           tabs={tabs}
           activeTabIndex={activeTab}

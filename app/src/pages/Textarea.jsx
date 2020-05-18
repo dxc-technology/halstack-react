@@ -1,5 +1,22 @@
 import React, { useState } from "react";
-import { DxcTextarea } from "@diaas/dxc-react-cdk";
+import { DxcTextarea, ThemeContext } from "@diaas/dxc-react-cdk";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const [inputValue, changeInput] = useState("");
@@ -215,6 +232,16 @@ function App() {
             size="fillParent"
           />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Textarea</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcTextarea
+            label="Textarea label"
+            value={inputValue}
+            onChange={onChange}
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );
