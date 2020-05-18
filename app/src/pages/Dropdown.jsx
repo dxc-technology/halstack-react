@@ -1,8 +1,25 @@
-import React from "react";
-import { DxcDropdown } from "@diaas/dxc-react-cdk";
+import React, { useState } from "react";
+import { DxcDropdown, DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
 import facebookPath from "../images/facebook.svg";
 import linkedinPath from "../images/linkedin.svg";
 import twitterPath from "../images/twitter.svg";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const selectOption = () => {
@@ -12,33 +29,33 @@ function App() {
   const optionsWithoutIcon = [
     {
       value: 1,
-      label: "Facebook"
+      label: "Facebook",
     },
     {
       value: 2,
-      label: "Twitter"
+      label: "Twitter",
     },
     {
       value: 3,
-      label: "Linkedin"
-    }
+      label: "Linkedin",
+    },
   ];
   const optionsWithIcon = [
     {
       value: 1,
       label: "Facebook",
-      iconSrc: facebookPath
+      iconSrc: facebookPath,
     },
     {
       value: 2,
       label: "Linkedin",
-      iconSrc: linkedinPath
+      iconSrc: linkedinPath,
     },
     {
       value: 3,
       label: "Twitter",
-      iconSrc: twitterPath
-    }
+      iconSrc: twitterPath,
+    },
   ];
 
   return (
@@ -252,7 +269,7 @@ function App() {
           background: "black",
           display: "flex",
           height: "250px",
-          flexWrap: "wrap"
+          flexWrap: "wrap",
         }}
       >
         <DxcDropdown
@@ -278,6 +295,19 @@ function App() {
           margin="medium"
           size="large"
         ></DxcDropdown>
+      </div>
+      <div>
+        <h4>Custom Dropdown</h4>
+        <div className="test-case" id="custom-colors">
+          <ThemeContext.Provider value={colors}>
+            <DxcDropdown
+              label="Custom Dropdown"
+              size="large"
+              margin="small"
+              options={optionsWithoutIcon}
+            ></DxcDropdown>
+          </ThemeContext.Provider>
+        </div>
       </div>
     </div>
   );

@@ -1,18 +1,21 @@
 /* eslint-disable no-undef */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import "../../common/OpenSans.css";
 import Button from "../../button/Button";
 import uploadIcon from "./upload-button.svg";
 import dragAndDropIcon from "./drag-drop-icon.svg";
-import {colors} from "../../common/variables.js";
+import { colors } from "../../common/variables.js";
+import ThemeContext from "../../ThemeContext.js";
 
 const DxcButtonsUpload = ({ addFile, onUpload }) => {
-  const selectFile = e => {
+  const colorsTheme = useContext(ThemeContext) || colors;
+
+  const selectFile = (e) => {
     const filesObject = e.target.files;
     if (filesObject && filesObject.length > 0) {
-      const filesArray = Object.keys(filesObject).map(key => filesObject[key]);
+      const filesArray = Object.keys(filesObject).map((key) => filesObject[key]);
       addFile(filesArray);
     }
   };
@@ -22,21 +25,30 @@ const DxcButtonsUpload = ({ addFile, onUpload }) => {
   };
 
   return (
-    <DXCButtonsUpload>
-      <DragAndDropLabel>
-        <DragAndDropIcon />
-        Drag and Drop area
-      </DragAndDropLabel>
-      <Button style={{ marginRight: "30px" }} mode="flat" theme="light" label="CHOOSE FILES" onClick={handleClick} />
-      <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
-      <Button mode="basic" theme="light" label="UPLOAD" iconPosition="after" iconSrc={uploadIcon} onClick={onUpload} />
-    </DXCButtonsUpload>
+    <ThemeProvider theme={colorsTheme}>
+      <DXCButtonsUpload>
+        <DragAndDropLabel>
+          <DragAndDropIcon />
+          Drag and Drop area
+        </DragAndDropLabel>
+        <Button style={{ marginRight: "30px" }} mode="flat" theme="light" label="CHOOSE FILES" onClick={handleClick} />
+        <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
+        <Button
+          mode="basic"
+          theme="light"
+          label="UPLOAD"
+          iconPosition="after"
+          iconSrc={uploadIcon}
+          onClick={onUpload}
+        />
+      </DXCButtonsUpload>
+    </ThemeProvider>
   );
 };
 
 DxcButtonsUpload.propTypes = {
   addFile: PropTypes.func,
-  onUpload: PropTypes.func
+  onUpload: PropTypes.func,
 };
 
 const DXCButtonsUpload = styled.div`
@@ -53,7 +65,7 @@ const DragAndDropLabel = styled.div`
   align-items: center;
   font-style: italic;
   font-size: 12px;
-  color: ${colors.darkGrey};
+  color: ${(props) => props.theme.darkGrey};
   margin-right: 50px;
 `;
 

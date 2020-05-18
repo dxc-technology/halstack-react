@@ -43,12 +43,12 @@ const DxcWizard = ({
                         <IconContainer
                           current={i === renderedCurrent}
                           visited={i < renderedCurrent}
-                          theme={theme}
+                          brightness={theme}
                           disabled={step.disabled}
                         >
                           {
                               step.iconSrc ? <Icon src={step.iconSrc}></Icon> : 
-                              <Number disabled={step.disabled} current={i === renderedCurrent} theme={theme}>{i+1}</Number>
+                              <Number disabled={step.disabled} current={i === renderedCurrent} brightness={theme}>{i+1}</Number>
                           }
                         </IconContainer>
                         {
@@ -61,7 +61,7 @@ const DxcWizard = ({
                       {
                           step.label || step.description ? 
                           (
-                            <InfoContainer active={i <= innerCurrent} theme={theme}>
+                            <InfoContainer active={i <= innerCurrent} brightness={theme}>
                               {
                                 step.label ? <Label>{step.label}</Label> : ''
                               }
@@ -147,7 +147,7 @@ const IconContainer = styled.div`
     height: ${props => !props.current && !props.disabled ? "32px" : "36px"};
 
     ${props => !props.current && !props.disabled? 
-        `border: 2px solid ${props.theme === "light" ? '#000000' : '#FFFFFF'};` : 
+        `border: 2px solid ${props.brightness === "light" ? '#000000' : '#FFFFFF'};` : 
         ""}
 
     ${props => props.disabled ? 
@@ -172,7 +172,7 @@ const Number = styled.p`
     font: Normal 16px/22px Open Sans;
     letter-spacing: 0.77px;
     color: ${props => !props.current && !props.disabled ? 
-        props.theme === "light" ? 
+        props.brightness === "light" ? 
         '#000000' : '#FFFFFF' : 
         props.current ? 
         '#000000' :'#666666'};
@@ -190,10 +190,10 @@ const ValidityIcon = styled.img`
 
 const InfoContainer = styled.div`
     margin-left: 10px;
-    color: ${ props => props.theme === "light" ?
+    color: ${ props => props.brightness === "light" ?
       props.active ? '#000000' : '#666666' :
       props.active ? "#FFFFFF" : "#D9D9D9"
-    }
+    };
 `;
 
 const Label = styled.p`

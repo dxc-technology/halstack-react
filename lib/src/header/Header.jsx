@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
 
@@ -10,6 +10,7 @@ import DefaultHamburguerBlack from "./hamb_menu_black.svg";
 import CloseIcon from "./close_icon.svg";
 
 import { colors, spaces, responsiveSizes } from "../common/variables.js";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcHeader = ({
   theme = "light",
@@ -18,8 +19,10 @@ const DxcHeader = ({
   onClick = "",
   children,
   margin,
-  padding
+  padding,
 }) => {
+  const colorsTheme = useContext(ThemeContext) || colors;
+
   function onClickHandle() {
     if (typeof onClick === "function") {
       onClick();
@@ -32,7 +35,7 @@ const DxcHeader = ({
   const [isResponsive, setIsResponsive] = useState();
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  const handleResize = refWidth => {
+  const handleResize = (refWidth) => {
     if (refWidth) {
       setRefSize(refWidth);
       if (refWidth <= responsiveSizes.tablet && !isResponsive) {
@@ -51,7 +54,7 @@ const DxcHeader = ({
     }
   };
 
-  const getLogoRendered = intoMenu => {
+  const getLogoRendered = (intoMenu) => {
     return (
       <LogoIcon
         logoSrc={logoSrc}
@@ -87,80 +90,82 @@ const DxcHeader = ({
   }, []);
 
   return (
-    <HeaderContainer theme={theme} underlined={underlined} position="static" margin={margin} ref={ref}>
-      <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
-      {isResponsive && (
-        <MainContainer>
-          <ChildContainer padding={padding}>
-            <HamburguerItem theme={theme} underlined={underlined} onClick={handleMenu}>
-              <HamburguerIcon
-                src={
-                  theme === "light" && underlined
-                    ? DefaultHamburguerBlack
-                    : theme === "light" && !underlined
-                    ? DefaultHamburguerWhite
-                    : theme === "dark" && underlined
-                    ? DefaultHamburguerWhite
-                    : DefaultHamburguerBlack
-                }
-              ></HamburguerIcon>
-              <HamburguerTitle>Menu</HamburguerTitle>
-            </HamburguerItem>
-          </ChildContainer>
+    <ThemeProvider theme={colorsTheme}>
+      <HeaderContainer brightness={theme} underlined={underlined} position="static" margin={margin} ref={ref}>
+        <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
+        {isResponsive && (
+          <MainContainer>
+            <ChildContainer padding={padding}>
+              <HamburguerItem brightness={theme} underlined={underlined} onClick={handleMenu}>
+                <HamburguerIcon
+                  src={
+                    theme === "light" && underlined
+                      ? DefaultHamburguerBlack
+                      : theme === "light" && !underlined
+                      ? DefaultHamburguerWhite
+                      : theme === "dark" && underlined
+                      ? DefaultHamburguerWhite
+                      : DefaultHamburguerBlack
+                  }
+                ></HamburguerIcon>
+                <HamburguerTitle>Menu</HamburguerTitle>
+              </HamburguerItem>
+            </ChildContainer>
 
-          {
-            <div>
-              <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
-                {getLogoRendered(true)}
-                <MenuContent>{children}</MenuContent>
-                <img onClick={handleMenu} src={CloseIcon} className="closeIcon" />
-              </ResponsiveMenu>
-              <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
-            </div>
-          }
-        </MainContainer>
-      )}
-      {!isResponsive && <ChildContainer padding={padding}>{children}</ChildContainer>}
-    </HeaderContainer>
+            {
+              <div>
+                <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
+                  {getLogoRendered(true)}
+                  <MenuContent>{children}</MenuContent>
+                  <img onClick={handleMenu} src={CloseIcon} className="closeIcon" />
+                </ResponsiveMenu>
+                <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
+              </div>
+            }
+          </MainContainer>
+        )}
+        {!isResponsive && <ChildContainer padding={padding}>{children}</ChildContainer>}
+      </HeaderContainer>
+    </ThemeProvider>
   );
 };
 
 const HeaderContainer = styled(AppBar)`
-  margin-bottom: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
 
   &.MuiAppBar-colorPrimary {
-    background-color: ${props =>
-      props.theme === "light" && props.underlined === true
-        ? colors.white
-        : props.theme === "light" && props.underlined === false
-        ? colors.black
-        : props.theme === "dark" && props.underlined === true
-        ? colors.black
-        : props.theme === "dark" && props.underlined === false
-        ? colors.white
-        : colors.white};
+    background-color: ${(props) =>
+      props.brightness === "light" && props.underlined === true
+        ? props.theme.white
+        : props.brightness === "light" && props.underlined === false
+        ? props.theme.black
+        : props.brightness === "dark" && props.underlined === true
+        ? props.theme.black
+        : props.brightness === "dark" && props.underlined === false
+        ? props.theme.white
+        : props.theme.white};
 
-    color: ${props =>
-      props.theme === "light" && props.underlined === true
-        ? colors.black
-        : props.theme === "light" && props.underlined === false
-        ? colors.white
-        : props.theme === "dark" && props.underlined === true
-        ? colors.white
-        : props.theme === "dark" && props.underlined === false
-        ? colors.black
-        : colors.black};
+    color: ${(props) =>
+      props.brightness === "light" && props.underlined === true
+        ? props.theme.black
+        : props.brightness === "light" && props.underlined === false
+        ? props.theme.white
+        : props.brightness === "dark" && props.underlined === true
+        ? props.theme.white
+        : props.brightness === "dark" && props.underlined === false
+        ? props.theme.black
+        : props.theme.black};
 
-    border-bottom: ${props =>
-      props.theme === "light" && props.underlined === true
-        ? `solid ${colors.black}  2px`
-        : props.theme === "light" && props.underlined === false
+    border-bottom: ${(props) =>
+      props.brightness === "light" && props.underlined === true
+        ? `solid ${props.theme.black}  2px`
+        : props.brightness === "light" && props.underlined === false
         ? "none"
-        : props.theme === "dark" && props.underlined === true
-        ? `solid ${colors.white}  2px`
-        : props.theme === "dark" && props.underlined === false
+        : props.brightness === "dark" && props.underlined === true
+        ? `solid ${props.theme.white}  2px`
+        : props.brightness === "dark" && props.underlined === false
         ? "none"
-        : `solid ${colors.black}  2px`};
+        : `solid ${props.theme.black}  2px`};
 
     font-family: "Open Sans", sans-serif;
 
@@ -188,7 +193,7 @@ const LogoIcon = styled.img`
   width: auto;
   vertical-align: middle;
 
-  cursor: ${props => {
+  cursor: ${(props) => {
     if (props.onLogoClick === "") {
       return "default";
     } else {
@@ -203,14 +208,14 @@ const ChildContainer = styled.div`
   align-items: center;
   flex-grow: 1;
   justify-content: flex-end;
-  padding: ${props => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-  padding-top: ${props =>
+  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+  padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${props =>
+  padding-right: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${props =>
+  padding-bottom: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${props =>
+  padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
@@ -221,16 +226,16 @@ const HamburguerItem = styled.div`
   align-items: center;
   width: 54px;
   &:hover {
-    background-color: ${props =>
-      props.theme === "light" && props.underlined === true
-        ? colors.lightGrey
-        : props.theme === "light" && props.underlined === false
-        ? `${colors.darkGrey}80`
-        : props.theme === "dark" && props.underlined === true
-        ? `${colors.darkGrey}80`
-        : props.theme === "dark" && props.underlined === false
-        ? colors.lightGrey
-        : colors.lightGrey};
+    background-color: ${(props) =>
+      props.brightness === "light" && props.underlined === true
+        ? props.theme.lightGrey
+        : props.brightness === "light" && props.underlined === false
+        ? `${props.theme.darkGrey}80`
+        : props.brightness === "dark" && props.underlined === true
+        ? `${props.theme.darkGrey}80`
+        : props.brightness === "dark" && props.underlined === false
+        ? props.theme.lightGrey
+        : props.theme.lightGrey};
   }
   cursor: pointer;
 `;
@@ -256,20 +261,20 @@ const ResponsiveMenu = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
-  background-color: ${colors.lightGrey};
+  background-color: ${(props) => props.theme.lightGrey};
   position: fixed;
   top: 0;
   right: 0;
   z-index: 2000;
-  color: ${colors.black};
-  width: ${props =>
+  color: ${(props) => props.theme.black};
+  width: ${(props) =>
     props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge
       ? "calc(60vw - 40px)"
       : "calc(100vw - 40px)"};
   height: 100vh;
   padding: 20px;
-  transform: ${props => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
-  opacity: ${props => (props.hasVisibility ? "1" : "0.96")};
+  transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
+  opacity: ${(props) => (props.hasVisibility ? "1" : "0.96")};
   transition-property: transform, opacity;
   transition-duration: 0.6s;
   transition-timing-function: ease-in-out;
@@ -304,10 +309,10 @@ const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: ${colors.black}B3;
-  visibility: ${props => (props.hasVisibility ? "visible" : "hidden")};
-  opacity: ${props => (props.hasVisibility ? "1" : "0")};
-  display: ${props => (props.refSize <= responsiveSizes.mobileLarge ? "none" : "")};
+  background-color: ${(props) => props.theme.mediumBlack};
+  visibility: ${(props) => (props.hasVisibility ? "visible" : "hidden")};
+  opacity: ${(props) => (props.hasVisibility ? "1" : "0")};
+  display: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "none" : "")};
   transition: opacity 0.2s 0.2s ease-in-out;
   z-index: 1600;
 `;
@@ -322,19 +327,19 @@ DxcHeader.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
+    PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   padding: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
 };
 
 export default DxcHeader;

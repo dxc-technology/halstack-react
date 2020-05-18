@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider, Paper } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Popover from "@material-ui/core/Popover";
 import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 import "../common/OpenSans.css";
 import { colors, spaces } from "../common/variables.js";
 import calendarIcon from "./calendar.svg";
 import calendarDarkIcon from "./calendar_dark.svg";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcDate = ({
   value,
@@ -34,6 +35,7 @@ const DxcDate = ({
   const [innerValue, setInnerValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const colorsTheme = useContext(ThemeContext) || colors;
 
   function handleMenuItemClick(date) {
     const stringValue = moment(date).format(format.toUpperCase());
@@ -78,60 +80,157 @@ const DxcDate = ({
     }
   };
 
+  const lightTheme = createMuiTheme({
+    overrides: {
+      MuiPickersYearSelection: {
+        container: {
+          "&::-webkit-scrollbar": {
+            width: "3px",
+          },
+
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: colorsTheme.lightGrey,
+            borderRadius: "3px",
+          },
+
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: colorsTheme.darkGrey,
+            borderRadius: "3px",
+          },
+        },
+      },
+      MuiPickersToolbar: {
+        toolbar: {
+          backgroundColor: colorsTheme.white,
+          color: colorsTheme.black,
+        },
+      },
+      MuiIconButton: {
+        root: {
+          height: "36px",
+          width: "36px",
+          padding: "0px",
+        },
+      },
+      MuiPickersBasePicker: {
+        pickerView: {
+          minWidth: "unset",
+          maxWidth: "unset",
+          minHeight: "unset",
+          padding: "0px 10px",
+          height: "316px",
+        },
+      },
+      MuiPickersToolbarText: {
+        toolbarTxt: {
+          color: colorsTheme.black,
+        },
+        toolbarBtnSelected: {
+          color: colorsTheme.black,
+        },
+      },
+      MuiPickersCalendarHeader: {
+        switchHeader: {
+          backgroundColor: colorsTheme.white,
+          color: colorsTheme.black,
+        },
+      },
+      MuiPickersCalendar: {
+        week: {
+          marginBottom: "2px",
+        },
+      },
+      MuiPickersDay: {
+        current: {
+          color: colorsTheme.black,
+        },
+        day: {
+          color: colorsTheme.black,
+        },
+        daySelected: {
+          backgroundColor: colorsTheme.black,
+          color: colorsTheme.yellow,
+          "&:hover": {
+            backgroundColor: colorsTheme.black,
+          },
+        },
+      },
+      MuiPickersYear: {
+        yearSelected: {
+          color: colorsTheme.yellow,
+          backgroundColor: colorsTheme.black,
+          margin: "0px 100px",
+          borderRadius: "20px",
+          fontSize: "16px",
+        },
+      },
+      MuiPickersModal: {
+        dialogAction: {
+          color: colorsTheme.yellow,
+        },
+      },
+    },
+    typography: {
+      fontFamily: '"Open Sans", sans-serif',
+    },
+  });
+
   return (
-    <MuiThemeProvider theme={lightTheme}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <StyledDPicker margin={margin}>
-          <DxcInput
-            label={label}
-            name={name}
-            suffixIconSrc={iconSrc || (theme === "dark" ? calendarDarkIcon : calendarIcon)}
-            theme={theme}
-            disableRipple={disableRipple}
-            required={required}
-            invalid={invalid}
-            disabled={disabled}
-            assistiveText={assistiveText}
-            margin={margin}
-            size={size}
-            placeholder={placeholder ? format.toUpperCase() : null}
-            value={value == null ? innerValue : value}
-            onClickSuffix={openCalendar}
-            onChange={onChangeInput}
-            onBlur={(onBlur && handlerInputBlur) || null}
-          />
-          <Popover
-            open={isOpen}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-            PaperProps={{
-              style: {
-                marginTop: "10px",
-              },
-            }}
-          >
-            <ClickAwayListener onClickAway={() => setIsOpen(false)}>
-              <Paper>
-                <DatePicker
-                  variant="static"
-                  value={getValueForPicker()}
-                  onChange={(date) => handleMenuItemClick(date)}
-                  format={format}
-                  disabled={disabled}
-                />
-              </Paper>
-            </ClickAwayListener>
-          </Popover>
-        </StyledDPicker>
-      </MuiPickersUtilsProvider>
-    </MuiThemeProvider>
+    <ThemeProvider theme={colorsTheme}>
+      <MuiThemeProvider theme={lightTheme}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <StyledDPicker margin={margin}>
+            <DxcInput
+              label={label}
+              name={name}
+              suffixIconSrc={iconSrc || (theme === "dark" ? calendarDarkIcon : calendarIcon)}
+              theme={theme}
+              disableRipple={disableRipple}
+              required={required}
+              invalid={invalid}
+              disabled={disabled}
+              assistiveText={assistiveText}
+              margin={margin}
+              size={size}
+              placeholder={placeholder ? format.toUpperCase() : null}
+              value={value == null ? innerValue : value}
+              onClickSuffix={openCalendar}
+              onChange={onChangeInput}
+              onBlur={(onBlur && handlerInputBlur) || null}
+            />
+            <Popover
+              open={isOpen}
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+              PaperProps={{
+                style: {
+                  marginTop: "10px",
+                },
+              }}
+            >
+              <ClickAwayListener onClickAway={() => setIsOpen(false)}>
+                <Paper>
+                  <DatePicker
+                    variant="static"
+                    value={getValueForPicker()}
+                    onChange={(date) => handleMenuItemClick(date)}
+                    format={format}
+                    disabled={disabled}
+                  />
+                </Paper>
+              </ClickAwayListener>
+            </Popover>
+          </StyledDPicker>
+        </MuiPickersUtilsProvider>
+      </MuiThemeProvider>
+    </ThemeProvider>
   );
 };
 
@@ -149,37 +248,37 @@ const StyledDPicker = styled.div`
     margin-top: 6px;
 
     border-color: ${(props) =>
-      props.theme === "light" && props.mode === "outlined"
+      props.brightness === "light" && props.mode === "outlined"
         ? colors.black
-        : props.theme === "light" && props.mode === "basic"
+        : props.brightness === "light" && props.mode === "basic"
         ? colors.white
-        : props.theme === "dark" && props.mode === "outlined"
+        : props.brightness === "dark" && props.mode === "outlined"
         ? colors.white
-        : props.theme === "dark" && props.mode === "basic"
+        : props.brightness === "dark" && props.mode === "basic"
         ? colors.black
         : colors.black};
 
     background-color: ${(props) =>
-      props.theme === "light" && props.mode === "outlined"
-        ? colors.white
-        : props.theme === "light" && props.mode === "basic"
-        ? colors.black
-        : props.theme === "dark" && props.mode === "outlined"
-        ? colors.black
-        : props.theme === "dark" && props.mode === "basic"
-        ? colors.white
-        : colors.white};
+      props.brightness === "light" && props.mode === "outlined"
+        ? props.theme.white
+        : props.brightness === "light" && props.mode === "basic"
+        ? props.theme.black
+        : props.brightness === "dark" && props.mode === "outlined"
+        ? props.theme.black
+        : props.brightness === "dark" && props.mode === "basic"
+        ? props.theme.white
+        : props.theme.white};
 
     color: ${(props) =>
-      props.theme === "light" && props.mode === "outlined"
-        ? colors.black
-        : props.theme === "light" && props.mode === "basic"
-        ? colors.white
-        : props.theme === "dark" && props.mode === "outlined"
-        ? colors.white
-        : props.theme === "dark" && props.mode === "basic"
-        ? colors.black
-        : colors.black};
+      props.brightness === "light" && props.mode === "outlined"
+        ? props.theme.black
+        : props.brightness === "light" && props.mode === "basic"
+        ? props.theme.white
+        : props.brightness === "dark" && props.mode === "outlined"
+        ? props.theme.white
+        : props.brightness === "dark" && props.mode === "basic"
+        ? props.theme.black
+        : props.theme.black};
 
     margin-top: ${(props) => (props.mode === "outlined" ? "-2px" : "2px")};
     border-bottom-left-radius: 2px;
@@ -188,101 +287,6 @@ const StyledDPicker = styled.div`
     border-top-right-radius: 0px;
   }
 `;
-
-const lightTheme = createMuiTheme({
-  overrides: {
-    MuiPickersYearSelection: {
-      container: {
-        "&::-webkit-scrollbar": {
-          width: "3px",
-        },
-
-        "&::-webkit-scrollbar-track": {
-          backgroundColor: colors.lightGrey,
-          borderRadius: "3px",
-        },
-
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: colors.darkGrey,
-          borderRadius: "3px",
-        },
-      },
-    },
-    MuiPickersToolbar: {
-      toolbar: {
-        backgroundColor: colors.white,
-        color: colors.black,
-      },
-    },
-    MuiIconButton: {
-      root: {
-        height: "36px",
-        width: "36px",
-        padding: "0px",
-      },
-    },
-    MuiPickersBasePicker: {
-      pickerView: {
-        minWidth: "unset",
-        maxWidth: "unset",
-        minHeight: "unset",
-        padding: "0px 10px",
-        height: "316px",
-      },
-    },
-    MuiPickersToolbarText: {
-      toolbarTxt: {
-        color: colors.black,
-      },
-      toolbarBtnSelected: {
-        color: colors.black,
-      },
-    },
-    MuiPickersCalendarHeader: {
-      switchHeader: {
-        backgroundColor: colors.white,
-        color: colors.black,
-      },
-    },
-    MuiPickersCalendar: {
-      week: {
-        marginBottom: "2px",
-      },
-    },
-    MuiPickersDay: {
-      current: {
-        color: colors.black,
-      },
-      day: {
-        color: colors.black,
-      },
-      daySelected: {
-        backgroundColor: colors.black,
-        color: colors.yellow,
-        "&:hover": {
-          backgroundColor: colors.black,
-        },
-      },
-    },
-    MuiPickersYear: {
-      yearSelected: {
-        color: colors.yellow,
-        backgroundColor: colors.black,
-        margin: "0px 100px",
-        borderRadius: "20px",
-        fontSize: "16px",
-      },
-    },
-    MuiPickersModal: {
-      dialogAction: {
-        color: colors.yellow,
-      },
-    },
-  },
-  typography: {
-    fontFamily: '"Open Sans", sans-serif',
-  },
-});
 
 DxcDate.propTypes = {
   value: PropTypes.string,

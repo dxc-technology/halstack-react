@@ -1,29 +1,33 @@
 /* eslint-disable react/require-default-props */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import "../../common/OpenSans.css";
-import styled from "styled-components";
-import {colors} from "../../common/variables.js";
+import styled, { ThemeProvider } from "styled-components";
+import { colors } from "../../common/variables.js";
 import closeIcon from "./close.svg";
 import defaultIcon from "./file-icon.svg";
 import videoIcon from "./video-icon.svg";
 import audioIcon from "./audio-icon.svg";
+import ThemeContext from "../../ThemeContext.js";
 
 const DxcFileToUpload = ({ name = "", type = "", image, onDelete }) => {
   const icon = (type.includes("video") && videoIcon) || (type.includes("audio") && audioIcon) || defaultIcon;
   const hasImage = image && image.includes("image");
+  const colorsTheme = useContext(ThemeContext) || colors;
 
   return (
-    <DXCFileToUpload>
-      <FileContent>
-        {(hasImage && <FileImage src={image} />) || <FileImage src={icon} />}
-        <FileInfo>
-          <FileName>{name}</FileName>
-          <FileType>{type}</FileType>
-        </FileInfo>
-        <DeleteFile className="delete-file" onClick={onDelete} />
-      </FileContent>
-    </DXCFileToUpload>
+    <ThemeProvider theme={colorsTheme}>
+      <DXCFileToUpload>
+        <FileContent>
+          {(hasImage && <FileImage src={image} />) || <FileImage src={icon} />}
+          <FileInfo>
+            <FileName>{name}</FileName>
+            <FileType>{type}</FileType>
+          </FileInfo>
+          <DeleteFile className="delete-file" onClick={onDelete} />
+        </FileContent>
+      </DXCFileToUpload>
+    </ThemeProvider>
   );
 };
 
@@ -31,7 +35,7 @@ DxcFileToUpload.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   image: PropTypes.string,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
 };
 
 const DXCFileToUpload = styled.div`
@@ -42,10 +46,10 @@ const DXCFileToUpload = styled.div`
   flex-direction: column;
   padding-bottom: 25px;
   padding-top: 25px;
-  border-bottom: 1px solid ${colors.lightGrey};
+  border-bottom: 1px solid ${(props) => props.theme.lightGrey};
   :hover {
     cursor: pointer;
-    background: ${colors.darkWhite};
+    background: ${(props) => props.theme.darkWhite};
     .delete-file {
       display: flex;
       margin-right: 30px;
@@ -84,7 +88,7 @@ const FileInfo = styled.div`
 const FileType = styled.div`
   text-transform: uppercase;
   font-size: 12px;
-  color: ${colors.black}99;
+  color: ${(props) => props.theme.black}99;
 `;
 
 const DeleteFile = styled.div`

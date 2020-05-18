@@ -1,6 +1,23 @@
 import React, { useState } from "react";
-import { DxcInput } from "@diaas/dxc-react-cdk";
+import { DxcInput, ThemeContext } from "@diaas/dxc-react-cdk";
 import icon from "../images/home.svg";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const [inputValue, changeInput] = useState("");
@@ -482,6 +499,18 @@ function App() {
             margin="xxlarge"
           />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Input</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcInput
+            label="Input label"
+            suffixIconSrc={icon}
+            prefixIconSrc={icon}
+            value={inputValue}
+            onChange={onChange}
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );
