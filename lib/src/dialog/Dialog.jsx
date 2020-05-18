@@ -95,16 +95,22 @@ const Children = styled.div`
   }
 `;
 
-const CloseIconContainer = styled.div`
+const CloseIconContainer = styled.button`
   display: flex;
   justify-content: flex-end;
   position: absolute;
   top: 20px;
   right: 20px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  width: 34px;
+  height: 34px;
 `;
 
 const CloseIcon = styled.svg`
-  cursor: pointer;
   width: 34px;
   height: 34px;
 `;
