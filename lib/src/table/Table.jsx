@@ -1,39 +1,46 @@
-import styled from "styled-components";
+import React, { useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import { colors, spaces } from "../common/variables.js";
-import React from "react";
+import ThemeContext from "../ThemeContext.js";
 
 const DxcTable = ({ children, margin }) => {
-  return <DxcTableContainer margin={margin}><DxcTableContent>{children}</DxcTableContent></DxcTableContainer>;
+  const colorsTheme = useContext(ThemeContext) || colors;
+
+  return (
+    <ThemeProvider theme={colorsTheme}>
+      <DxcTableContainer margin={margin}>
+        <DxcTableContent>{children}</DxcTableContent>
+      </DxcTableContainer>
+    </ThemeProvider>
+  );
 };
 
 const DxcTableContainer = styled.div`
   overflow-x: auto;
 
-  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${props =>
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${props =>
+  margin-right: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${props =>
+  margin-bottom: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${props =>
+  margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
 
   &::-webkit-scrollbar {
     height: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${colors.darkGrey};
+    background-color: ${(props) => props.theme.darkGrey};
     border-radius: 6px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: ${colors.lightGrey};
+    background-color: ${(props) => props.theme.lightGrey};
     border-radius: 6px;
   }
-
 `;
 
 const DxcTableContent = styled.table`
@@ -41,11 +48,11 @@ const DxcTableContent = styled.table`
   width: 100%;
 
   & tr {
-    border-bottom: 1px solid ${colors.lightGrey};
+    border-bottom: 1px solid ${(props) => props.theme.lightGrey};
   }
 
   & td {
-    color: ${colors.darkGrey};
+    color: ${(props) => props.theme.darkGrey};
     min-height: 48px;
   }
 
@@ -63,8 +70,8 @@ const DxcTableContent = styled.table`
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 100;
-    background-color: ${colors.black};
-    color: ${colors.white};
+    background-color: ${(props) => props.theme.black};
+    color: ${(props) => props.theme.white};
   }
 
   & th:first-child {

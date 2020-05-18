@@ -1,12 +1,29 @@
 import React from "react";
-import { DxcToggle } from "@diaas/dxc-react-cdk";
+import { DxcToggle, ThemeContext } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 import icon from "../images/favorite.svg";
+
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
 
 function App() {
   const [selected, changeSelected] = useState(true);
 
-  const onClick = newValue => {
+  const onClick = (newValue) => {
     changeSelected(newValue);
   };
 
@@ -393,6 +410,12 @@ function App() {
             margin="xxlarge"
           />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Toggle</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcToggle label="Toggle" selected={selected} onClick={onClick} />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
 
 function TabsForSections() {
@@ -8,16 +8,16 @@ function TabsForSections() {
       sections={[
         {
           tabLabel: "Tab1",
-          section: () => <div style={{ height: "500px" }}>content 1</div>
+          section: () => <div style={{ height: "500px" }}>content 1</div>,
         },
         {
           tabLabel: "Tab2",
-          section: () => <div style={{ height: "500px" }}>content 2</div>
+          section: () => <div style={{ height: "500px" }}>content 2</div>,
         },
         {
           tabLabel: "Tab3",
-          section: () => <div style={{ height: "500px" }}>content 3</div>
-        }
+          section: () => <div style={{ height: "500px" }}>content 3</div>,
+        },
       ]}
     ></DxcTabsForSections>
   );

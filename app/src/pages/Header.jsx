@@ -3,7 +3,8 @@ import {
   DxcHeader,
   DxcToggle,
   DxcButton,
-  DxcDropdown
+  DxcDropdown,
+  ThemeContext,
 } from "@diaas/dxc-react-cdk";
 import { useState } from "react";
 import assureBlacklogo from "../images/dxcassure_blk.png";
@@ -11,31 +12,48 @@ import invisionLogo from "../images/invision.png";
 import skyscannerLogo from "../images/skyscanner.jpeg";
 import yahooLogo from "../images/yahoo.png";
 
+const colors = {
+  black: "blue",
+  mediumBlack: "red",
+  lightBlack: "grey",
+  white: "black",
+  darkWhite: "beige",
+  yellow: "aquamarine",
+  darkGrey: "brown",
+  lightGrey: "azure",
+  darkRed: "coral",
+  lightRed: "aqua",
+  lightBlue: "green",
+  lightYellow: "white",
+  lightPink: "red",
+  lightGreen: "blue",
+};
+
 function App() {
   const [selected, changeSelected] = useState(true);
-  const onClickToggle = newValue => {
+  const onClickToggle = (newValue) => {
     changeSelected(newValue);
   };
 
   const onClick = () => {};
 
-  const selectOption = value => {
+  const selectOption = (value) => {
     console.log(value);
   };
 
   const options = [
     {
       value: 1,
-      label: "Facebook"
+      label: "Facebook",
     },
     {
       value: 2,
-      label: "Twitter"
+      label: "Twitter",
     },
     {
       value: 3,
-      label: "Linkedin"
-    }
+      label: "Linkedin",
+    },
   ];
 
   return (
@@ -228,6 +246,12 @@ function App() {
             />
           </DxcHeader>
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Header</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcHeader />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { spaces } from "../common/variables.js";
 
 const DxcHeading = ({ level = 1, theme = "light", text = "", weight = "", margin }) => {
   return (
-    <HeadingContainer theme={theme} margin={margin}>
+    <HeadingContainer brightness={theme} margin={margin}>
       {level === 1 ? (
         <HeadingLevel1 weight={weight}>{text}</HeadingLevel1>
       ) : level === 2 ? (
@@ -34,7 +34,7 @@ const HeadingContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => (props.theme === "light" ? "#000000DE" : "#FFFFFF")};
+  color: ${(props) => (props.brightness === "light" ? "#000000DE" : "#FFFFFF")};
 `;
 
 const HeadingLevel1 = styled.h1`
