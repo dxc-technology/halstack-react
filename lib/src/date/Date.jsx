@@ -249,14 +249,14 @@ const StyledDPicker = styled.div`
 
     border-color: ${(props) =>
       props.brightness === "light" && props.mode === "outlined"
-        ? colors.black
+        ? props.theme.black
         : props.brightness === "light" && props.mode === "basic"
-        ? colors.white
+        ? props.theme.white
         : props.brightness === "dark" && props.mode === "outlined"
-        ? colors.white
+        ? props.theme.white
         : props.brightness === "dark" && props.mode === "basic"
-        ? colors.black
-        : colors.black};
+        ? props.theme.black
+        : props.theme.black};
 
     background-color: ${(props) =>
       props.brightness === "light" && props.mode === "outlined"
