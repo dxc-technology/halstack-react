@@ -120,14 +120,7 @@ pipeline {
                 '''
             }
         }
-        stage('Running tests') {
-            steps {
-                sh '''
-                    cd lib
-                    npm run test
-                '''
-            }
-        }
+        
         stage('.npmrc') {
             when {
                 expression { env.RELEASE_VALID == 'valid' | env.BRANCH_NAME == 'master' } 
