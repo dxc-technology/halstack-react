@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { DxcButton } from "@diaas/dxc-react-cdk";
+import DxcButton from "../button/Button";
 import first from "./images/previousPage.svg";
 import previous from "./images/previous.svg";
 import next from "./images/next.svg";
