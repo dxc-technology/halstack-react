@@ -49,12 +49,17 @@
     "eslint-plugin-react": "^7.13.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "react-use-scrollspy": "^2.0.0"
   },
   "jest": {
     "moduleNameMapper": {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy",
       "\\.(svg)$": "<rootDir>/test/mocks/svgMock.js"
-    }
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!react-use-scrollspy).+\\.js$"
+    ]
+    
   }
 }
