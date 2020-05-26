@@ -14,7 +14,7 @@ function App() {
       <Content id="tests-container">
         <Router>
           {paths.map(path => (
-            <path.component path={path.path}></path.component>
+            <path.component key={path.path} path={path.path}></path.component>
           ))}
           <AllComponents path="/all"></AllComponents>
         </Router>

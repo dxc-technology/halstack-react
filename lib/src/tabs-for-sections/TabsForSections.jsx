@@ -35,7 +35,7 @@ const DxcTabsForSections = ({ tabsMode = "filled", tabsTheme = "light", disableT
         ></DxcTabs>
       </StyledTabs>
       {sections.map((section, i) => (
-        <div ref={refs[i]}>
+        <div key={`section${i}`} ref={refs[i]}>
           <section.section></section.section>
         </div>
       ))}

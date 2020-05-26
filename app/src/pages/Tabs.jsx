@@ -40,11 +40,6 @@ function Tabs() {
     changeSelected(newValue);
   };
 
-  const [checked, changeChecked] = useState(false);
-  const onChange = (newValue) => {
-    changeChecked(newValue);
-  };
-
   return (
     <div>
       <div className="test-case" id="light-theme">

@@ -38,9 +38,10 @@ const DxcTabs = ({
           variant="scrollable"
           scrollButtons="off"
         >
-          {tabs.map((tab) => {
+          {tabs.map((tab, i) => {
             return (
               <Tab
+                key={`tab${i}${tab.label}`}
                 label={tab.label}
                 icon={tab.iconSrc && <TabIcon src={tab.iconSrc} />}
                 disabled={tab.isDisabled}

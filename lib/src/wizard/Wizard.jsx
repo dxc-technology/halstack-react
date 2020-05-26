@@ -28,6 +28,7 @@ const DxcWizard = ({
             steps.map((step, i) => {
                 return (
                   <StepContainer
+                    key={`step${i}`}
                     mode={mode}
                     lastStep={i === steps.length-1}
                   >

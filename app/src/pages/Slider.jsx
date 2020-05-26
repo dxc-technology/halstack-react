@@ -171,8 +171,8 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fitContent-size-slider">
-          <h5>FitContent size</h5>
+        <div className="test-case" id="fillParent-size-slider">
+          <h5>FillParent size</h5>
           <DxcSlider
             minValue={0}
             maxValue={100}
@@ -181,7 +181,7 @@ function App() {
             name="input"
             theme="light"
             step={1}
-            size="fitContent"
+            size="fillParent"
           />
         </div>
       </div>

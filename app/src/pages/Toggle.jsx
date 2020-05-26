@@ -251,7 +251,7 @@ function App() {
             size="fitContent"
           />
         </div>
-        <div class="test-case" id="fitContent-size-multiline-icon-before">
+        <div className="test-case" id="fitContent-size-multiline-icon-before">
           <h5>FitContent size - Label min size multiline icon before</h5>
           <DxcToggle
             label="Toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle example toggle ex"

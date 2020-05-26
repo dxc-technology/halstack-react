@@ -52,13 +52,13 @@ const DxcFooter = ({
   }, []);
 
   const socialLink = socialLinks.map((link, index) => (
-    <SocialAnchor index={index} href={link && link.href ? link.href : ""}>
+    <SocialAnchor key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
       {link && link.logoSrc && <SocialIcon src={link.logoSrc} />}
     </SocialAnchor>
   ));
 
   const bottomLink = bottomLinks.map((link, index) => (
-    <span>
+    <span key={`bottom${index}${link.text}`}>
       <BottomLink href={link && link.href ? link.href : ""}>{link && link.text ? link.text : ""}</BottomLink>
       <Point index={index}>·</Point>
     </span>
