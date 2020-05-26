@@ -45,7 +45,11 @@ const DxcAlert = ({
               <AlertType type={type}>{getTypeText(type)}</AlertType>
               {inlineText && inlineText !== "" && "-"}
               <AlertText>{inlineText}</AlertText>
-              {onClose && <CloseAlertIcon src={closeIcon} onClick={onClose} />}
+              {onClose && (
+                <CloseAlertIcon onClick={onClose}>
+                  <CloseImg src={closeIcon} />
+                </CloseAlertIcon>
+              )}
             </AlertInfoText>
           </AlertInfo>
           {children && <AlertContent>{children}</AlertContent>}
@@ -185,8 +189,16 @@ const AlertContent = styled.div`
   overflow-y: auto;
 `;
 
-const CloseAlertIcon = styled.img`
+const CloseAlertIcon = styled.button`
   cursor: pointer;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  height: 20px;
+  width: 20px;
 `;
+
+const CloseImg = styled.img``;
 
 export default DxcAlert;
