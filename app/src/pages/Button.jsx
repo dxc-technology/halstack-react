@@ -26,7 +26,7 @@ function App() {
     <div>
       <div>
         <h4>Sizes</h4>
-        <div class="test-case" id="small-size">
+        <div className="test-case" id="small-size">
           <DxcButton
             mode="basic"
             theme="light"
@@ -36,7 +36,7 @@ function App() {
             margin="small"
           />
         </div>
-        <div class="test-case" id="medium-size">
+        <div className="test-case" id="medium-size">
           <DxcButton
             mode="basic"
             theme="light"
@@ -46,7 +46,7 @@ function App() {
             margin="small"
           />
         </div>
-        <div class="test-case" id="large-size">
+        <div className="test-case" id="large-size">
           <DxcButton
             mode="basic"
             theme="light"
@@ -56,7 +56,7 @@ function App() {
             margin="small"
           />
         </div>
-        <div class="test-case" id="fitContent-size">
+        <div className="test-case" id="fitContent-size">
           <DxcButton
             mode="basic"
             theme="light"
@@ -66,7 +66,7 @@ function App() {
             margin="small"
           />
         </div>
-        <div class="test-case" id="fillParent-size">
+        <div className="test-case" id="fillParent-size">
           <DxcButton
             mode="basic"
             theme="light"
@@ -79,7 +79,7 @@ function App() {
       </div>
       <div>
         <h4>Margins</h4>
-        <div class="test-case" id="xxsmall-margin">
+        <div className="test-case" id="xxsmall-margin">
           <DxcButton
             mode="basic"
             theme="light"
@@ -89,7 +89,7 @@ function App() {
             margin="xxsmall"
           />
         </div>
-        <div class="test-case" id="xsmall-margin">
+        <div className="test-case" id="xsmall-margin">
           <DxcButton
             mode="basic"
             theme="light"
@@ -99,7 +99,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="small-margin">
+        <div className="test-case" id="small-margin">
           <DxcButton
             mode="basic"
             theme="light"
@@ -109,7 +109,7 @@ function App() {
             margin="small"
           />
         </div>
-        <div class="test-case" id="medium-margin">
+        <div className="test-case" id="medium-margin">
           <DxcButton
             mode="basic"
             theme="light"
@@ -119,7 +119,7 @@ function App() {
             margin="medium"
           />
         </div>
-        <div class="test-case" id="large-margin">
+        <div className="test-case" id="large-margin">
           <DxcButton
             mode="basic"
             theme="light"
@@ -129,7 +129,7 @@ function App() {
             margin="large"
           />
         </div>
-        <div class="test-case" id="xlarge-margin">
+        <div className="test-case" id="xlarge-margin">
           <DxcButton
             mode="basic"
             theme="light"
@@ -139,7 +139,7 @@ function App() {
             margin="xlarge"
           />
         </div>
-        <div class="test-case" id="xxlarge">
+        <div className="test-case" id="xxlarge">
           <DxcButton
             mode="basic"
             theme="light"
@@ -151,7 +151,7 @@ function App() {
         </div>
       </div>
       <div>
-        <div class="test-case" id="basic-single-line">
+        <div className="test-case" id="basic-single-line">
           <h4>Basic button single line</h4>
           <DxcButton
             mode="basic"
@@ -160,7 +160,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="basic-max-line-icon-after">
+        <div className="test-case" id="basic-max-line-icon-after">
           <h4>
             Basic button size medium - Label max size single line icon after
           </h4>
@@ -175,7 +175,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="basic-max-line-icon-before">
+        <div className="test-case" id="basic-max-line-icon-before">
           <h4>
             Basic button size medium - Label max size single line icon before
           </h4>
@@ -190,7 +190,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="basic-min-multiline-icon-after">
+        <div className="test-case" id="basic-min-multiline-icon-after">
           <h4>
             Basic button size medium - Label min size multi line icon after
           </h4>
@@ -205,7 +205,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="basic-min-multiline-icon-before">
+        <div className="test-case" id="basic-min-multiline-icon-before">
           <h4>
             Basic button size medium - Label min size multi line icon before
           </h4>
@@ -221,7 +221,7 @@ function App() {
           />
         </div>
         <div
-          class="test-case"
+          className="test-case"
           style={{ background: "black" }}
           id="basic-dark-theme"
         >
@@ -236,7 +236,7 @@ function App() {
         </div>
       </div>
       <div>
-        <div class="test-case" id="raised-single-line">
+        <div className="test-case" id="raised-single-line">
           <h4>Raised button single line</h4>
           <DxcButton
             mode="raised"
@@ -245,7 +245,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="raised-max-line-icon-after">
+        <div className="test-case" id="raised-max-line-icon-after">
           <h4>
             Raised button size medium - Label max size single line icon after
           </h4>
@@ -260,7 +260,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="raised-max-line-icon-before">
+        <div className="test-case" id="raised-max-line-icon-before">
           <h4>
             Raised button size medium - Label max size single line icon before
           </h4>
@@ -275,7 +275,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="raised-min-multiline-icon-after">
+        <div className="test-case" id="raised-min-multiline-icon-after">
           <h4>
             Raised button size medium - Label min size multi line icon after
           </h4>
@@ -290,7 +290,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="raised-min-multiline-icon-before">
+        <div className="test-case" id="raised-min-multiline-icon-before">
           <h4>
             Raised button size medium - Label min size multi line icon before
           </h4>
@@ -306,7 +306,7 @@ function App() {
           />
         </div>
         <div
-          class="test-case"
+          className="test-case"
           style={{ background: "black" }}
           id="raised-dark-theme"
         >
@@ -321,7 +321,7 @@ function App() {
         </div>
       </div>
       <div>
-        <div class="test-case" id="flat-single-line">
+        <div className="test-case" id="flat-single-line">
           <h4>Flat button single line</h4>
           <DxcButton
             mode="flat"
@@ -330,7 +330,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="flat-max-line-icon-after">
+        <div className="test-case" id="flat-max-line-icon-after">
           <h4>
             Flat button size medium - Label max size single line icon after
           </h4>
@@ -345,7 +345,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="flat-max-line-icon-before">
+        <div className="test-case" id="flat-max-line-icon-before">
           <h4>
             Flat button size medium - Label max size single line icon before
           </h4>
@@ -360,7 +360,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="flat-min-multiline-icon-after">
+        <div className="test-case" id="flat-min-multiline-icon-after">
           <h4>
             Flat button size medium - Label min size multi line icon after
           </h4>
@@ -375,7 +375,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="flat-min-multiline-icon-before">
+        <div className="test-case" id="flat-min-multiline-icon-before">
           <h4>
             Flat button size medium - Label min size multi line icon before
           </h4>
@@ -391,7 +391,7 @@ function App() {
           />
         </div>
         <div
-          class="test-case"
+          className="test-case"
           style={{ background: "black" }}
           id="flat-dark-theme"
         >
@@ -406,7 +406,7 @@ function App() {
         </div>
       </div>
       <div>
-        <div class="test-case" id="outlined-single-line">
+        <div className="test-case" id="outlined-single-line">
           <h4>Outlined button single line</h4>
           <DxcButton
             mode="outlined"
@@ -415,7 +415,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="outlined-max-line-icon-after">
+        <div className="test-case" id="outlined-max-line-icon-after">
           <h4>
             Outlined button size medium - Label max size single line icon after
           </h4>
@@ -430,7 +430,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="outlined-max-line-icon-before">
+        <div className="test-case" id="outlined-max-line-icon-before">
           <h4>
             Outlined button size medium - Label max size single line icon before
           </h4>
@@ -445,7 +445,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="outlined-min-multiline-icon-after">
+        <div className="test-case" id="outlined-min-multiline-icon-after">
           <h4>
             Outlined button size medium - Label min size multi line icon after
           </h4>
@@ -460,7 +460,7 @@ function App() {
             margin="xsmall"
           />
         </div>
-        <div class="test-case" id="outlined-min-multiline-icon-before">
+        <div className="test-case" id="outlined-min-multiline-icon-before">
           <h4>
             Outlined button size medium - Label min size multi line icon before
           </h4>
@@ -477,7 +477,7 @@ function App() {
           />
         </div>
         <div
-          class="test-case"
+          className="test-case"
           style={{ background: "black" }}
           id="outlined-dark-theme"
         >
@@ -491,7 +491,7 @@ function App() {
           />
         </div>
       </div>
-      <div class="test-case" id="custom-colors">
+      <div className="test-case" id="custom-colors">
         <h4>Custom Button</h4>
         <ThemeContext.Provider value={colors}>
           <DxcButton

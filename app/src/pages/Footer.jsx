@@ -297,129 +297,129 @@ function App() {
           >
             <div style={{ display: "flex" }}>
               {/* <div> */}
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Services</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>Analytics</li>
                   <li>Application Services</li>
                   <li>Business Process Services</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Industries</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>Healthcare</li>
                   <li>Life Sciences</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>About us</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>Company Overview</li>
                   <li>Our Mission & Values</li>
                   <li>Our History</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
@@ -439,59 +439,59 @@ function App() {
             logoSrc={dxcAssure}
           >
             <div className="test-case" id="Max-custom-content-vertical">
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Services</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>Analytics</li>
                   <li>Application Services</li>
                   <li>Business Process Services</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Industries</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>Healthcare</li>
                   <li>Life Sciences</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>About us</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>Company Overview</li>
                   <li>Our Mission & Values</li>
                   <li>Our History</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>
                   <li>Blogs</li>
                 </ul>
               </div>
-              <div style={{ "margin-left": "35px" }}>
+              <div style={{ marginLeft: "35px" }}>
                 <p>Insights</p>
                 <ul
-                  style={{ "list-style-type": "none", "padding-left": "0px" }}
+                  style={{ listStyleType: "none", paddingLeft: "0px" }}
                 >
                   <li>THRIVE: Thought Leadership</li>
                   <li>Case Studies</li>

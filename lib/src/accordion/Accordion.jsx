@@ -71,7 +71,7 @@ DxcAccordion.propTypes = {
   onChange: PropTypes.func,
   theme: PropTypes.oneOf(["light", "dark"]),
   isExpanded: PropTypes.bool,
-  children: PropTypes.string,
+  children: PropTypes.element,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

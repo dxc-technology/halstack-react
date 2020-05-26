@@ -28,7 +28,7 @@ function App() {
     setIsDialog1Visible(!isDialog1Visible);
   };
   const onClickDialog2 = () => {
-    setIsDialog1Visible(!isDialog2Visible);
+    setIsDialog2Visible(!isDialog2Visible);
   };
   const onClickDialog3 = () => {
     setIsDialog3Visible(!isDialog3Visible);
