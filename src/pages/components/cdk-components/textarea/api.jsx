@@ -108,7 +108,7 @@ const textareaPropsTable = () => {
       <tr>
         <td>size: string | object</td>
         <td>
-          <code>"medium"</code>
+          <code>'medium'</code>
         </td>
         <td>
           Size of the component ('small' | 'medium' | 'large' | 'fillParent').

@@ -16,6 +16,7 @@ function Sidenav() {
         <ComponentDoc>
             <ComponentHeader
                 title="Sidenav"
+                status="ready"
             >
             </ComponentHeader>
             <DxcTabsForSections

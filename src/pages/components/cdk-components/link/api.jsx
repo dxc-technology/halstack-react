@@ -43,7 +43,7 @@ const linkPropsTable = () => {
             <tr>
                 <td>iconPosition: 'before' | 'after'</td>
                 <td>
-                    <code>before</code>
+                    <code>'before'</code>
                 </td>
                 <td>Indicates the position of the icon in the component.</td>
             </tr>
@@ -55,7 +55,7 @@ const linkPropsTable = () => {
             <tr>
                 <td>theme: 'light' | 'dark'</td>
                 <td>
-                    <code>light</code>
+                    <code>'light'</code>
                 </td>
                 <td>Theme of the component.</td>
             </tr>

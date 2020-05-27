@@ -18,7 +18,7 @@ function Wizard() {
         <ComponentDoc>
             <ComponentHeader
             title="Wizard"
-            status="experimental"
+            status="ready"
             ></ComponentHeader>
             <DxcTabsForSections
             stickAtPx={64}
