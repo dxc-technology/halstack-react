@@ -171,19 +171,6 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fillParent-size-slider">
-          <h5>FillParent size</h5>
-          <DxcSlider
-            minValue={0}
-            maxValue={100}
-            showLimitsValues={true}
-            showInput={false}
-            name="input"
-            theme="light"
-            step={1}
-            size="fillParent"
-          />
-        </div>
       </div>
       <div>
         <h4>Margins</h4>
