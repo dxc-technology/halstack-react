@@ -54,7 +54,9 @@ const alertPropsTable = () => {
       </tr>
       <tr>
         <td>isExpanded: boolean</td>
-        <td></td>
+        <td>
+          <code>false</code>
+        </td>
         <td>If true, the component will be expanded.</td>
       </tr>
       <tr>

@@ -116,7 +116,9 @@ const checkboxPropsTable = () => {
       </tr>
       <tr>
         <td>size: string | object</td>
-        <td>'fillParent'</td>
+        <td>
+          <code>'fillParent'</code>
+        </td>
         <td>Size of the component ('medium' | 'large' | 'fillParent' ).</td>
       </tr>
     </DxcTable>
