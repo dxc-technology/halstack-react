@@ -28,6 +28,7 @@ import Link from "./cdk-components/link/Link";
 import Wizard from "./cdk-components/wizard/Wizard";
 import Textarea from "./cdk-components/textarea/Textarea";
 import Heading from "./cdk-components/heading/Heading";
+import ResulsetTable from "./cdk-components/resulsetTable/resulsetTable";
 
 export const types = {
   FORMS: "Forms",
@@ -138,6 +139,12 @@ export default [
     name: "Radio Button",
     component: Radio,
     type: types.FORMS,
+  },
+  {
+    path: "resulsetTable",
+    name: "Resulset Table",
+    component: ResulsetTable,
+    type: types.UTILS,
   },
   {
     path: "select",
