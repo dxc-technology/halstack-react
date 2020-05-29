@@ -74,7 +74,9 @@ const buttonPropsTable = () => {
       </tr>
       <tr>
         <td>size: string | object</td>
-        <td>'fitContent'</td>
+        <td>
+          <code>'fitContent'</code>
+        </td>
         <td>
           Size of the component ('small' | 'medium' | 'large' | 'fillParent' |
           'fitContent').

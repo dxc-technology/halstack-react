@@ -16,7 +16,9 @@ const buttonPropsTable = () => {
       </tr>
       <tr>
         <td>display: string</td>
-        <td>"inline-flex"</td>
+        <td>
+          <code>'inline-flex'</code>
+        </td>
         <td>Changes the display CSS property of the Box div.</td>
       </tr>
       <tr>
@@ -41,7 +43,9 @@ const buttonPropsTable = () => {
       </tr>
       <tr>
         <td>size: string</td>
-        <td>"fitContent"</td>
+        <td>
+          <code>'fitContent'</code>
+        </td>
         <td>
           Size of the component ('small' | 'medium' | 'large' | 'fillParent'| 'fitContent').
         </td>

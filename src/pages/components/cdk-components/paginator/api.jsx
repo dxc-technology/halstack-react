@@ -39,7 +39,7 @@ const paginatorPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>prevFunction: funtcion</td>
+        <td>prevFunction: function</td>
         <td></td>
         <td>
           This function will be called when the user clicks the button to go to

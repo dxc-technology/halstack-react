@@ -11,7 +11,9 @@ const checkboxPropsTable = () => {
       </tr>
       <tr>
         <td>isCloseVisible: boolean</td>
-        <td>true</td>
+        <td>
+          <code>true</code>
+        </td>
         <td>If true, the close 'x' button will be visible.</td>
       </tr>
       <tr>
@@ -32,7 +34,9 @@ const checkboxPropsTable = () => {
       </tr>
       <tr>
         <td>overlay: boolean</td>
-        <td>true</td>
+        <td>
+          <code>true</code>
+        </td>
         <td>If true, the dialog will be displayed over a darker background.</td>
       </tr>
       <tr>

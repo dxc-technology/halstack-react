@@ -10,7 +10,7 @@ const checkboxPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>onUpload: function</td>
+        <td>callbackUpload: function</td>
         <td></td>
         <td>
           This function will be called when the user clicks the 'Upload' button

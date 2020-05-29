@@ -21,6 +21,7 @@ function Alert() {
     <ComponentDoc>
       <ComponentHeader
         title="Alert"
+        status="ready"
       >
       </ComponentHeader>
       <DxcTabsForSections
