@@ -24,11 +24,13 @@ const spinnerPropsTable = () => {
       </tr>
       <tr>
         <td>mode: 'large' | 'small' | 'overlay' </td>
-        <td>large</td>
+        <td>
+          <code>'large'</code>
+        </td>
         <td>The spinner can have overlay or small or large size. </td>
       </tr>
       <tr>
-        <td>value: string</td>
+        <td>value: number</td>
         <td></td>
         <td>
           The value of the progress indicator. If it's received the component is
@@ -37,7 +39,9 @@ const spinnerPropsTable = () => {
       </tr>
       <tr>
         <td>showValue: boolean</td>
-        <td>false</td>
+        <td>
+          <code>false</code>
+        </td>
         <td>If true, the value is displayed inside the spinner.</td>
       </tr>
       <tr>

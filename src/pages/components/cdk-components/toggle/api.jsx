@@ -86,7 +86,7 @@ const togglePropsTable = () => {
       <tr>
         <td>size: string | object</td>
         <td>
-          <code>"fitContent"</code>
+          <code>'fitContent'</code>
         </td>
         <td>
           Size of the component ('small' | 'medium' | 'large'| 'fitContent' |

@@ -23,11 +23,13 @@ const progressBarPropsTable = () => {
       </tr>
       <tr>
         <td>overlay: boolean</td>
-        <td>true</td>
+        <td>
+          <code>true</code>
+        </td>
         <td>If true, the progress bar will be displayed as a modal.</td>
       </tr>
       <tr>
-        <td>value: string</td>
+        <td>value: number</td>
         <td></td>
         <td>
           The value of the progress indicator. If it's received the component
@@ -36,7 +38,9 @@ const progressBarPropsTable = () => {
       </tr>
       <tr>
         <td>showValue: boolean</td>
-        <td>false</td>
+        <td>
+          <code>false</code>
+        </td>
         <td>If true, the value is displayed above the progress bar.</td>
       </tr>
       <tr>

@@ -29,7 +29,7 @@ const headingPropsTable = () => {
             <tr>
                 <td>theme: 'light' | 'dark'</td>
                 <td>
-                    <code>light</code>
+                    <code>'light'</code>
                 </td>
                 <td>Theme of the component.</td>
             </tr>

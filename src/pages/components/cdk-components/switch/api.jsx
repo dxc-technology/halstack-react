@@ -11,7 +11,9 @@ const switchPropsTable = () => {
       </tr>
       <tr>
         <td>checked: boolean</td>
-        <td></td>
+        <td>
+          <code>false</code>
+        </td>
         <td>
           If true, the component is checked. If undefined, the component will be
           uncontrolled and the value will be managed internally by the
@@ -96,7 +98,7 @@ const switchPropsTable = () => {
       <tr>
         <td>size: string | object</td>
         <td>
-          <code>"fitContent"</code>
+          <code>'fitContent'</code>
         </td>
         <td>
           Size of the component ('small' | 'medium' | 'large' | 'fillParent' |
