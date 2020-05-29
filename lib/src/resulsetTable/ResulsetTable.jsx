@@ -9,46 +9,22 @@ import arrowUp from "./arrow_upward-24px_wht.svg";
 import arrowDown from "./arrow_downward-24px_wht.svg";
 import bothArrows from "./unfold_more-24px_wht.svg";
 
+function normalizeSortValue(sortValue) {
+  return typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
+}
+
 function sortArray(index, order, resulset) {
   return resulset.slice().sort((element1, element2) => {
-    /*
-     * return < 0 element1 comes first than element2
-     * return 0 leave element1 and element2 unchanged respect to each other
-     * return > 0 element2 comes first than element1
-     * (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
-     */
-    let varA;
-    let varB;
-    if (!element1[index].sortValue) {
-      varA =
-        typeof element1[index].displayValue === "string"
-          ? element1[index].displayValue.toUpperCase()
-          : element1[index].displayValue;
-    } else {
-      varA =
-        typeof element1[index].sortValue === "string"
-          ? element1[index].sortValue.toUpperCase()
-          : element1[index].sortValue;
-    }
-    if (!element2[index].sortValue) {
-      varB =
-        typeof element2[index].displayValue === "string"
-          ? element2[index].displayValue.toUpperCase()
-          : element2[index].displayValue;
-    } else {
-      varB =
-        typeof element2[index].sortValue === "string"
-          ? element2[index].sortValue.toUpperCase()
-          : element2[index].sortValue;
-    }
+    const sortValueA = normalizeSortValue(element1[index].sortValue) || normalizeSortValue(element1[index].displayValue);
+    const sortValueB = normalizeSortValue(element2[index].sortValue) || normalizeSortValue(element2[index].displayValue);
     let comparison = 0;
-    if (typeof varA === "object") {
+    if (typeof sortValueA === "object") {
       comparison = -1;
-    } else if (typeof varB === "object") {
+    } else if (typeof sortValueB === "object") {
       comparison = 1;
-    } else if (varA > varB) {
+    } else if (sortValueA > sortValueB) {
       comparison = 1;
-    } else if (varA < varB) {
+    } else if (sortValueA < sortValueB) {
       comparison = -1;
     }
     return order === "desc" ? comparison * -1 : comparison;
@@ -60,7 +36,7 @@ const getMinItemsPerPageIndex = (currentPageInternal, itemsPerPage, page) =>
 const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resulset, page) =>
   minItemsPerPageIndex + itemsPerPage > resulset.length ? resulset.length : itemsPerPage * page - 1;
 
-const DxcResulsetTable = ({ columns, rows, itemsPerPage, margin }) => {
+const DxcResulsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
   const colorsTheme = useContext(ThemeContext) || colors;
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
