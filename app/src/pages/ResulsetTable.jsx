@@ -224,7 +224,7 @@ const rows = [
 function App() {
   return (
     <div>
-      <div class="test-case" id="xxsmall-margin">
+      <div className="test-case" id="xxsmall-margin">
         <h5>xxsmall margin</h5>
 
         <DxcResulsetTable
@@ -234,7 +234,7 @@ function App() {
           margin="xxsmall"
         ></DxcResulsetTable>
       </div>
-      <div class="test-case" id="xsmall-margin">
+      <div className="test-case" id="xsmall-margin">
         <h5>xsmall margin</h5>
 
         <DxcResulsetTable
@@ -244,7 +244,7 @@ function App() {
           margin="xsmall"
         ></DxcResulsetTable>
       </div>
-      <div class="test-case" id="small-margin">
+      <div className="test-case" id="small-margin">
         <h5>small margin</h5>
 
         <DxcResulsetTable
@@ -254,7 +254,7 @@ function App() {
           margin="small"
         ></DxcResulsetTable>
       </div>
-      <div class="test-case" id="medium-margin">
+      <div className="test-case" id="medium-margin">
         <h5>medium margin</h5>
 
         <DxcResulsetTable
@@ -264,7 +264,7 @@ function App() {
           margin="medium"
         ></DxcResulsetTable>
       </div>
-      <div class="test-case" id="large-margin">
+      <div className="test-case" id="large-margin">
         <h5>large margin</h5>
 
         <DxcResulsetTable
@@ -274,7 +274,7 @@ function App() {
           margin="large"
         ></DxcResulsetTable>
       </div>
-      <div class="test-case" id="xlarge-margin">
+      <div className="test-case" id="xlarge-margin">
         <h5>xlarge margin</h5>
 
         <DxcResulsetTable
@@ -284,7 +284,7 @@ function App() {
           margin="xlarge"
         ></DxcResulsetTable>
       </div>
-      <div class="test-case" id="xxlarge-margin">
+      <div className="test-case" id="xxlarge-margin">
         <h5>xxlarge margin</h5>
 
         <DxcResulsetTable

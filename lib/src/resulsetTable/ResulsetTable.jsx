@@ -15,8 +15,8 @@ function normalizeSortValue(sortValue) {
 
 function sortArray(index, order, resulset) {
   return resulset.slice().sort((element1, element2) => {
-    const sortValueA = normalizeSortValue(element1[index].sortValue) || normalizeSortValue(element1[index].displayValue);
-    const sortValueB = normalizeSortValue(element2[index].sortValue) || normalizeSortValue(element2[index].displayValue);
+    const sortValueA = normalizeSortValue(element1[index].sortValue || element1[index].displayValue);
+    const sortValueB = normalizeSortValue(element2[index].sortValue || element2[index].displayValue);
     let comparison = 0;
     if (typeof sortValueA === "object") {
       comparison = -1;
