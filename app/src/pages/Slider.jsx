@@ -171,19 +171,6 @@ function App() {
             size="fillParent"
           />
         </div>
-        <div className="test-case" id="fitContent-size-slider">
-          <h5>FitContent size</h5>
-          <DxcSlider
-            minValue={0}
-            maxValue={100}
-            showLimitsValues={true}
-            showInput={false}
-            name="input"
-            theme="light"
-            step={1}
-            size="fitContent"
-          />
-        </div>
       </div>
       <div>
         <h4>Margins</h4>

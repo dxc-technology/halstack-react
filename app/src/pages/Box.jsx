@@ -27,7 +27,7 @@ function App() {
           </DxcBox>
         </div>
         <div className="test-case" id="fitcontent-size">
-          <DxcBox size="fitcontent" margin="small">
+          <DxcBox size="fitContent" margin="small">
             fitcontent Box
           </DxcBox>
         </div>

@@ -10,7 +10,7 @@ function SideNav() {
       <Title>React Components</Title>
       <Links id="links-list">
         {paths.map(path => (
-          <Link to={path.path}>{path.name}</Link>
+          <Link key={path.path} to={path.path}>{path.name}</Link>
         ))}
       </Links>
     </SideNavContainer>
