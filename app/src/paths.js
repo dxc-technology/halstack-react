@@ -28,7 +28,7 @@ import Wizard from "./pages/Wizard";
 import Link from "./pages/Link";
 import Heading from "./pages/Heading";
 import Textarea from "./pages/Textarea";
-import ResulsetTable from "./pages/ResulsetTable";
+import ResultsetTable from "./pages/ResultsetTable";
 
 export default [
   {
@@ -117,9 +117,9 @@ export default [
     component: Radio
   },
   {
-    path: "resulsetTable",
-    name: "ResulsetTable",
-    component: ResulsetTable
+    path: "resultsetTable",
+    name: "ResultsetTable",
+    component: ResultsetTable
   },
   {
     path: "select",
