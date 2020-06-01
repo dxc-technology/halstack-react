@@ -6,15 +6,15 @@ import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
-import ResulsetTablePropsTable from "./api.jsx";
+import ResultsetTablePropsTable from "./api.jsx";
 
-import defaultResulsetTable from "././examples/defaultResuseltTable";
+import defaultResultsetTable from "./examples/defaultResultseltTable";
       
 
-function ResulsetTable() {
+function ResultsetTable() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="ResulsetTable" status="ready"></ComponentHeader>
+      <ComponentHeader title="ResultsetTable" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -24,7 +24,7 @@ function ResulsetTable() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
-                <ResulsetTablePropsTable />
+                <ResultsetTablePropsTable />
               </Section>
             ),
           },
@@ -34,8 +34,8 @@ function ResulsetTable() {
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
                 <Example
-                  title="Resulset Table"
-                  example={defaultResulsetTable}
+                  title="Resultset Table"
+                  example={defaultResultsetTable}
                 ></Example>
               </Section>
             ),
@@ -46,4 +46,4 @@ function ResulsetTable() {
   );
 }
 
-export default ResulsetTable;
+export default ResultsetTable;

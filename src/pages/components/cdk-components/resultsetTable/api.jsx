@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@diaas/dxc-react-cdk";
 
-const resulsetTablePropsTable = () => {
+const resultsetTablePropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -69,4 +69,4 @@ const resulsetTablePropsTable = () => {
   );
 };
 
-export default resulsetTablePropsTable;
+export default resultsetTablePropsTable;
