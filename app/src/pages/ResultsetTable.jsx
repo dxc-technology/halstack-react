@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  DxcResulsetTable,
+  DxcResultsetTable,
   ThemeContext,
   DxcButton,
 } from "@diaas/dxc-react-cdk";
@@ -227,74 +227,73 @@ function App() {
       <div className="test-case" id="xxsmall-margin">
         <h5>xxsmall margin</h5>
 
-        <DxcResulsetTable
+        <DxcResultsetTable
           columns={columns}
           rows={rows}
           itemsPerPage={3}
           margin="xxsmall"
-        ></DxcResulsetTable>
+        ></DxcResultsetTable>
       </div>
       <div className="test-case" id="xsmall-margin">
         <h5>xsmall margin</h5>
 
-        <DxcResulsetTable
+        <DxcResultsetTable
           columns={columns}
           rows={rows}
           itemsPerPage={5}
           margin="xsmall"
-        ></DxcResulsetTable>
+        ></DxcResultsetTable>
       </div>
       <div className="test-case" id="small-margin">
         <h5>small margin</h5>
 
-        <DxcResulsetTable
+        <DxcResultsetTable
           columns={columns}
           rows={rows}
           itemsPerPage={3}
           margin="small"
-        ></DxcResulsetTable>
+        ></DxcResultsetTable>
       </div>
       <div className="test-case" id="medium-margin">
         <h5>medium margin</h5>
 
-        <DxcResulsetTable
+        <DxcResultsetTable
           columns={columns}
           rows={rows}
           itemsPerPage={3}
           margin="medium"
-        ></DxcResulsetTable>
+        ></DxcResultsetTable>
       </div>
       <div className="test-case" id="large-margin">
         <h5>large margin</h5>
 
-        <DxcResulsetTable
+        <DxcResultsetTable
           columns={columns}
           rows={rows}
           itemsPerPage={3}
           margin="large"
-        ></DxcResulsetTable>
+        ></DxcResultsetTable>
       </div>
       <div className="test-case" id="xlarge-margin">
         <h5>xlarge margin</h5>
 
-        <DxcResulsetTable
+        <DxcResultsetTable
           columns={columns}
           rows={rows}
           itemsPerPage={3}
           margin="xlarge"
-        ></DxcResulsetTable>
+        ></DxcResultsetTable>
       </div>
       <div className="test-case" id="xxlarge-margin">
         <h5>xxlarge margin</h5>
 
-        <DxcResulsetTable
+        <DxcResultsetTable
           columns={columns}
           rows={rows}
           itemsPerPage={3}
           margin="xxlarge"
-        ></DxcResulsetTable>
+        ></DxcResultsetTable>
       </div>
-
     </div>
   );
 }
