@@ -13,8 +13,8 @@ function normalizeSortValue(sortValue) {
   return typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
 }
 
-function sortArray(index, order, resulset) {
-  return resulset.slice().sort((element1, element2) => {
+function sortArray(index, order, resultset) {
+  return resultset.slice().sort((element1, element2) => {
     const sortValueA = normalizeSortValue(element1[index].sortValue || element1[index].displayValue);
     const sortValueB = normalizeSortValue(element2[index].sortValue || element2[index].displayValue);
     let comparison = 0;
@@ -33,10 +33,10 @@ function sortArray(index, order, resulset) {
 const getMinItemsPerPageIndex = (currentPageInternal, itemsPerPage, page) =>
   currentPageInternal === 1 ? 0 : itemsPerPage * (page - 1);
 
-const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resulset, page) =>
-  minItemsPerPageIndex + itemsPerPage > resulset.length ? resulset.length : itemsPerPage * page - 1;
+const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, page) =>
+  minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
-const DxcResulsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
+const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
   const colorsTheme = useContext(ThemeContext) || colors;
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
@@ -69,18 +69,18 @@ const DxcResulsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
     return sortColumnIndex === clickedColumnIndex ? (sortOrder === "asc" ? arrowUp : arrowDown) : bothArrows;
   };
 
-  const sortedResulset = useMemo(() => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows), [
+  const sortedResultset = useMemo(() => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows), [
     sortColumnIndex,
     sortOrder,
     rows,
   ]);
-  const filteredResulset = useMemo(
-    () => sortedResulset && sortedResulset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
+  const filteredResultset = useMemo(
+    () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [page, sortColumnIndex, sortOrder]
   );
   return (
     <ThemeProvider theme={colorsTheme}>
-      <DxcResulsetTableContainer margin={margin}>
+      <DxcResultsetTableContainer margin={margin}>
         <TableContainer>
           <DxcTable margin={{ top: margin, right: margin, bottom: "0px", left: margin }}>
             <HeaderRow>
@@ -99,10 +99,10 @@ const DxcResulsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
               </tr>
             </HeaderRow>
             <TableRowGroup>
-              {filteredResulset.map((cells, index) => (
-                <tr key={`resulSetTableCell_${index}`}>
+              {filteredResultset.map((cells, index) => (
+                <tr key={`resultSetTableCell_${index}`}>
                   {cells.map((cellContent, index) => (
-                    <td key={`resulSetTableCellContent_${index}`}>{cellContent.displayValue}</td>
+                    <td key={`resultSetTableCellContent_${index}`}>{cellContent.displayValue}</td>
                   ))}
                 </tr>
               ))}
@@ -120,7 +120,7 @@ const DxcResulsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
             lastFunction={last}
           />
         </PaginatorContainer>
-      </DxcResulsetTableContainer>
+      </DxcResultsetTableContainer>
     </ThemeProvider>
   );
 };
@@ -162,7 +162,7 @@ const HeaderContainer = styled.div`
 const HeaderRow = styled.thead`
   height: 60px;
 `;
-const DxcResulsetTableContainer = styled.div`
+const DxcResultsetTableContainer = styled.div`
   overflow-x: auto;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -189,7 +189,7 @@ const DxcResulsetTableContainer = styled.div`
   }
 `;
 
-DxcResulsetTable.propTypes = {
+DxcResultsetTable.propTypes = {
   rows: PropTypes.array,
   columns: PropTypes.array,
   itemsPerPage: PropTypes.number,
@@ -203,11 +203,11 @@ DxcResulsetTable.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
 };
-DxcResulsetTable.defaultProps = {
+DxcResultsetTable.defaultProps = {
   rows: [],
   columns: [],
   itemsPerPage: 5,
   margin: "xxsmall",
 };
 
-export default DxcResulsetTable;
+export default DxcResultsetTable;
