@@ -28,7 +28,7 @@ import Link from "./cdk-components/link/Link";
 import Wizard from "./cdk-components/wizard/Wizard";
 import Textarea from "./cdk-components/textarea/Textarea";
 import Heading from "./cdk-components/heading/Heading";
-import ResulsetTable from "./cdk-components/resulsetTable/resulsetTable";
+import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
 
 export const types = {
   FORMS: "Forms",
@@ -141,9 +141,9 @@ export default [
     type: types.FORMS,
   },
   {
-    path: "resulsetTable",
-    name: "Resulset Table",
-    component: ResulsetTable,
+    path: "resultsetTable",
+    name: "Resultset Table",
+    component: ResultsetTable,
     type: types.UTILS,
   },
   {
