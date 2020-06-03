@@ -76,7 +76,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
   ]);
   const filteredResultset = useMemo(
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-    [page, sortColumnIndex, sortOrder]
+    [page, sortColumnIndex, sortOrder, rows]
   );
   return (
     <ThemeProvider theme={colorsTheme}>
