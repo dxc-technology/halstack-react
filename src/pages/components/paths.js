@@ -29,6 +29,7 @@ import Wizard from "./cdk-components/wizard/Wizard";
 import Textarea from "./cdk-components/textarea/Textarea";
 import Heading from "./cdk-components/heading/Heading";
 import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
+import Autocomplete from "./cdk-components/autocomplete/Autocomplete";
 
 export const types = {
   FORMS: "Forms",
@@ -49,6 +50,12 @@ export default [
     name: "Alert",
     component: Alert,
     type: types.UTILS,
+  },
+  {
+    path: "autocomplete",
+    name: "Autocomplete",
+    component: Autocomplete,
+    type: types.FORMS,
   },
   {
     path: "box",
