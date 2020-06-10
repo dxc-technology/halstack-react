@@ -19,8 +19,67 @@ const colors = {
   lightGreen: "blue",
 };
 
+const countries = [
+  "Albania",
+  "Andorra",
+  "Armenia",
+  "Austria",
+  "Azerbaijan",
+  "Belarus",
+  "Belgium",
+  "Bosnia and Herzegovina",
+  "Bulgaria",
+  "Croatia",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Estonia",
+  "Finland",
+  "France",
+  "Georgia",
+  "Germany",
+  "Greece",
+  "Hungary",
+  "Iceland",
+  "Ireland",
+  "Italy",
+  "Kosovo",
+  "Latvia",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Macedonia",
+  "Malta",
+  "Moldova",
+  "Monaco",
+  "Montenegro",
+  "The Netherlands",
+  "Norway",
+  "Poland",
+  "Portugal",
+  "Romania",
+  "Russia",
+  "San Marino",
+  "Serbia",
+  "Slovakia",
+  "Slovenia",
+  "Spain",
+  "Sweden",
+  "Switzerland",
+  "Turkey",
+  "Ukraine",
+  "United Kingdom",
+  "Vatican City",
+];
+
 function App() {
   const [inputValue, changeInput] = useState("");
+  const [autocompleteValue, changeAutocompleteValue] = useState("");
+  const [
+    asynchronousAutocompleteValue,
+    changeAsynchronousAutocompleteValue,
+  ] = useState("");
+
   const onChange = (newValue) => {
     changeInput(newValue);
   };
@@ -31,6 +90,41 @@ function App() {
   const onPrefixClick = () => {
     changeInput("prefix Clicked");
   };
+  const onChangeAutocomplete = (newValue) => {
+    changeAutocompleteValue(newValue);
+  };
+  const onChangeAutocompleteUncontrolled = (newValue) => {
+    console.log("onChange called");
+  };
+  const onChangeAsynchronousAutocomplete = (newValue) => {
+    changeAsynchronousAutocompleteValue(newValue);
+  };
+  const onBlurAutocomplete = () => {
+    console.log("onBlur called");
+  };
+
+  function callbackFunc(newValue) {
+    const result = new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(
+          newValue
+            ? countries.filter((option) =>
+                option.toUpperCase().includes(newValue.toUpperCase())
+              )
+            : countries
+        );
+      }, 3000)
+    );
+    return result;
+  }
+  function callbackFuncRejected(newValue) {
+    const result = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject("Error!");
+      }, 3000);
+    });
+    return result;
+  }
 
   return (
     <div>
@@ -511,6 +605,26 @@ function App() {
             onChange={onChange}
           />
         </ThemeContext.Provider>
+      </div>
+      <div className="test-case" id="async-autocomplete">
+        <h4>Asynchronous Autocomplete</h4>
+        <DxcInput
+          label="Asynchronous Autocomplete"
+          value={asynchronousAutocompleteValue}
+          onChange={onChangeAsynchronousAutocomplete}
+          onBlur={onBlurAutocomplete}
+          autocompleteOptions={callbackFunc}
+        />
+      </div>
+      <div className="test-case" id="sync-autocomplete">
+        <h4>Synchronous Autocomplete</h4>
+        <DxcInput
+          label="Synchronous Autocomplete"
+          value={autocompleteValue}
+          onChange={onChangeAutocomplete}
+          onBlur={onBlurAutocomplete}
+          autocompleteOptions={countries}
+        />
       </div>
     </div>
   );
