@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { colors, spaces } from "../common/variables.js";
@@ -68,6 +68,12 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
   const getIconForSortableColumn = (clickedColumnIndex) => {
     return sortColumnIndex === clickedColumnIndex ? (sortOrder === "asc" ? arrowUp : arrowDown) : bothArrows;
   };
+
+  useEffect(()=>{
+    changePage(1);
+  },[rows]);
+
+
 
   const sortedResultset = useMemo(() => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows), [
     sortColumnIndex,
