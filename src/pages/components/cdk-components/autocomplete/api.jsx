@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@diaas/dxc-react-cdk";
 
-const inputPropsTable = () => {
+const autocompletePropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -159,7 +159,7 @@ const inputPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>autocompleteOptions: Array | function</td>
+        <td>autocompleteOptions: Arrya | function</td>
         <td></td>
         <td>
           These are the options to be displayed as suggestions. It can be either
@@ -182,4 +182,4 @@ const inputPropsTable = () => {
   );
 };
 
-export default inputPropsTable;
+export default autocompletePropsTable;
