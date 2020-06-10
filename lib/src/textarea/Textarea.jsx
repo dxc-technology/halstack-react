@@ -173,6 +173,10 @@ const TextContainer = styled.div`
       .MuiInputBase-inputMultiline {
         overflow: auto !important;
 
+        ::-webkit-scrollbar {
+          width: 3px;
+        }
+
         ::-webkit-scrollbar-track {
           background-color: ${(props) => props.theme.lightGrey};
           border-radius: 3px;

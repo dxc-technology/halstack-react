@@ -1,12 +1,36 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Paper from "@material-ui/core/Paper";
+import MenuItem from "@material-ui/core/MenuItem";
+
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
+import Popper from "@material-ui/core/Popper";
+
 import { colors, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
+import errorIcon from "./error.svg";
+
+const makeCancelable = (promise) => {
+  let hasCanceled_ = false;
+
+  const wrappedPromise = new Promise((resolve, reject) => {
+    promise.then(
+      (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
+      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError))
+    );
+  });
+
+  return {
+    promise: wrappedPromise,
+    cancel() {
+      hasCanceled_ = true;
+    },
+  };
+};
 
 const DxcInputText = ({
   label = " ",
@@ -29,34 +53,91 @@ const DxcInputText = ({
   placeholder = "",
   margin,
   size = "medium",
+  autocompleteOptions,
 }) => {
   const [innerValue, setInnerValue] = useState("");
   const colorsTheme = useContext(ThemeContext) || colors;
 
-  const handlerInputChange = (event) => {
+  const [isOpen, changeIsOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [filteredOptions, changeFilteredOptions] = useState([]);
+  const [isSearching, changeIsSearching] = useState(false);
+  const [isError, changeIsError] = useState(false);
+
+  const changeValue = (newValue) => {
     if (value === null || value === undefined) {
       if (typeof onChange === "function") {
-        setInnerValue(event.target.value);
-        onChange(event.target.value);
+        setInnerValue(newValue);
+        onChange(newValue);
       } else {
-        setInnerValue(event.target.value);
+        setInnerValue(newValue);
       }
     } else if (onChange !== "") {
       if (typeof onChange === "function") {
-        onChange(event.target.value);
+        onChange(newValue);
       } else {
-        setInnerValue(event.target.value);
+        setInnerValue(newValue);
       }
     }
   };
 
+  useEffect(() => {
+    if (typeof autocompleteOptions === "function") {
+      changeIsSearching(true);
+      changeIsError(false);
+      changeFilteredOptions([]);
+
+      const cancelablePromise = makeCancelable(autocompleteOptions(value || innerValue));
+      cancelablePromise.promise
+        .then((promiseResponse) => {
+          changeIsSearching(false);
+          changeIsError(false);
+          changeFilteredOptions(promiseResponse);
+        })
+        .catch((err) => {
+          if (!err.isCanceled) {
+            changeIsSearching(false);
+            changeIsError(true);
+          }
+        });
+
+      return () => {
+        cancelablePromise.cancel();
+      };
+    }
+    if (autocompleteOptions && autocompleteOptions.length) {
+      changeFilteredOptions(
+        autocompleteOptions.filter((option) => option.toUpperCase().includes((value || innerValue).toUpperCase()))
+      );
+    }
+  }, [value, innerValue, autocompleteOptions]);
+
+  const handlerInputChange = (event) => {
+    if (autocompleteOptions) {
+      changeIsError(false);
+      setAnchorEl(event.currentTarget);
+    }
+
+    changeValue(event.target.value);
+  };
+
+  const handlerSuggestionClicked = (suggestion) => {
+    changeIsOpen(false);
+    changeValue(suggestion);
+  };
   const handlerInputBlur = (event) => {
+    changeIsOpen(false);
     setInnerValue(event.target.value);
     if (onBlur) {
       onBlur(event.target.value);
     }
   };
-
+  const getFocus = (event) => {
+    setAnchorEl(event.currentTarget);
+    if (autocompleteOptions) {
+      changeIsOpen(true);
+    }
+  };
   return (
     <ThemeProvider theme={colorsTheme}>
       <TextContainer
@@ -76,13 +157,14 @@ const DxcInputText = ({
         )}
         <TextField
           error={invalid}
-          value={value !== null ? value : innerValue}
+          value={value || innerValue}
           name={name}
           disabled={disabled}
           label={label}
           helperText={assistiveText}
-          onChange={handlerInputChange}
-          onBlur={(onBlur && handlerInputBlur) || null}
+          onChange={(event) => handlerInputChange(event)}
+          onBlur={handlerInputBlur}
+          onFocus={(event) => getFocus(event)}
           placeholder={placeholder}
           type={isMasked ? "password" : "text"}
           InputProps={{
@@ -95,6 +177,50 @@ const DxcInputText = ({
           }}
         />
       </TextContainer>
+
+      <Popper
+        open={isOpen}
+        anchorEl={anchorEl}
+        anchororigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        paperprops={{
+          style: {
+            marginTop: "0px",
+          },
+        }}
+      >
+        <SuggestionsContainer margin={margin} size={size}>
+          <React.Fragment>
+            <Paper>
+              {isOpen && !isSearching && !isError && !filteredOptions.length && <MenuItem>No matches found.</MenuItem>}
+              {isOpen &&
+                !isSearching &&
+                filteredOptions.length > 0 &&
+                filteredOptions.map((suggestion) => {
+                  return (
+                    <MenuItem
+                      key={suggestion}
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => handlerSuggestionClicked(suggestion)}
+                    >
+                      {suggestion}
+                    </MenuItem>
+                  );
+                })}
+
+              {isSearching && <MenuItem>Searching...</MenuItem>}
+              {isError && (
+                <MenuItem>
+                  Error fetching data
+                  <ErrorIcon src={errorIcon} />
+                </MenuItem>
+              )}
+            </Paper>
+          </React.Fragment>
+        </SuggestionsContainer>
+      </Popper>
     </ThemeProvider>
   );
 };
@@ -106,12 +232,35 @@ const sizes = {
   fillParent: "100%",
 };
 
+const ErrorIcon = styled.img`
+  padding-left: 12px;
+`;
+
 const calculateWidth = (margin, size) => {
   if (size === "fillParent") {
     return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
   }
   return sizes[size];
 };
+const SuggestionsContainer = styled.div`
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  .MuiPaper-root {
+    max-height: 250px;
+    overflow: auto;
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: ${(props) => props.theme.lightGrey};
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${(props) => props.theme.darkGrey};
+      border-radius: 3px;
+    }
+  }
+`;
 
 const PrefixIcon = styled.img`
   position: absolute;
@@ -368,6 +517,7 @@ DxcInputText.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  autocompleteOptions: PropTypes.any
 };
 
 export default DxcInputText;
