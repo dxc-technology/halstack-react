@@ -1,4 +1,4 @@
-import { DxcResulsetTable, DxcButton } from "@diaas/dxc-react-cdk";
+import { DxcResultsetTable, DxcButton } from "@diaas/dxc-react-cdk";
 import deleteIcon from "./images/delete-24px.svg";
 
 const code = `() => {
@@ -48,15 +48,15 @@ const code = `() => {
     ],
   ];
   return (
-    <DxcResulsetTable
+    <DxcResultsetTable
       columns={columns}
       rows={rows}
       itemsPerPage={2}
-    ></DxcResulsetTable>
+    ></DxcResultsetTable>
   );
 }`;
 const scope = {
-  DxcResulsetTable,
+  DxcResultsetTable,
   DxcButton,
   deleteIcon,
 };
