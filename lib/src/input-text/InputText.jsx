@@ -157,7 +157,7 @@ const DxcInputText = ({
         )}
         <TextField
           error={invalid}
-          value={value !== null ? value : innerValue}
+          value={value != null ? value : innerValue}
           name={name}
           disabled={disabled}
           label={label}
