@@ -157,7 +157,7 @@ const DxcInputText = ({
         )}
         <TextField
           error={invalid}
-          value={value || innerValue}
+          value={value !== null ? value : innerValue}
           name={name}
           disabled={disabled}
           label={label}
@@ -517,7 +517,7 @@ DxcInputText.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  autocompleteOptions: PropTypes.any
+  autocompleteOptions: PropTypes.any,
 };
 
 export default DxcInputText;
