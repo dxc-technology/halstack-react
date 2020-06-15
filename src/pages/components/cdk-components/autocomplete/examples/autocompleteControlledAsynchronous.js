@@ -28,19 +28,19 @@ const code = `() => {
               )
             : countries
         );
-      }, 3000)
+      }, 1000)
     );
     return result;
   }
 
   return (
     <DxcInput
-          label="Synchronous Autocomplete"
-          value={value}
-          onChange={onChange}
-          autocompleteOptions={callbackFunc}
-          margin="medium"
-        />
+      label="Autocomplete"
+      value={value}
+      onChange={onChange}
+      autocompleteOptions={callbackFunc}
+      margin="medium"
+    />
   );
 }`;
 
