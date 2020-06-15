@@ -11,7 +11,6 @@ import autocompleteControlledSynchronous from "./examples/autocompleteControlled
 import autocompleteUncontrolledSynchronous from "./examples/autocompleteUncontrolledSynchronous";
 import autocompoleteControlledAsynchronous from "./examples/autocompleteControlledAsynchronous";
 import autocompoleteUncontrolledAsynchronous from "./examples/autocompoleteUncontrolledAsynchronous";
-import darkThemed from "./examples/darkThemed";
 
 function Autocomplete() {
   return (
@@ -27,17 +26,17 @@ function Autocomplete() {
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
                 <React.Fragment>
-                  As the autocomplete component is part of the text field
-                  component you can find its documentation as part of the text
-                  field´s ones
+                  The autocomplete functionality has been implemented as part of
+                  the
                   <DxcLink
-                    text="here"
+                    text="Text Field"
                     underlined={false}
                     margin="xxsmall"
                     href={`#/components/input`}
                   />
+                  component. The whole documentation of public API for this
+                  component can be found in that page.
                 </React.Fragment>
-               
               </Section>
             ),
           },
@@ -62,11 +61,6 @@ function Autocomplete() {
                   title="Asynchronous Unontrolled Autocomplete"
                   example={autocompoleteUncontrolledAsynchronous}
                 ></Example>
-                <Example
-                  title="Dark theme Autocomplete"
-                  example={darkThemed}
-                ></Example>
-                
               </Section>
             ),
           },

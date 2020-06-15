@@ -21,12 +21,11 @@ const code = `() => {
 
   return (
     <DxcInput
-          label="Synchronous Uncontrolled Autocomplete"
-          onChange={onChange}
-          autocompleteOptions={countries}
-          margin="medium"
-          size="large"
-        />
+      label="Autocomplete"
+      onChange={onChange}
+      autocompleteOptions={countries}
+      margin="medium"
+    />
   );
 }`;
 
