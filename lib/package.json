@@ -49,7 +49,10 @@
     "eslint-plugin-react": "^7.13.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "react": "file:../app/node_modules/react",
+    "react-dom": "file:../app/node_modules/react-dom",
+    "styled-components": "file:../app/node_modules/styled-components"
   },
   "jest": {
     "moduleNameMapper": {
