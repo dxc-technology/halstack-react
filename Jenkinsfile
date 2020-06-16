@@ -4,10 +4,6 @@ pipeline {
             filename 'docker/Dockerfile'
         }
     }
-    environment  {
-        REPO_NAME = 'diaas-react-cdk'
-        SERVICE_NAME='dxc-react-cdk'
-    } 
     stages {
         stage('Git') {
             steps {
@@ -25,20 +21,6 @@ pipeline {
                             returnStdout: true
                         ).trim()
                     }
-            }
-        }
-        stage('Check repo name'){
-            steps{
-                script{
-                    withCredentials([usernamePassword(credentialsId:"pdxc-jenkins", passwordVariable:"GIT_PASSWORD", usernameVariable:"GIT_USER")]) {
-                        env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')                          
-                           
-                        def check=checkRepoName(env.GIT_REPO_NAME,"${REPO_NAME}");
-                        if (!check){
-                            error "This pipeline stops here! Please check the environment variables"
-                        } 
-                    }
-                }
             }
         }
         stage('Release type') {
@@ -60,26 +42,6 @@ pipeline {
                         }
                     } catch(err) {
                         env.RELEASE_OPTION = 'no-release'
-                    }
-                }
-            }
-        }
-        stage('Password to continue') {
-            when {
-                expression { env.RELEASE_OPTION == 'major' | env.RELEASE_OPTION == 'minor' | env.RELEASE_OPTION == 'patch' | env.RELEASE_OPTION == 'premajor' | env.RELEASE_OPTION == 'preminor' | env.RELEASE_OPTION == 'prepatch' |env.RELEASE_OPTION == 'prerelease' } 
-            }
-            steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId:"diaas-rw", passwordVariable:"ARTIF_PASSWORD", usernameVariable:"ARTIF_USER")]) {
-                        env.PASSWORD = input message: 'Enter password to continue', ok: 'Continue',
-                            parameters: [string(defaultValue: '', description: 'Password required', name: 'password')]
-                        if (env.PASSWORD == ARTIF_PASSWORD) {
-                            env.RELEASE_VALID = 'valid';
-                        } else {
-                            env.RELEASE_VALID = 'invalid';
-                            env.RELEASE_TYPE = 'no-release'
-                            echo 'Invalid password. The version will not be released.'
-                        }
                     }
                 }
             }
@@ -150,37 +112,6 @@ pipeline {
                     npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm-local/ --tag alpha
 
                 '''
-            }
-        }
-        stage('Publish dxc-react-cdk version to Artifactory ') {
-            when {
-                expression { env.RELEASE_VALID == 'valid' } 
-            }
-            steps {
-                script {
-                    // Publish library to npm repository
-                    try {
-                        env.RELEASE_TYPE = sh (
-                            script: "cd lib && grep 'version' package.json | grep -o '[0-9.].*[^\",]' | grep -o '[a-z].*[^.0-9]'",
-                            returnStdout: true
-                        ).trim()
-                    } catch(err) {
-                        env.RELEASE_TYPE = ''
-                    }
-                    
-                    if (env.RELEASE_TYPE == 'beta' | env.RELEASE_TYPE == 'rc') {
-                        sh '''
-                            cd lib
-                            npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm --tag ${RELEASE_TYPE}
-                        '''
-                    } else {
-                        sh '''
-                            cd lib
-                            npm publish --registry https://artifactory.csc.com/artifactory/api/npm/diaas-npm
-                        '''
-                    }
-                    
-                }
             }
         }
     }
