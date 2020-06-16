@@ -103,7 +103,15 @@ pipeline {
                 }
             }
         }
-        stage('Install dependencies') {
+        stage('Install App dependencies') {
+            steps {
+                sh '''
+                    cd app
+                    npm install
+                '''
+            }
+        }
+        stage('Install Lib dependencies') {
             steps {
                 sh '''
                     cd lib
