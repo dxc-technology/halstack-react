@@ -53,8 +53,7 @@
     "react-test-renderer": "^16.8.6",
     "react": "file:../app/node_modules/react",
     "react-dom": "file:../app/node_modules/react-dom",
-    "styled-components": "file:../app/node_modules/styled-components",
-    "react-scripts": "file:../app/node_modules/react-scripts"
+    "styled-components": "file:../app/node_modules/styled-components"
   },
   "jest": {
     "moduleNameMapper": {
