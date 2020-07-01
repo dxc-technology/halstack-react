@@ -40,7 +40,7 @@ function App() {
   );
 }
 
-const StyledRouter = styled(HashRouter)`
+const StyledRouter = styled(BrowserRouter)`
   width: 100%;
 `;
 
