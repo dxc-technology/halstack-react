@@ -82,16 +82,16 @@ const DxcSelect = ({
   const getLabelForSingleSelect = (selected) => {
     const selectedItem = options.filter((option) => option.value === selected)[0];
     return (
-      <SelectedIconContainer iconPosition={iconPosition} multiple={multiple} label={selectedItem.label}>
-        {selectedItem.iconSrc && <ListIcon src={selectedItem.iconSrc} />}{" "}
-        {selectedItem.label && (
+      <SelectedIconContainer iconPosition={iconPosition} multiple={multiple} label={selectedItem && selectedItem.label}>
+        {(selectedItem && selectedItem.iconSrc) && <ListIcon src={selectedItem && selectedItem.iconSrc} />}
+        {(selectedItem && selectedItem.label) && (
           <SelectedLabelContainer
-            iconSrc={selectedItem.iconSrc}
+            iconSrc={selectedItem && selectedItem.iconSrc}
             iconPosition={iconPosition}
             brightness={theme}
             disabled={disabled}
           >
-            {selectedItem.label}
+            {selectedItem && selectedItem.label} 
           </SelectedLabelContainer>
         )}
       </SelectedIconContainer>
