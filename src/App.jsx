@@ -11,7 +11,7 @@ import Overview from "./pages/overview/Overview";
 function App() {
   return (
     <MainContainer>
-      <HashRouter>
+      <BrowserRouter basename="/tools/react">
         <ScrollToTop />
         <StyledHeader>
           <Header></Header>
@@ -35,7 +35,7 @@ function App() {
           ]}
           copyright="© DXC Technology 2019. All rights reserved."
         ></DxcFooter>
-      </HashRouter>
+      </BrowserRouter>
     </MainContainer>
   );
 }
