@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import styled from "styled-components";
 import { DxcFooter } from "@diaas/dxc-react-cdk";
 
