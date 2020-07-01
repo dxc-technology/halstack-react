@@ -280,7 +280,7 @@ function App() {
         <h4>Without content - Normal links and social</h4>
         <div className="test-case" id="without-content-normal-links">
           <DxcFooter
-            copyright="© DXC Technology 2020. All rights reserved."
+            copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit."
             bottomLinks={bottom}
             socialLinks={social}
             margin="large"
@@ -289,7 +289,7 @@ function App() {
         <div className="test-case" id="Max-custom-content-horizontal">
           <h4>Custom content horizontal</h4>
           <DxcFooter
-            copyright="© DXC Technology 2020. All rights reserved."
+            copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit"
             bottomLinks={bottom}
             socialLinks={social}
             margin="large"
@@ -432,7 +432,7 @@ function App() {
         <div className="test-case" id="Max-custom-content">
           <h4>Custom content vertical</h4>
           <DxcFooter
-            copyright="© DXC Technology 2020. All rights reserved."
+            copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit."
             bottomLinks={bottom}
             socialLinks={social}
             margin="large"
@@ -504,7 +504,7 @@ function App() {
         <div className="test-case" id="Max-bottom-links">
           <h4>Bottom Links</h4>
           <DxcFooter
-            copyright="© DXC Technology 2020. All rights reserved."
+            copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit."
             bottomLinks={bottomLarge}
             socialLinks={social}
             margin="large"
@@ -513,7 +513,7 @@ function App() {
         <div className="test-case" id="Max-size-oneline-copyright">
           <h4>Copyright max size oneline</h4>
           <DxcFooter
-            copyright="© DXC Technology 2020. All rights reserved.blablabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
+            copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit."
             bottomLinks={bottomLarge}
             socialLinks={social}
             margin="large"
@@ -522,7 +522,7 @@ function App() {
         <div className="test-case" id="Min-size-multiline-copyright">
           <h4>Copyright min size multiline</h4>
           <DxcFooter
-            copyright="© DXC Technology 2020. All rights reserved.blablabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla1"
+            copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit."
             bottomLinks={bottomLarge}
             socialLinks={social}
             margin="large"
@@ -531,7 +531,7 @@ function App() {
         <div className="test-case" id="Min-size-oneline-social">
           <h4>Min size social oneline</h4>
           <DxcFooter
-            copyright="© DXC Technology 2020. All rights reserved."
+            copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit."
             bottomLinks={bottom}
             socialLinks={socialLarge}
             margin="large"
@@ -543,7 +543,7 @@ function App() {
         <div className="test-case" id="custom-colors">
           <ThemeContext.Provider value={colors}>
             <DxcFooter
-              copyright="© DXC Technology 2020. All rights reserved."
+              copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit."
               bottomLinks={bottom}
               socialLinks={social}
               margin="large"
