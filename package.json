@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "homepage": ".",
   "dependencies": {
     "@diaas/dxc-react-cdk": "0.0.0-alpha.303",
     "react": "^16.12.0",
