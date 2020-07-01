@@ -67,7 +67,7 @@ pipeline {
                     withAWS(role:"arn:aws:iam::665158502186:role/ISS_DIAAS_PowerUser"){
                         sh '''
                             aws s3 rm s3://design-system-react-cdk-site/ --recursive
-                            aws s3 cp ./build/ s3://design-system-react-cdk-site/ --recursive
+                            aws s3 cp ./build/ s3://design-system-react-cdk-site/tools/react/ --recursive
                         '''
                     }
                 }
