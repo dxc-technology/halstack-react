@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import styled from "styled-components";
 import { DxcFooter } from "@diaas/dxc-react-cdk";
 
@@ -11,7 +11,7 @@ import Overview from "./pages/overview/Overview";
 function App() {
   return (
     <MainContainer>
-      <BrowserRouter basename="/tools/react">
+      <HashRouter>
         <ScrollToTop />
         <StyledHeader>
           <Header></Header>
@@ -35,12 +35,12 @@ function App() {
           ]}
           copyright="© DXC Technology 2019. All rights reserved."
         ></DxcFooter>
-      </BrowserRouter>
+      </HashRouter>
     </MainContainer>
   );
 }
 
-const StyledRouter = styled(BrowserRouter)`
+const StyledRouter = styled(HashRouter)`
   width: 100%;
 `;
 
