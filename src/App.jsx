@@ -33,7 +33,7 @@ function App() {
             { text: "Facebook", href: "http://www.google.com" },
             { text: "Instagram", href: "http://www.google.com" }
           ]}
-          copyright="© DXC Technology 2019. All rights reserved."
+          copyright="© DXC Technology 2020. All rights reserved."
         ></DxcFooter>
       </HashRouter>
     </MainContainer>
