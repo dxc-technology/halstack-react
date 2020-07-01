@@ -36,7 +36,7 @@ const code = `() => {
 
   return (
     <DxcFooter
-      copyright="© DXC Technology 2019. All rights reserved."
+      copyright="© DXC Technology 2020. All rights reserved."
       bottomLinks={bottom}
       socialLinks={social}
       padding="medium"
