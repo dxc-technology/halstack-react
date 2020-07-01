@@ -69,11 +69,13 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
     return sortColumnIndex === clickedColumnIndex ? (sortOrder === "asc" ? arrowUp : arrowDown) : bothArrows;
   };
 
-  useEffect(()=>{
-    changePage(1);
-  },[rows]);
-
-
+  useEffect(() => {
+    if(rows.length>0){
+      changePage(1);
+    }else{
+      changePage(0);
+    }
+  }, [rows]);
 
   const sortedResultset = useMemo(() => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows), [
     sortColumnIndex,
