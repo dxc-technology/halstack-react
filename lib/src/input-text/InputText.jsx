@@ -116,6 +116,7 @@ const DxcInputText = ({
     if (autocompleteOptions) {
       changeIsError(false);
       setAnchorEl(event.currentTarget);
+      changeIsOpen(true);
     }
 
     changeValue(event.target.value);
@@ -194,7 +195,9 @@ const DxcInputText = ({
         <SuggestionsContainer margin={margin} size={size}>
           <React.Fragment>
             <Paper>
-              {isOpen && !isSearching && !isError && !filteredOptions.length && <MenuItem>No matches found.</MenuItem>}
+              {isOpen && !isSearching && !isError && filteredOptions.length === 0 && (
+                <MenuItem>No matches found.</MenuItem>
+              )}
               {isOpen &&
                 !isSearching &&
                 filteredOptions.length > 0 &&
