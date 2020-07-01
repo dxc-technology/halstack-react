@@ -18,7 +18,7 @@ function App() {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://developer.dxc.com"
+          href="https://developer.dxc.com/design/principles"
         >
           Design Guidelines
         </a>
