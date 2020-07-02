@@ -268,16 +268,15 @@ const ResponsiveMenu = styled.div`
   z-index: 2000;
   color: ${(props) => props.theme.black};
   width: ${(props) =>
-    props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge
-      ? "calc(60vw - 40px)"
-      : "calc(100vw - 40px)"};
-  height: 100vh;
+    props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge ? "60vw" : "100vw"};
+  height: ${window.innerHeight}px;
   padding: 20px;
   transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
   opacity: ${(props) => (props.hasVisibility ? "1" : "0.96")};
   transition-property: transform, opacity;
   transition-duration: 0.6s;
   transition-timing-function: ease-in-out;
+  box-sizing: border-box;
 
   & > img:first-of-type {
     position: absolute;
