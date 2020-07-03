@@ -139,6 +139,63 @@ function App() {
               />
             </div>
           }
+          responsiveContent={(handleClose) => (
+            <div>
+              <DxcToggle
+                label="Toggle"
+                margin="xsmall"
+                selected={selected}
+                onClick={handleClose}
+              />
+              <DxcDropdown
+                options={options}
+                onSelectOption={selectOption}
+                label="Dropdown"
+                margin="xsmall"
+                theme="dark"
+              />
+              <DxcButton
+                mode="basic"
+                label="Button"
+                margin="xsmall"
+                onClick={onClick}
+              />
+              <DxcToggle
+                label="Toggle"
+                underlined={true}
+                margin="xsmall"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcDropdown
+                options={options}
+                onSelectOption={selectOption}
+                label="Dropdown"
+                margin="xsmall"
+                theme="dark"
+              />
+              <DxcButton
+                mode="basic"
+                label="Button"
+                margin="xsmall"
+                onClick={onClick}
+              />
+              <DxcToggle
+                label="Toggle"
+                underlined={true}
+                margin="xsmall"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcDropdown
+                options={options}
+                onSelectOption={selectOption}
+                label="Dropdown"
+                margin="xsmall"
+                theme="dark"
+              />
+            </div>
+          )}
         ></DxcHeader>
       </div>
 
