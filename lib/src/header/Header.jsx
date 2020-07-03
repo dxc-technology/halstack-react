@@ -204,20 +204,22 @@ const LogoIcon = styled.img`
 `;
 
 const ChildContainer = styled.div`
-  width: calc(100% - 186px);
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: flex-end;
-  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-  padding-top: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-  padding-right: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-  padding-bottom: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-  padding-left: ${(props) =>
-    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+  * {
+    width: calc(100% - 186px);
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: flex-end;
+    padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+    padding-top: ${(props) =>
+      props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+    padding-right: ${(props) =>
+      props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+    padding-bottom: ${(props) =>
+      props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+    padding-left: ${(props) =>
+      props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+  }
 `;
 
 const HamburguerItem = styled.div`
@@ -296,11 +298,13 @@ const ResponsiveMenu = styled.div`
 `;
 
 const MenuContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
-  margin-top: 40px;
+  * {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    margin-top: 40px;
+  }
 `;
 
 const Overlay = styled.div`
