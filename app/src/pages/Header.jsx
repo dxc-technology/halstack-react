@@ -83,7 +83,7 @@ function App() {
         <DxcHeader
           logoSrc={invisionLogo}
           content={
-            <div>
+            <React.Fragment>
               <DxcToggle
                 label="Toggle"
                 margin="xsmall"
@@ -137,10 +137,10 @@ function App() {
                 margin="xsmall"
                 theme="dark"
               />
-            </div>
+            </React.Fragment>
           }
           responsiveContent={(handleClose) => (
-            <div>
+            <React.Fragment>
               <DxcToggle
                 label="Toggle"
                 margin="xsmall"
@@ -194,7 +194,7 @@ function App() {
                 margin="xsmall"
                 theme="dark"
               />
-            </div>
+            </React.Fragment>
           )}
         ></DxcHeader>
       </div>
