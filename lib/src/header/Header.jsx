@@ -96,7 +96,7 @@ const DxcHeader = ({
         <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
         {isResponsive && responsiveContent && (
           <MainContainer>
-            <ResponsiveChildContainer padding={padding}>
+            <ChildContainer padding={padding}>
               <HamburguerItem brightness={theme} underlined={underlined} onClick={handleMenu}>
                 <HamburguerIcon
                   src={
@@ -111,7 +111,7 @@ const DxcHeader = ({
                 ></HamburguerIcon>
                 <HamburguerTitle>Menu</HamburguerTitle>
               </HamburguerItem>
-            </ResponsiveChildContainer>
+            </ChildContainer>
 
             {
               <div>
@@ -204,25 +204,6 @@ const LogoIcon = styled.img`
 `;
 
 const ChildContainer = styled.div`
-  * {
-    width: calc(100% - 186px);
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    justify-content: flex-end;
-    padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-    padding-top: ${(props) =>
-      props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-    padding-right: ${(props) =>
-      props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-    padding-bottom: ${(props) =>
-      props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-    padding-left: ${(props) =>
-      props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
-  }
-`;
-
-const ResponsiveChildContainer = styled.div`
   width: calc(100% - 186px);
   display: flex;
   align-items: center;
@@ -315,14 +296,11 @@ const ResponsiveMenu = styled.div`
 `;
 
 const MenuContent = styled.div`
-height: 100%;
-    margin-top: 40px;
-  * {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    
-  }
+  height: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const Overlay = styled.div`
