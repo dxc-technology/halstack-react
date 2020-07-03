@@ -94,9 +94,9 @@ const DxcHeader = ({
     <ThemeProvider theme={colorsTheme}>
       <HeaderContainer brightness={theme} underlined={underlined} position="static" margin={margin} ref={ref}>
         <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
-        {isResponsive && (
+        {isResponsive && responsiveContent && (
           <MainContainer>
-            <ChildContainer padding={padding}>
+            <ResponsiveChildContainer padding={padding}>
               <HamburguerItem brightness={theme} underlined={underlined} onClick={handleMenu}>
                 <HamburguerIcon
                   src={
@@ -111,7 +111,7 @@ const DxcHeader = ({
                 ></HamburguerIcon>
                 <HamburguerTitle>Menu</HamburguerTitle>
               </HamburguerItem>
-            </ChildContainer>
+            </ResponsiveChildContainer>
 
             {
               <div>
@@ -222,6 +222,23 @@ const ChildContainer = styled.div`
   }
 `;
 
+const ResponsiveChildContainer = styled.div`
+  width: calc(100% - 186px);
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: flex-end;
+  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+  padding-top: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+  padding-right: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+  padding-bottom: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+  padding-left: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+`;
+
 const HamburguerItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -298,12 +315,13 @@ const ResponsiveMenu = styled.div`
 `;
 
 const MenuContent = styled.div`
+height: 100%;
+    margin-top: 40px;
   * {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 100%;
-    margin-top: 40px;
+    
   }
 `;
 
