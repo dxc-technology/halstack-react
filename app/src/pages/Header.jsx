@@ -80,61 +80,66 @@ function App() {
 
       <div className="test-case" id="custom-header">
         <h4>Header with custom content</h4>
-        <DxcHeader logoSrc={invisionLogo}>
-          <DxcToggle
-            label="Toggle"
-            margin="xsmall"
-            selected={selected}
-            onClick={onClickToggle}
-          />
-          <DxcDropdown
-            options={options}
-            onSelectOption={selectOption}
-            label="Dropdown"
-            margin="xsmall"
-            theme="dark"
-          />
-          <DxcButton
-            mode="basic"
-            label="Button"
-            margin="xsmall"
-            onClick={onClick}
-          />
-          <DxcToggle
-            label="Toggle"
-            underlined={true}
-            margin="xsmall"
-            selected={selected}
-            onClick={onClickToggle}
-          />
-          <DxcDropdown
-            options={options}
-            onSelectOption={selectOption}
-            label="Dropdown"
-            margin="xsmall"
-            theme="dark"
-          />
-          <DxcButton
-            mode="basic"
-            label="Button"
-            margin="xsmall"
-            onClick={onClick}
-          />
-          <DxcToggle
-            label="Toggle"
-            underlined={true}
-            margin="xsmall"
-            selected={selected}
-            onClick={onClickToggle}
-          />
-          <DxcDropdown
-            options={options}
-            onSelectOption={selectOption}
-            label="Dropdown"
-            margin="xsmall"
-            theme="dark"
-          />
-        </DxcHeader>
+        <DxcHeader
+          logoSrc={invisionLogo}
+          content={
+            <div>
+              <DxcToggle
+                label="Toggle"
+                margin="xsmall"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcDropdown
+                options={options}
+                onSelectOption={selectOption}
+                label="Dropdown"
+                margin="xsmall"
+                theme="dark"
+              />
+              <DxcButton
+                mode="basic"
+                label="Button"
+                margin="xsmall"
+                onClick={onClick}
+              />
+              <DxcToggle
+                label="Toggle"
+                underlined={true}
+                margin="xsmall"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcDropdown
+                options={options}
+                onSelectOption={selectOption}
+                label="Dropdown"
+                margin="xsmall"
+                theme="dark"
+              />
+              <DxcButton
+                mode="basic"
+                label="Button"
+                margin="xsmall"
+                onClick={onClick}
+              />
+              <DxcToggle
+                label="Toggle"
+                underlined={true}
+                margin="xsmall"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcDropdown
+                options={options}
+                onSelectOption={selectOption}
+                label="Dropdown"
+                margin="xsmall"
+                theme="dark"
+              />
+            </div>
+          }
+        ></DxcHeader>
       </div>
 
       <div>
@@ -173,78 +178,103 @@ function App() {
         <h4>Paddings</h4>
         <div className="test-case" id="xxsmall-padding">
           <h5>xxsmall padding</h5>
-          <DxcHeader padding={{ right: "xxsmall" }} logoSrc={yahooLogo}>
-            <DxcButton label={"Custom Button"} onClick={onClick} />
-          </DxcHeader>
+          <DxcHeader
+            padding={{ right: "xxsmall" }}
+            logoSrc={yahooLogo}
+            content={<DxcButton label={"Custom Button"} onClick={onClick} />}
+          ></DxcHeader>
         </div>
         <div className="test-case" id="xsmall-padding">
           <h5>xsmall padding</h5>
-          <DxcHeader padding={{ right: "xsmall" }} logoSrc={invisionLogo}>
-            <DxcButton label={"Custom Button"} onClick={onClick} />
-          </DxcHeader>
+          <DxcHeader
+            padding={{ right: "xsmall" }}
+            logoSrc={invisionLogo}
+            content={<DxcButton label={"Custom Button"} onClick={onClick} />}
+          ></DxcHeader>
         </div>
         <div className="test-case" id="small-padding">
           <h5>Small padding</h5>
-          <DxcHeader padding={{ right: "small" }} logoSrc={skyscannerLogo}>
-            <DxcButton label={"Custom Button"} onClick={onClick} />
-          </DxcHeader>
+          <DxcHeader
+            padding={{ right: "small" }}
+            logoSrc={skyscannerLogo}
+            content={<DxcButton label={"Custom Button"} onClick={onClick} />}
+          ></DxcHeader>
         </div>
         <div className="test-case" id="medium-padding">
           <h5>Medium padding</h5>
-          <DxcHeader padding={{ right: "medium" }}>
-            <DxcButton label={"Custom Button"} onClick={onClick} />
-          </DxcHeader>
+          <DxcHeader
+            padding={{ right: "medium" }}
+            content={<DxcButton label={"Custom Button"} onClick={onClick} />}
+          ></DxcHeader>
         </div>
         <div className="test-case" id="large-padding">
           <h5>Large padding</h5>
-          <DxcHeader padding={{ right: "large" }}>
-            <DxcButton label={"Custom Button"} onClick={onClick} />
-          </DxcHeader>
+          <DxcHeader
+            padding={{ right: "large" }}
+            content={<DxcButton label={"Custom Button"} onClick={onClick} />}
+          ></DxcHeader>
         </div>
         <div className="test-case" id="xlarge-padding">
           <h5>xlarge padding</h5>
-          <DxcHeader padding={{ right: "xlarge" }}>
-            <DxcButton label={"Custom Button"} onClick={onClick} />
-          </DxcHeader>
+          <DxcHeader
+            padding={{ right: "xlarge" }}
+            content={<DxcButton label={"Custom Button"} onClick={onClick} />}
+          ></DxcHeader>
         </div>
         <div className="test-case" id="xxlarge-padding">
           <h5>xxlarge padding</h5>
-          <DxcHeader padding={{ right: "xxlarge" }}>
-            <DxcButton label={"Custom Button"} onClick={onClick} />
-          </DxcHeader>
+          <DxcHeader
+            padding={{ right: "xxlarge" }}
+            content={<DxcButton label={"Custom Button"} onClick={onClick} />}
+          ></DxcHeader>
         </div>
         <div>
           <h5>multiple children</h5>
-          <DxcHeader padding={{ right: "xxsmall" }} logoSrc={yahooLogo}>
-            <DxcButton size="large" label={"Custom Button"} onClick={onClick} />
-            <p>Example 1</p>
-            <DxcButton
-              theme="dark"
-              mode="flat"
-              label={"Custom Button"}
-              onClick={onClick}
-            />
-            <DxcButton
-              mode="outlined"
-              theme="dark"
-              label={"Custom Button"}
-              onClick={onClick}
-            />
-            <DxcButton size="large" label={"Custom Button"} onClick={onClick} />
-            <p>Example 1</p>
-            <DxcButton
-              theme="dark"
-              mode="flat"
-              label={"Custom Button"}
-              onClick={onClick}
-            />
-            <DxcButton
-              mode="outlined"
-              theme="dark"
-              label={"Custom Button"}
-              onClick={onClick}
-            />
-          </DxcHeader>
+          <DxcHeader
+            padding={{ right: "xxsmall" }}
+            logoSrc={yahooLogo}
+            content={
+              <div>
+                {" "}
+                <DxcButton
+                  size="large"
+                  label={"Custom Button"}
+                  onClick={onClick}
+                />
+                <p>Example 1</p>
+                <DxcButton
+                  theme="dark"
+                  mode="flat"
+                  label={"Custom Button"}
+                  onClick={onClick}
+                />
+                <DxcButton
+                  mode="outlined"
+                  theme="dark"
+                  label={"Custom Button"}
+                  onClick={onClick}
+                />
+                <DxcButton
+                  size="large"
+                  label={"Custom Button"}
+                  onClick={onClick}
+                />
+                <p>Example 1</p>
+                <DxcButton
+                  theme="dark"
+                  mode="flat"
+                  label={"Custom Button"}
+                  onClick={onClick}
+                />
+                <DxcButton
+                  mode="outlined"
+                  theme="dark"
+                  label={"Custom Button"}
+                  onClick={onClick}
+                />
+              </div>
+            }
+          ></DxcHeader>
         </div>
       </div>
       <div className="test-case" id="custom-colors">

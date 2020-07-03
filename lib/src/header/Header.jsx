@@ -17,7 +17,8 @@ const DxcHeader = ({
   underlined = false,
   logoSrc = "default",
   onClick = "",
-  children,
+  content,
+  responsiveContent,
   margin,
   padding,
 }) => {
@@ -116,7 +117,7 @@ const DxcHeader = ({
               <div>
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                   {getLogoRendered(true)}
-                  <MenuContent>{children}</MenuContent>
+                  <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
                   <img onClick={handleMenu} src={CloseIcon} className="closeIcon" />
                 </ResponsiveMenu>
                 <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
@@ -124,7 +125,7 @@ const DxcHeader = ({
             }
           </MainContainer>
         )}
-        {!isResponsive && <ChildContainer padding={padding}>{children}</ChildContainer>}
+        {!isResponsive && <ChildContainer padding={padding}>{content}</ChildContainer>}
       </HeaderContainer>
     </ThemeProvider>
   );
@@ -339,6 +340,8 @@ DxcHeader.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  content: PropTypes.object,
+  responsiveContent: PropTypes.object,
 };
 
 export default DxcHeader;
