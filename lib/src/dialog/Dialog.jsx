@@ -51,7 +51,8 @@ const DialogContainer = styled(Dialog)`
   }
   .MuiDialog-paperWidthSm {
     max-width: 80%;
-    min-width: 800px;
+    min-width: 64%;
+    box-sizing: border-box;
     min-height: ${(props) => (props.isCloseVisible ? "72px" : "")};
     box-shadow: 0px 1px 3px ${(props) => props.theme.mediumGrey};
     padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
