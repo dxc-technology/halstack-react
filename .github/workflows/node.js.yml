@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: |
         cd lib
-        npm ci
+        npm install
     - run: |
         cd lib
         npm run build
