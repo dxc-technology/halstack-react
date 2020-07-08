@@ -49,7 +49,7 @@ Contained in the `app` folder.
 cd app # from the root folder
 ```
 
-Install the application dependencies. The Assure React CDK dependency is linked to the local `lib` folder. This one must have been previously built.
+Install the application dependencies. The Halstack React CDK dependency is linked to the local `lib` folder. This one must have been previously built.
 
 ```bash
 npm install
