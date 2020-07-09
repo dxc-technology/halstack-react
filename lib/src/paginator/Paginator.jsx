@@ -15,12 +15,14 @@ const DxcPaginator = ({
   nextFunction,
   prevFunction,
   lastFunction,
-  firstFunction
+  firstFunction,
 }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
   const minItemsPerPage =
-    currentPageInternal === 1 ? currentPageInternal : (currentPageInternal - 1) * itemsPerPage + 1;
+    currentPageInternal === 1 || currentPageInternal === 0
+      ? currentPageInternal
+      : (currentPageInternal - 1) * itemsPerPage + 1;
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
@@ -37,7 +39,7 @@ const DxcPaginator = ({
         {firstFunction && (
           <DxcButton
             size="small"
-            disabled={currentPageInternal === 1}
+            disabled={currentPageInternal === 1|| currentPageInternal === 0}
             mode="flat"
             margin={{ left: "xxsmall", right: "xxsmall" }}
             iconSrc={first}
@@ -52,7 +54,7 @@ const DxcPaginator = ({
           <DxcButton
             size="small"
             mode="flat"
-            disabled={currentPageInternal === 1}
+            disabled={currentPageInternal === 1 || currentPageInternal === 0}
             margin={{ left: "xxsmall", right: "xxsmall" }}
             iconSrc={previous}
             onClick={() => {
@@ -135,7 +137,7 @@ DxcPaginator.propTypes = {
   nextFunction: PropTypes.func,
   prevFunction: PropTypes.func,
   lastFunction: PropTypes.func,
-  firstFunction: PropTypes.func
+  firstFunction: PropTypes.func,
 };
 DxcPaginator.defaultProps = {
   currentPage: 1,
@@ -143,7 +145,7 @@ DxcPaginator.defaultProps = {
   nextFunction: null,
   prevFunction: null,
   lastFunction: null,
-  firstFunction: null
+  firstFunction: null,
 };
 
 export default DxcPaginator;
