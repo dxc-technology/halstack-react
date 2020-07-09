@@ -17,7 +17,8 @@ const DxcHeader = ({
   underlined = false,
   logoSrc = "default",
   onClick = "",
-  children,
+  content,
+  responsiveContent,
   margin,
   padding,
 }) => {
@@ -93,7 +94,7 @@ const DxcHeader = ({
     <ThemeProvider theme={colorsTheme}>
       <HeaderContainer brightness={theme} underlined={underlined} position="static" margin={margin} ref={ref}>
         <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
-        {isResponsive && (
+        {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer padding={padding}>
               <HamburguerItem brightness={theme} underlined={underlined} onClick={handleMenu}>
@@ -116,7 +117,7 @@ const DxcHeader = ({
               <div>
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                   {getLogoRendered(true)}
-                  <MenuContent>{children}</MenuContent>
+                  <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
                   <img onClick={handleMenu} src={CloseIcon} className="closeIcon" />
                 </ResponsiveMenu>
                 <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
@@ -124,7 +125,7 @@ const DxcHeader = ({
             }
           </MainContainer>
         )}
-        {!isResponsive && <ChildContainer padding={padding}>{children}</ChildContainer>}
+        {!isResponsive && <ChildContainer padding={padding}>{content}</ChildContainer>}
       </HeaderContainer>
     </ThemeProvider>
   );
@@ -268,16 +269,15 @@ const ResponsiveMenu = styled.div`
   z-index: 2000;
   color: ${(props) => props.theme.black};
   width: ${(props) =>
-    props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge
-      ? "calc(60vw - 40px)"
-      : "calc(100vw - 40px)"};
-  height: 100vh;
+    props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge ? "60vw" : "100vw"};
+  height: ${window.innerHeight}px;
   padding: 20px;
   transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
   opacity: ${(props) => (props.hasVisibility ? "1" : "0.96")};
   transition-property: transform, opacity;
   transition-duration: 0.6s;
   transition-timing-function: ease-in-out;
+  box-sizing: border-box;
 
   & > img:first-of-type {
     position: absolute;
@@ -296,11 +296,11 @@ const ResponsiveMenu = styled.div`
 `;
 
 const MenuContent = styled.div`
+  height: 100%;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100%;
-  margin-top: 40px;
 `;
 
 const Overlay = styled.div`
@@ -340,6 +340,8 @@ DxcHeader.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  content: PropTypes.object,
+  responsiveContent: PropTypes.object,
 };
 
 export default DxcHeader;
