@@ -1,7 +1,7 @@
 {
-  "name": "@diaas/dxc-react-cdk",
+  "name": "@dxc-technology/halstack-react",
   "version": "0.0.0",
-  "description": "DXC React CDK (Component Development Kit)",
+  "description": "DXC Halstack React components library",
   "author": {
     "name": "DXC Technology",
     "email": "DigitalInsurance@dxc.com",
