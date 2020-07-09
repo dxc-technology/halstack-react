@@ -6,12 +6,9 @@ name: Functional testing
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +19,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 10.x
-    
+        registry-url: https://registry.npmjs.org/
+      
     - name: Install app dependencies
       run: cd app && npm install
     
@@ -34,3 +32,11 @@ jobs:
     
     - name: Test library
       run: cd lib && npm run test
+      
+    - name: Publish alpha to npm
+      run: |
+        sed -i 's#\"version\": \"0.0.0\"#\"version\": \"0.0.0-alpha.0\"#' ./lib/package.json
+        cd lib
+        npm publish --tag alpha --access public
+      env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
