@@ -35,7 +35,7 @@ jobs:
       
     - name: Publish alpha to npm
       run: |
-        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA}\"#" ./lib/package.json
+        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./lib/package.json
         cd lib
         npm publish --tag next --access public
       env:
