@@ -20,19 +20,7 @@ jobs:
       with:
         node-version: 10.x
         registry-url: https://registry.npmjs.org/
-      
-    - name: Install app dependencies
-      run: cd app && npm install
-    
-    - name: Install lib dependencies
-      run: cd lib && npm install
-    
-    - name: Build library
-      run: cd lib && npm run build
-    
-    - name: Test library
-      run: cd lib && npm run test
-      
+            
     - name: Publish alpha to npm
       run: |
         sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${github.event.pusher.name}\"#" ./lib/package.json
