@@ -28,4 +28,4 @@ jobs:
         npm publish --tag next --access public
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-          PUSHER_NAME: github.event.pusher.name 
+          PUSHER_NAME: ${{ github.event.pusher.name }}
