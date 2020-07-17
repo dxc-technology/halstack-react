@@ -23,8 +23,9 @@ jobs:
             
     - name: Publish alpha to npm
       run: |
-        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${github.event.pusher.name}\"#" ./lib/package.json
+        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${PUSHER_NAME}\"#" ./lib/package.json
         cd lib
         npm publish --tag next --access public
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          PUSHER_NAME: github.event.pusher.name 
