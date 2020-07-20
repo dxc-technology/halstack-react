@@ -1,0 +1,39 @@
+name: Publish Next Version
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+        registry-url: https://registry.npmjs.org/
+      
+    - name: Install app dependencies
+      run: cd app && npm install
+    
+    - name: Install lib dependencies
+      run: cd lib && npm install
+    
+    - name: Build library
+      run: cd lib && npm run build
+    
+    - name: Test library
+      run: cd lib && npm run test
+      
+    - name: Publish alpha to npm
+      run: |
+        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./lib/package.json
+        cd lib
+        npm publish --tag next --access public
+      env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
