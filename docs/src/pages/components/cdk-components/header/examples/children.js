@@ -6,15 +6,15 @@ const code = `() => {
       underlined={false}
       margin="medium"
       padding={{right:"medium"}}
-    >
-      <DxcButton label={"Custom Button"} />
-    </DxcHeader>
+      content={<DxcButton label={"Custom Button"} />}
+      responsiveContent={(closeHandler) => <DxcButton label={"Custom Button"} onClick={closeHandler} />}
+    />
   );
 }`;
 
 const scope = {
   DxcHeader,
-  DxcButton
+  DxcButton,
 };
 
 export default { code, scope };

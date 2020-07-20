@@ -33,19 +33,30 @@ const alertPropsTable = () => {
         <td>The path of an icon to replace the default dxc logo.</td>
       </tr>
       <tr>
+        <td>content: object</td>
+        <td></td>
+        <td>
+          Content showed in the header. Take into account that the component
+          applies styles for the first child in the content, so we recommend the
+          use of React.Fragment to be applied correctly. Otherwise, the styles
+          can be modified.
+        </td>
+      </tr>
+      <tr>
+        <td>responsiveContent: function</td>
+        <td></td>
+        <td>
+          Content showed in responsive version. It receives the close menu
+          handler that can be used to add that functionality when a element is
+          clicked.
+        </td>
+      </tr>
+      <tr>
         <td>onClick: function</td>
         <td></td>
         <td>
           This function will be called when the user clicks the header logo.
           <br></br>
-        </td>
-      </tr>
-      <tr>
-        <td>children: node</td>
-        <td></td>
-        <td>
-          The right section of the header. Can be used to render custom content
-          in this area.
         </td>
       </tr>
       <tr>
