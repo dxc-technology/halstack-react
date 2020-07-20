@@ -1,0 +1,33 @@
+import { DxcButton } from "@diaas/dxc-react-cdk";
+import twitterLogoPath from "./images/twitter.svg";
+
+const code = `() => {
+  const onClick = () => {
+    console.log("click");
+  };
+
+  return (
+    <div>
+      <DxcButton
+        label="Basic Button"
+        onClick={onClick}
+        iconSrc={twitterLogoPath}
+        margin="medium"
+      />
+      <DxcButton
+        label="Basic Button"
+        onClick={onClick}
+        iconSrc={twitterLogoPath}
+        iconPosition="after"
+        margin="medium"
+      />
+    </div>
+  );
+}`;
+
+const scope = {
+  DxcButton,
+  twitterLogoPath
+};
+
+export default { code, scope };

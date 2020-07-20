@@ -1,6 +1,6 @@
-# Assure React CDK
+# Halstack React CDK
 
-Assure React CDK is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Design Guidelines.
+Halstack React CDK is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Design Guidelines.
 
 - It increases visual and behavioral consistency across the applications using the library.
 
@@ -8,7 +8,7 @@ Assure React CDK is a npm library of reusable React components, made with the pu
 
 ## Usage
 
-Assure React CDK is a set of reusable components distributed as a npm library. See the [documentation site](http://design-system-react-cdk-site.s3-website-us-east-1.amazonaws.com/) for details on how to use it.
+Halstack React CDK is a set of reusable components distributed as a npm library. See the [documentation site](http://design-system-react-cdk-site.s3-website-us-east-1.amazonaws.com/) for details on how to use it.
 
 ## Contributing
 
@@ -49,7 +49,7 @@ Contained in the `app` folder.
 cd app # from the root folder
 ```
 
-Install the application dependencies. The Assure React CDK dependency is linked to the local `lib` folder. This one must have been previously built.
+Install the application dependencies. The Halstack React CDK dependency is linked to the local `lib` folder. This one must have been previously built.
 
 ```bash
 npm install
