@@ -7,38 +7,85 @@ import githubLogo from "./github-logo.png";
 function App() {
   const location = useLocation();
   return (
-    <DxcHeader padding={{ left: "medium", right: "medium" }}>
-      <HeaderLink isActive={location.pathname.startsWith("/overview")}>
-        <Link to="/overview">Overview</Link>
-      </HeaderLink>
-      <HeaderLink isActive={location.pathname.startsWith("/components")}>
-        <Link to="/components">Components</Link>
-      </HeaderLink>
-      <HeaderLink>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://developer.dxc.com/design/principles"
-        >
-          Design Guidelines
-        </a>
-      </HeaderLink>
-      <HeaderLink>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.dxc.com/DIaaS/diaas-react-cdk"
-        >
-          <img src={githubLogo} alt="GitHub logo"></img>
-        </a>
-      </HeaderLink>
-    </DxcHeader>
+    <DxcHeader
+      padding={{ left: "medium", right: "medium" }}
+      content={
+        <React.Fragment>
+          <HeaderLink isActive={location.pathname.startsWith("/overview")}>
+            <Link to="/overview">Overview</Link>
+          </HeaderLink>
+          <HeaderLink isActive={location.pathname.startsWith("/components")}>
+            <Link to="/components">Components</Link>
+          </HeaderLink>
+          <HeaderLink>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://developer.dxc.com"
+            >
+              Design Guidelines
+            </a>
+          </HeaderLink>
+          <HeaderLink>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.dxc.com/DIaaS/diaas-react-cdk"
+            >
+              <img src={githubLogo} alt="GitHub logo"></img>
+            </a>
+          </HeaderLink>
+        </React.Fragment>
+      }
+      responsiveContent={(closeHanlder) => (
+        <React.Fragment>
+          <ResponsiveHeaderLink
+            isActive={location.pathname.startsWith("/overview")}
+          >
+            <Link to="/overview">Overview</Link>
+          </ResponsiveHeaderLink>
+          <ResponsiveHeaderLink
+            isActive={location.pathname.startsWith("/components")}
+          >
+            <Link to="/components">Components</Link>
+          </ResponsiveHeaderLink>
+          <ResponsiveHeaderLink>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://developer.dxc.com"
+            >
+              Design Guidelines
+            </a>
+          </ResponsiveHeaderLink>
+          <ResponsiveHeaderLink>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.dxc.com/DIaaS/diaas-react-cdk"
+            >
+              <img src={githubLogo} alt="GitHub logo"></img>
+            </a>
+          </ResponsiveHeaderLink>
+        </React.Fragment>
+      )}
+    />
   );
 }
 
 const HeaderLink = styled.div`
   & a {
     color: ${({ isActive }) => (isActive && "yellow") || "white"};
+    text-decoration: none;
+    margin-left: 100px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+`;
+
+const ResponsiveHeaderLink = styled.div`
+  & a {
+    color: ${({ isActive }) => (isActive && "yellow") || "black"};
     text-decoration: none;
     margin-left: 100px;
     font-size: 14px;
