@@ -18,6 +18,14 @@ jobs:
         node-version: 10.x
         registry-url: https://registry.npmjs.org/
       
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+        role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
+    
     - name: Install common dependencies
       run: npm install
 
@@ -39,10 +47,15 @@ jobs:
     - name: Build docs
       run: cd docs && npm run build
       
-    - name: Publish alpha to npm
+    - name: Publish NEXT version to npm
       run: |
         sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./lib/package.json
         cd lib
         npm publish --tag next --access public
       env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          
+    - name: Move NEXT docs to S3
+      run: |
+        aws s3 rm s3://design.site.test/tools/react/next/ --recursive
+        aws s3 cp ./docs/build/ s3://design.site.test/tools/react/next/ --recursive
