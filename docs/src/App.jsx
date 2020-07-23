@@ -40,10 +40,6 @@ function App() {
   );
 }
 
-const StyledRouter = styled(HashRouter)`
-  width: 100%;
-`;
-
 const StyledHeader = styled.div`
   width: 100%;
   position: fixed;
