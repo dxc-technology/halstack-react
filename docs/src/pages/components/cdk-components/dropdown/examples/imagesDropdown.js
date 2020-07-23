@@ -1,4 +1,4 @@
-import { DxcDropdown } from "@diaas/dxc-react-cdk";
+import { DxcDropdown } from "@dxc-technology/halstack-react";
 import fbLogo from "./images/facebook.svg";
 import twitterLogo from "./images/twitter.svg";
 import linkedinLogo from "./images/linkedin.svg";

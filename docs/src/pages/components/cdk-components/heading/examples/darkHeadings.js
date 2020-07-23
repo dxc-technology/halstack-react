@@ -1,4 +1,4 @@
-import { DxcHeading } from "@diaas/dxc-react-cdk";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (

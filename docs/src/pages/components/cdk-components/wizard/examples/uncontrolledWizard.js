@@ -1,4 +1,4 @@
-import { DxcWizard } from "@diaas/dxc-react-cdk";
+import { DxcWizard } from "@dxc-technology/halstack-react";
 import twitterLogoPath from "./images/twitter.svg";
 
 const code = `() => {

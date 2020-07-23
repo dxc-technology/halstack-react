@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcWizard } from "@diaas/dxc-react-cdk";
+import { DxcWizard } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
 
 function Wizard() {

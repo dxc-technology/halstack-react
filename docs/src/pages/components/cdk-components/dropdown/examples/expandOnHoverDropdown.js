@@ -1,4 +1,4 @@
-import { DxcDropdown } from "@diaas/dxc-react-cdk";
+import { DxcDropdown } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

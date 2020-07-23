@@ -1,4 +1,4 @@
-import { DxcSidenav } from "@diaas/dxc-react-cdk";
+import { DxcSidenav } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

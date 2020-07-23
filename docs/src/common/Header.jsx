@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { DxcHeader } from "@diaas/dxc-react-cdk";
+import { DxcHeader } from "@dxc-technology/halstack-react";
 import githubLogo from "./github-logo.svg";
 import githubLogoBlack from "./github-logo-black.svg";
 

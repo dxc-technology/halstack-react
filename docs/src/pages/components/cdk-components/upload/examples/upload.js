@@ -1,4 +1,4 @@
-import { DxcUpload } from "@diaas/dxc-react-cdk";
+import { DxcUpload } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   async function callbackFunc(file) {

@@ -1,4 +1,4 @@
-import { DxcInput } from "@diaas/dxc-react-cdk";
+import { DxcInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import suffixPath from "./images/house-24px.svg";
 import prefixPath from "./images/text_fields-24px.svg";

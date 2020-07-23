@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcSelect, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcSelect, ThemeContext } from "@dxc-technology/halstack-react";
 import homePath from "../images/home.svg";
 
 const colors = {

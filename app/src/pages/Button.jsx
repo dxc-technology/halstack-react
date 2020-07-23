@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcButton, ThemeContext } from "@dxc-technology/halstack-react";
 import homeLogo from "../images/home.svg";
 
 const colors = {

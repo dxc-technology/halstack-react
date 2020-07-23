@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { types } from "./paths.js";
-import { DxcSidenav, DxcBox, DxcLink } from "@diaas/dxc-react-cdk";
+import { DxcSidenav, DxcBox, DxcLink } from "@dxc-technology/halstack-react";
 import paths from "./paths.js";
 import reactIcon from "../../common/react-icon.png";
 import DocTitle from "../../common/DocTitle";

@@ -1,4 +1,4 @@
-import { DxcResultsetTable, DxcButton } from "@diaas/dxc-react-cdk";
+import { DxcResultsetTable, DxcButton } from "@dxc-technology/halstack-react";
 import deleteIcon from "./images/delete-24px.svg";
 
 const code = `() => {

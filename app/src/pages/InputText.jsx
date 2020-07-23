@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcInput, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcInput, ThemeContext } from "@dxc-technology/halstack-react";
 import icon from "../images/home.svg";
 
 const colors = {

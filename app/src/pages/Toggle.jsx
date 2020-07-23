@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcToggle, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcToggle, ThemeContext } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import icon from "../images/favorite.svg";
 

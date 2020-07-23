@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import styled from "styled-components";
-import { DxcFooter } from "@diaas/dxc-react-cdk";
+import { DxcFooter } from "@dxc-technology/halstack-react";
 
 import Header from "./common/Header";
 import ScrollToTop from "./common/ScrollToTop";

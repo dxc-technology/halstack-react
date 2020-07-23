@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcSidenav, DxcFooter, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcSidenav, DxcFooter, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
   black: "blue",

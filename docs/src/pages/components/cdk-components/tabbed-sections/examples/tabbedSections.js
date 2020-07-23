@@ -1,4 +1,4 @@
-import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+import { DxcTabsForSections } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (

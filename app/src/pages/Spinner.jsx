@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcSpinner, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcSpinner, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
   black: "blue",

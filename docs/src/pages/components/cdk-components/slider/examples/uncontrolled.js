@@ -1,4 +1,4 @@
-import { DxcSlider } from "@diaas/dxc-react-cdk";
+import { DxcSlider } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const onChange = newValue => {

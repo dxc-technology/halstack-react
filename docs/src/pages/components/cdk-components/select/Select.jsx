@@ -5,7 +5,7 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
-import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+import { DxcTabsForSections } from "@dxc-technology/halstack-react";
 
 import defaultSelect from "./examples/default";
 import controlled from "./examples/controlledSelect";

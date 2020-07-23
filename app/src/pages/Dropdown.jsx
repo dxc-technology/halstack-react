@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcDropdown, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcDropdown, ThemeContext } from "@dxc-technology/halstack-react";
 import facebookPath from "../images/facebook.svg";
 import linkedinPath from "../images/linkedin.svg";
 import twitterPath from "../images/twitter.svg";

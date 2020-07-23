@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DocTitle from "../../../common/DocTitle";
-import { DxcTag } from "@diaas/dxc-react-cdk";
+import { DxcTag } from "@dxc-technology/halstack-react";
 import ReadyIcon from "./ready.svg";
 import ExperimentalIcon from "./experimental.svg";
 import PlannedIcon from "./planned.svg";

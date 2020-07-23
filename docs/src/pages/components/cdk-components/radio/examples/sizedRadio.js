@@ -1,4 +1,4 @@
-import { DxcRadio } from "@diaas/dxc-react-cdk";
+import { DxcRadio } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
