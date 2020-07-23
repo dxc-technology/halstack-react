@@ -4,7 +4,7 @@ import {
   DxcButton,
   DxcToggle,
   ThemeContext,
-} from "@diaas/dxc-react-cdk";
+} from "@dxc-technology/halstack-react";
 import facebookIcon from "../images/facebook.svg";
 import linkedinIcon from "../images/linkedin.svg";
 import twitterIcon from "../images/twitter.svg";

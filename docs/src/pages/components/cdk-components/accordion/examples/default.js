@@ -1,4 +1,4 @@
-import { DxcAccordion } from "@diaas/dxc-react-cdk";
+import { DxcAccordion } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const onChange = () => {};

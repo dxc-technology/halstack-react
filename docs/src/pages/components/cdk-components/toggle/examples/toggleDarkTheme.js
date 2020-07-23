@@ -1,4 +1,4 @@
-import { DxcToggle } from "@diaas/dxc-react-cdk";
+import { DxcToggle } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

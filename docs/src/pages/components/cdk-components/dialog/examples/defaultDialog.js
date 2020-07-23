@@ -1,4 +1,4 @@
-import { DxcButton, DxcDialog } from "@diaas/dxc-react-cdk";
+import { DxcButton, DxcDialog } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

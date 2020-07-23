@@ -1,4 +1,4 @@
-import { DxcCard } from "@diaas/dxc-react-cdk";
+import { DxcCard } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import iceCreamImagePath from "./images/ice-cream.jpg";
 

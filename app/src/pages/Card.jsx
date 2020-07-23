@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcCard, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcCard, ThemeContext } from "@dxc-technology/halstack-react";
 
 import iceCream from "../images/ice-cream.jpg";
 import twitterIcon from "../images/twitter.svg";

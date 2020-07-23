@@ -1,17 +1,16 @@
 {
-  "name": "app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "halstack-react-doc-site",
+  "version": "0.0.0",
   "homepage": ".",
   "dependencies": {
-    "@diaas/dxc-react-cdk": "0.0.0-alpha.312",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "@dxc-technology/halstack-react": "file:../lib",
+    "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
+    "styled-components": "file:../node_modules/styled-components",
     "react-live": "^2.2.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "react-syntax-highlighter": "^12.2.1",
-    "styled-components": "^4.4.1"
+    "react-syntax-highlighter": "^12.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

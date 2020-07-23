@@ -1,4 +1,4 @@
-import { DxcProgressBar } from "@diaas/dxc-react-cdk";
+import { DxcProgressBar } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

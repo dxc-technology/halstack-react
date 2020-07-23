@@ -5,7 +5,7 @@ import {
   DxcButton,
   DxcDropdown,
   ThemeContext,
-} from "@diaas/dxc-react-cdk";
+} from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import assureBlacklogo from "../images/dxcassure_blk.png";
 import invisionLogo from "../images/invision.png";

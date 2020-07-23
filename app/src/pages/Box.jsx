@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcBox } from "@diaas/dxc-react-cdk";
+import { DxcBox } from "@dxc-technology/halstack-react";
 
 function App() {
   return (

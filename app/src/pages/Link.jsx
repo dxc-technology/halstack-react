@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcLink } from "@diaas/dxc-react-cdk";
+import { DxcLink } from "@dxc-technology/halstack-react";
 import homeLogo from "../images/home.svg";
 
 function App() {

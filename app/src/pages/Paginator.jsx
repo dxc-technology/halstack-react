@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { DxcPaginator } from "@diaas/dxc-react-cdk";
+import { DxcPaginator } from "@dxc-technology/halstack-react";
 
 function App() {
   const [page, changePage] = useState(1);

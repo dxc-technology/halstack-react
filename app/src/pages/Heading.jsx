@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcHeading } from "@diaas/dxc-react-cdk";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 
 function App() {
   return (

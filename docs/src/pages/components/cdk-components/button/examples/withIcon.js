@@ -1,4 +1,4 @@
-import { DxcButton } from "@diaas/dxc-react-cdk";
+import { DxcButton } from "@dxc-technology/halstack-react";
 import twitterLogoPath from "./images/twitter.svg";
 
 const code = `() => {

@@ -1,4 +1,4 @@
-import { DxcFooter } from "@diaas/dxc-react-cdk";
+import { DxcFooter } from "@dxc-technology/halstack-react";
 
 import linkedinLogo from "./images/linkedin.svg";
 import twitterLogo from "./images/twitter.svg";

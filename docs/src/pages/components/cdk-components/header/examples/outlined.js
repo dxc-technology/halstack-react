@@ -1,4 +1,4 @@
-import { DxcHeader, DxcDropdown, DxcSwitch } from "@diaas/dxc-react-cdk";
+import { DxcHeader, DxcDropdown, DxcSwitch } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return <DxcHeader underlined={true} margin="medium" padding="medium" />;

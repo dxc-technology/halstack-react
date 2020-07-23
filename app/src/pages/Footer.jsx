@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcFooter, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcFooter, ThemeContext } from "@dxc-technology/halstack-react";
 
 import linkedin from "../images/linkedin.svg";
 import facebook from "../images/facebook.svg";

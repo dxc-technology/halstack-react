@@ -1,4 +1,4 @@
-import { DxcTag } from "@diaas/dxc-react-cdk";
+import { DxcTag } from "@dxc-technology/halstack-react";
 import dxcLogoPath from "./images/dxclogo.png";
 
 const code = `() => {

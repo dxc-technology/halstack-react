@@ -51,9 +51,9 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.5.4",
     "react-test-renderer": "^16.8.6",
-    "react": "file:../app/node_modules/react",
-    "react-dom": "file:../app/node_modules/react-dom",
-    "styled-components": "file:../app/node_modules/styled-components"
+    "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
+    "styled-components": "file:../node_modules/styled-components"
   },
   "jest": {
     "moduleNameMapper": {

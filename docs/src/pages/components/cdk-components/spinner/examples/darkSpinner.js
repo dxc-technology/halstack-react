@@ -1,4 +1,4 @@
-import { DxcSpinner } from "@diaas/dxc-react-cdk";
+import { DxcSpinner } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

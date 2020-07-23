@@ -1,0 +1,15 @@
+{
+  "name": "@dxc-technology/halstack-react",
+  "version": "0.0.0",
+  "description": "DXC Halstack React components library",
+  "author": {
+    "name": "DXC Technology",
+    "email": "DigitalInsurance@dxc.com",
+    "url": "https://dxc.com"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  }
+}

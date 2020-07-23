@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections } from "@diaas/dxc-react-cdk";
+import { DxcTabsForSections } from "@dxc-technology/halstack-react";
 
 function TabsForSections() {
   return (

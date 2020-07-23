@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcUpload } from "@diaas/dxc-react-cdk";
+import { DxcUpload } from "@dxc-technology/halstack-react";
 
 function App() {
   async function callbackFunc() {

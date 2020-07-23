@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcProgressBar, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcProgressBar, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
   black: "blue",

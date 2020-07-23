@@ -1,4 +1,4 @@
-import { DxcSwitch } from "@diaas/dxc-react-cdk";
+import { DxcSwitch } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

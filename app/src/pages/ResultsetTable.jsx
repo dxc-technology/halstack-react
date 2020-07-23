@@ -3,7 +3,7 @@ import {
   DxcResultsetTable,
   ThemeContext,
   DxcButton,
-} from "@diaas/dxc-react-cdk";
+} from "@dxc-technology/halstack-react";
 import deleteIcon from "../images/delete-24px.svg";
 
 const colors = {

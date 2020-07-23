@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTable } from "@diaas/dxc-react-cdk";
+import { DxcTable } from "@dxc-technology/halstack-react";
 
 const tablePropsTable = () => {
   return (

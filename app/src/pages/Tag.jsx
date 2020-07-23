@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTag } from "@diaas/dxc-react-cdk";
+import { DxcTag } from "@dxc-technology/halstack-react";
 
 import twitterIcon from "../images/twitter.svg";
 import fbIcon from "../images/facebook.svg";

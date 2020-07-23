@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections, DxcLink } from "@diaas/dxc-react-cdk";
+import { DxcTabsForSections, DxcLink } from "@dxc-technology/halstack-react";
 
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";

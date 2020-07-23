@@ -1,4 +1,4 @@
-import { DxcInput } from "@diaas/dxc-react-cdk";
+import { DxcInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {

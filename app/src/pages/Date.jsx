@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcDate, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcDate, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
   black: "blue",

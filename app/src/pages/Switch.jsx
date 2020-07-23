@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcSwitch, ThemeContext } from "@diaas/dxc-react-cdk";
+import { DxcSwitch, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
   black: "blue",
