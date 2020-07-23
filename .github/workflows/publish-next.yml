@@ -18,17 +18,26 @@ jobs:
         node-version: 10.x
         registry-url: https://registry.npmjs.org/
       
+    - name: Install common dependencies
+      run: npm install
+
     - name: Install app dependencies
       run: cd app && npm install
     
     - name: Install lib dependencies
       run: cd lib && npm install
+
+    - name: Install docs dependencies
+      run: cd docs && npm install
     
     - name: Build library
       run: cd lib && npm run build
     
     - name: Test library
       run: cd lib && npm run test
+
+    - name: Build docs
+      run: cd docs && npm run build
       
     - name: Publish alpha to npm
       run: |
