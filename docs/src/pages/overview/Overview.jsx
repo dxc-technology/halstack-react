@@ -189,16 +189,6 @@ function Support() {
   );
 }
 
-function Contributing() {
-  return (
-    <Section>
-      <DocTitle size={2}>Contributing</DocTitle>
-      <p>Our main support channel is GitHub issues.</p>
-      <div></div>
-    </Section>
-  );
-}
-
 function Overview() {
   return (
     <Content>
