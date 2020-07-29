@@ -18,11 +18,18 @@ jobs:
         node-version: 10.x
         registry-url: https://registry.npmjs.org/
       
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+        role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
+        role-duration-seconds: 3600
+        role-skip-session-tagging: true
+
     - name: Install common dependencies
       run: npm install
-
-    - name: Install app dependencies
-      run: cd app && npm install
     
     - name: Install lib dependencies
       run: cd lib && npm install
@@ -39,11 +46,8 @@ jobs:
     - name: Build docs
       run: cd docs && npm run build
       
-    - name: Publish alpha to npm
-      run: |
-        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${TAG_NAME}\"#" ./lib/package.json
-        cd lib
-        npm publish --access public
+    - name: Move VERSION docs to S3
+      run: node scripts/release-docs.js $TAG_NAME
       env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-          TAG_NAME: ${{ github.event.release.tag_name }}
+        TAG_NAME: ${{ github.event.release.tag_name }}
+
