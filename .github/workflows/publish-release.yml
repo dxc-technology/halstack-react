@@ -40,9 +40,6 @@ jobs:
     - name: Build library
       run: cd lib && npm run build
     
-    - name: Test library
-      run: cd lib && npm run test
-
     - name: Build docs
       run: cd docs && npm run build
       
