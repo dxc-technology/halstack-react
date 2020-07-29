@@ -34,11 +34,11 @@ const getVersionsInS3Bucket = async () => {
   });
 };
 
-const moveToBucket = () => {
+const moveToBucket = (version) => {
   return new Promise((resolve, reject) => {
     exec(
-      `aws s3 rm s3://${BUCKET_NAME}/${DIRECTORY}${majorVersionToDeploy}/ --recursive &&
-        aws s3 cp ./docs/build/ s3://${BUCKET_NAME}/${DIRECTORY}${majorVersionToDeploy}/ --recursive`,
+      `aws s3 rm s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive &&
+        aws s3 cp ./docs/build/ s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive`,
       (error, stdout, stderr) => {
         if (error) {
           reject(error.message);
@@ -77,7 +77,7 @@ const deploy = async () => {
   );
   const existingVersionsInBucket = await getVersionsInS3Bucket();
   const isNewLatest = existingVersionsInBucket.includes(majorVersionToDeploy);
-  await moveToBucket();
+  await moveToBucket(majorVersionToDeploy);
   if (isNewLatest) {
     await updateRedirectionToLatest(majorVersionToDeploy);
   }
