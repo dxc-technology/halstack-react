@@ -23,5 +23,3 @@ exec(
     console.log(`stdout: ${stdout}`);
   }
 );
-
-releaseDocs();
