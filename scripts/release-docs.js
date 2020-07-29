@@ -9,16 +9,14 @@ const majorVersionToDeploy = Number(
 );
 
 exec(
-  `aws s3 rm s3://${majorVersionToDeploy}/tools/react/${majorVersionToDeploy}/ --recursive &&
-    aws s3 cp ./docs/build/ s3://${majorVersionToDeploy}/tools/react/${majorVersionToDeploy}/ --recursive`,
+  `aws s3 rm s3://${BUCKET_NAME}/tools/react/${majorVersionToDeploy}/ --recursive &&
+    aws s3 cp ./docs/build/ s3://${BUCKET_NAME}/tools/react/${majorVersionToDeploy}/ --recursive`,
   (error, stdout, stderr) => {
     if (error) {
-      console.log(`error: ${error.message}`);
-      return;
+      throw new Error(error.message)
     }
     if (stderr) {
-      console.log(`stderr: ${stderr}`);
-      return;
+      throw new Error(stderr)
     }
     console.log(`stdout: ${stdout}`);
   }
