@@ -31,7 +31,7 @@ function App() {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.dxc.com/DIaaS/diaas-react-cdk"
+              href="https://github.com/dxc-technology/halstack-react"
             >
               <HeaderLogo alt="GitHub logo" src={githubLogo}></HeaderLogo>
             </a>
@@ -63,7 +63,7 @@ function App() {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.dxc.com/DIaaS/diaas-react-cdk"
+              href="https://github.com/dxc-technology/halstack-react"
             >
               <HeaderLogo alt="GitHub logo" src={githubLogoBlack}></HeaderLogo>
             </a>

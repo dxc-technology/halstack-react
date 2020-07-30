@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { Slider } from "@diaas/dxc-react-cdk";
+import { Slider } from "@dxc-technology/halstack-react";
 
 <DxcSlider min={0} max={100} step={1} value={value}  />;
 ```

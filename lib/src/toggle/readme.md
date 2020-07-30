@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcToggle } from "@diaas/dxc-react-cdk";
+import { DxcToggle } from "@dxc-technology/halstack-react";
 
 <DxcToggle onClick={handleClick} label="Test Button" />;
 ```
@@ -67,7 +67,7 @@ import { DxcToggle } from "@diaas/dxc-react-cdk";
 ## Examples
 
 ```js
-import { DxcToggle } from "@diaas/dxc-react-cdk";
+import { DxcToggle } from "@dxc-technology/halstack-react";
 <DxcToggle
   label="Disabled Ripple"
   disableRipple={true}

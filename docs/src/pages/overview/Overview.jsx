@@ -33,10 +33,10 @@ function Install() {
       <SyntaxHighlighter language="php" style={docco}>
         {`
   # with npm
-  npm install @diaas/dxc-react-cdk
+  npm install @dxc-technology/halstack-react
 
   # with yarn
-  yarn add @diaas/dxc-react-cdk
+  yarn add @dxc-technology/halstack-react
         `}
       </SyntaxHighlighter>
     </Section>
@@ -62,7 +62,7 @@ function UseComponents() {
       </p>
       <SyntaxHighlighter language="javascript" style={docco}>
         {`
-  import { DxcButton } from "@diaas/dxc-react-cdk";
+  import { DxcButton } from "@dxc-technology/halstack-react";
 
   const MyComponent = () => {
     const onClick = () => {
@@ -102,7 +102,7 @@ function CustomThemes() {
 
       <SyntaxHighlighter language="javascript" style={docco}>
         {`
-  import { DxcButton, ThemeContext } from "@diaas/dxc-react-cdk";
+  import { DxcButton, ThemeContext } from "@dxc-technology/halstack-react";
 
   const colors = {
     black: "#171515",
@@ -150,7 +150,7 @@ function Support() {
         </p>
         <DxcTag
           margin={{ top: "medium", bottom: "medium", right: "medium" }}
-          linkHref="https://github.dxc.com/DIaaS/diaas-react-cdk/issues"
+          linkHref="https://github.com/dxc-technology/halstack-react"
           iconSrc={githubLogo}
           label="GitHub Issues"
         ></DxcTag>

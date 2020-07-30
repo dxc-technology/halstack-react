@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcSwitch } from "@diaas/dxc-react-cdk";
+import { DxcSwitch } from "@dxc-technology/halstack-react";
 
 <DxcSwitch onChange={handleNewValue} label="Test Switch" checked={checked} />;
 ```
@@ -92,7 +92,7 @@ The API properties are the following:
 
 ```js
 import React from "react";
-import { DxcSwitch } from "@diaas/dxc-react-cdk";
+import { DxcSwitch } from "@dxc-technology/halstack-react";
 
 class App extends React.Component {
   state = {

@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcCheckbox } from "@diaas/dxc-react-cdk";
+import { DxcCheckbox } from "@dxc-technology/halstack-react";
 
 <DxcCheckbox onChange={handleNewValue} label="Test Checkbox" checked={checked} />;
 ```
@@ -75,7 +75,7 @@ import { DxcCheckbox } from "@diaas/dxc-react-cdk";
 
 ```js
 import React from "react";
-import { DxcCheckbox } from "@diaas/dxc-react-cdk";
+import { DxcCheckbox } from "@dxc-technology/halstack-react";
 
 class App extends React.Component {
   state = {
