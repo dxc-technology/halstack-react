@@ -57,7 +57,7 @@ jobs:
 
     - name: Publish NEXT version to npm
       run: |
-        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"$${{ steps.previoustag.outputs.tag }}-${GITHUB_SHA:0:7}\"#" ./lib/package.json
+        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${{ steps.previoustag.outputs.tag }}-${GITHUB_SHA:0:7}\"#" ./lib/package.json
         cd lib
         npm publish --tag next --access public
       env:
