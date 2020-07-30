@@ -1,7 +1,7 @@
 const { exec } = require("child_process");
 const AWS = require("aws-sdk");
 
-const BUCKET_NAME = "design.site.test";
+const BUCKET_NAME = "design-system-react-cdk-site";
 const DIRECTORY = "tools/react/";
 
 const processListObjectsResponse = (response) => {
@@ -41,10 +41,10 @@ const moveToBucket = (version) => {
         aws s3 cp ./docs/build/ s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive`,
       (error, stdout, stderr) => {
         if (error) {
-          reject(error.message);
+          throw new Error(error.message)
         }
         if (stderr) {
-          reject(stderr);
+          throw new Error(stderr)
         }
         resolve(stdout);
       }
@@ -56,13 +56,13 @@ const updateRedirectionToLatest = (version) => {
   const redirection = `window.location.replace("https://developer.dxc.com/tools/react/${version}");`;
   return new Promise((resolve, reject) => {
     exec(
-      `echo '${redirection}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}latest/index.html`,
+      `echo '${redirection}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}redirect.js`,
       (error, stdout, stderr) => {
         if (error) {
-          reject(error.message);
+          throw new Error(error.message)
         }
         if (stderr) {
-          reject(stderr);
+          throw new Error(stderr)
         }
         resolve(stdout);
       }
@@ -76,12 +76,11 @@ const deploy = async () => {
     versionToDeploy.substring(0, versionToDeploy.indexOf("."))
   );
   const existingVersionsInBucket = await getVersionsInS3Bucket();
-  const isNewLatest = existingVersionsInBucket.includes(majorVersionToDeploy);
+  const isNewLatest = !existingVersionsInBucket.includes(majorVersionToDeploy);
   await moveToBucket(majorVersionToDeploy);
   if (isNewLatest) {
     await updateRedirectionToLatest(majorVersionToDeploy);
   }
-  console.log(deployedVersions);
 };
 
 deploy();

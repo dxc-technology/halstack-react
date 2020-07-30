@@ -30,6 +30,9 @@ jobs:
 
     - name: Install common dependencies
       run: npm install
+
+    - name: Install app dependencies
+      run: cd app && npm install
     
     - name: Install lib dependencies
       run: cd lib && npm install
@@ -40,10 +43,22 @@ jobs:
     - name: Build library
       run: cd lib && npm run build
     
+    - name: Test library
+      run: cd lib && npm run test
+
     - name: Build docs
       run: cd docs && npm run build
-      
-    - name: Move VERSION docs to S3
+
+    - name: Publish RELEASE to npm
+      run: |
+        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${TAG_NAME}\"#" ./lib/package.json
+        cd lib
+        npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        TAG_NAME: ${{ github.event.release.tag_name }}
+
+    - name: Move RELEASE docs to S3
       run: node scripts/release-docs.js $TAG_NAME
       env:
         TAG_NAME: ${{ github.event.release.tag_name }}
