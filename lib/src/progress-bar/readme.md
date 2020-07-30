@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcProgressBar } from "@diaas/dxc-react-cdk";
+import { DxcProgressBar } from "@dxc-technology/halstack-react";
 
 <DxcProgressBar onClick={handleClick} label="Test Button" />;
 ```
@@ -47,7 +47,7 @@ import { DxcProgressBar } from "@diaas/dxc-react-cdk";
 
 ```js
 import React from "react";
-import { DxcSpinner } from "@diaas/dxc-react-cdk";
+import { DxcSpinner } from "@dxc-technology/halstack-react";
 
 function App() {
   return (

@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcAccordion } from "@diaas/dxc-react-cdk";
+import { DxcAccordion } from "@dxc-technology/halstack-react";
 
 <DxcAccordion onChange={handleOnChange} label="Test Accordion" />;
 ```
@@ -66,7 +66,7 @@ import { DxcAccordion } from "@diaas/dxc-react-cdk";
 ```js
 import React from "react";
 
-import { DxcAccordion } from "@diaas/dxc-react-cdk";
+import { DxcAccordion } from "@dxc-technology/halstack-react";
 
 function App() {
   const handleOnChange = event => {
