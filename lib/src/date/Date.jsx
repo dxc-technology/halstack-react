@@ -20,7 +20,6 @@ const DxcDate = ({
   label = "",
   theme = "light",
   name,
-  iconSrc = "",
   disabled = false,
   required = false,
   assistiveText = "",
@@ -184,7 +183,7 @@ const DxcDate = ({
             <DxcInput
               label={label}
               name={name}
-              suffixIconSrc={iconSrc || (theme === "dark" ? calendarDarkIcon : calendarIcon)}
+              suffixIconSrc={(theme === "dark" ? calendarDarkIcon : calendarIcon)}
               theme={theme}
               disableRipple={disableRipple}
               required={required}
@@ -295,7 +294,6 @@ DxcDate.propTypes = {
   label: PropTypes.string,
   theme: PropTypes.oneOf(["light", "dark", ""]),
   name: PropTypes.string,
-  iconSrc: PropTypes.string,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   placeholder: PropTypes.bool,
