@@ -9,7 +9,6 @@ import Tabs from "./pages/Tabs";
 import TabsForSections from "./pages/TabsForSections";
 import Accordion from "./pages/Accordion";
 import Slider from "./pages/Slider";
-import Toggle from "./pages/Toggle";
 import Radio from "./pages/Radio";
 import Select from "./pages/Select";
 import Dropdown from "./pages/Dropdown";
@@ -29,6 +28,7 @@ import Link from "./pages/Link";
 import Heading from "./pages/Heading";
 import Textarea from "./pages/Textarea";
 import ResultsetTable from "./pages/ResultsetTable";
+import Chip from "./pages/Chip";
 
 export default [
   {
@@ -60,6 +60,11 @@ export default [
     path: "checkbox",
     name: "Checkbox",
     component: Checkbox
+  },
+  {
+    path: "chip",
+    name: "Chip",
+    component: Chip
   },
   {
     path: "date",
@@ -170,11 +175,6 @@ export default [
     path: "textarea",
     name: "Textarea",
     component: Textarea
-  },
-  {
-    path: "toggle",
-    name: "Toggle",
-    component: Toggle
   },
   {
     path: "upload",
