@@ -49,15 +49,9 @@ jobs:
     - name: Build docs
       run: cd docs && npm run build
       
-    - name: 'Get Latest tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@master"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
     - name: Publish NEXT version to npm
       run: |
-        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${{ steps.previoustag.outputs.tag }}-${GITHUB_SHA:0:7}\"#" ./lib/package.json
+        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./lib/package.json
         cd lib
         npm publish --tag next --access public
       env:
