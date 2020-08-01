@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcSpinner } from "@diaas/dxc-react-cdk";
+import { DxcSpinner } from "@dxc-technology/halstack-react";
 
 <Spinner theme="dark" label="Processing..." />;
 ```
@@ -48,7 +48,7 @@ import { DxcSpinner } from "@diaas/dxc-react-cdk";
 ```js
 import React from "react";
 
-import { DxcSpinner } from "@diaas/dxc-react-cdk";
+import { DxcSpinner } from "@dxc-technology/halstack-react";
 
 function App() {
   return (
