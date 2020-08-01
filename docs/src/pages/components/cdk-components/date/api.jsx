@@ -40,9 +40,9 @@ const alertPropsTable = () => {
         <td>Name attribute of the input element.</td>
       </tr>
       <tr>
-        <td>iconSrc: string</td>
+        <td>placeholder: boolean</td>
         <td></td>
-        <td>The path of an icon to replace the default calendar icon.</td>
+        <td>If true the date format will appear as placeholder in the field</td>
       </tr>
       <tr>
         <td>disabled: boolean</td>
@@ -82,6 +82,15 @@ const alertPropsTable = () => {
           <code>false</code>
         </td>
         <td>If true, the ripple effect will be disabled.</td>
+      </tr>
+      <tr>
+        <td>placeholder: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>
+          If true the date format will appear as placeholder in the field.
+        </td>
       </tr>
       <tr>
         <td>onChange: function</td>

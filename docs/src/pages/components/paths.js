@@ -10,7 +10,6 @@ import Input from "./cdk-components/input/Input";
 import Accordion from "./cdk-components/accordion/Accordion";
 import Select from "./cdk-components/select/Select";
 import Slider from "./cdk-components/slider/Slider";
-import Toggle from "./cdk-components/toggle/Toggle";
 import TabbedSections from "./cdk-components/tabbed-sections/TabbedSections";
 import Card from "./cdk-components/card/Card";
 import Dialog from "./cdk-components/dialog/Dialog";
@@ -30,6 +29,7 @@ import Textarea from "./cdk-components/textarea/Textarea";
 import Heading from "./cdk-components/heading/Heading";
 import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
 import Autocomplete from "./cdk-components/autocomplete/Autocomplete";
+import Chip from "./cdk-components/chip/Chip";
 
 export const types = {
   FORMS: "Forms",
@@ -80,6 +80,12 @@ export default [
     name: "Checkbox",
     component: Checkbox,
     type: types.FORMS,
+  },
+  {
+    path: "chip",
+    name: "Chip",
+    component: Chip,
+    type: types.UTILS,
   },
   {
     path: "date",
@@ -211,12 +217,6 @@ export default [
     path: "textarea",
     name: "Textarea",
     component: Textarea,
-    type: types.FORMS,
-  },
-  {
-    path: "toggle",
-    name: "Toggle",
-    component: Toggle,
     type: types.FORMS,
   },
   {
