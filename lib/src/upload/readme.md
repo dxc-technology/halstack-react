@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcUpload } from "@diaas/dxc-react-cdk";
+import { DxcUpload } from "@dxc-technology/halstack-react";
 ```
 
 ## Props
@@ -27,7 +27,7 @@ import { DxcUpload } from "@diaas/dxc-react-cdk";
 ```js
 import React from "react";
 
-import { DxcUpload } from "@diaas/dxc-react-cdk";
+import { DxcUpload } from "@dxc-technology/halstack-react";
 
 function App() {
   return <Upload callbackUpload={callbackFunc} />;

@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcButton } from "@diaas/dxc-react-cdk";
+import { DxcButton } from "@dxc-technology/halstack-react";
 
 <DxcButton onClick={handleClick} label="Test Button" />;
 ```
@@ -66,7 +66,7 @@ import { DxcButton } from "@diaas/dxc-react-cdk";
 ```js
 import React from "react";
 
-import { DxcButton } from "@diaas/dxc-react-cdk";
+import { DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
   const handleOnClick = event => {

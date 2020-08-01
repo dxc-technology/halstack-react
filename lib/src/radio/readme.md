@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import { DxcRadio } from "@diaas/dxc-react-cdk";
+import { DxcRadio } from "@dxc-technology/halstack-react";
 
 <DxcRadio onChange={handleNewValue} label="Test Radio" checked={checked} />;
 ```
