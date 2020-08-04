@@ -2,6 +2,9 @@
   "name": "@dxc-technology/halstack-react",
   "version": "0.0.0",
   "description": "DXC Halstack React components library",
+  "repository": "dxc-technology/halstack-react",
+  "homepage": "http://developer.dxc.com/tools/react",
+  "license":"Apache-2.0",
   "author": {
     "name": "DXC Technology",
     "email": "DigitalInsurance@dxc.com",
