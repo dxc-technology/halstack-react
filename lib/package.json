@@ -28,7 +28,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "npm test -- --watch --coverage",
-    "build": "babel src --out-dir dist --copy-files --verbose",
+    "build": "babel src --out-dir dist --copy-files --verbose && node ../scripts/build/copy-readme.js",
     "build:watch": "babel src --watch --out-dir dist --copy-files --verbose"
   },
   "devDependencies": {
