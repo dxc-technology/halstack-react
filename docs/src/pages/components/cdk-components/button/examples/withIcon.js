@@ -9,13 +9,13 @@ const code = `() => {
   return (
     <div>
       <DxcButton
-        label="Basic Button"
+        label="Primary Button"
         onClick={onClick}
         iconSrc={twitterLogoPath}
         margin="medium"
       />
       <DxcButton
-        label="Basic Button"
+        label="Primary Button"
         onClick={onClick}
         iconSrc={twitterLogoPath}
         iconPosition="after"

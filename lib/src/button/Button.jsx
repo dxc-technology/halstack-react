@@ -4,37 +4,35 @@ import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcButton = ({
   label = "",
-  mode = "basic",
+  mode = "primary",
   disabled = false,
-  theme = "light",
-  disableRipple = false,
   iconPosition = "before",
   iconSrc = "",
   onClick = "",
   margin,
   size,
 }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+
+  const colorsTheme = getCustomTheme(theme, getCustomTheme(defaultTheme, useContext(ThemeContext)));
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.button}>
       <DxCButton
         margin={margin}
         mode={mode}
-        brightness={theme}
         disabled={disabled}
         iconPosition={iconPosition}
         size={size}
       >
         <Button
           disabled={disabled}
-          disableRipple={disableRipple}
+          disableRipple
           onClick={() => {
             if (onClick) {
               onClick();
@@ -107,102 +105,71 @@ const DxCButton = styled.div`
     border-radius: 4px;
     width: 100%;
     min-height: 43px;
-
     line-height: 1;
     font-family: "Open Sans", sans-serif;
+    &:active {
+      opacity: 0.64;
+    }
+    &:focus {
+      outline: auto 1px Highlight;
+      outline: -webkit-focus-ring-color auto 1px;
+    }
     ${(props) => {
-      const { mode, brightness } = props;
-      if (mode === "basic") {
+      const { mode } = props;
+      if (mode === "primary") {
         return `
-          background-color: ${props.theme.yellow};
-          color: ${props.theme.black};
+          background-color: ${props.theme.color};
+          color: ${props.theme.primaryFontColor};
           &:hover{
-            background-color: ${(brightness === "light" && props.theme.black) || props.theme.lightBlack};
-            color: ${props.theme.yellow}; 
+            background-color: ${props.theme.hoverColor};
+            color: ${props.theme.primaryHoverFontColor}; 
           }
           &:disabled{ 
-            background-color:${props.theme.yellow};
-            opacity:0.5;
-            color: ${props.theme.black};
+            background-color: ${props.theme.color};
+            opacity: ${props.theme.primaryDisabledOpacity};
+            color: ${props.theme.primaryFontColor};
             cursor:not-allowed;
           }
           .MuiButton-label {
             z-index: 5
-          }
-          .MuiTouchRipple-child {
-            background-color: ${props.theme.white};
           }
         `;
-      } else if (mode === "outlined") {
+      } else if (mode === "secondary") {
         return `
-          background-color: transparent;
+          background-color: ${props.theme.secondaryBackgroundColor};
           padding: 10px 28px;
-          color: ${(brightness === "light" && props.theme.black) || props.theme.white};
+          color: ${props.theme.secondaryFontColor};
           border: 2px solid;
-          border-color: ${(brightness === "light" && props.theme.black) || props.theme.white};
+          border-color: ${props.theme.color};
           &:hover{
-            border-color: ${props.theme.yellow};
-            background-color: transparent;
+            border-color: ${props.theme.hoverColor};
+            background-color: ${props.theme.secondaryBackgroundColor};
           }
           &:disabled{ 
-            background-color:${(brightness === "light" && "transparent") || props.theme.black};
-            border-color:${(brightness === "light" && props.theme.lightGrey) || props.theme.darkGrey};
-            color:${(brightness === "light" && props.theme.lightGrey) || props.theme.darkGrey};
+            background-color: ${props.theme.secondaryBackgroundColor};
+            border-color: ${props.theme.color};
+            color: ${props.theme.secondaryFontColor};
             cursor:not-allowed;
+            opacity: ${props.theme.secondaryDisabledOpacity};
           }
           .MuiButton-label {
             z-index: 5
-          }
-          .MuiTouchRipple-child{
-            background-color:${(brightness === "light" && props.theme.darkGrey) || props.theme.lightGrey};
-          }
-          .MuiTouchRipple-root {
-            border-radius: 2px;
           }
           
         `;
-      } else if (mode === "flat") {
+      } else if (mode === "text") {
         return `
-          background-color: ${(brightness === "light" && "transparent") || props.theme.black};
-          color: ${(brightness === "light" && props.theme.black) || props.theme.white};
+          background-color: ${props.theme.textBackgroundColor};
+          color: ${props.theme.textFontColor};
           &:hover{
-            background-color: ${props.theme.lightGrey};
-            color: ${props.theme.black};
+            background-color: ${props.theme.hoverColor};
+            color: ${props.theme.textHoverFontColor};
           }
           &:disabled{ 
-            background-color:${(brightness === "light" && props.theme.lightGrey) || props.theme.darkGrey};
-            opacity:0.5;
-            color:${(brightness === "light" && props.theme.black) || props.theme.lightGrey};
+            background-color: ${props.theme.textBackgroundColor};
+            opacity: ${props.theme.secondaryDisabledOpacity};
+            color: ${props.theme.textFontColor};
             cursor:not-allowed;
-          }
-          .MuiButton-label {
-            z-index: 5
-          }
-          .MuiTouchRipple-child{
-            background-color:${(brightness === "light" && props.theme.darkGrey) || props.theme.darkGrey};
-          }
-        `;
-      } else {
-        return `
-          background-color: ${props.theme.yellow};
-          color: ${props.theme.black}
-          box-shadow: 0px 1.5px 3px 0px rgba(0, 0, 0, 0.16);
-          &:hover{
-            background-color:${(brightness === "light" && props.theme.black) || props.theme.lightBlack};
-            color:${props.theme.yellow};
-          }
-          &:disabled{ 
-            background-color:${props.theme.yellow};
-            opacity:0.5;
-            box-shadow:none;
-            color: ${props.theme.darkGrey};
-            cursor:not-allowed;
-          }
-          .MuiButton-label {
-            z-index: 5
-          }
-          .MuiTouchRipple-child {
-            background-color: ${props.theme.white};
           }
         `;
       }
@@ -222,10 +189,9 @@ DxcButton.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   label: PropTypes.string,
-  mode: PropTypes.oneOf(["basic", "outlined", "raised", "flat"]),
+  mode: PropTypes.oneOf(["primary", "secondary", "text"]),
   disabled: PropTypes.bool,
   theme: PropTypes.oneOf(["dark", "light"]),
-  disableRipple: PropTypes.bool,
   iconPosition: PropTypes.oneOf(["after", "before"]),
   onClick: PropTypes.func,
   iconSrc: PropTypes.string,
