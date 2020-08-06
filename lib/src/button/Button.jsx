@@ -21,7 +21,7 @@ const DxcButton = ({
 }) => {
 
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), customTheme);
+  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
