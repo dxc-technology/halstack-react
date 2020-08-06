@@ -7,6 +7,7 @@ import "../common/OpenSans.css";
 import { spaces, defaultTheme, theme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
+import { useMemo } from "react";
 
 const DxcButton = ({
   label = "",
@@ -19,7 +20,8 @@ const DxcButton = ({
   size,
 }) => {
 
-  const colorsTheme = getCustomTheme(theme, getCustomTheme(defaultTheme, useContext(ThemeContext)));
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), customTheme);
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
