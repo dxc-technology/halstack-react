@@ -43,6 +43,7 @@ const HeadingLevel1 = styled.h1`
   font-weight: ${(props) =>
     props.weight === "light" || props.weight === "" ? 200 : props.weight === "normal" ? 400 : 600};
   letter-spacing: -0.53px;
+  margin: 0;
 `;
 
 const HeadingLevel2 = styled.h2`
@@ -51,6 +52,7 @@ const HeadingLevel2 = styled.h2`
   font-weight: ${(props) =>
     props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
   letter-spacing: 0px;
+  margin: 0;
 `;
 
 const HeadingLevel3 = styled.h3`
@@ -59,6 +61,7 @@ const HeadingLevel3 = styled.h3`
   font-weight: ${(props) =>
     props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
   letter-spacing: 0.24px;
+  margin: 0;
 `;
 
 const HeadingLevel4 = styled.h4`
@@ -67,6 +70,7 @@ const HeadingLevel4 = styled.h4`
   font-weight: ${(props) =>
     props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
   letter-spacing: 0px;
+  margin: 0;
 `;
 
 const HeadingLevel5 = styled.h5`
@@ -75,6 +79,7 @@ const HeadingLevel5 = styled.h5`
   font-weight: ${(props) =>
     props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
   letter-spacing: 0.26px;
+  margin: 0;
 `;
 
 DxcHeading.propTypes = {
