@@ -22,7 +22,6 @@ const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = tr
   };
 
   const handleResize = (width) => {
-    console.log(width);
     if (width) {
       if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
     }
