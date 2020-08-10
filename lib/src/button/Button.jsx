@@ -113,7 +113,7 @@ const DxCButton = styled.div`
       opacity: 0.64;
     }
     &:focus {
-      outline: ${props.theme.blue} auto 1px;
+      outline: ${(props) => props.theme.focusColor} auto 1px;
     }
     ${(props) => {
       const { mode } = props;
