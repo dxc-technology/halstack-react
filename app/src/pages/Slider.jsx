@@ -2,20 +2,9 @@ import React from "react";
 import { DxcSlider, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  slider: {
+    color: "#red",
+  },
 };
 
 function App() {
@@ -43,27 +32,6 @@ function App() {
           step={1}
           margin="medium"
         />
-      </div>
-      <div>
-        <h4>Dark theme</h4>
-        <div
-          className="test-case"
-          id="dark-theme"
-          style={{
-            backgroundColor: "black",
-          }}
-        >
-          <DxcSlider
-            minValue={0}
-            maxValue={100}
-            showLimitsValues={true}
-            showInput={false}
-            name="input"
-            theme="dark"
-            step={1}
-            margin="medium"
-          />
-        </div>
       </div>
       <div className="test-case" id="discrete-slider">
         <h4>Discrete Slider</h4>

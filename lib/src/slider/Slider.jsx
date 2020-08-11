@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import DxcInput from "../input-text/InputText";
-import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcSlider = ({
@@ -19,13 +19,14 @@ const DxcSlider = ({
   onChange,
   onDragEnd,
   disabled = false,
-  theme = "light",
   marks = false,
   margin,
   size = "fillParent",
 }) => {
   const [innerValue, setInnerValue] = useState(0);
-  const colorsTheme = useContext(ThemeContext) || colors;
+
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const handlerSliderChange = (event, newValue) => {
     if (value == null) {
@@ -48,13 +49,9 @@ const DxcSlider = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
-      <SliderContainer brightness={theme} margin={margin} size={size}>
-        {showLimitsValues && (
-          <MinLabelContainer brightness={theme} disabled={disabled}>
-            {minValue}
-          </MinLabelContainer>
-        )}
+    <ThemeProvider theme={colorsTheme.slider}>
+      <SliderContainer margin={margin} size={size}>
+        {showLimitsValues && <MinLabelContainer disabled={disabled}>{minValue}</MinLabelContainer>}
         <Slider
           value={(value != null && value >= 0 && value) || innerValue}
           min={minValue}
@@ -66,15 +63,14 @@ const DxcSlider = ({
           disabled={disabled}
         />
         {showLimitsValues && (
-          <MaxLabelContainer brightness={theme} disabled={disabled} step={step}>
+          <MaxLabelContainer disabled={disabled} step={step}>
             {maxValue}
           </MaxLabelContainer>
         )}
         {showInput && (
-          <StyledTextInput brightness={theme}>
+          <StyledTextInput>
             <DxcInput
               name={name}
-              brightness={theme}
               value={(value != null && value >= 0 && value) || innerValue}
               disabled={disabled}
               onChange={handlerInputChange}
@@ -113,7 +109,6 @@ DxcSlider.propTypes = {
   onChange: PropTypes.func,
   onDragEnd: PropTypes.func,
   disabled: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "light"]),
   marks: PropTypes.bool,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
@@ -130,7 +125,7 @@ const StyledTextInput = styled.div`
   .MuiTextField-root {
     font-size: 16px;
     .MuiInputBase-input {
-      color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.white};
+      color: ${(props) => props.theme.color};
     }
   }
 `;
@@ -160,8 +155,8 @@ const SliderContainer = styled.div`
   }
 
   .MuiSlider-root.Mui-disabled {
-    opacity: ${(props) => (props.brightness === "light" && 1) || 0.3};
-    color: ${(props) => props.theme.lightGrey};
+    opacity: ${(props) => props.theme.disabledtotalLine};
+    color: ${(props) => props.theme.color};
     cursor: not-allowed;
   }
 
@@ -169,17 +164,17 @@ const SliderContainer = styled.div`
     & .MuiSlider-thumb {
       height: 14px;
       width: 14px;
-      background-color: ${(props) => props.theme.lightGrey};
+      background-color: ${(props) => props.theme.color};
       top: 35%;
     }
     & .MuiSlider-track {
-      background-color: ${(props) => props.theme.lightGrey};
+      background-color: ${(props) => props.theme.color};
     }
     & > .MuiSlider-mark.MuiSlider-markActive {
-      background-color: ${(props) => props.theme.lightGrey} !important;
+      background-color: ${(props) => props.theme.color} !important;
     }
     & > .MuiSlider-mark {
-      background-color: ${(props) => props.theme.lightGrey};
+      background-color: ${(props) => props.theme.color};
       width: 6px;
       height: 6px;
       border-radius: 18px;
@@ -191,7 +186,7 @@ const SliderContainer = styled.div`
   .MuiSlider-thumb {
     height: 14px;
     width: 14px;
-    background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.lightGrey};
+    background-color: ${(props) => props.theme.color};
     top: 45%;
     :hover,
     &.Mui-focusVisible {
@@ -201,67 +196,52 @@ const SliderContainer = styled.div`
       box-shadow: none;
     }
     :hover:not(:active) {
-      box-shadow: ${(props) =>
-        (props.brightness === "light" && "0px 0px 0px 18px #66666633") || "0px 0px 0px 18px #d9d9d933"};
+      box-shadow: "0px 0px 0px 18px #66666633";
     }
     :active {
       box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
-      background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.yellow};
+      background-color: ${(props) => props.theme.color};
       top: 45%;
       transform: scale(1.25);
       transform-origin: center;
     }
   }
   .MuiSlider-track {
-    background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.lightGrey};
+    background-color: ${(props) => props.theme.color};
     height: 2px;
     top: 50%;
   }
 
   .MuiSlider-track.MuiSlider-trackAfter {
-    background-color: ${(props) => props.theme.black};
+    background-color: ${(props) => props.theme.color};
   }
   .MuiSlider-rail {
-    background-color: ${(props) => (props.brightness === "light" && props.theme.lightGrey) || props.theme.lightGrey};
+    background-color: ${(props) => props.theme.color};
     top: 50%;
     opacity: 0.54;
   }
   .MuiSlider-mark.MuiSlider-markActive {
-    background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.lightGrey};
+    background-color: ${(props) => props.theme.color};
   }
   .MuiSlider-mark {
-    background-color: ${(props) => (props.brightness === "light" && props.theme.black) || props.theme.lightGrey};
+    background-color: ${(props) => props.theme.color};
     width: 6px;
     height: 6px;
     border-radius: 18px;
-    top: ${(props) => (props.brightness === "light" && "40%") || "44%"};
+    top: "40%";
   }
 `;
 
 const MinLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${(props) =>
-    props.brightness === "dark" && props.disabled
-      ? props.theme.darkGrey
-      : props.brightness === "dark"
-      ? props.theme.white
-      : props.brightness === "light" && props.disabled
-      ? props.theme.lightGrey
-      : props.theme.black};
+  color: ${(props) => props.theme.color};
   font-size: 16px;
   margin-right: 15px;
 `;
 
 const MaxLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${(props) =>
-    props.brightness === "dark" && props.disabled
-      ? props.theme.darkGrey
-      : props.brightness === "dark"
-      ? props.theme.white
-      : props.brightness === "light" && props.disabled
-      ? props.theme.lightGrey
-      : props.theme.black};
+  color: ${(props) => props.theme.color};
   font-size: 16px;
   margin-left: ${(props) => (props.step === 1 ? "15px" : "20px")};
 `;
