@@ -3,7 +3,7 @@ import { DxcSlider, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
   slider: {
-    color: "#red",
+    color: "red",
   },
 };
 
