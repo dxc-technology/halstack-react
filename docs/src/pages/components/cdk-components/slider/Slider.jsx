@@ -15,7 +15,6 @@ import continuous from "./examples/continuous";
 import withoutLimits from "./examples/without-limits";
 import input from "./examples/input";
 import disabled from "./examples/disabled";
-import dark from "./examples/dark";
 import sized from "./examples/sized";
 
 function Slider() {
