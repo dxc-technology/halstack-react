@@ -48,13 +48,6 @@ const buttonPropsTable = () => {
         <td>If true, the component will be disabled.</td>
       </tr>
       <tr>
-        <td>disableRipple: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>If true, the ripple effect will be disabled.</td>
-      </tr>
-      <tr>
         <td>onClick: function</td>
         <td></td>
         <td>

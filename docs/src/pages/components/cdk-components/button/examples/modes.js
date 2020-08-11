@@ -8,26 +8,20 @@ const code = `() => {
   return (
     <div>
       <DxcButton
-        mode="basic"
-        label="Basic Button"
+        mode="primary"
+        label="Primary Button"
         onClick={onClick}
         margin="medium"
       />
       <DxcButton
-        mode="raised"
-        label="Raised Button"
+        mode="secondary"
+        label="Secondary Button"
         onClick={onClick}
         margin="medium"
       />
       <DxcButton
-        mode="flat"
-        label="Flat Button"
-        onClick={onClick}
-        margin="medium"
-      />
-      <DxcButton
-        mode="outlined"
-        label="Outlined Button"
+        mode="text"
+        label="Text Button"
         onClick={onClick}
         margin="medium"
       />

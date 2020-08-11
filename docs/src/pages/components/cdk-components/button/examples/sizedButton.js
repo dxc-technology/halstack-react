@@ -7,8 +7,8 @@ const code = `() => {
 
   return (
     <DxcButton
-      mode="basic"
-      label="Basic Button"
+      mode="primary"
+      label="Primary Button"
       onClick={onClick}
       margin="medium"
       size="large"
