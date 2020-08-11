@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const checkboxPropsTable = () => {
+const sliderPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -29,13 +29,6 @@ const checkboxPropsTable = () => {
           <code>1</code>
         </td>
         <td>The step interval between values available for selection.</td>
-      </tr>
-      <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
       </tr>
       <tr>
         <td>value: number</td>
@@ -125,4 +118,4 @@ const checkboxPropsTable = () => {
   );
 };
 
-export default checkboxPropsTable;
+export default sliderPropsTable;

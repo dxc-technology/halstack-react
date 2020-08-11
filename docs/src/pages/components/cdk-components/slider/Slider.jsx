@@ -4,7 +4,8 @@ import { DxcTabsForSections } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
-import AlertPropsTable from "./api.jsx";
+import SliderPropsTable from "./api.jsx";
+import SliderTokensTable from "./Tokens.jsx";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 import controlled from "./examples/controlled";
@@ -20,10 +21,7 @@ import sized from "./examples/sized";
 function Slider() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Slider"
-        status="ready"
-      ></ComponentHeader>
+      <ComponentHeader title="Slider" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -33,9 +31,18 @@ function Slider() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
-                <AlertPropsTable />
+                <SliderPropsTable />
               </Section>
-            )
+            ),
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <SliderTokensTable />
+              </Section>
+            ),
           },
           {
             tabLabel: "Examples",
@@ -62,10 +69,9 @@ function Slider() {
                 <Example title="Slider with input" example={input}></Example>
                 <Example title="Sized Slider" example={sized}></Example>
                 <Example title="Disabled Slider" example={disabled}></Example>
-                <Example title="Dark theme Slider" example={dark}></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>
