@@ -7,7 +7,6 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
-import InputTokensTable from "./Tokens.jsx";
 import controlled from "./examples/controlledInput";
 import uncontrolled from "./examples/uncontrolledInput";
 import labeled from "./examples/lebeledInput";
@@ -29,15 +28,6 @@ function Input() {
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
                 <InputPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DocTitle size={2}>Theming</DocTitle>
-                <InputTokensTable />
               </Section>
             ),
           },
