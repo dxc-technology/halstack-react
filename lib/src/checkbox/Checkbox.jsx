@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useMemo, useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcCheckbox = ({
@@ -13,17 +13,16 @@ const DxcCheckbox = ({
   value,
   label = "",
   labelPosition = "before",
-  theme = "light",
   name = "",
   disabled = false,
-  disableRipple = false,
   onChange,
   required = false,
   margin,
   size = "fitContent",
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const handlerCheckboxChange = (checkboxValue) => {
     if (checked === undefined) {
@@ -40,7 +39,7 @@ const DxcCheckbox = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.checkbox}>
       <CheckboxContainer
         id={name}
         brightness={theme}
@@ -55,26 +54,27 @@ const DxcCheckbox = ({
           onChange={handlerCheckboxChange}
           value={value}
           disabled={disabled}
-          disableRipple={disableRipple}
+          disableRipple
+          className="test"
         />
-        {required && <DxcRequired brightness={theme} />}
-
-        {label && (
-          <LabelContainer
-            labelPosition={labelPosition}
-            brightness={theme}
-            onClick={disabled === true ? (e) => {} : handlerCheckboxChange}
-            disabled={disabled}
-          >
-            {label}
-          </LabelContainer>
-        )}
         <CheckboxBlackBack
           labelPosition={labelPosition}
           disabled={disabled}
           checked={checked != undefined ? checked : innerChecked}
-          brightness={theme}
         />
+
+        {required && <DxcRequired />}
+
+        {label && (
+          <LabelContainer
+            labelPosition={labelPosition}
+            onClick={disabled === true ? (e) => {} : handlerCheckboxChange}
+            disabled={disabled}
+            className="labelContainer"
+          >
+            {label}
+          </LabelContainer>
+        )}
       </CheckboxContainer>
     </ThemeProvider>
   );
@@ -96,14 +96,7 @@ const calculateWidth = (margin, size) => {
 };
 
 const LabelContainer = styled.span`
-  color: ${(props) =>
-    props.disabled
-      ? props.brightness === "dark"
-        ? props.theme.darkGrey
-        : props.theme.lightGrey
-      : props.brightness === "dark"
-      ? props.theme.white
-      : props.theme.black};
+  color: black;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
 `;
@@ -121,54 +114,66 @@ const CheckboxContainer = styled.span`
 
   width: ${(props) => calculateWidth(props.margin, props.size)};
 
+  opacity: ${(props) => (props.disabled ? props.theme.disabled : "1")};
   display: inline-flex;
   align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   position: relative;
   flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
-  .MuiButtonBase-root {
-    padding: 10px 10px;
-    margin: 0px 2px;
-    color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.darkGrey)};
-
-    :hover {
-      background-color: transparent;
-    }
+  .MuiCheckbox-colorSecondary {
     &.Mui-checked {
-      color: ${(props) => props.theme.yellow};
+      color: ${(props) => props.theme.color};
+      &.Mui-disabled {
+        color: ${(props) => props.theme.color};
+      }
       &:hover {
         background-color: transparent;
       }
     }
     &.Mui-disabled {
-      color: ${(props) => (props.brightness === "dark" ? props.theme.darkGrey : props.theme.lightGrey)};
+      color: ${(props) => props.theme.color};
     }
-    .MuiTouchRipple-child {
-      background-color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.darkGrey)};
+  }
+  .MuiIconButton-colorSecondary {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  .MuiButtonBase-root {
+    &.Mui-focusVisible {
+      .MuiIconButton-label {
+        outline: ${(props) => props.theme.focusColor} auto 1px;
+      }
+    }
+    z-index: 1;
+    padding: 10px 10px;
+    margin: 0px 2px;
+    color: ${(props) => props.theme.color}};
+    &.Mui-checked {
+      color: ${(props) => props.theme.color};
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    &.Mui-disabled {
+      opacity: ${(props) => props.theme.disabled};
     }
     .MuiSvgIcon-root {
       width: 26.6px;
       height: 26.6px;
     }
-    .MuiIconButton-label {
-      z-index: 1;
-    }
   }
 `;
 
 const CheckboxBlackBack = styled.span`
-  background-color: ${(props) =>
-    props.checked !== true
-      ? "transparent"
-      : props.brightness === "light" && props.disabled === true
-      ? props.theme.white
-      : props.theme.black};
+  background-color: ${(props) => (props.checked !== true ? "transparent" : props.theme.checkColor)};
   width: 17px;
   height: 17px;
   position: absolute;
   left: ${(props) => (props.labelPosition === "before" ? "unset" : "17px")};
   right: ${(props) => (props.labelPosition === "before" ? "17px" : "unset")};
   z-index: 0;
+  opacity: ${(props) => (props.disabled ? props.theme.disabled : "1")};
 `;
 
 DxcCheckbox.propTypes = {
@@ -176,10 +181,8 @@ DxcCheckbox.propTypes = {
   value: PropTypes.any,
   label: PropTypes.string,
   labelPosition: PropTypes.oneOf(["after", "before", ""]),
-  theme: PropTypes.oneOf(["light", "dark", ""]),
   name: PropTypes.string,
   disabled: PropTypes.bool,
-  disableRipple: PropTypes.bool,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
