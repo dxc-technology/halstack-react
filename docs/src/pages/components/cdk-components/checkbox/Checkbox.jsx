@@ -7,10 +7,10 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import CheckboxPropsTable from "./api.jsx";
+import CheckboxTokensTable from "./Tokens.jsx"
 
 import controlled from "./examples/controlledCheckbox";
 import uncontrolled from "./examples/uncontrolledCheckbox";
-import themed from "./examples/themedCheckbox";
 import labelPosition from "./examples/labelPosition";
 import sized from "./examples/sizedCheckbox";
 
@@ -35,6 +35,15 @@ function Checkbox() {
             )
           },
           {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <CheckboxTokensTable />
+              </Section>
+            )
+          },
+          {
             tabLabel: "Examples",
             section: () => (
               <Section>
@@ -50,10 +59,6 @@ function Checkbox() {
                 <Example
                   title="Label position Checkbox"
                   example={labelPosition}
-                ></Example>
-                <Example
-                  title="Dark theme Checkbox"
-                  example={themed}
                 ></Example>
                 <Example
                   title="Sized Checkbox"
