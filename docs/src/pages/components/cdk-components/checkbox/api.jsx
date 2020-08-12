@@ -71,13 +71,6 @@ const checkboxPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>disableRipple: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>If true, the ripple effect will be disabled.</td>
-      </tr>
-      <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
