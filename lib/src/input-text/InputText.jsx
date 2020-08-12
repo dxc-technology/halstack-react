@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -9,8 +9,8 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import Popper from "@material-ui/core/Popper";
 
-import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 import errorIcon from "./error.svg";
 
@@ -36,7 +36,6 @@ const DxcInputText = ({
   label = " ",
   name = "",
   value,
-  theme = "light",
   assistiveText = "",
   disabled = false,
   prefix = "",
@@ -56,13 +55,14 @@ const DxcInputText = ({
   autocompleteOptions,
 }) => {
   const [innerValue, setInnerValue] = useState("");
-  const colorsTheme = useContext(ThemeContext) || colors;
-
   const [isOpen, changeIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [filteredOptions, changeFilteredOptions] = useState([]);
   const [isSearching, changeIsSearching] = useState(false);
   const [isError, changeIsError] = useState(false);
+
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const changeValue = (newValue) => {
     if (value === null || value === undefined) {
@@ -140,19 +140,18 @@ const DxcInputText = ({
     }
   };
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.inputText}>
       <TextContainer
         prefixIconSrc={prefixIconSrc}
         prefix={prefix}
         required={required}
-        brightness={theme}
         assistiveText={assistiveText}
         margin={margin}
         size={size}
       >
         {prefixIconSrc && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
         {prefix && (
-          <PrefixLabel brightness={theme} disabled={disabled} onClick={onClickPrefix}>
+          <PrefixLabel disabled={disabled} onClick={onClickPrefix}>
             {prefix}
           </PrefixLabel>
         )}
@@ -286,7 +285,7 @@ const PrefixLabel = styled.span`
   top: 20px;
   left: 0px;
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.yellow)};
+  color: ${(props) => props.theme.fontColor};
   max-height: 20px;
   max-width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
@@ -339,18 +338,18 @@ const TextContainer = styled.div`
     }
     .MuiFormLabel-root {
       font-size: 16px;
-      color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.lightGrey)};
+      color: ${(props) => props.theme.fontColor};
       &::before {
         content:'${(props) => (props.required && "*") || ""}';
-        color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
+        color: ${(props) => props.theme.error};
         font-size: 16px; 
       }
       &.Mui-disabled{
-        opacity:0.5;
+        opacity: ${(props) => props.theme.disabledAssistiveTextColor};
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
       &.Mui-focused {
-        color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.white)};
+        color: ${(props) => props.theme.fontColor};
         &.MuiInputLabel-shrink {
           transform: ${(props) =>
             props.prefixIconSrc ||
@@ -359,7 +358,8 @@ const TextContainer = styled.div`
         }
       }
       &.Mui-disabled {
-        color: ${(props) => (props.brightness === "light" ? props.theme.lightGrey : props.theme.darkGrey)};
+        color: ${(props) => props.theme.fontColor};
+        opacity: ${(props) => props.theme.disabledLabelColor};
         cursor: not-allowed;
       }
       &.MuiInputLabel-shrink {
@@ -370,23 +370,23 @@ const TextContainer = styled.div`
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
-        color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
+        color: ${(props) => props.theme.error};
       }
 
       &:not(.MuiInputLabel-shrink)  {
         font-family: "Open Sans", sans-serif;
-        color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
+        color: ${(props) => props.theme.fontColor};
         & + div, & + div + p {
-          color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
+          color: ${(props) => props.theme.fontColor};
         }
       }
 
       &.MuiInputLabel-shrink {
         & + div::before {
-          border-color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.lightGrey)};
+          border-color: ${(props) => props.theme.fontColor};
         }
         & + div + p {
-          color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
+          color: ${(props) => props.theme.fontColor};
         }
         
       }
@@ -394,21 +394,19 @@ const TextContainer = styled.div`
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
       font-family: "Open Sans", sans-serif;
       &::before{
-        border-bottom: ${(props) =>
-          props.brightness === "light" ? `1px solid ${props.theme.black}` : `1px solid ${props.theme.lightGrey}`};
+        border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
       }
       &:not(.Mui-error)::before, &:not(&.Mui-focused)::before {
-        border-bottom: ${(props) =>
-          props.brightness === "light" ? `1px solid ${props.theme.black}` : `1px solid ${props.theme.lightGrey}`};
+        border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
       }
       &::after{
-        border-bottom: ${(props) => (props.brightness === "light" ? "2px solid #000" : "2px solid #d9d9d9")};
+        border-bottom: ${(props) => `2px solid ${props.theme.fontColor}`};
       }
 
       &.Mui-error {
         &::before {
           border-width: 1px;
-          border-color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
+          border-color: ${(props) => props.theme.error};
         }
         &::after {
           transform: scaleX(0);
@@ -418,29 +416,28 @@ const TextContainer = styled.div`
       &.Mui-focused {
         &::after {
           border-width: 2px;
-          border-color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.white)};
+          border-color: ${(props) => props.theme.fontColor};
           transform: scaleX(1);
         }
         
         &.Mui-error::after {
-          border-color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
+          border-color: ${(props) => props.theme.error};
         }
       }
 
       &.Mui-disabled {
-        color: ${(props) => (props.brightness === "light" ? props.theme.lightGrey : props.theme.darkGrey)};
-        opacity:0.5;
+        color: ${(props) => props.theme.fontColor};
+        opacity: ${(props) => props.theme.disabledUnderlinedColor};
         cursor: not-allowed;
         
         &::before {
-          border-bottom: ${(props) =>
-            props.brightness === "light" ? `1px solid ${props.theme.lightGrey}` : `1px solid ${props.theme.darkGrey}`};
+          border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
           border-bottom-style: solid;
         }
       }
       .MuiInputBase-input {
         padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
-        color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.white)};
+        color: ${(props) => props.theme.fontColor};
          text-overflow: ellipsis;
         &.Mui-disabled {
           cursor: not-allowed;
@@ -448,11 +445,11 @@ const TextContainer = styled.div`
       }
       .MuiInputAdornment-root {
         height: 20px;
-        color: ${(props) => (props.brightness === "light" ? props.theme.lightGrey : props.theme.darkGrey)};
+        color: ${(props) => props.theme.fontColor};
         &.MuiInputAdornment-positionEnd{
           & > p {
             font-family: "Open Sans", sans-serif;
-            color:${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.yellow)};
+            color:${(props) => props.theme.fontColor};
             margin-right: 8px;
             margin-bottom: 1px;
             cursor: ${(props) => {
@@ -470,20 +467,18 @@ const TextContainer = styled.div`
       }
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before{
-        border-bottom: ${(props) =>
-          props.brightness === "light" ? `1px solid ${props.theme.black}` : `1px solid ${props.theme.white}`};
+        border-bottom: ${(props) => props.theme.fontColor};
       }
       
     }
 
     & > p {
       &.Mui-error {
-        color: ${(props) =>
-          props.brightness === "light" ? props.theme.darkRed + " !important" : props.theme.lightRed + " !important"};
+        color: ${(props) => props.theme.error} !important;
       }
       &.Mui-disabled{
-        opacity:0.5;
-        cursor:not-allowed;
+        opacity: ${(props) => props.theme.disabledAssistiveTextColor};
+        cursor: not-allowed;
       }
     }
     
