@@ -50,7 +50,6 @@ function Switch() {
                   title="Label position Switch"
                   example={labelPosition}
                 ></Example>
-                <Example title="Dark theme Switch" example={themed}></Example>
               </Section>
             )
           }
