@@ -1,10 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
+import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { colors, spaces, theme, defaultTheme } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcSwitch = ({
@@ -12,17 +13,17 @@ const DxcSwitch = ({
   value,
   label,
   labelPosition = "before",
-  theme = "light",
   name,
   disabled = false,
-  disableRipple = false,
   onChange,
   required = false,
   margin,
   size = "fitContent",
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
+
 
   const handlerSwitchChange = (newValue) => {
     if (checked === undefined) {
@@ -39,15 +40,15 @@ const DxcSwitch = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
-      <SwitchContainer margin={margin} brightness={theme} disabled={disabled} labelPosition={labelPosition} size={size}>
+    <ThemeProvider theme={colorsTheme.switch}>
+      <SwitchContainer margin={margin} disabled={disabled} labelPosition={labelPosition} size={size}>
         <Switch
           checked={checked != undefined ? checked : innerChecked}
           inputProps={(name = { name })}
           onChange={handlerSwitchChange}
           value={value}
           disabled={disabled}
-          disableRipple={disableRipple}
+          disableRipple
         />
         <LabelContainer
           labelPosition={labelPosition}
@@ -55,7 +56,7 @@ const DxcSwitch = ({
           onClick={disabled === true ? () => {} : handlerSwitchChange}
           disabled={disabled}
         >
-          {required && <RequiredSpan brightness={theme}>*</RequiredSpan>}
+          {required && <DxcRequired />}
           {label}
         </LabelContainer>
       </SwitchContainer>
@@ -77,12 +78,6 @@ const calculateWidth = (margin, size) => {
   }
   return sizes[size];
 };
-
-const RequiredSpan = styled.span`
-  color: ${(props) => (props.brightness === "dark" ? props.theme.lightRed : props.theme.darkRed)};
-  margin-right: 1px;
-  cursor: default;
-`;
 
 const SwitchContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
@@ -108,12 +103,13 @@ const SwitchContainer = styled.div`
     height: 45px;
     margin: 3px;
 
+    opacity: ${(props) => (props.disabled ? props.theme.disabledTrackBackgroundColor : "1")} !important;
+
     .MuiSwitch-track {
       /*Enabled and unchecked bar*/
-      background-color: ${(props) => props.theme.darkGrey};
+      background-color: ${(props) => props.theme.uncheckedTrackBackgroundColor};
       opacity: 1;
       height: 12px;
-      opacity: 0.4;
     }
 
     .MuiIconButton-root {
@@ -124,46 +120,28 @@ const SwitchContainer = styled.div`
         width: 24px;
         height: 24px;
       }
-      color: ${(props) => props.theme.white};
+      color: ${(props) => props.theme.uncheckedThumbBackgroundColor};
       &:hover {
         background-color: transparent;
       }
-      .MuiTouchRipple-child {
-        background-color: ${(props) => (props.brightness === "dark" ? props.theme.yellow : props.theme.darkGrey)};
-        opacity: 1;
-      }
       &.Mui-disabled {
         /*Disabled*/
-        color: ${(props) => (props.brightness === "dark" ? "#B3B3B3" : props.theme.white)};
-        &.Mui-checked {
-          /*Disabled and checked*/
-          color: ${(props) => (props.brightness === "dark" ? "#B3B3B3" : "#C1C1C1")};
-          + .MuiSwitch-track {
-            /*Disabled and checked bar*/
-            background-color: ${(props) => props.theme.lightGrey};
-            opacity: 0.4;
-          }
-        }
         + .MuiSwitch-track {
           /*Disabled and unchecked bar*/
-          background-color: ${(props) => props.theme.lightGrey};
-          opacity: 0.4;
+          background-color: ${(props) => props.theme.uncheckedTrackBackgroundColor};
+          opacity: ${(props) => (props.theme.disabledTrackBackgroundColor)};
         }
       }
       &.Mui-checked {
         /*Enabled and checked*/
-        color: ${(props) => (props.brightness === "dark" ? props.theme.yellow : props.theme.black)};
-        transform: translateX(35%);
+        color: ${(props) => (props.theme.checkedThumbBackgroundColor)};
+        transform: translateX(40%);
         &:hover {
           background-color: transparent;
         }
-        .MuiTouchRipple-child {
-          background-color: ${(props) => props.theme.darkGrey};
-          opacity: 1;
-        }
         + .MuiSwitch-track {
           /*Enabled and checked bar*/
-          background-color: ${(props) => props.theme.darkGrey};
+          background-color: ${(props) => props.theme.checkedTrackBackgroundColor};
           opacity: 1;
         }
       }
@@ -172,14 +150,7 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  color: ${(props) =>
-    props.disabled
-      ? props.brightness === "dark"
-        ? props.theme.darkGrey
-        : props.theme.lightGrey
-      : props.brightness === "dark"
-      ? props.theme.white
-      : props.theme.black};
+  color: ${(props) => (props.theme.fontColor)};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
 `;
@@ -190,10 +161,8 @@ DxcSwitch.propTypes = {
   value: PropTypes.any,
   label: PropTypes.string,
   labelPosition: PropTypes.oneOf(["after", "before", ""]),
-  theme: PropTypes.oneOf(["light", "dark", ""]),
   name: PropTypes.string,
   disabled: PropTypes.bool,
-  disableRipple: PropTypes.bool,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   margin: PropTypes.oneOfType([
