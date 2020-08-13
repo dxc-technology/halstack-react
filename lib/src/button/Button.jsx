@@ -35,6 +35,7 @@ const DxcButton = ({
         <Button
           disabled={disabled}
           disableRipple
+          aria-disabled={disabled ? true : false}
           onClick={() => {
             if (onClick) {
               onClick();
@@ -114,6 +115,12 @@ const DxCButton = styled.div`
     }
     &:focus {
       outline: ${(props) => props.theme.focusColor} auto 1px;
+    }
+    transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out;
+    transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out;
+    &:hover{
+      transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out;
+      transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out;
     }
     ${(props) => {
       const { mode } = props;

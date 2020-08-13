@@ -1,5 +1,6 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
+import SampleComponent from "../../common/SampleComponent";
 
 const checkboxTokensTable = () => {
   return (
@@ -12,16 +13,16 @@ const checkboxTokensTable = () => {
       <tr>
         <td>color</td>
         <td>
-          <code>#FFED00</code>
+          <SampleComponent color="#FFED00"></SampleComponent>
         </td>
-        <td>This token affects the background when it is checked and the border when it is not checked.</td>
+        <td>Applies to backgroundColorChecked and borderColor.</td>
       </tr>
       <tr>
         <td>checkColor</td>
         <td>
-          <code>#000000</code>
+          <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Color of the check that is shown when it is checked.</td>
+        <td>Applies to checkColor.</td>
       </tr>
       
     </DxcTable>
