@@ -10,7 +10,6 @@ import SwitchPropsTable from "./api.jsx";
 
 import controlled from "./examples/controlledSwitch";
 import uncontrolled from "./examples/uncontrolledSwitch";
-import themed from "./examples/themedSwitch";
 import labelPosition from "./examples/labelPositionSwitch";
 
 function Switch() {
