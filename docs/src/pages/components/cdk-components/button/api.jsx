@@ -10,18 +10,11 @@ const buttonPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>mode: 'basic' | 'outlined' | 'raised' | 'flat'</td>
+        <td>mode: 'primary' | 'secondary' | 'text'</td>
         <td>
-          <code>'basic'</code>
+          <code>'primary'</code>
         </td>
         <td>Uses on of the available button modes.</td>
-      </tr>
-      <tr>
-        <td>theme: 'light' |'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available button modes.</td>
       </tr>
       <tr>
         <td>label: string</td>
