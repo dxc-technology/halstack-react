@@ -136,7 +136,7 @@ const DxcSelect = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.select}>
+    <ThemeProvider theme={colorsTheme}>
       <SelectContainer margin={margin} required={required} size={size}>
         <FormControl>
           <InputLabel disabled={disabled}>{label}</InputLabel>
@@ -258,23 +258,23 @@ const SelectContainer = styled.div`
   }
   .MuiFormLabel-root {
     font-size: 16px;
-    color: ${(props) => props.theme.color};
+    color: ${(props) => props.theme.select.color};
     margin-top: -3px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
       &::before {
         content:'${(props) => (props.required && "*") || ""}';
-        color: ${(props) => (props.theme.error)};
+        color: ${(props) => (props.theme.select.error)};
         font-size: 18px; 
       }
       &.Mui-disabled{
         opacity:0.5;
-        color: ${(props) => props.theme.color};
+        color: ${(props) => props.theme.select.color};
       }
       &.Mui-focused{
         font-size: 16px;
-        color: ${(props) => props.theme.color};
+        color: ${(props) => props.theme.select.color};
       }
   }
   .MuiSelect-select {
@@ -282,7 +282,7 @@ const SelectContainer = styled.div`
     height: 20px;
     display: flex;
     padding-right: unset;
-    color: ${(props) => props.theme.color};
+    color: ${(props) => props.theme.select.color};
     align-items: center;
     :focus {
       background-color: transparent;
@@ -294,7 +294,7 @@ const SelectContainer = styled.div`
       content: unset;
     }
     &.Mui-disabled {
-      color: ${(props) => props.theme.color};
+      color: ${(props) => props.theme.select.color};
         opacity:0.5;
         cursor: not-allowed;
     }
@@ -314,18 +314,18 @@ const SelectContainer = styled.div`
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => props.theme.color};
+    border-bottom-color: ${(props) => props.theme.select.color};
   }
   .MuiInput-underline:after {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => props.theme.color};
+    border-bottom-color: ${(props) => props.theme.select.color};
   }
   .MuiInput-underline:before {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => props.theme.color};
+    border-bottom-color: ${(props) => props.theme.select.color};
   }
   .MuiSelect-icon {
-    color: ${(props) => props.theme.color};
+    color: ${(props) => props.theme.select.color};
   }
   & label{
     text-overflow: ellipsis;
