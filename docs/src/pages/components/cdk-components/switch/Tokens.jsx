@@ -2,7 +2,7 @@ import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 import SampleComponent from "../../common/SampleComponent";
 
-const radioTokensTable = () => {
+const switchTokensTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -22,4 +22,4 @@ const radioTokensTable = () => {
   );
 };
 
-export default radioTokensTable;
+export default switchTokensTable;
