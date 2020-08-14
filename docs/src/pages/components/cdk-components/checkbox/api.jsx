@@ -42,13 +42,6 @@ const checkboxPropsTable = () => {
         <td>Whether the label should appear after or before the checkbox.</td>
       </tr>
       <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
-      </tr>
-      <tr>
         <td>name: string</td>
         <td></td>
         <td>Name attribute of the input element.</td>
