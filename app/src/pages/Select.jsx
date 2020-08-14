@@ -3,20 +3,9 @@ import { DxcSelect, ThemeContext } from "@dxc-technology/halstack-react";
 import homePath from "../images/home.svg";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  select: {
+    selectedOptionBackgroundColor: "#FABADA",
+  },
 };
 
 function App() {
