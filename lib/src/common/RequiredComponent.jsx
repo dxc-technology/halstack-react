@@ -5,10 +5,10 @@ import { colors } from "./variables.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcRequired = ({ theme = "light" }) => {
-  return <RequiredSpan brightness={theme}>*</RequiredSpan>;
+  return <RequiredSpan>*</RequiredSpan>;
 };
 const RequiredSpan = styled.span`
-  color: ${(props) => (props.brightness === "dark" ? props.theme.lightRed : props.theme.darkRed)};
+  color: #d0011b;
   margin-right: 1px;
   cursor: default;
 `;

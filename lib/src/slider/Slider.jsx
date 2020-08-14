@@ -124,9 +124,6 @@ DxcSlider.propTypes = {
 const StyledTextInput = styled.div`
   .MuiTextField-root {
     font-size: 16px;
-    .MuiInputBase-input {
-      color: ${(props) => props.theme.color};
-    }
   }
 `;
 
@@ -155,7 +152,7 @@ const SliderContainer = styled.div`
   }
 
   .MuiSlider-root.Mui-disabled {
-    opacity: ${(props) => props.theme.disabledtotalLine};
+    opacity: ${(props) => props.theme.disabledthumbBacgroundColor};
     color: ${(props) => props.theme.color};
     cursor: not-allowed;
   }
@@ -181,6 +178,7 @@ const SliderContainer = styled.div`
     }
     & .MuiSlider-rail {
       opacity: 1;
+      opacity: ${(props) => props.theme.disabledtotalLine};
     }
   }
   .MuiSlider-thumb {
@@ -228,7 +226,7 @@ const SliderContainer = styled.div`
     width: 6px;
     height: 6px;
     border-radius: 18px;
-    top: "40%";
+    top: 42%;
   }
 `;
 

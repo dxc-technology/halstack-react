@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
+import DxcRequired from "../common/RequiredComponent";
 
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
@@ -160,7 +161,15 @@ const DxcInputText = ({
           value={value != null ? value : innerValue}
           name={name}
           disabled={disabled}
-          label={label}
+          label={
+            required ? (
+              <React.Fragment>
+                <DxcRequired>{label}</DxcRequired>
+              </React.Fragment>
+            ) : (
+              label
+            )
+          }
           helperText={assistiveText}
           onChange={(event) => handlerInputChange(event)}
           onBlur={handlerInputBlur}
@@ -324,7 +333,7 @@ const TextContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  
+
   display: inline-block;
   position: relative;
   height: auto;
@@ -339,12 +348,7 @@ const TextContainer = styled.div`
     .MuiFormLabel-root {
       font-size: 16px;
       color: ${(props) => props.theme.fontColor};
-      &::before {
-        content:'${(props) => (props.required && "*") || ""}';
-        color: ${(props) => props.theme.error};
-        font-size: 16px; 
-      }
-      &.Mui-disabled{
+      &.Mui-disabled {
         opacity: ${(props) => props.theme.disabledAssistiveTextColor};
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
@@ -373,10 +377,11 @@ const TextContainer = styled.div`
         color: ${(props) => props.theme.error};
       }
 
-      &:not(.MuiInputLabel-shrink)  {
+      &:not(.MuiInputLabel-shrink) {
         font-family: "Open Sans", sans-serif;
         color: ${(props) => props.theme.fontColor};
-        & + div, & + div + p {
+        & + div,
+        & + div + p {
           color: ${(props) => props.theme.fontColor};
         }
       }
@@ -388,18 +393,18 @@ const TextContainer = styled.div`
         & + div + p {
           color: ${(props) => props.theme.fontColor};
         }
-        
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
       font-family: "Open Sans", sans-serif;
-      &::before{
+      &::before {
         border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
       }
-      &:not(.Mui-error)::before, &:not(&.Mui-focused)::before {
+      &:not(.Mui-error)::before,
+      &:not(&.Mui-focused)::before {
         border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
       }
-      &::after{
+      &::after {
         border-bottom: ${(props) => `2px solid ${props.theme.fontColor}`};
       }
 
@@ -419,7 +424,7 @@ const TextContainer = styled.div`
           border-color: ${(props) => props.theme.fontColor};
           transform: scaleX(1);
         }
-        
+
         &.Mui-error::after {
           border-color: ${(props) => props.theme.error};
         }
@@ -438,18 +443,18 @@ const TextContainer = styled.div`
       .MuiInputBase-input {
         padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
         color: ${(props) => props.theme.fontColor};
-         text-overflow: ellipsis;
+        text-overflow: ellipsis;
         &.Mui-disabled {
           cursor: not-allowed;
-        };
+        }
       }
       .MuiInputAdornment-root {
         height: 20px;
         color: ${(props) => props.theme.fontColor};
-        &.MuiInputAdornment-positionEnd{
+        &.MuiInputAdornment-positionEnd {
           & > p {
             font-family: "Open Sans", sans-serif;
-            color:${(props) => props.theme.fontColor};
+            color: ${(props) => props.theme.fontColor};
             margin-right: 8px;
             margin-bottom: 1px;
             cursor: ${(props) => {
@@ -462,26 +467,24 @@ const TextContainer = styled.div`
         }
         &.Mui-disabled {
           cursor: not-allowed;
-          opacity:0.5;
+          opacity: 0.5;
         }
       }
 
-      &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before{
+      &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before {
         border-bottom: ${(props) => props.theme.fontColor};
       }
-      
     }
 
     & > p {
       &.Mui-error {
         color: ${(props) => props.theme.error} !important;
       }
-      &.Mui-disabled{
+      &.Mui-disabled {
         opacity: ${(props) => props.theme.disabledAssistiveTextColor};
         cursor: not-allowed;
       }
     }
-    
   }
 `;
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
+import SampleComponent from "../../common/SampleComponent";
 
 const sliderTokensTable = () => {
   return (
@@ -12,11 +13,11 @@ const sliderTokensTable = () => {
       <tr>
         <td>color</td>
         <td>
-          <code>#000000</code>
+          <SampleComponent color="#000000"></SampleComponent>
         </td>
         <td>
-          This token affects the color of the thumb, the color of the dots and
-          the color of the track line.
+          Applies to the thumbBackgroundColor, dotsBackgroundColor and trackLine
+          tokens.
         </td>
       </tr>
     </DxcTable>
