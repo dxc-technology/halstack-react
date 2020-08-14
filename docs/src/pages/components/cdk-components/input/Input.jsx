@@ -1,6 +1,7 @@
 import React from "react";
 import { DxcTabsForSections } from "@dxc-technology/halstack-react";
 
+import InputTokensTable from "./Tokens.jsx";
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
@@ -28,6 +29,15 @@ function Input() {
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
                 <InputPropsTable />
+              </Section>
+            ),
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <InputTokensTable />
               </Section>
             ),
           },

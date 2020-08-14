@@ -270,6 +270,12 @@ const SuggestionsContainer = styled.div`
       background-color: ${(props) => props.theme.darkGrey};
       border-radius: 3px;
     }
+    li {
+      &:hover {
+        color: ${(props) => props.theme.hoverOptionColor};
+        background-color: ${(props) => `${props.theme.selectedOptionBackgroundColor}57`};
+      }
+    }
   }
 `;
 
@@ -434,7 +440,7 @@ const TextContainer = styled.div`
         color: ${(props) => props.theme.fontColor};
         opacity: ${(props) => props.theme.disabledUnderlinedColor};
         cursor: not-allowed;
-        
+
         &::before {
           border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
           border-bottom-style: solid;
