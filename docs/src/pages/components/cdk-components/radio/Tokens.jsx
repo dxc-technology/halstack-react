@@ -1,5 +1,6 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
+import SampleComponent from "../../common/SampleComponent";
 
 const radioTokensTable = () => {
   return (
@@ -12,9 +13,9 @@ const radioTokensTable = () => {
       <tr>
         <td>color</td>
         <td>
-          <code>#000000</code>
+          <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>This token affects the border and the dot of the radio.</td>
+        <td>Applies to dotColor and borderColor.</td>
       </tr>
       
     </DxcTable>
