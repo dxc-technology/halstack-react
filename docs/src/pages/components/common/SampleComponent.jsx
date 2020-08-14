@@ -21,6 +21,7 @@ const Sample = styled.span`
 
 const SampleContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export default SampleComponent;
