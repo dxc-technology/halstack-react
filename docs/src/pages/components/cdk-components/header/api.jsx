@@ -1,20 +1,13 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const alertPropsTable = () => {
+const headerPropsTable = () => {
   return (
     <DxcTable>
       <tr>
         <th>Name</th>
         <th>Default</th>
         <th>Description</th>
-      </tr>
-      <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
       </tr>
       <tr>
         <td>underlined: boolean</td>
@@ -81,4 +74,4 @@ const alertPropsTable = () => {
   );
 };
 
-export default alertPropsTable;
+export default headerPropsTable;
