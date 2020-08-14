@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { DxcInput, ThemeContext } from "@dxc-technology/halstack-react";
 import icon from "../images/home.svg";
 
+const colors = {
+  inputText: {
+    selectedOptionBackgroundColor: "#fabada",
+  },
+};
+
 const countries = [
   "Albania",
   "Andorra",
@@ -582,6 +588,19 @@ function App() {
           onBlur={onBlurAutocomplete}
           autocompleteOptions={countries}
         />
+      </div>
+
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Autocomplete</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcInput
+            label="Asynchronous Autocomplete"
+            value={asynchronousAutocompleteValue}
+            onChange={onChangeAsynchronousAutocomplete}
+            onBlur={onBlurAutocomplete}
+            autocompleteOptions={callbackFunc}
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );
