@@ -2,28 +2,19 @@ import React, { useState } from "react";
 import {
   DxcTabs,
   DxcButton,
-  DxcToggle,
+  DxcSwitch,
   ThemeContext,
 } from "@dxc-technology/halstack-react";
-import facebookIcon from "../images/facebook.svg";
-import linkedinIcon from "../images/linkedin.svg";
-import twitterIcon from "../images/twitter.svg";
+import facebookIcon from "../images/facebook-black.svg";
+import linkedinIcon from "../images/linkedin-black.svg";
+import twitterIcon from "../images/twitter-black.svg";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  tabs: {
+    selectedBackgroundColor: "red",
+    selectedUnderlinedColor: "green",
+    selectedColor: "blue",
+  },
 };
 
 function Tabs() {
@@ -59,31 +50,6 @@ function Tabs() {
             },
           ]}
         />
-      </div>
-      <div>
-        <h4>Dark theme</h4>
-        <div
-          style={{ background: "#000000" }}
-          className="test-case"
-          id="dark-theme"
-        >
-          <DxcTabs
-            activeTabIndex={activeTab}
-            onTabClick={onTabClick}
-            theme="dark"
-            tabs={[
-              {
-                label: "Tab 1",
-              },
-              {
-                label: "Tab 2",
-              },
-              {
-                label: "Tab 3",
-              },
-            ]}
-          />
-        </div>
       </div>
       <div className="test-case" id="underlined-tabs">
         <h4>Underlined tabs</h4>
@@ -230,7 +196,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 theme="dark"
@@ -244,7 +210,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
@@ -257,7 +223,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
@@ -270,7 +236,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
@@ -283,7 +249,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
@@ -303,7 +269,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 theme="dark"
@@ -317,7 +283,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
@@ -330,7 +296,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
@@ -343,7 +309,59 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
+                label="Toggle"
+                margin="medium"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcSwitch
+                mode="basic"
+                theme="light"
+                label="Button"
+                onClick={onClick}
+                margin="medium"
+              />
+              <DxcSwitch
+                label="Toggle"
+                margin="medium"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcSwitch
+                mode="basic"
+                theme="light"
+                label="Button"
+                onClick={onClick}
+                margin="medium"
+              />
+              <DxcSwitch
+                label="Toggle"
+                margin="medium"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcSwitch
+                mode="basic"
+                theme="light"
+                label="Button"
+                onClick={onClick}
+                margin="medium"
+              />
+              <DxcSwitch
+                label="Toggle"
+                margin="medium"
+                selected={selected}
+                onClick={onClickToggle}
+              />
+              <DxcSwitch
+                mode="basic"
+                theme="light"
+                label="Button"
+                onClick={onClick}
+                margin="medium"
+              />
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
@@ -356,7 +374,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
@@ -369,59 +387,7 @@ function Tabs() {
                 onClick={onClick}
                 margin="medium"
               />
-              <DxcToggle
-                label="Toggle"
-                margin="medium"
-                selected={selected}
-                onClick={onClickToggle}
-              />
-              <DxcButton
-                mode="basic"
-                theme="light"
-                label="Button"
-                onClick={onClick}
-                margin="medium"
-              />
-              <DxcToggle
-                label="Toggle"
-                margin="medium"
-                selected={selected}
-                onClick={onClickToggle}
-              />
-              <DxcButton
-                mode="basic"
-                theme="light"
-                label="Button"
-                onClick={onClick}
-                margin="medium"
-              />
-              <DxcToggle
-                label="Toggle"
-                margin="medium"
-                selected={selected}
-                onClick={onClickToggle}
-              />
-              <DxcButton
-                mode="basic"
-                theme="light"
-                label="Button"
-                onClick={onClick}
-                margin="medium"
-              />
-              <DxcToggle
-                label="Toggle"
-                margin="medium"
-                selected={selected}
-                onClick={onClickToggle}
-              />
-              <DxcButton
-                mode="basic"
-                theme="light"
-                label="Button"
-                onClick={onClick}
-                margin="medium"
-              />
-              <DxcToggle
+              <DxcSwitch
                 label="Toggle"
                 margin="medium"
                 selected={selected}
