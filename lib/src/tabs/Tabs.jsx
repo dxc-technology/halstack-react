@@ -114,7 +114,6 @@ const TabIcon = styled.img`
 `;
 
 DxcTabs.propTypes = {
-  theme: PropTypes.oneOf(["light", "dark"]),
   activeTabIndex: PropTypes.number,
   onTabClick: PropTypes.func,
   tabs: PropTypes.arrayOf(
