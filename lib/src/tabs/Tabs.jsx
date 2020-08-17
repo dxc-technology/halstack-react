@@ -1,23 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
-const DxcTabs = ({
-  mode = "filled",
-  theme = "light",
-  disableRipple = false,
-  activeTabIndex,
-  tabs = [],
-  onTabClick,
-  margin,
-}) => {
+const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const handleChange = (event, newValue) => {
     if (activeTabIndex == null) {
@@ -29,8 +23,8 @@ const DxcTabs = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
-      <DxCTabs mode={mode} brightness={theme} margin={margin}>
+    <ThemeProvider theme={colorsTheme.tabs}>
+      <DxCTabs margin={margin}>
         <Underline></Underline>
         <Tabs
           value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
@@ -45,7 +39,7 @@ const DxcTabs = ({
                 label={tab.label}
                 icon={tab.iconSrc && <TabIcon src={tab.iconSrc} />}
                 disabled={tab.isDisabled}
-                disableRipple={disableRipple}
+                disableRipple={true}
               />
             );
           })}
@@ -61,9 +55,9 @@ const Underline = styled.div`
   width: 100%;
   height: 2px;
   position: absolute;
-  background-color: #d9d9d9;
-  z-index: 2;
+  background-color: ${(props) => props.theme.underlinedColor};
 `;
+
 const DxCTabs = styled.div`
   position: relative;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -90,48 +84,26 @@ const DxCTabs = styled.div`
       font-size: 14px;
       /* height: 64px cuando vengan con icono y texto */
       min-width: 180px;
-      background-color: ${(props) =>
-        props.mode === "filled"
-          ? props.brightness === "dark"
-            ? props.theme.darkGrey
-            : props.theme.lightGrey
-          : "transparent"};
-      color: ${(props) =>
-        props.mode === "filled"
-          ? props.brightness === "dark"
-            ? props.theme.white
-            : props.theme.darkGrey
-          : props.theme.darkGrey};
-      opacity: ${(props) => (props.mode === "filled" ? (props.brightness === "dark" ? 0.8 : 0.5) : 0.5)};
-      &:hover:not(.Mui-selected):not(.Mui-disabled) {
-        opacity: ${(props) => (props.mode === "filled" ? (props.brightness === "light" ? 0.8 : 1) : 1)};
-        background-color: ${(props) => (props.mode === "filled" ? props.theme.darkGrey : "transparent")};
-        color: ${(props) => (props.mode === "filled" ? props.theme.white : props.theme.darkGrey)};
+      color: ${(props) => props.theme.textColor};
+      &:not(.Mui-selected) {
+        background-color: ${(props) => `${props.theme.selectedBackgroundColor}57`};
       }
-
       &.Mui-selected {
-        background-color: ${(props) =>
-          props.mode === "filled"
-            ? props.brightness === "dark"
-              ? props.theme.white
-              : props.theme.black
-            : "transparent"};
-        color: ${(props) =>
-          props.mode === "filled"
-            ? props.brightness === "dark"
-              ? props.theme.black
-              : props.theme.white
-            : props.theme.black};
-        opacity: 1;
+        background-color: ${(props) => props.theme.selectedBackgroundColor};
+        color: ${(props) => props.theme.selectedColor};
       }
       &.Mui-disabled {
         cursor: not-allowed !important;
         pointer-events: all;
-        opacity: ${(props) => (props.mode === "underlined" ? "0.4" : "")};
+        opacity: ${(props) => props.theme.disabled};
+      }
+      &:focus {
+        outline: ${(props) => props.theme.focusColor} auto 1px;
       }
     }
+
     .MuiTabs-indicator {
-      background-color: ${(props) => (props.mode === "filled" ? props.theme.yellow : props.theme.black)};
+      background-color: ${(props) => props.theme.selectedUnderlinedColor};
     }
   }
 `;
@@ -142,9 +114,7 @@ const TabIcon = styled.img`
 `;
 
 DxcTabs.propTypes = {
-  mode: PropTypes.oneOf(["filled", "underlined"]),
   theme: PropTypes.oneOf(["light", "dark"]),
-  disableRipple: PropTypes.bool,
   activeTabIndex: PropTypes.number,
   onTabClick: PropTypes.func,
   tabs: PropTypes.arrayOf(
@@ -166,9 +136,6 @@ DxcTabs.propTypes = {
 };
 
 DxcTabs.defaultProps = {
-  mode: "filled",
-  theme: "light",
-  disableRipple: false,
   activeTabIndex: null,
   tabs: [],
   onTabClick: () => {},

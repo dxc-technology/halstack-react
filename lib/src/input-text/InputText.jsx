@@ -262,12 +262,12 @@ const SuggestionsContainer = styled.div`
       width: 3px;
     }
     ::-webkit-scrollbar-track {
-      background-color: ${(props) => props.theme.lightGrey};
+      background-color: ${(props) => props.theme.scrollBarTrackColor};
       border-radius: 3px;
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.darkGrey};
+      background-color: ${(props) => props.theme.scrollBarThumbColor};
       border-radius: 3px;
     }
     li {
