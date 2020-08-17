@@ -1,32 +1,24 @@
 import React from "react";
 import {
   DxcHeader,
-  DxcToggle,
   DxcButton,
   DxcDropdown,
   ThemeContext,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
-import assureBlacklogo from "../images/dxcassure_blk.png";
 import invisionLogo from "../images/invision.png";
 import skyscannerLogo from "../images/skyscanner.jpeg";
 import yahooLogo from "../images/yahoo.png";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  header: {
+    backgroundColor: "pink",
+    underlinedColor: "blue",
+    textColor: "green",
+    backgroundColorMenu: "beige",
+    textColorMenu: "red",
+    hamburguerColor: "violet",
+  },
 };
 
 function App() {
@@ -62,21 +54,6 @@ function App() {
         <h4>Light theme and default icon</h4>
         <DxcHeader />
       </div>
-      <div>
-        <h4>Dark theme</h4>
-        <div
-          style={{ background: "#000000" }}
-          className="test-case"
-          id="dark-theme"
-        >
-          <DxcHeader theme="dark" logoSrc={assureBlacklogo} />
-        </div>
-      </div>
-
-      <div className="test-case" id="underlined-header">
-        <h4>Underlined Header</h4>
-        <DxcHeader underlined={true} logoSrc={invisionLogo} />
-      </div>
 
       <div className="test-case" id="custom-header">
         <h4>Header with custom content</h4>
@@ -84,18 +61,11 @@ function App() {
           logoSrc={invisionLogo}
           content={
             <React.Fragment>
-              <DxcToggle
-                label="Toggle"
-                margin="xsmall"
-                selected={selected}
-                onClick={onClickToggle}
-              />
               <DxcDropdown
                 options={options}
                 onSelectOption={selectOption}
                 label="Dropdown"
                 margin="xsmall"
-                theme="dark"
               />
               <DxcButton
                 mode="basic"
@@ -103,19 +73,11 @@ function App() {
                 margin="xsmall"
                 onClick={onClick}
               />
-              <DxcToggle
-                label="Toggle"
-                underlined={true}
-                margin="xsmall"
-                selected={selected}
-                onClick={onClickToggle}
-              />
               <DxcDropdown
                 options={options}
                 onSelectOption={selectOption}
                 label="Dropdown"
                 margin="xsmall"
-                theme="dark"
               />
               <DxcButton
                 mode="basic"
@@ -123,36 +85,21 @@ function App() {
                 margin="xsmall"
                 onClick={onClick}
               />
-              <DxcToggle
-                label="Toggle"
-                underlined={true}
-                margin="xsmall"
-                selected={selected}
-                onClick={onClickToggle}
-              />
               <DxcDropdown
                 options={options}
                 onSelectOption={selectOption}
                 label="Dropdown"
                 margin="xsmall"
-                theme="dark"
               />
             </React.Fragment>
           }
           responsiveContent={(handleClose) => (
             <React.Fragment>
-              <DxcToggle
-                label="Toggle"
-                margin="xsmall"
-                selected={selected}
-                onClick={handleClose}
-              />
               <DxcDropdown
                 options={options}
                 onSelectOption={selectOption}
                 label="Dropdown"
                 margin="xsmall"
-                theme="dark"
               />
               <DxcButton
                 mode="basic"
@@ -160,19 +107,11 @@ function App() {
                 margin="xsmall"
                 onClick={onClick}
               />
-              <DxcToggle
-                label="Toggle"
-                underlined={true}
-                margin="xsmall"
-                selected={selected}
-                onClick={onClickToggle}
-              />
               <DxcDropdown
                 options={options}
                 onSelectOption={selectOption}
                 label="Dropdown"
                 margin="xsmall"
-                theme="dark"
               />
               <DxcButton
                 mode="basic"
@@ -180,19 +119,11 @@ function App() {
                 margin="xsmall"
                 onClick={onClick}
               />
-              <DxcToggle
-                label="Toggle"
-                underlined={true}
-                margin="xsmall"
-                selected={selected}
-                onClick={onClickToggle}
-              />
               <DxcDropdown
                 options={options}
                 onSelectOption={selectOption}
                 label="Dropdown"
                 margin="xsmall"
-                theme="dark"
               />
             </React.Fragment>
           )}
@@ -292,7 +223,6 @@ function App() {
             logoSrc={yahooLogo}
             content={
               <div>
-                {" "}
                 <DxcButton
                   size="large"
                   label={"Custom Button"}
@@ -300,14 +230,12 @@ function App() {
                 />
                 <p>Example 1</p>
                 <DxcButton
-                  theme="dark"
                   mode="flat"
                   label={"Custom Button"}
                   onClick={onClick}
                 />
                 <DxcButton
                   mode="outlined"
-                  theme="dark"
                   label={"Custom Button"}
                   onClick={onClick}
                 />
@@ -318,14 +246,12 @@ function App() {
                 />
                 <p>Example 1</p>
                 <DxcButton
-                  theme="dark"
                   mode="flat"
                   label={"Custom Button"}
                   onClick={onClick}
                 />
                 <DxcButton
                   mode="outlined"
-                  theme="dark"
                   label={"Custom Button"}
                   onClick={onClick}
                 />
@@ -337,7 +263,41 @@ function App() {
       <div className="test-case" id="custom-colors">
         <h4>Custom Header</h4>
         <ThemeContext.Provider value={colors}>
-          <DxcHeader />
+          <DxcHeader
+            underlined={true}
+            content={
+              <React.Fragment>
+                <DxcButton
+                  mode="basic"
+                  label="Button"
+                  margin="xsmall"
+                  onClick={onClick}
+                />
+                <DxcDropdown
+                  options={options}
+                  onSelectOption={selectOption}
+                  label="Dropdown"
+                  margin="xsmall"
+                />
+              </React.Fragment>
+            }
+            responsiveContent={(handleClose) => (
+              <React.Fragment>
+                <DxcButton
+                  mode="basic"
+                  label="Button"
+                  margin="xsmall"
+                  onClick={onClick}
+                />
+                <DxcDropdown
+                  options={options}
+                  onSelectOption={selectOption}
+                  label="Dropdown"
+                  margin="xsmall"
+                />
+              </React.Fragment>
+            )}
+          />
         </ThemeContext.Provider>
       </div>
     </div>

@@ -1,17 +1,16 @@
 import React from "react";
 import { DxcTabsForSections } from "@dxc-technology/halstack-react";
 
+import InputTokensTable from "./Tokens.jsx";
 import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
-
 import controlled from "./examples/controlledInput";
 import uncontrolled from "./examples/uncontrolledInput";
 import labeled from "./examples/lebeledInput";
-import darkTheme from "./examples/darkThemed";
 import fillParent from "./examples/fillParentInput";
 import sized from "./examples/sizedInput";
 import maskedInput from "./examples/maskedInput";
@@ -19,10 +18,7 @@ import maskedInput from "./examples/maskedInput";
 function Input() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Input"
-        status="ready"
-      ></ComponentHeader>
+      <ComponentHeader title="Input" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -34,7 +30,16 @@ function Input() {
                 <DocTitle size={2}>Props</DocTitle>
                 <InputPropsTable />
               </Section>
-            )
+            ),
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <InputTokensTable />
+              </Section>
+            ),
           },
           {
             tabLabel: "Examples",
@@ -49,23 +54,19 @@ function Input() {
                   title="Uncontrolled Input"
                   example={uncontrolled}
                 ></Example>
-                <Example
-                  title="Masked Input"
-                  example={maskedInput}
-                ></Example>
+                <Example title="Masked Input" example={maskedInput}></Example>
                 <Example
                   title="Input with prefix/suffix"
                   example={labeled}
                 ></Example>
-                <Example
-                  title="Dark theme Input"
-                  example={darkTheme}
-                ></Example>
                 <Example title="Sized Input" example={sized}></Example>
-                <Example title="Fill Parent Input" example={fillParent}></Example>
+                <Example
+                  title="Fill Parent Input"
+                  example={fillParent}
+                ></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>

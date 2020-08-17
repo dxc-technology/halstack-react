@@ -3,20 +3,9 @@ import { DxcInput, ThemeContext } from "@dxc-technology/halstack-react";
 import icon from "../images/home.svg";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  inputText: {
+    selectedOptionBackgroundColor: "#fabada",
+  },
 };
 
 const countries = [
@@ -202,21 +191,6 @@ function App() {
           assistiveText="assistive text"
           onChange={onChange}
         />
-      </div>
-
-      <div>
-        <h4>Dark theme</h4>
-        <div style={{ background: "#000000" }}>
-          <div className="test-case" id="dark-theme">
-            <DxcInput
-              label="Input label"
-              value={inputValue}
-              assistiveText="assistive text"
-              onChange={onChange}
-              theme="dark"
-            />
-          </div>
-        </div>
       </div>
 
       <div className="test-case" id="disabled-input">
@@ -594,18 +568,7 @@ function App() {
           />
         </div>
       </div>
-      <div className="test-case" id="custom-colors">
-        <h4>Custom Input</h4>
-        <ThemeContext.Provider value={colors}>
-          <DxcInput
-            label="Input label"
-            suffixIconSrc={icon}
-            prefixIconSrc={icon}
-            value={inputValue}
-            onChange={onChange}
-          />
-        </ThemeContext.Provider>
-      </div>
+
       <div className="test-case" id="async-autocomplete">
         <h4>Asynchronous Autocomplete</h4>
         <DxcInput
@@ -625,6 +588,19 @@ function App() {
           onBlur={onBlurAutocomplete}
           autocompleteOptions={countries}
         />
+      </div>
+
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Autocomplete</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcInput
+            label="Asynchronous Autocomplete"
+            value={asynchronousAutocompleteValue}
+            onChange={onChangeAsynchronousAutocomplete}
+            onBlur={onBlurAutocomplete}
+            autocompleteOptions={callbackFunc}
+          />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

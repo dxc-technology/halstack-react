@@ -57,13 +57,6 @@ const inputPropsTable = () => {
         <td>Path of the icon to be placed after the input value.</td>
       </tr>
       <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
-      </tr>
-      <tr>
         <td>name: string</td>
         <td></td>
         <td>Name attribute of the input element.</td>

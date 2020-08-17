@@ -7,10 +7,10 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import SwitchPropsTable from "./api.jsx";
+import SwitchTokensTable from "./Tokens.jsx";
 
 import controlled from "./examples/controlledSwitch";
 import uncontrolled from "./examples/uncontrolledSwitch";
-import themed from "./examples/themedSwitch";
 import labelPosition from "./examples/labelPositionSwitch";
 
 function Switch() {
@@ -34,6 +34,15 @@ function Switch() {
             )
           },
           {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Props</DocTitle>
+                <SwitchTokensTable />
+              </Section>
+            )
+          },
+          {
             tabLabel: "Examples",
             section: () => (
               <Section>
@@ -50,7 +59,6 @@ function Switch() {
                   title="Label position Switch"
                   example={labelPosition}
                 ></Example>
-                <Example title="Dark theme Switch" example={themed}></Example>
               </Section>
             )
           }

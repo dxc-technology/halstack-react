@@ -8,12 +8,12 @@ import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 
 import RadioPropsTable from "./api.jsx";
+import RadioTokensTable from "./Tokens.jsx"
 
 import controlledRadio from "./examples/controlledRadio";
 import unControlledRadio from "./examples/uncontrolledRadio";
 
 import radioLabelPosition from "./examples/radioLabelPosition";
-import radioDefaultDark from "././examples/radioDefaultDarkTheme";
 import radioGroup from "././examples/radioGroup";
 import sized from "././examples/sizedRadio"
 
@@ -38,6 +38,15 @@ function Radio() {
             )
           },
           {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <RadioTokensTable />
+              </Section>
+            )
+          },
+          {
             tabLabel: "Examples",
             section: () => (
               <Section>
@@ -53,10 +62,6 @@ function Radio() {
                 <Example
                   title="Label Position"
                   example={radioLabelPosition}
-                ></Example>
-                <Example
-                  title="Dark theme Radio"
-                  example={radioDefaultDark}
                 ></Example>
                 <Example title="Radio Group" example={radioGroup}></Example>
                 <Example title="Sized Radio" example={sized}></Example>

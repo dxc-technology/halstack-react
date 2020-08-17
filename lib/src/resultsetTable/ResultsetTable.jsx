@@ -134,7 +134,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
 };
 const TableContainer = styled.div`
   & table {
-    table-layout: fixed;
+    table-layout: auto;
   }
 `;
 const PaginatorContainer = styled.div`
