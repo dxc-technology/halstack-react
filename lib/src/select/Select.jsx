@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
     },
     "&::-webkit-scrollbar-track": {
       borderRadius: "3px",
-      backgroundColor: "#D9D9D9"
+      backgroundColor: props.scrollBarTrackColor
     },
     "&::-webkit-scrollbar-thumb": {
       borderRadius: "3px",
-      backgroundColor: "#666666"
+      backgroundColor: props.scrollBarThumbColor,
     },
     "& .MuiList-root": {
       width: "auto !important",
