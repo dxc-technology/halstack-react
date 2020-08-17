@@ -11,6 +11,7 @@ import "../common/OpenSans.css";
 import { colors, spaces, theme, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
+import DxcRequired from "../common/RequiredComponent";
 
 const useStyles = makeStyles((theme) => ({
   root: (props) => ({
@@ -20,6 +21,23 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.3)",
     minWidth: props.width,
     width: props.width,
+    maxHeight: "250px",
+    "&::-webkit-scrollbar": {
+      width: "2px",
+      margin: "5px"
+    },
+    "&::-webkit-scrollbar-track": {
+      borderRadius: "3px",
+      backgroundColor: props.scrollBarTrackColor
+    },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: "3px",
+      backgroundColor: props.scrollBarThumbColor,
+    },
+    "& .MuiList-root": {
+      width: "auto !important",
+      paddingRight: "0 !important"
+    }
   }),
   itemList: (props) => ({
     color: props.color,
@@ -137,9 +155,12 @@ const DxcSelect = ({
 
   return (
     <ThemeProvider theme={colorsTheme}>
-      <SelectContainer margin={margin} required={required} size={size}>
+      <SelectContainer margin={margin} size={size}>
         <FormControl>
-          <InputLabel disabled={disabled}>{label}</InputLabel>
+          <InputLabel disabled={disabled}>
+            {required && <DxcRequired />}
+            {label}
+          </InputLabel>
           <Select
             name={name}
             multiple={multiple}
