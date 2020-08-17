@@ -39,20 +39,6 @@ const dropdownPropsTable = () => {
         <td>Uses one of the available component modes.</td>
       </tr>
       <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
-      </tr>
-      <tr>
-        <td>disableRipple: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>If true, the ripple effect will be disabled.</td>
-      </tr>
-      <tr>
         <td>activeTabIndex: number</td>
         <td></td>
         <td>
