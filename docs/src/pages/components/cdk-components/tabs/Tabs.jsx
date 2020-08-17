@@ -8,20 +8,17 @@ import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 
 import TabsPropsTable from "./api.jsx";
+import TabsTokensTable from "./Tokens.jsx";
 
 import controlledTabs from "./examples/controlledTabs";
 import uncontrolledTabs from "./examples/uncontrolledTabs";
-import darkThemeTabs from "./examples/darkThemeTabs";
 import underlinedTabs from "./examples/underlinedTabs";
 import withContentTabs from "./examples/withContentTabs";
 
 function Tabs() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Tabs"
-        status="ready"
-      ></ComponentHeader>
+      <ComponentHeader title="Tabs" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -33,7 +30,16 @@ function Tabs() {
                 <DocTitle size={2}>Props</DocTitle>
                 <TabsPropsTable />
               </Section>
-            )
+            ),
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <TabsTokensTable />
+              </Section>
+            ),
           },
           {
             tabLabel: "Examples",
@@ -49,10 +55,6 @@ function Tabs() {
                   example={uncontrolledTabs}
                 ></Example>
                 <Example
-                  title="Dark theme Tabs"
-                  example={darkThemeTabs}
-                ></Example>
-                <Example
                   title="Underlined Tabs"
                   example={underlinedTabs}
                 ></Example>
@@ -61,8 +63,8 @@ function Tabs() {
                   example={withContentTabs}
                 ></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>
