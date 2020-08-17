@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,9 +8,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { colors, spaces, theme, defaultTheme } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
+import DxcRequired from "../common/RequiredComponent";
 
 const useStyles = makeStyles((theme) => ({
   root: (props) => ({
@@ -20,9 +21,26 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.3)",
     minWidth: props.width,
     width: props.width,
+    maxHeight: "250px",
+    "&::-webkit-scrollbar": {
+      width: "2px",
+      margin: "5px"
+    },
+    "&::-webkit-scrollbar-track": {
+      borderRadius: "3px",
+      backgroundColor: props.scrollBarTrackColor
+    },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: "3px",
+      backgroundColor: props.scrollBarThumbColor,
+    },
+    "& .MuiList-root": {
+      width: "auto !important",
+      paddingRight: "0 !important"
+    }
   }),
   itemList: (props) => ({
-    color: props.darkGrey,
+    color: props.color,
     "&.MuiList-padding": {
       paddingBottom: "0px",
       paddingTop: "0px",
@@ -30,16 +48,16 @@ const useStyles = makeStyles((theme) => ({
     "& li": {
       fontSize: "16px",
       "&:hover": {
-        backgroundColor: props.darkWhite,
-        color: props.darkGrey,
+        backgroundColor: props.selectedOptionBackgroundColor + props.hoverOptionBackgroundColor,
+        color: props.color,
       },
       "&:active": {
-        backgroundColor: props.lightGrey,
-        color: props.black,
+        backgroundColor: props.selectedOptionBackgroundColor,
+        color: props.color,
       },
-      "&.Mui-selected": {
-        backgroundColor: props.lightGrey,
-        color: props.black,
+      "&.MuiListItem-root.Mui-selected": {
+        backgroundColor: props.selectedOptionBackgroundColor,
+        color: props.color,
       },
     },
   }),
@@ -53,17 +71,16 @@ const DxcSelect = ({
   required = false,
   disabled = false,
   options = [],
-  theme = "light",
-  disableRipple = false,
   iconPosition = "before",
   multiple = false,
   margin,
   size = "medium",
 }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
-  const selectValues = { width: "auto" };
-  const classes = useStyles(selectValues, colorsTheme);
+  const selectValues = { width: "auto", ...colorsTheme.select };
+  const classes = useStyles(selectValues);
 
   const handleSelectChange = (selectedOption) => {
     if (multiple) {
@@ -83,15 +100,14 @@ const DxcSelect = ({
     const selectedItem = options.filter((option) => option.value === selected)[0];
     return (
       <SelectedIconContainer iconPosition={iconPosition} multiple={multiple} label={selectedItem && selectedItem.label}>
-        {(selectedItem && selectedItem.iconSrc) && <ListIcon src={selectedItem && selectedItem.iconSrc} />}
-        {(selectedItem && selectedItem.label) && (
+        {selectedItem && selectedItem.iconSrc && <ListIcon src={selectedItem && selectedItem.iconSrc} />}
+        {selectedItem && selectedItem.label && (
           <SelectedLabelContainer
             iconSrc={selectedItem && selectedItem.iconSrc}
             iconPosition={iconPosition}
-            brightness={theme}
             disabled={disabled}
           >
-            {selectedItem && selectedItem.label} 
+            {selectedItem && selectedItem.label}
           </SelectedLabelContainer>
         )}
       </SelectedIconContainer>
@@ -139,12 +155,14 @@ const DxcSelect = ({
 
   return (
     <ThemeProvider theme={colorsTheme}>
-      <SelectContainer margin={margin} brightness={theme} required={required} size={size}>
+      <SelectContainer margin={margin} size={size}>
         <FormControl>
-          <InputLabel disabled={disabled}>{label}</InputLabel>
+          <InputLabel disabled={disabled}>
+            {required && <DxcRequired />}
+            {label}
+          </InputLabel>
           <Select
             name={name}
-            brightness={theme}
             multiple={multiple}
             renderValue={getRenderValue}
             onChange={handleSelectChange}
@@ -161,14 +179,8 @@ const DxcSelect = ({
           >
             {options.map((option) => {
               return (
-                <MenuItem id={option.value} value={option.value} disableRipple={disableRipple}>
-                  {multiple && (
-                    <DxcCheckbox
-                      size={"fitContent"}
-                      disableRipple={true}
-                      checked={isChecked(selectedValue, value, option)}
-                    />
-                  )}
+                <MenuItem id={option.value} value={option.value} disableRipple>
+                  {multiple && <DxcCheckbox size={"fitContent"} checked={isChecked(selectedValue, value, option)} />}
                   <OptionContainer iconPosition={iconPosition}>
                     {option.iconSrc && (
                       <ListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />
@@ -267,23 +279,23 @@ const SelectContainer = styled.div`
   }
   .MuiFormLabel-root {
     font-size: 16px;
-    color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
+    color: ${(props) => props.theme.select.color};
     margin-top: -3px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
       &::before {
         content:'${(props) => (props.required && "*") || ""}';
-        color: ${(props) => (props.brightness === "light" ? props.theme.darkRed : props.theme.lightRed)};
+        color: ${(props) => (props.theme.select.error)};
         font-size: 18px; 
       }
       &.Mui-disabled{
         opacity:0.5;
-        color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
+        color: ${(props) => props.theme.select.color};
       }
       &.Mui-focused{
         font-size: 16px;
-        color: ${(props) => (props.brightness === "light" ? props.theme.black : props.theme.lightGrey)};
+        color: ${(props) => props.theme.select.color};
       }
   }
   .MuiSelect-select {
@@ -291,7 +303,7 @@ const SelectContainer = styled.div`
     height: 20px;
     display: flex;
     padding-right: unset;
-    color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.black)};
+    color: ${(props) => props.theme.select.color};
     align-items: center;
     :focus {
       background-color: transparent;
@@ -303,7 +315,7 @@ const SelectContainer = styled.div`
       content: unset;
     }
     &.Mui-disabled {
-      color: ${(props) => (props.brightness === "light" ? props.theme.darkGrey : props.theme.lightGrey)};
+      color: ${(props) => props.theme.select.color};
         opacity:0.5;
         cursor: not-allowed;
     }
@@ -323,18 +335,18 @@ const SelectContainer = styled.div`
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.black)};
+    border-bottom-color: ${(props) => props.theme.select.color};
   }
   .MuiInput-underline:after {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.black)};
+    border-bottom-color: ${(props) => props.theme.select.color};
   }
   .MuiInput-underline:before {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.black)};
+    border-bottom-color: ${(props) => props.theme.select.color};
   }
   .MuiSelect-icon {
-    color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.black)};
+    color: ${(props) => props.theme.select.color};
   }
   & label{
     text-overflow: ellipsis;
@@ -354,8 +366,6 @@ DxcSelect.propTypes = {
   ]),
   disabled: PropTypes.bool,
   required: PropTypes.bool,
-  disableRipple: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "light"]),
   iconPosition: PropTypes.oneOf(["after", "before"]),
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(

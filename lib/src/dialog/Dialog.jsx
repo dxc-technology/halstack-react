@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
-import { colors, spaces } from "../common/variables.js";
+import { colors, spaces, responsiveSizes } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
   const colorsTheme = useContext(ThemeContext) || colors;
+  const [isResponsive, setIsResponsive] = useState();
 
   const handleClose = () => {
     if (typeof onCloseClick === "function") {
@@ -20,6 +21,24 @@ const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = tr
     }
   };
 
+  const handleResize = (width) => {
+    if (width) {
+      if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
+    }
+  };
+
+  const handleEventListener = () => {
+    handleResize(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleEventListener);
+    handleResize(window.innerWidth);
+    return () => {
+      window.removeEventListener("resize", handleEventListener);
+    };
+  }, []);
+
   return (
     <ThemeProvider theme={colorsTheme}>
       <DialogContainer
@@ -28,6 +47,7 @@ const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = tr
         onClose={handleOverlayClick}
         overlay={overlay}
         padding={padding}
+        isResponsive={isResponsive}
       >
         {isCloseVisible && (
           <CloseIconContainer onClick={handleClose}>
@@ -50,8 +70,8 @@ const DialogContainer = styled(Dialog)`
     background-color: ${(props) => (props.overlay === true ? props.theme.mediumBlack : "transparent")};
   }
   .MuiDialog-paperWidthSm {
-    max-width: 80%;
-    min-width: 64%;
+    max-width: ${(props) => (props.isResponsive ? "92%" : "80%")};
+    min-width: ${(props) => (props.isResponsive ? "92%" : "800px")};
     box-sizing: border-box;
     min-height: ${(props) => (props.isCloseVisible ? "72px" : "")};
     box-shadow: 0px 1px 3px ${(props) => props.theme.mediumGrey};

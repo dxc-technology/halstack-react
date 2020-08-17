@@ -7,7 +7,7 @@ const code = `() => {
 
   return (
     <DxcButton
-      mode="basic"
+      mode="primary"
       label="Fill Parent Button"
       onClick={onClick}
       margin="medium"

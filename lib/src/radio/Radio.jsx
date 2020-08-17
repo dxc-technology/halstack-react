@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Radio from "@material-ui/core/Radio";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { colors, spaces, theme, defaultTheme } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcRadio = ({
@@ -13,18 +13,16 @@ const DxcRadio = ({
   value,
   label,
   labelPosition = "before",
-  theme = "light",
   name,
   disabled = false,
-  disableRipple = false,
   onClick,
   required = false,
   margin,
   size = "fitContent",
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
-  const colorsTheme = useContext(ThemeContext) || colors;
-
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
   const handlerRadioChange = (value) => {
     if (checked == null) {
       setInnerChecked(true);
@@ -34,10 +32,9 @@ const DxcRadio = ({
     }
   };
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.radio}>
       <RadioContainer
         id={name}
-        brightness={theme}
         labelPosition={labelPosition}
         disabled={disabled}
         margin={margin}
@@ -50,16 +47,15 @@ const DxcRadio = ({
           value={value}
           label={label}
           disabled={disabled}
-          disableRipple={disableRipple}
+          disableRipple
         />
         <LabelContainer
           checked={checked || innerChecked}
           labelPosition={labelPosition}
-          brightness={theme}
           disabled={disabled}
           onClick={(!disabled && handlerRadioChange) || null}
         >
-          {required && <DxcRequired brightness={theme} />}
+          {required && <DxcRequired />}
           {label}
         </LabelContainer>
       </RadioContainer>
@@ -100,35 +96,28 @@ const RadioContainer = styled.span`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "default")};
+  opacity: ${(props) => (props.disabled === true ? props.theme.disabled : "1")};
   .MuiButtonBase-root {
     padding: 0px;
     margin: 0px 5px;
     width: 40px;
     height: 40px;
-    &.Mui-disabled {
-      color: ${(props) => (props.brightness === "dark" ? props.theme.darkGrey : props.theme.lightGrey)};
-    }
     .MuiIconButton-label {
       .MuiSvgIcon-root {
         height: 24px;
         width: 24px;
       }
-      color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.black)};
+      color: ${(props) => (props.theme.color)};
       > div > :nth-child(2) path {
-        color: ${(props) => (props.brightness === "dark" ? props.theme.yellow : props.theme.black)};
+        color: ${(props) => (props.theme.color)};
       }
     }
-    &.Mui-disabled {
-      .MuiIconButton-label {
-        color: ${(props) => (props.brightness === "dark" ? props.theme.darkGrey : props.theme.lightGrey)};
-        > div > :nth-child(2) path {
-          color: ${(props) => (props.brightness === "dark" ? props.theme.darkGrey : props.theme.lightGrey)};
-        }
-      }
-    }
+    
     &.Mui-focusVisible {
-      background-color: ${(props) => props.theme.darkGrey};
-      opacity: 0.1;
+      background-color: transparent;
+      .MuiSvgIcon-root{
+        outline: ${(props) => props.theme.focusColor} auto 1px;
+      }
     }
     :hover {
       background-color: transparent;
@@ -138,13 +127,10 @@ const RadioContainer = styled.span`
       width: 40px !important;
       top: 0px !important;
       left: 0px !important;
-      .MuiTouchRipple-child {
-        background-color: ${(props) => (props.brightness === "dark" ? props.theme.white : props.theme.darkGrey)};
-      }
     }
   }
   .MuiRadio-colorSecondary.Mui-checked {
-    color: ${(props) => (props.brightness === "dark" ? props.theme.yellow : props.theme.black)};
+    color: ${(props) => (props.theme.color)};
     :hover {
       background-color: transparent;
     }
@@ -168,10 +154,8 @@ DxcRadio.propTypes = {
   value: PropTypes.any,
   label: PropTypes.string,
   labelPosition: PropTypes.oneOf(["after", "before", ""]),
-  theme: PropTypes.oneOf(["light", "dark", ""]),
   name: PropTypes.string,
   disabled: PropTypes.bool,
-  disableRipple: PropTypes.bool,
   onClick: PropTypes.func,
   required: PropTypes.bool,
   margin: PropTypes.oneOfType([
