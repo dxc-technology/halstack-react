@@ -16,7 +16,7 @@ const dateTokensTable = () => {
           <SampleComponent color="#000000"></SampleComponent>
         </td>
         <td>
-          Applies to the pickerSelectedDateBackgroundColor.
+          Applies to the pickerSelectedDateBackgroundColor and pickerHoverDateBackgroundColor(0.34 opacity).
         </td>
       </tr>
       <tr>
