@@ -28,13 +28,6 @@ const alertPropsTable = () => {
         <td>Text to be placed next to the date component.</td>
       </tr>
       <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
-      </tr>
-      <tr>
         <td>name: string</td>
         <td></td>
         <td>Name attribute of the input element.</td>
@@ -75,13 +68,6 @@ const alertPropsTable = () => {
           If true, the input will change its appearence, showing that the value
           is not valid.
         </td>
-      </tr>
-      <tr>
-        <td>disableRipple: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>If true, the ripple effect will be disabled.</td>
       </tr>
       <tr>
         <td>placeholder: boolean</td>
