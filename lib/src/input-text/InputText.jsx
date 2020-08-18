@@ -273,7 +273,8 @@ const SuggestionsContainer = styled.div`
     li {
       &:hover {
         color: ${(props) => props.theme.hoverOptionColor};
-        background-color: ${(props) => `${props.theme.selectedOptionBackgroundColor}57`};
+        background-color: ${(props) =>
+          `${props.theme.selectedOptionBackgroundColor}${props.theme.hoverOptionBakcgroundColor}`};
       }
     }
   }
