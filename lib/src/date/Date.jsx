@@ -113,6 +113,18 @@ const DxcDate = ({
           padding: "0px",
         },
       },
+      MuiTouchRipple: {
+        child: {
+          opacity: "0",
+        },
+      },
+      MuiButtonBase: {
+        root: {
+          "&:focus": {
+            outline: colorsTheme.date.focusColor + " 2px solid",
+          },
+        },
+      },
       MuiPickersBasePicker: {
         pickerView: {
           minWidth: "unset",
@@ -143,13 +155,15 @@ const DxcDate = ({
       },
       MuiPickersDay: {
         current: {
-          color: colorsTheme.date.pickerActualDate,
+          border: colorsTheme.date.pickerActualDate + " 2px solid",
+          color: colorsTheme.date.pickerTextColor,
         },
         day: {
           color: colorsTheme.date.pickerTextColor,
           "&:hover": {
-            opacity: colorsTheme.date.pickerHoverDateBackgroundColor,
-            color: colorsTheme.date.pickerHoverDateTextColor
+            backgroundColor:
+              colorsTheme.date.pickerSelectedDateBackgroundColor + colorsTheme.date.pickerHoverDateBackgroundColor,
+            color: colorsTheme.date.pickerHoverDateTextColor,
           },
         },
         daySelected: {
@@ -158,7 +172,7 @@ const DxcDate = ({
           "&:hover": {
             backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
             color: colorsTheme.date.pickerSelectedDateColor,
-            opacity: "1"
+            opacity: "1",
           },
         },
       },
@@ -173,9 +187,10 @@ const DxcDate = ({
         root: {
           "&:focus": {
             color: colorsTheme.date.pickerHoverDateTextColor,
-            opacity: colorsTheme.date.pickerHoverDateBackgroundColor,
-          }
-        }
+            backgroundColor:
+              colorsTheme.date.pickerSelectedDateBackgroundColor + colorsTheme.date.pickerHoverDateBackgroundColor,
+          },
+        },
       },
       MuiPickersModal: {
         dialogAction: {
