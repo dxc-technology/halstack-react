@@ -10,8 +10,9 @@ import ComponentHeader from "../../common/ComponentHeader";
 import controlled from "./examples/controlledDate";
 import uncontrolled from "./examples/uncontrolledDate";
 import sized from "./examples/sized";
+import DateTokensTable from "./Tokens.jsx";
 
-function Accordion() {
+function Date() {
   return (
     <ComponentDoc>
       <ComponentHeader
@@ -28,6 +29,15 @@ function Accordion() {
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
                 <DatePropsTable />
+              </Section>
+            )
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <DateTokensTable />
               </Section>
             )
           },
@@ -51,4 +61,4 @@ function Accordion() {
   );
 }
 
-export default Accordion;
+export default Date;
