@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
 import defaultIcon from "./dxc_logo_wht.png";
 import "../common/OpenSans.css";
-import { colors, spaces, responsiveSizes } from "../common/variables.js";
+import { spaces, responsiveSizes, theme, defaultTheme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
+import { getCustomTheme } from "../common/utils.js"
 
 const DxcFooter = ({
   socialLinks = [],
@@ -20,7 +21,8 @@ const DxcFooter = ({
   const [refSize, setRefSize] = useState();
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
   const [isResponsivePhone, setIsResponsivePhone] = useState(false);
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
 
   const handleResize = (refWidth) => {
     if (ref.current) {
@@ -65,7 +67,7 @@ const DxcFooter = ({
   ));
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} refSize={refSize} ref={ref}>
         <FooterHeader>
           <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? defaultIcon : logoSrc} />
@@ -98,7 +100,7 @@ const FooterContainer = styled.div`
     padding: ${(props) =>
       props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px"};
     font-family: "Open Sans", sans-serif;
-    background-color: ${(props) => props.theme.black};
+    background-color: ${(props) => props.theme.backgroundColor};
     margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   }
 `;
@@ -118,7 +120,7 @@ const FooterFooter = styled.div`
 
 const BottomLinks = styled.div`
   padding-top: 6px;
-  border-top: 2px solid ${(props) => props.theme.yellow};
+  border-top: 2px solid ${(props) => props.theme.lineColor};
   display: inline-flex;
   flex-wrap: wrap;
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "60%")};
@@ -140,13 +142,13 @@ const ChildComponents = styled.div`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.fontColor};
   overflow: hidden;
 `;
 
 const Copyright = styled.div`
   font-size: 12px;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.fontColor};
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
   width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
   text-align: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "right")};
@@ -169,18 +171,18 @@ const SocialIcon = styled.img`
     display: inline-flex;
     height: 25px;
     width: 25px;
-    fill: ${(props) => props.theme.white};
+    fill: ${(props) => props.theme.fontColor};
   }
 `;
 
 const Point = styled.span`
   margin: 0px 10px;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const BottomLink = styled.a`
   text-decoration: none;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.fontColor};
   font-size: 12px;
 `;
 
