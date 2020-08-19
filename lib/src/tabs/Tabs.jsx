@@ -86,7 +86,7 @@ const DxCTabs = styled.div`
       min-width: 180px;
       color: ${(props) => props.theme.textColor};
       &:not(.Mui-selected) {
-        background-color: ${(props) => `${props.theme.selectedBackgroundColor}57`};
+        background-color: ${(props) => `${props.theme.selectedBackgroundColor}${props.theme.backgroundColor}`};
       }
       &.Mui-selected {
         background-color: ${(props) => props.theme.selectedBackgroundColor};
