@@ -2,7 +2,7 @@ import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 import SampleComponent from "../../common/SampleComponent";
 
-const dateTokensTable = () => {
+const footerTokensTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -11,25 +11,34 @@ const dateTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>pickerSelectedDateBackgroundColor</td>
+        <td>backgroundColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
         <td>
-          Applies to the pickerSelectedDateBackgroundColor and pickerHoverDateBackgroundColor(0.34 opacity).
+          Applies to the backgroundColor.
         </td>
       </tr>
       <tr>
-        <td>pickerSelectedDateColor</td>
+        <td>fontColor</td>
+        <td>
+          <SampleComponent color="#FFFFFF"></SampleComponent>
+        </td>
+        <td>
+          Applies to fontColor.
+        </td>
+      </tr>
+      <tr>
+        <td>lineColor</td>
         <td>
           <SampleComponent color="#FFED00"></SampleComponent>
         </td>
         <td>
-          Applies to pickerSelectedDateColor.
+          Applies to lineColor.
         </td>
       </tr>
     </DxcTable>
   );
 };
 
-export default dateTokensTable;
+export default footerTokensTable;

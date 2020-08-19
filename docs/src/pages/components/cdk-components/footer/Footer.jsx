@@ -9,6 +9,7 @@ import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
 import defaultFooter from "./examples/default.js";
 import children from "./examples/children.js";
+import FooterTokensTable from "./Tokens.jsx";
 
 function App() {
   return (
@@ -27,6 +28,15 @@ function App() {
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
                 <InputPropsTable />
+              </Section>
+            )
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <FooterTokensTable />
               </Section>
             )
           },
