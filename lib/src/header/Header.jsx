@@ -193,6 +193,9 @@ const HamburguerItem = styled.div`
   align-items: center;
   width: 54px;
   cursor: pointer;
+  :hover {
+    background-color: ${(props) => props.theme.hoverHamburguerColor};
+  }
 `;
 
 const HamburguerIconStyled = styled.div`
@@ -263,7 +266,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #000000b3;
+  background-color: ${(props) => `${props.theme.overlayColor}${props.theme.overlayOpacity}`};
   visibility: ${(props) => (props.hasVisibility ? "visible" : "hidden")};
   opacity: ${(props) => (props.hasVisibility ? "1" : "0")};
   display: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "none" : "")};
