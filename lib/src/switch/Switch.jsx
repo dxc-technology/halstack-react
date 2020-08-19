@@ -105,6 +105,11 @@ const SwitchContainer = styled.div`
 
     opacity: ${(props) => (props.disabled ? props.theme.disabledTrackBackgroundColor : "1")} !important;
 
+    .Mui-focusVisible {
+      border: ${(props) => (props.theme.focusColor + " solid 2px")} ;
+      padding: 7px;
+    }
+
     .MuiSwitch-track {
       /*Enabled and unchecked bar*/
       background-color: ${(props) => props.theme.uncheckedTrackBackgroundColor};
