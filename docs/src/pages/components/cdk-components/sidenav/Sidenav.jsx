@@ -5,6 +5,7 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import SidenavPropsTable from "./api.jsx";
+import SidenavTokensTable from "./Tokens.jsx";
 import { DxcTabsForSections } from "@dxc-technology/halstack-react";
 
 import defaultSidenav from "./examples/default";
@@ -32,6 +33,15 @@ function Sidenav() {
                             </Section>
                         )
                     },
+                    {
+                        tabLabel: "Theming",
+                        section: () => (
+                          <Section>
+                            <DocTitle size={2}>Theming</DocTitle>
+                            <SidenavTokensTable />
+                          </Section>
+                        ),
+                      },
                     {
                         tabLabel: "Examples",
                         section: () => (

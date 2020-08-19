@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
-import { colors, spaces, responsiveSizes } from "../common/variables.js";
+import { spaces, responsiveSizes, defaultTheme, theme } from "../common/variables.js";
 import "../common/OpenSans.css";
-import ArrowIcon from "./arrow_icon.svg";
+import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, displayArrow = true }) => {
@@ -13,7 +13,8 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, dis
   const [sidenavSize, setSidenavSize] = useState();
   const [isShown, setIsShown] = useState();
   const [isResponsive, setIsResponsive] = useState();
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const handleVisbility = (width) => {
     setIsShown(width <= responsiveSizes.tablet ? false : true);
@@ -45,8 +46,19 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, dis
     setIsShown(!isShown);
   };
 
+  const ArrowIcon = ({ fill }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="15.995" height="10.01" viewBox="0 0 15.995 10.01">
+      <path
+        id="arrow-to-right"
+        d="M17.71,11.29l-4-4a1,1,0,0,0-1.42,1.42L14.59,11H3a1,1,0,0,0,0,2H14.59l-2.3,2.29a1,1,0,1,0,1.42,1.42l4-4a1.034,1.034,0,0,0,0-1.42Z"
+        transform="translate(-2 -6.996)"
+        fill={fill}
+      />
+    </svg>
+  );
+
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.sidenav}>
       <SidenavComponent ref={ref}>
         {ref.current && (
           <React.Fragment>
@@ -66,7 +78,9 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, dis
                   sidenavSize={sidenavSize}
                   arrowDistance={arrowDistance}
                 >
-                  <ArrowImage src={ArrowIcon} isShown={isShown}></ArrowImage>
+                  <ArrowStyled>
+                    <ArrowIcon fill={theme.sidenav.arrowColor} isShown={isShown} />
+                  </ArrowStyled>
                 </ArrowTrigger>
               )}
             </Sidenav>
@@ -95,9 +109,7 @@ const SidenavComponent = styled.div`
 const Sidenav = styled.div`
   display: flex;
   flex-direction: column;
-
-  background-color: #f8f8f8;
-
+  background-color: ${(props) => props.theme.backgroundColor};
   width: ${(props) => (props.sidenavSize <= responsiveSizes.tablet ? "60%" : "300px")};
   box-sizing: border-box;
   padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
@@ -115,14 +127,14 @@ const ArrowTrigger = styled.div`
   top: ${(props) => (props.arrowDistance ? props.arrowDistance : "calc(50% - 21px)")};
   width: 42px;
   min-height: 42px;
-  background-color: ${(props) => props.theme.lighterGrey};
+  background-color: ${(props) => `${props.theme.arrowContainerColor}${props.theme.arrowContainerOpacity}`};
   border-radius: 50%;
   transform: ${(props) => (props.isShown ? "rotate(-180deg)" : "rotate(0deg)")};
   transition: transform 0.4s ease-in-out;
   cursor: pointer;
 `;
 
-const ArrowImage = styled.img`
+const ArrowStyled = styled.div`
   width: 18px;
   height: 18px;
   margin-left: ${(props) => (props.isShown ? "0" : "10px")};
