@@ -19,13 +19,6 @@ const wizardPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>theme: 'light' |'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available themes.</td>
-      </tr>
-      <tr>
         <td>currentStep: number</td>
         <td>
           <code>0</code>
