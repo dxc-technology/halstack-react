@@ -4,23 +4,6 @@ import { DxcCard, ThemeContext } from "@dxc-technology/halstack-react";
 import iceCream from "../images/ice-cream.jpg";
 import twitterIcon from "../images/twitter.svg";
 
-const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
-};
-
 function App() {
   return (
     <div>
@@ -43,63 +26,6 @@ function App() {
           cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
           id est laborum
         </DxcCard>
-      </div>
-
-      <h4>Themes</h4>
-      <div className="img-test-case" id="light-theme">
-        <h4>Light theme</h4>
-        <DxcCard theme="light" imageSrc={iceCream} imageCover>
-          Lorem Ipsum
-        </DxcCard>
-      </div>
-      <div className="img-test-case" id="medium-theme">
-        <h4>Medium theme</h4>
-        <DxcCard theme="medium" imageSrc={iceCream} imageCover>
-          Lorem Ipsum
-        </DxcCard>
-      </div>
-      <div className="img-test-case" id="dark-theme">
-        <h4>Dark theme</h4>
-        <DxcCard theme="dark" imageSrc={iceCream} imageCover>
-          Lorem Ipsum
-        </DxcCard>
-      </div>
-      <h4>Outlined Themes</h4>
-      <div className="img-test-case" id="outlined-light-theme">
-        <h4>Outlined Light theme</h4>
-        <DxcCard theme="light" imageSrc={iceCream} imageCover outlined />
-      </div>
-      <div className="img-test-case" id="outlined-medium-theme">
-        <h4>Outlined Medium theme</h4>
-        <div
-          style={{
-            backgroundColor: "black",
-          }}
-        >
-          <DxcCard
-            theme="medium"
-            imageSrc={iceCream}
-            imageCover
-            outlined
-            margin="xxlarge"
-          />
-        </div>
-      </div>
-      <div className="img-test-case" id="outlined-dark-theme">
-        <h4>Outlined Dark theme</h4>
-        <div
-          style={{
-            backgroundColor: "black",
-          }}
-        >
-          <DxcCard
-            theme="dark"
-            imageSrc={iceCream}
-            imageCover
-            outlined
-            margin="xxlarge"
-          />
-        </div>
       </div>
       <div className="test-case" id="imageBgColor">
         <h4>Image Background Color</h4>
@@ -167,14 +93,6 @@ function App() {
       <div className="test-case" id="xxlarge-margin">
         <h4>xxlarge margin</h4>
         <DxcCard margin="xxlarge" />
-      </div>
-      <div className="img-test-case" id="custom-colors">
-        <h4>Custom card</h4>
-        <ThemeContext.Provider value={colors}>
-          <DxcCard imageSrc={iceCream} imageCover>
-            Lorem Ipsum
-          </DxcCard>
-        </ThemeContext.Provider>
       </div>
     </div>
   );
