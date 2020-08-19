@@ -1,22 +1,15 @@
 import React from "react";
-import { DxcSidenav, DxcFooter, ThemeContext } from "@dxc-technology/halstack-react";
+import {
+  DxcSidenav,
+  DxcFooter,
+  ThemeContext,
+} from "@dxc-technology/halstack-react";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  lighterGrey: "red",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  sidenav: {
+    backgroundColor: "#FABADA",
+    arrowContainerColor: "#D0011B",
+  },
 };
 
 function App() {
