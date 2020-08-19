@@ -20,7 +20,7 @@ const buttonPropsTable = () => {
         <td>Color of the image background.</td>
       </tr>
       <tr>
-        <td>imagePadding: string | object	</td>
+        <td>imagePadding: string | object </td>
         <td></td>
         <td>
           Size of the padding to be applied to the image section of the
@@ -57,18 +57,6 @@ const buttonPropsTable = () => {
         <td>imageCover: boolean</td>
         <td></td>
         <td>Whether the image must cover the whole image area of the card.</td>
-      </tr>
-      <tr>
-        <td>outlined: boolean</td>
-        <td></td>
-        <td>Whether the card must be outlined.</td>
-      </tr>
-      <tr>
-        <td>theme: 'dark' | 'medium' | 'light'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses on of the available card themes.</td>
       </tr>
       <tr>
         <td>margin: string | object</td>
