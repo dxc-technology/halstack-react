@@ -1,12 +1,14 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
-import { colors, spaces, responsiveSizes } from "../common/variables.js";
+import { defaultTheme, theme, spaces, responsiveSizes } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
   const [isResponsive, setIsResponsive] = useState();
 
   const handleClose = () => {
@@ -40,7 +42,7 @@ const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = tr
   }, []);
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.dialog}>
       <DialogContainer
         open={true}
         isCloseVisible={isCloseVisible}
@@ -67,14 +69,15 @@ const DialogContainer = styled(Dialog)`
   overflow: unset;
 
   .MuiBackdrop-root {
-    background-color: ${(props) => (props.overlay === true ? props.theme.mediumBlack : "transparent")};
+    background-color: ${(props) => (props.overlay === true ? props.theme.overlayColor + props.theme.overlayOpacity : "transparent")};
   }
   .MuiDialog-paperWidthSm {
+    background-color: ${(props) => (props.theme.backgroundColor)};
     max-width: ${(props) => (props.isResponsive ? "92%" : "80%")};
     min-width: ${(props) => (props.isResponsive ? "92%" : "800px")};
     box-sizing: border-box;
     min-height: ${(props) => (props.isCloseVisible ? "72px" : "")};
-    box-shadow: 0px 1px 3px ${(props) => props.theme.mediumGrey};
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
     padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
     padding-top: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -95,12 +98,12 @@ const Children = styled.div`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.lightGrey};
+    background-color: ${(props) => props.theme.scrollBarTrackColor};
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.darkGrey};
+    background-color: ${(props) => props.theme.scrollBarThumbColor};
     border-radius: 3px;
   }
 
@@ -110,12 +113,12 @@ const Children = styled.div`
     }
 
     ::-webkit-scrollbar-track {
-      background-color: ${(props) => props.theme.lightGrey};
+      background-color: ${(props) => props.theme.scrollBarTrackColor};
       border-radius: 3px;
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.darkGrey};
+      background-color: ${(props) => props.theme.scrollBarThumbColor};
       border-radius: 3px;
     }
   }
