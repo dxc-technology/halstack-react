@@ -13,7 +13,7 @@ const DxcTag = ({
   onClick,
   iconBgColor = "black",
   labelPosition = "after",
-  size = "fitContent"
+  size = "fitContent",
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
@@ -51,7 +51,7 @@ const sizes = {
   medium: "240px",
   large: "480px",
   fillParent: "100%",
-  fitContent: "unset"
+  fitContent: "unset",
 };
 
 const calculateWidth = (size) => {
@@ -72,9 +72,8 @@ const StyledDxcTag = styled.div`
 const TagContent = styled.div`
   display: inline-flex;
   align-items: center;
-  background-color: white;
   flex-direction: ${({ labelPosition }) => (labelPosition === "before" && "row-reverse") || "row"};
-  width: ${props => calculateWidth(props.size)};
+  width: ${(props) => calculateWidth(props.size)};
 `;
 
 const StyledLink = styled.a`
@@ -104,7 +103,6 @@ const TagLabel = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  
 `;
 
 DxcTag.propTypes = {
@@ -120,10 +118,10 @@ DxcTag.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
 };
 
 DxcTag.defaultProps = {
@@ -133,7 +131,7 @@ DxcTag.defaultProps = {
   linkHref: null,
   onClick: null,
   iconBgColor: "black",
-  labelPosition: "after"
+  labelPosition: "after",
 };
 
 export default DxcTag;

@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import React, { useState } from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
-import { spaces, colors } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 
 import DxcBox from "../box/Box";
-import ThemeContext from "../ThemeContext.js";
 
 const DxcCard = ({
   imageSrc,
@@ -15,12 +14,10 @@ const DxcCard = ({
   imageBgColor,
   imagePadding,
   imagePosition,
-  theme,
   outlined,
   imageCover,
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
-  const colorsTheme = useContext(ThemeContext) || colors;
 
   const clickHandler = () => {
     if (onClick) {
@@ -30,12 +27,7 @@ const DxcCard = ({
 
   const tagContent = (
     <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
-      <CardContainer
-        brightness={theme}
-        hasAction={onClick || linkHref}
-        outlined={outlined}
-        imagePosition={imagePosition}
-      >
+      <CardContainer hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
         <ImageContainer imageBgColor={imageBgColor}>
           <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
         </ImageContainer>
@@ -45,17 +37,15 @@ const DxcCard = ({
   );
 
   return (
-    <ThemeProvider theme={colorsTheme}>
-      <StyledDxcCard
-        margin={margin}
-        onMouseEnter={() => changeIsHovered(true)}
-        onMouseLeave={() => changeIsHovered(false)}
-        onClick={clickHandler}
-        hasAction={onClick || linkHref}
-      >
-        {(linkHref && <StyledLink href={linkHref}>{tagContent}</StyledLink>) || tagContent}
-      </StyledDxcCard>
-    </ThemeProvider>
+    <StyledDxcCard
+      margin={margin}
+      onMouseEnter={() => changeIsHovered(true)}
+      onMouseLeave={() => changeIsHovered(false)}
+      onClick={clickHandler}
+      hasAction={onClick || linkHref}
+    >
+      {(linkHref && <StyledLink href={linkHref}>{tagContent}</StyledLink>) || tagContent}
+    </StyledDxcCard>
   );
 };
 
@@ -70,24 +60,14 @@ const StyledDxcCard = styled.div`
   margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
 `;
 
-const borderSizePx = "2";
-const getBorder = (props) => {
-  const color = props.brightness === "dark" || props.brightness === "medium" ? props.theme.white : props.theme.black;
-  return props.outlined ? `${borderSizePx}px solid ${color}` : "none";
-};
 const CardContainer = styled.div`
   display: inline-flex;
-  background: ${(props) =>
-    props.brightness === "dark" ? props.theme.black : props.brightness === "medium" ? "#212121" : props.theme.white};
-  color: ${(props) =>
-    props.brightness === "dark" || props.brightness === "medium" ? props.theme.white : props.theme.black};
   align-items: center;
   flex-direction: ${({ imagePosition }) => (imagePosition === "before" && "row") || "row-reverse"};
-  height: ${({ outlined }) => (outlined ? `${220 - 2 * borderSizePx}px` : "220px")};
-  width: ${({ outlined }) => (outlined ? `${400 - 2 * borderSizePx}px` : "400px")};
-  border: ${(props) => getBorder(props)};
+  height: 220px;
+  width: 400px;
   &:hover {
-    border-color: ${(props) => (props.hasAction ? props.theme.yellow : "unset")};
+    border-color: ${(props) => (props.hasAction ? "#FFED00" : "unset")};
   }
 `;
 
@@ -128,7 +108,6 @@ DxcCard.propTypes = {
   onClick: PropTypes.func,
   outlined: PropTypes.bool,
   imageCover: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "medium", "light"]),
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
@@ -143,7 +122,6 @@ DxcCard.propTypes = {
 DxcCard.defaultProps = {
   imageSrc: null,
   margin: null,
-  theme: "light",
   outlined: false,
   imagePadding: null,
   imageCover: false,

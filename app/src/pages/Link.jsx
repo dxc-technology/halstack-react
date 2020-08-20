@@ -52,32 +52,6 @@ function App() {
         </div>
       </div>
       <div>
-        <h4>Dark theme - Default Link</h4>
-        <div
-          style={{ background: "#000000", padding: "25px 0px 25px 0px" }}
-          className="test-case"
-          id="default-dark-link"
-        >
-          <DxcLink href="#" theme="dark" text="Link"></DxcLink>
-        </div>
-      </div>
-      <div>
-        <h4>Dark theme - Not underlined and Inherited color</h4>
-        <div
-          style={{ background: "#000000", padding: "25px 0px 25px 0px" }}
-          className="test-case"
-          id="not-underlined-inherited-dark-link"
-        >
-          <DxcLink
-            href="#"
-            underlined={false}
-            theme="dark"
-            inheritColor={true}
-            text="Link"
-          ></DxcLink>
-        </div>
-      </div>
-      <div>
         <h4>Margin</h4>
         <div className="test-case" id="margin-xxsmall">
           <DxcLink href="#" margin="xxsmall" text="Margin xxsmall"></DxcLink>
@@ -142,19 +116,6 @@ function App() {
             underlined={true}
             text="Disabled link"
           ></DxcLink>{" "}
-        </div>
-        <div
-          style={{ background: "#000000", padding: "25px 0px 25px 0px" }}
-          className="test-case"
-          id="disabled-dark-link"
-        >
-          <DxcLink
-            href="#"
-            theme="dark"
-            disabled={true}
-            underlined={false}
-            text="Dark disabled link"
-          ></DxcLink>
         </div>
       </div>
     </div>

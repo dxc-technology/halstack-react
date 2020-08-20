@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider, Paper } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -9,7 +9,8 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
+import { colors, spaces, theme, defaultTheme } from "../common/variables.js";
+import { getCustomTheme } from "../common/utils.js";
 import calendarIcon from "./calendar.svg";
 import calendarDarkIcon from "./calendar_dark.svg";
 import ThemeContext from "../ThemeContext.js";
@@ -18,13 +19,11 @@ const DxcDate = ({
   value,
   format = "dd-MM-yyyy",
   label = "",
-  theme = "light",
   name,
   disabled = false,
   required = false,
   assistiveText = "",
   invalid = false,
-  disableRipple = false,
   onChange,
   placeholder = false,
   onBlur = "",
@@ -34,7 +33,9 @@ const DxcDate = ({
   const [innerValue, setInnerValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const colorsTheme = useContext(ThemeContext) || colors;
+
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   function handleMenuItemClick(date) {
     const stringValue = moment(date).format(format.toUpperCase());
@@ -80,7 +81,7 @@ const DxcDate = ({
     }
   };
 
-  const lightTheme = createMuiTheme({
+  const dateTheme = createMuiTheme({
     overrides: {
       MuiPickersYearSelection: {
         container: {
@@ -89,20 +90,20 @@ const DxcDate = ({
           },
 
           "&::-webkit-scrollbar-track": {
-            backgroundColor: colorsTheme.lightGrey,
+            backgroundColor: colorsTheme.date.scrollBarTrackColor,
             borderRadius: "3px",
           },
 
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: colorsTheme.darkGrey,
+            backgroundColor: colorsTheme.date.scrollBarThumbColor,
             borderRadius: "3px",
           },
         },
       },
       MuiPickersToolbar: {
         toolbar: {
-          backgroundColor: colorsTheme.white,
-          color: colorsTheme.black,
+          backgroundColor: colorsTheme.date.pickerBackgroundColor,
+          color: colorsTheme.date.pickerTextColor,
         },
       },
       MuiIconButton: {
@@ -110,6 +111,18 @@ const DxcDate = ({
           height: "36px",
           width: "36px",
           padding: "0px",
+        },
+      },
+      MuiTouchRipple: {
+        child: {
+          opacity: "0",
+        },
+      },
+      MuiButtonBase: {
+        root: {
+          "&:focus": {
+            outline: colorsTheme.date.focusColor + " 2px solid",
+          },
         },
       },
       MuiPickersBasePicker: {
@@ -123,16 +136,16 @@ const DxcDate = ({
       },
       MuiPickersToolbarText: {
         toolbarTxt: {
-          color: colorsTheme.black,
+          color: colorsTheme.date.pickerTextColor,
         },
         toolbarBtnSelected: {
-          color: colorsTheme.black,
+          color: colorsTheme.date.pickerTextColor,
         },
       },
       MuiPickersCalendarHeader: {
         switchHeader: {
           backgroundColor: colorsTheme.white,
-          color: colorsTheme.black,
+          color: colorsTheme.date.pickerTextColor,
         },
       },
       MuiPickersCalendar: {
@@ -142,31 +155,46 @@ const DxcDate = ({
       },
       MuiPickersDay: {
         current: {
-          color: colorsTheme.black,
+          border: colorsTheme.date.pickerActualDate + " 2px solid",
+          color: colorsTheme.date.pickerTextColor,
         },
         day: {
-          color: colorsTheme.black,
+          color: colorsTheme.date.pickerTextColor,
+          "&:hover": {
+            backgroundColor:
+              colorsTheme.date.pickerSelectedDateBackgroundColor + colorsTheme.date.pickerHoverDateBackgroundColor,
+            color: colorsTheme.date.pickerHoverDateTextColor,
+          },
         },
         daySelected: {
-          backgroundColor: colorsTheme.black,
-          color: colorsTheme.yellow,
+          backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
+          color: colorsTheme.date.pickerSelectedDateColor,
           "&:hover": {
-            backgroundColor: colorsTheme.black,
+            backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
+            color: colorsTheme.date.pickerSelectedDateColor,
+            opacity: "1",
           },
         },
       },
       MuiPickersYear: {
         yearSelected: {
-          color: colorsTheme.yellow,
-          backgroundColor: colorsTheme.black,
+          color: colorsTheme.date.pickerSelectedDateColor,
+          backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
           margin: "0px 100px",
           borderRadius: "20px",
           fontSize: "16px",
         },
+        root: {
+          "&:focus": {
+            color: colorsTheme.date.pickerHoverDateTextColor,
+            backgroundColor:
+              colorsTheme.date.pickerSelectedDateBackgroundColor + colorsTheme.date.pickerHoverDateBackgroundColor,
+          },
+        },
       },
       MuiPickersModal: {
         dialogAction: {
-          color: colorsTheme.yellow,
+          color: "pink",
         },
       },
     },
@@ -177,15 +205,13 @@ const DxcDate = ({
 
   return (
     <ThemeProvider theme={colorsTheme}>
-      <MuiThemeProvider theme={lightTheme}>
+      <MuiThemeProvider theme={dateTheme}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <StyledDPicker margin={margin}>
             <DxcInput
               label={label}
               name={name}
-              suffixIconSrc={(theme === "dark" ? calendarDarkIcon : calendarIcon)}
-              theme={theme}
-              disableRipple={disableRipple}
+              suffixIconSrc={calendarIcon}
               required={required}
               invalid={invalid}
               disabled={disabled}
@@ -241,51 +267,7 @@ const sizes = {
 };
 
 const StyledDPicker = styled.div`
-  position: relative;
-  display: inline-flex;
-  width: 100%;
-  .MuiPaper-root {
-    margin-top: 6px;
-
-    border-color: ${(props) =>
-      props.brightness === "light" && props.mode === "outlined"
-        ? props.theme.black
-        : props.brightness === "light" && props.mode === "basic"
-        ? props.theme.white
-        : props.brightness === "dark" && props.mode === "outlined"
-        ? props.theme.white
-        : props.brightness === "dark" && props.mode === "basic"
-        ? props.theme.black
-        : props.theme.black};
-
-    background-color: ${(props) =>
-      props.brightness === "light" && props.mode === "outlined"
-        ? props.theme.white
-        : props.brightness === "light" && props.mode === "basic"
-        ? props.theme.black
-        : props.brightness === "dark" && props.mode === "outlined"
-        ? props.theme.black
-        : props.brightness === "dark" && props.mode === "basic"
-        ? props.theme.white
-        : props.theme.white};
-
-    color: ${(props) =>
-      props.brightness === "light" && props.mode === "outlined"
-        ? props.theme.black
-        : props.brightness === "light" && props.mode === "basic"
-        ? props.theme.white
-        : props.brightness === "dark" && props.mode === "outlined"
-        ? props.theme.white
-        : props.brightness === "dark" && props.mode === "basic"
-        ? props.theme.black
-        : props.theme.black};
-
-    margin-top: ${(props) => (props.mode === "outlined" ? "-2px" : "2px")};
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-  }
+  background-color: "#FABADA";
 `;
 
 DxcDate.propTypes = {
@@ -299,7 +281,6 @@ DxcDate.propTypes = {
   placeholder: PropTypes.bool,
   assistiveText: PropTypes.string,
   invalid: PropTypes.bool,
-  disableRipple: PropTypes.bool,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
