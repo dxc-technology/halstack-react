@@ -7,6 +7,7 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import ChipPropsTable from "./api.jsx";
+import ChipTokensTable from "./Tokens.jsx";
 
 import coloredChips from "./examples/colored";
 import suffixPrefix from "./examples/suffixPrefix";
@@ -25,6 +26,15 @@ function Chip() {
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
                 <ChipPropsTable />
+              </Section>
+            ),
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <ChipTokensTable />
               </Section>
             ),
           },
