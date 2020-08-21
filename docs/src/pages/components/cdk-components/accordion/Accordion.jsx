@@ -5,24 +5,19 @@ import ComponentDoc from "../../common/ComponentDoc";
 import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import AccordionPropsTable from "./api.jsx";
+import AccordionTokensTable from "./Tokens.jsx";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 import defaultAccordion from "./examples/default";
-import alternative from "./examples/alternative";
 import disabled from "./examples/disabled";
 import assistiveText from "./examples/assistiveText";
 import icon from "./examples/icon";
-import dark from "./examples/dark";
 import controlledAccordion from "./examples/controlledAccordion";
-
 
 function Accordion() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Accordion"
-        status="ready"
-      ></ComponentHeader>
+      <ComponentHeader title="Accordion" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -34,7 +29,16 @@ function Accordion() {
                 <DocTitle size={2}>Props</DocTitle>
                 <AccordionPropsTable />
               </Section>
-            )
+            ),
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <AccordionTokensTable />
+              </Section>
+            ),
           },
           {
             tabLabel: "Examples",
@@ -49,11 +53,6 @@ function Accordion() {
                   title="Controlled Accordion"
                   example={controlledAccordion}
                 ></Example>
-
-                <Example
-                  title="Alternative Accordion"
-                  example={alternative}
-                ></Example>
                 <Example
                   title="Disabled Accordion"
                   example={disabled}
@@ -63,10 +62,9 @@ function Accordion() {
                   example={assistiveText}
                 ></Example>
                 <Example title="Accordion with icon" example={icon}></Example>
-                <Example title="Dark theme Accordion" example={dark}></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>

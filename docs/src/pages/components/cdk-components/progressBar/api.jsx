@@ -15,13 +15,6 @@ const progressBarPropsTable = () => {
         <td>Text to be placed above the progress bar.</td>
       </tr>
       <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
-      </tr>
-      <tr>
         <td>overlay: boolean</td>
         <td>
           <code>true</code>
@@ -32,8 +25,8 @@ const progressBarPropsTable = () => {
         <td>value: number</td>
         <td></td>
         <td>
-          The value of the progress indicator. If it's received the component
-          is determinate otherwise is indeterminate.
+          The value of the progress indicator. If it's received the component is
+          determinate otherwise is indeterminate.
         </td>
       </tr>
       <tr>

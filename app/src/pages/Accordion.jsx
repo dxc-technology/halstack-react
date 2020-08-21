@@ -4,20 +4,9 @@ import homeIcon from "../images/home.svg";
 import facebookIcon from "../images/facebook.svg";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  accordion: {
+    arrowColor: "#FABADA",
+  },
 };
 function App() {
   const [isExpanded, changeIsExpanded] = useState(true);
@@ -37,91 +26,12 @@ function App() {
         </DxcAccordion>
       </div>
 
-      <div className="test-case" id="light-theme-alternative">
-        <h4>Light theme - Alternative Accordion</h4>
-        <DxcAccordion
-          label="Accordion"
-          mode="alternative"
-          onChange={onChange}
-          padding="medium"
-        >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcAccordion>
-      </div>
-      <div>
-        <h4>Dark theme - Default Accordion</h4>
-        <div
-          style={{
-            background: "#000000",
-            padding: "25px 0px 25px 0px",
-          }}
-          className="test-case"
-          id="dark-theme-default"
-        >
-          <DxcAccordion
-            label="Accordion"
-            theme="dark"
-            onChange={onChange}
-            padding="medium"
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </div>
-          </DxcAccordion>
-        </div>
-      </div>
-
-      <div>
-        <h4>Dark theme - Alternative Accordion</h4>
-        <div
-          style={{ background: "#000000", padding: "25px 0px 25px 0px" }}
-          className="test-case"
-          id="dark-theme-alternative"
-        >
-          <DxcAccordion
-            label="Accordion"
-            theme="dark"
-            mode="alternative"
-            onChange={onChange}
-            padding="medium"
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </div>
-          </DxcAccordion>
-        </div>
-      </div>
-
       <div className="test-case" id="icon-before-default">
         <h4>Icon before - Default Accordion</h4>
         <DxcAccordion
           label="Accordion"
           iconPosition="before"
           iconSrc={homeIcon}
-          onChange={onChange}
-          padding="medium"
-        >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcAccordion>
-      </div>
-
-      <div className="test-case" id="icon-before-alternative">
-        <h4>Icon before - Alternative Accordion</h4>
-        <DxcAccordion
-          label="Accordion"
-          mode="alternative"
-          iconPosition="before"
-          iconSrc={facebookIcon}
           onChange={onChange}
           padding="medium"
         >
@@ -148,43 +58,10 @@ function App() {
         </DxcAccordion>
       </div>
 
-      <div className="test-case" id="icon-after-alternative">
-        <h4>Icon after - Alternative Accordion</h4>
-        <DxcAccordion
-          label="Accordion"
-          iconPosition="after"
-          mode="alternative"
-          iconSrc={facebookIcon}
-          onChange={onChange}
-          padding="medium"
-        >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcAccordion>
-      </div>
-
       <div className="test-case" id="disabled-default">
-        <h4>Disabled - Default Accordion</h4>
+        <h4>Disabled</h4>
         <DxcAccordion
           label="Accordion"
-          disabled
-          onChange={onChange}
-          padding="medium"
-        >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcAccordion>
-      </div>
-
-      <div className="test-case" id="disabled-alternative">
-        <h4>Disabled - Alternative Accordion</h4>
-        <DxcAccordion
-          label="Accordion"
-          mode="alternative"
           disabled
           onChange={onChange}
           padding="medium"
@@ -228,22 +105,6 @@ function App() {
         <h4>Assistive text - Default Accordion</h4>
         <DxcAccordion
           label="Accordion"
-          assistiveText="Assistive text"
-          onChange={onChange}
-          padding="medium"
-        >
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
-        </DxcAccordion>
-      </div>
-
-      <div className="test-case" id="assistive-text-alternative">
-        <h4>Assistive text - Alternative Accordion</h4>
-        <DxcAccordion
-          label="Accordion"
-          mode="alternative"
           assistiveText="Assistive text"
           onChange={onChange}
           padding="medium"
@@ -498,26 +359,6 @@ function App() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
-            </div>
-          </DxcAccordion>
-        </div>
-      </div>
-
-      <div>
-        <div className="test-case" id="expanded-alternative-accordion">
-          <h4>Expanded accordion - Alternative Accordion</h4>
-          <DxcAccordion
-            label="Accordion"
-            mode="alternative"
-            isExpanded={isExpanded}
-            onChange={onChange}
-            padding="medium"
-          >
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget
-              lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada l.
             </div>
           </DxcAccordion>
         </div>

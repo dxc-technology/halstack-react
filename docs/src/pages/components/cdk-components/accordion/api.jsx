@@ -10,20 +10,6 @@ const alertPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>mode: 'default' | 'alternative'</td>
-        <td>
-          <code>'default'</code>
-        </td>
-        <td>Mode for the color of the accordion.</td>
-      </tr>
-      <tr>
-        <td>theme: 'light' |'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
-      </tr>
-      <tr>
         <td>label: string</td>
         <td></td>
         <td>The panel label.</td>
