@@ -8,6 +8,7 @@ import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 
 import DropdownPropsTable from "./api.jsx";
+import DropdownTokensTable from "./Tokens.jsx";
 
 import defaultDropdown from "././examples/default";
 import outlinedDropdown from "./examples/outlinedDropdown";
@@ -32,6 +33,15 @@ function Dropdown() {
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
                 <DropdownPropsTable />
+              </Section>
+            )
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <DropdownTokensTable />
               </Section>
             )
           },

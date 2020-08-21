@@ -5,20 +5,9 @@ import linkedinPath from "../images/linkedin.svg";
 import twitterPath from "../images/twitter.svg";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  dropdown: {
+    backgroundColor: "#666666"
+  }
 };
 
 function App() {
