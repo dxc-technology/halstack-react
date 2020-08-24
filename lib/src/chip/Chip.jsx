@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { colors, spaces } from "../common/variables.js";
+import { theme, spaces, defaultTheme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 import "../common/OpenSans.css";
-import { getMargin } from "../common/utils.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 
 const DxcChip = ({
   label,
@@ -15,10 +15,11 @@ const DxcChip = ({
   disabled,
   margin,
 }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.chip}>
       <StyledDxcChip disabled={disabled} margin={margin}>
         {prefixIconSrc && (
           <PrefixIconContainer
@@ -54,10 +55,13 @@ const StyledDxcChip = styled.div`
   margin: 2px;
   max-width: ${({ margin }) => `calc(100% - 40px - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`};
 
+  ${(props) => (props.theme.outlinedColor !== "" ?
+  `border: 1px solid ${props.theme.outlinedColor}` : ``)};
+
   padding: 10px 20px;
   cursor: ${({ disabled }) => disabled && "not-allowed"};
-  opacity: ${({ disabled }) => (disabled && "0.34") || "initial"};
-  background: ${(props) => props.theme.darkWhite};
+  opacity: ${(props) => (props.disabled && props.theme.disabled) || "initial"};
+  background: ${(props) => props.theme.backgroundColor};
 
 margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -74,7 +78,7 @@ const ChipTextContainer = styled.span`
   font-size: 16px;
   font-family: "Open Sans";
   line-height: 24px;
-  color: ${({ theme }) => theme.black};
+  color: ${(props) => props.theme.fontColor};
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "default"};
   text-overflow: ellipsis;
   white-space: nowrap;
