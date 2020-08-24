@@ -152,7 +152,7 @@ const SliderContainer = styled.div`
   }
 
   .MuiSlider-root.Mui-disabled {
-    opacity: ${(props) => props.theme.disabledthumbBacgroundColor};
+    opacity: ${(props) => props.theme.disabledthumbBackgroundColor};
     color: ${(props) => props.theme.color};
     cursor: not-allowed;
   }

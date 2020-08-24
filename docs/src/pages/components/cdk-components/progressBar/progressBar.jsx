@@ -8,19 +8,16 @@ import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 
 import ProgressBarPropsTable from "./api.jsx";
+import ProgressBarTokensTable from "./Tokens.jsx";
 
 import defaultProgressBar from "./examples/progressUndeterminedDefault";
 import determinedDefaultProgressBar from "./examples/progressDeterminedDefault";
-import darkThemeProgressBar from "./examples/darkThemeProgressBar";
 import progressWithOverlay from "./examples/progressWithOverlay";
 
 function ProgressBar() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Progress Bar"
-        status="ready"
-      ></ComponentHeader>
+      <ComponentHeader title="Progress Bar" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -32,7 +29,16 @@ function ProgressBar() {
                 <DocTitle size={2}>Props</DocTitle>
                 <ProgressBarPropsTable />
               </Section>
-            )
+            ),
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <ProgressBarTokensTable />
+              </Section>
+            ),
           },
           {
             tabLabel: "Examples",
@@ -48,16 +54,12 @@ function ProgressBar() {
                   example={determinedDefaultProgressBar}
                 ></Example>
                 <Example
-                  title="Dark theme Progress Bar"
-                  example={darkThemeProgressBar}
-                ></Example>
-                <Example
                   title="Progress Bar with Overlay"
                   example={progressWithOverlay}
                 ></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>

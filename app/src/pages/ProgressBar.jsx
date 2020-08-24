@@ -2,20 +2,10 @@ import React from "react";
 import { DxcProgressBar, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  progressBar: {
+    trackLine: "red",
+    totalLine: "#FABADA",
+  },
 };
 
 function App() {
@@ -29,23 +19,6 @@ function App() {
           showValue
           value={50}
         />
-      </div>
-
-      <div>
-        <h4>Dark theme</h4>
-        <div
-          style={{ background: "#000000" }}
-          className="test-case"
-          id="dark-theme"
-        >
-          <DxcProgressBar
-            label="Loading..."
-            theme="dark"
-            overlay={false}
-            showValue
-            value={40}
-          />
-        </div>
       </div>
 
       <div className="test-case" id="without-label">
