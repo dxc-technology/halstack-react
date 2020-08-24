@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import Popper from "@material-ui/core/Popper";
@@ -9,11 +9,9 @@ import Paper from "@material-ui/core/Paper";
 import MenuList from "@material-ui/core/MenuList";
 import caretUp from "./baseline-arrow_drop_up.svg";
 import caretDown from "./baseline-arrow_drop_down.svg";
-import caretUpWh from "./baseline-arrow_drop_up_wh.svg";
-import caretDownWh from "./baseline-arrow_drop_down_wh.svg";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
-import { getMargin } from "../common/utils.js";
+import { theme, defaultTheme, spaces } from "../common/variables.js";
+import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcDropdown = ({
@@ -22,8 +20,6 @@ const DxcDropdown = ({
   iconSrc = "",
   iconPosition = "before",
   label = "",
-  theme = "light",
-  mode = "basic",
   caretHidden = false,
   disableRipple = false,
   onSelectOption,
@@ -32,7 +28,8 @@ const DxcDropdown = ({
   expandOnHover = false,
 }) => {
   const [width, setWidth] = useState();
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const ref = useRef(null);
   const handleResize = () => {
@@ -68,8 +65,8 @@ const DxcDropdown = ({
   const handleCloseOver = expandOnHover ? handleClose : undefined;
 
   return (
-    <ThemeProvider theme={colorsTheme}>
-      <DxCDropdownContainer mode={mode} margin={margin} size={size} ref={ref}>
+    <ThemeProvider theme={colorsTheme.dropdown}>
+      <DxCDropdownContainer margin={margin} size={size}>
         <div
           onMouseOver={expandOnHover ? handleClickListItem : undefined}
           onMouseOut={handleCloseOver}
@@ -79,12 +76,11 @@ const DxcDropdown = ({
           <DropdownTrigger
             opened={anchorEl === null ? false : true}
             onClick={handleClickListItem}
-            mode={mode}
-            brightness={theme}
             label={label}
             caretHidden={caretHidden}
             margin={margin}
             size={size}
+            ref={ref}
           >
             <DropdownTriggerContainer iconPosition={iconPosition} caretHidden={caretHidden}>
               {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
@@ -92,29 +88,7 @@ const DxcDropdown = ({
                 {label}
               </DropdownTriggerLabel>
             </DropdownTriggerContainer>
-            <CaretIcon
-              caretHidden={caretHidden}
-              margin={margin}
-              src={
-                theme === "light" && mode === "outlined"
-                  ? anchorEl === null
-                    ? caretDown
-                    : caretUp
-                  : theme === "light" && mode === "basic"
-                  ? anchorEl === null
-                    ? caretDownWh
-                    : caretUpWh
-                  : theme === "dark" && mode === "basic"
-                  ? anchorEl === null
-                    ? caretDown
-                    : caretUp
-                  : theme === "dark" && mode === "outlined"
-                  ? anchorEl === null
-                    ? caretDownWh
-                    : caretUpWh
-                  : ""
-              }
-            />
+            <CaretIcon caretHidden={caretHidden} margin={margin} src={anchorEl === null ? caretDown : caretUp} />
           </DropdownTrigger>
           <DxcMenu
             anchorEl={anchorEl}
@@ -124,8 +98,6 @@ const DxcDropdown = ({
             anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
             transformOrigin={{ vertical: "top", horizontal: "left" }}
             optionsIconPosition={optionsIconPosition}
-            mode={mode}
-            brightness={theme}
             size={size}
             width={width}
             role={undefined}
@@ -178,10 +150,7 @@ const calculateWidth = (margin, size) => {
   return sizes[size];
 };
 const DxCDropdownContainer = styled.div`
-  width: ${(props) =>
-    props.mode === "outlined"
-      ? `calc(${calculateWidth(props.margin, props.size)})`
-      : calculateWidth(props.margin, props.size)};
+  width: ${(props) => calculateWidth(props.margin, props.size)};
   text-overflow: ellipsis;
   overflow: hidden;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -200,10 +169,7 @@ const DxcMenu = styled(Popper)`
   z-index: 1;
 
   .MuiMenuItem-gutters {
-    width: ${(props) =>
-      props.mode === "outlined"
-        ? `calc(${calculateWidth(props.margin, props.size)} - 4px)`
-        : calculateWidth(props.margin, props.size)};
+    width: ${(props) => calculateWidth(props.margin, props.size)};
   }
   .MuiMenuItem-root {
     min-height: 46px;
@@ -212,42 +178,11 @@ const DxcMenu = styled(Popper)`
 
   .MuiPaper-root {
     min-width: ${(props) => `${props.width}px`};
-    border: ${(props) => (props.mode === "outlined" ? "2px solid" : "transparent")};
 
-    border-color: ${(props) =>
-      props.brightness === "light" && props.mode === "outlined"
-        ? props.theme.black
-        : props.brightness === "light" && props.mode === "basic"
-        ? props.theme.white
-        : props.brightness === "dark" && props.mode === "outlined"
-        ? props.theme.white
-        : props.brightness === "dark" && props.mode === "basic"
-        ? props.theme.black
-        : props.theme.black};
+    background-color: ${(props) => props.theme.dropdownBackgroundColor};
 
-    background-color: ${(props) =>
-      props.brightness === "light" && props.mode === "outlined"
-        ? props.theme.white
-        : props.brightness === "light" && props.mode === "basic"
-        ? props.theme.black
-        : props.brightness === "dark" && props.mode === "outlined"
-        ? props.theme.black
-        : props.brightness === "dark" && props.mode === "basic"
-        ? props.theme.white
-        : props.theme.white};
+    color: ${(props) => props.theme.dropdownFontColor};
 
-    color: ${(props) =>
-      props.brightness === "light" && props.mode === "outlined"
-        ? props.theme.black
-        : props.brightness === "light" && props.mode === "basic"
-        ? props.theme.white
-        : props.brightness === "dark" && props.mode === "outlined"
-        ? props.theme.white
-        : props.brightness === "dark" && props.mode === "basic"
-        ? props.theme.black
-        : props.theme.black};
-
-    margin-top: ${(props) => (props.mode === "outlined" ? "-2px" : "2px")};
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
     border-top-left-radius: 0px;
@@ -265,8 +200,8 @@ const DxcMenu = styled(Popper)`
       cursor: pointer;
     }
     .MuiListItem-button:hover {
-      background-color: ${(props) => props.theme.darkWhite};
-      color: ${(props) => props.theme.black};
+      background-color: ${(props) => props.theme.backgroundColor + props.theme.hoverBackgroundOption};
+      color: ${(props) => props.theme.dropdownFontColor};
     }
   }
 `;
@@ -285,17 +220,9 @@ const DropdownTrigger = styled.button`
 
   padding: ${(props) => {
     if (props.caretHidden === true && props.label === "") {
-      if (props.mode === "outlined") {
-        return "8px 13px";
-      } else {
-        return "10px 15px";
-      }
+      return "10px 15px";
     } else {
-      if (props.mode === "outlined") {
-        return "8px 13px 8px 18px";
-      } else {
-        return "10px 15px 10px 20px";
-      }
+      return "10px 15px 10px 20px";
     }
   }};
   &:focus {
@@ -303,46 +230,19 @@ const DropdownTrigger = styled.button`
   }
 
   background-color: ${(props) =>
-    props.brightness === "light" && props.mode === "outlined" && !props.opened
-      ? props.theme.white
-      : props.brightness === "light" && props.mode === "basic" && !props.opened
-      ? props.theme.black
-      : props.brightness === "dark" && props.mode === "outlined" && !props.opened
-      ? props.theme.black
-      : props.brightness === "dark" && props.mode === "basic" && !props.opened
-      ? props.theme.white
-      : props.brightness === "light" && props.mode === "basic" && props.opened
-      ? props.theme.lightBlack
-      : props.brightness === "dark" && props.mode === "outlined" && props.opened
-      ? props.theme.lightBlack
-      : props.theme.darkWhite};
+    props.opened === true
+      ? props.theme.backgroundColor + props.theme.hoverBackgroundColor
+      : props.theme.backgroundColor};
 
-  color: ${(props) =>
-    props.brightness === "light" && props.mode === "outlined"
-      ? props.theme.black
-      : props.brightness === "light" && props.mode === "basic"
-      ? props.theme.white
-      : props.brightness === "dark" && props.mode === "outlined"
-      ? props.theme.white
-      : props.brightness === "dark" && props.mode === "basic"
-      ? props.theme.black
-      : props.theme.black};
+  color: ${(props) => props.theme.fontColor};
 
-  border-color: ${(props) =>
-    props.brightness === "light" && props.mode === "outlined"
-      ? props.theme.black
-      : props.brightness === "light" && props.mode === "basic"
-      ? props.theme.white
-      : props.brightness === "dark" && props.mode === "outlined"
-      ? props.theme.white
-      : props.brightness === "dark" && props.mode === "basic"
-      ? props.theme.black
-      : props.theme.black};
-
-  border: ${(props) => (props.mode === "outlined" ? "2px solid" : "none")};
+  border: none;
   border-radius: 2px;
   border-bottom-right-radius: ${(props) => (props.opened === true ? "0px" : "2px")};
   border-bottom-left-radius: ${(props) => (props.opened === true ? "0px" : "2px")};
+  &:hover {
+    background-color: ${(props) => props.theme.backgroundColor + props.theme.hoverBackgroundColor};
+  }
 `;
 
 const DropdownTriggerLabel = styled.span`
@@ -403,8 +303,6 @@ DxcDropdown.propTypes = {
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["after", "before", ""]),
   label: PropTypes.string,
-  theme: PropTypes.oneOf(["light", "dark", ""]),
-  mode: PropTypes.oneOf(["basic", "outlined", ""]),
   caretHidden: PropTypes.bool,
   disableRipple: PropTypes.bool,
   expandOnHover: PropTypes.bool,
