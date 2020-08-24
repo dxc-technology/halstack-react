@@ -1,5 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext, useMemo } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { defaultTheme, theme } from "../common/variables.js";
+import ThemeContext from "../ThemeContext.js";
+import { getCustomTheme } from "../common/utils.js";
 import PropTypes from "prop-types";
 import DxcButton from "../button/Button";
 import first from "./images/previousPage.svg";
@@ -26,83 +29,89 @@ const DxcPaginator = ({
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+
   return (
-    <DxcPaginatorContainer disabled={currentPageInternal === 1}>
-      <LabelsContainer>
-        {/* <ItemsPageContainer>
+    <ThemeProvider theme={colorsTheme.table}>
+      <DxcPaginatorContainer disabled={currentPageInternal === 1}>
+        <LabelsContainer>
+          {/* <ItemsPageContainer>
           <ItemsLabel>Items per page: </ItemsLabel>
           {itemsPerPage}
         </ItemsPageContainer> */}
-        <TotalItemsContainer>
-          {minItemsPerPage} to {maxItemsPerPage} of {totalItems}
-        </TotalItemsContainer>
-        {firstFunction && (
-          <DxcButton
-            size="small"
-            disabled={currentPageInternal === 1|| currentPageInternal === 0}
-            mode="flat"
-            margin={{ left: "xxsmall", right: "xxsmall" }}
-            iconSrc={first}
-            onClick={() => {
-              if (firstFunction) {
-                firstFunction();
-              }
-            }}
-          />
-        )}
-        {prevFunction && (
-          <DxcButton
-            size="small"
-            mode="flat"
-            disabled={currentPageInternal === 1 || currentPageInternal === 0}
-            margin={{ left: "xxsmall", right: "xxsmall" }}
-            iconSrc={previous}
-            onClick={() => {
-              if (prevFunction) {
-                prevFunction();
-              }
-            }}
-          />
-        )}
-        <TextContainer>
-          Page: {currentPageInternal} of {totalPages}
-        </TextContainer>
-        {nextFunction && (
-          <DxcButton
-            size="small"
-            mode="flat"
-            disabled={currentPageInternal === totalPages}
-            margin={{ left: "xxsmall", right: "xxsmall" }}
-            iconSrc={next}
-            onClick={() => {
-              if (nextFunction) {
-                nextFunction();
-              }
-            }}
-          />
-        )}
-        {lastFunction && (
-          <DxcButton
-            size="small"
-            mode="flat"
-            disabled={currentPageInternal === totalPages}
-            margin={{ left: "xxsmall", right: "xxsmall" }}
-            iconSrc={last}
-            onClick={() => {
-              if (lastFunction) {
-                lastFunction(totalPages);
-              }
-            }}
-          />
-        )}
-      </LabelsContainer>
-    </DxcPaginatorContainer>
+          <TotalItemsContainer>
+            {minItemsPerPage} to {maxItemsPerPage} of {totalItems}
+          </TotalItemsContainer>
+          {firstFunction && (
+            <DxcButton
+              size="small"
+              disabled={currentPageInternal === 1 || currentPageInternal === 0}
+              mode="flat"
+              margin={{ left: "xxsmall", right: "xxsmall" }}
+              iconSrc={first}
+              onClick={() => {
+                if (firstFunction) {
+                  firstFunction();
+                }
+              }}
+            />
+          )}
+          {prevFunction && (
+            <DxcButton
+              size="small"
+              mode="flat"
+              disabled={currentPageInternal === 1 || currentPageInternal === 0}
+              margin={{ left: "xxsmall", right: "xxsmall" }}
+              iconSrc={previous}
+              onClick={() => {
+                if (prevFunction) {
+                  prevFunction();
+                }
+              }}
+            />
+          )}
+          <TextContainer>
+            Page: {currentPageInternal} of {totalPages}
+          </TextContainer>
+          {nextFunction && (
+            <DxcButton
+              size="small"
+              mode="flat"
+              disabled={currentPageInternal === totalPages}
+              margin={{ left: "xxsmall", right: "xxsmall" }}
+              iconSrc={next}
+              onClick={() => {
+                if (nextFunction) {
+                  nextFunction();
+                }
+              }}
+            />
+          )}
+          {lastFunction && (
+            <DxcButton
+              size="small"
+              mode="flat"
+              disabled={currentPageInternal === totalPages}
+              margin={{ left: "xxsmall", right: "xxsmall" }}
+              iconSrc={last}
+              onClick={() => {
+                if (lastFunction) {
+                  lastFunction(totalPages);
+                }
+              }}
+            />
+          )}
+        </LabelsContainer>
+      </DxcPaginatorContainer>
+    </ThemeProvider>
   );
 };
 const DxcPaginatorContainer = styled.div`
   display: flex;
   height: 64px;
-  background-color: #eeeeee;
+  background-color: ${(props) => props.theme.paginatorBackgroundColor};
+  color:  ${(props) => props.theme.paginatorFontColor};
   button {
     &:disabled {
       background-color: transparent !important;
