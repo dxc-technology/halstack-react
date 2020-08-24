@@ -33,7 +33,7 @@ const DxcPaginator = ({
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   return (
-    <ThemeProvider theme={colorsTheme.table}>
+    <ThemeProvider theme={colorsTheme.paginator}>
       <DxcPaginatorContainer disabled={currentPageInternal === 1}>
         <LabelsContainer>
           {/* <ItemsPageContainer>
