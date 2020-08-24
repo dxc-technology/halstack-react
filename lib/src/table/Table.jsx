@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { defaultTheme, theme } from "../common/variables.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
