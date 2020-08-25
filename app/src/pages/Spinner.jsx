@@ -2,20 +2,10 @@ import React from "react";
 import { DxcSpinner, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  spinner: {
+    trackLine: "pink",
+    totalCircle: "#FABADA",
+  },
 };
 
 function App() {
@@ -24,17 +14,6 @@ function App() {
       <div className="test-case" id="light-theme">
         <h4>Light theme</h4>
         <DxcSpinner showValue value={66} />
-      </div>
-
-      <div>
-        <h4>Dark theme</h4>
-        <div
-          style={{ background: "#000000" }}
-          className="test-case"
-          id="dark-theme"
-        >
-          <DxcSpinner theme="dark" showValue value={50} />
-        </div>
       </div>
 
       <div className="test-case" id="label-spinner">

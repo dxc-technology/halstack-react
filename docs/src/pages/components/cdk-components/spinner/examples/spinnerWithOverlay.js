@@ -10,7 +10,7 @@ const code = `() => {
     });
   };
   const fetchData = () => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
       }, 3000);
@@ -20,7 +20,6 @@ const code = `() => {
   return (
     <div>
       <DxcButton
-        mode="basic"
         theme="light"
         label="Show Spinner for 3 seconds"
         onClick={showModal}
@@ -36,7 +35,7 @@ const code = `() => {
 const scope = {
   DxcSpinner,
   DxcButton,
-  useState
+  useState,
 };
 
 export default { code, scope };

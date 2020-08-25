@@ -1,25 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
-const DxcSpinner = ({ label = "", theme = "light", value, showValue = false, mode = "large", margin }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+const DxcSpinner = ({ label = "", value, showValue = false, mode = "large", margin }) => {
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   return (
-    <ThemeProvider theme={colorsTheme}>
-      <BackgroundSpinner brightness={theme} mode={mode}>
+    <ThemeProvider theme={colorsTheme.spinner}>
+      <BackgroundSpinner mode={mode}>
         <DXCSpinner margin={margin} showValue={showValue} label={label} mode={mode}>
           {label && mode !== "small" && (
-            <SpinnerLabel showValue={showValue} brightness={theme} mode={mode}>
+            <SpinnerLabel showValue={showValue} mode={mode}>
               {label}
             </SpinnerLabel>
           )}
           {value && mode !== "small" && (
-            <SpinnerProgress brightness={theme} mode={mode} showValue={showValue} label={label}>
+            <SpinnerProgress mode={mode} showValue={showValue} label={label}>
               {value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}%
             </SpinnerProgress>
           )}
@@ -37,7 +39,6 @@ const DxcSpinner = ({ label = "", theme = "light", value, showValue = false, mod
 
 DxcSpinner.propTypes = {
   label: PropTypes.string,
-  theme: PropTypes.oneOf(["light", "dark"]),
   value: PropTypes.number,
   showValue: PropTypes.bool,
   mode: PropTypes.oneOf(["large", "small", "overlay"]),
@@ -53,7 +54,7 @@ DxcSpinner.propTypes = {
 };
 
 const BackgroundSpinner = styled.div`
-  background-color: ${(props) => (props.mode === "overlay" ? props.theme.mediumBlack : "transparent")};
+  background-color: ${(props) => (props.mode === "overlay" ? "#000000B3" : "transparent")};
   display: flex;
   flex-wrap: wrap;
   justify-content: ${(props) => (props.mode === "overlay" ? "center" : "")};
@@ -69,7 +70,8 @@ const BackgroundSpinner = styled.div`
 const DXCSpinner = styled.div`
   font-family: "Open Sans", sans-serif;
   border-radius: 80px;
-  border: ${(props) => (props.mode === "small" && "6px solid white") || "8.5px solid white;"};
+  border: ${(props) =>
+    (props.mode === "small" && `6px solid${props.theme.totalCircle}`) || `8.5px solid ${props.theme.totalCircle}`};
   width: ${(props) => (props.mode === "small" && "30px") || "120px"};
   height: ${(props) => (props.mode === "small" && "30px") || "120px"};
   z-index: ${(props) => (props.mode === "overlay" ? "100" : "")};
@@ -85,7 +87,7 @@ const DXCSpinner = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   .MuiCircularProgress-colorPrimary {
-    color: ${(props) => props.theme.yellow};
+    color: ${(props) => props.theme.trackLine};
     width: ${(props) => (props.mode === "small" && "44px !important") || "140px !important"};
     height: ${(props) => (props.mode === "small" && "44px !important") || "140px !important"};
     margin-top: ${(props) =>
@@ -109,8 +111,7 @@ const DXCSpinner = styled.div`
 
 const SpinnerLabel = styled.div`
   margin-top: ${(props) => (props.showValue === false && "52px") || "45px"};
-  color: ${(props) =>
-    props.brightness === "dark" || props.mode === "overlay" ? props.theme.white : props.theme.black};
+  color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.text)};
   text-transform: uppercase;
   font-size: 12px;
   text-align: center;
@@ -122,8 +123,7 @@ const SpinnerLabel = styled.div`
 const SpinnerProgress = styled.div`
   margin-top: ${(props) => (props.label === "" && "52px") || ""};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
-  color: ${(props) =>
-    props.brightness === "dark" || props.mode === "overlay" ? props.theme.white : props.theme.black};
+  color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.text)};
   font-size: 12px;
   text-align: center;
 `;
