@@ -8,20 +8,17 @@ import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 
 import SpinnerPropsTable from "./api.jsx";
+import SpinnerTokensTable from "./Tokens.jsx";
 
 import defaultSpinner from "./examples/defaultSpinner";
 import valueSpinner from "./examples/valueSpinner";
 import smallSpinner from "./examples/smallSpinner";
-import darkSpinner from "./examples/darkSpinner";
 import spinnerWithOverlay from "./examples/spinnerWithOverlay";
 
 function Spinner() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Spinner"
-        status="ready"
-      ></ComponentHeader>
+      <ComponentHeader title="Spinner" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -33,21 +30,38 @@ function Spinner() {
                 <DocTitle size={2}>Props</DocTitle>
                 <SpinnerPropsTable />
               </Section>
-            )
+            ),
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <SpinnerTokensTable />
+              </Section>
+            ),
           },
           {
             tabLabel: "Examples",
             section: () => (
               <Section>
                 <DocTitle size={2}>Examples</DocTitle>
-                <Example title="Undetermined Spinner" example={defaultSpinner}></Example>
-                <Example title="Determined Spinner" example={valueSpinner}></Example>
+                <Example
+                  title="Undetermined Spinner"
+                  example={defaultSpinner}
+                ></Example>
+                <Example
+                  title="Determined Spinner"
+                  example={valueSpinner}
+                ></Example>
                 <Example title="Small Spinner" example={smallSpinner}></Example>
-                <Example title="Dark theme Spinner" example={darkSpinner}></Example>
-                <Example title="Spinner with Overlay" example={spinnerWithOverlay}></Example>
+                <Example
+                  title="Spinner with Overlay"
+                  example={spinnerWithOverlay}
+                ></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>

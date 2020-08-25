@@ -16,13 +16,6 @@ const spinnerPropsTable = () => {
         <td>Text to be placed inside the spinner.</td>
       </tr>
       <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
-      </tr>
-      <tr>
         <td>mode: 'large' | 'small' | 'overlay' </td>
         <td>
           <code>'large'</code>
