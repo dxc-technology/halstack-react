@@ -7,6 +7,7 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import TablePropsTable from "./api.jsx";
+import TableTokensTable from "./Tokens.jsx";
 
 import defaultTable from "./examples/defaultTable";
 
@@ -27,6 +28,15 @@ function Tabs() {
               <Section>
                 <DocTitle size={2}>Props</DocTitle>
                 <TablePropsTable />
+              </Section>
+            )
+          },
+          {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <TableTokensTable />
               </Section>
             )
           },

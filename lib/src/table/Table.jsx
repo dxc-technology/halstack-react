@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { colors, spaces } from "../common/variables.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcTable = ({ children, margin }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin}>
         <DxcTableContent>{children}</DxcTableContent>
       </DxcTableContainer>
@@ -48,11 +50,11 @@ const DxcTableContent = styled.table`
   width: 100%;
 
   & tr {
-    border-bottom: 1px solid ${(props) => props.theme.lightGrey};
+    border-bottom: 1px solid ${(props) => props.theme.separatorColor};
   }
 
   & td {
-    color: ${(props) => props.theme.darkGrey};
+    color: ${(props) => props.theme.bodyFontColor};
     min-height: 48px;
   }
 
@@ -70,8 +72,8 @@ const DxcTableContent = styled.table`
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 100;
-    background-color: ${(props) => props.theme.black};
-    color: ${(props) => props.theme.white};
+    background-color: ${(props) => props.theme.headerBackgroundColor};
+    color: ${(props) => props.theme.headerFontColor};
   }
 
   & th:first-child {
