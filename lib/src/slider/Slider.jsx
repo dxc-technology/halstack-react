@@ -216,7 +216,7 @@ const SliderContainer = styled.div`
   .MuiSlider-rail {
     background-color: ${(props) => props.theme.color};
     top: 50%;
-    opacity: 0.54;
+    opacity: ${(props) => props.theme.totalLine};
   }
   .MuiSlider-mark.MuiSlider-markActive {
     background-color: ${(props) => props.theme.color};
@@ -232,14 +232,14 @@ const SliderContainer = styled.div`
 
 const MinLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => props.theme.color};
+  color: inherit;
   font-size: 16px;
   margin-right: 15px;
 `;
 
 const MaxLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => props.theme.color};
+  color: inherit;
   font-size: 16px;
   margin-left: ${(props) => (props.step === 1 ? "15px" : "20px")};
 `;

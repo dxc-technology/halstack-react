@@ -51,25 +51,6 @@ function App() {
         />
       </div>
 
-      <div>
-        <h4>Dark theme</h4>
-        <div
-          className="test-case"
-          id="dark-theme"
-          style={{
-            backgroundColor: "black",
-          }}
-        >
-          <DxcRadio
-            checked={checked}
-            theme="dark"
-            label="Radio"
-            labelPosition="after"
-            onClick={onClick}
-          />
-        </div>
-      </div>
-
       <div className="test-case" id="color-checked">
         <h4>Color checked checkbox</h4>
         <DxcRadio
