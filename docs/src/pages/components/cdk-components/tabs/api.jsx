@@ -30,14 +30,6 @@ const dropdownPropsTable = () => {
           </ul>
         </td>
       </tr>
-
-      <tr>
-        <td>mode: 'filled' | 'underlined'</td>
-        <td>
-          <code>'filled'</code>
-        </td>
-        <td>Uses one of the available component modes.</td>
-      </tr>
       <tr>
         <td>activeTabIndex: number</td>
         <td></td>

@@ -13,7 +13,7 @@ const tabsTokensTable = () => {
       <tr>
         <td>selectedBackgroundColor</td>
         <td>
-          <code>transparent</code>
+        <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
         <td>Applies to the selectedBackgroundColor token.</td>
       </tr>
