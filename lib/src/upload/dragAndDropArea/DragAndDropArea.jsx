@@ -77,7 +77,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
                 <DragAndDropDescription>{description}</DragAndDropDescription>
               </DragAndDropText>
               <div>
-                <Button mode="basic" theme="light" label="CHOOSE FILES" onClick={handleClick} />
+                <Button label="CHOOSE FILES" onClick={handleClick} />
                 <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
               </div>
             </DragAndDropContent>
@@ -92,7 +92,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
                 <DragAndDropDescription>{description}</DragAndDropDescription>
               </DragAndDropText>
               <ButtonChooseFiles>
-                <Button mode="basic" theme="light" label="CHOOSE FILES" onClick={handleClick} />
+                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} />
                 <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
               </ButtonChooseFiles>
             </DragAndDropContent>
