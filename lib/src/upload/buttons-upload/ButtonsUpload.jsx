@@ -31,16 +31,9 @@ const DxcButtonsUpload = ({ addFile, onUpload }) => {
           <DragAndDropIcon />
           Drag and Drop area
         </DragAndDropLabel>
-        <Button style={{ marginRight: "30px" }} mode="flat" theme="light" label="CHOOSE FILES" onClick={handleClick} />
+        <Button margin={{ right: "small" }} mode="text" label="CHOOSE FILES" onClick={handleClick} />
         <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
-        <Button
-          mode="basic"
-          theme="light"
-          label="UPLOAD"
-          iconPosition="after"
-          iconSrc={uploadIcon}
-          onClick={onUpload}
-        />
+        <Button label="UPLOAD" iconPosition="after" iconSrc={uploadIcon} onClick={onUpload} />
       </DXCButtonsUpload>
     </ThemeProvider>
   );

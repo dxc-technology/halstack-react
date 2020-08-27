@@ -22,8 +22,7 @@ const DxcSwitch = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
-
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const handlerSwitchChange = (newValue) => {
     if (checked === undefined) {
@@ -103,10 +102,10 @@ const SwitchContainer = styled.div`
     height: 45px;
     margin: 3px;
 
-    opacity: ${(props) => (props.disabled ? props.theme.disabledTrackBackgroundColor : "1")} !important;
+    opacity: ${(props) => (props.disabled ? props.theme.disabled : "1")} !important;
 
     .Mui-focusVisible {
-      border: ${(props) => (props.theme.focusColor + " solid 2px")} ;
+      border: ${(props) => props.theme.focusColor + " solid 2px"};
       padding: 7px;
     }
 
@@ -134,12 +133,12 @@ const SwitchContainer = styled.div`
         + .MuiSwitch-track {
           /*Disabled and unchecked bar*/
           background-color: ${(props) => props.theme.uncheckedTrackBackgroundColor};
-          opacity: ${(props) => (props.theme.disabledTrackBackgroundColor)};
+          opacity: ${(props) => props.theme.disabled};
         }
       }
       &.Mui-checked {
         /*Enabled and checked*/
-        color: ${(props) => (props.theme.checkedThumbBackgroundColor)};
+        color: ${(props) => props.theme.checkedThumbBackgroundColor};
         transform: translateX(40%);
         &:hover {
           background-color: transparent;
@@ -155,9 +154,10 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  color: ${(props) => (props.theme.fontColor)};
+  color: ${(props) => props.theme.fontColor};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
+  opacity: ${(props) => (props.disabled === true ? props.theme.disabled : "")};
 `;
 
 DxcSwitch.propTypes = {

@@ -22,7 +22,7 @@ const DxcRadio = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
   const handlerRadioChange = (value) => {
     if (checked == null) {
       setInnerChecked(true);
@@ -33,13 +33,7 @@ const DxcRadio = ({
   };
   return (
     <ThemeProvider theme={colorsTheme.radio}>
-      <RadioContainer
-        id={name}
-        labelPosition={labelPosition}
-        disabled={disabled}
-        margin={margin}
-        size={size}
-      >
+      <RadioContainer id={name} labelPosition={labelPosition} disabled={disabled} margin={margin} size={size}>
         <Radio
           checked={(checked != null && checked) || innerChecked}
           name={name}
@@ -107,15 +101,15 @@ const RadioContainer = styled.span`
         height: 24px;
         width: 24px;
       }
-      color: ${(props) => (props.theme.color)};
+      color: ${(props) => props.theme.color};
       > div > :nth-child(2) path {
-        color: ${(props) => (props.theme.color)};
+        color: ${(props) => props.theme.color};
       }
     }
-    
+
     &.Mui-focusVisible {
       background-color: transparent;
-      .MuiSvgIcon-root{
+      .MuiSvgIcon-root {
         outline: ${(props) => props.theme.focusColor} auto 1px;
       }
     }
@@ -130,7 +124,7 @@ const RadioContainer = styled.span`
     }
   }
   .MuiRadio-colorSecondary.Mui-checked {
-    color: ${(props) => (props.theme.color)};
+    color: ${(props) => props.theme.color};
     :hover {
       background-color: transparent;
     }
@@ -138,13 +132,7 @@ const RadioContainer = styled.span`
 `;
 const LabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => {
-    if (props.disabled) {
-      return props.brightness === "dark" ? props.theme.darkGrey : props.theme.lightGrey;
-    } else {
-      return props.brightness === "dark" ? props.theme.white : props.theme.black;
-    }
-  }};
+  color: ${(props) => props.theme.fontColor};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 `;
 

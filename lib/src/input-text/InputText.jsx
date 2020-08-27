@@ -164,7 +164,8 @@ const DxcInputText = ({
           label={
             required ? (
               <React.Fragment>
-                <DxcRequired>{label}</DxcRequired>
+                <DxcRequired />
+                {label}
               </React.Fragment>
             ) : (
               label
@@ -356,7 +357,7 @@ const TextContainer = styled.div`
       font-size: 16px;
       color: ${(props) => props.theme.fontColor};
       &.Mui-disabled {
-        opacity: ${(props) => props.theme.disabledAssistiveTextColor};
+        opacity: ${(props) => props.theme.disabled};
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
       &.Mui-focused {
@@ -370,7 +371,7 @@ const TextContainer = styled.div`
       }
       &.Mui-disabled {
         color: ${(props) => props.theme.fontColor};
-        opacity: ${(props) => props.theme.disabledLabelColor};
+        opacity: ${(props) => props.theme.disabled};
         cursor: not-allowed;
       }
       &.MuiInputLabel-shrink {
@@ -439,7 +440,7 @@ const TextContainer = styled.div`
 
       &.Mui-disabled {
         color: ${(props) => props.theme.fontColor};
-        opacity: ${(props) => props.theme.disabledUnderlinedColor};
+        opacity: ${(props) => props.theme.disabled};
         cursor: not-allowed;
 
         &::before {
@@ -488,7 +489,7 @@ const TextContainer = styled.div`
         color: ${(props) => props.theme.error} !important;
       }
       &.Mui-disabled {
-        opacity: ${(props) => props.theme.disabledAssistiveTextColor};
+        opacity: ${(props) => props.theme.disabled};
         cursor: not-allowed;
       }
     }
