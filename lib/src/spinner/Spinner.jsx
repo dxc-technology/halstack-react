@@ -54,7 +54,8 @@ DxcSpinner.propTypes = {
 };
 
 const BackgroundSpinner = styled.div`
-  background-color: ${(props) => (props.mode === "overlay" ? "#000000B3" : "transparent")};
+  background-color: ${(props) =>
+    props.mode === "overlay" ? `${props.theme.overlayColor}${props.theme.overlayOpacity}` : "transparent"};
   display: flex;
   flex-wrap: wrap;
   justify-content: ${(props) => (props.mode === "overlay" ? "center" : "")};
@@ -111,7 +112,7 @@ const DXCSpinner = styled.div`
 
 const SpinnerLabel = styled.div`
   margin-top: ${(props) => (props.showValue === false && "52px") || "45px"};
-  color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.text)};
+  color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.fontColor)};
   text-transform: uppercase;
   font-size: 12px;
   text-align: center;
@@ -123,7 +124,7 @@ const SpinnerLabel = styled.div`
 const SpinnerProgress = styled.div`
   margin-top: ${(props) => (props.label === "" && "52px") || ""};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
-  color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.text)};
+  color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.fontColor)};
   font-size: 12px;
   text-align: center;
 `;
