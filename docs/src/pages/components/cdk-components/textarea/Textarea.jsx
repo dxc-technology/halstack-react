@@ -10,7 +10,6 @@ import InputPropsTable from "./api.jsx";
 
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import dark from "./examples/dark";
 import size from "./examples/size";
 import disabled from "./examples/disabled";
 import required from "./examples/required";
@@ -46,7 +45,6 @@ function Textarea() {
                   title="Uncontrolled Textarea"
                   example={uncontrolled}
                 ></Example>
-                <Example title="Dark theme Textarea" example={dark}></Example>
                 <Example title="Fill Parent  Textarea" example={size}></Example>
                 <Example title="Disabled Textarea" example={disabled}></Example>
                 <Example title="Invalid Textarea" example={invalid}></Example>
