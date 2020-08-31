@@ -48,7 +48,8 @@ DxcProgressBar.propTypes = {
 };
 
 const BackgroundProgressBar = styled.div`
-  background-color: ${(props) => (props.overlay === true ? "#000000B3" : "transparent")};
+  background-color: ${(props) =>
+    props.overlay === true ? `${props.theme.overlayColor}${props.theme.overlayOpacity}` : "transparent"};
   width: ${(props) => (props.overlay === true ? "100%" : "")};
   display: flex;
   flex-wrap: wrap;
@@ -99,7 +100,7 @@ const ProgressBarLabel = styled.div`
   text-transform: uppercase;
   font-size: 12px;
   flex-grow: 1;
-  color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.text)};
+  color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.fontColor)};
   width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -108,7 +109,7 @@ const ProgressBarLabel = styled.div`
 
 const ProgressBarProgress = styled.div`
   font-size: 12px;
-  color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.text)};
+  color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.fontColor)};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
   width: 5%;
   text-align: right;
