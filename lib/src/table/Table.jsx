@@ -6,7 +6,7 @@ import ThemeContext from "../ThemeContext.js";
 
 const DxcTable = ({ children, margin }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   return (
     <ThemeProvider theme={colorsTheme.table}>
@@ -69,9 +69,8 @@ const DxcTableContent = styled.table`
 
   & th {
     text-align: left;
-    text-transform: uppercase;
     font-size: 14px;
-    font-weight: 100;
+    font-weight: 500;
     background-color: ${(props) => props.theme.headerBackgroundColor};
     color: ${(props) => props.theme.headerFontColor};
   }

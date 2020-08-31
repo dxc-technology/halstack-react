@@ -118,13 +118,16 @@ const DXCAccordion = styled.div`
       color: "#000000";
     }
 
-    .MuiButtonBase-root {
-      border-radius: 4px;
-      height: 72px;
+    .MuiButtonBase-root.MuiExpansionPanelSummary-root {
       :hover {
         background-color: ${(props) => `${props.theme.arrowColor}${props.theme.hoverBackgroundColor}`};
         color: ${(props) => props.theme.hoverFontColor};
       }
+    }
+
+    .MuiButtonBase-root {
+      border-radius: 4px;
+      height: 72px;
 
       &.Mui-expanded {
         border-bottom-right-radius: 0;
@@ -183,6 +186,10 @@ const DXCAccordion = styled.div`
 
   .MuiExpansionPanelSummary-root {
     padding: 0 30px;
+  }
+
+  .MuiExpansionPanelSummary-root.Mui-disabled {
+    opacity: 1;
   }
 
   .MuiExpansionPanelDetails-root {

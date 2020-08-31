@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { spaces } from "../common/variables.js";
 
-const DxcHeading = ({ level = 1, theme = "light", text = "", weight = "", margin }) => {
+const DxcHeading = ({ level = 1, text = "", weight = "", margin }) => {
   return (
-    <HeadingContainer brightness={theme} margin={margin}>
+    <HeadingContainer margin={margin}>
       {level === 1 ? (
         <HeadingLevel1 weight={weight}>{text}</HeadingLevel1>
       ) : level === 2 ? (
@@ -34,7 +34,7 @@ const HeadingContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => (props.brightness === "light" ? "#000000DE" : "#FFFFFF")};
+  color: inherit;
 `;
 
 const HeadingLevel1 = styled.h1`
@@ -84,7 +84,6 @@ const HeadingLevel5 = styled.h5`
 
 DxcHeading.propTypes = {
   level: PropTypes.number,
-  theme: PropTypes.oneOf(["light", "dark", ""]),
   text: PropTypes.string,
   weight: PropTypes.oneOf(["light", "normal", "bold", ""]),
   margin: PropTypes.oneOfType([
