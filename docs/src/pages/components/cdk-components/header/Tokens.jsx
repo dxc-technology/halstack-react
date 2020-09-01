@@ -25,11 +25,11 @@ const headerTokensTable = () => {
         <td>Applies to the underlinedColor token.</td>
       </tr>
       <tr>
-        <td>textColor</td>
+        <td>fontColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>Applies to the textColor token.</td>
+        <td>Applies to the fontColor token.</td>
       </tr>
       <tr>
         <td>backgroundColorMenu</td>

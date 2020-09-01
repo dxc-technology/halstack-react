@@ -1,23 +1,6 @@
 import React, { useState } from "react";
 import { DxcTextarea, ThemeContext } from "@dxc-technology/halstack-react";
 
-const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
-};
-
 function App() {
   const [inputValue, changeInput] = useState("");
   const onChange = (newValue) => {
@@ -38,19 +21,6 @@ function App() {
       <div className="test-case" id="without-label">
         <h4>Without label</h4>
         <DxcTextarea value={inputValue} onChange={onChange} />
-      </div>
-
-      <div className="test-case" id="dark-theme">
-        <h4>Dark theme</h4>
-        <div style={{ background: "#000000" }}>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            onChange={onChange}
-            theme="dark"
-            assistiveText="assistive text"
-          />
-        </div>
       </div>
 
       <div className="test-case" id="assistive-text">
@@ -232,16 +202,6 @@ function App() {
             size="fillParent"
           />
         </div>
-      </div>
-      <div className="test-case" id="custom-colors">
-        <h4>Custom Textarea</h4>
-        <ThemeContext.Provider value={colors}>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            onChange={onChange}
-          />
-        </ThemeContext.Provider>
       </div>
     </div>
   );

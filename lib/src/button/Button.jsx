@@ -19,19 +19,12 @@ const DxcButton = ({
   margin,
   size,
 }) => {
-
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
-      <DxCButton
-        margin={margin}
-        mode={mode}
-        disabled={disabled}
-        iconPosition={iconPosition}
-        size={size}
-      >
+      <DxCButton margin={margin} mode={mode} disabled={disabled} iconPosition={iconPosition} size={size}>
         <Button
           disabled={disabled}
           disableRipple
@@ -110,15 +103,12 @@ const DxCButton = styled.div`
     min-height: 43px;
     line-height: 1;
     font-family: "Open Sans", sans-serif;
-    &:active {
-      opacity: 0.64;
-    }
     &:focus {
       outline: ${(props) => props.theme.focusColor} auto 1px;
     }
     transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out;
     transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out;
-    &:hover{
+    &:hover {
       transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out;
       transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out;
     }
@@ -132,9 +122,17 @@ const DxCButton = styled.div`
             background-color: ${props.theme.hoverColor};
             color: ${props.theme.primaryHoverFontColor}; 
           }
+          &:active {
+            background-color: ${props.theme.hoverColor}${props.theme.primaryActiveOpacity} !important;
+            color: ${props.theme.primaryHoverFontColor} !important;
+          }
+          &:focus {
+            background-color: ${props.theme.hoverColor};
+            color: ${props.theme.primaryHoverFontColor}; 
+          }
           &:disabled{ 
             background-color: ${props.theme.color};
-            opacity: ${props.theme.primaryDisabledOpacity};
+            opacity: ${props.theme.disabledOpacity};
             color: ${props.theme.primaryFontColor};
             cursor:not-allowed;
           }
@@ -144,42 +142,58 @@ const DxCButton = styled.div`
         `;
       } else if (mode === "secondary") {
         return `
-          background-color: ${props.theme.secondaryBackgroundColor};
-          padding: 10px 28px;
-          color: ${props.theme.secondaryFontColor};
-          border: 2px solid;
-          border-color: ${props.theme.color};
-          &:hover{
-            border-color: ${props.theme.hoverColor};
             background-color: ${props.theme.secondaryBackgroundColor};
-          }
-          &:disabled{ 
-            background-color: ${props.theme.secondaryBackgroundColor};
-            border-color: ${props.theme.color};
+            padding: 10px 28px;
             color: ${props.theme.secondaryFontColor};
-            cursor:not-allowed;
-            opacity: ${props.theme.secondaryDisabledOpacity};
-          }
-          .MuiButton-label {
-            z-index: 5
-          }
-          
-        `;
+            border: 2px solid;
+            border-color: ${props.theme.color};
+            &:hover{
+              border-color: ${props.theme.hoverColor};
+              background-color: ${props.theme.hoverColor}${props.theme.secondaryHoverOpacity};
+            }
+            &:active {
+              background-color: ${props.theme.hoverColor}${props.theme.secondaryActiveOpacity} !important;
+              color: ${props.theme.textFontColor} !important;
+            }
+            &:focus {
+              background-color: ${props.theme.secondaryBackgroundColor};
+              color: ${props.theme.textFontColor}; 
+            }
+            &:disabled{
+              background-color: ${props.theme.secondaryBackgroundColor};
+              border-color: ${props.theme.color};
+              color: ${props.theme.secondaryFontColor};
+              cursor:not-allowed;
+              opacity: ${props.theme.disabledOpacity};
+            }
+            .MuiButton-label {
+              z-index: 5
+            }
+
+          `;
       } else if (mode === "text") {
         return `
-          background-color: ${props.theme.textBackgroundColor};
-          color: ${props.theme.textFontColor};
-          &:hover{
-            background-color: ${props.theme.hoverColor};
-            color: ${props.theme.textHoverFontColor};
-          }
-          &:disabled{ 
             background-color: ${props.theme.textBackgroundColor};
-            opacity: ${props.theme.secondaryDisabledOpacity};
             color: ${props.theme.textFontColor};
-            cursor:not-allowed;
-          }
-        `;
+            &:hover{
+              background-color: ${props.theme.hoverColor};
+              color: ${props.theme.textHoverFontColor};
+            }
+            &:active {
+              background-color: ${props.theme.hoverColor}${props.theme.textActiveOpacity} !important;
+              color: ${props.theme.textHoverFontColor} !important;
+            }
+            &:focus {
+              background-color: ${props.theme.hoverColor};
+              color: ${props.theme.textHoverFontColor}; 
+            }
+            &:disabled{
+              background-color: ${props.theme.textBackgroundColor};
+              opacity: ${props.theme.disabledOpacity};
+              color: ${props.theme.textFontColor};
+              cursor:not-allowed;
+            }
+          `;
       }
     }}
   }

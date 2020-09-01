@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
 import closeIcon from "./close.svg";
 import errorIcon from "./error.svg";
 import infoIcon from "./info.svg";
@@ -10,6 +10,7 @@ import successIcon from "./success.svg";
 import warningIcon from "./warning.svg";
 import { getMargin } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
+import { getCustomTheme } from "../common/utils.js";
 
 const DxcAlert = ({
   type = "info",
@@ -20,14 +21,15 @@ const DxcAlert = ({
   margin,
   size = "fitContent",
 }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const customTheme = useContext(ThemeContext);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const getTypeText = () => {
     return type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.alert}>
       <AlertModal mode={mode}>
         {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
         <AlertContainer mode={mode} type={type} margin={margin} size={size}>
@@ -105,7 +107,8 @@ const AlertModal = styled.div`
 `;
 
 const OverlayContainer = styled.div`
-  background-color: ${(props) => (props.mode === "modal" ? `${props.theme.mediumBlack}` : `${props.theme.white}`)};
+  background-color: ${(props) =>
+    props.mode === "modal" ? `${props.theme.overlayColor}${props.theme.overlayOpacity}` : "transparent"};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
   bottom: ${(props) => (props.mode === "modal" ? "0" : "")};
@@ -139,10 +142,10 @@ const AlertContainer = styled.div`
   min-height: ${(props) =>
     (props.children && props.children.filter((child) => child === undefined).length === 0 && "92px") || "48px"};
   background-color: ${(props) =>
-    (props.type === "info" && props.theme.lightBlue) ||
-    (props.type === "confirm" && props.theme.lightGreen) ||
-    (props.type === "warning" && props.theme.lightYellow) ||
-    (props.type === "error" && props.theme.lightPink) ||
+    (props.type === "info" && props.theme.infoColor) ||
+    (props.type === "confirm" && props.theme.confirmColor) ||
+    (props.type === "warning" && props.theme.warningColor) ||
+    (props.type === "error" && props.theme.errorColor) ||
     props.theme.lightPink};
   z-index: 300;
   cursor: default;
@@ -181,6 +184,7 @@ const AlertInfoText = styled.div`
   padding-right: 12px;
   overflow: hidden;
   flex-grow: 1;
+  align-items: center;
 `;
 
 const AlertContent = styled.div`

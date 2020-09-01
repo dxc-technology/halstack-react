@@ -1,22 +1,9 @@
 import React, { useState } from "react";
-import { DxcAlert, DxcButton, ThemeContext } from "@dxc-technology/halstack-react";
-
-const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
-};
+import {
+  DxcAlert,
+  DxcButton,
+  ThemeContext,
+} from "@dxc-technology/halstack-react";
 
 function App() {
   const [isVisible, changeIsVisible] = useState(false);
@@ -41,7 +28,6 @@ function App() {
           <h5>Modal alert</h5>
           <div>
             <DxcButton
-              mode="basic"
               theme="light"
               label="Modal Alert"
               onClick={handleVisibility}
@@ -325,17 +311,6 @@ function App() {
         leo lobortis eget."
           />
         </div>
-      </div>
-      <div className="test-case" id="custom-colors">
-        <h5>Custom alert</h5>
-        <ThemeContext.Provider value={colors}>
-          <DxcAlert
-            margin="xxsmall"
-            type="info"
-            inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
-        leo lobortis eget."
-          />
-        </ThemeContext.Provider>
       </div>
     </div>
   );
