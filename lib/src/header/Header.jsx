@@ -98,7 +98,7 @@ const DxcHeader = ({
         {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer padding={padding}>
-              <HamburguerItem underlined={underlined} onClick={handleMenu}>
+              <HamburguerItem underlined={underlined} onClick={handleMenu} tabIndex="0">
                 <HamburguerIconStyled>
                   <HamburgerIcon fill={theme.header.hamburguerColor} />
                 </HamburguerIconStyled>
@@ -111,7 +111,7 @@ const DxcHeader = ({
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                   {getLogoRendered(true)}
                   <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
-                  <img onClick={handleMenu} src={CloseIcon} className="closeIcon" />
+                  <CloseContainer onClick={handleMenu} src={CloseIcon} className="closeIcon" tabIndex="0" />
                 </ResponsiveMenu>
                 <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
               </div>
@@ -130,7 +130,7 @@ const HeaderContainer = styled(AppBar)`
   &.MuiAppBar-colorPrimary {
     background-color: ${(props) => props.theme.backgroundColor};
 
-    color: ${(props) => props.theme.textColor};
+    color: ${(props) => props.theme.fontColor};
 
     border-bottom: ${(props) => `2px solid ${props.theme.underlinedColor}`};
 
@@ -194,7 +194,10 @@ const HamburguerItem = styled.div`
   width: 54px;
   cursor: pointer;
   :hover {
-    background-color: ${(props) => props.theme.hoverHamburguerColor};
+    background-color: ${(props) => `${props.theme.hamburguerColor}${props.theme.hoverHamburguerColor}`};
+  }
+  &:focus {
+    outline: ${(props) => props.theme.focusColor} auto 1px;
   }
 `;
 
@@ -258,6 +261,13 @@ const MenuContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+`;
+
+const CloseContainer = styled.img`
+  cursor: pointer;
+  :focus {
+    outline: ${(props) => props.theme.focusColor} auto 1px;
+  }
 `;
 
 const Overlay = styled.div`
