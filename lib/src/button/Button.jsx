@@ -123,7 +123,7 @@ const DxCButton = styled.div`
             color: ${props.theme.primaryHoverFontColor}; 
           }
           &:active {
-            background-color: ${props.theme.hoverColor}${props.theme.primaryActiveBackgroundOpacity} !important;
+            background-color: ${props.theme.hoverColor}${props.theme.primaryActiveOpacity} !important;
             color: ${props.theme.primaryHoverFontColor} !important;
           }
           &:focus {
@@ -149,10 +149,10 @@ const DxCButton = styled.div`
             border-color: ${props.theme.color};
             &:hover{
               border-color: ${props.theme.hoverColor};
-              background-color: ${props.theme.hoverColor}${props.theme.secondaryHoverBackgroundOpacity};
+              background-color: ${props.theme.hoverColor}${props.theme.secondaryHoverOpacity};
             }
             &:active {
-              background-color: ${props.theme.hoverColor}${props.theme.secondaryActiveBackgroundOpacity} !important;
+              background-color: ${props.theme.hoverColor}${props.theme.secondaryActiveOpacity} !important;
               color: ${props.theme.textFontColor} !important;
             }
             &:focus {
@@ -180,7 +180,7 @@ const DxCButton = styled.div`
               color: ${props.theme.textHoverFontColor};
             }
             &:active {
-              background-color: ${props.theme.hoverColor}${props.theme.textActiveBackgroundOpacity} !important;
+              background-color: ${props.theme.hoverColor}${props.theme.textActiveOpacity} !important;
               color: ${props.theme.textHoverFontColor} !important;
             }
             &:focus {
