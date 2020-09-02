@@ -61,32 +61,11 @@ const dropdownPropsTable = () => {
         <td>Text to be placed within the dropdown.</td>
       </tr>
       <tr>
-        <td>theme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available component themes.</td>
-      </tr>
-      <tr>
-        <td>mode: 'basic' | 'outlined'</td>
-        <td>
-          <code>'basic'</code>
-        </td>
-        <td>Uses one of the available component modes.</td>
-      </tr>
-      <tr>
         <td>caretHidden: boolean</td>
         <td>
           <code>false</code>
         </td>
         <td>Whether the arrow next to the label must be displayed or not.</td>
-      </tr>
-      <tr>
-        <td>disableRipple: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>If true, the ripple effect will be disabled.</td>
       </tr>
       <tr>
         <td>onSelectOption: function</td>
@@ -101,9 +80,7 @@ const dropdownPropsTable = () => {
         <td>
           <code>false</code>
         </td>
-        <td>
-          If true, the options are showed when the dropdown is hover.
-        </td>
+        <td>If true, the options are showed when the dropdown is hover.</td>
       </tr>
       <tr>
         <td>margin: string | object</td>

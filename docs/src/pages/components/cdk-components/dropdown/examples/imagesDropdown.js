@@ -1,7 +1,7 @@
 import { DxcDropdown } from "@dxc-technology/halstack-react";
-import fbLogo from "./images/facebook.svg";
-import twitterLogo from "./images/twitter.svg";
-import linkedinLogo from "./images/linkedin.svg";
+import fbLogo from "./images/facebook-black.svg";
+import twitterLogo from "./images/twitter-black.svg";
+import linkedinLogo from "./images/linkedin-black.svg";
 import { useState } from "react";
 
 const code = `() => {

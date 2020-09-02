@@ -21,7 +21,6 @@ const DxcDropdown = ({
   iconPosition = "before",
   label = "",
   caretHidden = false,
-  disableRipple = false,
   onSelectOption,
   margin,
   size = "fitContent",
@@ -64,9 +63,23 @@ const DxcDropdown = ({
 
   const handleCloseOver = expandOnHover ? handleClose : undefined;
 
+  const UpArrowIcon = ({ fill }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M7 14l5-5 5 5z" fill={fill} />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </svg>
+  );
+
+  const DownArrowIcon = ({ fill }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M7 10l5 5 5-5z" fill={fill} />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </svg>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
-      <DxCDropdownContainer margin={margin} size={size}>
+      <DxCDropdownContainer margin={margin} size={size} tabIndex="0">
         <div
           onMouseOver={expandOnHover ? handleClickListItem : undefined}
           onMouseOut={handleCloseOver}
@@ -88,7 +101,13 @@ const DxcDropdown = ({
                 {label}
               </DropdownTriggerLabel>
             </DropdownTriggerContainer>
-            <CaretIcon caretHidden={caretHidden} margin={margin} src={anchorEl === null ? caretDown : caretUp} />
+            <CaretIcon>
+              {anchorEl === null ? (
+                <DownArrowIcon caretHidden={caretHidden} margin={margin} fill={theme.dropdown.fontColor} />
+              ) : (
+                <UpArrowIcon caretHidden={caretHidden} margin={margin} fill={theme.dropdown.fontColor} />
+              )}
+            </CaretIcon>
           </DropdownTrigger>
           <DxcMenu
             anchorEl={anchorEl}
@@ -114,7 +133,7 @@ const DxcDropdown = ({
                         <MenuItem
                           key={option.value}
                           value={option.value}
-                          disableRipple={disableRipple}
+                          disableRipple={true}
                           onClick={(event) => handleMenuItemClick(option)}
                         >
                           {option.iconSrc && (
@@ -149,6 +168,7 @@ const calculateWidth = (margin, size) => {
   }
   return sizes[size];
 };
+
 const DxCDropdownContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   text-overflow: ellipsis;
@@ -163,6 +183,10 @@ const DxCDropdownContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: inline-block;
+
+  &:focus {
+    outline: ${(props) => props.theme.focusColor} auto 1px;
+  }
 `;
 
 const DxcMenu = styled(Popper)`
@@ -187,6 +211,8 @@ const DxcMenu = styled(Popper)`
     border-bottom-right-radius: 2px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    max-height: 230px;
+    overflow: auto;
     .MuiList-padding {
       padding-top: 0px;
       padding-bottom: 0px;
@@ -202,6 +228,20 @@ const DxcMenu = styled(Popper)`
     .MuiListItem-button:hover {
       background-color: ${(props) => props.theme.backgroundColor + props.theme.hoverBackgroundOption};
       color: ${(props) => props.theme.dropdownFontColor};
+    }
+
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: ${(props) => props.theme.scrollBarTrackColor};
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: ${(props) => props.theme.scrollBarThumbColor};
+      border-radius: 3px;
     }
   }
 `;
@@ -282,7 +322,7 @@ const ListIcon = styled.img`
   }};
 `;
 
-const CaretIcon = styled.img`
+const CaretIcon = styled.div`
   display: ${(props) => (props.caretHidden === true ? "none" : "block")};
   margin-left: 10px;
   margin-right: 10px;
@@ -304,7 +344,6 @@ DxcDropdown.propTypes = {
   iconPosition: PropTypes.oneOf(["after", "before", ""]),
   label: PropTypes.string,
   caretHidden: PropTypes.bool,
-  disableRipple: PropTypes.bool,
   expandOnHover: PropTypes.bool,
   onSelectOption: PropTypes.func,
   options: PropTypes.arrayOf(
