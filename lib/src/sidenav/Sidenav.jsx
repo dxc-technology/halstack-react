@@ -78,9 +78,7 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, dis
                   sidenavSize={sidenavSize}
                   arrowDistance={arrowDistance}
                 >
-                  <ArrowStyled>
-                    <ArrowIcon fill={theme.sidenav.arrowColor} isShown={isShown} />
-                  </ArrowStyled>
+                  <ArrowIcon isShown={isShown}></ArrowIcon>
                 </ArrowTrigger>
               )}
             </Sidenav>
@@ -132,6 +130,9 @@ const ArrowTrigger = styled.div`
   transform: ${(props) => (props.isShown ? "rotate(-180deg)" : "rotate(0deg)")};
   transition: transform 0.4s ease-in-out;
   cursor: pointer;
+  & > svg {
+    fill: ${(props) => props.theme.arrowColor};
+  }
 `;
 
 const ArrowStyled = styled.div`
