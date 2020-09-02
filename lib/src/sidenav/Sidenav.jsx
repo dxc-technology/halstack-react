@@ -46,13 +46,12 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, dis
     setIsShown(!isShown);
   };
 
-  const ArrowIcon = ({ fill }) => (
+  const ArrowIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="15.995" height="10.01" viewBox="0 0 15.995 10.01">
       <path
         data-testid="arrow-to-right"
         d="M17.71,11.29l-4-4a1,1,0,0,0-1.42,1.42L14.59,11H3a1,1,0,0,0,0,2H14.59l-2.3,2.29a1,1,0,1,0,1.42,1.42l4-4a1.034,1.034,0,0,0,0-1.42Z"
         transform="translate(-2 -6.996)"
-        fill={fill}
       />
     </svg>
   );
@@ -78,9 +77,7 @@ const DxcSidenav = ({ navContent, pageContent, padding, mode, arrowDistance, dis
                   sidenavSize={sidenavSize}
                   arrowDistance={arrowDistance}
                 >
-                  <ArrowStyled>
-                    <ArrowIcon fill={theme.sidenav.arrowColor} isShown={isShown} />
-                  </ArrowStyled>
+                  <ArrowIcon isShown={isShown}></ArrowIcon>
                 </ArrowTrigger>
               )}
             </Sidenav>
@@ -132,6 +129,9 @@ const ArrowTrigger = styled.div`
   transform: ${(props) => (props.isShown ? "rotate(-180deg)" : "rotate(0deg)")};
   transition: transform 0.4s ease-in-out;
   cursor: pointer;
+  & > svg {
+    fill: ${(props) => props.theme.arrowColor};
+  }
 `;
 
 const ArrowStyled = styled.div`

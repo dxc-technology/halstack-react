@@ -11,18 +11,13 @@ import DropdownPropsTable from "./api.jsx";
 import DropdownTokensTable from "./Tokens.jsx";
 
 import defaultDropdown from "././examples/default";
-import outlinedDropdown from "./examples/outlinedDropdown";
 import imagesDropdown from "./examples/imagesDropdown";
-import darkThemeDropdown from "./examples/darkThemeDropdown";
 import expandOnHoverDropdown from "./examples/expandOnHoverDropdown";
 
 function Dropdown() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Dropdown"
-        status="ready"
-      ></ComponentHeader>
+      <ComponentHeader title="Dropdown" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -34,7 +29,7 @@ function Dropdown() {
                 <DocTitle size={2}>Props</DocTitle>
                 <DropdownPropsTable />
               </Section>
-            )
+            ),
           },
           {
             tabLabel: "Theming",
@@ -43,7 +38,7 @@ function Dropdown() {
                 <DocTitle size={2}>Theming</DocTitle>
                 <DropdownTokensTable />
               </Section>
-            )
+            ),
           },
           {
             tabLabel: "Examples",
@@ -59,20 +54,12 @@ function Dropdown() {
                   example={expandOnHoverDropdown}
                 ></Example>
                 <Example
-                  title="Outlined Dropdown"
-                  example={outlinedDropdown}
-                ></Example>
-                <Example
                   title="Dropdown with icons"
                   example={imagesDropdown}
                 ></Example>
-                <Example
-                  title="Dark theme Dropdown"
-                  example={darkThemeDropdown}
-                ></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>

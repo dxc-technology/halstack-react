@@ -6,8 +6,9 @@ import twitterPath from "../images/twitter.svg";
 
 const colors = {
   dropdown: {
-    backgroundColor: "#666666"
-  }
+    backgroundColor: "#666666",
+    fontColor: "#FABADA",
+  },
 };
 
 function App() {
@@ -164,31 +165,6 @@ function App() {
             options={optionsWithoutIcon}
           ></DxcDropdown>
         </div>
-        <div className="test-case" id="mode-outlined">
-          <h4>Outlined dropdown and label sizes</h4>
-          <DxcDropdown
-            label="Outlined dropdown"
-            mode="outlined"
-            margin="small"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        <div className="test-case" id="mode-outlined-max-label-size-oneline">
-          <DxcDropdown
-            label="Maximum label size for"
-            mode="outlined"
-            margin="small"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
-        <div className="test-case" id="mode-outlined-min-label-size-multiline">
-          <DxcDropdown
-            label="Minimum label size for12"
-            mode="outlined"
-            margin="small"
-            options={optionsWithoutIcon}
-          ></DxcDropdown>
-        </div>
         <div className="test-case" id="with-caret">
           <DxcDropdown
             label="Dropdown with caret"
@@ -204,33 +180,6 @@ function App() {
             caretHidden={true}
           ></DxcDropdown>
         </div>
-        <div>
-          <h4>Dark Theme</h4>
-
-          <div
-            className="test-case"
-            id="basic-dark-theme"
-            style={{ backgroundColor: "black" }}
-          >
-            <DxcDropdown
-              label="Dark theme basic dropdown"
-              margin="small"
-              options={optionsWithoutIcon}
-            ></DxcDropdown>
-          </div>
-          <div
-            className="test-case"
-            id="outlined-dark-theme"
-            style={{ backgroundColor: "black" }}
-          >
-            <DxcDropdown
-              label="Dark theme basic dropdown"
-              margin="small"
-              mode="outlined"
-              options={optionsWithoutIcon}
-            ></DxcDropdown>
-          </div>
-        </div>
       </div>
       <div style={{ height: "200px", display: "flex", flexWrap: "wrap" }}>
         <DxcDropdown
@@ -244,45 +193,6 @@ function App() {
           onSelectOption={selectOption}
           label="Basic dropdown"
           margin="medium"
-        ></DxcDropdown>
-        <DxcDropdown
-          options={optionsWithoutIcon}
-          onSelectOption={selectOption}
-          label="Outlined dropdown"
-          mode={"outlined"}
-          margin="medium"
-        ></DxcDropdown>
-      </div>
-      <div
-        style={{
-          background: "black",
-          display: "flex",
-          height: "250px",
-          flexWrap: "wrap",
-        }}
-      >
-        <DxcDropdown
-          options={optionsWithoutIcon}
-          onSelectOption={selectOption}
-          label="Basic dropdown"
-          theme="dark"
-          margin="medium"
-        ></DxcDropdown>
-        <DxcDropdown
-          options={optionsWithIcon}
-          onSelectOption={selectOption}
-          label="Basic dropdown"
-          theme="dark"
-          margin="medium"
-        ></DxcDropdown>
-        <DxcDropdown
-          options={optionsWithoutIcon}
-          onSelectOption={selectOption}
-          label="Outlined dropdown"
-          mode={"outlined"}
-          theme="dark"
-          margin="medium"
-          size="large"
         ></DxcDropdown>
       </div>
       <div>
