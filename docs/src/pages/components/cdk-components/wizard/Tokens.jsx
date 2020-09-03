@@ -20,12 +20,12 @@ const wizardTokensTable = () => {
         </td>
       </tr>
       <tr>
-        <td>selectedBackgroundFont</td>
+        <td>selectedFont</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
         <td>
-          Applies to selectedBackgroundFont.
+          Applies to selectedFont.
         </td>
       </tr>
     </DxcTable>
