@@ -12,16 +12,12 @@ import defaultSelect from "./examples/default";
 import controlled from "./examples/controlledSelect";
 import multipleSelect from "./examples/multipleSelect";
 import withIcons from "./examples/withIcons";
-import darkThemed from "./examples/darkThemed";
 import sized from "./examples/sizedSelect";
 
 function Input() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Select"
-        status="ready"
-      ></ComponentHeader>
+      <ComponentHeader title="Select" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -33,7 +29,7 @@ function Input() {
                 <DocTitle size={2}>Props</DocTitle>
                 <InputPropsTable />
               </Section>
-            )
+            ),
           },
           {
             tabLabel: "Theming",
@@ -42,7 +38,7 @@ function Input() {
                 <DocTitle size={2}>Theming</DocTitle>
                 <SelectTokensTable />
               </Section>
-            )
+            ),
           },
           {
             tabLabel: "Examples",
@@ -65,17 +61,10 @@ function Input() {
                   title="Select with Icons"
                   example={withIcons}
                 ></Example>
-                <Example
-                  title="Dark theme Select"
-                  example={darkThemed}
-                ></Example>
-                <Example
-                  title="Sized Select"
-                  example={sized}
-                ></Example>
+                <Example title="Sized Select" example={sized}></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>
