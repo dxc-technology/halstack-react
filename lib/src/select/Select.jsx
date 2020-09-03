@@ -23,12 +23,12 @@ const useStyles = makeStyles((theme) => ({
     width: props.width,
     maxHeight: "250px",
     "&::-webkit-scrollbar": {
-      width: "2px",
-      margin: "5px"
+      width: "3px",
+      margin: "5px",
     },
     "&::-webkit-scrollbar-track": {
       borderRadius: "3px",
-      backgroundColor: props.scrollBarTrackColor
+      backgroundColor: props.scrollBarTrackColor,
     },
     "&::-webkit-scrollbar-thumb": {
       borderRadius: "3px",
@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
     },
     "& .MuiList-root": {
       width: "auto !important",
-      paddingRight: "0 !important"
-    }
+      paddingRight: "0 !important",
+    },
   }),
   itemList: (props) => ({
     color: props.color,
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
         color: props.color,
       },
       "&:active": {
-        backgroundColor: props.selectedOptionBackgroundColor,
+        backgroundColor: props.selectedOptionBackgroundColor + props.hoverOptionBackgroundColor,
         color: props.color,
       },
       "&.MuiListItem-root.Mui-selected": {
@@ -162,6 +162,7 @@ const DxcSelect = ({
             {label}
           </InputLabel>
           <Select
+            tabIndex="0"
             name={name}
             multiple={multiple}
             renderValue={getRenderValue}
@@ -210,15 +211,18 @@ const calculateWidth = (margin, size) => {
   }
   return sizes[size];
 };
+
 const MultipleLabelSelected = styled.div`
   width: calc(100% - 24px);
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
 const LabelCont = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
 const SelectedIconContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.iconPosition === "before" && "row") || "row-reverse"};
@@ -237,6 +241,7 @@ const SelectedIconContainer = styled.div`
     ${(props) => props.iconPosition === "before" && (props.label !== "" || props.label === undefined) && "content:','"};
   }
 `;
+
 const SelectedLabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
   margin-left: ${(props) => ((props.iconPosition === "after" || !props.iconSrc) && "0px") || "10px"};
@@ -244,6 +249,7 @@ const SelectedLabelContainer = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
 const OptionContainer = styled.div`
   font-family: "Open Sans", sans-serif;
   display: flex;
@@ -284,22 +290,18 @@ const SelectContainer = styled.div`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-      &::before {
-        content:'${(props) => (props.required && "*") || ""}';
-        color: ${(props) => (props.theme.select.error)};
-        font-size: 18px; 
-      }
-      &.Mui-disabled{
-        opacity:0.5;
-        color: ${(props) => props.theme.select.color};
-      }
-      &.Mui-focused{
-        font-size: 16px;
-        color: ${(props) => props.theme.select.color};
-      }
+
+    &.Mui-disabled {
+      color: ${(props) => props.theme.select.color};
+      opacity: ${(props) => props.theme.select.disabled};
+    }
+    &.Mui-focused {
+      font-size: 16px;
+      color: ${(props) => props.theme.select.color};
+    }
   }
   .MuiSelect-select {
-    width:100%;
+    width: 100%;
     height: 20px;
     display: flex;
     padding-right: unset;
@@ -316,21 +318,25 @@ const SelectContainer = styled.div`
     }
     &.Mui-disabled {
       color: ${(props) => props.theme.select.color};
-        opacity:0.5;
-        cursor: not-allowed;
+      cursor: not-allowed;
     }
   }
   .MuiInputBase-root {
     width: 100%;
+    &:focus {
+      outline: ${(props) => props.theme.select.focusColor} auto 1px;
+    }
     &.Mui-disabled {
-        opacity:0.5;
-        cursor: not-allowed;
+      opacity: ${(props) => props.theme.select.disabled};
+      cursor: not-allowed;
+      &:focus {
+        outline: none;
+      }
     }
   }
-  .MuiInput-underline{
-    &.Mui-disabled:before{
+  .MuiInput-underline {
+    &.Mui-disabled:before {
       border-bottom-style: solid;
-      opacity: 0.5;
     }
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
@@ -348,7 +354,7 @@ const SelectContainer = styled.div`
   .MuiSelect-icon {
     color: ${(props) => props.theme.select.color};
   }
-  & label{
+  & label {
     text-overflow: ellipsis;
     overflow: hidden;
     width: calc(100% - 24px);
