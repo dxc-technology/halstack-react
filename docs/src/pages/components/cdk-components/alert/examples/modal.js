@@ -11,7 +11,6 @@ const code = `() => {
     <div>
       <div>
         <DxcButton
-          mode="basic"
           theme="light"
           label="Overlay Alert"
           onClick={handleVisibility}
@@ -34,7 +33,7 @@ const code = `() => {
 const scope = {
   DxcAlert,
   DxcButton,
-  useState
+  useState,
 };
 
 export default { code, scope };

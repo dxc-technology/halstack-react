@@ -96,7 +96,6 @@ const DxCButton = styled.div`
     box-shadow: none;
     font-size: 14px;
     font-weight: 500;
-    padding: ${(props) => (props.size === "small" && "11px") || "12px 30px"};
     min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
     border-radius: 4px;
     width: 100%;
@@ -118,6 +117,7 @@ const DxCButton = styled.div`
         return `
           background-color: ${props.theme.color};
           color: ${props.theme.primaryFontColor};
+          padding: ${(props.size === "small" && "11px") || "12px 30px"};
           &:hover{
             background-color: ${props.theme.hoverColor};
             color: ${props.theme.primaryHoverFontColor}; 
@@ -143,7 +143,7 @@ const DxCButton = styled.div`
       } else if (mode === "secondary") {
         return `
             background-color: ${props.theme.secondaryBackgroundColor};
-            padding: 10px 28px;
+            padding: ${(props.size === "small" && "9px") || "10px 28px"};
             color: ${props.theme.secondaryFontColor};
             border: 2px solid;
             border-color: ${props.theme.color};
@@ -175,6 +175,7 @@ const DxCButton = styled.div`
         return `
             background-color: ${props.theme.textBackgroundColor};
             color: ${props.theme.textFontColor};
+            padding: ${(props.size === "small" && "11px") || "12px 30px"};
             &:hover{
               background-color: ${props.theme.hoverColor};
               color: ${props.theme.textHoverFontColor};
