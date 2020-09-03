@@ -58,8 +58,8 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                   )}
                 </StepHeader>
                 {step.label || step.description ? (
-                  <InfoContainer active={i <= innerCurrent}>
-                    {step.label ? <Label>{step.label}</Label> : ""}
+                  <InfoContainer active={i <= innerCurrent} disable={step.disabled}>
+                    {step.label ? <Label disable={step.disabled}>{step.label}</Label> : ""}
                     {step.description ? <Description>{step.description}</Description> : ""}
                   </InfoContainer>
                 ) : (
@@ -93,12 +93,11 @@ const StepsContainer = styled.div`
 `;
 
 const StepContainer = styled.div`
-    display: inline-flex;
-    ${(props) => (props.mode === "vertical" ? "" : "align-items: center;")}
-    flex-grow: ${(props) => (props.lastStep ? "0" : "1")};
-    flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
-    ${(props) => (props.mode === "vertical" ? "width: 100%;" : "")}
-    
+  display: inline-flex;
+  ${(props) => (props.mode === "vertical" ? "" : "align-items: center;")}
+  flex-grow: ${(props) => (props.lastStep ? "0" : "1")};
+  flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
+  ${(props) => (props.mode === "vertical" ? "width: 100%;" : "")}
 `;
 
 const Step = styled.button`
@@ -141,7 +140,7 @@ const StepHeader = styled.div`
 const IconContainer = styled.div`
   width: ${(props) => (!props.current && !props.disabled ? "32px" : "36px")};
   height: ${(props) => (!props.current && !props.disabled ? "32px" : "36px")};
-
+  color: "red";
   ${(props) => (!props.current && !props.disabled ? `border: 2px solid ${props.theme.wizard.borderColor};` : "")}
 
   ${(props) =>
@@ -154,10 +153,12 @@ const IconContainer = styled.div`
 
   ${(props) => (props.current ? `background: ${props.theme.wizard.selectedBackgroundColor};` : "")}
 
-  ${(props) =>
+  ${(
+    props
+  ) =>
     props.current
       ? `p {
-    color: ${props.theme.wizard.selectedBackgroundFont} !important;
+    color: ${props.theme.wizard.selectedFont} !important;
   }`
       : ""}
 
@@ -191,8 +192,8 @@ const ValidityIcon = styled.img`
 
 const InfoContainer = styled.div`
   margin-left: 10px;
-  color: ${(props) =>
-    props.active ? props.theme.wizard.fontColor : props.theme.wizard.disabledFont};
+  color: ${(props) => props.theme.wizard.fontColor};
+  ${(props) => ((!props.active && !props.disable) ? `opacity: ${props.theme.wizard.notVisitedOpacity}` : "")}
 `;
 
 const Label = styled.p`
@@ -201,6 +202,7 @@ const Label = styled.p`
   letter-spacing: 0.77px;
   color: inherit;
   margin: 0;
+  ${(props) => (props.disable ? `opacity: ${props.theme.wizard.disabled}` : "")}
 `;
 
 const Description = styled.p`
