@@ -86,10 +86,6 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [page, sortColumnIndex, sortOrder, rows]
   );
-  console.log('JAIRO!!');
-  console.log(minItemsPerPageIndex);
-  console.log(maxItemsPerPageIndex +);
-
   return (
     <ThemeProvider theme={colorsTheme}>
       <DxcResultsetTableContainer margin={margin}>
