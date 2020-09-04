@@ -203,6 +203,9 @@ const SliderContainer = styled.div`
       transform: scale(1.25);
       transform-origin: center;
     }
+    &:focus {
+      outline: ${(props) => props.theme.focusColor} auto 1px;
+    }
   }
   .MuiSlider-track {
     background-color: ${(props) => props.theme.color};

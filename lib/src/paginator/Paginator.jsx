@@ -46,8 +46,8 @@ const DxcPaginator = ({
           {firstFunction && (
             <DxcButton
               size="small"
+              mode="secondary"
               disabled={currentPageInternal === 1 || currentPageInternal === 0}
-              mode="flat"
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={first}
               onClick={() => {
@@ -60,7 +60,7 @@ const DxcPaginator = ({
           {prevFunction && (
             <DxcButton
               size="small"
-              mode="flat"
+              mode="secondary"
               disabled={currentPageInternal === 1 || currentPageInternal === 0}
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={previous}
@@ -77,7 +77,7 @@ const DxcPaginator = ({
           {nextFunction && (
             <DxcButton
               size="small"
-              mode="flat"
+              mode="secondary"
               disabled={currentPageInternal === totalPages}
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={next}
@@ -91,7 +91,7 @@ const DxcPaginator = ({
           {lastFunction && (
             <DxcButton
               size="small"
-              mode="flat"
+              mode="secondary"
               disabled={currentPageInternal === totalPages}
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={last}
@@ -111,7 +111,7 @@ const DxcPaginatorContainer = styled.div`
   display: flex;
   height: 64px;
   background-color: ${(props) => props.theme.paginatorBackgroundColor};
-  color:  ${(props) => props.theme.paginatorFontColor};
+  color: ${(props) => props.theme.paginatorFontColor};
   button {
     &:disabled {
       background-color: transparent !important;
