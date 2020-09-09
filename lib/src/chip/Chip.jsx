@@ -6,17 +6,9 @@ import ThemeContext from "../ThemeContext.js";
 import "../common/OpenSans.css";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 
-const DxcChip = ({
-  label,
-  suffixIconSrc,
-  onClickSuffix,
-  prefixIconSrc,
-  onClickPrefix,
-  disabled,
-  margin,
-}) => {
+const DxcChip = ({ label, suffixIconSrc, onClickSuffix, prefixIconSrc, onClickPrefix, disabled, margin }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   return (
     <ThemeProvider theme={colorsTheme.chip}>
@@ -48,22 +40,20 @@ const DxcChip = ({
 };
 
 const StyledDxcChip = styled.div`
-  height: 22px;
   display: inline-flex;
   align-items: center;
   border-radius: 50px;
   margin: 2px;
   max-width: ${({ margin }) => `calc(100% - 40px - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`};
-
-  ${(props) => (props.theme.outlinedColor !== "" ?
-  `border: 1px solid ${props.theme.outlinedColor}` : ``)};
+  background: ${(props) => props.theme.backgroundcolor};
+  ${(props) => (props.theme.outlinedColor !== "" ? `border: 2px solid ${props.theme.outlinedColor}` : ``)};
+  height: ${(props) => (props.theme.outlinedColor !== "" ? "18px" : "22px")};
 
   padding: 10px 20px;
   cursor: ${({ disabled }) => disabled && "not-allowed"};
   opacity: ${(props) => (props.disabled && props.theme.disabled) || "initial"};
-  background: ${(props) => props.theme.backgroundColor};
 
-margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
@@ -86,11 +76,11 @@ const ChipTextContainer = styled.span`
 `;
 const SuffixIconContainer = styled.img`
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
-  padding-left: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
+  margin-left: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
 `;
 const PrefixIconContainer = styled.img`
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
-  padding-right: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
+  margin-right: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
 `;
 DxcChip.propTypes = {
   label: PropTypes.string,
