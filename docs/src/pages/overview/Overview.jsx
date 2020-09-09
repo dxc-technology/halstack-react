@@ -92,10 +92,10 @@ function CustomThemes() {
       </p>
 
       <p>
-        You will need to create an object with your colors preferences. Please
-        note that the keys of those colors should be the same as in the
-        following code. You will also need to import ThemeContext, and use it to
-        wrap the component and pass your colors object as the value property.
+        You will need to create an object with your colors preferences. The
+        variables are documented in each component's documentation. You will
+        also need to import ThemeContext, and use it to wrap the component and
+        pass your colors object as the value property.
       </p>
 
       <p>This is an example that includes the necessary code:</p>
@@ -105,22 +105,33 @@ function CustomThemes() {
   import { DxcButton, ThemeContext } from "@dxc-technology/halstack-react";
 
   const colors = {
-    black: "#171515",
-    lightBlack: "#302C2C",
-    mediumBlack: "#1A1818",
-    white: "#F3E3E3",
-    darkWhite: "#E0D5D5",
-    darkGrey: "#4F4F4A",
-    mediumGrey: "#84847A",
-    lightGrey: "#AEAEA3",
-    lighterGrey: "#D0D0C2",
-    darkRed: "#DA2918",
-    lightRed: "#B64439",
-    lightBlue: "#5BD5E6",
-    yellow: "#F1F110",
-    lightYellow: "#F5F57A",
-    lightPink: "#F57AB0",
-    lightGreen: "#66E250",
+    button: {
+      color: "#FFED00",
+      hoverColor:"#000000",
+
+      primaryFontColor: "#000000",
+      primaryHoverFontColor: "#FFED00",
+
+      secondaryFontColor: "#000000",
+      secondaryHoverFontColor: "#000000",
+
+      textFontColor: "#000000",
+      textHoverFontColor: "#FFFFFF"
+    },
+    checkbox:{
+      color: "#FFED00",
+      checkColor: "#000000",
+      fontColor: "#000000"
+    },
+    radio:{
+      color: "#000000"
+    },
+    select:{
+      selectedOptionBackgroundColor: "#D9D9D9"
+    },
+    slider:{
+      "color": "#000000"
+    }
   };
 
   const MyComponent = () => {
