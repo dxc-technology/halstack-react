@@ -11,18 +11,18 @@ const headerTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>trackLine</td>
+        <td>trackCircleColor</td>
         <td>
           <SampleComponent color="#FFED00"></SampleComponent>
         </td>
-        <td>Applies to the trackLine token.</td>
+        <td>Applies to the trackCircleColor token.</td>
       </tr>
       <tr>
-        <td>totalCircle</td>
+        <td>totalCircleColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>Applies to the totalCircle token.</td>
+        <td>Applies to the totalCircleColor token.</td>
       </tr>
     </DxcTable>
   );

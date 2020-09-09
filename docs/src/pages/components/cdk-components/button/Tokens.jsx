@@ -34,42 +34,42 @@ const buttonTokensTable = () => {
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to primaryTextColor.</td>
+        <td>Applies to primaryFontColor.</td>
       </tr>
       <tr>
         <td>primaryHoverFontColor</td>
         <td>
           <SampleComponent color="#FFED00"></SampleComponent>
         </td>
-        <td>Applies to hoverTextColor for the primary mode.</td>
+        <td>Applies to hoverFontColor for the primary mode.</td>
       </tr>
       <tr>
         <td>secondaryFontColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to secondaryTextColor.</td>
+        <td>Applies to secondaryFontColor.</td>
       </tr>
       <tr>
         <td>secondaryHoverFontColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to hoverTextColor for the secondary mode.</td>
+        <td>Applies to hoverFontColor for the secondary mode.</td>
       </tr>
       <tr>
         <td>textFontColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to textTextColor.</td>
+        <td>Applies to textFontColor.</td>
       </tr>
       <tr>
         <td>textHoverFontColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>Applies to textHoverTextColor.</td>
+        <td>Applies to textHoverFontColor.</td>
       </tr>
     </DxcTable>
   );

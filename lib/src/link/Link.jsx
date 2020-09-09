@@ -61,7 +61,7 @@ const LinkText = styled.a`
       border-bottom: 1px solid ${props.theme.disabledUnderlinedBackgroundColor}`
       : `text-decoration: none`};
 
-  color: ${(props) => (!props.disabled ? props.theme.textColor : props.theme.disabledColor)};
+  color: ${(props) => (!props.disabled ? props.theme.fontColor : props.theme.disabledColor)};
   ${(props) => (!props.underlined ? "text-decoration-color: transparent;" : "")}
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
   
@@ -75,7 +75,7 @@ const LinkText = styled.a`
   padding-bottom: 2px;
 
   &:hover {
-    color: ${(props) => props.theme.hoverTextColor} !important;
+    color: ${(props) => props.theme.hoverFontColor} !important;
     text-decoration: none;
     padding-bottom: 1px !important;
     border-bottom: 1px solid;
@@ -87,7 +87,7 @@ const LinkText = styled.a`
     ${(props) =>
       props.underlined
         ? !props.disabled
-          ? `color: ${props.theme.visitedtextColor} !important; border-bottom: 1px solid ${props.theme.visitedUnderlinedBackgroundColor}`
+          ? `color: ${props.theme.visitedFontColor} !important; border-bottom: 1px solid ${props.theme.visitedUnderlinedBackgroundColor}`
           : ""
         : ""}
   }
