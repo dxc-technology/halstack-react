@@ -103,7 +103,7 @@ const DxcDate = ({
       MuiPickersToolbar: {
         toolbar: {
           backgroundColor: colorsTheme.date.pickerBackgroundColor,
-          color: colorsTheme.date.pickerTextColor,
+          color: colorsTheme.date.pickerFontColor,
         },
       },
       MuiIconButton: {
@@ -136,16 +136,16 @@ const DxcDate = ({
       },
       MuiPickersToolbarText: {
         toolbarTxt: {
-          color: colorsTheme.date.pickerTextColor,
+          color: colorsTheme.date.pickerFontColor,
         },
         toolbarBtnSelected: {
-          color: colorsTheme.date.pickerTextColor,
+          color: colorsTheme.date.pickerFontColor,
         },
       },
       MuiPickersCalendarHeader: {
         switchHeader: {
           backgroundColor: colorsTheme.white,
-          color: colorsTheme.date.pickerTextColor,
+          color: colorsTheme.date.pickerFontColor,
         },
       },
       MuiPickersCalendar: {
@@ -156,14 +156,14 @@ const DxcDate = ({
       MuiPickersDay: {
         current: {
           border: colorsTheme.date.pickerActualDate + " 2px solid",
-          color: colorsTheme.date.pickerTextColor,
+          color: colorsTheme.date.pickerFontColor,
         },
         day: {
-          color: colorsTheme.date.pickerTextColor,
+          color: colorsTheme.date.pickerFontColor,
           "&:hover": {
             backgroundColor:
               colorsTheme.date.pickerSelectedDateBackgroundColor + colorsTheme.date.pickerHoverDateBackgroundColor,
-            color: colorsTheme.date.pickerHoverDateTextColor,
+            color: colorsTheme.date.pickerHoverDateFontColor,
           },
         },
         daySelected: {
@@ -186,7 +186,7 @@ const DxcDate = ({
         },
         root: {
           "&:focus": {
-            color: colorsTheme.date.pickerHoverDateTextColor,
+            color: colorsTheme.date.pickerHoverDateFontColor,
             backgroundColor:
               colorsTheme.date.pickerSelectedDateBackgroundColor + colorsTheme.date.pickerHoverDateBackgroundColor,
           },
