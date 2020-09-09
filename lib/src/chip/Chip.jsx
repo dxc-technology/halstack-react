@@ -45,7 +45,7 @@ const StyledDxcChip = styled.div`
   border-radius: 50px;
   margin: 2px;
   max-width: ${({ margin }) => `calc(100% - 40px - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`};
-  background: ${(props) => props.theme.backgroundcolor};
+  background-color: ${(props) => props.theme.backgroundColor};
   ${(props) => (props.theme.outlinedColor !== "" ? `border: 2px solid ${props.theme.outlinedColor}` : ``)};
   height: ${(props) => (props.theme.outlinedColor !== "" ? "18px" : "22px")};
 

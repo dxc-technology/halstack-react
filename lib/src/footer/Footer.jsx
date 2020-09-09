@@ -6,7 +6,7 @@ import defaultIcon from "./dxc_logo_wht.png";
 import "../common/OpenSans.css";
 import { spaces, responsiveSizes, theme, defaultTheme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
-import { getCustomTheme } from "../common/utils.js"
+import { getCustomTheme } from "../common/utils.js";
 
 const DxcFooter = ({
   socialLinks = [],
@@ -22,7 +22,7 @@ const DxcFooter = ({
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
   const [isResponsivePhone, setIsResponsivePhone] = useState(false);
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const handleResize = (refWidth) => {
     if (ref.current) {
@@ -95,14 +95,13 @@ const DxcFooter = ({
   );
 };
 
-const FooterContainer = styled.div`
-  & {
-    padding: ${(props) =>
-      props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px"};
-    font-family: "Open Sans", sans-serif;
-    background-color: ${(props) => props.theme.backgroundColor};
-    margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  }
+const FooterContainer = styled.footer`
+  padding: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px")};
+  font-family: "Open Sans", sans-serif;
+  background-color: ${(props) => props.theme.backgroundColor};
+  margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 const FooterHeader = styled.div`

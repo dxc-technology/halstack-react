@@ -11,22 +11,16 @@ const chipTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>backgroundcolor</td>
+        <td>backgroundColor</td>
         <td>
           <SampleComponent color="#EEEEEE"></SampleComponent>
         </td>
-        <td>
-          Applies to the outlinedColor.
-        </td>
+        <td>Applies to the backgroundColor.</td>
       </tr>
       <tr>
         <td>outlinedColor</td>
-        <td>
-          
-        </td>
-        <td>
-          Applies to outlinedColor.
-        </td>
+        <td></td>
+        <td>Applies to outlinedColor.</td>
       </tr>
       <tr>
         <td>fontColor</td>

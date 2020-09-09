@@ -11,9 +11,9 @@ import twitterIcon from "../images/twitter-black.svg";
 
 const colors = {
   tabs: {
-    selectedBackgroundColor: "#FABADA",
-    selectedUnderlinedColor: "green",
-    selectedColor: "blue",
+    selectedBackgroundColor: "#1CEE6E",
+    selectedUnderlinedColor: "#66E250",
+    selectedColor: "#6427E7",
   },
 };
 
