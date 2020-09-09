@@ -77,10 +77,14 @@ const ChipTextContainer = styled.span`
 const SuffixIconContainer = styled.img`
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
   margin-left: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
+  max-width: 24px;
+  max-height: 24px;
 `;
 const PrefixIconContainer = styled.img`
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
   margin-right: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
+  max-width: 24px;
+  max-height: 24px;
 `;
 DxcChip.propTypes = {
   label: PropTypes.string,
