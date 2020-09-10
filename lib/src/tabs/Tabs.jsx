@@ -84,9 +84,10 @@ const DxCTabs = styled.div`
       font-size: 14px;
       /* height: 64px cuando vengan con icono y texto */
       min-width: 180px;
-      color: ${(props) => props.theme.textColor};
+      color: ${(props) => props.theme.fontColor};
       &:not(.Mui-selected) {
         background-color: ${(props) => `${props.theme.selectedBackgroundColor}${props.theme.backgroundColor}`};
+        color: ${(props) => `${props.theme.fontColor}${props.theme.notSelectedOpacity}`};
       }
       &.Mui-selected {
         background-color: ${(props) => props.theme.selectedBackgroundColor};
@@ -99,6 +100,7 @@ const DxCTabs = styled.div`
       }
       &:focus {
         outline: ${(props) => props.theme.focusColor} auto 1px;
+        margin: 1px;
       }
     }
 

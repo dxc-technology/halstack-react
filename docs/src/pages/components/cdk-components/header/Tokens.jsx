@@ -39,11 +39,11 @@ const headerTokensTable = () => {
         <td>Applies to the backgroundColorMenu token.</td>
       </tr>
       <tr>
-        <td>textColorMenu</td>
+        <td>fontColorMenu</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to the textColorMenu token.</td>
+        <td>Applies to the fontColorMenu token.</td>
       </tr>
       <tr>
         <td>hamburguerColor</td>

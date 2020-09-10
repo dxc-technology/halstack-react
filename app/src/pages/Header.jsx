@@ -14,9 +14,9 @@ const colors = {
   header: {
     backgroundColor: "pink",
     underlinedColor: "blue",
-    textColor: "green",
+    fontColor: "green",
     backgroundColorMenu: "beige",
-    textColorMenu: "red",
+    fontColorMenu: "red",
     hamburguerColor: "violet",
   },
 };

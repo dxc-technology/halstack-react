@@ -167,6 +167,7 @@ const AlertType = styled.div`
 
 const AlertText = styled.div`
   padding-left: 10px;
+  padding-right: 10px;
   flex-grow: 1;
   white-space: nowrap;
   overflow: hidden;
@@ -201,6 +202,7 @@ const CloseAlertIcon = styled.button`
   border: none;
   height: 20px;
   width: 20px;
+  display: inline-flex;
 `;
 
 const CloseImg = styled.img``;

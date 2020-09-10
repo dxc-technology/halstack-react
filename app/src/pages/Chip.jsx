@@ -3,6 +3,12 @@ import { DxcChip, ThemeContext } from "@dxc-technology/halstack-react";
 import deleteIcon from "../images/delete-24px.svg";
 import avatar from "../images/avatar.svg";
 
+const colors = {
+  chip: {
+    outlinedColor: "#FABADA"
+  },
+};
+
 function App() {
   const [isExpanded, changeIsExpanded] = useState(true);
   const onClickSuffix = (chip) => {
@@ -92,6 +98,13 @@ function App() {
         <div className="test-case" id="xxlarge-margin">
           <DxcChip label="xxLarge margin" margin="xxlarge" />
         </div>
+      </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Chip</h4>
+        <ThemeContext.Provider value={colors}>
+        <DxcChip label="Chip with borders" margin="xxlarge" />
+        </ThemeContext.Provider> 
+
       </div>
     </div>
   );

@@ -42,7 +42,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
   const [sortOrder, changeSortOrder] = useState("asc");
 
-  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [page]); //Merece la pena sacar a una función para usar useMemo?
+  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [page]);
   const maxItemsPerPageIndex = useMemo(() => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page), [
     page,
   ]);

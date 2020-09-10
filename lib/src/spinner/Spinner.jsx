@@ -72,7 +72,7 @@ const DXCSpinner = styled.div`
   font-family: "Open Sans", sans-serif;
   border-radius: 80px;
   border: ${(props) =>
-    (props.mode === "small" && `6px solid${props.theme.totalCircle}`) || `8.5px solid ${props.theme.totalCircle}`};
+    (props.mode === "small" && `6px solid${props.theme.totalCircleColor}`) || `8.5px solid ${props.theme.totalCircleColor}`};
   width: ${(props) => (props.mode === "small" && "30px") || "120px"};
   height: ${(props) => (props.mode === "small" && "30px") || "120px"};
   z-index: ${(props) => (props.mode === "overlay" ? "100" : "")};
@@ -88,7 +88,7 @@ const DXCSpinner = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   .MuiCircularProgress-colorPrimary {
-    color: ${(props) => props.theme.trackLine};
+    color: ${(props) => props.theme.trackCircleColor};
     width: ${(props) => (props.mode === "small" && "44px !important") || "140px !important"};
     height: ${(props) => (props.mode === "small" && "44px !important") || "140px !important"};
     margin-top: ${(props) =>

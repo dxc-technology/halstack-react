@@ -227,7 +227,7 @@ const ResponsiveMenu = styled.div`
   top: 0;
   right: 0;
   z-index: 2000;
-  color: ${(props) => props.theme.textColorMenu};
+  color: ${(props) => props.theme.fontColorMenu};
   width: ${(props) =>
     props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge ? "60vw" : "100vw"};
   height: ${window.innerHeight}px;
