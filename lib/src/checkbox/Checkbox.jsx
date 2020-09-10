@@ -174,8 +174,8 @@ const CheckboxBlackBack = styled.span`
   width: 17px;
   height: 17px;
   position: absolute;
-  left: ${(props) => (props.labelPosition === "before" ? "unset" : "6px")};
-  right: ${(props) => (props.labelPosition === "before" ? "6px" : "unset")};
+  left: ${(props) => (props.labelPosition === "before" ? "unset" : "5px")};
+  right: ${(props) => (props.labelPosition === "before" ? "5px" : "unset")};
   z-index: 0;
   opacity: ${(props) => (props.disabled ? props.theme.disabled : "1")};
   padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
