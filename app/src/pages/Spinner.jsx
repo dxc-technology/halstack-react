@@ -3,8 +3,8 @@ import { DxcSpinner, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
   spinner: {
-    trackLine: "pink",
-    totalCircle: "#FABADA",
+    trackCircleColor: "black",
+    totalCircleColor: "#FABADA",
   },
 };
 
