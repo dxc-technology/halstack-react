@@ -13,7 +13,7 @@ const colors = {
   tabs: {
     selectedBackgroundColor: "#1CEE6E",
     selectedUnderlinedColor: "#66E250",
-    selectedColor: "#6427E7",
+    selectedFontColor: "#6427E7",
   },
 };
 
