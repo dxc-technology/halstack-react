@@ -146,22 +146,26 @@ const CheckboxContainer = styled.span`
       }
     }
     z-index: 1;
-    padding: 10px 10px;
-    margin: 0px 2px;
-    color: ${(props) => props.theme.color}};
-    &.Mui-checked {
-      color: ${(props) => props.theme.color};
-      &:hover {
-        background-color: transparent;
-      }
+    padding: 10px;
+    padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
+    padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
+    margin: 2px;
+    margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
+    margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
+    color: ${(props) => props.theme.color};
+  }
+  &.Mui-checked {
+    color: ${(props) => props.theme.color};
+    &:hover {
+      background-color: transparent;
     }
-    &.Mui-disabled {
-      opacity: ${(props) => props.theme.disabled};
-    }
-    .MuiSvgIcon-root {
-      width: 26.6px;
-      height: 26.6px;
-    }
+  }
+  &.Mui-disabled {
+    opacity: ${(props) => props.theme.disabled};
+  }
+  .MuiSvgIcon-root {
+    width: 26.6px;
+    height: 26.6px;
   }
 `;
 
@@ -170,10 +174,14 @@ const CheckboxBlackBack = styled.span`
   width: 17px;
   height: 17px;
   position: absolute;
-  left: ${(props) => (props.labelPosition === "before" ? "unset" : "17px")};
-  right: ${(props) => (props.labelPosition === "before" ? "17px" : "unset")};
+  left: ${(props) => (props.labelPosition === "before" ? "unset" : "6px")};
+  right: ${(props) => (props.labelPosition === "before" ? "6px" : "unset")};
   z-index: 0;
   opacity: ${(props) => (props.disabled ? props.theme.disabled : "1")};
+  padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
+  padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
+  margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
+  margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
 `;
 
 DxcCheckbox.propTypes = {
