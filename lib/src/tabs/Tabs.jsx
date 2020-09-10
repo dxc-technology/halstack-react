@@ -91,7 +91,7 @@ const DxCTabs = styled.div`
       }
       &.Mui-selected {
         background-color: ${(props) => props.theme.selectedBackgroundColor};
-        color: ${(props) => props.theme.selectedColor};
+        color: ${(props) => props.theme.selectedFontColor};
       }
       &.Mui-disabled {
         cursor: not-allowed !important;
