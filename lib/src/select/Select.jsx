@@ -8,12 +8,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import "../common/OpenSans.css";
-import { colors, spaces, theme, defaultTheme } from "../common/variables.js";
+import { spaces, theme, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 import DxcRequired from "../common/RequiredComponent";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: (props) => ({
     minWidth: props.width,
   }),
@@ -70,6 +70,7 @@ const DxcSelect = ({
   label,
   required = false,
   disabled = false,
+  invalid = false,
   options = [],
   iconPosition = "before",
   multiple = false,
@@ -155,7 +156,7 @@ const DxcSelect = ({
 
   return (
     <ThemeProvider theme={colorsTheme}>
-      <SelectContainer margin={margin} size={size}>
+      <SelectContainer margin={margin} size={size} invalid={invalid}>
         <FormControl>
           <InputLabel disabled={disabled}>
             {required && <DxcRequired />}
@@ -285,7 +286,7 @@ const SelectContainer = styled.div`
   }
   .MuiFormLabel-root {
     font-size: 16px;
-    color: ${(props) => props.theme.select.color};
+    color: ${(props) => (props.invalid === true ? props.theme.select.error : props.theme.select.color)};
     margin-top: -3px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -297,7 +298,7 @@ const SelectContainer = styled.div`
     }
     &.Mui-focused {
       font-size: 16px;
-      color: ${(props) => props.theme.select.color};
+      color: ${(props) => (props.invalid === true ? props.theme.select.error : props.theme.select.color)};
     }
   }
   .MuiSelect-select {
@@ -335,21 +336,25 @@ const SelectContainer = styled.div`
     }
   }
   .MuiInput-underline {
+    &:focus {
+      border-bottom: 2px solid;
+      border-bottom-color: ${(props) => (props.invalid === true ? props.theme.select.error : props.theme.select.color)};
+    }
     &.Mui-disabled:before {
       border-bottom-style: solid;
     }
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => props.theme.select.color};
+    border-bottom-color: ${(props) => (props.invalid === true ? props.theme.select.error : props.theme.select.color)};
   }
   .MuiInput-underline:after {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => props.theme.select.color};
+    border-bottom-color: ${(props) => (props.invalid === true ? props.theme.select.error : props.theme.select.color)};
   }
   .MuiInput-underline:before {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => props.theme.select.color};
+    border-bottom-color: ${(props) => (props.invalid === true ? props.theme.select.error : props.theme.select.color)}};
   }
   .MuiSelect-icon {
     color: ${(props) => props.theme.select.color};
@@ -372,6 +377,7 @@ DxcSelect.propTypes = {
   ]),
   disabled: PropTypes.bool,
   required: PropTypes.bool,
+  invalid: PropTypes.bool,
   iconPosition: PropTypes.oneOf(["after", "before"]),
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(
