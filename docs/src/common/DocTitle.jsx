@@ -11,8 +11,9 @@ function DocTitle({ size, children }) {
 
 const Title1 = styled.h1`
   font-size: 50px;
-  font-weight: 100;
+  font-weight: 400;
   letter-spacing: 1px;
+  font-family:"Open Sans";
 `;
 
 const Title2 = styled.h2`
