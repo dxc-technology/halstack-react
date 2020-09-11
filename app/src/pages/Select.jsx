@@ -549,6 +549,16 @@ function App() {
             options={optionsWithIcon}
           ></DxcSelect>
         </div>
+        <div className="test-case" id="invalid-select">
+          <h4>Invalid select</h4>
+          <DxcSelect
+            onChange={onChange}
+            invalid
+            size="medium"
+            label={"Invalid Select"}
+            options={optionsWithoutIcon}
+          ></DxcSelect>
+        </div>
         <div className="test-case" id="mandatory-no-value">
           <h4>Mandatory select</h4>
           <DxcSelect
