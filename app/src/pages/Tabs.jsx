@@ -27,7 +27,7 @@ function Tabs() {
   const onClick = () => {};
 
   const [selected, changeSelected] = useState(true);
-  const onClickToggle = (newValue) => {
+  const onClickSwitch = (newValue) => {
     changeSelected(newValue);
   };
 
@@ -187,73 +187,67 @@ function Tabs() {
           />
           {activeTab === 0 && (
             <div
-              style={{ height: "200px", background: "#666666", margin: "15px" }}
+              style={{ height: "250px", background: "#D9D9D9", margin: "15px" }}
             >
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
-                theme="dark"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
             </div>
           )}
@@ -263,135 +257,124 @@ function Tabs() {
               style={{ height: "200px", background: "#666666", margin: "15px" }}
             >
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
-                theme="dark"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcSwitch
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcSwitch
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcSwitch
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcSwitch
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
               <DxcButton
-                mode="basic"
-                theme="light"
+                mode="primary"
                 label="Button"
                 onClick={onClick}
                 margin="medium"
               />
               <DxcSwitch
-                label="Toggle"
+                label="Switch"
                 margin="medium"
                 selected={selected}
-                onClick={onClickToggle}
+                onClick={onClickSwitch}
               />
             </div>
           )}

@@ -81,22 +81,6 @@ function App() {
         />
       </div>
 
-      <div>
-        <h4>Dark theme</h4>
-        <div style={{ background: "#000000" }}>
-          <div className="test-case" id="dark-theme">
-            <DxcDate
-              label="Input label"
-              assistiveText="assistive text"
-              onChange={onChange}
-              invalid={isInvalid}
-              theme="dark"
-              required
-            />
-          </div>
-        </div>
-      </div>
-
       <div className="test-case" id="disabled-date">
         <h4>Disabled input</h4>
         <DxcDate

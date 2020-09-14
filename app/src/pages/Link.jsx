@@ -82,7 +82,6 @@ function App() {
             This is a text with an{" "}
             <DxcLink
               href="#"
-              theme="light"
               iconPosition="after"
               iconSrc={homeLogo}
               text="Icon after"
@@ -95,7 +94,6 @@ function App() {
             This is a text with an{" "}
             <DxcLink
               href="#"
-              theme="light"
               iconPosition="before"
               iconSrc={homeLogo}
               inheritColor={true}
@@ -111,7 +109,6 @@ function App() {
         <div className="test-case" id="disabled-light-link">
           <DxcLink
             href="#"
-            theme="light"
             disabled={true}
             underlined={true}
             text="Disabled link"

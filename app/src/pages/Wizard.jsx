@@ -66,34 +66,6 @@ function Wizard() {
           ]}
         ></DxcWizard>
       </div>
-      <div>
-        <h4>Dark theme wizard</h4>
-        <div
-          className="test-case"
-          id="dark-theme"
-          style={{ backgroundColor: "black" }}
-        >
-          <DxcWizard
-            theme="dark"
-            steps={[
-              {
-                label: "First step",
-                description: "This is the first step",
-                valid: true,
-              },
-              {
-                label: "Second step",
-                description: "This is the second step",
-              },
-              {
-                label: "Third step",
-                description: "This is the final step",
-                valid: false,
-              },
-            ]}
-          ></DxcWizard>
-        </div>
-      </div>
 
       <div className="test-case" id="numbers-vertical-wizard">
         <h4>Vertical wizard</h4>
@@ -125,37 +97,6 @@ function Wizard() {
             },
           ]}
         ></DxcWizard>
-      </div>
-      <div>
-        <h4>Dark theme vertical wizard</h4>
-        <div
-          className="test-case"
-          id="basic-dark-theme"
-          style={{ backgroundColor: "black" }}
-        >
-          <DxcWizard
-            margin="medium"
-            theme="dark"
-            mode="vertical"
-            steps={[
-              {
-                label: "First step",
-                description: "This is the first step",
-                valid: true,
-              },
-              {
-                label: "Second step",
-                description: "This is the second step",
-                disabled: true,
-              },
-              {
-                label: "Third step",
-                description: "This is the final step",
-                valid: false,
-              },
-            ]}
-          ></DxcWizard>
-        </div>
       </div>
     </div>
   );

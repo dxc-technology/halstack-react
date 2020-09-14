@@ -5,7 +5,7 @@ import homeLogo from "../images/home.svg";
 const colors = {
   button: {
     color: "#FABADA",
-    hoverColor: "grey"
+    hoverColor: "grey",
   },
 };
 
@@ -19,7 +19,6 @@ function App() {
         <div className="test-case" id="small-size">
           <DxcButton
             mode="primary"
-            theme="light"
             label="Small"
             onClick={onClick}
             size="small"
@@ -29,7 +28,6 @@ function App() {
         <div className="test-case" id="medium-size">
           <DxcButton
             mode="primary"
-            theme="light"
             label="Medium"
             onClick={onClick}
             size="medium"
@@ -39,7 +37,6 @@ function App() {
         <div className="test-case" id="large-size">
           <DxcButton
             mode="primary"
-            theme="light"
             label="Large"
             onClick={onClick}
             size="large"
@@ -49,7 +46,6 @@ function App() {
         <div className="test-case" id="fitContent-size">
           <DxcButton
             mode="primary"
-            theme="light"
             label="Fit Content"
             onClick={onClick}
             size="fitContent"
@@ -59,7 +55,6 @@ function App() {
         <div className="test-case" id="fillParent-size">
           <DxcButton
             mode="primary"
-            theme="light"
             label="Fill Parent"
             onClick={onClick}
             size="fillParent"
@@ -72,7 +67,6 @@ function App() {
         <div className="test-case" id="xxsmall-margin">
           <DxcButton
             mode="primary"
-            theme="light"
             label="xxsmall"
             onClick={onClick}
             size="large"
@@ -82,7 +76,6 @@ function App() {
         <div className="test-case" id="xsmall-margin">
           <DxcButton
             mode="primary"
-            theme="light"
             label="xsmall"
             onClick={onClick}
             size="large"
@@ -92,7 +85,6 @@ function App() {
         <div className="test-case" id="small-margin">
           <DxcButton
             mode="primary"
-            theme="light"
             label="small"
             onClick={onClick}
             size="large"
@@ -102,7 +94,6 @@ function App() {
         <div className="test-case" id="medium-margin">
           <DxcButton
             mode="primary"
-            theme="light"
             label="medium"
             onClick={onClick}
             size="large"
@@ -112,7 +103,6 @@ function App() {
         <div className="test-case" id="large-margin">
           <DxcButton
             mode="primary"
-            theme="light"
             label="large"
             onClick={onClick}
             size="large"
@@ -122,7 +112,6 @@ function App() {
         <div className="test-case" id="xlarge-margin">
           <DxcButton
             mode="primary"
-            theme="light"
             label="xlarge"
             onClick={onClick}
             size="large"
@@ -132,7 +121,6 @@ function App() {
         <div className="test-case" id="xxlarge">
           <DxcButton
             mode="primary"
-            theme="light"
             label="xxlarge"
             onClick={onClick}
             size="large"
@@ -156,7 +144,6 @@ function App() {
           </h4>
           <DxcButton
             mode="primary"
-            theme="light"
             label="But"
             iconPosition="after"
             onClick={onClick}
@@ -171,7 +158,6 @@ function App() {
           </h4>
           <DxcButton
             mode="primary"
-            theme="light"
             label="But"
             iconPosition="before"
             onClick={onClick}
@@ -186,7 +172,6 @@ function App() {
           </h4>
           <DxcButton
             mode="primary"
-            theme="light"
             label="ButL"
             iconPosition="after"
             onClick={onClick}
@@ -201,26 +186,11 @@ function App() {
           </h4>
           <DxcButton
             mode="primary"
-            theme="light"
             label="ButM"
             iconPosition="before"
             onClick={onClick}
             iconSrc={homeLogo}
             size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div
-          className="test-case"
-          style={{ background: "black" }}
-          id="primary-dark-theme"
-        >
-          <h4 style={{ color: "white" }}>primary button dark theme</h4>
-          <DxcButton
-            mode="primary"
-            label="Button"
-            theme="dark"
-            onClick={onClick}
             margin="xsmall"
           />
         </div>
@@ -241,7 +211,6 @@ function App() {
           </h4>
           <DxcButton
             mode="text"
-            theme="light"
             label="But"
             iconPosition="after"
             onClick={onClick}
@@ -256,7 +225,6 @@ function App() {
           </h4>
           <DxcButton
             mode="text"
-            theme="light"
             label="But"
             iconPosition="before"
             onClick={onClick}
@@ -271,7 +239,6 @@ function App() {
           </h4>
           <DxcButton
             mode="text"
-            theme="light"
             label="ButL"
             iconPosition="after"
             onClick={onClick}
@@ -286,26 +253,11 @@ function App() {
           </h4>
           <DxcButton
             mode="text"
-            theme="light"
             label="ButM"
             iconPosition="before"
             onClick={onClick}
             iconSrc={homeLogo}
             size="medium"
-            margin="xsmall"
-          />
-        </div>
-        <div
-          className="test-case"
-          style={{ background: "black" }}
-          id="text-dark-theme"
-        >
-          <h4 style={{ color: "white" }}>text button dark theme</h4>
-          <DxcButton
-            mode="text"
-            label="Button"
-            theme="dark"
-            onClick={onClick}
             margin="xsmall"
           />
         </div>
@@ -326,7 +278,6 @@ function App() {
           </h4>
           <DxcButton
             mode="secondary"
-            theme="light"
             label="But"
             iconPosition="after"
             onClick={onClick}
@@ -342,7 +293,6 @@ function App() {
           </h4>
           <DxcButton
             mode="secondary"
-            theme="light"
             label="But"
             iconPosition="before"
             onClick={onClick}
@@ -357,7 +307,6 @@ function App() {
           </h4>
           <DxcButton
             mode="secondary"
-            theme="light"
             label="ButL"
             iconPosition="after"
             onClick={onClick}
@@ -373,7 +322,6 @@ function App() {
 
           <DxcButton
             mode="secondary"
-            theme="light"
             label="ButM"
             iconPosition="before"
             onClick={onClick}
@@ -388,7 +336,6 @@ function App() {
         <ThemeContext.Provider value={colors}>
           <DxcButton
             mode="primary"
-            theme="light"
             label="Custom Button"
             onClick={onClick}
             size="large"

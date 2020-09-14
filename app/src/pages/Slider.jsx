@@ -28,7 +28,6 @@ function App() {
           showLimitsValues={true}
           showInput={false}
           name="input"
-          theme="light"
           step={1}
           margin="medium"
         />
@@ -108,7 +107,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             size="medium"
           />
@@ -121,7 +119,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             size="large"
           />
@@ -134,7 +131,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             size="fillParent"
           />
@@ -150,7 +146,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             margin="xxsmall"
           />
@@ -163,7 +158,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             margin="xsmall"
           />
@@ -176,7 +170,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             margin="small"
           />
@@ -189,7 +182,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             margin="medium"
           />
@@ -202,7 +194,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             margin="large"
           />
@@ -215,7 +206,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             margin="xlarge"
           />
@@ -228,7 +218,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             margin="xxlarge"
           />
@@ -243,7 +232,6 @@ function App() {
             showLimitsValues={true}
             showInput={false}
             name="input"
-            theme="light"
             step={1}
             margin="medium"
           />
