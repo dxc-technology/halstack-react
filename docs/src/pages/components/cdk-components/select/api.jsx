@@ -91,6 +91,16 @@ const inputPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>invalid: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>
+          If true, the select will change its appearence, showing that the value
+          is invalid.
+        </td>
+      </tr>
+      <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
