@@ -3,8 +3,8 @@ import { DxcSwitch, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
   switch: {
-    checkedTrackBackgroundColor:"#FABADA"
-  }
+    checkedTrackBackgroundColor: "#FABADA",
+  },
 };
 
 function App() {
@@ -42,25 +42,6 @@ function App() {
           label="Switch"
           onChange={onChange}
         />
-      </div>
-
-      <div>
-        <h4>Dark theme</h4>
-        <div
-          className="test-case"
-          id="dark-theme"
-          style={{
-            backgroundColor: "black",
-          }}
-        >
-          <DxcSwitch
-            theme="dark"
-            checked={checked}
-            labelPosition="after"
-            label="Switch"
-            onChange={onChange}
-          />
-        </div>
       </div>
 
       <div className="test-case" id="color-checked">

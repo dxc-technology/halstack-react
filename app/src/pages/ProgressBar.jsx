@@ -32,7 +32,6 @@ function App() {
           <h5>xxsmall margin</h5>
           <DxcProgressBar
             label="Loading..."
-            theme="light"
             overlay={false}
             showValue
             value={20}
@@ -43,7 +42,6 @@ function App() {
           <h5>xsmall margin</h5>
           <DxcProgressBar
             label="Loading..."
-            theme="light"
             overlay={false}
             showValue
             value={35}
@@ -54,7 +52,6 @@ function App() {
           <h5>Small margin</h5>
           <DxcProgressBar
             label="Loading..."
-            theme="light"
             overlay={false}
             showValue
             value={45}
@@ -65,7 +62,6 @@ function App() {
           <h5>Medium margin</h5>
           <DxcProgressBar
             label="Loading..."
-            theme="light"
             overlay={false}
             showValue
             value={60}
@@ -76,7 +72,6 @@ function App() {
           <h5>Large margin</h5>
           <DxcProgressBar
             label="Loading..."
-            theme="light"
             overlay={false}
             showValue
             value={75}
@@ -87,7 +82,6 @@ function App() {
           <h5>xlarge margin</h5>
           <DxcProgressBar
             label="Loading..."
-            theme="light"
             overlay={false}
             showValue
             value={85}
@@ -98,7 +92,6 @@ function App() {
           <h5>xxlarge margin</h5>
           <DxcProgressBar
             label="Loading..."
-            theme="light"
             overlay={false}
             showValue
             value={100}

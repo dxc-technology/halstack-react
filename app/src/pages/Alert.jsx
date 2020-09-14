@@ -28,7 +28,6 @@ function App() {
           <h5>Modal alert</h5>
           <div>
             <DxcButton
-              theme="light"
               label="Modal Alert"
               onClick={handleVisibility}
               margin="medium"
