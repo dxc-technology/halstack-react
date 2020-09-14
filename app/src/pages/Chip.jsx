@@ -5,7 +5,8 @@ import avatar from "../images/avatar.svg";
 
 const colors = {
   chip: {
-    outlinedColor: "#FABADA"
+    outlinedColor: "#FABADA",
+    backgroundColor: "#FABADA",
   },
 };
 
@@ -102,9 +103,8 @@ function App() {
       <div className="test-case" id="custom-colors">
         <h4>Custom Chip</h4>
         <ThemeContext.Provider value={colors}>
-        <DxcChip label="Chip with borders" margin="xxlarge" />
-        </ThemeContext.Provider> 
-
+          <DxcChip label="Chip with borders" margin="xxlarge" />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

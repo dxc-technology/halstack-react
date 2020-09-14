@@ -92,10 +92,14 @@ const RadioContainer = styled.span`
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "default")};
   opacity: ${(props) => (props.disabled === true ? props.theme.disabled : "1")};
   .MuiButtonBase-root {
-    padding: 0px;
-    margin: 0px 5px;
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 2px;
+    padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
+    padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
+    margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
+    margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
     .MuiIconButton-label {
       .MuiSvgIcon-root {
         height: 24px;
