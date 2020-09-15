@@ -323,7 +323,7 @@ const ListIcon = styled.img`
 `;
 
 const CaretIcon = styled.div`
-  display: ${(props) => (props.caretHidden === true ? "none" : "block")};
+  display: ${(props) => (props.caretHidden === true ? "none" : "inline-flex")};
   margin-left: 10px;
   margin-right: 10px;
 `;

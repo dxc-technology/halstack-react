@@ -290,6 +290,9 @@ const SelectContainer = styled.div`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    height: 22px;
+    display: flex;
+    align-items: center;
 
     &.Mui-disabled {
       color: ${(props) => props.theme.select.color};
