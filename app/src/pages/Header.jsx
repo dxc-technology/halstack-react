@@ -268,7 +268,7 @@ function App() {
             content={
               <React.Fragment>
                 <DxcButton
-                  mode="basic"
+                  mode="text"
                   label="Button"
                   margin="xsmall"
                   onClick={onClick}
