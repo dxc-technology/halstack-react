@@ -150,6 +150,7 @@ const DxCButton = styled.div`
             &:hover{
               border-color: ${props.theme.hoverColor};
               background-color: ${props.theme.hoverColor}${props.theme.secondaryHoverOpacity};
+              color: ${props.theme.secondaryHoverFontColor}; 
             }
             &:active {
               background-color: ${props.theme.hoverColor}${props.theme.secondaryActiveOpacity} !important;
