@@ -9,35 +9,51 @@ import reactIcon from "../../common/react-icon.png";
 import DocTitle from "../../common/DocTitle";
 import ComponentDoc from "./common/ComponentDoc";
 
-function Components() {
-  const location = useLocation();
-
-  const getComponentsLinks = (type) => 
+const getComponentsLinks = (type) => {
+  const dividedList = paths
+    .filter((path) => path.type === type)
+    .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
+    .reduce((result, path, i, array) => {
+      if (i % 4 === 0) result.push(array.slice(i, i + 4));
+      return result;
+    }, []);
+  return (
     <ComponentsLinksContainer>
-      {
-        paths.filter(path => path.type === type)
-        .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
-        .reduce((result, path, i, array) => {
-          if (i % 3 === 0) result.push(array.slice(i, i+3));
-          return result;
-        }, [])
-        .map((sublist) => 
-          <LinksColumn>
-            {sublist.map((path,i) => (
+      {dividedList.map((sublist, position) => {
+        return position === dividedList.length - 1 ? (
+          <LastLinksColumn>
+            {sublist.map((path, i) => (
               <li>
                 <DxcLink
                   text={path.name}
                   underlined={false}
-                  margin="xxsmall"
+                  margin={{ top: "xxsmall" }}
+                  href={`#/components/${path.path}`}
+                />
+              </li>
+            ))}
+          </LastLinksColumn>
+        ) : (
+          <LinksColumn>
+            {sublist.map((path, i) => (
+              <li>
+                <DxcLink
+                  text={path.name}
+                  underlined={false}
+                  margin={{ top: "xxsmall" }}
                   href={`#/components/${path.path}`}
                 />
               </li>
             ))}
           </LinksColumn>
-        )
-      }
+        );
+      })}
     </ComponentsLinksContainer>
-    
+  );
+};
+
+function Components() {
+  const location = useLocation();
 
   return (
     <SideNav>
@@ -48,17 +64,18 @@ function Components() {
         displayArrow={false}
         navContent={
           <SideNavContainer>
-            <Title>React
+            <Title>
+              React
               <ReactLogo src={reactIcon} alt="React Logo"></ReactLogo>
             </Title>
-            {Object.keys(types).map(type => (
+            {Object.keys(types).map((type) => (
               <React.Fragment>
                 <ComponentType>{types[type]}</ComponentType>
                 <ComponentsList>
                   {paths
-                    .filter(path => path.type === types[type])
+                    .filter((path) => path.type === types[type])
                     .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
-                    .map(path => (
+                    .map((path) => (
                       <NavLink
                         isActive={location.pathname.startsWith(
                           `/components/${path.path}`
@@ -78,39 +95,49 @@ function Components() {
               <ComponentDoc>
                 <DocTitle size={1}>Components</DocTitle>
                 <ComponentTypeTitle>Forms</ComponentTypeTitle>
-                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
+                <DxcBox
+                  padding="small"
+                  margin={{ top: "small", bottom: "small" }}
+                >
                   {getComponentsLinks("Forms")}
                 </DxcBox>
                 <ComponentTypeTitle>Navigation</ComponentTypeTitle>
-                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
+                <DxcBox
+                  padding="small"
+                  margin={{ top: "small", bottom: "small" }}
+                >
                   {getComponentsLinks("Navigation")}
                 </DxcBox>
                 <ComponentTypeTitle>Layout</ComponentTypeTitle>
-                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
+                <DxcBox
+                  padding="small"
+                  margin={{ top: "small", bottom: "small" }}
+                >
                   {getComponentsLinks("Layout")}
                 </DxcBox>
                 <ComponentTypeTitle>Utilities</ComponentTypeTitle>
-                <DxcBox padding="small" margin={{top: "small", bottom: "small"}}>
+                <DxcBox
+                  padding="small"
+                  margin={{ top: "small", bottom: "small" }}
+                >
                   {getComponentsLinks("Utilities")}
                 </DxcBox>
               </ComponentDoc>
             </Route>
-            {paths.map(path => (
+            {paths.map((path) => (
               <Route path={`/components/${path.path}`}>
                 <path.component></path.component>
               </Route>
             ))}
           </SideNavContent>
         }
-      >
-
-      </DxcSidenav>
-      </SideNav>
+      ></DxcSidenav>
+    </SideNav>
   );
 }
 
 const SideNav = styled.div`
-  width: 100%
+  width: 100%;
 `;
 
 const SideNavContainer = styled.div`
@@ -120,7 +147,7 @@ const SideNavContent = styled.div`
   display: flex;
   flex-grow: 1;
   height: 100%;
-  min-height: 100vh
+  min-height: 100vh;
 `;
 
 const Title = styled.h1`
@@ -170,14 +197,30 @@ const ComponentTypeTitle = styled.h2`
 
 const ComponentsLinksContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 const LinksColumn = styled.ul`
-  list-style-type:none;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  list-style-type: none;
+  padding: 0;
+  margin: 0 100px 0 0;
+  width: 100px;
+`;
+
+const LastLinksColumn = styled.ul`
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  list-style-type: none;
   padding: 0;
   margin: 0;
-  margin-right: 100px;
+  width: 100px;
 `;
 
 export default Components;
