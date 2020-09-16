@@ -75,7 +75,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
     }else{
       changePage(0);
     }
-  }, [rows]);
+  }, [rows.length]);
 
   const sortedResultset = useMemo(() => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows), [
     sortColumnIndex,
