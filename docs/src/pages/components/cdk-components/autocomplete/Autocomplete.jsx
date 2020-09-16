@@ -41,6 +41,15 @@ function Autocomplete() {
             ),
           },
           {
+            tabLabel: "Theming",
+            section: () => (
+              <Section>
+                <DocTitle size={2}>Theming</DocTitle>
+                <p>Not available tokens.</p>
+              </Section>
+            ),
+          },
+          {
             tabLabel: "Examples",
             section: () => (
               <Section>
