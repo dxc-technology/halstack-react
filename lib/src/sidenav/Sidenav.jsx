@@ -134,13 +134,6 @@ const ArrowTrigger = styled.div`
   }
 `;
 
-const ArrowStyled = styled.div`
-  width: 18px;
-  height: 18px;
-  margin-left: ${(props) => (props.isShown ? "0" : "10px")};
-  transition: margin 0.4s ease-in;
-`;
-
 const PageContent = styled.div`
   box-sizing: border-box;
   flex-grow: 1;

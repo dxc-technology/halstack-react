@@ -12,12 +12,12 @@ import yahooLogo from "../images/yahoo.png";
 
 const colors = {
   header: {
-    backgroundColor: "pink",
+    backgroundColor: "grey",
     underlinedColor: "blue",
     fontColor: "green",
     backgroundColorMenu: "beige",
     fontColorMenu: "red",
-    hamburguerColor: "violet",
+    hamburguerColor: "#FABADA",
   },
 };
 
