@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, defaultTheme, theme } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { getCustomTheme, getMargin } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcTable = ({ children, margin }) => {
