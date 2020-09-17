@@ -6,7 +6,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { spaces, defaultTheme, theme } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { getCustomTheme, getMargin } from "../common/utils.js";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ThemeContext from "../ThemeContext.js";
 
@@ -59,6 +59,10 @@ const DxcAccordion = ({
   );
 };
 
+const calculateWidth = (margin) => {
+  return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+};
+
 DxcAccordion.propTypes = {
   label: PropTypes.string,
   iconSrc: PropTypes.string,
@@ -90,7 +94,6 @@ DxcAccordion.propTypes = {
 
 const DXCAccordion = styled.div`
   min-width: 280px;
-
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -100,6 +103,8 @@ const DXCAccordion = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
+  width: ${(props) => calculateWidth(props.margin)};
 
   font-family: "Open Sans", sans-serif;
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
@@ -210,6 +215,7 @@ const AccordionInfo = styled.div`
   flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
   align-items: center;
   flex-grow: 1;
+  margin-right: 15px;
 `;
 
 const AccordionLabel = styled.div`

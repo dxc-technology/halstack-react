@@ -110,6 +110,7 @@ const DxcPaginator = ({
 const DxcPaginatorContainer = styled.div`
   display: flex;
   height: 64px;
+  width: 100%;
   background-color: ${(props) => props.theme.paginatorBackgroundColor};
   color: ${(props) => props.theme.paginatorFontColor};
   button {
