@@ -17,8 +17,13 @@ const DxcTable = ({ children, margin }) => {
   );
 };
 
+const calculateWidth = (margin) => {
+  return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+};
+
 const DxcTableContainer = styled.div`
   overflow-x: auto;
+  width: ${(props) => calculateWidth(props.margin)};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
