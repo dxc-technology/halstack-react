@@ -82,12 +82,9 @@ const DxcHeader = ({
     };
   }, []);
 
-  const HamburgerIcon = ({ fill }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path
-        d="M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"
-        fill={fill}
-      />
+  const HamburgerIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+      <path d="M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
     </svg>
   );
 
@@ -99,9 +96,7 @@ const DxcHeader = ({
           <MainContainer>
             <ChildContainer padding={padding}>
               <HamburguerItem underlined={underlined} onClick={handleMenu} tabIndex="0">
-                <HamburguerIconStyled>
-                  <HamburgerIcon fill={theme.header.hamburguerColor} />
-                </HamburguerIconStyled>
+                <HamburgerIcon />
                 <HamburguerTitle>Menu</HamburguerTitle>
               </HamburguerItem>
             </ChildContainer>
@@ -199,11 +194,9 @@ const HamburguerItem = styled.div`
   &:focus {
     outline: ${(props) => props.theme.focusColor} auto 1px;
   }
-`;
-
-const HamburguerIconStyled = styled.div`
-  width: 24px;
-  height: 24px;
+  & > svg {
+    fill: ${(props) => props.theme.hamburguerColor};
+  }
 `;
 
 const HamburguerTitle = styled.span`

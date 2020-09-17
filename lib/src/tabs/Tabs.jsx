@@ -85,6 +85,7 @@ const DxCTabs = styled.div`
       /* height: 64px cuando vengan con icono y texto */
       min-width: 180px;
       color: ${(props) => props.theme.fontColor};
+      margin: 1px 0;
       &:not(.Mui-selected) {
         background-color: ${(props) => `${props.theme.selectedBackgroundColor}${props.theme.backgroundColor}`};
         color: ${(props) => `${props.theme.fontColor}${props.theme.notSelectedOpacity}`};
@@ -100,7 +101,6 @@ const DxCTabs = styled.div`
       }
       &:focus {
         outline: ${(props) => props.theme.focusColor} auto 1px;
-        margin: 1px;
       }
     }
 

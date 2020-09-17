@@ -9,6 +9,7 @@ const colors = {
   sidenav: {
     backgroundColor: "#FABADA",
     arrowContainerColor: "#D0011B",
+    arrowColor: "pink",
   },
 };
 
