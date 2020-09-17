@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, defaultTheme, theme } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { getCustomTheme, getMargin } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcTable = ({ children, margin }) => {
@@ -17,8 +17,13 @@ const DxcTable = ({ children, margin }) => {
   );
 };
 
+const calculateWidth = (margin) => {
+  return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
+};
+
 const DxcTableContainer = styled.div`
   overflow-x: auto;
+  width: ${(props) => calculateWidth(props.margin)};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
