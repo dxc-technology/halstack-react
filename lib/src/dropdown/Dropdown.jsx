@@ -7,8 +7,6 @@ import { ClickAwayListener } from "@material-ui/core";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import MenuList from "@material-ui/core/MenuList";
-import caretUp from "./baseline-arrow_drop_up.svg";
-import caretDown from "./baseline-arrow_drop_down.svg";
 import "../common/OpenSans.css";
 import { theme, defaultTheme, spaces } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
@@ -63,16 +61,16 @@ const DxcDropdown = ({
 
   const handleCloseOver = expandOnHover ? handleClose : undefined;
 
-  const UpArrowIcon = ({ fill }) => (
+  const UpArrowIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path d="M7 14l5-5 5 5z" fill={fill} />
+      <path d="M7 14l5-5 5 5z" />
       <path d="M0 0h24v24H0z" fill="none" />
     </svg>
   );
 
-  const DownArrowIcon = ({ fill }) => (
+  const DownArrowIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path d="M7 10l5 5 5-5z" fill={fill} />
+      <path d="M7 10l5 5 5-5z" />
       <path d="M0 0h24v24H0z" fill="none" />
     </svg>
   );
@@ -103,9 +101,9 @@ const DxcDropdown = ({
             </DropdownTriggerContainer>
             <CaretIcon>
               {anchorEl === null ? (
-                <DownArrowIcon caretHidden={caretHidden} margin={margin} fill={theme.dropdown.fontColor} />
+                <DownArrowIcon caretHidden={caretHidden} margin={margin} />
               ) : (
-                <UpArrowIcon caretHidden={caretHidden} margin={margin} fill={theme.dropdown.fontColor} />
+                <UpArrowIcon caretHidden={caretHidden} margin={margin} />
               )}
             </CaretIcon>
           </DropdownTrigger>
@@ -326,6 +324,9 @@ const CaretIcon = styled.div`
   display: ${(props) => (props.caretHidden === true ? "none" : "inline-flex")};
   margin-left: 10px;
   margin-right: 10px;
+  & > svg {
+    fill: ${(props) => props.theme.fontColor};
+  }
 `;
 
 DxcDropdown.propTypes = {
