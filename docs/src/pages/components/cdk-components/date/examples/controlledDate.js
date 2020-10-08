@@ -2,7 +2,7 @@ import { DxcDate } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const [inputValue, changeInput] = useState("1995/12/03");
+  const [inputValue, changeInput] = useState("01-01-1995");
   const [isInvalid, changeIsInvalid] = useState(false);
 
   const onChange = ({ stringValue, dateValue }) => {
