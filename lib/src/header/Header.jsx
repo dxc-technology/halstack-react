@@ -61,7 +61,11 @@ const DxcHeader = ({
       <LogoIcon
         logoSrc={logoSrc}
         src={
-          intoMenu && logoSrc === "default" ? DefaultBlack : !intoMenu && logoSrc === "default" ? DefaultWhite : logoSrc
+          intoMenu && logoSrc === "default"
+            ? colorsTheme.header.logoResponsive
+            : !intoMenu && logoSrc === "default"
+            ? colorsTheme.header.logo
+            : logoSrc
         }
       />
     );

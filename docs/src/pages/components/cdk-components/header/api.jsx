@@ -23,7 +23,7 @@ const headerPropsTable = () => {
         <td>
           <code>'default'</code>
         </td>
-        <td>The path of an icon to replace the default dxc logo.</td>
+        <td>The path of an icon to replace the theme logo.</td>
       </tr>
       <tr>
         <td>content: object</td>

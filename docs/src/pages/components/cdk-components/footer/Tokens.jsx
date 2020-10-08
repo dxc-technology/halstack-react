@@ -15,27 +15,26 @@ const footerTokensTable = () => {
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>
-          Applies to the backgroundColor.
-        </td>
+        <td>Applies to the backgroundColor.</td>
       </tr>
       <tr>
         <td>fontColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>
-          Applies to fontColor.
-        </td>
+        <td>Applies to fontColor.</td>
       </tr>
       <tr>
         <td>lineColor</td>
         <td>
           <SampleComponent color="#FFED00"></SampleComponent>
         </td>
-        <td>
-          Applies to lineColor.
-        </td>
+        <td>Applies to lineColor.</td>
+      </tr>
+      <tr>
+        <td>logo</td>
+        <td>DXC Logo</td>
+        <td>Applies to logo token.</td>
       </tr>
     </DxcTable>
   );

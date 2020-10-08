@@ -52,6 +52,16 @@ const headerTokensTable = () => {
         </td>
         <td>Applies to the hamburguerColor token.</td>
       </tr>
+      <tr>
+        <td>logo</td>
+        <td>DXC Logo</td>
+        <td>Applies to logo token.</td>
+      </tr>
+      <tr>
+        <td>logoResponsive</td>
+        <td>DXC Logo</td>
+        <td>Applies to logoResponsive token.</td>
+      </tr>
     </DxcTable>
   );
 };
