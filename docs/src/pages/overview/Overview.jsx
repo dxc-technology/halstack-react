@@ -49,7 +49,7 @@ function UseComponents() {
       <DocTitle size={2}>Use Components</DocTitle>
       <p>
         A list of available components is available in the{" "}
-        <Link target="_blank" href="https://create-react-app.dev/">
+        <Link target="_blank" href="https://developer.dxc.com/design/components">
           components screen
         </Link>{" "}
         . The API documentation of every component is available in that screen,
