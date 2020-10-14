@@ -37,11 +37,11 @@ jobs:
     - name: Install lib dependencies
       run: cd lib && npm install
 
-    - name: Install docs dependencies
-      run: cd docs && npm install
-    
     - name: Build library
       run: cd lib && npm run build
+    
+    - name: Install docs dependencies
+      run: cd docs && npm install
     
     - name: Test library
       run: cd lib && npm run test
