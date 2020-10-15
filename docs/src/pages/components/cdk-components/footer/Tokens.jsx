@@ -27,7 +27,7 @@ const footerTokensTable = () => {
       <tr>
         <td>lineColor</td>
         <td>
-          <SampleComponent color="#FFED00"></SampleComponent>
+          <SampleComponent color="#0067B3"></SampleComponent>
         </td>
         <td>Applies to lineColor.</td>
       </tr>

@@ -13,7 +13,7 @@ const sliderTokensTable = () => {
       <tr>
         <td>color</td>
         <td>
-          <SampleComponent color="#000000"></SampleComponent>
+          <SampleComponent color="#0067B3"></SampleComponent>
         </td>
         <td>
           Applies to the thumbBackgroundColor, dotsBackgroundColor and trackLine
