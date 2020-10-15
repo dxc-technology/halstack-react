@@ -13,20 +13,16 @@ const tableTokensTable = () => {
       <tr>
         <td>headerBackgroundColor</td>
         <td>
-          <SampleComponent color="#000000"></SampleComponent>
+          <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
-        <td>
-          Applies to the headerBackgroundColor.
-        </td>
+        <td>Applies to the headerBackgroundColor.</td>
       </tr>
       <tr>
         <td>headerFontColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>
-          Applies to headerFontColor.
-        </td>
+        <td>Applies to headerFontColor.</td>
       </tr>
     </DxcTable>
   );

@@ -13,7 +13,7 @@ const buttonTokensTable = () => {
       <tr>
         <td>color</td>
         <td>
-          <SampleComponent color="#FFED00"></SampleComponent>
+          <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>
           Applies to the primaryBackgroundColor and secondaryOutlinedColor.
@@ -32,14 +32,14 @@ const buttonTokensTable = () => {
       <tr>
         <td>primaryFontColor</td>
         <td>
-          <SampleComponent color="#000000"></SampleComponent>
+          <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
         <td>Applies to primaryFontColor.</td>
       </tr>
       <tr>
         <td>primaryHoverFontColor</td>
         <td>
-          <SampleComponent color="#FFED00"></SampleComponent>
+          <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
         <td>Applies to hoverFontColor for the primary mode.</td>
       </tr>
@@ -60,7 +60,7 @@ const buttonTokensTable = () => {
       <tr>
         <td>textFontColor</td>
         <td>
-          <SampleComponent color="#000000"></SampleComponent>
+          <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>Applies to textFontColor.</td>
       </tr>

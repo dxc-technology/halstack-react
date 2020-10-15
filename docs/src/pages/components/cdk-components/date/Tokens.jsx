@@ -13,20 +13,19 @@ const dateTokensTable = () => {
       <tr>
         <td>pickerSelectedDateBackgroundColor</td>
         <td>
-          <SampleComponent color="#000000"></SampleComponent>
+          <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>
-          Applies to the pickerSelectedDateBackgroundColor and pickerHoverDateBackgroundColor(0.34 opacity).
+          Applies to the pickerSelectedDateBackgroundColor and
+          pickerHoverDateBackgroundColor(0.34 opacity).
         </td>
       </tr>
       <tr>
         <td>pickerSelectedDateColor</td>
         <td>
-          <SampleComponent color="#FFED00"></SampleComponent>
+          <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>
-          Applies to pickerSelectedDateColor.
-        </td>
+        <td>Applies to pickerSelectedDateColor.</td>
       </tr>
     </DxcTable>
   );
