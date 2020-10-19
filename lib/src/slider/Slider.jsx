@@ -157,12 +157,14 @@ const SliderContainer = styled.div`
     cursor: not-allowed;
   }
 
-  .MuiSlider-root > .MuiSlider-mark.MuiSlider-markActive ~ .MuiSlider-mark.MuiSlider-markActive {
-    display: ${(props) => props.minValue > 0 && "block"};
+  .MuiSlider-root .MuiSlider-mark,
+  .MuiSlider-root .MuiSlider-markLabel {
+    display: ${(props) => props.minValue > 0 && "none"};
   }
 
-  .MuiSlider-mark.MuiSlider-markActive {
-    display: none;
+  .MuiSlider-root > .MuiSlider-mark ~ .MuiSlider-mark,
+  .MuiSlider-root > .MuiSlider-markLabel ~ .MuiSlider-markLabel {
+    display: ${(props) => props.minValue > 0 && "block"};
   }
 
   .Mui-disabled {
