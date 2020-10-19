@@ -50,7 +50,7 @@ const DxcSlider = ({
 
   return (
     <ThemeProvider theme={colorsTheme.slider}>
-      <SliderContainer margin={margin} size={size}>
+      <SliderContainer margin={margin} size={size} minValue={minValue}>
         {showLimitsValues && <MinLabelContainer disabled={disabled}>{minValue}</MinLabelContainer>}
         <Slider
           value={(value != null && value >= 0 && value) || innerValue}
@@ -157,6 +157,14 @@ const SliderContainer = styled.div`
     cursor: not-allowed;
   }
 
+  .MuiSlider-root > .MuiSlider-mark.MuiSlider-markActive ~ .MuiSlider-mark.MuiSlider-markActive {
+    display: ${(props) => props.minValue > 0 && "block"};
+  }
+
+  .MuiSlider-mark.MuiSlider-markActive {
+    display: none;
+  }
+
   .Mui-disabled {
     & .MuiSlider-thumb {
       height: 14px;
@@ -221,9 +229,11 @@ const SliderContainer = styled.div`
     top: 50%;
     opacity: ${(props) => props.theme.totalLine};
   }
+
   .MuiSlider-mark.MuiSlider-markActive {
     background-color: ${(props) => props.theme.color};
   }
+
   .MuiSlider-mark {
     background-color: ${(props) => props.theme.color};
     width: 6px;
