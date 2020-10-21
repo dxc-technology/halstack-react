@@ -68,7 +68,7 @@ function App() {
                 margin="xsmall"
               />
               <DxcButton
-                mode="basic"
+                mode="primary"
                 label="Button"
                 margin="xsmall"
                 onClick={onClick}
@@ -80,7 +80,7 @@ function App() {
                 margin="xsmall"
               />
               <DxcButton
-                mode="basic"
+                mode="primary"
                 label="Button"
                 margin="xsmall"
                 onClick={onClick}
@@ -102,7 +102,7 @@ function App() {
                 margin="xsmall"
               />
               <DxcButton
-                mode="basic"
+                mode="secondary"
                 label="Button"
                 margin="xsmall"
                 onClick={onClick}
@@ -114,7 +114,7 @@ function App() {
                 margin="xsmall"
               />
               <DxcButton
-                mode="basic"
+                mode="secondary"
                 label="Button"
                 margin="xsmall"
                 onClick={onClick}
@@ -230,12 +230,12 @@ function App() {
                 />
                 <p>Example 1</p>
                 <DxcButton
-                  mode="flat"
+                  mode="text"
                   label={"Custom Button"}
                   onClick={onClick}
                 />
                 <DxcButton
-                  mode="outlined"
+                  mode="text"
                   label={"Custom Button"}
                   onClick={onClick}
                 />
@@ -246,12 +246,12 @@ function App() {
                 />
                 <p>Example 1</p>
                 <DxcButton
-                  mode="flat"
+                  mode="text"
                   label={"Custom Button"}
                   onClick={onClick}
                 />
                 <DxcButton
-                  mode="outlined"
+                  mode="text"
                   label={"Custom Button"}
                   onClick={onClick}
                 />
