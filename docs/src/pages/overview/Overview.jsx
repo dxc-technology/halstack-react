@@ -27,16 +27,16 @@ function Install() {
         to set it up with minimum configuration.
       </p>
       <p>
-        DXC React Components is distributed as an npm package. To use it in an
+        DXC React Components is distributed as an npm package. styled-compoents is a peer dependency, so in order to use it in an
         existing project:
       </p>
       <SyntaxHighlighter language="php" style={docco}>
         {`
   # with npm
-  npm install @dxc-technology/halstack-react
+  npm install @dxc-technology/halstack-react styled-components
 
   # with yarn
-  yarn add @dxc-technology/halstack-react
+  yarn add @dxc-technology/halstack-react styled-components
         `}
       </SyntaxHighlighter>
     </Section>
