@@ -39,7 +39,6 @@ const DxcDate = ({
 
   function handleMenuItemClick(date) {
     const stringValue = moment(date).format(format.toUpperCase());
-    setIsOpen(false);
     if (value == null) {
       setInnerValue(stringValue);
     }
