@@ -29,6 +29,7 @@ import Heading from "./pages/Heading";
 import Textarea from "./pages/Textarea";
 import ResultsetTable from "./pages/ResultsetTable";
 import Chip from "./pages/Chip";
+import ToggleGroup from "./pages/ToggleGroup";
 
 export default [
   {
@@ -175,6 +176,11 @@ export default [
     path: "textarea",
     name: "Textarea",
     component: Textarea
+  },
+  {
+    path: "toggle-group",
+    name: "Toggle group",
+    component: ToggleGroup
   },
   {
     path: "upload",
