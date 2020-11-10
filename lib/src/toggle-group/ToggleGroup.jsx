@@ -6,32 +6,31 @@ import { spaces, theme, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
-const DxcToggleGroup = ({ value, onChange, label, disabled = false, options = [], margin, multiple = false }) => {
+const DxcToggleGroup = ({ value = [], onChange, label, disabled = false, options = [], margin, multiple = false }) => {
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
   const [selectedValue, setSelectedValue] = useState(value);
-  const [selectedValues, setSelectedValues] = useState([value]);
 
   const handleToggleChange = (selectedOption) => {
+    let newSelectedOptions;
     if (multiple) {
-      const newSelectedValues = selectedValues.map((value) => value);
+      const newSelectedValues = selectedValue.map((value) => value);
       if (newSelectedValues.includes(selectedOption)) {
         const index = newSelectedValues.indexOf(selectedOption);
         newSelectedValues.splice(index, 1);
       } else {
         newSelectedValues.push(selectedOption);
       }
-      setSelectedValues(newSelectedValues);
+      setSelectedValue(newSelectedValues);
+      newSelectedOptions = newSelectedValues;
     } else {
       setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
     }
 
     if (typeof onChange === "function") {
-      onChange(selectedOption);
+      onChange(multiple ? newSelectedOptions :selectedOption);
     }
   };
-
-  console.log(colorsTheme.toggleGroup);
 
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
@@ -40,7 +39,7 @@ const DxcToggleGroup = ({ value, onChange, label, disabled = false, options = []
         <ToggleGroupContainer>
           {options.map((option, i) => (
             <ToggleContainer
-              selected={multiple ? selectedValues.includes(option.value) : option.value === selectedValue}
+              selected={multiple ? selectedValue.includes(option.value) : option.value === selectedValue}
               onClick={() => !disabled && handleToggleChange(option.value)}
               isFirst={i === 0}
               isLast={i === options.length - 1}
@@ -78,7 +77,7 @@ const ToggleGroup = styled.div`
 `;
 
 const ToggleGroupContainer = styled.div`
-  display: flexbox;
+  display: flex;
 `;
 
 const ToggleGroupLabel = styled.div`

@@ -25,6 +25,7 @@ const colors = {
 function App() {
   const [selected, changeSelected] = useState(true);
   const [value, changeValue] = useState(1);
+  const [multipleValue, changeMultipleValue] = useState([1,2]);
 
   const onChangeConsole = (newValue) => {
     console.log(newValue);
@@ -123,7 +124,7 @@ function App() {
         <h4>Controlled multiple toggle group</h4>
         <DxcToggleGroup
           label="Choose multiple"
-          value={value}
+          value={multipleValue}
           options={optionsWithoutIcon}
           onChange={onChangeConsole}
           multiple
