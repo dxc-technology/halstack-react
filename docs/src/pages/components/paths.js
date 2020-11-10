@@ -30,6 +30,7 @@ import Heading from "./cdk-components/heading/Heading";
 import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
 import Autocomplete from "./cdk-components/autocomplete/Autocomplete";
 import Chip from "./cdk-components/chip/Chip";
+import ToggleGroup from "./cdk-components/toggleGroup/ToggleGroup";
 
 export const types = {
   FORMS: "Forms",
@@ -217,6 +218,12 @@ export default [
     path: "textarea",
     name: "Textarea",
     component: Textarea,
+    type: types.FORMS,
+  },
+  {
+    path: "toggleGroup",
+    name: "Toggle Group",
+    component: ToggleGroup,
     type: types.FORMS,
   },
   {
