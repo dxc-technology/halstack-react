@@ -52,12 +52,13 @@ function App() {
     <div>
       <div className="test-case" id="light-theme">
         <h4>Light theme and default icon</h4>
-        <DxcHeader />
+        <DxcHeader underlined={true} />
       </div>
 
       <div className="test-case" id="custom-header">
         <h4>Header with custom content</h4>
         <DxcHeader
+          underlined={true}
           logoSrc={invisionLogo}
           content={
             <React.Fragment>
