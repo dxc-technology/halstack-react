@@ -131,7 +131,7 @@ const HeaderContainer = styled(AppBar)`
 
     color: ${(props) => props.theme.fontColor};
 
-    border-bottom: ${(props) => `2px solid ${props.theme.underlinedColor}`};
+    border-bottom: ${(props) => props.underlined && `2px solid ${props.theme.underlinedColor}`};
 
     font-family: "Open Sans", sans-serif;
 

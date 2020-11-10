@@ -102,6 +102,7 @@ const FooterContainer = styled.footer`
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   width: 100%;
   box-sizing: border-box;
+  min-height: 120px;
 `;
 
 const FooterHeader = styled.div`
