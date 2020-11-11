@@ -18,18 +18,20 @@ const DxcToggleGroup = ({ value, onChange, label, disabled = false, options = []
     let newSelectedOptions;
     if (value == null) {
       if (multiple) {
-        const newSelectedValues = selectedValue.map((value) => value);
-        if (newSelectedValues.includes(selectedOption)) {
-          const index = newSelectedValues.indexOf(selectedOption);
-          newSelectedValues.splice(index, 1);
+        newSelectedOptions = selectedValue.map((value) => value);
+        if (newSelectedOptions.includes(selectedOption)) {
+          const index = newSelectedOptions.indexOf(selectedOption);
+          newSelectedOptions.splice(index, 1);
         } else {
-          newSelectedValues.push(selectedOption);
+          newSelectedOptions.push(selectedOption);
         }
-        setSelectedValue(newSelectedValues);
-        newSelectedOptions = newSelectedValues;
+        setSelectedValue(newSelectedOptions);
       } else {
         setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
       }
+    } else {
+      newSelectedOptions = value.map((v) => v);;
+      newSelectedOptions.push(selectedOption);
     }
 
     if (typeof onChange === "function") {
