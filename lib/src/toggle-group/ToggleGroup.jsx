@@ -6,29 +6,34 @@ import { spaces, theme, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
-const DxcToggleGroup = ({ value = [], onChange, label, disabled = false, options = [], margin, multiple = false }) => {
+const DxcToggleGroup = ({ value, onChange, label, disabled = false, options = [], margin, multiple = false }) => {
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
-  const [selectedValue, setSelectedValue] = useState(value);
+  const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
+
+  console.log(selectedValue);
+  console.log(value);
 
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
-    if (multiple) {
-      const newSelectedValues = selectedValue.map((value) => value);
-      if (newSelectedValues.includes(selectedOption)) {
-        const index = newSelectedValues.indexOf(selectedOption);
-        newSelectedValues.splice(index, 1);
+    if (value == null) {
+      if (multiple) {
+        const newSelectedValues = selectedValue.map((value) => value);
+        if (newSelectedValues.includes(selectedOption)) {
+          const index = newSelectedValues.indexOf(selectedOption);
+          newSelectedValues.splice(index, 1);
+        } else {
+          newSelectedValues.push(selectedOption);
+        }
+        setSelectedValue(newSelectedValues);
+        newSelectedOptions = newSelectedValues;
       } else {
-        newSelectedValues.push(selectedOption);
+        setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
       }
-      setSelectedValue(newSelectedValues);
-      newSelectedOptions = newSelectedValues;
-    } else {
-      setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
     }
 
     if (typeof onChange === "function") {
-      onChange(multiple ? newSelectedOptions :selectedOption);
+      onChange(multiple ? newSelectedOptions : selectedOption);
     }
   };
 
@@ -39,7 +44,15 @@ const DxcToggleGroup = ({ value = [], onChange, label, disabled = false, options
         <ToggleGroupContainer>
           {options.map((option, i) => (
             <ToggleContainer
-              selected={multiple ? selectedValue.includes(option.value) : option.value === selectedValue}
+              selected={
+                multiple
+                  ? value
+                    ? value.includes(option.value)
+                    : selectedValue.includes(option.value)
+                  : value
+                  ? option.value === value
+                  : option.value === selectedValue
+              }
               onClick={() => !disabled && handleToggleChange(option.value)}
               isFirst={i === 0}
               isLast={i === options.length - 1}
@@ -48,7 +61,7 @@ const DxcToggleGroup = ({ value = [], onChange, label, disabled = false, options
               key={option.label}
             >
               {option.iconSrc ? (
-                <IconContainer src={option.iconSrc} />
+                <IconContainer icon={option.iconSrc}></IconContainer>
               ) : (
                 <LabelContainer>{option.label}</LabelContainer>
               )}
@@ -92,17 +105,16 @@ const ToggleContainer = styled.div`
   justify-content: center;
 
   ${(props) => `
-    background-color: ${props.selected ? props.theme.selectedColor : props.theme.unselectedColor};
+    background-color: ${props.selected ? props.theme.selectedColor : props.theme.color};
     border-radius: ${props.isFirst ? "4px 0 0 4px" : props.isLast ? "0 4px 4px 0" : "0"};
-    color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
+    color: ${props.selected ? props.theme.selectedFontColor : props.theme.fontColor};
     padding: ${props.isIcon ? `10px 12px` : `12px 30px`};
     ${
       !props.disabled
         ? `&:hover {
-          background-color: ${props.selected ? props.theme.selectedHoverColor : props.theme.unselectedHoverColor};
-          color: ${
-            props.selected ? props.theme.selectedHoverFontColor : props.theme.unselectedHoverFontColor
-          } !important;
+          background-color: ${props.selected ? props.theme.selectedHoverColor : props.theme.hoverColor};
+          color: ${props.selected ? props.theme.selectedHoverFontColor : props.theme.hoverFontColor} !important;
+          fill: ${props.selected ? props.theme.selectedHoverFontColor : props.theme.hoverFontColor} !important;
         }
         cursor: pointer;`
         : `cursor: not-allowed;`
@@ -116,9 +128,14 @@ const LabelContainer = styled.span`
   text-transform: uppercase;
 `;
 
-const IconContainer = styled.img`
+const IconContainer = styled.div`
   height: 20px;
   width: 20px;
+  background: url(${(props) => props.icon});
+  background-size: 20px 20px;
+  svg {
+    fill: blue !important;
+  }
 `;
 
 DxcToggleGroup.propTypes = {
