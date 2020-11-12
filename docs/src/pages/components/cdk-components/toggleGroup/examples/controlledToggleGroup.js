@@ -4,7 +4,9 @@ import { useState } from "react";
 const code = `() => {
   const [value, changeValue] = useState(1);
   const onChange = (newValue) => {
-    changeValue(newValue);
+    if(newValue !== 2) {
+      changeValue(newValue);
+    }
   };
   const options = [
     {
@@ -25,7 +27,6 @@ const code = `() => {
     <DxcToggleGroup
       options={options}
       onChange={onChange}
-      label="Controlled toggle group"
       value={value}
       margin="medium"
     ></DxcToggleGroup>

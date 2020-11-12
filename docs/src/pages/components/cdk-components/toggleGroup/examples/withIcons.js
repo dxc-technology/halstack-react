@@ -30,7 +30,6 @@ const code = `() => {
     <DxcToggleGroup
       options={optionsWithIcons}
       onChange={onChange}
-      label="Toggle group with Icons"
       margin="medium"
     ></DxcToggleGroup>
   );

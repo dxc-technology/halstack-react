@@ -11,46 +11,46 @@ const toggleGroupTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>color</td>
+        <td>unselectedBackgroundColor</td>
         <td>
           <SampleComponent color="#D9D9D9"></SampleComponent>
         </td>
-        <td>Applies to color.</td>
+        <td>Applies to unselectedBackgroundColor.</td>
       </tr>
       <tr>
-        <td>hoverColor</td>
+        <td>unselectedBackgroundHoverColor</td>
         <td>
           <SampleComponent color="#EEEEEE"></SampleComponent>
         </td>
-        <td>Applies to hoverColor.</td>
+        <td>Applies to unselectedBackgroundHoverColor.</td>
       </tr>
       <tr>
-        <td>fontColor</td>
+        <td>unselectedFontColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to fontColor.</td>
+        <td>Applies to unselectedFontColor.</td>
       </tr>
       <tr>
-        <td>hoverFontColor</td>
+        <td>unselectedHoverFontColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to hoverFontColor.</td>
+        <td>Applies to unselectedHoverFontColor.</td>
       </tr>
       <tr>
-        <td>selectedColor</td>
+        <td>selectedBackgroundColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
-        <td>Applies to selectedColor.</td>
+        <td>Applies to selectedBackgroundColor.</td>
       </tr>
       <tr>
-        <td>selectedHoverColor</td>
+        <td>selectedBackgroundHoverColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to selectedHoverColor.</td>
+        <td>Applies to selectedBackgroundHoverColor.</td>
       </tr>
       <tr>
         <td>selectedFontColor</td>

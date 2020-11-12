@@ -10,19 +10,14 @@ const toggleGroupPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>label: string</td>
-        <td></td>
-        <td>Text to be placed next to the toggle group.</td>
-      </tr>
-      <tr>
-        <td>value: number | number[]</td>
+        <td>value: any | any[]</td>
         <td></td>
         <td>
           The key(s) of the selected value(s). If the toggle group component
-          doesn't allow multiple selection, value must be a number. If the
-          component allows multiple selection, value must be an array of
-          numbers. If undefined, the component will be uncontrolled and the
-          value will be managed internally by the component.
+          doesn't allow multiple selection, it must be one unique value. If the
+          component allows multiple selection, value must be an array. If
+          undefined, the component will be uncontrolled and the value will be
+          managed internally by the component.
         </td>
       </tr>
       <tr>
@@ -69,8 +64,8 @@ const toggleGroupPropsTable = () => {
               <b>label</b>: String with the option display value.
             </li>
             <li>
-              <b>iconSrc</b>: URL of the icon that will be placed. IconSrc
-              and label can't be used at same time.
+              <b>iconSrc</b>: URL of the icon that will be placed. IconSrc and
+              label can't be used at same time.
             </li>
           </ul>
         </td>

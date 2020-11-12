@@ -23,7 +23,6 @@ const code = `() => {
     <DxcToggleGroup
       options={options}
       onChange={onChange}
-      label="Multiple toggle group"
       margin="medium"
       multiple
     ></DxcToggleGroup>

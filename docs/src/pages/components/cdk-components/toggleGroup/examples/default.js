@@ -23,7 +23,6 @@ const code = `() => {
     <DxcToggleGroup
       options={options}
       onChange={onChange}
-      label="Uncontrolled toggle group"
       margin="medium"
     ></DxcToggleGroup>
   );
