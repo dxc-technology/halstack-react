@@ -4,9 +4,7 @@ import { useState } from "react";
 const code = `() => {
   const [value, changeValue] = useState(1);
   const onChange = (newValue) => {
-    if(newValue !== 2) {
-      changeValue(newValue);
-    }
+    changeValue(newValue);
   };
   const options = [
     {
