@@ -38,7 +38,6 @@ function App() {
         <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
-        <p>SideNav Content</p>
       </DxcStandardLayout.SideNav>
       <DxcStandardLayout.Main>
         <p>Main Content</p>
