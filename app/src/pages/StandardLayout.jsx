@@ -8,13 +8,66 @@ import {
 function App() {
   return (
     <DxcStandardLayout>
-      <DxcHeader
-        underlined={false}
-        margin="medium"
-        padding={{ right: "medium" }}
-      />
+      <DxcHeader underlined />
+      <DxcStandardLayout.SideNav mode="push" displayArrow padding="medium">
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+      </DxcStandardLayout.SideNav>
+      <DxcStandardLayout.Main>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+      </DxcStandardLayout.Main>
       <DxcFooter />
-      <DxcStandardLayout.Main>Main Content</DxcStandardLayout.Main>
     </DxcStandardLayout>
   );
 }
