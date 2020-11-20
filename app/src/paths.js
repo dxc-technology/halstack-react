@@ -29,7 +29,7 @@ import Heading from "./pages/Heading";
 import Textarea from "./pages/Textarea";
 import ResultsetTable from "./pages/ResultsetTable";
 import Chip from "./pages/Chip";
-import StandardLayout from "./pages/StandardLayout";
+import ApplicationLayout from "./pages/ApplicationLayout";
 import ToggleGroup from "./pages/ToggleGroup";
 
 export default [
@@ -129,9 +129,9 @@ export default [
     component: ResultsetTable,
   },
   {
-    path: "standardLayout",
+    path: "applicationLayout",
     name: "Standard Layout",
-    component: StandardLayout,
+    component: ApplicationLayout,
   },
   {
     path: "select",

@@ -84,7 +84,7 @@ const childExists = (children, childrenName) => {
   return children.find((child) => child && child.type && child.type.name === childrenName);
 };
 
-const DxcStandardLayout = ({ children }) => {
+const DxcApplicationLayout = ({ children }) => {
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
@@ -113,8 +113,8 @@ const DxcStandardLayout = ({ children }) => {
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.standardLayout}>
-      <StandardLayoutContainer>
+    <ThemeProvider theme={colorsTheme.applicationLayout}>
+      <ApplicationLayoutContainer>
         <HeaderContainer>{header || defaultHeader()}</HeaderContainer>
         <BodyContainer>
           <MainBodyContainer>
@@ -132,17 +132,17 @@ const DxcStandardLayout = ({ children }) => {
           </MainBodyContainer>
           <FooterContainer>{footer || defaultFooter()}</FooterContainer>
         </BodyContainer>
-      </StandardLayoutContainer>
+      </ApplicationLayoutContainer>
     </ThemeProvider>
   );
 };
 
-DxcStandardLayout.Header = Header;
-DxcStandardLayout.Main = Main;
-DxcStandardLayout.Footer = Footer;
-DxcStandardLayout.SideNav = SideNav;
+DxcApplicationLayout.Header = Header;
+DxcApplicationLayout.Main = Main;
+DxcApplicationLayout.Footer = Footer;
+DxcApplicationLayout.SideNav = SideNav;
 
-const StandardLayoutContainer = styled.div`
+const ApplicationLayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -220,4 +220,4 @@ const ArrowTrigger = styled.div`
   }
 `;
 
-export default DxcStandardLayout;
+export default DxcApplicationLayout;

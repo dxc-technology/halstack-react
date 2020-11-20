@@ -1,15 +1,15 @@
 import React from "react";
 import {
   DxcHeader,
-  DxcStandardLayout,
+  DxcApplicationLayout,
   DxcFooter,
 } from "@dxc-technology/halstack-react";
 
 function App() {
   return (
-    <DxcStandardLayout>
+    <DxcApplicationLayout>
       <DxcHeader underlined />
-      <DxcStandardLayout.SideNav mode="push" displayArrow padding="medium">
+      <DxcApplicationLayout.SideNav mode="push" displayArrow padding="medium">
         <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
@@ -38,8 +38,8 @@ function App() {
         <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
-      </DxcStandardLayout.SideNav>
-      <DxcStandardLayout.Main>
+      </DxcApplicationLayout.SideNav>
+      <DxcApplicationLayout.Main>
         <p>Main Content</p>
         <p>Main Content</p>
         <p>Main Content</p>
@@ -65,9 +65,9 @@ function App() {
         <p>Main Content</p>
         <p>Main Content</p>
         <p>Main Content</p>
-      </DxcStandardLayout.Main>
+      </DxcApplicationLayout.Main>
       <DxcFooter />
-    </DxcStandardLayout>
+    </DxcApplicationLayout>
   );
 }
 
