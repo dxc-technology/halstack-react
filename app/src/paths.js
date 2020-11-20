@@ -29,167 +29,167 @@ import Heading from "./pages/Heading";
 import Textarea from "./pages/Textarea";
 import ResultsetTable from "./pages/ResultsetTable";
 import Chip from "./pages/Chip";
-import ToggleGroup from "./pages/ToggleGroup";
+import ApplicationLayout from "./pages/ApplicationLayout";
 
 export default [
   {
     path: "accordion",
     name: "Accordion",
-    component: Accordion
+    component: Accordion,
   },
   {
     path: "alert",
     name: "Alert",
-    component: Alert
+    component: Alert,
   },
   {
     path: "button",
     name: "Button",
-    component: Button
+    component: Button,
   },
   {
     path: "box",
     name: "Box",
-    component: Box
+    component: Box,
   },
   {
     path: "card",
     name: "Card",
-    component: Card
+    component: Card,
   },
   {
     path: "checkbox",
     name: "Checkbox",
-    component: Checkbox
+    component: Checkbox,
   },
   {
     path: "chip",
     name: "Chip",
-    component: Chip
+    component: Chip,
   },
   {
     path: "date",
     name: "Date",
-    component: Date
+    component: Date,
   },
   {
     path: "dialog",
     name: "Dialog",
-    component: Dialog
+    component: Dialog,
   },
   {
     path: "dropdown",
     name: "Dropdown",
-    component: Dropdown
+    component: Dropdown,
   },
   {
     path: "footer",
     name: "Footer",
-    component: Footer
+    component: Footer,
   },
   {
     path: "header",
     name: "Header",
-    component: Header
+    component: Header,
   },
   {
     path: "heading",
     name: "Heading",
-    component: Heading
+    component: Heading,
   },
   {
     path: "inputText",
     name: "Input Text",
-    component: InputText
+    component: InputText,
   },
   {
     path: "link",
     name: "Link",
-    component: Link
+    component: Link,
   },
   {
     path: "paginator",
     name: "Paginator",
-    component: Paginator
+    component: Paginator,
   },
   {
     path: "progressBar",
     name: "Progress bar",
-    component: ProgressBar
+    component: ProgressBar,
   },
   {
     path: "radio",
     name: "Radio",
-    component: Radio
+    component: Radio,
   },
   {
     path: "resultsetTable",
     name: "ResultsetTable",
-    component: ResultsetTable
+    component: ResultsetTable,
+  },
+  {
+    path: "applicationLayout",
+    name: "Application Layout",
+    component: ApplicationLayout,
   },
   {
     path: "select",
     name: "Select",
-    component: Select
+    component: Select,
   },
   {
     path: "sidenav",
     name: "Sidenav",
-    component: Sidenav
+    component: Sidenav,
   },
   {
     path: "slider",
     name: "Slider",
-    component: Slider
+    component: Slider,
   },
   {
     path: "spinner",
     name: "Spinner",
-    component: Spinner
+    component: Spinner,
   },
   {
     path: "switch",
     name: "Switch",
-    component: Switch
+    component: Switch,
   },
   {
     path: "table",
     name: "Table",
-    component: Table
+    component: Table,
   },
   {
     path: "tag",
     name: "Tag",
-    component: Tag
+    component: Tag,
   },
   {
     path: "tabs",
     name: "Tabs",
-    component: Tabs
+    component: Tabs,
   },
   {
     path: "tabs-for-sections",
     name: "Tabs for sections",
-    component: TabsForSections
+    component: TabsForSections,
   },
   {
     path: "textarea",
     name: "Textarea",
-    component: Textarea
-  },
-  {
-    path: "toggle-group",
-    name: "Toggle group",
-    component: ToggleGroup
+    component: Textarea,
   },
   {
     path: "upload",
     name: "Upload",
-    component: Upload
+    component: Upload,
   },
   {
     path: "wizard",
     name: "Wizard",
-    component: Wizard
-  }
+    component: Wizard,
+  },
 ];
