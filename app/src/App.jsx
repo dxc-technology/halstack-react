@@ -13,7 +13,7 @@ function App() {
       <SideNav></SideNav>
       <Content id="tests-container">
         <Router>
-          {paths.map(path => (
+          {paths.map((path) => (
             <path.component key={path.path} path={path.path}></path.component>
           ))}
           <AllComponents path="/all"></AllComponents>
@@ -34,7 +34,8 @@ const Content = styled.div`
   background: white;
   flex-grow: 1;
   border: 1px dashed #cccccc;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export default App;
