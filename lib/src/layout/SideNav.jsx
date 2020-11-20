@@ -12,17 +12,21 @@ const SideNav = ({ padding, children }) => {
 
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
-      <SideNavContainer padding={padding}>
-        <SideNavChildrenContainer>{children}</SideNavChildrenContainer>
-      </SideNavContainer>
+      <SideNavContainer padding={padding}>{children}</SideNavContainer>
     </ThemeProvider>
   );
 };
 
-const SideNavChildrenContainer = styled.div`
+const SideNavContainer = styled.div`
+  top: 0;
+  position: sticky;
+  background-color: ${(props) => props.theme.backgroundColor};
+  max-width: 300px;
+  width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "")};
+  padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
+  height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  height: 100%;
   ::-webkit-scrollbar {
     width: 3px;
   }
@@ -36,16 +40,6 @@ const SideNavChildrenContainer = styled.div`
     background-color: #666666;
     border-radius: 3px;
   }
-`;
-
-const SideNavContainer = styled.div`
-  top: 0;
-  position: sticky;
-  background-color: ${(props) => props.theme.backgroundColor};
-  max-width: 300px;
-  width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "")};
-  padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
-  height: 100vh;
 `;
 
 SideNav.propTypes = {

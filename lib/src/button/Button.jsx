@@ -154,11 +154,11 @@ const DxCButton = styled.div`
             }
             &:active {
               background-color: ${props.theme.hoverColor}${props.theme.secondaryActiveOpacity} !important;
-              color: ${props.theme.textFontColor} !important;
+              color: ${props.theme.secondaryHoverFontColor} !important;
             }
             &:focus {
               background-color: ${props.theme.secondaryBackgroundColor};
-              color: ${props.theme.textFontColor}; 
+              color: ${props.theme.secondaryHoverFontColor}; 
             }
             &:disabled{
               background-color: ${props.theme.secondaryBackgroundColor};

@@ -9,6 +9,7 @@ function App() {
   const location = useLocation();
   return (
     <DxcHeader
+      underlined
       padding={{ left: "medium", right: "medium" }}
       content={
         <React.Fragment>
