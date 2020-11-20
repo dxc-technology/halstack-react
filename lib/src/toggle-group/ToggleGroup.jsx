@@ -11,9 +11,6 @@ const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options 
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
 
-  console.log(selectedValue);
-  console.log(value);
-
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
     if (value == null) {
