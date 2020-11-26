@@ -70,9 +70,9 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
   };
 
   useEffect(() => {
-    if(rows.length>0){
+    if (rows.length > 0) {
       changePage(1);
-    }else{
+    } else {
       changePage(0);
     }
   }, [rows.length]);
@@ -171,6 +171,7 @@ const HeaderRow = styled.thead`
   height: 60px;
 `;
 const DxcResultsetTableContainer = styled.div`
+  overflow-y: hidden;
   overflow-x: auto;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>

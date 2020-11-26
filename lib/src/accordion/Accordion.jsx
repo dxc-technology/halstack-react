@@ -3,11 +3,11 @@ import styled, { ThemeProvider } from "styled-components";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
 import { getCustomTheme, getMargin } from "../common/utils.js";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { spaces, defaultTheme, theme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcAccordion = ({
@@ -183,6 +183,7 @@ const DXCAccordion = styled.div`
     color: #000000;
     border-radius: 0px 0px 4px 4px;
     cursor: default;
+    width: 100%;
   }
 
   .MuiSvgIcon-root {
@@ -222,7 +223,9 @@ const AccordionLabel = styled.div`
   flex-grow: ${(props) => (props.iconPosition === "after" && "0") || "1"};
 `;
 
-const AccordionText = styled.div``;
+const AccordionText = styled.div`
+  width: 100%;
+`;
 
 const AccordionAssistiveText = styled.div`
   margin-top: 1px;

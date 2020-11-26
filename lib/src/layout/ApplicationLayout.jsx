@@ -79,7 +79,6 @@ const defaultFooter = () => {
 const defaultHeader = () => {
   return <DxcHeader underlined />;
 };
-
 const childExists = (children, childrenName) => {
   return children.find((child) => child && child.type && child.type.name === childrenName);
 };
@@ -91,10 +90,15 @@ const DxcApplicationLayout = ({ children }) => {
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
 
   const childrenArray = React.Children.toArray(children);
-  const header = childExists(childrenArray, "DxcHeader");
+
+  const header = childExists(childrenArray, "DxcHeader")
+    ? childExists(childrenArray, "DxcHeader")
+    : childExists(childrenArray, "Header") || defaultHeader();
+  const footer = childExists(childrenArray, "DxcFooter")
+    ? childExists(childrenArray, "DxcFooter")
+    : childExists(childrenArray, "Footer") || defaultFooter();
   const sideNav = childExists(childrenArray, "SideNav");
   const main = childExists(childrenArray, "Main");
-  const footer = childExists(childrenArray, "DxcFooter");
   const displayArrow = sideNav && sideNav.props && sideNav.props.displayArrow;
   const sideNavMode = sideNav && sideNav.props && sideNav.props.mode;
 
@@ -115,7 +119,7 @@ const DxcApplicationLayout = ({ children }) => {
   return (
     <ThemeProvider theme={colorsTheme.applicationLayout}>
       <ApplicationLayoutContainer>
-        <HeaderContainer>{header || defaultHeader()}</HeaderContainer>
+        <HeaderContainer>{header}</HeaderContainer>
         <BodyContainer>
           <MainBodyContainer>
             <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
@@ -130,7 +134,7 @@ const DxcApplicationLayout = ({ children }) => {
               {main}
             </MainContent>
           </MainBodyContainer>
-          <FooterContainer>{footer || defaultFooter()}</FooterContainer>
+          <FooterContainer>{footer}</FooterContainer>
         </BodyContainer>
       </ApplicationLayoutContainer>
     </ThemeProvider>
