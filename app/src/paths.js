@@ -130,7 +130,7 @@ export default [
   },
   {
     path: "applicationLayout",
-    name: "Standard Layout",
+    name: "Application Layout",
     component: ApplicationLayout,
   },
   {
