@@ -31,6 +31,7 @@ import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
 import Autocomplete from "./cdk-components/autocomplete/Autocomplete";
 import Chip from "./cdk-components/chip/Chip";
 import ToggleGroup from "./cdk-components/toggleGroup/ToggleGroup";
+import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLayout";
 
 export const types = {
   FORMS: "Forms",
@@ -51,6 +52,12 @@ export default [
     name: "Alert",
     component: Alert,
     type: types.UTILS,
+  },
+  {
+    path: "applicationLayout",
+    name: "Application layout",
+    component: ApplicationLayout,
+    type: types.LAYOUT,
   },
   {
     path: "autocomplete",
