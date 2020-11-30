@@ -1,10 +1,10 @@
 /* eslint-disable react/require-default-props */
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import { DxcHeader, DxcFooter } from "@dxc-technology/halstack-react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import SideNavComponent from "./SideNav";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { spaces, responsiveSizes, defaultTheme, theme } from "../common/variables.js";
 import linkedinLogo from "./linkedin.svg";
 import twitterLogo from "./twitter.svg";
 import facebookLogo from "./facebook.svg";
@@ -25,11 +25,14 @@ const Footer = ({ children }) => {
   return <div>{children}</div>;
 };
 
-const SideNav = ({ padding, children }) => {
-  return <SideNavComponent padding={padding}>{children}</SideNavComponent>;
+const SideNav = (props) => {
+  const { displayArrow, mode, ...childProps } = props;
+  return <SideNavComponent {...childProps}>{childProps.children}</SideNavComponent>;
 };
 
 SideNav.propTypes = {
+  mode: PropTypes.oneOf(["overlay", "push", ""]),
+  displayArrow: PropTypes.bool,
   padding: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
@@ -84,10 +87,13 @@ const childExists = (children, childrenName) => {
 };
 
 const DxcApplicationLayout = ({ children }) => {
+  const ref = useRef(null);
+
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
+  const [isResponsive, setIsResponsive] = useState();
 
   const childrenArray = React.Children.toArray(children);
 
@@ -112,25 +118,51 @@ const DxcApplicationLayout = ({ children }) => {
     </svg>
   );
 
+  const handleResize = (width) => {
+    if (width) {
+      if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
+    }
+  };
+
+  const handleEventListener = () => {
+    handleResize(ref.current.offsetWidth);
+  };
+
+  useEffect(() => {
+    if (ref.current) {
+      window.addEventListener("resize", handleEventListener);
+      handleResize(ref.current.offsetWidth);
+    }
+    return () => {
+      window.removeEventListener("resize", handleEventListener);
+    };
+  }, []);
+
   const handleSidenav = () => {
     setIsSideNavVisible(!isSideNavVisible);
   };
 
   return (
     <ThemeProvider theme={colorsTheme.applicationLayout}>
-      <ApplicationLayoutContainer>
+      <ApplicationLayoutContainer ref={ref}>
         <HeaderContainer>{header}</HeaderContainer>
         <BodyContainer>
           <MainBodyContainer>
             <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
               {sideNav}
-              {displayArrow && (
-                <ArrowTrigger onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
-                  <ArrowIcon />
-                </ArrowTrigger>
-              )}
+              <ArrowContainer>
+                {(displayArrow || isResponsive) && (
+                  <ArrowTrigger onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
+                    <ArrowIcon />
+                  </ArrowTrigger>
+                )}
+              </ArrowContainer>
             </SideNavArrowContainer>
-            <MainContent sideNav={sideNav} mode={sideNavMode} isSideNavVisible={isSideNavVisible}>
+            <MainContent
+              sideNav={sideNav}
+              mode={isResponsive ? "overlay" : sideNavMode}
+              isSideNavVisible={isSideNavVisible}
+            >
               {main}
             </MainContent>
           </MainBodyContainer>
@@ -187,11 +219,7 @@ const MainContent = styled.div`
   margin-bottom: 80px;
   margin-right: ${(props) => (props.mode === "push" && props.isSideNavVisible ? "8.6%" : "15.6%")};
   margin-left: ${(props) =>
-    props.sideNav
-      ? props.mode === "push" && props.isSideNavVisible
-        ? "calc(21% - 297px)}"
-        : "calc(15.6% - 297px)"
-      : "15.6%"};
+    props.sideNav ? (props.mode === "push" && props.isSideNavVisible ? "5.4%" : "calc(15.6% - 297px)") : "15.6%"};
   transition: margin 0.4s ease-in-out;
 `;
 
@@ -204,13 +232,18 @@ const SideNavArrowContainer = styled.div`
   transition: transform 0.4s ease-in-out;
 `;
 
+const ArrowContainer = styled.div`
+  position: absolute;
+  height: 100vh;
+  left: 279px;
+`;
+
 const ArrowTrigger = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 279px;
-  top: 50vh;
+  position: sticky;
+  top: 45vh;
   width: 42px;
   min-height: 42px;
   background-color: ${(props) => `${props.theme.arrowContainerColor}${props.theme.arrowContainerOpacity}`};
