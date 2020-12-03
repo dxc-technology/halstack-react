@@ -82,8 +82,8 @@ const defaultFooter = () => {
 const defaultHeader = () => {
   return <DxcHeader underlined />;
 };
-const childExists = (children, childrenName) => {
-  return children.find((child) => child && child.type && child.type.name === childrenName);
+const childTypeExists = (children, childType) => {
+  return children.find((child) => child && child.type && child.type === childType);
 };
 
 const DxcApplicationLayout = ({ children }) => {
@@ -97,14 +97,10 @@ const DxcApplicationLayout = ({ children }) => {
 
   const childrenArray = React.Children.toArray(children);
 
-  const header = childExists(childrenArray, "DxcHeader")
-    ? childExists(childrenArray, "DxcHeader")
-    : childExists(childrenArray, "Header") || defaultHeader();
-  const footer = childExists(childrenArray, "DxcFooter")
-    ? childExists(childrenArray, "DxcFooter")
-    : childExists(childrenArray, "Footer") || defaultFooter();
-  const sideNav = childExists(childrenArray, "SideNav");
-  const main = childExists(childrenArray, "Main");
+  const header = childTypeExists(childrenArray, DxcHeader) || childTypeExists(childrenArray, Header) || defaultHeader();
+  const footer = childTypeExists(childrenArray, DxcFooter) || childTypeExists(childrenArray, Footer) || defaultFooter();
+  const sideNav = childTypeExists(childrenArray, SideNav);
+  const main = childTypeExists(childrenArray, Main);
   const displayArrow = sideNav && sideNav.props && sideNav.props.displayArrow;
   const sideNavMode = sideNav && sideNav.props && sideNav.props.mode;
 
@@ -151,7 +147,7 @@ const DxcApplicationLayout = ({ children }) => {
             <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
               {sideNav}
               <ArrowContainer>
-                {(displayArrow || isResponsive) && (
+                {sideNav && (displayArrow || isResponsive) && (
                   <ArrowTrigger onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
                     <ArrowIcon />
                   </ArrowTrigger>
