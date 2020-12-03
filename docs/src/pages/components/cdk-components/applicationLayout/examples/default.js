@@ -1,6 +1,3 @@
-import { DxcAlert } from "@dxc-technology/halstack-react";
-import { useState } from "react";
-
 const code = `() => {
   return (
     <iframe
@@ -19,9 +16,4 @@ const code = `() => {
   );
 }`;
 
-const scope = {
-  DxcAlert,
-  useState,
-};
-
-export default { code, scope };
+export default { code };
