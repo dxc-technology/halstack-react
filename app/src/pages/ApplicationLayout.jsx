@@ -1,10 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  DxcHeader,
-  DxcApplicationLayout,
-  DxcFooter,
-} from "@dxc-technology/halstack-react";
 
 function App() {
   return (
