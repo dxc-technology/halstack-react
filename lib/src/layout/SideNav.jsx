@@ -22,7 +22,7 @@ const SideNavContainer = styled.div`
   position: sticky;
   background-color: ${(props) => props.theme.backgroundColor};
   max-width: 300px;
-  width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "")};
+  width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
   padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
   height: 100vh;
   overflow-y: auto;
