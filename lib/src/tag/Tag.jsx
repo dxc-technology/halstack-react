@@ -42,12 +42,13 @@ const DxcTag = ({
       onClick={clickHandler}
       hasAction={onClick || linkHref}
     >
-      {(linkHref && (
+      {onClick ? (
+        <StyledButton>{tagContent}</StyledButton>
+      ) : (
         <StyledLink href={linkHref} target={newWindow ? "_blank" : "_self"}>
           {tagContent}
         </StyledLink>
-      )) ||
-        tagContent}
+      )}
     </StyledDxcTag>
   );
 };
@@ -84,6 +85,13 @@ const TagContent = styled.div`
 
 const StyledLink = styled.a`
   text-decoration: none;
+`;
+
+const StyledButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 `;
 
 const TagIcon = styled.img`
