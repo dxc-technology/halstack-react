@@ -17,20 +17,6 @@ const sidenavTokensTable = () => {
         </td>
         <td>Applies to the backgroundColor token.</td>
       </tr>
-      <tr>
-        <td>arrowContainerColor</td>
-        <td>
-          <SampleComponent color="#D9D9D9"></SampleComponent>
-        </td>
-        <td>Applies to the arrowContainerColor token.</td>
-      </tr>
-      <tr>
-        <td>arrowColor</td>
-        <td>
-          <SampleComponent color="#000000"></SampleComponent>
-        </td>
-        <td>Applies to the arrowColor token.</td>
-      </tr>
     </DxcTable>
   );
 };
