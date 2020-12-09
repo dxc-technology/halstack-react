@@ -92,6 +92,8 @@ const StyledButton = styled.button`
   border: none;
   padding: 0;
   cursor: pointer;
+  outline: 0;
+  font-family: inherit;
 `;
 
 const TagIcon = styled.img`
