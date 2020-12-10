@@ -14,7 +14,7 @@ import defaultResultsetTable from "./examples/defaultResultseltTable";
 function ResultsetTable() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="ResultsetTable" status="ready"></ComponentHeader>
+      <ComponentHeader title="Resultset Table" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

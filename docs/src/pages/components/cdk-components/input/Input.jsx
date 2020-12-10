@@ -18,7 +18,7 @@ import maskedInput from "./examples/maskedInput";
 function Input() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Input" status="ready"></ComponentHeader>
+      <ComponentHeader title="Input Text" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

@@ -133,7 +133,7 @@ export default [
   },
   {
     path: "input",
-    name: "Text field",
+    name: "Input Text",
     component: Input,
     type: types.FORMS,
   },

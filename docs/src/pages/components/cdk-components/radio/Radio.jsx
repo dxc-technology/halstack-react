@@ -21,7 +21,7 @@ function Radio() {
   return (
     <ComponentDoc>
       <ComponentHeader
-        title="Radio"
+        title="Radio Button"
         status="ready"
       ></ComponentHeader>
       <DxcTabsForSections
