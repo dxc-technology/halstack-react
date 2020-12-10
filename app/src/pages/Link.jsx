@@ -15,6 +15,16 @@ function App() {
         </div>
       </div>
       <div>
+        <h4>Default Link with onClick</h4>
+        <div className="test-case" id="default-link-onClick">
+          <p>
+            This is a text with a{" "}
+            <DxcLink onClick={() => console.log("Hello")} text="Link"></DxcLink>{" "}
+            to another page.
+          </p>
+        </div>
+      </div>
+      <div>
         <h4>Not Underlined Link</h4>
         <div className="test-case" id="not-underlined-link">
           <p>

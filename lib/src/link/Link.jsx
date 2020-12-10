@@ -15,31 +15,40 @@ const DxcLink = ({
   iconPosition = "before",
   href = "",
   newWindow = false,
+  onClick,
   text = "",
   margin,
 }) => {
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
+  const linkContent = (
+    <LinkText
+      underlined={underlined}
+      inheritColor={inheritColor}
+      disabled={disabled}
+      margin={margin}
+      iconPosition={iconPosition}
+    >
+      {text}
+      {iconSrc ? <LinkIcon src={iconSrc} iconPosition={iconPosition}></LinkIcon> : ""}
+    </LinkText>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.link}>
-      <LinkText
-        underlined={underlined}
-        inheritColor={inheritColor}
-        disabled={disabled}
-        href={href}
-        margin={margin}
-        iconPosition={iconPosition}
-        target={newWindow ? "_blank" : "_self"}
-      >
-        {text}
-        {iconSrc ? <LinkIcon src={iconSrc} iconPosition={iconPosition}></LinkIcon> : ""}
-      </LinkText>
+      {onClick ? (
+        <StyledButton onClick={onClick}>{linkContent}</StyledButton>
+      ) : (
+        <StyledLink href={href} target={newWindow ? "_blank" : "_self"}>
+          {linkContent}
+        </StyledLink>
+      )}
     </ThemeProvider>
   );
 };
 
-const LinkText = styled.a`
+const LinkText = styled.div`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -99,6 +108,19 @@ const LinkIcon = styled.img`
   ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: 6px;
 `;
 
+const StyledLink = styled.a`
+  text-decoration: none;
+`;
+
+const StyledButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: 0;
+  font-family: inherit;
+`;
+
 DxcLink.propTypes = {
   underlined: PropTypes.bool,
   inheritColor: PropTypes.bool,
@@ -106,6 +128,7 @@ DxcLink.propTypes = {
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["after", "before"]),
   href: PropTypes.string,
+  onClick: PropTypes.func,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

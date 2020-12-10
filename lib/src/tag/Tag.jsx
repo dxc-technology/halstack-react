@@ -13,6 +13,7 @@ const DxcTag = ({
   onClick,
   iconBgColor = "black",
   labelPosition = "after",
+  newWindow = false,
   size = "fitContent",
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
@@ -41,7 +42,13 @@ const DxcTag = ({
       onClick={clickHandler}
       hasAction={onClick || linkHref}
     >
-      {(linkHref && <StyledLink href={linkHref}>{tagContent}</StyledLink>) || tagContent}
+      {onClick ? (
+        <StyledButton>{tagContent}</StyledButton>
+      ) : (
+        <StyledLink href={linkHref} target={newWindow ? "_blank" : "_self"}>
+          {tagContent}
+        </StyledLink>
+      )}
     </StyledDxcTag>
   );
 };
@@ -80,6 +87,15 @@ const StyledLink = styled.a`
   text-decoration: none;
 `;
 
+const StyledButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: 0;
+  font-family: inherit;
+`;
+
 const TagIcon = styled.img`
   padding: 10px 12px;
   height: 23px;
@@ -113,6 +129,7 @@ DxcTag.propTypes = {
   labelPosition: PropTypes.oneOf(["before", "after"]),
   linkHref: PropTypes.string,
   onClick: PropTypes.func,
+  newWindow: PropTypes.bool,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
@@ -132,6 +149,7 @@ DxcTag.defaultProps = {
   onClick: null,
   iconBgColor: "black",
   labelPosition: "after",
+  newWindow: false,
 };
 
 export default DxcTag;

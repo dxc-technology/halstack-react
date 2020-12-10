@@ -5,10 +5,11 @@ const code = `() => {
   return (
     <p>
         This is a text with an <DxcLink
-            href="#"
-            theme="light"
             iconPosition="after"
             iconSrc={twitterLogoPath}
+            onClick={() => {
+              console.log("click");
+            }}
             text="Icon after"
         >
         </DxcLink> the link.
