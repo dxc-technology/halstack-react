@@ -4,20 +4,19 @@ import twitterLogoPath from "./images/twitter.svg";
 const code = `() => {
   return (
     <p>
-        This is a text with an <DxcLink
-            iconPosition="after"
-            iconSrc={twitterLogoPath}
-            href="#"
-            text="Icon after"
+        This is a <DxcLink
+            onClick={() => {
+              console.log("click");
+            }}
+            text="link with action"
         >
-        </DxcLink> the link.
+        </DxcLink>.
     </p>
   );
 }`;
 
 const scope = {
-  DxcLink,
-  twitterLogoPath
+  DxcLink
 };
 
 export default { code, scope };

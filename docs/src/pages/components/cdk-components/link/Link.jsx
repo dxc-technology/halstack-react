@@ -11,6 +11,7 @@ import defaultLink from "./examples/default";
 import undecoratedLink from "./examples/undecorated";
 import iconLink from "./examples/iconLink";
 import disabledLink from "./examples/disabledLink";
+import actionLink from "./examples/actionLink";
 
 function Link() {
   return (
@@ -49,10 +50,8 @@ function Link() {
                   example={undecoratedLink}
                 ></Example>
                 <Example title="Disabled Link" example={disabledLink}></Example>
-                <Example
-                  title="Link with icon and action"
-                  example={iconLink}
-                ></Example>
+                <Example title="Link with action" example={actionLink}></Example>
+                <Example title="Link with icon" example={iconLink}></Example>
               </Section>
             ),
           },
