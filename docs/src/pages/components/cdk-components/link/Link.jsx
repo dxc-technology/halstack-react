@@ -49,7 +49,10 @@ function Link() {
                   example={undecoratedLink}
                 ></Example>
                 <Example title="Disabled Link" example={disabledLink}></Example>
-                <Example title="Link with icon" example={iconLink}></Example>
+                <Example
+                  title="Link with icon and action"
+                  example={iconLink}
+                ></Example>
               </Section>
             ),
           },
