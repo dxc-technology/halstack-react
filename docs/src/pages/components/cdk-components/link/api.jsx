@@ -63,7 +63,7 @@ const linkPropsTable = () => {
         <td>onClick: function</td>
         <td></td>
         <td>
-          If defined, the link will be displayed as an button. This function
+          If defined, the link will be displayed as a button. This function
           will be called when the user clicks the link.
         </td>
       </tr>

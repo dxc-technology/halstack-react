@@ -52,8 +52,9 @@ const buttonPropsTable = () => {
         <td>onClick: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the tag. Component
-          will show some visual feedback on hover.
+          If defined, the tag will be displayed as a button. This function will
+          be called when the user clicks the tag. Component will show some
+          visual feedback on hover.
         </td>
       </tr>
       <tr>
