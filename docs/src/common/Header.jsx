@@ -13,7 +13,12 @@ function App() {
       padding={{ left: "medium", right: "medium" }}
       content={
         <React.Fragment>
-          <HeaderLink isActive={location.pathname.startsWith("/overview")}>
+          <HeaderLink
+            isActive={
+              location.pathname.startsWith("/overview") ||
+              location.pathname === "/"
+            }
+          >
             <Link to="/overview">Overview</Link>
           </HeaderLink>
           <HeaderLink isActive={location.pathname.startsWith("/components")}>
