@@ -210,6 +210,14 @@ function App() {
         ></DxcTag>
         <DxcTag
           margin="medium"
+          linkHref="http://www.google.com"
+          iconSrc={twitterIcon}
+          label="Twitter New Window"
+          iconBgColor="#50ABF1"
+          newWindow
+        ></DxcTag>
+        <DxcTag
+          margin="medium"
           onClick={() => {
             console.log("click");
           }}

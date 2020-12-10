@@ -8,7 +8,6 @@ import ComponentHeader from "../../common/ComponentHeader";
 import HeadingPropsTable from "./api.jsx";
 
 import defaultHeadings from "./examples/defaultHeadings";
-import darkHeadings from "./examples/darkHeadings";
 import weightHeadings from "./examples/weightHeadings";
 
 function Heading() {
@@ -48,10 +47,6 @@ function Heading() {
                               <Example
                                 title="Default Headings"
                                 example={defaultHeadings}
-                              ></Example>
-                              <Example
-                                title="Dark Headings"
-                                example={darkHeadings}
                               ></Example>
                               <Example
                                 title="Headings with different weights"

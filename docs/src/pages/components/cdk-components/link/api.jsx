@@ -60,6 +60,11 @@ const linkPropsTable = () => {
         <td>If true, the page is opened in a new browser tab.</td>
       </tr>
       <tr>
+        <td>onClick: function</td>
+        <td></td>
+        <td>This function will be called when the user clicks the link.</td>
+      </tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>
