@@ -1,5 +1,4 @@
 import { DxcLink } from "@dxc-technology/halstack-react";
-import twitterLogoPath from "./images/twitter.svg";
 
 const code = `() => {
   return (
