@@ -1,9 +1,9 @@
 import React from "react";
-import { DxcTabsForSections } from "@dxc-technology/halstack-react";
+import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
 
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
-import DocTitle from "../../../../common/DocTitle";
+
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import CardPropsTable from "./api.jsx";
@@ -24,7 +24,7 @@ function Card() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DocTitle size={2}>Props</DocTitle>
+                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
                 <CardPropsTable />
               </Section>
             ),
@@ -33,7 +33,7 @@ function Card() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DocTitle size={2}>Theming</DocTitle>
+                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
                 <p>Not available tokens.</p>
               </Section>
             ),
@@ -42,7 +42,7 @@ function Card() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Examples</DocTitle>
+                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                 <Example title="Default Card" example={defaultCard}></Example>
                 <Example title="Card with Link" example={linkCard}></Example>
                 <Example

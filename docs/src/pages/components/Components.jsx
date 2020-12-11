@@ -3,10 +3,14 @@ import { Route } from "react-router-dom";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { types } from "./paths.js";
-import { DxcSidenav, DxcBox, DxcLink } from "@dxc-technology/halstack-react";
+import {
+  DxcSidenav,
+  DxcBox,
+  DxcLink,
+  DxcHeading,
+} from "@dxc-technology/halstack-react";
 import paths from "./paths.js";
 import reactIcon from "../../common/react-icon.png";
-import DocTitle from "../../common/DocTitle";
 import ComponentDoc from "./common/ComponentDoc";
 
 const getComponentsLinks = (type) => {
@@ -93,29 +97,33 @@ function Components() {
           <SideNavContent>
             <Route exact path="/components">
               <ComponentDoc>
-                <DocTitle size={1}>Components</DocTitle>
-                <ComponentTypeTitle>Forms</ComponentTypeTitle>
+                <DxcHeading
+                  level={1}
+                  text="Components"
+                  margin={{ bottom: "large" }}
+                />
+                <DxcHeading level={3} text="Forms" />
                 <DxcBox
                   padding="small"
                   margin={{ top: "small", bottom: "small" }}
                 >
                   {getComponentsLinks("Forms")}
                 </DxcBox>
-                <ComponentTypeTitle>Navigation</ComponentTypeTitle>
+                <DxcHeading level={3} text="Navigation" />
                 <DxcBox
                   padding="small"
                   margin={{ top: "small", bottom: "small" }}
                 >
                   {getComponentsLinks("Navigation")}
                 </DxcBox>
-                <ComponentTypeTitle>Layout</ComponentTypeTitle>
+                <DxcHeading level={3} text="Layout" />
                 <DxcBox
                   padding="small"
                   margin={{ top: "small", bottom: "small" }}
                 >
                   {getComponentsLinks("Layout")}
                 </DxcBox>
-                <ComponentTypeTitle>Utilities</ComponentTypeTitle>
+                <DxcHeading level={3} text="Utilities" />
                 <DxcBox
                   padding="small"
                   margin={{ top: "small", bottom: "small" }}
@@ -187,12 +195,6 @@ const NavLink = styled.div`
     font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
     color: ${({ isActive }) => (isActive && "black") || "gray"};
   }
-`;
-
-const ComponentTypeTitle = styled.h2`
-  font-size: 30px;
-  font-weight: normal;
-  margin-bottom: 0;
 `;
 
 const ComponentsLinksContainer = styled.div`

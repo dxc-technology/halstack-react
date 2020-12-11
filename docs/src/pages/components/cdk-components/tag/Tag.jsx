@@ -1,9 +1,9 @@
 import React from "react";
-import { DxcTabsForSections } from "@dxc-technology/halstack-react";
+import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
 
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
-import DocTitle from "../../../../common/DocTitle";
+
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import TagPropsTable from "./api.jsx";
@@ -28,7 +28,7 @@ function Tag() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DocTitle size={2}>Props</DocTitle>
+                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
                 <TagPropsTable />
               </Section>
             )
@@ -37,7 +37,7 @@ function Tag() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DocTitle size={2}>Theming</DocTitle>
+                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
                 <p>Not available tokens.</p>
               </Section>
             ),
@@ -46,7 +46,7 @@ function Tag() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Examples</DocTitle>
+                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                 <Example title="Basic Tag" example={basicExample}></Example>
                 <Example title="Tag with Link" example={linkExample}></Example>
                 <Example

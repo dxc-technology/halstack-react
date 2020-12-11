@@ -55,7 +55,7 @@ export default [
   },
   {
     path: "applicationLayout",
-    name: "Application layout",
+    name: "Application Layout",
     component: ApplicationLayout,
     type: types.LAYOUT,
   },

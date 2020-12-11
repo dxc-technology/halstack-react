@@ -1,8 +1,8 @@
 import React from "react";
-import { DxcTabsForSections } from "@dxc-technology/halstack-react";
+import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
 
 import ComponentDoc from "../../common/ComponentDoc";
-import DocTitle from "../../../../common/DocTitle";
+
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
@@ -24,7 +24,7 @@ function Chip() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DocTitle size={2}>Props</DocTitle>
+                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
                 <ChipPropsTable />
               </Section>
             ),
@@ -33,7 +33,7 @@ function Chip() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DocTitle size={2}>Theming</DocTitle>
+                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
                 <ChipTokensTable />
               </Section>
             ),
@@ -42,7 +42,7 @@ function Chip() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Examples</DocTitle>
+                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                  <Example
                   title="Default Chip"
                   example={coloredChips}

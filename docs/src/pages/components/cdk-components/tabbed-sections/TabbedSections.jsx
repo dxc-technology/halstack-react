@@ -1,9 +1,9 @@
 import React from "react";
-import { DxcTabsForSections } from "@dxc-technology/halstack-react";
+import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
 
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
-import DocTitle from "../../../../common/DocTitle";
+
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import TabbedSectionsPropsTable from "./api.jsx";
@@ -25,7 +25,7 @@ function Button() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DocTitle size={2}>Props</DocTitle>
+                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
                 <TabbedSectionsPropsTable />
               </Section>
             )
@@ -34,7 +34,7 @@ function Button() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DocTitle size={2}>Theming</DocTitle>
+                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
                 <p>Not available tokens.</p>
               </Section>
             ),
@@ -43,7 +43,7 @@ function Button() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Examples</DocTitle>
+                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                 <Example title="Tabbed Sections" example={tabbedSectionsExample}></Example>
               </Section>
             )

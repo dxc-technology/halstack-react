@@ -6,7 +6,7 @@ import {
 } from "@dxc-technology/halstack-react";
 
 import ComponentDoc from "../../common/ComponentDoc";
-import DocTitle from "../../../../common/DocTitle";
+
 import Example from "../../common/Example";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
@@ -30,7 +30,7 @@ function ApplicationLayout() {
             tabLabel: "Children",
             section: () => (
               <Section>
-                <DocTitle size={2}>Children</DocTitle>
+                <DxcHeading level={3} text="Children" margin={{ bottom: "small" }} />
                 <p>
                   This component has no props. It has children and it follows
                   the design guidelines available{" "}
@@ -125,7 +125,7 @@ function ApplicationLayout() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DocTitle size={2}>Theming</DocTitle>
+                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
                 <ApplicationLayoutTokensTable />
               </Section>
             ),
@@ -134,7 +134,7 @@ function ApplicationLayout() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Examples</DocTitle>
+                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                 <Example
                   title="Application layout"
                   example={defaultLayout}
