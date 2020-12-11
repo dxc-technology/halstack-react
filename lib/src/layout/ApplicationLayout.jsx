@@ -1,9 +1,8 @@
 /* eslint-disable react/require-default-props */
 import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
-import { DxcHeader, DxcFooter } from "@dxc-technology/halstack-react";
+import { DxcHeader, DxcFooter, DxcSidenav } from "@dxc-technology/halstack-react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import SideNavComponent from "./SideNav";
 import { spaces, responsiveSizes, defaultTheme, theme } from "../common/variables.js";
 import linkedinLogo from "./linkedin.svg";
 import twitterLogo from "./twitter.svg";
@@ -27,7 +26,7 @@ const Footer = ({ children }) => {
 
 const SideNav = (props) => {
   const { displayArrow, mode, ...childProps } = props;
-  return <SideNavComponent {...childProps}>{childProps.children}</SideNavComponent>;
+  return <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>;
 };
 
 SideNav.propTypes = {
@@ -139,11 +138,11 @@ const DxcApplicationLayout = ({ children }) => {
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.applicationLayout}>
+    <ThemeProvider theme={colorsTheme.sidenav}>
       <ApplicationLayoutContainer ref={ref}>
         <HeaderContainer>{header}</HeaderContainer>
         <BodyContainer>
-          <MainBodyContainer>
+          <ContentContainer>
             <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
               {sideNav}
               <ArrowContainer>
@@ -154,15 +153,19 @@ const DxcApplicationLayout = ({ children }) => {
                 )}
               </ArrowContainer>
             </SideNavArrowContainer>
-            <MainContent
-              sideNav={sideNav}
-              mode={isResponsive ? "overlay" : sideNavMode}
-              isSideNavVisible={isSideNavVisible}
-            >
-              {main}
-            </MainContent>
-          </MainBodyContainer>
-          <FooterContainer>{footer}</FooterContainer>
+            <MainBodyContainer>
+              <MainContent
+                sideNav={sideNav}
+                mode={isResponsive ? "overlay" : sideNavMode}
+                isSideNavVisible={isSideNavVisible}
+              >
+                {main}
+              </MainContent>
+              <FooterContainer mode={isResponsive ? "overlay" : sideNavMode} isSideNavVisible={isSideNavVisible}>
+                {footer}
+              </FooterContainer>
+            </MainBodyContainer>
+          </ContentContainer>
         </BodyContainer>
       </ApplicationLayoutContainer>
     </ThemeProvider>
@@ -185,6 +188,7 @@ const ApplicationLayoutContainer = styled.div`
 `;
 
 const HeaderContainer = styled.div`
+  z-index: 10;
   position: fixed;
   top: 0;
   left: 0;
@@ -195,37 +199,45 @@ const BodyContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
 `;
 
 const MainBodyContainer = styled.div`
+  width: 100%;
   display: flex;
-  flex: 1 1 auto;
+  flex-direction: column;
+  z-index: 1;
 `;
 
-const FooterContainer = styled.div``;
+const FooterContainer = styled.div`
+  margin-left: ${(props) =>
+    (props.mode === "push" && !props.isSideNavVisible) || props.mode === "overlay" ? "-300px" : ""};
+  transition: margin 0.4s ease-in-out;
+`;
 
 const MainContent = styled.div`
   flex-grow: 1;
-  overflow: hidden;
-  padding: 20px 50px;
   position: relative;
-  min-height: 500px;
-  margin-top: 64px;
-  margin-bottom: 80px;
-  margin-right: ${(props) => (props.mode === "push" && props.isSideNavVisible ? "8.6%" : "15.6%")};
-  margin-left: ${(props) =>
-    props.sideNav ? (props.mode === "push" && props.isSideNavVisible ? "5.4%" : "calc(15.6% - 297px)") : "15.6%"};
+  min-height: calc(100vh - 184px);
+  margin-left: ${(props) => (props.sideNav ? (props.mode === "push" && props.isSideNavVisible ? "" : "-297px") : "")};
   transition: margin 0.4s ease-in-out;
 `;
 
 const SideNavArrowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  z-index: 1;
+  z-index: 2;
   transform: ${(props) =>
     props.isSideNavVisible ? "translateX(0)" : !props.isSideNavVisible ? "translateX(-100%)" : ""};
   transition: transform 0.4s ease-in-out;
+  height: calc(100vh - 64px);
+  position: sticky;
+  top: 64px;
 `;
 
 const ArrowContainer = styled.div`

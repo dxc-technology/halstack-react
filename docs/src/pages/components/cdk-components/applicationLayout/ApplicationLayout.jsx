@@ -10,7 +10,6 @@ import DocTitle from "../../../../common/DocTitle";
 import Example from "../../common/Example";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
-import ApplicationLayoutTokensTable from "./Tokens.jsx";
 import defaultLayout from "././examples/default";
 import sidenavLayout from "././examples/sidenavLayout";
 import SidenavApplicationLayoutPropsTable from "./api.jsx";
@@ -126,7 +125,7 @@ function ApplicationLayout() {
             section: () => (
               <Section>
                 <DocTitle size={2}>Theming</DocTitle>
-                <ApplicationLayoutTokensTable />
+                <p>Not available tokens.</p>
               </Section>
             ),
           },

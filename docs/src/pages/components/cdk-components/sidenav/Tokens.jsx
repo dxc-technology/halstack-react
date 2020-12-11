@@ -20,16 +20,16 @@ const sidenavTokensTable = () => {
       <tr>
         <td>arrowContainerColor</td>
         <td>
-          <SampleComponent color="#D9D9D9"></SampleComponent>
+          <SampleComponent color="#F8F8F8"></SampleComponent>
         </td>
-        <td>Applies to the arrowContainerColor token.</td>
+        <td>Applies to arrowContainerColor.</td>
       </tr>
       <tr>
         <td>arrowColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to the arrowColor token.</td>
+        <td>Applies to arrowColor.</td>
       </tr>
     </DxcTable>
   );

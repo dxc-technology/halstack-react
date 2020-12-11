@@ -3,11 +3,17 @@ import { Route } from "react-router-dom";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { types } from "./paths.js";
-import { DxcSidenav, DxcBox, DxcLink } from "@dxc-technology/halstack-react";
+import {
+  DxcBox,
+  DxcLink,
+  DxcFooter,
+  DxcApplicationLayout,
+} from "@dxc-technology/halstack-react";
 import paths from "./paths.js";
 import reactIcon from "../../common/react-icon.png";
 import DocTitle from "../../common/DocTitle";
 import ComponentDoc from "./common/ComponentDoc";
+import Header from "../../common/Header";
 
 const getComponentsLinks = (type) => {
   const dividedList = paths
@@ -56,89 +62,92 @@ function Components() {
   const location = useLocation();
 
   return (
-    <SideNav>
-      <DxcSidenav
-        padding="large"
-        mode="push"
-        arrowDistance="50vh"
-        displayArrow={false}
-        navContent={
-          <SideNavContainer>
-            <Title>
-              React
-              <ReactLogo src={reactIcon} alt="React Logo"></ReactLogo>
-            </Title>
-            {Object.keys(types).map((type) => (
-              <React.Fragment>
-                <ComponentType>{types[type]}</ComponentType>
-                <ComponentsList>
-                  {paths
-                    .filter((path) => path.type === types[type])
-                    .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
-                    .map((path) => (
-                      <NavLink
-                        isActive={location.pathname.startsWith(
-                          `/components/${path.path}`
-                        )}
-                      >
-                        <Link to={`/components/${path.path}`}>{path.name}</Link>
-                      </NavLink>
-                    ))}
-                </ComponentsList>
-              </React.Fragment>
-            ))}
-          </SideNavContainer>
-        }
-        pageContent={
-          <SideNavContent>
-            <Route exact path="/components">
-              <ComponentDoc>
-                <DocTitle size={1}>Components</DocTitle>
-                <ComponentTypeTitle>Forms</ComponentTypeTitle>
-                <DxcBox
-                  padding="small"
-                  margin={{ top: "small", bottom: "small" }}
-                >
-                  {getComponentsLinks("Forms")}
-                </DxcBox>
-                <ComponentTypeTitle>Navigation</ComponentTypeTitle>
-                <DxcBox
-                  padding="small"
-                  margin={{ top: "small", bottom: "small" }}
-                >
-                  {getComponentsLinks("Navigation")}
-                </DxcBox>
-                <ComponentTypeTitle>Layout</ComponentTypeTitle>
-                <DxcBox
-                  padding="small"
-                  margin={{ top: "small", bottom: "small" }}
-                >
-                  {getComponentsLinks("Layout")}
-                </DxcBox>
-                <ComponentTypeTitle>Utilities</ComponentTypeTitle>
-                <DxcBox
-                  padding="small"
-                  margin={{ top: "small", bottom: "small" }}
-                >
-                  {getComponentsLinks("Utilities")}
-                </DxcBox>
-              </ComponentDoc>
+    <DxcApplicationLayout>
+      <DxcApplicationLayout.Header>
+        <Header />
+      </DxcApplicationLayout.Header>
+      <DxcApplicationLayout.SideNav mode="push" padding="large">
+        <SideNavContainer>
+          <Title>
+            React
+            <ReactLogo src={reactIcon} alt="React Logo"></ReactLogo>
+          </Title>
+          {Object.keys(types).map((type) => (
+            <React.Fragment>
+              <ComponentType>{types[type]}</ComponentType>
+              <ComponentsList>
+                {paths
+                  .filter((path) => path.type === types[type])
+                  .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
+                  .map((path) => (
+                    <NavLink
+                      isActive={location.pathname.startsWith(
+                        `/components/${path.path}`
+                      )}
+                    >
+                      <Link to={`/components/${path.path}`}>{path.name}</Link>
+                    </NavLink>
+                  ))}
+              </ComponentsList>
+            </React.Fragment>
+          ))}
+        </SideNavContainer>
+      </DxcApplicationLayout.SideNav>
+      <DxcApplicationLayout.Main>
+        <SideNavContent>
+          <Route exact path="/components">
+            <ComponentDoc>
+              <DocTitle size={1}>Components</DocTitle>
+              <ComponentTypeTitle>Forms</ComponentTypeTitle>
+              <DxcBox
+                padding="small"
+                margin={{ top: "small", bottom: "small" }}
+              >
+                {getComponentsLinks("Forms")}
+              </DxcBox>
+              <ComponentTypeTitle>Navigation</ComponentTypeTitle>
+              <DxcBox
+                padding="small"
+                margin={{ top: "small", bottom: "small" }}
+              >
+                {getComponentsLinks("Navigation")}
+              </DxcBox>
+              <ComponentTypeTitle>Layout</ComponentTypeTitle>
+              <DxcBox
+                padding="small"
+                margin={{ top: "small", bottom: "small" }}
+              >
+                {getComponentsLinks("Layout")}
+              </DxcBox>
+              <ComponentTypeTitle>Utilities</ComponentTypeTitle>
+              <DxcBox
+                padding="small"
+                margin={{ top: "small", bottom: "small" }}
+              >
+                {getComponentsLinks("Utilities")}
+              </DxcBox>
+            </ComponentDoc>
+          </Route>
+          {paths.map((path) => (
+            <Route path={`/components/${path.path}`}>
+              <path.component></path.component>
             </Route>
-            {paths.map((path) => (
-              <Route path={`/components/${path.path}`}>
-                <path.component></path.component>
-              </Route>
-            ))}
-          </SideNavContent>
-        }
-      ></DxcSidenav>
-    </SideNav>
+          ))}
+        </SideNavContent>
+      </DxcApplicationLayout.Main>
+      <DxcApplicationLayout.Footer>
+        <DxcFooter
+          bottomLinks={[
+            { text: "Twitter", href: "http://www.google.com" },
+            { text: "Facebook", href: "http://www.google.com" },
+            { text: "Instagram", href: "http://www.google.com" },
+          ]}
+          copyright="© DXC Technology 2020. All rights reserved."
+        ></DxcFooter>
+      </DxcApplicationLayout.Footer>
+    </DxcApplicationLayout>
   );
 }
-
-const SideNav = styled.div`
-  width: 100%;
-`;
 
 const SideNavContainer = styled.div`
   margin-bottom: 40px;
