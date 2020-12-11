@@ -199,7 +199,6 @@ const BodyContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* overflow: auto; */
 `;
 
 const ContentContainer = styled.div`
@@ -223,7 +222,6 @@ const FooterContainer = styled.div`
 
 const MainContent = styled.div`
   flex-grow: 1;
-  overflow: hidden;
   position: relative;
   min-height: calc(100vh - 184px);
   margin-left: ${(props) => (props.sideNav ? (props.mode === "push" && props.isSideNavVisible ? "" : "-297px") : "")};
@@ -239,7 +237,7 @@ const SideNavArrowContainer = styled.div`
   transition: transform 0.4s ease-in-out;
   height: calc(100vh - 64px);
   position: sticky;
-  top: 0;
+  top: 64px;
 `;
 
 const ArrowContainer = styled.div`
