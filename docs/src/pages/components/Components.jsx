@@ -149,10 +149,6 @@ function Components() {
   );
 }
 
-const SideNav = styled.div`
-  width: 100%;
-`;
-
 const SideNavContainer = styled.div`
   margin-bottom: 40px;
 `;
