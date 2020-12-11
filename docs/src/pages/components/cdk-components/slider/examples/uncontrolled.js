@@ -6,7 +6,7 @@ const code = `() => {
   };
 
   const labelFormat = (value) => {
-    return \`\${value}\°C\`;
+    return \`\${value}°C\`;
   };
 
   return (
