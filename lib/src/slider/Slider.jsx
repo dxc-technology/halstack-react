@@ -20,6 +20,7 @@ const DxcSlider = ({
   onDragEnd,
   disabled = false,
   marks = false,
+  labelFormatCallback,
   margin,
   size = "fillParent",
 }) => {
@@ -51,7 +52,11 @@ const DxcSlider = ({
   return (
     <ThemeProvider theme={colorsTheme.slider}>
       <SliderContainer margin={margin} size={size}>
-        {showLimitsValues && <MinLabelContainer disabled={disabled}>{minValue}</MinLabelContainer>}
+        {showLimitsValues && (
+          <MinLabelContainer disabled={disabled}>
+            {labelFormatCallback ? labelFormatCallback(minValue) : minValue}
+          </MinLabelContainer>
+        )}
         <Slider
           value={(value != null && value >= 0 && value) || innerValue}
           min={minValue}
@@ -64,7 +69,7 @@ const DxcSlider = ({
         />
         {showLimitsValues && (
           <MaxLabelContainer disabled={disabled} step={step}>
-            {maxValue}
+            {labelFormatCallback ? labelFormatCallback(maxValue) : maxValue}
           </MaxLabelContainer>
         )}
         {showInput && (
@@ -110,6 +115,7 @@ DxcSlider.propTypes = {
   onDragEnd: PropTypes.func,
   disabled: PropTypes.bool,
   marks: PropTypes.bool,
+  labelFormatCallback: PropTypes.func,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

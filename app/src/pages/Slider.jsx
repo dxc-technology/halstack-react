@@ -18,6 +18,10 @@ function App() {
     console.log("onChangeInput " + newValue);
   };
 
+  const labelFormat = (value) => {
+    return `${value}°C`;
+  };
+
   return (
     <div>
       <div className="test-case" id="light-theme">
@@ -27,6 +31,19 @@ function App() {
           maxValue={100}
           showLimitsValues={true}
           showInput={false}
+          name="input"
+          step={1}
+          margin="medium"
+        />
+      </div>
+      <div className="test-case" id="light-theme">
+        <h4>Label format slider</h4>
+        <DxcSlider
+          minValue={0}
+          maxValue={100}
+          showLimitsValues={true}
+          showInput={false}
+          labelFormatCallback={labelFormat}
           name="input"
           step={1}
           margin="medium"
