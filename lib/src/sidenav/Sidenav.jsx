@@ -47,6 +47,7 @@ DxcSidenav.propTypes = {
       left: PropTypes.oneOf(Object.keys(spaces)),
       right: PropTypes.oneOf(Object.keys(spaces)),
     }),
+    PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
 };
 
