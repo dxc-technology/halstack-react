@@ -3,7 +3,7 @@
     "jest/globals": true
   },
   "extends": ["airbnb", "prettier", "plugin:jest/recommended"],
-  "plugins": ["jest"],
+  "plugins": ["jest", "react-hooks"],
   "rules": {
     "linebreak-style": 0,
     "no-use-before-define": ["error", { "functions": false }],
@@ -13,6 +13,8 @@
     "import/extensions": "allow",
     "import/no-unresolved": ["error", { "ignore": ["react", "styled-components"] }],
     "react/prop-types": [2, { "ignore": ["children"] }],
-    "react/self-closing-comp": "allow"
+    "react/self-closing-comp": "allow",
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
   }
 }
