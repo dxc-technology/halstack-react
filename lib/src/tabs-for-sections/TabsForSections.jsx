@@ -7,7 +7,7 @@ import DxcTabs from "../tabs/Tabs";
 
 const TABS_HEIGHT = 54;
 
-const DxcTabsForSections = ({ tabsMode = "filled", tabsTheme = "light", disableTabsRipple = false, sections = [], stickAtPx = 0}) => {
+const DxcTabsForSections = ({ sections = [], stickAtPx = 0}) => {
   const tabs = sections.map(section => ({ label: section.tabLabel }));
 
   const refs = sections.map(() => React.createRef());
@@ -26,9 +26,6 @@ const DxcTabsForSections = ({ tabsMode = "filled", tabsTheme = "light", disableT
     <React.Fragment>
       <StyledTabs stickAtPx={stickAtPx}>
         <DxcTabs
-          mode={tabsMode}
-          brightness={tabsTheme}
-          disableRipple={disableTabsRipple}
           tabs={tabs}
           activeTabIndex={activeTab}
           onTabClick={onTabClick}
@@ -44,9 +41,6 @@ const DxcTabsForSections = ({ tabsMode = "filled", tabsTheme = "light", disableT
 };
 
 DxcTabsForSections.propTypes = {
-  tabsMode: DxcTabs.propTypes.mode,
-  tabsTheme: DxcTabs.propTypes.theme,
-  disableTabsRipple: DxcTabs.propTypes.disableRipple,
   stickAtPx: PropTypes.number,
   sections: PropTypes.arrayOf(
     PropTypes.shape({
@@ -57,9 +51,6 @@ DxcTabsForSections.propTypes = {
 };
 
 DxcTabsForSections.defaultProps = {
-  tabsMode: DxcTabs.defaultProps.mode,
-  tabsTheme: DxcTabs.defaultProps.theme,
-  disableTabsRipple: DxcTabs.defaultProps.disableRipple,
   stickAtPx: 0,
   sections: []
 };

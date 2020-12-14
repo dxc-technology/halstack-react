@@ -304,7 +304,7 @@ DxcHeader.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   content: PropTypes.object,
-  responsiveContent: PropTypes.object,
+  responsiveContent: PropTypes.func,
 };
 
 export default DxcHeader;

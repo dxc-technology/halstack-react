@@ -11,7 +11,9 @@ const DxcTable = ({ children, margin }) => {
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin}>
-        <DxcTableContent>{children}</DxcTableContent>
+        <DxcTableContent>
+          <DxcTableTBody>{children}</DxcTableTBody>
+        </DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );
@@ -88,5 +90,7 @@ const DxcTableContent = styled.table`
     border-top-right-radius: 4px;
   }
 `;
+
+const DxcTableTBody = styled.tbody``;
 
 export default DxcTable;
