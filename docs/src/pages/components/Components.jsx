@@ -27,9 +27,9 @@ const getComponentsLinks = (type) => {
     <ComponentsLinksContainer>
       {dividedList.map((sublist, position) => {
         return position === dividedList.length - 1 ? (
-          <LastLinksColumn>
+          <LastLinksColumn key={`sublist-${type}-${position}`}>
             {sublist.map((path, i) => (
-              <li>
+              <li key={path.name}>
                 <DxcLink
                   text={path.name}
                   underlined={false}
@@ -40,9 +40,9 @@ const getComponentsLinks = (type) => {
             ))}
           </LastLinksColumn>
         ) : (
-          <LinksColumn>
+          <LinksColumn key={`sublist-${type}-${position}`}>
             {sublist.map((path, i) => (
-              <li>
+              <li key={path.name}>
                 <DxcLink
                   text={path.name}
                   underlined={false}
@@ -73,7 +73,7 @@ function Components() {
             <ReactLogo src={reactIcon} alt="React Logo"></ReactLogo>
           </Title>
           {Object.keys(types).map((type) => (
-            <React.Fragment>
+            <React.Fragment key={types[type]}>
               <ComponentType>{types[type]}</ComponentType>
               <ComponentsList>
                 {paths
@@ -84,6 +84,7 @@ function Components() {
                       isActive={location.pathname.startsWith(
                         `/components/${path.path}`
                       )}
+                      key={path.path}
                     >
                       <Link to={`/components/${path.path}`}>{path.name}</Link>
                     </NavLink>
@@ -129,7 +130,7 @@ function Components() {
             </ComponentDoc>
           </Route>
           {paths.map((path) => (
-            <Route path={`/components/${path.path}`}>
+            <Route path={`/components/${path.path}`} key={path.path}>
               <path.component></path.component>
             </Route>
           ))}
