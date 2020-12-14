@@ -100,7 +100,12 @@ const DxcSelect = ({
   const getLabelForSingleSelect = (selected) => {
     const selectedItem = options.filter((option) => option.value === selected)[0];
     return (
-      <SelectedIconContainer iconPosition={iconPosition} multiple={multiple} label={selectedItem && selectedItem.label}>
+      <SelectedIconContainer
+        iconPosition={iconPosition}
+        multiple={multiple}
+        label={selectedItem && selectedItem.label}
+        key={selectedItem && selectedItem.label}
+      >
         {selectedItem && selectedItem.iconSrc && <ListIcon src={selectedItem && selectedItem.iconSrc} />}
         {selectedItem && selectedItem.label && (
           <SelectedLabelContainer
@@ -181,7 +186,7 @@ const DxcSelect = ({
           >
             {options.map((option) => {
               return (
-                <MenuItem id={option.value} value={option.value} disableRipple>
+                <MenuItem id={option.value} value={option.value} disableRipple key={option.value}>
                   {multiple && <DxcCheckbox size={"fitContent"} checked={isChecked(selectedValue, value, option)} />}
                   <OptionContainer iconPosition={iconPosition}>
                     {option.iconSrc && (
@@ -386,7 +391,7 @@ DxcSelect.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.any.isRequired,
-      label: PropTypes.any.isRequired,
+      label: PropTypes.string,
       iconSrc: PropTypes.string,
     })
   ),

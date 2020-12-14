@@ -13,28 +13,47 @@ function App() {
     <MainContainer>
       <HashRouter>
         <ScrollToTop />
-        <StyledHeader>
-          <Header></Header>
-        </StyledHeader>
-        <Content>
-          <Route path="/components/">
-            <Components></Components>
-          </Route>
-          <Route exact path="/overview">
+        <Route path="/components/">
+          <Components></Components>
+        </Route>
+        <Route exact path="/overview">
+          <StyledHeader>
+            <Header></Header>
+          </StyledHeader>
+          <Content>
             <Overview></Overview>
-          </Route>
-          <Route exact path="/">
+          </Content>
+          <DxcFooter
+            bottomLinks={[
+              { text: "Twitter", href: "http://www.google.com" },
+              { text: "Facebook", href: "http://www.google.com" },
+              { text: "Instagram", href: "http://www.google.com" },
+            ]}
+            copyright="© DXC Technology 2020. All rights reserved."
+          ></DxcFooter>
+        </Route>
+        <Route exact path="/">
+          <StyledHeader>
+            <Header></Header>
+          </StyledHeader>
+          <Content>
             <Overview></Overview>
-          </Route>
-        </Content>
-        <DxcFooter
-          bottomLinks={[
-            { text: "Twitter", href: "https://twitter.com/DXCTechnology" },
-            { text: "Facebook", href: "https://www.facebook.com/DXCTechnology/" },
-            { text: "Instagram", href: "https://www.instagram.com/dxctechnology/" }
-          ]}
-          copyright="© DXC Technology 2020. All rights reserved."
-        ></DxcFooter>
+          </Content>
+          <DxcFooter
+            bottomLinks={[
+              { text: "Twitter", href: "https://twitter.com/DXCTechnology" },
+              {
+                text: "Facebook",
+                href: "https://www.facebook.com/DXCTechnology/",
+              },
+              {
+                text: "Instagram",
+                href: "https://www.instagram.com/dxctechnology/",
+              },
+            ]}
+            copyright="© DXC Technology 2020. All rights reserved."
+          ></DxcFooter>
+        </Route>
       </HashRouter>
     </MainContainer>
   );

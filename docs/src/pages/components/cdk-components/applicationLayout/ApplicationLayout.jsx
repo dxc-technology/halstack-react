@@ -10,7 +10,6 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
-import ApplicationLayoutTokensTable from "./Tokens.jsx";
 import defaultLayout from "././examples/default";
 import sidenavLayout from "././examples/sidenavLayout";
 import SidenavApplicationLayoutPropsTable from "./api.jsx";
@@ -30,7 +29,11 @@ function ApplicationLayout() {
             tabLabel: "Children",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Children" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Children"
+                  margin={{ bottom: "small" }}
+                />
                 <p>
                   This component has no props. It has children and it follows
                   the design guidelines available{" "}
@@ -125,8 +128,12 @@ function ApplicationLayout() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
-                <ApplicationLayoutTokensTable />
+                <DxcHeading
+                  level={3}
+                  text="Theming"
+                  margin={{ bottom: "small" }}
+                />
+                <p>Not available tokens.</p>
               </Section>
             ),
           },
@@ -134,7 +141,11 @@ function ApplicationLayout() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Application layout"
                   example={defaultLayout}

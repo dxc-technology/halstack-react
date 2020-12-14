@@ -39,20 +39,6 @@ const tabbedSectionsPropsTable = () => {
         <td>Uses one of the available tab modes.</td>
       </tr>
       <tr>
-        <td>tabsTheme: 'light' | 'dark'</td>
-        <td>
-          <code>'light'</code>
-        </td>
-        <td>Uses one of the available tab themes.</td>
-      </tr>
-      <tr>
-        <td>disableTabsRipple: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>If true, the ripple effect will be disabled on the tabs.</td>
-      </tr>
-      <tr>
         <td>stickAtPx: number</td>
         <td>
           <code>0</code>
