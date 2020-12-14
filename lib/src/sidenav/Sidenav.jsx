@@ -25,16 +25,15 @@ const SideNavContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   ::-webkit-scrollbar {
-    width: 3px;
+    width: 2px;
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #d9d9d9;
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #666666;
+    background-color: #66666626;
     border-radius: 3px;
   }
 `;
