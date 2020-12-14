@@ -56,7 +56,7 @@ const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options 
               isLast={i === options.length - 1}
               isIcon={option.iconSrc}
               disabled={disabled}
-              key={option.label}
+              key={`toggle-${i}-${option.label}`}
             >
               {option.iconSrc ? (
                 <IconContainer src={option.iconSrc}></IconContainer>
@@ -132,14 +132,14 @@ const IconContainer = styled.img`
 
 DxcToggleGroup.propTypes = {
   //label: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.any,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   multiple: PropTypes.bool,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.any.isRequired,
-      label: PropTypes.any.isRequired,
+      label: PropTypes.string,
       iconSrc: PropTypes.string,
     })
   ),
