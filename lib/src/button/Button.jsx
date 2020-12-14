@@ -71,6 +71,7 @@ const ButtonIcon = styled.img`
   margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
   margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
 `;
+
 const DxCButton = styled.div`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -127,7 +128,7 @@ const DxCButton = styled.div`
             color: ${props.theme.primaryHoverFontColor} !important;
           }
           &:focus {
-            background-color: ${props.theme.hoverColor};
+            background-color: ${props.theme.color};
             color: ${props.theme.primaryHoverFontColor}; 
           }
           &:disabled{ 
@@ -186,8 +187,8 @@ const DxCButton = styled.div`
               color: ${props.theme.textHoverFontColor} !important;
             }
             &:focus {
-              background-color: ${props.theme.hoverColor};
-              color: ${props.theme.textHoverFontColor}; 
+              background-color: ${props.theme.textBackgroundColor};
+              color: ${props.theme.textFontColor}; 
             }
             &:disabled{
               background-color: ${props.theme.textBackgroundColor};
