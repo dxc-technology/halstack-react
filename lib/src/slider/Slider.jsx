@@ -28,11 +28,14 @@ const DxcSlider = ({
 
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
-  let minLabel, maxLabel;
-  if (labelFormatCallback) {
-    minLabel = useMemo(() => labelFormatCallback(minValue), [minValue]);
-    maxLabel = useMemo(() => labelFormatCallback(maxValue), [maxValue]);
-  }
+  const minLabel = useMemo(() => (labelFormatCallback ? labelFormatCallback(minValue) : minValue), [
+    labelFormatCallback,
+    minValue,
+  ]);
+  const maxLabel = useMemo(() => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue), [
+    labelFormatCallback,
+    maxValue,
+  ]);
 
   const handlerSliderChange = (event, newValue) => {
     if (value == null) {
@@ -57,9 +60,7 @@ const DxcSlider = ({
   return (
     <ThemeProvider theme={colorsTheme.slider}>
       <SliderContainer margin={margin} size={size}>
-        {showLimitsValues && (
-          <MinLabelContainer disabled={disabled}>{labelFormatCallback ? minLabel : minValue}</MinLabelContainer>
-        )}
+        {showLimitsValues && <MinLabelContainer disabled={disabled}>{minLabel}</MinLabelContainer>}
         <Slider
           value={(value != null && value >= 0 && value) || innerValue}
           min={minValue}
@@ -72,7 +73,7 @@ const DxcSlider = ({
         />
         {showLimitsValues && (
           <MaxLabelContainer disabled={disabled} step={step}>
-            {labelFormatCallback ? maxLabel : maxValue}
+            {maxLabel}
           </MaxLabelContainer>
         )}
         {showInput && (
