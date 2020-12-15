@@ -13,15 +13,15 @@ import ThemeContext from "../ThemeContext.js";
 const year = new Date().getFullYear();
 
 const Header = ({ children }) => {
-  return <div>{children}</div>;
+  return <React.Fragment>{children}</React.Fragment>;
 };
 
 const Main = ({ children }) => {
-  return <div>{children}</div>;
+  return <React.Fragment>{children}</React.Fragment>;
 };
 
 const Footer = ({ children }) => {
-  return <div>{children}</div>;
+  return <React.Fragment>{children}</React.Fragment>;
 };
 
 const SideNav = (props) => {
