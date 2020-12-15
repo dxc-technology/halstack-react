@@ -100,11 +100,12 @@ const DxcDropdown = ({
               </DropdownTriggerLabel>
             </DropdownTriggerContainer>
             <CaretIcon>
-              {anchorEl === null ? (
-                <DownArrowIcon caretHidden={caretHidden} margin={margin} />
-              ) : (
-                <UpArrowIcon caretHidden={caretHidden} margin={margin} />
-              )}
+              {caretHidden !== true &&
+                (anchorEl === null ? (
+                  <DownArrowIcon caretHidden={caretHidden} margin={margin} />
+                ) : (
+                  <UpArrowIcon caretHidden={caretHidden} margin={margin} />
+                ))}
             </CaretIcon>
           </DropdownTrigger>
           <DxcMenu
