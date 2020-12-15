@@ -30,14 +30,6 @@ const tabbedSectionsPropsTable = () => {
           </ul>
         </td>
       </tr>
-
-      <tr>
-        <td>tabsMode: 'filled' | 'underlined'</td>
-        <td>
-          <code>'filled'</code>
-        </td>
-        <td>Uses one of the available tab modes.</td>
-      </tr>
       <tr>
         <td>stickAtPx: number</td>
         <td>

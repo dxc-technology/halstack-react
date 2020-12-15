@@ -3,7 +3,6 @@ import { DxcTabsForSections } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
       <DxcTabsForSections
-        tabsMode="underlined"
         sections={[
           {
             tabLabel: "S1",
