@@ -51,11 +51,12 @@
     "eslint-plugin-jest": "^22.7.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.5.4",
-    "react-test-renderer": "^16.8.6",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
+    "react-test-renderer": "^16.8.6",
     "styled-components": "file:../node_modules/styled-components"
   },
   "jest": {

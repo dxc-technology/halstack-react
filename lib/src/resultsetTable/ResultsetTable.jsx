@@ -42,9 +42,9 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
   const [sortOrder, changeSortOrder] = useState("asc");
 
-  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [page]);
+  const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(() => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page), [
-    page,
+    itemsPerPage, minItemsPerPageIndex, page, rows
   ]);
   const next = () => {
     changePage(page + 1);
@@ -84,7 +84,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
   ]);
   const filteredResultset = useMemo(
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
-    [page, sortColumnIndex, sortOrder, rows]
+    [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
   return (
     <ThemeProvider theme={colorsTheme}>
