@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { DxcHeader, DxcDropdown, DxcSelect } from "@dxc-technology/halstack-react";
+import {
+  DxcHeader,
+  DxcDropdown,
+  DxcSelect,
+} from "@dxc-technology/halstack-react";
 import axios from "axios";
 import portal from "./portal.json";
 import githubLogo from "./github-logo-black.svg";
@@ -28,7 +32,7 @@ function App() {
       const versionUrl = window.location.pathname;
       const currentSelectedVersion =
         versionUrl.split("/")[3] ||
-        versionsResp.data.find((v) => v.current === true).versionNumber;
+        versionsResp.data.find((v) => v.current).versionNumber;
       setSelectedVersion(currentSelectedVersion);
     };
 
@@ -108,7 +112,7 @@ function App() {
             onChange={selectVersion}
             size="small"
             value={selectedVersion}
-            margin={{bottom: "small"}}
+            margin={{ bottom: "small" }}
           ></DxcSelect>
           <ResponsiveHeaderLink>
             <a
