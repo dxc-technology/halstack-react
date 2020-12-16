@@ -1,10 +1,9 @@
 import React from "react";
-import { DxcTabsForSections, DxcTag } from "@dxc-technology/halstack-react";
+import { DxcTabsForSections, DxcTag, DxcHeading } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-import DocTitle from "../../common/DocTitle";
 import Section from "../components/common/Section";
 import githubLogo from "./github-logo.png";
 import dxcLogo from "./dxc-logo.png";
@@ -13,7 +12,7 @@ import reactLogo from "../../common/react-icon.png";
 function Install() {
   return (
     <Section>
-      <DocTitle size={2}>Install</DocTitle>
+      <DxcHeading level={3} text="Install" />
       <p>
         DXC React Components is a library made for React. In order to use it,
         you need to include it in an existing React project.
@@ -46,7 +45,7 @@ function Install() {
 function UseComponents() {
   return (
     <Section>
-      <DocTitle size={2}>Use Components</DocTitle>
+      <DxcHeading level={3} text="Use Components" />
       <p>
         A list of available components is available in the{" "}
         <Link target="_blank" href="https://developer.dxc.com/design/components">
@@ -85,7 +84,7 @@ function UseComponents() {
 function CustomThemes() {
   return (
     <Section>
-      <DocTitle size={2}>Custom Themes</DocTitle>
+      <DxcHeading level={3} text="Custom Themes" />
       <p>
         If the colors of a component's theme do not match your wishes or
         requirements, you can modify them in order to customize the component.
@@ -154,7 +153,7 @@ function Support() {
   return (
     <Section>
       <StyledSupport>
-        <DocTitle size={2}>Support and Feature request</DocTitle>
+        <DxcHeading level={3} text="Support and Feature request" />
         <p>
           For any questions or requests, our main support channel is GitHub
           issues.

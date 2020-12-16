@@ -7,9 +7,7 @@ const code = `() => {
         This is a text with an <DxcLink
             iconPosition="after"
             iconSrc={twitterLogoPath}
-            onClick={() => {
-              console.log("click");
-            }}
+            href="#"
             text="Icon after"
         >
         </DxcLink> the link.

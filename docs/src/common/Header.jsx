@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { DxcHeader } from "@dxc-technology/halstack-react";
-import githubLogo from "./github-logo.svg";
+import githubLogo from "./github-logo-black.svg";
 import githubLogoBlack from "./github-logo-black.svg";
 
 function App() {
@@ -13,7 +13,12 @@ function App() {
       padding={{ left: "medium", right: "medium" }}
       content={
         <React.Fragment>
-          <HeaderLink isActive={location.pathname.startsWith("/overview")}>
+          <HeaderLink
+            isActive={
+              location.pathname.startsWith("/overview") ||
+              location.pathname === "/"
+            }
+          >
             <Link to="/overview">Overview</Link>
           </HeaderLink>
           <HeaderLink isActive={location.pathname.startsWith("/components")}>
@@ -23,7 +28,7 @@ function App() {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://developer.dxc.com"
+              href="https://developer.dxc.com/design/principles"
             >
               Design Guidelines
             </a>
@@ -55,7 +60,7 @@ function App() {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://developer.dxc.com"
+              href="https://developer.dxc.com/design/principles"
             >
               Design Guidelines
             </a>

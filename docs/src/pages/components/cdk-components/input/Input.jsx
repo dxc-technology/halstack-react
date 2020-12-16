@@ -1,9 +1,9 @@
 import React from "react";
-import { DxcTabsForSections } from "@dxc-technology/halstack-react";
+import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
 
 import InputTokensTable from "./Tokens.jsx";
 import ComponentDoc from "../../common/ComponentDoc";
-import DocTitle from "../../../../common/DocTitle";
+
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
@@ -18,7 +18,7 @@ import maskedInput from "./examples/maskedInput";
 function Input() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Input" status="ready"></ComponentHeader>
+      <ComponentHeader title="Input Text" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -27,7 +27,7 @@ function Input() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DocTitle size={2}>Props</DocTitle>
+                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
                 <InputPropsTable />
               </Section>
             ),
@@ -36,7 +36,7 @@ function Input() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DocTitle size={2}>Theming</DocTitle>
+                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
                 <InputTokensTable />
               </Section>
             ),
@@ -45,7 +45,7 @@ function Input() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Examples</DocTitle>
+                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                 <Example
                   title="Controlled Input"
                   example={controlled}

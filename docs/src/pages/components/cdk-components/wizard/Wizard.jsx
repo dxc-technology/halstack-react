@@ -1,8 +1,8 @@
 import React from "react";
-import { DxcTabsForSections } from "@dxc-technology/halstack-react";
+import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
 
 import ComponentDoc from "../../common/ComponentDoc";
-import DocTitle from "../../../../common/DocTitle";
+
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import Section from "../../common/Section";
@@ -25,7 +25,7 @@ function Wizard() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DocTitle size={2}>Props</DocTitle>
+                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
                 <WizardPropsTable />
               </Section>
             ),
@@ -34,7 +34,7 @@ function Wizard() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DocTitle size={2}>Theming</DocTitle>
+                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
                 <WizardTokensTable />
               </Section>
             ),
@@ -43,7 +43,7 @@ function Wizard() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Examples</DocTitle>
+                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                 <Example
                   title="Controlled Wizard"
                   example={controlledWizard}

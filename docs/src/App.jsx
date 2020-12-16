@@ -41,9 +41,15 @@ function App() {
           </Content>
           <DxcFooter
             bottomLinks={[
-              { text: "Twitter", href: "http://www.google.com" },
-              { text: "Facebook", href: "http://www.google.com" },
-              { text: "Instagram", href: "http://www.google.com" },
+              { text: "Twitter", href: "https://twitter.com/DXCTechnology" },
+              {
+                text: "Facebook",
+                href: "https://www.facebook.com/DXCTechnology/",
+              },
+              {
+                text: "Instagram",
+                href: "https://www.instagram.com/dxctechnology/",
+              },
             ]}
             copyright="© DXC Technology 2020. All rights reserved."
           ></DxcFooter>

@@ -55,7 +55,7 @@ export default [
   },
   {
     path: "applicationLayout",
-    name: "Application layout",
+    name: "Application Layout",
     component: ApplicationLayout,
     type: types.LAYOUT,
   },
@@ -133,7 +133,7 @@ export default [
   },
   {
     path: "input",
-    name: "Text field",
+    name: "Input Text",
     component: Input,
     type: types.FORMS,
   },

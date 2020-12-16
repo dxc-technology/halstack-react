@@ -44,10 +44,12 @@ const DxcTag = ({
     >
       {onClick ? (
         <StyledButton>{tagContent}</StyledButton>
-      ) : (
+      ) : linkHref ? (
         <StyledLink href={linkHref} target={newWindow ? "_blank" : "_self"}>
           {tagContent}
         </StyledLink>
+      ) : (
+        tagContent
       )}
     </StyledDxcTag>
   );

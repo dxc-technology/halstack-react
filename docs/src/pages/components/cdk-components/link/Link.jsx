@@ -1,7 +1,7 @@
 import React from "react";
-import { DxcTabsForSections } from "@dxc-technology/halstack-react";
+import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
-import DocTitle from "../../../../common/DocTitle";
+
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
@@ -11,6 +11,7 @@ import defaultLink from "./examples/default";
 import undecoratedLink from "./examples/undecorated";
 import iconLink from "./examples/iconLink";
 import disabledLink from "./examples/disabledLink";
+import actionLink from "./examples/actionLink";
 
 function Link() {
   return (
@@ -24,7 +25,7 @@ function Link() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DocTitle size={2}>Props</DocTitle>
+                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
                 <LinkPropsTable />
               </Section>
             ),
@@ -33,7 +34,7 @@ function Link() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DocTitle size={2}>Theming</DocTitle>
+                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
                 <p>Not available tokens.</p>
               </Section>
             ),
@@ -42,17 +43,15 @@ function Link() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DocTitle size={2}>Examples</DocTitle>
+                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                 <Example title="Default Link" example={defaultLink}></Example>
                 <Example
                   title="Undecorated link with new window"
                   example={undecoratedLink}
                 ></Example>
                 <Example title="Disabled Link" example={disabledLink}></Example>
-                <Example
-                  title="Link with icon and action"
-                  example={iconLink}
-                ></Example>
+                <Example title="Link with action" example={actionLink}></Example>
+                <Example title="Link with icon" example={iconLink}></Example>
               </Section>
             ),
           },

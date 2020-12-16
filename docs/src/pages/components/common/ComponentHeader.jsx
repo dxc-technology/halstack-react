@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import DocTitle from "../../../common/DocTitle";
-import { DxcChip } from "@dxc-technology/halstack-react";
+import { DxcChip, DxcHeading } from "@dxc-technology/halstack-react";
 import ReadyIcon from "./ready.svg";
 import ExperimentalIcon from "./experimental.svg";
 import PlannedIcon from "./planned.svg";
 
-
 function ComponentHeader({ title, status }) {
   return (
     <StyledHeader>
-      <DocTitle size={1}>{title}</DocTitle>
+      <DxcHeading level={2} text={title} margin={{ bottom: "medium" }} />
       {status ? (
         <DxcChip
           label="Ready"
-          margin="small"
+          margin={{ left: "small", bottom: "medium" }}
           prefixIconSrc={
             status === "ready"
               ? ReadyIcon
