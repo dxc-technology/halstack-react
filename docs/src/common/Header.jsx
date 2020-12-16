@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { DxcHeader, DxcSelect } from "@dxc-technology/halstack-react";
+import { DxcHeader, DxcDropdown, DxcSelect } from "@dxc-technology/halstack-react";
 import axios from "axios";
 import portal from "./portal.json";
 import githubLogo from "./github-logo-black.svg";
@@ -45,12 +45,12 @@ function App() {
       padding={{ left: "medium", right: "medium" }}
       content={
         <React.Fragment>
-          <DxcSelect
+          <DxcDropdown
             options={versions}
-            onChange={selectVersion}
-            size="small"
+            onSelectOption={selectVersion}
+            label={selectedVersion}
             value={selectedVersion}
-          ></DxcSelect>
+          ></DxcDropdown>
           <HeaderLink
             isActive={
               location.pathname.startsWith("/overview") ||
