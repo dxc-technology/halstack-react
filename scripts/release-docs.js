@@ -16,7 +16,7 @@ const processListObjectsResponse = (response) => {
     .map((version) => Number(version));
 };
 
-const getVersionsInS3Bucket = async () => {
+const getVersionsInS3Bucket = async (filterFunction) => {
   const params = {
     Bucket: BUCKET_NAME,
     Prefix: DIRECTORY,
@@ -28,9 +28,27 @@ const getVersionsInS3Bucket = async () => {
       if (error) {
         reject(new Error(error));
       } else {
-        resolve(processListObjectsResponse(data));
+        resolve(processListObjectsResponse(data, filterFunction));
       }
     });
+  });
+};
+
+const removeBucket = (version) => {
+  return new Promise((resolve, reject) => {
+    console.log(`Removing s3://${BUCKET_NAME}/${DIRECTORY}${version}/`);
+    exec(
+      `aws s3 rm s3://${BUCKET_NAME}/${DIRECTORY}${version}/ --recursive`,
+      (error, stdout, stderr) => {
+        if (error) {
+          throw new Error(error.message);
+        }
+        if (stderr) {
+          throw new Error(stderr);
+        }
+        resolve(stdout);
+      }
+    );
   });
 };
 
@@ -75,12 +93,42 @@ const deploy = async () => {
   const majorVersionToDeploy = Number(
     versionToDeploy.substring(0, versionToDeploy.indexOf("."))
   );
-  const existingVersionsInBucket = await getVersionsInS3Bucket();
+  const existingVersionsInBucket = await getVersionsInS3Bucket(null);
   const isNewLatest = !existingVersionsInBucket.includes(majorVersionToDeploy);
+  
+  const listAvailableVersions = await getVersionsInS3Bucket((version) => version !== "latest");
+  await updateAvailableVersions(listAvailableVersions, majorVersionToDeploy);
+  await removeBucket(majorVersionToDeploy);
+  
   await moveToBucket(majorVersionToDeploy);
   if (isNewLatest) {
     await updateRedirectionToLatest(majorVersionToDeploy);
   }
+};
+
+const updateAvailableVersions = async (versions, currentVersion) => {
+  const versionItems = versions.map((version) => {
+    const currentItem = isNaN(version) ? "next" : version;
+    return {
+      versionNumber: currentItem,
+      versionURL: `https://developer.dxc.com/tools/react/${currentItem}`,
+      current: currentItem === currentVersion
+    }
+  })
+  return new Promise((resolve, reject) => {
+    exec(
+      `echo '${JSON.stringify(versionItems)}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}versions.json`,
+      (error, stdout, stderr) => {
+        if (error) {
+          throw new Error(error.message);
+        }
+        if (stderr) {
+          throw new Error(stderr);
+        }
+        resolve(stdout);
+      }
+    );
+  });
 };
 
 deploy();
