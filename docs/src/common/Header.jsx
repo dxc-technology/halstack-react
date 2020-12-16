@@ -103,6 +103,13 @@ function App() {
               Design Guidelines
             </a>
           </ResponsiveHeaderLink>
+          <DxcSelect
+            options={versions}
+            onChange={selectVersion}
+            size="small"
+            value={selectedVersion}
+            margin={{bottom: "small"}}
+          ></DxcSelect>
           <ResponsiveHeaderLink>
             <a
               target="_blank"
