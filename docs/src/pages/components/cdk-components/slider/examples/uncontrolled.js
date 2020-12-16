@@ -5,6 +5,10 @@ const code = `() => {
     console.log(newValue);
   };
 
+  const labelFormat = (value) => {
+    return \`\${value}°C\`;
+  };
+
   return (
     <DxcSlider
       minValue={0}
@@ -13,6 +17,7 @@ const code = `() => {
       name="input"
       step={1}
       onChange={onChange}
+      labelFormatCallback={labelFormat}
       margin="medium"
     />
   );

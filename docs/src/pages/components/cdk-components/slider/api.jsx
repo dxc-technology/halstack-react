@@ -98,6 +98,15 @@ const sliderPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>labelFormatCallback: function</td>
+        <td></td>
+        <td>
+          This function will be used to format the labels displayed next to the
+          slider. The value will be passed as parameter and the function must
+          return the formatted value.
+        </td>
+      </tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>
