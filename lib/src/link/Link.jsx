@@ -40,7 +40,7 @@ const DxcLink = ({
       {onClick ? (
         <StyledButton onClick={onClick}>{linkContent}</StyledButton>
       ) : (
-        <StyledLink href={href} target={newWindow ? "_blank" : "_self"}>
+        <StyledLink href={href} target={newWindow ? "_blank" : "_self"} inheritColor={inheritColor}>
           {linkContent}
         </StyledLink>
       )}
@@ -59,18 +59,21 @@ const LinkText = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  ${(props) =>
-    props.underlined
-      ? !props.disabled
-        ? `text-decoration: none;
-      padding-bottom: 1px !important;
-      border-bottom: 1px solid ${props.theme.underlinedBackgroundColor}`
-        : `text-decoration: none;
-      padding-bottom: 1px !important;
-      border-bottom: 1px solid ${props.theme.disabledUnderlinedBackgroundColor}`
-      : `text-decoration: none`};
+  text-decoration: none;
 
-  color: ${(props) => (!props.disabled ? props.theme.fontColor : props.theme.disabledColor)};
+  ${(props) =>
+    props.underlined &&
+    `padding-bottom: 1px !important; 
+    border-bottom: 1px solid ${
+      !props.inheritColor
+        ? !props.disabled
+          ? props.theme.underlinedBackgroundColor
+          : props.theme.disabledUnderlinedBackgroundColor
+        : ``
+    };`}
+
+  color: ${(props) =>
+    props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
   ${(props) => (!props.underlined ? "text-decoration-color: transparent;" : "")}
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
   
@@ -110,6 +113,8 @@ const LinkIcon = styled.img`
 
 const StyledLink = styled.a`
   text-decoration: none;
+  color: ${(props) =>
+    props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
 `;
 
 const StyledButton = styled.button`
