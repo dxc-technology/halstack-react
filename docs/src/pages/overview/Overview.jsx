@@ -117,19 +117,19 @@ function CustomThemes() {
       textFontColor: "#000000",
       textHoverFontColor: "#FFFFFF"
     },
-    checkbox:{
+    checkbox: {
       color: "#FFED00",
       checkColor: "#000000",
       fontColor: "#000000"
     },
-    radio:{
+    radio: {
       color: "#000000"
     },
-    select:{
+    select: {
       selectedOptionBackgroundColor: "#D9D9D9"
     },
-    slider:{
-      "color": "#000000"
+    slider: {
+      color: "#000000"
     }
   };
 
