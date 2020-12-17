@@ -34,7 +34,7 @@ function Install() {
         to set it up with minimum configuration.
       </p>
       <p>
-        DXC React Components is distributed as an npm package. styled-compoents
+        DXC React Components is distributed as an npm package. styled-components
         is a peer dependency, so in order to use it in an existing project:
       </p>
       <SyntaxHighlighter language="php" style={docco}>
@@ -55,7 +55,7 @@ function UseComponents() {
     <Section>
       <DxcHeading level={3} text="Use Components" />
       <p>
-        A list of available components is available in the{" "}
+        A list of components is available in the{" "}
         <DxcLink
           href="https://developer.dxc.com/design/components"
           inheritColor
@@ -117,7 +117,7 @@ function CustomThemes() {
   const colors = {
     button: {
       color: "#FFED00",
-      hoverColor:"#000000",
+      hoverColor: "#000000",
 
       primaryFontColor: "#000000",
       primaryHoverFontColor: "#FFED00",
