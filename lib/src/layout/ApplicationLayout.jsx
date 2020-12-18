@@ -161,7 +161,11 @@ const DxcApplicationLayout = ({ children }) => {
               >
                 {main}
               </MainContent>
-              <FooterContainer mode={isResponsive ? "overlay" : sideNavMode} isSideNavVisible={isSideNavVisible}>
+              <FooterContainer
+                sideNav={sideNav}
+                mode={isResponsive ? "overlay" : sideNavMode}
+                isSideNavVisible={isSideNavVisible}
+              >
                 {footer}
               </FooterContainer>
             </MainBodyContainer>
@@ -211,12 +215,15 @@ const MainBodyContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  z-index: 1;
 `;
 
 const FooterContainer = styled.div`
   margin-left: ${(props) =>
-    (props.mode === "push" && !props.isSideNavVisible) || props.mode === "overlay" ? "-300px" : ""};
+    props.sideNav
+      ? (props.mode === "push" && !props.isSideNavVisible) || props.mode === "overlay"
+        ? "-300px"
+        : ""
+      : ""};
   transition: margin 0.4s ease-in-out;
 `;
 
@@ -242,7 +249,7 @@ const SideNavArrowContainer = styled.div`
 
 const ArrowContainer = styled.div`
   position: absolute;
-  height: 100vh;
+  height: calc(100vh - 64px);
   left: 279px;
 `;
 
