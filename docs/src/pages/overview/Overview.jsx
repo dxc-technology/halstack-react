@@ -1,5 +1,10 @@
 import React from "react";
-import { DxcTabsForSections, DxcTag, DxcHeading } from "@dxc-technology/halstack-react";
+import {
+  DxcTabsForSections,
+  DxcTag,
+  DxcHeading,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -20,14 +25,17 @@ function Install() {
 
       <p>
         If you are creating a React application from scratch, we recommend using{" "}
-        <Link target="_blank" href="https://create-react-app.dev/">
-          create-react-app
-        </Link>{" "}
+        <DxcLink
+          href="https://create-react-app.dev/"
+          inheritColor
+          newWindow
+          text="create-react-app"
+        ></DxcLink>{" "}
         to set it up with minimum configuration.
       </p>
       <p>
-        DXC React Components is distributed as an npm package. styled-compoents is a peer dependency, so in order to use it in an
-        existing project:
+        DXC React Components is distributed as an npm package. styled-components
+        is a peer dependency, so in order to use it in an existing project:
       </p>
       <SyntaxHighlighter language="php" style={docco}>
         {`
@@ -47,10 +55,13 @@ function UseComponents() {
     <Section>
       <DxcHeading level={3} text="Use Components" />
       <p>
-        A list of available components is available in the{" "}
-        <Link target="_blank" href="https://developer.dxc.com/design/components">
-          components screen
-        </Link>{" "}
+        A list of components is available in the{" "}
+        <DxcLink
+          href="https://developer.dxc.com/design/components"
+          inheritColor
+          newWindow
+          text="components screen"
+        ></DxcLink>{" "}
         . The API documentation of every component is available in that screen,
         as well as a set of examples with a live code editor.
       </p>
@@ -106,7 +117,7 @@ function CustomThemes() {
   const colors = {
     button: {
       color: "#FFED00",
-      hoverColor:"#000000",
+      hoverColor: "#000000",
 
       primaryFontColor: "#000000",
       primaryHoverFontColor: "#FFED00",
@@ -117,19 +128,19 @@ function CustomThemes() {
       textFontColor: "#000000",
       textHoverFontColor: "#FFFFFF"
     },
-    checkbox:{
+    checkbox: {
       color: "#FFED00",
       checkColor: "#000000",
       fontColor: "#000000"
     },
-    radio:{
+    radio: {
       color: "#000000"
     },
-    select:{
+    select: {
       selectedOptionBackgroundColor: "#D9D9D9"
     },
-    slider:{
-      "color": "#000000"
+    slider: {
+      color: "#000000"
     }
   };
 
@@ -228,9 +239,12 @@ function Overview() {
           DXC React Components is a library of reusable elements, made with the
           purpose of helping React developers with the task of implementing User
           Interfaces that follow the{" "}
-          <Link href="https://developer.dxc.com" target="_blank">
-            DXC Design Guidelines
-          </Link>{" "}
+          <DxcLink
+            href="https://developer.dxc.com"
+            inheritColor
+            newWindow
+            text="DXC Design Guidelines"
+          ></DxcLink>{" "}
           right out of the box.
         </p>
         <ul>
@@ -313,13 +327,6 @@ const Subtitle = styled.h2`
 const LinksSection = styled.div`
   display: flex;
   margin: 70px 0px 50px 0px;
-`;
-
-const Link = styled.a`
-  font-weight: bold;
-  text-decoration: underline;
-  color: black;
-  letter-spacing: initial;
 `;
 
 const Introduction = styled.div`
