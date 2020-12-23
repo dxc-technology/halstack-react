@@ -2,16 +2,29 @@ import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
-
-import DefaultWhite from "./dxc_logo_white.png";
-import DefaultBlack from "./dxc_logo_black.png";
-import DefaultHamburguerWhite from "./hamb_menu_white.svg";
-import DefaultHamburguerBlack from "./hamb_menu_black.svg";
+import { DxcDropdown } from "@dxc-technology/halstack-react";
 import CloseIcon from "./close_icon.svg";
-
 import { spaces, responsiveSizes, defaultTheme, theme } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
+
+const Dropdown = (props) => {
+  return (
+    <HeaderDropdown>
+      <DxcDropdown {...props} />
+    </HeaderDropdown>
+  );
+};
+
+const HeaderDropdown = styled.div`
+  button {
+    color: ${(props) => props.theme.fontColor};
+    background-color: transparent;
+    :hover {
+      background-color: transparent;
+    }
+  }
+`;
 
 const DxcHeader = ({
   underlined = false,
@@ -122,6 +135,8 @@ const DxcHeader = ({
     </ThemeProvider>
   );
 };
+
+DxcHeader.Dropdown = Dropdown;
 
 const HeaderContainer = styled(AppBar)`
   margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
