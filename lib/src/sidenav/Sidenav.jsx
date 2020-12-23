@@ -17,6 +17,22 @@ const DxcSidenav = ({ padding, children }) => {
   );
 };
 
+const Title = ({ children }) => {
+  return <SideNavMenuTitle>{children}</SideNavMenuTitle>;
+};
+
+const Subtitle = ({ children }) => {
+  return <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>;
+};
+
+const Link = ({ href, onClick, children }) => {
+  return (
+    <SideNavMenuLink href={href} onClick={onClick}>
+      {children}
+    </SideNavMenuLink>
+  );
+};
+
 const SideNavContainer = styled.div`
   background-color: ${(props) => props.theme.backgroundColor};
   max-width: 300px;
@@ -36,6 +52,32 @@ const SideNavContainer = styled.div`
     background-color: #66666626;
     border-radius: 3px;
   }
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const SideNavMenuTitle = styled.div`
+  font: normal normal normal 24px/33px Open Sans;
+  letter-spacing: 0px;
+  color: #000000de;
+  margin: 15px 0;
+`;
+
+const SideNavMenuSubTitle = styled.div`
+  font: normal normal normal 12px/17px Open Sans;
+  letter-spacing: 1.88px;
+  color: #00000099;
+  text-transform: uppercase;
+  margin-top: 15px;
+`;
+
+const SideNavMenuLink = styled.a`
+  text-decoration: none;
+  font: normal normal normal 14px/19px Open Sans;
+  letter-spacing: 0.24px;
+  color: #00000099;
+  margin: 6px 18px;
 `;
 
 DxcSidenav.propTypes = {
@@ -49,5 +91,9 @@ DxcSidenav.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
 };
+
+DxcSidenav.Title = Title;
+DxcSidenav.Subtitle = Subtitle;
+DxcSidenav.Link = Link;
 
 export default DxcSidenav;
