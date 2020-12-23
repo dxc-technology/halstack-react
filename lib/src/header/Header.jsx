@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
-import { DxcDropdown } from "@dxc-technology/halstack-react";
+import DxcDropdown from "../dropdown/Dropdown";
 import CloseIcon from "./close_icon.svg";
 import { spaces, responsiveSizes, defaultTheme, theme } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
