@@ -78,6 +78,7 @@ const SideNavMenuLink = styled.a`
   letter-spacing: 0.24px;
   color: #00000099;
   margin: 6px 18px;
+  cursor: pointer;
 `;
 
 DxcSidenav.propTypes = {
