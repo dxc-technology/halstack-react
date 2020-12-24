@@ -1,4 +1,4 @@
-import { DxcHeader, DxcButton } from "@dxc-technology/halstack-react";
+import { DxcHeader } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const selectOption = (value) => {
