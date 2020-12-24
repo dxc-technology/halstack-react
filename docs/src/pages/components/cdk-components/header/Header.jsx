@@ -1,5 +1,9 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import {
+  DxcTabsForSections,
+  DxcHeading,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 
 import ComponentDoc from "../../common/ComponentDoc";
 
@@ -11,6 +15,7 @@ import HeaderTokensTable from "./Tokens.jsx";
 
 import defaultHeader from "./examples/default.js";
 import children from "./examples/children.js";
+import dropdown from "./examples/children-dropdown.js";
 
 function Input() {
   return (
@@ -24,8 +29,38 @@ function Input() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
                 <HeaderPropsTable />
+              </Section>
+            ),
+          },
+          {
+            tabLabel: "Children",
+            section: () => (
+              <Section>
+                <DxcHeading
+                  level={3}
+                  text="Children"
+                  margin={{ bottom: "small" }}
+                />
+                <DxcHeading text="DxcHeader.Dropdown" level={4} weight="bold" />
+                <p>
+                  Everything between this tags will be displayed as a dropdown.
+                  If you want to show a{" "}
+                  <DxcLink
+                    href={`#/components/dropdown`}
+                    underlined={false}
+                    text="DxcDropdown"
+                  ></DxcLink>
+                  , as a shortcut, you can also use it as a direct child of the
+                  DxcHeader without the tags, but we recommend to use it with
+                  the tags since some styles will be applied for a better fit in
+                  the header.
+                </p>
               </Section>
             ),
           },
@@ -33,7 +68,11 @@ function Input() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Theming"
+                  margin={{ bottom: "small" }}
+                />
                 <HeaderTokensTable />
               </Section>
             ),
@@ -42,7 +81,11 @@ function Input() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Default Header"
                   example={defaultHeader}
@@ -50,6 +93,10 @@ function Input() {
                 <Example
                   title="Header with custom content"
                   example={children}
+                ></Example>
+                <Example
+                  title="Header with dropdown"
+                  example={dropdown}
                 ></Example>
               </Section>
             ),
