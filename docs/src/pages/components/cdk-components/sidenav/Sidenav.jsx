@@ -25,6 +25,19 @@ function Sidenav() {
         tabsMode="underlined"
         sections={[
           {
+            tabLabel: "Props",
+            section: () => (
+              <Section>
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
+                <SidenavPropsTable />
+              </Section>
+            ),
+          },
+          {
             tabLabel: "Children",
             section: () => (
               <Section>
@@ -62,19 +75,6 @@ function Sidenav() {
                   margin={{ bottom: "medium" }}
                 />{" "}
                 <SidenavLinkPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <SidenavPropsTable />
               </Section>
             ),
           },
