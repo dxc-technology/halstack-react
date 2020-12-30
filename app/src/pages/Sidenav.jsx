@@ -39,6 +39,22 @@ function App() {
           <DxcFooter />
         </ThemeContext.Provider>
       </div>
+
+      <div className="test-case" id="sidenav-menu">
+        <h4>Compound components Sidenav</h4>
+        <DxcSidenav padding="medium">
+          <DxcSidenav.Title>My sidenav</DxcSidenav.Title>
+          <p>This is a sidenav.</p>
+          <DxcSidenav.Subtitle>My subtitle</DxcSidenav.Subtitle>
+          <DxcSidenav.Link href="#">Home</DxcSidenav.Link>
+          <DxcSidenav.Link href="/test">Test</DxcSidenav.Link>
+          <DxcSidenav.Subtitle>My subtitle2</DxcSidenav.Subtitle>
+          <DxcSidenav.Link href="#">Home2</DxcSidenav.Link>
+          <DxcSidenav.Link onClick={() => console.log("click")}>Test2</DxcSidenav.Link>
+          <p>This is a sidenav2.</p>
+        </DxcSidenav>
+        <DxcFooter /> 
+      </div>
     </div>
   );
 }
