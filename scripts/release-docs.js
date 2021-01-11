@@ -12,7 +12,7 @@ const processListObjectsResponse = (response) => {
       prefix.length - 1
     );
   })
-    .filter((version) => version !== "next" && version !== "latest")
+    .filter((version) => version !== "latest")
     .map((version) => Number(version));
 };
 
@@ -95,12 +95,10 @@ const deploy = async () => {
   );
   const existingVersionsInBucket = await getVersionsInS3Bucket(null);
   const isNewLatest = !existingVersionsInBucket.includes(majorVersionToDeploy);
-  
+  await removeBucket(majorVersionToDeploy);
+  await moveToBucket(majorVersionToDeploy);
   const listAvailableVersions = await getVersionsInS3Bucket((version) => version !== "latest");
   await updateAvailableVersions(listAvailableVersions, majorVersionToDeploy);
-  await removeBucket(majorVersionToDeploy);
-  
-  await moveToBucket(majorVersionToDeploy);
   if (isNewLatest) {
     await updateRedirectionToLatest(majorVersionToDeploy);
   }
