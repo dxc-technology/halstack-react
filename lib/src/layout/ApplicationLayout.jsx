@@ -116,6 +116,7 @@ const DxcApplicationLayout = ({ children }) => {
   const handleResize = (width) => {
     if (width) {
       if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
+      setIsSideNavVisible(true);
     }
   };
 
