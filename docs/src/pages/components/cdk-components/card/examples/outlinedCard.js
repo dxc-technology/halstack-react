@@ -4,7 +4,10 @@ import iceCreamImagePath from "./images/ice-cream.jpg";
 
 const code = `() => {
   return (
-    <DxcCard outlined={true} imageSrc={iceCreamImagePath} imageCover={true} margin="small">
+    <DxcCard 
+      outlined={true} 
+      image={<img src={iceCreamImagePath}></img>} 
+      imageCover={true} margin="small">
       Lorem Ipsum
     </DxcCard>
   );

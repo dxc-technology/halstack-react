@@ -7,6 +7,7 @@ import DxcBox from "../box/Box";
 
 const DxcCard = ({
   imageSrc,
+  image,
   children,
   margin,
   linkHref,
@@ -29,7 +30,13 @@ const DxcCard = ({
     <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
       <CardContainer hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
         <ImageContainer imageBgColor={imageBgColor}>
-          <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
+          {image ? (
+            <TagImageContainer imagePadding={imagePadding} cover={imageCover}>
+              {(image.type === "svg" || image.type === "img") && image}
+            </TagImageContainer>
+          ) : (
+            <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
+          )}
         </ImageContainer>
         <CardContent>{children}</CardContent>
       </CardContainer>
@@ -75,6 +82,20 @@ const StyledLink = styled.a`
   text-decoration: none;
 `;
 
+const TagImageContainer = styled.div`
+  height: ${({ imagePadding }) =>
+    !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+  width: ${({ imagePadding }) =>
+    !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
+
+  img,
+  svg:not(:root) {
+    height: 100%;
+    width: 100%;
+    object-fit: ${({ cover }) => (cover ? "cover" : "contain")};
+  }
+`;
+
 const TagImage = styled.img`
   height: ${({ imagePadding }) =>
     !imagePadding ? "100%" : `calc(100% - ${spaces[imagePadding]} - ${spaces[imagePadding]})`};
@@ -100,6 +121,7 @@ const CardContent = styled.div`
 `;
 
 DxcCard.propTypes = {
+  image: PropTypes.element,
   imageSrc: PropTypes.string,
   imageBgColor: PropTypes.string,
   imagePadding: PropTypes.oneOf([...Object.keys(spaces)]),
@@ -120,6 +142,7 @@ DxcCard.propTypes = {
 };
 
 DxcCard.defaultProps = {
+  image: null,
   imageSrc: null,
   margin: null,
   outlined: false,

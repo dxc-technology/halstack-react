@@ -10,6 +10,11 @@ const buttonPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>image: node</td>
+        <td></td>
+        <td>Element used as icon in the button component. It only accepts svg and img nodes.</td>
+      </tr>
+      <tr>
         <td>imageSrc: string</td>
         <td></td>
         <td>URL of the image that will be placed in the card component.</td>

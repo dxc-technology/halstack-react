@@ -8,7 +8,7 @@ const code = `() => {
       onClick={() => {
         console.log("click");
       }}
-      imageSrc={iceCreamImagePath} 
+      image={<img src={iceCreamImagePath}></img>} 
       imageCover={true} 
       margin="small"
     >

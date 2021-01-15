@@ -6,7 +6,7 @@ const code = `() => {
   return (
     <DxcCard 
       linkHref="https://www.dxc.com"
-      imageSrc={iceCreamImagePath} 
+      image={<img src={iceCreamImagePath}></img>} 
       imageCover={true} 
       margin="small"
     >
