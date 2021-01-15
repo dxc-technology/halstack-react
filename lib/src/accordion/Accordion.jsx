@@ -13,6 +13,7 @@ import ThemeContext from "../ThemeContext.js";
 const DxcAccordion = ({
   label = "",
   iconSrc = "",
+  icon,
   iconPosition = "before",
   assistiveText = "",
   disabled = false,
@@ -46,7 +47,13 @@ const DxcAccordion = ({
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <AccordionInfo iconPosition={iconPosition}>
               <AccordionLabel iconPosition={iconPosition}>{label}</AccordionLabel>
-              {iconSrc && <AccordionIcon iconPosition={iconPosition} src={iconSrc} />}
+              {icon ? (
+                <IconContainer iconPosition={iconPosition}>
+                  {(icon.type === "svg" || icon.type === "img") && icon}
+                </IconContainer>
+              ) : (
+                iconSrc && <AccordionIcon iconPosition={iconPosition} src={iconSrc} />
+              )}
             </AccordionInfo>
             <AccordionAssistiveText>{assistiveText}</AccordionAssistiveText>
           </ExpansionPanelSummary>
@@ -66,6 +73,7 @@ const calculateWidth = (margin) => {
 DxcAccordion.propTypes = {
   label: PropTypes.string,
   iconSrc: PropTypes.string,
+  icon: PropTypes.element,
   iconPosition: PropTypes.oneOf(["before", "after"]),
   assistiveText: PropTypes.string,
   disabled: PropTypes.bool,
@@ -232,6 +240,19 @@ const AccordionAssistiveText = styled.div`
   font-size: 14px;
   font: Italic 14px/19px Open Sans;
   letter-spacing: 0.24px;
+`;
+
+const IconContainer = styled.div`
+  max-height: 20px;
+  max-width: 20px;
+  margin-left: ${(props) => (props.iconPosition === "after" && "10px") || "0px"};
+  margin-right: ${(props) => (props.iconPosition === "before" && "10px") || "0px"};
+
+  img,
+  svg:not(:root) {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const AccordionIcon = styled.img`
