@@ -6,33 +6,65 @@ import ThemeContext from "../ThemeContext.js";
 import "../common/OpenSans.css";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 
-const DxcChip = ({ label, suffixIconSrc, onClickSuffix, prefixIconSrc, onClickPrefix, disabled, margin }) => {
+const DxcChip = ({
+  label,
+  suffixIcon,
+  prefixIcon,
+  suffixIconSrc,
+  onClickSuffix,
+  prefixIconSrc,
+  onClickPrefix,
+  disabled,
+  margin,
+}) => {
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   return (
     <ThemeProvider theme={colorsTheme.chip}>
       <StyledDxcChip disabled={disabled} margin={margin}>
-        {prefixIconSrc && (
-          <PrefixIconContainer
+        {prefixIcon ? (
+          <IconContainer
             disabled={disabled}
-            src={prefixIconSrc}
+            prefixIcon
             label={label}
             onClick={() => onClickPrefix && !disabled && onClickPrefix(label)}
-          />
+          >
+            {(prefixIcon.type === "svg" || prefixIcon.type === "img") && prefixIcon}
+          </IconContainer>
+        ) : (
+          prefixIconSrc && (
+            <PrefixIconContainer
+              disabled={disabled}
+              src={prefixIconSrc}
+              label={label}
+              onClick={() => onClickPrefix && !disabled && onClickPrefix(label)}
+            />
+          )
         )}
         {label && (
           <ChipTextContainer disabled={disabled} prefixIconSrc={prefixIconSrc} suffixIconSrc={suffixIconSrc}>
             {label}
           </ChipTextContainer>
         )}
-        {suffixIconSrc && (
-          <SuffixIconContainer
+        {suffixIcon ? (
+          <IconContainer
             disabled={disabled}
-            src={suffixIconSrc}
+            suffixIcon
             label={label}
             onClick={() => onClickSuffix && !disabled && onClickSuffix(label)}
-          />
+          >
+            {(suffixIcon.type === "svg" || suffixIcon.type === "img") && suffixIcon}
+          </IconContainer>
+        ) : (
+          suffixIconSrc && (
+            <SuffixIconContainer
+              disabled={disabled}
+              src={suffixIconSrc}
+              label={label}
+              onClick={() => onClickSuffix && !disabled && onClickSuffix(label)}
+            />
+          )
         )}
       </StyledDxcChip>
     </ThemeProvider>
@@ -86,10 +118,23 @@ const PrefixIconContainer = styled.img`
   max-width: 24px;
   max-height: 24px;
 `;
+
+const IconContainer = styled.div`
+  cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
+  ${(props) =>
+    props.prefixIcon
+      ? `margin-right: ${((props.label || props.suffixIcon || props.suffixIconSrc) && "10px") || ((props.prefixIcon || props.prefixIconSrc) && "0")};`
+      : `margin-left: ${((props.label || props.prefixIcon || props.prefixIconSrc) && "10px") || ((props.prefixIcon || props.prefixIconSrc) && "0")};`}
+  max-width: 24px;
+  max-height: 24px;
+`;
+
 DxcChip.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   theme: PropTypes.oneOf(["dark", "light"]),
+  suffixIcon: PropTypes.element,
+  prefixIcon: PropTypes.element,
   suffixIconSrc: PropTypes.string,
   prefixIconSrc: PropTypes.string,
   onClickSuffix: PropTypes.func,
