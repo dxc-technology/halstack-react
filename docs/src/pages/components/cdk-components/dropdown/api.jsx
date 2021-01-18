@@ -22,6 +22,10 @@ const dropdownPropsTable = () => {
               <b>label</b>: Option display value.
             </li>
             <li>
+              <b>icon</b>: Element used as icon that will be placed next to the
+              option label. It only accepts svg and img nodes.
+            </li>
+            <li>
               <b>iconSrc</b>: URL of the icon that will be placed next to the
               option label.
             </li>
@@ -39,6 +43,14 @@ const dropdownPropsTable = () => {
         <td>
           In case options include icons, whether the icon should appear after or
           before the label.
+        </td>
+      </tr>
+      <tr>
+        <td>icon: node</td>
+        <td></td>
+        <td>
+          Element used as icon that will be placed next to the dropdown label.
+          It only accepts svg and img nodes.
         </td>
       </tr>
       <tr>
