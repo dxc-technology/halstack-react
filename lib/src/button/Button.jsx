@@ -39,7 +39,7 @@ const DxcButton = ({
           <LabelContainer>{label}</LabelContainer>
           {icon ? (
             <IconContainer label={label} iconPosition={iconPosition}>
-              {(icon.type === "svg" || icon.type === "img") && icon}
+              {(icon.type && (icon.type === "svg" || icon.type === "img") && icon) || React.createElement(icon)}
             </IconContainer>
           ) : (
             iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />
@@ -240,7 +240,7 @@ DxcButton.propTypes = {
   iconPosition: PropTypes.oneOf(["after", "before"]),
   onClick: PropTypes.func,
   iconSrc: PropTypes.string,
-  icon: PropTypes.element,
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
 };
 
 export default DxcButton;
