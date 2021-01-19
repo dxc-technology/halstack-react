@@ -180,7 +180,6 @@ const LogoIconContainer = styled.div`
   img,
   svg:not(:root) {
     height: 100%;
-   // width: 100%;
   }
 `;
 
