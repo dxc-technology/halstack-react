@@ -30,7 +30,7 @@ const DxcChip = ({
             label={label}
             onClick={() => onClickPrefix && !disabled && onClickPrefix(label)}
           >
-            {(prefixIcon.type === "svg" || prefixIcon.type === "img") && prefixIcon}
+            {(prefixIcon.type && (prefixIcon.type === "svg" || prefixIcon.type === "img") && prefixIcon) || React.createElement(prefixIcon)}
           </IconContainer>
         ) : (
           prefixIconSrc && (
@@ -54,7 +54,7 @@ const DxcChip = ({
             label={label}
             onClick={() => onClickSuffix && !disabled && onClickSuffix(label)}
           >
-            {(suffixIcon.type === "svg" || suffixIcon.type === "img") && suffixIcon}
+            {(suffixIcon.type && (suffixIcon.type === "svg" || suffixIcon.type === "img") && suffixIcon) || React.createElement(suffixIcon)}
           </IconContainer>
         ) : (
           suffixIconSrc && (
@@ -133,8 +133,8 @@ DxcChip.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   theme: PropTypes.oneOf(["dark", "light"]),
-  suffixIcon: PropTypes.element,
-  prefixIcon: PropTypes.element,
+  suffixIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  prefixIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   suffixIconSrc: PropTypes.string,
   prefixIconSrc: PropTypes.string,
   onClickSuffix: PropTypes.func,
