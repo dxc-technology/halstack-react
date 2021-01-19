@@ -378,7 +378,7 @@ DxcDropdown.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   optionsIconPosition: PropTypes.oneOf(["after", "before", ""]),
-  icon: PropTypes.element,
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["after", "before", ""]),
   label: PropTypes.string,
@@ -389,7 +389,7 @@ DxcDropdown.propTypes = {
     PropTypes.shape({
       value: PropTypes.any.isRequired,
       label: PropTypes.any.isRequired,
-      icon: PropTypes.element,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
     })
   ),
