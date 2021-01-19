@@ -12,6 +12,7 @@ const DxcFooter = ({
   socialLinks = [],
   bottomLinks = [],
   copyright = "",
+  logo,
   logoSrc = "default",
   children,
   padding,
@@ -55,7 +56,14 @@ const DxcFooter = ({
 
   const socialLink = socialLinks.map((link, index) => (
     <SocialAnchor key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
-      {link && link.logoSrc && <SocialIcon src={link.logoSrc} />}
+      {link.logo ? (
+        <SocialIconContainer>
+          {(link.logo.type && (link.logo.type === "svg" || link.logo.type === "img") && link.logo) ||
+            React.createElement(link.logo)}
+        </SocialIconContainer>
+      ) : (
+        link && link.logoSrc && <SocialIcon src={link.logoSrc} />
+      )}
     </SocialAnchor>
   ));
 
@@ -70,7 +78,13 @@ const DxcFooter = ({
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} refSize={refSize} ref={ref}>
         <FooterHeader>
-          <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? colorsTheme.footer.logo : logoSrc} />
+          {logo ? (
+            <LogoIconContainer>
+              {(logo.type && (logo.type === "svg" || logo.type === "img") && logo) || React.createElement(logo)}
+            </LogoIconContainer>
+          ) : (
+            <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? colorsTheme.footer.logo : logoSrc} />
+          )}
           <div>{socialLink}</div>
         </FooterHeader>
         {isResponsivePhone && (
@@ -159,6 +173,17 @@ const LogoIcon = styled.img`
   width: auto;
 `;
 
+const LogoIconContainer = styled.div`
+  height: 34px;
+  width: auto;
+
+  img,
+  svg:not(:root) {
+    height: 100%;
+   // width: 100%;
+  }
+`;
+
 const SocialAnchor = styled.a`
   & {
     display: inline-flex;
@@ -175,6 +200,21 @@ const SocialIcon = styled.img`
   }
 `;
 
+const SocialIconContainer = styled.div`
+  & {
+    display: inline-flex;
+    height: 25px;
+    width: 25px;
+    color: ${(props) => props.theme.fontColor};
+  }
+
+  img,
+  svg:not(:root) {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 const Point = styled.span`
   margin: 0px 10px;
   color: ${(props) => props.theme.fontColor};
@@ -187,9 +227,11 @@ const BottomLink = styled.a`
 `;
 
 DxcFooter.propTypes = {
+  logo: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   logoSrc: PropTypes.string,
   socialLinks: PropTypes.arrayOf(
     PropTypes.shape({
+      logo: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       logoSrc: PropTypes.string.isRequired,
       href: PropTypes.string,
     })

@@ -10,6 +10,14 @@ const alertPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>logo: node</td>
+        <td></td>
+        <td>
+          Element used as icon to replace the theme logo. It only accepts svg
+          and img nodes.
+        </td>
+      </tr>
+      <tr>
         <td>logoSrc: string</td>
         <td></td>
         <td>The path of an icon to replace the theme logo.</td>
@@ -25,10 +33,14 @@ const alertPropsTable = () => {
           properties:
           <ul>
             <li>
-              <b>logoSrc</b>: The path of an icon for the link
+              <b>logo</b>: Element used as icon for the link. It only accepts
+              svg and img nodes.
             </li>
             <li>
-              <b>href</b>: URL of the page the link goes to
+              <b>logoSrc</b>: The path of an icon for the link.
+            </li>
+            <li>
+              <b>href</b>: URL of the page the link goes to.
             </li>
           </ul>
         </td>
@@ -44,10 +56,10 @@ const alertPropsTable = () => {
           properties:
           <ul>
             <li>
-              <b>text</b>: Text for the link
+              <b>text</b>: Text for the link.
             </li>
             <li>
-              <b>href</b>: URL of the page the link goes to
+              <b>href</b>: URL of the page the link goes to.
             </li>
           </ul>
         </td>
