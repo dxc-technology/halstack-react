@@ -2,7 +2,27 @@ import React from "react";
 import { DxcCard, ThemeContext } from "@dxc-technology/halstack-react";
 
 import iceCream from "../images/ice-cream.jpg";
-import twitterIcon from "../images/twitter.svg";
+
+const homeSVG = () => {
+  return (
+    <svg
+      x="0px"
+      y="0px"
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 24"
+      enable-background="new 0 0 24 24"
+      fill="#FFFFFF"
+    >
+      <g id="Bounding_Box">
+        <rect fill="none" width="24" height="24" />
+      </g>
+      <g id="Master">
+        <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+      </g>
+    </svg>
+  );
+};
 
 function App() {
   return (
@@ -35,177 +55,138 @@ function App() {
         <h4>Image Background Color</h4>
         <DxcCard
           imageBgColor="#6B4187"
-          image={
-            <svg
-                  x="0px"
-                  y="0px"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  enable-background="new 0 0 24 24"
-                  fill="#FFFFFF"
-                >
-                  <g id="Bounding_Box">
-                    <rect fill="none" width="24" height="24" />
-                  </g>
-                  <g id="Master">
-                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
-            </svg>
-          }
+          image={homeSVG}
           imagePadding="xxlarge"
         />
       </div>
       <h4>Image Paddings</h4>
       <div className="test-case" id="xxsmall-imagePadding">
         <h4>xxsmall imagePadding</h4>
-        <DxcCard
-          image={
-            <svg
-                  x="0px"
-                  y="0px"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  enable-background="new 0 0 24 24"
-                  fill="#FFFFFF"
-                >
-                  <g id="Bounding_Box">
-                    <rect fill="none" width="24" height="24" />
-                  </g>
-                  <g id="Master">
-                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
-            </svg>
-          }
-          imagePadding="xxsmall"
-        />
+        <DxcCard image={homeSVG} imagePadding="xxsmall" />
       </div>
       <div className="test-case" id="xsmall-imagePadding">
         <h4>xsmall imagePadding</h4>
-        <DxcCard image={
-            <svg
-                  x="0px"
-                  y="0px"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  enable-background="new 0 0 24 24"
-                  fill="#FFFFFF"
-                >
-                  <g id="Bounding_Box">
-                    <rect fill="none" width="24" height="24" />
-                  </g>
-                  <g id="Master">
-                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
-            </svg>
-          } imagePadding="xsmall" />
+        <DxcCard image={homeSVG} imagePadding="xsmall" />
       </div>
       <div className="test-case" id="small-imagePadding">
         <h4>small imagePadding</h4>
-        <DxcCard image={
+        <DxcCard
+          image={
             <svg
-                  x="0px"
-                  y="0px"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  enable-background="new 0 0 24 24"
-                  fill="#FFFFFF"
-                >
-                  <g id="Bounding_Box">
-                    <rect fill="none" width="24" height="24" />
-                  </g>
-                  <g id="Master">
-                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
+              x="0px"
+              y="0px"
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              enable-background="new 0 0 24 24"
+              fill="#FFFFFF"
+            >
+              <g id="Bounding_Box">
+                <rect fill="none" width="24" height="24" />
+              </g>
+              <g id="Master">
+                <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+              </g>
             </svg>
-          } imagePadding="small" />
+          }
+          imagePadding="small"
+        />
       </div>
       <div className="test-case" id="medium-imagePadding">
         <h4>medium imagePadding</h4>
-        <DxcCard image={
+        <DxcCard
+          image={
             <svg
-                  x="0px"
-                  y="0px"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  enable-background="new 0 0 24 24"
-                  fill="#FFFFFF"
-                >
-                  <g id="Bounding_Box">
-                    <rect fill="none" width="24" height="24" />
-                  </g>
-                  <g id="Master">
-                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
+              x="0px"
+              y="0px"
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              enable-background="new 0 0 24 24"
+              fill="#FFFFFF"
+            >
+              <g id="Bounding_Box">
+                <rect fill="none" width="24" height="24" />
+              </g>
+              <g id="Master">
+                <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+              </g>
             </svg>
-          } imagePadding="medium" />
+          }
+          imagePadding="medium"
+        />
       </div>
       <div className="test-case" id="large-imagePadding">
         <h4>large imagePadding</h4>
-        <DxcCard image={
+        <DxcCard
+          image={
             <svg
-                  x="0px"
-                  y="0px"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  enable-background="new 0 0 24 24"
-                  fill="#FFFFFF"
-                >
-                  <g id="Bounding_Box">
-                    <rect fill="none" width="24" height="24" />
-                  </g>
-                  <g id="Master">
-                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
+              x="0px"
+              y="0px"
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              enable-background="new 0 0 24 24"
+              fill="#FFFFFF"
+            >
+              <g id="Bounding_Box">
+                <rect fill="none" width="24" height="24" />
+              </g>
+              <g id="Master">
+                <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+              </g>
             </svg>
-          } imagePadding="large" />
+          }
+          imagePadding="large"
+        />
       </div>
       <div className="test-case" id="xlarge-imagePadding">
         <h4>xlarge imagePadding</h4>
-        <DxcCard image={
+        <DxcCard
+          image={
             <svg
-                  x="0px"
-                  y="0px"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  enable-background="new 0 0 24 24"
-                  fill="#FFFFFF"
-                >
-                  <g id="Bounding_Box">
-                    <rect fill="none" width="24" height="24" />
-                  </g>
-                  <g id="Master">
-                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
+              x="0px"
+              y="0px"
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              enable-background="new 0 0 24 24"
+              fill="#FFFFFF"
+            >
+              <g id="Bounding_Box">
+                <rect fill="none" width="24" height="24" />
+              </g>
+              <g id="Master">
+                <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+              </g>
             </svg>
-          } imagePadding="xlarge" />
+          }
+          imagePadding="xlarge"
+        />
       </div>
       <div className="test-case" id="xxlarge-imagePadding">
         <h4>xxlarge imagePadding</h4>
-        <DxcCard image={
+        <DxcCard
+          image={
             <svg
-                  x="0px"
-                  y="0px"
-                  width="24px"
-                  height="24px"
-                  viewBox="0 0 24 24"
-                  enable-background="new 0 0 24 24"
-                  fill="#FFFFFF"
-                >
-                  <g id="Bounding_Box">
-                    <rect fill="none" width="24" height="24" />
-                  </g>
-                  <g id="Master">
-                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
+              x="0px"
+              y="0px"
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              enable-background="new 0 0 24 24"
+              fill="#FFFFFF"
+            >
+              <g id="Bounding_Box">
+                <rect fill="none" width="24" height="24" />
+              </g>
+              <g id="Master">
+                <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+              </g>
             </svg>
-          } imagePadding="xxlarge" />
+          }
+          imagePadding="xxlarge"
+        />
       </div>
 
       <h4>Margins</h4>

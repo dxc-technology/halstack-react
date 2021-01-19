@@ -32,7 +32,7 @@ const DxcCard = ({
         <ImageContainer imageBgColor={imageBgColor}>
           {image ? (
             <TagImageContainer imagePadding={imagePadding} cover={imageCover}>
-              {(image.type === "svg" || image.type === "img") && image}
+              {(image.type && (image.type === "svg" || image.type === "img") && image) || React.createElement(image)}
             </TagImageContainer>
           ) : (
             <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
@@ -121,7 +121,7 @@ const CardContent = styled.div`
 `;
 
 DxcCard.propTypes = {
-  image: PropTypes.element,
+  image: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   imageSrc: PropTypes.string,
   imageBgColor: PropTypes.string,
   imagePadding: PropTypes.oneOf([...Object.keys(spaces)]),
