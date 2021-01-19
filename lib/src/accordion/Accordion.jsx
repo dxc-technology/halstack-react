@@ -49,7 +49,7 @@ const DxcAccordion = ({
               <AccordionLabel iconPosition={iconPosition}>{label}</AccordionLabel>
               {icon ? (
                 <IconContainer iconPosition={iconPosition}>
-                  {(icon.type === "svg" || icon.type === "img") && icon}
+                  {(icon.type && (icon.type === "svg" || icon.type === "img") && icon) || React.createElement(icon)}
                 </IconContainer>
               ) : (
                 iconSrc && <AccordionIcon iconPosition={iconPosition} src={iconSrc} />
@@ -73,7 +73,7 @@ const calculateWidth = (margin) => {
 DxcAccordion.propTypes = {
   label: PropTypes.string,
   iconSrc: PropTypes.string,
-  icon: PropTypes.element,
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   iconPosition: PropTypes.oneOf(["before", "after"]),
   assistiveText: PropTypes.string,
   disabled: PropTypes.bool,
