@@ -28,6 +28,7 @@ const HeaderDropdown = styled.div`
 
 const DxcHeader = ({
   underlined = false,
+  logo,
   logoSrc = "default",
   onClick = "",
   content,
@@ -71,16 +72,24 @@ const DxcHeader = ({
 
   const getLogoRendered = (intoMenu) => {
     return (
-      <LogoIcon
-        logoSrc={logoSrc}
-        src={
-          intoMenu && logoSrc === "default"
-            ? colorsTheme.header.logoResponsive
-            : !intoMenu && logoSrc === "default"
-            ? colorsTheme.header.logo
-            : logoSrc
-        }
-      />
+      <React.Fragment>
+        {logo ? (
+          <LogoIconContainer>
+            {(logo.type && (logo.type === "svg" || logo.type === "img") && logo) || React.createElement(logo)}
+          </LogoIconContainer>
+        ) : (
+          <LogoIcon
+            logoSrc={logoSrc}
+            src={
+              intoMenu && logoSrc === "default"
+                ? colorsTheme.header.logoResponsive
+                : !intoMenu && logoSrc === "default"
+                ? colorsTheme.header.logo
+                : logoSrc
+            }
+          />
+        )}
+      </React.Fragment>
     );
   };
 
@@ -181,6 +190,25 @@ const LogoIcon = styled.img`
       return "pointer";
     }
   }};
+`;
+
+const LogoIconContainer = styled.div`
+  height: 32px;
+  width: auto;
+  vertical-align: middle;
+
+  cursor: ${(props) => {
+    if (props.onLogoClick === "") {
+      return "default";
+    } else {
+      return "pointer";
+    }
+  }};
+
+  img,
+  svg:not(:root) {
+    height: 100%;
+  }
 `;
 
 const ChildContainer = styled.div`
@@ -297,6 +325,7 @@ const Overlay = styled.div`
 `;
 
 DxcHeader.propTypes = {
+  logo: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   logoSrc: PropTypes.string,
   underlined: PropTypes.bool,
   onClick: PropTypes.func,

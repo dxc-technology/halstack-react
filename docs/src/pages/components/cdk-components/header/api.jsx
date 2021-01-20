@@ -19,6 +19,14 @@ const headerPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>logo: node</td>
+        <td></td>
+        <td>
+          Element used as icon to replace the theme logo. It only accepts svg
+          and img nodes.
+        </td>
+      </tr>
+      <tr>
         <td>logoSrc: string</td>
         <td>
           <code>'default'</code>
