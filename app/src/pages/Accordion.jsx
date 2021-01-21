@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { DxcAccordion, ThemeContext } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
-import facebookIcon from "../images/facebook.svg";
 
 const colors = {
   accordion: {

@@ -49,7 +49,7 @@ const DxcAccordion = ({
               <AccordionLabel iconPosition={iconPosition}>{label}</AccordionLabel>
               {icon ? (
                 <IconContainer iconPosition={iconPosition}>
-                  {(icon.type && (icon.type === "svg" || icon.type === "img") && icon) || React.createElement(icon)}
+                  {typeof icon === "object" ? icon : React.createElement(icon)}
                 </IconContainer>
               ) : (
                 iconSrc && <AccordionIcon iconPosition={iconPosition} src={iconSrc} />
@@ -247,9 +247,10 @@ const IconContainer = styled.div`
   max-width: 20px;
   margin-left: ${(props) => (props.iconPosition === "after" && "10px") || "0px"};
   margin-right: ${(props) => (props.iconPosition === "before" && "10px") || "0px"};
+  overflow: hidden;
 
   img,
-  svg:not(:root) {
+  svg {
     height: 100%;
     width: 100%;
   }
