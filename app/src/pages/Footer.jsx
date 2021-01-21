@@ -33,6 +33,8 @@ const facebookSVG = () => {
       y="0px"
       viewBox="0 0 438.536 438.536"
       fill="currentColor"
+      width="1000px"
+      height="500px"
     >
       <g>
         <path
@@ -379,7 +381,7 @@ function App() {
             bottomLinks={bottom}
             socialLinks={social}
             margin="large"
-            logo={<img src={invisionLogo} />}
+            logoSrc={invisionLogo}
           >
             <div style={{ display: "flex" }}>
               {/* <div> */}
@@ -496,7 +498,7 @@ function App() {
             bottomLinks={bottom}
             socialLinks={social}
             margin="large"
-            logo={<img src={yahooLogo} />}
+            logoSrc={yahooLogo}
           >
             <div className="test-case" id="Max-custom-content-vertical">
               <div style={{ marginLeft: "35px" }}>

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
-import defaultIcon from "./dxc_logo_wht.png";
 import "../common/OpenSans.css";
 import { spaces, responsiveSizes, theme, defaultTheme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
@@ -12,7 +11,6 @@ const DxcFooter = ({
   socialLinks = [],
   bottomLinks = [],
   copyright = "",
-  logo,
   logoSrc = "default",
   children,
   padding,
@@ -58,8 +56,7 @@ const DxcFooter = ({
     <SocialAnchor key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
       {link.logo ? (
         <SocialIconContainer>
-          {(link.logo.type && (link.logo.type === "svg" || link.logo.type === "img") && link.logo) ||
-            React.createElement(link.logo)}
+          {typeof link.logo === "object" ? link.logo : React.createElement(link.logo)}
         </SocialIconContainer>
       ) : (
         link && link.logoSrc && <SocialIcon src={link.logoSrc} />
@@ -78,13 +75,7 @@ const DxcFooter = ({
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} refSize={refSize} ref={ref}>
         <FooterHeader>
-          {logo ? (
-            <LogoIconContainer>
-              {(logo.type && (logo.type === "svg" || logo.type === "img") && logo) || React.createElement(logo)}
-            </LogoIconContainer>
-          ) : (
-            <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? colorsTheme.footer.logo : logoSrc} />
-          )}
+          <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? colorsTheme.footer.logo : logoSrc} />
           <div>{socialLink}</div>
         </FooterHeader>
         {isResponsivePhone && (
@@ -207,8 +198,10 @@ const SocialIconContainer = styled.div`
     color: ${(props) => props.theme.fontColor};
   }
 
+  overflow: hidden;
+
   img,
-  svg:not(:root) {
+  svg {
     height: 100%;
     width: 100%;
   }
@@ -226,7 +219,6 @@ const BottomLink = styled.a`
 `;
 
 DxcFooter.propTypes = {
-  logo: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   logoSrc: PropTypes.string,
   socialLinks: PropTypes.arrayOf(
     PropTypes.shape({
