@@ -97,7 +97,7 @@ const DxcDropdown = ({
             <DropdownTriggerContainer iconPosition={iconPosition} caretHidden={caretHidden}>
               {icon ? (
                 <ListIconContainer label={label} iconPosition={iconPosition}>
-                  {(icon.type && (icon.type === "svg" || icon.type === "img") && icon) || React.createElement(icon)}
+                  {typeof icon === "object" ? icon : React.createElement(icon)}
                 </ListIconContainer>
               ) : (
                 iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />
@@ -144,9 +144,7 @@ const DxcDropdown = ({
                         >
                           {option.icon ? (
                             <ListIconContainer label={option.label} iconPosition={optionsIconPosition}>
-                              {(option.icon.type &&
-                                (option.icon.type === "svg" || option.icon.type === "img") &&
-                                option.icon) || <option.icon></option.icon>}
+                              {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
                             </ListIconContainer>
                           ) : (
                             option.iconSrc && (
@@ -337,10 +335,9 @@ const ListIcon = styled.img`
 `;
 
 const ListIconContainer = styled.div`
-  max-height: 20px;
-  max-width: 20px;
   width: 20px;
   height: 20px;
+  overflow: hidden;
   margin-right: ${(props) => {
     if (props.iconPosition === "before" && props.label !== "") {
       return "10px";
@@ -355,6 +352,12 @@ const ListIconContainer = styled.div`
       return "0px";
     }
   }};
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const CaretIcon = styled.div`

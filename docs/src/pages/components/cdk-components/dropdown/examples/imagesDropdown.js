@@ -1,5 +1,6 @@
 import { DxcDropdown } from "@dxc-technology/halstack-react";
 import { useState } from "react";
+import facebookLogo from "./images/facebook-black.svg";
 
 const code = `() => {
   const selectOption = (value) => {
@@ -37,7 +38,7 @@ const code = `() => {
     <DxcDropdown
       options={options}
       onSelectOption={selectOption}
-      icon={iconSVG}
+      icon={<img src={facebookLogo} />}
       label="Dropdown with icons"
       margin="medium"
       padding="small"
@@ -48,6 +49,7 @@ const code = `() => {
 const scope = {
   DxcDropdown,
   useState,
+  facebookLogo,
 };
 
 export default { code, scope };

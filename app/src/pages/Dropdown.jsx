@@ -116,7 +116,7 @@ function App() {
     {
       value: 1,
       label: "Facebook",
-      icon: facebookSVG,
+      icon: <p>This is a test</p>,
     },
     {
       value: 2,
