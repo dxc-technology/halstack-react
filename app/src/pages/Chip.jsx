@@ -45,7 +45,7 @@ function App() {
         <h4>Chip5 with prefixIcon</h4>
         <DxcChip
           label="Chip 5"
-          prefixIcon={<img src={avatar}></img>}
+          prefixIcon={<p>This is a test</p>}
           onClickPrefix={onClickPrefix}
         />
       </div>

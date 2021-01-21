@@ -30,7 +30,7 @@ const DxcChip = ({
             label={label}
             onClick={() => onClickPrefix && !disabled && onClickPrefix(label)}
           >
-            {(prefixIcon.type && (prefixIcon.type === "svg" || prefixIcon.type === "img") && prefixIcon) || React.createElement(prefixIcon)}
+            {typeof prefixIcon === "object" ? prefixIcon : React.createElement(prefixIcon)}
           </IconContainer>
         ) : (
           prefixIconSrc && (
@@ -54,7 +54,7 @@ const DxcChip = ({
             label={label}
             onClick={() => onClickSuffix && !disabled && onClickSuffix(label)}
           >
-            {(suffixIcon.type && (suffixIcon.type === "svg" || suffixIcon.type === "img") && suffixIcon) || React.createElement(suffixIcon)}
+            {typeof suffixIcon === "object" ? suffixIcon : React.createElement(suffixIcon)}
           </IconContainer>
         ) : (
           suffixIconSrc && (
@@ -123,10 +123,17 @@ const IconContainer = styled.div`
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
   ${(props) =>
     props.prefixIcon
-      ? `margin-right: ${((props.label || props.suffixIcon || props.suffixIconSrc) && "10px") || ((props.prefixIcon || props.prefixIconSrc) && "0")};`
-      : `margin-left: ${((props.label || props.prefixIcon || props.prefixIconSrc) && "10px") || ((props.prefixIcon || props.prefixIconSrc) && "0")};`}
+      ? `margin-right: ${
+          ((props.label || props.suffixIcon || props.suffixIconSrc) && "10px") ||
+          ((props.prefixIcon || props.prefixIconSrc) && "0")
+        };`
+      : `margin-left: ${
+          ((props.label || props.prefixIcon || props.prefixIconSrc) && "10px") ||
+          ((props.prefixIcon || props.prefixIconSrc) && "0")
+        };`}
   max-width: 24px;
   max-height: 24px;
+  overflow: hidden;
 `;
 
 DxcChip.propTypes = {

@@ -17,12 +17,12 @@ const chipPropsTable = () => {
       <tr>
         <td>prefixIcon: node</td>
         <td></td>
-        <td>Element used as icon to be placed before the chip label. It only accepts svg and img nodes.</td>
+        <td>Element used as icon to be placed before the chip label.</td>
       </tr>
       <tr>
         <td>suffixIcon: node</td>
         <td></td>
-        <td>Element used as icon to be placed after the chip label. It only accepts svg and img nodes.</td>
+        <td>Element used as icon to be placed after the chip label.</td>
       </tr>
       <tr>
         <td>prefixIconSrc: string</td>
