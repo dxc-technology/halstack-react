@@ -39,7 +39,7 @@ const DxcButton = ({
           <LabelContainer>{label}</LabelContainer>
           {icon ? (
             <IconContainer label={label} iconPosition={iconPosition}>
-              {(icon.type && (icon.type === "svg" || icon.type === "img") && icon) || React.createElement(icon)}
+              {typeof icon === "object" ? icon : React.createElement(icon)}
             </IconContainer>
           ) : (
             iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />
@@ -77,9 +77,10 @@ const IconContainer = styled.div`
   max-width: 20px;
   margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
   margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
+  overflow: hidden;
 
   img,
-  svg:not(:root) {
+  svg {
     height: 100%;
     width: 100%;
   }

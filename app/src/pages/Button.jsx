@@ -156,7 +156,7 @@ function App() {
             label="But"
             iconPosition="after"
             onClick={onClick}
-            icon={<img src={homeLogo} />}
+            icon={<p>This is a text</p>}
             size="medium"
             margin="xsmall"
           />
