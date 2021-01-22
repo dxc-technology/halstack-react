@@ -122,6 +122,7 @@ const LinkIconContainer = styled.div`
   width: 16px;
   height: 16px;
   ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: 6px;
+  overflow: hidden;
 
   img,
   svg {

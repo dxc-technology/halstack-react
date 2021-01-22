@@ -120,6 +120,16 @@ function App() {
             ></DxcLink>{" "}
             the link.
           </p>
+          <p>
+            This is a text with an{" "}
+            <DxcLink
+              href="#"
+              iconPosition="after"
+              icon={<p>This is a test.</p>}
+              text="Icon after"
+            ></DxcLink>{" "}
+            the link.
+          </p>
         </div>
         <div className="test-case" id="icon-before">
           <p>
