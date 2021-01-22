@@ -25,6 +25,10 @@ const inputPropsTable = () => {
               <b>label</b>: String with the option display value.
             </li>
             <li>
+              <b>icon</b>: Element used as the icon that will be placed next to
+              the option label.
+            </li>
+            <li>
               <b>iconSrc</b>: URL of the icon that will be placed next to the
               option label.
             </li>

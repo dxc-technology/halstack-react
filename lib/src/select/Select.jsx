@@ -106,10 +106,16 @@ const DxcSelect = ({
         label={selectedItem && selectedItem.label}
         key={selectedItem && selectedItem.label}
       >
-        {selectedItem && selectedItem.iconSrc && <ListIcon src={selectedItem && selectedItem.iconSrc} />}
+        {selectedItem && selectedItem.icon ? (
+          <ListIconContainer>
+            {typeof selectedItem.icon === "object" ? selectedItem.icon : React.createElement(selectedItem.icon)}
+          </ListIconContainer>
+        ) : (
+          selectedItem && selectedItem.iconSrc && <ListIcon src={selectedItem && selectedItem.iconSrc} />
+        )}
         {selectedItem && selectedItem.label && (
           <SelectedLabelContainer
-            iconSrc={selectedItem && selectedItem.iconSrc}
+            iconSrc={selectedItem && selectedItem.iconSrc && selectedItem.icon}
             iconPosition={iconPosition}
             disabled={disabled}
           >
@@ -189,8 +195,14 @@ const DxcSelect = ({
                 <MenuItem id={option.value} value={option.value} disableRipple key={option.value}>
                   {multiple && <DxcCheckbox size={"fitContent"} checked={isChecked(selectedValue, value, option)} />}
                   <OptionContainer iconPosition={iconPosition}>
-                    {option.iconSrc && (
-                      <ListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />
+                    {option.icon ? (
+                      <ListIconContainer label={option.label} iconPosition={iconPosition}>
+                        {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+                      </ListIconContainer>
+                    ) : (
+                      option.iconSrc && (
+                        <ListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />
+                      )
                     )}{" "}
                     <LabelCont>{option.label}</LabelCont>
                   </OptionContainer>
@@ -272,6 +284,22 @@ const ListIcon = styled.img`
   height: 20px;
   margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
   margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
+`;
+
+const ListIconContainer = styled.div`
+  max-height: 20px;
+  max-width: 20px;
+  width: 20px;
+  height: 20px;
+  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
+  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
+  overflow: hidden;
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const SelectContainer = styled.div`
@@ -392,6 +420,7 @@ DxcSelect.propTypes = {
     PropTypes.shape({
       value: PropTypes.any.isRequired,
       label: PropTypes.string,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
     })
   ),

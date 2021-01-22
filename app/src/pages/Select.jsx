@@ -8,6 +8,15 @@ const colors = {
   },
 };
 
+const iconSVG = () => {
+  return (
+    <svg viewBox="0 0 24 24">
+      <path d="M0 0h24v24H0z" fill="none"/>
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  );
+};
+
 function App() {
   const [inputValue, changeInput] = useState(1);
   const onChange = (newValue) => {
@@ -41,32 +50,74 @@ function App() {
   const optionsWithIcon = [
     {
       value: 1,
-      iconSrc: homePath,
+      icon: <p>This is a test</p>,
     },
     {
       value: 2,
-      iconSrc: homePath,
+      icon: <img src={homePath} />,
     },
     {
       value: 3,
-      iconSrc: homePath,
+      icon: <img src={homePath} />,
     },
   ];
 
   const optionsWithIconAndLabels = [
     {
       value: 1,
-      iconSrc: homePath,
+      icon: (
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          enable-background="new 0 0 24 24"
+        >
+          <g id="Bounding_Box">
+            <rect fill="none" width="24" height="24" />
+          </g>
+          <g id="Master">
+            <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+          </g>
+        </svg>
+      ),
       label: "Home",
     },
     {
       value: 2,
-      iconSrc: homePath,
+      icon: (
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          enable-background="new 0 0 24 24"
+        >
+          <g id="Bounding_Box">
+            <rect fill="none" width="24" height="24" />
+          </g>
+          <g id="Master">
+            <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+          </g>
+        </svg>
+      ),
       label: "House",
     },
     {
       value: 3,
-      iconSrc: homePath,
+      icon: (
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          enable-background="new 0 0 24 24"
+        >
+          <g id="Bounding_Box">
+            <rect fill="none" width="24" height="24" />
+          </g>
+          <g id="Master">
+            <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+          </g>
+        </svg>
+      ),
       label:
         "Home is the selected option for this select component of the Csss",
     },
@@ -74,44 +125,44 @@ function App() {
   const optionsWithIconAndLabelsMinLongOneLine = [
     {
       value: 1,
-      iconSrc: homePath,
+      icon: iconSVG,
       label: "Ho",
     },
     {
       value: 2,
-      iconSrc: homePath,
+      icon: iconSVG,
       label: "Housesssssssssssssssssss",
     },
     {
       value: 3,
-      iconSrc: homePath,
+      icon: iconSVG,
       label: "Home is the selected option for this select component12",
     },
     {
       value: 4,
-      iconSrc: homePath,
+      icon: iconSVG,
       label: "Housessssssssssssssssss",
     },
     {
       value: 5,
-      iconSrc: homePath,
+      icon: iconSVG,
       label: "Home is the selected opt",
     },
   ];
   const optionsWithIconAndLabelsMaxLongMultiLine = [
     {
       value: 1,
-      iconSrc: homePath,
+      icon: iconSVG,
       label: "Hom",
     },
     {
       value: 2,
-      iconSrc: homePath,
+      icon: iconSVG,
       label: "Housesssssssssssssssssss",
     },
     {
       value: 3,
-      iconSrc: homePath,
+      icon: iconSVG,
       label: "Home is the selected option for this select component123",
     },
   ];
