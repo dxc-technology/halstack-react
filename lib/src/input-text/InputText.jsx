@@ -41,6 +41,8 @@ const DxcInputText = ({
   disabled = false,
   prefix = "",
   suffix = "",
+  prefixIcon,
+  suffixIcon,
   prefixIconSrc = "",
   suffixIconSrc = "",
   onClickPrefix,
@@ -143,6 +145,7 @@ const DxcInputText = ({
   return (
     <ThemeProvider theme={colorsTheme.inputText}>
       <TextContainer
+        prefixIcon={prefixIcon}
         prefixIconSrc={prefixIconSrc}
         prefix={prefix}
         required={required}
@@ -150,11 +153,17 @@ const DxcInputText = ({
         margin={margin}
         size={size}
       >
-        {prefixIconSrc && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />}
-        {prefix && (
-          <PrefixLabel disabled={disabled} onClick={onClickPrefix}>
-            {prefix}
-          </PrefixLabel>
+        {prefixIcon ? (
+          <PrefixIconContainer disabled={disabled} onClick={onClickPrefix}>
+            {typeof prefixIcon === "object" ? prefixIcon : React.createElement(prefixIcon)}
+          </PrefixIconContainer>
+        ) : (
+          (prefixIconSrc && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />) ||
+          (prefix && (
+            <PrefixLabel disabled={disabled} onClick={onClickPrefix}>
+              {prefix}
+            </PrefixLabel>
+          ))
         )}
         <TextField
           error={invalid}
@@ -178,10 +187,16 @@ const DxcInputText = ({
           placeholder={placeholder}
           type={isMasked ? "password" : "text"}
           InputProps={{
-            endAdornment: (suffix || suffixIconSrc) && (
+            endAdornment: (suffix || suffixIconSrc || suffixIcon) && (
               <InputAdornment position="end" onClick={onClickSuffix}>
-                {(suffixIconSrc && <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickSuffix} />) ||
-                  suffix}
+                {suffixIcon ? (
+                  <SuffixIconContainer disabled={disabled} onClick={onClickSuffix}>
+                    {typeof suffixIcon === "object" ? suffixIcon : React.createElement(suffixIcon)}
+                  </SuffixIconContainer>
+                ) : (
+                  (suffixIconSrc && <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickSuffix} />) ||
+                  suffix
+                )}
               </InputAdornment>
             ),
           }}
@@ -297,6 +312,31 @@ const PrefixIcon = styled.img`
     return "default";
   }};
 `;
+
+const PrefixIconContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  width: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  z-index: 1;
+  opacity: ${(props) => (props.disabled && 0.5) || 1};
+  cursor: ${(props) => {
+    if (props.onClickPrefix !== "" && !props.disabled) {
+      return "pointer";
+    }
+    return "default";
+  }};
+  overflow: hidden;
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 const PrefixLabel = styled.span`
   position: absolute;
   top: 20px;
@@ -331,6 +371,29 @@ const SuffixIcon = styled.img`
   }};
 `;
 
+const SuffixIconContainer = styled.div`
+  top: 23px;
+  left: 0;
+  max-height: 20px;
+  max-width: 20px;
+  margin-right: 8px;
+  width: 20px;
+  opacity: ${(props) => (props.disabled && 0.5) || 1};
+  cursor: ${(props) => {
+    if (props.onClickSuffix !== "" && !props.disabled) {
+      return "pointer";
+    }
+    return "default";
+  }};
+  overflow: hidden;
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 const TextContainer = styled.div`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -359,12 +422,13 @@ const TextContainer = styled.div`
       &.Mui-disabled {
         opacity: ${(props) => props.theme.disabled};
       }
-      padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
+      padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
       &.Mui-focused {
         color: ${(props) => props.theme.fontColor};
         &.MuiInputLabel-shrink {
           transform: ${(props) =>
             props.prefixIconSrc ||
+            props.prefixIcon ||
             ((props.prefix || props.suffix) && "translate(8px, 1.5px) scale(0.75);") ||
             "translate(0, 1.5px) scale(0.75);"};
         }
@@ -377,6 +441,7 @@ const TextContainer = styled.div`
       &.MuiInputLabel-shrink {
         font-family: "Open Sans", sans-serif;
         transform: ${(props) =>
+          (props.prefixIcon && "translate(8px, 1.5px) scale(0.75);") ||
           (props.prefixIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
           (props.prefix && "translate(8px, 1.5px) scale(0.75);") ||
           "translate(0, 1.5px) scale(0.75);"};
@@ -449,7 +514,7 @@ const TextContainer = styled.div`
         }
       }
       .MuiInputBase-input {
-        padding-left: ${(props) => ((props.prefixIconSrc || props.prefix) && "32px") || "inherit"};
+        padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
         color: ${(props) => props.theme.fontColor};
         text-overflow: ellipsis;
         &.Mui-disabled {
@@ -505,6 +570,8 @@ DxcInputText.propTypes = {
   disabled: PropTypes.bool,
   prefix: PropTypes.string,
   suffix: PropTypes.string,
+  prefixIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  suffixIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   prefixIconSrc: PropTypes.string,
   suffixIconSrc: PropTypes.string,
   required: PropTypes.bool,
