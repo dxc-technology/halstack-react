@@ -6,6 +6,7 @@ import { spaces } from "../common/variables.js";
 import DxcBox from "../box/Box";
 
 const DxcTag = ({
+  icon,
   iconSrc,
   label,
   margin,
@@ -27,7 +28,11 @@ const DxcTag = ({
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
       <TagContent labelPosition={labelPosition} margin={margin} size={size}>
         <IconContainer iconBgColor={iconBgColor}>
-          <TagIcon src={iconSrc}></TagIcon>
+          {icon ? (
+            <TagIconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</TagIconContainer>
+          ) : (
+            <TagIcon src={iconSrc}></TagIcon>
+          )}
         </IconContainer>
         {size !== "small" && <TagLabel>{label}</TagLabel>}
       </TagContent>
@@ -103,6 +108,18 @@ const TagIcon = styled.img`
   height: 23px;
 `;
 
+const TagIconContainer = styled.div`
+  height: 43px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  img,
+  svg {
+    height: 23px;
+  }
+`;
+
 const IconContainer = styled.div`
   display: inline-flex;
   background: ${({ iconBgColor }) => iconBgColor};
@@ -125,6 +142,7 @@ const TagLabel = styled.div`
 
 DxcTag.propTypes = {
   size: PropTypes.oneOf([...Object.keys(sizes)]),
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   iconSrc: PropTypes.string,
   iconBgColor: PropTypes.string,
   label: PropTypes.string,
@@ -144,6 +162,7 @@ DxcTag.propTypes = {
 };
 
 DxcTag.defaultProps = {
+  icon: null,
   iconSrc: null,
   label: null,
   margin: null,

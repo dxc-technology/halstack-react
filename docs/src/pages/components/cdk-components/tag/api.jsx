@@ -22,6 +22,11 @@ const buttonPropsTable = () => {
         <td>Whether the label should appear after or before the icon.</td>
       </tr>
       <tr>
+        <td>icon: node</td>
+        <td></td>
+        <td>Element used as the icon that will be placed next to the label.</td>
+      </tr>
+      <tr>
         <td>iconSrc: string</td>
         <td></td>
         <td>URL of the icon.</td>
