@@ -64,6 +64,10 @@ const toggleGroupPropsTable = () => {
               <b>label</b>: String with the option display value.
             </li>
             <li>
+              <b>icon</b>: Element used as the icon. Icon and label can't be
+              used at same time.
+            </li>
+            <li>
               <b>iconSrc</b>: URL of the icon that will be placed. IconSrc and
               label can't be used at same time.
             </li>

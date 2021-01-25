@@ -26,8 +26,8 @@ const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options 
       } else {
         setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
       }
-    } else if(multiple) {
-      newSelectedOptions = value.map((v) => v);;
+    } else if (multiple) {
+      newSelectedOptions = value.map((v) => v);
       newSelectedOptions.push(selectedOption);
     }
 
@@ -54,12 +54,16 @@ const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options 
               onClick={() => !disabled && handleToggleChange(option.value)}
               isFirst={i === 0}
               isLast={i === options.length - 1}
-              isIcon={option.iconSrc}
+              isIcon={option.iconSrc || option.icon}
               disabled={disabled}
               key={`toggle-${i}-${option.label}`}
             >
-              {option.iconSrc ? (
-                <IconContainer src={option.iconSrc}></IconContainer>
+              {option.icon ? (
+                <IconContainer>
+                  {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+                </IconContainer>
+              ) : option.iconSrc ? (
+                <Icon src={option.iconSrc}></Icon>
               ) : (
                 <LabelContainer>{option.label}</LabelContainer>
               )}
@@ -110,8 +114,12 @@ const ToggleContainer = styled.div`
     ${
       !props.disabled
         ? `&:hover {
-          background-color: ${props.selected ? props.theme.selectedBackgroundHoverColor : props.theme.unselectedBackgroundHoverColor};
-          color: ${props.selected ? props.theme.selectedHoverFontColor : props.theme.unselectedHoverFontColor} !important;
+          background-color: ${
+            props.selected ? props.theme.selectedBackgroundHoverColor : props.theme.unselectedBackgroundHoverColor
+          };
+          color: ${
+            props.selected ? props.theme.selectedHoverFontColor : props.theme.unselectedHoverFontColor
+          } !important;
         }
         cursor: pointer;`
         : `cursor: not-allowed;`
@@ -125,9 +133,20 @@ const LabelContainer = styled.span`
   text-transform: uppercase;
 `;
 
-const IconContainer = styled.img`
+const Icon = styled.img`
   height: 20px;
   width: 20px;
+`;
+
+const IconContainer = styled.div`
+  height: 20px;
+  width: 20px;
+  overflow: hidden;
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 DxcToggleGroup.propTypes = {
@@ -140,6 +159,7 @@ DxcToggleGroup.propTypes = {
     PropTypes.shape({
       value: PropTypes.any.isRequired,
       label: PropTypes.string,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
     })
   ),
