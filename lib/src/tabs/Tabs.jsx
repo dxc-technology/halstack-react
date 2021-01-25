@@ -37,7 +37,15 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
               <Tab
                 key={`tab${i}${tab.label}`}
                 label={tab.label}
-                icon={tab.iconSrc && <TabIcon src={tab.iconSrc} />}
+                icon={
+                  tab.icon ? (
+                    <TabIconContainer>
+                      {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
+                    </TabIconContainer>
+                  ) : (
+                    tab.iconSrc && <TabIcon src={tab.iconSrc} />
+                  )
+                }
                 disabled={tab.isDisabled}
                 disableRipple={true}
               />
@@ -115,12 +123,24 @@ const TabIcon = styled.img`
   max-width: 22px;
 `;
 
+const TabIconContainer = styled.div`
+  max-height: 22px;
+  max-width: 22px;
+  overflow: hidden;
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 DxcTabs.propTypes = {
   activeTabIndex: PropTypes.number,
   onTabClick: PropTypes.func,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
       isDisabled: PropTypes.boolean,
     })

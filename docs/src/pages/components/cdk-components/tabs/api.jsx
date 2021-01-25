@@ -22,6 +22,10 @@ const dropdownPropsTable = () => {
               <b>label</b>: Tab label.
             </li>
             <li>
+              <b>icon</b>: Element used as the icon that will be displayed in
+              the tab.
+            </li>
+            <li>
               <b>iconSrc</b>: URL of the icon to be displayed in the tab.
             </li>
             <li>
