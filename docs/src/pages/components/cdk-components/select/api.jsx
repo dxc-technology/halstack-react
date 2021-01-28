@@ -30,7 +30,7 @@ const inputPropsTable = () => {
             </li>
             <li>
               <b>iconSrc</b>: URL of the icon that will be placed next to the
-              option label.
+              option label. <b>Deprecated.</b>
             </li>
           </ul>
         </td>
