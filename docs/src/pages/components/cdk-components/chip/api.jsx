@@ -27,12 +27,17 @@ const chipPropsTable = () => {
       <tr>
         <td>prefixIconSrc: string</td>
         <td></td>
-        <td>Path of the icon to be placed before the chip label.</td>
+        <td>
+          <b>Deprecated.</b> Path of the icon to be placed before the chip
+          label.
+        </td>
       </tr>
       <tr>
         <td>suffixIconSrc: string</td>
         <td></td>
-        <td>Path of the icon to be placed after the chip label.</td>
+        <td>
+          <b>Deprecated.</b> Path of the icon to be placed after the chip label.
+        </td>
       </tr>
       <tr>
         <td>onClickPrefix: function</td>
