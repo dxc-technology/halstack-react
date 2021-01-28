@@ -29,7 +29,9 @@ const buttonPropsTable = () => {
       <tr>
         <td>iconSrc: string</td>
         <td></td>
-        <td>URL of the icon.</td>
+        <td>
+          <b>Deprecated.</b> URL of the icon.
+        </td>
       </tr>
       <tr>
         <td>iconBgColor: string</td>
