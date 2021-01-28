@@ -27,7 +27,7 @@ const dropdownPropsTable = () => {
             </li>
             <li>
               <b>iconSrc</b>: URL of the icon that will be placed next to the
-              option label.
+              option label. <b>Deprecated.</b>
             </li>
             <li>
               <b>value</b>: Option inner value.
@@ -58,7 +58,10 @@ const dropdownPropsTable = () => {
         <td>
           <code></code>
         </td>
-        <td>URL of the icon that will be placed next to the dropdown label.</td>
+        <td>
+          <b>Deprecated.</b> URL of the icon that will be placed next to the
+          dropdown label.
+        </td>
       </tr>
       <tr>
         <td>iconPosition: 'before' | 'after'</td>
