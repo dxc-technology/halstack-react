@@ -69,7 +69,7 @@ const toggleGroupPropsTable = () => {
             </li>
             <li>
               <b>iconSrc</b>: URL of the icon that will be placed. IconSrc and
-              label can't be used at same time.
+              label can't be used at same time. <b>Deprecated.</b>
             </li>
           </ul>
         </td>
