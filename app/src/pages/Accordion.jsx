@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import { DxcAccordion, ThemeContext } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
-import facebookIcon from "../images/facebook.svg";
 
 const colors = {
   accordion: {
     arrowColor: "#FABADA",
   },
 };
+
+const iconSVG = () => {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+  );
+};
+
 function App() {
   const [isExpanded, changeIsExpanded] = useState(true);
   const onChange = (newValue) => {
@@ -31,7 +40,36 @@ function App() {
         <DxcAccordion
           label="Accordion"
           iconPosition="before"
-          iconSrc={homeIcon}
+          icon={
+            <svg
+              x="0px"
+              y="0px"
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              enable-background="new 0 0 24 24"
+              fill="currentColor"
+            >
+              <g id="Bounding_Box">
+                <rect fill="none" width="24" height="24" />
+              </g>
+              <g id="Master">
+                <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+              </g>
+            </svg>
+          }
+          onChange={onChange}
+          padding="medium"
+        >
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </div>
+        </DxcAccordion>
+        <DxcAccordion
+          label="Accordion"
+          iconPosition="before"
+          icon={iconSVG}
           onChange={onChange}
           padding="medium"
         >
@@ -47,7 +85,7 @@ function App() {
         <DxcAccordion
           label="Accordion"
           iconPosition="after"
-          iconSrc={homeIcon}
+          icon={<img src={homeIcon}></img>}
           onChange={onChange}
           padding="medium"
         >

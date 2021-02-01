@@ -15,9 +15,19 @@ const alertPropsTable = () => {
         <td>The panel label.</td>
       </tr>
       <tr>
+        <td>icon: node</td>
+        <td></td>
+        <td>
+          Element used as the icon that will be placed next to panel label.
+        </td>
+      </tr>
+      <tr>
         <td>iconSrc: string</td>
         <td></td>
-        <td>URL of the icon that will be placed next to panel label.</td>
+        <td>
+          <b>Deprecated.</b> URL of the icon that will be placed next to panel
+          label.
+        </td>
       </tr>
       <tr>
         <td>iconPosition: 'before' | 'after'</td>
