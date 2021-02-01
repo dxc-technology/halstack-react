@@ -25,10 +25,14 @@ const alertPropsTable = () => {
           properties:
           <ul>
             <li>
-              <b>logoSrc</b>: The path of an icon for the link
+              <b>logo</b>: Element used as the icon for the link.
             </li>
             <li>
-              <b>href</b>: URL of the page the link goes to
+              <b>logoSrc</b>: The path of an icon for the link.{" "}
+              <b>Deprecated.</b>
+            </li>
+            <li>
+              <b>href</b>: URL of the page the link goes to.
             </li>
           </ul>
         </td>
@@ -44,10 +48,10 @@ const alertPropsTable = () => {
           properties:
           <ul>
             <li>
-              <b>text</b>: Text for the link
+              <b>text</b>: Text for the link.
             </li>
             <li>
-              <b>href</b>: URL of the page the link goes to
+              <b>href</b>: URL of the page the link goes to.
             </li>
           </ul>
         </td>

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
-import defaultIcon from "./dxc_logo_wht.png";
 import "../common/OpenSans.css";
 import { spaces, responsiveSizes, theme, defaultTheme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
@@ -55,7 +54,13 @@ const DxcFooter = ({
 
   const socialLink = socialLinks.map((link, index) => (
     <SocialAnchor key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
-      {link && link.logoSrc && <SocialIcon src={link.logoSrc} />}
+      {link.logo ? (
+        <SocialIconContainer>
+          {typeof link.logo === "object" ? link.logo : React.createElement(link.logo)}
+        </SocialIconContainer>
+      ) : (
+        link && link.logoSrc && <SocialIcon src={link.logoSrc} />
+      )}
     </SocialAnchor>
   ));
 
@@ -159,6 +164,16 @@ const LogoIcon = styled.img`
   width: auto;
 `;
 
+const LogoIconContainer = styled.div`
+  height: 34px;
+  width: auto;
+
+  img,
+  svg:not(:root) {
+    height: 100%;
+  }
+`;
+
 const SocialAnchor = styled.a`
   & {
     display: inline-flex;
@@ -172,6 +187,23 @@ const SocialIcon = styled.img`
     height: 25px;
     width: 25px;
     fill: ${(props) => props.theme.fontColor};
+  }
+`;
+
+const SocialIconContainer = styled.div`
+  & {
+    display: inline-flex;
+    height: 25px;
+    width: 25px;
+    color: ${(props) => props.theme.fontColor};
+  }
+
+  overflow: hidden;
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
   }
 `;
 
@@ -190,6 +222,7 @@ DxcFooter.propTypes = {
   logoSrc: PropTypes.string,
   socialLinks: PropTypes.arrayOf(
     PropTypes.shape({
+      logo: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       logoSrc: PropTypes.string.isRequired,
       href: PropTypes.string,
     })
