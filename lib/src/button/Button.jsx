@@ -15,6 +15,7 @@ const DxcButton = ({
   disabled = false,
   iconPosition = "before",
   iconSrc = "",
+  icon,
   onClick = "",
   margin,
   size,
@@ -36,7 +37,13 @@ const DxcButton = ({
           }}
         >
           <LabelContainer>{label}</LabelContainer>
-          {iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />}
+          {icon ? (
+            <IconContainer label={label} iconPosition={iconPosition}>
+              {typeof icon === "object" ? icon : React.createElement(icon)}
+            </IconContainer>
+          ) : (
+            iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />
+          )}
         </Button>
       </DxCButton>
     </ThemeProvider>
@@ -63,6 +70,20 @@ const LabelContainer = styled.span`
   font-size: 14px;
   text-overflow: ellipsis;
   overflow: hidden;
+`;
+
+const IconContainer = styled.div`
+  max-height: 20px;
+  max-width: 20px;
+  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
+  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
+  overflow: hidden;
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const ButtonIcon = styled.img`
@@ -220,6 +241,7 @@ DxcButton.propTypes = {
   iconPosition: PropTypes.oneOf(["after", "before"]),
   onClick: PropTypes.func,
   iconSrc: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
 };
 
 export default DxcButton;
