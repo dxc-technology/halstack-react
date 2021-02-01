@@ -12,25 +12,26 @@ const wizardPropsTable = () => {
       <tr>
         <td>mode: 'horizontal' | 'vertical'</td>
         <td>
-            <code>'horizontal'</code>
+          <code>'horizontal'</code>
         </td>
-        <td>
-          The wizard can be showed in horizontal or vertical.
-        </td>
+        <td>The wizard can be showed in horizontal or vertical.</td>
       </tr>
       <tr>
         <td>currentStep: number</td>
         <td>
           <code>0</code>
         </td>
-        <td>Defines which step is marked as the current. The numeration starts in 0.</td>
+        <td>
+          Defines which step is marked as the current. The numeration starts in
+          0.
+        </td>
       </tr>
       <tr>
         <td>onStepClick: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks a step. The
-          step number will be passed as a parameter.
+          This function will be called when the user clicks a step. The step
+          number will be passed as a parameter.
         </td>
       </tr>
       <tr>
@@ -49,7 +50,11 @@ const wizardPropsTable = () => {
               <b>description</b>: Step description.
             </li>
             <li>
-              <b>iconSrc</b>: URL of the icon to be displayed in the step.
+              <b>icon</b>: Element used as the icon to be displayed in the step.
+            </li>
+            <li>
+              <b>iconSrc</b>: URL of the icon to be displayed in the step.{" "}
+              <b>Deprecated.</b>
             </li>
             <li>
               <b>disabled</b>: Whether the step is disabled or not.

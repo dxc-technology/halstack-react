@@ -39,7 +39,11 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
               >
                 <StepHeader>
                   <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
-                    {step.iconSrc ? (
+                    {step.icon ? (
+                      <StepIconContainer>
+                        {typeof step.icon === "object" ? step.icon : React.createElement(step.icon)}
+                      </StepIconContainer>
+                    ) : step.iconSrc ? (
                       <Icon src={step.iconSrc}></Icon>
                     ) : (
                       <Number disabled={step.disabled} current={i === renderedCurrent}>
@@ -153,13 +157,9 @@ const IconContainer = styled.div`
 
   ${(props) => (props.current ? `background: ${props.theme.wizard.selectedBackgroundColor};` : "")}
 
-  ${(
-    props
-  ) =>
+  ${(props) =>
     props.current
-      ? `p {
-    color: ${props.theme.wizard.selectedFont} !important;
-  }`
+      ? `color: ${props.theme.wizard.selectedFont};`
       : ""}
 
   border-radius: 45px;
@@ -172,6 +172,17 @@ const IconContainer = styled.div`
 const Icon = styled.img`
   width: 19px;
   height: 19px;
+`;
+
+const StepIconContainer = styled.div`
+  width: 19px;
+  height: 19px;
+  overflow: hidden;
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const Number = styled.p`
@@ -193,7 +204,7 @@ const ValidityIcon = styled.img`
 const InfoContainer = styled.div`
   margin-left: 10px;
   color: ${(props) => props.theme.wizard.fontColor};
-  ${(props) => ((!props.active && !props.disable) ? `opacity: ${props.theme.wizard.notVisitedOpacity}` : "")}
+  ${(props) => (!props.active && !props.disable ? `opacity: ${props.theme.wizard.notVisitedOpacity}` : "")}
 `;
 
 const Label = styled.p`
@@ -230,6 +241,7 @@ DxcWizard.propTypes = {
     PropTypes.shape({
       label: PropTypes.string,
       description: PropTypes.string,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
       disabled: PropTypes.bool,
       valid: PropTypes.bool,

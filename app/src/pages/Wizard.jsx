@@ -2,6 +2,19 @@ import React from "react";
 import { DxcWizard } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
 
+const homeSVG = () => {
+  return (
+    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="currentColor">
+      <g id="Bounding_Box">
+        <rect fill="none" width="24" height="24" />
+      </g>
+      <g id="Master">
+        <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+      </g>
+    </svg>
+  );
+};
+
 function Wizard() {
   return (
     <div>
@@ -52,16 +65,30 @@ function Wizard() {
             {
               label: "First step",
               description: "This is the first step",
-              iconSrc: homeIcon,
+              icon: <p>This is a test.</p>,
             },
             {
               label: "Second step",
-              iconSrc: homeIcon,
+              icon: (
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <g id="Bounding_Box">
+                    <rect fill="none" width="24" height="24" />
+                  </g>
+                  <g id="Master">
+                    <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+                  </g>
+                </svg>
+              ),
             },
             {
               label: "Third step",
               description: "This is the final step",
-              iconSrc: homeIcon,
+              icon: <img src={homeIcon} />,
             },
           ]}
         ></DxcWizard>
@@ -80,19 +107,19 @@ function Wizard() {
             {
               label: "First step",
               description: "This is the first step",
-              iconSrc: homeIcon,
+              icon: homeSVG,
               valid: true,
             },
             {
               label: "Second step",
               description: "This is the second step",
-              iconSrc: homeIcon,
+              icon: homeSVG,
               valid: false,
             },
             {
               label: "Third step",
               description: "This is the final step",
-              iconSrc: homeIcon,
+              icon: homeSVG,
               disabled: true,
             },
           ]}
