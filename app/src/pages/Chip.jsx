@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { DxcChip, ThemeContext } from "@dxc-technology/halstack-react";
-import deleteIcon from "../images/delete-24px.svg";
 import avatar from "../images/avatar.svg";
 
 const colors = {
@@ -8,6 +7,20 @@ const colors = {
     outlinedColor: "#FABADA",
     backgroundColor: "#FABADA",
   },
+};
+
+const deleteSVG = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </svg>
+  );
 };
 
 function App() {
@@ -29,41 +42,40 @@ function App() {
         <DxcChip label="Chip 1" disabled={true} />
       </div>
       <div className="test-case" id="with-prefix-icon">
-        <h4>Chip5 with prefixIconSrc</h4>
+        <h4>Chip5 with prefixIcon</h4>
         <DxcChip
           label="Chip 5"
-          prefixIconSrc={avatar}
+          prefixIcon={<p>This is a test</p>}
           onClickPrefix={onClickPrefix}
         />
       </div>
       <div className="test-case" id="with-suffix-icon">
         <h4>Chip6 with suffixIconSrc</h4>
-        <DxcChip
-          label="Chip 6"
-          suffixIconSrc={deleteIcon}
-          onClickSuffix={onClickSuffix}
-        />
+        <DxcChip label="Chip 6" suffixIcon={deleteSVG} onClickSuffix={onClickSuffix} />
       </div>
       <div className="test-case" id="with-suffix-and-prefix">
         <h4>Chip7 with suffix and prefix</h4>
         <DxcChip
           label="Chip 7"
-          suffixIconSrc={deleteIcon}
+          suffixIcon={deleteSVG}
           onClickSuffix={onClickSuffix}
           onClickPrefix={onClickPrefix}
-          prefixIconSrc={avatar}
+          prefixIcon={<img src={avatar}></img>}
         />
       </div>
       <div className="test-case" id="only-icon">
         <h4>Chip8 only icon</h4>
-        <DxcChip suffixIconSrc={avatar} onClickSuffix={onClickSuffix} />
+        <DxcChip
+          suffixIcon={<img src={avatar}></img>}
+          onClickSuffix={onClickSuffix}
+        />
       </div>
       <div className="test-case" id="icons-and-disabled">
         <h4>Chip9 with icons and disabled</h4>
         <DxcChip
           label="Chip 9"
           disabled={true}
-          prefixIconSrc={avatar}
+          prefixIcon={<img src={avatar}></img>}
           onClickPrefix={onClickPrefix}
         />
       </div>
@@ -72,7 +84,17 @@ function App() {
         <DxcChip
           label="Chip 5 asdfasdf asdf asdfasdf asdf asdfasdf asdfasdf asdf asdf adfasrfasf afsdg afgasfg asdf asdf asdf asdf asdf asdf asdf  afdg asfg asdfg asdf asdf asdf asdfasdf asd fas df asd asdf asdf asdfasd fg sssssssssss"
           onClickPrefix={onClickPrefix}
-          suffixIconSrc={deleteIcon}
+          suffixIcon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+            >
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+          }
           margin="small"
         />
       </div>

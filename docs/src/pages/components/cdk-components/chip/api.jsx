@@ -15,14 +15,29 @@ const chipPropsTable = () => {
         <td>Text to be placed on the chip.</td>
       </tr>
       <tr>
+        <td>prefixIcon: node</td>
+        <td></td>
+        <td>Element used as icon to be placed before the chip label.</td>
+      </tr>
+      <tr>
+        <td>suffixIcon: node</td>
+        <td></td>
+        <td>Element used as icon to be placed after the chip label.</td>
+      </tr>
+      <tr>
         <td>prefixIconSrc: string</td>
         <td></td>
-        <td>Path of the icon to be placed before the chip label.</td>
+        <td>
+          <b>Deprecated.</b> Path of the icon to be placed before the chip
+          label.
+        </td>
       </tr>
       <tr>
         <td>suffixIconSrc: string</td>
         <td></td>
-        <td>Path of the icon to be placed after the chip label.</td>
+        <td>
+          <b>Deprecated.</b> Path of the icon to be placed after the chip label.
+        </td>
       </tr>
       <tr>
         <td>onClickPrefix: function</td>
