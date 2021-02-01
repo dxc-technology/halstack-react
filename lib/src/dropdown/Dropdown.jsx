@@ -15,6 +15,7 @@ import ThemeContext from "../ThemeContext.js";
 const DxcDropdown = ({
   options = [],
   optionsIconPosition = "before",
+  icon,
   iconSrc = "",
   iconPosition = "before",
   label = "",
@@ -94,7 +95,13 @@ const DxcDropdown = ({
             ref={ref}
           >
             <DropdownTriggerContainer iconPosition={iconPosition} caretHidden={caretHidden}>
-              {iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />}
+              {icon ? (
+                <ListIconContainer label={label} iconPosition={iconPosition}>
+                  {typeof icon === "object" ? icon : React.createElement(icon)}
+                </ListIconContainer>
+              ) : (
+                iconSrc && <ListIcon label={label} src={iconSrc} iconPosition={iconPosition} />
+              )}
               <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
                 {label}
               </DropdownTriggerLabel>
@@ -135,8 +142,14 @@ const DxcDropdown = ({
                           disableRipple={true}
                           onClick={(event) => handleMenuItemClick(option)}
                         >
-                          {option.iconSrc && (
-                            <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
+                          {option.icon ? (
+                            <ListIconContainer label={option.label} iconPosition={optionsIconPosition}>
+                              {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+                            </ListIconContainer>
+                          ) : (
+                            option.iconSrc && (
+                              <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
+                            )
                           )}
                           <span className="optionLabel">{option.label}</span>
                         </MenuItem>
@@ -321,6 +334,32 @@ const ListIcon = styled.img`
   }};
 `;
 
+const ListIconContainer = styled.div`
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  margin-right: ${(props) => {
+    if (props.iconPosition === "before" && props.label !== "") {
+      return "10px";
+    } else {
+      return "0px";
+    }
+  }};
+  margin-left: ${(props) => {
+    if (props.iconPosition === "after" && props.label !== "") {
+      return "10px";
+    } else {
+      return "0px";
+    }
+  }};
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 const CaretIcon = styled.div`
   display: ${(props) => (props.caretHidden === true ? "none" : "inline-flex")};
   margin-left: 10px;
@@ -342,6 +381,7 @@ DxcDropdown.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   optionsIconPosition: PropTypes.oneOf(["after", "before", ""]),
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["after", "before", ""]),
   label: PropTypes.string,
@@ -352,6 +392,7 @@ DxcDropdown.propTypes = {
     PropTypes.shape({
       value: PropTypes.any.isRequired,
       label: PropTypes.any.isRequired,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
     })
   ),

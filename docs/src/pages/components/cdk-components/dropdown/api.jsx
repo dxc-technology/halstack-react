@@ -22,8 +22,12 @@ const dropdownPropsTable = () => {
               <b>label</b>: Option display value.
             </li>
             <li>
+              <b>icon</b>: Element used as the icon that will be placed next to
+              the option label.
+            </li>
+            <li>
               <b>iconSrc</b>: URL of the icon that will be placed next to the
-              option label.
+              option label. <b>Deprecated.</b>
             </li>
             <li>
               <b>value</b>: Option inner value.
@@ -42,11 +46,22 @@ const dropdownPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>icon: node</td>
+        <td></td>
+        <td>
+          Element used as the icon that will be placed next to the dropdown
+          label.
+        </td>
+      </tr>
+      <tr>
         <td>iconSrc: string</td>
         <td>
           <code></code>
         </td>
-        <td>URL of the icon that will be placed next to the dropdown label.</td>
+        <td>
+          <b>Deprecated.</b> URL of the icon that will be placed next to the
+          dropdown label.
+        </td>
       </tr>
       <tr>
         <td>iconPosition: 'before' | 'after'</td>
