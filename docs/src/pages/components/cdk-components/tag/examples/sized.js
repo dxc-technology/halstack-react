@@ -5,7 +5,7 @@ const code = `() => {
   return (
     <DxcTag
       margin="medium"
-      iconSrc={dxcLogoPath}
+      icon={<img src={dxcLogoPath} />}
       label="DXC Technology"
       size="large"
       onClick={() => {
