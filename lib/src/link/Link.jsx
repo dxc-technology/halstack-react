@@ -12,6 +12,7 @@ const DxcLink = ({
   inheritColor = false,
   disabled = false,
   iconSrc,
+  icon,
   iconPosition = "before",
   href = "",
   newWindow = false,
@@ -31,7 +32,13 @@ const DxcLink = ({
       iconPosition={iconPosition}
     >
       {text}
-      {iconSrc ? <LinkIcon src={iconSrc} iconPosition={iconPosition}></LinkIcon> : ""}
+      {icon ? (
+        <LinkIconContainer iconPosition={iconPosition}>
+          {typeof icon === "object" ? icon : React.createElement(icon)}
+        </LinkIconContainer>
+      ) : (
+        iconSrc && <LinkIcon src={iconSrc} iconPosition={iconPosition}></LinkIcon>
+      )}
     </LinkText>
   );
 
@@ -111,6 +118,19 @@ const LinkIcon = styled.img`
   ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: 6px;
 `;
 
+const LinkIconContainer = styled.div`
+  width: 16px;
+  height: 16px;
+  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: 6px;
+  overflow: hidden;
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
 const StyledLink = styled.a`
   text-decoration: none;
   color: ${(props) =>
@@ -130,6 +150,7 @@ DxcLink.propTypes = {
   underlined: PropTypes.bool,
   inheritColor: PropTypes.bool,
   disabled: PropTypes.bool,
+  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   iconSrc: PropTypes.string,
   iconPosition: PropTypes.oneOf(["after", "before"]),
   href: PropTypes.string,

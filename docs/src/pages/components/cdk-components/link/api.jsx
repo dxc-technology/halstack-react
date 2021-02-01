@@ -36,9 +36,18 @@ const linkPropsTable = () => {
         <td>Link text.</td>
       </tr>
       <tr>
+        <td>icon: node</td>
+        <td></td>
+        <td>
+          Element used as the icon that will be placed next to the link text.
+        </td>
+      </tr>
+      <tr>
         <td>iconSrc: string</td>
         <td></td>
-        <td>Source of the icon.</td>
+        <td>
+          <b>Deprecated.</b> Source of the icon.
+        </td>
       </tr>
       <tr>
         <td>iconPosition: 'before' | 'after'</td>
@@ -63,8 +72,8 @@ const linkPropsTable = () => {
         <td>onClick: function</td>
         <td></td>
         <td>
-          If defined, the link will be displayed as a button. This function
-          will be called when the user clicks the link.
+          If defined, the link will be displayed as a button. This function will
+          be called when the user clicks the link.
         </td>
       </tr>
       <tr>
