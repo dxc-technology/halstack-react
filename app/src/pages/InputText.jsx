@@ -61,6 +61,27 @@ const countries = [
   "Vatican City",
 ];
 
+const iconSVG = () => {
+  return (
+    <svg
+      version="1.1"
+      x="0px"
+      y="0px"
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 24"
+      enable-background="new 0 0 24 24"
+    >
+      <g id="Bounding_Box">
+        <rect fill="none" width="24" height="24" />
+      </g>
+      <g id="Master">
+        <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+      </g>
+    </svg>
+  );
+};
+
 function App() {
   const [inputValue, changeInput] = useState("");
   const [autocompleteValue, changeAutocompleteValue] = useState("");
@@ -121,8 +142,8 @@ function App() {
         <h4>With prefix and suffix icons</h4>
         <DxcInput
           label="Input label"
-          suffixIconSrc={icon}
-          prefixIconSrc={icon}
+          suffixIcon={iconSVG}
+          prefixIcon={iconSVG}
           value={inputValue}
           onChange={onChange}
         />
@@ -132,7 +153,24 @@ function App() {
         <h4>With prefix icon</h4>
         <DxcInput
           label="Input label"
-          prefixIconSrc={icon}
+          prefixIcon={
+            <svg
+              version="1.1"
+              x="0px"
+              y="0px"
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              enable-background="new 0 0 24 24"
+            >
+              <g id="Bounding_Box">
+                <rect fill="none" width="24" height="24" />
+              </g>
+              <g id="Master">
+                <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+              </g>
+            </svg>
+          }
           value={inputValue}
           onChange={onChange}
         />
@@ -142,7 +180,7 @@ function App() {
         <h4>With suffix icon</h4>
         <DxcInput
           label="Input label"
-          suffixIconSrc={icon}
+          suffixIcon={<img src={icon} />}
           value={inputValue}
           onChange={onChange}
         />

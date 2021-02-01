@@ -47,14 +47,30 @@ const inputPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>prefixIcon: node</td>
+        <td></td>
+        <td>Element used as the icon to be placed before the input value.</td>
+      </tr>
+      <tr>
+        <td>suffixIcon: node</td>
+        <td></td>
+        <td>Element used as icon to be placed after the input value</td>
+      </tr>
+      <tr>
         <td>prefixIconSrc: string</td>
         <td></td>
-        <td>Path of the icon to be placed before the input value.</td>
+        <td>
+          <b>Deprecated.</b> Path of the icon to be placed before the input
+          value.
+        </td>
       </tr>
       <tr>
         <td>suffixIconSrc: string</td>
         <td></td>
-        <td>Path of the icon to be placed after the input value.</td>
+        <td>
+          <b>Deprecated.</b> Path of the icon to be placed after the input
+          value.
+        </td>
       </tr>
       <tr>
         <td>name: string</td>
