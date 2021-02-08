@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcAccordion from "../accordion/Accordion";
 import PropTypes from "prop-types";
@@ -7,37 +7,49 @@ import { getCustomTheme, getMargin } from "../common/utils.js";
 import { spaces, defaultTheme, theme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 
-const Accordion = ({ props, children }) => {
-  return (
-    <AccordionChild>
-      <DxcAccordion {...props}>
-        {children}
-      </DxcAccordion>
-    </AccordionChild>
-  );
-};
-
-const AccordionChild = styled.div`
-  
-`;
-
-const DxcAccordionGroup = ({
-  disabled = false,
-  onChange = "",
-  indexActive = 0,
-  children,
-  margin,
-}) => {
+const DxcAccordionGroup = ({ disabled = false, onActiveChange, indexActive = -1, margin, children = [] }) => {
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const [innerIsExpanded, setInnerIsExpanded] = React.useState(indexActive);
+
+  const handlerActiveChange = (index) => {
+    if(typeof onActiveChange !== "function"){ //uncontrolled indexActive === -1
+      setInnerIsExpanded(index);
+      if(index === innerIsExpanded){ 
+        setInnerIsExpanded(-1);
+      }
+    }
+    else{ //controlled
+      onActiveChange(index);
+      if(indexActive !== -1){
+        onActiveChange(index);
+      }
+      if(index === innerIsExpanded){ 
+        setInnerIsExpanded(-1);
+      }
+      else if(index === indexActive){
+        setInnerIsExpanded(indexActive);
+      }
+    }
+  };
+
+  useEffect(() => {
+    setInnerIsExpanded(indexActive);
+  }, [indexActive]);
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
-      <DXCAccordionGroup margin={margin} disabled={disabled}>
-        <AccordionGroupContainer>
-          {children}
-        </AccordionGroupContainer>
-      </DXCAccordionGroup>
+      <DXCAccordionGroupContainer margin={margin} disabled={disabled}>
+        {children.map((el, index) => {
+          let accordionComponent = React.cloneElement(el, {
+            onChange: () => {
+              handlerActiveChange(index);
+            },
+            isExpanded: index === innerIsExpanded
+          });
+          return accordionComponent.type.name == "DxcAccordion" && accordionComponent;
+        })}
+      </DXCAccordionGroupContainer>
     </ThemeProvider>
   );
 };
@@ -48,9 +60,28 @@ const calculateWidth = (margin) => {
 
 DxcAccordionGroup.propTypes = {
   disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  indexActive: PropTypes.bool,
-  children: PropTypes.element,
+  onActiveChange: PropTypes.func,
+  indexActive: PropTypes.number,
+  children: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+      iconSrc: PropTypes.string,
+      iconPosition: PropTypes.oneOf(["before", "after"]),
+      assistiveText: PropTypes.string,
+      disabled: PropTypes.bool,
+      children: PropTypes.element,
+      padding: PropTypes.oneOfType([
+        PropTypes.shape({
+          top: PropTypes.oneOf(Object.keys(spaces)),
+          bottom: PropTypes.oneOf(Object.keys(spaces)),
+          left: PropTypes.oneOf(Object.keys(spaces)),
+          right: PropTypes.oneOf(Object.keys(spaces)),
+        }),
+        PropTypes.oneOf([...Object.keys(spaces)]),
+      ]),
+    })
+  ),
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
@@ -59,10 +90,10 @@ DxcAccordionGroup.propTypes = {
       right: PropTypes.oneOf(Object.keys(spaces)),
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
-  ])
+  ]),
 };
 
-const DXCAccordionGroup = styled.div`
+const DXCAccordionGroupContainer = styled.div`
   min-width: 280px;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -80,10 +111,6 @@ const DXCAccordionGroup = styled.div`
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
 `;
 
-const AccordionGroupContainer = styled.div`
-  display: flex;
-`;
+DxcAccordionGroup.Accordion = DxcAccordion;
 
-DXCAccordionGroup.Accordion = Accordion;
-
-export default DXCAccordionGroup;
+export default DxcAccordionGroup;

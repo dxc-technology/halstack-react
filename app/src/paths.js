@@ -31,12 +31,18 @@ import ResultsetTable from "./pages/ResultsetTable";
 import Chip from "./pages/Chip";
 import ApplicationLayout from "./pages/ApplicationLayout";
 import ToggleGroup from "./pages/ToggleGroup";
+import AccordionGroup from "./pages/AccordionGroup";
 
 export default [
   {
     path: "accordion",
     name: "Accordion",
     component: Accordion,
+  },
+  {
+    path: "accordionGroup",
+    name: "AccordionGroup",
+    component: AccordionGroup,
   },
   {
     path: "alert",

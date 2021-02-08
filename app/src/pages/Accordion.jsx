@@ -26,24 +26,6 @@ function App() {
   return (
     <div>
       <div className="test-case" id="light-theme-default">
-        <h4>Accordion Group</h4>
-        <DxcAccordionGroup margin="medium">
-          <DxcAccordion label="Accordion1" onChange={onChange} padding="medium" margin="medium">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget.
-            </div>
-          </DxcAccordion>
-          <DxcAccordion label="Accordion2" onChange={onChange} padding="medium" margin="medium">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget.
-            </div>
-          </DxcAccordion>
-        </DxcAccordionGroup>
-      </div>
-
-      <div className="test-case" id="light-theme-default">
         <h4>Light theme - Default Accordion</h4>
         <DxcAccordion label="Accordion" onChange={onChange} padding="medium">
           <div>
