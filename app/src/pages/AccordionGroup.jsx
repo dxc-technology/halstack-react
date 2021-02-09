@@ -26,11 +26,12 @@ function App() {
   const [indexAccordion2, setIndexAccordion2] = useState(0);
 
   const onActiveChange = (i) => {
-    console.log("newValue", i);
+    console.log("onActiveChange", i);
     setIndexAccordion(i);
   };
 
   const onActiveChange2 = (i) => {
+    console.log("onActiveChange2", i);
     setIndexAccordion2(0);
   };
 
@@ -39,8 +40,36 @@ function App() {
       <div className="test-case" id="light-theme-default">
         <h4>Accordion Group Uncontrolled</h4>
         <ThemeContext.Provider>
-          <DxcAccordionGroup margin="medium">
+          <DxcAccordionGroup>
             <DxcAccordionGroup.Accordion label="Accordion5454" padding="medium">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAccordionGroup.Accordion>
+            <DxcAccordionGroup.Accordion label="Accordion7777" padding="medium">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAccordionGroup.Accordion>
+          </DxcAccordionGroup>
+        </ThemeContext.Provider>
+      </div>
+      <div className="test-case" id="light-theme-default">
+        <h4>Accordion Group Uncontrolled with ActiveIndex</h4>
+        <ThemeContext.Provider>
+          <DxcAccordionGroup indexActive={1} margin="medium">
+            <DxcAccordionGroup.Accordion label="Accordion5454" padding="medium">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAccordionGroup.Accordion>
+            <DxcAccordionGroup.Accordion label="Accordion7777" padding="medium">
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -61,7 +90,7 @@ function App() {
         <h4>Accordion Group Controlled</h4>
         <ThemeContext.Provider>
           <DxcAccordionGroup
-            margin="medium"
+            padding="large"
             indexActive={indexAccordion}
             onActiveChange={onActiveChange}
           >
@@ -86,7 +115,7 @@ function App() {
         <h4>Accordion Group Controlled</h4>
         <ThemeContext.Provider>
           <DxcAccordionGroup
-            margin="medium"
+            margin="xlarge"
             indexActive={indexAccordion2}
             onActiveChange={onActiveChange2}
           >
@@ -97,9 +126,55 @@ function App() {
                 eget.
               </div>
             </DxcAccordionGroup.Accordion>
+            <DxcAccordionGroup.Accordion
+              label="Accordion7777"
+              padding="medium"
+              disabled
+            >
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAccordionGroup.Accordion>
+          </DxcAccordionGroup>
+        </ThemeContext.Provider>
+      </div>
+      <div className="test-case" id="light-theme-default">
+        <h4>Accordion Group Controlled without indexActive</h4>
+        <ThemeContext.Provider>
+          <DxcAccordionGroup padding="small" onActiveChange={onActiveChange2}>
+            <DxcAccordionGroup.Accordion label="Accordion5454" padding="medium">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAccordionGroup.Accordion>
             <DxcAccordionGroup.Accordion label="Accordion7777" padding="medium">
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAccordionGroup.Accordion>
+          </DxcAccordionGroup>
+        </ThemeContext.Provider>
+      </div>
+      <div className="test-case" id="light-theme-default">
+        <h4>Disabled Accordion Group</h4>
+        <ThemeContext.Provider>
+          <DxcAccordionGroup padding="small" onActiveChange={onActiveChange2} disabled={true}>
+            <DxcAccordionGroup.Accordion label="Accordion5454" padding="medium">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </div>
+            </DxcAccordionGroup.Accordion>
+            <DxcAccordionGroup.Accordion label="Accordion7777" padding="medium">
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
               </div>
