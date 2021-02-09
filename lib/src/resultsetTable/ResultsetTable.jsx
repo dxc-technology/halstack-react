@@ -78,7 +78,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOption
     } else {
       changePage(0);
     }
-  }, [rows.length]);
+  }, [rows.length, itemsPerPage]);
 
   const sortedResultset = useMemo(() => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows), [
     sortColumnIndex,
@@ -89,6 +89,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOption
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
+  
   return (
     <ThemeProvider theme={colorsTheme}>
       <DxcResultsetTableContainer margin={margin}>
