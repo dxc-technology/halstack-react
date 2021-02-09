@@ -56,6 +56,32 @@ const resultsetTablePropsTable = () => {
         <td>Number of items per page.</td>
       </tr>
       <tr>
+        <td>itemsPerPageOptions: object[]</td>
+        <td>
+          <code>[]</code>
+        </td>
+        <td>
+          An array of objects representing the selectable options. Each object
+          has the following properties:
+          <ul>
+            <li>
+              <b>value</b>: Page number value.
+            </li>
+            <li>
+              <b>label</b>: Page display value.
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>itemsPerPageFunction: function</td>
+        <td></td>
+        <td>
+          This function will be called when the user selects an item per page
+          option.
+        </td>
+      </tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>

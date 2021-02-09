@@ -48,7 +48,6 @@ const DxcPaginator = ({
                 value={itemsPerPage}
                 size="small"
               ></DxcSelect>
-              {/* {itemsPerPage} */}
             </ItemsPageContainer>
           )}
           <TotalItemsContainer>
