@@ -32,6 +32,7 @@ import Autocomplete from "./cdk-components/autocomplete/Autocomplete";
 import Chip from "./cdk-components/chip/Chip";
 import ToggleGroup from "./cdk-components/toggleGroup/ToggleGroup";
 import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLayout";
+import AccordionGroup from "./cdk-components/accordion-group/AccordionGroup";
 
 export const types = {
   FORMS: "Forms",
@@ -45,6 +46,12 @@ export default [
     path: "accordion",
     name: "Accordion",
     component: Accordion,
+    type: types.UTILS,
+  },
+  {
+    path: "groupAccordion",
+    name: "Accordion Group",
+    component: AccordionGroup,
     type: types.UTILS,
   },
   {
