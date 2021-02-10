@@ -236,10 +236,7 @@ function App() {
           columns={columns}
           rows={rows}
           itemsPerPage={myItemsPerPage}
-          itemsPerPageOptions={[
-            { label: 3, value: 3 },
-            { label: 6, value: 6 },
-          ]}
+          itemsPerPageOptions={[3, 6]}
           itemsPerPageFunction={itemsPerPageFunction}
           margin="xxsmall"
         ></DxcResultsetTable>
