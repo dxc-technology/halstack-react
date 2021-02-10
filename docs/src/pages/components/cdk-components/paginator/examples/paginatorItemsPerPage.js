@@ -25,10 +25,7 @@ const code = `() => {
     <DxcPaginator
       currentPage={page}
       itemsPerPage={items}
-      itemsPerPageOptions={[
-        { label: 10, value: 10 },
-        { label: 15, value: 15 },
-      ]}
+      itemsPerPageOptions={[10,15]}
       itemsPerPageFunction={itemsPerPageClick}
       totalItems={27}
       prevFunction={prevClick}
@@ -41,7 +38,7 @@ const code = `() => {
 
 const scope = {
   DxcPaginator,
-  useState
+  useState,
 };
 
 export default { code, scope };
