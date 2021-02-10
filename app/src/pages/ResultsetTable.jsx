@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   DxcResultsetTable,
   ThemeContext,
@@ -222,6 +222,11 @@ const rows = [
 ];
 
 function App() {
+  const [myItemsPerPage, setMyItemsPerPage] = useState(3);
+  const itemsPerPageFunction = (value) => {
+    setMyItemsPerPage(value);
+  };
+
   return (
     <div>
       <div className="test-case" id="xxsmall-margin">
@@ -230,7 +235,12 @@ function App() {
         <DxcResultsetTable
           columns={columns}
           rows={rows}
-          itemsPerPage={3}
+          itemsPerPage={myItemsPerPage}
+          itemsPerPageOptions={[
+            { label: 3, value: 3 },
+            { label: 6, value: 6 },
+          ]}
+          itemsPerPageFunction={itemsPerPageFunction}
           margin="xxsmall"
         ></DxcResultsetTable>
       </div>

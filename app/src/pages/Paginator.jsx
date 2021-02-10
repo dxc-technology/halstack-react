@@ -32,6 +32,23 @@ function App() {
           lastFunction={lastClick}
         ></DxcPaginator>
       </div>
+      <div className="test-case" id="normal-status">
+        <h4>Normal Status</h4>
+        <DxcPaginator
+          currentPage={page}
+          itemsPerPage={10}
+          itemsPerPageOptions={[
+            { label: 10, value: 10 },
+            { label: 15, value: 15 },
+          ]}
+          itemsPerPageFunction={(value) => console.log(value)}
+          totalItems={27}
+          prevFunction={prevClick}
+          firstFunction={firstClick}
+          nextFunction={nextClick}
+          lastFunction={lastClick}
+        ></DxcPaginator>
+      </div>
     </div>
   );
 }
