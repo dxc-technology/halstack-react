@@ -23,9 +23,6 @@ const DxcAccordionGroup = ({
       setInnerIsExpanded(index === innerIsExpanded ? -1 : index);
     } else {
       onActiveChange(index);
-      if(indexActive !== -1){
-        onActiveChange(index);
-      }
       if(index === innerIsExpanded){ 
         setInnerIsExpanded(-1);
       }
