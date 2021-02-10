@@ -36,7 +36,7 @@ const getMinItemsPerPageIndex = (currentPageInternal, itemsPerPage, page) =>
 const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, page) =>
   minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
-const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
+const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOptions, itemsPerPageFunction, margin }) => {
   const colorsTheme = useContext(ThemeContext) || colors;
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
@@ -44,7 +44,10 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
 
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
   const maxItemsPerPageIndex = useMemo(() => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page), [
-    itemsPerPage, minItemsPerPageIndex, page, rows
+    itemsPerPage,
+    minItemsPerPageIndex,
+    page,
+    rows,
   ]);
   const next = () => {
     changePage(page + 1);
@@ -75,7 +78,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
     } else {
       changePage(0);
     }
-  }, [rows.length]);
+  }, [rows.length, itemsPerPage]);
 
   const sortedResultset = useMemo(() => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows), [
     sortColumnIndex,
@@ -86,6 +89,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
+  
   return (
     <ThemeProvider theme={colorsTheme}>
       <DxcResultsetTableContainer margin={margin}>
@@ -121,6 +125,8 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, margin }) => {
           <DxcPaginator
             totalItems={rows.length}
             itemsPerPage={itemsPerPage}
+            itemsPerPageOptions={itemsPerPageOptions}
+            itemsPerPageFunction={itemsPerPageFunction}
             currentPage={page}
             nextFunction={next}
             prevFunction={previous}
@@ -202,6 +208,8 @@ DxcResultsetTable.propTypes = {
   rows: PropTypes.array,
   columns: PropTypes.array,
   itemsPerPage: PropTypes.number,
+  itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
+  itemsPerPageFunction: PropTypes.func,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
@@ -216,6 +224,8 @@ DxcResultsetTable.defaultProps = {
   rows: [],
   columns: [],
   itemsPerPage: 5,
+  itemsPerPageOptions: null,
+  itemsPerPageFunction: null,
   margin: "xxsmall",
 };
 

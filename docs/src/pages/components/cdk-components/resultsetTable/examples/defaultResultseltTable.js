@@ -1,7 +1,13 @@
 import { DxcResultsetTable, DxcButton } from "@dxc-technology/halstack-react";
+import { useState } from "react";
 import deleteIcon from "./images/delete-24px.svg";
 
 const code = `() => {
+  const [myItemsPerPage, setMyItemsPerPage] = useState(2);
+  const itemsPerPageFunction = (value) => {
+    setMyItemsPerPage(value);
+  };
+
   const columns = [
     { displayValue: "Id", isSortable: false },
     { displayValue: "Name", isSortable: true },
@@ -51,7 +57,12 @@ const code = `() => {
     <DxcResultsetTable
       columns={columns}
       rows={rows}
-      itemsPerPage={2}
+      itemsPerPage={myItemsPerPage}
+      itemsPerPageOptions={[
+        { label: 2, value: 2 },
+        { label: 3, value: 3 },
+      ]}
+      itemsPerPageFunction={itemsPerPageFunction}
     ></DxcResultsetTable>
   );
 }`;
@@ -59,6 +70,7 @@ const scope = {
   DxcResultsetTable,
   DxcButton,
   deleteIcon,
+  useState,
 };
 
 export default { code, scope };
