@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcAccordion, DxcAccordionGroup, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcAccordion, ThemeContext } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
 
 const colors = {

@@ -7,30 +7,21 @@ import { getCustomTheme, getMargin } from "../common/utils.js";
 import { spaces, defaultTheme, theme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 
-const DxcAccordionGroup = ({
-  disabled = false,
-  onActiveChange,
-  indexActive = -1,
-  margin,
-  children = [],
-}) => {
+const Accordion = ({ margin, ...childProps }) => <DxcAccordion {...childProps}>{childProps.children}</DxcAccordion>;
+
+const DxcAccordionGroup = ({ disabled = false, onActiveChange, indexActive = undefined, margin, children = [] }) => {
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(indexActive);
 
   const handlerActiveChange = (index) => {
-    if (typeof onActiveChange !== "function") {
+    if (indexActive === undefined) {
       setInnerIsExpanded(index === innerIsExpanded ? -1 : index);
     } else {
-      if(!disabled){
-        onActiveChange(index);
-      }
-      if(index === innerIsExpanded){ 
-        setInnerIsExpanded(-1);
-      }
-      else if(index === indexActive){
-        setInnerIsExpanded(indexActive);
-      }
+      setInnerIsExpanded(index === indexActive && indexActive);
+    }
+    if (typeof onActiveChange === "function" && !disabled) {
+      onActiveChange(index);
     }
   };
 
@@ -41,28 +32,20 @@ const DxcAccordionGroup = ({
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
       <AccordionGroupContainer margin={margin} disabled={disabled}>
-        {children.map((el, index) => {
-          let accordionComponent = React.cloneElement(el, {
-            onChange: () => {
-              handlerActiveChange(index);
-            },
-            isExpanded: index === innerIsExpanded,
-            disabled: disabled || el.props.disabled,
-            margin: ""
-          });
-          return accordionComponent.type.name == "DxcAccordion" && accordionComponent;
-        })}
+        {children
+          .filter((el) => el.type === Accordion)
+          .map((el, index) =>
+            React.cloneElement(el, {
+              onChange: () => {
+                handlerActiveChange(index);
+              },
+              isExpanded: index === innerIsExpanded,
+              disabled: disabled || el.props.disabled,
+            })
+          )}
       </AccordionGroupContainer>
     </ThemeProvider>
   );
-};
-
-const sizes = {
-  small: "48px",
-  medium: "240px",
-  large: "480px",
-  fillParent: "100%",
-  fitContent: "unset",
 };
 
 const calculateWidth = (margin) => {
@@ -116,9 +99,9 @@ DxcAccordionGroup.propTypes = {
       right: PropTypes.oneOf(Object.keys(spaces)),
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
-  ])
+  ]),
 };
 
-DxcAccordionGroup.Accordion = DxcAccordion;
+DxcAccordionGroup.Accordion = Accordion;
 
 export default DxcAccordionGroup;
