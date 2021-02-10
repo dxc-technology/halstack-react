@@ -12,7 +12,7 @@ const AccordionGroupPropsTable = () => {
       <tr>
         <td>indexActive: number</td>
         <td></td>
-        <td>The index of the active accordion. If undefined, the component will be uncontrolled and the active accordion will be managed internally by the component.</td>
+        <td>The index of the active accordion. If undefined, the component will be uncontrolled and the active accordion will be managed internally by the component. If null, the component will be controlled and all accordions will be closed.</td>
       </tr>
       <tr>
           <td>disabled: boolean</td>
