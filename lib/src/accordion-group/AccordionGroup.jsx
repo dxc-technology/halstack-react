@@ -22,7 +22,9 @@ const DxcAccordionGroup = ({
     if (typeof onActiveChange !== "function") {
       setInnerIsExpanded(index === innerIsExpanded ? -1 : index);
     } else {
-      onActiveChange(index);
+      if(!disabled){
+        onActiveChange(index);
+      }
       if(index === innerIsExpanded){ 
         setInnerIsExpanded(-1);
       }
