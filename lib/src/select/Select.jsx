@@ -337,6 +337,10 @@ const SelectContainer = styled.div`
       color: ${(props) => (props.invalid === true ? props.theme.select.error : props.theme.select.color)};
     }
   }
+  .MuiSelect-select.MuiSelect-select {
+      padding-right: unset;
+  }
+
   .MuiSelect-select {
     width: 100%;
     height: 20px;
