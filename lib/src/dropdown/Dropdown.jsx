@@ -31,7 +31,7 @@ const DxcDropdown = ({
 
   const ref = useRef(null);
   const handleResize = () => {
-    setWidth(ref.current.offsetWidth);
+    if (ref.current) setWidth(ref.current.offsetWidth);
   };
 
   useEffect(() => {
