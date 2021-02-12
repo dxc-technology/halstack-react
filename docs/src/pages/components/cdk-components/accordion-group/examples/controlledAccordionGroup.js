@@ -5,7 +5,7 @@ const code = `() => {
   const [indexAccordion, setIndexAccordion] = useState(0);
 
   const onActiveChange = (i) => {
-    setIndexAccordion(i);
+    setIndexAccordion((prevValue) => prevValue === i ? null : i);
   };
 
   return (
