@@ -32,7 +32,6 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
               <Step
                 onClick={() => handleStepClick(i)}
                 mode={mode}
-                disable={step.disabled}
                 disabled={step.disabled}
                 first={i === 0}
                 last={i === steps.length - 1}
@@ -40,7 +39,7 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                 <StepHeader>
                   <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                     {step.icon ? (
-                      <StepIconContainer>
+                      <StepIconContainer disabled={step.disabled}>
                         {typeof step.icon === "object" ? step.icon : React.createElement(step.icon)}
                       </StepIconContainer>
                     ) : step.iconSrc ? (
@@ -62,8 +61,8 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                   )}
                 </StepHeader>
                 {step.label || step.description ? (
-                  <InfoContainer active={i <= innerCurrent} disable={step.disabled}>
-                    {step.label ? <Label disable={step.disabled}>{step.label}</Label> : ""}
+                  <InfoContainer active={i <= innerCurrent} disabled={step.disabled}>
+                    {step.label ? <Label>{step.label}</Label> : ""}
                     {step.description ? <Description>{step.description}</Description> : ""}
                   </InfoContainer>
                 ) : (
@@ -144,26 +143,20 @@ const StepHeader = styled.div`
 const IconContainer = styled.div`
   width: ${(props) => (!props.current && !props.disabled ? "32px" : "36px")};
   height: ${(props) => (!props.current && !props.disabled ? "32px" : "36px")};
-  color: "red";
-  ${(props) => (!props.current && !props.disabled ? `border: 2px solid ${props.theme.wizard.borderColor};` : "")}
 
-  ${(props) =>
-    props.disabled
-      ? `background: ${props.theme.wizard.disabledBackground};
-        p {
-          color: ${props.theme.wizard.disabledFont} !important;
-        }`
-      : ""}
-
-  ${(props) => (props.current ? `background: ${props.theme.wizard.selectedBackgroundColor};` : "")}
-
-  ${(props) =>
-    props.current
-      ? `color: ${props.theme.wizard.selectedFont};`
-      : ""}
+  ${(props) => `
+    ${!props.current ? !props.disabled && `border: 2px solid ${props.theme.wizard.borderColor};` : ""}
+    background: ${
+      props.disabled
+        ? `${props.theme.wizard.disabledBackground}`
+        : props.current
+        ? `${props.theme.wizard.selectedBackgroundColor}`
+        : ""
+    };
+    ${props.current ? `color: ${props.theme.wizard.selectedFont};` : ""}
+  `}
 
   border-radius: 45px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -178,6 +171,7 @@ const StepIconContainer = styled.div`
   width: 19px;
   height: 19px;
   overflow: hidden;
+  color: ${(props) => (props.disabled ? `${props.theme.wizard.disabledFont}` : `${props.theme.wizard.fontColor}`)};
   img,
   svg {
     height: 100%;
@@ -188,7 +182,7 @@ const StepIconContainer = styled.div`
 const Number = styled.p`
   font: Normal 16px/22px Open Sans;
   letter-spacing: 0.77px;
-  color: ${(props) => props.theme.wizard.fontColor};
+  color: ${(props) => (props.disabled ? `${props.theme.wizard.disabledFont}` : `${props.theme.wizard.fontColor}`)};
   opacity: 1;
   margin: 0;
 `;
@@ -203,8 +197,7 @@ const ValidityIcon = styled.img`
 
 const InfoContainer = styled.div`
   margin-left: 10px;
-  color: ${(props) => props.theme.wizard.fontColor};
-  ${(props) => (!props.active && !props.disable ? `opacity: ${props.theme.wizard.notVisitedOpacity}` : "")}
+  color: ${(props) => (props.disabled ? `${props.theme.wizard.disabledFont}` : `${props.theme.wizard.fontColor}`)};
 `;
 
 const Label = styled.p`
@@ -213,7 +206,6 @@ const Label = styled.p`
   letter-spacing: 0.77px;
   color: inherit;
   margin: 0;
-  ${(props) => (props.disable ? `opacity: ${props.theme.wizard.disabled}` : "")}
 `;
 
 const Description = styled.p`
