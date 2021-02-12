@@ -170,6 +170,14 @@ function App() {
             text="Disabled link"
           ></DxcLink>{" "}
         </div>
+        <div className="test-case" id="disabled-light-link">
+          <DxcLink
+            onClick={() => console.log("Hello")}
+            disabled={true}
+            underlined={true}
+            text="Disabled link"
+          ></DxcLink>{" "}
+        </div>
       </div>
     </div>
   );
