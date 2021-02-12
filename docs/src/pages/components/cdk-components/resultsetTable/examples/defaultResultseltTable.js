@@ -58,10 +58,7 @@ const code = `() => {
       columns={columns}
       rows={rows}
       itemsPerPage={myItemsPerPage}
-      itemsPerPageOptions={[
-        { label: 2, value: 2 },
-        { label: 3, value: 3 },
-      ]}
+      itemsPerPageOptions={[2,3]}
       itemsPerPageFunction={itemsPerPageFunction}
     ></DxcResultsetTable>
   );

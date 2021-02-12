@@ -43,7 +43,7 @@ const DxcPaginator = ({
             <ItemsPageContainer>
               <ItemsLabel>Items per page </ItemsLabel>
               <DxcSelect
-                options={itemsPerPageOptions}
+                options={itemsPerPageOptions.map((num) => ({ label: num, value: num }))}
                 onChange={itemsPerPageFunction}
                 value={itemsPerPage}
                 size="small"

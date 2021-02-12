@@ -24,22 +24,11 @@ const paginatorPropsTable = () => {
         <td>Number of items per page.</td>
       </tr>
       <tr>
-        <td>itemsPerPageOptions: object[]</td>
+        <td>itemsPerPageOptions: number[]</td>
         <td>
           <code>[]</code>
         </td>
-        <td>
-          An array of objects representing the selectable options. Each object
-          has the following properties:
-          <ul>
-            <li>
-              <b>value</b>: Page number value.
-            </li>
-            <li>
-              <b>label</b>: Page display value.
-            </li>
-          </ul>
-        </td>
+        <td>An array of numbers representing the items per page options.</td>
       </tr>
       <tr>
         <td>itemsPerPageFunction: function</td>

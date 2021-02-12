@@ -37,10 +37,7 @@ function App() {
         <DxcPaginator
           currentPage={page}
           itemsPerPage={10}
-          itemsPerPageOptions={[
-            { label: 10, value: 10 },
-            { label: 15, value: 15 },
-          ]}
+          itemsPerPageOptions={[10, 15]}
           itemsPerPageFunction={(value) => console.log(value)}
           totalItems={27}
           prevFunction={prevClick}
