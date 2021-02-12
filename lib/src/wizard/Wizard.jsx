@@ -145,7 +145,7 @@ const IconContainer = styled.div`
   height: ${(props) => (!props.current && !props.disabled ? "32px" : "36px")};
 
   ${(props) => `
-    ${!props.current ? !props.disabled && `border: 2px solid ${props.theme.wizard.borderColor};` : ""}
+    ${!props.current && !props.disabled ? `border: 2px solid ${props.theme.wizard.borderColor};` : ""}
     background: ${
       props.disabled
         ? `${props.theme.wizard.disabledBackground}`
