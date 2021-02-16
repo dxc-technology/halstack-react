@@ -10,6 +10,7 @@ import ThemeContext from "../ThemeContext.js";
 
 const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
+
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
@@ -25,7 +26,7 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
       <DxCTabs margin={margin}>
-        <Underline></Underline>
+        <Underline />
         <Tabs
           value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
           onChange={handleChange}
@@ -61,9 +62,9 @@ const Underline = styled.div`
   left: 0px;
   bottom: 0;
   width: 100%;
-  height: 2px;
+  height: 1px;
   position: absolute;
-  background-color: ${(props) => props.theme.underlinedColor};
+  background-color: ${(props) => props.theme.divider};
 `;
 
 const DxCTabs = styled.div`
@@ -85,35 +86,41 @@ const DxCTabs = styled.div`
       }
     }
     .MuiButtonBase-root {
-      padding: 12px;
-      min-height: 48px;
-      height: auto;
+      padding: 12px 16px;
+      height: 48px;
+      /* height: auto; */
       font-family: "Open Sans", sans-serif;
-      font-size: 14px;
-      /* height: 64px cuando vengan con icono y texto */
-      min-width: 180px;
+      font-weight: 600;
+      font-size: 16px;
+      min-width: 90px;
+      max-width: 360px;
       color: ${(props) => props.theme.fontColor};
-      margin: 1px 0;
+      &:hover {
+        background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
+      }
+      &:active {
+        background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
+      }
       &:not(.Mui-selected) {
-        background-color: ${(props) => `${props.theme.selectedBackgroundColor}${props.theme.backgroundColor}`};
-        color: ${(props) => `${props.theme.fontColor}${props.theme.notSelectedOpacity}`};
+        background-color: ${(props) => props.theme.backgroundColor};
+        color: ${(props) => props.theme.fontColor};
       }
       &.Mui-selected {
-        background-color: ${(props) => props.theme.selectedBackgroundColor};
+        background-color: ${(props) => props.theme.backgroundColor};
         color: ${(props) => props.theme.selectedFontColor};
       }
       &.Mui-disabled {
         cursor: not-allowed !important;
         pointer-events: all;
-        opacity: ${(props) => props.theme.disabled};
+        opacity: ${(props) => props.theme.disabledFontcolor};
       }
       &:focus {
-        outline: ${(props) => props.theme.focusColor} auto 1px;
+        outline: ${(props) => props.theme.selectedFontColor} auto 1px;
       }
     }
 
     .MuiTabs-indicator {
-      background-color: ${(props) => props.theme.selectedUnderlinedColor};
+      background-color: ${(props) => props.theme.selectedFontColor};
     }
   }
 `;
@@ -126,6 +133,7 @@ const TabIcon = styled.img`
 const TabIconContainer = styled.div`
   max-height: 22px;
   max-width: 22px;
+  margin-bottom: 8px !important;
   overflow: hidden;
   img,
   svg {
