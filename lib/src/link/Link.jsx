@@ -45,9 +45,11 @@ const DxcLink = ({
   return (
     <ThemeProvider theme={colorsTheme.link}>
       {onClick ? (
-        <StyledButton onClick={onClick}>{linkContent}</StyledButton>
+        <StyledButton onClick={!disabled && onClick} disabled={disabled}>
+          {linkContent}
+        </StyledButton>
       ) : (
-        <StyledLink href={href} target={newWindow ? "_blank" : "_self"} inheritColor={inheritColor}>
+        <StyledLink href={!disabled && href} target={newWindow ? "_blank" : "_self"} inheritColor={inheritColor}>
           {linkContent}
         </StyledLink>
       )}
@@ -94,12 +96,13 @@ const LinkText = styled.div`
   padding-bottom: 2px;
 
   &:hover {
-    color: ${(props) => props.theme.hoverFontColor} !important;
-    text-decoration: none;
-    padding-bottom: 1px !important;
-    border-bottom: 1px solid;
-
-    cursor: pointer;
+    ${(props) =>
+      !props.disabled &&
+      `color: ${props.theme.hoverFontColor} !important;
+          text-decoration: none;
+          padding-bottom: 1px !important;
+          border-bottom: 1px solid;
+          cursor: pointer;`}
   }
 
   &:visited {
@@ -144,6 +147,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   outline: 0;
   font-family: inherit;
+  ${(props) => props.disabled && "cursor: default;"}
 `;
 
 DxcLink.propTypes = {
