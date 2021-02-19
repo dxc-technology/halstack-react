@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -7,14 +7,13 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { getCustomTheme, getMargin } from "../common/utils.js";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { spaces, defaultTheme, theme, responsiveSizes } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcAccordion = ({
   label = "",
   iconSrc = "",
   icon,
-  iconPosition = "before",
   assistiveText = "",
   disabled = false,
   onChange = "",
@@ -26,6 +25,25 @@ const DxcAccordion = ({
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const [isResponsive, setIsResponsive] = useState();
+
+  const handleResize = (width) => {
+    if (width) {
+      if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
+    }
+  };
+
+  const handleEventListener = () => {
+    handleResize(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleEventListener);
+    handleResize(window.innerWidth);
+    return () => {
+      window.removeEventListener("resize", handleEventListener);
+    };
+  }, []);
 
   const handlerAccordion = () => {
     if (isExpanded == null) {
@@ -38,21 +56,27 @@ const DxcAccordion = ({
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
-      <DXCAccordion padding={padding} margin={margin} disabled={disabled}>
+      <DXCAccordion
+        padding={padding}
+        margin={margin}
+        disabled={disabled}
+        icon={icon || iconSrc}
+        isResponsive={isResponsive}
+      >
         <ExpansionPanel
           disabled={disabled}
           onChange={handlerAccordion}
           expanded={isExpanded != null ? isExpanded : innerIsExpanded}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <AccordionInfo iconPosition={iconPosition}>
-              <AccordionLabel iconPosition={iconPosition}>{label}</AccordionLabel>
+            <AccordionInfo>
+              <AccordionLabel>{label}</AccordionLabel>
               {icon ? (
-                <IconContainer iconPosition={iconPosition}>
+                <IconContainer>
                   {typeof icon === "object" ? icon : React.createElement(icon)}
                 </IconContainer>
               ) : (
-                iconSrc && <AccordionIcon iconPosition={iconPosition} src={iconSrc} />
+                iconSrc && <AccordionIcon src={iconSrc} />
               )}
             </AccordionInfo>
             <AccordionAssistiveText>{assistiveText}</AccordionAssistiveText>
@@ -74,7 +98,6 @@ DxcAccordion.propTypes = {
   label: PropTypes.string,
   iconSrc: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  iconPosition: PropTypes.oneOf(["before", "after"]),
   assistiveText: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
@@ -134,13 +157,13 @@ const DXCAccordion = styled.div`
     .MuiButtonBase-root.MuiExpansionPanelSummary-root {
       :hover {
         background-color: ${(props) => `${props.theme.arrowColor}${props.theme.hoverBackgroundColor}`};
-        color: ${(props) => props.theme.hoverFontColor};
       }
     }
 
     .MuiButtonBase-root {
+      border-color: ${(props) => props.theme.arrowColor};
       border-radius: 4px;
-      height: 72px;
+      height: 48px;
 
       &.Mui-expanded {
         border-bottom-right-radius: 0;
@@ -155,7 +178,7 @@ const DXCAccordion = styled.div`
       }
 
       .MuiExpansionPanelSummary-content {
-        padding-right: 30px;
+        padding-right: 24px;
         &.Mui-expanded {
           div:nth-child(2) {
             opacity: 1;
@@ -170,8 +193,8 @@ const DXCAccordion = styled.div`
     }
 
     .MuiExpansionPanelSummary-root.Mui-expanded {
-      color: ${(props) => props.theme.hoverFontColor};
-      border-bottom: 1px solid #d9d9d9;
+      min-height: 48px;
+      border: 1px solid ${(props) => props.theme.focusOutline};
     }
 
     .MuiTouchRipple-root {
@@ -184,7 +207,7 @@ const DXCAccordion = styled.div`
   }
 
   .MuiPaper-root.Mui-disabled {
-    opacity: ${(props) => props.theme.disabled};
+    color: ${(props) => `${props.theme.fontColor}${props.theme.disabledFontColor}`};
   }
 
   .MuiCollapse-container {
@@ -199,7 +222,7 @@ const DXCAccordion = styled.div`
   }
 
   .MuiExpansionPanelSummary-root {
-    padding: 0 30px;
+    padding: 0 16px 0 16px;
   }
 
   .MuiExpansionPanelSummary-root.Mui-disabled {
@@ -221,14 +244,14 @@ const DXCAccordion = styled.div`
 
 const AccordionInfo = styled.div`
   display: flex;
-  flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
+  flex-direction: row-reverse;
   align-items: center;
   flex-grow: 1;
   margin-right: 15px;
 `;
 
 const AccordionLabel = styled.div`
-  flex-grow: ${(props) => (props.iconPosition === "after" && "0") || "1"};
+  flex-grow: 1;
 `;
 
 const AccordionText = styled.div`
@@ -238,16 +261,17 @@ const AccordionText = styled.div`
 const AccordionAssistiveText = styled.div`
   margin-top: 1px;
   font-size: 14px;
-  font: Italic 14px/19px Open Sans;
-  letter-spacing: 0.24px;
+  font: italic normal 300 16px/22px Open Sans;
+  letter-spacing: 0.49px;
 `;
 
 const IconContainer = styled.div`
-  max-height: 20px;
-  max-width: 20px;
-  margin-left: ${(props) => (props.iconPosition === "after" && "10px") || "0px"};
-  margin-right: ${(props) => (props.iconPosition === "before" && "10px") || "0px"};
+  max-height: 24px;
+  max-width: 24px;
+  margin-left: 0px;
+  margin-right: 12px;
   overflow: hidden;
+  color: ${(props) => props.theme.arrowColor};
 
   img,
   svg {
@@ -259,7 +283,8 @@ const IconContainer = styled.div`
 const AccordionIcon = styled.img`
   max-height: 20px;
   max-width: 20px;
-  margin-left: ${(props) => (props.iconPosition === "after" && "10px") || "0px"};
-  margin-right: ${(props) => (props.iconPosition === "before" && "10px") || "0px"};
+  margin-left: 0px;
+  margin-right: 10px;
 `;
+
 export default DxcAccordion;

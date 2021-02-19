@@ -4,7 +4,8 @@ import homeIcon from "../images/home.svg";
 
 const colors = {
   accordion: {
-    arrowColor: "#FABADA",
+    arrowColor: "#FC0773",
+    fontColor: "#077EFC"
   },
 };
 
@@ -27,7 +28,7 @@ function App() {
     <div>
       <div className="test-case" id="light-theme-default">
         <h4>Light theme - Default Accordion</h4>
-        <DxcAccordion label="Accordion" onChange={onChange} padding="medium">
+        <DxcAccordion label="Accordion" onChange={onChange}>
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
@@ -447,6 +448,19 @@ function App() {
             </div>
           </DxcAccordion>
         </ThemeContext.Provider>
+      </div>
+
+      <div className="test-case" id="nested-accordion">
+        <h4>Nested Accordion</h4>
+        <DxcAccordion label="Accordion" onChange={onChange} padding="medium">
+          <DxcAccordion label="Accordion" padding="medium">
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </div>
+          </DxcAccordion>
+        </DxcAccordion>
       </div>
     </div>
   );

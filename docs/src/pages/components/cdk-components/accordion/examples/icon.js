@@ -31,7 +31,6 @@ const code = `() => {
           </svg>
         }
         isExpanded={isExpanded}
-        iconPosition="before"
         margin="medium"
         padding="medium"
       >

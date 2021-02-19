@@ -30,13 +30,6 @@ const alertPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>iconPosition: 'before' | 'after'</td>
-        <td>
-          <code>'before'</code>
-        </td>
-        <td>Whether the icon should appear after or before the label.</td>
-      </tr>
-      <tr>
         <td>assistiveText: string</td>
         <td></td>
         <td>Assistive text to be placed on the right side of the panel.</td>
