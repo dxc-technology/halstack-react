@@ -8,11 +8,12 @@ import { spaces, defaultTheme, theme } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
-const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
+const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin, iconPosition = "left" }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
 
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
 
   const handleChange = (event, newValue) => {
     if (activeTabIndex == null) {
@@ -23,30 +24,36 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
     }
   };
 
+  const getLabelForTab = (tab) => {
+    return (
+      <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+        {tab.icon ? (
+          <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+            {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
+          </TabIconContainer>
+        ) : (
+          tab.iconSrc && <TabIcon src={tab.iconSrc} />
+        )}
+        <LabelTextContainer>{tab.label}</LabelTextContainer>
+      </TabLabelContainer>
+    );
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
-      <DxCTabs margin={margin}>
+      <DxCTabs margin={margin} hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
         <Underline />
         <Tabs
           value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
           onChange={handleChange}
           variant="scrollable"
-          scrollButtons="off"
+          scrollButtons="auto"
         >
           {tabs.map((tab, i) => {
             return (
               <Tab
                 key={`tab${i}${tab.label}`}
-                label={tab.label}
-                icon={
-                  tab.icon ? (
-                    <TabIconContainer>
-                      {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
-                    </TabIconContainer>
-                  ) : (
-                    tab.iconSrc && <TabIcon src={tab.iconSrc} />
-                  )
-                }
+                label={getLabelForTab(tab)}
                 disabled={tab.isDisabled}
                 disableRipple={true}
               />
@@ -85,10 +92,15 @@ const DxCTabs = styled.div`
         z-index: 4;
       }
     }
+    .MuiTab-root {
+      text-transform: none !important;
+    }
     .MuiButtonBase-root {
-      padding: 12px 16px;
-      height: 48px;
-      /* height: auto; */
+      padding: ${(props) =>
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") ||
+        "8px 16px"};
+      height: ${(props) =>
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
       font-family: "Open Sans", sans-serif;
       font-weight: 600;
       font-size: 16px;
@@ -122,8 +134,28 @@ const DxCTabs = styled.div`
     .MuiTabs-indicator {
       background-color: ${(props) => props.theme.selectedFontColor};
     }
+
+    .MuiTabs-scrollButtons {
+      min-width: 48px;
+      width: 48px;
+      padding: 0;
+    }
+
+    @media (max-width: 599.95px) {
+      .MuiTabs-scrollButtonsDesktop {
+        display: flex;
+      }
+    }
   }
 `;
+
+const TabLabelContainer = styled.div`
+  display: flex;
+  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
+  align-items: center;
+`;
+
+const LabelTextContainer = styled.div``;
 
 const TabIcon = styled.img`
   max-height: 22px;
@@ -133,7 +165,8 @@ const TabIcon = styled.img`
 const TabIconContainer = styled.div`
   max-height: 22px;
   max-width: 22px;
-  margin-bottom: 8px !important;
+  margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
+  margin-right: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};
   overflow: hidden;
   img,
   svg {
@@ -162,12 +195,14 @@ DxcTabs.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  iconPosition: PropTypes.oneOf(["top", "left"]),
 };
 
 DxcTabs.defaultProps = {
   activeTabIndex: null,
   tabs: [],
   onTabClick: () => {},
+  iconPosition: "top",
 };
 
 export default DxcTabs;
