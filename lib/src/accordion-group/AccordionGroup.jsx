@@ -90,11 +90,11 @@ const AccordionGroupContainer = styled.div`
     }
   }
 
-  .MuiPaper-root {
+  div .MuiPaper-root {
     border-radius: 0px !important;
 
     .MuiButtonBase-root {
-      border-radius: 0px;
+      border-radius: 0px !important;
       border-bottom: 1px solid;
       border-color: #00000024;
 
