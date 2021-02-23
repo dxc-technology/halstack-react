@@ -199,7 +199,7 @@ function Tabs() {
           ]}
         />
       </div>
-      <div className="test-case" id="text-icon-top-tabs">
+      <div className="test-case" id="text-icon-left-tabs">
         <h4>With text and icon at the left</h4>
         <DxcTabs
           activeTabIndex={activeTab}
