@@ -241,8 +241,8 @@ function Tabs() {
           ]}
         />
       </div>
-      <div className="test-case" id="text-icon-left-tabs">
-        <h4>With text and icon at the left</h4>
+      <div className="test-case" id="text-icon-top-tabs">
+        <h4>With text and icon on the top</h4>
         <DxcTabs
           activeTabIndex={activeTab}
           onTabClick={onTabClick}
