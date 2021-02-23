@@ -70,8 +70,9 @@ function Tabs() {
               label: "Tab 1",
             },
             {
-              label: "Tab 2",
+              label: "Tab2",
             },
+
             {
               label: "Tab 3",
             },

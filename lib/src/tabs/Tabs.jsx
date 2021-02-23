@@ -5,6 +5,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { spaces, defaultTheme, theme } from "../common/variables.js";
+import DxcBadge from "../badge/Badge";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
@@ -26,16 +27,23 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin, iconPosition =
 
   const getLabelForTab = (tab) => {
     return (
-      <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-        {tab.icon ? (
-          <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
-          </TabIconContainer>
-        ) : (
-          tab.iconSrc && <TabIcon src={tab.iconSrc} />
+      <MainLabelContainer hasBadge={tab.notificationNumber}>
+        <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+          {tab.icon ? (
+            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+              {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
+            </TabIconContainer>
+          ) : (
+            tab.iconSrc && <TabIcon src={tab.iconSrc} />
+          )}
+          <LabelTextContainer>{tab.label}</LabelTextContainer>
+        </TabLabelContainer>
+        {tab.notificationNumber && tab.notificationNumber !== false && (
+          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+            <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
+          </BadgeContainer>
         )}
-        <LabelTextContainer>{tab.label}</LabelTextContainer>
-      </TabLabelContainer>
+      </MainLabelContainer>
     );
   };
 
@@ -50,6 +58,7 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin, iconPosition =
           scrollButtons="auto"
         >
           {tabs.map((tab, i) => {
+            const tabContent = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
             return (
               <Tab
                 key={`tab${i}${tab.label}`}
@@ -64,6 +73,24 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin, iconPosition =
     </ThemeProvider>
   );
 };
+const TabLabelContainer = styled.div`
+  display: flex;
+  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
+  align-items: center;
+`;
+const LabelTextContainer = styled.div``;
+const BadgeContainer = styled.div`
+  display: flex;
+  align-items: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "end") || "center"};
+  position: relative;
+  margin-right: 12px;
+`;
+const MainLabelContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-left: ${(props) => (props.hasBadge && "19px") || "unset"};
+  margin-right: ${(props) => (props.hasBadge && "19px") || "unset"};
+`;
 
 const Underline = styled.div`
   left: 0px;
@@ -149,14 +176,6 @@ const DxCTabs = styled.div`
   }
 `;
 
-const TabLabelContainer = styled.div`
-  display: flex;
-  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
-  align-items: center;
-`;
-
-const LabelTextContainer = styled.div``;
-
 const TabIcon = styled.img`
   max-height: 22px;
   max-width: 22px;
@@ -184,6 +203,7 @@ DxcTabs.propTypes = {
       icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
       isDisabled: PropTypes.boolean,
+      notificationNumber: PropTypes.oneOfType([PropTypes.boolean, PropTypes.string]),
     })
   ),
   margin: PropTypes.oneOfType([

@@ -32,6 +32,7 @@ import Chip from "./pages/Chip";
 import ApplicationLayout from "./pages/ApplicationLayout";
 import ToggleGroup from "./pages/ToggleGroup";
 import AccordionGroup from "./pages/AccordionGroup";
+import Badge from "./pages/Badge";
 
 export default [
   {
@@ -48,6 +49,11 @@ export default [
     path: "alert",
     name: "Alert",
     component: Alert,
+  },
+  {
+    path: "badge",
+    name: "Badge",
+    component: Badge,
   },
   {
     path: "button",
