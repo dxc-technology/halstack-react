@@ -13,6 +13,7 @@ import TabsTokensTable from "./Tokens.jsx";
 import controlledTabs from "./examples/controlledTabs";
 import uncontrolledTabs from "./examples/uncontrolledTabs";
 import iconsTabs from "./examples/iconsTabs";
+import notificationTabs from "./examples/notificationTabs";
 import withContentTabs from "./examples/withContentTabs";
 
 function Tabs() {
@@ -67,6 +68,10 @@ function Tabs() {
                   example={uncontrolledTabs}
                 ></Example>
                 <Example title="Tabs with icons" example={iconsTabs}></Example>
+                <Example
+                  title="Notification tabs"
+                  example={notificationTabs}
+                ></Example>
                 <Example
                   title="Tabs with content"
                   example={withContentTabs}
