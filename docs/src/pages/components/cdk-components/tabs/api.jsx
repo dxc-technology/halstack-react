@@ -36,6 +36,15 @@ const dropdownPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>iconPosition: 'top' | 'left'</td>
+        <td>
+          <code>'top'</code>
+        </td>
+        <td>
+          Whether the icon should appear above or to the left of the label.
+        </td>
+      </tr>
+      <tr>
         <td>activeTabIndex: number</td>
         <td></td>
         <td>
