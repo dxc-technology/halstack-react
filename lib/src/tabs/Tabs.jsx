@@ -5,13 +5,16 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { spaces, defaultTheme, theme } from "../common/variables.js";
+import DxcBadge from "../badge/Badge";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
-const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
+const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin, iconPosition = "left" }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
+
   const customTheme = useContext(ThemeContext);
   const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
 
   const handleChange = (event, newValue) => {
     if (activeTabIndex == null) {
@@ -22,30 +25,44 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
     }
   };
 
+  const getLabelForTab = (tab) => {
+    return (
+      <MainLabelContainer hasBadge={tab.notificationNumber}>
+        <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+          {tab.icon ? (
+            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+              {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
+            </TabIconContainer>
+          ) : (
+            tab.iconSrc && <TabIcon src={tab.iconSrc} />
+          )}
+          <LabelTextContainer>{tab.label}</LabelTextContainer>
+        </TabLabelContainer>
+        {tab.notificationNumber && tab.notificationNumber !== false && (
+          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+            <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
+          </BadgeContainer>
+        )}
+      </MainLabelContainer>
+    );
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
-      <DxCTabs margin={margin}>
-        <Underline></Underline>
+      <DxCTabs margin={margin} hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+        <Underline />
         <Tabs
           value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
           onChange={handleChange}
           variant="scrollable"
-          scrollButtons="off"
+          scrollButtons="auto"
         >
           {tabs.map((tab, i) => {
+            const tabContent = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
             return (
               <Tab
                 key={`tab${i}${tab.label}`}
-                label={tab.label}
-                icon={
-                  tab.icon ? (
-                    <TabIconContainer>
-                      {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
-                    </TabIconContainer>
-                  ) : (
-                    tab.iconSrc && <TabIcon src={tab.iconSrc} />
-                  )
-                }
+                label={getLabelForTab(tab)}
                 disabled={tab.isDisabled}
                 disableRipple={true}
               />
@@ -56,14 +73,32 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin }) => {
     </ThemeProvider>
   );
 };
+const TabLabelContainer = styled.div`
+  display: flex;
+  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
+  align-items: center;
+`;
+const LabelTextContainer = styled.div``;
+const BadgeContainer = styled.div`
+  display: flex;
+  align-items: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "end") || "center"};
+  position: relative;
+  margin-right: 12px;
+`;
+const MainLabelContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-left: ${(props) => (props.hasBadge && "19px") || "unset"};
+  margin-right: ${(props) => (props.hasBadge && "19px") || "unset"};
+`;
 
 const Underline = styled.div`
   left: 0px;
   bottom: 0;
   width: 100%;
-  height: 2px;
+  height: 1px;
   position: absolute;
-  background-color: ${(props) => props.theme.underlinedColor};
+  background-color: ${(props) => props.theme.divider};
 `;
 
 const DxCTabs = styled.div`
@@ -84,36 +119,59 @@ const DxCTabs = styled.div`
         z-index: 4;
       }
     }
+    .MuiTab-root {
+      text-transform: none !important;
+    }
     .MuiButtonBase-root {
-      padding: 12px;
-      min-height: 48px;
-      height: auto;
+      padding: ${(props) =>
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") ||
+        "8px 16px"};
+      height: ${(props) =>
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
       font-family: "Open Sans", sans-serif;
-      font-size: 14px;
-      /* height: 64px cuando vengan con icono y texto */
-      min-width: 180px;
+      font-weight: 600;
+      font-size: 16px;
+      min-width: 90px;
+      max-width: 360px;
       color: ${(props) => props.theme.fontColor};
-      margin: 1px 0;
+      &:hover {
+        background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
+      }
+      &:active {
+        background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
+      }
       &:not(.Mui-selected) {
-        background-color: ${(props) => `${props.theme.selectedBackgroundColor}${props.theme.backgroundColor}`};
-        color: ${(props) => `${props.theme.fontColor}${props.theme.notSelectedOpacity}`};
+        background-color: ${(props) => props.theme.backgroundColor};
+        color: ${(props) => props.theme.fontColor};
       }
       &.Mui-selected {
-        background-color: ${(props) => props.theme.selectedBackgroundColor};
+        background-color: ${(props) => props.theme.backgroundColor};
         color: ${(props) => props.theme.selectedFontColor};
       }
       &.Mui-disabled {
         cursor: not-allowed !important;
         pointer-events: all;
-        opacity: ${(props) => props.theme.disabled};
+        opacity: ${(props) => props.theme.disabledFontcolor};
       }
       &:focus {
-        outline: ${(props) => props.theme.focusColor} auto 1px;
+        outline: ${(props) => props.theme.selectedFontColor} auto 1px;
       }
     }
 
     .MuiTabs-indicator {
-      background-color: ${(props) => props.theme.selectedUnderlinedColor};
+      background-color: ${(props) => props.theme.selectedFontColor};
+    }
+
+    .MuiTabs-scrollButtons {
+      min-width: 48px;
+      width: 48px;
+      padding: 0;
+    }
+
+    @media (max-width: 599.95px) {
+      .MuiTabs-scrollButtonsDesktop {
+        display: flex;
+      }
     }
   }
 `;
@@ -126,6 +184,8 @@ const TabIcon = styled.img`
 const TabIconContainer = styled.div`
   max-height: 22px;
   max-width: 22px;
+  margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
+  margin-right: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};
   overflow: hidden;
   img,
   svg {
@@ -143,6 +203,7 @@ DxcTabs.propTypes = {
       icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
       isDisabled: PropTypes.boolean,
+      notificationNumber: PropTypes.oneOfType([PropTypes.boolean, PropTypes.string]),
     })
   ),
   margin: PropTypes.oneOfType([
@@ -154,12 +215,14 @@ DxcTabs.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  iconPosition: PropTypes.oneOf(["top", "left"]),
 };
 
 DxcTabs.defaultProps = {
   activeTabIndex: null,
   tabs: [],
   onTabClick: () => {},
+  iconPosition: "top",
 };
 
 export default DxcTabs;

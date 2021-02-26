@@ -13,6 +13,7 @@ import TabsTokensTable from "./Tokens.jsx";
 import controlledTabs from "./examples/controlledTabs";
 import uncontrolledTabs from "./examples/uncontrolledTabs";
 import iconsTabs from "./examples/iconsTabs";
+import notificationTabs from "./examples/notificationTabs";
 import withContentTabs from "./examples/withContentTabs";
 
 function Tabs() {
@@ -27,7 +28,11 @@ function Tabs() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
                 <TabsPropsTable />
               </Section>
             ),
@@ -36,7 +41,11 @@ function Tabs() {
             tabLabel: "Theming",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Theming"
+                  margin={{ bottom: "small" }}
+                />
                 <TabsTokensTable />
               </Section>
             ),
@@ -45,7 +54,11 @@ function Tabs() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Controlled Tabs"
                   example={controlledTabs}
@@ -54,9 +67,10 @@ function Tabs() {
                   title="Uncontrolled Tabs"
                   example={uncontrolledTabs}
                 ></Example>
+                <Example title="Tabs with icons" example={iconsTabs}></Example>
                 <Example
-                  title="Tabs with icons"
-                  example={iconsTabs}
+                  title="Notification tabs"
+                  example={notificationTabs}
                 ></Example>
                 <Example
                   title="Tabs with content"

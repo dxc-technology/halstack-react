@@ -11,25 +11,11 @@ const tabsTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>selectedBackgroundColor</td>
+        <td>selectedFontColor</td>
         <td>
-          <SampleComponent color="#FFFFFF"></SampleComponent>
+          <SampleComponent color="#6f2c91"></SampleComponent>
         </td>
-        <td>Applies to the selectedBackgroundColor token.</td>
-      </tr>
-      <tr>
-        <td>selectedUnderlinedColor</td>
-        <td>
-          <SampleComponent color="#6F2C91"></SampleComponent>
-        </td>
-        <td>Applies to the selectedUnderlinedColor token.</td>
-      </tr>
-      <tr>
-        <td>selectedColor</td>
-        <td>
-          <SampleComponent color="#000000"></SampleComponent>
-        </td>
-        <td>Applies to the selectedColor token.</td>
+        <td>Applies to the selectedFontColor token.</td>
       </tr>
     </DxcTable>
   );

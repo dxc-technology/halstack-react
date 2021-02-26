@@ -32,7 +32,24 @@ const dropdownPropsTable = () => {
             <li>
               <b>isDisabled</b>: Whether the tab is disabled or not.
             </li>
+            <li>
+              <b>notificationNumber</b>: It can have boolean type or number
+              type. If the value is 'true', an empty badge will appear. If it is
+              'false', no badge will appear. If a number is put it will be shown
+              as the label of the notification in the tab, taking into account
+              that if that number is greater than 99, it will appear as '+99' in
+              the badge.
+            </li>
           </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>iconPosition: 'top' | 'left'</td>
+        <td>
+          <code>'top'</code>
+        </td>
+        <td>
+          Whether the icon should appear above or to the left of the label.
         </td>
       </tr>
       <tr>
