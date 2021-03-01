@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   DxcAccordionGroup,
+  DxcAccordion,
   ThemeContext,
 } from "@dxc-technology/halstack-react";
 
@@ -195,9 +196,9 @@ function App() {
         <h4>Nested Accordion Group</h4>
         <ThemeContext.Provider>
           <DxcAccordionGroup>
-            <DxcAccordionGroup.Accordion label="Accordion14">
+            <DxcAccordionGroup.Accordion label="Accordion16">
               <DxcAccordionGroup margin="medium">
-                <DxcAccordionGroup.Accordion label="Accordion14">
+                <DxcAccordionGroup.Accordion label="Accordion17">
                   <div>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Suspendisse malesuada lacus ex, sit amet blandit leo
@@ -205,7 +206,7 @@ function App() {
                   </div>
                 </DxcAccordionGroup.Accordion>
                 <DxcAccordionGroup.Accordion
-                  label="Accordion15"
+                  label="Accordion18"
                   padding="medium"
                 >
                   <div>
@@ -216,12 +217,14 @@ function App() {
                 </DxcAccordionGroup.Accordion>
               </DxcAccordionGroup>
             </DxcAccordionGroup.Accordion>
-            <DxcAccordionGroup.Accordion label="Accordion15" padding="medium">
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </div>
+            <DxcAccordionGroup.Accordion label="Accordion18" padding="medium">
+              <DxcAccordion label="Accordion">
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </div>
+              </DxcAccordion>
             </DxcAccordionGroup.Accordion>
           </DxcAccordionGroup>
         </ThemeContext.Provider>
