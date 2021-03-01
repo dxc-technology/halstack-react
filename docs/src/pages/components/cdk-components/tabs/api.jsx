@@ -70,6 +70,11 @@ const dropdownPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>onTabHover: function</td>
+        <td></td>
+        <td>This function will be called when the user hovers a tab.</td>
+      </tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>
