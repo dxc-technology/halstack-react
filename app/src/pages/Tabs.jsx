@@ -51,6 +51,8 @@ function Tabs() {
     setActiveTab(i);
   };
 
+  const onTabHover = () => {};
+
   const onClick = () => {};
 
   const [selected, changeSelected] = useState(true);
@@ -65,6 +67,7 @@ function Tabs() {
         <DxcTabs
           activeTabIndex={activeTab}
           onTabClick={onTabClick}
+          onTabHover={onTabHover}
           tabs={[
             {
               label: "Tab 1",
@@ -147,6 +150,7 @@ function Tabs() {
         <DxcTabs
           activeTabIndex={activeTab}
           onTabClick={onTabClick}
+          onTabHover={onTabHover}
           mode="underlined"
           tabs={[
             {
@@ -199,7 +203,7 @@ function Tabs() {
           ]}
         />
       </div>
-      <div className="test-case" id="text-icon-left-tabs">
+      <div className="test-case" id="text-icon-top-tabs">
         <h4>With text and icon at the left</h4>
         <DxcTabs
           activeTabIndex={activeTab}
@@ -241,8 +245,8 @@ function Tabs() {
           ]}
         />
       </div>
-      <div className="test-case" id="text-icon-top-tabs">
-        <h4>With text and icon on the top</h4>
+      <div className="test-case" id="text-icon-left-tabs">
+        <h4>With text and icon at the left</h4>
         <DxcTabs
           activeTabIndex={activeTab}
           onTabClick={onTabClick}

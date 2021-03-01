@@ -9,7 +9,7 @@ import DxcBadge from "../badge/Badge";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
-const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin, iconPosition = "left" }) => {
+const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, iconPosition = "left" }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
 
   const customTheme = useContext(ThemeContext);
@@ -54,6 +54,7 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, margin, iconPosition =
         <Tabs
           value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
           onChange={handleChange}
+          onMouseOver={onTabHover}
           variant="scrollable"
           scrollButtons="auto"
         >
@@ -197,6 +198,7 @@ const TabIconContainer = styled.div`
 DxcTabs.propTypes = {
   activeTabIndex: PropTypes.number,
   onTabClick: PropTypes.func,
+  onTabHover: PropTypes.func,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
@@ -222,6 +224,7 @@ DxcTabs.defaultProps = {
   activeTabIndex: null,
   tabs: [],
   onTabClick: () => {},
+  onTabHover: () => {},
   iconPosition: "top",
 };
 
