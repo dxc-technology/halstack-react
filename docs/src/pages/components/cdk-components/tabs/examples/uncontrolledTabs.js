@@ -26,7 +26,7 @@ const code = `() => {
 
 const scope = {
   DxcTabs,
-  useState
+  useState,
 };
 
 export default { code, scope };

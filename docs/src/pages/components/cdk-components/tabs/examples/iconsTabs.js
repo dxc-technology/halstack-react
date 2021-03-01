@@ -47,7 +47,7 @@ const code = `() => {
 const scope = {
   DxcTabs,
   useState,
-  facebookLogo
+  facebookLogo,
 };
 
 export default { code, scope };

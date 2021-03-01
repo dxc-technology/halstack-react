@@ -79,6 +79,10 @@ const DxcDate = ({
       setAnchorEl(event.currentTarget);
     }
   };
+  const handlerPickerClose = () => {
+    setIsOpen(false);
+    handlerInputBlur(value == null ? innerValue : value);
+  };
 
   const dateTheme = createMuiTheme({
     overrides: {
@@ -240,7 +244,7 @@ const DxcDate = ({
                 },
               }}
             >
-              <ClickAwayListener onClickAway={() => setIsOpen(false)}>
+              <ClickAwayListener onClickAway={handlerPickerClose}>
                 <Paper>
                   <DatePicker
                     variant="static"
