@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../../common/OpenSans.css";
-import { colors } from "../../common/variables.js";
+import { globalTokens } from "../../common/variables.js";
 import uploadFile from "./upload_file.svg";
 import dropFile from "./upload_drop.svg";
 import Button from "../../button/Button";
@@ -11,7 +11,7 @@ import ThemeContext from "../../ThemeContext.js";
 
 const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
   const [dragging, setDragging] = React.useState(false);
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const colorsTheme = useContext(ThemeContext) || globalTokens;
 
   const text = "There are no files to upload";
   const description = "Drag and drop your files here or choose one from your computer";

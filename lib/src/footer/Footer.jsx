@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
 import "../common/OpenSans.css";
-import { spaces, responsiveSizes, theme, defaultTheme } from "../common/variables.js";
+import { spaces, responsiveSizes, componentTokens, defaultTheme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 import { getCustomTheme } from "../common/utils.js";
 
@@ -21,7 +21,7 @@ const DxcFooter = ({
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
   const [isResponsivePhone, setIsResponsivePhone] = useState(false);
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const handleResize = (refWidth) => {
     if (ref.current) {

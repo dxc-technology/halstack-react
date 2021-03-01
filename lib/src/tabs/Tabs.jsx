@@ -1,19 +1,17 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
-import { getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, iconPosition = "left" }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
 
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useTheme();
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
 
   const handleChange = (event, newValue) => {
@@ -152,7 +150,8 @@ const DxCTabs = styled.div`
       &.Mui-disabled {
         cursor: not-allowed !important;
         pointer-events: all;
-        opacity: ${(props) => props.theme.disabledFontcolor};
+        /* opacity: ${(props) => props.theme.disabledFontColor}; */
+        color: ${(props) => props.theme.disabledFontColor};
       }
       &:focus {
         outline: ${(props) => props.theme.selectedFontColor} auto 1px;

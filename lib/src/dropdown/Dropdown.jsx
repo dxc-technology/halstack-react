@@ -8,7 +8,7 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import MenuList from "@material-ui/core/MenuList";
 import "../common/OpenSans.css";
-import { theme, defaultTheme, spaces } from "../common/variables.js";
+import { componentTokens, defaultTheme, spaces } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
@@ -27,7 +27,9 @@ const DxcDropdown = ({
 }) => {
   const [width, setWidth] = useState();
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   const ref = useRef(null);
   const handleResize = () => {

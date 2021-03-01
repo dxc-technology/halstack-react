@@ -6,11 +6,11 @@ import "../../common/OpenSans.css";
 import Button from "../../button/Button";
 import uploadIcon from "./upload-button.svg";
 import dragAndDropIcon from "./drag-drop-icon.svg";
-import { colors } from "../../common/variables.js";
+import { globalTokens } from "../../common/variables.js";
 import ThemeContext from "../../ThemeContext.js";
 
 const DxcButtonsUpload = ({ addFile, onUpload }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const colorsTheme = useContext(ThemeContext) || globalTokens;
 
   const selectFile = (e) => {
     const filesObject = e.target.files;

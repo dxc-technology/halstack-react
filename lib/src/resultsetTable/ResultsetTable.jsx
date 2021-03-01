@@ -1,7 +1,7 @@
 import React, { useContext, useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { colors, spaces } from "../common/variables.js";
+import { globalTokens, spaces } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
@@ -37,7 +37,7 @@ const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, 
   minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
 const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOptions, itemsPerPageFunction, margin }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const colorsTheme = useContext(ThemeContext) || globalTokens;
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
   const [sortOrder, changeSortOrder] = useState("asc");
@@ -89,7 +89,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOption
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
   );
-  
+
   return (
     <ThemeProvider theme={colorsTheme}>
       <DxcResultsetTableContainer margin={margin}>

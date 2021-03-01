@@ -3,11 +3,11 @@ import styled, { ThemeProvider } from "styled-components";
 import "../../common/OpenSans.css";
 import PropTypes from "prop-types";
 import Transaction from "../transaction/Transaction";
-import { colors } from "../../common/variables.js";
+import { globalTokens } from "../../common/variables.js";
 import ThemeContext from "../../ThemeContext.js";
 
 const DxcTransactions = ({ transactions }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const colorsTheme = useContext(ThemeContext) || globalTokens;
 
   return (
     <ThemeProvider theme={colorsTheme}>

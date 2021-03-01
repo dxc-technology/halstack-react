@@ -2,20 +2,10 @@ import React, { useState } from "react";
 import { DxcCheckbox, ThemeContext } from "@dxc-technology/halstack-react";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  checkbox: {
+    color: "#fabada",
+    checkColor: "#ffffff",
+  },
 };
 
 function App() {

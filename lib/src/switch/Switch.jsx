@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import { colors, spaces, theme, defaultTheme } from "../common/variables.js";
+import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
@@ -22,7 +22,9 @@ const DxcSwitch = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   const handlerSwitchChange = (newValue) => {
     if (checked === undefined) {
@@ -51,7 +53,7 @@ const DxcSwitch = ({
         />
         <LabelContainer
           labelPosition={labelPosition}
-          brightness={theme}
+          brightness={componentTokens}
           onClick={disabled === true ? () => {} : handlerSwitchChange}
           disabled={disabled}
         >

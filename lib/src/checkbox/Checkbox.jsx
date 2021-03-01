@@ -4,7 +4,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
@@ -22,7 +22,9 @@ const DxcCheckbox = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   const handlerCheckboxChange = (checkboxValue) => {
     if (checked === undefined) {
@@ -42,7 +44,7 @@ const DxcCheckbox = ({
     <ThemeProvider theme={colorsTheme.checkbox}>
       <CheckboxContainer
         id={name}
-        brightness={theme}
+        brightness={componentTokens}
         labelPosition={labelPosition}
         disabled={disabled}
         margin={margin}

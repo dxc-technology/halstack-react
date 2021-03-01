@@ -4,7 +4,7 @@ import { ToggleButton } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import "../common/OpenSans.css";
-import { colors, spaces } from "../common/variables.js";
+import { globalTokens, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
@@ -21,7 +21,7 @@ const DxcToggle = ({
   margin,
   size = "fitContent",
 }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const colorsTheme = useContext(ThemeContext) || globalTokens;
 
   const handlerToggleClick = () => {
     if (!disabled && typeof onClick === "function") {
@@ -91,7 +91,8 @@ const DxcToggleContainer = styled.div`
   .MuiToggleButton-label {
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
-    color: ${(props) => (props.brightness === "dark" && props.mode === "outlined" ? props.theme.white : props.theme.black)};
+    color: ${(props) =>
+      props.brightness === "dark" && props.mode === "outlined" ? props.theme.white : props.theme.black};
   }
   .MuiButtonBase-root {
     width: ${(props) => calculateWidth(props.margin, props.size)};
@@ -99,9 +100,14 @@ const DxcToggleContainer = styled.div`
     background-color: ${(props) => (props.mode !== "outlined" ? props.theme.darkWhite : "transparent")};
     &:hover {
       background-color: ${(props) =>
-        props.mode === "basic" ? props.theme.lightGrey : props.brightness === "dark" ? props.theme.darkGrey : props.theme.darkWhite};
+        props.mode === "basic"
+          ? props.theme.lightGrey
+          : props.brightness === "dark"
+          ? props.theme.darkGrey
+          : props.theme.darkWhite};
       .MuiToggleButton-label {
-        color: ${(props) => (props.brightness === "dark" && props.mode === "outlined" ? props.theme.white : props.theme.black)};
+        color: ${(props) =>
+          props.brightness === "dark" && props.mode === "outlined" ? props.theme.white : props.theme.black};
       }
     }
   }
@@ -123,7 +129,11 @@ const DxcToggleContainer = styled.div`
 
   .MuiToggleButton-root.Mui-selected {
     background-color: ${(props) =>
-      props.mode === "outlined" ? (props.brightness === "light" ? props.theme.darkWhite : "transparent") : props.theme.yellow};
+      props.mode === "outlined"
+        ? props.brightness === "light"
+          ? props.theme.darkWhite
+          : "transparent"
+        : props.theme.yellow};
     &:hover {
       background-color: ${(props) =>
         props.mode === "basic" && props.brightness === "light"

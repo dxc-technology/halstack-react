@@ -1,23 +1,19 @@
 import React from "react";
-import { DxcToggleGroup } from "@dxc-technology/halstack-react";
+import { DxcToggleGroup, ThemeContext } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import twitterPath from "../images/twitter-black.svg";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  toggleGroup: {
+    selectedBackgroundColor: "red",
+    selectedBackgroundHoverColor: "blue",
+    selectedFontColor: "grey",
+    selectedHoverFontColor: "purple",
+    unselectedBackgroundColor: "beige",
+    unselectedBackgroundHoverColor: "#ffffff",
+    unselectedFontColor: "#fabada",
+    unselectedHoverFontColor: "pink",
+  },
 };
 
 const favoriteSVG = () => {
@@ -211,6 +207,18 @@ function App() {
             options={optionsWithoutIcon}
             margin="xxlarge"
           />
+        </div>
+      </div>
+      <div>
+        <h4>Custom toggle group</h4>
+        <div className="test-case" id="custom-toggle-group">
+          <ThemeContext.Provider value={colors}>
+            <DxcToggleGroup
+              label="Choose one"
+              options={optionsWithoutIcon}
+              margin="xxlarge"
+            />
+          </ThemeContext.Provider>
         </div>
       </div>
     </div>

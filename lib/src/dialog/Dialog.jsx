@@ -2,13 +2,15 @@ import React, { useContext, useState, useEffect, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
-import { defaultTheme, theme, spaces, responsiveSizes } from "../common/variables.js";
+import { defaultTheme, componentTokens, spaces, responsiveSizes } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => (getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme))), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
   const [isResponsive, setIsResponsive] = useState();
 
   const handleClose = () => {
@@ -69,10 +71,11 @@ const DialogContainer = styled(Dialog)`
   overflow: unset;
 
   .MuiBackdrop-root {
-    background-color: ${(props) => (props.overlay === true ? props.theme.overlayColor + props.theme.overlayOpacity : "transparent")};
+    background-color: ${(props) =>
+      props.overlay === true ? props.theme.overlayColor + props.theme.overlayOpacity : "transparent"};
   }
   .MuiDialog-paperWidthSm {
-    background-color: ${(props) => (props.theme.backgroundColor)};
+    background-color: ${(props) => props.theme.backgroundColor};
     max-width: ${(props) => (props.isResponsive ? "92%" : "80%")};
     min-width: ${(props) => (props.isResponsive ? "92%" : "800px")};
     box-sizing: border-box;

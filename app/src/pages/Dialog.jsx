@@ -1,22 +1,5 @@
 import React, { useState } from "react";
-import { DxcDialog, DxcButton, ThemeContext } from "@dxc-technology/halstack-react";
-
-const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
-};
+import { DxcDialog, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
   const [isDialog1Visible, setIsDialog1Visible] = useState(false);
@@ -78,19 +61,6 @@ function App() {
             margin="small"
           ></DxcButton>
         </DxcDialog>
-      )}
-
-      <DxcButton
-        label="Custom Dialog"
-        onClick={onClickDialog4}
-        margin="medium"
-      ></DxcButton>
-      {isDialog4Visible && (
-        <ThemeContext.Provider value={colors}>
-          <DxcDialog isCloseVisible={true} onCloseClick={onClickDialog4}>
-            Close Icon
-          </DxcDialog>
-        </ThemeContext.Provider>
       )}
     </div>
   );

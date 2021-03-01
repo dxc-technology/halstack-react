@@ -1,8 +1,8 @@
 import React, { useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
+import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 import ValidIcon from "./valid_icon.svg";
 import InvalidIcon from "./invalid_icon.svg";
@@ -11,7 +11,9 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
   const [innerCurrent, setInnerCurrentStep] = React.useState(currentStep || 0);
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   const handleStepClick = (newValue) => {
     if (currentStep == null) {

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
 import { DxcHeader, DxcFooter, DxcSidenav } from "@dxc-technology/halstack-react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { spaces, responsiveSizes, defaultTheme, theme } from "../common/variables.js";
+import { spaces, responsiveSizes, defaultTheme, componentTokens } from "../common/variables.js";
 import linkedinLogo from "./linkedin.svg";
 import twitterLogo from "./twitter.svg";
 import facebookLogo from "./facebook.svg";
@@ -89,7 +89,7 @@ const DxcApplicationLayout = ({ children }) => {
   const ref = useRef(null);
 
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
   const [isResponsive, setIsResponsive] = useState();

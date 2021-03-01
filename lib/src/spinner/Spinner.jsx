@@ -3,13 +3,15 @@ import styled, { ThemeProvider } from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcSpinner = ({ label = "", value, showValue = false, mode = "large", margin }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   return (
     <ThemeProvider theme={colorsTheme.spinner}>
@@ -72,7 +74,8 @@ const DXCSpinner = styled.div`
   font-family: "Open Sans", sans-serif;
   border-radius: 80px;
   border: ${(props) =>
-    (props.mode === "small" && `6px solid${props.theme.totalCircleColor}`) || `8.5px solid ${props.theme.totalCircleColor}`};
+    (props.mode === "small" && `6px solid${props.theme.totalCircleColor}`) ||
+    `8.5px solid ${props.theme.totalCircleColor}`};
   width: ${(props) => (props.mode === "small" && "30px") || "120px"};
   height: ${(props) => (props.mode === "small" && "30px") || "120px"};
   z-index: ${(props) => (props.mode === "overlay" ? "100" : "")};

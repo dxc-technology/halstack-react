@@ -4,11 +4,11 @@ import "../../common/OpenSans.css";
 import PropTypes from "prop-types";
 import FileToUpload from "../file-upload/FileToUpload";
 import ButtonsUpload from "../buttons-upload/ButtonsUpload";
-import { colors } from "../../common/variables.js";
+import { globalTokens } from "../../common/variables.js";
 import ThemeContext from "../../ThemeContext.js";
 
 const DxcFilesToUpload = ({ filesToUpload, onUpload, addFile }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const colorsTheme = useContext(ThemeContext) || globalTokens;
 
   const handleDrag = (e) => {
     e.preventDefault();

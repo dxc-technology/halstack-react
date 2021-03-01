@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 import DxcRequired from "../common/RequiredComponent";
@@ -25,7 +25,9 @@ const DxcTextarea = ({
 }) => {
   const [innerValue, setInnerValue] = useState("");
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   const handlerTextareaChange = (event) => {
     if (value === null || value === undefined) {

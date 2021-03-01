@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
 import DxcDropdown from "../dropdown/Dropdown";
 import CloseIcon from "./close_icon.svg";
-import { spaces, responsiveSizes, defaultTheme, theme } from "../common/variables.js";
+import { spaces, responsiveSizes, defaultTheme, componentTokens } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
@@ -36,7 +36,7 @@ const DxcHeader = ({
   padding,
 }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
 
   function onClickHandle() {
     if (typeof onClick === "function") {

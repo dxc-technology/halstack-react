@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import Popper from "@material-ui/core/Popper";
 
-import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 import errorIcon from "./error.svg";
@@ -65,7 +65,9 @@ const DxcInputText = ({
   const [isError, changeIsError] = useState(false);
 
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   const changeValue = (newValue) => {
     if (value === null || value === undefined) {
