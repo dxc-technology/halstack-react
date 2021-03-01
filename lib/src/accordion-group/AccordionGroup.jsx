@@ -65,6 +65,50 @@ const AccordionGroupContainer = styled.div`
 
   font-family: "Open Sans", sans-serif;
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
+
+  &>div:first-child {
+    .MuiPaper-root {
+      border-top-left-radius: 4px !important;
+      border-top-right-radius: 4px !important;
+
+      .MuiButtonBase-root {
+        border-top-left-radius: 4px !important;
+        border-top-right-radius: 4px !important;
+      }
+    }
+  }
+
+  &>div:last-child {
+    .MuiPaper-root {
+      border-bottom-left-radius: 4px !important;
+      border-bottom-right-radius: 4px !important;
+
+      .MuiButtonBase-root {
+        border-bottom-left-radius: 4px !important;
+        border-bottom-right-radius: 4px !important;
+      }
+    }
+  }
+
+  div .MuiPaper-root {
+    border-radius: 0px !important;
+
+    .MuiButtonBase-root {
+      border-radius: 0px !important;
+      border-bottom: 1px solid;
+      border-color: #00000024;
+
+      .MuiButtonBase-root {
+        border: none;
+      }
+    }
+
+    .MuiCollapse-container {
+      border-bottom: 1px solid;
+      border-radius: 0;
+      border-color: #00000024;
+    }
+  }
 `;
 
 DxcAccordionGroup.propTypes = {

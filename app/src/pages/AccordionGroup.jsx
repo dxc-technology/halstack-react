@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import {
   DxcAccordionGroup,
-  ThemeContext
+  DxcAccordion,
+  ThemeContext,
 } from "@dxc-technology/halstack-react";
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
   };
 
   const onCloseControlled = (i) => {
-    setIndexClose((prevValue) => {return prevValue === i ? null : i});
+    setIndexClose((prevValue) => {
+      return prevValue === i ? null : i;
+    });
   };
 
   return (
@@ -74,7 +77,11 @@ function App() {
             indexActive={indexClose}
             onActiveChange={onCloseControlled}
           >
-            <DxcAccordionGroup.Accordion label="Accordion6" padding="medium" margin="large">
+            <DxcAccordionGroup.Accordion
+              label="Accordion6"
+              padding="medium"
+              margin="large"
+            >
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -94,10 +101,7 @@ function App() {
       <div className="test-case" id="light-theme-default">
         <h4>Accordion Group Controlled with static index active</h4>
         <ThemeContext.Provider>
-          <DxcAccordionGroup
-            margin="xlarge"
-            indexActive={0}
-          >
+          <DxcAccordionGroup margin="xlarge" indexActive={0}>
             <DxcAccordionGroup.Accordion label="Accordion8" padding="medium">
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -120,7 +124,9 @@ function App() {
         </ThemeContext.Provider>
       </div>
       <div className="test-case" id="light-theme-default">
-        <h4>Accordion Group Controlled with static index active and function</h4>
+        <h4>
+          Accordion Group Controlled with static index active and function
+        </h4>
         <ThemeContext.Provider>
           <DxcAccordionGroup
             margin="xlarge"
@@ -134,10 +140,7 @@ function App() {
                 eget.
               </div>
             </DxcAccordionGroup.Accordion>
-            <DxcAccordionGroup.Accordion
-              label="Accordion11"
-              padding="medium"
-            >
+            <DxcAccordionGroup.Accordion label="Accordion11" padding="medium">
               <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
@@ -181,10 +184,47 @@ function App() {
             </DxcAccordionGroup.Accordion>
             <DxcAccordionGroup.Accordion label="Accordion15" padding="medium">
               <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
               </div>
+            </DxcAccordionGroup.Accordion>
+          </DxcAccordionGroup>
+        </ThemeContext.Provider>
+      </div>
+      <div className="test-case" id="light-theme-default">
+        <h4>Nested Accordion Group</h4>
+        <ThemeContext.Provider>
+          <DxcAccordionGroup>
+            <DxcAccordionGroup.Accordion label="Accordion16">
+              <DxcAccordionGroup margin="medium">
+                <DxcAccordionGroup.Accordion label="Accordion17">
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Suspendisse malesuada lacus ex, sit amet blandit leo
+                    lobortis eget.
+                  </div>
+                </DxcAccordionGroup.Accordion>
+                <DxcAccordionGroup.Accordion
+                  label="Accordion18"
+                  padding="medium"
+                >
+                  <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Suspendisse malesuada lacus ex, sit amet blandit leo
+                    lobortis eget.
+                  </div>
+                </DxcAccordionGroup.Accordion>
+              </DxcAccordionGroup>
+            </DxcAccordionGroup.Accordion>
+            <DxcAccordionGroup.Accordion label="Accordion18" padding="medium">
+              <DxcAccordion label="Accordion">
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </div>
+              </DxcAccordion>
             </DxcAccordionGroup.Accordion>
           </DxcAccordionGroup>
         </ThemeContext.Provider>
