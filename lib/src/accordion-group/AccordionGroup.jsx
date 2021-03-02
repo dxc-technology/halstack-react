@@ -66,35 +66,11 @@ const AccordionGroupContainer = styled.div`
   font-family: "Open Sans", sans-serif;
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
 
-  &>div:first-child {
-    .MuiPaper-root {
-      border-top-left-radius: 4px !important;
-      border-top-right-radius: 4px !important;
-
-      .MuiButtonBase-root {
-        border-top-left-radius: 4px !important;
-        border-top-right-radius: 4px !important;
-      }
-    }
-  }
-
-  &>div:last-child {
-    .MuiPaper-root {
-      border-bottom-left-radius: 4px !important;
-      border-bottom-right-radius: 4px !important;
-
-      .MuiButtonBase-root {
-        border-bottom-left-radius: 4px !important;
-        border-bottom-right-radius: 4px !important;
-      }
-    }
-  }
-
-  div .MuiPaper-root {
-    border-radius: 0px !important;
+  .MuiPaper-root {
+    border-radius: 0px;
 
     .MuiButtonBase-root {
-      border-radius: 0px !important;
+      border-radius: 0px;
       border-bottom: 1px solid;
       border-color: #00000024;
 
@@ -107,6 +83,39 @@ const AccordionGroupContainer = styled.div`
       border-bottom: 1px solid;
       border-radius: 0;
       border-color: #00000024;
+    }
+  }
+
+  & > div:first-child {
+    & > div:first-child {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+
+      & > .Mui-expanded {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+    }
+  }
+
+  & > div:last-child {
+    & > div:first-child {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+
+      & > .Mui-expanded {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+
+      & > .MuiButtonBase-root {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
     }
   }
 `;
