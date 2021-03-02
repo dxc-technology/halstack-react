@@ -66,23 +66,19 @@ const AccordionGroupContainer = styled.div`
   font-family: "Open Sans", sans-serif;
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
 
-  .MuiPaper-root {
-    border-radius: 0px;
-
-    .MuiButtonBase-root {
-      border-radius: 0px;
-      border-bottom: 1px solid;
-      border-color: #00000024;
-
-      .MuiButtonBase-root {
-        border: none;
-      }
-    }
-
-    .MuiCollapse-container {
-      border-bottom: 1px solid;
+  & > :not(div:last-child) {
+    & > div:first-child {
       border-radius: 0;
+      border-bottom: 1px solid;
       border-color: #00000024;
+
+      & > .Mui-expanded {
+        border-radius: 0;
+      }
+
+      & > .MuiButtonBase-root {
+        border-radius: 0;
+      }
     }
   }
 
@@ -92,8 +88,19 @@ const AccordionGroupContainer = styled.div`
       border-bottom-right-radius: 0;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
+      border-bottom: 1px solid;
+      border-color: #00000024;
 
       & > .Mui-expanded {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+
+      & > .MuiButtonBase-root {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
       }
@@ -110,11 +117,15 @@ const AccordionGroupContainer = styled.div`
       & > .Mui-expanded {
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
       }
 
       & > .MuiButtonBase-root {
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
       }
     }
   }
