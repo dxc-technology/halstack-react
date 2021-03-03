@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import "../../common/OpenSans.css";
 import styled, { ThemeProvider } from "styled-components";
-import { colors } from "../../common/variables.js";
+import { globalTokens } from "../../common/variables.js";
 import closeIcon from "./close.svg";
 import defaultIcon from "./file-icon.svg";
 import videoIcon from "./video-icon.svg";
@@ -13,7 +13,7 @@ import ThemeContext from "../../ThemeContext.js";
 const DxcFileToUpload = ({ name = "", type = "", image, onDelete }) => {
   const icon = (type.includes("video") && videoIcon) || (type.includes("audio") && audioIcon) || defaultIcon;
   const hasImage = image && image.includes("image");
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const colorsTheme = useContext(ThemeContext) || globalTokens;
 
   return (
     <ThemeProvider theme={colorsTheme}>

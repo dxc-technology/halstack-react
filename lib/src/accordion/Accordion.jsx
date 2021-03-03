@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { getCustomTheme, getMargin } from "../common/utils.js";
-import { spaces, defaultTheme, theme, responsiveSizes } from "../common/variables.js";
+import { spaces, defaultTheme, componentTokens, responsiveSizes } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcAccordion = ({
@@ -24,7 +24,9 @@ const DxcAccordion = ({
 }) => {
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
   const [isResponsive, setIsResponsive] = useState();
 
   const handleResize = (width) => {
@@ -72,9 +74,7 @@ const DxcAccordion = ({
             <AccordionInfo>
               <AccordionLabel>{label}</AccordionLabel>
               {icon ? (
-                <IconContainer>
-                  {typeof icon === "object" ? icon : React.createElement(icon)}
-                </IconContainer>
+                <IconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</IconContainer>
               ) : (
                 iconSrc && <AccordionIcon src={iconSrc} />
               )}

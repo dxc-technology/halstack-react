@@ -3,13 +3,15 @@ import styled, { ThemeProvider } from "styled-components";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, theme } from "../common/variables.js";
+import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcProgressBar = ({ label = "", overlay = true, value, showValue = false, margin }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   return (
     <ThemeProvider theme={colorsTheme.progressBar}>

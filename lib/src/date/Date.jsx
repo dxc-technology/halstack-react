@@ -9,10 +9,9 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 import "../common/OpenSans.css";
-import { colors, spaces, theme, defaultTheme } from "../common/variables.js";
+import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
 import calendarIcon from "./calendar.svg";
-import calendarDarkIcon from "./calendar_dark.svg";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcDate = ({
@@ -35,7 +34,9 @@ const DxcDate = ({
   const [anchorEl, setAnchorEl] = useState(null);
 
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   function handleMenuItemClick(date) {
     const stringValue = moment(date).format(format.toUpperCase());

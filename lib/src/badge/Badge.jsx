@@ -1,14 +1,16 @@
 import React, { useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { theme, defaultTheme } from "../common/variables.js";
+import { componentTokens, defaultTheme } from "../common/variables.js";
 import ThemeContext from "../ThemeContext.js";
 import "../common/OpenSans.css";
 import { getCustomTheme } from "../common/utils.js";
 
 const DxcBadge = ({ notificationText }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   return (
     <ThemeProvider theme={colorsTheme.chip}>

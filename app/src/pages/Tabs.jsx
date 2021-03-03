@@ -3,6 +3,7 @@ import {
   DxcTabs,
   DxcButton,
   DxcSwitch,
+  ThemeProvider,
   ThemeContext,
 } from "@dxc-technology/halstack-react";
 import twitterIcon from "../images/twitter-black.svg";
@@ -38,9 +39,11 @@ const linkedinSVG = () => {
 
 const colors = {
   tabs: {
-    selectedBackgroundColor: "#1CEE6E",
-    selectedUnderlinedColor: "#66E250",
-    selectedFontColor: "#6427E7",
+    selectedFontColor: "#fabada",
+  },
+  button: {
+    color: "#FABADA",
+    hoverColor: "grey",
   },
 };
 
@@ -366,12 +369,14 @@ function Tabs() {
             <div
               style={{ height: "250px", background: "#D9D9D9", margin: "15px" }}
             >
-              <DxcButton
-                mode="primary"
-                label="Button"
-                onClick={onClick}
-                margin="medium"
-              />
+              <ThemeContext.Provider value={colors}>
+                <DxcButton
+                  mode="primary"
+                  label="Button"
+                  onClick={onClick}
+                  margin="medium"
+                />
+              </ThemeContext.Provider>
               <DxcSwitch
                 label="Switch"
                 margin="medium"
@@ -693,32 +698,6 @@ function Tabs() {
           />
         </div>
       </div>
-      <div className="test-case" id="custom-colors">
-        <h4>Custom Tabs</h4>
-        <ThemeContext.Provider value={colors}>
-          <DxcTabs
-            activeTabIndex={activeTab}
-            onTabClick={onTabClick}
-            tabs={[
-              {
-                label: "Tab 1",
-              },
-              {
-                label: "Tab 2",
-              },
-              {
-                label: "Tab 3",
-              },
-              {
-                label: "Tab 3",
-              },
-              {
-                label: "Tab 3",
-              },
-            ]}
-          />
-        </ThemeContext.Provider>
-      </div>
       <div className="test-case" id="badgeTabs-only-label">
         <h5>Tabs with badges (Only label)</h5>
         <DxcTabs
@@ -829,6 +808,33 @@ function Tabs() {
           ]}
         />
       </div>
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Tabs</h4>
+        <ThemeProvider theme={colors}>
+          <DxcTabs
+            activeTabIndex={activeTab}
+            onTabClick={onTabClick}
+            tabs={[
+              {
+                label: "Tab 1",
+              },
+              {
+                label: "Tab 2",
+              },
+              {
+                label: "Tab 3",
+              },
+              {
+                label: "Tab 3",
+              },
+              {
+                label: "Tab 3",
+              },
+            ]}
+          />
+        </ThemeProvider>
+      </div>
+      
     </div>
   );
 }

@@ -14,11 +14,11 @@ import imageIconError from "./image-icon-err.svg";
 import videoIconError from "./video-icon-err.svg";
 import audioIconError from "./audio-icon-err.svg";
 import Spinner from "../../spinner/Spinner";
-import { colors } from "../../common/variables.js";
+import { globalTokens } from "../../common/variables.js";
 import ThemeContext from "../../ThemeContext.js";
 
 const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => {
-  const colorsTheme = useContext(ThemeContext) || colors;
+  const colorsTheme = useContext(ThemeContext) || globalTokens;
   const icon =
     (status === "error" &&
       ((type.includes("image") && imageIconError) ||

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcWizard } from "@dxc-technology/halstack-react";
+import { DxcWizard, ThemeContext } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
 
 const homeSVG = () => {
@@ -13,6 +13,12 @@ const homeSVG = () => {
       </g>
     </svg>
   );
+};
+const colors = {
+  wizard: {
+    selectedBackgroundColor: "#fabada",
+    selectedFont: "blue",
+  },
 };
 
 function Wizard() {
@@ -124,6 +130,24 @@ function Wizard() {
             },
           ]}
         ></DxcWizard>
+      </div>
+      <div className="test-case" id="custom-wizard">
+        <h4>Custom wizard</h4>
+        <ThemeContext.Provider value={colors}>
+          <DxcWizard
+            steps={[
+              {
+                label: "First step",
+              },
+              {
+                label: "Second step",
+              },
+              {
+                label: "Third step",
+              },
+            ]}
+          ></DxcWizard>
+        </ThemeContext.Provider>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import "../common/OpenSans.css";
-import { spaces, theme, defaultTheme } from "../common/variables.js";
+import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 import DxcRequired from "../common/RequiredComponent";
@@ -78,7 +78,9 @@ const DxcSelect = ({
   size = "medium",
 }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
   const selectValues = { width: "auto", ...colorsTheme.select };
   const classes = useStyles(selectValues);

@@ -8,20 +8,12 @@ import linkedinIcon from "../images/linkedin.svg";
 import twitterIcon from "../images/twitter.svg";
 
 const colors = {
-  black: "blue",
-  mediumBlack: "red",
-  lightBlack: "grey",
-  white: "black",
-  darkWhite: "beige",
-  yellow: "aquamarine",
-  darkGrey: "brown",
-  lightGrey: "azure",
-  darkRed: "coral",
-  lightRed: "aqua",
-  lightBlue: "green",
-  lightYellow: "white",
-  lightPink: "red",
-  lightGreen: "blue",
+  footer: {
+    backgroundColor: "#fabada",
+    fontColor: "red",
+    lineColor: "blue",
+    logo: yahooLogo,
+  },
 };
 
 const facebookSVG = () => {

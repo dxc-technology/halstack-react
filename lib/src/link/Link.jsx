@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 
-import { defaultTheme, theme } from "../common/variables.js";
+import { defaultTheme, componentTokens } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
@@ -21,7 +21,9 @@ const DxcLink = ({
   margin,
 }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
 
   const linkContent = (
     <LinkText

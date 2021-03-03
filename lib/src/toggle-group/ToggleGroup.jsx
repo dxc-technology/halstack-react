@@ -2,13 +2,15 @@ import React, { useState, useContext, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, theme, defaultTheme } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
+import { getCustomTheme } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
 
 const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options = [], margin, multiple = false }) => {
   const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(theme, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
+    customTheme,
+  ]);
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
 
   const handleToggleChange = (selectedOption) => {
