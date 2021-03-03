@@ -34,7 +34,6 @@ const DxcPaginator = ({
   const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
     customTheme,
   ]);
-
   return (
     <ThemeProvider theme={colorsTheme.paginator}>
       <DxcPaginatorContainer disabled={currentPageInternal === 1}>
@@ -83,6 +82,7 @@ const DxcPaginator = ({
               <DxcSelect
                 options={[...Array(totalPages).keys()].map((num) => ({ label: num + 1, value: num + 1 }))}
                 onChange={onPageChange}
+                value={currentPage}
                 size="small"
               ></DxcSelect>
             </PageToSelectContainer>
@@ -149,8 +149,9 @@ const ItemsLabel = styled.span`
   margin-right: 15px;
 `;
 const GoToLabel = styled.span`
-margin-right: 10px;
-margin-left: 10px;`;
+  margin-right: 10px;
+  margin-left: 10px;
+`;
 const TotalItemsContainer = styled.span`
   margin-right: 30px;
 `;
