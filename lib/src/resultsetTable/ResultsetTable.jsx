@@ -49,17 +49,9 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOption
     page,
     rows,
   ]);
-  const next = () => {
-    changePage(page + 1);
-  };
-  const previous = () => {
-    changePage(page - 1);
-  };
-  const first = () => {
-    changePage(1);
-  };
-  const last = () => {
-    changePage(Math.ceil(rows.length / itemsPerPage));
+
+  const goToPage = (newPage) => {
+    changePage(newPage);
   };
   const changeSorting = (columnIndex) => {
     changePage(1);
@@ -128,10 +120,8 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOption
             itemsPerPageOptions={itemsPerPageOptions}
             itemsPerPageFunction={itemsPerPageFunction}
             currentPage={page}
-            nextFunction={next}
-            prevFunction={previous}
-            firstFunction={first}
-            lastFunction={last}
+            showGoToPage={true}
+            onPageChange={goToPage}
           />
         </PaginatorContainer>
       </DxcResultsetTableContainer>

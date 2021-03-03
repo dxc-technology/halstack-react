@@ -17,10 +17,8 @@ const DxcPaginator = ({
   itemsPerPage = 5,
   itemsPerPageOptions,
   totalItems = 1,
-  nextFunction,
-  prevFunction,
-  lastFunction,
-  firstFunction,
+  showGoToPage,
+  onPageChange,
   itemsPerPageFunction,
 }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -55,7 +53,7 @@ const DxcPaginator = ({
           <TotalItemsContainer>
             {minItemsPerPage} to {maxItemsPerPage} of {totalItems}
           </TotalItemsContainer>
-          {firstFunction && (
+          {onPageChange && (
             <DxcButton
               size="small"
               mode="secondary"
@@ -63,13 +61,11 @@ const DxcPaginator = ({
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={first}
               onClick={() => {
-                if (firstFunction) {
-                  firstFunction();
-                }
+                onPageChange(1);
               }}
             />
           )}
-          {prevFunction && (
+          {onPageChange && (
             <DxcButton
               size="small"
               mode="secondary"
@@ -77,16 +73,25 @@ const DxcPaginator = ({
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={previous}
               onClick={() => {
-                if (prevFunction) {
-                  prevFunction();
-                }
+                onPageChange(currentPage - 1);
               }}
             />
           )}
-          <TextContainer>
-            Page: {currentPageInternal} of {totalPages}
-          </TextContainer>
-          {nextFunction && (
+          {(showGoToPage && (
+            <PageToSelectContainer>
+              <GoToLabel>Go to page: </GoToLabel>
+              <DxcSelect
+                options={[...Array(totalPages).keys()].map((num) => ({ label: num + 1, value: num + 1 }))}
+                onChange={onPageChange}
+                size="small"
+              ></DxcSelect>
+            </PageToSelectContainer>
+          )) || (
+            <TextContainer>
+              Page: {currentPageInternal} of {totalPages}
+            </TextContainer>
+          )}
+          {onPageChange && (
             <DxcButton
               size="small"
               mode="secondary"
@@ -94,13 +99,11 @@ const DxcPaginator = ({
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={next}
               onClick={() => {
-                if (nextFunction) {
-                  nextFunction();
-                }
+                onPageChange(currentPage + 1);
               }}
             />
           )}
-          {lastFunction && (
+          {onPageChange && (
             <DxcButton
               size="small"
               mode="secondary"
@@ -108,9 +111,7 @@ const DxcPaginator = ({
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={last}
               onClick={() => {
-                if (lastFunction) {
-                  lastFunction(totalPages);
-                }
+                onPageChange(totalPages);
               }}
             />
           )}
@@ -147,6 +148,9 @@ const ItemsPageContainer = styled.span`
 const ItemsLabel = styled.span`
   margin-right: 15px;
 `;
+const GoToLabel = styled.span`
+margin-right: 10px;
+margin-left: 10px;`;
 const TotalItemsContainer = styled.span`
   margin-right: 30px;
 `;
@@ -159,6 +163,18 @@ const LabelsContainer = styled.div`
   margin: 0 40px 0 20px;
   font-size: 14px;
 `;
+const PageToSelectContainer = styled.span`
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  label {
+    height: 0px;
+  }
+
+  label + .MuiInput-formControl {
+    margin-top: 0px;
+  }
+`;
 const TextContainer = styled.span``;
 
 DxcPaginator.propTypes = {
@@ -166,20 +182,16 @@ DxcPaginator.propTypes = {
   itemsPerPage: PropTypes.number,
   itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
   totalItems: PropTypes.number.isRequired,
-  nextFunction: PropTypes.func,
-  prevFunction: PropTypes.func,
-  lastFunction: PropTypes.func,
-  firstFunction: PropTypes.func,
+  showGoToPage: PropTypes.bool,
+  onPageChange: PropTypes.func,
   itemsPerPageFunction: PropTypes.func,
 };
 DxcPaginator.defaultProps = {
   currentPage: 1,
   itemsPerPage: 5,
   itemsPerPageOptions: null,
-  nextFunction: null,
-  prevFunction: null,
-  lastFunction: null,
-  firstFunction: null,
+  showGoToPage: false,
+  onPageChange: null,
   itemsPerPageFunction: null,
 };
 

@@ -25,23 +25,25 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, ic
 
   const getLabelForTab = (tab) => {
     return (
-      <MainLabelContainer hasBadge={tab.notificationNumber}>
-        <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-          {tab.icon ? (
-            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
-            </TabIconContainer>
-          ) : (
-            tab.iconSrc && <TabIcon src={tab.iconSrc} />
-          )}
-          <LabelTextContainer>{tab.label}</LabelTextContainer>
-        </TabLabelContainer>
+      <ParentLabelSpan>
+        <MainLabelContainer hasBadge={tab.notificationNumber}>
+          <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+            {tab.icon ? (
+              <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+                {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
+              </TabIconContainer>
+            ) : (
+              tab.iconSrc && <TabIcon src={tab.iconSrc} />
+            )}
+            <LabelTextContainer>{tab.label}</LabelTextContainer>
+          </TabLabelContainer>
+        </MainLabelContainer>
         {tab.notificationNumber && tab.notificationNumber !== false && (
           <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
             <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
           </BadgeContainer>
         )}
-      </MainLabelContainer>
+      </ParentLabelSpan>
     );
   };
 
@@ -72,6 +74,9 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, ic
     </ThemeProvider>
   );
 };
+const ParentLabelSpan = styled.div`
+  position: relative;
+`;
 const TabLabelContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
@@ -79,16 +84,17 @@ const TabLabelContainer = styled.div`
 `;
 const LabelTextContainer = styled.div``;
 const BadgeContainer = styled.div`
-  display: flex;
-  align-items: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "end") || "center"};
-  position: relative;
-  margin-right: 12px;
-`;
+  position: absolute;
+  right: 0;
+  top: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "0") || "5px"};
+  width:23px;
+  height: 17px;
+  `;
 const MainLabelContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin-left: ${(props) => (props.hasBadge && "19px") || "unset"};
-  margin-right: ${(props) => (props.hasBadge && "19px") || "unset"};
+  margin-left: ${(props) => (props.hasBadge && "35px") || "unset"};
+  margin-right: ${(props) => (props.hasBadge && "35px") || "unset"};
 `;
 
 const Underline = styled.div`

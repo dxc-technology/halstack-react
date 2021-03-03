@@ -40,8 +40,6 @@ const StyledDxcBadge = styled.div`
   justify-content: center;
   color: #ffffff;
   font-size: 10px;
-  margin-left: 12px;
-  position: absolute;
 `;
 
 export default DxcBadge;

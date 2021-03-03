@@ -12,18 +12,10 @@ function App() {
     },
   };
 
-  const prevClick = () => {
-    changePage(page - 1);
+  const goToPageFunc = (newPage) => {
+    changePage(newPage);
   };
-  const firstClick = () => {
-    changePage(1);
-  };
-  const nextClick = () => {
-    changePage(page + 1);
-  };
-  const lastClick = (currPage) => {
-    changePage(currPage);
-  };
+  
 
   return (
     <div>
@@ -33,10 +25,7 @@ function App() {
           currentPage={page}
           itemsPerPage={10}
           totalItems={27}
-          prevFunction={prevClick}
-          firstFunction={firstClick}
-          nextFunction={nextClick}
-          lastFunction={lastClick}
+          onPageChange={goToPageFunc}
         ></DxcPaginator>
       </div>
       <div className="test-case" id="normal-status">
@@ -47,10 +36,8 @@ function App() {
           itemsPerPageOptions={[10, 15]}
           itemsPerPageFunction={(value) => console.log(value)}
           totalItems={27}
-          prevFunction={prevClick}
-          firstFunction={firstClick}
-          nextFunction={nextClick}
-          lastFunction={lastClick}
+          showGoToPage={true}
+          onPageChange={goToPageFunc}
         ></DxcPaginator>
       </div>
       <div className="test-case" id="custom-paginator">
@@ -62,10 +49,7 @@ function App() {
             itemsPerPageOptions={[10, 15]}
             itemsPerPageFunction={(value) => console.log(value)}
             totalItems={27}
-            prevFunction={prevClick}
-            firstFunction={firstClick}
-            nextFunction={nextClick}
-            lastFunction={lastClick}
+            onPageChange={goToPageFunc}
           ></DxcPaginator>
         </ThemeContext.Provider>
       </div>
