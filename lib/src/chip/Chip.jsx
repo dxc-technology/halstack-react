@@ -1,10 +1,10 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { componentTokens, spaces, defaultTheme } from "../common/variables.js";
-import ThemeContext from "../ThemeContext.js";
+import { spaces } from "../common/variables.js";
 import "../common/OpenSans.css";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { getMargin } from "../common/utils.js";
+import useTheme from "../useTheme.js";
 
 const DxcChip = ({
   label,
@@ -17,10 +17,7 @@ const DxcChip = ({
   disabled,
   margin,
 }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.chip}>
@@ -85,7 +82,7 @@ const StyledDxcChip = styled.div`
 
   padding: 10px 20px;
   cursor: ${({ disabled }) => disabled && "not-allowed"};
-  opacity: ${(props) => (props.disabled && props.theme.disabled) || "initial"};
+  opacity: ${(props) => (props.disabled && props.theme.disabledBackgroundColor) || "initial"};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>

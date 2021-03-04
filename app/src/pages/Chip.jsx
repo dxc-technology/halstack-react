@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { DxcChip, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcChip, ThemeProvider } from "@dxc-technology/halstack-react";
 import avatar from "../images/avatar.svg";
 
 const colors = {
   chip: {
     outlinedColor: "#FABADA",
     backgroundColor: "#FABADA",
+    fontColor: "red",
   },
 };
 
@@ -51,7 +52,11 @@ function App() {
       </div>
       <div className="test-case" id="with-suffix-icon">
         <h4>Chip6 with suffixIconSrc</h4>
-        <DxcChip label="Chip 6" suffixIcon={deleteSVG} onClickSuffix={onClickSuffix} />
+        <DxcChip
+          label="Chip 6"
+          suffixIcon={deleteSVG}
+          onClickSuffix={onClickSuffix}
+        />
       </div>
       <div className="test-case" id="with-suffix-and-prefix">
         <h4>Chip7 with suffix and prefix</h4>
@@ -124,9 +129,9 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Chip</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcChip label="Chip with borders" margin="xxlarge" />
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </div>
     </div>
   );
