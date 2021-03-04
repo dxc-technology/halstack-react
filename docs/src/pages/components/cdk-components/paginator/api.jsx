@@ -46,35 +46,17 @@ const paginatorPropsTable = () => {
         <td>Total number of items in the pages.</td>
       </tr>
       <tr>
-        <td>nextFunction: function</td>
-        <td></td>
+        <td>showGoToPage: boolean</td>
         <td>
-          This function will be called when the user clicks the button to go to
-          the next page.
+          <code>false</code>
         </td>
+        <td>If true, a select will be displayed with the page numbers to move through them</td>
       </tr>
       <tr>
-        <td>prevFunction: function</td>
+        <td>onPageChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the button to go to
-          the previous page.
-        </td>
-      </tr>
-      <tr>
-        <td>lastFunction: function</td>
-        <td></td>
-        <td>
-          This function will be called when the user clicks the button to go to
-          the last page.
-        </td>
-      </tr>
-      <tr>
-        <td>firstFunction: function</td>
-        <td></td>
-        <td>
-          This function will be called when the user clicks the button to go to
-          the first page.
+          This function will be called when the user clicks on any of the button to change pages. The page number will be passed as a parameter to this function.
         </td>
       </tr>
     </DxcTable>

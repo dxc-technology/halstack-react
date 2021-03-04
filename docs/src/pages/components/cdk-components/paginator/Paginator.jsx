@@ -10,6 +10,7 @@ import PaginatorPropsTable from "./api.jsx";
 import PaginatorTokensTable from "./Tokens.jsx";
 import paginator from "./examples/paginator";
 import paginatorItemsPerPage from "./examples/paginatorItemsPerPage";
+import paginatorGoToPage from "./examples/paginatorGoToPage";
 
 function Paginator() {
   return (
@@ -47,6 +48,7 @@ function Paginator() {
                 <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
                 <Example title="Paginator" example={paginator}></Example>
                 <Example title="Paginator with items per page" example={paginatorItemsPerPage}></Example>
+                <Example title="Paginator with Go to Page" example={paginatorGoToPage}></Example>
               </Section>
             )
           }

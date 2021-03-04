@@ -41,7 +41,7 @@ const DxcDropdown = ({
     handleResize();
 
     return () => {
-      ref.current.removeEventListener("resize", handleResize);
+      if(ref.current) ref.current.removeEventListener("resize", handleResize);
     };
   }, []);
 
