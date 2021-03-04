@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -6,9 +6,9 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { getCustomTheme, getMargin } from "../common/utils.js";
-import { spaces, defaultTheme, componentTokens, responsiveSizes } from "../common/variables.js";
-import ThemeContext from "../ThemeContext.js";
+import { getMargin } from "../common/utils.js";
+import { spaces, responsiveSizes } from "../common/variables.js";
+import useTheme from "../useTheme.js";
 
 const DxcAccordion = ({
   label = "",
@@ -23,11 +23,8 @@ const DxcAccordion = ({
   padding,
 }) => {
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
   const [isResponsive, setIsResponsive] = useState();
+  const colorsTheme = useTheme();
 
   const handleResize = (width) => {
     if (width) {
@@ -156,12 +153,11 @@ const DXCAccordion = styled.div`
 
     .MuiButtonBase-root.MuiExpansionPanelSummary-root {
       :hover {
-        background-color: ${(props) => `${props.theme.arrowColor}${props.theme.hoverBackgroundColor}`};
+        background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
       }
     }
 
     .MuiButtonBase-root {
-      border-color: ${(props) => props.theme.arrowColor};
       border-radius: 4px;
       height: 48px;
 
@@ -207,7 +203,7 @@ const DXCAccordion = styled.div`
   }
 
   .MuiPaper-root.Mui-disabled {
-    color: ${(props) => `${props.theme.fontColor}${props.theme.disabledFontColor}`};
+    color: ${(props) => props.theme.disabledFontColor};
   }
 
   .MuiCollapse-container {

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { DxcAccordion, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcAccordion, ThemeProvider } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
 
 const colors = {
   accordion: {
     arrowColor: "#FC0773",
-    fontColor: "#077EFC"
+    fontColor: "#fabada",
   },
 };
 
@@ -437,19 +437,6 @@ function App() {
         </DxcAccordion>
       </div>
 
-      <div className="test-case" id="custom-colors">
-        <h4>Custom Accordion</h4>
-        <ThemeContext.Provider value={colors}>
-          <DxcAccordion label="Accordion" onChange={onChange} padding="medium">
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </div>
-          </DxcAccordion>
-        </ThemeContext.Provider>
-      </div>
-
       <div className="test-case" id="nested-accordion">
         <h4>Nested Accordion</h4>
         <DxcAccordion label="Accordion" onChange={onChange} padding="medium">
@@ -461,6 +448,19 @@ function App() {
             </div>
           </DxcAccordion>
         </DxcAccordion>
+      </div>
+
+      <div className="test-case" id="custom-colors">
+        <h4>Custom Accordion</h4>
+        <ThemeProvider theme={colors}>
+          <DxcAccordion label="Accordion" onChange={onChange} padding="medium">
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </div>
+          </DxcAccordion>
+        </ThemeProvider>
       </div>
     </div>
   );
