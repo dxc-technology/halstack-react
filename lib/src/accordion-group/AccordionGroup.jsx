@@ -68,47 +68,67 @@ const AccordionGroupContainer = styled.div`
   font-family: "Open Sans", sans-serif;
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
 
-  &>div:first-child {
-    .MuiPaper-root {
-      border-top-left-radius: 4px !important;
-      border-top-right-radius: 4px !important;
-
-      .MuiButtonBase-root {
-        border-top-left-radius: 4px !important;
-        border-top-right-radius: 4px !important;
-      }
-    }
-  }
-
-  &>div:last-child {
-    .MuiPaper-root {
-      border-bottom-left-radius: 4px !important;
-      border-bottom-right-radius: 4px !important;
-
-      .MuiButtonBase-root {
-        border-bottom-left-radius: 4px !important;
-        border-bottom-right-radius: 4px !important;
-      }
-    }
-  }
-
-  div .MuiPaper-root {
-    border-radius: 0px !important;
-
-    .MuiButtonBase-root {
-      border-radius: 0px !important;
-      border-bottom: 1px solid;
-      border-color: #00000024;
-
-      .MuiButtonBase-root {
-        border: none;
-      }
-    }
-
-    .MuiCollapse-container {
-      border-bottom: 1px solid;
+  & > :not(div:last-child) {
+    & > div:first-child {
       border-radius: 0;
+      border-bottom: 1px solid;
       border-color: #00000024;
+
+      & > .Mui-expanded {
+        border-radius: 0;
+      }
+
+      & > .MuiButtonBase-root {
+        border-radius: 0;
+      }
+    }
+  }
+
+  & > div:first-child {
+    & > div:first-child {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      border-bottom: 1px solid;
+      border-color: #00000024;
+
+      & > .Mui-expanded {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+
+      & > .MuiButtonBase-root {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+    }
+  }
+
+  & > div:last-child {
+    & > div:first-child {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+
+      & > .Mui-expanded {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      & > .MuiButtonBase-root {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
     }
   }
 `;
