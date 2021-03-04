@@ -10,7 +10,6 @@ import useTheme from "../useTheme.js";
 
 const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, iconPosition = "left" }) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
-
   const colorsTheme = useTheme();
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
 
@@ -150,16 +149,15 @@ const DxCTabs = styled.div`
       &.Mui-disabled {
         cursor: not-allowed !important;
         pointer-events: all;
-        /* opacity: ${(props) => props.theme.disabledFontColor}; */
         color: ${(props) => props.theme.disabledFontColor};
       }
       &:focus {
-        outline: ${(props) => props.theme.selectedFontColor} auto 1px;
+        outline: ${(props) => props.theme.focusOutline} auto 1px;
       }
     }
 
     .MuiTabs-indicator {
-      background-color: ${(props) => props.theme.selectedFontColor};
+      background-color: ${(props) => props.theme.selectedUnderlineColor};
     }
 
     .MuiTabs-scrollButtons {
