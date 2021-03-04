@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-
 import "../common/OpenSans.css";
-import { spaces, responsiveSizes, componentTokens, defaultTheme } from "../common/variables.js";
-import ThemeContext from "../ThemeContext.js";
-import { getCustomTheme } from "../common/utils.js";
+import { spaces, responsiveSizes } from "../common/variables.js";
+import useTheme from "../useTheme.js";
 
 const DxcFooter = ({
   socialLinks = [],
@@ -20,8 +18,7 @@ const DxcFooter = ({
   const [refSize, setRefSize] = useState();
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
   const [isResponsivePhone, setIsResponsivePhone] = useState(false);
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useTheme();
 
   const handleResize = (refWidth) => {
     if (ref.current) {
