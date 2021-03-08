@@ -105,8 +105,7 @@ const AlertModal = styled.div`
 `;
 
 const OverlayContainer = styled.div`
-  background-color: ${(props) =>
-    props.mode === "modal" ? `${props.theme.overlayColor}${props.theme.overlayOpacity}` : "transparent"};
+  background-color: ${(props) => (props.mode === "modal" ? `${props.theme.overlayColor}` : "transparent")};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
   bottom: ${(props) => (props.mode === "modal" ? "0" : "")};
