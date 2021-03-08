@@ -1,15 +1,15 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 import closeIcon from "./close.svg";
 import errorIcon from "./error.svg";
 import infoIcon from "./info.svg";
 import successIcon from "./success.svg";
 import warningIcon from "./warning.svg";
-import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import { getMargin } from "../common/utils.js";
+import useTheme from "../useTheme.js";
 
 const DxcAlert = ({
   type = "info",
@@ -20,10 +20,7 @@ const DxcAlert = ({
   margin,
   size = "fitContent",
 }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   const getTypeText = () => {
     return type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
