@@ -28,7 +28,8 @@
     "date-fns": "^2.0.0-beta.4",
     "moment": "2.24.0",
     "prop-types": "^15.7.2",
-    "react-use-scrollspy": "^2.0.0"
+    "react-use-scrollspy": "^2.0.0",
+    "rgb-hex": "^3.0.0"
   },
   "scripts": {
     "test": "jest",
