@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcFooter, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcFooter, ThemeProvider } from "@dxc-technology/halstack-react";
 
 import yahooLogo from "../images/yahoo.png";
 import invisionLogo from "../images/invision.png";
@@ -583,14 +583,14 @@ function App() {
       <div>
         <h4>Custom Footer</h4>
         <div className="test-case" id="custom-colors">
-          <ThemeContext.Provider value={colors}>
+          <ThemeProvider theme={colors}>
             <DxcFooter
               copyright=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit."
               bottomLinks={bottom}
               socialLinks={social}
               margin="large"
             ></DxcFooter>
-          </ThemeContext.Provider>
+          </ThemeProvider>
         </div>
       </div>
     </div>
