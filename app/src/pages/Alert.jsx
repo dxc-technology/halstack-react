@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  DxcAlert,
-  DxcButton,
-  ThemeContext,
-} from "@dxc-technology/halstack-react";
+import { DxcAlert, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
   const [isVisible, changeIsVisible] = useState(false);
