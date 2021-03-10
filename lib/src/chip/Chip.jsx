@@ -80,10 +80,8 @@ const StyledDxcChip = styled.div`
     (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
   ${(props) => (props.theme.outlinedColor !== "" ? `border: 2px solid ${props.theme.outlinedColor}` : ``)};
   height: ${(props) => (props.theme.outlinedColor !== "" ? "18px" : "22px")};
-
   padding: 10px 20px;
   cursor: ${({ disabled }) => disabled && "not-allowed"};
-
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -99,7 +97,7 @@ const ChipTextContainer = styled.span`
   font-size: 16px;
   font-family: "Open Sans";
   line-height: 24px;
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "default"};
   text-overflow: ellipsis;
   white-space: nowrap;

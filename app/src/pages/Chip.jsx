@@ -6,6 +6,7 @@ const colors = {
   chip: {
     outlinedColor: "#FABADA",
     backgroundColor: "#FABADA",
+    fontColor: "#baffda",
   },
 };
 

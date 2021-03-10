@@ -1,6 +1,5 @@
 import React from "react";
 import { DxcFooter, ThemeProvider } from "@dxc-technology/halstack-react";
-
 import yahooLogo from "../images/yahoo.png";
 import invisionLogo from "../images/invision.png";
 import facebookIcon from "../images/facebook.svg";
@@ -10,8 +9,8 @@ import twitterIcon from "../images/twitter.svg";
 const colors = {
   footer: {
     backgroundColor: "#fabada",
-    fontColor: "red",
-    lineColor: "blue",
+    fontColor: "#fafada",
+    lineColor: "#faaada",
     logo: yahooLogo,
   },
 };
