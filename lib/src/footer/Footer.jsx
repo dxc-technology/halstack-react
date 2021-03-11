@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, responsiveSizes } from "../common/variables.js";
+import { spaces, responsiveSizes, componentTokens } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
 const DxcFooter = ({
@@ -72,7 +72,7 @@ const DxcFooter = ({
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} refSize={refSize} ref={ref}>
         <FooterHeader>
-          <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? colorsTheme.footer.logo : logoSrc} />
+          <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? componentTokens.footer.logo : logoSrc} />
           <div>{socialLink}</div>
         </FooterHeader>
         {isResponsivePhone && (
