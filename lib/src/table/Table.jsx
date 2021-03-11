@@ -3,12 +3,10 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getCustomTheme, getMargin } from "../common/utils.js";
 import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcTable = ({ children, margin }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.table}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcSpinner, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcSpinner, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   spinner: {
@@ -11,7 +11,7 @@ const colors = {
 function App() {
   return (
     <div>
-      <div className="test-case" id="light-theme">
+       <div className="test-case" id="light-theme">
         <h4>Light theme</h4>
         <DxcSpinner showValue value={66} />
       </div>
@@ -64,12 +64,12 @@ function App() {
           <h5>xxlarge margin</h5>
           <DxcSpinner margin="xxlarge" showValue value={66} />
         </div>
-      </div>
+      </div> 
       <div className="test-case" id="custom-colors">
         <h4>Custom Spinner</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcSpinner showValue value={66} />
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
 import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcSwitch = ({
   checked,
@@ -21,10 +21,7 @@ const DxcSwitch = ({
   size = "fitContent",
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   const handlerSwitchChange = (newValue) => {
     if (checked === undefined) {
@@ -104,8 +101,6 @@ const SwitchContainer = styled.div`
     height: 45px;
     margin: 3px;
 
-    opacity: ${(props) => (props.disabled ? props.theme.disabled : "1")} !important;
-
     .Mui-focusVisible {
       border: ${(props) => props.theme.focusColor + " solid 2px"};
       padding: 7px;
@@ -113,8 +108,8 @@ const SwitchContainer = styled.div`
 
     .MuiSwitch-track {
       /*Enabled and unchecked bar*/
-      background-color: ${(props) => props.theme.uncheckedTrackBackgroundColor};
-      opacity: 1;
+      background-color: ${(props) =>
+        props.disabled ? props.theme.disabledCheckedTrackBackgroundColor : props.theme.uncheckedTrackBackgroundColor};
       height: 12px;
     }
 
@@ -134,8 +129,10 @@ const SwitchContainer = styled.div`
         /*Disabled*/
         + .MuiSwitch-track {
           /*Disabled and unchecked bar*/
-          background-color: ${(props) => props.theme.uncheckedTrackBackgroundColor};
-          opacity: ${(props) => props.theme.disabled};
+          background-color: ${(props) =>
+            props.disabled
+              ? props.theme.disabledUncheckedTrackBackgroundColor
+              : props.theme.uncheckedTrackBackgroundColor};
         }
       }
       &.Mui-checked {
@@ -147,7 +144,8 @@ const SwitchContainer = styled.div`
         }
         + .MuiSwitch-track {
           /*Enabled and checked bar*/
-          background-color: ${(props) => props.theme.checkedTrackBackgroundColor};
+          background-color: ${(props) =>
+            props.disabled ? props.theme.disabledCheckedTrackBackgroundColor : props.theme.checkedTrackBackgroundColor};
           opacity: 1;
         }
       }
@@ -156,10 +154,9 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
-  opacity: ${(props) => (props.disabled === true ? props.theme.disabled : "")};
 `;
 
 DxcSwitch.propTypes = {

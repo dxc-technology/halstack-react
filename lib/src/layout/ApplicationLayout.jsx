@@ -8,7 +8,7 @@ import linkedinLogo from "./linkedin.svg";
 import twitterLogo from "./twitter.svg";
 import facebookLogo from "./facebook.svg";
 import { getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const year = new Date().getFullYear();
 
@@ -88,9 +88,7 @@ const childTypeExists = (children, childType) => {
 const DxcApplicationLayout = ({ children }) => {
   const ref = useRef(null);
 
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
-
+  const colorsTheme = useTheme();
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
   const [isResponsive, setIsResponsive] = useState();
 
@@ -262,7 +260,7 @@ const ArrowTrigger = styled.div`
   top: 45vh;
   width: 42px;
   min-height: 42px;
-  background-color: ${(props) => `${props.theme.arrowContainerColor}${props.theme.arrowContainerOpacity}`};
+  background-color: ${(props) => `${props.theme.arrowContainerColor}`};
   border-radius: 50%;
   transform: ${(props) => (props.isSideNavVisible ? "rotate(-180deg)" : "rotate(0deg)")};
   transition: transform 0.4s ease-in-out;
