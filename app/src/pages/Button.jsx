@@ -1,11 +1,17 @@
 import React from "react";
-import { DxcButton, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcButton, ThemeProvider } from "@dxc-technology/halstack-react";
 import homeLogo from "../images/home.svg";
 
 const colors = {
   button: {
-    color: "#FABADA",
-    hoverColor: "grey",
+    color: "#fcf2bd",
+    hoverColor: "#d0011b",
+    primaryFontColor: "#006BF6",
+    primaryHoverFontColor: "#000000",
+    secondaryFontColor: "#fabada",
+    secondaryHoverFontColor: "#cee0f5",
+    textFontColor: "#fabada",
+    textHoverFontColor: "#000000",
   },
 };
 
@@ -23,6 +29,33 @@ function App() {
 
   return (
     <div>
+      <div>
+        <h4>Disabled</h4>
+        <DxcButton
+          mode="primary"
+          label="Custom Button"
+          onClick={onClick}
+          disabled
+          size="large"
+          margin="small"
+        />
+        <DxcButton
+          mode="secondary"
+          label="Custom Button"
+          onClick={onClick}
+          disabled
+          size="large"
+          margin="small"
+        />
+        <DxcButton
+          mode="text"
+          label="Custom Button"
+          onClick={onClick}
+          disabled
+          size="large"
+          margin="small"
+        />
+      </div>
       <div>
         <h4>Sizes</h4>
         <div className="test-case" id="small-size">
@@ -392,16 +425,58 @@ function App() {
         </div>
       </div>
       <div className="test-case" id="custom-colors">
-        <h4>Custom Button</h4>
-        <ThemeContext.Provider value={colors}>
-          <DxcButton
-            mode="primary"
-            label="Custom Button"
-            onClick={onClick}
-            size="large"
-            margin="small"
-          />
-        </ThemeContext.Provider>
+        <h4>Custom Buttons</h4>
+        <ThemeProvider theme={colors}>
+          <div>
+            <DxcButton
+              mode="primary"
+              label="Custom Button"
+              onClick={onClick}
+              size="large"
+              margin="small"
+            />
+            <DxcButton
+              mode="secondary"
+              label="Custom Button"
+              onClick={onClick}
+              size="large"
+              margin="small"
+            />
+            <DxcButton
+              mode="text"
+              label="Custom Button"
+              onClick={onClick}
+              size="large"
+              margin="small"
+            />
+          </div>
+          <div>
+            <DxcButton
+              mode="primary"
+              label="Custom Button"
+              onClick={onClick}
+              disabled
+              size="large"
+              margin="small"
+            />
+            <DxcButton
+              mode="secondary"
+              label="Custom Button"
+              onClick={onClick}
+              disabled
+              size="large"
+              margin="small"
+            />
+            <DxcButton
+              mode="text"
+              label="Custom Button"
+              onClick={onClick}
+              disabled
+              size="large"
+              margin="small"
+            />
+          </div>
+        </ThemeProvider>
       </div>
     </div>
   );
