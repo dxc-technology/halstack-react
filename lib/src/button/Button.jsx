@@ -1,13 +1,12 @@
 /* eslint-disable no-else-return */
-import React, { useContext } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
-import { useMemo } from "react";
+import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
+import useTheme from "../useTheme.js";
 
 const DxcButton = ({
   label = "",
@@ -20,10 +19,7 @@ const DxcButton = ({
   margin,
   size,
 }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
@@ -139,26 +135,25 @@ const DxCButton = styled.div`
       const { mode } = props;
       if (mode === "primary") {
         return `
-          background-color: ${props.theme.color};
-          color: ${props.theme.primaryFontColor};
+          background-color: ${
+            (props.disabled && props.theme.disabledPrimaryBackgroundColor) || props.theme.primaryBackgroundColor
+          };
+          color: ${(props.disabled && props.theme.disabledPrimaryFontColor) || props.theme.primaryFontColor} !important;
           padding: ${(props.size === "small" && "11px") || "12px 30px"};
           &:hover{
-            background-color: ${props.theme.hoverColor};
-            color: ${props.theme.primaryHoverFontColor}; 
+            background-color: ${props.theme.primaryHoverBackgroundColor};
+            color: ${props.theme.primaryHoverFontColor} !important; 
           }
           &:active {
-            background-color: ${props.theme.hoverColor}${props.theme.primaryActiveOpacity} !important;
+            background-color: ${props.theme.primaryActiveBackgroundColor} !important;
             color: ${props.theme.primaryHoverFontColor} !important;
           }
           &:focus {
-            background-color: ${props.theme.color};
-            color: ${props.theme.primaryHoverFontColor}; 
+            background-color: ${props.theme.primaryBackgroundColor};
+            color: ${props.theme.primaryHoverFontColor} !important;
           }
           &:disabled{ 
-            background-color: ${props.theme.color};
-            opacity: ${props.theme.disabledOpacity};
-            color: ${props.theme.primaryFontColor};
-            cursor:not-allowed;
+            cursor: not-allowed;
           }
           .MuiButton-label {
             z-index: 5
@@ -168,16 +163,20 @@ const DxCButton = styled.div`
         return `
             background-color: ${props.theme.secondaryBackgroundColor};
             padding: ${(props.size === "small" && "9px") || "10px 28px"};
-            color: ${props.theme.secondaryFontColor};
+            color: ${
+              (props.disabled && props.theme.disabledSecondaryFontColor) || props.theme.secondaryFontColor
+            } !important;
             border: 2px solid;
-            border-color: ${props.theme.color};
+            border-color: ${
+              (props.disabled && props.theme.disabledSecondaryOutlinedColor) || props.theme.secondaryOutlinedColor
+            };
             &:hover{
-              border-color: ${props.theme.hoverColor};
-              background-color: ${props.theme.hoverColor}${props.theme.secondaryHoverOpacity};
+              border-color: ${props.theme.hoverOutlinedColor};
+              background-color: ${props.theme.secondaryHoverBackgroundColor};
               color: ${props.theme.secondaryHoverFontColor}; 
             }
             &:active {
-              background-color: ${props.theme.hoverColor}${props.theme.secondaryActiveOpacity} !important;
+              background-color: ${props.theme.secondaryActiveBackgroundColor} !important;
               color: ${props.theme.secondaryHoverFontColor} !important;
             }
             &:focus {
@@ -185,11 +184,7 @@ const DxCButton = styled.div`
               color: ${props.theme.secondaryHoverFontColor}; 
             }
             &:disabled{
-              background-color: ${props.theme.secondaryBackgroundColor};
-              border-color: ${props.theme.color};
-              color: ${props.theme.secondaryFontColor};
-              cursor:not-allowed;
-              opacity: ${props.theme.disabledOpacity};
+              cursor: not-allowed;
             }
             .MuiButton-label {
               z-index: 5
@@ -199,14 +194,14 @@ const DxCButton = styled.div`
       } else if (mode === "text") {
         return `
             background-color: ${props.theme.textBackgroundColor};
-            color: ${props.theme.textFontColor};
+            color: ${(props.disabled && props.theme.disabledTextFontColor) || props.theme.textFontColor} !important;;
             padding: ${(props.size === "small" && "11px") || "12px 30px"};
             &:hover{
-              background-color: ${props.theme.hoverColor};
-              color: ${props.theme.textHoverFontColor};
+              background-color: ${props.theme.textHoverBackgroundColor};
+              color: ${props.theme.textHoverFontColor} !important;
             }
             &:active {
-              background-color: ${props.theme.hoverColor}${props.theme.textActiveOpacity} !important;
+              background-color: ${props.theme.textActiveBackgroundColor} !important;
               color: ${props.theme.textHoverFontColor} !important;
             }
             &:focus {
@@ -214,9 +209,6 @@ const DxCButton = styled.div`
               color: ${props.theme.textFontColor}; 
             }
             &:disabled{
-              background-color: ${props.theme.textBackgroundColor};
-              opacity: ${props.theme.disabledOpacity};
-              color: ${props.theme.textFontColor};
               cursor:not-allowed;
             }
           `;
