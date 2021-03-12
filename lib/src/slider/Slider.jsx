@@ -6,7 +6,7 @@ import "../common/OpenSans.css";
 import DxcInput from "../input-text/InputText";
 import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcSlider = ({
   minValue = 0,
@@ -26,8 +26,7 @@ const DxcSlider = ({
 }) => {
   const [innerValue, setInnerValue] = useState(0);
 
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useTheme();
   const minLabel = useMemo(() => (labelFormatCallback ? labelFormatCallback(minValue) : minValue), [
     labelFormatCallback,
     minValue,
@@ -162,8 +161,7 @@ const SliderContainer = styled.div`
   }
 
   .MuiSlider-root.Mui-disabled {
-    opacity: ${(props) => props.theme.disabledthumbBackgroundColor};
-    color: ${(props) => props.theme.color};
+    color: ${(props) => props.theme.disabledthumbBackgroundColor};
     cursor: not-allowed;
   }
 
@@ -171,25 +169,22 @@ const SliderContainer = styled.div`
     & .MuiSlider-thumb {
       height: 14px;
       width: 14px;
-      background-color: ${(props) => props.theme.color};
+      background-color: ${(props) => props.theme.disabledthumbBackgroundColor };
       top: 35%;
     }
     & .MuiSlider-track {
       background-color: ${(props) => props.theme.color};
     }
     & > .MuiSlider-mark.MuiSlider-markActive {
-      background-color: ${(props) => props.theme.color} !important;
+      background-color: ${(props) => props.theme.disableddotsBackgroundColor} !important;
     }
     & > .MuiSlider-mark {
-      background-color: ${(props) => props.theme.color};
+      background-color: ${(props) => props.theme.disableddotsBackgroundColor};
       width: 6px;
       height: 6px;
       border-radius: 18px;
     }
-    & .MuiSlider-rail {
-      opacity: 1;
-      opacity: ${(props) => props.theme.disabledtotalLine};
-    }
+    
   }
   .MuiSlider-thumb {
     height: 14px;
@@ -227,9 +222,8 @@ const SliderContainer = styled.div`
     background-color: ${(props) => props.theme.color};
   }
   .MuiSlider-rail {
-    background-color: ${(props) => props.theme.color};
+    background-color: ${(props) => props.theme.totalLine};
     top: 50%;
-    opacity: ${(props) => props.theme.totalLine};
   }
   .MuiSlider-mark.MuiSlider-markActive {
     background-color: ${(props) => props.theme.color};

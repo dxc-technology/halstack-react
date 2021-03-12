@@ -1,17 +1,13 @@
-import React, { useContext, useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
-import { defaultTheme, componentTokens, spaces, responsiveSizes } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import { spaces, responsiveSizes } from "../common/variables.js";
+import useTheme from "../useTheme.js";
 
 const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
   const [isResponsive, setIsResponsive] = useState();
+  const colorsTheme = useTheme();
 
   const handleClose = () => {
     if (typeof onCloseClick === "function") {
@@ -71,8 +67,8 @@ const DialogContainer = styled(Dialog)`
   overflow: unset;
 
   .MuiBackdrop-root {
-    background-color: ${(props) =>
-      props.overlay === true ? props.theme.overlayColor + props.theme.overlayOpacity : "transparent"};
+    background-color: ${(props) => (props.overlay === true ? props.theme.overlayColor : "transparent")};
+    opacity: ${(props) => props.overlay === true && "0.8"} !important;
   }
   .MuiDialog-paperWidthSm {
     background-color: ${(props) => props.theme.backgroundColor};

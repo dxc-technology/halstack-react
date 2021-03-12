@@ -4,13 +4,11 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options = [], margin, multiple = false }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+
+  const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
 
   const handleToggleChange = (selectedOption) => {
@@ -108,8 +106,16 @@ const ToggleContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  ${(props) => `
-    background-color: ${props.selected ? props.theme.selectedBackgroundColor : props.theme.unselectedBackgroundColor};
+  ${(props)=>`
+  background-color: ${
+    props.selected
+      ? props.disabled
+        ? props.theme.disabledSelectedBackgroundColor
+        : props.theme.selectedBackgroundColor
+      : props.disabled
+      ? props.theme.disabledUnselectedBackgroundColor
+      : props.theme.unselectedBackgroundColor
+  }
     border-radius: ${props.isFirst ? "4px 0 0 4px" : props.isLast ? "0 4px 4px 0" : "0"};
     color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
     padding: ${props.isIcon ? `10px 12px` : `12px 30px`};
