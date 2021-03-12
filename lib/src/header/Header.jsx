@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
 import DxcDropdown from "../dropdown/Dropdown";
 import CloseIcon from "./close_icon.svg";
-import { spaces, responsiveSizes, defaultTheme, componentTokens } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import { spaces, responsiveSizes } from "../common/variables.js";
+import useTheme from "../useTheme.js";
 
 const Dropdown = (props) => {
   return (
@@ -35,8 +34,7 @@ const DxcHeader = ({
   margin,
   padding,
 }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [customTheme]);
+  const colorsTheme = useTheme();
 
   function onClickHandle() {
     if (typeof onClick === "function") {
@@ -208,7 +206,7 @@ const HamburguerItem = styled.div`
   width: 54px;
   cursor: pointer;
   :hover {
-    background-color: ${(props) => `${props.theme.hamburguerColor}${props.theme.hoverHamburguerColor}`};
+    background-color: ${(props) => props.theme.hoverHamburguerColor};
   }
   &:focus {
     outline: ${(props) => props.theme.focusColor} auto 1px;
@@ -288,7 +286,8 @@ const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: ${(props) => `${props.theme.overlayColor}${props.theme.overlayOpacity}`};
+  background-color: ${(props) => props.theme.overlayColor};
+  opacity: 0.7 !important;
   visibility: ${(props) => (props.hasVisibility ? "visible" : "hidden")};
   opacity: ${(props) => (props.hasVisibility ? "1" : "0")};
   display: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "none" : "")};
