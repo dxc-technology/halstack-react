@@ -104,51 +104,40 @@ function CustomThemes() {
       <p>
         You will need to create an object with your colors preferences. The
         variables are documented in each component's documentation. You will
-        also need to import ThemeContext, and use it to wrap the component and
-        pass your colors object as the value property.
+        also need to import ThemeProvider, and use it to wrap the component and
+        pass your colors object as the theme property.
       </p>
 
       <p>This is an example that includes the necessary code:</p>
 
       <SyntaxHighlighter language="javascript" style={docco}>
         {`
-  import { DxcButton, ThemeContext } from "@dxc-technology/halstack-react";
+  import { DxcButton, ThemeProvider } from "@dxc-technology/halstack-react";
 
   const colors = {
     button: {
-      color: "#FFED00",
-      hoverColor: "#000000",
-
-      primaryFontColor: "#000000",
-      primaryHoverFontColor: "#FFED00",
-
-      secondaryFontColor: "#000000",
-      secondaryHoverFontColor: "#000000",
-
-      textFontColor: "#000000",
-      textHoverFontColor: "#FFFFFF"
-    },
-    checkbox: {
-      color: "#FFED00",
-      checkColor: "#000000",
-      fontColor: "#000000"
-    },
-    radio: {
-      color: "#000000"
-    },
-    select: {
-      selectedOptionBackgroundColor: "#D9D9D9"
-    },
-    slider: {
-      color: "#000000"
+      color: "#fcf2bd",
+      hoverColor: "#d0011b",
+      primaryFontColor: "#006BF6",
+      primaryHoverFontColor: "#000000",
+      secondaryFontColor: "#fabada",
+      secondaryHoverFontColor: "#cee0f5",
+      textFontColor: "#fabada",
+      textHoverFontColor: "#000000",
     }
   };
 
   const MyComponent = () => {
     return (
-      <ThemeContext.Provider value={colors}>
-        <DxcButton mode="basic" label="Basic Button" ></DxcButton>
-      </ThemeContext.Provider>
+      <ThemeProvider theme={colors}>
+        <DxcButton
+          mode="primary"
+          label="Button"
+          onClick={onClick}
+          size="large"
+          margin="small"
+        />
+      </ThemeProvider>
     );
   };
 
