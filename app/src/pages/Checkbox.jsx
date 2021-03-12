@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { DxcCheckbox, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcCheckbox, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   checkbox: {
-    color: "#fabada",
-    checkColor: "#ffffff",
+    color: "#6f2c91",
+    checkColor: "#fabada",
   },
 };
 
@@ -62,7 +62,14 @@ function App() {
           label="Checkbox"
           onChange={onChange}
           labelPosition="after"
-          disabled={true}
+          disabled
+        />
+        <DxcCheckbox
+          checked
+          label="Checkbox"
+          onChange={onChange}
+          labelPosition="after"
+          disabled
         />
       </div>
       <div className="test-case" id="required-checkbox">
@@ -253,13 +260,20 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Checkbox</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcCheckbox
             checked={checked}
             label="Checkbox "
             onChange={onChange}
           />
-        </ThemeContext.Provider>
+          <DxcCheckbox
+            checked={checked}
+            disabled
+            label="Checkbox "
+            onChange={onChange}
+          />
+          <DxcCheckbox checked disabled label="Checkbox " onChange={onChange} />
+        </ThemeProvider>
       </div>
     </div>
   );
