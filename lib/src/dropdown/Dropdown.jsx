@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import Popper from "@material-ui/core/Popper";
@@ -8,9 +8,9 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import MenuList from "@material-ui/core/MenuList";
 import "../common/OpenSans.css";
-import { componentTokens, defaultTheme, spaces } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
+import useTheme from "../useTheme.js";
 
 const DxcDropdown = ({
   options = [],
@@ -26,10 +26,7 @@ const DxcDropdown = ({
   expandOnHover = false,
 }) => {
   const [width, setWidth] = useState();
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   const ref = useRef(null);
   const handleResize = () => {
@@ -41,7 +38,7 @@ const DxcDropdown = ({
     handleResize();
 
     return () => {
-      if(ref.current) ref.current.removeEventListener("resize", handleResize);
+      if (ref.current) ref.current.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -240,7 +237,7 @@ const DxcMenu = styled(Popper)`
       cursor: pointer;
     }
     .MuiListItem-button:hover {
-      background-color: ${(props) => props.theme.backgroundColor + props.theme.hoverBackgroundOption};
+      background-color: ${(props) => props.theme.hoverBackgroundOption};
       color: ${(props) => props.theme.dropdownFontColor};
     }
 
@@ -284,10 +281,7 @@ const DropdownTrigger = styled.button`
   }
 
   background-color: ${(props) =>
-    props.opened === true
-      ? props.theme.backgroundColor + props.theme.hoverBackgroundColor
-      : props.theme.backgroundColor};
-
+    props.opened === true ? props.theme.hoverBackgroundColor : props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
 
   border: none;
@@ -295,7 +289,7 @@ const DropdownTrigger = styled.button`
   border-bottom-right-radius: ${(props) => (props.opened === true ? "0px" : "2px")};
   border-bottom-left-radius: ${(props) => (props.opened === true ? "0px" : "2px")};
   &:hover {
-    background-color: ${(props) => props.theme.backgroundColor + props.theme.hoverBackgroundColor};
+    background-color: ${(props) => props.theme.hoverBackgroundColor};
   }
 `;
 
