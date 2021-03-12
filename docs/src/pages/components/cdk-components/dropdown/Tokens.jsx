@@ -16,7 +16,8 @@ const dropdownTokensTable = () => {
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
         <td>
-          Applies to the backgroundColor and the hoverBackgroundOption (0.34 opacity).
+          Applies to the backgroundColor, hoverBackgroundColor (0.8 opacity) and
+          hoverBackgroundOption (0.34 opacity).
         </td>
       </tr>
       <tr>
@@ -24,9 +25,7 @@ const dropdownTokensTable = () => {
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>
-          Applies to fontColor.
-        </td>
+        <td>Applies to fontColor.</td>
       </tr>
     </DxcTable>
   );

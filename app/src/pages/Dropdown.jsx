@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcDropdown, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcDropdown, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   dropdown: {
@@ -281,14 +281,14 @@ function App() {
       <div>
         <h4>Custom Dropdown</h4>
         <div className="test-case" id="custom-colors">
-          <ThemeContext.Provider value={colors}>
+          <ThemeProvider theme={colors}>
             <DxcDropdown
               label="Custom Dropdown"
               size="large"
               margin="small"
               options={optionsWithoutIcon}
             ></DxcDropdown>
-          </ThemeContext.Provider>
+          </ThemeProvider>
         </div>
       </div>
     </div>
