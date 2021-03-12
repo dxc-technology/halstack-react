@@ -25,8 +25,8 @@ const buttonTokensTable = () => {
           <SampleComponent color="#000000"></SampleComponent>
         </td>
         <td>
-          Applies to hoverBackgroundColor, hoverOutlinedColor and
-          hoverBackgroundColor in the text mode.
+          Applies to primaryHoverBackgroundColor, hoverOutlinedColor and
+          textHoverBackgroundColor in the text mode.
         </td>
       </tr>
       <tr>
