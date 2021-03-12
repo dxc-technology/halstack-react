@@ -1,12 +1,12 @@
-import React, { useMemo, useContext, useState } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import { spaces, componentTokens } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
+import useTheme from "../useTheme.js";
 
 const DxcCheckbox = ({
   checked,
@@ -21,10 +21,7 @@ const DxcCheckbox = ({
   size = "fitContent",
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   const handlerCheckboxChange = (checkboxValue) => {
     if (checked === undefined) {
@@ -98,7 +95,8 @@ const calculateWidth = (margin, size) => {
 };
 
 const LabelContainer = styled.span`
-  color: black;
+  color: ${(props) => props.theme.fontColor};
+  opacity: ${(props) => props.disabled && "0.34"};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   font-family: "Open Sans", sans-serif;
 `;
@@ -113,10 +111,7 @@ const CheckboxContainer = styled.span`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
   width: ${(props) => calculateWidth(props.margin, props.size)};
-
-  opacity: ${(props) => (props.disabled ? props.theme.disabled : "1")};
   display: inline-flex;
   align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
@@ -124,16 +119,11 @@ const CheckboxContainer = styled.span`
   flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiCheckbox-colorSecondary {
     &.Mui-checked {
-      color: ${(props) => props.theme.color};
-      &.Mui-disabled {
-        color: ${(props) => props.theme.color};
-      }
+      color: ${(props) =>
+        (props.disabled && props.theme.disabledBackgroundColorChecked) || props.theme.backgroundColorChecked};
       &:hover {
         background-color: transparent;
       }
-    }
-    &.Mui-disabled {
-      color: ${(props) => props.theme.color};
     }
   }
   .MuiIconButton-colorSecondary {
@@ -154,16 +144,7 @@ const CheckboxContainer = styled.span`
     margin: 2px;
     margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
-    color: ${(props) => props.theme.color};
-  }
-  &.Mui-checked {
-    color: ${(props) => props.theme.color};
-    &:hover {
-      background-color: transparent;
-    }
-  }
-  &.Mui-disabled {
-    opacity: ${(props) => props.theme.disabled};
+    color: ${(props) => (props.disabled && props.theme.disabledBorderColor) || props.theme.borderColor} !important;
   }
   .MuiSvgIcon-root {
     width: 26.6px;
@@ -172,14 +153,16 @@ const CheckboxContainer = styled.span`
 `;
 
 const CheckboxBlackBack = styled.span`
-  background-color: ${(props) => (props.checked !== true ? "transparent" : props.theme.checkColor)};
+  background-color: ${(props) =>
+    (props.checked !== true && "transparent") ||
+    (props.disabled && props.theme.disabledCheckColor) ||
+    props.theme.checkColor};
   width: 17px;
   height: 17px;
   position: absolute;
   left: ${(props) => (props.labelPosition === "before" ? "unset" : "5px")};
   right: ${(props) => (props.labelPosition === "before" ? "5px" : "unset")};
   z-index: 0;
-  opacity: ${(props) => (props.disabled ? props.theme.disabled : "1")};
   padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
   padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
   margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
