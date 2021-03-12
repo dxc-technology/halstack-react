@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcToggleGroup, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcToggleGroup, ThemeProvider } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import twitterPath from "../images/twitter-black.svg";
 
@@ -87,7 +87,7 @@ function App() {
 
   return (
     <div>
-      <div className="test-case" id="basic-toggle-group">
+       <div className="test-case" id="basic-toggle-group">
         <h4>Basic toggle group</h4>
         <DxcToggleGroup label="Choose one" options={optionsWithoutIcon} />
       </div>
@@ -114,9 +114,9 @@ function App() {
           value={value}
           options={optionsWithoutIcon}
         />
-      </div>
+      </div> 
 
-      <div className="test-case" id="controlled-toggle-group">
+       <div className="test-case" id="controlled-toggle-group">
         <h4>Controlled toggle group</h4>
         <DxcToggleGroup
           label="Choose one"
@@ -129,7 +129,7 @@ function App() {
       <div className="test-case" id="uncontrolled-toggle-group">
         <h4>Uncontrolled toggle group</h4>
         <DxcToggleGroup label="Choose one" options={optionsWithoutIcon} />
-      </div>
+      </div> 
 
       <div className="test-case" id="controlled-toggle-group">
         <h4>Controlled multiple toggle group</h4>
@@ -140,9 +140,9 @@ function App() {
           onChange={onChangeConsole}
           multiple
         />
-      </div>
+      </div> 
 
-      <div className="test-case" id="uncontrolled-toggle-group">
+       <div className="test-case" id="uncontrolled-toggle-group">
         <h4>Uncontrolled multiple toggle group</h4>
         <DxcToggleGroup
           label="Choose multiple"
@@ -208,17 +208,19 @@ function App() {
             margin="xxlarge"
           />
         </div>
-      </div>
+      </div> 
       <div>
         <h4>Custom toggle group</h4>
         <div className="test-case" id="custom-toggle-group">
-          <ThemeContext.Provider value={colors}>
+          <ThemeProvider theme={colors}>
             <DxcToggleGroup
               label="Choose one"
               options={optionsWithoutIcon}
               margin="xxlarge"
+              disabled
+              value={3}
             />
-          </ThemeContext.Provider>
+          </ThemeProvider>
         </div>
       </div>
     </div>

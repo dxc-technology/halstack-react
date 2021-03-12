@@ -3,17 +3,14 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 import ValidIcon from "./valid_icon.svg";
 import InvalidIcon from "./invalid_icon.svg";
 
 const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margin }) => {
   const [innerCurrent, setInnerCurrentStep] = React.useState(currentStep || 0);
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   const handleStepClick = (newValue) => {
     if (currentStep == null) {

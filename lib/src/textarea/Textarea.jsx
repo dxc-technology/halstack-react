@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
 
 const DxcTextarea = ({
@@ -24,10 +24,7 @@ const DxcTextarea = ({
   size = "medium",
 }) => {
   const [innerValue, setInnerValue] = useState("");
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   const handlerTextareaChange = (event) => {
     if (value === null || value === undefined) {
