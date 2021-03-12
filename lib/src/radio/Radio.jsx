@@ -6,7 +6,7 @@ import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
 import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcRadio = ({
   checked = false,
@@ -21,10 +21,8 @@ const DxcRadio = ({
   size = "fitContent",
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
+  
   const handlerRadioChange = (value) => {
     if (checked == null) {
       setInnerChecked(true);
@@ -92,7 +90,6 @@ const RadioContainer = styled.span`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "default")};
-  opacity: ${(props) => (props.disabled === true ? props.theme.disabled : "1")};
   .MuiButtonBase-root {
     width: auto;
     height: auto;
@@ -107,9 +104,11 @@ const RadioContainer = styled.span`
         height: 24px;
         width: 24px;
       }
-      color: ${(props) => props.theme.color};
+      color: ${(props) => (props.disabled && props.theme.disabledColor) || props.theme.color};
+      
+
       > div > :nth-child(2) path {
-        color: ${(props) => props.theme.color};
+        color: ${(props) => (props.disabled && props.theme.disabledColor) || props.theme.color};
       }
     }
 
@@ -130,7 +129,7 @@ const RadioContainer = styled.span`
     }
   }
   .MuiRadio-colorSecondary.Mui-checked {
-    color: ${(props) => props.theme.color};
+    color: ${(props) => (props.disabled && props.theme.disabledColor) || props.theme.color};
     :hover {
       background-color: transparent;
     }
@@ -138,7 +137,7 @@ const RadioContainer = styled.span`
 `;
 const LabelContainer = styled.span`
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 `;
 
