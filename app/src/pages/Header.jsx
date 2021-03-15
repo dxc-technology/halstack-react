@@ -3,7 +3,7 @@ import {
   DxcHeader,
   DxcButton,
   DxcDropdown,
-  ThemeContext,
+  ThemeProvider,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import invisionLogo from "../images/invision.png";
@@ -12,12 +12,13 @@ import yahooLogo from "../images/yahoo.png";
 
 const colors = {
   header: {
-    backgroundColor: "grey",
-    underlinedColor: "blue",
-    fontColor: "green",
-    backgroundColorMenu: "beige",
-    fontColorMenu: "red",
-    hamburguerColor: "#FABADA",
+    backgroundColor: "#fabada",
+    underlinedColor: "#d0011b",
+    fontColor: "#006BF6",
+    backgroundColorMenu: "#fcf2bd",
+    hamburguerColor: "#cee0f5",
+    logo: invisionLogo,
+    logoResponsive: skyscannerLogo,
   },
 };
 
@@ -263,7 +264,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Header</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcHeader
             underlined={true}
             content={
@@ -299,7 +300,7 @@ function App() {
               </React.Fragment>
             )}
           />
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </div>
     </div>
   );
