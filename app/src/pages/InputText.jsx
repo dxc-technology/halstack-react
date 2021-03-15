@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcInput, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcInput, ThemeProvider } from "@dxc-technology/halstack-react";
 import icon from "../images/home.svg";
 
 const colors = {
@@ -630,7 +630,7 @@ function App() {
 
       <div className="test-case" id="custom-colors">
         <h4>Custom Autocomplete</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcInput
             label="Asynchronous Autocomplete"
             value={asynchronousAutocompleteValue}
@@ -638,7 +638,7 @@ function App() {
             onBlur={onBlurAutocomplete}
             autocompleteOptions={callbackFunc}
           />
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </div>
     </div>
   );

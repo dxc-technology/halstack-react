@@ -1,18 +1,16 @@
-import React, { useState, useContext, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
-import DxcRequired from "../common/RequiredComponent";
-
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import Popper from "@material-ui/core/Popper";
-
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import DxcRequired from "../common/RequiredComponent";
+import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
+import useTheme from "../useTheme.js";
 import errorIcon from "./error.svg";
 
 const makeCancelable = (promise) => {
@@ -64,10 +62,7 @@ const DxcInputText = ({
   const [isSearching, changeIsSearching] = useState(false);
   const [isError, changeIsError] = useState(false);
 
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   const changeValue = (newValue) => {
     if (value === null || value === undefined) {
@@ -291,8 +286,7 @@ const SuggestionsContainer = styled.div`
     li {
       &:hover {
         color: ${(props) => props.theme.hoverOptionColor};
-        background-color: ${(props) =>
-          `${props.theme.selectedOptionBackgroundColor}${props.theme.hoverOptionBakcgroundColor}`};
+        background-color: ${(props) => props.theme.selectedOptionBackgroundColor};
       }
     }
   }
@@ -422,7 +416,8 @@ const TextContainer = styled.div`
       font-size: 16px;
       color: ${(props) => props.theme.fontColor};
       &.Mui-disabled {
-        opacity: ${(props) => props.theme.disabled};
+        color: ${(props) => props.theme.disabledFontColor} !important;
+        cursor: not-allowed;
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
       &.Mui-focused {
@@ -434,11 +429,6 @@ const TextContainer = styled.div`
             ((props.prefix || props.suffix) && "translate(8px, 1.5px) scale(0.75);") ||
             "translate(0, 1.5px) scale(0.75);"};
         }
-      }
-      &.Mui-disabled {
-        color: ${(props) => props.theme.fontColor};
-        opacity: ${(props) => props.theme.disabled};
-        cursor: not-allowed;
       }
       &.MuiInputLabel-shrink {
         font-family: "Open Sans", sans-serif;
@@ -506,12 +496,10 @@ const TextContainer = styled.div`
       }
 
       &.Mui-disabled {
-        color: ${(props) => props.theme.fontColor};
-        opacity: ${(props) => props.theme.disabled};
         cursor: not-allowed;
 
         &::before {
-          border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
+          border-bottom: ${(props) => `1px solid ${props.theme.disabledFontColor} !important`};
           border-bottom-style: solid;
         }
       }
@@ -556,7 +544,7 @@ const TextContainer = styled.div`
         color: ${(props) => props.theme.error} !important;
       }
       &.Mui-disabled {
-        opacity: ${(props) => props.theme.disabled};
+        color: ${(props) => props.theme.disabledFontColor} !important;
         cursor: not-allowed;
       }
     }
