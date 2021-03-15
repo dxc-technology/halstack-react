@@ -109,8 +109,8 @@ const DxcSelect = ({
         key={selectedItem && selectedItem.label}
       >
         {selectedItem && selectedItem.icon ? (
-          <ListIconContainer>
-            {typeof selectedItem.icon === "object" ? selectedItem.icon : React.createElement(selectedItem.icon)}
+          <ListIconContainer disabled={disabled}>
+            {typeof selectedItem.icon === "object" ? selectedItem.icon : React.createElement(selectedItem.icon)} jairo {disabled=== true && 'YESS' || 'NOOOOOOOOOOO'}
           </ListIconContainer>
         ) : (
           selectedItem && selectedItem.iconSrc && <ListIcon src={selectedItem && selectedItem.iconSrc} />
@@ -199,7 +199,7 @@ const DxcSelect = ({
                   <OptionContainer iconPosition={iconPosition}>
                     {option.icon ? (
                       <ListIconContainer label={option.label} iconPosition={iconPosition}>
-                        {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+                        {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)} 
                       </ListIconContainer>
                     ) : (
                       option.iconSrc && (
@@ -296,6 +296,7 @@ const ListIconContainer = styled.div`
   margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
   margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
   overflow: hidden;
+  opacity: ${(props) => props.disabled && "0.34"};
 
   img,
   svg {
