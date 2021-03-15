@@ -66,6 +66,8 @@ const BackgroundProgressBar = styled.div`
   left: ${(props) => (props.overlay === true ? "0" : "")};
   right: ${(props) => (props.overlay === true ? "0" : "")};
   font-family: "Open Sans", sans-serif;
+  z-index: ${(props) => (props.overlay ? 1000 : "")};
+
 `;
 
 const DXCProgressBar = styled.div`
