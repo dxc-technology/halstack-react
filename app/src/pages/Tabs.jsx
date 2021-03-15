@@ -4,7 +4,6 @@ import {
   DxcButton,
   DxcSwitch,
   ThemeProvider,
-  ThemeContext,
 } from "@dxc-technology/halstack-react";
 import twitterIcon from "../images/twitter-black.svg";
 
@@ -40,9 +39,6 @@ const linkedinSVG = () => {
 const colors = {
   tabs: {
     selectedFontColor: "#5c3b92",
-  },
-  button: {
-    color: "#fabada",
   },
 };
 
@@ -368,14 +364,12 @@ function Tabs() {
             <div
               style={{ height: "250px", background: "#D9D9D9", margin: "15px" }}
             >
-              <ThemeContext.Provider value={colors}>
-                <DxcButton
-                  mode="primary"
-                  label="Button"
-                  onClick={onClick}
-                  margin="medium"
-                />
-              </ThemeContext.Provider>
+              <DxcButton
+                mode="primary"
+                label="Button"
+                onClick={onClick}
+                margin="medium"
+              />
               <DxcSwitch
                 label="Switch"
                 margin="medium"
