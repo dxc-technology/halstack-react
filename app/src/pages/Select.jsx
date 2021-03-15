@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcSelect, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcSelect, ThemeProvider } from "@dxc-technology/halstack-react";
 import homePath from "../images/home.svg";
 
 const colors = {
@@ -690,7 +690,7 @@ function App() {
 
       <div className="test-case" id="custom-colors">
         <h4>Custom Select</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcSelect
             onChange={onChange}
             value={inputValue}
@@ -699,7 +699,7 @@ function App() {
             size="medium"
             margin="xsmall"
           ></DxcSelect>
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </div>
     </div>
   );

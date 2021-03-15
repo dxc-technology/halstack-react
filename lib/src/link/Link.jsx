@@ -1,11 +1,8 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
-
-import { defaultTheme, componentTokens } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcLink = ({
   underlined = true,
@@ -20,10 +17,7 @@ const DxcLink = ({
   text = "",
   margin,
 }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   const linkContent = (
     <LinkText
