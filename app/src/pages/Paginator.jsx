@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { DxcPaginator, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcPaginator, ThemeProvider } from "@dxc-technology/halstack-react";
 
 function App() {
   const [page, changePage] = useState(1);
@@ -42,7 +42,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-paginator">
         <h4>Custom paginator</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcPaginator
             currentPage={page}
             itemsPerPage={10}
@@ -51,7 +51,7 @@ function App() {
             totalItems={27}
             onPageChange={goToPageFunc}
           ></DxcPaginator>
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </div>
     </div>
   );

@@ -111,6 +111,7 @@ const SwitchContainer = styled.div`
       background-color: ${(props) =>
         props.disabled ? props.theme.disabledCheckedTrackBackgroundColor : props.theme.uncheckedTrackBackgroundColor};
       height: 12px;
+      opacity: 1;
     }
 
     .MuiIconButton-root {
