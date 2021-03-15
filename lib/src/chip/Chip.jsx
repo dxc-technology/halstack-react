@@ -117,6 +117,7 @@ const PrefixIconContainer = styled.img`
 `;
 
 const IconContainer = styled.div`
+  opacity: ${(props) => props.disabled && 0.34};
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
   ${(props) =>
     props.prefixIcon
