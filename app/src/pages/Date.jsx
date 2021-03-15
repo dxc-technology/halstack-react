@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { DxcDate, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcDate, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   date: {
-    pickerSelectedDateBackgroundColor: "gray",
-    pickerSelectedDateColor: "#FABADA",
+    pickerSelectedDateBackgroundColor: "#006BF6",
+    pickerSelectedDateColor: "#fabada",
   },
 };
 
@@ -286,7 +286,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Date</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcDate
             label="Input label"
             value={inputValue}
@@ -299,7 +299,7 @@ function App() {
             onBlur={onBlur}
             format="MM-dd-yyyy"
           />
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </div>
     </div>
   );

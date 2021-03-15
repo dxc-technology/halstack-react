@@ -5,13 +5,10 @@ import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
 import { getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcProgressBar = ({ label = "", overlay = true, value, showValue = false, margin }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.progressBar}>
@@ -50,8 +47,8 @@ DxcProgressBar.propTypes = {
 };
 
 const BackgroundProgressBar = styled.div`
-  background-color: ${(props) =>
-    props.overlay === true ? `${props.theme.overlayColor}${props.theme.overlayOpacity}` : "transparent"};
+  background-color: ${(props) => (props.overlay === true ? `${props.theme.overlayColor}` : "transparent")};
+  opacity: ${(props) => props.overlay === true && "0.8"};
   width: ${(props) => (props.overlay === true ? "100%" : "")};
   display: flex;
   flex-wrap: wrap;

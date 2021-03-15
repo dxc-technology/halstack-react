@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcProgressBar, ThemeContext } from "@dxc-technology/halstack-react";
+import { DxcProgressBar, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   progressBar: {
@@ -101,14 +101,14 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Progress Bar</h4>
-        <ThemeContext.Provider value={colors}>
+        <ThemeProvider theme={colors}>
           <DxcProgressBar
             label="Loading..."
             overlay={false}
             showValue
             value={50}
           />
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </div>
     </div>
   );

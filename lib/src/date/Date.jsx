@@ -165,8 +165,7 @@ const DxcDate = ({
         day: {
           color: colorsTheme.date.pickerFontColor,
           "&:hover": {
-            backgroundColor:
-              colorsTheme.date.pickerSelectedDateBackgroundColor + colorsTheme.date.pickerHoverDateBackgroundColor,
+            backgroundColor: colorsTheme.date.pickerHoverDateBackgroundColor,
             color: colorsTheme.date.pickerHoverDateFontColor,
           },
         },
@@ -191,8 +190,7 @@ const DxcDate = ({
         root: {
           "&:focus": {
             color: colorsTheme.date.pickerHoverDateFontColor,
-            backgroundColor:
-              colorsTheme.date.pickerSelectedDateBackgroundColor + colorsTheme.date.pickerHoverDateBackgroundColor,
+            backgroundColor: colorsTheme.date.pickerHoverDateBackgroundColor,
           },
         },
       },

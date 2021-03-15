@@ -50,6 +50,15 @@ function App() {
           onClickPrefix={onClickPrefix}
         />
       </div>
+      <div className="test-case" id="with-suffix-icon-disabled">
+        <h4>Disabled chip6 with suffixIconSrc</h4>
+        <DxcChip
+          label="Chip 6"
+          disabled
+          suffixIcon={deleteSVG}
+          onClickSuffix={onClickSuffix}
+        />
+      </div>
       <div className="test-case" id="with-suffix-icon">
         <h4>Chip6 with suffixIconSrc</h4>
         <DxcChip
@@ -132,6 +141,12 @@ function App() {
         <ThemeProvider theme={colors}>
           <DxcChip label="Custom chip" margin="xxlarge" />
           <DxcChip disabled label="Disabled chip" margin="xxlarge" />
+          <DxcChip
+            disabled
+            label="Disabled chip"
+            margin="xxlarge"
+            suffixIcon={deleteSVG}
+          />
         </ThemeProvider>
       </div>
     </div>
