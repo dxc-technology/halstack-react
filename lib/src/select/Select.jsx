@@ -10,7 +10,7 @@ import DxcCheckbox from "../checkbox/Checkbox";
 import "../common/OpenSans.css";
 import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
 import { getMargin, getCustomTheme } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
 
 const useStyles = makeStyles(() => ({
@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
     "& li": {
       fontSize: "16px",
       "&:hover": {
-        backgroundColor: props.selectedOptionBackgroundColor + props.hoverOptionBackgroundColor,
+        backgroundColor: props.hoveredOptionBackgroundColor,
         color: props.color,
       },
       "&:active": {
@@ -77,10 +77,7 @@ const DxcSelect = ({
   margin,
   size = "medium",
 }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
   const selectValues = { width: "auto", ...colorsTheme.select };
   const classes = useStyles(selectValues);
@@ -331,8 +328,7 @@ const SelectContainer = styled.div`
     align-items: center;
 
     &.Mui-disabled {
-      color: ${(props) => props.theme.select.color};
-      opacity: ${(props) => props.theme.select.disabled};
+      color: ${(props) => props.theme.select.disabledColor};
     }
     &.Mui-focused {
       font-size: 16px;
@@ -360,7 +356,7 @@ const SelectContainer = styled.div`
       content: unset;
     }
     &.Mui-disabled {
-      color: ${(props) => props.theme.select.color};
+      color: ${(props) => props.theme.select.disabledColor};
       cursor: not-allowed;
     }
   }
