@@ -7,7 +7,6 @@ import { getCustomTheme } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 
 const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options = [], margin, multiple = false }) => {
-
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
 
@@ -95,18 +94,12 @@ const ToggleGroupContainer = styled.div`
   display: flex;
 `;
 
-const ToggleGroupLabel = styled.div`
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  margin-bottom: 5px;
-`;
-
 const ToggleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  ${(props)=>`
+  ${(props) => `
   background-color: ${
     props.selected
       ? props.disabled
@@ -130,7 +123,10 @@ const ToggleContainer = styled.div`
           } !important;
         }
         cursor: pointer;`
-        : `cursor: not-allowed;`
+        : `color: ${
+            props.selected ? props.theme.disabledSelectedFontColor : props.theme.disabledUnselectedFontColor
+          } !important;
+        cursor: not-allowed;`
     }
   `}
 `;
