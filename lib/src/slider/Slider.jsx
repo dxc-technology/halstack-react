@@ -1,11 +1,11 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
 import DxcInput from "../input-text/InputText";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 
 const DxcSlider = ({
@@ -169,7 +169,7 @@ const SliderContainer = styled.div`
     & .MuiSlider-thumb {
       height: 14px;
       width: 14px;
-      background-color: ${(props) => props.theme.disabledthumbBackgroundColor };
+      background-color: ${(props) => props.theme.disabledthumbBackgroundColor};
       top: 35%;
     }
     & .MuiSlider-track {
@@ -184,7 +184,6 @@ const SliderContainer = styled.div`
       height: 6px;
       border-radius: 18px;
     }
-    
   }
   .MuiSlider-thumb {
     height: 14px;

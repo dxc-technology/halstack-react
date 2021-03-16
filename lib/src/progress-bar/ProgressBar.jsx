@@ -1,10 +1,9 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
 const DxcProgressBar = ({ label = "", overlay = true, value, showValue = false, margin }) => {
@@ -64,7 +63,6 @@ const BackgroundProgressBar = styled.div`
   right: ${(props) => (props.overlay === true ? "0" : "")};
   font-family: "Open Sans", sans-serif;
   z-index: ${(props) => (props.overlay ? 1000 : "")};
-
 `;
 
 const DXCProgressBar = styled.div`

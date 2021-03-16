@@ -1,13 +1,11 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
 const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options = [], margin, multiple = false }) => {
-
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
 
@@ -106,7 +104,7 @@ const ToggleContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  ${(props)=>`
+  ${(props) => `
   background-color: ${
     props.selected
       ? props.disabled

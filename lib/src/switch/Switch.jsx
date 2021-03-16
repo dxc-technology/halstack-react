@@ -1,11 +1,11 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { spaces, componentTokens } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 
 const DxcSwitch = ({
