@@ -64,7 +64,6 @@ const BackgroundProgressBar = styled.div`
   right: ${(props) => (props.overlay === true ? "0" : "")};
   font-family: "Open Sans", sans-serif;
   z-index: ${(props) => (props.overlay ? 1000 : "")};
-
 `;
 
 const DXCProgressBar = styled.div`
@@ -72,7 +71,7 @@ const DXCProgressBar = styled.div`
   width: ${(props) => (props.overlay === true ? "80%" : "100%")};
   .MuiLinearProgress-root {
     height: 9px;
-    background-color: ${(props) => `${props.theme.totalLine}${props.theme.totalLineOpacity}`};
+    background-color: ${(props) => props.theme.totalLine};
     border-radius: 5px;
   }
   .MuiLinearProgress-bar {
