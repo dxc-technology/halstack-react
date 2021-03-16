@@ -60,7 +60,7 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                   )}
                 </StepHeader>
                 {step.label || step.description ? (
-                  <InfoContainer active={i <= innerCurrent} disabled={step.disabled}>
+                  <InfoContainer active={i <= innerCurrent}>
                     {step.label ? <Label>{step.label}</Label> : ""}
                     {step.description ? <Description>{step.description}</Description> : ""}
                   </InfoContainer>
@@ -196,7 +196,7 @@ const ValidityIcon = styled.img`
 
 const InfoContainer = styled.div`
   margin-left: 10px;
-  color: ${(props) => (props.disabled ? `${props.theme.wizard.disabledFont}` : `${props.theme.wizard.fontColor}`)};
+  color: ${(props) => (props.active ? `${props.theme.wizard.fontColor}` : `${props.theme.wizard.disabledFont}`)};
 `;
 
 const Label = styled.p`
