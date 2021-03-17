@@ -161,7 +161,7 @@ const SliderContainer = styled.div`
   }
 
   .MuiSlider-root.Mui-disabled {
-    color: ${(props) => props.theme.disabledthumbBackgroundColor};
+    color: ${(props) => props.theme.disabledThumbBackgroundColor};
     cursor: not-allowed;
   }
 
@@ -169,17 +169,17 @@ const SliderContainer = styled.div`
     & .MuiSlider-thumb {
       height: 14px;
       width: 14px;
-      background-color: ${(props) => props.theme.disabledthumbBackgroundColor};
+      background-color: ${(props) => props.theme.disabledThumbBackgroundColor};
       top: 35%;
     }
     & .MuiSlider-track {
-      background-color: ${(props) => props.theme.color};
+      background-color: ${(props) => props.theme.disabledTrackLine};
     }
     & > .MuiSlider-mark.MuiSlider-markActive {
-      background-color: ${(props) => props.theme.disableddotsBackgroundColor} !important;
+      background-color: ${(props) => props.theme.disabledDotsBackgroundColor} !important;
     }
     & > .MuiSlider-mark {
-      background-color: ${(props) => props.theme.disableddotsBackgroundColor};
+      background-color: ${(props) => props.theme.disabledDotsBackgroundColor};
       width: 6px;
       height: 6px;
       border-radius: 18px;
@@ -188,7 +188,7 @@ const SliderContainer = styled.div`
   .MuiSlider-thumb {
     height: 14px;
     width: 14px;
-    background-color: ${(props) => props.theme.color};
+    background-color: ${(props) => props.theme.thumbBackgroundColor};
     top: 45%;
     :hover,
     &.Mui-focusVisible {
@@ -202,7 +202,7 @@ const SliderContainer = styled.div`
     }
     :active {
       box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
-      background-color: ${(props) => props.theme.color};
+      background-color: ${(props) => props.theme.thumbBackgroundColor};
       top: 45%;
       transform: scale(1.25);
       transform-origin: center;
@@ -212,23 +212,23 @@ const SliderContainer = styled.div`
     }
   }
   .MuiSlider-track {
-    background-color: ${(props) => props.theme.color};
+    background-color: ${(props) => props.theme.trackLine};
     height: 2px;
     top: 50%;
   }
 
   .MuiSlider-track.MuiSlider-trackAfter {
-    background-color: ${(props) => props.theme.color};
+    background-color: ${(props) => props.theme.trackLine};
   }
   .MuiSlider-rail {
     background-color: ${(props) => props.theme.totalLine};
     top: 50%;
   }
   .MuiSlider-mark.MuiSlider-markActive {
-    background-color: ${(props) => props.theme.color};
+    background-color: ${(props) => props.theme.dotsBackgroundColor};
   }
   .MuiSlider-mark {
-    background-color: ${(props) => props.theme.color};
+    background-color: ${(props) => props.theme.dotsBackgroundColor};
     width: 6px;
     height: 6px;
     border-radius: 18px;

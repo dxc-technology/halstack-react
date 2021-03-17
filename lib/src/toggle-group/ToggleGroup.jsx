@@ -93,12 +93,6 @@ const ToggleGroupContainer = styled.div`
   display: flex;
 `;
 
-const ToggleGroupLabel = styled.div`
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  margin-bottom: 5px;
-`;
-
 const ToggleContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -128,7 +122,10 @@ const ToggleContainer = styled.div`
           } !important;
         }
         cursor: pointer;`
-        : `cursor: not-allowed;`
+        : `color: ${
+            props.selected ? props.theme.disabledSelectedFontColor : props.theme.disabledUnselectedFontColor
+          } !important;
+        cursor: not-allowed;`
     }
   `}
 `;

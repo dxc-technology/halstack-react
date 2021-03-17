@@ -70,7 +70,7 @@ const DXCProgressBar = styled.div`
   width: ${(props) => (props.overlay === true ? "80%" : "100%")};
   .MuiLinearProgress-root {
     height: 9px;
-    background-color: ${(props) => `${props.theme.totalLine}${props.theme.totalLineOpacity}`};
+    background-color: ${(props) => props.theme.totalLine};
     border-radius: 5px;
   }
   .MuiLinearProgress-bar {

@@ -5,14 +5,14 @@ import twitterPath from "../images/twitter-black.svg";
 
 const colors = {
   toggleGroup: {
-    selectedBackgroundColor: "red",
-    selectedBackgroundHoverColor: "blue",
-    selectedFontColor: "grey",
-    selectedHoverFontColor: "purple",
-    unselectedBackgroundColor: "beige",
-    unselectedBackgroundHoverColor: "#ffffff",
-    unselectedFontColor: "#fabada",
-    unselectedHoverFontColor: "pink",
+    selectedBackgroundColor: "#fcf2bd",
+    selectedBackgroundHoverColor: "#d0011b",
+    selectedFontColor: "#006BF6",
+    selectedHoverFontColor: "#000000",
+    unselectedBackgroundColor: "#fabada",
+    unselectedBackgroundHoverColor: "#cee0f5",
+    unselectedFontColor: "#d0011b",
+    unselectedHoverFontColor: "#fcf2bd",
   },
 };
 
@@ -87,7 +87,7 @@ function App() {
 
   return (
     <div>
-       <div className="test-case" id="basic-toggle-group">
+      <div className="test-case" id="basic-toggle-group">
         <h4>Basic toggle group</h4>
         <DxcToggleGroup label="Choose one" options={optionsWithoutIcon} />
       </div>
@@ -114,9 +114,9 @@ function App() {
           value={value}
           options={optionsWithoutIcon}
         />
-      </div> 
+      </div>
 
-       <div className="test-case" id="controlled-toggle-group">
+      <div className="test-case" id="controlled-toggle-group">
         <h4>Controlled toggle group</h4>
         <DxcToggleGroup
           label="Choose one"
@@ -129,7 +129,7 @@ function App() {
       <div className="test-case" id="uncontrolled-toggle-group">
         <h4>Uncontrolled toggle group</h4>
         <DxcToggleGroup label="Choose one" options={optionsWithoutIcon} />
-      </div> 
+      </div>
 
       <div className="test-case" id="controlled-toggle-group">
         <h4>Controlled multiple toggle group</h4>
@@ -140,9 +140,9 @@ function App() {
           onChange={onChangeConsole}
           multiple
         />
-      </div> 
+      </div>
 
-       <div className="test-case" id="uncontrolled-toggle-group">
+      <div className="test-case" id="uncontrolled-toggle-group">
         <h4>Uncontrolled multiple toggle group</h4>
         <DxcToggleGroup
           label="Choose multiple"
@@ -208,11 +208,17 @@ function App() {
             margin="xxlarge"
           />
         </div>
-      </div> 
+      </div>
       <div>
         <h4>Custom toggle group</h4>
         <div className="test-case" id="custom-toggle-group">
           <ThemeProvider theme={colors}>
+            <DxcToggleGroup
+              label="Choose one"
+              options={optionsWithoutIcon}
+              margin="xxlarge"
+              value={3}
+            />
             <DxcToggleGroup
               label="Choose one"
               options={optionsWithoutIcon}

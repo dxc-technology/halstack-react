@@ -181,7 +181,7 @@ const DxCButton = styled.div`
             }
             &:focus {
               background-color: ${props.theme.secondaryBackgroundColor};
-              color: ${props.theme.secondaryHoverFontColor}; 
+              color: ${props.theme.secondaryHoverFontColor} !important; 
             }
             &:disabled{
               cursor: not-allowed;
@@ -206,7 +206,7 @@ const DxCButton = styled.div`
             }
             &:focus {
               background-color: ${props.theme.textBackgroundColor};
-              color: ${props.theme.textFontColor}; 
+              color: ${props.theme.textFontColor} !important; 
             }
             &:disabled{
               cursor:not-allowed;
