@@ -1,9 +1,7 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { defaultTheme, componentTokens } from "../common/variables.js";
-import useTheme from "../useTheme.js";
-import { getCustomTheme } from "../common/utils.js";
 import PropTypes from "prop-types";
+import useTheme from "../useTheme.js";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
 import first from "./images/previousPage.svg";
@@ -30,7 +28,7 @@ const DxcPaginator = ({
   const maxItemsPerPage =
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
-const colorsTheme = useTheme();
+  const colorsTheme = useTheme();
   return (
     <ThemeProvider theme={colorsTheme.paginator}>
       <DxcPaginatorContainer disabled={currentPageInternal === 1}>

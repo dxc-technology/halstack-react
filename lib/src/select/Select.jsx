@@ -1,4 +1,4 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState } from "react";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,8 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import "../common/OpenSans.css";
-import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
 

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider, Paper } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -9,10 +9,9 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 import "../common/OpenSans.css";
-import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
 import calendarIcon from "./calendar.svg";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcDate = ({
   value,
@@ -33,10 +32,7 @@ const DxcDate = ({
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
 
   function handleMenuItemClick(date) {
     const stringValue = moment(date).format(format.toUpperCase());

@@ -1,19 +1,17 @@
-import React, { useContext, useMemo, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcAccordion from "../accordion/Accordion";
 import "../common/OpenSans.css";
-import { getCustomTheme, getMargin } from "../common/utils.js";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import ThemeContext from "../ThemeContext.js";
+import { getMargin } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
+import useTheme from "../useTheme.js";
 
 const Accordion = ({ margin, ...childProps }) => <DxcAccordion {...childProps}>{childProps.children}</DxcAccordion>;
 
 const DxcAccordionGroup = ({ disabled = false, onActiveChange, indexActive = undefined, margin, children = [] }) => {
-  const customTheme = useContext(ThemeContext);
-  const colorsTheme = useMemo(() => getCustomTheme(componentTokens, getCustomTheme(defaultTheme, customTheme)), [
-    customTheme,
-  ]);
+  const colorsTheme = useTheme();
+
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(indexActive);
 
   const handlerActiveChange = (index) => {

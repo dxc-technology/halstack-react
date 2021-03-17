@@ -1,10 +1,9 @@
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
 const DxcSpinner = ({ label = "", value, showValue = false, mode = "large", margin }) => {
@@ -53,9 +52,8 @@ DxcSpinner.propTypes = {
 };
 
 const BackgroundSpinner = styled.div`
-  background-color: ${(props) =>
-    props.mode === "overlay" ? `${props.theme.overlayColor}` : "transparent"};
-  opacity: ${(props)=> props.mode === "overlay" && "0.8"};
+  background-color: ${(props) => (props.mode === "overlay" ? `${props.theme.overlayColor}` : "transparent")};
+  opacity: ${(props) => props.mode === "overlay" && "0.8"};
   display: flex;
   flex-wrap: wrap;
   justify-content: ${(props) => (props.mode === "overlay" ? "center" : "")};
