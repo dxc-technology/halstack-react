@@ -1,14 +1,13 @@
 /* eslint-disable react/require-default-props */
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
 const DxcSidenav = ({ padding, children }) => {
   const colorsTheme = useTheme();
-  
+
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
       <SideNavContainer padding={padding}>{children}</SideNavContainer>

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState } from "react";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,8 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import DxcCheckbox from "../checkbox/Checkbox";
 import "../common/OpenSans.css";
-import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
 
@@ -107,7 +107,8 @@ const DxcSelect = ({
       >
         {selectedItem && selectedItem.icon ? (
           <ListIconContainer disabled={disabled}>
-            {typeof selectedItem.icon === "object" ? selectedItem.icon : React.createElement(selectedItem.icon)} jairo {disabled=== true && 'YESS' || 'NOOOOOOOOOOO'}
+            {typeof selectedItem.icon === "object" ? selectedItem.icon : React.createElement(selectedItem.icon)} jairo{" "}
+            {(disabled === true && "YESS") || "NOOOOOOOOOOO"}
           </ListIconContainer>
         ) : (
           selectedItem && selectedItem.iconSrc && <ListIcon src={selectedItem && selectedItem.iconSrc} />
@@ -196,7 +197,7 @@ const DxcSelect = ({
                   <OptionContainer iconPosition={iconPosition}>
                     {option.icon ? (
                       <ListIconContainer label={option.label} iconPosition={iconPosition}>
-                        {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)} 
+                        {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
                       </ListIconContainer>
                     ) : (
                       option.iconSrc && (

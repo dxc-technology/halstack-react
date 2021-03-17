@@ -1,13 +1,12 @@
 /* eslint-disable react/require-default-props */
-import React, { useState, useEffect, useRef, useContext, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { DxcHeader, DxcFooter, DxcSidenav } from "@dxc-technology/halstack-react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { spaces, responsiveSizes, defaultTheme, componentTokens } from "../common/variables.js";
+import { spaces, responsiveSizes } from "../common/variables.js";
 import linkedinLogo from "./linkedin.svg";
 import twitterLogo from "./twitter.svg";
 import facebookLogo from "./facebook.svg";
-import { getCustomTheme } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 
 const year = new Date().getFullYear();

@@ -1,8 +1,7 @@
-import React, { useMemo, useContext } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import ValidIcon from "./valid_icon.svg";
 import InvalidIcon from "./invalid_icon.svg";

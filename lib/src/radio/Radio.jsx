@@ -1,11 +1,11 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Radio from "@material-ui/core/Radio";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import "../common/OpenSans.css";
-import { spaces, componentTokens, defaultTheme } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 
 const DxcRadio = ({
@@ -22,7 +22,7 @@ const DxcRadio = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
   const colorsTheme = useTheme();
-  
+
   const handlerRadioChange = (value) => {
     if (checked == null) {
       setInnerChecked(true);
@@ -105,7 +105,6 @@ const RadioContainer = styled.span`
         width: 24px;
       }
       color: ${(props) => (props.disabled && props.theme.disabledColor) || props.theme.color};
-      
 
       > div > :nth-child(2) path {
         color: ${(props) => (props.disabled && props.theme.disabledColor) || props.theme.color};

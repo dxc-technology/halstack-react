@@ -1,10 +1,10 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, defaultTheme, componentTokens } from "../common/variables.js";
-import { getMargin, getCustomTheme } from "../common/utils.js";
+import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
 
@@ -120,7 +120,7 @@ const TextContainer = styled.div`
       font-size: 16px;
       color: ${(props) => props.theme.fontColor};
       &.Mui-disabled {
-        opacity: ${(props) => props.theme.disabled};
+        color: ${(props) => props.theme.disabledFontColor} !important;
         cursor: not-allowed;
       }
       padding-left: "inherit";
@@ -210,12 +210,10 @@ const TextContainer = styled.div`
       }
 
       &.Mui-disabled {
-        color: ${(props) => props.theme.fontColor};
-        opacity: ${(props) => props.theme.disabled};
         cursor: not-allowed;
 
         &::before {
-          border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
+          border-bottom: ${(props) => `1px solid ${props.theme.disabledFontColor} !important`};
           border-bottom-style: solid;
         }
       }
@@ -238,7 +236,7 @@ const TextContainer = styled.div`
         color: ${(props) => `${props.theme.error} !important`};
       }
       &.Mui-disabled {
-        opacity: ${(props) => props.theme.disabled};
+        color: ${(props) => props.theme.disabledFontColor} !important;
         cursor: not-allowed;
       }
     }
