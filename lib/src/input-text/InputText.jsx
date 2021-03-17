@@ -508,6 +508,7 @@ const TextContainer = styled.div`
         color: ${(props) => props.theme.fontColor};
         text-overflow: ellipsis;
         &.Mui-disabled {
+          color: ${(props) => props.theme.disabledFontColor} !important;
           cursor: not-allowed;
         }
       }

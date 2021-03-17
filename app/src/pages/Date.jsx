@@ -91,6 +91,14 @@ function App() {
           onChange={onChange}
           invalid={isInvalid}
         />
+        <DxcDate
+          label="Input label"
+          value="16/10/1994"
+          disabled={true}
+          assistiveText="assistive text"
+          onChange={onChange}
+          invalid={isInvalid}
+        />
       </div>
 
       <div className="test-case" id="required-date-with-value">
