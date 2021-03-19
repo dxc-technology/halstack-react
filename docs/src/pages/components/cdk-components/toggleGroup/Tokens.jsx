@@ -11,14 +11,17 @@ const toggleGroupTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>unselectedBackgroundColor</td>
+        <td>unselectedBaseColor</td>
         <td>
           <SampleComponent color="#D9D9D9"></SampleComponent>
         </td>
-        <td>Applies to unselectedBackgroundColor.</td>
+        <td>
+          Applies to unselectedBackgroundColor and
+          disabledUnselectedBackgroundColor.
+        </td>
       </tr>
       <tr>
-        <td>unselectedBackgroundHoverColor</td>
+        <td>unselectedHoverBaseColor</td>
         <td>
           <SampleComponent color="#EEEEEE"></SampleComponent>
         </td>
@@ -29,7 +32,7 @@ const toggleGroupTokensTable = () => {
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to unselectedFontColor.</td>
+        <td>Applies to unselectedFontColor and disabledUnselectedFontColor.</td>
       </tr>
       <tr>
         <td>unselectedHoverFontColor</td>
@@ -39,14 +42,17 @@ const toggleGroupTokensTable = () => {
         <td>Applies to unselectedHoverFontColor.</td>
       </tr>
       <tr>
-        <td>selectedBackgroundColor</td>
+        <td>selectedBaseColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
-        <td>Applies to selectedBackgroundColor.</td>
+        <td>
+          Applies to selectedBackgroundColor and
+          disabledSelectedBackgroundColor.
+        </td>
       </tr>
       <tr>
-        <td>selectedBackgroundHoverColor</td>
+        <td>selectedHoverBaseColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
@@ -57,7 +63,7 @@ const toggleGroupTokensTable = () => {
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>Applies to selectedFontColor.</td>
+        <td>Applies to selectedFontColor and disabledSelectedFontColor.</td>
       </tr>
       <tr>
         <td>selectedHoverFontColor</td>

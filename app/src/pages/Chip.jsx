@@ -4,8 +4,8 @@ import avatar from "../images/avatar.svg";
 
 const colors = {
   chip: {
-    outlinedColor: "#FABADA",
-    backgroundColor: "#FABADA",
+    accentColor: "#FABADA",
+    baseColor: "#FABADA",
     fontColor: "#baffda",
   },
 };

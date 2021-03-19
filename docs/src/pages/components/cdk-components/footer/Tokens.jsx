@@ -11,7 +11,7 @@ const footerTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>backgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
@@ -25,7 +25,7 @@ const footerTokensTable = () => {
         <td>Applies to fontColor.</td>
       </tr>
       <tr>
-        <td>lineColor</td>
+        <td>accentColor</td>
         <td>
           <SampleComponent color="#0067B3"></SampleComponent>
         </td>

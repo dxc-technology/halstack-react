@@ -11,13 +11,12 @@ const radioTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>color</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to dotColor and borderColor.</td>
+        <td>Applies to color and disabledColor.</td>
       </tr>
-      
     </DxcTable>
   );
 };

@@ -11,14 +11,14 @@ const chipTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>backgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#EEEEEE"></SampleComponent>
         </td>
-        <td>Applies to the backgroundColor.</td>
+        <td>Applies to the backgroundColor and disabledBackgroundColor.</td>
       </tr>
       <tr>
-        <td>outlinedColor</td>
+        <td>accentColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
@@ -29,7 +29,7 @@ const chipTokensTable = () => {
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to fontColor.</td>
+        <td>Applies to fontColor and disabledFontColor.</td>
       </tr>
     </DxcTable>
   );

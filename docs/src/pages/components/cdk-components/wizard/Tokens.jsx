@@ -11,14 +11,14 @@ const wizardTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>selectedBackgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>Applies to the selectedBackgroundColor.</td>
       </tr>
       <tr>
-        <td>selectedFont</td>
+        <td>fontColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>

@@ -3,8 +3,8 @@ import { DxcTable, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   table: {
-    headerBackgroundColor: "pink",
-    headerFontColor: "blue",
+    baseColor: "pink",
+    fontColor: "blue",
   },
 };
 
@@ -850,7 +850,7 @@ function Table() {
             </tbody>
           </DxcTable>
         </div>
-      </div> 
+      </div>
 
       <div className="test-case" id="custom-colors">
         <h5>Custom Table</h5>

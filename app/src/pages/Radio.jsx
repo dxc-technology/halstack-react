@@ -3,7 +3,7 @@ import { DxcRadio, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   radio: {
-    color: "#FABADA",
+    baseColor: "#FABADA",
   },
 };
 

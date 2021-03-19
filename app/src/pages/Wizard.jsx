@@ -16,8 +16,8 @@ const homeSVG = () => {
 };
 const colors = {
   wizard: {
-    selectedBackgroundColor: "#fabada",
-    selectedFont: "blue",
+    baseColor: "#fabada",
+    fontColor: "blue",
   },
 };
 

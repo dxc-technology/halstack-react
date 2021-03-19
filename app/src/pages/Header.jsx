@@ -12,10 +12,10 @@ import yahooLogo from "../images/yahoo.png";
 
 const colors = {
   header: {
-    backgroundColor: "#fabada",
-    underlinedColor: "#d0011b",
+    baseColor: "#fabada",
+    accentColor: "#d0011b",
     fontColor: "#006BF6",
-    backgroundColorMenu: "#fcf2bd",
+    menuBaseColor: "#fcf2bd",
     hamburguerColor: "#cee0f5",
     logo: invisionLogo,
     logoResponsive: skyscannerLogo,

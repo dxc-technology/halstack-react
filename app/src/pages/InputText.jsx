@@ -4,7 +4,7 @@ import icon from "../images/home.svg";
 
 const colors = {
   inputText: {
-    selectedOptionBackgroundColor: "#fabada",
+    selectedBaseColor: "#fabada",
   },
 };
 

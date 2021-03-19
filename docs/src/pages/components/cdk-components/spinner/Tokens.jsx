@@ -11,14 +11,14 @@ const headerTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>trackCircleColor</td>
+        <td>accentColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>Applies to the trackCircleColor token.</td>
       </tr>
       <tr>
-        <td>totalCircleColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>

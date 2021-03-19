@@ -11,11 +11,14 @@ const switchTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>checkedTrackBackgroundColor</td>
+        <td>checkedBaseColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
-        <td>Applies to checkedTrackBackgroundColor.</td>
+        <td>
+          Applies to checkedTrackBackgroundColor and
+          disabledCheckedTrackBackgroundColor.
+        </td>
       </tr>
     </DxcTable>
   );

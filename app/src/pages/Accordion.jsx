@@ -4,7 +4,7 @@ import homeIcon from "../images/home.svg";
 
 const colors = {
   accordion: {
-    arrowColor: "#fc0773",
+    accentColor: "#fc0773",
     fontColor: "#fabada",
   },
 };

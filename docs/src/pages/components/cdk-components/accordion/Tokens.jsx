@@ -15,14 +15,17 @@ const accordionTokensTable = () => {
         <td>
           <SampleComponent color="#666666"></SampleComponent>
         </td>
-        <td>Applies to fontColor token.</td>
+        <td>Applies to fontColor token and disabledFontColor.</td>
       </tr>
       <tr>
-        <td>arrowColor</td>
+        <td>accentColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
-        <td>Applies to the arrowColor, focusOutline and hoverBackgroundColor tokens.</td>
+        <td>
+          Applies to the arrowColor, focusOutline and hoverBackgroundColor
+          tokens.
+        </td>
       </tr>
     </DxcTable>
   );

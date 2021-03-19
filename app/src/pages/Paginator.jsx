@@ -7,15 +7,14 @@ function App() {
 
   const colors = {
     paginator: {
-      paginatorBackgroundColor: "#fabada",
-      paginatorFontColor: "red",
+      baseColor: "#fabada",
+      fontColor: "red",
     },
   };
 
   const goToPageFunc = (newPage) => {
     changePage(newPage);
   };
-  
 
   return (
     <div>

@@ -11,14 +11,14 @@ const progressBarTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>trackLine</td>
+        <td>accentColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>Applies to the trackLine token.</td>
       </tr>
       <tr>
-        <td>totalLine</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#666666"></SampleComponent>
         </td>

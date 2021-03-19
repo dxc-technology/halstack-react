@@ -5,12 +5,12 @@ import twitterPath from "../images/twitter-black.svg";
 
 const colors = {
   toggleGroup: {
-    selectedBackgroundColor: "#fcf2bd",
-    selectedBackgroundHoverColor: "#d0011b",
+    selectedBaseColor: "#fcf2bd",
+    selectedHoverBaseColor: "#d0011b",
     selectedFontColor: "#006BF6",
     selectedHoverFontColor: "#000000",
-    unselectedBackgroundColor: "#fabada",
-    unselectedBackgroundHoverColor: "#cee0f5",
+    unselectedBaseColor: "#fabada",
+    unselectedHoverBaseColor: "#cee0f5",
     unselectedFontColor: "#d0011b",
     unselectedHoverFontColor: "#fcf2bd",
   },

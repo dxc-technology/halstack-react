@@ -11,18 +11,21 @@ const checkboxTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>color</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#0067B3"></SampleComponent>
         </td>
-        <td>Applies to backgroundColorChecked and borderColor.</td>
+        <td>
+          Applies to backgroundColorChecked, borderColor,
+          disabledBackgroundColorChecked and disabledBorderColor.
+        </td>
       </tr>
       <tr>
         <td>checkColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>Applies to checkColor.</td>
+        <td>Applies to checkColor and disabledCheckColor.</td>
       </tr>
     </DxcTable>
   );

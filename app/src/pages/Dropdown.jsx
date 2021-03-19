@@ -3,7 +3,7 @@ import { DxcDropdown, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   dropdown: {
-    backgroundColor: "#666666",
+    baseColor: "#666666",
     fontColor: "#FABADA",
   },
 };

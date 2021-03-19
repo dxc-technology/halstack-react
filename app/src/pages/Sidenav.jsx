@@ -7,9 +7,9 @@ import {
 
 const colors = {
   sidenav: {
-    backgroundColor: "#FABADA",
-    arrowContainerColor: "#D0011B",
-    arrowColor: "pink",
+    baseColor: "#FABADA",
+    arrowBaseColor: "#D0011B",
+    arrowAccentColor: "pink",
   },
 };
 
@@ -50,10 +50,12 @@ function App() {
           <DxcSidenav.Link href="/test">Test</DxcSidenav.Link>
           <DxcSidenav.Subtitle>My subtitle2</DxcSidenav.Subtitle>
           <DxcSidenav.Link href="#">Home2</DxcSidenav.Link>
-          <DxcSidenav.Link onClick={() => console.log("click")}>Test2</DxcSidenav.Link>
+          <DxcSidenav.Link onClick={() => console.log("click")}>
+            Test2
+          </DxcSidenav.Link>
           <p>This is a sidenav2.</p>
         </DxcSidenav>
-        <DxcFooter /> 
+        <DxcFooter />
       </div>
     </div>
   );
