@@ -191,6 +191,8 @@ const TabIconContainer = styled.div`
   margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
   margin-right: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "left" && "12px") || ""};
   overflow: hidden;
+  display: flex;
+  align-items: center;
   img,
   svg {
     height: 100%;

@@ -248,10 +248,11 @@ function Tabs() {
         />
       </div>
       <div className="test-case" id="text-icon-top-tabs">
-        <h4>With text and icon at the left</h4>
+        <h4>With text and icon at the top</h4>
         <DxcTabs
           activeTabIndex={activeTab}
           onTabClick={onTabClick}
+          iconPosition="top"
           tabs={[
             {
               label: "LinkedIn",
