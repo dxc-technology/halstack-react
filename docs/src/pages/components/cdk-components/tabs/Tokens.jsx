@@ -11,11 +11,15 @@ const tabsTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>selectedFontColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#6f2c91"></SampleComponent>
         </td>
-        <td>Applies to the selectedFontColor token.</td>
+        <td>
+          Applies to the selectedFontColor, selectedIconColor,
+          selectedUnderlineColor, focusOutline, hoverBackgroundColor and
+          pressedBackgroundColor tokens.
+        </td>
       </tr>
     </DxcTable>
   );

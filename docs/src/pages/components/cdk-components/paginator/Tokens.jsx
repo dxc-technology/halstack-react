@@ -11,22 +11,18 @@ const paginatorTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>paginatorBackgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#EEEEEE"></SampleComponent>
         </td>
-        <td>
-          Applies to the paginatorBackgroundColor.
-        </td>
+        <td>Applies to the paginatorBackgroundColor.</td>
       </tr>
       <tr>
-        <td>paginatorFontColor</td>
+        <td>fontColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>
-          Applies to paginatorFontColor.
-        </td>
+        <td>Applies to paginatorFontColor.</td>
       </tr>
     </DxcTable>
   );

@@ -11,12 +11,13 @@ const selectTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>selectedOptionBackgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#D9D9D9"></SampleComponent>
         </td>
         <td>
-          Applies to the selectedOptionBackgroundColor and hoverOptionBackgroundColor(0.34 opacity).
+          Applies to the selectedOptionBackgroundColor and
+          hoverOptionBackgroundColor.
         </td>
       </tr>
     </DxcTable>

@@ -39,7 +39,7 @@ const linkedinSVG = () => {
 
 const colors = {
   tabs: {
-    selectedFontColor: "#5c3b92",
+    baseColor: "#5c3b92",
   },
   button: {
     color: "#fabada",

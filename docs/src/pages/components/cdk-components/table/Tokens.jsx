@@ -11,14 +11,14 @@ const tableTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>headerBackgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>Applies to the headerBackgroundColor.</td>
       </tr>
       <tr>
-        <td>headerFontColor</td>
+        <td>fontColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>

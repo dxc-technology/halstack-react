@@ -8,9 +8,9 @@ import twitterIcon from "../images/twitter.svg";
 
 const colors = {
   footer: {
-    backgroundColor: "#fabada",
+    baseColor: "#fabada",
     fontColor: "#fafada",
-    lineColor: "#faaada",
+    accentColor: "#faaada",
     logo: yahooLogo,
   },
 };

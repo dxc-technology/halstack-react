@@ -3,8 +3,8 @@ import { DxcDate, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   date: {
-    pickerSelectedDateBackgroundColor: "#006BF6",
-    pickerSelectedDateColor: "#fabada",
+    baseColor: "#006BF6",
+    accentColor: "#fabada",
   },
 };
 
@@ -86,6 +86,14 @@ function App() {
         <DxcDate
           label="Input label"
           value={inputValue}
+          disabled={true}
+          assistiveText="assistive text"
+          onChange={onChange}
+          invalid={isInvalid}
+        />
+        <DxcDate
+          label="Input label"
+          value="16/10/1994"
           disabled={true}
           assistiveText="assistive text"
           onChange={onChange}

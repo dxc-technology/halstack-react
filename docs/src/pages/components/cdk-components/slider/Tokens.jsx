@@ -11,13 +11,14 @@ const sliderTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>color</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#0067B3"></SampleComponent>
         </td>
         <td>
-          Applies to the thumbBackgroundColor, dotsBackgroundColor and trackLine
-          tokens.
+          Applies to the thumbBackgroundColor, dotsBackgroundColor, trackLine,
+          totalLine, disabledThumbBackgroundColor, disabledDotsBackgroundColor
+          and disabledTrackLine tokens.
         </td>
       </tr>
     </DxcTable>

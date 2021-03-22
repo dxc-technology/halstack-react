@@ -11,13 +11,13 @@ const dropdownTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>backgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
         <td>
-          Applies to the backgroundColor, hoverBackgroundColor (0.8 opacity) and
-          hoverBackgroundOption (0.34 opacity).
+          Applies to the backgroundColor, hoverBackgroundColor and
+          hoverBackgroundOption.
         </td>
       </tr>
       <tr>

@@ -3,15 +3,15 @@ import { DxcSpinner, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   spinner: {
-    trackCircleColor: "black",
-    totalCircleColor: "#FABADA",
+    accentColor: "black",
+    baseColor: "#FABADA",
   },
 };
 
 function App() {
   return (
     <div>
-       <div className="test-case" id="light-theme">
+      <div className="test-case" id="light-theme">
         <h4>Light theme</h4>
         <DxcSpinner showValue value={66} />
       </div>
@@ -64,7 +64,7 @@ function App() {
           <h5>xxlarge margin</h5>
           <DxcSpinner margin="xxlarge" showValue value={66} />
         </div>
-      </div> 
+      </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Spinner</h4>
         <ThemeProvider theme={colors}>

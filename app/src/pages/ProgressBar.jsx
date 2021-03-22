@@ -3,8 +3,8 @@ import { DxcProgressBar, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   progressBar: {
-    trackLine: "#006bf6",
-    totalLine: "#fabada",
+    accentColor: "#006bf6",
+    baseColor: "#fabada",
   },
 };
 

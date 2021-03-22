@@ -4,8 +4,8 @@ import homeLogo from "../images/home.svg";
 
 const colors = {
   button: {
-    color: "#fcf2bd",
-    hoverColor: "#d0011b",
+    baseColor: "#fcf2bd",
+    hoverBaseColor: "#d0011b",
     primaryFontColor: "#006BF6",
     primaryHoverFontColor: "#000000",
     secondaryFontColor: "#fabada",

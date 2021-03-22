@@ -11,17 +11,17 @@ const dateTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>pickerSelectedDateBackgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>
           Applies to the pickerSelectedDateBackgroundColor and
-          pickerHoverDateBackgroundColor(0.34 opacity).
+          pickerHoverDateBackgroundColor.
         </td>
       </tr>
       <tr>
-        <td>pickerSelectedDateColor</td>
+        <td>accentColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>

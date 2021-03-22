@@ -11,7 +11,7 @@ const inputTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>selectedOptionBackgroundColor</td>
+        <td>selectedBaseColor</td>
         <td>
           <SampleComponent color="#D9D9D9"></SampleComponent>
         </td>

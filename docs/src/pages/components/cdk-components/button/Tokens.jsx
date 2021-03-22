@@ -11,16 +11,17 @@ const buttonTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>color</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
         <td>
-          Applies to the primaryBackgroundColor and secondaryOutlinedColor.
+          Applies to the primaryBackgroundColor, secondaryOutlinedColor,
+          disabledPrimaryBackgroundColor and disabledSecondaryOutlinedColor.
         </td>
       </tr>
       <tr>
-        <td>hoverColor</td>
+        <td>hoverBaseColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
@@ -34,35 +35,35 @@ const buttonTokensTable = () => {
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>Applies to primaryFontColor.</td>
+        <td>Applies to primaryFontColor and disabledPrimaryFontColor.</td>
       </tr>
       <tr>
         <td>primaryHoverFontColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
-        <td>Applies to hoverFontColor for the primary mode.</td>
+        <td>Applies to primaryHoverFontColor.</td>
       </tr>
       <tr>
         <td>secondaryFontColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to secondaryFontColor.</td>
+        <td>Applies to secondaryFontColor and disabledSecondaryFontColor.</td>
       </tr>
       <tr>
         <td>secondaryHoverFontColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to hoverFontColor for the secondary mode.</td>
+        <td>Applies to secondaryHoverFontColor.</td>
       </tr>
       <tr>
         <td>textFontColor</td>
         <td>
           <SampleComponent color="#6F2C91"></SampleComponent>
         </td>
-        <td>Applies to textFontColor.</td>
+        <td>Applies to textFontColor and disabledTextFontColor.</td>
       </tr>
       <tr>
         <td>textHoverFontColor</td>

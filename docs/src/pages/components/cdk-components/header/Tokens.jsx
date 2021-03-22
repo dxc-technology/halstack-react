@@ -11,14 +11,14 @@ const headerTokensTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>backgroundColor</td>
+        <td>baseColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
         <td>Applies to the backgroundColor token.</td>
       </tr>
       <tr>
-        <td>underlinedColor</td>
+        <td>accentColor</td>
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
@@ -32,7 +32,7 @@ const headerTokensTable = () => {
         <td>Applies to the fontColor token.</td>
       </tr>
       <tr>
-        <td>backgroundColorMenu</td>
+        <td>menuBaseColor</td>
         <td>
           <SampleComponent color="#FFFFFF"></SampleComponent>
         </td>
@@ -50,7 +50,7 @@ const headerTokensTable = () => {
         <td>
           <SampleComponent color="#000000"></SampleComponent>
         </td>
-        <td>Applies to the hamburguerColor token.</td>
+        <td>Applies to the hamburguerColor and hoverHamburguerColor tokens.</td>
       </tr>
       <tr>
         <td>logo</td>
