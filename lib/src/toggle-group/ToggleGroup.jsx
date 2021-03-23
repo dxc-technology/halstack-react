@@ -74,7 +74,7 @@ const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options 
 };
 
 const ToggleGroup = styled.div`
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "15px")};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
   margin-right: ${(props) =>
