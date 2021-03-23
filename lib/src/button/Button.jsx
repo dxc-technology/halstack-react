@@ -173,7 +173,7 @@ const DxCButton = styled.div`
             &:hover{
               border-color: ${props.theme.hoverOutlinedColor};
               background-color: ${props.theme.secondaryHoverBackgroundColor};
-              color: ${props.theme.secondaryHoverFontColor}; 
+              color: ${props.theme.secondaryHoverFontColor} !important; 
             }
             &:active {
               background-color: ${props.theme.secondaryActiveBackgroundColor} !important;
