@@ -107,7 +107,7 @@ const ToggleContainer = styled.div`
       : props.disabled
       ? props.theme.disabledUnselectedBackgroundColor
       : props.theme.unselectedBackgroundColor
-  }
+  };
     border-radius: ${props.isFirst ? "4px 0 0 4px" : props.isLast ? "0 4px 4px 0" : "0"};
     color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
     padding: ${props.isIcon ? `10px 12px` : `12px 30px`};
