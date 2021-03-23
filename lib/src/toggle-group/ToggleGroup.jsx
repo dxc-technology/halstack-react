@@ -145,6 +145,7 @@ const IconContainer = styled.div`
   height: 20px;
   width: 20px;
   overflow: hidden;
+  display: flex;
   img,
   svg {
     height: 100%;
