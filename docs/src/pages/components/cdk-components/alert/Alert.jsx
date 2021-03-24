@@ -1,8 +1,6 @@
 import React from "react";
 import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
-
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Example from "../../common/Example";
 import AlertPropsTable from "./api.jsx";
 import Section from "../../common/Section";
@@ -19,11 +17,7 @@ import modal from "./examples/modal";
 function Alert() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="Alert"
-        status="ready"
-      >
-      </ComponentHeader>
+      <ComponentHeader title="Alert" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -32,17 +26,12 @@ function Alert() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
                 <AlertPropsTable />
-              </Section>
-            )
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
-                <p>Not available tokens.</p>
               </Section>
             ),
           },
@@ -50,7 +39,11 @@ function Alert() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Information Alert"
                   example={inlineInfo}
@@ -75,8 +68,8 @@ function Alert() {
                   example={children}
                 ></Example>
               </Section>
-            )
-          }
+            ),
+          },
         ]}
       ></DxcTabsForSections>
     </ComponentDoc>

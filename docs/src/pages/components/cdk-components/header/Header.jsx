@@ -4,15 +4,11 @@ import {
   DxcHeading,
   DxcLink,
 } from "@dxc-technology/halstack-react";
-
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import HeaderPropsTable from "./api.jsx";
-import HeaderTokensTable from "./Tokens.jsx";
-
 import defaultHeader from "./examples/default.js";
 import children from "./examples/children.js";
 import dropdown from "./examples/children-dropdown.js";
@@ -61,19 +57,6 @@ function Input() {
                   the tags since some styles will be applied for a better fit in
                   the header.
                 </p>
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Theming"
-                  margin={{ bottom: "small" }}
-                />
-                <HeaderTokensTable />
               </Section>
             ),
           },

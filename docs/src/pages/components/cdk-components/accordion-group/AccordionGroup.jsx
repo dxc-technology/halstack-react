@@ -1,8 +1,10 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
-
+import {
+  DxcTabsForSections,
+  DxcHeading,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Example from "../../common/Example";
 import AccordionGroupPropsTable from "./api.jsx";
 import Section from "../../common/Section";
@@ -24,7 +26,11 @@ function AccordionGroup() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
                 <AccordionGroupPropsTable />
               </Section>
             ),
@@ -48,8 +54,15 @@ function AccordionGroup() {
                   ></DxcLink>
                   .
                 </p>
-                <DxcHeading text="DxcAccordionGroup.Accordion" level={4} weight="bold" />
-                <p>Customized accordion that allows this accordion group component.</p>
+                <DxcHeading
+                  text="DxcAccordionGroup.Accordion"
+                  level={4}
+                  weight="bold"
+                />
+                <p>
+                  Customized accordion that allows this accordion group
+                  component.
+                </p>
                 <DxcHeading
                   text="Props"
                   level={5}
@@ -60,20 +73,16 @@ function AccordionGroup() {
               </Section>
             ),
           },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
-                <p>Not available tokens.</p>
-              </Section>
-            ),
-          },
+
           {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Uncontrolled Accordion Group"
                   example={uncontrolledAccordionGroup}

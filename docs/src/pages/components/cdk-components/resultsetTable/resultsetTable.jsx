@@ -9,7 +9,6 @@ import ComponentHeader from "../../common/ComponentHeader";
 import ResultsetTablePropsTable from "./api.jsx";
 
 import defaultResultsetTable from "./examples/defaultResultseltTable";
-      
 
 function ResultsetTable() {
   return (
@@ -23,17 +22,12 @@ function ResultsetTable() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
                 <ResultsetTablePropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
-                <p>Not available tokens.</p>
               </Section>
             ),
           },
@@ -41,7 +35,11 @@ function ResultsetTable() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Resultset Table"
                   example={defaultResultsetTable}

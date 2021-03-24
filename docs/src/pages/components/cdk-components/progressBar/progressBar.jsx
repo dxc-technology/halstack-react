@@ -1,15 +1,10 @@
 import React from "react";
 import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
-
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Example from "../../common/Example";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
-
 import ProgressBarPropsTable from "./api.jsx";
-import ProgressBarTokensTable from "./Tokens.jsx";
-
 import defaultProgressBar from "./examples/progressUndeterminedDefault";
 import determinedDefaultProgressBar from "./examples/progressDeterminedDefault";
 import progressWithOverlay from "./examples/progressWithOverlay";
@@ -26,17 +21,12 @@ function ProgressBar() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
                 <ProgressBarPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
-                <ProgressBarTokensTable />
               </Section>
             ),
           },
@@ -44,7 +34,11 @@ function ProgressBar() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Undeterminate default Progress Bar"
                   example={defaultProgressBar}

@@ -1,15 +1,10 @@
 import React from "react";
 import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
-
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
-
 import TabsPropsTable from "./api.jsx";
-import TabsTokensTable from "./Tokens.jsx";
-
 import controlledTabs from "./examples/controlledTabs";
 import uncontrolledTabs from "./examples/uncontrolledTabs";
 import iconsTabs from "./examples/iconsTabs";
@@ -34,19 +29,6 @@ function Tabs() {
                   margin={{ bottom: "small" }}
                 />
                 <TabsPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Theming"
-                  margin={{ bottom: "small" }}
-                />
-                <TabsTokensTable />
               </Section>
             ),
           },
