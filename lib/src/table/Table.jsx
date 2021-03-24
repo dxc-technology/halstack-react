@@ -10,9 +10,7 @@ const DxcTable = ({ children, margin }) => {
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin}>
-        <DxcTableContent>
-          <DxcTableTBody>{children}</DxcTableTBody>
-        </DxcTableContent>
+        <DxcTableContent>{children}</DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );
@@ -41,12 +39,12 @@ const DxcTableContainer = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.darkGrey};
+    background-color: ${(props) => props.theme.scrollBarThumbColor};
     border-radius: 6px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.lightGrey};
+    background-color: ${(props) => props.theme.scrollBarTrackColor};
     border-radius: 6px;
   }
 `;
@@ -89,7 +87,5 @@ const DxcTableContent = styled.table`
     border-top-right-radius: 4px;
   }
 `;
-
-const DxcTableTBody = styled.tbody``;
 
 export default DxcTable;
