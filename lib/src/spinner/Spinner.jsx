@@ -67,6 +67,7 @@ const BackgroundSpinner = styled.div`
 `;
 
 const DXCSpinner = styled.div`
+  box-sizing: unset;
   font-family: "Open Sans", sans-serif;
   border-radius: 80px;
   border: ${(props) =>
