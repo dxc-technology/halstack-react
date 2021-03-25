@@ -89,19 +89,23 @@ const DXCSpinner = styled.div`
 
   .MuiCircularProgress-colorPrimary {
     color: ${(props) => props.theme.trackCircleColor};
-    width: ${(props) => (props.mode === "small" && "44px !important") || "140px !important"};
-    height: ${(props) => (props.mode === "small" && "44px !important") || "140px !important"};
+    width: ${(props) => (props.mode === "small" && "44px !important") || "141px !important"};
+    height: ${(props) => (props.mode === "small" && "44px !important") || "141px !important"};
     margin-top: ${(props) =>
       props.label === "" && props.showValue === false && props.mode === "large"
         ? "-10px"
         : props.mode === "small"
         ? "-7px"
         : props.label !== "" && props.showValue === false
-        ? "-78.5px"
-        : props.label === "" && props.showValue === true
-        ? "-78.75px"
-        : "-88.5px"};
-    margin-left: ${(props) => (props.mode === "small" && "-7px !important") || "-10px !important"};
+        ? "-80px"
+        : props.label === "" && props.showValue === true && props.mode === "overlay"
+        ? "-10.75px"
+        : props.label === "" && props.showValue === true && props.mode !== "overlay"
+        ? "-79.75px"
+        : props.label !== "" && props.showValue === true && props.mode === "overlay"
+        ? "-72.5px"
+        : "-89.5px"};
+    margin-left: ${(props) => (props.mode === "small" && "-7px !important") || "-11px !important"};
   }
 
   .MuiCircularProgress-circle {
