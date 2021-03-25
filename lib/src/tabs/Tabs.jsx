@@ -53,7 +53,6 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, ic
         <Tabs
           value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
           onChange={handleChange}
-          onMouseOver={onTabHover}
           variant="scrollable"
           scrollButtons="auto"
         >
@@ -65,6 +64,8 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, ic
                 label={getLabelForTab(tab)}
                 disabled={tab.isDisabled}
                 disableRipple={true}
+                onMouseEnter={()=>{onTabHover(i)}}
+                onMouseLeave={()=>{onTabHover(null)}}
               />
             );
           })}

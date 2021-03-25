@@ -72,7 +72,8 @@ const dropdownPropsTable = () => {
       <tr>
         <td>onTabHover: function</td>
         <td></td>
-        <td>This function will be called when the user hovers a tab.</td>
+        <td>This function will be called when the user hovers a tab.The index
+          of the hovered tab will be passed as a parameter.</td>
       </tr>
       <tr>
         <td>margin: string | object</td>
