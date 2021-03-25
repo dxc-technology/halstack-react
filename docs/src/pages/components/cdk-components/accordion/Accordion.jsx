@@ -1,11 +1,8 @@
 import React from "react";
 import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
-
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Example from "../../common/Example";
 import AccordionPropsTable from "./api.jsx";
-import AccordionTokensTable from "./Tokens.jsx";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 import defaultAccordion from "./examples/default";
@@ -26,25 +23,25 @@ function Accordion() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
                 <AccordionPropsTable />
               </Section>
             ),
           },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
-                <AccordionTokensTable />
-              </Section>
-            ),
-          },
+
           {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Default Accordion"
                   example={defaultAccordion}

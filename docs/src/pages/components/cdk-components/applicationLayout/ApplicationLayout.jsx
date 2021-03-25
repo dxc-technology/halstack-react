@@ -4,9 +4,7 @@ import {
   DxcHeading,
   DxcLink,
 } from "@dxc-technology/halstack-react";
-
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Example from "../../common/Example";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
@@ -121,19 +119,6 @@ function ApplicationLayout() {
                   Everything between the tags will be displayed as the content
                   of the main part of the application.{" "}
                 </p>
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Theming"
-                  margin={{ bottom: "small" }}
-                />
-                <p>Not available tokens.</p>
               </Section>
             ),
           },

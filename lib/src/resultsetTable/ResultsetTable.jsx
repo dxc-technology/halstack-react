@@ -1,13 +1,13 @@
-import React, { useContext, useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import { globalTokens, spaces } from "../common/variables.js";
-import ThemeContext from "../ThemeContext.js";
+import { spaces } from "../common/variables.js";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
 import arrowUp from "./arrow_upward-24px_wht.svg";
 import arrowDown from "./arrow_downward-24px_wht.svg";
 import bothArrows from "./unfold_more-24px_wht.svg";
+import useTheme from "../useTheme.js";
 
 function normalizeSortValue(sortValue) {
   return typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
@@ -37,7 +37,7 @@ const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, 
   minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
 const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOptions, itemsPerPageFunction, margin }) => {
-  const colorsTheme = useContext(ThemeContext) || globalTokens;
+  const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
   const [sortOrder, changeSortOrder] = useState("asc");
@@ -83,7 +83,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOption
   );
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.table}>
       <DxcResultsetTableContainer margin={margin}>
         <TableContainer>
           <DxcTable margin={{ top: margin, right: margin, bottom: "0px", left: margin }}>
@@ -184,12 +184,12 @@ const DxcResultsetTableContainer = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.darkGrey};
+    background-color: ${(props) => props.theme.scrollBarThumbColor};
     border-radius: 6px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.lightGrey};
+    background-color: ${(props) => props.theme.scrollBarTrackColor};
     border-radius: 6px;
   }
 `;

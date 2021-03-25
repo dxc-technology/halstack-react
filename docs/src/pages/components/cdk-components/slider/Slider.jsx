@@ -1,11 +1,8 @@
 import React from "react";
 import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
-
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Example from "../../common/Example";
 import SliderPropsTable from "./api.jsx";
-import SliderTokensTable from "./Tokens.jsx";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 import controlled from "./examples/controlled";
@@ -29,17 +26,12 @@ function Slider() {
             tabLabel: "Props",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Props"
+                  margin={{ bottom: "small" }}
+                />
                 <SliderPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading level={3} text="Theming" margin={{ bottom: "small" }} />
-                <SliderTokensTable />
               </Section>
             ),
           },
@@ -47,7 +39,11 @@ function Slider() {
             tabLabel: "Examples",
             section: () => (
               <Section>
-                <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+                <DxcHeading
+                  level={3}
+                  text="Examples"
+                  margin={{ bottom: "small" }}
+                />
                 <Example
                   title="Controlled Slider"
                   example={controlled}

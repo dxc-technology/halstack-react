@@ -1,18 +1,15 @@
 import React from "react";
 import ComponentDoc from "../../common/ComponentDoc";
-
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import SidenavPropsTable from "./api.jsx";
 import SidenavLinkPropsTable from "./linkapi.jsx";
-import SidenavTokensTable from "./Tokens.jsx";
 import {
   DxcTabsForSections,
   DxcHeading,
   DxcLink,
 } from "@dxc-technology/halstack-react";
-
 import defaultSidenav from "./examples/default";
 import compoundSidenav from "./examples/compound";
 
@@ -75,19 +72,6 @@ function Sidenav() {
                   margin={{ bottom: "medium" }}
                 />{" "}
                 <SidenavLinkPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Theming",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Theming"
-                  margin={{ bottom: "small" }}
-                />
-                <SidenavTokensTable />
               </Section>
             ),
           },
