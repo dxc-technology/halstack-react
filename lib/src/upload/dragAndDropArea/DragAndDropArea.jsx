@@ -1,17 +1,17 @@
 /* eslint-disable no-undef */
-import React, { useContext } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import "../../common/OpenSans.css";
-import { globalTokens } from "../../common/variables.js";
+import {} from "../../common/variables.js";
 import uploadFile from "./upload_file.svg";
 import dropFile from "./upload_drop.svg";
 import Button from "../../button/Button";
-import ThemeContext from "../../ThemeContext.js";
+import useTheme from "../../useTheme.js";
 
 const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
   const [dragging, setDragging] = React.useState(false);
-  const colorsTheme = useContext(ThemeContext) || globalTokens;
+  const colorsTheme = useTheme();
 
   const text = "There are no files to upload";
   const description = "Drag and drop your files here or choose one from your computer";
@@ -60,7 +60,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.upload}>
       <DXCDragAndDrop
         onDrop={handleDrop}
         onDragEnter={handleDragIn}
@@ -126,7 +126,7 @@ const DXCDragAndDropArea = styled.div`
   display: flex;
   justify-content: center;
   border-radius: 4px;
-  box-shadow: 0px 3px 6px ${(props) => props.theme.black}29;
+  box-shadow: 0px 3px 6px ${(props) => props.theme.shadowColor};
 `;
 
 const DragAndDropContent = styled.div`
@@ -158,7 +158,7 @@ const DragAndDropTitle = styled.div`
 const DragAndDropDescription = styled.div`
   font-size: 16px;
   margin-bottom: 40px;
-  color: ${(props) => props.theme.darkGrey};
+  color: ${(props) => props.theme.fontColor};
   font-style: italic;
 `;
 
@@ -212,7 +212,7 @@ const DragAndDropContentHover = styled.div`
   background-size: var(--dash-size) var(--border-weight), calc(var(--dash-size) + var(--gap-size)) var(--border-weight),
     var(--dash-size) var(--border-weight), var(--border-weight) var(--dash-size),
     var(--border-weight) calc(var(--dash-size) + var(--gap-size)), var(--border-weight) var(--dash-size);
-  background-color: ${(props) => props.theme.black}0F;
+  background-color: ${(props) => props.theme.backgroundDragColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -231,7 +231,7 @@ const DragAndDropIconHover = styled.div`
 const DragAndDropTextHover = styled.div`
   font-size: 16px;
   margin-bottom: 20px;
-  color: ${(props) => props.theme.darkGrey};
+  color: ${(props) => props.theme.fontColor};
   font-style: italic;
 `;
 

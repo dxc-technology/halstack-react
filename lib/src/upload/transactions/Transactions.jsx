@@ -1,16 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import "../../common/OpenSans.css";
 import PropTypes from "prop-types";
 import Transaction from "../transaction/Transaction";
-import { globalTokens } from "../../common/variables.js";
-import ThemeContext from "../../ThemeContext.js";
+import useTheme from "../../useTheme.js";
 
 const DxcTransactions = ({ transactions }) => {
-  const colorsTheme = useContext(ThemeContext) || globalTokens;
+  const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.upload}>
       <DXCTransactions>
         <TransactionsText>
           <TransactionsTitle>Files uploaded</TransactionsTitle>
@@ -47,18 +46,18 @@ const DXCTransactions = styled.div`
   padding-top: 46px;
   padding-left: 65px;
   border-radius: 4px 0px 4px 4px;
-  box-shadow: 0px 0px 1px ${(props) => props.theme.black}29;
+  box-shadow: 0px 0px 1px ${(props) => props.theme.lightWhite};
   overflow: auto;
   ::-webkit-scrollbar {
     width: 3px;
   }
   ::-webkit-scrollbar-track {
     border-radius: 3px;
-    background-color: ${(props) => props.theme.lightGrey};
+    background-color: ${(props) => props.theme.scrollBarTrackColor};
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 3px;
-    background-color: ${(props) => props.theme.darkGrey};
+    background-color: ${(props) => props.theme.scrollBarThumbColor};
   }
 `;
 
@@ -75,7 +74,7 @@ const TransactionsTitle = styled.span`
 
 const TransactionsSubTitle = styled.span`
   font-size: 12px;
-  color: ${(props) => props.theme.darkGrey};
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const TransactionsNumber = styled.span`

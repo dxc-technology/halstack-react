@@ -1,12 +1,11 @@
 /* eslint-disable no-else-return */
-import React, { useContext } from "react";
+import React from "react";
 import { ToggleButton } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import "../common/OpenSans.css";
-import { globalTokens, spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import ThemeContext from "../ThemeContext.js";
+import useTheme from "../useTheme.js";
 
 const DxcToggle = ({
   label = "",
@@ -21,7 +20,7 @@ const DxcToggle = ({
   margin,
   size = "fitContent",
 }) => {
-  const colorsTheme = useContext(ThemeContext) || globalTokens;
+  const colorsTheme = useTheme();
 
   const handlerToggleClick = () => {
     if (!disabled && typeof onClick === "function") {
