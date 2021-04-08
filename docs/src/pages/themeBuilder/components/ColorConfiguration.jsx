@@ -1,70 +1,72 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { DxcHeading, DxcButton } from "@dxc-technology/halstack-react";
-
 import InfoIcon from "../images/info.svg";
 import ColorPicker from "./ColorPicker";
 
 const ColorConfiguration = ({
   componentId,
-  componentProperties,
-  isComponentSaved,
-  onSaveComponent,
-  onResetComponent,
-  onChangeComponentProp,
-  onDisplayProperty,
+  customTheme,
+  onEdit,
+//  onDisplayProperty,
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const onChangeCustomTheme = (propertyName, propertyValue) => {
+    onEdit(customTheme => {
+      customTheme[componentId][propertyName] = propertyValue;
+      return customTheme;
+    });
+  };
 
   return (
     <ColorConfigContainer>
-      <DxcHeading level={5} text="Properties" />
+      <DxcHeading level={5} text="Theme Inputs" />
       <Separator />
       <PropertiesContent>
-        {componentProperties
-          ?.filter((property) => !property.name.includes("logo"))
-          .reduce((result, path, i, array) => {
+        {Object.keys(customTheme[componentId])
+        ?.filter(propertyName => !propertyName.includes("logo"))
+        .reduce((result, path, i, array) => {
             if (i % 4 === 0) result.push(array.slice(i, i + 4));
             return result;
-          }, [])
-          .map((sublist, column) => (
+        }, [])
+        .map((sublist, column) => (
             <ColorInfoColumn key={`colors-column${column}-${componentId}`}>
-              {sublist.map((property, i) => (
+              {sublist.map((propertyName, i) => (
                 <PropertyContainer
                   ref={anchorEl}
-                  key={`property-${property.name}-${componentId}`}
+                  key={`property-${propertyName}-${componentId}`}
                 >
-                  <PropertyName>{property.name}</PropertyName>
+                  <PropertyName>{propertyName}</PropertyName>
                   <ColorPicker
-                    property={property}
+                    propertyName={propertyName}
+                    propertyValue={customTheme[componentId][propertyName]}
                     anchorEl={anchorEl}
                     setAnchorEl={setAnchorEl}
-                    onChangeComponentProp={onChangeComponentProp}
-                    onDisplayProperty={onDisplayProperty}
+                    onChangeCustomTheme={onChangeCustomTheme}
+//                  onDisplayProperty={onDisplayProperty}
                   />
                 </PropertyContainer>
               ))}
             </ColorInfoColumn>
-          ))}
+        )) }
 
         <ColorInfoColumn key={`logo-column-${componentId}`}>
-          {componentProperties
-            ?.filter((property) => property.name.includes("logo"))
-            .map((property) => (
-              <LogoContainer key={`logo-${property.name}-${componentId}`}>
-                <PropertyName>{property.name}</PropertyName>
+          {Object.keys(customTheme[componentId])
+            ?.filter(propertyName => propertyName.includes("logo"))
+            .map((propertyName) => (
+              <LogoContainer key={`logo-${propertyName}-${componentId}`}>
+                <PropertyName>{propertyName}</PropertyName>
                 <UploadContainer>
-                  <LogoImage src={property.src} />
+                  <LogoImage src={customTheme[componentId][propertyName]} />
                   <CustomUpload
                     type="file"
                     id="logo"
                     name="img"
                     accept="image/*"
                     onChange={(event) =>
-                      onChangeComponentProp(
-                        property.name,
-                        event.target.files[0],
-                        true
+                      onChangeCustomTheme(
+                        propertyName,
+                        event.target.files[0]
                       )
                     }
                   ></CustomUpload>
@@ -84,20 +86,6 @@ const ColorConfiguration = ({
             <InfoText>Maximum image size 5MB</InfoText>
           </InfoTextsContainer>
         </InfoContainer>
-        <ButtonsContainer>
-          <DxcButton
-            mode="secondary"
-            label="Reset"
-            onClick={() => onResetComponent()}
-            margin={{ right: "small" }}
-          />
-          <DxcButton
-            mode="primary"
-            label="Save"
-            onClick={() => onSaveComponent()}
-            disabled={isComponentSaved}
-          />
-        </ButtonsContainer>
       </OptionsContainer>
     </ColorConfigContainer>
   );
@@ -143,11 +131,6 @@ const OptionsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 5px;
-`;
-
-const ButtonsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 const InfoContainer = styled.div`

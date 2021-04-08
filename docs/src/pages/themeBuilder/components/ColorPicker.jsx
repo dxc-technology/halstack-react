@@ -6,11 +6,12 @@ import { Popper } from "@material-ui/core";
 const ColorPicker = ({
   //   presetColors,
   //   setPresetColors,
-  property,
+  propertyName,
+  propertyValue,
   anchorEl,
   setAnchorEl,
-  onChangeComponentProp,
-  onDisplayProperty,
+  onChangeCustomTheme,
+//  onDisplayProperty,
 }) => {
   const [currentColor, setCurrentColor] = useState(null);
   const [presetColors, setPresetColors] = useState([
@@ -34,13 +35,13 @@ const ColorPicker = ({
   const showColorPicker = (event, propertyName, color) => {
     setAnchorEl(event?.currentTarget);
     setCurrentColor(color);
-    onDisplayProperty(propertyName);
+    // onDisplayProperty(propertyName);
   };
 
   const closeColorPicker = (propertyName) => {
     onChangeComplete(propertyName, currentColor);
     setAnchorEl(null);
-    onDisplayProperty(propertyName);
+    // onDisplayProperty(propertyName);
   };
 
   const onChangeComplete = (propertyName, color) => {
@@ -50,7 +51,7 @@ const ColorPicker = ({
       newPresetColors.unshift(color.toUpperCase());
       setPresetColors(newPresetColors);
     }
-    onChangeComponentProp(propertyName, color, false);
+    onChangeCustomTheme(propertyName, color);
   };
 
   return (
@@ -58,13 +59,13 @@ const ColorPicker = ({
       <ColorContainer
         role="color-container"
         onClick={(event) => {
-          showColorPicker(event, property.name, property.color);
+          showColorPicker(event, propertyName, propertyValue);
         }}
-        color={property.display ? currentColor : property.color}
+        color={propertyValue}
       />
-      {property.display && (
+      {/**property.display && (
         <PopOver>
-          <Cover role="picker-cover" onClick={() => closeColorPicker(property.name)}></Cover>
+          <Cover role="picker-cover" onClick={() => closeColorPicker(propertyName)}></Cover>
           <ColorPopper open={property.display} anchorEl={anchorEl}>
             <SketchPicker
               color={currentColor}
@@ -74,7 +75,7 @@ const ColorPicker = ({
             />
           </ColorPopper>
         </PopOver>
-      )}
+      )**/}
     </ColorPickerContainer>
   );
 };

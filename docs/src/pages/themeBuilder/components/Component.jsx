@@ -10,13 +10,10 @@ import componentsPreview from "./ComponentsPreview";
 import ColorConfiguration from "./ColorConfiguration";
 
 const Component = ({
-  componentProperties,
-  isComponentSaved,
-  onSaveComponent,
-  onResetComponent,
-  onChangeComponentProp,
-  onDisplayProperty,
-  theme,
+  // onResetComponent,
+  // onDisplayProperty,
+  customTheme,
+  onEdit,
   componentId,
 }) => {
   const preview = componentsPreview.find(
@@ -33,18 +30,14 @@ const Component = ({
         />
       </ComponentHeader>
       <PreviewContainer>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={customTheme}>
           <preview.preview />
         </ThemeProvider>
       </PreviewContainer>
       <ColorConfiguration
         componentId={componentId}
-        componentProperties={componentProperties}
-        isComponentSaved={isComponentSaved}
-        onSaveComponent={onSaveComponent}
-        onResetComponent={onResetComponent}
-        onChangeComponentProp={onChangeComponentProp}
-        onDisplayProperty={onDisplayProperty}
+        customTheme={customTheme}
+        onEdit={onEdit}
       />
     </ConfigurationContainer>
   );
