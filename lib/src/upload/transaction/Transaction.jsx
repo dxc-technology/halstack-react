@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import "../../common/OpenSans.css";
@@ -14,11 +14,10 @@ import imageIconError from "./image-icon-err.svg";
 import videoIconError from "./video-icon-err.svg";
 import audioIconError from "./audio-icon-err.svg";
 import Spinner from "../../spinner/Spinner";
-import { globalTokens } from "../../common/variables.js";
-import ThemeContext from "../../ThemeContext.js";
+import useTheme from "../../useTheme.js";
 
 const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => {
-  const colorsTheme = useContext(ThemeContext) || globalTokens;
+  const colorsTheme = useTheme();
   const icon =
     (status === "error" &&
       ((type.includes("image") && imageIconError) ||
@@ -31,7 +30,7 @@ const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => 
     defaultIcon;
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.upload}>
       <DXCTransaction status={status}>
         <FileImage src={icon} />
         {(status === "processing" && (
@@ -72,7 +71,7 @@ const DXCTransaction = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 16px;
-  color: ${(props) => props.status === "error" && `${props.theme.red}`};
+  color: ${(props) => props.status === "error" && `${props.theme.errorColor}`};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -87,7 +86,7 @@ const FileImage = styled.img`
   width: 24px;
   margin-right: 16px;
   svg {
-    fill: ${(props) => (props.status === "error" && "#D0011B") || `${props.theme.lightGrey}`};
+    fill: ${(props) => (props.status === "error" && "#D0011B") || `${props.theme.accentColor}`};
   }
 `;
 

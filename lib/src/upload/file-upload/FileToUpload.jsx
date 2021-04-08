@@ -1,22 +1,21 @@
 /* eslint-disable react/require-default-props */
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "../../common/OpenSans.css";
 import styled, { ThemeProvider } from "styled-components";
-import { globalTokens } from "../../common/variables.js";
 import closeIcon from "./close.svg";
 import defaultIcon from "./file-icon.svg";
 import videoIcon from "./video-icon.svg";
 import audioIcon from "./audio-icon.svg";
-import ThemeContext from "../../ThemeContext.js";
+import useTheme from "../../useTheme.js";
 
 const DxcFileToUpload = ({ name = "", type = "", image, onDelete }) => {
   const icon = (type.includes("video") && videoIcon) || (type.includes("audio") && audioIcon) || defaultIcon;
   const hasImage = image && image.includes("image");
-  const colorsTheme = useContext(ThemeContext) || globalTokens;
+  const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.upload}>
       <DXCFileToUpload>
         <FileContent>
           {(hasImage && <FileImage src={image} />) || <FileImage src={icon} />}
@@ -46,14 +45,14 @@ const DXCFileToUpload = styled.div`
   flex-direction: column;
   padding-bottom: 25px;
   padding-top: 25px;
-  border-bottom: 1px solid ${(props) => props.theme.lightGrey};
+  border-bottom: 1px solid ${(props) => props.theme.accentColor};
   :hover {
     cursor: pointer;
-    background: ${(props) => props.theme.darkWhite};
+    background: ${(props) => props.theme.fileHoverColor};
     .delete-file {
       display: flex;
       margin-right: 30px;
-      background: url('${closeIcon}') no-repeat padding-box;
+      background: url("${closeIcon}") no-repeat padding-box;
       width: 30px;
       height: 30px;
       margin-top: 11px;
@@ -88,7 +87,7 @@ const FileInfo = styled.div`
 const FileType = styled.div`
   text-transform: uppercase;
   font-size: 12px;
-  color: ${(props) => props.theme.black}99;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const DeleteFile = styled.div`
