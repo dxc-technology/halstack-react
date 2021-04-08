@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import "../../common/OpenSans.css";
 import PropTypes from "prop-types";
 import FileToUpload from "../file-upload/FileToUpload";
 import ButtonsUpload from "../buttons-upload/ButtonsUpload";
-import { globalTokens } from "../../common/variables.js";
-import ThemeContext from "../../ThemeContext.js";
+import useTheme from "../../useTheme.js";
 
 const DxcFilesToUpload = ({ filesToUpload, onUpload, addFile }) => {
-  const colorsTheme = useContext(ThemeContext) || globalTokens;
+  const colorsTheme = useTheme();
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -37,7 +36,7 @@ const DxcFilesToUpload = ({ filesToUpload, onUpload, addFile }) => {
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.upload}>
       <DXCFilesToUpload
         onDrop={handleDrop}
         onDragEnter={handleDragIn}
@@ -73,7 +72,7 @@ const DXCFilesToUpload = styled.div`
   width: 100%;
   padding: 20px;
   border-radius: 4px 4px 0px 4px;
-  box-shadow: 0px 0px 1px ${(props) => props.theme.black}29;
+  box-shadow: 0px 0px 1px ${(props) => props.theme.shadowColor};
 `;
 
 const FilesToUpload = styled.div`
@@ -85,11 +84,11 @@ const FilesToUpload = styled.div`
   }
   ::-webkit-scrollbar-track {
     border-radius: 3px;
-    background-color: ${(props) => props.theme.lightGrey};
+    background-color: ${(props) => props.theme.scrollBarTrackColor};
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 3px;
-    background-color: ${(props) => props.theme.darkGrey};
+    background-color: ${(props) => props.theme.scrollBarThumbColor};
   }
 `;
 

@@ -1,16 +1,15 @@
 /* eslint-disable no-undef */
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import "../../common/OpenSans.css";
 import Button from "../../button/Button";
 import uploadIcon from "./upload-button.svg";
 import dragAndDropIcon from "./drag-drop-icon.svg";
-import { globalTokens } from "../../common/variables.js";
-import ThemeContext from "../../ThemeContext.js";
+import useTheme from "../../useTheme.js";
 
 const DxcButtonsUpload = ({ addFile, onUpload }) => {
-  const colorsTheme = useContext(ThemeContext) || globalTokens;
+  const colorsTheme = useTheme();
 
   const selectFile = (e) => {
     const filesObject = e.target.files;
@@ -25,7 +24,7 @@ const DxcButtonsUpload = ({ addFile, onUpload }) => {
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.upload}>
       <DXCButtonsUpload>
         <DragAndDropLabel>
           <DragAndDropIcon />
@@ -58,7 +57,7 @@ const DragAndDropLabel = styled.div`
   align-items: center;
   font-style: italic;
   font-size: 12px;
-  color: ${(props) => props.theme.darkGrey};
+  color: ${(props) => props.theme.fontColor};
   margin-right: 50px;
 `;
 

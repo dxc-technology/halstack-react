@@ -102,10 +102,21 @@ function CustomThemes() {
       </p>
 
       <p>
-        You will need to create an object with your colors preferences. The
-        variables are documented in each component's documentation. You will
-        also need to import ThemeProvider, and use it to wrap the component and
-        pass your colors object as the theme property.
+        You will need to create an object with your colors preferences. In this
+        object, you will have as much objects as components you want to
+        customize, using the next structure:
+        <SyntaxHighlighter language="javascript" style={docco}>
+          {`componentName: {
+  themeInput: "value", 
+}`}
+        </SyntaxHighlighter>
+        The theme inputs for each component are documented in the themes
+        guidelines.
+      </p>
+
+      <p>
+        You will also need to import ThemeProvider, and use it to wrap the
+        component and pass your colors object as the theme property.
       </p>
 
       <p>This is an example that includes the necessary code:</p>
