@@ -7,6 +7,7 @@ import Header from "./common/Header";
 import ScrollToTop from "./common/ScrollToTop";
 import Components from "./pages/components/Components";
 import Overview from "./pages/overview/Overview";
+import ThemeBuilder from "./pages/themeBuilder/ThemeBuilder";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             ]}
             copyright="© DXC Technology 2020. All rights reserved."
           ></DxcFooter>
+        </Route>
+        <Route exact path="/themeBuilder">
+            <ThemeBuilder></ThemeBuilder>
         </Route>
         <Route exact path="/">
           <StyledHeader>
