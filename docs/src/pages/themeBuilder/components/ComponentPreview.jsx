@@ -7,7 +7,8 @@ import {
 } from "@dxc-technology/halstack-react";
 
 import componentsPreview from "./ComponentsPreviewMap";
-import ColorConfiguration from "./ColorConfiguration";
+import ThemeInputsConfig from "./ThemeInputsConfig";
+import {capitalizeText} from "../utils";
 
 const ComponentPreview = ({
   // onResetComponent,
@@ -40,15 +41,13 @@ const ComponentPreview = ({
           <preview.preview />
         </ThemeProvider>
       </PreviewContainer>
-      <ColorConfiguration
+      <ThemeInputsConfig
         componentInputs={customTheme[componentId]}
         onChangeCustomTheme={changeCustomThemeHandler}
       />
     </ConfigurationContainer>
   );
 };
-
-const capitalizeText = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
 const ConfigurationContainer = styled.div`
   height: calc(100vh - 64px);

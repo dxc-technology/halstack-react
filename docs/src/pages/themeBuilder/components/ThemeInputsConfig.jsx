@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcHeading, DxcButton } from "@dxc-technology/halstack-react";
-import InfoIcon from "../images/info.svg";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import ColorPicker from "./ColorPicker";
+import LogoConfig from "./LogoConfig";
 
-const ColorConfiguration = ({ componentInputs, onChangeCustomTheme }) => {
+const ThemeInputsConfig = ({ componentInputs, onChangeCustomTheme }) => {
   const [anchorEl, setAnchorEl] = useState();
   const [displayedProperty, setDisplayedProperty] = useState();
 
   return (
-    <ColorConfigContainer>
+    <ThemeInputsConfigContainer>
       <DxcHeading level={5} text="Theme inputs" />
       <Separator />
       <PropertiesContent>
@@ -41,45 +41,22 @@ const ColorConfiguration = ({ componentInputs, onChangeCustomTheme }) => {
             </ColorInfoColumn>
           ))}
 
-        <ColorInfoColumn key={`logo-column`}>
+        <ColorInfoColumn>
           {Object.keys(componentInputs)
             ?.filter((propertyName) => propertyName.includes("logo"))
             .map((propertyName) => (
-              <LogoContainer key={`logo-${propertyName}`}>
+              <LogoContainer>
                 <PropertyName>{propertyName}</PropertyName>
-                <UploadContainer>
-                  <LogoImage src={componentInputs[propertyName]} />
-                  <CustomUpload
-                    type="file"
-                    id="logo"
-                    name="img"
-                    accept="image/*"
-                    onChange={(event) =>
-                      onChangeCustomTheme(propertyName, event.target.files[0])
-                    }
-                  ></CustomUpload>
-                </UploadContainer>
+                <LogoConfig propertyName={propertyName} propertyValue={componentInputs[propertyName]} onChangeCustomTheme={onChangeCustomTheme} />
               </LogoContainer>
             ))}
         </ColorInfoColumn>
       </PropertiesContent>
-
-      <OptionsContainer>
-        <InfoContainer>
-          <img src={InfoIcon} alt="Information" />
-          <InfoTextsContainer>
-            <InfoText>
-              Remember to apply the changes before you leave the configurator
-            </InfoText>
-            <InfoText>Maximum image size 5MB</InfoText>
-          </InfoTextsContainer>
-        </InfoContainer>
-      </OptionsContainer>
-    </ColorConfigContainer>
+    </ThemeInputsConfigContainer>
   );
 };
 
-const ColorConfigContainer = styled.div`
+const ThemeInputsConfigContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 30%;
@@ -114,26 +91,6 @@ const LogoContainer = styled.div`
   margin: 5px 0;
 `;
 
-const OptionsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-`;
-
-const InfoContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const InfoTextsContainer = styled.div``;
-
-const InfoText = styled.div`
-  margin-left: 5px;
-  font: normal 12px/17px Open Sans;
-  color: #00000099;
-`;
-
 const ColorInfoColumn = styled.div`
   width: 30%;
   margin-right: 100px;
@@ -146,23 +103,4 @@ const Separator = styled.div`
   margin: 10px 0;
 `;
 
-const UploadContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 5px;
-`;
-
-const LogoImage = styled.img`
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  background-color: #d9d9d9;
-`;
-
-const CustomUpload = styled.input`
-  margin-left: 10px;
-  font: normal 12px/17px Open Sans;
-  color: #00000099;
-`;
-
-export default ColorConfiguration;
+export default ThemeInputsConfig;
