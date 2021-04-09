@@ -6,10 +6,10 @@ import {
   ThemeProvider,
 } from "@dxc-technology/halstack-react";
 
-import componentsPreview from "./ComponentsPreview";
+import componentsPreview from "./ComponentsPreviewMap";
 import ColorConfiguration from "./ColorConfiguration";
 
-const Component = ({
+const ComponentPreview = ({
   // onResetComponent,
   // onDisplayProperty,
   customTheme,
@@ -19,6 +19,12 @@ const Component = ({
   const preview = componentsPreview.find(
     (component) => component.name === componentId
   );
+
+  const changeCustomThemeHandler = (propertyName, propertyValue) => {
+    const updatedTheme = JSON.parse(JSON.stringify(customTheme));
+    updatedTheme[componentId][propertyName] = propertyValue;
+    onEdit((prevTheme) => ({ ...prevTheme, ...updatedTheme }));
+  };
 
   return (
     <ConfigurationContainer>
@@ -35,9 +41,8 @@ const Component = ({
         </ThemeProvider>
       </PreviewContainer>
       <ColorConfiguration
-        componentId={componentId}
-        customTheme={customTheme}
-        onEdit={onEdit}
+        componentInputs={customTheme[componentId]}
+        onChangeCustomTheme={changeCustomThemeHandler}
       />
     </ConfigurationContainer>
   );
@@ -50,7 +55,7 @@ const ConfigurationContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  width: 70%;
 `;
 
 const PreviewContainer = styled.div`
@@ -93,4 +98,4 @@ const SpinnerContainer = styled.div`
   justify-content: center;
 `;
 
-export default Component;
+export default ComponentPreview;

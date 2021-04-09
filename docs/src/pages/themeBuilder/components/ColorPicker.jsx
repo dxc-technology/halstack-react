@@ -11,7 +11,8 @@ const ColorPicker = ({
   anchorEl,
   setAnchorEl,
   onChangeCustomTheme,
-//  onDisplayProperty,
+  displayedProperty,
+  onDisplayProperty,
 }) => {
   const [currentColor, setCurrentColor] = useState(null);
   const [presetColors, setPresetColors] = useState([
@@ -35,13 +36,13 @@ const ColorPicker = ({
   const showColorPicker = (event, propertyName, color) => {
     setAnchorEl(event?.currentTarget);
     setCurrentColor(color);
-    // onDisplayProperty(propertyName);
+    onDisplayProperty(propertyName);
   };
 
   const closeColorPicker = (propertyName) => {
     onChangeComplete(propertyName, currentColor);
     setAnchorEl(null);
-    // onDisplayProperty(propertyName);
+    onDisplayProperty(null);
   };
 
   const onChangeComplete = (propertyName, color) => {
@@ -61,12 +62,15 @@ const ColorPicker = ({
         onClick={(event) => {
           showColorPicker(event, propertyName, propertyValue);
         }}
-        color={propertyValue}
+        color={displayedProperty === propertyName ? currentColor : propertyValue}
       />
-      {/**property.display && (
+      {displayedProperty === propertyName && (
         <PopOver>
-          <Cover role="picker-cover" onClick={() => closeColorPicker(propertyName)}></Cover>
-          <ColorPopper open={property.display} anchorEl={anchorEl}>
+          <Cover
+            role="picker-cover"
+            onClick={() => closeColorPicker(propertyName)}
+          ></Cover>
+          <ColorPopper open={displayedProperty === propertyName} anchorEl={anchorEl}>
             <SketchPicker
               color={currentColor}
               onChange={(color) => setCurrentColor(color.hex)}
@@ -75,7 +79,7 @@ const ColorPicker = ({
             />
           </ColorPopper>
         </PopOver>
-      )**/}
+      )}
     </ColorPickerContainer>
   );
 };

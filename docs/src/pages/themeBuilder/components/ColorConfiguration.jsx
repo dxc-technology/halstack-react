@@ -4,70 +4,58 @@ import { DxcHeading, DxcButton } from "@dxc-technology/halstack-react";
 import InfoIcon from "../images/info.svg";
 import ColorPicker from "./ColorPicker";
 
-const ColorConfiguration = ({
-  componentId,
-  customTheme,
-  onEdit,
-//  onDisplayProperty,
-}) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const onChangeCustomTheme = (propertyName, propertyValue) => {
-    onEdit(customTheme => {
-      customTheme[componentId][propertyName] = propertyValue;
-      return customTheme;
-    });
-  };
+const ColorConfiguration = ({ componentInputs, onChangeCustomTheme }) => {
+  const [anchorEl, setAnchorEl] = useState();
+  const [displayedProperty, setDisplayedProperty] = useState();
 
   return (
     <ColorConfigContainer>
-      <DxcHeading level={5} text="Theme Inputs" />
+      <DxcHeading level={5} text="Theme inputs" />
       <Separator />
       <PropertiesContent>
-        {Object.keys(customTheme[componentId])
-        ?.filter(propertyName => !propertyName.includes("logo"))
-        .reduce((result, path, i, array) => {
+        {Object.keys(componentInputs)
+          ?.filter((propertyName) => !propertyName.includes("logo"))
+          .reduce((result, path, i, array) => {
             if (i % 4 === 0) result.push(array.slice(i, i + 4));
             return result;
-        }, [])
-        .map((sublist, column) => (
-            <ColorInfoColumn key={`colors-column${column}-${componentId}`}>
+          }, [])
+          .map((sublist, column) => (
+            <ColorInfoColumn key={`colors-column${column}`}>
               {sublist.map((propertyName, i) => (
                 <PropertyContainer
                   ref={anchorEl}
-                  key={`property-${propertyName}-${componentId}`}
+                  key={`property-${propertyName}`}
                 >
                   <PropertyName>{propertyName}</PropertyName>
                   <ColorPicker
                     propertyName={propertyName}
-                    propertyValue={customTheme[componentId][propertyName]}
+                    propertyValue={componentInputs[propertyName]}
                     anchorEl={anchorEl}
                     setAnchorEl={setAnchorEl}
                     onChangeCustomTheme={onChangeCustomTheme}
-//                  onDisplayProperty={onDisplayProperty}
+                    displayedProperty={displayedProperty}
+                    onDisplayProperty={setDisplayedProperty}
                   />
                 </PropertyContainer>
               ))}
             </ColorInfoColumn>
-        )) }
+          ))}
 
-        <ColorInfoColumn key={`logo-column-${componentId}`}>
-          {Object.keys(customTheme[componentId])
-            ?.filter(propertyName => propertyName.includes("logo"))
+        <ColorInfoColumn key={`logo-column`}>
+          {Object.keys(componentInputs)
+            ?.filter((propertyName) => propertyName.includes("logo"))
             .map((propertyName) => (
-              <LogoContainer key={`logo-${propertyName}-${componentId}`}>
+              <LogoContainer key={`logo-${propertyName}`}>
                 <PropertyName>{propertyName}</PropertyName>
                 <UploadContainer>
-                  <LogoImage src={customTheme[componentId][propertyName]} />
+                  <LogoImage src={componentInputs[propertyName]} />
                   <CustomUpload
                     type="file"
                     id="logo"
                     name="img"
                     accept="image/*"
                     onChange={(event) =>
-                      onChangeCustomTheme(
-                        propertyName,
-                        event.target.files[0]
-                      )
+                      onChangeCustomTheme(propertyName, event.target.files[0])
                     }
                   ></CustomUpload>
                 </UploadContainer>
