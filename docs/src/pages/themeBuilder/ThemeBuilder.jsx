@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {
   DxcApplicationLayout,
   DxcSidenav,
+  DxcButton,
 } from "@dxc-technology/halstack-react";
 import defaultTheme from "./DefaultTheme.json";
 import JSONView from "./JSONView";
@@ -28,6 +29,21 @@ const ThemeBuilder = () => {
           <Header></Header>
         </DxcApplicationLayout.Header>
         <DxcApplicationLayout.SideNav mode="push" padding="medium">
+          <ButtonsContainer>
+            <DxcButton
+              mode="primary"
+              label="Import"
+              margin={{ right: "xxsmall" }}
+            />
+            <DxcButton
+              mode="secondary"
+              label="Reset"
+              onClick={() => {
+                setCustomTheme(defaultTheme);
+              }}
+            />
+          </ButtonsContainer>
+
           <DxcSidenav.Title>Components</DxcSidenav.Title>
           {Object.keys(defaultTheme).map((component) => (
             <ComponentLink
@@ -83,6 +99,10 @@ const ComponentLink = styled.p`
   letter-spacing: 0.24px;
   color: ${(props) => (props.isSelected ? "#000000" : "#00000099")};
   margin: 6px 10px;
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
 `;
 
 export default ThemeBuilder;
