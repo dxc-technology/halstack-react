@@ -72,7 +72,7 @@ const DxcFooter = ({
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} refSize={refSize} ref={ref}>
         <FooterHeader>
-          <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? componentTokens.footer.logo : logoSrc} />
+          <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? colorsTheme.footer.logo : logoSrc} />
           <div>{socialLink}</div>
         </FooterHeader>
         {isResponsivePhone && (
