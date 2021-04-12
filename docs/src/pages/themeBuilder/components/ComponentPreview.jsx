@@ -14,7 +14,7 @@ const ComponentPreview = ({
   );
 
   return (
-    <>
+    <ComponentPreviewContainer>
       <ComponentHeader>
         <DxcHeading
           text={`${capitalizeText(componentId)} component`}
@@ -27,14 +27,11 @@ const ComponentPreview = ({
           <preview.preview />
         </ThemeProvider>
       </PreviewContainer>
-    </>
+    </ComponentPreviewContainer>
   );
 };
 
-const PreviewContainer = styled.div`
-  height: 65%;
-  margin-left: 8%;
-  padding-right: 8%;
+const ComponentPreviewContainer = styled.div`
   overflow-y: auto;
 
   /* width */
@@ -60,17 +57,16 @@ const PreviewContainer = styled.div`
   }
 `;
 
+const PreviewContainer = styled.div`
+  height: 65%;
+  margin-left: 8%;
+  padding-right: 8%;
+`;
+
 const ComponentHeader = styled.div`
   height: 10%;
   margin: 36px 8% 0 8%;
   display: flex;
 `;
-
-/*
-  const SpinnerContainer = styled.div`
-    display: flex;
-    justify-content: center;
-  `;
-*/
 
 export default ComponentPreview;
