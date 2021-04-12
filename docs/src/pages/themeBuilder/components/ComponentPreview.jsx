@@ -3,11 +3,9 @@ import styled from "styled-components";
 import { DxcHeading, ThemeProvider } from "@dxc-technology/halstack-react";
 import componentsPreview from "./ComponentsPreviewMap";
 import { capitalizeText } from "../utils";
+import { ErrorBoundary } from 'react-error-boundary';
 
-const ComponentPreview = ({
-  customTheme,
-  componentId,
-}) => {
+const ComponentPreview = ({ customTheme, componentId }) => {
   const preview = componentsPreview.find(
     (component) => component.name === componentId
   );
@@ -22,11 +20,26 @@ const ComponentPreview = ({
         />
       </ComponentHeader>
       <PreviewContainer>
-        <ThemeProvider theme={customTheme}>
-          <preview.preview />
-        </ThemeProvider>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <ThemeProvider theme={customTheme}>
+            <preview.preview />
+          </ThemeProvider>
+        </ErrorBoundary>
       </PreviewContainer>
     </ComponentPreviewContainer>
+  );
+};
+
+const Greeting = ({ subject }) => {
+  return <div>Hello {subject.toUpperCase()}</div>;
+}
+
+const ErrorFallback = ({ error }) => {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre style={{ color: "red" }}>{error.message}</pre>
+    </div>
   );
 };
 
