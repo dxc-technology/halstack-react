@@ -1,34 +1,20 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import {
-  DxcHeading,
-  DxcSpinner,
-  ThemeProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcHeading, ThemeProvider } from "@dxc-technology/halstack-react";
 import componentsPreview from "./ComponentsPreviewMap";
-import ThemeInputsConfig from "./ThemeInputsConfig";
-import {capitalizeText} from "../utils";
+import { capitalizeText } from "../utils";
 
 const ComponentPreview = ({
   // onResetComponent,
-  // onDisplayProperty,
   customTheme,
-  onEdit,
   componentId,
 }) => {
   const preview = componentsPreview.find(
     (component) => component.name === componentId
   );
 
-  const changeCustomThemeHandler = (propertyName, propertyValue) => {
-    const updatedTheme = JSON.parse(JSON.stringify(customTheme));
-    updatedTheme[componentId][propertyName] = propertyValue;
-    onEdit((prevTheme) => ({ ...prevTheme, ...updatedTheme }));
-  };
-
   return (
-    <ConfigurationContainer>
+    <>
       <ComponentHeader>
         <DxcHeading
           text={`${capitalizeText(componentId)} component`}
@@ -41,21 +27,9 @@ const ComponentPreview = ({
           <preview.preview />
         </ThemeProvider>
       </PreviewContainer>
-      <ThemeInputsConfig
-        componentInputs={customTheme[componentId]}
-        onChangeCustomTheme={changeCustomThemeHandler}
-      />
-    </ConfigurationContainer>
+    </>
   );
 };
-
-const ConfigurationContainer = styled.div`
-  height: calc(100vh - 64px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 70%;
-`;
 
 const PreviewContainer = styled.div`
   height: 65%;
@@ -92,9 +66,11 @@ const ComponentHeader = styled.div`
   display: flex;
 `;
 
-const SpinnerContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+/*
+  const SpinnerContainer = styled.div`
+    display: flex;
+    justify-content: center;
+  `;
+*/
 
 export default ComponentPreview;
