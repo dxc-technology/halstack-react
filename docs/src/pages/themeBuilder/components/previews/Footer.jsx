@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { DxcFooter } from "@dxc-technology/halstack-react";
 
@@ -39,23 +39,17 @@ const Footer = () => {
   return (
     <FooterContainer>
       <Mode text="Default">
-        {/* <FooterParentContainer> */}
         <DxcFooter
           copyright="© DXC Technology 2020. All rights reserved."
           bottomLinks={bottom}
           socialLinks={social}
           margin="medium"
         ></DxcFooter>
-        {/* </FooterParentContainer> */}
       </Mode>
     </FooterContainer>
   );
 };
 
 const FooterContainer = styled.div``;
-const FooterParentContainer = styled.div`
-  width: 100%;
-  margin-right: 16px;
-`;
 
 export default Footer;

@@ -4,8 +4,6 @@ import { SketchPicker } from "react-color";
 import { Popper } from "@material-ui/core";
 
 const ColorPicker = ({
-  //   presetColors,
-  //   setPresetColors,
   propertyName,
   propertyValue,
   anchorEl,

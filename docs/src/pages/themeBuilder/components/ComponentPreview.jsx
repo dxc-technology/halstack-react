@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { DxcHeading, ThemeProvider } from "@dxc-technology/halstack-react";
 import componentsPreview from "./ComponentsPreviewMap";
 import { capitalizeText } from "../utils";
 
 const ComponentPreview = ({
-  // onResetComponent,
   customTheme,
   componentId,
 }) => {

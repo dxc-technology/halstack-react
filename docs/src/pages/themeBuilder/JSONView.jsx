@@ -19,6 +19,7 @@ const JSONView = ({ customTheme, onEdit }) => {
 
 const JSONViewContainer = styled.div`
   height: calc(100vh - 64px);
+  padding: 5px;
   width: 30%;
   overflow-y: auto;
 
