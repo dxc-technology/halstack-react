@@ -80,7 +80,7 @@ function UseComponents() {
     };
   
     return (
-      <DxcButton mode="basic" label="Basic Button" onClick={onClick} />
+      <DxcButton mode="primary" label="Primary Button" onClick={onClick} />
     );
   };
 
