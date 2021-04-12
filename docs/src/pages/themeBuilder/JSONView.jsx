@@ -10,6 +10,8 @@ const JSONView = ({ customTheme, onEdit }) => {
         onEdit={({ updated_src }) => {
           onEdit(updated_src);
         }}
+        displayObjectSize={false}
+        displayDataTypes={false}
       />
     </JSONViewContainer>
   );
