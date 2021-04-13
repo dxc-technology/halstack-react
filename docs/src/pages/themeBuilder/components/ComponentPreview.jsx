@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { DxcHeading, ThemeProvider } from "@dxc-technology/halstack-react";
+import {
+  DxcHeading,
+  DxcAlert,
+  ThemeProvider,
+} from "@dxc-technology/halstack-react";
 import componentsPreview from "./ComponentsPreviewMap";
 import { capitalizeText } from "../utils";
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary } from "react-error-boundary";
 
 const ComponentPreview = ({ customTheme, componentId }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
   const preview = componentsPreview.find(
     (component) => component.name === componentId
   );
@@ -20,26 +26,27 @@ const ComponentPreview = ({ customTheme, componentId }) => {
         />
       </ComponentHeader>
       <PreviewContainer>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <ErrorBoundary
+          fallbackRender={({ error }) =>
+            isVisible ? (
+              <ErrorContainer>
+                <DxcAlert
+                  type="error"
+                  mode="inline"
+                  inlineText={error.message}
+                  margin="xxlarge"
+                />
+              </ErrorContainer>
+            ) : null
+          }
+          resetKeys={[customTheme]}
+        >
           <ThemeProvider theme={customTheme}>
             <preview.preview />
           </ThemeProvider>
         </ErrorBoundary>
       </PreviewContainer>
     </ComponentPreviewContainer>
-  );
-};
-
-const Greeting = ({ subject }) => {
-  return <div>Hello {subject.toUpperCase()}</div>;
-}
-
-const ErrorFallback = ({ error }) => {
-  return (
-    <div role="alert">
-      <p>Something went wrong:</p>
-      <pre style={{ color: "red" }}>{error.message}</pre>
-    </div>
   );
 };
 
@@ -79,6 +86,12 @@ const ComponentHeader = styled.div`
   height: 10%;
   margin: 36px 8% 0 8%;
   display: flex;
+`;
+
+const ErrorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default ComponentPreview;

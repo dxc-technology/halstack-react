@@ -12,6 +12,7 @@ const JSONView = ({ customTheme, onEdit }) => {
         }}
         displayObjectSize={false}
         displayDataTypes={false}
+        name={false}
       />
     </JSONViewContainer>
   );
