@@ -17,6 +17,13 @@ const buttonPropsTable = () => {
         <td>Uses on of the available button modes.</td>
       </tr>
       <tr>
+        <td>type: 'button' | 'reset' | 'submit'</td>
+        <td>
+          <code>'button'</code>
+        </td>
+        <td>This prop corresponds to the 'type' prop of the button in html.</td>
+      </tr>
+      <tr>
         <td>label: string</td>
         <td></td>
         <td>Text to be placed next to the button.</td>
