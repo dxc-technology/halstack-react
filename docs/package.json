@@ -4,6 +4,8 @@
   "homepage": ".",
   "dependencies": {
     "@dxc-technology/halstack-react": "file:../lib",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/utils": "^4.11.2",
     "axios": "^0.19.2",
     "react": "file:../node_modules/react",
     "react-color": "^2.19.3",
@@ -14,9 +16,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-syntax-highlighter": "^12.2.1",
-    "styled-components": "file:../node_modules/styled-components",
-    "@material-ui/core": "file:../lib/node_modules/@material-ui/core",
-    "@material-ui/utils": "file:../lib/node_modules/@material-ui/utils"
+    "styled-components": "file:../node_modules/styled-components"
   },
   "scripts": {
     "start": "react-scripts start",

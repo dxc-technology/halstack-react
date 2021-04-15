@@ -11,6 +11,7 @@ import ComponentPreview from "./components/ComponentPreview";
 import { capitalizeText } from "./utils";
 import Header from "../../common/Header";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
+import ImportDialog from "./ImportDialog";
 
 const ThemeBuilder = () => {
   const [customTheme, setCustomTheme] = useState(defaultTheme);
@@ -30,11 +31,7 @@ const ThemeBuilder = () => {
         </DxcApplicationLayout.Header>
         <DxcApplicationLayout.SideNav mode="push" padding="medium">
           <ButtonsContainer>
-            <DxcButton
-              mode="primary"
-              label="Import"
-              margin={{ right: "xxsmall" }}
-            />
+            <ImportDialog setCustomTheme={setCustomTheme} />
             <DxcButton
               mode="secondary"
               label="Reset"
@@ -43,7 +40,6 @@ const ThemeBuilder = () => {
               }}
             />
           </ButtonsContainer>
-
           <DxcSidenav.Title>Components</DxcSidenav.Title>
           {Object.keys(defaultTheme).map((component) => (
             <ComponentLink

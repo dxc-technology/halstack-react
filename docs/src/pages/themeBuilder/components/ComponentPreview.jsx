@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   DxcHeading,
@@ -33,7 +33,7 @@ const ComponentPreview = ({ customTheme, componentId }) => {
                 <DxcAlert
                   type="error"
                   mode="inline"
-                  inlineText={error.message}
+                  inlineText="Unable to render the theme."
                   margin="xxlarge"
                 />
               </ErrorContainer>
