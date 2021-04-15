@@ -95,7 +95,7 @@ function Components() {
         </SideNavContainer>
       </DxcApplicationLayout.SideNav>
       <DxcApplicationLayout.Main>
-        <SideNavContent>
+        <MainContent>
           <Route exact path="/components">
             <ComponentDoc>
               <DxcHeading
@@ -138,7 +138,7 @@ function Components() {
               <path.component></path.component>
             </Route>
           ))}
-        </SideNavContent>
+        </MainContent>
       </DxcApplicationLayout.Main>
       <DxcApplicationLayout.Footer>
         <DxcFooter
@@ -157,9 +157,8 @@ function Components() {
 const SideNavContainer = styled.div`
   margin-bottom: 40px;
 `;
-const SideNavContent = styled.div`
-  display: flex;
-  flex-grow: 1;
+const MainContent = styled.div`
+
   height: 100%;
   min-height: 100vh;
 `;

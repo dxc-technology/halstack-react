@@ -211,6 +211,7 @@ const ContentContainer = styled.div`
 
 const MainBodyContainer = styled.div`
   width: 100%;
+  min-width:0;
   display: flex;
   flex-direction: column;
 `;
