@@ -9,34 +9,28 @@ import {
 import styled from "styled-components";
 import defaultTheme from "./DefaultTheme.json";
 
-const compareArray = (array1, array2) =>
-  !array1.every((element) => array2.includes(element));
-
 const validateInputJSON = (json) => {
   let inputJSON;
   let errMessage = "";
+  const compareArray = (array1, array2) =>
+    !Object.keys(array1).every((element) =>
+      Object.keys(array2).includes(element)
+    );
 
   try {
     inputJSON = JSON.parse(json);
     const inputComponentNames = Object.keys(inputJSON);
     const defaultComponentNames = Object.keys(defaultTheme);
 
-    inputComponentNames.every((componentName) =>
-      defaultComponentNames.includes(componentName)
-        ? compareArray(
-            Object.keys(inputJSON[componentName]),
-            Object.keys(defaultTheme[componentName])
-          )
-          ? (() => {
-              throw new Error(
-                `Invalid theme input name in component ${componentName}.`
-              );
-            })()
-          : true
-        : (() => {
-            throw new Error("Invalid component name.");
-          })()
-    );
+    inputComponentNames.forEach((componentName) => {
+      const errorMessage =
+        (!defaultComponentNames.includes(componentName) &&
+          "Invalid component name.") ||
+        (compareArray(inputJSON[componentName], defaultTheme[componentName]) &&
+          `Invalid theme input name in component ${componentName}.`);
+
+      if (errorMessage) throw new Error(errorMessage);
+    });
   } catch (e) {
     errMessage = e.name === "SyntaxError" ? "Invalid JSON input." : e.message;
   }
