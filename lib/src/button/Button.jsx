@@ -13,6 +13,7 @@ const DxcButton = ({
   mode = "primary",
   disabled = false,
   iconPosition = "before",
+  type = "button",
   iconSrc = "",
   icon,
   onClick = "",
@@ -23,9 +24,10 @@ const DxcButton = ({
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
-      <DxCButton margin={margin} mode={mode} disabled={disabled} iconPosition={iconPosition} size={size}>
+      <DxCButton type={type} margin={margin} mode={mode} disabled={disabled} iconPosition={iconPosition} size={size}>
         <Button
           disabled={disabled}
+          type={type}
           disableRipple
           aria-disabled={disabled ? true : false}
           onClick={() => {
@@ -231,11 +233,11 @@ DxcButton.propTypes = {
   label: PropTypes.string,
   mode: PropTypes.oneOf(["primary", "secondary", "text"]),
   disabled: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "light"]),
   iconPosition: PropTypes.oneOf(["after", "before"]),
   onClick: PropTypes.func,
   iconSrc: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  type: PropTypes.oneOf(["button", "reset", "submit"]),
 };
 
 export default DxcButton;
