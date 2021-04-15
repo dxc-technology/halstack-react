@@ -10,23 +10,23 @@ import styled from "styled-components";
 import defaultTheme from "./DefaultTheme.json";
 
 const validateInputJSON = (json) => {
-  let inputJSON;
+  let inputTheme = [];
   let errMessage = "";
-  const compareArray = (array1, array2) =>
-    !Object.keys(array1).every((element) =>
+  const isArrayIncluded = (array1, array2) =>
+    Object.keys(array1).every((element) =>
       Object.keys(array2).includes(element)
     );
 
   try {
-    inputJSON = JSON.parse(json);
-    const inputComponentNames = Object.keys(inputJSON);
+    inputTheme = JSON.parse(json);
+    const inputComponentNames = Object.keys(inputTheme);
     const defaultComponentNames = Object.keys(defaultTheme);
 
     inputComponentNames.forEach((componentName) => {
       const errorMessage =
         (!defaultComponentNames.includes(componentName) &&
           "Invalid component name.") ||
-        (compareArray(inputJSON[componentName], defaultTheme[componentName]) &&
+        (!isArrayIncluded(inputTheme[componentName], defaultTheme[componentName]) &&
           `Invalid theme input name in component ${componentName}.`);
 
       if (errorMessage) throw new Error(errorMessage);
@@ -34,7 +34,7 @@ const validateInputJSON = (json) => {
   } catch (e) {
     errMessage = e.name === "SyntaxError" ? "Invalid JSON input." : e.message;
   }
-  return { inputJSON, errMessage };
+  return { inputTheme, errMessage };
 };
 
 const ImportDialog = ({ setCustomTheme }) => {
@@ -46,15 +46,17 @@ const ImportDialog = ({ setCustomTheme }) => {
     setValue(newValue);
     if (validationErrorMessage !== "") setValidationErrorMessage("");
   };
-  const handleDialog = () => {
-    setDialogVisible(!isDialogVisible);
-  };
+  const closeDialog = () => {
+    setDialogVisible(false);
+    setValue("");
+    setValidationErrorMessage("");
+  }
   const validate = () => {
-    const { inputJSON, errMessage } = validateInputJSON(value);
+    const { inputTheme, errMessage } = validateInputJSON(value);
 
     if (errMessage === "") {
-      setCustomTheme((prevTheme) => ({ ...prevTheme, ...inputJSON }));
-      handleDialog();
+      setCustomTheme((prevTheme) => ({ ...prevTheme, ...inputTheme }));
+      closeDialog();
     } else setValidationErrorMessage(errMessage);
   };
 
@@ -63,14 +65,14 @@ const ImportDialog = ({ setCustomTheme }) => {
       <DxcButton
         mode="primary"
         label="Import"
-        onClick={handleDialog}
+        onClick={() => {setDialogVisible(true)}}
         margin={{ right: "xxsmall" }}
       />
       {isDialogVisible && (
         <DxcDialog
           isCloseVisible={false}
           padding="xsmall"
-          onBackgroundClick={handleDialog}
+          onBackgroundClick={closeDialog}
         >
           <DialogContainer>
             <DxcHeading
@@ -86,6 +88,7 @@ const ImportDialog = ({ setCustomTheme }) => {
               size="fillParent"
               numRows={14}
               margin={{ bottom: "small" }}
+              invalid={validationErrorMessage !== ""}
             />
             {validationErrorMessage !== "" && (
               <DxcAlert
@@ -102,9 +105,9 @@ const ImportDialog = ({ setCustomTheme }) => {
                 label="Import"
                 onClick={validate}
                 margin={{ right: "xsmall" }}
-                disabled={validationErrorMessage !== ""}
+                disabled={validationErrorMessage !== "" || value === ""}
               />
-              <DxcButton mode="text" label="Cancel" onClick={handleDialog} />
+              <DxcButton mode="text" label="Cancel" onClick={closeDialog} />
             </ButtonContainer>
           </DialogContainer>
         </DxcDialog>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import {
   DxcHeading,
@@ -10,8 +10,6 @@ import { capitalizeText } from "../utils";
 import { ErrorBoundary } from "react-error-boundary";
 
 const ComponentPreview = ({ customTheme, componentId }) => {
-  const [isVisible, setIsVisible] = useState(true);
-
   const preview = componentsPreview.find(
     (component) => component.name === componentId
   );
@@ -27,18 +25,16 @@ const ComponentPreview = ({ customTheme, componentId }) => {
       </ComponentHeader>
       <PreviewContainer>
         <ErrorBoundary
-          fallbackRender={({ error }) =>
-            isVisible ? (
-              <ErrorContainer>
-                <DxcAlert
-                  type="error"
-                  mode="inline"
-                  inlineText="Unable to render the theme."
-                  margin="xxlarge"
-                />
-              </ErrorContainer>
-            ) : null
-          }
+          fallbackRender={() => (
+            <ErrorContainer>
+              <DxcAlert
+                type="error"
+                mode="inline"
+                inlineText="Unable to render the theme."
+                margin="xxlarge"
+              />
+            </ErrorContainer>
+          )}
           resetKeys={[customTheme]}
         >
           <ThemeProvider theme={customTheme}>
@@ -52,6 +48,7 @@ const ComponentPreview = ({ customTheme, componentId }) => {
 
 const ComponentPreviewContainer = styled.div`
   overflow-y: auto;
+  height: 70%;
 
   /* width */
   ::-webkit-scrollbar {

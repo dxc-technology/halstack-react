@@ -24,51 +24,49 @@ const ThemeBuilder = () => {
   };
 
   return (
-    <ThemeBuilderContainer>
-      <DxcApplicationLayout>
-        <DxcApplicationLayout.Header>
-          <Header></Header>
-        </DxcApplicationLayout.Header>
-        <DxcApplicationLayout.SideNav mode="push" padding="medium">
-          <ButtonsContainer>
-            <ImportDialog setCustomTheme={setCustomTheme} />
-            <DxcButton
-              mode="secondary"
-              label="Reset"
-              onClick={() => {
-                setCustomTheme(defaultTheme);
-              }}
+    <DxcApplicationLayout>
+      <DxcApplicationLayout.Header>
+        <Header></Header>
+      </DxcApplicationLayout.Header>
+      <DxcApplicationLayout.SideNav mode="push" padding="medium">
+        <ButtonsContainer>
+          <ImportDialog setCustomTheme={setCustomTheme} />
+          <DxcButton
+            mode="secondary"
+            label="Reset"
+            onClick={() => {
+              setCustomTheme(defaultTheme);
+            }}
+          />
+        </ButtonsContainer>
+        <DxcSidenav.Title>Components</DxcSidenav.Title>
+        {Object.keys(defaultTheme).map((component) => (
+          <ComponentLink
+            isSelected={currentComponent === component}
+            onClick={() => {
+              setCurrentComponent(component);
+            }}
+          >
+            {capitalizeText(component)}
+          </ComponentLink>
+        ))}
+      </DxcApplicationLayout.SideNav>
+      <DxcApplicationLayout.Main>
+        <MainContainer>
+          <ComponentInputsContainer>
+            <ComponentPreview
+              customTheme={customTheme}
+              componentId={currentComponent}
             />
-          </ButtonsContainer>
-          <DxcSidenav.Title>Components</DxcSidenav.Title>
-          {Object.keys(defaultTheme).map((component) => (
-            <ComponentLink
-              isSelected={currentComponent === component}
-              onClick={() => {
-                setCurrentComponent(component);
-              }}
-            >
-              {capitalizeText(component)}
-            </ComponentLink>
-          ))}
-        </DxcApplicationLayout.SideNav>
-        <DxcApplicationLayout.Main>
-          <MainContainer>
-            <ComponentInputsContainer>
-              <ComponentPreview
-                customTheme={customTheme}
-                componentId={currentComponent}
-              />
-              <ThemeInputsConfig
-                componentInputs={customTheme[currentComponent]}
-                onChangeCustomTheme={changeCustomThemeHandler}
-              />
-            </ComponentInputsContainer>
-            <JSONView customTheme={customTheme} onEdit={setCustomTheme} />
-          </MainContainer>
-        </DxcApplicationLayout.Main>
-      </DxcApplicationLayout>
-    </ThemeBuilderContainer>
+            <ThemeInputsConfig
+              componentInputs={customTheme[currentComponent]}
+              onChangeCustomTheme={changeCustomThemeHandler}
+            />
+          </ComponentInputsContainer>
+          <JSONView customTheme={customTheme} onEdit={setCustomTheme} />
+        </MainContainer>
+      </DxcApplicationLayout.Main>
+    </DxcApplicationLayout>
   );
 };
 
@@ -77,14 +75,12 @@ const MainContainer = styled.div`
 `;
 
 const ComponentInputsContainer = styled.div`
-  height: calc(100vh - 64px);
+  height: calc(100vh - 54px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 70%;
 `;
-
-const ThemeBuilderContainer = styled.div``;
 
 const ComponentLink = styled.p`
   :hover {
