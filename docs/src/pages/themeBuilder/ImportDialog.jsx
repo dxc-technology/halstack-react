@@ -8,6 +8,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 import defaultTheme from "./DefaultTheme.json";
+import { deepMerge } from "./utils";
 
 const validateInputTheme = (json) => {
   let inputTheme = [];
@@ -57,7 +58,7 @@ const ImportDialog = ({ setCustomTheme, setDialogVisible }) => {
     const { inputTheme, errMessage } = validateInputTheme(value);
 
     if (errMessage === "") {
-      setCustomTheme((prevTheme) => ({ ...prevTheme, ...inputTheme }));
+      setCustomTheme((prevTheme) => deepMerge({}, prevTheme, inputTheme));
       closeDialog();
     } else setValidationErrorMessage(errMessage);
   };
