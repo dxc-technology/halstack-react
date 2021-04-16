@@ -40,7 +40,7 @@ DxcTransactions.propTypes = {
 };
 
 const DXCTransactions = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   max-width: 100%;
   width: 35%;
   padding-top: 46px;
@@ -69,11 +69,12 @@ const TransactionsText = styled.span`
 
 const TransactionsTitle = styled.span`
   margin-bottom: 4px;
-  font-size: 20px;
+  font-size: ${(props) => props.theme.fontSize20};
 `;
 
 const TransactionsSubTitle = styled.span`
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize12};
+
   color: ${(props) => props.theme.fontColor};
 `;
 

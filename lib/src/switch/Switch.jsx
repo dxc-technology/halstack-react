@@ -157,7 +157,7 @@ const SwitchContainer = styled.div`
 const LabelContainer = styled.span`
   color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
 `;
 
 DxcSwitch.propTypes = {

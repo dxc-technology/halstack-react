@@ -99,7 +99,7 @@ const DxcFooter = ({
 
 const FooterContainer = styled.footer`
   padding: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px")};
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   background-color: ${(props) => props.theme.backgroundColor};
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   width: 100%;
@@ -149,7 +149,7 @@ const ChildComponents = styled.div`
 `;
 
 const Copyright = styled.div`
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize};
   color: ${(props) => props.theme.fontColor};
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
   width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
@@ -212,7 +212,7 @@ const Point = styled.span`
 const BottomLink = styled.a`
   text-decoration: none;
   color: ${(props) => props.theme.fontColor};
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize};
 `;
 
 DxcFooter.propTypes = {

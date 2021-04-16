@@ -111,13 +111,15 @@ const TextContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
-    font-family: "Open Sans", sans-serif;
+    font-family: ${(props) => props.theme.fontFamily};
+
     .MuiFormHelperText-root {
-      font-family: "Open Sans", sans-serif;
+      font-family: ${(props) => props.theme.fontFamily};
+
       margin-top: 6px;
     }
     .MuiFormLabel-root {
-      font-size: 16px;
+      font-size: ${(props) => props.theme.fontSize};
       color: ${(props) => props.theme.fontColor};
       &.Mui-disabled {
         color: ${(props) => props.theme.disabledFontColor} !important;
@@ -131,7 +133,8 @@ const TextContainer = styled.div`
         }
       }
       &.MuiInputLabel-shrink {
-        font-family: "Open Sans", sans-serif;
+        font-family: ${(props) => props.theme.fontFamily};
+
         transform: "translate(0, 1.5px) scale(0.75)";
       }
       &.Mui-error {
@@ -139,7 +142,8 @@ const TextContainer = styled.div`
       }
 
       &:not(.MuiInputLabel-shrink) {
-        font-family: "Open Sans", sans-serif;
+        font-family: ${(props) => props.theme.fontFamily};
+
         color: ${(props) => props.theme.fontColor};
         & + div,
         & + div + p {
@@ -157,7 +161,7 @@ const TextContainer = styled.div`
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
-      font-family: "Open Sans", sans-serif;
+      font-family: ${(props) => props.theme.fontFamily};
       &::before {
         border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
       }

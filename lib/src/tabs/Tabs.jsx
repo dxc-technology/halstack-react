@@ -64,8 +64,12 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, ic
                 label={getLabelForTab(tab)}
                 disabled={tab.isDisabled}
                 disableRipple={true}
-                onMouseEnter={()=>{onTabHover(i)}}
-                onMouseLeave={()=>{onTabHover(null)}}
+                onMouseEnter={() => {
+                  onTabHover(i);
+                }}
+                onMouseLeave={() => {
+                  onTabHover(null);
+                }}
               />
             );
           })}
@@ -87,9 +91,9 @@ const BadgeContainer = styled.div`
   position: absolute;
   right: 0;
   top: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "0") || "5px"};
-  width:23px;
+  width: 23px;
   height: 17px;
-  `;
+`;
 const MainLabelContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -133,9 +137,9 @@ const DxCTabs = styled.div`
         "8px 16px"};
       height: ${(props) =>
         ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
-      font-family: "Open Sans", sans-serif;
+      font-family: ${(props) => props.theme.fontFamily};
       font-weight: 600;
-      font-size: 16px;
+      font-size: ${(props) => props.theme.fontSize};
       min-width: 90px;
       max-width: 360px;
       color: ${(props) => props.theme.fontColor};

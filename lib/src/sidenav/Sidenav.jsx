@@ -2,6 +2,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
+import "../common/OpenSans.css";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
@@ -34,6 +35,7 @@ const Link = ({ href, onClick, children }) => {
 const SideNavContainer = styled.div`
   background-color: ${(props) => props.theme.backgroundColor};
   max-width: 300px;
+  font-family: ${(props) => props.theme.fontFamily};
   width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
   padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
   overflow-y: auto;

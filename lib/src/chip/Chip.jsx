@@ -94,8 +94,8 @@ const StyledDxcChip = styled.div`
 `;
 
 const ChipTextContainer = styled.span`
-  font-size: 16px;
-  font-family: "Open Sans";
+  font-size: ${(props) => props.theme.fontSize};
+  font-family: ${(props) => props.theme.fontFamily};
   line-height: 24px;
   color: ${(props) => (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "default"};

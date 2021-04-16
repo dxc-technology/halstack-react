@@ -131,7 +131,8 @@ const ToggleContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  font: normal normal normal 14px/19px Open Sans;
+  font-size: ${(props) => props.theme.fontSize};
+  font-family: ${(props) => props.theme.fontFamily};
   letter-spacing: 1.25px;
   text-transform: uppercase;
 `;

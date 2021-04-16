@@ -38,7 +38,7 @@ DxcFileToUpload.propTypes = {
 };
 
 const DXCFileToUpload = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   max-width: 100%;
   height: 52px;
   display: flex;
@@ -75,8 +75,8 @@ const FileImage = styled.img`
 
 const FileName = styled.div`
   margin-bottom: 12px;
-  font-size: 16px;
-`;
+  font-size: ${(props) => props.theme.fontSize16};
+  `;
 
 const FileInfo = styled.div`
   display: flex;
@@ -86,7 +86,8 @@ const FileInfo = styled.div`
 
 const FileType = styled.div`
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize12};
+
   color: ${(props) => props.theme.fontColor};
 `;
 
