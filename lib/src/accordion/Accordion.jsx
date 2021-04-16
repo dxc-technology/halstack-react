@@ -76,7 +76,7 @@ const DxcAccordion = ({
                 iconSrc && <AccordionIcon src={iconSrc} />
               )}
             </AccordionInfo>
-            <AccordionAssistiveText>{assistiveText}</AccordionAssistiveText>
+            {assistiveText && <AccordionAssistiveText>{assistiveText}</AccordionAssistiveText>}
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <AccordionText>{children}</AccordionText>
@@ -119,8 +119,8 @@ DxcAccordion.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
 };
-
 const DXCAccordion = styled.div`
+  display: flex;
   min-width: 280px;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -137,11 +137,13 @@ const DXCAccordion = styled.div`
   font-family: "Open Sans", sans-serif;
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
+    min-width: 0;
+    display: flex;
     left: 85px;
     background-color: ${(props) => props.theme.backgroundColor} !important;
     color: ${(props) => props.theme.fontColor};
     box-shadow: 0px 6px 10px #00000024;
-    display: block;
+
     position: static;
     width: 100%;
     border-radius: 4px;
@@ -150,7 +152,10 @@ const DXCAccordion = styled.div`
       border-radius: 4px;
       color: "#000000";
     }
-
+    &.MuiExpansionPanel-root {
+      display: flex;
+      flex-direction: column;
+    }
     .MuiButtonBase-root.MuiExpansionPanelSummary-root {
       :hover {
         background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
@@ -175,6 +180,7 @@ const DXCAccordion = styled.div`
 
       .MuiExpansionPanelSummary-content {
         padding-right: 24px;
+        min-width: 0;
         &.Mui-expanded {
           div:nth-child(2) {
             opacity: 1;
@@ -242,13 +248,10 @@ const AccordionInfo = styled.div`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  flex-grow: 1;
-  margin-right: 15px;
+  margin-right: 48px;
 `;
 
-const AccordionLabel = styled.div`
-  flex-grow: 1;
-`;
+const AccordionLabel = styled.div``;
 
 const AccordionText = styled.div`
   width: 100%;
@@ -259,6 +262,12 @@ const AccordionAssistiveText = styled.div`
   font-size: 14px;
   font: italic normal 300 16px/22px Open Sans;
   letter-spacing: 0.49px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 100px;
+  text-align: end;
 `;
 
 const IconContainer = styled.div`
