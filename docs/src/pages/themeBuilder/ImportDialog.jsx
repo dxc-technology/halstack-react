@@ -9,7 +9,7 @@ import {
 import styled from "styled-components";
 import defaultTheme from "./DefaultTheme.json";
 
-const validateInputJSON = (json) => {
+const validateInputTheme = (json) => {
   let inputTheme = [];
   let errMessage = "";
   const isArrayIncluded = (array1, array2) =>
@@ -26,7 +26,10 @@ const validateInputJSON = (json) => {
       const errorMessage =
         (!defaultComponentNames.includes(componentName) &&
           "Invalid component name.") ||
-        (!isArrayIncluded(inputTheme[componentName], defaultTheme[componentName]) &&
+        (!isArrayIncluded(
+          inputTheme[componentName],
+          defaultTheme[componentName]
+        ) &&
           `Invalid theme input name in component ${componentName}.`);
 
       if (errorMessage) throw new Error(errorMessage);
@@ -37,10 +40,9 @@ const validateInputJSON = (json) => {
   return { inputTheme, errMessage };
 };
 
-const ImportDialog = ({ setCustomTheme }) => {
+const ImportDialog = ({ setCustomTheme, setDialogVisible }) => {
   const [value, setValue] = useState("");
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
-  const [isDialogVisible, setDialogVisible] = useState(false);
 
   const onChange = (newValue) => {
     setValue(newValue);
@@ -50,9 +52,9 @@ const ImportDialog = ({ setCustomTheme }) => {
     setDialogVisible(false);
     setValue("");
     setValidationErrorMessage("");
-  }
+  };
   const validate = () => {
-    const { inputTheme, errMessage } = validateInputJSON(value);
+    const { inputTheme, errMessage } = validateInputTheme(value);
 
     if (errMessage === "") {
       setCustomTheme((prevTheme) => ({ ...prevTheme, ...inputTheme }));
@@ -61,58 +63,48 @@ const ImportDialog = ({ setCustomTheme }) => {
   };
 
   return (
-    <>
-      <DxcButton
-        mode="primary"
-        label="Import"
-        onClick={() => {setDialogVisible(true)}}
-        margin={{ right: "xxsmall" }}
-      />
-      {isDialogVisible && (
-        <DxcDialog
-          isCloseVisible={false}
-          padding="xsmall"
-          onBackgroundClick={closeDialog}
-        >
-          <DialogContainer>
-            <DxcHeading
-              text={"Import theme"}
-              level={3}
-              margin={{ bottom: "small" }}
-              weight="normal"
-            />
-            <DxcTextarea
-              label="Paste here your theme"
-              value={value}
-              onChange={onChange}
-              size="fillParent"
-              numRows={14}
-              margin={{ bottom: "small" }}
-              invalid={validationErrorMessage !== ""}
-            />
-            {validationErrorMessage !== "" && (
-              <DxcAlert
-                type="error"
-                mode="inline"
-                inlineText={validationErrorMessage}
-                size="fillParent"
-                margin={{ bottom: "small" }}
-              />
-            )}
-            <ButtonContainer>
-              <DxcButton
-                mode="primary"
-                label="Import"
-                onClick={validate}
-                margin={{ right: "xsmall" }}
-                disabled={validationErrorMessage !== "" || value === ""}
-              />
-              <DxcButton mode="text" label="Cancel" onClick={closeDialog} />
-            </ButtonContainer>
-          </DialogContainer>
-        </DxcDialog>
-      )}
-    </>
+    <DxcDialog
+      isCloseVisible={false}
+      padding="xsmall"
+      onBackgroundClick={closeDialog}
+    >
+      <DialogContainer>
+        <DxcHeading
+          text={"Import theme"}
+          level={3}
+          margin={{ bottom: "small" }}
+          weight="normal"
+        />
+        <DxcTextarea
+          label="Paste here your theme"
+          value={value}
+          onChange={onChange}
+          size="fillParent"
+          numRows={14}
+          margin={{ bottom: "small" }}
+          invalid={validationErrorMessage !== ""}
+        />
+        {validationErrorMessage !== "" && (
+          <DxcAlert
+            type="error"
+            mode="inline"
+            inlineText={validationErrorMessage}
+            size="fillParent"
+            margin={{ bottom: "small" }}
+          />
+        )}
+        <ButtonContainer>
+          <DxcButton
+            mode="primary"
+            label="Import"
+            onClick={validate}
+            margin={{ right: "xsmall" }}
+            disabled={validationErrorMessage !== "" || value === ""}
+          />
+          <DxcButton mode="text" label="Cancel" onClick={closeDialog} />
+        </ButtonContainer>
+      </DialogContainer>
+    </DxcDialog>
   );
 };
 

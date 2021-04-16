@@ -16,6 +16,7 @@ import ImportDialog from "./ImportDialog";
 const ThemeBuilder = () => {
   const [customTheme, setCustomTheme] = useState(defaultTheme);
   const [currentComponent, setCurrentComponent] = useState("accordion");
+  const [isDialogVisible, setDialogVisible] = useState(false);
 
   const changeCustomThemeHandler = (propertyName, propertyValue) => {
     const updatedTheme = JSON.parse(JSON.stringify(customTheme));
@@ -30,9 +31,22 @@ const ThemeBuilder = () => {
       </DxcApplicationLayout.Header>
       <DxcApplicationLayout.SideNav mode="push" padding="medium">
         <ButtonsContainer>
-          <ImportDialog setCustomTheme={setCustomTheme} />
           <DxcButton
-            mode="secondary"
+            mode="primary"
+            label="Import"
+            onClick={() => {
+              setDialogVisible(true);
+            }}
+            margin={{ right: "xxsmall" }}
+          />
+          {isDialogVisible && (
+            <ImportDialog
+              setCustomTheme={setCustomTheme}
+              setDialogVisible={setDialogVisible}
+            />
+          )}
+          <DxcButton
+            mode="text"
             label="Reset"
             onClick={() => {
               setCustomTheme(defaultTheme);
