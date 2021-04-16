@@ -1,0 +1,101 @@
+{
+  "accordion": {
+    "accentColor": "#6f2c91",
+    "fontColor": "#666666"
+  },
+  "button": {
+    "baseColor": "#6f2c91",
+    "hoverBaseColor": "#000000",
+    "primaryFontColor": "#ffffff",
+    "primaryHoverFontColor": "#ffffff",
+    "secondaryFontColor": "#000000",
+    "secondaryHoverFontColor": "#000000",
+    "textFontColor": "#6f2c91",
+    "textHoverFontColor": "#ffffff"
+  },
+  "checkbox": {
+    "baseColor": "#0067b3",
+    "checkColor": "#ffffff"
+  },
+  "chip": {
+    "baseColor": "#eeeeee",
+    "accentColor": "",
+    "fontColor": "#000000"
+  },
+  "date": {
+    "baseColor": "#6f2c91",
+    "accentColor": "#ffffff"
+  },
+  "dropdown": {
+    "baseColor": "#ffffff",
+    "fontColor": "#000000"
+  },
+  "footer": {
+    "baseColor": "#000000",
+    "fontColor": "#ffffff",
+    "accentColor": "#0067b3",
+    "logo": ""
+  },
+  "header": {
+    "baseColor": "#ffffff",
+    "accentColor": "#000000",
+    "fontColor": "#000000",
+    "menuBaseColor": "#ffffff",
+    "hamburguerColor": "#000000",
+    "logo": "",
+    "logoResponsive": ""
+  },
+  "inputText": {
+    "selectedBaseColor": "#D9D9D9"
+  },
+  "paginator": {
+    "baseColor": "#eeeeee",
+    "fontColor": "#000000"
+  },
+  "progressBar": {
+    "accentColor": "#FFED00",
+    "baseColor": "#000000"
+  },
+  "radio": {
+    "baseColor": "#000000"
+  },
+  "select": {
+    "baseColor": "#D9D9D9"
+  },
+  "sidenav": {
+    "baseColor": "#F8F8F8",
+    "arrowBaseColor": "#F8F8F8",
+    "arrowAccentColor": "#000000"
+  },
+  "slider": {
+    "baseColor": "#0067b3"
+  },
+  "spinner": {
+    "accentColor": "#6f2c91",
+    "baseColor": "#ffffff"
+  },
+  "switch": {
+    "checkedBaseColor": "#6f2c91"
+  },
+  "table": {
+    "baseColor": "#6f2c91",
+    "fontColor": "#ffffff"
+  },
+  "tabs": {
+    "baseColor": "#6f2c91"
+  },
+  "toggleGroup": {
+    "selectedBaseColor": "#6f2c91",
+    "selectedHoverBaseColor": "#000000",
+    "selectedFontColor": "#ffffff",
+    "selectedHoverFontColor": "#ffffff",
+    "unselectedBaseColor": "#D9D9D9",
+    "unselectedHoverBaseColor": "#eeeeee",
+    "unselectedFontColor": "#000000",
+    "unselectedHoverFontColor": "#000000"
+  },
+  "wizard": {
+    "baseColor": "#6f2c91",
+    "fontColor": "#ffffff"
+  }
+}
