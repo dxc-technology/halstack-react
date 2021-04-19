@@ -43,13 +43,14 @@ describe("Successful component tests", () => {
   window.location.pathname = "/tools/react/next/";
 
   it("Should render accordion component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     expect(getByText("Accordion component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
     expect(getByText("Disabled")).toBeTruthy();
@@ -61,13 +62,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render button component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("Button"));
     });
@@ -87,13 +89,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render checkbox component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("Checkbox"));
     });
@@ -107,13 +110,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render chip component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("Chip"));
     });
@@ -129,13 +133,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render date component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("Date"));
     });
@@ -147,13 +152,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render dropdown component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("Dropdown"));
     });
@@ -165,13 +171,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render footer component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("Footer"));
     });
@@ -185,13 +192,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render header component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("Header"));
     });
@@ -207,13 +215,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render paginator component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("Paginator"));
     });
@@ -225,13 +234,14 @@ describe("Successful component tests", () => {
   });
 
   it("Should render progressBar component", async () => {
-    const { getByText, getAllByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
+    await findByText('next');
     act(() => {
       fireEvent.click(getByText("ProgressBar"));
     });
@@ -243,129 +253,226 @@ describe("Successful component tests", () => {
     expect(getAllByText("baseColor").length).toBe(18);
   });
 
-  // it("Should render radio component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="radio" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Radio component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Disabled")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  // });
+  it("Should render radio component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Radio"));
+    });
+    expect(getByText("Radio component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Disabled")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+  });
 
-  // it("Should render select component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="select" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Select component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Multiple")).toBeTruthy();
-  //   expect(getByText("Disabled")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  // });
+  it("Should render select component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Select"));
+    });
+    expect(getByText("Select component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Multiple")).toBeTruthy();
+    expect(getByText("Disabled")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+  });
 
-  // it("Should render sidenav component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="sidenav" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Sidenav component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("arrowBaseColor")).toBeTruthy();
-  //   expect(getByText("arrowAccentColor")).toBeTruthy();
-  // });
+  it("Should render sidenav component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Sidenav"));
+    });
+    expect(getByText("Sidenav component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("arrowBaseColor").length).toBe(2);
+    expect(getAllByText("arrowAccentColor").length).toBe(2);
+  });
 
-  // it("Should render slider component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="slider" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Slider component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("With marks")).toBeTruthy();
-  //   expect(getByText("Disabled")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  // });
+  it("Should render slider component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Slider"));
+    });
+    expect(getByText("Slider component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("With marks")).toBeTruthy();
+    expect(getByText("Disabled")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+  });
 
-  // it("Should render spinner component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="spinner" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Spinner component")).toBeTruthy();
-  //   expect(getByText("Undeterminate default")).toBeTruthy();
-  //   expect(getByText("Determinate default")).toBeTruthy();
-  //   expect(getByText("accentColor")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  // });
+  it("Should render spinner component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Spinner"));
+    });
+    expect(getByText("Spinner component")).toBeTruthy();
+    expect(getByText("Undeterminate default")).toBeTruthy();
+    expect(getByText("Determinate default")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("accentColor").length).toBe(8);
+    expect(getAllByText("baseColor").length).toBe(18);
+  });
 
-  // it("Should render switch component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="switch" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Switch component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Disabled")).toBeTruthy();
-  //   expect(getByText("checkedBaseColor")).toBeTruthy();
-  // });
+  it("Should render switch component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Switch"));
+    });
+    expect(getByText("Switch component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Disabled")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("checkedBaseColor").length).toBe(2);
+  });
 
-  // it("Should render table component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="table" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Table component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("fontColor")).toBeTruthy();
-  // });
+  it("Should render table component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Table"));
+    });
+    expect(getByText("Table component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("fontColor").length).toBe(9);
+  });
 
-  // it("Should render tabs component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="tabs" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Tabs component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Disabled")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  // });
+  it("Should render tabs component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Tabs"));
+    });
+    expect(getByText("Tabs component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Disabled")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+  });
 
-  // it("Should render inputText component", async () => {
-  //   const { getByText, getAllByText } = render(
-  //     <ComponentPreview componentId="inputText" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("InputText component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Disabled")).toBeTruthy();
-  //   expect(getByText("Required")).toBeTruthy();
-  //   expect(getByText("Invalid")).toBeTruthy();
-  //   expect(getAllByText("Autocomplete").length).toBe(2);
-  //   expect(getByText("selectedBaseColor")).toBeTruthy();
-  // });
+  it("Should render inputText component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("InputText"));
+    });
+    expect(getByText("InputText component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Disabled")).toBeTruthy();
+    expect(getByText("Required")).toBeTruthy();
+    expect(getByText("Invalid")).toBeTruthy();
+    expect(getAllByText("Autocomplete").length).toBe(2);
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("selectedBaseColor").length).toBe(3);
+  });
 
-  // it("Should render wizard component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="wizard" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Wizard component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Icons")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("fontColor")).toBeTruthy();
-  // });
+  it("Should render wizard component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("Wizard"));
+    });
+    expect(getByText("Wizard component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Icons")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("fontColor").length).toBe(9);
+  });
 
-  // it("Should render toggle group component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="toggleGroup" customTheme={themeMocks} />
-  //   );
-
-  //   expect(getByText("ToggleGroup component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Default with icons")).toBeTruthy();
-  //   expect(getByText("selectedBaseColor")).toBeTruthy();
-  //   expect(getByText("selectedHoverBaseColor")).toBeTruthy();
-  //   expect(getByText("selectedFontColor")).toBeTruthy();
-  //   expect(getByText("selectedHoverFontColor")).toBeTruthy();
-  //   expect(getByText("unselectedBaseColor")).toBeTruthy();
-  //   expect(getByText("unselectedHoverBaseColor")).toBeTruthy();
-  //   expect(getByText("unselectedFontColor")).toBeTruthy();
-  //   expect(getByText("unselectedHoverFontColor")).toBeTruthy();
-  // });
+  it("Should render toggle group component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText('next');
+    act(() => {
+      fireEvent.click(getByText("ToggleGroup"));
+    });
+    expect(getByText("ToggleGroup component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Default with icons")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("selectedBaseColor").length).toBe(3);
+    expect(getAllByText("selectedFontColor").length).toBe(2);
+    expect(getAllByText("selectedHoverFontColor").length).toBe(2);
+    expect(getAllByText("unselectedBaseColor").length).toBe(2);
+    expect(getAllByText("unselectedHoverBaseColor").length).toBe(2);
+    expect(getAllByText("unselectedFontColor").length).toBe(2);
+    expect(getAllByText("unselectedHoverFontColor").length).toBe(2);
+  });
 });
