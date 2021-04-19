@@ -6,7 +6,10 @@
     "@dxc-technology/halstack-react": "file:../lib",
     "@material-ui/core": "^4.11.3",
     "@material-ui/utils": "^4.11.2",
+    "@testing-library/dom": "^7.29.4",
+    "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "jest-canvas-mock": "^2.2.0",
     "react": "file:../node_modules/react",
     "react-color": "^2.19.3",
     "react-dom": "file:../node_modules/react-dom",
@@ -21,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen --modulePaths=[\"../node_modules\", \"<rootDir>\", \"../lib\"]",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,5 +41,45 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.9.0",
+    "@testing-library/react": "^10.0.5",
+    "canvas": "2.6.1",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "msw": "^0.19.3",
+    "jest-junit": "^11.1.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "@dxc-technology/halstack-react": "<rootDir>/node_modules/@dxc-technology/halstack-react"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(react-use-scrollspy|react-syntax-highlighter)).+\\.js$"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!**/index.js",
+      "!**/*.test.*{js,jsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**",
+      "!**/express-api/**",
+      "!**/jest.config.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 45,
+        "functions": 68,
+        "lines": 70,
+        "statements": 70
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
+  },
+  "jest-junit": {
+    "output": "junit.xml",
+    "usePathForSuiteName": "true"
   }
 }
