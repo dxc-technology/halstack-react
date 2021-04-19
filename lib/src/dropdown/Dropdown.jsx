@@ -24,6 +24,7 @@ const DxcDropdown = ({
   margin,
   size = "fitContent",
   expandOnHover = false,
+  tabIndex = 0
 }) => {
   const [width, setWidth] = useState();
   const colorsTheme = useTheme();
@@ -77,7 +78,7 @@ const DxcDropdown = ({
 
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
-      <DxCDropdownContainer margin={margin} size={size} tabIndex="0">
+      <DxCDropdownContainer margin={margin} size={size}>
         <div
           onMouseOver={expandOnHover ? handleClickListItem : undefined}
           onMouseOut={handleCloseOver}
@@ -92,6 +93,7 @@ const DxcDropdown = ({
             margin={margin}
             size={size}
             ref={ref}
+            tabIndex={tabIndex}
           >
             <DropdownTriggerContainer iconPosition={iconPosition} caretHidden={caretHidden}>
               {icon ? (
@@ -133,7 +135,7 @@ const DxcDropdown = ({
               <Grow {...TransitionProps}>
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleClose}>
+                    <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow">
                       {options.map((option) => (
                         <MenuItem
                           key={option.value}
@@ -392,6 +394,7 @@ DxcDropdown.propTypes = {
       iconSrc: PropTypes.string,
     })
   ),
+  tabIndex: PropTypes.number
 };
 
 export default DxcDropdown;

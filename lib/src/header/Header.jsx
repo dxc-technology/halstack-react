@@ -28,19 +28,14 @@ const HeaderDropdown = styled.div`
 const DxcHeader = ({
   underlined = false,
   logoSrc = "default",
-  onClick = "",
+  onClick,
   content,
   responsiveContent,
   margin,
   padding,
+  tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
-
-  function onClickHandle() {
-    if (typeof onClick === "function") {
-      onClick();
-    }
-  }
 
   const ref = useRef(null);
 
@@ -106,11 +101,13 @@ const DxcHeader = ({
   return (
     <ThemeProvider theme={colorsTheme.header}>
       <HeaderContainer underlined={underlined} position="static" margin={margin} ref={ref}>
-        <a onClick={() => onClickHandle()}>{getLogoRendered(false)}</a>
+        <LogoAnchor tabIndex={typeof onClick === "function" ? tabIndex : -1} interactuable={typeof onClick === "function"} onClick={onClick}>
+          {getLogoRendered(false)}
+        </LogoAnchor>
         {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer padding={padding}>
-              <HamburguerItem underlined={underlined} onClick={handleMenu} tabIndex="0">
+              <HamburguerItem tabIndex={tabIndex} underlined={underlined} onClick={handleMenu}>
                 <HamburgerIcon />
                 <HamburguerTitle>Menu</HamburguerTitle>
               </HamburguerItem>
@@ -121,7 +118,12 @@ const DxcHeader = ({
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                   {getLogoRendered(true)}
                   <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
-                  <CloseContainer onClick={handleMenu} src={CloseIcon} className="closeIcon" tabIndex="0" />
+                  <CloseContainer
+                    tabIndex={tabIndex}
+                    onClick={handleMenu}
+                    src={CloseIcon}
+                    className="closeIcon"
+                  />
                 </ResponsiveMenu>
                 <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
               </div>
@@ -167,18 +169,20 @@ const HeaderContainer = styled(AppBar)`
   }
 `;
 
+const LogoAnchor = styled.a`
+  ${(props) => {
+    if (!props.interactuable) {
+      return "cursor: default; outline:none;";
+    } else {
+      return "cursor: pointer;";
+    }
+  }}
+`;
+
 const LogoIcon = styled.img`
   max-height: 32px;
   width: auto;
   vertical-align: middle;
-
-  cursor: ${(props) => {
-    if (props.onLogoClick === "") {
-      return "default";
-    } else {
-      return "pointer";
-    }
-  }};
 `;
 
 const ChildContainer = styled.div`
@@ -319,6 +323,7 @@ DxcHeader.propTypes = {
   ]),
   content: PropTypes.object,
   responsiveContent: PropTypes.func,
+  tabIndex: PropTypes.number
 };
 
 export default DxcHeader;

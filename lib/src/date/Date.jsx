@@ -27,6 +27,7 @@ const DxcDate = ({
   onBlur = "",
   margin,
   size = "medium",
+  tabIndex=0
 }) => {
   const [innerValue, setInnerValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -221,6 +222,7 @@ const DxcDate = ({
               onClickSuffix={openCalendar}
               onChange={onChangeInput}
               onBlur={(onBlur && handlerInputBlur) || null}
+              tabIndex={tabIndex}
             />
             <Popover
               open={isOpen}
@@ -292,6 +294,7 @@ DxcDate.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcDate;

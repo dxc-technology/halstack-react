@@ -16,6 +16,7 @@ const DxcTag = ({
   labelPosition = "after",
   newWindow = false,
   size = "fitContent",
+  tabIndex = 1
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
@@ -48,9 +49,9 @@ const DxcTag = ({
       hasAction={onClick || linkHref}
     >
       {onClick ? (
-        <StyledButton>{tagContent}</StyledButton>
+        <StyledButton tabIndex={tabIndex}>{tagContent}</StyledButton>
       ) : linkHref ? (
-        <StyledLink href={linkHref} target={newWindow ? "_blank" : "_self"}>
+        <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
           {tagContent}
         </StyledLink>
       ) : (
@@ -159,6 +160,7 @@ DxcTag.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 DxcTag.defaultProps = {

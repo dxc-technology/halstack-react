@@ -6,7 +6,7 @@ import useTheme from "../useTheme.js";
 import ValidIcon from "./valid_icon.svg";
 import InvalidIcon from "./invalid_icon.svg";
 
-const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margin }) => {
+const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margin, tabIndex = 0 }) => {
   const [innerCurrent, setInnerCurrentStep] = React.useState(currentStep || 0);
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const colorsTheme = useTheme();
@@ -28,6 +28,7 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
           return (
             <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps.length - 1}>
               <Step
+                tabIndex={tabIndex}
                 onClick={() => handleStepClick(i)}
                 mode={mode}
                 disabled={step.disabled}
@@ -122,10 +123,6 @@ const Step = styled.button`
 
   padding: 0px;
   ${(props) => (props.disabled ? "cursor: not-allowed" : "")};
-
-  &:focus {
-    outline: none;
-  }
 
   &:hover {
     ${(props) => (props.disabled ? "" : "cursor: pointer")};
@@ -246,6 +243,7 @@ DxcWizard.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcWizard;

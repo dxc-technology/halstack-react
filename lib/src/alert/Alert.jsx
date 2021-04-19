@@ -19,6 +19,7 @@ const DxcAlert = ({
   children,
   margin,
   size = "fitContent",
+  tabIndex
 }) => {
   const colorsTheme = useTheme();
 
@@ -46,7 +47,7 @@ const DxcAlert = ({
               {inlineText && inlineText !== "" && "-"}
               <AlertText>{inlineText}</AlertText>
               {onClose && (
-                <CloseAlertIcon onClick={onClose}>
+                <CloseAlertIcon onClick={onClose} tabIndex={tabIndex}>
                   <CloseImg src={closeIcon} />
                 </CloseAlertIcon>
               )}
@@ -90,6 +91,7 @@ DxcAlert.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.element,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
+  tabIndex: PropTypes.number
 };
 
 const AlertModal = styled.div`

@@ -13,6 +13,7 @@ const DxcFooter = ({
   children,
   padding,
   margin,
+  tabIndex = 0
 }) => {
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
@@ -50,7 +51,7 @@ const DxcFooter = ({
   }, []);
 
   const socialLink = socialLinks.map((link, index) => (
-    <SocialAnchor key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
+    <SocialAnchor tabIndex={tabIndex} key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
       {link.logo ? (
         <SocialIconContainer>
           {typeof link.logo === "object" ? link.logo : React.createElement(link.logo)}
@@ -63,7 +64,7 @@ const DxcFooter = ({
 
   const bottomLink = bottomLinks.map((link, index) => (
     <span key={`bottom${index}${link.text}`}>
-      <BottomLink href={link && link.href ? link.href : ""}>{link && link.text ? link.text : ""}</BottomLink>
+      <BottomLink tabIndex={tabIndex} href={link && link.href ? link.href : ""}>{link && link.text ? link.text : ""}</BottomLink>
       <Point index={index}>·</Point>
     </span>
   ));
@@ -249,6 +250,7 @@ DxcFooter.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcFooter;

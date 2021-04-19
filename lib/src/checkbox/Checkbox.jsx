@@ -19,6 +19,7 @@ const DxcCheckbox = ({
   required = false,
   margin,
   size = "fitContent",
+  tabIndex=0
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
   const colorsTheme = useTheme();
@@ -55,6 +56,7 @@ const DxcCheckbox = ({
           disabled={disabled}
           disableRipple
           className="test"
+          tabIndex={tabIndex}
         />
         <CheckboxBlackBack
           labelPosition={labelPosition}
@@ -188,6 +190,7 @@ DxcCheckbox.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcCheckbox;

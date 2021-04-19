@@ -8,7 +8,7 @@ import FilesToUpload from "./files-upload/FilesToUpload";
 import Transactions from "./transactions/Transactions";
 import { spaces } from "../common/variables.js";
 
-const DxcUpload = ({ callbackUpload, margin }) => {
+const DxcUpload = ({ callbackUpload, margin, tabIndex = 0 }) => {
   const [files, setFiles] = useState([]);
 
   const getFilesToUpload = () => {
@@ -109,16 +109,16 @@ const DxcUpload = ({ callbackUpload, margin }) => {
 
   return (
     <DXCUpload margin={margin}>
-      {transactionFiles && transactionFiles.length !== 0 && <Transactions transactions={transactionFiles} />}
+      {transactionFiles && transactionFiles.length !== 0 && <Transactions tabIndexValue={tabIndex} transactions={transactionFiles} />}
       {(filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length === 0 && (
-        <DragAndDropArea dashed={false} addFile={onDragHandler} />
+        <DragAndDropArea dashed={false} addFile={onDragHandler}  tabIndexValue={tabIndex}/>
       )) ||
         (filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length !== 0 && (
-          <DragAndDropArea dashed addFile={onDragHandler} />
+          <DragAndDropArea dashed addFile={onDragHandler} tabIndexValue={tabIndex}/>
         ))}
 
       {filesToUpload && filesToUpload.length !== 0 && (
-        <FilesToUpload filesToUpload={filesToUpload} addFile={onDragHandler} onUpload={onUploadHandler} />
+        <FilesToUpload filesToUpload={filesToUpload} addFile={onDragHandler} onUpload={onUploadHandler} tabIndexValue={tabIndex}/>
       )}
     </DXCUpload>
   );
@@ -134,7 +134,8 @@ DxcUpload.propTypes = {
       right: PropTypes.oneOf(Object.keys(spaces))
     }),
     PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+  ]),
+  tabIndex: PropTypes.number
 };
 
 const DXCUpload = styled.div`

@@ -16,14 +16,9 @@ const DxcCard = ({
   imagePosition,
   outlined,
   imageCover,
+  tabIndex=0
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
-
-  const clickHandler = () => {
-    if (onClick) {
-      onClick();
-    }
-  };
 
   const tagContent = (
     <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
@@ -41,10 +36,11 @@ const DxcCard = ({
       margin={margin}
       onMouseEnter={() => changeIsHovered(true)}
       onMouseLeave={() => changeIsHovered(false)}
-      onClick={clickHandler}
-      hasAction={onClick || linkHref}
+      onClick={onClick}
+      hasAction={onClick}
+      tabIndex={typeof onClick === "function" && !linkHref ? tabIndex : -1}
     >
-      {(linkHref && <StyledLink href={linkHref}>{tagContent}</StyledLink>) || tagContent}
+      {(linkHref && <StyledLink tabIndex={tabIndex} href={linkHref}>{tagContent}</StyledLink>) || tagContent}
     </StyledDxcCard>
   );
 };
@@ -52,7 +48,7 @@ const DxcCard = ({
 const StyledDxcCard = styled.div`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
-
+  outline: ${({hasAction}) => (!hasAction && "none")};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
@@ -73,6 +69,7 @@ const CardContainer = styled.div`
 
 const StyledLink = styled.a`
   text-decoration: none;
+  cursor: pointer;
 `;
 
 const TagImage = styled.img`
@@ -117,6 +114,7 @@ DxcCard.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 DxcCard.defaultProps = {

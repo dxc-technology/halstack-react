@@ -9,7 +9,7 @@ import videoIcon from "./video-icon.svg";
 import audioIcon from "./audio-icon.svg";
 import useTheme from "../../useTheme.js";
 
-const DxcFileToUpload = ({ name = "", type = "", image, onDelete }) => {
+const DxcFileToUpload = ({ name = "", type = "", image, onDelete, tabIndexValue }) => {
   const icon = (type.includes("video") && videoIcon) || (type.includes("audio") && audioIcon) || defaultIcon;
   const hasImage = image && image.includes("image");
   const colorsTheme = useTheme();
@@ -23,7 +23,7 @@ const DxcFileToUpload = ({ name = "", type = "", image, onDelete }) => {
             <FileName>{name}</FileName>
             <FileType>{type}</FileType>
           </FileInfo>
-          <DeleteFile className="delete-file" onClick={onDelete} />
+          <DeleteFile className="delete-file" onClick={onDelete} tabIndex={tabIndexValue} />
         </FileContent>
       </DXCFileToUpload>
     </ThemeProvider>
@@ -49,14 +49,6 @@ const DXCFileToUpload = styled.div`
   :hover {
     cursor: pointer;
     background: ${(props) => props.theme.fileHoverColor};
-    .delete-file {
-      display: flex;
-      margin-right: 30px;
-      background: url("${closeIcon}") no-repeat padding-box;
-      width: 30px;
-      height: 30px;
-      margin-top: 11px;
-    }
   }
 `;
 const FileContent = styled.div`
@@ -90,8 +82,17 @@ const FileType = styled.div`
   color: ${(props) => props.theme.fontColor};
 `;
 
-const DeleteFile = styled.div`
-  display: none;
+const DeleteFile = styled.button`
+  border: none;
+  display: flex;
+  margin-right: 30px;
+  background: url("${closeIcon}") no-repeat padding-box;
+  width: 30px;
+  height: 30px;
+  margin-top: 11px;
+  &:focus {
+    visibility: visible;
+  }
 `;
 
 export default DxcFileToUpload;

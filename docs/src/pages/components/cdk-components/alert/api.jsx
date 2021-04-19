@@ -78,6 +78,13 @@ const alertPropsTable = () => {
         </td>
         <td>Size of the component ('small' | 'medium' | 'large' | 'fillParent' | 'fitContent').</td>
       </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>
+          <code>0</code>
+        </td>
+        <td>Tabindex value given to the close button.</td>
+      </tr>
     </DxcTable>
   );
 };

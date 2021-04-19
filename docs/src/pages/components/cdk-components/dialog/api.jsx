@@ -49,6 +49,13 @@ const checkboxPropsTable = () => {
           to specify different padding sizes.
         </td>
       </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>0</td>
+        <td>
+          Value of the tabindex given to the close 'x' button.
+        </td>
+      </tr>
     </DxcTable>
   );
 };
