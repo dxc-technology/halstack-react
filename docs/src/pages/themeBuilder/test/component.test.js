@@ -5,7 +5,6 @@ import { render, cleanup, act, fireEvent } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import App from "../../../App";
 import { versionsResponse } from "./mocks/VersionsMock";
 import ThemeBuilder from "../ThemeBuilder";
 
