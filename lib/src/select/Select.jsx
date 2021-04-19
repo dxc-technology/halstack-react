@@ -261,7 +261,7 @@ const SelectedIconContainer = styled.div`
 `;
 
 const SelectedLabelContainer = styled.span`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   margin-left: ${(props) => ((props.iconPosition === "after" || !props.iconSrc) && "0px") || "10px"};
   margin-right: ${(props) => ((props.iconPosition === "before" || !props.iconSrc) && "0px") || "10px"};
   overflow: hidden;
@@ -269,7 +269,7 @@ const SelectedLabelContainer = styled.span`
 `;
 
 const OptionContainer = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   display: flex;
   align-items: center;
   flex-direction: ${(props) => (props.iconPosition === "before" && "row") || "row-reverse"};
@@ -319,7 +319,8 @@ const SelectContainer = styled.div`
     width: 100%;
   }
   .MuiFormLabel-root {
-    font-size: 16px;
+    font-size: ${(props) => props.theme.fontSize};
+    font-family: ${(props) => props.theme.fontFamily};
     color: ${(props) => (props.invalid === true ? props.theme.error : props.theme.color)};
     margin-top: -3px;
     text-overflow: ellipsis;
@@ -333,7 +334,7 @@ const SelectContainer = styled.div`
       color: ${(props) => props.theme.disabledColor};
     }
     &.Mui-focused {
-      font-size: 16px;
+      font-size: ${(props) => props.theme.fontSize};
       color: ${(props) => (props.invalid === true ? props.theme.error : props.theme.color)};
     }
   }

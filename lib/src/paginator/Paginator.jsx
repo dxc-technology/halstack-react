@@ -126,6 +126,7 @@ const DxcPaginatorContainer = styled.div`
   display: flex;
   height: 64px;
   width: 100%;
+  font-family: ${(props) => props.theme.fontFamily};
   background-color: ${(props) => props.theme.paginatorBackgroundColor};
   color: ${(props) => props.theme.paginatorFontColor};
   button {
@@ -164,7 +165,7 @@ const LabelsContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin: 0 40px 0 20px;
-  font-size: 14px;
+  font-size: ${(props) => props.theme.fontSize};
 `;
 const PageToSelectContainer = styled.span`
   display: flex;

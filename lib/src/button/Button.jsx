@@ -69,7 +69,7 @@ const calculateWidth = (margin, size) => {
 
 const LabelContainer = styled.span`
   line-height: 18px;
-  font-size: 14px;
+  fontSize: ${(props) => props.theme.fontSize};
   text-overflow: ellipsis;
   overflow: hidden;
 `;
@@ -118,14 +118,14 @@ const DxCButton = styled.div`
     }
     letter-spacing: 1px;
     box-shadow: none;
-    font-size: 14px;
+    fontSize: ${(props) => props.theme.fontSize};
     font-weight: 500;
     min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
     border-radius: 4px;
     width: 100%;
     min-height: 43px;
     line-height: 1;
-    font-family: "Open Sans", sans-serif;
+    font-family: ${(props) => props.theme.fontFamily};
     &:focus {
       outline: ${(props) => props.theme.focusColor} auto 1px;
     }

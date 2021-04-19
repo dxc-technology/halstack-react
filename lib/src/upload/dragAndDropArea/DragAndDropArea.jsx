@@ -115,7 +115,7 @@ DxcDragAndDropArea.propTypes = {
 };
 
 const DXCDragAndDrop = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   width: 100%;
   height: 100%;
 `;
@@ -150,13 +150,13 @@ const DragAndDropText = styled.div`
 `;
 
 const DragAndDropTitle = styled.div`
-  font-size: 20px;
+  font-size: ${(props) => props.theme.fontSize20};
   font-weight: bold;
   margin-bottom: 10px;
 `;
 
 const DragAndDropDescription = styled.div`
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontSize16};
   margin-bottom: 40px;
   color: ${(props) => props.theme.fontColor};
   font-style: italic;
@@ -229,7 +229,7 @@ const DragAndDropIconHover = styled.div`
 `;
 
 const DragAndDropTextHover = styled.div`
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontSize16};
   margin-bottom: 20px;
   color: ${(props) => props.theme.fontColor};
   font-style: italic;

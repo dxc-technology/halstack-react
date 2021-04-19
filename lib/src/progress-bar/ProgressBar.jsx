@@ -61,7 +61,7 @@ const BackgroundProgressBar = styled.div`
   bottom: ${(props) => (props.overlay === true ? "0" : "")};
   left: ${(props) => (props.overlay === true ? "0" : "")};
   right: ${(props) => (props.overlay === true ? "0" : "")};
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   z-index: ${(props) => (props.overlay ? 1000 : "")};
 `;
 
@@ -97,7 +97,7 @@ const InfoProgressBar = styled.div`
 
 const ProgressBarLabel = styled.div`
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize};
   flex-grow: 1;
   color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.fontColor)};
   width: 90%;
@@ -107,7 +107,7 @@ const ProgressBarLabel = styled.div`
 `;
 
 const ProgressBarProgress = styled.div`
-  font-size: 12px;
+font-size: ${(props) => props.theme.fontSize};
   color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.fontColor)};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
   width: 5%;

@@ -234,8 +234,8 @@ const DxcMenu = styled(Popper)`
       display: flex;
       flex-direction: ${(props) => (props.optionsIconPosition === "after" && "row-reverse") || "row"};
       justify-content: ${(props) => (props.optionsIconPosition === "after" && "flex-end") || ""};
-      font-size: 16px;
-      font-family: "Open Sans", sans-serif;
+      font-size: ${(props) => props.theme.fontSize};
+      font-family: ${(props) => props.theme.fontFamily};
       cursor: pointer;
     }
     .MuiListItem-button:hover {
@@ -261,8 +261,8 @@ const DxcMenu = styled(Popper)`
 
 const DropdownTrigger = styled.button`
   cursor: pointer;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
   width: 100%;
   height: auto;
   min-height: 46px;

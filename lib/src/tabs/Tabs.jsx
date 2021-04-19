@@ -153,9 +153,9 @@ const DxCTabs = styled.div`
         "8px 16px"};
       height: ${(props) =>
         ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
-      font-family: "Open Sans", sans-serif;
+      font-family: ${(props) => props.theme.fontFamily};
       font-weight: 600;
-      font-size: 16px;
+      font-size: ${(props) => props.theme.fontSize};
       min-width: 90px;
       max-width: 360px;
       color: ${(props) => props.theme.fontColor};

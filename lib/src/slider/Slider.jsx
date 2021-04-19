@@ -132,7 +132,7 @@ DxcSlider.propTypes = {
 
 const StyledTextInput = styled.div`
   .MuiTextField-root {
-    font-size: 16px;
+    font-size: ${(props) => props.theme.fontSize};
   }
 `;
 
@@ -237,16 +237,16 @@ const SliderContainer = styled.div`
 `;
 
 const MinLabelContainer = styled.span`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   color: inherit;
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontSize};
   margin-right: 15px;
 `;
 
 const MaxLabelContainer = styled.span`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   color: inherit;
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontSize};
   margin-left: ${(props) => (props.step === 1 ? "15px" : "20px")};
 `;
 

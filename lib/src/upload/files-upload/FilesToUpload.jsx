@@ -69,7 +69,7 @@ DxcFilesToUpload.propTypes = {
 };
 
 const DXCFilesToUpload = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   width: 100%;
   padding: 20px;
   border-radius: 4px 4px 0px 4px;

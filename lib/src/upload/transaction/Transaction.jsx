@@ -66,7 +66,7 @@ DxcTransaction.propTypes = {
 };
 
 const DXCTransaction = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   max-width: 100%;
   display: flex;
   flex-direction: row;

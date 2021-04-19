@@ -100,7 +100,7 @@ const LabelContainer = styled.span`
   color: ${(props) => props.theme.fontColor};
   opacity: ${(props) => props.disabled && "0.34"};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
 `;
 
 const CheckboxContainer = styled.span`

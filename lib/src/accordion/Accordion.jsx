@@ -135,8 +135,7 @@ const DXCAccordion = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   width: ${(props) => calculateWidth(props.margin)};
-
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
     min-width: 0;
@@ -261,8 +260,11 @@ const AccordionText = styled.div`
 
 const AccordionAssistiveText = styled.div`
   margin-top: 1px;
-  font-size: 14px;
-  font: italic normal 300 16px/22px Open Sans;
+  font-size: ${(props) => props.theme.fontSize};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-style: italic;
+  font-weight: 300;
+  
   letter-spacing: 0.49px;
   flex: 1;
   white-space: nowrap;

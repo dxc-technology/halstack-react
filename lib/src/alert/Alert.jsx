@@ -127,11 +127,11 @@ const AlertContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: ${(props) => (props.children && "inline-block") || "inline-flex"};
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize};
   overflow: hidden;
   box-shadow: 0px 3px 6px #00000012;
   border-radius: 4px;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
   align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
   max-width: ${(props) =>

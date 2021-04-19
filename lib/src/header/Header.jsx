@@ -148,7 +148,7 @@ const HeaderContainer = styled(AppBar)`
 
     border-bottom: ${(props) => props.underlined && `2px solid ${props.theme.underlinedColor}`};
 
-    font-family: "Open Sans", sans-serif;
+    font-family: ${(props) => props.theme.fontFamily};
 
     &.MuiPaper-elevation4 {
       box-shadow: none;
@@ -221,7 +221,7 @@ const HamburguerItem = styled.div`
 `;
 
 const HamburguerTitle = styled.span`
-  font-size: 10px;
+  font-size: ${(props) => props.theme.fontSize};
   text-transform: uppercase;
   font-weight: 600;
 `;

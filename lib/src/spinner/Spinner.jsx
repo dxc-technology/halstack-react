@@ -68,7 +68,7 @@ const BackgroundSpinner = styled.div`
 
 const DXCSpinner = styled.div`
   box-sizing: unset;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   border-radius: 80px;
   border: ${(props) =>
     (props.mode === "small" && `6px solid${props.theme.totalCircleColor}`) ||
@@ -118,7 +118,7 @@ const SpinnerLabel = styled.div`
   margin-top: ${(props) => (props.showValue === false && "52px") || "45px"};
   color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.fontColor)};
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize};
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -129,7 +129,7 @@ const SpinnerProgress = styled.div`
   margin-top: ${(props) => (props.label === "" && "52px") || ""};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
   color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.fontColor)};
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize};
   text-align: center;
 `;
 
