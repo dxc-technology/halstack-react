@@ -18,6 +18,7 @@ const DxcPaginator = ({
   showGoToPage,
   onPageChange,
   itemsPerPageFunction,
+  tabIndex = 0
 }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
@@ -41,6 +42,7 @@ const DxcPaginator = ({
                 onChange={itemsPerPageFunction}
                 value={itemsPerPage}
                 size="small"
+                tabIndex={tabIndex}
               ></DxcSelect>
             </ItemsPageContainer>
           )}
@@ -54,6 +56,7 @@ const DxcPaginator = ({
               disabled={currentPageInternal === 1 || currentPageInternal === 0}
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={first}
+              tabIndex={tabIndex}
               onClick={() => {
                 onPageChange(1);
               }}
@@ -66,6 +69,7 @@ const DxcPaginator = ({
               disabled={currentPageInternal === 1 || currentPageInternal === 0}
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={previous}
+              tabIndex={tabIndex}
               onClick={() => {
                 onPageChange(currentPage - 1);
               }}
@@ -79,6 +83,7 @@ const DxcPaginator = ({
                 onChange={onPageChange}
                 value={currentPage}
                 size="small"
+                tabIndex={tabIndex}
               ></DxcSelect>
             </PageToSelectContainer>
           )) || (
@@ -93,6 +98,7 @@ const DxcPaginator = ({
               disabled={currentPageInternal === totalPages}
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={next}
+              tabIndex={tabIndex}
               onClick={() => {
                 onPageChange(currentPage + 1);
               }}
@@ -105,6 +111,7 @@ const DxcPaginator = ({
               disabled={currentPageInternal === totalPages}
               margin={{ left: "xxsmall", right: "xxsmall" }}
               iconSrc={last}
+              tabIndex={tabIndex}
               onClick={() => {
                 onPageChange(totalPages);
               }}
@@ -182,6 +189,7 @@ DxcPaginator.propTypes = {
   showGoToPage: PropTypes.bool,
   onPageChange: PropTypes.func,
   itemsPerPageFunction: PropTypes.func,
+  tabIndex: PropTypes.number
 };
 DxcPaginator.defaultProps = {
   currentPage: 1,
@@ -190,6 +198,7 @@ DxcPaginator.defaultProps = {
   showGoToPage: false,
   onPageChange: null,
   itemsPerPageFunction: null,
+  tabIndex: 0
 };
 
 export default DxcPaginator;

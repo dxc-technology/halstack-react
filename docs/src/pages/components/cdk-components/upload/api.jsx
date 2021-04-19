@@ -30,6 +30,13 @@ const checkboxPropsTable = () => {
           in order to specify different margin sizes.
         </td>
       </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>0</td>
+        <td>
+          Value of the tabindex given to every interactuable elementio.
+        </td>
+      </tr>
     </DxcTable>
   );
 };

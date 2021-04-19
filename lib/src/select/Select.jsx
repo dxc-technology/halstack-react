@@ -76,6 +76,7 @@ const DxcSelect = ({
   multiple = false,
   margin,
   size = "medium",
+  tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
@@ -173,7 +174,6 @@ const DxcSelect = ({
             {label}
           </InputLabel>
           <Select
-            tabIndex="0"
             name={name}
             multiple={multiple}
             renderValue={getRenderValue}
@@ -188,6 +188,7 @@ const DxcSelect = ({
                 horizontal: "left",
               },
             }}
+            inputProps={{ tabIndex: disabled ? -1 : tabIndex }}
           >
             {options.map((option) => {
               return (
@@ -364,7 +365,7 @@ const SelectContainer = styled.div`
   }
   .MuiInputBase-root {
     width: 100%;
-    &:focus {
+    &.Mui-focused {
       outline: ${(props) => props.theme.focusColor} auto 1px;
     }
     &.Mui-disabled {
@@ -447,5 +448,6 @@ DxcSelect.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 export default DxcSelect;

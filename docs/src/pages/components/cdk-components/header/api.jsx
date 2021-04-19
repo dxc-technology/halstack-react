@@ -70,6 +70,13 @@ const headerPropsTable = () => {
           'right' properties in order to specify different padding sizes.
         </td>
       </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>0</td>
+        <td>
+          Value of the tabindex for all interactuable elements, except those inside the custom area.
+        </td>
+      </tr>
     </DxcTable>
   );
 };

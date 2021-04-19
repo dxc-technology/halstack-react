@@ -187,6 +187,13 @@ const inputPropsTable = () => {
           </ul>
         </td>
       </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>0</td>
+        <td>
+          Value of the tabindex, it also applies to prefix and suffix when a function is given.
+        </td>
+      </tr>
     </DxcTable>
   );
 };

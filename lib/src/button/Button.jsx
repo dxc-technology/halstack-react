@@ -19,6 +19,7 @@ const DxcButton = ({
   onClick = "",
   margin,
   size,
+  tabIndex=0
 }) => {
   const colorsTheme = useTheme();
 
@@ -30,6 +31,7 @@ const DxcButton = ({
           type={type}
           disableRipple
           aria-disabled={disabled ? true : false}
+          tabIndex={disabled ? -1 : tabIndex}
           onClick={() => {
             if (onClick) {
               onClick();
@@ -238,6 +240,7 @@ DxcButton.propTypes = {
   iconSrc: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   type: PropTypes.oneOf(["button", "reset", "submit"]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcButton;

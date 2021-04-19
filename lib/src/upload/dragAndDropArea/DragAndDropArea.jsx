@@ -9,7 +9,7 @@ import dropFile from "./upload_drop.svg";
 import Button from "../../button/Button";
 import useTheme from "../../useTheme.js";
 
-const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
+const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
   const [dragging, setDragging] = React.useState(false);
   const colorsTheme = useTheme();
 
@@ -77,7 +77,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
                 <DragAndDropDescription>{description}</DragAndDropDescription>
               </DragAndDropText>
               <div>
-                <Button label="CHOOSE FILES" onClick={handleClick} />
+                <Button label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue}/>
                 <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
               </div>
             </DragAndDropContent>
@@ -92,7 +92,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
                 <DragAndDropDescription>{description}</DragAndDropDescription>
               </DragAndDropText>
               <ButtonChooseFiles>
-                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} />
+                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue}/>
                 <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
               </ButtonChooseFiles>
             </DragAndDropContent>

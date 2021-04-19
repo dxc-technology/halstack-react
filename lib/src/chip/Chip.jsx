@@ -16,6 +16,7 @@ const DxcChip = ({
   onClickPrefix,
   disabled,
   margin,
+  tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
 
@@ -27,7 +28,9 @@ const DxcChip = ({
             disabled={disabled}
             prefixIcon
             label={label}
+            tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
             onClick={() => onClickPrefix && !disabled && onClickPrefix(label)}
+            interactuable={typeof onClickPrefix === "function" && !disabled}
           >
             {typeof prefixIcon === "object" ? prefixIcon : React.createElement(prefixIcon)}
           </IconContainer>
@@ -37,7 +40,9 @@ const DxcChip = ({
               disabled={disabled}
               src={prefixIconSrc}
               label={label}
-              onClick={() => onClickPrefix && !disabled && onClickPrefix(label)}
+              tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
+              onClick={onClickPrefix && !disabled && onClickPrefix(label)}
+              interactuable={typeof onClickPrefix === "function" && !disabled}
             />
           )
         )}
@@ -51,7 +56,9 @@ const DxcChip = ({
             disabled={disabled}
             suffixIcon
             label={label}
-            onClick={() => onClickSuffix && !disabled && onClickSuffix(label)}
+            tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
+            onClick={onClickSuffix && !disabled && onClickSuffix(label)}
+            interactuable={typeof onClickSuffix === "function" && !disabled}
           >
             {typeof suffixIcon === "object" ? suffixIcon : React.createElement(suffixIcon)}
           </IconContainer>
@@ -61,13 +68,25 @@ const DxcChip = ({
               disabled={disabled}
               src={suffixIconSrc}
               label={label}
-              onClick={() => onClickSuffix && !disabled && onClickSuffix(label)}
+              tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
+              onClick={onClickSuffix && !disabled && onClickSuffix(label)}
+              interactuable={typeof onClickSuffix === "function" && !disabled}
             />
           )
         )}
       </StyledDxcChip>
     </ThemeProvider>
   );
+};
+
+const getCursor = (interactuable, disabled) => {
+  if (disabled) {
+    return "cursor:not-allowed;";
+  }
+  if (interactuable) {
+    return "cursor:pointer;";
+  }
+  return "cursor:default; outline:none;";
 };
 
 const StyledDxcChip = styled.div`
@@ -104,13 +123,13 @@ const ChipTextContainer = styled.span`
   overflow: hidden;
 `;
 const SuffixIconContainer = styled.img`
-  cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
+  ${(props) => getCursor(props.interactuable, props.disabled)}
   margin-left: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
   max-width: 24px;
   max-height: 24px;
 `;
 const PrefixIconContainer = styled.img`
-  cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
+  ${(props) => getCursor(props.interactuable, props.disabled)}
   margin-right: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
   max-width: 24px;
   max-height: 24px;
@@ -118,7 +137,6 @@ const PrefixIconContainer = styled.img`
 
 const IconContainer = styled.div`
   opacity: ${(props) => props.disabled && 0.34};
-  cursor: ${({ disabled }) => (disabled && "not-allowed") || "pointer"};
   ${(props) =>
     props.prefixIcon
       ? `margin-right: ${
@@ -129,6 +147,7 @@ const IconContainer = styled.div`
           ((props.label || props.prefixIcon || props.prefixIconSrc) && "10px") ||
           ((props.prefixIcon || props.prefixIconSrc) && "0")
         };`}
+  ${(props) => getCursor(props.interactuable, props.disabled)}
   max-width: 24px;
   max-height: 24px;
   overflow: hidden;
@@ -153,6 +172,7 @@ DxcChip.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number,
 };
 
 export default DxcChip;

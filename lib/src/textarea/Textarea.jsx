@@ -22,6 +22,7 @@ const DxcTextarea = ({
   placeholder = "",
   margin,
   size = "medium",
+  tabIndex = 0,
 }) => {
   const [innerValue, setInnerValue] = useState("");
   const colorsTheme = useTheme();
@@ -74,6 +75,9 @@ const DxcTextarea = ({
           onBlur={(onBlur && handlerTextareaBlur) || null}
           rows={numRows}
           placeholder={placeholder}
+          inputProps={{
+            tabIndex: tabIndex,
+          }}
         />
       </TextContainer>
     </ThemeProvider>
@@ -269,6 +273,7 @@ DxcTextarea.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number,
 };
 
 export default DxcTextarea;

@@ -21,6 +21,7 @@ const DxcAccordion = ({
   children,
   margin,
   padding,
+  tabIndex=0,
 }) => {
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
   const [isResponsive, setIsResponsive] = useState();
@@ -67,7 +68,7 @@ const DxcAccordion = ({
           onChange={handlerAccordion}
           expanded={isExpanded != null ? isExpanded : innerIsExpanded}
         >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
             <AccordionInfo>
               <AccordionLabel>{label}</AccordionLabel>
               {icon ? (
@@ -118,6 +119,7 @@ DxcAccordion.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 const DXCAccordion = styled.div`
   display: flex;

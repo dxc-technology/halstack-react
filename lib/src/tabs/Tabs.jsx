@@ -8,7 +8,15 @@ import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
 import useTheme from "../useTheme.js";
 
-const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, iconPosition = "left" }) => {
+const DxcTabs = ({
+  activeTabIndex,
+  tabs = [],
+  onTabClick,
+  onTabHover,
+  margin,
+  iconPosition = "left",
+  tabIndex = 0,
+}) => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
   const colorsTheme = useTheme();
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
@@ -20,6 +28,13 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, ic
     if (typeof onTabClick === "function") {
       onTabClick(newValue);
     }
+  };
+
+  const getTabIndex = (index, disabled) => {
+    if((activeTabIndex === index || innerActiveTabIndex === index) && !disabled) {
+      return tabIndex;
+    } 
+    return -1;
   };
 
   const getLabelForTab = (tab) => {
@@ -60,6 +75,7 @@ const DxcTabs = ({ activeTabIndex, tabs = [], onTabClick, onTabHover, margin, ic
             const tabContent = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
             return (
               <Tab
+                tabIndex={(activeTabIndex === i || innerActiveTabIndex === i) && !tab.isDisabled ? tabIndex : -1}
                 key={`tab${i}${tab.label}`}
                 label={getLabelForTab(tab)}
                 disabled={tab.isDisabled}
@@ -228,6 +244,7 @@ DxcTabs.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   iconPosition: PropTypes.oneOf(["top", "left"]),
+  tabIndex: PropTypes.number
 };
 
 DxcTabs.defaultProps = {

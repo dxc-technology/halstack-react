@@ -5,7 +5,15 @@ import "../common/OpenSans.css";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
-const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options = [], margin, multiple = false }) => {
+const DxcToggleGroup = ({
+  value,
+  onChange,
+  /*label,*/ disabled = false,
+  options = [],
+  margin,
+  multiple = false,
+  tabIndex = 0,
+}) => {
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
 
@@ -49,6 +57,7 @@ const DxcToggleGroup = ({ value, onChange, /*label,*/ disabled = false, options 
                   ? option.value === value
                   : option.value === selectedValue
               }
+              tabIndex={!disabled ? tabIndex : -1}
               onClick={() => !disabled && handleToggleChange(option.value)}
               isFirst={i === 0}
               isLast={i === options.length - 1}
@@ -177,6 +186,7 @@ DxcToggleGroup.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcToggleGroup;
