@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
+import "../common/OpenSans.css";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
@@ -23,7 +24,7 @@ const calculateWidth = (margin) => {
 const DxcTableContainer = styled.div`
   overflow-x: auto;
   width: ${(props) => calculateWidth(props.margin)};
-
+  font-family: ${(props) => props.theme.fontFamily};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -73,7 +74,7 @@ const DxcTableContent = styled.table`
 
   & th {
     text-align: left;
-    font-size: 14px;
+    font-size: ${(props) => props.theme.fontSize};
     font-weight: 500;
     background-color: ${(props) => props.theme.headerBackgroundColor};
     color: ${(props) => props.theme.headerFontColor};

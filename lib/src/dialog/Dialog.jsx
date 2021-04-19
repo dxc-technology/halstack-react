@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
+import "../common/OpenSans.css";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
@@ -65,7 +66,7 @@ const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = tr
 
 const DialogContainer = styled(Dialog)`
   overflow: unset;
-
+  font-family: ${(props) => props.theme.fontFamily};
   .MuiBackdrop-root {
     background-color: ${(props) => (props.overlay === true ? props.theme.overlayColor : "transparent")};
     opacity: ${(props) => props.overlay === true && "0.8"} !important;
@@ -91,6 +92,7 @@ const DialogContainer = styled(Dialog)`
 
 const Children = styled.div`
   overflow-y: auto;
+  font-family: ${(props) => props.theme.fontFamily};
 
   ::-webkit-scrollbar {
     width: 3px;

@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
+import "../common/OpenSans.css";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import ValidIcon from "./valid_icon.svg";
@@ -81,6 +82,7 @@ const StepsContainer = styled.div`
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: "center";
   ${(props) => (props.mode === "vertical" ? "height: 500px" : "width: 100%")};
+  font-family: "Open Sans", sans-serif;
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -178,7 +180,8 @@ const StepIconContainer = styled.div`
 `;
 
 const Number = styled.p`
-  font: Normal 16px/22px Open Sans;
+  font-size: ${(props) => props.theme.wizard.fontSize16};
+  font-family: ${(props) => props.theme.wizard.fontFamily};
   letter-spacing: 0.77px;
   color: ${(props) => (props.disabled ? `${props.theme.wizard.disabledFont}` : `${props.theme.wizard.fontColor}`)};
   opacity: 1;
@@ -200,7 +203,8 @@ const InfoContainer = styled.div`
 
 const Label = styled.p`
   text-align: left;
-  font: Normal 16px/22px Open Sans;
+  font-family: ${(props) => props.theme.wizard.fontFamily};
+  font-size: ${(props) => props.theme.wizard.fontSize16};
   letter-spacing: 0.77px;
   color: inherit;
   margin: 0;
@@ -208,7 +212,8 @@ const Label = styled.p`
 
 const Description = styled.p`
   text-align: left;
-  font: Lighter 12px/17px Open Sans;
+  font-family: ${(props) => props.theme.wizard.fontFamily};
+  font-size: ${(props) => props.theme.wizard.fontSize12};
   letter-spacing: 0.58px;
   color: inherit;
   margin: 0;

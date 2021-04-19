@@ -75,7 +75,6 @@ const calculateWidth = (size) => {
 const StyledDxcTag = styled.div`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
-
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
@@ -129,7 +128,7 @@ const IconContainer = styled.div`
 
 const TagLabel = styled.div`
   padding: 0px 30px;
-  font-size: 14px;
+  font-size: ${(props) => props.theme.fontSize};
   text-transform: uppercase;
   letter-spacing: 1px;
   color: black;

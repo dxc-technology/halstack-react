@@ -89,7 +89,7 @@ const DxcToggleContainer = styled.div`
 
   .MuiToggleButton-label {
     font-size: 14px;
-    font-family: "Open Sans", sans-serif;
+    font-family: ${(props) => props.theme.fontFamily};
     color: ${(props) =>
       props.brightness === "dark" && props.mode === "outlined" ? props.theme.white : props.theme.black};
   }

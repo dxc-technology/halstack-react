@@ -337,7 +337,8 @@ const PrefixLabel = styled.span`
   position: absolute;
   top: 20px;
   left: 0px;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
+
   color: ${(props) => props.theme.fontColor};
   max-height: 20px;
   max-width: 20px;
@@ -407,13 +408,14 @@ const TextContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
-    font-family: "Open Sans", sans-serif;
+    font-family: ${(props) => props.theme.fontFamily};
     .MuiFormHelperText-root {
-      font-family: "Open Sans", sans-serif;
+      font-family: ${(props) => props.theme.fontFamily};
       margin-top: 6px;
     }
     .MuiFormLabel-root {
-      font-size: 16px;
+      font-size: ${(props) => props.theme.fontSize};
+      
       color: ${(props) => props.theme.fontColor};
       &.Mui-disabled {
         color: ${(props) => props.theme.disabledFontColor} !important;
@@ -431,7 +433,8 @@ const TextContainer = styled.div`
         }
       }
       &.MuiInputLabel-shrink {
-        font-family: "Open Sans", sans-serif;
+        font-family: ${(props) => props.theme.fontFamily};
+
         transform: ${(props) =>
           (props.prefixIcon && "translate(8px, 1.5px) scale(0.75);") ||
           (props.prefixIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
@@ -443,7 +446,8 @@ const TextContainer = styled.div`
       }
 
       &:not(.MuiInputLabel-shrink) {
-        font-family: "Open Sans", sans-serif;
+        font-family: ${(props) => props.theme.fontFamily};
+
         color: ${(props) => props.theme.fontColor};
         & + div,
         & + div + p {
@@ -461,7 +465,8 @@ const TextContainer = styled.div`
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
-      font-family: "Open Sans", sans-serif;
+      font-family: ${(props) => props.theme.fontFamily};
+
       &::before {
         border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
       }
@@ -517,7 +522,8 @@ const TextContainer = styled.div`
         color: ${(props) => props.theme.fontColor};
         &.MuiInputAdornment-positionEnd {
           & > p {
-            font-family: "Open Sans", sans-serif;
+            font-family: ${(props) => props.theme.fontFamily};
+
             color: ${(props) => props.theme.fontColor};
             margin-right: 8px;
             margin-bottom: 1px;

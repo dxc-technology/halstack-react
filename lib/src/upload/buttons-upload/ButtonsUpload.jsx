@@ -44,7 +44,7 @@ DxcButtonsUpload.propTypes = {
 };
 
 const DXCButtonsUpload = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   margin-right: 80px;
   display: flex;
   flex-direction: row;
@@ -56,7 +56,7 @@ const DragAndDropLabel = styled.div`
   flex-direction: row;
   align-items: center;
   font-style: italic;
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize12};
   color: ${(props) => props.theme.fontColor};
   margin-right: 50px;
 `;
