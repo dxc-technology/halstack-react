@@ -34,7 +34,7 @@ function App() {
             copyright="© DXC Technology 2020. All rights reserved."
           ></DxcFooter>
         </Route>
-        <Route exact path={["/themeBuilder/:componentId", "/themeBuilder"]}>
+        <Route exact path="/themeBuilder">
             <ThemeBuilder></ThemeBuilder>
         </Route>
         <Route exact path="/">
