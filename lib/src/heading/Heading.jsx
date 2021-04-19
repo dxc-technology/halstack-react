@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces } from "../common/variables.js";
+import { spaces, globalTokens, componentTokens } from "../common/variables.js";
 
 const DxcHeading = ({ level = 1, text = "", weight = "", margin }) => {
   return (
@@ -33,12 +33,12 @@ const HeadingContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  font-family: "Open Sans", sans-serif;
+    font-family: ${componentTokens?.heading?.fontFamily};
   color: inherit;
 `;
 
 const HeadingLevel1 = styled.h1`
-  font-size: 60px;
+  font-size: ${componentTokens?.heading?.fontSize60};
   line-height: 82px;
   font-weight: ${(props) =>
     props.weight === "light" || props.weight === "" ? 200 : props.weight === "normal" ? 400 : 600};
@@ -47,7 +47,7 @@ const HeadingLevel1 = styled.h1`
 `;
 
 const HeadingLevel2 = styled.h2`
-  font-size: 48px;
+  font-size: ${componentTokens?.heading?.fontSize48};
   line-height: 65px;
   font-weight: ${(props) =>
     props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
@@ -56,7 +56,7 @@ const HeadingLevel2 = styled.h2`
 `;
 
 const HeadingLevel3 = styled.h3`
-  font-size: 34px;
+  font-size: ${componentTokens?.heading?.fontSize34};
   line-height: 46px;
   font-weight: ${(props) =>
     props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
@@ -65,8 +65,8 @@ const HeadingLevel3 = styled.h3`
 `;
 
 const HeadingLevel4 = styled.h4`
-  font-size: 24px;
-  line-height: 33px;
+font-size: ${componentTokens?.heading?.fontSize24};
+line-height: 33px;
   font-weight: ${(props) =>
     props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
   letter-spacing: 0px;
@@ -74,7 +74,7 @@ const HeadingLevel4 = styled.h4`
 `;
 
 const HeadingLevel5 = styled.h5`
-  font-size: 20px;
+  font-size: ${componentTokens?.heading?.fontSize20};
   line-height: 27px;
   font-weight: ${(props) =>
     props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};

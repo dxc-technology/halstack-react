@@ -36,7 +36,7 @@ const getMinItemsPerPageIndex = (currentPageInternal, itemsPerPage, page) =>
 const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, page) =>
   minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
-const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOptions, itemsPerPageFunction, margin }) => {
+const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOptions, itemsPerPageFunction, margin, tabIndex = 0 }) => {
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
@@ -94,6 +94,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOption
                     <HeaderContainer
                       key={`headerContainer_${index}`}
                       onClick={() => column.isSortable && changeSorting(index)}
+                      tabIndex={column.isSortable ? tabIndex : -1}
                     >
                       <TitleDiv isSortable={column.isSortable}>{column.displayValue}</TitleDiv>
                       {column.isSortable && <SortIcon src={getIconForSortableColumn(index)} />}
@@ -122,6 +123,7 @@ const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOption
             currentPage={page}
             showGoToPage={true}
             onPageChange={goToPage}
+            tabIndex={tabIndex}
           />
         </PaginatorContainer>
       </DxcResultsetTableContainer>
@@ -209,6 +211,7 @@ DxcResultsetTable.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 DxcResultsetTable.defaultProps = {
   rows: [],

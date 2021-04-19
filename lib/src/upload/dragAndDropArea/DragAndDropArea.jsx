@@ -9,7 +9,7 @@ import dropFile from "./upload_drop.svg";
 import Button from "../../button/Button";
 import useTheme from "../../useTheme.js";
 
-const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
+const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
   const [dragging, setDragging] = React.useState(false);
   const colorsTheme = useTheme();
 
@@ -77,7 +77,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
                 <DragAndDropDescription>{description}</DragAndDropDescription>
               </DragAndDropText>
               <div>
-                <Button label="CHOOSE FILES" onClick={handleClick} />
+                <Button label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue}/>
                 <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
               </div>
             </DragAndDropContent>
@@ -92,7 +92,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile }) => {
                 <DragAndDropDescription>{description}</DragAndDropDescription>
               </DragAndDropText>
               <ButtonChooseFiles>
-                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} />
+                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue}/>
                 <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
               </ButtonChooseFiles>
             </DragAndDropContent>
@@ -115,7 +115,7 @@ DxcDragAndDropArea.propTypes = {
 };
 
 const DXCDragAndDrop = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   width: 100%;
   height: 100%;
 `;
@@ -150,13 +150,13 @@ const DragAndDropText = styled.div`
 `;
 
 const DragAndDropTitle = styled.div`
-  font-size: 20px;
+  font-size: ${(props) => props.theme.fontSize20};
   font-weight: bold;
   margin-bottom: 10px;
 `;
 
 const DragAndDropDescription = styled.div`
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontSize16};
   margin-bottom: 40px;
   color: ${(props) => props.theme.fontColor};
   font-style: italic;
@@ -229,7 +229,7 @@ const DragAndDropIconHover = styled.div`
 `;
 
 const DragAndDropTextHover = styled.div`
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontSize16};
   margin-bottom: 20px;
   color: ${(props) => props.theme.fontColor};
   font-style: italic;

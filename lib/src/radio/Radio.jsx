@@ -135,7 +135,7 @@ const RadioContainer = styled.span`
   }
 `;
 const LabelContainer = styled.span`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   color: ${(props) => (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 `;

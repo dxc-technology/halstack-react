@@ -9,7 +9,7 @@ import videoIcon from "./video-icon.svg";
 import audioIcon from "./audio-icon.svg";
 import useTheme from "../../useTheme.js";
 
-const DxcFileToUpload = ({ name = "", type = "", image, onDelete }) => {
+const DxcFileToUpload = ({ name = "", type = "", image, onDelete, tabIndexValue }) => {
   const icon = (type.includes("video") && videoIcon) || (type.includes("audio") && audioIcon) || defaultIcon;
   const hasImage = image && image.includes("image");
   const colorsTheme = useTheme();
@@ -23,7 +23,7 @@ const DxcFileToUpload = ({ name = "", type = "", image, onDelete }) => {
             <FileName>{name}</FileName>
             <FileType>{type}</FileType>
           </FileInfo>
-          <DeleteFile className="delete-file" onClick={onDelete} />
+          <DeleteFile className="delete-file" onClick={onDelete} tabIndex={tabIndexValue} />
         </FileContent>
       </DXCFileToUpload>
     </ThemeProvider>
@@ -38,7 +38,7 @@ DxcFileToUpload.propTypes = {
 };
 
 const DXCFileToUpload = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   max-width: 100%;
   height: 52px;
   display: flex;
@@ -49,14 +49,6 @@ const DXCFileToUpload = styled.div`
   :hover {
     cursor: pointer;
     background: ${(props) => props.theme.fileHoverColor};
-    .delete-file {
-      display: flex;
-      margin-right: 30px;
-      background: url("${closeIcon}") no-repeat padding-box;
-      width: 30px;
-      height: 30px;
-      margin-top: 11px;
-    }
   }
 `;
 const FileContent = styled.div`
@@ -75,8 +67,8 @@ const FileImage = styled.img`
 
 const FileName = styled.div`
   margin-bottom: 12px;
-  font-size: 16px;
-`;
+  font-size: ${(props) => props.theme.fontSize16};
+  `;
 
 const FileInfo = styled.div`
   display: flex;
@@ -86,12 +78,22 @@ const FileInfo = styled.div`
 
 const FileType = styled.div`
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize12};
+
   color: ${(props) => props.theme.fontColor};
 `;
 
-const DeleteFile = styled.div`
-  display: none;
+const DeleteFile = styled.button`
+  border: none;
+  display: flex;
+  margin-right: 30px;
+  background: url("${closeIcon}") no-repeat padding-box;
+  width: 30px;
+  height: 30px;
+  margin-top: 11px;
+  &:focus {
+    visibility: visible;
+  }
 `;
 
 export default DxcFileToUpload;

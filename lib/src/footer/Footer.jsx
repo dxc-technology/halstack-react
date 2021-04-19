@@ -13,6 +13,7 @@ const DxcFooter = ({
   children,
   padding,
   margin,
+  tabIndex = 0
 }) => {
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
@@ -50,7 +51,7 @@ const DxcFooter = ({
   }, []);
 
   const socialLink = socialLinks.map((link, index) => (
-    <SocialAnchor key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
+    <SocialAnchor tabIndex={tabIndex} key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
       {link.logo ? (
         <SocialIconContainer>
           {typeof link.logo === "object" ? link.logo : React.createElement(link.logo)}
@@ -63,7 +64,7 @@ const DxcFooter = ({
 
   const bottomLink = bottomLinks.map((link, index) => (
     <span key={`bottom${index}${link.text}`}>
-      <BottomLink href={link && link.href ? link.href : ""}>{link && link.text ? link.text : ""}</BottomLink>
+      <BottomLink tabIndex={tabIndex} href={link && link.href ? link.href : ""}>{link && link.text ? link.text : ""}</BottomLink>
       <Point index={index}>·</Point>
     </span>
   ));
@@ -99,7 +100,7 @@ const DxcFooter = ({
 
 const FooterContainer = styled.footer`
   padding: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px")};
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   background-color: ${(props) => props.theme.backgroundColor};
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   width: 100%;
@@ -149,7 +150,7 @@ const ChildComponents = styled.div`
 `;
 
 const Copyright = styled.div`
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize};
   color: ${(props) => props.theme.fontColor};
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
   width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
@@ -212,7 +213,7 @@ const Point = styled.span`
 const BottomLink = styled.a`
   text-decoration: none;
   color: ${(props) => props.theme.fontColor};
-  font-size: 12px;
+  font-size: ${(props) => props.theme.fontSize};
 `;
 
 DxcFooter.propTypes = {
@@ -249,6 +250,7 @@ DxcFooter.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcFooter;

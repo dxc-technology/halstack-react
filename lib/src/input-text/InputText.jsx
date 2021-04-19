@@ -54,6 +54,7 @@ const DxcInputText = ({
   margin,
   size = "medium",
   autocompleteOptions,
+  tabIndex = 0,
 }) => {
   const [innerValue, setInnerValue] = useState("");
   const [isOpen, changeIsOpen] = useState(false);
@@ -151,13 +152,31 @@ const DxcInputText = ({
         size={size}
       >
         {prefixIcon ? (
-          <PrefixIconContainer disabled={disabled} onClick={onClickPrefix}>
+          <PrefixIconContainer
+            tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
+            disabled={disabled}
+            onClick={!disabled ? onClickPrefix : null}
+            interactuable={typeof onClickPrefix === "function" && !disabled}
+          >
             {typeof prefixIcon === "object" ? prefixIcon : React.createElement(prefixIcon)}
           </PrefixIconContainer>
         ) : (
-          (prefixIconSrc && <PrefixIcon src={prefixIconSrc} disabled={disabled} onClick={onClickPrefix} />) ||
+          (prefixIconSrc && (
+            <PrefixIcon
+              tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
+              src={prefixIconSrc}
+              disabled={disabled}
+              onClick={!disabled ? onClickPrefix : null}
+              interactuable={typeof onClickPrefix === "function" && !disabled}
+            />
+          )) ||
           (prefix && (
-            <PrefixLabel disabled={disabled} onClick={onClickPrefix}>
+            <PrefixLabel
+              tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
+              disabled={disabled}
+              onClick={!disabled ? onClickPrefix : null}
+              interactuable={typeof onClickPrefix === "function" && !disabled}
+            >
               {prefix}
             </PrefixLabel>
           ))
@@ -185,18 +204,40 @@ const DxcInputText = ({
           type={isMasked ? "password" : "text"}
           InputProps={{
             endAdornment: (suffix || suffixIconSrc || suffixIcon) && (
-              <InputAdornment position="end" onClick={onClickSuffix}>
+              <InputAdornment position="end">
                 {suffixIcon ? (
-                  <SuffixIconContainer disabled={disabled} onClick={onClickSuffix}>
+                  <SuffixIconContainer
+                    tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
+                    disabled={disabled}
+                    onClick={onClickSuffix}
+                    interactuable={typeof onClickSuffix === "function" && !disabled}
+                  >
                     {typeof suffixIcon === "object" ? suffixIcon : React.createElement(suffixIcon)}
                   </SuffixIconContainer>
                 ) : (
-                  (suffixIconSrc && <SuffixIcon disabled={disabled} src={suffixIconSrc} onClick={onClickSuffix} />) ||
-                  suffix
+                  (suffixIconSrc && (
+                    <SuffixIcon
+                      tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
+                      disabled={disabled}
+                      src={suffixIconSrc}
+                      onClick={onClickSuffix}
+                      interactuable={typeof onClickSuffix === "function" && !disabled}
+                    />
+                  )) || (
+                    <SuffixLabel
+                      tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
+                      onClick={onClickSuffix}
+                      disabled={disabled}
+                      interactuable={typeof onClickSuffix === "function" && !disabled}
+                    >
+                      {suffix}
+                    </SuffixLabel>
+                  )
                 )}
               </InputAdornment>
             ),
           }}
+          inputProps={{ tabIndex: tabIndex }}
         />
       </TextContainer>
 
@@ -266,6 +307,17 @@ const calculateWidth = (margin, size) => {
   }
   return sizes[size];
 };
+
+const getCursor = (interactuable, disabled) => {
+  if (disabled) {
+    return "cursor:not-allowed;";
+  }
+  if (interactuable) {
+    return "cursor:pointer;";
+  }
+  return "cursor:default; outline:none;";
+};
+
 const SuggestionsContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiPaper-root {
@@ -301,12 +353,7 @@ const PrefixIcon = styled.img`
   max-width: 20px;
   z-index: 1;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
-  cursor: ${(props) => {
-    if (props.onClickPrefix !== "" && !props.disabled) {
-      return "pointer";
-    }
-    return "default";
-  }};
+  ${(props) => getCursor(props.interactuable, props.disabled)};
 `;
 
 const PrefixIconContainer = styled.div`
@@ -318,12 +365,7 @@ const PrefixIconContainer = styled.div`
   max-width: 20px;
   z-index: 1;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
-  cursor: ${(props) => {
-    if (props.onClickPrefix !== "" && !props.disabled) {
-      return "pointer";
-    }
-    return "default";
-  }};
+  ${(props) => getCursor(props.interactuable, props.disabled)};
   overflow: hidden;
 
   img,
@@ -337,18 +379,14 @@ const PrefixLabel = styled.span`
   position: absolute;
   top: 20px;
   left: 0px;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
+
   color: ${(props) => props.theme.fontColor};
   max-height: 20px;
   max-width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
   z-index: 1;
-  cursor: ${(props) => {
-    if (props.onClickPrefix !== "" && !props.disabled) {
-      return "pointer";
-    }
-    return "default";
-  }};
+  ${(props) => getCursor(props.interactuable, props.disabled)};
 `;
 
 const SuffixIcon = styled.img`
@@ -359,12 +397,7 @@ const SuffixIcon = styled.img`
   margin-right: 8px;
   width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
-  cursor: ${(props) => {
-    if (props.onClickSuffix !== "" && !props.disabled) {
-      return "pointer";
-    }
-    return "default";
-  }};
+  ${(props) => getCursor(props.interactuable, props.disabled)};
 `;
 
 const SuffixIconContainer = styled.div`
@@ -375,12 +408,7 @@ const SuffixIconContainer = styled.div`
   margin-right: 8px;
   width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
-  cursor: ${(props) => {
-    if (props.onClickSuffix !== "" && !props.disabled) {
-      return "pointer";
-    }
-    return "default";
-  }};
+  ${(props) => getCursor(props.interactuable, props.disabled)};
   overflow: hidden;
 
   img,
@@ -388,6 +416,10 @@ const SuffixIconContainer = styled.div`
     height: 100%;
     width: 100%;
   }
+`;
+
+const SuffixLabel = styled.span`
+  ${(props) => getCursor(props.interactuable, props.disabled)};
 `;
 
 const TextContainer = styled.div`
@@ -407,13 +439,14 @@ const TextContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
-    font-family: "Open Sans", sans-serif;
+    font-family: ${(props) => props.theme.fontFamily};
     .MuiFormHelperText-root {
-      font-family: "Open Sans", sans-serif;
+      font-family: ${(props) => props.theme.fontFamily};
       margin-top: 6px;
     }
     .MuiFormLabel-root {
-      font-size: 16px;
+      font-size: ${(props) => props.theme.fontSize};
+      
       color: ${(props) => props.theme.fontColor};
       &.Mui-disabled {
         color: ${(props) => props.theme.disabledFontColor} !important;
@@ -431,7 +464,8 @@ const TextContainer = styled.div`
         }
       }
       &.MuiInputLabel-shrink {
-        font-family: "Open Sans", sans-serif;
+        font-family: ${(props) => props.theme.fontFamily};
+
         transform: ${(props) =>
           (props.prefixIcon && "translate(8px, 1.5px) scale(0.75);") ||
           (props.prefixIconSrc && "translate(8px, 1.5px) scale(0.75);") ||
@@ -443,7 +477,8 @@ const TextContainer = styled.div`
       }
 
       &:not(.MuiInputLabel-shrink) {
-        font-family: "Open Sans", sans-serif;
+        font-family: ${(props) => props.theme.fontFamily};
+
         color: ${(props) => props.theme.fontColor};
         & + div,
         & + div + p {
@@ -461,7 +496,8 @@ const TextContainer = styled.div`
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
-      font-family: "Open Sans", sans-serif;
+      font-family: ${(props) => props.theme.fontFamily};
+
       &::before {
         border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
       }
@@ -517,16 +553,11 @@ const TextContainer = styled.div`
         color: ${(props) => props.theme.fontColor};
         &.MuiInputAdornment-positionEnd {
           & > p {
-            font-family: "Open Sans", sans-serif;
+            font-family: ${(props) => props.theme.fontFamily};
+
             color: ${(props) => props.theme.fontColor};
             margin-right: 8px;
             margin-bottom: 1px;
-            cursor: ${(props) => {
-              if (props.onClickSuffix !== "" && !props.disabled) {
-                return "pointer";
-              }
-              return "default";
-            }};
           }
         }
         &.Mui-disabled {
@@ -585,6 +616,7 @@ DxcInputText.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   autocompleteOptions: PropTypes.any,
+  tabIndex: PropTypes.number,
 };
 
 export default DxcInputText;

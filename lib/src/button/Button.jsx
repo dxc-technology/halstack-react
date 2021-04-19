@@ -19,6 +19,7 @@ const DxcButton = ({
   onClick = "",
   margin,
   size,
+  tabIndex=0
 }) => {
   const colorsTheme = useTheme();
 
@@ -30,6 +31,7 @@ const DxcButton = ({
           type={type}
           disableRipple
           aria-disabled={disabled ? true : false}
+          tabIndex={disabled ? -1 : tabIndex}
           onClick={() => {
             if (onClick) {
               onClick();
@@ -67,7 +69,7 @@ const calculateWidth = (margin, size) => {
 
 const LabelContainer = styled.span`
   line-height: 18px;
-  font-size: 14px;
+  fontSize: ${(props) => props.theme.fontSize};
   text-overflow: ellipsis;
   overflow: hidden;
 `;
@@ -116,14 +118,14 @@ const DxCButton = styled.div`
     }
     letter-spacing: 1px;
     box-shadow: none;
-    font-size: 14px;
+    fontSize: ${(props) => props.theme.fontSize};
     font-weight: 500;
     min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
     border-radius: 4px;
     width: 100%;
     min-height: 43px;
     line-height: 1;
-    font-family: "Open Sans", sans-serif;
+    font-family: ${(props) => props.theme.fontFamily};
     &:focus {
       outline: ${(props) => props.theme.focusColor} auto 1px;
     }
@@ -238,6 +240,7 @@ DxcButton.propTypes = {
   iconSrc: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   type: PropTypes.oneOf(["button", "reset", "submit"]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcButton;

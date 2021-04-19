@@ -76,6 +76,7 @@ const DxcSelect = ({
   multiple = false,
   margin,
   size = "medium",
+  tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
@@ -173,7 +174,6 @@ const DxcSelect = ({
             {label}
           </InputLabel>
           <Select
-            tabIndex="0"
             name={name}
             multiple={multiple}
             renderValue={getRenderValue}
@@ -188,6 +188,7 @@ const DxcSelect = ({
                 horizontal: "left",
               },
             }}
+            inputProps={{ tabIndex: disabled ? -1 : tabIndex }}
           >
             {options.map((option) => {
               return (
@@ -260,7 +261,7 @@ const SelectedIconContainer = styled.div`
 `;
 
 const SelectedLabelContainer = styled.span`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   margin-left: ${(props) => ((props.iconPosition === "after" || !props.iconSrc) && "0px") || "10px"};
   margin-right: ${(props) => ((props.iconPosition === "before" || !props.iconSrc) && "0px") || "10px"};
   overflow: hidden;
@@ -268,7 +269,7 @@ const SelectedLabelContainer = styled.span`
 `;
 
 const OptionContainer = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   display: flex;
   align-items: center;
   flex-direction: ${(props) => (props.iconPosition === "before" && "row") || "row-reverse"};
@@ -318,7 +319,8 @@ const SelectContainer = styled.div`
     width: 100%;
   }
   .MuiFormLabel-root {
-    font-size: 16px;
+    font-size: ${(props) => props.theme.fontSize};
+    font-family: ${(props) => props.theme.fontFamily};
     color: ${(props) => (props.invalid === true ? props.theme.error : props.theme.color)};
     margin-top: -3px;
     text-overflow: ellipsis;
@@ -332,7 +334,7 @@ const SelectContainer = styled.div`
       color: ${(props) => props.theme.disabledColor};
     }
     &.Mui-focused {
-      font-size: 16px;
+      font-size: ${(props) => props.theme.fontSize};
       color: ${(props) => (props.invalid === true ? props.theme.error : props.theme.color)};
     }
   }
@@ -363,7 +365,7 @@ const SelectContainer = styled.div`
   }
   .MuiInputBase-root {
     width: 100%;
-    &:focus {
+    &.Mui-focused {
       outline: ${(props) => props.theme.focusColor} auto 1px;
     }
     &.Mui-disabled {
@@ -446,5 +448,6 @@ DxcSelect.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 export default DxcSelect;

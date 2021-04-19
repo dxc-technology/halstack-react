@@ -6,7 +6,7 @@ import FileToUpload from "../file-upload/FileToUpload";
 import ButtonsUpload from "../buttons-upload/ButtonsUpload";
 import useTheme from "../../useTheme.js";
 
-const DxcFilesToUpload = ({ filesToUpload, onUpload, addFile }) => {
+const DxcFilesToUpload = ({ filesToUpload, onUpload, addFile, tabIndexValue }) => {
   const colorsTheme = useTheme();
 
   const handleDrag = (e) => {
@@ -51,11 +51,12 @@ const DxcFilesToUpload = ({ filesToUpload, onUpload, addFile }) => {
                 type={fileToUpload.type}
                 image={fileToUpload.image}
                 onDelete={fileToUpload.deleteFile}
+                tabIndexValue={tabIndexValue}
               />
             );
           })}
         </FilesToUpload>
-        <ButtonsUpload addFile={addFile} onUpload={onUpload} />
+        <ButtonsUpload addFile={addFile} onUpload={onUpload} tabIndex={tabIndexValue}/>
       </DXCFilesToUpload>
     </ThemeProvider>
   );
@@ -68,7 +69,7 @@ DxcFilesToUpload.propTypes = {
 };
 
 const DXCFilesToUpload = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   width: 100%;
   padding: 20px;
   border-radius: 4px 4px 0px 4px;

@@ -16,6 +16,7 @@ const DxcTag = ({
   labelPosition = "after",
   newWindow = false,
   size = "fitContent",
+  tabIndex = 1
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
@@ -48,9 +49,9 @@ const DxcTag = ({
       hasAction={onClick || linkHref}
     >
       {onClick ? (
-        <StyledButton>{tagContent}</StyledButton>
+        <StyledButton tabIndex={tabIndex}>{tagContent}</StyledButton>
       ) : linkHref ? (
-        <StyledLink href={linkHref} target={newWindow ? "_blank" : "_self"}>
+        <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
           {tagContent}
         </StyledLink>
       ) : (
@@ -75,7 +76,6 @@ const calculateWidth = (size) => {
 const StyledDxcTag = styled.div`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
-
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
@@ -129,7 +129,7 @@ const IconContainer = styled.div`
 
 const TagLabel = styled.div`
   padding: 0px 30px;
-  font-size: 14px;
+  font-size: ${(props) => props.theme.fontSize};
   text-transform: uppercase;
   letter-spacing: 1px;
   color: black;
@@ -159,6 +159,7 @@ DxcTag.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 DxcTag.defaultProps = {

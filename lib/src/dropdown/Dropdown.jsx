@@ -24,6 +24,7 @@ const DxcDropdown = ({
   margin,
   size = "fitContent",
   expandOnHover = false,
+  tabIndex = 0
 }) => {
   const [width, setWidth] = useState();
   const colorsTheme = useTheme();
@@ -77,7 +78,7 @@ const DxcDropdown = ({
 
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
-      <DxCDropdownContainer margin={margin} size={size} tabIndex="0">
+      <DxCDropdownContainer margin={margin} size={size}>
         <div
           onMouseOver={expandOnHover ? handleClickListItem : undefined}
           onMouseOut={handleCloseOver}
@@ -92,6 +93,7 @@ const DxcDropdown = ({
             margin={margin}
             size={size}
             ref={ref}
+            tabIndex={tabIndex}
           >
             <DropdownTriggerContainer iconPosition={iconPosition} caretHidden={caretHidden}>
               {icon ? (
@@ -133,7 +135,7 @@ const DxcDropdown = ({
               <Grow {...TransitionProps}>
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow" onKeyDown={handleClose}>
+                    <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow">
                       {options.map((option) => (
                         <MenuItem
                           key={option.value}
@@ -232,8 +234,8 @@ const DxcMenu = styled(Popper)`
       display: flex;
       flex-direction: ${(props) => (props.optionsIconPosition === "after" && "row-reverse") || "row"};
       justify-content: ${(props) => (props.optionsIconPosition === "after" && "flex-end") || ""};
-      font-size: 16px;
-      font-family: "Open Sans", sans-serif;
+      font-size: ${(props) => props.theme.fontSize};
+      font-family: ${(props) => props.theme.fontFamily};
       cursor: pointer;
     }
     .MuiListItem-button:hover {
@@ -259,8 +261,8 @@ const DxcMenu = styled(Popper)`
 
 const DropdownTrigger = styled.button`
   cursor: pointer;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
   width: 100%;
   height: auto;
   min-height: 46px;
@@ -392,6 +394,7 @@ DxcDropdown.propTypes = {
       iconSrc: PropTypes.string,
     })
   ),
+  tabIndex: PropTypes.number
 };
 
 export default DxcDropdown;

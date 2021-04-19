@@ -21,6 +21,7 @@ const DxcAccordion = ({
   children,
   margin,
   padding,
+  tabIndex=0,
 }) => {
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
   const [isResponsive, setIsResponsive] = useState();
@@ -67,7 +68,7 @@ const DxcAccordion = ({
           onChange={handlerAccordion}
           expanded={isExpanded != null ? isExpanded : innerIsExpanded}
         >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
             <AccordionInfo>
               <AccordionLabel>{label}</AccordionLabel>
               {icon ? (
@@ -118,6 +119,7 @@ DxcAccordion.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 const DXCAccordion = styled.div`
   display: flex;
@@ -133,8 +135,7 @@ const DXCAccordion = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   width: ${(props) => calculateWidth(props.margin)};
-
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
     min-width: 0;
@@ -259,8 +260,11 @@ const AccordionText = styled.div`
 
 const AccordionAssistiveText = styled.div`
   margin-top: 1px;
-  font-size: 14px;
-  font: italic normal 300 16px/22px Open Sans;
+  font-size: ${(props) => props.theme.fontSize};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-style: italic;
+  font-weight: 300;
+  
   letter-spacing: 0.49px;
   flex: 1;
   white-space: nowrap;

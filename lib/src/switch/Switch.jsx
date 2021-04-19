@@ -19,6 +19,7 @@ const DxcSwitch = ({
   required = false,
   margin,
   size = "fitContent",
+  tabIndex = 0,
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
   const colorsTheme = useTheme();
@@ -42,7 +43,7 @@ const DxcSwitch = ({
       <SwitchContainer margin={margin} disabled={disabled} labelPosition={labelPosition} size={size}>
         <Switch
           checked={checked != undefined ? checked : innerChecked}
-          inputProps={(name = { name })}
+          inputProps={{ name: name, tabIndex: tabIndex }}
           onChange={handlerSwitchChange}
           value={value}
           disabled={disabled}
@@ -157,7 +158,7 @@ const SwitchContainer = styled.div`
 const LabelContainer = styled.span`
   color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
 `;
 
 DxcSwitch.propTypes = {
@@ -179,6 +180,7 @@ DxcSwitch.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcSwitch;

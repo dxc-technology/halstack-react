@@ -2,10 +2,19 @@ import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
+import "../common/OpenSans.css";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
-const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = true, onBackgroundClick, padding }) => {
+const DxcDialog = ({
+  isCloseVisible = true,
+  onCloseClick,
+  children,
+  overlay = true,
+  onBackgroundClick,
+  padding,
+  tabIndex=0,
+}) => {
   const [isResponsive, setIsResponsive] = useState();
   const colorsTheme = useTheme();
 
@@ -50,7 +59,7 @@ const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = tr
         isResponsive={isResponsive}
       >
         {isCloseVisible && (
-          <CloseIconContainer onClick={handleClose}>
+          <CloseIconContainer onClick={handleClose} tabIndex={tabIndex}>
             <CloseIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
               <path d="M0 0h24v24H0z" fill="none" />
@@ -65,7 +74,7 @@ const DxcDialog = ({ isCloseVisible = true, onCloseClick, children, overlay = tr
 
 const DialogContainer = styled(Dialog)`
   overflow: unset;
-
+  font-family: ${(props) => props.theme.fontFamily};
   .MuiBackdrop-root {
     background-color: ${(props) => (props.overlay === true ? props.theme.overlayColor : "transparent")};
     opacity: ${(props) => props.overlay === true && "0.8"} !important;
@@ -91,6 +100,7 @@ const DialogContainer = styled(Dialog)`
 
 const Children = styled.div`
   overflow-y: auto;
+  font-family: ${(props) => props.theme.fontFamily};
 
   ::-webkit-scrollbar {
     width: 3px;
@@ -159,6 +169,7 @@ DxcDialog.propTypes = {
   onCloseClick: PropTypes.func,
   onBackgroundClick: PropTypes.func,
   overlay: PropTypes.bool,
+  tabIndex: PropTypes.number
 };
 
 export default DxcDialog;

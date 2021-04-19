@@ -8,17 +8,17 @@ import FilesToUpload from "./files-upload/FilesToUpload";
 import Transactions from "./transactions/Transactions";
 import { spaces } from "../common/variables.js";
 
-const DxcUpload = ({ callbackUpload, margin }) => {
+const DxcUpload = ({ callbackUpload, margin, tabIndex = 0 }) => {
   const [files, setFiles] = useState([]);
 
   const getFilesToUpload = () => {
     return files
-      .filter(file => file.status === "pending")
-      .map(file => {
+      .filter((file) => file.status === "pending")
+      .map((file) => {
         const fileInfo = { name: file.name, type: file.type, image: file.image, status: file.status };
         fileInfo.deleteFile = () => {
           const uploadFiles = [];
-          files.forEach(item => uploadFiles.push(item));
+          files.forEach((item) => uploadFiles.push(item));
           const fileIndex = uploadFiles.indexOf(file, 0);
           if (fileIndex > -1) {
             uploadFiles.splice(fileIndex, 1);
@@ -31,36 +31,36 @@ const DxcUpload = ({ callbackUpload, margin }) => {
 
   const getTransactionsFiles = () => {
     return files
-      .filter(file => file.status === "success" || file.status === "error" || file.status === "processing")
-      .map(file => {
+      .filter((file) => file.status === "success" || file.status === "error" || file.status === "processing")
+      .map((file) => {
         return { name: file.name, type: file.type, image: file.image, status: file.status };
       });
   };
 
-  const getFilePreview = file => {
-    return new Promise(resolve => {
+  const getFilePreview = (file) => {
+    return new Promise((resolve) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = e => {
+      reader.onload = (e) => {
         resolve(e.target.result);
       };
     });
   };
 
-  const onDragHandler = filesToAdd => {
+  const onDragHandler = (filesToAdd) => {
     setFiles([
       ...files,
-      ...filesToAdd.map(file => {
+      ...filesToAdd.map((file) => {
         const fileToAdd = {
           status: "pending",
           name: file.name,
-          type: file.type
+          type: file.type,
         };
         return fileToAdd;
-      })
+      }),
     ]);
 
-    Promise.all(filesToAdd.map(fileToAdd => getFilePreview(fileToAdd))).then(previews => {
+    Promise.all(filesToAdd.map((fileToAdd) => getFilePreview(fileToAdd))).then((previews) => {
       setFiles([
         ...files,
         ...filesToAdd.map((file, index) => {
@@ -68,20 +68,20 @@ const DxcUpload = ({ callbackUpload, margin }) => {
             status: "pending",
             name: file.name,
             type: file.type,
-            image: previews[index]
+            image: previews[index],
           };
           return fileToAdd;
-        })
+        }),
       ]);
     });
   };
 
   const onUploadHandler = () => {
     let uploadedFiles = [];
-    files.forEach(file => {
+    files.forEach((file) => {
       uploadedFiles = [...uploadedFiles, file];
     });
-    uploadedFiles.forEach(file => {
+    uploadedFiles.forEach((file) => {
       if (file.status === "pending") {
         file.status = "processing";
         if (typeof callbackUpload === "function") {
@@ -91,7 +91,7 @@ const DxcUpload = ({ callbackUpload, margin }) => {
               uploadedFiles = getTransactionsFiles();
               setFiles(uploadedFiles);
             })
-            .catch(err => {
+            .catch((err) => {
               file.status = "error";
               file.message = err;
               uploadedFiles = getTransactionsFiles();
@@ -109,16 +109,16 @@ const DxcUpload = ({ callbackUpload, margin }) => {
 
   return (
     <DXCUpload margin={margin}>
-      {transactionFiles && transactionFiles.length !== 0 && <Transactions transactions={transactionFiles} />}
+      {transactionFiles && transactionFiles.length !== 0 && <Transactions tabIndexValue={tabIndex} transactions={transactionFiles} />}
       {(filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length === 0 && (
-        <DragAndDropArea dashed={false} addFile={onDragHandler} />
+        <DragAndDropArea dashed={false} addFile={onDragHandler}  tabIndexValue={tabIndex}/>
       )) ||
         (filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length !== 0 && (
-          <DragAndDropArea dashed addFile={onDragHandler} />
+          <DragAndDropArea dashed addFile={onDragHandler} tabIndexValue={tabIndex}/>
         ))}
 
       {filesToUpload && filesToUpload.length !== 0 && (
-        <FilesToUpload filesToUpload={filesToUpload} addFile={onDragHandler} onUpload={onUploadHandler} />
+        <FilesToUpload filesToUpload={filesToUpload} addFile={onDragHandler} onUpload={onUploadHandler} tabIndexValue={tabIndex}/>
       )}
     </DXCUpload>
   );
@@ -131,28 +131,29 @@ DxcUpload.propTypes = {
       top: PropTypes.oneOf(Object.keys(spaces)),
       bottom: PropTypes.oneOf(Object.keys(spaces)),
       left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces))
+      right: PropTypes.oneOf(Object.keys(spaces)),
     }),
     PropTypes.oneOf([...Object.keys(spaces)])
-  ])
+  ]),
+  tabIndex: PropTypes.number
 };
 
 const DXCUpload = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   max-width: 100%;
   height: 400px;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 4px;
   display: flex;
   flex-direction: row;
-  margin: ${props => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${props =>
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${props =>
+  margin-right: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${props =>
+  margin-bottom: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${props =>
+  margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 

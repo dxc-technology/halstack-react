@@ -9,7 +9,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 import "../common/OpenSans.css";
-import { spaces } from "../common/variables.js";
+import { spaces, globalTokens } from "../common/variables.js";
 import calendarIcon from "./calendar.svg";
 import useTheme from "../useTheme.js";
 
@@ -27,6 +27,7 @@ const DxcDate = ({
   onBlur = "",
   margin,
   size = "medium",
+  tabIndex=0
 }) => {
   const [innerValue, setInnerValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -132,6 +133,7 @@ const DxcDate = ({
           minHeight: "unset",
           padding: "0px 10px",
           height: "316px",
+          fontFamily: globalTokens?.date?.fontFamily,
         },
       },
       MuiPickersToolbarText: {
@@ -181,7 +183,7 @@ const DxcDate = ({
           backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
           margin: "0px 100px",
           borderRadius: "20px",
-          fontSize: "16px",
+          fontSize: globalTokens?.date?.fontSize,
         },
         root: {
           "&:focus": {
@@ -196,9 +198,7 @@ const DxcDate = ({
         },
       },
     },
-    typography: {
-      fontFamily: '"Open Sans", sans-serif',
-    },
+    
   });
 
   return (
@@ -221,6 +221,7 @@ const DxcDate = ({
               onClickSuffix={openCalendar}
               onChange={onChangeInput}
               onBlur={(onBlur && handlerInputBlur) || null}
+              tabIndex={tabIndex}
             />
             <Popover
               open={isOpen}
@@ -292,6 +293,7 @@ DxcDate.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcDate;

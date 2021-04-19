@@ -19,6 +19,7 @@ const DxcCheckbox = ({
   required = false,
   margin,
   size = "fitContent",
+  tabIndex=0
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
   const colorsTheme = useTheme();
@@ -55,6 +56,7 @@ const DxcCheckbox = ({
           disabled={disabled}
           disableRipple
           className="test"
+          tabIndex={tabIndex}
         />
         <CheckboxBlackBack
           labelPosition={labelPosition}
@@ -98,7 +100,7 @@ const LabelContainer = styled.span`
   color: ${(props) => props.theme.fontColor};
   opacity: ${(props) => props.disabled && "0.34"};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
 `;
 
 const CheckboxContainer = styled.span`
@@ -188,6 +190,7 @@ DxcCheckbox.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number
 };
 
 export default DxcCheckbox;
