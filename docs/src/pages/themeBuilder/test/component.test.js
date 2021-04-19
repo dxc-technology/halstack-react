@@ -75,6 +75,7 @@ describe("Successful component tests", () => {
     expect(getByText("Primary")).toBeTruthy();
     expect(getByText("Secondary")).toBeTruthy();
     expect(getByText("Text")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
     expect(getAllByText("baseColor").length).toBe(18);
     expect(getAllByText("hoverBaseColor").length).toBe(2);
     expect(getAllByText("primaryFontColor").length).toBe(2);
@@ -85,98 +86,162 @@ describe("Successful component tests", () => {
     expect(getAllByText("textHoverFontColor").length).toBe(2);
   });
 
-  // it("Should render checkbox component", async () => {
-  //   const { getByText, getAllByText } = render(
-  //     <ComponentPreview componentId="checkbox" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Checkbox component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Label position")).toBeTruthy();
-  //   expect(getAllByText("Disabled").length).toBe(2);
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("checkColor")).toBeTruthy();
-  // });
+  it("Should render checkbox component", async () => {
+    const { getByText, getAllByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    act(() => {
+      fireEvent.click(getByText("Checkbox"));
+    });
+    expect(getByText("Checkbox component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Label position")).toBeTruthy();
+    expect(getAllByText("Disabled").length).toBe(2);
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("checkColor").length).toBe(2);
+  });
 
-  // it("Should render chip component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="chip" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Chip component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("With suffix")).toBeTruthy();
-  //   expect(getByText("With prefix")).toBeTruthy();
-  //   expect(getByText("Only icon")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("accentColor")).toBeTruthy();
-  //   expect(getByText("fontColor")).toBeTruthy();
-  // });
+  it("Should render chip component", async () => {
+    const { getByText, getAllByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    act(() => {
+      fireEvent.click(getByText("Chip"));
+    });
+    expect(getByText("Chip component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("With suffix")).toBeTruthy();
+    expect(getByText("With prefix")).toBeTruthy();
+    expect(getByText("Only icon")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("accentColor").length).toBe(8);
+    expect(getAllByText("fontColor").length).toBe(9);
+  });
 
-  // it("Should render date component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="date" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Date component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("accentColor")).toBeTruthy();
-  // });
+  it("Should render date component", async () => {
+    const { getByText, getAllByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    act(() => {
+      fireEvent.click(getByText("Date"));
+    });
+    expect(getByText("Date component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("accentColor").length).toBe(8);
+  });
 
-  // it("Should render dropdown component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="dropdown" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Dropdown component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("fontColor")).toBeTruthy();
-  // });
+  it("Should render dropdown component", async () => {
+    const { getByText, getAllByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    act(() => {
+      fireEvent.click(getByText("Dropdown"));
+    });
+    expect(getByText("Dropdown component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("fontColor").length).toBe(9);
+  });
 
-  // it("Should render footer component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="footer" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Footer component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("fontColor")).toBeTruthy();
-  //   expect(getByText("accentColor")).toBeTruthy();
-  //   expect(getByText("logo")).toBeTruthy();
-  // });
+  it("Should render footer component", async () => {
+    const { getByText, getAllByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    act(() => {
+      fireEvent.click(getByText("Footer"));
+    });
+    expect(getByText("Footer component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("fontColor").length).toBe(9);
+    expect(getAllByText("accentColor").length).toBe(8);
+    expect(getAllByText("logo").length).toBe(3);
+  });
 
-  // it("Should render header component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="header" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Header component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("Responsive")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("accentColor")).toBeTruthy();
-  //   expect(getByText("fontColor")).toBeTruthy();
-  //   expect(getByText("menuBaseColor")).toBeTruthy();
-  //   expect(getByText("hamburguerColor")).toBeTruthy();
-  // });
+  it("Should render header component", async () => {
+    const { getByText, getAllByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    act(() => {
+      fireEvent.click(getByText("Header"));
+    });
+    expect(getByText("Header component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Responsive")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("accentColor").length).toBe(8);
+    expect(getAllByText("fontColor").length).toBe(9);
+    expect(getAllByText("menuBaseColor").length).toBe(2);
+    expect(getAllByText("hamburguerColor").length).toBe(2);
+  });
 
-  // it("Should render paginator component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="paginator" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("Paginator component")).toBeTruthy();
-  //   expect(getByText("Default")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  //   expect(getByText("fontColor")).toBeTruthy();
-  // });
+  it("Should render paginator component", async () => {
+    const { getByText, getAllByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    act(() => {
+      fireEvent.click(getByText("Paginator"));
+    });
+    expect(getByText("Paginator component")).toBeTruthy();
+    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getAllByText("fontColor").length).toBe(9);
+  });
 
-  // it("Should render progressBar component", async () => {
-  //   const { getByText } = render(
-  //     <ComponentPreview componentId="progressBar" customTheme={themeMocks} />
-  //   );
-  //   expect(getByText("ProgressBar component")).toBeTruthy();
-  //   expect(getByText("Undeterminate default")).toBeTruthy();
-  //   expect(getByText("Determinate default")).toBeTruthy();
-  //   expect(getByText("accentColor")).toBeTruthy();
-  //   expect(getByText("baseColor")).toBeTruthy();
-  // });
+  it("Should render progressBar component", async () => {
+    const { getByText, getAllByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    act(() => {
+      fireEvent.click(getByText("ProgressBar"));
+    });
+    expect(getByText("ProgressBar component")).toBeTruthy();
+    expect(getByText("Undeterminate default")).toBeTruthy();
+    expect(getByText("Determinate default")).toBeTruthy();
+    expect(getByText("Theme inputs")).toBeTruthy();
+    expect(getAllByText("accentColor").length).toBe(8);
+    expect(getAllByText("baseColor").length).toBe(18);
+  });
 
   // it("Should render radio component", async () => {
   //   const { getByText } = render(
