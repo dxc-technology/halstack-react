@@ -70,7 +70,7 @@ afterAll(() => {
   server.close();
 });
 
-describe("Import theme functionality tests", () => {
+describe("Import theme functionality", () => {
   const history = createMemoryHistory();
   history.push("/themeBuilder");
   window.location.pathname = "/tools/react/next/";
