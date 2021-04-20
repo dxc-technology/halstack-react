@@ -49,7 +49,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     expect(getByText("Accordion component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
     expect(getByText("Disabled")).toBeTruthy();
@@ -68,7 +68,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Button"));
     });
@@ -95,7 +95,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Checkbox"));
     });
@@ -116,7 +116,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Chip"));
     });
@@ -139,7 +139,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Date"));
     });
@@ -158,7 +158,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Dropdown"));
     });
@@ -177,7 +177,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Footer"));
     });
@@ -198,7 +198,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Header"));
     });
@@ -221,7 +221,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Paginator"));
     });
@@ -240,7 +240,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("ProgressBar"));
     });
@@ -260,7 +260,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Radio"));
     });
@@ -279,7 +279,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Select"));
     });
@@ -299,7 +299,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Sidenav"));
     });
@@ -319,7 +319,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Slider"));
     });
@@ -339,7 +339,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Spinner"));
     });
@@ -359,7 +359,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Switch"));
     });
@@ -378,7 +378,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Table"));
     });
@@ -397,7 +397,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Tabs"));
     });
@@ -416,7 +416,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("InputText"));
     });
@@ -438,7 +438,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Wizard"));
     });
@@ -458,7 +458,7 @@ describe("Successful component tests", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(getByText("ToggleGroup"));
     });

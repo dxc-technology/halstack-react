@@ -1,7 +1,12 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { render, cleanup, act, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  cleanup,
+  act,
+  fireEvent,
+} from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 

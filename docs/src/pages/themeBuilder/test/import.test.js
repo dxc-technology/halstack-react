@@ -13,24 +13,24 @@ const portalUrl = "https://developer.dxc.com/tools/react/versions.json";
 const validThemeInputString = JSON.stringify({
   accordion: {
     accentColor: "#fabada",
-    fontColor: "#777777"
+    fontColor: "#777777",
   },
   button: {
     baseColor: "#fabada",
     hoverBaseColor: "#777777",
-    primaryFontColor: ""
+    primaryFontColor: "",
   },
 });
 
 const wrongComponentNameString = JSON.stringify({
   accordion: {
     accentColor: "#fabada",
-    fontColor: "#777777"
+    fontColor: "#777777",
   },
   random: {
     baseColor: "#fabada",
     hoverBaseColor: "#777777",
-    mal: "#ffffff"
+    mal: "#ffffff",
   },
 });
 
@@ -40,7 +40,7 @@ const wrongThemeInputString = JSON.stringify({
   },
   button: {
     baseColor: "#fabada",
-    random: "#777777"
+    random: "#777777",
   },
 });
 
@@ -278,7 +278,7 @@ describe("Import theme functionality", () => {
     act(() => {
       fireEvent.click(getByText("Reset").closest("button"));
     });
-    expect(queryByText(/#fabada/)).toBeFalsy()
-    expect(queryByText(/#777777/)).toBeFalsy()
+    expect(queryByText(/#fabada/)).toBeFalsy();
+    expect(queryByText(/#777777/)).toBeFalsy();
   });
 });
