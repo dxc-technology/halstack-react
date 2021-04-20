@@ -243,4 +243,42 @@ describe("Import theme functionality", () => {
     expect(getAllByText(/#fabada/).length).toBe(2);
     expect(getAllByText(/#777777/).length).toBe(2);
   });
+
+  it("Should reset an imported json and update the current theme of the builder", async () => {
+    const {
+      getByText,
+      getByRole,
+      getAllByText,
+      queryByText,
+      findByText,
+    } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText("next");
+    act(() => {
+      fireEvent.click(getByText("Import"));
+    });
+    expect(queryByText("Import theme")).toBeTruthy();
+    act(() => {
+      fireEvent.change(getByRole("textbox"), {
+        target: { value: validThemeInputString },
+      });
+    });
+    expect(getAllByText("Import")[1].closest("button").disabled).toBeFalsy();
+    act(() => {
+      fireEvent.click(getAllByText("Import")[1].closest("button"));
+    });
+    expect(getByText("Accordion component")).toBeTruthy();
+    expect(getAllByText(/#fabada/).length).toBe(2);
+    expect(getAllByText(/#777777/).length).toBe(2);
+    act(() => {
+      fireEvent.click(getByText("Reset").closest("button"));
+    });
+    expect(queryByText(/#fabada/)).toBeFalsy()
+    expect(queryByText(/#777777/)).toBeFalsy()
+  });
 });

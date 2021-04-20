@@ -1,7 +1,7 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { render, cleanup, act, fireEvent } from "@testing-library/react";
+import { render, cleanup, act, fireEvent, waitFor } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
@@ -72,6 +72,44 @@ describe("Successful color picker tests", () => {
       fireEvent.click(getByRole("picker-cover"));
     });
     expect(getByText(/#555555/)).toBeTruthy();
+  });
+
+  it("Change accordion property value and reset", async () => {
+    const {
+      getByText,
+      queryByText,
+      getAllByRole,
+      findByText,
+      getByRole,
+      getByDisplayValue,
+    } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText("next");
+    expect(getByText("Accordion component")).toBeTruthy();
+    expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
+      "#6f2c91"
+    );
+    act(() => {
+      fireEvent.click(getAllByRole("color-container")[0]);
+    });
+    act(() => {
+      fireEvent.change(getByDisplayValue("6F2C91"), {
+        target: { value: "555555" },
+      });
+    });
+    act(() => {
+      fireEvent.click(getByRole("picker-cover"));
+    });
+    expect(getByText(/#555555/)).toBeTruthy();
+    act(() => {
+      fireEvent.click(getByText("Reset").closest("button"));
+    });
+    expect(queryByText(/#555555/)).toBeFalsy();
   });
 
   it("Change button property value", async () => {

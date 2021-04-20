@@ -49,7 +49,7 @@ describe("JSON view", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(container.querySelector(".click-to-edit-icon"));
     });
@@ -64,6 +64,41 @@ describe("JSON view", () => {
     expect(getAllByText(/#fabada/).length).toBe(1);
   });
 
+  it("Should reset modified theme after json view is changed", async () => {
+    const {
+      container,
+      getAllByText,
+      getByRole,
+      findByText,
+      getByText,
+      queryByText,
+    } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText("next");
+    act(() => {
+      fireEvent.click(container.querySelector(".click-to-edit-icon"));
+    });
+    act(() => {
+      fireEvent.change(getByRole("textbox"), {
+        target: { value: "#fabada" },
+      });
+    });
+    act(() => {
+      fireEvent.click(container.querySelector(".edit-check"));
+    });
+    expect(getAllByText(/#fabada/).length).toBe(1);
+    act(() => {
+      fireEvent.click(getByText("Reset").closest("button"));
+    });
+    expect(queryByText(/#fabada/)).toBeFalsy();
+    expect(queryByText(/#777777/)).toBeFalsy();
+  });
+
   it("Should not modify the current theme if cancel is pressed", async () => {
     const { container, queryByText, getByRole, findByText } = render(
       <Router history={history}>
@@ -72,7 +107,7 @@ describe("JSON view", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(container.querySelector(".click-to-edit-icon"));
     });
@@ -95,7 +130,7 @@ describe("JSON view", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(container.querySelector(".click-to-edit-icon"));
     });
@@ -118,7 +153,7 @@ describe("JSON view", () => {
         </Route>
       </Router>
     );
-    await findByText('next');
+    await findByText("next");
     act(() => {
       fireEvent.click(container.querySelector(".click-to-edit-icon"));
     });
