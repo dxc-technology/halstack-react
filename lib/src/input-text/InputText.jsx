@@ -423,6 +423,7 @@ const SuffixLabel = styled.span`
 `;
 
 const TextContainer = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -446,7 +447,7 @@ const TextContainer = styled.div`
     }
     .MuiFormLabel-root {
       font-size: ${(props) => props.theme.fontSize};
-      
+
       color: ${(props) => props.theme.fontColor};
       &.Mui-disabled {
         color: ${(props) => props.theme.disabledFontColor} !important;

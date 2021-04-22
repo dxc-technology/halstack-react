@@ -123,6 +123,7 @@ DxcAccordion.propTypes = {
 };
 const DXCAccordion = styled.div`
   display: flex;
+  font-size: ${(props) => props.theme.fontSizeBase};
   min-width: 280px;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -262,10 +263,10 @@ const AccordionAssistiveText = styled.div`
   margin-top: 1px;
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
-  font-style: italic;
-  font-weight: 300;
-  
-  letter-spacing: 0.49px;
+  font-style: ${(props) => props.theme.fontStyle};
+  font-weight: ${(props) => props.theme.fontWeight};
+
+  letter-spacing: ${(props) => props.theme.fontLetterSpacingWide01};
   flex: 1;
   white-space: nowrap;
   overflow: hidden;

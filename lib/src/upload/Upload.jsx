@@ -139,6 +139,7 @@ DxcUpload.propTypes = {
 };
 
 const DXCUpload = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   font-family: ${(props) => props.theme.fontFamily};
   max-width: 100%;
   height: 400px;

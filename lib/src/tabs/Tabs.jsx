@@ -127,6 +127,8 @@ const Underline = styled.div`
 `;
 
 const DxCTabs = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
+
   position: relative;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -154,7 +156,7 @@ const DxCTabs = styled.div`
       height: ${(props) =>
         ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
       font-family: ${(props) => props.theme.fontFamily};
-      font-weight: 600;
+      font-weight: ${(props) => props.theme.fontWeight};
       font-size: ${(props) => props.theme.fontSize};
       min-width: 90px;
       max-width: 360px;

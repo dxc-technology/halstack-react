@@ -77,7 +77,7 @@ const FileInfo = styled.div`
 `;
 
 const FileType = styled.div`
-  text-transform: uppercase;
+  text-transform: ${(props) => props.theme.fontTextTransform};
   font-size: ${(props) => props.theme.fontSize12};
 
   color: ${(props) => props.theme.fontColor};

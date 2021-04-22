@@ -99,6 +99,7 @@ const DxcFooter = ({
 };
 
 const FooterContainer = styled.footer`
+  font-size: ${(props) => props.theme.fontSizeBase};
   padding: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px")};
   font-family: ${(props) => props.theme.fontFamily};
   background-color: ${(props) => props.theme.backgroundColor};
@@ -211,7 +212,7 @@ const Point = styled.span`
 `;
 
 const BottomLink = styled.a`
-  text-decoration: none;
+  text-decoration: ${(props) => props.theme.textDecoration};
   color: ${(props) => props.theme.fontColor};
   font-size: ${(props) => props.theme.fontSize};
 `;

@@ -33,6 +33,7 @@ const Link = ({ href, onClick, children }) => {
 };
 
 const SideNavContainer = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   background-color: ${(props) => props.theme.backgroundColor};
   max-width: 300px;
   font-family: ${(props) => props.theme.fontFamily};
@@ -58,24 +59,30 @@ const SideNavContainer = styled.div`
 `;
 
 const SideNavMenuTitle = styled.div`
-  font: normal normal normal 24px/33px Open Sans;
-  letter-spacing: 0px;
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize24};
+  font-style: ${(props) => props.theme.fontStyle};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacingTitle};
   color: #000000de;
   margin: 15px 0;
 `;
 
 const SideNavMenuSubTitle = styled.div`
-  font: normal normal normal 12px/17px Open Sans;
-  letter-spacing: 1.88px;
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize12};
+  font-style: ${(props) => props.theme.fontStyle};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacingSubtitle};
   color: #00000099;
-  text-transform: uppercase;
+  text-transform: ${(props) => props.theme.fontTextTransform};
   margin-top: 15px;
 `;
 
 const SideNavMenuLink = styled.a`
-  text-decoration: none;
-  font: normal normal normal 14px/19px Open Sans;
-  letter-spacing: 0.24px;
+  text-decoration: ${(props) => props.theme.textDecoration};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize14};
+  font-style: ${(props) => props.theme.fontStyle};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacingLink};
   color: #00000099;
   margin: 6px 18px;
   cursor: pointer;

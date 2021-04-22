@@ -68,8 +68,8 @@ const calculateWidth = (margin, size) => {
 };
 
 const LabelContainer = styled.span`
-  line-height: 18px;
-  fontSize: ${(props) => props.theme.fontSize};
+  line-height: ${(props) => props.theme.fontLineHeight};
+  font-size: ${(props) => props.theme.fontSize};
   text-overflow: ellipsis;
   overflow: hidden;
 `;
@@ -96,6 +96,7 @@ const ButtonIcon = styled.img`
 `;
 
 const DxCButton = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -116,15 +117,14 @@ const DxCButton = styled.div`
       flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
-    letter-spacing: 1px;
+    letter-spacing: ${(props) => props.theme.fontLetterSpacingWide01};
     box-shadow: none;
-    fontSize: ${(props) => props.theme.fontSize};
-    font-weight: 500;
+    font-size: ${(props) => props.theme.fontSize};
+    font-weight: ${(props) => props.theme.fontWeight};
     min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
     border-radius: 4px;
     width: 100%;
     min-height: 43px;
-    line-height: 1;
     font-family: ${(props) => props.theme.fontFamily};
     &:focus {
       outline: ${(props) => props.theme.focusColor} auto 1px;

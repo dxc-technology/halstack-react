@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import "../common/OpenSans.css";
-import { spaces, globalTokens, componentTokens } from "../common/variables.js";
+import { spaces, componentTokens } from "../common/variables.js";
 
 const DxcHeading = ({ level = 1, text = "", weight = "", margin }) => {
   return (
@@ -32,53 +32,74 @@ const HeadingContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  font-size: ${componentTokens?.heading?.fontSizeBase};
 
-    font-family: ${componentTokens?.heading?.fontFamily};
+  font-family: ${componentTokens?.heading?.fontFamily};
   color: inherit;
 `;
 
 const HeadingLevel1 = styled.h1`
   font-size: ${componentTokens?.heading?.fontSize60};
-  line-height: 82px;
+  line-height: ${componentTokens?.heading?.fontHeightLevelCompact};
   font-weight: ${(props) =>
-    props.weight === "light" || props.weight === "" ? 200 : props.weight === "normal" ? 400 : 600};
-  letter-spacing: -0.53px;
+    props.weight === "light" || props.weight === ""
+      ? componentTokens?.heading?.fontWeightLight
+      : props.weight === "normal"
+      ? componentTokens?.heading?.fontWeight400
+      : componentTokens?.heading?.fontWeight600};
+  letter-spacing: ${componentTokens?.heading?.fontLetterSpacingTight01};
   margin: 0;
 `;
 
 const HeadingLevel2 = styled.h2`
   font-size: ${componentTokens?.heading?.fontSize48};
-  line-height: 65px;
+  line-height: ${componentTokens?.heading?.fontHeightLevelNormal};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
-  letter-spacing: 0px;
+    props.weight === "normal" || props.weight === ""
+      ? componentTokens?.heading?.fontWeight400
+      : props.weight === "light"
+      ? componentTokens?.heading?.fontWeightLight
+      : componentTokens?.heading?.fontWeight600};
+  letter-spacing: ${componentTokens?.heading?.type_spacing_normal};
   margin: 0;
 `;
 
 const HeadingLevel3 = styled.h3`
   font-size: ${componentTokens?.heading?.fontSize34};
-  line-height: 46px;
+  line-height: ${componentTokens?.heading?.fontHeightLevelCompact};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
-  letter-spacing: 0.24px;
+    props.weight === "normal" || props.weight === ""
+      ? componentTokens?.heading?.fontWeight400
+      : props.weight === "light"
+      ? componentTokens?.heading?.fontWeightLight
+      : componentTokens?.heading?.fontWeight600};
+  letter-spacing: ${componentTokens?.heading?.type_spacing_wide_01};
   margin: 0;
 `;
 
 const HeadingLevel4 = styled.h4`
-font-size: ${componentTokens?.heading?.fontSize24};
-line-height: 33px;
+  font-size: ${componentTokens?.heading?.fontSize24};
+  line-height: ${componentTokens?.heading?.fontHeightLevelNormal};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
-  letter-spacing: 0px;
+    props.weight === "normal" || props.weight === ""
+      ? componentTokens?.heading?.fontWeight400
+      : props.weight === "light"
+      ? componentTokens?.heading?.fontWeightLight
+      : componentTokens?.heading?.fontWeight600};
+  letter-spacing: ${componentTokens?.heading?.type_spacing_normal};
   margin: 0;
 `;
 
 const HeadingLevel5 = styled.h5`
   font-size: ${componentTokens?.heading?.fontSize20};
-  line-height: 27px;
+  line-height: ${componentTokens?.heading?.fontHeightLevelNormal};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === "" ? 400 : props.weight === "light" ? 200 : 600};
-  letter-spacing: 0.26px;
+    props.weight === "normal" || props.weight === ""
+      ? componentTokens?.heading?.fontWeight400
+      : props.weight === "light"
+      ? componentTokens?.heading?.fontWeightLight
+      : componentTokens?.heading?.fontWeight600};
+  letter-spacing: ${componentTokens?.heading?.type_spacing_wide_01};
   margin: 0;
 `;
 

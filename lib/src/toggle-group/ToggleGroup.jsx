@@ -83,6 +83,8 @@ const DxcToggleGroup = ({
 };
 
 const ToggleGroup = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
+
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -142,8 +144,9 @@ const ToggleContainer = styled.div`
 const LabelContainer = styled.span`
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
-  letter-spacing: 1.25px;
-  text-transform: uppercase;
+  font-style: ${(props) => props.theme.fontStyle};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacingWide02};
+  text-transform: ${(props) => props.theme.fontTextTransform};
 `;
 
 const Icon = styled.img`

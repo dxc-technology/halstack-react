@@ -55,6 +55,7 @@ const DxcLink = ({
 };
 
 const LinkText = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -65,7 +66,7 @@ const LinkText = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  text-decoration: none;
+  text-decoration: ${(props) => props.theme.textDecoration};
 
   ${(props) =>
     props.underlined &&
@@ -96,7 +97,7 @@ const LinkText = styled.div`
     ${(props) =>
       !props.disabled &&
       `color: ${props.theme.hoverFontColor} !important;
-          text-decoration: none;
+          text-decoration: ${(props) => props.theme.textDecoration};
           padding-bottom: 1px !important;
           border-bottom: 1px solid;
           cursor: pointer;`}
@@ -132,7 +133,7 @@ const LinkIconContainer = styled.div`
 `;
 
 const StyledLink = styled.a`
-  text-decoration: none;
+  text-decoration: ${(props) => props.theme.textDecoration};
   color: ${(props) =>
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
 `;

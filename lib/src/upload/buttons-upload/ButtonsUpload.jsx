@@ -55,7 +55,7 @@ const DragAndDropLabel = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-style: italic;
+  font-style: ${(props) => props.theme.fontStyle};
   font-size: ${(props) => props.theme.fontSize12};
   color: ${(props) => props.theme.fontColor};
   margin-right: 50px;

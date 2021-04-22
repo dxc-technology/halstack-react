@@ -95,6 +95,7 @@ DxcAlert.propTypes = {
 };
 
 const AlertModal = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   width: ${(props) => (props.mode === "modal" ? "100%" : "")};
   height: ${(props) => (props.mode === "modal" ? "100%" : "")};
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
@@ -160,9 +161,9 @@ const AlertInfo = styled.div`
 `;
 
 const AlertType = styled.div`
-  text-transform: uppercase;
+  text-transform: ${(props) => props.theme.fontTextTransform};
   padding-right: 10px;
-  font-weight: bold;
+  font-weight: ${(props) => props.theme.fontWeight};
 `;
 
 const AlertText = styled.div`

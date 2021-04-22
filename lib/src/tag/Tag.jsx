@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
+import useTheme from "../useTheme.js";
 
 import DxcBox from "../box/Box";
 
@@ -18,6 +19,7 @@ const DxcTag = ({
   size = "fitContent",
   tabIndex = 1
 }) => {
+  const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
     if (onClick) {
@@ -74,6 +76,8 @@ const calculateWidth = (size) => {
 };
 
 const StyledDxcTag = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
+
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
@@ -91,7 +95,7 @@ const TagContent = styled.div`
 `;
 
 const StyledLink = styled.a`
-  text-decoration: none;
+  text-decoration: ${(props) => props.theme.textDecoration};
 `;
 
 const StyledButton = styled.button`
@@ -130,8 +134,8 @@ const IconContainer = styled.div`
 const TagLabel = styled.div`
   padding: 0px 30px;
   font-size: ${(props) => props.theme.fontSize};
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  text-transform: ${(props) => props.theme.fontTextTransform};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacingWide01};
   color: black;
   flex-grow: 1;
   text-align: center;

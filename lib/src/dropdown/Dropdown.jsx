@@ -184,6 +184,7 @@ const calculateWidth = (margin, size) => {
 
 const DxCDropdownContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
+  font-size: ${(props) => props.theme.fontSizeBase};
   text-overflow: ellipsis;
   overflow: hidden;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
