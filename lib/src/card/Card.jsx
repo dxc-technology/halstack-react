@@ -16,16 +16,18 @@ const DxcCard = ({
   imagePosition,
   outlined,
   imageCover,
-  tabIndex=0
+  tabIndex = 0,
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
 
   const tagContent = (
     <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
       <CardContainer hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
-        <ImageContainer imageBgColor={imageBgColor}>
-          <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
-        </ImageContainer>
+        {imageSrc && (
+          <ImageContainer imageBgColor={imageBgColor}>
+            <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
+          </ImageContainer>
+        )}
         <CardContent>{children}</CardContent>
       </CardContainer>
     </DxcBox>
@@ -40,7 +42,12 @@ const DxcCard = ({
       hasAction={onClick}
       tabIndex={typeof onClick === "function" && !linkHref ? tabIndex : -1}
     >
-      {(linkHref && <StyledLink tabIndex={tabIndex} href={linkHref}>{tagContent}</StyledLink>) || tagContent}
+      {(linkHref && (
+        <StyledLink tabIndex={tabIndex} href={linkHref}>
+          {tagContent}
+        </StyledLink>
+      )) ||
+        tagContent}
     </StyledDxcCard>
   );
 };
@@ -48,7 +55,7 @@ const DxcCard = ({
 const StyledDxcCard = styled.div`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
-  outline: ${({hasAction}) => (!hasAction && "none")};
+  outline: ${({ hasAction }) => !hasAction && "none"};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
@@ -58,7 +65,6 @@ const StyledDxcCard = styled.div`
 
 const CardContainer = styled.div`
   display: inline-flex;
-  align-items: center;
   flex-direction: ${({ imagePosition }) => (imagePosition === "before" && "row") || "row-reverse"};
   height: 220px;
   width: 400px;
@@ -92,7 +98,7 @@ const ImageContainer = styled.div`
 
 const CardContent = styled.div`
   flex-grow: 1;
-  height: 100%;
+  padding: 20px;
   overflow: hidden;
 `;
 
@@ -114,7 +120,7 @@ DxcCard.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 DxcCard.defaultProps = {
