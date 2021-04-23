@@ -12,7 +12,11 @@ const buttonPropsTable = () => {
       <tr>
         <td>imageSrc: string</td>
         <td></td>
-        <td>URL of the image that will be placed in the card component.</td>
+        <td>
+          URL of the image that will be placed in the card component. In case of
+          omission, the image container will not appear and the content will
+          occupy its space.
+        </td>
       </tr>
       <tr>
         <td>imageBgColor: string</td>
