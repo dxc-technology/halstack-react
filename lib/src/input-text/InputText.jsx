@@ -241,7 +241,7 @@ const DxcInputText = ({
         />
       </TextContainer>
 
-      <Popper
+      <DxcSuggestions
         open={isOpen}
         anchorEl={anchorEl}
         anchororigin={{
@@ -285,7 +285,7 @@ const DxcInputText = ({
             </Paper>
           </React.Fragment>
         </SuggestionsContainer>
-      </Popper>
+      </DxcSuggestions>
     </ThemeProvider>
   );
 };
@@ -317,6 +317,10 @@ const getCursor = (interactuable, disabled) => {
   }
   return "cursor:default; outline:none;";
 };
+
+const DxcSuggestions = styled(Popper)`
+  z-index: 1301;
+`;
 
 const SuggestionsContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
