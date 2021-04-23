@@ -9,6 +9,7 @@ const DxcCard = ({
   imageSrc,
   children,
   margin,
+  contentPadding,
   linkHref,
   onClick,
   imageBgColor,
@@ -28,7 +29,7 @@ const DxcCard = ({
             <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
           </ImageContainer>
         )}
-        <CardContent>{children}</CardContent>
+        <CardContent contentPadding={contentPadding}>{children}</CardContent>
       </CardContainer>
     </DxcBox>
   );
@@ -69,7 +70,7 @@ const CardContainer = styled.div`
   height: 220px;
   width: 400px;
   &:hover {
-    border-color: ${(props) => (props.hasAction ? "#FFED00" : "unset")};
+    border-color: ${({ hasAction }) => (hasAction ? "#FFED00" : "unset")};
   }
 `;
 
@@ -98,7 +99,16 @@ const ImageContainer = styled.div`
 
 const CardContent = styled.div`
   flex-grow: 1;
-  padding: 20px;
+  padding: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding !== "object" ? spaces[contentPadding] : "0px"};
+  padding-top: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding === "object" && contentPadding.top ? spaces[contentPadding.top] : ""};
+  padding-right: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding === "object" && contentPadding.right ? spaces[contentPadding.right] : ""};
+  padding-bottom: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding === "object" && contentPadding.bottom ? spaces[contentPadding.bottom] : ""};
+  padding-left: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding === "object" && contentPadding.left ? spaces[contentPadding.left] : ""};
   overflow: hidden;
 `;
 
@@ -120,12 +130,22 @@ DxcCard.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  contentPadding: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces)),
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
   tabIndex: PropTypes.number,
 };
 
 DxcCard.defaultProps = {
   imageSrc: null,
   margin: null,
+  contentPadding: null,
   outlined: false,
   imagePadding: null,
   imageCover: false,
