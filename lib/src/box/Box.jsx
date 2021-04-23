@@ -38,6 +38,7 @@ const StyledDxcBox = styled.div`
   display: ${({ display }) => display};
   border-radius: 4px;
   overflow: hidden;
+  font-size: ${(props) => props.theme.fontSizeBase};
   font-family: ${(props) => props.theme.fontFamily};
   width: ${(props) => calculateWidth(props.margin, props.size, props.padding)};
   background-color: ${(props) => props.theme.backgroundColor};

@@ -123,6 +123,7 @@ const DxcPaginator = ({
   );
 };
 const DxcPaginatorContainer = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   display: flex;
   height: 64px;
   width: 100%;

@@ -22,6 +22,8 @@ const calculateWidth = (margin) => {
 };
 
 const DxcTableContainer = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
+ 
   overflow-x: auto;
   width: ${(props) => calculateWidth(props.margin)};
   font-family: ${(props) => props.theme.fontFamily};
@@ -75,7 +77,7 @@ const DxcTableContent = styled.table`
   & th {
     text-align: left;
     font-size: ${(props) => props.theme.fontSize};
-    font-weight: 500;
+    font-weight: ${(props) => props.theme.fontWeight};
     background-color: ${(props) => props.theme.headerBackgroundColor};
     color: ${(props) => props.theme.headerFontColor};
   }

@@ -139,6 +139,8 @@ const DxcHeader = ({
 DxcHeader.Dropdown = Dropdown;
 
 const HeaderContainer = styled(AppBar)`
+  font-size: ${(props) => props.theme.fontSizeBase};
+
   margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
 
   &.MuiAppBar-colorPrimary {
@@ -222,8 +224,8 @@ const HamburguerItem = styled.div`
 
 const HamburguerTitle = styled.span`
   font-size: ${(props) => props.theme.fontSize};
-  text-transform: uppercase;
-  font-weight: 600;
+  text-transform: ${(props) => props.theme.fontTextTransform};
+  font-weight: ${(props) => props.theme.fontWeight};
 `;
 
 const MainContainer = styled.div`

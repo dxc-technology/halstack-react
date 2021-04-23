@@ -52,6 +52,8 @@ DxcSpinner.propTypes = {
 };
 
 const BackgroundSpinner = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
+
   background-color: ${(props) => (props.mode === "overlay" ? `${props.theme.overlayColor}` : "transparent")};
   opacity: ${(props) => props.mode === "overlay" && "0.8"};
   display: flex;
@@ -117,7 +119,7 @@ const DXCSpinner = styled.div`
 const SpinnerLabel = styled.div`
   margin-top: ${(props) => (props.showValue === false && "52px") || "45px"};
   color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.fontColor)};
-  text-transform: uppercase;
+  text-transform: ${(props) => props.theme.fontTextTransform};
   font-size: ${(props) => props.theme.fontSize};
   text-align: center;
   overflow: hidden;

@@ -304,6 +304,7 @@ const ListIconContainer = styled.div`
 `;
 
 const SelectContainer = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>

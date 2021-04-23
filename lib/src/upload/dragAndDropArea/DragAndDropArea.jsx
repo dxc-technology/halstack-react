@@ -151,7 +151,7 @@ const DragAndDropText = styled.div`
 
 const DragAndDropTitle = styled.div`
   font-size: ${(props) => props.theme.fontSize20};
-  font-weight: bold;
+  font-weight: ${(props) => props.theme.fontWeight};
   margin-bottom: 10px;
 `;
 
@@ -159,7 +159,7 @@ const DragAndDropDescription = styled.div`
   font-size: ${(props) => props.theme.fontSize16};
   margin-bottom: 40px;
   color: ${(props) => props.theme.fontColor};
-  font-style: italic;
+  font-style: ${(props) => props.theme.fontStyle};
 `;
 
 const ButtonChooseFiles = styled.div``;
@@ -232,7 +232,7 @@ const DragAndDropTextHover = styled.div`
   font-size: ${(props) => props.theme.fontSize16};
   margin-bottom: 20px;
   color: ${(props) => props.theme.fontColor};
-  font-style: italic;
+  font-style: ${(props) => props.theme.fontStyle};
 `;
 
 export default DxcDragAndDropArea;

@@ -139,6 +139,7 @@ const StyledTextInput = styled.div`
 const SliderContainer = styled.div`
   display: flex;
   align-items: center;
+  font-size: ${(props) => props.theme.fontSizeBase};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>

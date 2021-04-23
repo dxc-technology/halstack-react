@@ -79,7 +79,7 @@ const TransactionsSubTitle = styled.span`
 `;
 
 const TransactionsNumber = styled.span`
-  font-weight: bold;
+  font-weight: ${(props) => props.theme.fontWeight};
 `;
 
 export default DxcTransactions;

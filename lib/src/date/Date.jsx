@@ -9,7 +9,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 import "../common/OpenSans.css";
-import { spaces, globalTokens } from "../common/variables.js";
+import { spaces, componentTokens } from "../common/variables.js";
 import calendarIcon from "./calendar.svg";
 import useTheme from "../useTheme.js";
 
@@ -133,12 +133,15 @@ const DxcDate = ({
           minHeight: "unset",
           padding: "0px 10px",
           height: "316px",
-          fontFamily: globalTokens?.date?.fontFamily,
+          fontFamily: componentTokens?.date?.fontFamily,
         },
       },
       MuiPickersToolbarText: {
         toolbarTxt: {
-          color: colorsTheme.date.pickerFontColor,
+          color: componentTokens?.date?.pickerFontColor,
+          fontFamily: componentTokens?.date?.fontFamily,
+          fontSize:componentTokens?.date?.fontSize,
+          
         },
         toolbarBtnSelected: {
           color: colorsTheme.date.pickerFontColor,
@@ -183,7 +186,7 @@ const DxcDate = ({
           backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
           margin: "0px 100px",
           borderRadius: "20px",
-          fontSize: globalTokens?.date?.fontSize,
+          fontSize: componentTokens?.date?.fontSize,
         },
         root: {
           "&:focus": {
@@ -266,6 +269,7 @@ const sizes = {
 };
 
 const StyledDPicker = styled.div`
+font-size: ${(props) => props.theme.fontSizeBase};
   background-color: "#FABADA";
 `;
 

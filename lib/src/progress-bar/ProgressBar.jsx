@@ -46,6 +46,7 @@ DxcProgressBar.propTypes = {
 };
 
 const BackgroundProgressBar = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   background-color: ${(props) => (props.overlay === true ? `${props.theme.overlayColor}` : "transparent")};
   opacity: ${(props) => props.overlay === true && "0.8"};
   width: ${(props) => (props.overlay === true ? "100%" : "")};
@@ -96,7 +97,7 @@ const InfoProgressBar = styled.div`
 `;
 
 const ProgressBarLabel = styled.div`
-  text-transform: uppercase;
+  text-transform: ${(props) => props.theme.fontTextTransform};
   font-size: ${(props) => props.theme.fontSize};
   flex-grow: 1;
   color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.fontColor)};
@@ -107,7 +108,7 @@ const ProgressBarLabel = styled.div`
 `;
 
 const ProgressBarProgress = styled.div`
-font-size: ${(props) => props.theme.fontSize};
+  font-size: ${(props) => props.theme.fontSize};
   color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.fontColor)};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
   width: 5%;

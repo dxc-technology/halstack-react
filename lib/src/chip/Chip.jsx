@@ -90,6 +90,7 @@ const getCursor = (interactuable, disabled) => {
 };
 
 const StyledDxcChip = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   display: inline-flex;
   align-items: center;
   border-radius: 50px;

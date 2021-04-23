@@ -83,7 +83,7 @@ const StepsContainer = styled.div`
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: "center";
   ${(props) => (props.mode === "vertical" ? "height: 500px" : "width: 100%")};
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.wizard.fontFamily};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -179,7 +179,8 @@ const StepIconContainer = styled.div`
 const Number = styled.p`
   font-size: ${(props) => props.theme.wizard.fontSize16};
   font-family: ${(props) => props.theme.wizard.fontFamily};
-  letter-spacing: 0.77px;
+  font-style: ${(props) => props.theme.wizard.fontStyle};
+  letter-spacing: ${(props) => props.theme.wizard.fontLetterSpacingWide02};
   color: ${(props) => (props.disabled ? `${props.theme.wizard.disabledFont}` : `${props.theme.wizard.fontColor}`)};
   opacity: 1;
   margin: 0;
@@ -202,7 +203,8 @@ const Label = styled.p`
   text-align: left;
   font-family: ${(props) => props.theme.wizard.fontFamily};
   font-size: ${(props) => props.theme.wizard.fontSize16};
-  letter-spacing: 0.77px;
+  font-style: ${(props) => props.theme.wizard.fontSytle};
+  ${(props) => props.theme.wizard.fontLetterSpacingWide02};
   color: inherit;
   margin: 0;
 `;
@@ -211,7 +213,8 @@ const Description = styled.p`
   text-align: left;
   font-family: ${(props) => props.theme.wizard.fontFamily};
   font-size: ${(props) => props.theme.wizard.fontSize12};
-  letter-spacing: 0.58px;
+  font-style: ${(props) => props.theme.wizard.fontSytle};
+  letter-spacing: ${(props) => props.theme.wizard.fontLetterSpacingWide01};
   color: inherit;
   margin: 0;
 `;

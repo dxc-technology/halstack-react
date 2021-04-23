@@ -169,6 +169,7 @@ const HeaderRow = styled.thead`
   height: 60px;
 `;
 const DxcResultsetTableContainer = styled.div`
+  font-size: ${(props) => props.theme.fontSizeBase};
   overflow-y: hidden;
   overflow-x: auto;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
