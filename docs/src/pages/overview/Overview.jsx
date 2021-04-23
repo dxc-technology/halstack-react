@@ -4,6 +4,8 @@ import {
   DxcTag,
   DxcHeading,
   DxcLink,
+  DxcFooter,
+  DxcApplicationLayout,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -13,6 +15,7 @@ import Section from "../components/common/Section";
 import githubLogo from "./github-logo.png";
 import dxcLogo from "./dxc-logo.png";
 import reactLogo from "../../common/react-icon.png";
+import Header from "../../common/Header";
 
 function Install() {
   return (
@@ -302,78 +305,102 @@ function Support() {
 
 function Overview() {
   return (
-    <Content>
-      <OverviewHeader>
-        <ReactLogo src={reactLogo}></ReactLogo>
-        <HeaderTitles>
-          <Title>Dxc Components</Title>
-          <Subtitle>For React</Subtitle>
-        </HeaderTitles>
-      </OverviewHeader>
-      <LinksSection>
-        <DxcTag
-          margin={{ top: "medium", bottom: "medium", right: "medium" }}
-          linkHref="https://developer.dxc.com/design/principles"
-          iconSrc={dxcLogo}
-          label="Design Guidelines"
-        ></DxcTag>
-        <DxcTag
-          margin={{ top: "medium", bottom: "medium", right: "medium" }}
-          linkHref="https://github.com/dxc-technology/halstack-react"
-          iconSrc={githubLogo}
-          label="GitHub"
-        ></DxcTag>
-      </LinksSection>
-      <Introduction>
-        <p>
-          DXC React Components is a library of reusable elements, made with the
-          purpose of helping React developers with the task of implementing User
-          Interfaces that follow the{" "}
-          <DxcLink
-            href="https://developer.dxc.com"
-            inheritColor
-            newWindow
-            text="DXC Design Guidelines"
-          ></DxcLink>{" "}
-          right out of the box.
-        </p>
-        <ul>
-          <li>
-            It increases <b>visual and behavioral consistency</b> across the
-            applications using the library.
-          </li>
-          <li>
-            It <b>cuts down development</b> time, taking the responsability of
-            implementing the Design Guidelines away from the developer, and
-            allowing him to focus on providing business value.
-          </li>
-        </ul>
-      </Introduction>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Install",
-            section: Install,
-          },
-          {
-            tabLabel: "Use Components",
-            section: UseComponents,
-          },
-          {
-            tabLabel: "Custom Themes",
-            section: CustomThemes,
-          },
-          {
-            tabLabel: "Support",
-            section: Support,
-          },
-        ]}
-      ></DxcTabsForSections>
-    </Content>
+    <DxcApplicationLayout>
+      <DxcApplicationLayout.Header>
+        <StyledHeader>
+          <Header></Header>
+        </StyledHeader>
+      </DxcApplicationLayout.Header>
+      <DxcApplicationLayout.Main>
+        <Content>
+          <OverviewHeader>
+            <ReactLogo src={reactLogo}></ReactLogo>
+            <HeaderTitles>
+              <Title>Dxc Components</Title>
+              <Subtitle>For React</Subtitle>
+            </HeaderTitles>
+          </OverviewHeader>
+          <LinksSection>
+            <DxcTag
+              margin={{ top: "medium", bottom: "medium", right: "medium" }}
+              linkHref="https://developer.dxc.com/design/principles"
+              iconSrc={dxcLogo}
+              label="Design Guidelines"
+            ></DxcTag>
+            <DxcTag
+              margin={{ top: "medium", bottom: "medium", right: "medium" }}
+              linkHref="https://github.com/dxc-technology/halstack-react"
+              iconSrc={githubLogo}
+              label="GitHub"
+            ></DxcTag>
+          </LinksSection>
+          <Introduction>
+            <p>
+              DXC React Components is a library of reusable elements, made with
+              the purpose of helping React developers with the task of
+              implementing User Interfaces that follow the{" "}
+              <DxcLink
+                href="https://developer.dxc.com"
+                inheritColor
+                newWindow
+                text="DXC Design Guidelines"
+              ></DxcLink>{" "}
+              right out of the box.
+            </p>
+            <ul>
+              <li>
+                It increases <b>visual and behavioral consistency</b> across the
+                applications using the library.
+              </li>
+              <li>
+                It <b>cuts down development</b> time, taking the responsability
+                of implementing the Design Guidelines away from the developer,
+                and allowing him to focus on providing business value.
+              </li>
+            </ul>
+          </Introduction>
+          <DxcTabsForSections
+            stickAtPx={64}
+            tabsMode="underlined"
+            sections={[
+              {
+                tabLabel: "Install",
+                section: Install,
+              },
+              {
+                tabLabel: "Use Components",
+                section: UseComponents,
+              },
+              {
+                tabLabel: "Custom Themes",
+                section: CustomThemes,
+              },
+              {
+                tabLabel: "Support",
+                section: Support,
+              },
+            ]}
+          ></DxcTabsForSections>
+        </Content>
+      </DxcApplicationLayout.Main>
+      <DxcApplicationLayout.Footer>
+        <DxcFooter
+          bottomLinks={[
+            { text: "Twitter", href: "http://www.google.com" },
+            { text: "Facebook", href: "http://www.google.com" },
+            { text: "Instagram", href: "http://www.google.com" },
+          ]}
+          copyright="© DXC Technology 2020. All rights reserved."
+        ></DxcFooter>
+      </DxcApplicationLayout.Footer>
+    </DxcApplicationLayout>
   );
 }
+const StyledHeader = styled.div`
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+`;
 
 const Content = styled.div`
   max-width: 1120px;
