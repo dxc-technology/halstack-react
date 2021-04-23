@@ -9,6 +9,7 @@ const DxcCard = ({
   imageSrc,
   children,
   margin,
+  contentPadding,
   linkHref,
   onClick,
   imageBgColor,
@@ -16,17 +17,19 @@ const DxcCard = ({
   imagePosition,
   outlined,
   imageCover,
-  tabIndex=0
+  tabIndex = 0,
 }) => {
   const [isHovered, changeIsHovered] = useState(false);
 
   const tagContent = (
     <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
       <CardContainer hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
-        <ImageContainer imageBgColor={imageBgColor}>
-          <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
-        </ImageContainer>
-        <CardContent>{children}</CardContent>
+        {imageSrc && (
+          <ImageContainer imageBgColor={imageBgColor}>
+            <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
+          </ImageContainer>
+        )}
+        <CardContent contentPadding={contentPadding}>{children}</CardContent>
       </CardContainer>
     </DxcBox>
   );
@@ -40,7 +43,12 @@ const DxcCard = ({
       hasAction={onClick}
       tabIndex={typeof onClick === "function" && !linkHref ? tabIndex : -1}
     >
-      {(linkHref && <StyledLink tabIndex={tabIndex} href={linkHref}>{tagContent}</StyledLink>) || tagContent}
+      {(linkHref && (
+        <StyledLink tabIndex={tabIndex} href={linkHref}>
+          {tagContent}
+        </StyledLink>
+      )) ||
+        tagContent}
     </StyledDxcCard>
   );
 };
@@ -48,7 +56,7 @@ const DxcCard = ({
 const StyledDxcCard = styled.div`
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
-  outline: ${({hasAction}) => (!hasAction && "none")};
+  outline: ${({ hasAction }) => !hasAction && "none"};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
@@ -58,12 +66,11 @@ const StyledDxcCard = styled.div`
 
 const CardContainer = styled.div`
   display: inline-flex;
-  align-items: center;
   flex-direction: ${({ imagePosition }) => (imagePosition === "before" && "row") || "row-reverse"};
   height: 220px;
   width: 400px;
   &:hover {
-    border-color: ${(props) => (props.hasAction ? "#FFED00" : "unset")};
+    border-color: ${({ hasAction }) => (hasAction ? "#FFED00" : "unset")};
   }
 `;
 
@@ -92,7 +99,16 @@ const ImageContainer = styled.div`
 
 const CardContent = styled.div`
   flex-grow: 1;
-  height: 100%;
+  padding: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding !== "object" ? spaces[contentPadding] : "0px"};
+  padding-top: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding === "object" && contentPadding.top ? spaces[contentPadding.top] : ""};
+  padding-right: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding === "object" && contentPadding.right ? spaces[contentPadding.right] : ""};
+  padding-bottom: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding === "object" && contentPadding.bottom ? spaces[contentPadding.bottom] : ""};
+  padding-left: ${({ contentPadding }) =>
+    contentPadding && typeof contentPadding === "object" && contentPadding.left ? spaces[contentPadding.left] : ""};
   overflow: hidden;
 `;
 
@@ -114,12 +130,22 @@ DxcCard.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  contentPadding: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces)),
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
+  tabIndex: PropTypes.number,
 };
 
 DxcCard.defaultProps = {
   imageSrc: null,
   margin: null,
+  contentPadding: null,
   outlined: false,
   imagePadding: null,
   imageCover: false,

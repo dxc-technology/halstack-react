@@ -16,7 +16,9 @@ const buttonPropsTable = () => {
       </tr>
       <tr>
         <td>imageBgColor: string</td>
-        <td></td>
+        <td>
+          <code>'black'</code>
+        </td>
         <td>Color of the image background.</td>
       </tr>
       <tr>
@@ -69,11 +71,19 @@ const buttonPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>contentPadding: string | object</td>
+        <td></td>
+        <td>
+          Size of the padding to be applied to the content area ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different padding sizes.
+        </td>
+      </tr>
+      <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex given when there is an href.
-        </td>
+        <td>Value of the tabindex given when there is an href.</td>
       </tr>
     </DxcTable>
   );
