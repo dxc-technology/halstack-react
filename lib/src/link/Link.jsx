@@ -90,7 +90,6 @@ const LinkText = styled.div`
   align-items: center;
 
   max-width: 100%;
-  font-size: ${(props) => props.theme.fontSize};
   padding-bottom: 2px;
 
   &:hover {
