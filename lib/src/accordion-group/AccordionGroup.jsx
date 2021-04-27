@@ -32,17 +32,19 @@ const DxcAccordionGroup = ({ disabled = false, onActiveChange, indexActive = und
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
       <AccordionGroupContainer margin={margin} disabled={disabled}>
-        {children
-          .filter((el) => el.type === Accordion)
-          .map((el, index) =>
-            React.cloneElement(el, {
-              onChange: () => {
-                handlerActiveChange(index);
-              },
-              isExpanded: index === innerIsExpanded,
-              disabled: disabled || el.props.disabled,
-            })
-          )}
+        {(Array.isArray(children) &&
+          children
+            .filter((el) => el.type === Accordion)
+            .map((el, index) =>
+              React.cloneElement(el, {
+                onChange: () => {
+                  handlerActiveChange(index);
+                },
+                isExpanded: index === innerIsExpanded,
+                disabled: disabled || el.props.disabled,
+              })
+            )) ||
+          [children].filter((el) => el.type === Accordion)}
       </AccordionGroupContainer>
     </ThemeProvider>
   );
