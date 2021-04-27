@@ -47,12 +47,13 @@ const ComponentPreview = ({ customTheme, componentId }) => {
 };
 
 const ComponentPreviewContainer = styled.div`
-  overflow-y: auto;
   height: 70%;
+  overflow: auto;
 
   /* width */
   ::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
   }
 
   /* Track */
