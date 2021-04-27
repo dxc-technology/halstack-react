@@ -16,7 +16,7 @@ const DxcLink = ({
   onClick,
   text = "",
   margin,
-  tabIndex=0
+  tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
 
@@ -42,11 +42,16 @@ const DxcLink = ({
   return (
     <ThemeProvider theme={colorsTheme.link}>
       {onClick ? (
-        <StyledButton onClick={!disabled && onClick} disabled={disabled}>
+        <StyledButton type="button" onClick={!disabled && onClick} disabled={disabled}>
           {linkContent}
         </StyledButton>
       ) : (
-        <StyledLink tabIndex={tabIndex} href={!disabled && href} target={newWindow ? "_blank" : "_self"} inheritColor={inheritColor}>
+        <StyledLink
+          tabIndex={tabIndex}
+          href={!disabled && href}
+          target={newWindow ? "_blank" : "_self"}
+          inheritColor={inheritColor}
+        >
           {linkContent}
         </StyledLink>
       )}
@@ -167,7 +172,7 @@ DxcLink.propTypes = {
   ]),
   newWindow: PropTypes.bool,
   text: PropTypes.string,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcLink;
