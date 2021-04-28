@@ -4,7 +4,12 @@ import iceCreamImagePath from "./images/ice-cream.jpg";
 
 const code = `() => {
   return (
-    <DxcCard imageSrc={iceCreamImagePath} imageCover={true} margin="small">
+    <DxcCard 
+      imageSrc={iceCreamImagePath} 
+      imageCover={true} 
+      margin="small"
+      contentPadding="xsmall"
+    >
       Lorem Ipsum
     </DxcCard>
   );
@@ -13,7 +18,7 @@ const code = `() => {
 const scope = {
   DxcCard,
   iceCreamImagePath,
-  useState
+  useState,
 };
 
 export default { code, scope };
