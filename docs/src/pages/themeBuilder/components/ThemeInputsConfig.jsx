@@ -47,7 +47,11 @@ const ThemeInputsConfig = ({ componentInputs, onChangeCustomTheme }) => {
             .map((propertyName) => (
               <LogoContainer>
                 <PropertyName>{propertyName}</PropertyName>
-                <LogoConfig propertyName={propertyName} propertyValue={componentInputs[propertyName]} onChangeCustomTheme={onChangeCustomTheme} />
+                <LogoConfig
+                  propertyName={propertyName}
+                  propertyValue={componentInputs[propertyName]}
+                  onChangeCustomTheme={onChangeCustomTheme}
+                />
               </LogoContainer>
             ))}
         </ColorInfoColumn>
@@ -73,6 +77,31 @@ const PropertiesContent = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-grow: 1;
+  flex-wrap: wrap;
+  overflow: auto;
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #d9d9d9;
+    border-radius: 26px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #666666;
+    border-radius: 26px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 `;
 
 const PropertyContainer = styled.div`
