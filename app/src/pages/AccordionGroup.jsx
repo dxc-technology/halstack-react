@@ -39,6 +39,18 @@ function App() {
           </DxcAccordionGroup.Accordion>
         </DxcAccordionGroup>
       </div>
+      <div className="test-case" id="accordion-group-one-children">
+        <h4>Accordion Group with one children</h4>
+        <DxcAccordionGroup>
+          <DxcAccordionGroup.Accordion label="Accordion1" padding="medium">
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </div>
+          </DxcAccordionGroup.Accordion>
+        </DxcAccordionGroup>
+      </div>
       <div className="test-case" id="light-theme-default">
         <h4>Accordion Group Uncontrolled with undefined ActiveIndex</h4>
 
