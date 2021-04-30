@@ -2,7 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 

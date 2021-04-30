@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import "../common/OpenSans.css";
+
 import useTheme from "../useTheme.js";
 
 const DxcBox = ({ shadowDepth, margin, padding, display = "inline-flex", children, size = "fitContent" }) => {

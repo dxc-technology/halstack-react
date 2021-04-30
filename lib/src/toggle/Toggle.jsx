@@ -3,7 +3,7 @@ import React from "react";
 import { ToggleButton } from "@material-ui/lab";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
-import "../common/OpenSans.css";
+
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 

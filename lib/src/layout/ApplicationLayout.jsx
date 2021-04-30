@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React, { useState, useEffect, useRef } from "react";
-import { DxcHeader, DxcFooter, DxcSidenav } from "@dxc-technology/halstack-react";
+import { DxcHeader, DxcFooter, DxcSidenav } from "../main";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces, responsiveSizes } from "../common/variables.js";

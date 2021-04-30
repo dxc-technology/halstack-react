@@ -8,7 +8,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
-import "../common/OpenSans.css";
+
 import { spaces, componentTokens } from "../common/variables.js";
 import calendarIcon from "./calendar.svg";
 import useTheme from "../useTheme.js";

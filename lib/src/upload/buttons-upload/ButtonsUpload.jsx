@@ -2,7 +2,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
-import "../../common/OpenSans.css";
 import Button from "../../button/Button";
 import uploadIcon from "./upload-button.svg";
 import dragAndDropIcon from "./drag-drop-icon.svg";

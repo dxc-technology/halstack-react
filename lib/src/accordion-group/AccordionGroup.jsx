@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcAccordion from "../accordion/Accordion";
-import "../common/OpenSans.css";
+
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";

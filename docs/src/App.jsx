@@ -5,28 +5,31 @@ import ScrollToTop from "./common/ScrollToTop";
 import Components from "./pages/components/Components";
 import Overview from "./pages/overview/Overview";
 import ThemeBuilder from "./pages/themeBuilder/ThemeBuilder";
+import { ThemeProvider } from "@dxc-technology/halstack-react";
 
 function App() {
   return (
-    <MainContainer>
-      <HashRouter>
-        <ScrollToTop />
-        <Route path="/components/">
-          <Components />
-        </Route>
-        <Route exact path="/overview">
-          <Overview />
-        </Route>
-        <Route exact path="/themeBuilder">
-          <ThemeBuilder></ThemeBuilder>
-        </Route>
-        <Route exact path="/">
-          <Content>
+    <ThemeProvider>
+      <MainContainer>
+        <HashRouter>
+          <ScrollToTop />
+          <Route path="/components/">
+            <Components />
+          </Route>
+          <Route exact path="/overview">
             <Overview />
-          </Content>
-        </Route>
-      </HashRouter>
-    </MainContainer>
+          </Route>
+          <Route exact path="/themeBuilder">
+            <ThemeBuilder></ThemeBuilder>
+          </Route>
+          <Route exact path="/">
+            <Content>
+              <Overview />
+            </Content>
+          </Route>
+        </HashRouter>
+      </MainContainer>
+    </ThemeProvider>
   );
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from "react";
 import styled from "styled-components";
-import "../common/OpenSans.css";
+
 import PropTypes from "prop-types";
 import DragAndDropArea from "./dragAndDropArea/DragAndDropArea";
 import FilesToUpload from "./files-upload/FilesToUpload";

@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";

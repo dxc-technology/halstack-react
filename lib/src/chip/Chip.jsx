@@ -2,7 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
-import "../common/OpenSans.css";
+
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 

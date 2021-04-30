@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import "../common/OpenSans.css";
+
 
 const DxcBadge = ({ notificationText }) => {
   return (

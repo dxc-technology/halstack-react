@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css";
+
 import { spaces, componentTokens } from "../common/variables.js";
 
 const DxcHeading = ({ level = 1, text = "", weight = "", margin }) => {

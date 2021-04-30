@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import closeIcon from "./close.svg";
 import errorIcon from "./error.svg";

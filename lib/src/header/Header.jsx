@@ -246,7 +246,7 @@ const ResponsiveMenu = styled.div`
   color: ${(props) => props.theme.fontColorMenu};
   width: ${(props) =>
     props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge ? "60vw" : "100vw"};
-  height: ${window.innerHeight}px;
+  height: 100vh;
   padding: 20px;
   transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
   opacity: ${(props) => (props.hasVisibility ? "1" : "0.96")};
