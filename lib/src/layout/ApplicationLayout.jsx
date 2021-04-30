@@ -137,39 +137,39 @@ const DxcApplicationLayout = ({ children }) => {
 
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
-      <ApplicationLayoutContainer ref={ref}>
-        <HeaderContainer>{header}</HeaderContainer>
-        <BodyContainer>
-          <ContentContainer>
-            <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
-              {sideNav}
-              <ArrowContainer>
-                {sideNav && (displayArrow || isResponsive) && (
-                  <ArrowTrigger tabIndex={0} onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
-                    <ArrowIcon />
-                  </ArrowTrigger>
-                )}
-              </ArrowContainer>
-            </SideNavArrowContainer>
-            <MainBodyContainer>
-              <MainContent
-                sideNav={sideNav}
-                mode={isResponsive ? "overlay" : sideNavMode}
-                isSideNavVisible={isSideNavVisible}
-              >
-                {main}
-              </MainContent>
-              <FooterContainer
-                sideNav={sideNav}
-                mode={isResponsive ? "overlay" : sideNavMode}
-                isSideNavVisible={isSideNavVisible}
-              >
-                {footer}
-              </FooterContainer>
-            </MainBodyContainer>
-          </ContentContainer>
-        </BodyContainer>
-      </ApplicationLayoutContainer>
+          <ApplicationLayoutContainer ref={ref}>
+          <HeaderContainer>{header}</HeaderContainer>
+          <BodyContainer>
+            <ContentContainer>
+              <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
+                {sideNav}
+                <ArrowContainer>
+                  {sideNav && (displayArrow || isResponsive) && (
+                    <ArrowTrigger tabIndex={0} onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
+                      <ArrowIcon />
+                    </ArrowTrigger>
+                  )}
+                </ArrowContainer>
+              </SideNavArrowContainer>
+              <MainBodyContainer>
+                <MainContent
+                  sideNav={sideNav}
+                  mode={isResponsive ? "overlay" : sideNavMode}
+                  isSideNavVisible={isSideNavVisible}
+                >
+                  {main}
+                </MainContent>
+                <FooterContainer
+                  sideNav={sideNav}
+                  mode={isResponsive ? "overlay" : sideNavMode}
+                  isSideNavVisible={isSideNavVisible}
+                >
+                  {footer}
+                </FooterContainer>
+              </MainBodyContainer>
+            </ContentContainer>
+          </BodyContainer>
+          </ApplicationLayoutContainer>
     </ThemeProvider>
   );
 };
@@ -186,11 +186,11 @@ const ApplicationLayoutContainer = styled.div`
   top: 64px;
   bottom: 0;
   left: 0;
-  right: 0;
+  right:0;
 `;
 
 const HeaderContainer = styled.div`
-  z-index: 20;
+  z-index: 2000;
   position: fixed;
   top: 0;
   left: 0;
@@ -211,7 +211,7 @@ const ContentContainer = styled.div`
 
 const MainBodyContainer = styled.div`
   width: 100%;
-  min-width:0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
 `;
@@ -237,7 +237,7 @@ const MainContent = styled.div`
 const SideNavArrowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  z-index: 12;
+  z-index: 1200;
   transform: ${(props) =>
     props.isSideNavVisible ? "translateX(0)" : !props.isSideNavVisible ? "translateX(-100%)" : ""};
   transition: transform 0.4s ease-in-out;
@@ -264,7 +264,7 @@ const ArrowTrigger = styled.div`
   border-radius: 50%;
   transform: ${(props) => (props.isSideNavVisible ? "rotate(-180deg)" : "rotate(0deg)")};
   transition: transform 0.4s ease-in-out;
-  z-index: 20;
+  z-index: 2000;
   cursor: pointer;
   & > svg {
     fill: ${(props) => props.theme.arrowColor};

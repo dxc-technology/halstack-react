@@ -104,7 +104,7 @@ const AlertModal = styled.div`
   left: ${(props) => (props.mode === "modal" ? "0" : "")};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   display: ${(props) => (props.mode === "modal" ? "flex" : "")};
-  z-index: 200;
+  z-index: ${(props) => (props.mode === "modal" ? "200" : "")};
 `;
 
 const OverlayContainer = styled.div`
@@ -148,7 +148,7 @@ const AlertContainer = styled.div`
     (props.type === "warning" && props.theme.warningColor) ||
     (props.type === "error" && props.theme.errorColor) ||
     props.theme.lightPink};
-  z-index: 300;
+  z-index: ${(props) => (props.mode === "modal" ? "300" : "")};
   cursor: default;
 `;
 
