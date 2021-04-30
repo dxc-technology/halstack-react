@@ -26,7 +26,6 @@ const code = `() => {
       onSelectOption={selectOption}
       label="Default Dropdown"
       margin="medium"
-      padding="small"
       expandOnHover={true}
     ></DxcDropdown>
   );
