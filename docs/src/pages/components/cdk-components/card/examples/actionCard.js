@@ -11,6 +11,7 @@ const code = `() => {
       imageSrc={iceCreamImagePath} 
       imageCover={true} 
       margin="small"
+      contentPadding="xsmall"
     >
       Lorem Ipsum
     </DxcCard>
