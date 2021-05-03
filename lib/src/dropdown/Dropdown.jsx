@@ -7,7 +7,7 @@ import { ClickAwayListener } from "@material-ui/core";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import MenuList from "@material-ui/core/MenuList";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";

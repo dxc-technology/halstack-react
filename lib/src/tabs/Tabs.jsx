@@ -3,7 +3,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
 import useTheme from "../useTheme.js";

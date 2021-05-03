@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
@@ -19,13 +19,20 @@ const DxcButton = ({
   onClick = "",
   margin,
   size,
-  tabIndex=0
+  tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
-      <DxCButton type={type} margin={margin} mode={mode} disabled={disabled} iconPosition={iconPosition} size={size}>
+      <DxCButton
+        type={type}
+        margin={margin}
+        mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
+        disabled={disabled}
+        iconPosition={iconPosition}
+        size={size}
+      >
         <Button
           disabled={disabled}
           type={type}
@@ -198,7 +205,7 @@ const DxCButton = styled.div`
       } else if (mode === "text") {
         return `
             background-color: ${props.theme.textBackgroundColor};
-            color: ${(props.disabled && props.theme.disabledTextFontColor) || props.theme.textFontColor} !important;;
+            color: ${(props.disabled && props.theme.disabledTextFontColor) || props.theme.textFontColor} !important;
             padding: ${(props.size === "small" && "11px") || "12px 30px"};
             &:hover{
               background-color: ${props.theme.textHoverBackgroundColor};
@@ -240,7 +247,6 @@ DxcButton.propTypes = {
   iconSrc: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   type: PropTypes.oneOf(["button", "reset", "submit"]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
-
 export default DxcButton;

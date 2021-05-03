@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";

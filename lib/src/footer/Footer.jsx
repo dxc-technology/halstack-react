@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css";
+
 import { spaces, responsiveSizes, componentTokens } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 

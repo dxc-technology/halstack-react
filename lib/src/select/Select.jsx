@@ -7,7 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import DxcCheckbox from "../checkbox/Checkbox";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
@@ -340,7 +340,7 @@ const SelectContainer = styled.div`
     }
   }
   .MuiSelect-select.MuiSelect-select {
-      padding-right: unset;
+    padding-right: unset;
   }
 
   .MuiSelect-select {
@@ -379,7 +379,7 @@ const SelectContainer = styled.div`
   }
   .MuiInput-underline {
     &:focus {
-      border-bottom: ${(props) => (props.disabled && "0px solid") || "2px solid"};;
+      border-bottom: ${(props) => (props.disabled && "0px solid") || "2px solid"};
       border-bottom-color: ${(props) =>
         (props.invalid === true && props.theme.error) ||
         (props.disabled && props.theme.disabledColor) ||
@@ -394,7 +394,7 @@ const SelectContainer = styled.div`
     border-bottom-color: ${(props) =>
       (props.invalid === true && props.theme.error) ||
       (props.disabled && props.theme.disabledColor) ||
-      props.theme.color}};
+      props.theme.color};
   }
   .MuiInput-underline:after {
     border-bottom: 1px solid;
@@ -449,6 +449,6 @@ DxcSelect.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 export default DxcSelect;

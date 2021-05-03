@@ -1,7 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React from "react";
 import PropTypes from "prop-types";
-import "../../common/OpenSans.css";
 import styled, { ThemeProvider } from "styled-components";
 import closeIcon from "./close.svg";
 import defaultIcon from "./file-icon.svg";

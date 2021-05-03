@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
-import "../../common/OpenSans.css";
 import Tooltip from "@material-ui/core/Tooltip";
 import successIcon from "./success-icon.svg";
 import errorIcon from "./error-icon.svg";

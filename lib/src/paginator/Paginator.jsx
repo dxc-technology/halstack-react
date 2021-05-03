@@ -8,7 +8,7 @@ import first from "./images/previousPage.svg";
 import previous from "./images/previous.svg";
 import next from "./images/next.svg";
 import last from "./images/nextPage.svg";
-import "../common/OpenSans.css";
+
 
 const DxcPaginator = ({
   currentPage = 1,

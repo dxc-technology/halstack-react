@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import Radio from "@material-ui/core/Radio";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";

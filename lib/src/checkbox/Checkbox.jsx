@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
-import "../common/OpenSans.css";
+
 import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";

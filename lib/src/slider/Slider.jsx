@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css";
+
 import DxcInput from "../input-text/InputText";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";

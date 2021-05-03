@@ -2,7 +2,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import "../../common/OpenSans.css";
 import {} from "../../common/variables.js";
 import uploadFile from "./upload_file.svg";
 import dropFile from "./upload_drop.svg";

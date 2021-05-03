@@ -5,7 +5,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css";
+
 import Popper from "@material-ui/core/Popper";
 import DxcRequired from "../common/RequiredComponent";
 import { spaces } from "../common/variables.js";

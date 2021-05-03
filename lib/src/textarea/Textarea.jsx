@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
-import "../common/OpenSans.css";
+
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
