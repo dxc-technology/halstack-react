@@ -5,16 +5,19 @@ import {
   DxcSidenav,
   DxcButton,
 } from "@dxc-technology/halstack-react";
-import defaultTheme from "./DefaultTheme.json";
+import defaultTheme from "./themes/DefaultTheme.json";
+import advancedTheme from "./themes/AdvancedTheme.json";
 import JSONView from "./JSONView";
 import ComponentPreview from "./components/ComponentPreview";
 import { capitalizeText } from "./utils";
 import Header from "../../common/Header";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
 import ImportDialog from "./ImportDialog";
+import { useParams } from "react-router";
 
 const ThemeBuilder = () => {
-  const [customTheme, setCustomTheme] = useState(defaultTheme);
+  const { type } = useParams();
+  const [customTheme, setCustomTheme] = useState(type === 'advancedTheme' ? advancedTheme: defaultTheme);
   const [currentComponent, setCurrentComponent] = useState("accordion");
   const [isDialogVisible, setDialogVisible] = useState(false);
 
