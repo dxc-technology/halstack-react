@@ -163,16 +163,6 @@ const LogoIcon = styled.img`
   width: auto;
 `;
 
-const LogoIconContainer = styled.div`
-  height: 34px;
-  width: auto;
-
-  img,
-  svg:not(:root) {
-    height: 100%;
-  }
-`;
-
 const SocialAnchor = styled.a`
   & {
     display: inline-flex;
