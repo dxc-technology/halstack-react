@@ -1,60 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { DxcHeading } from "@dxc-technology/halstack-react";
-import ColorPicker from "./ColorPicker";
-import LogoConfig from "./LogoConfig";
+import ThemeInput from "./ThemeInput";
 
-const ThemeInputsConfig = ({ componentInputs, onChangeCustomTheme }) => {
-  const [anchorEl, setAnchorEl] = useState();
-  const [displayedProperty, setDisplayedProperty] = useState();
-
+const ThemeInputsConfig = ({
+  componentInputs,
+  componentInputsTypes,
+  onChangeCustomTheme,
+}) => {
   return (
     <ThemeInputsConfigContainer>
       <DxcHeading level={5} text="Theme inputs" />
       <Separator />
       <PropertiesContent>
         {Object.keys(componentInputs)
-          ?.filter((propertyName) => !propertyName.includes("logo"))
-          .reduce((result, path, i, array) => {
+          ?.reduce((result, path, i, array) => {
             if (i % 4 === 0) result.push(array.slice(i, i + 4));
             return result;
           }, [])
           .map((sublist, column) => (
             <ColorInfoColumn key={`colors-column${column}`}>
-              {sublist.map((propertyName, i) => (
-                <PropertyContainer
-                  ref={anchorEl}
-                  key={`property-${propertyName}`}
-                >
-                  <PropertyName>{propertyName}</PropertyName>
-                  <ColorPicker
-                    propertyName={propertyName}
-                    propertyValue={componentInputs[propertyName]}
-                    anchorEl={anchorEl}
-                    setAnchorEl={setAnchorEl}
-                    onChangeCustomTheme={onChangeCustomTheme}
-                    displayedProperty={displayedProperty}
-                    onDisplayProperty={setDisplayedProperty}
-                  />
-                </PropertyContainer>
-              ))}
-            </ColorInfoColumn>
-          ))}
-
-        <ColorInfoColumn>
-          {Object.keys(componentInputs)
-            ?.filter((propertyName) => propertyName.includes("logo"))
-            .map((propertyName) => (
-              <LogoContainer>
-                <PropertyName>{propertyName}</PropertyName>
-                <LogoConfig
+              {sublist.map((propertyName) => (
+                <ThemeInput
                   propertyName={propertyName}
                   propertyValue={componentInputs[propertyName]}
                   onChangeCustomTheme={onChangeCustomTheme}
+                  tokenType={componentInputsTypes[propertyName]}
                 />
-              </LogoContainer>
-            ))}
-        </ColorInfoColumn>
+              ))}
+            </ColorInfoColumn>
+          ))}
       </PropertiesContent>
     </ThemeInputsConfigContainer>
   );
@@ -66,11 +41,6 @@ const ThemeInputsConfigContainer = styled.div`
   height: 30%;
   background: #f2f2f2;
   padding: 20px 30px;
-`;
-
-const PropertyName = styled.div`
-  font: normal 14px/19px Open Sans;
-  color: #000000;
 `;
 
 const PropertiesContent = styled.div`
@@ -102,22 +72,6 @@ const PropertiesContent = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-`;
-
-const PropertyContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  margin: 5px 0;
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  margin: 5px 0;
 `;
 
 const ColorInfoColumn = styled.div`

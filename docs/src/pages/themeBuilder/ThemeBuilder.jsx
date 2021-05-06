@@ -14,10 +14,15 @@ import Header from "../../common/Header";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
 import ImportDialog from "./ImportDialog";
 import { useParams } from "react-router";
+import defaultSchema from "./themes/schemas/Default.schema.json";
+import advancedSchema from "./themes/schemas/Advanced.schema.json";
 
 const ThemeBuilder = () => {
   const { type } = useParams();
+
   const [customTheme, setCustomTheme] = useState(type === 'advancedTheme' ? advancedTheme: defaultTheme);
+  const customThemeSchema = type === 'advancedTheme' ? advancedSchema: defaultSchema;
+  
   const [currentComponent, setCurrentComponent] = useState("accordion");
   const [isDialogVisible, setDialogVisible] = useState(false);
 
@@ -77,6 +82,7 @@ const ThemeBuilder = () => {
             />
             <ThemeInputsConfig
               componentInputs={customTheme[currentComponent]}
+              componentInputsTypes={customThemeSchema[currentComponent]}
               onChangeCustomTheme={changeCustomThemeHandler}
             />
           </ComponentInputsContainer>
