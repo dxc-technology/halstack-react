@@ -36,7 +36,15 @@ const getMinItemsPerPageIndex = (currentPageInternal, itemsPerPage, page) =>
 const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, page) =>
   minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
-const DxcResultsetTable = ({ columns, rows, itemsPerPage = 5, itemsPerPageOptions, itemsPerPageFunction, margin, tabIndex = 0 }) => {
+const DxcResultsetTable = ({
+  columns,
+  rows,
+  itemsPerPage = 5,
+  itemsPerPageOptions,
+  itemsPerPageFunction,
+  margin,
+  tabIndex = 0,
+}) => {
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
@@ -212,7 +220,7 @@ DxcResultsetTable.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 DxcResultsetTable.defaultProps = {
   rows: [],
@@ -220,7 +228,6 @@ DxcResultsetTable.defaultProps = {
   itemsPerPage: 5,
   itemsPerPageOptions: null,
   itemsPerPageFunction: null,
-  margin: "xxsmall",
 };
 
 export default DxcResultsetTable;
