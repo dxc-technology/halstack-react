@@ -13,7 +13,7 @@ const DxcFooter = ({
   children,
   padding,
   margin,
-  tabIndex = 0
+  tabIndex = 0,
 }) => {
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
@@ -51,7 +51,12 @@ const DxcFooter = ({
   }, []);
 
   const socialLink = socialLinks.map((link, index) => (
-    <SocialAnchor tabIndex={tabIndex} key={`social${index}${link.href}`} index={index} href={link && link.href ? link.href : ""}>
+    <SocialAnchor
+      tabIndex={tabIndex}
+      key={`social${index}${link.href}`}
+      index={index}
+      href={link && link.href ? link.href : ""}
+    >
       {link.logo ? (
         <SocialIconContainer>
           {typeof link.logo === "object" ? link.logo : React.createElement(link.logo)}
@@ -64,7 +69,9 @@ const DxcFooter = ({
 
   const bottomLink = bottomLinks.map((link, index) => (
     <span key={`bottom${index}${link.text}`}>
-      <BottomLink tabIndex={tabIndex} href={link && link.href ? link.href : ""}>{link && link.text ? link.text : ""}</BottomLink>
+      <BottomLink tabIndex={tabIndex} href={link && link.href ? link.href : ""}>
+        {link && link.text ? link.text : ""}
+      </BottomLink>
       <Point index={index}>·</Point>
     </span>
   ));
@@ -101,12 +108,11 @@ const DxcFooter = ({
 const FooterContainer = styled.footer`
   font-size: ${(props) => props.theme.fontSizeBase};
   padding: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px")};
-  font-family: ${(props) => props.theme.fontFamily};
   background-color: ${(props) => props.theme.backgroundColor};
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   width: 100%;
   box-sizing: border-box;
-  min-height: 120px;
+  min-height: ${(props) => props.theme.minHeight};
 `;
 
 const FooterHeader = styled.div`
@@ -123,8 +129,8 @@ const FooterFooter = styled.div`
 `;
 
 const BottomLinks = styled.div`
-  padding-top: 6px;
-  border-top: 2px solid ${(props) => props.theme.lineColor};
+  padding-top: ${(props) => props.theme.lineLinksSeparation};
+  border-top: ${(props) => props.theme.lineThickness} ${(props) => props.theme.lineStyle} ${(props) => props.theme.lineColor};
   display: inline-flex;
   flex-wrap: wrap;
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "60%")};
@@ -136,7 +142,11 @@ const BottomLinks = styled.div`
 `;
 
 const ChildComponents = styled.div`
-  min-height: 15px;
+  font-family: ${(props) => props.theme.customContentFontFamily};
+  font-size: ${(props) => props.theme.customContentFontSize};
+  font-style: ${(props) => props.theme.customContentFontStyle};
+  font-weight: ${(props) => props.theme.customContentFontWeight};
+  min-height: ${(props) => props.theme.customContentMinHeight};
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -151,7 +161,10 @@ const ChildComponents = styled.div`
 `;
 
 const Copyright = styled.div`
-  font-size: ${(props) => props.theme.fontSize};
+  font-family: ${(props) => props.theme.copyrightFontFamily};
+  font-size: ${(props) => props.theme.copyrightFontSize};
+  font-style: ${(props) => props.theme.copyrightFontStyle};
+  font-weight: ${(props) => props.theme.copyrightFontWeight};
   color: ${(props) => props.theme.fontColor};
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
   width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
@@ -159,8 +172,8 @@ const Copyright = styled.div`
 `;
 
 const LogoIcon = styled.img`
-  height: 34px;
-  width: auto;
+  height: ${(props) => props.theme.logoHeight};
+  width: ${(props) => props.theme.logoWidth};
 `;
 
 const LogoIconContainer = styled.div`
@@ -176,15 +189,15 @@ const LogoIconContainer = styled.div`
 const SocialAnchor = styled.a`
   & {
     display: inline-flex;
-    margin-left: ${(props) => (props.index === 0 ? "0px" : "15px")};
+    margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialIconSeparation)};
   }
 `;
 
 const SocialIcon = styled.img`
   & {
     display: inline-flex;
-    height: 25px;
-    width: 25px;
+    height: ${(props) => props.theme.socialIconHeight};
+    width: ${(props) => props.theme.socialIconWidth};
     fill: ${(props) => props.theme.fontColor};
   }
 `;
@@ -192,8 +205,8 @@ const SocialIcon = styled.img`
 const SocialIconContainer = styled.div`
   & {
     display: inline-flex;
-    height: 25px;
-    width: 25px;
+    height: ${(props) => props.theme.socialIconHeight};
+    width: ${(props) => props.theme.socialIconWidth};
     color: ${(props) => props.theme.fontColor};
   }
 
@@ -212,9 +225,12 @@ const Point = styled.span`
 `;
 
 const BottomLink = styled.a`
-  text-decoration: ${(props) => props.theme.textDecoration};
+  text-decoration: ${(props) => props.theme.bottomLinksTextDecoration};
   color: ${(props) => props.theme.fontColor};
-  font-size: ${(props) => props.theme.fontSize};
+  font-family: ${(props) => props.theme.bottomLinksFontFamily};
+  font-size: ${(props) => props.theme.bottomLinksFontSize};
+  font-style: ${(props) => props.theme.bottomLinksFontStyle};
+  font-weight: ${(props) => props.theme.bottomLinksFontWeight};
 `;
 
 DxcFooter.propTypes = {
@@ -251,7 +267,7 @@ DxcFooter.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcFooter;
