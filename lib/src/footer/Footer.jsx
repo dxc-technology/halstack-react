@@ -146,7 +146,7 @@ const ChildComponents = styled.div`
   font-size: ${(props) => props.theme.customContentFontSize};
   font-style: ${(props) => props.theme.customContentFontStyle};
   font-weight: ${(props) => props.theme.customContentFontWeight};
-  min-height: ${(props) => props.theme.customContentMinHeight};
+  min-height: 15px;
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
