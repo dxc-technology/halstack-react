@@ -112,6 +112,7 @@ const FooterContainer = styled.footer`
   width: 100%;
   box-sizing: border-box;
   min-height: ${(props) => props.theme.minHeight};
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const FooterHeader = styled.div`
@@ -155,7 +156,7 @@ const ChildComponents = styled.div`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.customContentFontColor};
   overflow: hidden;
 `;
 
@@ -164,7 +165,7 @@ const Copyright = styled.div`
   font-size: ${(props) => props.theme.copyrightFontSize};
   font-style: ${(props) => props.theme.copyrightFontStyle};
   font-weight: ${(props) => props.theme.copyrightFontWeight};
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.copyrightFontColor};
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
   width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
   text-align: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "right")};
@@ -220,12 +221,12 @@ const SocialIconContainer = styled.div`
 
 const Point = styled.span`
   margin: 0px 10px;
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.bottomLinksFontColor};
 `;
 
 const BottomLink = styled.a`
   text-decoration: ${(props) => props.theme.bottomLinksTextDecoration};
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.bottomLinksFontColor || props.theme.fontColor};
   font-family: ${(props) => props.theme.bottomLinksFontFamily};
   font-size: ${(props) => props.theme.bottomLinksFontSize};
   font-style: ${(props) => props.theme.bottomLinksFontStyle};
