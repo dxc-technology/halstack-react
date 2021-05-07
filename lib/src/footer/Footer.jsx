@@ -129,8 +129,8 @@ const FooterFooter = styled.div`
 `;
 
 const BottomLinks = styled.div`
-  padding-top: ${(props) => props.theme.lineLinksSeparation};
-  border-top: ${(props) => props.theme.lineThickness} ${(props) => props.theme.lineStyle} ${(props) => props.theme.lineColor};
+  padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
+  border-top: ${(props) => props.theme.bottomLinksDividerThickness} ${(props) => props.theme.bottomLinksDividerStyle} ${(props) => props.theme.bottomLinksDividerColor};
   display: inline-flex;
   flex-wrap: wrap;
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "60%")};
