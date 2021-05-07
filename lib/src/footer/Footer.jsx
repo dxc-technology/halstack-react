@@ -106,7 +106,6 @@ const DxcFooter = ({
 };
 
 const FooterContainer = styled.footer`
-  font-size: ${(props) => props.theme.fontSizeBase};
   padding: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "20px 60px 20px 20px")};
   background-color: ${(props) => props.theme.backgroundColor};
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -189,7 +188,7 @@ const LogoIconContainer = styled.div`
 const SocialAnchor = styled.a`
   & {
     display: inline-flex;
-    margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialIconSeparation)};
+    margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialIconsGutter)};
   }
 `;
 
