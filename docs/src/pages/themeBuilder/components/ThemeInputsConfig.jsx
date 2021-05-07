@@ -19,7 +19,7 @@ const ThemeInputsConfig = ({
             return result;
           }, [])
           .map((sublist, column) => (
-            <ColorInfoColumn key={`colors-column${column}`}>
+            <InfoColumn key={`colors-column${column}`}>
               {sublist.map((propertyName) => (
                 <ThemeInput
                   propertyName={propertyName}
@@ -28,7 +28,7 @@ const ThemeInputsConfig = ({
                   tokenType={componentInputsTypes[propertyName]}
                 />
               ))}
-            </ColorInfoColumn>
+            </InfoColumn>
           ))}
       </PropertiesContent>
     </ThemeInputsConfigContainer>
@@ -36,9 +36,9 @@ const ThemeInputsConfig = ({
 };
 
 const ThemeInputsConfigContainer = styled.div`
+  height: 35%;
   display: flex;
   flex-direction: column;
-  height: 30%;
   background: #f2f2f2;
   padding: 20px 30px;
 `;
@@ -74,8 +74,8 @@ const PropertiesContent = styled.div`
   }
 `;
 
-const ColorInfoColumn = styled.div`
-  width: 30%;
+const InfoColumn = styled.div`
+  width: 40%;
   margin-right: 100px;
 `;
 

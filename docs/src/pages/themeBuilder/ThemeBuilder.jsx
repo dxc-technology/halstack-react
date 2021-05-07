@@ -57,7 +57,7 @@ const ThemeBuilder = () => {
             mode="text"
             label="Reset"
             onClick={() => {
-              setCustomTheme(defaultTheme);
+              setCustomTheme(type === 'advancedTheme' ? advancedTheme: defaultTheme);
             }}
           />
         </ButtonsContainer>

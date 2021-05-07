@@ -9,9 +9,12 @@ const DefaultInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
       <StyledInput
         type="text"
         value={value}
-        onChange={(event) => {
+        onBlur={(event) => {
           const val = event.target.value;
           onChangeCustomTheme(propertyName, val);
+        }}
+        onChange={(event) => {
+          const val = event.target.value;
           setValue(val);
         }}
       />
