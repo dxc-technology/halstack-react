@@ -5,16 +5,24 @@ import {
   DxcSidenav,
   DxcButton,
 } from "@dxc-technology/halstack-react";
-import defaultTheme from "./DefaultTheme.json";
+import defaultTheme from "./themes/DefaultTheme.json";
+import advancedTheme from "./themes/AdvancedTheme.json";
 import JSONView from "./JSONView";
 import ComponentPreview from "./components/ComponentPreview";
 import { capitalizeText } from "./utils";
 import Header from "../../common/Header";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
 import ImportDialog from "./ImportDialog";
+import { useParams } from "react-router";
+import defaultSchema from "./themes/schemas/Default.schema.json";
+import advancedSchema from "./themes/schemas/Advanced.schema.json";
 
 const ThemeBuilder = () => {
-  const [customTheme, setCustomTheme] = useState(defaultTheme);
+  const { type } = useParams();
+
+  const [customTheme, setCustomTheme] = useState(type === 'advancedTheme' ? advancedTheme: defaultTheme);
+  const customThemeSchema = type === 'advancedTheme' ? advancedSchema: defaultSchema;
+  
   const [currentComponent, setCurrentComponent] = useState("accordion");
   const [isDialogVisible, setDialogVisible] = useState(false);
 
@@ -49,7 +57,7 @@ const ThemeBuilder = () => {
             mode="text"
             label="Reset"
             onClick={() => {
-              setCustomTheme(defaultTheme);
+              setCustomTheme(type === 'advancedTheme' ? advancedTheme: defaultTheme);
             }}
           />
         </ButtonsContainer>
@@ -74,6 +82,7 @@ const ThemeBuilder = () => {
             />
             <ThemeInputsConfig
               componentInputs={customTheme[currentComponent]}
+              componentInputsTypes={customThemeSchema[currentComponent]}
               onChangeCustomTheme={changeCustomThemeHandler}
             />
           </ComponentInputsContainer>

@@ -1,0 +1,101 @@
+{
+  "accordion": {
+    "accentColor": "color",
+    "fontColor": "color"
+  },
+  "button": {
+    "baseColor": "color",
+    "hoverBaseColor": "color",
+    "primaryFontColor": "color",
+    "primaryHoverFontColor": "color",
+    "secondaryFontColor": "color",
+    "secondaryHoverFontColor": "color",
+    "textFontColor": "color",
+    "textHoverFontColor": "color"
+  },
+  "checkbox": {
+    "baseColor": "color",
+    "checkColor": "color"
+  },
+  "chip": {
+    "baseColor": "color",
+    "accentColor": "color",
+    "fontColor": "color"
+  },
+  "date": {
+    "baseColor": "color",
+    "accentColor": "color"
+  },
+  "dropdown": {
+    "baseColor": "color",
+    "fontColor": "color"
+  },
+  "footer": {
+    "baseColor": "color",
+    "fontColor": "color",
+    "accentColor": "color",
+    "logo": "image"
+  },
+  "header": {
+    "baseColor": "color",
+    "accentColor": "color",
+    "fontColor": "color",
+    "menuBaseColor": "color",
+    "hamburguerColor": "color",
+    "logo": "image",
+    "logoResponsive": "image"
+  },
+  "inputText": {
+    "selectedBaseColor": "color"
+  },
+  "paginator": {
+    "baseColor": "color",
+    "fontColor": "color"
+  },
+  "progressBar": {
+    "accentColor": "color",
+    "baseColor": "color"
+  },
+  "radio": {
+    "baseColor": "color"
+  },
+  "select": {
+    "baseColor": "color"
+  },
+  "sidenav": {
+    "baseColor": "color",
+    "arrowBaseColor": "color",
+    "arrowAccentColor": "color"
+  },
+  "slider": {
+    "baseColor": "color"
+  },
+  "spinner": {
+    "accentColor": "color",
+    "baseColor": "color"
+  },
+  "switch": {
+    "checkedBaseColor": "color"
+  },
+  "table": {
+    "baseColor": "color",
+    "fontColor": "color"
+  },
+  "tabs": {
+    "baseColor": "color"
+  },
+  "toggleGroup": {
+    "selectedBaseColor": "color",
+    "selectedHoverBaseColor": "color",
+    "selectedFontColor": "color",
+    "selectedHoverFontColor": "color",
+    "unselectedBaseColor": "color",
+    "unselectedHoverBaseColor": "color",
+    "unselectedFontColor": "color",
+    "unselectedHoverFontColor": "color"
+  },
+  "wizard": {
+    "baseColor": "color",
+    "fontColor": "color"
+  }
+}

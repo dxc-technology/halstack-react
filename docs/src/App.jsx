@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/overview">
             <Overview />
           </Route>
-          <Route exact path="/themeBuilder">
+          <Route exact path={["/themeBuilder/:type", "/themeBuilder"]}>
             <ThemeBuilder></ThemeBuilder>
           </Route>
           <Route exact path="/">
