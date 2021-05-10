@@ -98,12 +98,12 @@ const SwitchContainer = styled.div`
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "default")};
   .MuiSwitch-root {
     align-items: center;
-    width: 60px;
+    width: ${(props) => props.theme.trackWidth};
     height: 45px;
     margin: 3px;
 
     .Mui-focusVisible {
-      border: ${(props) => props.theme.focusColor + " solid 2px"};
+      border: ${(props) => `${props.theme.thumbFocusColor} solid 2px`};
       padding: 7px;
     }
 
@@ -111,7 +111,7 @@ const SwitchContainer = styled.div`
       /*Enabled and unchecked bar*/
       background-color: ${(props) =>
         props.disabled ? props.theme.disabledCheckedTrackBackgroundColor : props.theme.uncheckedTrackBackgroundColor};
-      height: 12px;
+      height: ${(props) => props.theme.trackHeight};
       opacity: 1;
     }
 
@@ -120,8 +120,8 @@ const SwitchContainer = styled.div`
       top: unset;
       .MuiSwitch-thumb {
         /*Only for thumb in all states*/
-        width: 24px;
-        height: 24px;
+        width: ${(props) => props.theme.thumbWidth};
+        height: ${(props) => props.theme.thumbHeight};
       }
       color: ${(props) => props.theme.uncheckedThumbBackgroundColor};
       &:hover {
@@ -140,7 +140,7 @@ const SwitchContainer = styled.div`
       &.Mui-checked {
         /*Enabled and checked*/
         color: ${(props) => props.theme.checkedThumbBackgroundColor};
-        transform: translateX(40%);
+        transform: translateX(${(props) => props.theme.thumbTranslateX});
         &:hover {
           background-color: transparent;
         }
@@ -156,9 +156,13 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
+  font-family: ${(props) => props.theme.labelFontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
+  font-weight: ${(props) => props.theme.labelFontWeight};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
-  font-family: ${(props) => props.theme.fontFamily};
+  margin-right: ${(props) => props.theme.labelMarginRight};
 `;
 
 DxcSwitch.propTypes = {
