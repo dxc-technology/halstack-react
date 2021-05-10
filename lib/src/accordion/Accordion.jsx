@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { getMargin } from "../common/utils.js";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcAccordion = ({
   label = "",
@@ -21,11 +22,12 @@ const DxcAccordion = ({
   children,
   margin,
   padding,
-  tabIndex=0,
+  tabIndex = 0,
 }) => {
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
   const [isResponsive, setIsResponsive] = useState();
   const colorsTheme = useTheme();
+  // const backgroundType = useContext(BackgroundColorContext);
 
   const handleResize = (width) => {
     if (width) {
@@ -80,7 +82,11 @@ const DxcAccordion = ({
             {assistiveText && <AccordionAssistiveText>{assistiveText}</AccordionAssistiveText>}
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <AccordionText>{children}</AccordionText>
+            <AccordionText>
+              <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>
+                {children}
+              </BackgroundColorProvider>
+            </AccordionText>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </DXCAccordion>
@@ -119,12 +125,12 @@ DxcAccordion.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 const DXCAccordion = styled.div`
   display: flex;
   font-size: ${(props) => props.theme.fontSizeBase};
-  min-width: 280px;
+  min-width: ${(props) => props.theme.minWidth};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -136,27 +142,28 @@ const DXCAccordion = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   width: ${(props) => calculateWidth(props.margin)};
-  font-family: ${(props) => props.theme.fontFamily};
+  
+
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
     min-width: 0;
     display: flex;
     left: 85px;
     background-color: ${(props) => props.theme.backgroundColor} !important;
-    color: ${(props) => props.theme.fontColor};
-    box-shadow: 0px 6px 10px #00000024;
-
+    box-shadow: ${(props)=>`${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
     position: static;
     width: 100%;
-    border-radius: 4px;
-
+    border-radius: ${(props) => props.theme.borderRadius};
     &.Mui-expanded {
-      border-radius: 4px;
-      color: "#000000";
+      border-radius: ${(props) => props.theme.borderRadius}; 
     }
     &.MuiExpansionPanel-root {
       display: flex;
       flex-direction: column;
+     
+    }
+    &.MuiExpansionPanel-rounded{
+     border-radius:${(props) => props.theme.borderRadius}; 
     }
     .MuiButtonBase-root.MuiExpansionPanelSummary-root {
       :hover {
@@ -165,9 +172,9 @@ const DXCAccordion = styled.div`
     }
 
     .MuiButtonBase-root {
-      border-radius: 4px;
+      border-radius: ${(props) => props.theme.borderRadius};
+      
       height: 48px;
-
       &.Mui-expanded {
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
@@ -197,8 +204,10 @@ const DXCAccordion = styled.div`
     }
 
     .MuiExpansionPanelSummary-root.Mui-expanded {
-      min-height: 48px;
-      border: 1px solid ${(props) => props.theme.focusOutline};
+      min-height: ${(props) => props.theme.minHeight};
+      border-width:${(props) => props.theme.borderThickness};
+      border-style:${(props) => props.theme.borderStyle};
+      border-color:${(props) => props.theme.focusOutline};
     }
 
     .MuiTouchRipple-root {
@@ -215,7 +224,7 @@ const DXCAccordion = styled.div`
   }
 
   .MuiCollapse-container {
-    color: #000000;
+  
     border-radius: 0px 0px 4px 4px;
     cursor: default;
     width: 100%;
@@ -226,7 +235,10 @@ const DXCAccordion = styled.div`
   }
 
   .MuiExpansionPanelSummary-root {
-    padding: 0 16px 0 16px;
+    padding-top: ${(props) => props.theme.headerPaddingTop};
+    padding-right: ${(props) => props.theme.headerPaddingRight};
+    padding-bottom: ${(props) => props.theme.headerPaddingBottom};
+    padding-left: ${(props) => props.theme.headerPaddingLeft};
   }
 
   .MuiExpansionPanelSummary-root.Mui-disabled {
@@ -250,36 +262,53 @@ const AccordionInfo = styled.div`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  margin-right: 48px;
+  margin-right: ${(props) => props.theme.headerTitleMarginRight};
+  margin-left: ${(props) => props.theme.headerTitleMarginLeft};
+  margin-top: ${(props) => props.theme.headerTitleMarginTop};
+  margin-bottom: ${(props) => props.theme.headerTitleMarginBottom};
+  font-family: ${(props) => props.theme.headerTitleFontFamily};
+  font-size: ${(props) => props.theme.headerTitleFontSize};
+  font-style: ${(props) => props.theme.headerTitleFontStyle};
+  font-weight: ${(props) => props.theme.headerTitleFontWeight};
+  color: ${(props) => props.theme.headerTitleFontColor};
 `;
 
 const AccordionLabel = styled.div``;
 
 const AccordionText = styled.div`
   width: 100%;
+  font-family: ${(props) => props.theme.contentTextFontFamily};
+  font-size:${(props) => props.theme.contentTextFontSize};
+  font-style: ${(props) => props.theme.contentTextFontStyle};
+  font-weight: ${(props) => props.theme.contentTextFontWeight};
+  color: ${(props) => props.theme.contentTextFontColor} !important;
 `;
 
 const AccordionAssistiveText = styled.div`
-  margin-top: 1px;
-  font-size: ${(props) => props.theme.fontSize};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
+  margin-top: ${(props) => props.theme.assistiveTextMarginTop};
+  margin-bottom: ${(props) => props.theme.assistiveTextMarginBottom};
+  margin-left: ${(props) => props.theme.assistiveTextMarginLeft};
+  margin-right: ${(props) => props.theme.assistiveTextMarginRight};
+  font-size: ${(props) => props.theme.assistiveTextFontSize};
+  font-family: ${(props) => props.theme.assistiveTextFontFamily};
+  font-style: ${(props) => props.theme.assistiveTextFontStyle};
+  font-weight: ${(props) => props.theme.assistiveTextFontWeight};
+  color: ${(props) => props.theme.assistiveTextFontColor};
 
-  letter-spacing: ${(props) => props.theme.fontLetterSpacingWide01};
+  letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-width: 100px;
+  min-width: ${(props) => props.theme.assistiveTextMinWidth};
   text-align: end;
 `;
 
 const IconContainer = styled.div`
-  max-height: 24px;
-  max-width: 24px;
-  margin-left: 0px;
-  margin-right: 12px;
+  max-height: ${(props) => props.theme.iconMaxHeight};
+  max-width: ${(props) => props.theme.iconMaxWidth};
+  margin-left: ${(props) => props.theme.iconMarginLeft};
+  margin-right: ${(props) => props.theme.iconMarginRigth};
   overflow: hidden;
   color: ${(props) => props.theme.arrowColor};
 
