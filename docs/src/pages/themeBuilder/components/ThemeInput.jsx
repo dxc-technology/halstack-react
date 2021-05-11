@@ -4,18 +4,20 @@ import LogoConfig from "./widgets/LogoConfig";
 import ColorPicker from "./widgets/ColorPicker";
 import DefaultInput from "./widgets/DefaultInput";
 
+const makeReadable = (token) =>
+  token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
+    return i === 0 ? v.toUpperCase() : " " + v.toLowerCase();
+  });
+
 const ThemeInput = ({
   propertyName,
   propertyValue,
   onChangeCustomTheme,
   tokenType,
 }) => {
-  const [anchorEl, setAnchorEl] = useState();
-  const [displayedProperty, setDisplayedProperty] = useState();
-
   return (
-    <PropertyContainer ref={anchorEl} key={`property-${propertyName}`}>
-      <PropertyName>{propertyName}</PropertyName>
+    <PropertyContainer key={`property-${propertyName}`}>
+      <PropertyName>{makeReadable(propertyName)}</PropertyName>
       {(() => {
         switch (tokenType) {
           case "color":
@@ -23,11 +25,7 @@ const ThemeInput = ({
               <ColorPicker
                 propertyName={propertyName}
                 propertyValue={propertyValue}
-                anchorEl={anchorEl}
-                setAnchorEl={setAnchorEl}
                 onChangeCustomTheme={onChangeCustomTheme}
-                displayedProperty={displayedProperty}
-                onDisplayProperty={setDisplayedProperty}
               />
             );
           case "image":
@@ -46,7 +44,7 @@ const ThemeInput = ({
           // case "bStyle":
           // case "bWidth":
           // case "alphaValue":
-          // case "flexAlign":  
+          // case "flexAlign":
           // case "flexJustify":
           // case "text":
           // case "integer":
@@ -54,7 +52,7 @@ const ThemeInput = ({
           // case "textAlign":
           default:
             return (
-              <DefaultInput 
+              <DefaultInput
                 propertyName={propertyName}
                 propertyValue={propertyValue}
                 onChangeCustomTheme={onChangeCustomTheme}
@@ -67,16 +65,18 @@ const ThemeInput = ({
 };
 
 const PropertyName = styled.div`
-  font: normal 14px/19px Open Sans;
+  font: normal 13px Open Sans;
   color: #000000;
+  width: 60%;
+  line-height: 13px;
 `;
 
 const PropertyContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   position: relative;
-  margin: 5px 0;
+  margin: 7px 0;
 `;
 
-export default ThemeInput;
+export default React.memo(ThemeInput);

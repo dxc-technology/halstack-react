@@ -1,18 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { SketchPicker } from "react-color";
 import { Popper } from "@material-ui/core";
 
-const ColorPicker = ({
-  propertyName,
-  propertyValue,
-  anchorEl,
-  setAnchorEl,
-  onChangeCustomTheme,
-  displayedProperty,
-  onDisplayProperty,
-}) => {
-  const [currentColor, setCurrentColor] = useState(null);
+const ColorPicker = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
+  const [anchorEl, setAnchorEl] = useState();
+  const [currentColor, setCurrentColor] = useState();
+  const [isPickerVisible, setIsPickerVisible] = useState();
   const [presetColors, setPresetColors] = useState([
     "#D0021B",
     "#F5A623",
@@ -31,26 +25,24 @@ const ColorPicker = ({
     "#FFFFFF",
   ]);
 
-  const showColorPicker = (event, propertyName, color) => {
+  useEffect(() => {
+    setCurrentColor(propertyValue);
+  }, [propertyValue]);
+
+  const showColorPicker = (event) => {
     setAnchorEl(event?.currentTarget);
-    setCurrentColor(color);
-    onDisplayProperty(propertyName);
+    setIsPickerVisible(true);
   };
 
-  const closeColorPicker = (propertyName) => {
-    onChangeComplete(propertyName, currentColor);
+  const closeColorPicker = () => {
     setAnchorEl(null);
-    onDisplayProperty(null);
-  };
-
-  const onChangeComplete = (propertyName, color) => {
-    if (!presetColors.includes(color.toUpperCase())) {
+    setIsPickerVisible(false);
+    if (!presetColors.includes(currentColor.toUpperCase())) {
       const newPresetColors = presetColors;
       newPresetColors.pop();
-      newPresetColors.unshift(color.toUpperCase());
+      newPresetColors.unshift(currentColor.toUpperCase());
       setPresetColors(newPresetColors);
     }
-    onChangeCustomTheme(propertyName, color);
   };
 
   return (
@@ -58,20 +50,25 @@ const ColorPicker = ({
       <ColorContainer
         role="color-container"
         onClick={(event) => {
-          showColorPicker(event, propertyName, propertyValue);
+          showColorPicker(event);
         }}
-        color={displayedProperty === propertyName ? currentColor : propertyValue}
+        color={currentColor}
       />
-      {displayedProperty === propertyName && (
+      {isPickerVisible && (
         <PopOver>
           <Cover
             role="picker-cover"
             onClick={() => closeColorPicker(propertyName)}
           ></Cover>
-          <ColorPopper open={displayedProperty === propertyName} anchorEl={anchorEl}>
+          <ColorPopper open={isPickerVisible} anchorEl={anchorEl}>
             <SketchPicker
               color={currentColor}
-              onChange={(color) => setCurrentColor(color.hex)}
+              onChange={(color) => {
+                setCurrentColor(color.hex);
+              }}
+              onChangeComplete={(color) => {
+                onChangeCustomTheme(propertyName, color.hex);
+              }}
               disableAlpha={true}
               presetColors={presetColors}
             />

@@ -10,61 +10,62 @@ const ThemeInputsConfig = ({
 }) => {
   return (
     <ThemeInputsConfigContainer>
-      <DxcHeading level={5} text="Theme inputs" />
-      <Separator />
-      <PropertiesContent>
-        {Object.keys(componentInputs)
-          ?.reduce((result, path, i, array) => {
-            if (i % 4 === 0) result.push(array.slice(i, i + 4));
-            return result;
-          }, [])
-          .map((sublist, column) => (
-            <InfoColumn key={`colors-column${column}`}>
-              {sublist.map((propertyName) => (
-                <ThemeInput
-                  propertyName={propertyName}
-                  propertyValue={componentInputs[propertyName]}
-                  onChangeCustomTheme={onChangeCustomTheme}
-                  tokenType={componentInputsTypes[propertyName]}
-                />
-              ))}
-            </InfoColumn>
-          ))}
-      </PropertiesContent>
+      <Title>Theme Inputs</Title>
+      <InputsList>
+        {Object.keys(componentInputs).map((propertyName, index) => (
+          <ThemeInput
+            key={`themeInput-${index}`}
+            propertyName={propertyName}
+            propertyValue={componentInputs[propertyName]}
+            onChangeCustomTheme={onChangeCustomTheme}
+            tokenType={componentInputsTypes[propertyName]}
+          />
+        ))}
+      </InputsList>
     </ThemeInputsConfigContainer>
   );
 };
 
-const ThemeInputsConfigContainer = styled.div`
-  height: 35%;
-  display: flex;
-  flex-direction: column;
-  background: #f2f2f2;
-  padding: 20px 30px;
+const Title = styled.h3`
+  font-size: 16px;
+  color: #6F2C91;
+  font-weight: 600;
+  margin: 0px;
+  padding: 11.5px 24px;
+  border-bottom: 1px solid rgb(191, 191, 191);
 `;
 
-const PropertiesContent = styled.div`
+const ThemeInputsConfigContainer = styled.div`
+  height: calc(100vh - 114px);
   display: flex;
-  justify-content: flex-start;
-  flex-grow: 1;
-  flex-wrap: wrap;
+  flex-direction: column;
+  background: white;
+  box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px;
+  position: sticky;
+  top: 89px;
+  margin: 25px;
+`;
+
+const InputsList = styled.div`
+  width: 350px;
+  padding: 25px;
   overflow: auto;
 
   /* width */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 3px;
+    height: 3px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #d9d9d9;
+    background-color: rgb(214, 214, 214);
     border-radius: 26px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #666666;
+    background-color: rgb(102, 102, 102);
     border-radius: 26px;
   }
 
@@ -72,18 +73,6 @@ const PropertiesContent = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-`;
-
-const InfoColumn = styled.div`
-  width: 40%;
-  margin-right: 100px;
-`;
-
-const Separator = styled.div`
-  width: 100%;
-  height: 1px;
-  background: #d9d9d9;
-  margin: 10px 0;
 `;
 
 export default ThemeInputsConfig;
