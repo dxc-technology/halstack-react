@@ -63,6 +63,11 @@ const resultsetTablePropsTable = () => {
         <td>An array of numbers representing the items per page options.</td>
       </tr>
       <tr>
+        <td>tabIndex: number</td>
+        <td>0</td>
+        <td>Value of the tabindex given to the sortable icon.</td>
+      </tr>
+      <tr>
         <td>itemsPerPageFunction: function</td>
         <td></td>
         <td>
