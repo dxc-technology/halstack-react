@@ -7,7 +7,7 @@ import {
   DxcAlert,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
-import defaultTheme from "./DefaultTheme.json";
+import defaultTheme from "./themes/DefaultTheme.json";
 import { deepMerge } from "./utils";
 
 const validateInputTheme = (json) => {
