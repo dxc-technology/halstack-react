@@ -41,7 +41,6 @@ const code = `() => {
       icon={<img src={facebookLogo} />}
       label="Dropdown with icons"
       margin="medium"
-      padding="small"
     ></DxcDropdown>
   );
 }`;

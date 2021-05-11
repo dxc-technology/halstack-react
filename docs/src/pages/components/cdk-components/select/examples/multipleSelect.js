@@ -29,7 +29,6 @@ const code = `() => {
       multiple={true}
       value={value}
       margin="medium"
-      padding="small"
     ></DxcSelect>
   );
 }`;

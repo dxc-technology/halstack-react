@@ -28,7 +28,6 @@ const code = `() => {
       label="Controlled Select"
       value={value}
       margin="medium"
-      padding={{top: "xxsmall", left: "medium", right: "medium", bottom:"xxsmall"}}
     ></DxcSelect>
   );
 }`;
