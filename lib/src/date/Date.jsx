@@ -269,8 +269,7 @@ const sizes = {
 };
 
 const StyledDPicker = styled.div`
-font-size: ${(props) => props.theme.fontSizeBase};
-  background-color: "#FABADA";
+  font-size: ${(props) => props.theme.fontSizeBase};
 `;
 
 DxcDate.propTypes = {
