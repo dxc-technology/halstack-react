@@ -253,7 +253,6 @@ const ResponsiveMenu = styled.div`
   top: 0;
   right: 0;
   z-index: ${(props) => props.theme.menuZindex};
-  color: ${(props) => props.theme.menuFontColor};
   width: ${(props) =>
     props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge
       ? `${(props) => props.theme.menuTabletWidth}`
