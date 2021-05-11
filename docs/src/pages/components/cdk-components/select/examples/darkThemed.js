@@ -30,7 +30,6 @@ const code = `() => {
         value={value}
         theme={"dark"}
         margin="medium"
-        padding="small"
       ></DxcSelect>
     </div>
   );
