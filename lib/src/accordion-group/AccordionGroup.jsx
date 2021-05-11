@@ -53,7 +53,7 @@ const calculateWidth = (margin) => {
 };
 
 const AccordionGroupContainer = styled.div`
-  min-width: 280px;
+  min-width: ${(props) => props.theme.minWidth};
   width: ${(props) => calculateWidth(props.margin)};
 
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
@@ -63,14 +63,13 @@ const AccordionGroupContainer = styled.div`
     margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
   margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 
-  font-family: "Open Sans", sans-serif;
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
 
   & > :not(div:last-child) {
     & > div:first-child {
       border-radius: 0;
-      border-bottom: 1px solid;
-      border-color: #00000024;
+      border-bottom: ${(props)=>`${props.theme.accordionGroupSeparatorBorderThickness} ${props.theme.accordionGroupSeparatorBorderStyle}`};
+      border-color: ${(props) => props.theme.accordionGroupSeparatorBorderColor};
 
       & > .Mui-expanded {
         border-radius: 0;
@@ -86,44 +85,44 @@ const AccordionGroupContainer = styled.div`
     & > div:first-child {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      border-bottom: 1px solid;
-      border-color: #00000024;
+      border-top-left-radius: ${(props) => props.theme.borderRadius};
+      border-top-right-radius: ${(props) => props.theme.borderRadius};
+      border-bottom: ${(props)=>`${props.theme.accordionGroupSeparatorBorderThickness} ${props.theme.accordionGroupSeparatorBorderStyle}`};
+      border-color: ${(props) => props.theme.accordionGroupSeparatorBorderColor};
 
       & > .Mui-expanded {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
+        border-top-left-radius: ${(props) => props.theme.borderRadius};
+        border-top-right-radius: ${(props) => props.theme.borderRadius};
       }
 
       & > .MuiButtonBase-root {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
+        border-top-left-radius: ${(props) => props.theme.borderRadius};
+        border-top-right-radius: ${(props) => props.theme.borderRadius};
       }
     }
   }
 
   & > div:last-child {
     & > div:first-child {
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: ${(props) => props.theme.borderRadius};
+      border-bottom-right-radius: ${(props) => props.theme.borderRadius};
       border-top-left-radius: 0;
       border-top-right-radius: 0;
 
       & > .Mui-expanded {
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: ${(props) => props.theme.borderRadius};
+        border-bottom-right-radius: ${(props) => props.theme.borderRadius};
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
 
       & > .MuiButtonBase-root {
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: ${(props) => props.theme.borderRadius};
+        border-bottom-right-radius: ${(props) => props.theme.borderRadius};
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
