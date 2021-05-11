@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcHeading } from "@dxc-technology/halstack-react";
 import ThemeInput from "./ThemeInput";
 
 const ThemeInputsConfig = ({
