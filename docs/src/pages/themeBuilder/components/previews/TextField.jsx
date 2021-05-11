@@ -104,7 +104,7 @@ const Textfield = () => {
           value={asynchronousAutocompleteValue}
           onChange={onChangeAsynchronousAutocomplete}
           autocompleteOptions={callbackFunc}
-          margin={{ bottom: "large" }}
+          margin={{ bottom: "xlarge" }}
         />
       </Mode>
     </TextFieldContainer>
