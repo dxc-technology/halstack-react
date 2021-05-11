@@ -143,7 +143,6 @@ const DXCAccordion = styled.div`
 
   width: ${(props) => calculateWidth(props.margin)};
   
-
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
     min-width: 0;
@@ -205,9 +204,9 @@ const DXCAccordion = styled.div`
 
     .MuiExpansionPanelSummary-root.Mui-expanded {
       min-height: ${(props) => props.theme.minHeight};
-      border-width:${(props) => props.theme.borderThickness};
-      border-style:${(props) => props.theme.borderStyle};
-      border-color:${(props) => props.theme.focusOutline};
+      border-width:${(props) => props.theme.headerFocusBorderThickness};
+      border-style:${(props) => props.theme.headerFocusBorderStyle};
+      border-color:${(props) => props.theme.headerFocusBorderColor};
     }
 
     .MuiTouchRipple-root {
@@ -266,22 +265,21 @@ const AccordionInfo = styled.div`
   margin-left: ${(props) => props.theme.headerTitleMarginLeft};
   margin-top: ${(props) => props.theme.headerTitleMarginTop};
   margin-bottom: ${(props) => props.theme.headerTitleMarginBottom};
-  font-family: ${(props) => props.theme.headerTitleFontFamily};
-  font-size: ${(props) => props.theme.headerTitleFontSize};
-  font-style: ${(props) => props.theme.headerTitleFontStyle};
-  font-weight: ${(props) => props.theme.headerTitleFontWeight};
-  color: ${(props) => props.theme.headerTitleFontColor};
+  font-family: ${(props) => props.theme.titleFontFamily};
+  font-size: ${(props) => props.theme.titleFontSize};
+  font-style: ${(props) => props.theme.titleFontStyle};
+  font-weight: ${(props) => props.theme.titleFontWeight};
+  color: ${(props) => props.theme.titleFontColor || props.theme.fontColorBase};
 `;
 
 const AccordionLabel = styled.div``;
 
 const AccordionText = styled.div`
   width: 100%;
-  font-family: ${(props) => props.theme.contentTextFontFamily};
-  font-size:${(props) => props.theme.contentTextFontSize};
-  font-style: ${(props) => props.theme.contentTextFontStyle};
-  font-weight: ${(props) => props.theme.contentTextFontWeight};
-  color: ${(props) => props.theme.contentTextFontColor} !important;
+  font-family: ${(props) => props.theme.customContentFontFamily};
+  font-size:${(props) => props.theme.customContentFontSize};
+  font-weight: ${(props) => props.theme.customContentFontWeight};
+  color: ${(props) => props.theme.customContentFontColor || props.theme.fontColorBase} !important;
 `;
 
 const AccordionAssistiveText = styled.div`
@@ -293,7 +291,7 @@ const AccordionAssistiveText = styled.div`
   font-family: ${(props) => props.theme.assistiveTextFontFamily};
   font-style: ${(props) => props.theme.assistiveTextFontStyle};
   font-weight: ${(props) => props.theme.assistiveTextFontWeight};
-  color: ${(props) => props.theme.assistiveTextFontColor};
+  color: ${(props) =>props.theme.assistiveTextFontColor || props.theme.fontColorBase};
 
   letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
   flex: 1;
