@@ -8,8 +8,10 @@ import {
 import componentsPreview from "./ComponentsPreviewMap";
 import { capitalizeText } from "../utils";
 import { ErrorBoundary } from "react-error-boundary";
+import { useParams } from "react-router";
 
 const ComponentPreview = ({ customTheme, componentId }) => {
+  const { type } = useParams();
   const preview = componentsPreview.find(
     (component) => component.name === componentId
   );
@@ -37,7 +39,14 @@ const ComponentPreview = ({ customTheme, componentId }) => {
           )}
           resetKeys={[customTheme]}
         >
-          <ThemeProvider theme={customTheme}>
+          <ThemeProvider
+            theme={
+              type === "defaultTheme" || type === undefined
+                ? customTheme
+                : undefined
+            }
+            advancedTheme={type === "advancedTheme" ? customTheme : undefined}
+          >
             <preview.preview />
           </ThemeProvider>
         </ErrorBoundary>
