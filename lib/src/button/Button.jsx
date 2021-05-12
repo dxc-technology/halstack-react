@@ -1,5 +1,5 @@
 /* eslint-disable no-else-return */
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
@@ -7,6 +7,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
+import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const DxcButton = ({
   label = "",
@@ -22,7 +23,7 @@ const DxcButton = ({
   tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
-
+  const backgroundType = useContext(BackgroundColorContext);
   return (
     <ThemeProvider theme={colorsTheme.button}>
       <DxCButton
@@ -32,6 +33,7 @@ const DxcButton = ({
         disabled={disabled}
         iconPosition={iconPosition}
         size={size}
+        backgroundType={backgroundType}
       >
         <Button
           disabled={disabled}
@@ -75,10 +77,11 @@ const calculateWidth = (margin, size) => {
 };
 
 const LabelContainer = styled.span`
-  line-height: ${(props) => props.theme.fontLineHeight};
+  line-height: ${(props) => props.theme.labelFontLineHeight};
   font-size: ${(props) => props.theme.fontSize};
   text-overflow: ellipsis;
   overflow: hidden;
+  text-transform: ${(props) => props.theme.labelTextTranform};
 `;
 
 const IconContainer = styled.div`
@@ -124,14 +127,15 @@ const DxCButton = styled.div`
       flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
-    letter-spacing: ${(props) => props.theme.fontLetterSpacingWide01};
+    letter-spacing: ${(props) => props.theme.labelletterSpacing};
+    
     box-shadow: none;
     font-size: ${(props) => props.theme.fontSize};
     font-weight: ${(props) => props.theme.fontWeight};
     min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
-    border-radius: 4px;
+
     width: 100%;
-    min-height: 43px;
+    min-height: ${(props) => props.theme.minHeight};
     font-family: ${(props) => props.theme.fontFamily};
     &:focus {
       outline: ${(props) => props.theme.focusColor} auto 1px;
@@ -143,28 +147,64 @@ const DxCButton = styled.div`
       transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out;
     }
     ${(props) => {
-      const { mode } = props;
+      const { mode, backgroundType } = props;
       if (mode === "primary") {
         return `
-          background-color: ${
-            (props.disabled && props.theme.disabledPrimaryBackgroundColor) || props.theme.primaryBackgroundColor
-          };
-          color: ${(props.disabled && props.theme.disabledPrimaryFontColor) || props.theme.primaryFontColor} !important;
-          padding: ${(props.size === "small" && "11px") || "12px 30px"};
+        border-radius: ${props.theme.primaryButtonBorderRadius};
+        border-width:  ${props.theme.primaryButtonBorderThickness};
+        border-style:  ${props.theme.primaryButtonBorderStyle};
+        border-color:  ${
+          backgroundType === "dark" ? props.theme.primaryButtonBorderColorOnDark : props.theme.primaryButtonBorderColor
+        };
+        font-family:   ${props.theme.primaryButtonFontFamily};
+        font-size:     ${props.theme.primaryButtonFontSize};
+        font-weight:   ${props.theme.primaryButtonFontWeight};
+
+        background-color: ${
+          backgroundType === "dark" ? props.theme.primaryBackgroundColorOnDark : props.theme.primaryBackgroundColor
+        };
+        color: ${
+            backgroundType === "dark" ? props.theme.primaryFontColorOnDark : props.theme.primaryFontColor
+          } !important;
+        padding: ${(props.size === "small" && "11px") || "12px 30px"};
           &:hover{
-            background-color: ${props.theme.primaryHoverBackgroundColor};
-            color: ${props.theme.primaryHoverFontColor} !important; 
+            background-color: ${
+              backgroundType === "dark"
+                ? props.theme.primaryHoverBackgroundColorOnDark
+                : props.theme.primaryHoverBackgroundColor
+            };
+            color: ${
+              backgroundType === "dark" ? props.theme.primaryHoverFontColorOnDark : props.theme.primaryHoverFontColor
+            } !important; 
           }
           &:active {
-            background-color: ${props.theme.primaryActiveBackgroundColor} !important;
-            color: ${props.theme.primaryHoverFontColor} !important;
+            background-color: ${
+              backgroundType === "dark"
+                ? props.theme.primaryActiveBackgroundColorOnDark
+                : props.theme.primaryActiveBackgroundColor
+            } !important;
+           
           }
           &:focus {
-            background-color: ${props.theme.primaryBackgroundColor};
-            color: ${props.theme.primaryHoverFontColor} !important;
+            background-color: ${
+              backgroundType === "dark" ? props.theme.primaryBackgroundColorOnDark : props.theme.primaryBackgroundColor
+            };
+            color: ${
+              backgroundType === "dark" ? props.theme.primaryHoverFontColorOnDark : props.theme.primaryHoverFontColor
+            } !important;
           }
           &:disabled{ 
             cursor: not-allowed;
+            background-color: ${
+              backgroundType === "dark"
+                ? props.theme.disabledPrimaryBackgroundColorOnDark
+                : props.theme.disabledPrimaryBackgroundColor
+            };
+            color: ${
+              backgroundType === "dark"
+                ? props.theme.disabledPrimaryFontColorOnDark
+                : props.theme.disabledPrimaryFontColor
+            }!important; 
           }
           .MuiButton-label {
             z-index: 5
@@ -172,30 +212,78 @@ const DxCButton = styled.div`
         `;
       } else if (mode === "secondary") {
         return `
-            background-color: ${props.theme.secondaryBackgroundColor};
+        border-radius: ${props.theme.secondaryButtonBorderRadius};
+        border-width:${props.theme.secondaryButtonBorderThickness};
+        border-style:${props.theme.secondaryButtonBorderStyle};
+        font-family:   ${props.theme.secondaryButtonFontFamily};
+        font-size:     ${props.theme.secondaryButtonFontSize};
+        font-weight:   ${props.theme.secondaryButtonFontWeight};
+            background-color: ${
+              backgroundType === "dark"
+                ? props.theme.secondaryBackgroundColorOnDark
+                : props.theme.secondaryBackgroundColor
+            };
             padding: ${(props.size === "small" && "9px") || "10px 28px"};
             color: ${
-              (props.disabled && props.theme.disabledSecondaryFontColor) || props.theme.secondaryFontColor
+              backgroundType === "dark" ? props.theme.secondaryFontColorOnDark : props.theme.secondaryFontColor
             } !important;
-            border: 2px solid;
+          
             border-color: ${
-              (props.disabled && props.theme.disabledSecondaryOutlinedColor) || props.theme.secondaryOutlinedColor
+              backgroundType === "dark" ? props.theme.secondaryOutlinedColorOnDark : props.theme.secondaryOutlinedColor
             };
             &:hover{
-              border-color: ${props.theme.hoverOutlinedColor};
-              background-color: ${props.theme.secondaryHoverBackgroundColor};
-              color: ${props.theme.secondaryHoverFontColor} !important; 
+              border-color: ${
+                backgroundType === "dark"
+                  ? props.theme.secondaryHoverOutlinedColorOnDark
+                  : props.theme.secondaryHoverOutlinedColor
+              };
+              background-color: ${
+                backgroundType === "dark"
+                  ? props.theme.secondaryHoverBackgroundColorOnDark
+                  : props.theme.secondaryHoverBackgroundColor
+              };
+              color: ${
+                backgroundType === "dark"
+                  ? props.theme.secondaryHoverFontColorOnDark
+                  : props.theme.secondaryHoverFontColor
+              } !important; 
             }
             &:active {
-              background-color: ${props.theme.secondaryActiveBackgroundColor} !important;
-              color: ${props.theme.secondaryHoverFontColor} !important;
+              background-color: ${
+                backgroundType === "dark"
+                  ? props.theme.secondaryActiveBackgroundColorOnDark
+                  : props.theme.secondaryActiveBackgroundColor
+              } !important;
+              color: ${
+                backgroundType === "dark"
+                  ? props.theme.secondaryHoverFontColorOnDark
+                  : props.theme.secondaryHoverFontColor
+              } !important;
             }
             &:focus {
-              background-color: ${props.theme.secondaryBackgroundColor};
-              color: ${props.theme.secondaryHoverFontColor} !important; 
+              background-color: ${
+                backgroundType === "dark"
+                  ? props.theme.secondaryBackgroundColorOnDark
+                  : props.theme.secondaryBackgroundColor
+              };
+              color: ${
+                backgroundType === "dark"
+                  ? props.theme.secondaryHoverFontColorOnDark
+                  : props.theme.secondaryHoverFontColor
+              } !important; 
             }
             &:disabled{
               cursor: not-allowed;
+              color: ${
+                backgroundType === "dark"
+                  ? props.theme.disabledSecondaryFontColorOnDark
+                  : props.theme.disabledSecondaryFontColor
+              } !important;
+              border-color: ${
+                backgroundType === "dark"
+                  ? props.theme.disabledSecondaryOutlinedColorOnDark
+                  : props.theme.disabledSecondaryOutlinedColor
+              };
             }
             .MuiButton-label {
               z-index: 5
@@ -204,23 +292,59 @@ const DxCButton = styled.div`
           `;
       } else if (mode === "text") {
         return `
-            background-color: ${props.theme.textBackgroundColor};
-            color: ${(props.disabled && props.theme.disabledTextFontColor) || props.theme.textFontColor} !important;
+        border-radius: ${props.theme.textButtonBorderRadius};
+        border-width:${props.theme.textButtonBorderThickness};
+        border-style:${props.theme.textButtonBorderStyle};
+        border-color:${
+          backgroundType === "dark" ? props.theme.textButtonBorderColorOnDark : props.theme.textButtonBorderColor
+        };
+        font-family:   ${props.theme.textButtonFontFamily};
+        font-size:     ${props.theme.textButtonFontSize};
+        font-weight:   ${props.theme.textButtonFontWeight};
+            background-color: ${
+              backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
+            };
+            color: ${
+              backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor
+            } !important;
             padding: ${(props.size === "small" && "11px") || "12px 30px"};
             &:hover{
-              background-color: ${props.theme.textHoverBackgroundColor};
-              color: ${props.theme.textHoverFontColor} !important;
+              background-color: ${
+                backgroundType === "dark"
+                  ? props.theme.textHoverBackgroundColorOnDark
+                  : props.theme.textHoverBackgroundColor
+              };
+              color: ${
+                backgroundType === "dark" ? props.theme.textHoverFontColorOnDark : props.theme.textHoverFontColor
+              } !important;
             }
             &:active {
-              background-color: ${props.theme.textActiveBackgroundColor} !important;
-              color: ${props.theme.textHoverFontColor} !important;
+              background-color: ${
+                backgroundType === "dark"
+                  ? props.theme.textActiveBackgroundColorOnDark
+                  : props.theme.textActiveBackgroundColor
+              } !important;
+              color: ${
+                backgroundType === "dark" ? props.theme.textHoverFontColorOnDark : props.theme.textHoverFontColor
+              } !important;
             }
             &:focus {
-              background-color: ${props.theme.textBackgroundColor};
-              color: ${props.theme.textFontColor} !important; 
+              background-color: ${
+                backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
+              };
+              color: ${
+                backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor
+              } !important; 
             }
             &:disabled{
               cursor:not-allowed;
+              color: ${
+                backgroundType === "dark" ? props.theme.disabledTextFontColorOnDark : props.theme.disabledTextFontColor
+              } !important;
+              background-color: ${
+                backgroundType === "dark" ? props.theme.disabledTextBackgroundColorOnDark : props.theme.disabledTextBackgroundColor
+              };
+  
             }
           `;
       }
