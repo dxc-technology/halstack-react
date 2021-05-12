@@ -49,12 +49,7 @@ const DxcSwitch = ({
           disabled={disabled}
           disableRipple
         />
-        <LabelContainer
-          labelPosition={labelPosition}
-          brightness={componentTokens}
-          onClick={disabled === true ? () => {} : handlerSwitchChange}
-          disabled={disabled}
-        >
+        <LabelContainer disabled={disabled}>
           {required && <DxcRequired />}
           {label}
         </LabelContainer>
@@ -80,7 +75,6 @@ const calculateWidth = (margin, size) => {
 
 const SwitchContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
-
   display: inline-flex;
   align-items: center;
   flex-direction: ${(props) => (props.labelPosition === "after" ? "row" : "row-reverse")};
@@ -95,7 +89,7 @@ const SwitchContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  cursor: ${(props) => (props.disabled === true ? "not-allowed" : "default")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
   .MuiSwitch-root {
     align-items: center;
     width: ${(props) => props.theme.trackWidth};
@@ -106,15 +100,17 @@ const SwitchContainer = styled.div`
       border: ${(props) => `${props.theme.thumbFocusColor} solid 2px`};
       padding: 7px;
     }
-
     .MuiSwitch-track {
       /*Enabled and unchecked bar*/
-      background-color: ${(props) =>
-        props.disabled ? props.theme.disabledCheckedTrackBackgroundColor : props.theme.uncheckedTrackBackgroundColor};
+      background-color: ${(props) => props.theme.uncheckedTrackBackgroundColor};
       height: ${(props) => props.theme.trackHeight};
-      opacity: 1;
+      opacity: ${(props) => (props.disabled ? "" : "1")};
     }
-
+    .Mui-checked {
+      + .MuiSwitch-track {
+        opacity: ${(props) => (props.disabled ? "" : "1")};
+      }
+    }
     .MuiIconButton-root {
       /*Enabled and unchecked*/
       top: unset;
@@ -128,13 +124,19 @@ const SwitchContainer = styled.div`
         background-color: transparent;
       }
       &.Mui-disabled {
-        /*Disabled*/
+        /*Disabled and unchecked*/
+        color: ${(props) => props.theme.disabledUncheckedThumbBackgroundColor};
         + .MuiSwitch-track {
           /*Disabled and unchecked bar*/
-          background-color: ${(props) =>
-            props.disabled
-              ? props.theme.disabledUncheckedTrackBackgroundColor
-              : props.theme.uncheckedTrackBackgroundColor};
+          background-color: ${(props) => props.theme.disabledUncheckedTrackBackgroundColor};
+        }
+      }
+      &.Mui-disabled.Mui-checked {
+        /*Disabled and checked*/
+        color: ${(props) => props.theme.disabledCheckedThumbBackgroundColor};
+        + .MuiSwitch-track {
+          /*Disabled and checked bar*/
+          background-color: ${(props) => props.theme.disabledCheckedTrackBackgroundColor};
         }
       }
       &.Mui-checked {
@@ -146,9 +148,7 @@ const SwitchContainer = styled.div`
         }
         + .MuiSwitch-track {
           /*Enabled and checked bar*/
-          background-color: ${(props) =>
-            props.disabled ? props.theme.disabledCheckedTrackBackgroundColor : props.theme.checkedTrackBackgroundColor};
-          opacity: 1;
+          background-color: ${(props) => props.theme.checkedTrackBackgroundColor};
         }
       }
     }
@@ -157,6 +157,7 @@ const SwitchContainer = styled.div`
 
 const LabelContainer = styled.span`
   color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
+  opacity: ${(props) => (props.disabled ? "0.34" : "")};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
@@ -184,7 +185,7 @@ DxcSwitch.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcSwitch;

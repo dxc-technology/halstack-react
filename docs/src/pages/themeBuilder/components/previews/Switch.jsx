@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { DxcSwitch } from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 
 const Switch = () => {
-  const [checked, changeChecked] = useState(true);
+  const [checked, changeChecked] = useState(false);
   const onChange = (newValue) => {
     changeChecked(newValue);
   };
@@ -21,9 +21,11 @@ const Switch = () => {
         />
       </Mode>
       <Mode text="Disabled">
+        <DxcSwitch checked={true} label="Label before" margin="medium" disabled />
         <DxcSwitch
-          checked={true}
-          label="Switch"
+          checked={false}
+          labelPosition="after"
+          label="Label after"
           margin="medium"
           disabled
         />
