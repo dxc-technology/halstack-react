@@ -49,11 +49,12 @@ const SideNavContainer = styled.div`
   }
 
   ::-webkit-scrollbar-track {
+    background-color: ${(props) => props.theme.scrollBarTrackColor};
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #66666626;
+    background-color: ${(props) => props.theme.scrollBarThumbColor};
     border-radius: 3px;
   }
 
