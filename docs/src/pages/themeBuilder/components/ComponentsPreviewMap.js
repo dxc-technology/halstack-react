@@ -19,6 +19,7 @@ import TextFieldPreview from "./previews/TextField";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
 import ToggleGroupPreview from "./previews/ToggleGroup";
+import HeadingPreview from "./previews/Heading";
 
 const SampleComponents = [
   {
@@ -52,6 +53,10 @@ const SampleComponents = [
   {
     name: "header",
     preview: HeaderPreview,
+  },
+  {
+    name: "heading",
+    preview: HeadingPreview,
   },
   {
     name: "inputText",
