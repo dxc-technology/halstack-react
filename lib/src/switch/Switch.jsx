@@ -49,7 +49,12 @@ const DxcSwitch = ({
           disabled={disabled}
           disableRipple
         />
-        <LabelContainer disabled={disabled}>
+        <LabelContainer
+          labelPosition={labelPosition}
+          brightness={componentTokens}
+          onClick={disabled === true ? () => {} : handlerSwitchChange}
+          disabled={disabled}
+        >
           {required && <DxcRequired />}
           {label}
         </LabelContainer>
