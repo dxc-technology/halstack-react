@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import {
   DxcApplicationLayout,
@@ -7,7 +7,6 @@ import {
 } from "@dxc-technology/halstack-react";
 import defaultTheme from "./themes/DefaultTheme.json";
 import advancedTheme from "./themes/AdvancedTheme.json";
-import JSONView from "./JSONView";
 import ComponentPreview from "./components/ComponentPreview";
 import { capitalizeText } from "./utils";
 import Header from "../../common/Header";
@@ -20,17 +19,27 @@ import advancedSchema from "./themes/schemas/Advanced.schema.json";
 const ThemeBuilder = () => {
   const { type } = useParams();
 
-  const [customTheme, setCustomTheme] = useState(type === 'advancedTheme' ? advancedTheme: defaultTheme);
-  const customThemeSchema = type === 'advancedTheme' ? advancedSchema: defaultSchema;
-  
+  const [customTheme, setCustomTheme] = useState(
+    type === "advancedTheme" ? advancedTheme : defaultTheme
+  );
+  const customThemeSchema =
+    type === "advancedTheme" ? advancedSchema : defaultSchema;
+
   const [currentComponent, setCurrentComponent] = useState("accordion");
   const [isDialogVisible, setDialogVisible] = useState(false);
 
-  const changeCustomThemeHandler = (propertyName, propertyValue) => {
-    const updatedTheme = JSON.parse(JSON.stringify(customTheme));
-    updatedTheme[currentComponent][propertyName] = propertyValue;
-    setCustomTheme((prevTheme) => ({ ...prevTheme, ...updatedTheme }));
-  };
+  const setComponentProperty = useCallback(
+    (propertyName, propertyValue) => {
+      setCustomTheme((prevTheme) => ({
+        ...prevTheme,
+        [currentComponent]: {
+          ...prevTheme[currentComponent],
+          [propertyName]: propertyValue,
+        },
+      }));
+    },
+    [currentComponent]
+  );
 
   return (
     <DxcApplicationLayout>
@@ -57,13 +66,16 @@ const ThemeBuilder = () => {
             mode="text"
             label="Reset"
             onClick={() => {
-              setCustomTheme(type === 'advancedTheme' ? advancedTheme: defaultTheme);
+              setCustomTheme(
+                type === "advancedTheme" ? advancedTheme : defaultTheme
+              );
             }}
           />
         </ButtonsContainer>
         <DxcSidenav.Title>Components</DxcSidenav.Title>
-        {Object.keys(defaultTheme).map((component) => (
+        {Object.keys(defaultTheme).map((component, index) => (
           <ComponentLink
+            key={`componentLink-${index}`}
             isSelected={currentComponent === component}
             onClick={() => {
               setCurrentComponent(component);
@@ -75,18 +87,15 @@ const ThemeBuilder = () => {
       </DxcApplicationLayout.SideNav>
       <DxcApplicationLayout.Main>
         <MainContainer>
-          <ComponentInputsContainer>
-            <ComponentPreview
-              customTheme={customTheme}
-              componentId={currentComponent}
-            />
-            <ThemeInputsConfig
-              componentInputs={customTheme[currentComponent]}
-              componentInputsTypes={customThemeSchema[currentComponent]}
-              onChangeCustomTheme={changeCustomThemeHandler}
-            />
-          </ComponentInputsContainer>
-          <JSONView customTheme={customTheme} onEdit={setCustomTheme} />
+          <ComponentPreview
+            customTheme={customTheme}
+            componentId={currentComponent}
+          />
+          <ThemeInputsConfig
+            componentInputs={customTheme[currentComponent]}
+            componentInputsTypes={customThemeSchema[currentComponent]}
+            onChangeCustomTheme={setComponentProperty}
+          />
         </MainContainer>
       </DxcApplicationLayout.Main>
     </DxcApplicationLayout>
@@ -95,14 +104,6 @@ const ThemeBuilder = () => {
 
 const MainContainer = styled.div`
   display: flex;
-`;
-
-const ComponentInputsContainer = styled.div`
-  height: calc(100vh - 54px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 70%;
 `;
 
 const ComponentLink = styled.p`

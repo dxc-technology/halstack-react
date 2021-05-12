@@ -33,10 +33,13 @@ const Link = ({ href, onClick, children }) => {
 };
 
 const SideNavContainer = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
   background-color: ${(props) => props.theme.backgroundColor};
+  font-family: ${(props) => props.theme.customContentFontFamily};
+  font-size: ${(props) => props.theme.customContentFontSize};
+  font-style: ${(props) => props.theme.customContentFontStyle};
+  font-weight: ${(props) => props.theme.customContentFontWeight};
+  color: ${(props) => props.theme.customContentFontColor};
   max-width: 300px;
-  font-family: ${(props) => props.theme.fontFamily};
   width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
   padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
   overflow-y: auto;
@@ -59,32 +62,38 @@ const SideNavContainer = styled.div`
 `;
 
 const SideNavMenuTitle = styled.div`
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize24};
-  font-style: ${(props) => props.theme.fontStyle};
-  letter-spacing: ${(props) => props.theme.fontLetterSpacingTitle};
-  color: #000000de;
+  font-family: ${(props) => props.theme.titleFontFamily};
+  font-size: ${(props) => props.theme.titleFontSize};
+  font-style: ${(props) => props.theme.titleFontStyle};
+  font-weight: ${(props) => props.theme.titleFontWeight};
+  color: ${(props) => props.theme.titleFontColor};
+  letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
+  text-transform: ${(props) => props.theme.titleFontTextTransform};
   margin: 15px 0;
 `;
 
 const SideNavMenuSubTitle = styled.div`
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize12};
-  font-style: ${(props) => props.theme.fontStyle};
-  letter-spacing: ${(props) => props.theme.fontLetterSpacingSubtitle};
-  color: #00000099;
-  text-transform: ${(props) => props.theme.fontTextTransform};
+  font-family: ${(props) => props.theme.subtitleFontFamily};
+  font-size: ${(props) => props.theme.subtitleFontSize};
+  font-style: ${(props) => props.theme.subtitleFontStyle};
+  font-weight: ${(props) => props.theme.subtitleFontWeight};
+  color: ${(props) => props.theme.subtitleFontColor};
+  letter-spacing: ${(props) => props.theme.subtitleFontLetterSpacing};
+  text-transform: ${(props) => props.theme.subtitleFontTextTransform};
   margin-top: 15px;
 `;
 
 const SideNavMenuLink = styled.a`
-  text-decoration: ${(props) => props.theme.textDecoration};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize14};
-  font-style: ${(props) => props.theme.fontStyle};
-  letter-spacing: ${(props) => props.theme.fontLetterSpacingLink};
-  color: #00000099;
-  margin: 6px 18px;
+  font-family: ${(props) => props.theme.linkFontFamily};
+  font-size: ${(props) => props.theme.linkFontSize};
+  font-style: ${(props) => props.theme.linkFontStyle};
+  font-weight: ${(props) => props.theme.linkFontWeight};
+  color: ${(props) => props.theme.linkFontColor};
+  letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
+  text-transform: ${(props) => props.theme.linkFontTextTransform};
+  text-decoration: ${(props) => props.theme.linkTextDecoration};
+  margin: ${(props) =>
+    `${props.theme.linkMarginTop} ${props.theme.linkMarginRight} ${props.theme.linkMarginBottom} ${props.theme.linkMarginLeft}`};
   cursor: pointer;
 `;
 

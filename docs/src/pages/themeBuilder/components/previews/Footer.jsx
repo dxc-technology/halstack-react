@@ -44,7 +44,9 @@ const Footer = () => {
           bottomLinks={bottom}
           socialLinks={social}
           margin="medium"
-        ></DxcFooter>
+        >
+          <div>Footer text</div>
+        </DxcFooter>
       </Mode>
     </FooterContainer>
   );

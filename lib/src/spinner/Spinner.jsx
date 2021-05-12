@@ -52,10 +52,8 @@ DxcSpinner.propTypes = {
 };
 
 const BackgroundSpinner = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
-
-  background-color: ${(props) => (props.mode === "overlay" ? `${props.theme.overlayColor}` : "transparent")};
-  opacity: ${(props) => props.mode === "overlay" && "0.8"};
+  background-color: ${(props) => (props.mode === "overlay" ? `${props.theme.overlayBackgroundColor}` : "transparent")};
+  opacity: ${(props) => props.mode === "overlay" && `${props.theme.overlayOpacity}`};
   display: flex;
   flex-wrap: wrap;
   justify-content: ${(props) => (props.mode === "overlay" ? "center" : "")};
@@ -70,7 +68,6 @@ const BackgroundSpinner = styled.div`
 
 const DXCSpinner = styled.div`
   box-sizing: unset;
-  font-family: ${(props) => props.theme.fontFamily};
   border-radius: 80px;
   border: ${(props) =>
     (props.mode === "small" && `6px solid${props.theme.totalCircleColor}`) ||
@@ -117,22 +114,41 @@ const DXCSpinner = styled.div`
 `;
 
 const SpinnerLabel = styled.div`
+  font-family: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayLabelFontFamily : props.theme.labelFontFamily};
+  font-weight: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayLabelFontWeight : props.theme.labelFontWeight};
+  font-size: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontSize : props.theme.labelFontSize)};
+  font-style: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontStyle : props.theme.labelFontStyle)};
   margin-top: ${(props) => (props.showValue === false && "52px") || "45px"};
-  color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.fontColor)};
-  text-transform: ${(props) => props.theme.fontTextTransform};
-  font-size: ${(props) => props.theme.fontSize};
-  text-align: center;
+  color: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontColor : props.theme.labelFontColor)};
+  text-transform: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayLabelFontTextTransform : props.theme.labelFontTextTransform};
+  text-align: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelTextAlign : props.theme.labelTextAlign)};
+  letter-spacing: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayLabelLetterSpacing : props.theme.labelLetterSpacing};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const SpinnerProgress = styled.div`
+  font-family: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontFamily : props.theme.progressValueFontFamily};
+  font-weight: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontWeight : props.theme.progressValueFontWeight};
+  font-size: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontSize : props.theme.progressValueFontSize};
+  font-style: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontStyle : props.theme.progressValueFontStyle};
   margin-top: ${(props) => (props.label === "" && "52px") || ""};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
-  color: ${(props) => (props.mode === "overlay" ? "#FFFFFF" : props.theme.fontColor)};
-  font-size: ${(props) => props.theme.fontSize};
-  text-align: center;
+  color: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayProgressValueFontColor : props.theme.progressValueFontColor};
+  text-align: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayProgressValueTextAlign : props.theme.progressValueTextAlign};
+  letter-spacing: ${(props) =>
+    props.mode === "overlay" ? props.theme.overlayProgressValueLetterSpacing : props.theme.progressValueLetterSpacing};
 `;
 
 export default DxcSpinner;

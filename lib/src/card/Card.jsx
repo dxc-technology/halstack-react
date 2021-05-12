@@ -70,7 +70,7 @@ const CardContainer = styled.div`
   height: 220px;
   width: 400px;
   &:hover {
-    border-color: ${({ hasAction }) => (hasAction ? "#FFED00" : "unset")};
+    border-color: ${({ hasAction }) => (hasAction ? "" : "unset")};
   }
 `;
 

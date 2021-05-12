@@ -39,7 +39,6 @@ const code = `() => {
       label="Select with Icons"
       value={value}
       margin="medium"
-      padding="small"
     ></DxcSelect>
   );
 }`;
