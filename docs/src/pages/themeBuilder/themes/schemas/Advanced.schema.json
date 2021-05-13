@@ -558,7 +558,7 @@
     "hamburguerColor": "color",
     "hamburguerHoverColor": "color",
     "overlayColor": "color",
-    "focusColor": "color",
+    "hamburguerFocusColor": "color",
     "logo": "image",
     "logoResponsive": "image",
     "fontFamilyBase": "fFamily",

@@ -222,7 +222,7 @@ const HamburguerItem = styled.div`
     background-color: ${(props) => props.theme.hamburguerHoverColor};
   }
   &:focus {
-    outline: ${(props) => props.theme.focusColor} auto 1px;
+    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
   & > svg {
     fill: ${(props) => props.theme.hamburguerColor};
@@ -298,7 +298,7 @@ const MenuContent = styled.div`
 const CloseContainer = styled.img`
   cursor: pointer;
   :focus {
-    outline: ${(props) => props.theme.focusColor} auto 1px;
+    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
 `;
 
