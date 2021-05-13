@@ -10,11 +10,14 @@ const Mode = ({ text, children }) => {
   );
 };
 
-const ModeContainer = styled.div``;
+const ModeContainer = styled.div`
+  background-color: ${(props) =>
+    props.mode === "dark" ? "#000000" : "transparent"};
+  padding-bottom:10px;
+`;
 
 const PreviewsContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
+  padding-left: 10px;
 `;
 
 const Title = styled.div`
