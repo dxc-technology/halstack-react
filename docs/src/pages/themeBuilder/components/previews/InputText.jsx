@@ -30,7 +30,7 @@ const countries = [
   "Germany",
 ];
 
-const Textfield = () => {
+const InputText = () => {
   const [asynchronousAutocompleteValue, changeAsynchronousAutocompleteValue] =
     useState("");
 
@@ -177,4 +177,4 @@ const Textfield = () => {
 
 const TextFieldContainer = styled.div``;
 
-export default Textfield;
+export default InputText;
