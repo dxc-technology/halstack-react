@@ -150,15 +150,15 @@ const DxCButton = styled.div`
       const { mode, backgroundType } = props;
       if (mode === "primary") {
         return `
-        border-radius: ${props.theme.primaryButtonBorderRadius};
-        border-width:  ${props.theme.primaryButtonBorderThickness};
-        border-style:  ${props.theme.primaryButtonBorderStyle};
+        border-radius: ${props.theme.primaryBorderRadius};
+        border-width:  ${props.theme.primaryBorderThickness};
+        border-style:  ${props.theme.primaryBorderStyle};
         border-color:  ${
-          backgroundType === "dark" ? props.theme.primaryButtonBorderColorOnDark : props.theme.primaryButtonBorderColor
+          backgroundType === "dark" ? props.theme.primaryBorderColorOnDark : props.theme.primaryBorderColor
         };
-        font-family:   ${props.theme.primaryButtonFontFamily};
-        font-size:     ${props.theme.primaryButtonFontSize};
-        font-weight:   ${props.theme.primaryButtonFontWeight};
+        font-family:   ${props.theme.primaryFontFamily};
+        font-size:     ${props.theme.primaryFontSize};
+        font-weight:   ${props.theme.primaryFontWeight};
 
         background-color: ${
           backgroundType === "dark" ? props.theme.primaryBackgroundColorOnDark : props.theme.primaryBackgroundColor
@@ -166,7 +166,10 @@ const DxCButton = styled.div`
         color: ${
             backgroundType === "dark" ? props.theme.primaryFontColorOnDark : props.theme.primaryFontColor
           } !important;
-        padding: ${(props.size === "small" && "11px") || "12px 30px"};
+          padding-right:${(props.size === "small" && "11px") || "30px"};
+          padding-left:${(props.size === "small" && "11px") || "30px"};
+          padding-top:${props.theme.primaryPaddingTop};
+          padding-bottom:${props.theme.primaryPaddingBottom};
           &:hover{
             background-color: ${
               backgroundType === "dark"
@@ -212,18 +215,22 @@ const DxCButton = styled.div`
         `;
       } else if (mode === "secondary") {
         return `
-        border-radius: ${props.theme.secondaryButtonBorderRadius};
-        border-width:${props.theme.secondaryButtonBorderThickness};
-        border-style:${props.theme.secondaryButtonBorderStyle};
-        font-family:   ${props.theme.secondaryButtonFontFamily};
-        font-size:     ${props.theme.secondaryButtonFontSize};
-        font-weight:   ${props.theme.secondaryButtonFontWeight};
+        border-radius: ${props.theme.secondaryBorderRadius};
+        border-width:${props.theme.secondaryBorderThickness};
+        border-style:${props.theme.secondaryBorderStyle};
+        font-family:   ${props.theme.secondaryFontFamily};
+        font-size:     ${props.theme.secondaryFontSize};
+        font-weight:   ${props.theme.secondaryFontWeight};
             background-color: ${
               backgroundType === "dark"
                 ? props.theme.secondaryBackgroundColorOnDark
                 : props.theme.secondaryBackgroundColor
             };
-            padding: ${(props.size === "small" && "9px") || "10px 28px"};
+            padding-right:${(props.size === "small" && "9px") || "28px"};
+            padding-left:${(props.size === "small" && "9px") || "28px"};
+            padding-top:${props.theme.secondaryPaddingTop};
+            padding-bottom:${props.theme.secondaryPaddingBottom};
+  
             color: ${
               backgroundType === "dark" ? props.theme.secondaryFontColorOnDark : props.theme.secondaryFontColor
             } !important;
@@ -292,22 +299,26 @@ const DxCButton = styled.div`
           `;
       } else if (mode === "text") {
         return `
-        border-radius: ${props.theme.textButtonBorderRadius};
-        border-width:${props.theme.textButtonBorderThickness};
-        border-style:${props.theme.textButtonBorderStyle};
+        border-radius: ${props.theme.textBorderRadius};
+        border-width:${props.theme.textBorderThickness};
+        border-style:${props.theme.textBorderStyle};
         border-color:${
-          backgroundType === "dark" ? props.theme.textButtonBorderColorOnDark : props.theme.textButtonBorderColor
+          backgroundType === "dark" ? props.theme.textBorderColorOnDark : props.theme.textBorderColor
         };
-        font-family:   ${props.theme.textButtonFontFamily};
-        font-size:     ${props.theme.textButtonFontSize};
-        font-weight:   ${props.theme.textButtonFontWeight};
+        font-family:   ${props.theme.textFontFamily};
+        font-size:     ${props.theme.textFontSize};
+        font-weight:   ${props.theme.textFontWeight};
             background-color: ${
               backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
             };
             color: ${
               backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor
             } !important;
-            padding: ${(props.size === "small" && "11px") || "12px 30px"};
+            padding-right:${(props.size === "small" && "11px") || "30px"};
+            padding-left:${(props.size === "small" && "11px") || "30px"};
+            padding-top:${props.theme.textPaddingTop};
+            padding-bottom:${props.theme.textPaddingBottom};
+
             &:hover{
               background-color: ${
                 backgroundType === "dark"
