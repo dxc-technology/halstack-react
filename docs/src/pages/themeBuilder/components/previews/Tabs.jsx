@@ -18,6 +18,11 @@ const Tabs = () => {
   const onNotificationActiveTab = (i) => {
     setNotificationActiveTab(i);
   };
+  const [largeActiveTab, setLargeActiveTab] = useState(0);
+  const onLargeActiveTab = (i) => {
+    setLargeActiveTab(i);
+  };
+
   return (
     <TabsContainer>
       <Mode text="Default">
@@ -81,8 +86,8 @@ const Tabs = () => {
         <Title>Large Tab</Title>
         <PreviewContainer>
           <DxcTabs
-            activeTabIndex={activeTab}
-            onTabClick={onTabClick}
+            activeTabIndex={largeActiveTab}
+            onTabClick={onLargeActiveTab}
             tabs={[
               { label: "Tab 1" },
               { label: "Tab 2" },

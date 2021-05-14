@@ -135,6 +135,7 @@ const DxCTabs = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   .MuiTabs-root {
     background: white;
+
     .MuiTabs-scroller {
       .MuiTabs-flexContainer + span {
         z-index: 4;
@@ -145,8 +146,7 @@ const DxCTabs = styled.div`
     }
     .MuiButtonBase-root {
       padding: ${(props) =>
-        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") ||
-        "8px 16px"};
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") || "8px 16px"};
       height: ${(props) =>
         ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
       font-family: ${(props) => props.theme.fontFamily};
@@ -155,12 +155,9 @@ const DxCTabs = styled.div`
       font-weight: ${(props) => props.theme.fontWeight};
       min-width: 90px;
       max-width: 360px;
+
       &:hover {
         background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
-        color: ${(props) => `${props.theme.hoverFontColor} !important`};
-        svg {
-          color: ${(props) => `${props.theme.hoverIconColor} !important`};
-        }
       }
       &:active {
         background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
@@ -185,7 +182,6 @@ const DxCTabs = styled.div`
         pointer-events: all;
         color: ${(props) => props.theme.disabledFontColor};
         font-style: ${(props) => props.theme.disabledFontStyle};
-        background-color: ${(props) => props.theme.disabledBackgroundColor};
         svg {
           color: ${(props) => props.theme.disabledIconColor};
         }
@@ -194,18 +190,15 @@ const DxCTabs = styled.div`
         outline: ${(props) => props.theme.focusOutline} auto 1px;
       }
     }
-
     .MuiTabs-indicator {
       background-color: ${(props) => props.theme.selectedUnderlineColor};
       height: ${(props) => props.theme.selectedUnderlineThickness};
     }
-
     .MuiTabs-scrollButtons {
       min-width: ${(props) => props.theme.scrollButtonsWidth};
       width: ${(props) => props.theme.scrollButtonsWidth};
       padding: 0;
     }
-
     @media (max-width: 599.95px) {
       .MuiTabs-scrollButtonsDesktop {
         display: flex;
