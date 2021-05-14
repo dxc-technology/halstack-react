@@ -17,10 +17,10 @@ const Dropdown = (props) => {
 
 const HeaderDropdown = styled.div`
   button {
-    color: ${(props) => props.theme.fontColor};
-    background-color: transparent;
+    color: ${(props) => props.theme.fontColorBase};
+    background-color: ${(props) => props.theme.dropdownBackgroundColor};
     :hover {
-      background-color: transparent;
+      background-color: ${(props) => props.theme.dropdownHoverBackgroundColor};
     }
   }
 `;
@@ -101,7 +101,11 @@ const DxcHeader = ({
   return (
     <ThemeProvider theme={colorsTheme.header}>
       <HeaderContainer underlined={underlined} position="static" margin={margin} ref={ref}>
-        <LogoAnchor tabIndex={typeof onClick === "function" ? tabIndex : -1} interactuable={typeof onClick === "function"} onClick={onClick}>
+        <LogoAnchor
+          tabIndex={typeof onClick === "function" ? tabIndex : -1}
+          interactuable={typeof onClick === "function"}
+          onClick={onClick}
+        >
           {getLogoRendered(false)}
         </LogoAnchor>
         {isResponsive && responsiveContent && (
@@ -118,12 +122,7 @@ const DxcHeader = ({
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                   {getLogoRendered(true)}
                   <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
-                  <CloseContainer
-                    tabIndex={tabIndex}
-                    onClick={handleMenu}
-                    src={CloseIcon}
-                    className="closeIcon"
-                  />
+                  <CloseContainer tabIndex={tabIndex} onClick={handleMenu} src={CloseIcon} className="closeIcon" />
                 </ResponsiveMenu>
                 <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
               </div>
@@ -146,9 +145,11 @@ const HeaderContainer = styled(AppBar)`
   &.MuiAppBar-colorPrimary {
     background-color: ${(props) => props.theme.backgroundColor};
 
-    color: ${(props) => props.theme.fontColor};
+    color: ${(props) => props.theme.fontColorBase};
 
-    border-bottom: ${(props) => props.underlined && `2px solid ${props.theme.underlinedColor}`};
+    border-bottom: ${(props) =>
+      props.underlined &&
+      `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
 
     font-family: ${(props) => props.theme.fontFamily};
 
@@ -161,12 +162,13 @@ const HeaderContainer = styled(AppBar)`
     }
   }
   & {
-    min-height: 64px;
+    min-height: ${(props) => props.theme.minHeight};
   }
   &.MuiAppBar-root {
     flex-direction: row;
     align-items: center;
-    padding: 0px 0px 0px 20px;
+    padding: ${(props) =>
+      `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
     justify-content: space-between;
   }
 `;
@@ -182,8 +184,8 @@ const LogoAnchor = styled.a`
 `;
 
 const LogoIcon = styled.img`
-  max-height: 32px;
-  width: auto;
+  max-height: ${(props) => props.theme.logoHeight};
+  width: ${(props) => props.theme.logoWidth};
   vertical-align: middle;
 `;
 
@@ -202,6 +204,11 @@ const ChildContainer = styled.div`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+  font-family: ${(props) => props.theme.customContentFontFamily || props.theme.fontFamilyBase};
+  font-style: ${(props) => props.theme.customContentFontStyle};
+  font-size: ${(props) => props.theme.customContentFontSize || props.theme.fontSizeBase};
+  font-weight: ${(props) => props.theme.customContentFontWeight};
+  color: ${(props) => props.theme.customContentFontColor || props.theme.fontColorBase};
 `;
 
 const HamburguerItem = styled.div`
@@ -212,10 +219,10 @@ const HamburguerItem = styled.div`
   width: 54px;
   cursor: pointer;
   :hover {
-    background-color: ${(props) => props.theme.hoverHamburguerColor};
+    background-color: ${(props) => props.theme.hamburguerHoverColor};
   }
   &:focus {
-    outline: ${(props) => props.theme.focusColor} auto 1px;
+    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
   & > svg {
     fill: ${(props) => props.theme.hamburguerColor};
@@ -223,9 +230,12 @@ const HamburguerItem = styled.div`
 `;
 
 const HamburguerTitle = styled.span`
-  font-size: ${(props) => props.theme.fontSize};
-  text-transform: ${(props) => props.theme.fontTextTransform};
-  font-weight: ${(props) => props.theme.fontWeight};
+  font-family: ${(props) => props.theme.hamburguerFontFamily || props.theme.fontFamilyBase};
+  font-style: ${(props) => props.theme.hamburguerFontStyle};
+  font-size: ${(props) => props.theme.hamburguerFontSize};
+  text-transform: ${(props) => props.theme.hamburguerTextTransform};
+  font-weight: ${(props) => props.theme.hamburguerFontWeight};
+  color: ${(props) => props.theme.hamburguerFontColor || props.theme.fontColorBase};
 `;
 
 const MainContainer = styled.div`
@@ -238,14 +248,15 @@ const ResponsiveMenu = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
-  background-color: ${(props) => props.theme.backgroundColorMenu};
+  background-color: ${(props) => props.theme.menuBackgroundColor};
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 2000;
-  color: ${(props) => props.theme.fontColorMenu};
+  z-index: ${(props) => props.theme.menuZindex};
   width: ${(props) =>
-    props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge ? "60vw" : "100vw"};
+    props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge
+      ? `${(props) => props.theme.menuTabletWidth}`
+      : `${(props) => props.theme.menuMobileWidth}`};
   height: 100vh;
   padding: 20px;
   transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
@@ -277,12 +288,17 @@ const MenuContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  font-family: ${(props) => props.theme.menuCustomContentFontFamily || props.theme.fontFamilyBase};
+  font-style: ${(props) => props.theme.menuCustomContentFontStyle};
+  font-size: ${(props) => props.theme.menuCustomContentFontSize || props.theme.fontSizeBase};
+  font-weight: ${(props) => props.theme.menuCustomContentFontWeight};
+  color: ${(props) => props.theme.menuCustomContentFontColor || props.theme.fontColorBase};
 `;
 
 const CloseContainer = styled.img`
   cursor: pointer;
   :focus {
-    outline: ${(props) => props.theme.focusColor} auto 1px;
+    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
 `;
 
@@ -293,12 +309,12 @@ const Overlay = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${(props) => props.theme.overlayColor};
-  opacity: 0.7 !important;
+  opacity: ${(props) => props.theme.overlayOpacity} !important;
   visibility: ${(props) => (props.hasVisibility ? "visible" : "hidden")};
   opacity: ${(props) => (props.hasVisibility ? "1" : "0")};
   display: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "none" : "")};
   transition: opacity 0.2s 0.2s ease-in-out;
-  z-index: 1600;
+  z-index: ${(props) => props.theme.overlayZindex};
 `;
 
 DxcHeader.propTypes = {
@@ -325,7 +341,7 @@ DxcHeader.propTypes = {
   ]),
   content: PropTypes.object,
   responsiveContent: PropTypes.func,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcHeader;
