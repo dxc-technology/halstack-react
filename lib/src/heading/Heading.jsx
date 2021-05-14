@@ -46,11 +46,13 @@ const HeadingLevel1 = styled.h1`
   font-size: ${(props) => props.theme.level1FontSize};
   line-height: ${(props) => props.theme.level1LineHeight};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === ""
-      ? props.theme.level1NormalFontWeight
+    props.weight === "normal"
+      ? "400"
       : props.weight === "light"
-      ? props.theme.level1LightFontWeight
-      : props.theme.level1BoldFontWeight};
+      ? "300"
+      : props.weight === "bold"
+      ? "600"
+      : props.theme.level1FontWeight};
   letter-spacing: ${(props) => props.theme.level1LetterSpacing};
   color: ${(props) => props.theme.level1FontColor};
   margin: 0;
@@ -62,11 +64,13 @@ const HeadingLevel2 = styled.h2`
   font-size: ${(props) => props.theme.level2FontSize};
   line-height: ${(props) => props.theme.level2LineHeight};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === ""
-      ? props.theme.level2NormalFontWeight
+    props.weight === "normal"
+      ? "400"
       : props.weight === "light"
-      ? props.theme.level2LightFontWeight
-      : props.theme.level2BoldFontWeight};
+      ? "300"
+      : props.weight === "bold"
+      ? "600"
+      : props.theme.level2FontWeight};
   letter-spacing: ${(props) => props.theme.level2LetterSpacing};
   color: ${(props) => props.theme.level2FontColor};
   margin: 0;
@@ -78,11 +82,13 @@ const HeadingLevel3 = styled.h3`
   font-size: ${(props) => props.theme.level3FontSize};
   line-height: ${(props) => props.theme.level3LineHeight};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === ""
-      ? props.theme.level3NormalFontWeight
+    props.weight === "normal"
+      ? "400"
       : props.weight === "light"
-      ? props.theme.level3LightFontWeight
-      : props.theme.level3BoldFontWeight};
+      ? "300"
+      : props.weight === "bold"
+      ? "600"
+      : props.theme.level3FontWeight};
   letter-spacing: ${(props) => props.theme.level3LetterSpacing};
   color: ${(props) => props.theme.level3FontColor};
   margin: 0;
@@ -94,11 +100,13 @@ const HeadingLevel4 = styled.h4`
   font-size: ${(props) => props.theme.level4FontSize};
   line-height: ${(props) => props.theme.level4LineHeight};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === ""
-      ? props.theme.level4NormalFontWeight
+    props.weight === "normal"
+      ? "400"
       : props.weight === "light"
-      ? props.theme.level4LightFontWeight
-      : props.theme.level4BoldFontWeight};
+      ? "300"
+      : props.weight === "bold"
+      ? "600"
+      : props.theme.level4FontWeight};
   letter-spacing: ${(props) => props.theme.level4LetterSpacing};
   color: ${(props) => props.theme.level4FontColor};
   margin: 0;
@@ -110,11 +118,13 @@ const HeadingLevel5 = styled.h5`
   font-size: ${(props) => props.theme.level5FontSize};
   line-height: ${(props) => props.theme.level5LineHeight};
   font-weight: ${(props) =>
-    props.weight === "normal" || props.weight === ""
-      ? props.theme.level5NormalFontWeight
+    props.weight === "normal"
+      ? "400"
       : props.weight === "light"
-      ? props.theme.level5LightFontWeight
-      : props.theme.level5BoldFontWeight};
+      ? "300"
+      : props.weight === "bold"
+      ? "600"
+      : props.theme.level5FontWeight};
   letter-spacing: ${(props) => props.theme.level5LetterSpacing};
   color: ${(props) => props.theme.level5FontColor};
   margin: 0;
