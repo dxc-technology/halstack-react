@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { DxcTable } from "@dxc-technology/halstack-react";
-
 import Mode from "../Mode";
 
 const Table = () => {
   return (
     <TableContainer>
       <Mode text="Default">
-        <DxcTable>
+        <DxcTable margin={{ top: "small" }}>
           <tr>
             <th>header 1</th>
             <th>header 2</th>
