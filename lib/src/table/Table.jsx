@@ -22,11 +22,8 @@ const calculateWidth = (margin) => {
 };
 
 const DxcTableContainer = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
- 
   overflow-x: auto;
   width: ${(props) => calculateWidth(props.margin)};
-  font-family: ${(props) => props.theme.fontFamily};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -40,12 +37,10 @@ const DxcTableContainer = styled.div`
   &::-webkit-scrollbar {
     height: 6px;
   }
-
   &::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme.scrollBarThumbColor};
     border-radius: 6px;
   }
-
   &::-webkit-scrollbar-track {
     background-color: ${(props) => props.theme.scrollBarTrackColor};
     border-radius: 6px;
@@ -57,35 +52,37 @@ const DxcTableContent = styled.table`
   width: 100%;
 
   & tr {
-    border-bottom: 1px solid ${(props) => props.theme.separatorColor};
+    border-bottom: ${(props) =>
+      `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
+    height: ${(props) => props.theme.rowHeight};
   }
-
   & td {
-    color: ${(props) => props.theme.bodyFontColor};
+    background-color: ${(props) => props.theme.dataBackgroundColor};
+    font-family: ${(props) => props.theme.dataFontFamily};
+    font-size: ${(props) => props.theme.dataFontSize};
+    font-style: ${(props) => props.theme.dataFontStyle};
+    font-weight: ${(props) => props.theme.dataFontWeight};
+    color: ${(props) => props.theme.dataFontColor};
+    text-transform: ${(props) => props.theme.dataFontTextTransform};
+    text-align: ${(props) => props.theme.dataTextAlign};
     min-height: 48px;
+    padding: 14px 20px 12px 40px;
   }
-
   & th {
     padding: 16px 20px 16px 40px;
     min-height: 60px;
-  }
-
-  & td {
-    padding: 14px 20px 12px 40px;
-  }
-
-  & th {
-    text-align: left;
-    font-size: ${(props) => props.theme.fontSize};
-    font-weight: ${(props) => props.theme.fontWeight};
     background-color: ${(props) => props.theme.headerBackgroundColor};
+    font-family: ${(props) => props.theme.headerFontFamily};
+    font-size: ${(props) => props.theme.headerFontSize};
+    font-style: ${(props) => props.theme.headerFontStyle};
+    font-weight: ${(props) => props.theme.headerFontWeight};
     color: ${(props) => props.theme.headerFontColor};
+    text-transform: ${(props) => props.theme.headerFontTextTransform};
+    text-align: ${(props) => props.theme.headerTextAlign};
   }
-
   & th:first-child {
     border-top-left-radius: 4px;
   }
-
   & th:last-child {
     border-top-right-radius: 4px;
   }
