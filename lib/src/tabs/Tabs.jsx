@@ -30,12 +30,8 @@ const DxcTabs = ({
     }
   };
 
-  const getTabIndex = (index, disabled) => {
-    if((activeTabIndex === index || innerActiveTabIndex === index) && !disabled) {
-      return tabIndex;
-    } 
-    return -1;
-  };
+  const getTabIndex = (index, disabled) =>
+    (activeTabIndex === index || innerActiveTabIndex === index) && !disabled ? tabIndex : -1;
 
   const getLabelForTab = (tab) => {
     return (
@@ -121,14 +117,12 @@ const Underline = styled.div`
   left: 0px;
   bottom: 0;
   width: 100%;
-  height: 1px;
+  height: ${(props) => props.theme.dividerThickness};
   position: absolute;
-  background-color: ${(props) => props.theme.divider};
+  background-color: ${(props) => props.theme.dividerColor};
 `;
 
 const DxCTabs = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
-
   position: relative;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -147,7 +141,7 @@ const DxCTabs = styled.div`
       }
     }
     .MuiTab-root {
-      text-transform: none !important;
+      text-transform: ${(props) => props.theme.fontTextTransform} !important;
     }
     .MuiButtonBase-root {
       padding: ${(props) =>
@@ -156,29 +150,45 @@ const DxCTabs = styled.div`
       height: ${(props) =>
         ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
       font-family: ${(props) => props.theme.fontFamily};
-      font-weight: ${(props) => props.theme.fontWeight};
       font-size: ${(props) => props.theme.fontSize};
+      font-style: ${(props) => props.theme.fontStyle};
+      font-weight: ${(props) => props.theme.fontWeight};
       min-width: 90px;
       max-width: 360px;
-      color: ${(props) => props.theme.fontColor};
       &:hover {
         background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
+        color: ${(props) => `${props.theme.hoverFontColor} !important`};
+        svg {
+          color: ${(props) => `${props.theme.hoverIconColor} !important`};
+        }
       }
       &:active {
         background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
+        font-weight: ${(props) => `${props.theme.pressedFontWeight} !important`};
       }
       &:not(.Mui-selected) {
-        background-color: ${(props) => props.theme.backgroundColor};
-        color: ${(props) => props.theme.fontColor};
+        background-color: ${(props) => props.theme.unselectedBackgroundColor};
+        color: ${(props) => props.theme.unselectedFontColor};
+        svg {
+          color: ${(props) => props.theme.unselectedIconColor};
+        }
       }
       &.Mui-selected {
-        background-color: ${(props) => props.theme.backgroundColor};
+        background-color: ${(props) => props.theme.selectedBackgroundColor};
         color: ${(props) => props.theme.selectedFontColor};
+        svg {
+          color: ${(props) => props.theme.selectedIconColor};
+        }
       }
       &.Mui-disabled {
         cursor: not-allowed !important;
         pointer-events: all;
         color: ${(props) => props.theme.disabledFontColor};
+        font-style: ${(props) => props.theme.disabledFontStyle};
+        background-color: ${(props) => props.theme.disabledBackgroundColor};
+        svg {
+          color: ${(props) => props.theme.disabledIconColor};
+        }
       }
       &:focus {
         outline: ${(props) => props.theme.focusOutline} auto 1px;
@@ -187,11 +197,12 @@ const DxCTabs = styled.div`
 
     .MuiTabs-indicator {
       background-color: ${(props) => props.theme.selectedUnderlineColor};
+      height: ${(props) => props.theme.selectedUnderlineThickness};
     }
 
     .MuiTabs-scrollButtons {
-      min-width: 48px;
-      width: 48px;
+      min-width: ${(props) => props.theme.scrollButtonsWidth};
+      width: ${(props) => props.theme.scrollButtonsWidth};
       padding: 0;
     }
 
@@ -246,7 +257,7 @@ DxcTabs.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   iconPosition: PropTypes.oneOf(["top", "left"]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 DxcTabs.defaultProps = {
