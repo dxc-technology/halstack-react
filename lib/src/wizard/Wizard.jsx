@@ -152,17 +152,21 @@ const StepHeader = styled.div`
 const IconContainer = styled.div`
   width: ${(props) =>
     !props.current && !props.disabled
-      ? `${props.theme.wizard.circleWidthSelected}`
+      ? `${props.theme.wizard.circleSelectedWidth}`
       : `${props.theme.wizard.circleWidth}`};
   height: ${(props) =>
     !props.current && !props.disabled
-      ? `${props.theme.wizard.circleHeightSelected}`
+      ? `${props.theme.wizard.circleSelectedHeight}`
       : `${props.theme.wizard.circleHeight}`};
 
   ${(props) => `
     ${
       !props.current && !props.disabled
         ? `border: ${props.theme.wizard.circleBorderThickness} ${props.theme.wizard.circleBorderStyle} ${props.theme.wizard.circleBorderColor};`
+        : props.current
+        ? `border: ${props.theme.wizard.circleSelectedBorderThickness} ${props.theme.wizard.circleSelectedBorderStyle} ${props.theme.wizard.circleSelectedBorderColor};`
+        : props.disabled
+        ? `border: ${props.theme.wizard.circleDisabledBorderThickness} ${props.theme.wizard.circleDisabledBorderStyle} ${props.theme.wizard.circleDisabledBorderColor};`
         : ""
     }
     background: ${
@@ -170,15 +174,24 @@ const IconContainer = styled.div`
         ? `${props.theme.wizard.disabledBackgroundColor}`
         : props.current
         ? `${props.theme.wizard.stepContainerSelectedBackgroundColor}`
-        : ""
+        : `${props.theme.wizard.stepContainerBackgroundColor}`
     };
   `}
   ${(props) =>
     props.disabled
       ? `color: ${props.theme.wizard.disabledFontColor};`
-      : `color: ${props.current ? props.theme.wizard.stepContainerSelectedFontColor : props.theme.wizard.stepContainerFontColor};`};
+      : `color: ${
+          props.current ? props.theme.wizard.stepContainerSelectedFontColor : props.theme.wizard.stepContainerFontColor
+        };`};
 
-  border-radius: ${(props) => props.theme.wizard.circleBorderRadius};
+  border-radius: ${(props) =>
+    !props.current && !props.disabled
+      ? props.theme.wizard.circleBorderRadius
+      : props.current
+      ? props.theme.wizard.circleSelectedBorderRadius
+      : props.disabled
+      ? props.theme.wizard.circleDisabledBorderRadius
+      : ""};
   display: flex;
   justify-content: center;
   align-items: center;
