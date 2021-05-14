@@ -200,13 +200,13 @@ const DxCButton = styled.div`
             cursor: not-allowed;
             background-color: ${
               backgroundType === "dark"
-                ? props.theme.disabledPrimaryBackgroundColorOnDark
-                : props.theme.disabledPrimaryBackgroundColor
+                ? props.theme.primaryDisabledBackgroundColorOnDark
+                : props.theme.primaryDisabledBackgroundColor
             };
             color: ${
               backgroundType === "dark"
-                ? props.theme.disabledPrimaryFontColorOnDark
-                : props.theme.disabledPrimaryFontColor
+                ? props.theme.primaryDisabledFontColorOnDark
+                : props.theme.primaryDisabledFontColor
             }!important; 
           }
           .MuiButton-label {
@@ -283,13 +283,13 @@ const DxCButton = styled.div`
               cursor: not-allowed;
               color: ${
                 backgroundType === "dark"
-                  ? props.theme.disabledSecondaryFontColorOnDark
-                  : props.theme.disabledSecondaryFontColor
+                  ? props.theme.secondaryDisabledFontColorOnDark
+                  : props.theme.secondaryDisabledFontColor
               } !important;
               border-color: ${
                 backgroundType === "dark"
-                  ? props.theme.disabledSecondaryOutlinedColorOnDark
-                  : props.theme.disabledSecondaryOutlinedColor
+                  ? props.theme.secondaryDisabledOutlinedColorOnDark
+                  : props.theme.secondaryDisabledOutlinedColor
               };
             }
             .MuiButton-label {
@@ -350,10 +350,10 @@ const DxCButton = styled.div`
             &:disabled{
               cursor:not-allowed;
               color: ${
-                backgroundType === "dark" ? props.theme.disabledTextFontColorOnDark : props.theme.disabledTextFontColor
+                backgroundType === "dark" ? props.theme.textDisabledFontColorOnDark : props.theme.textDisabledFontColor
               } !important;
               background-color: ${
-                backgroundType === "dark" ? props.theme.disabledTextBackgroundColorOnDark : props.theme.disabledTextBackgroundColor
+                backgroundType === "dark" ? props.theme.textDisabledBackgroundColorOnDark : props.theme.textDisabledBackgroundColor
               };
   
             }
