@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
@@ -7,6 +7,7 @@ import DxcRequired from "../common/RequiredComponent";
 import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
+import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const DxcSwitch = ({
   checked,
@@ -23,6 +24,7 @@ const DxcSwitch = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(0);
   const colorsTheme = useTheme();
+  const backgroundType = useContext(BackgroundColorContext);
 
   const handlerSwitchChange = (newValue) => {
     if (checked === undefined) {
@@ -40,7 +42,13 @@ const DxcSwitch = ({
 
   return (
     <ThemeProvider theme={colorsTheme.switch}>
-      <SwitchContainer margin={margin} disabled={disabled} labelPosition={labelPosition} size={size}>
+      <SwitchContainer
+        margin={margin}
+        disabled={disabled}
+        labelPosition={labelPosition}
+        size={size}
+        backgroundType={backgroundType}
+      >
         <Switch
           checked={checked != undefined ? checked : innerChecked}
           inputProps={{ name: name, tabIndex: tabIndex }}
@@ -51,9 +59,9 @@ const DxcSwitch = ({
         />
         <LabelContainer
           labelPosition={labelPosition}
-          brightness={componentTokens}
           onClick={disabled === true ? () => {} : handlerSwitchChange}
           disabled={disabled}
+          backgroundType={backgroundType}
         >
           {required && <DxcRequired />}
           {label}
@@ -80,7 +88,6 @@ const calculateWidth = (margin, size) => {
 
 const SwitchContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
-
   display: inline-flex;
   align-items: center;
   flex-direction: ${(props) => (props.labelPosition === "after" ? "row" : "row-reverse")};
@@ -94,25 +101,36 @@ const SwitchContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
-  cursor: ${(props) => (props.disabled === true ? "not-allowed" : "default")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
+  
   .MuiSwitch-root {
     align-items: center;
-    width: 60px;
+    width: ${(props) => props.theme.trackWidth};
     height: 45px;
     margin: 3px;
 
     .Mui-focusVisible {
-      border: ${(props) => props.theme.focusColor + " solid 2px"};
+      border: ${(props) =>
+        `${
+          props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
+        } solid 2px`};
       padding: 7px;
     }
 
     .MuiSwitch-track {
       /*Enabled and unchecked bar*/
       background-color: ${(props) =>
-        props.disabled ? props.theme.disabledCheckedTrackBackgroundColor : props.theme.uncheckedTrackBackgroundColor};
-      height: 12px;
-      opacity: 1;
+        props.backgroundType === "dark"
+          ? props.theme.uncheckedTrackBackgroundColorOnDark
+          : props.theme.uncheckedTrackBackgroundColor};
+      height: ${(props) => props.theme.trackHeight};
+    }
+
+    .MuiSwitch-switchBase + .MuiSwitch-track {
+      opacity: ${(props) => (props.disabled ? "0.34" : "1")};
+      .Mui-checked {
+        opacity: ${(props) => (props.disabled ? "0.34" : "1")};
+      }
     }
 
     .MuiIconButton-root {
@@ -120,35 +138,60 @@ const SwitchContainer = styled.div`
       top: unset;
       .MuiSwitch-thumb {
         /*Only for thumb in all states*/
-        width: 24px;
-        height: 24px;
+        width: ${(props) => props.theme.thumbWidth};
+        height: ${(props) => props.theme.thumbHeight};
       }
-      color: ${(props) => props.theme.uncheckedThumbBackgroundColor};
+      color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.uncheckedThumbBackgroundColorOnDark
+          : props.theme.uncheckedThumbBackgroundColor};
       &:hover {
         background-color: transparent;
       }
       &.Mui-disabled {
-        /*Disabled*/
+        /*Disabled and unchecked*/
+        color: ${(props) =>
+          props.backgroundType === "dark"
+            ? props.theme.disabledUncheckedThumbBackgroundColorOnDark
+            : props.theme.disabledUncheckedThumbBackgroundColor};
         + .MuiSwitch-track {
           /*Disabled and unchecked bar*/
           background-color: ${(props) =>
-            props.disabled
-              ? props.theme.disabledUncheckedTrackBackgroundColor
-              : props.theme.uncheckedTrackBackgroundColor};
+            props.backgroundType === "dark"
+              ? props.theme.disabledUncheckedTrackBackgroundColorOnDark
+              : props.theme.disabledUncheckedTrackBackgroundColor};
+        }
+      }
+      &.Mui-disabled.Mui-checked {
+        /*Disabled and checked*/
+        color: ${(props) =>
+          props.backgroundType === "dark"
+            ? props.theme.disabledCheckedThumbBackgroundColorOnDark
+            : props.theme.disabledCheckedThumbBackgroundColor};
+        + .MuiSwitch-track {
+          /*Disabled and checked bar*/
+          background-color: ${(props) =>
+            props.backgroundType === "dark"
+              ? props.theme.disabledCheckedTrackBackgroundColorOnDark
+              : props.theme.disabledCheckedTrackBackgroundColor};
         }
       }
       &.Mui-checked {
         /*Enabled and checked*/
-        color: ${(props) => props.theme.checkedThumbBackgroundColor};
-        transform: translateX(40%);
+        color: ${(props) =>
+          props.backgroundType === "dark"
+            ? props.theme.checkedThumbBackgroundColorOnDark
+            : props.theme.checkedThumbBackgroundColor};
+        transform: translateX(${(props) => props.theme.thumbTranslateX});
         &:hover {
           background-color: transparent;
         }
         + .MuiSwitch-track {
           /*Enabled and checked bar*/
           background-color: ${(props) =>
-            props.disabled ? props.theme.disabledCheckedTrackBackgroundColor : props.theme.checkedTrackBackgroundColor};
-          opacity: 1;
+            props.backgroundType === "dark"
+              ? props.theme.checkedTrackBackgroundColorOnDark
+              : props.theme.checkedTrackBackgroundColor};
         }
       }
     }
@@ -156,9 +199,21 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledLabelFontColorOnDark
+        : props.theme.disabledLabelFontColor
+      : props.backgroundType === "dark"
+        ? props.theme.labelFontColorOnDark
+        : props.theme.labelFontColor};
+  opacity: ${(props) => (props.disabled ? "0.34" : "")};
+  font-family: ${(props) => props.theme.labelFontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
+  font-weight: ${(props) => props.theme.labelFontWeight};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
-  font-family: ${(props) => props.theme.fontFamily};
+  margin-right: ${(props) => props.theme.labelMarginRight};
 `;
 
 DxcSwitch.propTypes = {
@@ -180,7 +235,7 @@ DxcSwitch.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcSwitch;
