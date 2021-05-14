@@ -4,6 +4,25 @@ import { DxcHeader, DxcButton } from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 
+const selectOption = (value) => {
+  console.log(value);
+};
+
+const options = [
+  {
+    value: 1,
+    label: "Amazon",
+  },
+  {
+    value: 2,
+    label: "Ebay",
+  },
+  {
+    value: 3,
+    label: "Apple",
+  },
+];
+
 const Header = () => {
   return (
     <HeaderContainer>
@@ -15,6 +34,11 @@ const Header = () => {
               <DxcButton
                 label={"Custom Button"}
                 margin={{ right: "small", left: "small" }}
+              />
+              <DxcHeader.Dropdown
+                options={options}
+                onSelectOption={selectOption}
+                label="Default Dropdown"
               />
             </React.Fragment>
           }
