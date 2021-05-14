@@ -147,7 +147,7 @@ const AlertContainer = styled.div`
     (props.children && props.children.filter((child) => child === undefined).length === 0 && "92px") || "48px"};
   background-color: ${(props) =>
     (props.type === "info" && props.theme.infoColor) ||
-    (props.type === "confirm" && props.theme.confirmColor) ||
+    (props.type === "confirm" && props.theme.successColor) ||
     (props.type === "warning" && props.theme.warningColor) ||
     (props.type === "error" && props.theme.errorColor) ||
     props.theme.lightPink};
@@ -158,55 +158,55 @@ const AlertContainer = styled.div`
 const AlertInfo = styled.div`
   display: flex;
   flex-direction: row;
-  height: ${(props) => props.theme.alertHeight};
+  height: ${(props) => props.theme.height};
   align-items: center;
   width: 100%;
 `;
 
 const AlertType = styled.div`
-  padding-right: ${(props) => props.theme.alertTypePaddingRight};
-  padding-left: ${(props) => props.theme.alertTypePaddingLeft};
-  padding-top: ${(props) => props.theme.alertTypePaddingTop};
-  padding-bottom: ${(props) => props.theme.alertTypePaddingBottom};
-  font-family: ${(props) => props.theme.alertTypeFontFamily};
-  font-size: ${(props) => props.theme.alertTypeFontSize};
-  font-weight: ${(props) => props.theme.alertTypeFontWeight};
-  color:  ${(props) => props.theme.alertTypeFontColor};
-  font-style: ${(props) => props.theme.alertTypeFontStyle};
-  text-transform: ${(props) => props.theme.alertTypeTextTransform};
+  padding-right: ${(props) => props.theme.titlePaddingRight};
+  padding-left: ${(props) => props.theme.titlePaddingLeft};
+  padding-top: ${(props) => props.theme.titlePaddingTop};
+  padding-bottom: ${(props) => props.theme.titlePaddingBottom};
+  font-family: ${(props) => props.theme.titleFontFamily};
+  font-size: ${(props) => props.theme.titleFontSize};
+  font-weight: ${(props) => props.theme.titleFontWeight};
+  color:  ${(props) => props.theme.titleFontColor};
+  font-style: ${(props) => props.theme.titleFontStyle};
+  text-transform: ${(props) => props.theme.titleTextTransform};
 `;
 
 const AlertText = styled.div`
-  padding-right: ${(props) => props.theme.alertInlineTextPaddingRight};
-  padding-left: ${(props) => props.theme.alertInlineTextPaddingLeft};
-  padding-top: ${(props) => props.theme.alertInlineTextPaddingTop};
-  padding-bottom: ${(props) => props.theme.alertInlineTextPaddingBottom};
+  padding-right: ${(props) => props.theme.inlineTextPaddingRight};
+  padding-left: ${(props) => props.theme.inlineTextPaddingLeft};
+  padding-top: ${(props) => props.theme.inlineTextPaddingTop};
+  padding-bottom: ${(props) => props.theme.inlineTextPaddingBottom};
   flex-grow: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: ${(props) => props.theme.alertContentFontFamily};
-  font-size: ${(props) => props.theme.alertContentFontSize};
-  font-weight: ${(props) => props.theme.alertContentFontWeight};
-  color:  ${(props) => props.theme.alertContentFontColor};
+  font-family: ${(props) => props.theme.contentFontFamily};
+  font-size: ${(props) => props.theme.contentFontSize};
+  font-weight: ${(props) => props.theme.contentFontWeight};
+  color:  ${(props) => props.theme.contentFontColor};
 `;
 
 const AlertIcon = styled.img`
-  max-width: ${(props) => props.theme.alertIconMaxWidth};
-  max-height: ${(props) => props.theme.alertIconMaxHeight};
-  padding-right: ${(props) => props.theme.alertIconPaddingRight};
-  padding-left: ${(props) => props.theme.alertIconPaddingLeft};
-  padding-top: ${(props) => props.theme.alertIconPaddingTop};
-  padding-bottom: ${(props) => props.theme.alertIconPaddingBottom};
+  max-width: ${(props) => props.theme.iconMaxWidth};
+  max-height: ${(props) => props.theme.iconMaxHeight};
+  padding-right: ${(props) => props.theme.iconPaddingRight};
+  padding-left: ${(props) => props.theme.iconPaddingLeft};
+  padding-top: ${(props) => props.theme.iconPaddingTop};
+  padding-bottom: ${(props) => props.theme.iconPaddingBottom};
 `;
 
 const AlertInfoText = styled.div`
   display: flex;
   flex-direction: row;
-  padding-left: ${(props) => props.theme.alertTextPaddingLeft};
-  padding-right: ${(props) => props.theme.alertTextPaddingRight};
-  padding-top: ${(props) => props.theme.alertTextPaddingTop};
-  padding-bottom: ${(props) => props.theme.alertTextPaddingBottom};
+  padding-left: ${(props) => props.theme.textPaddingLeft};
+  padding-right: ${(props) => props.theme.textPaddingRight};
+  padding-top: ${(props) => props.theme.textPaddingTop};
+  padding-bottom: ${(props) => props.theme.textPaddingBottom};
   overflow: hidden;
   flex-grow: 1;
   align-items: center;
@@ -214,11 +214,11 @@ const AlertInfoText = styled.div`
 
 const AlertContent = styled.div`
   flex: 1 1 auto;
-  padding: ${(props)=>`${props.theme.alertContentPaddingTop} ${props.theme.alertContentPaddingRight} ${props.theme.alertContentPaddingBottom} ${props.theme.alertContentPaddingLeft}`};
-  font-family: ${(props) => props.theme.alertContentFontFamily};
-  font-size: ${(props) => props.theme.alertContentFontSize};
-  font-weight: ${(props) => props.theme.alertContentFontWeight};
-  color:  ${(props) => props.theme.alertContentFontColor};
+  padding: ${(props)=>`${props.theme.contentPaddingTop} ${props.theme.contentPaddingRight} ${props.theme.contentPaddingBottom} ${props.theme.contentPaddingLeft}`};
+  font-family: ${(props) => props.theme.contentFontFamily};
+  font-size: ${(props) => props.theme.contentFontSize};
+  font-weight: ${(props) => props.theme.contentFontWeight};
+  color:  ${(props) => props.theme.contentFontColor};
   overflow-y: auto;
 `;
 
