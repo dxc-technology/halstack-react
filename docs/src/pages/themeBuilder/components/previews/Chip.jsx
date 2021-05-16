@@ -33,6 +33,9 @@ const Chip = () => {
       <Mode text="Only icon">
         <DxcChip prefixIcon={deleteIcon} />
       </Mode>
+      <Mode text="Disabled">
+        <DxcChip label="Chip disabled" disabled prefixIcon={deleteIcon} />
+      </Mode>
     </ChipContainer>
   );
 };
