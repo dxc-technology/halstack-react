@@ -60,7 +60,10 @@ const DxcLink = ({
 };
 
 const LinkText = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
+  font-size: ${(props) => props.theme.fontSize};
+  font-weight: ${(props) => props.theme.fontWeight};
+  font-style: ${(props) => props.theme.fontStyle};
+  font-family: ${(props) => props.theme.fontFamily};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -71,17 +74,13 @@ const LinkText = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  text-decoration: ${(props) => props.theme.textDecoration};
+  text-decoration: none;
 
   ${(props) =>
     props.underlined &&
-    `padding-bottom: 1px !important; 
-    border-bottom: 1px solid ${
-      !props.inheritColor
-        ? !props.disabled
-          ? props.theme.underlinedBackgroundColor
-          : props.theme.disabledUnderlinedBackgroundColor
-        : ``
+    `padding-bottom: ${props.theme.underlineSpacing} !important; 
+    border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} ${
+      !props.inheritColor ? (!props.disabled ? props.theme.underlineColor : props.theme.disabledUnderlineColor) : ``
     };`}
 
   color: ${(props) =>
@@ -95,15 +94,14 @@ const LinkText = styled.div`
   align-items: center;
 
   max-width: 100%;
-  padding-bottom: 2px;
 
   &:hover {
     ${(props) =>
       !props.disabled &&
       `color: ${props.theme.hoverFontColor} !important;
-          text-decoration: ${(props) => props.theme.textDecoration};
-          padding-bottom: 1px !important;
-          border-bottom: 1px solid;
+          text-decoration: none;
+          padding-bottom: ${props.theme.underlineSpacing} !important;
+          border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} ${props.theme.hoverUnderlineColor};
           cursor: pointer;`}
   }
 
@@ -111,22 +109,22 @@ const LinkText = styled.div`
     ${(props) =>
       props.underlined
         ? !props.disabled
-          ? `color: ${props.theme.visitedFontColor} !important; border-bottom: 1px solid ${props.theme.visitedUnderlinedBackgroundColor}`
+          ? `color: ${props.theme.visitedFontColor} !important; border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} ${props.theme.visitedUnderlineColor}`
           : ""
         : ""}
   }
 `;
 
 const LinkIcon = styled.img`
-  width: 16px;
-  height: 16px;
-  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: 6px;
+  width: ${(props) => props.theme.iconWidth};
+  height: ${(props) => props.theme.iconHeight};
+  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${(props) => props.theme.iconGutter};
 `;
 
 const LinkIconContainer = styled.div`
-  width: 16px;
-  height: 16px;
-  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: 6px;
+  width: ${(props) => props.theme.iconWidth};
+  height: ${(props) => props.theme.iconHeight};
+  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${(props) => props.theme.iconGutter};
   overflow: hidden;
 
   img,
@@ -137,7 +135,7 @@ const LinkIconContainer = styled.div`
 `;
 
 const StyledLink = styled.a`
-  text-decoration: ${(props) => props.theme.textDecoration};
+  text-decoration: none;
   color: ${(props) =>
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
 `;
