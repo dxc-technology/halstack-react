@@ -133,8 +133,13 @@ const DxCTabs = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   .MuiTabs-root {
     background: white;
+    min-height: ${(props) => 
+      ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
+        props.theme.minHeight) ||
+      props.theme.minHeightWithLabelAndIcon};
 
     .MuiTabs-scroller {
       .MuiTabs-flexContainer + span {
@@ -145,16 +150,24 @@ const DxCTabs = styled.div`
       text-transform: ${(props) => props.theme.fontTextTransform} !important;
     }
     .MuiButtonBase-root {
-      padding: ${(props) =>
-        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") || "8px 16px"};
-      height: ${(props) =>
-        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
       font-family: ${(props) => props.theme.fontFamily};
       font-size: ${(props) => props.theme.fontSize};
       font-style: ${(props) => props.theme.fontStyle};
       font-weight: ${(props) => props.theme.fontWeight};
-      min-width: 90px;
-      max-width: 360px;
+
+      padding: ${(props) =>
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") ||
+        "8px 16px"};
+      height: ${(props) =>
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
+          props.theme.minHeight) ||
+        props.theme.minHeightWithLabelAndIcon};
+      min-width: ${(props) => props.theme.minWidth};
+      max-width: ${(props) => props.theme.maxWidth};
+      min-height: ${(props) => 
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
+          props.theme.minHeight) ||
+        props.theme.minHeightWithLabelAndIcon};
 
       &:hover {
         background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
