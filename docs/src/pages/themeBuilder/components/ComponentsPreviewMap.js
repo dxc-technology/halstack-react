@@ -21,6 +21,7 @@ import TabsPreview from "./previews/Tabs";
 import ToggleGroupPreview from "./previews/ToggleGroup";
 import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
+import DialogPreview from "./previews/Dialog";
 
 const SampleComponents = [
   {
@@ -42,6 +43,10 @@ const SampleComponents = [
   {
     name: "date",
     preview: DatePreview,
+  },
+  {
+    name: "dialog",
+    preview: DialogPreview,
   },
   {
     name: "dropdown",

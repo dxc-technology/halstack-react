@@ -13,7 +13,7 @@ const DxcDialog = ({
   overlay = true,
   onBackgroundClick,
   padding,
-  tabIndex=0,
+  tabIndex = 0,
 }) => {
   const [isResponsive, setIsResponsive] = useState();
   const colorsTheme = useTheme();
@@ -61,7 +61,7 @@ const DxcDialog = ({
         {isCloseVisible && (
           <CloseIconContainer onClick={handleClose} tabIndex={tabIndex}>
             <CloseIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/>
               <path d="M0 0h24v24H0z" fill="none" />
             </CloseIcon>
           </CloseIconContainer>
@@ -75,9 +75,10 @@ const DxcDialog = ({
 const DialogContainer = styled(Dialog)`
   overflow: unset;
   font-family: ${(props) => props.theme.fontFamily};
+ 
   .MuiBackdrop-root {
     background-color: ${(props) => (props.overlay === true ? props.theme.overlayColor : "transparent")};
-    opacity: ${(props) => props.overlay === true && "0.8"} !important;
+    opacity: ${(props) => props.overlay === true && props.theme.overlayOpacity} !important;
   }
   .MuiDialog-paperWidthSm {
     background-color: ${(props) => props.theme.backgroundColor};
@@ -85,7 +86,8 @@ const DialogContainer = styled(Dialog)`
     min-width: ${(props) => (props.isResponsive ? "92%" : "800px")};
     box-sizing: border-box;
     min-height: ${(props) => (props.isCloseVisible ? "72px" : "")};
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: ${(props)=>`${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
+
     padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
     padding-top: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -134,23 +136,30 @@ const Children = styled.div`
 `;
 
 const CloseIconContainer = styled.button`
+  color: ${(props) => props.theme.closeIconColor};
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: ${(props) => props.theme.closeIconTopPosition};
+  right: ${(props) => props.theme.closeIconRightPosition};
   cursor: pointer;
   padding: 0;
   margin: 0;
   background: none;
+  width: ${(props) => props.theme.closeIconWidth};
+  height: ${(props) => props.theme.closeIconHeight};
   border: none;
-  width: 34px;
-  height: 34px;
 `;
 
 const CloseIcon = styled.svg`
-  width: 34px;
-  height: 34px;
+  background-color: ${(props) => props.theme.closeIconBackgroundColor};
+  width: ${(props) => props.theme.closeIconWidth};
+  height: ${(props) => props.theme.closeIconHeight};
+  border-radius: ${(props) => props.theme.closeIconBorderRadius};
+  border-width: ${(props) => props.theme.closeIconBorderThickness};
+  border-style: ${(props) => props.theme.closeIconBorderStyle};
+  border-color: ${(props) => props.theme.closeIconBorderColor};
+
 `;
 
 DxcDialog.propTypes = {
@@ -169,7 +178,7 @@ DxcDialog.propTypes = {
   onCloseClick: PropTypes.func,
   onBackgroundClick: PropTypes.func,
   overlay: PropTypes.bool,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcDialog;
