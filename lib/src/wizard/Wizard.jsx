@@ -61,9 +61,21 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                   )}
                 </StepHeader>
                 {step.label || step.description ? (
-                  <InfoContainer active={i <= innerCurrent}>
-                    {step.label ? <Label>{step.label}</Label> : ""}
-                    {step.description ? <Description>{step.description}</Description> : ""}
+                  <InfoContainer>
+                    {step.label ? (
+                      <Label disabled={step.disabled} active={i <= innerCurrent}>
+                        {step.label}
+                      </Label>
+                    ) : (
+                      ""
+                    )}
+                    {step.description ? (
+                      <Description disabled={step.disabled} active={i <= innerCurrent}>
+                        {step.description}
+                      </Description>
+                    ) : (
+                      ""
+                    )}
                   </InfoContainer>
                 ) : (
                   ""
@@ -138,37 +150,62 @@ const StepHeader = styled.div`
 `;
 
 const IconContainer = styled.div`
-  width: ${(props) => (!props.current && !props.disabled ? "32px" : "36px")};
-  height: ${(props) => (!props.current && !props.disabled ? "32px" : "36px")};
+  width: ${(props) =>
+    !props.current && !props.disabled
+      ? `${props.theme.wizard.circleSelectedWidth}`
+      : `${props.theme.wizard.circleWidth}`};
+  height: ${(props) =>
+    !props.current && !props.disabled
+      ? `${props.theme.wizard.circleSelectedHeight}`
+      : `${props.theme.wizard.circleHeight}`};
 
   ${(props) => `
-    ${!props.current && !props.disabled ? `border: 2px solid ${props.theme.wizard.borderColor};` : ""}
+    ${
+      !props.current && !props.disabled
+        ? `border: ${props.theme.wizard.circleBorderThickness} ${props.theme.wizard.circleBorderStyle} ${props.theme.wizard.circleBorderColor};`
+        : props.current
+        ? `border: ${props.theme.wizard.circleSelectedBorderThickness} ${props.theme.wizard.circleSelectedBorderStyle} ${props.theme.wizard.circleSelectedBorderColor};`
+        : props.disabled
+        ? `border: ${props.theme.wizard.circleDisabledBorderThickness} ${props.theme.wizard.circleDisabledBorderStyle} ${props.theme.wizard.circleDisabledBorderColor};`
+        : ""
+    }
     background: ${
       props.disabled
-        ? `${props.theme.wizard.disabledBackground}`
+        ? `${props.theme.wizard.disabledBackgroundColor}`
         : props.current
-        ? `${props.theme.wizard.selectedBackgroundColor}`
-        : ""
+        ? `${props.theme.wizard.stepContainerSelectedBackgroundColor}`
+        : `${props.theme.wizard.stepContainerBackgroundColor}`
     };
-    ${props.current ? `color: ${props.theme.wizard.selectedFont};` : ""}
   `}
+  ${(props) =>
+    props.disabled
+      ? `color: ${props.theme.wizard.disabledFontColor};`
+      : `color: ${
+          props.current ? props.theme.wizard.stepContainerSelectedFontColor : props.theme.wizard.stepContainerFontColor
+        };`};
 
-  border-radius: 45px;
+  border-radius: ${(props) =>
+    !props.current && !props.disabled
+      ? props.theme.wizard.circleBorderRadius
+      : props.current
+      ? props.theme.wizard.circleSelectedBorderRadius
+      : props.disabled
+      ? props.theme.wizard.circleDisabledBorderRadius
+      : ""};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const Icon = styled.img`
-  width: 19px;
-  height: 19px;
+  width: ${(props) => props.theme.wizard.stepContainerIconWidth};
+  height: ${(props) => props.theme.wizard.stepContainerIconHeight};
 `;
 
 const StepIconContainer = styled.div`
-  width: 19px;
-  height: 19px;
+  width: ${(props) => props.theme.wizard.stepContainerIconWidth};
+  height: ${(props) => props.theme.wizard.stepContainerIconHeight};
   overflow: hidden;
-  color: ${(props) => (props.disabled ? `${props.theme.wizard.disabledFont}` : `${props.theme.wizard.fontColor}`)};
   img,
   svg {
     height: 100%;
@@ -177,11 +214,11 @@ const StepIconContainer = styled.div`
 `;
 
 const Number = styled.p`
-  font-size: ${(props) => props.theme.wizard.fontSize16};
-  font-family: ${(props) => props.theme.wizard.fontFamily};
-  font-style: ${(props) => props.theme.wizard.fontStyle};
-  letter-spacing: ${(props) => props.theme.wizard.fontLetterSpacingWide02};
-  color: ${(props) => (props.disabled ? `${props.theme.wizard.disabledFont}` : `${props.theme.wizard.fontColor}`)};
+  font-size: ${(props) => props.theme.wizard.stepContainerFontSize};
+  font-family: ${(props) => props.theme.wizard.stepContainerFontFamily};
+  font-style: ${(props) => props.theme.wizard.stepContainerFontStyle};
+  font-weight: ${(props) => props.theme.wizard.stepContainerFontWeight};
+  letter-spacing: ${(props) => props.theme.wizard.stepContainerLetterSpacing};
   opacity: 1;
   margin: 0;
 `;
@@ -196,26 +233,37 @@ const ValidityIcon = styled.img`
 
 const InfoContainer = styled.div`
   margin-left: 10px;
-  color: ${(props) => (props.active ? `${props.theme.wizard.fontColor}` : `${props.theme.wizard.disabledFont}`)};
 `;
 
 const Label = styled.p`
-  text-align: left;
-  font-family: ${(props) => props.theme.wizard.fontFamily};
-  font-size: ${(props) => props.theme.wizard.fontSize16};
-  font-style: ${(props) => props.theme.wizard.fontSytle};
-  ${(props) => props.theme.wizard.fontLetterSpacingWide02};
-  color: inherit;
+  text-align: ${(props) => props.theme.wizard.labelTextAlign};
+  font-family: ${(props) => props.theme.wizard.labelFontFamily};
+  font-size: ${(props) => props.theme.wizard.labelFontSize};
+  font-style: ${(props) => props.theme.wizard.labelFontStyle};
+  font-weight: ${(props) => props.theme.wizard.labelFontWeight};
+  letter-spacing: ${(props) => props.theme.wizard.labelLetterSpacing};
+  ${(props) =>
+    props.disabled
+      ? `color: ${props.theme.wizard.disabledFontColor};`
+      : `color: ${props.active ? props.theme.wizard.labelActiveFontColor : props.theme.wizard.labelFontColor};`};
+  text-transform: ${(props) => props.theme.wizard.labelFontTextTransform};
   margin: 0;
 `;
 
 const Description = styled.p`
-  text-align: left;
-  font-family: ${(props) => props.theme.wizard.fontFamily};
-  font-size: ${(props) => props.theme.wizard.fontSize12};
-  font-style: ${(props) => props.theme.wizard.fontSytle};
-  letter-spacing: ${(props) => props.theme.wizard.fontLetterSpacingWide01};
-  color: inherit;
+  text-align: ${(props) => props.theme.wizard.descriptionTextAlign};
+  font-family: ${(props) => props.theme.wizard.descriptionFontFamily};
+  font-size: ${(props) => props.theme.wizard.descriptionFontSize};
+  font-style: ${(props) => props.theme.wizard.descriptionFontStyle};
+  font-weight: ${(props) => props.theme.wizard.descriptionFontWeight};
+  letter-spacing: ${(props) => props.theme.wizard.descriptionLetterSpacing};
+  text-transform: ${(props) => props.theme.wizard.descriptionFontTextTransform};
+  ${(props) =>
+    props.disabled
+      ? `color: ${props.theme.wizard.disabledFontColor};`
+      : `color: ${
+          props.active ? props.theme.wizard.descriptionActiveFontColor : props.theme.wizard.descriptionFontColor
+        };`};
   margin: 0;
 `;
 
@@ -223,7 +271,8 @@ const StepSeparator = styled.div`
   width: ${(props) => (props.mode === "horizontal" ? "" : "0")};
   height: ${(props) => (props.mode === "horizontal" ? "0" : "")};
   ${(props) => (props.mode === "vertical" ? "margin: 0 18px;" : "")}
-  border: ${(props) => `solid 1px ${props.theme.wizard.lineColor}`};
+  border: ${(props) =>
+    `${props.theme.wizard.separatorBorderStyle} ${props.theme.wizard.separatorBorderThickness} ${props.theme.wizard.separatorColor}`};
   opacity: 1;
   flex-grow: 1;
 `;
@@ -251,7 +300,7 @@ DxcWizard.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcWizard;
