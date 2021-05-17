@@ -24,7 +24,7 @@ const DxcDropdown = ({
   margin,
   size = "fitContent",
   expandOnHover = false,
-  tabIndex = 0
+  tabIndex = 0,
 }) => {
   const [width, setWidth] = useState();
   const colorsTheme = useTheme();
@@ -131,6 +131,7 @@ const DxcDropdown = ({
             disablePortal
             placement="bottom-start"
           >
+            
             {({ TransitionProps }) => (
               <Grow {...TransitionProps}>
                 <Paper>
@@ -211,6 +212,10 @@ const DxcMenu = styled(Popper)`
   }
   .MuiMenuItem-root {
     min-height: 46px;
+    padding-top:${(props) => props.theme.optionsPaddingTop};
+    padding-bottom:${(props) => props.theme.optionsPaddingBottom};
+    padding-left:${(props) => props.theme.optionsPaddingLeft};
+    padding-right:${(props) => props.theme.optionsPaddingRight};
     height: auto;
   }
 
@@ -220,9 +225,13 @@ const DxcMenu = styled(Popper)`
     background-color: ${(props) => props.theme.dropdownBackgroundColor};
 
     color: ${(props) => props.theme.dropdownFontColor};
+    border-width: ${(props) => props.theme.borderThickness};
+    border-style: ${(props) => props.theme.borderStyle};
+    border-color: ${(props) => props.theme.borderColor};
+  
 
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: ${(props) => props.theme.borderRadius};
+    border-bottom-right-radius: ${(props) => props.theme.borderRadius};
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     max-height: 230px;
@@ -270,15 +279,17 @@ const DropdownTrigger = styled.button`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: ${(props) => props.theme.borderRadius};
+  border-width: ${(props) => props.theme.borderThickness};
+  border-style: ${(props) => props.theme.borderStyle};
+  border-color: ${(props) => props.theme.borderColor};
+
   min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
 
-  padding: ${(props) => {
-    if (props.caretHidden === true && props.label === "") {
-      return "10px 15px";
-    } else {
-      return "10px 15px 10px 20px";
-    }
-  }};
+  padding-top: ${(props) => props.theme.labelPaddingTop};
+  padding-bottom: ${(props) => props.theme.labelPaddingBottom};
+  padding-left: ${(props) => props.theme.labelPaddingLeft};
+  padding-right: ${(props) => props.theme.labelPaddingRight};
   &:focus {
     outline: none;
   }
@@ -287,10 +298,9 @@ const DropdownTrigger = styled.button`
     props.opened === true ? props.theme.hoverBackgroundColor : props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
 
-  border: none;
-  border-radius: 2px;
-  border-bottom-right-radius: ${(props) => (props.opened === true ? "0px" : "2px")};
-  border-bottom-left-radius: ${(props) => (props.opened === true ? "0px" : "2px")};
+
+  border-bottom-right-radius: ${(props) => (props.opened === true ? "0px" : props.theme.borderRadius)};
+  border-bottom-left-radius: ${(props) => (props.opened === true ? "0px" : props.theme.borderRadius)};
   &:hover {
     background-color: ${(props) => props.theme.hoverBackgroundColor};
   }
@@ -361,8 +371,10 @@ const ListIconContainer = styled.div`
 
 const CaretIcon = styled.div`
   display: ${(props) => (props.caretHidden === true ? "none" : "inline-flex")};
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-top:${(props) => props.theme.caretIconMarginTop};
+  margin-bottom${(props) => props.theme.caretIconMarginBottom};
+  margin-left: ${(props) => props.theme.caretIconMarginLeft};
+  margin-right: ${(props) => props.theme.caretIconMarginRight};
   & > svg {
     fill: ${(props) => props.theme.fontColor};
   }
@@ -395,7 +407,7 @@ DxcDropdown.propTypes = {
       iconSrc: PropTypes.string,
     })
   ),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcDropdown;
