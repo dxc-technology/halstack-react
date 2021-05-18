@@ -8,7 +8,7 @@ import useTheme from "../useTheme.js";
 const DxcToggleGroup = ({
   value,
   onChange,
-  /*label,*/ disabled = false,
+  disabled = false,
   options = [],
   margin,
   multiple = false,
@@ -72,7 +72,7 @@ const DxcToggleGroup = ({
               ) : option.iconSrc ? (
                 <Icon src={option.iconSrc}></Icon>
               ) : (
-                <LabelContainer>{option.label}</LabelContainer>
+                <LabelContainer disabled={disabled}>{option.label}</LabelContainer>
               )}
             </ToggleContainer>
           ))}
@@ -83,8 +83,6 @@ const DxcToggleGroup = ({
 };
 
 const ToggleGroup = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
-
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -97,7 +95,7 @@ const ToggleGroup = styled.div`
 
   display: flex;
   flex-direction: column;
-  ${(props) => props.disabled && `opacity: ${props.theme.disabledOpacity};`}
+  opacity: 1;
 `;
 
 const ToggleGroupContainer = styled.div`
@@ -110,18 +108,25 @@ const ToggleContainer = styled.div`
   justify-content: center;
 
   ${(props) => `
-  background-color: ${
-    props.selected
-      ? props.disabled
-        ? props.theme.disabledSelectedBackgroundColor
-        : props.theme.selectedBackgroundColor
-      : props.disabled
-      ? props.theme.disabledUnselectedBackgroundColor
-      : props.theme.unselectedBackgroundColor
-  };
+    background-color: ${
+      props.selected
+        ? props.disabled
+          ? props.theme.disabledSelectedBackgroundColor
+          : props.theme.selectedBackgroundColor
+        : props.disabled
+        ? props.theme.disabledUnselectedBackgroundColor
+        : props.theme.unselectedBackgroundColor
+    };
+    &:focus {
+      outline: ${props.theme.focusColor} auto 1px;
+    }
     border-radius: ${props.isFirst ? "4px 0 0 4px" : props.isLast ? "0 4px 4px 0" : "0"};
     color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
-    padding: ${props.isIcon ? `10px 12px` : `12px 30px`};
+    padding: ${
+      props.isIcon
+        ? `${props.theme.iconPaddingTop} ${props.theme.iconPaddingRight} ${props.theme.iconPaddingBottom} ${props.theme.iconPaddingLeft}`
+        : `${props.theme.labelPaddingTop} ${props.theme.labelPaddingRight} ${props.theme.labelPaddingBottom} ${props.theme.labelPaddingLeft}`
+    };
     ${
       !props.disabled
         ? `&:hover {
@@ -142,21 +147,22 @@ const ToggleContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
-  letter-spacing: ${(props) => props.theme.fontLetterSpacingWide02};
+  font-weight: ${(props) => props.theme.fontWeight};
   text-transform: ${(props) => props.theme.fontTextTransform};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacing};
 `;
 
 const Icon = styled.img`
-  height: 20px;
-  width: 20px;
+  height: ${(props) => props.theme.iconHeight};
+  width: ${(props) => props.theme.iconWidth};
 `;
 
 const IconContainer = styled.div`
-  height: 20px;
-  width: 20px;
+  height: ${(props) => props.theme.iconHeight};
+  width: ${(props) => props.theme.iconWidth};
   overflow: hidden;
   display: flex;
   img,
@@ -167,7 +173,6 @@ const IconContainer = styled.div`
 `;
 
 DxcToggleGroup.propTypes = {
-  //label: PropTypes.string,
   value: PropTypes.any,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
@@ -189,7 +194,7 @@ DxcToggleGroup.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcToggleGroup;
