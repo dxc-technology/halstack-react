@@ -44,7 +44,6 @@ const DxcToggleGroup = ({
 
   const handleKeyPress = (event, optionValue) => {
     event.preventDefault();
-    console.log(event);
     if (!disabled && event.code === "Enter" || event.code === "Space") {
       handleToggleChange(optionValue);
     }
