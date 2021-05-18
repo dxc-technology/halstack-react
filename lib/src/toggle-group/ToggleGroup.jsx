@@ -117,6 +117,9 @@ const ToggleContainer = styled.div`
         ? props.theme.disabledUnselectedBackgroundColor
         : props.theme.unselectedBackgroundColor
     };
+    &:focus {
+      outline: ${props.theme.focusColor} auto 1px;
+    }
     border-radius: ${props.isFirst ? "4px 0 0 4px" : props.isLast ? "0 4px 4px 0" : "0"};
     color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
     padding: ${
@@ -144,12 +147,12 @@ const ToggleContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
-  font-family: ${(props) => props.theme.labelFontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.disabled ? props.theme.disabledFontStyle : props.theme.labelFontStyle};
-  font-weight: ${(props) => props.theme.labelFontWeight};
-  text-transform: ${(props) => props.theme.labelFontTextTransform};
-  letter-spacing: ${(props) => props.theme.labelLetterSpacing};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => props.theme.fontStyle};
+  font-weight: ${(props) => props.theme.fontWeight};
+  text-transform: ${(props) => props.theme.fontTextTransform};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacing};
 `;
 
 const Icon = styled.img`
