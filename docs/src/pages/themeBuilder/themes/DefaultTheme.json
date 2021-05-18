@@ -3,6 +3,9 @@
     "accentColor": "#6f2c91",
     "fontColor": "#666666"
   },
+  "box": {
+    
+  },
   "button": {
     "baseColor": "#6f2c91",
     "hoverBaseColor": "#000000",

@@ -20,6 +20,9 @@ import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
 import ToggleGroupPreview from "./previews/ToggleGroup";
 import AlertPreview from "./previews/Alert";
+import LinkPreview from "./previews/Link";
+import HeadingPreview from "./previews/Heading";
+import BoxPreview from "./previews/Box";
 
 const SampleComponents = [
   {
@@ -29,6 +32,10 @@ const SampleComponents = [
   {
     name: "alert",
     preview: AlertPreview,
+  },
+  {
+    name: "box",
+    preview: BoxPreview,
   },
   {
     name: "button",
@@ -59,8 +66,16 @@ const SampleComponents = [
     preview: HeaderPreview,
   },
   {
+    name: "heading",
+    preview: HeadingPreview,
+  },
+  {
     name: "inputText",
     preview: TextFieldPreview,
+  },
+  {
+    name: "link",
+    preview: LinkPreview,
   },
   {
     name: "paginator",

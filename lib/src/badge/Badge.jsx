@@ -1,34 +1,41 @@
 import React from "react";
-import styled from "styled-components";
-
+import styled, { ThemeProvider } from "styled-components";
+import useTheme from "../useTheme.js";
 
 const DxcBadge = ({ notificationText }) => {
+  const colorsTheme = useTheme();
   return (
-    <StyledDxcBadge notificationText={notificationText}>
-      <span>{notificationText}</span>
-    </StyledDxcBadge>
+    <ThemeProvider theme={colorsTheme.tabs}>
+      <StyledDxcBadge notificationText={notificationText}>
+        <span>{notificationText}</span>
+      </StyledDxcBadge>
+    </ThemeProvider>
   );
 };
 
 const StyledDxcBadge = styled.div`
-  background-color: #d0011b;
+  background-color: ${(props) => props.theme.badgeBackgroundColor};
+  font-family: ${(props) => props.theme.badgeFontFamily};
+  font-size: ${(props) => props.theme.badgeFontSize};
+  font-style: ${(props) => props.theme.badgeFontStyle};
+  font-weight: ${(props) => props.theme.badgeFontWeight};
+  color: ${(props) => props.theme.badgeFontColor};
+  letter-spacing: ${(props) => props.theme.badgeLetterSpacing};
+  width: ${(props) =>
+    props.notificationText === true ? props.theme.badgeWidth : props.theme.badgeWidthWithNotificationNumber};
+  height: ${(props) =>
+    props.notificationText === true ? props.theme.badgeHeight : props.theme.badgeHeightWithNotificationNumber};
   border-radius: 10px;
-  width: ${(props) => (props.notificationText === true ? "16px" : "23px")};
-  height: ${(props) => (props.notificationText === true ? "16px" : "17px")};
   display: flex;
   padding-bottom: 1px;
   padding-right: 1px;
   flex-wrap: wrap;
   box-sizing: border-box;
   align-items: center;
-  font-size: 0.75rem;
-  font-weight: 500;
   line-height: 1;
   align-content: center;
   flex-direction: row;
   justify-content: center;
-  color: #ffffff;
-  font-size: 10px;
 `;
 
 export default DxcBadge;
