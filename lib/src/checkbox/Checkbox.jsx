@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
-
 import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
-
+import BackgroundColorContext from "../BackgroundColorContext.js";
 const DxcCheckbox = ({
   checked,
   value,
@@ -19,11 +18,11 @@ const DxcCheckbox = ({
   required = false,
   margin,
   size = "fitContent",
-  tabIndex=0
+  tabIndex = 0,
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
   const colorsTheme = useTheme();
-
+  const backgroundType = useContext(BackgroundColorContext) || "light";
   const handlerCheckboxChange = (checkboxValue) => {
     if (checked === undefined) {
       const isChecked = checkboxValue.target.checked === undefined ? !innerChecked : checkboxValue.target.checked;
@@ -37,7 +36,6 @@ const DxcCheckbox = ({
       }
     }
   };
-
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
       <CheckboxContainer
@@ -47,6 +45,7 @@ const DxcCheckbox = ({
         disabled={disabled}
         margin={margin}
         size={size}
+        backgroundType={backgroundType}
       >
         <Checkbox
           checked={checked != undefined ? checked : innerChecked}
@@ -62,16 +61,16 @@ const DxcCheckbox = ({
           labelPosition={labelPosition}
           disabled={disabled}
           checked={checked != undefined ? checked : innerChecked}
+          backgroundType={backgroundType}
         />
-
         {required && <DxcRequired />}
-
         {label && (
           <LabelContainer
             labelPosition={labelPosition}
             onClick={disabled === true ? (e) => {} : handlerCheckboxChange}
             disabled={disabled}
             className="labelContainer"
+            backgroundType={backgroundType}
           >
             {label}
           </LabelContainer>
@@ -80,7 +79,6 @@ const DxcCheckbox = ({
     </ThemeProvider>
   );
 };
-
 const sizes = {
   small: "120px",
   medium: "240px",
@@ -88,21 +86,62 @@ const sizes = {
   fillParent: "100%",
   fitContent: "unset",
 };
-
 const calculateWidth = (margin, size) => {
   if (size === "fillParent") {
     return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
   }
   return sizes[size];
 };
+const getDisabledColor = (props, element) => {
+  switch (element) {
+    case "check":
+      return props.backgroundType && props.backgroundType === "dark"
+        ? props.theme.disabledCheckColorOnDark
+        : props.theme.disabledCheckColor;
+      break;
+    case "background":
+      return props.backgroundType && props.backgroundType === "dark"
+      ? props.theme.disabledBackgroundColorCheckedOnDark : props.theme.disabledBackgroundColorChecked;
+      break;
+    case "border":
+      return props.backgroundType && props.backgroundType === "dark"
+      ? props.theme.disabledBorderColorOnDark :props.theme.disabledBorderColor;
+      break;
+    case "label":
+      return props.backgroundType && props.backgroundType === "dark"
+      ? props.theme.disabledFontColorOnDark : props.theme.disabledFontColor;
+      break;
+  }
+};
 
+const getNotDisabledColor = (props, element) => {
+  switch (element) {
+    case "check":
+      return props.backgroundType && props.backgroundType === "dark"
+        ? props.theme.checkColorOnDark
+        : props.theme.checkColor;
+      break;
+    case "background":
+      return props.backgroundType && props.backgroundType === "dark"
+      ? props.theme.backgroundColorCheckedOnDark : props.theme.backgroundColorChecked;
+      break;
+    case "border":
+      return props.backgroundType && props.backgroundType === "dark"
+      ? props.theme.borderColorOnDark :props.theme.borderColor;
+      break;
+    case "label":
+      return props.backgroundType && props.backgroundType === "dark"
+      ? props.theme.fontColorOnDark : props.theme.fontColor;
+      break;
+  }
+};
 const LabelContainer = styled.span`
-  color: ${(props) => props.theme.fontColor};
-  opacity: ${(props) => props.disabled && "0.34"};
+  color: ${(props) => (props.disabled ? getDisabledColor(props, "label") : getNotDisabledColor(props, "label"))};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-weight: ${(props) => props.theme.fontWeight};
 `;
-
 const CheckboxContainer = styled.span`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -120,9 +159,12 @@ const CheckboxContainer = styled.span`
   position: relative;
   flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiCheckbox-colorSecondary {
+    &.Mui-disabled{
+      color: ${(props) =>props.disabled ? getDisabledColor(props, "border"): getNotDisabledColor(props, "border")};
+    }
     &.Mui-checked {
-      color: ${(props) =>
-        (props.disabled && props.theme.disabledBackgroundColorChecked) || props.theme.backgroundColorChecked};
+      color:${(props) =>
+        props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
       &:hover {
         background-color: transparent;
       }
@@ -141,24 +183,24 @@ const CheckboxContainer = styled.span`
     }
     z-index: 1;
     padding: 10px;
+    ${(props) => (props.labelPosition === "after" ? "padding-right" : "padding-left")}: ${(props) =>
+  props.theme.checkGutter};
     padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
     margin: 2px;
     margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
-    color: ${(props) => (props.disabled && props.theme.disabledBorderColor) || props.theme.borderColor} !important;
-  }
+    color:${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "border"))};
+
+  }  }
   .MuiSvgIcon-root {
     width: 26.6px;
     height: 26.6px;
   }
 `;
-
 const CheckboxBlackBack = styled.span`
   background-color: ${(props) =>
-    (props.checked !== true && "transparent") ||
-    (props.disabled && props.theme.disabledCheckColor) ||
-    props.theme.checkColor};
+    !props.checked ? "transparent" : props.disabled ? getDisabledColor(props, "check") : getNotDisabledColor(props, "check")};
   width: 17px;
   height: 17px;
   position: absolute;
@@ -170,7 +212,6 @@ const CheckboxBlackBack = styled.span`
   margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
   margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
 `;
-
 DxcCheckbox.propTypes = {
   checked: PropTypes.bool,
   value: PropTypes.any,
@@ -190,7 +231,6 @@ DxcCheckbox.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
-
 export default DxcCheckbox;
