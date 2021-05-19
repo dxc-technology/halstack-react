@@ -683,7 +683,7 @@
     "overlayedProgressBarProgressFontColor": "#FFFFFF"
   },
   "radio": {
-    "circleGutter": "10px",
+    "circleLabelSpacing": "10px",
     "circleHeight": "24px",
     "circleWidth": "24px",
     "color": "#000000",

@@ -693,7 +693,7 @@
     "fontSize": "length",
     "fontWeight": "fWeight",
     "fontStyle": "fStyle",
-    "circleGutter": "length",
+    "circleLabelSpacing": "length",
     "circleHeight": "length",
     "circleWidth": "length",
     "colorOnDark": "color",

@@ -106,7 +106,7 @@ const RadioContainer = styled.span`
     padding: 10px;
     margin: 2px;
     ${(props) => (props.labelPosition === "after" ? "padding-right" : "padding-left")}: ${(props) =>
-      props.theme.circleGutter};
+      props.theme.circleLabelSpacing};
     padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
     margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
