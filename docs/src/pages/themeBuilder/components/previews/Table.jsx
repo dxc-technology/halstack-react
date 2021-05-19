@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcTable,
-  DxcResultsetTable,
-  DxcButton,
-} from "@dxc-technology/halstack-react";
+import { DxcResultsetTable, DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const iconSVG = () => {
