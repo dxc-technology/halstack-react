@@ -42,6 +42,13 @@ const DxcToggleGroup = ({
     }
   };
 
+  const handleKeyPress = (event, optionValue) => {
+    event.preventDefault();
+    if (!disabled && event.code === "Enter" || event.code === "Space") {
+      handleToggleChange(optionValue);
+    }
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
       <ToggleGroup margin={margin} disabled={disabled}>
@@ -63,6 +70,9 @@ const DxcToggleGroup = ({
               isLast={i === options.length - 1}
               isIcon={option.iconSrc || option.icon}
               disabled={disabled}
+              onKeyPress={(event) => {
+                handleKeyPress(event, option.value);
+              }}
               key={`toggle-${i}-${option.label}`}
             >
               {option.icon ? (
