@@ -5,6 +5,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcBox = ({ shadowDepth, margin, padding, display = "inline-flex", children, size = "fitContent" }) => {
   const colorsTheme = useTheme();
@@ -12,7 +13,7 @@ const DxcBox = ({ shadowDepth, margin, padding, display = "inline-flex", childre
   return (
     <ThemeProvider theme={colorsTheme.box}>
       <StyledDxcBox shadowDepth={shadowDepth} display={display} margin={margin} padding={padding} size={size}>
-        {children}
+        <BackgroundColorProvider color={colorsTheme.box.backgroundColor}>{children}</BackgroundColorProvider>
       </StyledDxcBox>
     </ThemeProvider>
   );
@@ -36,18 +37,25 @@ const calculateWidth = (margin, size, padding) => {
 
 const StyledDxcBox = styled.div`
   display: ${({ display }) => display};
-  border-radius: 4px;
+  border-radius: ${(props) => props.theme.borderRadius};
+  border-width: ${(props) => props.theme.borderThickness};
+  border-style: ${(props) => props.theme.borderStyle};
+  border-color: ${(props) => props.theme.borderColor};
+  letter-spacing:${(props) => props.theme.letterSpacing};
   overflow: hidden;
-  font-size: ${(props) => props.theme.fontSizeBase};
+  font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
+  font-weight: ${(props) => props.theme.fontWeight};
+  color: ${(props) => props.theme.fontColor};
   width: ${(props) => calculateWidth(props.margin, props.size, props.padding)};
   background-color: ${(props) => props.theme.backgroundColor};
-  box-shadow: ${({ shadowDepth }) =>
-    shadowDepth === 1
-      ? "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)"
-      : shadowDepth === 2
-      ? "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)"
-      : "none"};
+
+  box-shadow: ${(props) =>
+    props.shadowDepth === 1
+      ? `${props.theme.oneShadowDepthShadowOffsetX} ${props.theme.oneShadowDepthShadowOffsetY} ${props.theme.oneShadowDepthShadowBlur}  ${props.theme.oneShadowDepthShadowSpread} ${props.theme.oneShadowDepthShadowColor}`
+      : props.shadowDepth === 2
+      ? `${props.theme.twoShadowDepthShadowOffsetX} ${props.theme.twoShadowDepthShadowOffsetY} ${props.theme.twoShadowDepthShadowBlur}  ${props.theme.twoShadowDepthShadowSpread} ${props.theme.twoShadowDepthShadowColor}`
+      : `${props.theme.noneShadowDepthShadowOffsetX} ${props.theme.noneShadowDepthShadowOffsetY} ${props.theme.noneShadowDepthShadowBlur}  ${props.theme.noneShadowDepthShadowSpread} ${props.theme.noneShadowDepthShadowColor}`};
 
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};

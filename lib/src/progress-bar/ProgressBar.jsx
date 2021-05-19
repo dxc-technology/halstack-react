@@ -46,7 +46,6 @@ DxcProgressBar.propTypes = {
 };
 
 const BackgroundProgressBar = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
   background-color: ${(props) => (props.overlay === true ? `${props.theme.overlayColor}` : "transparent")};
   opacity: ${(props) => props.overlay === true && "0.8"};
   width: ${(props) => (props.overlay === true ? "100%" : "")};
@@ -62,7 +61,6 @@ const BackgroundProgressBar = styled.div`
   bottom: ${(props) => (props.overlay === true ? "0" : "")};
   left: ${(props) => (props.overlay === true ? "0" : "")};
   right: ${(props) => (props.overlay === true ? "0" : "")};
-  font-family: ${(props) => props.theme.fontFamily};
   z-index: ${(props) => (props.overlay ? 1000 : "")};
 `;
 
@@ -70,12 +68,12 @@ const DXCProgressBar = styled.div`
   z-index: ${(props) => (props.overlay === true && "100") || "0"};
   width: ${(props) => (props.overlay === true ? "80%" : "100%")};
   .MuiLinearProgress-root {
-    height: 9px;
-    background-color: ${(props) => props.theme.totalLine};
-    border-radius: 5px;
+    height: ${(props) => props.theme.thickness};
+    background-color: ${(props) => props.theme.totalLineColor};
+    border-radius: ${(props) => props.theme.borderRadius};
   }
   .MuiLinearProgress-bar {
-    background-color: ${(props) => props.theme.trackLine};
+    background-color: ${(props) => props.theme.trackLineColor};
   }
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -94,26 +92,33 @@ const InfoProgressBar = styled.div`
   width: 685px;
   flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 8px;
+  align-items: baseline;
+  justify-content: space-between;
 `;
 
 const ProgressBarLabel = styled.div`
-  text-transform: ${(props) => props.theme.fontTextTransform};
-  font-size: ${(props) => props.theme.fontSize};
-  flex-grow: 1;
-  color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.fontColor)};
-  width: 90%;
+  font-family: ${(props) => props.theme.labelFontFamily};
+  font-style: ${(props) => props.theme.labelFontStyle};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-weight: ${(props) => props.theme.labelFontWeight};
+  text-transform: ${(props) => props.theme.labelFontTextTransform};
+  color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.labelFontColor)};
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const ProgressBarProgress = styled.div`
-  font-size: ${(props) => props.theme.fontSize};
-  color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.fontColor)};
+  font-family: ${(props) => props.theme.valueFontFamily};
+  font-style: ${(props) => props.theme.valueFontStyle};
+  font-size: ${(props) => props.theme.valueFontSize};
+  font-weight: ${(props) => props.theme.valueFontWeight};
+  text-transform: ${(props) => props.theme.valueFontTextTransform};
+  color: ${(props) => (props.overlay === true ? "#FFFFFF" : props.theme.valueFontColor)};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
-  width: 5%;
-  text-align: right;
-  margin-bottom: 8px;
+  flex-shrink: 0;
 `;
 
 export default DxcProgressBar;

@@ -19,12 +19,18 @@ import TextFieldPreview from "./previews/TextField";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
 import ToggleGroupPreview from "./previews/ToggleGroup";
+import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
+import BoxPreview from "./previews/Box";
 
 const SampleComponents = [
   {
     name: "accordion",
     preview: AccordionPreview,
+  },
+  {
+    name: "box",
+    preview: BoxPreview,
   },
   {
     name: "button",
@@ -61,6 +67,10 @@ const SampleComponents = [
   {
     name: "inputText",
     preview: TextFieldPreview,
+  },
+  {
+    name: "link",
+    preview: LinkPreview,
   },
   {
     name: "paginator",
