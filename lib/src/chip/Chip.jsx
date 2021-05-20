@@ -99,10 +99,10 @@ const StyledDxcChip = styled.div`
   max-width: ${({ margin }) => `calc(100% - 40px - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`};
   background-color: ${(props) =>
     (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
-  border-width: ${(props) => (props.theme.outlinedColor !== "" && props.theme.borderThickness) || ""};
-  border-style: ${(props) => (props.theme.outlinedColor !== "" && props.theme.borderStyle) || ""};
-  border-color: ${(props) => (props.theme.outlinedColor !== "" && props.theme.outlinedColor) || ""};
-  height: ${(props) => (props.theme.outlinedColor !== "" ? props.theme.heigth : props.theme.heightOutlined)};
+  border-width: ${(props) => props.theme.borderThickness};
+  border-style: ${(props) => props.theme.borderStyle};
+  border-color: ${(props) => props.theme.borderColor};
+  height: ${(props) => props.theme.height};
   padding-top: ${(props) => props.theme.contentPaddingTop};
   padding-bottom: ${(props) => props.theme.contentPaddingBottom};
   padding-left: ${(props) => props.theme.contentPaddingLeft};

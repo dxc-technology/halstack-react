@@ -265,7 +265,7 @@
   },
   "chip": {
     "backgroundColor": "color",
-    "outlinedColor": "color",
+    "borderColor": "color",
     "fontColor": "color",
     "disabledBackgroundColor": "color",
     "disabledFontColor": "color",
@@ -277,7 +277,6 @@
     "borderThickness": "bWidth",
     "borderStyle": "bStyle",
     "height": "length",
-    "heightOutlined": "length",
     "contentPaddingLeft": "length",
     "contentPaddingRight": "length",
     "contentPaddingTop": "length",
