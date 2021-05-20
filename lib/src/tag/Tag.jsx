@@ -17,7 +17,7 @@ const DxcTag = ({
   labelPosition = "after",
   newWindow = false,
   size = "fitContent",
-  tabIndex = 1
+  tabIndex = 1,
 }) => {
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
@@ -43,23 +43,25 @@ const DxcTag = ({
   );
 
   return (
-    <StyledDxcTag
-      margin={margin}
-      onMouseEnter={() => changeIsHovered(true)}
-      onMouseLeave={() => changeIsHovered(false)}
-      onClick={clickHandler}
-      hasAction={onClick || linkHref}
-    >
-      {onClick ? (
-        <StyledButton tabIndex={tabIndex}>{tagContent}</StyledButton>
-      ) : linkHref ? (
-        <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
-          {tagContent}
-        </StyledLink>
-      ) : (
-        tagContent
-      )}
-    </StyledDxcTag>
+    <ThemeProvider theme={colorsTheme.tag}>
+      <StyledDxcTag
+        margin={margin}
+        onMouseEnter={() => changeIsHovered(true)}
+        onMouseLeave={() => changeIsHovered(false)}
+        onClick={clickHandler}
+        hasAction={onClick || linkHref}
+      >
+        {onClick ? (
+          <StyledButton tabIndex={tabIndex}>{tagContent}</StyledButton>
+        ) : linkHref ? (
+          <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
+            {tagContent}
+          </StyledLink>
+        ) : (
+          tagContent
+        )}
+      </StyledDxcTag>
+    </ThemeProvider>
   );
 };
 
@@ -76,8 +78,7 @@ const calculateWidth = (size) => {
 };
 
 const StyledDxcTag = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
-
+  font-style: ${(props) => props.theme.fontStyle};
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
@@ -92,10 +93,11 @@ const TagContent = styled.div`
   align-items: center;
   flex-direction: ${({ labelPosition }) => (labelPosition === "before" && "row-reverse") || "row"};
   width: ${(props) => calculateWidth(props.size)};
+  height: ${(props) => props.theme.height};
 `;
 
 const StyledLink = styled.a`
-  text-decoration: ${(props) => props.theme.textDecoration};
+  text-decoration: none;
 `;
 
 const StyledButton = styled.button`
@@ -109,7 +111,8 @@ const StyledButton = styled.button`
 
 const TagIcon = styled.img`
   padding: 10px 12px;
-  height: 23px;
+  height: ${(props) => props.theme.iconHeight};
+  width: ${(props) => props.theme.iconWidth};
 `;
 
 const TagIconContainer = styled.div`
@@ -120,23 +123,25 @@ const TagIconContainer = styled.div`
   overflow: hidden;
   img,
   svg {
-    height: 23px;
+    height: ${(props) => props.theme.iconHeight};
+    width: ${(props) => props.theme.iconWidth};
   }
 `;
 
 const IconContainer = styled.div`
   display: inline-flex;
   background: ${({ iconBgColor }) => iconBgColor};
-  width: 48px;
+  width: ${(props) => props.theme.iconSectionWidth};
   justify-content: center;
+  align-items: center;
+  color: ${(props) => props.theme.iconColor};
+  height: ${(props) => props.theme.height};
 `;
 
 const TagLabel = styled.div`
   padding: 0px 30px;
-  font-size: ${(props) => props.theme.fontSize};
   text-transform: ${(props) => props.theme.fontTextTransform};
-  letter-spacing: ${(props) => props.theme.fontLetterSpacingWide01};
-  color: black;
+  letter-spacing: 0.025em;
   flex-grow: 1;
   text-align: center;
   text-overflow: ellipsis;
@@ -163,7 +168,7 @@ DxcTag.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 DxcTag.defaultProps = {
