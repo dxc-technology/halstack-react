@@ -22,6 +22,7 @@ import ToggleGroupPreview from "./previews/ToggleGroup";
 import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
 import BoxPreview from "./previews/Box";
+import TagPreview from "./previews/Tag";
 
 const SampleComponents = [
   {
@@ -111,6 +112,10 @@ const SampleComponents = [
   {
     name: "table",
     preview: TablePreview,
+  },
+  {
+    name: "tag",
+    preview: TagPreview,
   },
   {
     name: "toggleGroup",

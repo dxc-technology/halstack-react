@@ -945,27 +945,13 @@
     "thumbTranslateX": "length"
   },
   "tag": {
-    "textDecoration": "text",
-    "fontFamily": "fFamily",
-    "fontWeight": "fWeight",
     "fontStyle": "fStyle",
-    "minHeight": "length",
-    "iconContainerWidth": "length",
-    "borderRadius": "length",
-    "borderThickness": "bWidth",
-    "borderStyle": "bStyle",
-    "borderColor": "color",
+    "fontTextTransform": "fTextTransform",
+    "height": "length",
+    "iconColor": "color",
+    "iconSectionWidth": "length",
     "iconHeight": "length",
-    "iconWidth": "length",
-    "labelPaddingRight": "length",
-    "labelPaddingLeft": "length",
-    "labelPaddingTop": "length",
-    "labelPaddingBottom": "length",
-    "labelFontFamily": "fFamily",
-    "labelFontWeight": "fWeight",
-    "labelFontStyle": "fStyle",
-    "labelColor": "color",
-    "labelJustifyContent": "flexJustify"
+    "iconWidth": "length"
   },
   "table": {
     "rowSeparatorThickness": "length",
