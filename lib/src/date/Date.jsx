@@ -27,7 +27,7 @@ const DxcDate = ({
   onBlur = "",
   margin,
   size = "medium",
-  tabIndex=0
+  tabIndex = 0,
 }) => {
   const [innerValue, setInnerValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -140,8 +140,7 @@ const DxcDate = ({
         toolbarTxt: {
           color: componentTokens?.date?.pickerFontColor,
           fontFamily: componentTokens?.date?.fontFamily,
-          fontSize:componentTokens?.date?.fontSize,
-          
+          fontSize: componentTokens?.date?.fontSize,
         },
         toolbarBtnSelected: {
           color: colorsTheme.date.pickerFontColor,
@@ -201,7 +200,6 @@ const DxcDate = ({
         },
       },
     },
-    
   });
 
   return (
@@ -212,7 +210,7 @@ const DxcDate = ({
             <DxcInput
               label={label}
               name={name}
-              suffixIconSrc={calendarIcon}
+              suffixIcon={<img src={calendarIcon}></img>}
               required={required}
               invalid={invalid}
               disabled={disabled}
@@ -296,7 +294,7 @@ DxcDate.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcDate;

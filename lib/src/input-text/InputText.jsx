@@ -142,6 +142,21 @@ const DxcInputText = ({
       changeIsOpen(true);
     }
   };
+
+  const handleSuffixKeyPress = (event) => {
+    event.preventDefault();
+    if ((!disabled && event.code === "Enter") || event.code === "Space") {
+      onClickSuffix(event);
+    }
+  };
+
+  const handlePrefixKeyPress = (event) => {
+    event.preventDefault();
+    if ((!disabled && event.code === "Enter") || event.code === "Space") {
+      onClickPrefix(event);
+    }
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.inputText}>
       <TextContainer
@@ -161,6 +176,7 @@ const DxcInputText = ({
             onClick={!disabled ? onClickPrefix : null}
             interactuable={typeof onClickPrefix === "function" && !disabled}
             backgroundType={backgroundType}
+            onKeyPress={handlePrefixKeyPress}
           >
             {typeof prefixIcon === "object" ? prefixIcon : React.createElement(prefixIcon)}
           </PrefixIconContainer>
@@ -172,6 +188,7 @@ const DxcInputText = ({
               disabled={disabled}
               onClick={!disabled ? onClickPrefix : null}
               interactuable={typeof onClickPrefix === "function" && !disabled}
+              onKeyPress={handlePrefixKeyPress}
             />
           )) ||
           (prefix && (
@@ -181,6 +198,7 @@ const DxcInputText = ({
               onClick={!disabled ? onClickPrefix : null}
               interactuable={typeof onClickPrefix === "function" && !disabled}
               backgroundType={backgroundType}
+              onKeyPress={handlePrefixKeyPress}
             >
               {prefix}
             </PrefixLabel>
@@ -217,6 +235,7 @@ const DxcInputText = ({
                     onClick={onClickSuffix}
                     interactuable={typeof onClickSuffix === "function" && !disabled}
                     backgroundType={backgroundType}
+                    onKeyPress={handleSuffixKeyPress}
                   >
                     {typeof suffixIcon === "object" ? suffixIcon : React.createElement(suffixIcon)}
                   </SuffixIconContainer>
@@ -228,6 +247,7 @@ const DxcInputText = ({
                       src={suffixIconSrc}
                       onClick={onClickSuffix}
                       interactuable={typeof onClickSuffix === "function" && !disabled}
+                      onKeyPress={handleSuffixKeyPress}
                     />
                   )) || (
                     <SuffixLabel
@@ -236,6 +256,7 @@ const DxcInputText = ({
                       disabled={disabled}
                       interactuable={typeof onClickSuffix === "function" && !disabled}
                       backgroundType={backgroundType}
+                      onKeyPress={handleSuffixKeyPress}
                     >
                       {suffix}
                     </SuffixLabel>
