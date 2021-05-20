@@ -45,7 +45,8 @@ const DXCTransactions = styled.div`
   padding-top: 46px;
   padding-left: 65px;
   border-radius: 4px 0px 4px 4px;
-  box-shadow: 0px 0px 1px ${(props) => props.theme.lightWhite};
+  box-shadow: 0px 0px 1px ${(props) => props.theme.shadowColor};
+  background-color: ${(props) => props.theme.backgroundColor};
   overflow: auto;
   ::-webkit-scrollbar {
     width: 3px;
@@ -67,18 +68,24 @@ const TransactionsText = styled.span`
 `;
 
 const TransactionsTitle = styled.span`
+  font-size: ${(props) => props.theme.filesUploadedTitleFontSize};
+  font-style: ${(props) => props.theme.filesUploadedTitleFontStyle};
+  font-weight: ${(props) => props.theme.filesUploadedTitleFontWeight};
+  text-transform: ${(props) => props.theme.filesUploadedTitleFontTextTransform};
+  color: ${(props) => props.theme.filesUploadedTitleFontColor};
   margin-bottom: 4px;
-  font-size: ${(props) => props.theme.fontSize20};
 `;
 
 const TransactionsSubTitle = styled.span`
-  font-size: ${(props) => props.theme.fontSize12};
-
-  color: ${(props) => props.theme.fontColor};
+  font-size: ${(props) => props.theme.filesUploadedSubtitleFontSize};
+  font-style: ${(props) => props.theme.filesUploadedSubtitleFontStyle};
+  font-weight: ${(props) => props.theme.filesUploadedSubtitleFontWeight};
+  text-transform: ${(props) => props.theme.filesUploadedSubtitleFontTextTransform};
+  color: ${(props) => props.theme.filesUploadedSubtitleFontColor};
 `;
 
 const TransactionsNumber = styled.span`
-  font-weight: ${(props) => props.theme.fontWeight};
+  font-weight: ${(props) => props.theme.filesUploadedNumberFontWeight};
 `;
 
 export default DxcTransactions;
