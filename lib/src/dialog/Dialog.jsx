@@ -103,6 +103,9 @@ const DialogContainer = styled(Dialog)`
 const Children = styled.div`
   overflow-y: auto;
   font-family: ${(props) => props.theme.fontFamily};
+  font-size:${(props) => props.theme.fontSize};
+  font-weight: ${(props) => props.theme.fontWeight};
+  color: ${(props) => props.theme.fontColor };
 
   ::-webkit-scrollbar {
     width: 3px;
