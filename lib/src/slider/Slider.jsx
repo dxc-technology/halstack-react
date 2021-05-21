@@ -209,6 +209,7 @@ const SliderContainer = styled.div`
     background-color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
     top: ${(props) => props.theme.thumbTopPosition};
+    transform: scale(0.7);
 
     :hover,
     &.Mui-focusVisible {
