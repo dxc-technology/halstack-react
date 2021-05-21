@@ -226,7 +226,6 @@ const SliderContainer = styled.div`
         props.backgroundType === "dark"
           ? props.theme.draggedThumbBackgroundColorOnDark
           : props.theme.draggedThumbBackgroundColor};
-      top: ${(props) => props.theme.draggedThumbTopPosition};
       transform: scale(${(props) => props.theme.draggedThumbScale});
       transform-origin: center;
     }

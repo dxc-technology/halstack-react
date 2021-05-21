@@ -815,7 +815,6 @@
     "thumbBackgroundColor": "#0067b3",
     "thumbBackgroundColorOnDark": "#ffffff",
     "draggedThumbScale": "1.25",
-    "draggedThumbTopPosition": "45%",
     "draggedThumbBackgroundColor": "#0067b3",
     "draggedThumbBackgroundColorOnDark": "#0095FF",
     "dotsHeight": "6px",

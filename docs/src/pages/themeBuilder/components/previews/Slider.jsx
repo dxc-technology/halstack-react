@@ -6,7 +6,7 @@ import { BackgroundColorProvider } from "@dxc-technology/halstack-react/dist/Bac
 
 const Slider = () => {
   const [value, changeValue] = useState(0);
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     changeValue(newValue);
   };
   const onChangeInput = (newValue) => {
@@ -15,6 +15,11 @@ const Slider = () => {
 
   return (
     <SliderContainer>
+      <DxcHeading
+        text="Light Mode"
+        level={5}
+        margin={{ top: "xsmall", bottom: "xxsmall" }}
+      />
       <Mode text="Default">
         <DxcSlider
           minValue={0}
