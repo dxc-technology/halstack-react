@@ -44,9 +44,12 @@ const DXCFileToUpload = styled.div`
   flex-direction: column;
   padding-bottom: 25px;
   padding-top: 25px;
-  border-bottom: 1px solid ${(props) => props.theme.accentColor};
+  border-bottom: ${(props) => props.theme.fileUnderlineThickness} solid ${(props) => props.theme.fileUnderlineColor};
   :hover {
     background: ${(props) => props.theme.fileHoverColor};
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -99,9 +102,6 @@ const DeleteFile = styled.button`
   margin-top: 11px;
   &:focus {
     visibility: visible;
-  }
-  &:hover {
-    cursor: pointer;
   }
 `;
 

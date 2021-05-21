@@ -219,7 +219,7 @@ const DragAndDropContentHover = styled.div`
   background-size: var(--dash-size) var(--border-weight), calc(var(--dash-size) + var(--gap-size)) var(--border-weight),
     var(--dash-size) var(--border-weight), var(--border-weight) var(--dash-size),
     var(--border-weight) calc(var(--dash-size) + var(--gap-size)), var(--border-weight) var(--dash-size);
-  background-color: ${(props) => props.theme.secondaryBackgroundColor};
+  background-color: ${(props) => props.theme.draggingAreaBackgroundColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
