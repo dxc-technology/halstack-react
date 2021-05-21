@@ -557,7 +557,9 @@ const TextContainer = styled.div`
       &.MuiInputLabel-shrink {
         & + div::before {
           border-color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+            props.backgroundType === "dark"
+              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineColor || props.theme.fontColorBase};
         }
         & + div + p {
           color: ${(props) =>
@@ -570,22 +572,35 @@ const TextContainer = styled.div`
 
       &::before {
         border-bottom: ${(props) =>
-          `1px solid ${props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase}`};
+          `${props.theme.underlineThickness} solid ${
+            props.backgroundType === "dark"
+              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineColor || props.theme.fontColorBase
+          }`};
       }
       &:not(.Mui-error)::before,
       &:not(&.Mui-focused)::before {
         border-bottom: ${(props) =>
-          `1px solid ${props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase}`};
+          `${props.theme.underlineThickness} solid ${
+            props.backgroundType === "dark"
+              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineColor || props.theme.fontColorBase
+          }`};
       }
       &::after {
         border-bottom: ${(props) =>
-          `2px solid ${props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase}`};
+          `2px solid ${
+            props.backgroundType === "dark"
+              ? props.theme.underlineFocusColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineFocusColor || props.theme.fontColorBase
+          }`};
       }
 
       &.Mui-error {
         &::before {
-          border-width: 1px;
-          border-color: ${(props) => (props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor)};
+          border-width: ${(props) => props.theme.underlineThickness};
+          border-color: ${(props) =>
+            props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor};
         }
         &::after {
           transform: scaleX(0);
@@ -596,12 +611,15 @@ const TextContainer = styled.div`
         &::after {
           border-width: 2px;
           border-color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+            props.backgroundType === "dark"
+              ? props.theme.underlineFocusColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineFocusColor || props.theme.fontColorBase};
           transform: scaleX(1);
         }
 
         &.Mui-error::after {
-          border-color: ${(props) => (props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor)};
+          border-color: ${(props) =>
+            props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor};
         }
       }
 
@@ -610,7 +628,7 @@ const TextContainer = styled.div`
 
         &::before {
           border-bottom: ${(props) =>
-            `1px solid ${
+            `${props.theme.underlineThickness} solid ${
               props.backgroundType === "dark" ? props.theme.disabledFontColorOnDark : props.theme.disabledFontColor
             } !important`};
           border-bottom-style: solid;
@@ -657,7 +675,8 @@ const TextContainer = styled.div`
 
     & > p {
       &.Mui-error {
-        color: ${(props) => (props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor)} !important;
+        color: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor} !important;
       }
       &.Mui-disabled {
         color: ${(props) =>

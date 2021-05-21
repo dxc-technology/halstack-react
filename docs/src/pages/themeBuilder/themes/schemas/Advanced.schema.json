@@ -564,7 +564,12 @@
     "suffixLabelFontColorOnDark": "color",
     "assistiveTextFontColorOnDark": "color",
     "disabledFontColorOnDark": "color",
-    "errorColorOnDark": "color"
+    "errorColorOnDark": "color",
+    "underlineColor": "color",
+    "underlineColorOnDark": "color",
+    "underlineFocusColor": "color",
+    "underlineFocusColorOnDark": "color",
+    "underlineThickness": "length"
   },
   "link": {
     "fontColor": "color",
