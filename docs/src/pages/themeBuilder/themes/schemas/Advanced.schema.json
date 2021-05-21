@@ -723,6 +723,7 @@
     "optionsFontSize": "length",
     "optionsFontStyle": "fStyle",
     "optionsFontWeight": "fWeight",
+    "optionsBackgroundColor": "color",
     "iconColor": "color",
     "iconOptionSpacing": "length",
     "iconHeight": "length",

@@ -727,6 +727,7 @@
     "optionPaddingTop": "6px",
     "optionPaddingLeft": "16px",
     "optionPaddingRight": "16px",
+    "optionsBackgroundColor": "#FFFFFF",
     "optionsFontColor": "",
     "optionsFontSize": "16px",
     "optionsFontStyle": "normal",
@@ -734,7 +735,7 @@
     "scrollBarThumbColor": "#666666",
     "scrollBarTrackColor": "#D9D9D9",
     "selectedOptionBackgroundColor": "#D9D9D9",
-    "selectedOptionBackgroundColorOnDark": "#D9D9D9"  
+    "selectedOptionBackgroundColorOnDark": "#D9D9D9"
   },
   "sidenav": {
     "backgroundColor": "#F8F8F8",

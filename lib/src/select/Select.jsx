@@ -38,6 +38,7 @@ const useStyles = makeStyles(() => ({
     "& .MuiList-root": {
       width: "auto !important",
       paddingRight: "0 !important",
+      backgroundColor: props.optionsBackgroundColor,
     },
   }),
   itemList: (props) => ({
