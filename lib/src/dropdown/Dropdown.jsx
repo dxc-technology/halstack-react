@@ -244,8 +244,10 @@ const DxcMenu = styled(Popper)`
       display: flex;
       flex-direction: ${(props) => (props.optionsIconPosition === "after" && "row-reverse") || "row"};
       justify-content: ${(props) => (props.optionsIconPosition === "after" && "flex-end") || ""};
-      font-size: ${(props) => props.theme.fontSize};
-      font-family: ${(props) => props.theme.fontFamily};
+      font-size: ${(props) => props.theme.optionsFontSize};
+      font-style:${(props) => props.theme.optionsFontStyle};
+      font-weight: ${(props) => props.theme.optionsFontWeight};
+      color:${(props) => props.theme.optionsFontColor};
       cursor: pointer;
     }
     .MuiListItem-button:hover {

@@ -391,7 +391,12 @@
     "caretIconMarginRight": "10px",
     "caretIconMarginLeft": "10px",
     "caretIconMarginTop": "0px",
-    "caretIconMarginBottom": "0px"
+    "caretIconMarginBottom": "0px",
+    "optionsFontColor":"",
+    "optionsFontSize":"16px",
+    "optionsFontStyle":"normal",
+    "optionsFontWeight":"400"
+
   },
   "footer": {
     "backgroundColor": "#000000",

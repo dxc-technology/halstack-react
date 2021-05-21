@@ -392,7 +392,11 @@
     "caretIconMarginRight": "length",
     "caretIconMarginLeft": "length",
     "caretIconMarginTop": "length",
-    "caretIconMarginBottom": "length"
+    "caretIconMarginBottom": "length",
+    "optionsFontColor":"color",
+    "optionsFontSize":"length",
+    "optionsFontStyle":"fStyle",
+    "optionsFontWeight":"fWeight"
   },
   "footer": {
     "backgroundColor": "color",
