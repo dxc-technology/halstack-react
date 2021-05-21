@@ -244,10 +244,14 @@
   },
   "checkbox": {
     "backgroundColorChecked": "color",
+    "backgroundHoverColorChecked": "color",
     "backgroundColorCheckedOnDark": "color",
+    "backgroundHoverColorCheckedOnDark":"color",
     "checkColor": "color",
     "borderColor":"color",
+    "borderHoverColor":"color",
     "borderColorOnDark":"color",
+    "borderHoverColorOnDark":"color",
     "checkColorOnDark": "color",
     "fontFamily": "fFamily",
     "fontSize":"length",
@@ -264,7 +268,7 @@
     "disabledFontColor": "color",
     "disabledFontColorOnDark": "color",
     "focusColor": "color",
-    "checkGutter": "length"
+    "checkLabelSpacing": "length"
   },
   "chip": {
     "backgroundColor": "color",

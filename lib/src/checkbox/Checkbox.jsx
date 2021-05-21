@@ -101,15 +101,18 @@ const getDisabledColor = (props, element) => {
       break;
     case "background":
       return props.backgroundType && props.backgroundType === "dark"
-      ? props.theme.disabledBackgroundColorCheckedOnDark : props.theme.disabledBackgroundColorChecked;
+        ? props.theme.disabledBackgroundColorCheckedOnDark
+        : props.theme.disabledBackgroundColorChecked;
       break;
     case "border":
       return props.backgroundType && props.backgroundType === "dark"
-      ? props.theme.disabledBorderColorOnDark :props.theme.disabledBorderColor;
+        ? props.theme.disabledBorderColorOnDark
+        : props.theme.disabledBorderColor;
       break;
     case "label":
       return props.backgroundType && props.backgroundType === "dark"
-      ? props.theme.disabledFontColorOnDark : props.theme.disabledFontColor;
+        ? props.theme.disabledFontColorOnDark
+        : props.theme.disabledFontColor;
       break;
   }
 };
@@ -123,15 +126,18 @@ const getNotDisabledColor = (props, element) => {
       break;
     case "background":
       return props.backgroundType && props.backgroundType === "dark"
-      ? props.theme.backgroundColorCheckedOnDark : props.theme.backgroundColorChecked;
+        ? props.theme.backgroundColorCheckedOnDark
+        : props.theme.backgroundColorChecked;
       break;
     case "border":
       return props.backgroundType && props.backgroundType === "dark"
-      ? props.theme.borderColorOnDark :props.theme.borderColor;
+        ? props.theme.borderColorOnDark
+        : props.theme.borderColor;
       break;
     case "label":
       return props.backgroundType && props.backgroundType === "dark"
-      ? props.theme.fontColorOnDark : props.theme.fontColor;
+        ? props.theme.fontColorOnDark
+        : props.theme.fontColor;
       break;
   }
 };
@@ -160,13 +166,17 @@ const CheckboxContainer = styled.span`
   flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiCheckbox-colorSecondary {
     &.Mui-disabled{
-      color: ${(props) =>props.disabled ? getDisabledColor(props, "border"): getNotDisabledColor(props, "border")};
+      color: ${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "border"))};
     }
     &.Mui-checked {
       color:${(props) =>
         props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
       &:hover {
         background-color: transparent;
+        color:${(props) =>
+          props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.backgroundHoverColorCheckedOnDark
+            : props.theme.backgroundHoverColorChecked};
       }
     }
   }
@@ -176,6 +186,12 @@ const CheckboxContainer = styled.span`
     }
   }
   .MuiButtonBase-root {
+    &:hover {
+      color: ${(props) =>
+        props.backgroundType && props.backgroundType === "dark"
+          ? props.theme.borderHoverColorOnDark
+          : props.theme.borderHoverColor};
+    }
     &.Mui-focusVisible {
       .MuiIconButton-label {
         outline: ${(props) => props.theme.focusColor} auto 1px;
@@ -184,7 +200,7 @@ const CheckboxContainer = styled.span`
     z-index: 1;
     padding: 10px;
     ${(props) => (props.labelPosition === "after" ? "padding-right" : "padding-left")}: ${(props) =>
-  props.theme.checkGutter};
+  props.theme.checkLabelSpacing};
     padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
     margin: 2px;
@@ -200,7 +216,11 @@ const CheckboxContainer = styled.span`
 `;
 const CheckboxBlackBack = styled.span`
   background-color: ${(props) =>
-    !props.checked ? "transparent" : props.disabled ? getDisabledColor(props, "check") : getNotDisabledColor(props, "check")};
+    !props.checked
+      ? "transparent"
+      : props.disabled
+      ? getDisabledColor(props, "check")
+      : getNotDisabledColor(props, "check")};
   width: 17px;
   height: 17px;
   position: absolute;

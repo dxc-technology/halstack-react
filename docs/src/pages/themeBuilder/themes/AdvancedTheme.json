@@ -241,9 +241,13 @@
   },
   "checkbox": {
     "borderColor":"#0067b3",
+    "borderHoverColor":"#7BB0D6",
     "borderColorOnDark":"#FFFFFF",
+    "borderHoverColorOnDark":"#B1B1B1",
     "backgroundColorChecked": "#0067b3",
+    "backgroundHoverColorChecked":"#7BB0D6",
     "backgroundColorCheckedOnDark": "#FFFFFF",
+    "backgroundHoverColorCheckedOnDark": "#B1B1B1",
     "checkColor": "#ffffff",
     "checkColorOnDark": "#0067B3",
     "fontColor": "inherit",
@@ -259,7 +263,7 @@
     "fontFamily": "Open Sans, sans-serif",
     "fontSize": "1rem",
     "fontWeight": "400",
-    "checkGutter": "10px",
+    "checkLabelSpacing": "10px",
     "focusColor": "#005FCC"
   },
   "chip": {
