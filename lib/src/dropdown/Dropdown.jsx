@@ -185,7 +185,6 @@ const calculateWidth = (margin, size) => {
 
 const DxCDropdownContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  font-size: ${(props) => props.theme.fontSizeBase};
   text-overflow: ellipsis;
   overflow: hidden;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -222,9 +221,9 @@ const DxcMenu = styled(Popper)`
   .MuiPaper-root {
     min-width: ${(props) => `${props.width}px`};
 
-    background-color: ${(props) => props.theme.dropdownBackgroundColor};
+    background-color: ${(props) => props.theme.optionsListBackgroundColor};
 
-    color: ${(props) => props.theme.dropdownFontColor};
+    color: ${(props) => props.theme.optionsListFontColor};
     border-width: ${(props) => props.theme.borderThickness};
     border-style: ${(props) => props.theme.borderStyle};
     border-color: ${(props) => props.theme.borderColor};
@@ -251,7 +250,7 @@ const DxcMenu = styled(Popper)`
       cursor: pointer;
     }
     .MuiListItem-button:hover {
-      background-color: ${(props) => props.theme.hoverBackgroundOption};
+      background-color: ${(props) => props.theme.optionsListHoverBackgroundColor};
       color: ${(props) => props.theme.dropdownFontColor};
     }
 
@@ -274,7 +273,9 @@ const DxcMenu = styled(Popper)`
 const DropdownTrigger = styled.button`
   cursor: pointer;
   font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
+  font-size: ${(props) => props.theme.buttonFontSize};
+  font-style:${(props) => props.theme.buttonFontStyle};
+  font-weight:${(props) => props.theme.buttonFontWeight};
   width: 100%;
   height: auto;
   min-height: 46px;
@@ -297,14 +298,14 @@ const DropdownTrigger = styled.button`
   }
 
   background-color: ${(props) =>
-    props.opened === true ? props.theme.hoverBackgroundColor : props.theme.backgroundColor};
-  color: ${(props) => props.theme.fontColor};
+    props.opened === true ? props.theme.buttonHoverBackgroundColor : props.theme.buttonBackgroundColor};
+  color: ${(props) => props.theme.buttonFontColor};
 
 
   border-bottom-right-radius: ${(props) => (props.opened === true ? "0px" : props.theme.borderRadius)};
   border-bottom-left-radius: ${(props) => (props.opened === true ? "0px" : props.theme.borderRadius)};
   &:hover {
-    background-color: ${(props) => props.theme.hoverBackgroundColor};
+    background-color: ${(props) => props.theme.buttonHoverBackgroundColor};
   }
 `;
 
