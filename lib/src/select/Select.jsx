@@ -39,6 +39,9 @@ const useStyles = makeStyles(() => ({
       width: "auto !important",
       paddingRight: "0 !important",
       backgroundColor: props.optionsBackgroundColor,
+      borderColor: props.optionsBorderColor,
+      borderWidth: props.optionsBorderThickness,
+      borderStyle: props.optionsBorderStyle,
     },
   }),
   itemList: (props) => ({
