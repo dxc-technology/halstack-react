@@ -191,8 +191,6 @@ const TextContainer = styled.div`
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
-      font-family: Open Sans, sans-serif;
-
       &::before {
         border-bottom: ${(props) =>
           `1px solid ${
@@ -270,9 +268,19 @@ const TextContainer = styled.div`
       }
 
       .MuiInputBase-input {
+        font-family: ${(props) => props.theme.customContentFontFamily};
+        font-size: ${(props) => props.theme.customContentFontSize};
+        font-style: ${(props) => props.theme.customContentFontStyle};
+        font-weight: ${(props) => props.theme.customContentFontWeight};
+        letter-spacing: ${(props) => props.theme.customContentLetterSpacing};
+        color: ${(props) =>
+          props.backgroundType === "dark"
+            ? props.theme.customContentFontColorOnDark
+            : props.theme.customContentFontColor};
+        line-height: ${(props) => props.theme.customContentLineHeight};
         padding-left: "inherit";
-        color: ${(props) => (props.backgroundType === "dark" ? "#ffffff" : "#000000")};
         text-overflow: ellipsis;
+
         &.Mui-disabled {
           cursor: not-allowed;
           color: ${(props) =>
