@@ -50,6 +50,7 @@ const DXCTransactions = styled.div`
   overflow: auto;
   ::-webkit-scrollbar {
     width: 3px;
+    height: 3px;
   }
   ::-webkit-scrollbar-track {
     border-radius: 3px;

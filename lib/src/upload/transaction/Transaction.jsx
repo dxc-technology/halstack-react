@@ -71,9 +71,6 @@ const DXCTransaction = styled.div`
   flex-direction: row;
   margin-bottom: 16px;
   color: ${(props) => props.status === "error" && props.theme.errorColor};
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   .MuiCircularProgress-root {
     width: 28px !important;
     height: 28px !important;
@@ -88,6 +85,7 @@ const FileImage = styled.div`
   height: ${(props) => props.theme.fileUploadedIconHeight};
   width: ${(props) => props.theme.fileUploadedIconWidth};
   margin-right: 16px;
+  max-width: 20%;
 `;
 
 const FileName = styled.div`
@@ -97,19 +95,25 @@ const FileName = styled.div`
   text-transform: ${(props) => props.theme.fileNameFontTextTransform};
   color: ${(props) => props.theme.fileNameFontColor};
   margin-right: 16px;
+  width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  overflow: hidden;
 `;
 
 const FileStatus = styled.div`
-  width: 25px;
-  height: 20px;
   background: ${(props) =>
     (props.status === "success" && `url('${successIcon}') no-repeat padding-box`) ||
     (props.status === "error" && `url('${errorIcon}') no-repeat padding-box`)};
+  width: 25px;
+  height: 20px;
+  max-width: 20%;
 `;
 
 const Prueba = styled.div`
   display: flex;
   flex-direction: row;
+  width: 80%;
 `;
 
 export default DxcTransaction;
