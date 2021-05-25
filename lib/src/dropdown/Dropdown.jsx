@@ -24,7 +24,7 @@ const DxcDropdown = ({
   margin,
   size = "fitContent",
   expandOnHover = false,
-  tabIndex = 0
+  tabIndex = 0,
 }) => {
   const [width, setWidth] = useState();
   const colorsTheme = useTheme();
@@ -131,6 +131,7 @@ const DxcDropdown = ({
             disablePortal
             placement="bottom-start"
           >
+            
             {({ TransitionProps }) => (
               <Grow {...TransitionProps}>
                 <Paper>
@@ -184,7 +185,6 @@ const calculateWidth = (margin, size) => {
 
 const DxCDropdownContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  font-size: ${(props) => props.theme.fontSizeBase};
   text-overflow: ellipsis;
   overflow: hidden;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -211,18 +211,26 @@ const DxcMenu = styled(Popper)`
   }
   .MuiMenuItem-root {
     min-height: 46px;
+    padding-top:${(props) => props.theme.optionsPaddingTop};
+    padding-bottom:${(props) => props.theme.optionsPaddingBottom};
+    padding-left:${(props) => props.theme.optionsPaddingLeft};
+    padding-right:${(props) => props.theme.optionsPaddingRight};
     height: auto;
   }
 
   .MuiPaper-root {
     min-width: ${(props) => `${props.width}px`};
 
-    background-color: ${(props) => props.theme.dropdownBackgroundColor};
+    background-color: ${(props) => props.theme.optionsListBackgroundColor};
 
-    color: ${(props) => props.theme.dropdownFontColor};
+    color: ${(props) => props.theme.optionsListFontColor};
+    border-width: ${(props) => props.theme.borderThickness};
+    border-style: ${(props) => props.theme.borderStyle};
+    border-color: ${(props) => props.theme.borderColor};
+  
 
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: ${(props) => props.theme.borderRadius};
+    border-bottom-right-radius: ${(props) => props.theme.borderRadius};
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     max-height: 230px;
@@ -235,12 +243,14 @@ const DxcMenu = styled(Popper)`
       display: flex;
       flex-direction: ${(props) => (props.optionsIconPosition === "after" && "row-reverse") || "row"};
       justify-content: ${(props) => (props.optionsIconPosition === "after" && "flex-end") || ""};
-      font-size: ${(props) => props.theme.fontSize};
-      font-family: ${(props) => props.theme.fontFamily};
+      font-size: ${(props) => props.theme.optionsFontSize};
+      font-style:${(props) => props.theme.optionsFontStyle};
+      font-weight: ${(props) => props.theme.optionsFontWeight};
+      color:${(props) => props.theme.optionsFontColor};
       cursor: pointer;
     }
     .MuiListItem-button:hover {
-      background-color: ${(props) => props.theme.hoverBackgroundOption};
+      background-color: ${(props) => props.theme.optionsListHoverBackgroundColor};
       color: ${(props) => props.theme.dropdownFontColor};
     }
 
@@ -263,36 +273,39 @@ const DxcMenu = styled(Popper)`
 const DropdownTrigger = styled.button`
   cursor: pointer;
   font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
+  font-size: ${(props) => props.theme.buttonFontSize};
+  font-style:${(props) => props.theme.buttonFontStyle};
+  font-weight:${(props) => props.theme.buttonFontWeight};
   width: 100%;
   height: auto;
   min-height: 46px;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: ${(props) => props.theme.borderRadius};
+  border-width: ${(props) => props.theme.borderThickness};
+  border-style: ${(props) => props.theme.borderStyle};
+  border-color: ${(props) => props.theme.borderColor};
+
   min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
 
-  padding: ${(props) => {
-    if (props.caretHidden === true && props.label === "") {
-      return "10px 15px";
-    } else {
-      return "10px 15px 10px 20px";
-    }
-  }};
+  padding-top: ${(props) => props.theme.labelPaddingTop};
+  padding-bottom: ${(props) => props.theme.labelPaddingBottom};
+  padding-left: ${(props) => props.theme.labelPaddingLeft};
+  padding-right: ${(props) => props.theme.labelPaddingRight};
   &:focus {
     outline: none;
   }
 
   background-color: ${(props) =>
-    props.opened === true ? props.theme.hoverBackgroundColor : props.theme.backgroundColor};
-  color: ${(props) => props.theme.fontColor};
+    props.opened === true ? props.theme.buttonHoverBackgroundColor : props.theme.buttonBackgroundColor};
+  color: ${(props) => props.theme.buttonFontColor};
 
-  border: none;
-  border-radius: 2px;
-  border-bottom-right-radius: ${(props) => (props.opened === true ? "0px" : "2px")};
-  border-bottom-left-radius: ${(props) => (props.opened === true ? "0px" : "2px")};
+
+  border-bottom-right-radius: ${(props) => (props.opened === true ? "0px" : props.theme.borderRadius)};
+  border-bottom-left-radius: ${(props) => (props.opened === true ? "0px" : props.theme.borderRadius)};
   &:hover {
-    background-color: ${(props) => props.theme.hoverBackgroundColor};
+    background-color: ${(props) => props.theme.buttonHoverBackgroundColor};
   }
 `;
 
@@ -361,8 +374,10 @@ const ListIconContainer = styled.div`
 
 const CaretIcon = styled.div`
   display: ${(props) => (props.caretHidden === true ? "none" : "inline-flex")};
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-top:${(props) => props.theme.caretIconMarginTop};
+  margin-bottom${(props) => props.theme.caretIconMarginBottom};
+  margin-left: ${(props) => props.theme.caretIconMarginLeft};
+  margin-right: ${(props) => props.theme.caretIconMarginRight};
   & > svg {
     fill: ${(props) => props.theme.fontColor};
   }
@@ -395,7 +410,7 @@ DxcDropdown.propTypes = {
       iconSrc: PropTypes.string,
     })
   ),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 export default DxcDropdown;

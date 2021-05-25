@@ -136,9 +136,8 @@ const DxCTabs = styled.div`
 
   .MuiTabs-root {
     background: white;
-    min-height: ${(props) => 
-      ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
-        props.theme.minHeight) ||
+    min-height: ${(props) =>
+      ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && props.theme.minHeight) ||
       props.theme.minHeightWithLabelAndIcon};
 
     .MuiTabs-scroller {
@@ -164,7 +163,7 @@ const DxCTabs = styled.div`
         props.theme.minHeightWithLabelAndIcon};
       min-width: ${(props) => props.theme.minWidth};
       max-width: ${(props) => props.theme.maxWidth};
-      min-height: ${(props) => 
+      min-height: ${(props) =>
         ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
           props.theme.minHeight) ||
         props.theme.minHeightWithLabelAndIcon};
@@ -249,8 +248,8 @@ DxcTabs.propTypes = {
       label: PropTypes.string,
       icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
-      isDisabled: PropTypes.boolean,
-      notificationNumber: PropTypes.oneOfType([PropTypes.boolean, PropTypes.string]),
+      isDisabled: PropTypes.bool,
+      notificationNumber: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
     })
   ),
   margin: PropTypes.oneOfType([

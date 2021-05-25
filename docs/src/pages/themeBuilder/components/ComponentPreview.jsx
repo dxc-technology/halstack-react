@@ -83,13 +83,11 @@ const ComponentPreviewContainer = styled.div`
 `;
 
 const PreviewContainer = styled.div`
-  height: 65%;
   margin-left: 8%;
   padding-right: 8%;
 `;
 
 const ComponentHeader = styled.div`
-  height: 10%;
   margin: 36px 8% 0 8%;
   display: flex;
 `;

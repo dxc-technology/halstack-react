@@ -18,16 +18,24 @@ import HeaderPreview from "./previews/Header";
 import TextFieldPreview from "./previews/TextField";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
+import TextareaPreview from "./previews/Textarea";
 import ToggleGroupPreview from "./previews/ToggleGroup";
+import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
+import DialogPreview from "./previews/Dialog";
 import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
+import UploadPreview from "./previews/Upload";
 
 const SampleComponents = [
   {
     name: "accordion",
     preview: AccordionPreview,
+  },
+  {
+    name: "alert",
+    preview: AlertPreview,
   },
   {
     name: "box",
@@ -48,6 +56,10 @@ const SampleComponents = [
   {
     name: "date",
     preview: DatePreview,
+  },
+  {
+    name: "dialog",
+    preview: DialogPreview,
   },
   {
     name: "dropdown",
@@ -118,8 +130,16 @@ const SampleComponents = [
     preview: TagPreview,
   },
   {
+    name: "textarea",
+    preview: TextareaPreview,
+  },
+  {
     name: "toggleGroup",
     preview: ToggleGroupPreview,
+  },
+  {
+    name: "upload",
+    preview: UploadPreview,
   },
   {
     name: "wizard",

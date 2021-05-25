@@ -109,16 +109,22 @@ const DxcUpload = ({ callbackUpload, margin, tabIndex = 0 }) => {
 
   return (
     <DXCUpload margin={margin}>
-      {transactionFiles && transactionFiles.length !== 0 && <Transactions tabIndexValue={tabIndex} transactions={transactionFiles} />}
+      {transactionFiles && transactionFiles.length !== 0 && (
+        <Transactions tabIndexValue={tabIndex} transactions={transactionFiles} />
+      )}
       {(filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length === 0 && (
-        <DragAndDropArea dashed={false} addFile={onDragHandler}  tabIndexValue={tabIndex}/>
+        <DragAndDropArea dashed={false} addFile={onDragHandler} tabIndexValue={tabIndex} />
       )) ||
         (filesToUpload && filesToUpload.length === 0 && transactionFiles && transactionFiles.length !== 0 && (
-          <DragAndDropArea dashed addFile={onDragHandler} tabIndexValue={tabIndex}/>
+          <DragAndDropArea dashed addFile={onDragHandler} tabIndexValue={tabIndex} />
         ))}
-
       {filesToUpload && filesToUpload.length !== 0 && (
-        <FilesToUpload filesToUpload={filesToUpload} addFile={onDragHandler} onUpload={onUploadHandler} tabIndexValue={tabIndex}/>
+        <FilesToUpload
+          filesToUpload={filesToUpload}
+          addFile={onDragHandler}
+          onUpload={onUploadHandler}
+          tabIndexValue={tabIndex}
+        />
       )}
     </DXCUpload>
   );
@@ -133,14 +139,12 @@ DxcUpload.propTypes = {
       left: PropTypes.oneOf(Object.keys(spaces)),
       right: PropTypes.oneOf(Object.keys(spaces)),
     }),
-    PropTypes.oneOf([...Object.keys(spaces)])
+    PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 const DXCUpload = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
-  font-family: ${(props) => props.theme.fontFamily};
   max-width: 100%;
   height: 400px;
   box-shadow: 0px 3px 6px #00000029;

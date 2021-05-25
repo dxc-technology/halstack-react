@@ -19,7 +19,7 @@ const DxcAlert = ({
   children,
   margin,
   size = "fitContent",
-  tabIndex
+  tabIndex,
 }) => {
   const colorsTheme = useTheme();
 
@@ -91,7 +91,7 @@ DxcAlert.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.element,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 const AlertModal = styled.div`
@@ -104,12 +104,12 @@ const AlertModal = styled.div`
   left: ${(props) => (props.mode === "modal" ? "0" : "")};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   display: ${(props) => (props.mode === "modal" ? "flex" : "")};
-  z-index: ${(props) => (props.mode === "modal" ? "200" : "")};
+  z-index: ${(props) => (props.mode === "modal" ? "1200" : "")};
 `;
 
 const OverlayContainer = styled.div`
   background-color: ${(props) => (props.mode === "modal" ? `${props.theme.overlayColor}` : "transparent")};
-  opacity: ${(props) => props.mode === "modal" && "0.8"};
+  opacity: ${(props) => props.mode === "modal" && props.theme.overlayOpacity};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
   bottom: ${(props) => (props.mode === "modal" ? "0" : "")};
@@ -128,11 +128,14 @@ const AlertContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: ${(props) => (props.children && "inline-block") || "inline-flex"};
-  font-size: ${(props) => props.theme.fontSize};
   overflow: hidden;
-  box-shadow: 0px 3px 6px #00000012;
-  border-radius: 4px;
-  font-family: ${(props) => props.theme.fontFamily};
+  box-shadow: ${(props) =>
+    `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
+
+  border-radius: ${(props) => props.theme.borderRadius};
+  border-width: ${(props) => props.theme.borderThickness};
+  border-style: ${(props) => props.theme.borderStyle};
+  border-color: ${(props) => props.theme.borderColor};
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
   align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
   max-width: ${(props) =>
@@ -144,46 +147,66 @@ const AlertContainer = styled.div`
     (props.children && props.children.filter((child) => child === undefined).length === 0 && "92px") || "48px"};
   background-color: ${(props) =>
     (props.type === "info" && props.theme.infoColor) ||
-    (props.type === "confirm" && props.theme.confirmColor) ||
+    (props.type === "confirm" && props.theme.successColor) ||
     (props.type === "warning" && props.theme.warningColor) ||
     (props.type === "error" && props.theme.errorColor) ||
     props.theme.lightPink};
-  z-index: ${(props) => (props.mode === "modal" ? "300" : "")};
+  z-index: ${(props) => (props.mode === "modal" ? "1300" : "")};
   cursor: default;
 `;
 
 const AlertInfo = styled.div`
   display: flex;
   flex-direction: row;
-  height: 48px;
+  height: ${(props) => props.theme.height};
   align-items: center;
   width: 100%;
 `;
 
 const AlertType = styled.div`
-  text-transform: ${(props) => props.theme.fontTextTransform};
-  padding-right: 10px;
-  font-weight: ${(props) => props.theme.fontWeight};
+  padding-right: ${(props) => props.theme.titlePaddingRight};
+  padding-left: ${(props) => props.theme.titlePaddingLeft};
+  padding-top: ${(props) => props.theme.titlePaddingTop};
+  padding-bottom: ${(props) => props.theme.titlePaddingBottom};
+  font-family: ${(props) => props.theme.titleFontFamily};
+  font-size: ${(props) => props.theme.titleFontSize};
+  font-weight: ${(props) => props.theme.titleFontWeight};
+  color:  ${(props) => props.theme.titleFontColor};
+  font-style: ${(props) => props.theme.titleFontStyle};
+  text-transform: ${(props) => props.theme.titleTextTransform};
 `;
 
 const AlertText = styled.div`
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-right: ${(props) => props.theme.inlineTextPaddingRight};
+  padding-left: ${(props) => props.theme.inlineTextPaddingLeft};
+  padding-top: ${(props) => props.theme.inlineTextPaddingTop};
+  padding-bottom: ${(props) => props.theme.inlineTextPaddingBottom};
   flex-grow: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: ${(props) => props.theme.contentFontFamily};
+  font-size: ${(props) => props.theme.contentFontSize};
+  font-weight: ${(props) => props.theme.contentFontWeight};
+  color:  ${(props) => props.theme.contentFontColor};
 `;
 
 const AlertIcon = styled.img`
-  padding-left: 12px;
+  max-width: ${(props) => props.theme.iconMaxWidth};
+  max-height: ${(props) => props.theme.iconMaxHeight};
+  padding-right: ${(props) => props.theme.iconPaddingRight};
+  padding-left: ${(props) => props.theme.iconPaddingLeft};
+  padding-top: ${(props) => props.theme.iconPaddingTop};
+  padding-bottom: ${(props) => props.theme.iconPaddingBottom};
 `;
 
 const AlertInfoText = styled.div`
   display: flex;
   flex-direction: row;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: ${(props) => props.theme.textPaddingLeft};
+  padding-right: ${(props) => props.theme.textPaddingRight};
+  padding-top: ${(props) => props.theme.textPaddingTop};
+  padding-bottom: ${(props) => props.theme.textPaddingBottom};
   overflow: hidden;
   flex-grow: 1;
   align-items: center;
@@ -191,7 +214,11 @@ const AlertInfoText = styled.div`
 
 const AlertContent = styled.div`
   flex: 1 1 auto;
-  padding: 8px 12px 20px 46px;
+  padding: ${(props)=>`${props.theme.contentPaddingTop} ${props.theme.contentPaddingRight} ${props.theme.contentPaddingBottom} ${props.theme.contentPaddingLeft}`};
+  font-family: ${(props) => props.theme.contentFontFamily};
+  font-size: ${(props) => props.theme.contentFontSize};
+  font-weight: ${(props) => props.theme.contentFontWeight};
+  color:  ${(props) => props.theme.contentFontColor};
   overflow-y: auto;
 `;
 

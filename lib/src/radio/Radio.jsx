@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Radio from "@material-ui/core/Radio";
 import PropTypes from "prop-types";
@@ -7,6 +7,7 @@ import DxcRequired from "../common/RequiredComponent";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
+import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const DxcRadio = ({
   checked = false,
@@ -22,6 +23,7 @@ const DxcRadio = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
   const colorsTheme = useTheme();
+  const backgroundType = useContext(BackgroundColorContext);
 
   const handlerRadioChange = (value) => {
     if (checked == null) {
@@ -33,7 +35,14 @@ const DxcRadio = ({
   };
   return (
     <ThemeProvider theme={colorsTheme.radio}>
-      <RadioContainer id={name} labelPosition={labelPosition} disabled={disabled} margin={margin} size={size}>
+      <RadioContainer
+        id={name}
+        labelPosition={labelPosition}
+        disabled={disabled}
+        margin={margin}
+        size={size}
+        backgroundType={backgroundType}
+      >
         <Radio
           checked={(checked != null && checked) || innerChecked}
           name={name}
@@ -48,6 +57,7 @@ const DxcRadio = ({
           labelPosition={labelPosition}
           disabled={disabled}
           onClick={(!disabled && handlerRadioChange) || null}
+          backgroundType={backgroundType}
         >
           {required && <DxcRequired />}
           {label}
@@ -95,26 +105,35 @@ const RadioContainer = styled.span`
     height: auto;
     padding: 10px;
     margin: 2px;
+    ${(props) => (props.labelPosition === "after" ? "padding-right" : "padding-left")}: ${(props) =>
+      props.theme.circleLabelSpacing};
     padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
     margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
     .MuiIconButton-label {
       .MuiSvgIcon-root {
-        height: 24px;
-        width: 24px;
+        height: ${(props) => props.theme.circleHeight};
+        width: ${(props) => props.theme.circleWidth};
       }
-      color: ${(props) => (props.disabled && props.theme.disabledColor) || props.theme.color};
+      color: ${(props) =>
+        props.backgroundType === "dark"
+          ? (props.disabled && props.theme.disabledColorOnDark) || props.theme.colorOnDark
+          : (props.disabled && props.theme.disabledColor) || props.theme.color};
 
       > div > :nth-child(2) path {
-        color: ${(props) => (props.disabled && props.theme.disabledColor) || props.theme.color};
+        color: ${(props) =>
+          props.backgroundType === "dark"
+            ? (props.disabled && props.theme.disabledColorOnDark) || props.theme.colorOnDark
+            : (props.disabled && props.theme.disabledColor) || props.theme.color};
       }
     }
 
     &.Mui-focusVisible {
       background-color: transparent;
       .MuiSvgIcon-root {
-        outline: ${(props) => props.theme.focusColor} auto 1px;
+        outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
+          auto 1px;
       }
     }
     :hover {
@@ -128,7 +147,10 @@ const RadioContainer = styled.span`
     }
   }
   .MuiRadio-colorSecondary.Mui-checked {
-    color: ${(props) => (props.disabled && props.theme.disabledColor) || props.theme.color};
+    color: ${(props) =>
+      props.backgroundType === "dark"
+        ? (props.disabled && props.theme.disabledColorOnDark) || props.theme.colorOnDark
+        : (props.disabled && props.theme.disabledColor) || props.theme.color};
     :hover {
       background-color: transparent;
     }
@@ -136,7 +158,13 @@ const RadioContainer = styled.span`
 `;
 const LabelContainer = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
-  color: ${(props) => (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
+  font-size: ${(props) => props.theme.fontSize};
+  font-weight: ${(props) => props.theme.fontWeight};
+  font-style: ${(props) => props.theme.fontStyle};
+  color: ${(props) =>
+    props.backgroundType === "dark"
+      ? (props.disabled && props.theme.disabledFontColorOnDark) || props.theme.fontColorOnDark
+      : (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 `;
 
