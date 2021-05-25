@@ -858,27 +858,13 @@
     "thumbTranslateX": "40%"
   },
   "tag": {
-    "textDecoration": "none",
-    "fontFamily": "Open Sans, sans-serif",
-    "fontWeight": "400",
     "fontStyle": "normal",
-    "minHeight": "43px",
-    "iconContainerWidth": "48px",
-    "borderRadius": "0px",
-    "borderThickness": "0px",
-    "borderStyle": "solid",
-    "borderColor": "none",
-    "iconHeight": "23px",
-    "iconWidth": "48px",
-    "labelPaddingRight": "30px",
-    "labelPaddingLeft": "30px",
-    "labelPaddingTop": "0px",
-    "labelPaddingBottom": "0px",
-    "labelFontFamily": "Open Sans, sans-serif",
-    "labelFontWeight": "400",
-    "labelFontStyle": "normal",
-    "labelColor": "#000000",
-    "labelJustifyContent": "center"
+    "fontTextTransform": "uppercase",
+    "height": "43px",
+    "iconColor": "#FFFFFF",
+    "iconSectionWidth": "48px",
+    "iconHeight": "24px",
+    "iconWidth": "auto"
   },
   "table": {
     "rowSeparatorThickness": "1px",

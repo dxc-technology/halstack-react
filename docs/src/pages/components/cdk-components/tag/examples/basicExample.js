@@ -21,7 +21,7 @@ const code = `() => {
         margin="medium"
         icon={iconSVG}
         label="DXC Technology"
-        iconBgColor="#6B4187"
+        iconBgColor="#000000"
       ></DxcTag>
       <DxcTag
         margin="medium"

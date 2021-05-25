@@ -25,6 +25,7 @@ import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
 import DialogPreview from "./previews/Dialog";
 import BoxPreview from "./previews/Box";
+import TagPreview from "./previews/Tag";
 import UploadPreview from "./previews/Upload";
 
 const SampleComponents = [
@@ -123,6 +124,10 @@ const SampleComponents = [
   {
     name: "table",
     preview: TablePreview,
+  },
+  {
+    name: "tag",
+    preview: TagPreview,
   },
   {
     name: "textarea",
