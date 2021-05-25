@@ -22,6 +22,7 @@ import ToggleGroupPreview from "./previews/ToggleGroup";
 import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
+import DialogPreview from "./previews/Dialog";
 import BoxPreview from "./previews/Box";
 
 const SampleComponents = [
@@ -52,6 +53,10 @@ const SampleComponents = [
   {
     name: "date",
     preview: DatePreview,
+  },
+  {
+    name: "dialog",
+    preview: DialogPreview,
   },
   {
     name: "dropdown",
