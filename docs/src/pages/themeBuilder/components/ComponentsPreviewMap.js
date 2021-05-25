@@ -18,6 +18,7 @@ import HeaderPreview from "./previews/Header";
 import TextFieldPreview from "./previews/TextField";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
+import TextareaPreview from "./previews/Textarea";
 import ToggleGroupPreview from "./previews/ToggleGroup";
 import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
@@ -121,6 +122,10 @@ const SampleComponents = [
   {
     name: "table",
     preview: TablePreview,
+  },
+  {
+    name: "textarea",
+    preview: TextareaPreview,
   },
   {
     name: "toggleGroup",
