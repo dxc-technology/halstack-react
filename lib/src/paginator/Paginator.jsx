@@ -123,13 +123,15 @@ const DxcPaginator = ({
   );
 };
 const DxcPaginatorContainer = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
   display: flex;
-  height: 64px;
-  width: 100%;
+  height: ${(props) => props.theme.height};
+  width: ${(props) => props.theme.width};
   font-family: ${(props) => props.theme.fontFamily};
-  background-color: ${(props) => props.theme.paginatorBackgroundColor};
-  color: ${(props) => props.theme.paginatorFontColor};
+  font-size: ${(props) => props.theme.fontSize};
+  font-weight: ${(props) => props.theme.fontWeight};
+  font-style: ${(props) => props.theme.fontStyle};
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.fontColor};
   button {
     &:disabled {
       background-color: transparent !important;
@@ -140,7 +142,8 @@ const DxcPaginatorContainer = styled.div`
 const ItemsPageContainer = styled.span`
   display: flex;
   align-items: center;
-  margin-right: 30px;
+  margin-right: ${(props) => props.theme.itemsPerPageSelectorMarginRight};
+  margin-left: ${(props) => props.theme.itemsPerPageSelectorMarginLeft};
   label {
     height: 0px;
   }
@@ -157,7 +160,8 @@ const GoToLabel = styled.span`
   margin-left: 10px;
 `;
 const TotalItemsContainer = styled.span`
-  margin-right: 30px;
+  margin-right: ${(props) => props.theme.totalItemsContainerMarginRight};
+  margin-left: ${(props) => props.theme.totalItemsContainerMarginLeft};
 `;
 
 const LabelsContainer = styled.div`
@@ -165,13 +169,13 @@ const LabelsContainer = styled.div`
   width: 100%;
   justify-content: flex-end;
   align-items: center;
-  margin: 0 40px 0 20px;
-  font-size: ${(props) => props.theme.fontSize};
+  margin: 0 ${(props) => props.theme.marginRight} 0 ${(props) => props.theme.marginLeft};
 `;
 const PageToSelectContainer = styled.span`
   display: flex;
   align-items: center;
-  margin-right: 30px;
+  margin-right: ${(props) => props.theme.pageSelectorMarginRight};
+  margin-left: ${(props) => props.theme.pageSelectorMarginLeft};
   label {
     height: 0px;
   }

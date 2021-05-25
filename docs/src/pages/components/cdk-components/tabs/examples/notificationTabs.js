@@ -34,7 +34,7 @@ const code = `() => {
           notificationNumber: true,
         },
         {
-          label: "Tab 3",
+          label: "Tab 4",
           icon: iconSVG,
           notificationNumber: false,
         },

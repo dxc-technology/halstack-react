@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 import DxcRequired from "../common/RequiredComponent";
 
-import { spaces, componentTokens } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
@@ -102,6 +102,7 @@ const SwitchContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
+  opacity: 1;
   
   .MuiSwitch-root {
     align-items: center;
@@ -127,10 +128,7 @@ const SwitchContainer = styled.div`
     }
 
     .MuiSwitch-switchBase + .MuiSwitch-track {
-      opacity: ${(props) => (props.disabled ? "0.34" : "1")};
-      .Mui-checked {
-        opacity: ${(props) => (props.disabled ? "0.34" : "1")};
-      }
+      opacity: 1;
     }
 
     .MuiIconButton-root {
@@ -207,7 +205,7 @@ const LabelContainer = styled.span`
       : props.backgroundType === "dark"
         ? props.theme.labelFontColorOnDark
         : props.theme.labelFontColor};
-  opacity: ${(props) => (props.disabled ? "0.34" : "")};
+  opacity: 1;
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
