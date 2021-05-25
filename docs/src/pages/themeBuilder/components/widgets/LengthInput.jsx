@@ -30,7 +30,7 @@ const LengthInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
   return (
     <LengthInputContainer>
       <StyledInput
-        type="text"
+        type="number"
         value={value}
         onChange={(event) => {
           const val = event.target.value;
