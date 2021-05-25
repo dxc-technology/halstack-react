@@ -3,6 +3,7 @@ import styled from "styled-components";
 import LogoConfig from "./widgets/LogoConfig";
 import ColorPicker from "./widgets/ColorPicker";
 import DefaultInput from "./widgets/DefaultInput";
+import LengthInput from "./widgets/LengthInput";
 
 const makeReadable = (token) =>
   token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
@@ -36,7 +37,14 @@ const ThemeInput = ({
                 onChangeCustomTheme={onChangeCustomTheme}
               />
             );
-          // case "length":
+          case "length":
+            return (
+              <LengthInput
+                propertyName={propertyName}
+                propertyValue={propertyValue}
+                onChangeCustomTheme={onChangeCustomTheme}
+              />
+            );
           // case "fFamily":
           // case "fWeight":
           // case "fStyle":
