@@ -73,7 +73,7 @@ const ThemeBuilder = () => {
           />
         </ButtonsContainer>
         <DxcSidenav.Title>Components</DxcSidenav.Title>
-        {Object.keys(defaultTheme).map((component, index) => (
+        {Object.keys(type === "advancedTheme" ? advancedTheme : defaultTheme).map((component, index) => (
           <ComponentLink
             key={`componentLink-${index}`}
             isSelected={currentComponent === component}

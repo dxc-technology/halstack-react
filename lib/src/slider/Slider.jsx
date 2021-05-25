@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
@@ -7,6 +7,7 @@ import DxcInput from "../input-text/InputText";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
+import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const DxcSlider = ({
   minValue = 0,
@@ -25,16 +26,17 @@ const DxcSlider = ({
   size = "fillParent",
 }) => {
   const [innerValue, setInnerValue] = useState(0);
-
   const colorsTheme = useTheme();
-  const minLabel = useMemo(() => (labelFormatCallback ? labelFormatCallback(minValue) : minValue), [
-    labelFormatCallback,
-    minValue,
-  ]);
-  const maxLabel = useMemo(() => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue), [
-    labelFormatCallback,
-    maxValue,
-  ]);
+  const backgroundType = useContext(BackgroundColorContext);
+
+  const minLabel = useMemo(
+    () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
+    [labelFormatCallback, minValue]
+  );
+  const maxLabel = useMemo(
+    () => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue),
+    [labelFormatCallback, maxValue]
+  );
 
   const handlerSliderChange = (event, newValue) => {
     if (value == null) {
@@ -58,8 +60,12 @@ const DxcSlider = ({
 
   return (
     <ThemeProvider theme={colorsTheme.slider}>
-      <SliderContainer margin={margin} size={size}>
-        {showLimitsValues && <MinLabelContainer disabled={disabled}>{minLabel}</MinLabelContainer>}
+      <SliderContainer margin={margin} size={size} backgroundType={backgroundType}>
+        {showLimitsValues && (
+          <MinLabelContainer backgroundType={backgroundType}>
+            {minLabel}
+          </MinLabelContainer>
+        )}
         <Slider
           value={(value != null && value >= 0 && value) || innerValue}
           min={minValue}
@@ -71,7 +77,7 @@ const DxcSlider = ({
           disabled={disabled}
         />
         {showLimitsValues && (
-          <MaxLabelContainer disabled={disabled} step={step}>
+          <MaxLabelContainer backgroundType={backgroundType} step={step}>
             {maxLabel}
           </MaxLabelContainer>
         )}
@@ -98,12 +104,10 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin, size) => {
-  if (size === "fillParent") {
-    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-  }
-  return sizes[size];
-};
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
 DxcSlider.propTypes = {
   size: PropTypes.oneOf([...Object.keys(sizes)]),
@@ -130,17 +134,11 @@ DxcSlider.propTypes = {
   ]),
 };
 
-const StyledTextInput = styled.div`
-  .MuiTextField-root {
-    font-size: ${(props) => props.theme.fontSize};
-  }
-`;
+const StyledTextInput = styled.div``;
 
 const SliderContainer = styled.div`
   display: flex;
   align-items: center;
-  font-size: ${(props) => props.theme.fontSizeBase};
-
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -150,7 +148,6 @@ const SliderContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
   width: ${(props) => calculateWidth(props.margin, props.size)};
 
   .MultiSlider-root {
@@ -160,37 +157,60 @@ const SliderContainer = styled.div`
   .MuiSlider-container {
     padding: 30px 24px;
   }
-
   .MuiSlider-root.Mui-disabled {
-    color: ${(props) => props.theme.disabledThumbBackgroundColor};
+    color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.theme.disabledThumbBackgroundColorOnDark
+        : props.theme.disabledThumbBackgroundColor};
     cursor: not-allowed;
   }
 
   .Mui-disabled {
     & .MuiSlider-thumb {
-      height: 14px;
-      width: 14px;
-      background-color: ${(props) => props.theme.disabledThumbBackgroundColor};
-      top: 35%;
+      height: ${(props) => props.theme.thumbHeight};
+      width: ${(props) => props.theme.thumbWidth};
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.disabledThumbBackgroundColorOnDark
+          : props.theme.disabledThumbBackgroundColor};
+      top: ${(props) => props.theme.disabledThumbTopPosition};
     }
     & .MuiSlider-track {
-      background-color: ${(props) => props.theme.disabledTrackLine};
+      background-color: ${(props) =>
+        props.backgroundType === "dark" ? props.theme.disabledTrackLineOnDark : props.theme.disabledTrackLineColor};
+    }
+    & .MuiSlider-rail {
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.disabledTotalLineColorOnDark
+          : props.theme.disabledTotalLineColor};
     }
     & > .MuiSlider-mark.MuiSlider-markActive {
-      background-color: ${(props) => props.theme.disabledDotsBackgroundColor} !important;
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.disabledDotsBackgroundColorOnDark
+          : props.theme.disabledDotsBackgroundColor} !important;
     }
     & > .MuiSlider-mark {
-      background-color: ${(props) => props.theme.disabledDotsBackgroundColor};
-      width: 6px;
-      height: 6px;
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.disabledDotsBackgroundColorOnDark
+          : props.theme.disabledDotsBackgroundColor};
+      height: ${(props) => props.theme.dotsHeight};
+      width: ${(props) => props.theme.dotsWidth};
       border-radius: 18px;
+      top: ${(props) => props.theme.disabledDotsTopPosition};
     }
   }
+
   .MuiSlider-thumb {
-    height: 14px;
-    width: 14px;
-    background-color: ${(props) => props.theme.thumbBackgroundColor};
-    top: 45%;
+    height: ${(props) => props.theme.thumbHeight};
+    width: ${(props) => props.theme.thumbWidth};
+    background-color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
+    top: ${(props) => props.theme.thumbTopPosition};
+    transform: scale(0.7);
+
     :hover,
     &.Mui-focusVisible {
       box-shadow: none;
@@ -203,51 +223,66 @@ const SliderContainer = styled.div`
     }
     :active {
       box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
-      background-color: ${(props) => props.theme.thumbBackgroundColor};
-      top: 45%;
-      transform: scale(1.25);
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.draggedThumbBackgroundColorOnDark
+          : props.theme.draggedThumbBackgroundColor};
+      transform: scale(${(props) => props.theme.draggedThumbScale});
       transform-origin: center;
     }
     &:focus {
-      outline: ${(props) => props.theme.focusColor} auto 1px;
+      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
+        auto 1px;
     }
   }
-  .MuiSlider-track {
-    background-color: ${(props) => props.theme.trackLine};
-    height: 2px;
-    top: 50%;
-  }
 
+  .MuiSlider-track {
+    background-color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.trackLineOnDark : props.theme.trackLineColor};
+    height: ${(props) => props.theme.trackLineThickness};
+    top: ${(props) => props.theme.trackLinePosition};
+  }
   .MuiSlider-track.MuiSlider-trackAfter {
-    background-color: ${(props) => props.theme.trackLine};
+    background-color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.trackLineOnDark : props.theme.trackLineColor};
   }
   .MuiSlider-rail {
-    background-color: ${(props) => props.theme.totalLine};
-    top: 50%;
+    background-color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.totalLineOnDark : props.theme.totalLineColor};
+    height: ${(props) => props.theme.totalLineThickness};
+    top: ${(props) => props.theme.totalLineTopPosition};
   }
   .MuiSlider-mark.MuiSlider-markActive {
-    background-color: ${(props) => props.theme.dotsBackgroundColor};
+    background-color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.dotsBackgroundColorOnDark : props.theme.dotsBackgroundColor};
   }
   .MuiSlider-mark {
-    background-color: ${(props) => props.theme.dotsBackgroundColor};
-    width: 6px;
-    height: 6px;
+    background-color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.dotsBackgroundColorOnDark : props.theme.dotsBackgroundColor};
+    height: ${(props) => props.theme.dotsHeight};
+    width: ${(props) => props.theme.dotsWidth};
     border-radius: 18px;
-    top: 42%;
+    top: ${(props) => props.theme.dotsTopPosition};
   }
 `;
 
 const MinLabelContainer = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
-  color: inherit;
   font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => (props.theme.fontStyle)};
+  font-weight: ${(props) => props.theme.fontWeight};
+  color: ${(props) => (props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor)};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacing};
   margin-right: 15px;
 `;
 
 const MaxLabelContainer = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
-  color: inherit;
   font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => (props.theme.fontStyle)};
+  font-weight: ${(props) => props.theme.fontWeight};
+  color: ${(props) => (props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor)};
+  letter-spacing: ${(props) => props.theme.fontLetterSpacing};
   margin-left: ${(props) => (props.step === 1 ? "15px" : "20px")};
 `;
 
