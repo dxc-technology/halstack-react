@@ -127,7 +127,7 @@ const DxCButton = styled.div`
       flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
-    letter-spacing: ${(props) => props.theme.labelletterSpacing};
+    letter-spacing: ${(props) => props.theme.labelLetterSpacing};
     
     box-shadow: none;
     font-size: ${(props) => props.theme.fontSize};

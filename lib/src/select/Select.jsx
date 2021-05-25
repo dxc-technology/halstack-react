@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -12,6 +12,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
+import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const useStyles = makeStyles(() => ({
   root: (props) => ({
@@ -37,27 +38,51 @@ const useStyles = makeStyles(() => ({
     "& .MuiList-root": {
       width: "auto !important",
       paddingRight: "0 !important",
+      backgroundColor: props.optionsBackgroundColor,
+      borderColor: props.optionsBorderColor,
+      borderWidth: props.optionsBorderThickness,
+      borderStyle: props.optionsBorderStyle,
     },
   }),
   itemList: (props) => ({
-    color: props.color,
+    color: `${props.optionsFontColor || props.color}`,
     "&.MuiList-padding": {
       paddingBottom: "0px",
       paddingTop: "0px",
     },
     "& li": {
-      fontSize: "16px",
+      fontSize: props.optionsFontSize,
+      fontStyle: props.optionsFontStyle,
+      fontWeight: props.optionsFontWeight,
+      paddingBottom: props.optionPaddingBottom,
+      paddingTop: props.optionPaddingTop,
+      paddingLeft: props.optionPaddingLeft,
+      paddingRight: props.optionPaddingRight,
+
       "&:hover": {
-        backgroundColor: props.hoveredOptionBackgroundColor,
-        color: props.color,
+        backgroundColor: `${
+          props.backgroundType === "dark"
+            ? props.hoveredOptionBackgroundColorOnDark
+            : props.hoveredOptionBackgroundColor
+        }`,
+        color: `${props.optionsFontColor || props.color}`,
       },
       "&:active": {
-        backgroundColor: props.selectedOptionBackgroundColor + props.hoverOptionBackgroundColor,
-        color: props.color,
+        backgroundColor:
+          `${
+            props.backgroundType === "dark"
+              ? props.selectedOptionBackgroundColorOnDark
+              : props.selectedOptionBackgroundColor
+          }` + props.hoverOptionBackgroundColor,
+        color: `${props.optionsFontColor || props.color}`,
       },
       "&.MuiListItem-root.Mui-selected": {
-        backgroundColor: props.selectedOptionBackgroundColor,
-        color: props.color,
+        backgroundColor: `${
+          props.backgroundType === "dark"
+            ? props.selectedOptionBackgroundColorOnDark
+            : props.selectedOptionBackgroundColor
+        }`,
+        color: `${props.optionsFontColor || props.color}`,
       },
     },
   }),
@@ -79,8 +104,9 @@ const DxcSelect = ({
   tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
+  const backgroundType = useContext(BackgroundColorContext);
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
-  const selectValues = { width: "auto", ...colorsTheme.select };
+  const selectValues = { width: "auto", ...colorsTheme.select, backgroundType };
   const classes = useStyles(selectValues);
 
   const handleSelectChange = (selectedOption) => {
@@ -167,7 +193,13 @@ const DxcSelect = ({
 
   return (
     <ThemeProvider theme={colorsTheme.select}>
-      <SelectContainer margin={margin} size={size} invalid={invalid} disabled={disabled}>
+      <SelectContainer
+        margin={margin}
+        size={size}
+        invalid={invalid}
+        disabled={disabled}
+        backgroundType={backgroundType}
+      >
         <FormControl>
           <InputLabel disabled={disabled}>
             {required && <DxcRequired />}
@@ -194,7 +226,7 @@ const DxcSelect = ({
               return (
                 <MenuItem id={option.value} value={option.value} disableRipple key={option.value}>
                   {multiple && <DxcCheckbox size={"fitContent"} checked={isChecked(selectedValue, value, option)} />}
-                  <OptionContainer iconPosition={iconPosition}>
+                  <OptionContainer iconPosition={iconPosition} multiple={multiple}>
                     {option.icon ? (
                       <ListIconContainer label={option.label} iconPosition={iconPosition}>
                         {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
@@ -275,24 +307,24 @@ const OptionContainer = styled.div`
   flex-direction: ${(props) => (props.iconPosition === "before" && "row") || "row-reverse"};
   overflow: hidden;
   text-overflow: ellipsis;
+  ${(props) => props.multiple && `margin-left: ${props.theme.checkboxOptionSpacing};`}
 `;
 
 const ListIcon = styled.img`
-  max-height: 20px;
-  max-width: 20px;
-  width: 20px;
-  height: 20px;
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
-  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
+  width: ${(props) => props.theme.iconWidth};
+  height: ${(props) => props.theme.iconHeight};
+  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+  margin-right: ${(props) =>
+    (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
 `;
 
 const ListIconContainer = styled.div`
-  max-height: 20px;
-  max-width: 20px;
-  width: 20px;
-  height: 20px;
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
-  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
+  color: ${(props) => props.theme.iconColor};
+  width: ${(props) => props.theme.iconWidth};
+  height: ${(props) => props.theme.iconHeight};
+  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+  margin-right: ${(props) =>
+    (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
   overflow: hidden;
   opacity: ${(props) => props.disabled && "0.34"};
 
@@ -304,7 +336,6 @@ const ListIconContainer = styled.div`
 `;
 
 const SelectContainer = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -320,9 +351,18 @@ const SelectContainer = styled.div`
     width: 100%;
   }
   .MuiFormLabel-root {
-    font-size: ${(props) => props.theme.fontSize};
+    font-size: ${(props) => props.theme.labelFontSize};
     font-family: ${(props) => props.theme.fontFamily};
-    color: ${(props) => (props.invalid === true ? props.theme.error : props.theme.color)};
+    font-style: ${(props) => props.theme.labelFontStyle};
+    font-weight: ${(props) => props.theme.labelFontWeight};
+    color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.invalid === true
+          ? props.theme.errorColorOnDark
+          : props.theme.colorOnDark
+        : props.invalid === true
+        ? props.theme.errorColor
+        : props.theme.color};
     margin-top: -3px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -332,11 +372,21 @@ const SelectContainer = styled.div`
     align-items: center;
 
     &.Mui-disabled {
-      color: ${(props) => props.theme.disabledColor};
+      color: ${(props) =>
+        props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor};
     }
     &.Mui-focused {
-      font-size: ${(props) => props.theme.fontSize};
-      color: ${(props) => (props.invalid === true ? props.theme.error : props.theme.color)};
+      font-size: ${(props) => props.theme.labelFontSize};
+      font-style: ${(props) => props.theme.labelFontStyle};
+      font-weight: ${(props) => props.theme.labelFontWeight};
+      color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.invalid === true
+            ? props.theme.errorColorOnDark
+            : props.theme.colorOnDark
+          : props.invalid === true
+          ? props.theme.errorColor
+          : props.theme.color};
     }
   }
   .MuiSelect-select.MuiSelect-select {
@@ -347,8 +397,8 @@ const SelectContainer = styled.div`
     width: 100%;
     height: 20px;
     display: flex;
-    padding-right: unset;
-    color: ${(props) => props.theme.color};
+    padding-right: 10px;
+    color: ${(props) => (props.backgroundType === "dark" ? props.theme.colorOnDark : props.theme.color)};
     align-items: center;
     :focus {
       background-color: transparent;
@@ -360,14 +410,16 @@ const SelectContainer = styled.div`
       content: unset;
     }
     &.Mui-disabled {
-      color: ${(props) => props.theme.disabledColor};
+      color: ${(props) =>
+        props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor};
       cursor: not-allowed;
     }
   }
   .MuiInputBase-root {
     width: 100%;
     &.Mui-focused {
-      outline: ${(props) => props.theme.focusColor} auto 1px;
+      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
+        auto 1px;
     }
     &.Mui-disabled {
       opacity: ${(props) => props.theme.disabled};
@@ -381,9 +433,13 @@ const SelectContainer = styled.div`
     &:focus {
       border-bottom: ${(props) => (props.disabled && "0px solid") || "2px solid"};
       border-bottom-color: ${(props) =>
-        (props.invalid === true && props.theme.error) ||
-        (props.disabled && props.theme.disabledColor) ||
-        props.theme.color};
+        props.backgroundType === "dark"
+          ? (props.invalid === true && props.theme.errorColorOnDark) ||
+            (props.disabled && props.theme.disabledColorOnDark) ||
+            props.theme.colorOnDark
+          : (props.invalid === true && props.theme.errorColor) ||
+            (props.disabled && props.theme.disabledColor) ||
+            props.theme.color};
     }
     &.Mui-disabled:before {
       border-bottom-style: solid;
@@ -392,23 +448,41 @@ const SelectContainer = styled.div`
   .MuiInput-underline:hover:not(.Mui-disabled):before {
     border-bottom: 1px solid;
     border-bottom-color: ${(props) =>
-      (props.invalid === true && props.theme.error) ||
-      (props.disabled && props.theme.disabledColor) ||
-      props.theme.color};
+      props.backgroundType === "dark"
+        ? (props.invalid === true && props.theme.errorColorOnDark) ||
+          (props.disabled && props.theme.disabledColorOnDark) ||
+          props.theme.colorOnDark
+        : (props.invalid === true && props.theme.errorColor) ||
+          (props.disabled && props.theme.disabledColor) ||
+          props.theme.color};
   }
   .MuiInput-underline:after {
     border-bottom: 1px solid;
-    border-bottom-color: ${(props) => (props.invalid === true ? props.theme.error : props.theme.color)};
+    border-bottom-color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.invalid === true
+          ? props.theme.errorColorOnDark
+          : props.theme.colorOnDark
+        : props.invalid === true
+        ? props.theme.errorColor
+        : props.theme.color};
   }
   .MuiInput-underline:before {
     border-bottom: 1px solid;
     border-bottom-color: ${(props) =>
-      (props.invalid === true && props.theme.error) ||
-      (props.disabled && props.theme.disabledColor) ||
-      props.theme.color};
+      props.backgroundType === "dark"
+        ? (props.invalid === true && props.theme.errorColorOnDark) ||
+          (props.disabled && props.theme.disabledColorOnDark) ||
+          props.theme.colorOnDark
+        : (props.invalid === true && props.theme.errorColor) ||
+          (props.disabled && props.theme.disabledColor) ||
+          props.theme.color};
   }
   .MuiSelect-icon {
-    color: ${(props) => props.theme.color};
+    color: ${(props) =>
+      props.backgroundType === "dark"
+        ? (props.disabled && props.theme.disabledColorOnDark) || props.theme.colorOnDark
+        : (props.disabled && props.theme.disabledColor) || props.theme.color} !important;
   }
   & label {
     text-overflow: ellipsis;

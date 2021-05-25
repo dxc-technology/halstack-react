@@ -190,7 +190,7 @@ const ApplicationLayoutContainer = styled.div`
 `;
 
 const HeaderContainer = styled.div`
-  z-index: 2000;
+  z-index: 1250;
   position: fixed;
   top: 0;
   left: 0;
@@ -264,7 +264,7 @@ const ArrowTrigger = styled.div`
   border-radius: 50%;
   transform: ${(props) => (props.isSideNavVisible ? "rotate(-180deg)" : "rotate(0deg)")};
   transition: transform 0.4s ease-in-out;
-  z-index: 2000;
+  z-index: 1250;
   cursor: pointer;
   & > svg {
     fill: ${(props) => props.theme.arrowColor};

@@ -70,7 +70,7 @@ const DXCSpinner = styled.div`
   box-sizing: unset;
   border-radius: 80px;
   border: ${(props) =>
-    (props.mode === "small" && `6px solid${props.theme.totalCircleColor}`) ||
+    (props.mode === "small" && `6px solid ${props.theme.totalCircleColor}`) ||
     `8.5px solid ${props.theme.totalCircleColor}`};
   width: ${(props) => (props.mode === "small" && "30px") || "120px"};
   height: ${(props) => (props.mode === "small" && "30px") || "120px"};

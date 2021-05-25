@@ -143,14 +143,14 @@ const DxcInputText = ({
 
   const handleSuffixKeyPress = (event) => {
     event.preventDefault();
-    if ((!disabled && event.code === "Enter") || event.code === "Space") {
+    if (!disabled && (event.nativeEvent.code === "Enter" || event.nativeEvent.code === "Space")) {
       onClickSuffix(event);
     }
   };
 
   const handlePrefixKeyPress = (event) => {
     event.preventDefault();
-    if ((!disabled && event.code === "Enter") || event.code === "Space") {
+    if (!disabled && (event.nativeEvent.code === "Enter" || event.nativeEvent.code === "Space")) {
       onClickPrefix(event);
     }
   };
