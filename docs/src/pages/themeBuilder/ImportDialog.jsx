@@ -7,12 +7,15 @@ import {
   DxcAlert,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
-import defaultTheme from "./themes/DefaultTheme.json";
 import { deepMerge } from "./utils";
+import { useParams } from "react-router";
+import defaultSchema from "./themes/schemas/Default.schema.json";
+import advancedSchema from "./themes/schemas/Advanced.schema.json";
 
-const validateInputTheme = (json) => {
+const validateInputTheme = (json, type) => {
   let inputTheme = [];
   let errMessage = "";
+  const schema = type === "advancedTheme" ? advancedSchema : defaultSchema;
   const isArrayIncluded = (array1, array2) =>
     Object.keys(array1).every((element) =>
       Object.keys(array2).includes(element)
@@ -21,16 +24,13 @@ const validateInputTheme = (json) => {
   try {
     inputTheme = JSON.parse(json);
     const inputComponentNames = Object.keys(inputTheme);
-    const defaultComponentNames = Object.keys(defaultTheme);
+    const schemaComponentNames = Object.keys(schema);
 
     inputComponentNames.forEach((componentName) => {
       const errorMessage =
-        (!defaultComponentNames.includes(componentName) &&
+        (!schemaComponentNames.includes(componentName) &&
           "Invalid component name.") ||
-        (!isArrayIncluded(
-          inputTheme[componentName],
-          defaultTheme[componentName]
-        ) &&
+        (!isArrayIncluded(inputTheme[componentName], schema[componentName]) &&
           `Invalid theme input name in component ${componentName}.`);
 
       if (errorMessage) throw new Error(errorMessage);
@@ -44,6 +44,7 @@ const validateInputTheme = (json) => {
 const ImportDialog = ({ setCustomTheme, setDialogVisible }) => {
   const [value, setValue] = useState("");
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
+  const { type } = useParams();
 
   const onChange = (newValue) => {
     setValue(newValue);
@@ -55,7 +56,7 @@ const ImportDialog = ({ setCustomTheme, setDialogVisible }) => {
     setValidationErrorMessage("");
   };
   const validate = () => {
-    const { inputTheme, errMessage } = validateInputTheme(value);
+    const { inputTheme, errMessage } = validateInputTheme(value, type);
 
     if (errMessage === "") {
       setCustomTheme((prevTheme) => deepMerge({}, prevTheme, inputTheme));
