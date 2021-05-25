@@ -19,6 +19,7 @@ import TextFieldPreview from "./previews/TextField";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
 import ToggleGroupPreview from "./previews/ToggleGroup";
+import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
 import BoxPreview from "./previews/Box";
@@ -27,6 +28,10 @@ const SampleComponents = [
   {
     name: "accordion",
     preview: AccordionPreview,
+  },
+  {
+    name: "alert",
+    preview: AlertPreview,
   },
   {
     name: "box",
