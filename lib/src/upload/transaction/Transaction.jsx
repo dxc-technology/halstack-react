@@ -31,7 +31,7 @@ const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => 
   return (
     <ThemeProvider theme={colorsTheme.upload}>
       <DXCTransaction status={status}>
-        <FileImage src={icon} />
+        <FileImage status={status} img={icon} />
         {(status === "processing" && (
           <Prueba>
             <FileName>{name}</FileName>
@@ -70,40 +70,50 @@ const DXCTransaction = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 16px;
-  color: ${(props) => props.status === "error" && `${props.theme.errorColor}`};
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  color: ${(props) => props.status === "error" && props.theme.errorColor};
   .MuiCircularProgress-root {
     width: 28px !important;
     height: 28px !important;
   }
 `;
 
-const FileImage = styled.img`
-  height: 24px;
-  width: 24px;
+const FileImage = styled.div`
+  background-color: ${(props) =>
+    (props.status === "error" && props.theme.errorColor) || props.theme.fileUploadedIconColor};
+  mask: url(${(props) => props.img}) no-repeat center;
+  mask-size: ${(props) => `${props.theme.fileUploadedIconWidth} ${props.theme.fileUploadedIconHeight}`};
+  height: ${(props) => props.theme.fileUploadedIconHeight};
+  width: ${(props) => props.theme.fileUploadedIconWidth};
   margin-right: 16px;
-  svg {
-    fill: ${(props) => (props.status === "error" && "#D0011B") || `${props.theme.accentColor}`};
-  }
+  max-width: 20%;
+`;
+
+const FileName = styled.div`
+  font-size: ${(props) => props.theme.fileNameFontSize};
+  font-style: ${(props) => props.theme.fileNameFontStyle};
+  font-weight: ${(props) => props.theme.fileNameFontWeight};
+  text-transform: ${(props) => props.theme.fileNameFontTextTransform};
+  color: ${(props) => props.theme.fileNameFontColor};
+  margin-right: 16px;
+  width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  overflow: hidden;
+`;
+
+const FileStatus = styled.div`
+  background: ${(props) =>
+    (props.status === "success" && `url('${successIcon}') no-repeat padding-box`) ||
+    (props.status === "error" && `url('${errorIcon}') no-repeat padding-box`)};
+  width: 25px;
+  height: 20px;
+  max-width: 20%;
 `;
 
 const Prueba = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const FileName = styled.div`
-  margin-right: 16px;
-`;
-
-const FileStatus = styled.div`
-  width: 25px;
-  height: 20px;
-  background: ${(props) =>
-    (props.status === "success" && `url('${successIcon}') no-repeat padding-box`) ||
-    (props.status === "error" && `url('${errorIcon}') no-repeat padding-box`)};
+  width: 80%;
 `;
 
 export default DxcTransaction;

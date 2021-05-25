@@ -76,7 +76,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
                 <DragAndDropDescription>{description}</DragAndDropDescription>
               </DragAndDropText>
               <div>
-                <Button label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue}/>
+                <Button label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
                 <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
               </div>
             </DragAndDropContent>
@@ -91,7 +91,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
                 <DragAndDropDescription>{description}</DragAndDropDescription>
               </DragAndDropText>
               <ButtonChooseFiles>
-                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue}/>
+                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
                 <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
               </ButtonChooseFiles>
             </DragAndDropContent>
@@ -115,6 +115,7 @@ DxcDragAndDropArea.propTypes = {
 
 const DXCDragAndDrop = styled.div`
   font-family: ${(props) => props.theme.fontFamily};
+  background-color: ${(props) => props.theme.backgroundColor};
   width: 100%;
   height: 100%;
 `;
@@ -136,10 +137,12 @@ const DragAndDropContent = styled.div`
 `;
 
 const DragAndDropIcon = styled.div`
-  width: 43.5px;
-  height: 43.5px;
+  background-color: ${(props) => props.theme.dragAndDropIconColor};
+  mask: url(${uploadFile}) no-repeat center;
+  mask-size: ${(props) => `${props.theme.dragAndDropIconWidth} ${props.theme.dragAndDropIconHeight}`};
+  height: ${(props) => props.theme.dragAndDropIconHeight};
+  width: ${(props) => props.theme.dragAndDropIconWidth};
   margin-bottom: 20px;
-  background: url("${uploadFile}") no-repeat padding-box;
 `;
 
 const DragAndDropText = styled.div`
@@ -149,16 +152,21 @@ const DragAndDropText = styled.div`
 `;
 
 const DragAndDropTitle = styled.div`
-  font-size: ${(props) => props.theme.fontSize20};
-  font-weight: ${(props) => props.theme.fontWeight};
+  font-size: ${(props) => props.theme.dragAndDropTitleFontSize};
+  font-style: ${(props) => props.theme.dragAndDropTitleFontStyle};
+  font-weight: ${(props) => props.theme.dragAndDropTitleFontWeight};
+  text-transform: ${(props) => props.theme.dragAndDropTitleFontTextTransform};
+  color: ${(props) => props.theme.dragAndDropTitleFontColor};
   margin-bottom: 10px;
 `;
 
 const DragAndDropDescription = styled.div`
-  font-size: ${(props) => props.theme.fontSize16};
+  font-size: ${(props) => props.theme.dragAndDropDescriptionFontSize};
+  font-style: ${(props) => props.theme.dragAndDropDescriptionFontStyle};
+  font-weight: ${(props) => props.theme.dragAndDropDescriptionFontWeight};
+  text-transform: ${(props) => props.theme.dragAndDropTextDescriptionFontTextTransform};
+  color: ${(props) => props.theme.dragAndDropTextDescriptionFontColor};
   margin-bottom: 40px;
-  color: ${(props) => props.theme.fontColor};
-  font-style: ${(props) => props.theme.fontStyle};
 `;
 
 const ButtonChooseFiles = styled.div``;
@@ -211,7 +219,7 @@ const DragAndDropContentHover = styled.div`
   background-size: var(--dash-size) var(--border-weight), calc(var(--dash-size) + var(--gap-size)) var(--border-weight),
     var(--dash-size) var(--border-weight), var(--border-weight) var(--dash-size),
     var(--border-weight) calc(var(--dash-size) + var(--gap-size)), var(--border-weight) var(--dash-size);
-  background-color: ${(props) => props.theme.backgroundDragColor};
+  background-color: ${(props) => props.theme.draggingAreaBackgroundColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -222,16 +230,20 @@ const DragAndDropContentHover = styled.div`
 `;
 
 const DragAndDropIconHover = styled.div`
-  width: 74.5px;
-  height: 74.5px;
-  background: url("${dropFile}") no-repeat padding-box;
+  background-color: ${(props) => props.theme.dragAndDropDraggingStateIconColor};
+  mask: url(${dropFile}) no-repeat center;
+  mask-size: ${(props) => `${props.theme.dragAndDropDraggingStateIconWidth} ${props.theme.dragAndDropDraggingStateIconHeight}`};
+  height: ${(props) => props.theme.dragAndDropDraggingStateIconHeight};
+  width: ${(props) => props.theme.dragAndDropDraggingStateIconWidth};
 `;
 
 const DragAndDropTextHover = styled.div`
-  font-size: ${(props) => props.theme.fontSize16};
-  margin-bottom: 20px;
-  color: ${(props) => props.theme.fontColor};
-  font-style: ${(props) => props.theme.fontStyle};
+  font-size: ${(props) => props.theme.dragAndDropDraggingStateFontSize};
+  font-style: ${(props) => props.theme.dragAndDropDraggingStateFontStyle};
+  font-weight: ${(props) => props.theme.dragAndDropDraggingStateFontWeight};
+  text-transform: ${(props) => props.theme.dragAndDropTextDraggingStateFontTextTransform};
+  color: ${(props) => props.theme.dragAndDropTextDraggingStateFontColor};
+  margin-bottom: 10px;
 `;
 
 export default DxcDragAndDropArea;

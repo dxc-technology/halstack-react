@@ -68,11 +68,11 @@ DxcFilesToUpload.propTypes = {
 };
 
 const DXCFilesToUpload = styled.div`
-  font-family: ${(props) => props.theme.fontFamily};
   width: 100%;
   padding: 20px;
   border-radius: 4px 4px 0px 4px;
   box-shadow: 0px 0px 1px ${(props) => props.theme.shadowColor};
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const FilesToUpload = styled.div`

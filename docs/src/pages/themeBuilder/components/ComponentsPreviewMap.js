@@ -25,6 +25,7 @@ import LinkPreview from "./previews/Link";
 import HeadingPreview from "./previews/Heading";
 import DialogPreview from "./previews/Dialog";
 import BoxPreview from "./previews/Box";
+import UploadPreview from "./previews/Upload";
 
 const SampleComponents = [
   {
@@ -130,6 +131,10 @@ const SampleComponents = [
   {
     name: "toggleGroup",
     preview: ToggleGroupPreview,
+  },
+  {
+    name: "upload",
+    preview: UploadPreview,
   },
   {
     name: "wizard",
