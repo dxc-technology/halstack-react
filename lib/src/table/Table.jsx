@@ -22,7 +22,6 @@ const calculateWidth = (margin) => {
 };
 
 const DxcTableContainer = styled.div`
-  overflow-x: auto;
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -34,8 +33,10 @@ const DxcTableContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
+    
+  overflow: auto;
   &::-webkit-scrollbar {
-    height: 6px;
+    width: 8px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme.scrollBarThumbColor};

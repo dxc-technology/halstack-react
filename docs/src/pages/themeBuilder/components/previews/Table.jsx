@@ -7,7 +7,7 @@ const Table = () => {
   return (
     <TableContainer>
       <Mode text="Default">
-        <DxcTable margin={{ top: "small" }}>
+        <DxcTable margin={{ top: "small", bottom: "xsmall" }}>
           <tr>
             <th>header 1</th>
             <th>header 2</th>

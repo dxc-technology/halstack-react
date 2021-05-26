@@ -9,8 +9,9 @@ const Link = () => {
     <LinkContainer>
       <Mode text="Default">
         <p>
-          This is a text with a <DxcLink href="#" text="Link"></DxcLink> to
-          another page.
+          This is a text with a{" "}
+          <DxcLink href="#" newWindow={true} text="Link"></DxcLink> to another
+          page.
         </p>
       </Mode>
       <Mode text="Undecorated">

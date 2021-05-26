@@ -631,18 +631,6 @@
     "disabledFontColorOnDark": "color",
     "focusColorOnDark": "color"
   },
-  "resultsetTable": {
-    "cellHeight": "length",
-    "sortIconHeight": "length",
-    "headerHeight": "length",
-    "scrollBarHeight": "length",
-    "scrollBarTrackBorderRadius": "length",
-    "scrollBarTrackBorderStyle": "bStyle",
-    "scrollBarTrackBorderThickness": "bWidth",
-    "scrollBarThumbBorderRadius": "length",
-    "scrollBarThumbBorderStyle": "bStyle",
-    "scrollBarThumbBorderThickness": "bWidth"
-  },
   "select": {
     "selectedOptionBackgroundColor": "color",
     "color": "color",
@@ -903,9 +891,6 @@
     "badgeHeight": "length",
     "badgeWidthWithNotificationNumber": "length",
     "badgeHeightWithNotificationNumber": "length"
-  },
-  "tabbedSection": {
-    "zindex": "integer"
   },
   "textarea": {
     "disabledFontColor": "color",

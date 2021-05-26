@@ -57,21 +57,21 @@ const Textfield = () => {
         <DxcInput
           label="Input label"
           assistiveText={"assistive text"}
-          margin={{ right: "small", bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall", right: "medium" }}
         />
         <DxcInput
           label="Input label"
           suffixIcon={facebookIcon}
           prefixIcon={facebookIcon}
           assistiveText={"assistive text"}
-          margin={{ right: "small", bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall", right: "medium" }}
         />
         <DxcInput
           label="Input label"
           suffix={"suf"}
           prefix={"pre"}
           assistiveText={"assistive text"}
-          margin={{ bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <Mode text="Disabled">
@@ -79,7 +79,7 @@ const Textfield = () => {
           label="Input label"
           assistiveText={"assistive text"}
           disabled
-          margin={{ bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <Mode text="Required">
@@ -87,7 +87,7 @@ const Textfield = () => {
           label="Input label"
           assistiveText={"assistive text"}
           required
-          margin={{ bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <Mode text="Invalid">
@@ -95,7 +95,7 @@ const Textfield = () => {
           label="Input label"
           assistiveText={"assistive text"}
           invalid
-          margin={{ bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <Mode text="Autocomplete">
@@ -104,7 +104,7 @@ const Textfield = () => {
           value={asynchronousAutocompleteValue}
           onChange={onChangeAsynchronousAutocomplete}
           autocompleteOptions={callbackFunc}
-          margin={{ bottom: "xlarge" }}
+          margin={{ top:"xxsmall", bottom: "xlarge" }}
         />
       </Mode>
     </TextFieldContainer>
