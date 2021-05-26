@@ -69,8 +69,6 @@ const DxcTableContent = styled.table`
     padding: 14px 20px 12px 40px;
   }
   & th {
-    padding: 16px 20px 16px 40px;
-    min-height: 60px;
     background-color: ${(props) => props.theme.headerBackgroundColor};
     font-family: ${(props) => props.theme.headerFontFamily};
     font-size: ${(props) => props.theme.headerFontSize};
@@ -79,6 +77,8 @@ const DxcTableContent = styled.table`
     color: ${(props) => props.theme.headerFontColor};
     text-transform: ${(props) => props.theme.headerFontTextTransform};
     text-align: ${(props) => props.theme.headerTextAlign};
+    min-height: 60px;
+    padding: 16px 20px 16px 40px;
   }
   & th:first-child {
     border-top-left-radius: ${(props) => props.theme.headerBorderRadius};

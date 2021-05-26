@@ -56,7 +56,7 @@ const headerPropsTable = () => {
         <td>margin: string</td>
         <td></td>
         <td>
-          Size of the bottom margin to be applied to the footer ('xxsmall' |
+          Size of the bottom margin to be applied to the header ('xxsmall' |
           'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
         </td>
       </tr>

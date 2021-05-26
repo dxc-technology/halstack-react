@@ -44,12 +44,15 @@ const DXCFileToUpload = styled.div`
   flex-direction: column;
   padding-bottom: 25px;
   padding-top: 25px;
-  border-bottom: 1px solid ${(props) => props.theme.accentColor};
+  border-bottom: ${(props) => props.theme.fileUnderlineThickness} solid ${(props) => props.theme.fileUnderlineColor};
   :hover {
-    cursor: pointer;
     background: ${(props) => props.theme.fileHoverColor};
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
+
 const FileContent = styled.div`
   display: flex;
   flex-direction: row;
@@ -64,31 +67,38 @@ const FileImage = styled.img`
   object-fit: contain;
 `;
 
-const FileName = styled.div`
-  margin-bottom: 12px;
-  font-size: ${(props) => props.theme.fontSize16};
-  `;
-
 const FileInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 `;
 
-const FileType = styled.div`
-  text-transform: ${(props) => props.theme.fontTextTransform};
-  font-size: ${(props) => props.theme.fontSize12};
+const FileName = styled.div`
+  font-size: ${(props) => props.theme.fileNameFontSize};
+  font-style: ${(props) => props.theme.fileNameFontStyle};
+  font-weight: ${(props) => props.theme.fileNameFontWeight};
+  text-transform: ${(props) => props.theme.fileNameFontTextTransform};
+  color: ${(props) => props.theme.fileNameFontColor};
+  margin-bottom: 12px;
+`;
 
-  color: ${(props) => props.theme.fontColor};
+const FileType = styled.div`
+  font-size: ${(props) => props.theme.fileTypeFontSize};
+  font-style: ${(props) => props.theme.fileTypeFontStyle};
+  font-weight: ${(props) => props.theme.fileTypeFontWeight};
+  text-transform: ${(props) => props.theme.fileTypeFontTextTransform};
+  color: ${(props) => props.theme.fileTypeFontColor};
 `;
 
 const DeleteFile = styled.button`
+  background-color: ${(props) => props.theme.fileDeleteIconColor};
+  mask: url(${closeIcon}) no-repeat center;
+  mask-size: ${(props) => `${props.theme.fileDeleteIconWidth} ${props.theme.fileDeleteIconHeight}`};
+  height: ${(props) => props.theme.fileDeleteIconHeight};
+  width: ${(props) => props.theme.fileDeleteIconWidth};
   border: none;
   display: flex;
   margin-right: 30px;
-  background: url("${closeIcon}") no-repeat padding-box;
-  width: 30px;
-  height: 30px;
   margin-top: 11px;
   &:focus {
     visibility: visible;

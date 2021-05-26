@@ -28,6 +28,7 @@ const DxcChip = ({
             disabled={disabled}
             prefixIcon
             label={label}
+            mode="prefix"
             tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
             onClick={() => onClickPrefix && !disabled && onClickPrefix(label)}
             interactuable={typeof onClickPrefix === "function" && !disabled}
@@ -55,6 +56,7 @@ const DxcChip = ({
           <IconContainer
             disabled={disabled}
             suffixIcon
+            mode="suffix"
             label={label}
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
             onClick={onClickSuffix && !disabled && onClickSuffix(label)}
@@ -90,17 +92,21 @@ const getCursor = (interactuable, disabled) => {
 };
 
 const StyledDxcChip = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
   display: inline-flex;
   align-items: center;
-  border-radius: 50px;
+  border-radius: ${(props) => props.theme.borderRadius};
   margin: 2px;
   max-width: ${({ margin }) => `calc(100% - 40px - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`};
   background-color: ${(props) =>
     (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
-  ${(props) => (props.theme.outlinedColor !== "" ? `border: 2px solid ${props.theme.outlinedColor}` : ``)};
-  height: ${(props) => (props.theme.outlinedColor !== "" ? "18px" : "22px")};
-  padding: 10px 20px;
+  border-width: ${(props) => props.theme.borderThickness};
+  border-style: ${(props) => props.theme.borderStyle};
+  border-color: ${(props) => props.theme.borderColor};
+  height: ${(props) => props.theme.height};
+  padding-top: ${(props) => props.theme.contentPaddingTop};
+  padding-bottom: ${(props) => props.theme.contentPaddingBottom};
+  padding-left: ${(props) => props.theme.contentPaddingLeft};
+  padding-right: ${(props) => props.theme.contentPaddingRight};
   cursor: ${({ disabled }) => disabled && "not-allowed"};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -116,6 +122,8 @@ const StyledDxcChip = styled.div`
 const ChipTextContainer = styled.span`
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
+  font-weight: ${(props) => props.theme.fontWeight};
+  font-style: ${(props) => props.theme.fontStyle};
   line-height: 24px;
   color: ${(props) => (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "default"};
@@ -126,18 +134,26 @@ const ChipTextContainer = styled.span`
 const SuffixIconContainer = styled.img`
   ${(props) => getCursor(props.interactuable, props.disabled)}
   margin-left: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
-  max-width: 24px;
-  max-height: 24px;
+  max-width: ${(props) => props.theme.iconMaxWidth};
+  max-height: ${(props) => props.theme.iconMaxHeight};
+  padding-left: ${(props) => props.theme.suffixIconPaddingLeft};
+  padding-right: ${(props) => props.theme.suffixIconPaddingRight};
+  paddin-top: ${(props) => props.theme.suffixIconPaddingTop};
+  padding-bottom: ${(props) => props.theme.suffixIconPaddingBottom};
 `;
 const PrefixIconContainer = styled.img`
   ${(props) => getCursor(props.interactuable, props.disabled)}
   margin-right: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
-  max-width: 24px;
-  max-height: 24px;
+  max-width: ${(props) => props.theme.iconMaxWidth};
+  max-height: ${(props) => props.theme.iconMaxHeight};
+  padding-left: ${(props) => props.theme.suffixIconPaddingLeft};
+  padding-right: ${(props) => props.theme.suffixIconPaddingRight};
+  paddin-top: ${(props) => props.theme.suffixIconPaddingTop};
+  padding-bottom: ${(props) => props.theme.suffixIconPaddingBottom};
 `;
 
 const IconContainer = styled.div`
-  opacity: ${(props) => props.disabled && 0.34};
+  opacity: ${(props) => props.disabled && props.theme.iconMaxWidth};
   ${(props) =>
     props.prefixIcon
       ? `margin-right: ${
@@ -149,9 +165,17 @@ const IconContainer = styled.div`
           ((props.prefixIcon || props.prefixIconSrc) && "0")
         };`}
   ${(props) => getCursor(props.interactuable, props.disabled)}
-  max-width: 24px;
-  max-height: 24px;
+  max-width: ${(props) => props.theme.iconMaxWidth};
+  max-height: ${(props) => props.theme.iconMaxHeight};
   overflow: hidden;
+  padding-left: ${(props) =>
+    (props.mode === "suffix" && props.theme.suffixIconPaddingLeft) || props.theme.prefixIconPaddingLeft};
+  padding-right: ${(props) =>
+    (props.mode === "suffix" && props.theme.suffixIconPaddingRight) || props.theme.prefixIconPaddingRight};
+  padding-top: ${(props) =>
+    (props.mode === "suffix" && props.theme.suffixIconPaddingTop) || props.theme.prefixIconPaddingTop};
+  padding-bottom: ${(props) =>
+    (props.mode === "suffix" && props.theme.suffixIconPaddingBottom) || props.theme.prefixIconPaddingBottom};
 `;
 
 DxcChip.propTypes = {

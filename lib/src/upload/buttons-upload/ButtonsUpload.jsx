@@ -43,7 +43,6 @@ DxcButtonsUpload.propTypes = {
 };
 
 const DXCButtonsUpload = styled.div`
-  font-family: ${(props) => props.theme.fontFamily};
   margin-right: 80px;
   display: flex;
   flex-direction: row;
@@ -54,16 +53,21 @@ const DragAndDropLabel = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-style: ${(props) => props.theme.fontStyle};
-  font-size: ${(props) => props.theme.fontSize12};
-  color: ${(props) => props.theme.fontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.dragAndDropAreaTextFontSize};
+  font-style: ${(props) => props.theme.dragAndDropAreaTextFontStyle};
+  font-weight: ${(props) => props.theme.dragAndDropAreaTextFontWeight};
+  text-transform: ${(props) => props.theme.dragAndDropAreaTextFontTextTransform};
+  color: ${(props) => props.theme.dragAndDropAreaTextFontColor};
   margin-right: 50px;
 `;
 
 const DragAndDropIcon = styled.div`
-  background: url("${dragAndDropIcon}") no-repeat padding-box;
-  width: 24px;
-  height: 24px;
+  background-color: ${(props) => props.theme.dragAndDropAreaIconColor};
+  mask: url(${dragAndDropIcon}) no-repeat center;
+  mask-size: ${(props) => `${props.theme.dragAndDropAreaIconWidth} ${props.theme.dragAndDropAreaIconHeight}`};
+  height: ${(props) => props.theme.dragAndDropAreaIconHeight};
+  width: ${(props) => props.theme.dragAndDropAreaIconWidth};
   margin-right: 5px;
 `;
 

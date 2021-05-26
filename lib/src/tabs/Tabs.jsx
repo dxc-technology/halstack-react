@@ -30,12 +30,8 @@ const DxcTabs = ({
     }
   };
 
-  const getTabIndex = (index, disabled) => {
-    if((activeTabIndex === index || innerActiveTabIndex === index) && !disabled) {
-      return tabIndex;
-    } 
-    return -1;
-  };
+  const getTabIndex = (index, disabled) =>
+    (activeTabIndex === index || innerActiveTabIndex === index) && !disabled ? tabIndex : -1;
 
   const getLabelForTab = (tab) => {
     return (
@@ -121,14 +117,12 @@ const Underline = styled.div`
   left: 0px;
   bottom: 0;
   width: 100%;
-  height: 1px;
+  height: ${(props) => props.theme.dividerThickness};
   position: absolute;
-  background-color: ${(props) => props.theme.divider};
+  background-color: ${(props) => props.theme.dividerColor};
 `;
 
 const DxCTabs = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
-
   position: relative;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -139,62 +133,84 @@ const DxCTabs = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
   .MuiTabs-root {
     background: white;
+    min-height: ${(props) =>
+      ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && props.theme.minHeight) ||
+      props.theme.minHeightWithLabelAndIcon};
+
     .MuiTabs-scroller {
       .MuiTabs-flexContainer + span {
         z-index: 4;
       }
     }
     .MuiTab-root {
-      text-transform: none !important;
+      text-transform: ${(props) => props.theme.fontTextTransform} !important;
     }
     .MuiButtonBase-root {
+      font-family: ${(props) => props.theme.fontFamily};
+      font-size: ${(props) => props.theme.fontSize};
+      font-style: ${(props) => props.theme.fontStyle};
+      font-weight: ${(props) => props.theme.fontWeight};
+
       padding: ${(props) =>
         ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") ||
         "8px 16px"};
       height: ${(props) =>
-        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
-      font-family: ${(props) => props.theme.fontFamily};
-      font-weight: ${(props) => props.theme.fontWeight};
-      font-size: ${(props) => props.theme.fontSize};
-      min-width: 90px;
-      max-width: 360px;
-      color: ${(props) => props.theme.fontColor};
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
+          props.theme.minHeight) ||
+        props.theme.minHeightWithLabelAndIcon};
+      min-width: ${(props) => props.theme.minWidth};
+      max-width: ${(props) => props.theme.maxWidth};
+      min-height: ${(props) =>
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
+          props.theme.minHeight) ||
+        props.theme.minHeightWithLabelAndIcon};
+
       &:hover {
         background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
       }
       &:active {
         background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
+        font-weight: ${(props) => `${props.theme.pressedFontWeight} !important`};
       }
       &:not(.Mui-selected) {
-        background-color: ${(props) => props.theme.backgroundColor};
-        color: ${(props) => props.theme.fontColor};
+        background-color: ${(props) => props.theme.unselectedBackgroundColor};
+        color: ${(props) => props.theme.unselectedFontColor};
+        svg {
+          color: ${(props) => props.theme.unselectedIconColor};
+        }
       }
       &.Mui-selected {
-        background-color: ${(props) => props.theme.backgroundColor};
+        background-color: ${(props) => props.theme.selectedBackgroundColor};
         color: ${(props) => props.theme.selectedFontColor};
+        svg {
+          color: ${(props) => props.theme.selectedIconColor};
+        }
       }
       &.Mui-disabled {
         cursor: not-allowed !important;
         pointer-events: all;
         color: ${(props) => props.theme.disabledFontColor};
+        font-style: ${(props) => props.theme.disabledFontStyle};
+        svg {
+          color: ${(props) => props.theme.disabledIconColor};
+        }
       }
       &:focus {
         outline: ${(props) => props.theme.focusOutline} auto 1px;
       }
     }
-
     .MuiTabs-indicator {
       background-color: ${(props) => props.theme.selectedUnderlineColor};
+      height: ${(props) => props.theme.selectedUnderlineThickness};
     }
-
     .MuiTabs-scrollButtons {
-      min-width: 48px;
-      width: 48px;
+      min-width: ${(props) => props.theme.scrollButtonsWidth};
+      width: ${(props) => props.theme.scrollButtonsWidth};
       padding: 0;
     }
-
     @media (max-width: 599.95px) {
       .MuiTabs-scrollButtonsDesktop {
         display: flex;
@@ -232,8 +248,8 @@ DxcTabs.propTypes = {
       label: PropTypes.string,
       icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
       iconSrc: PropTypes.string,
-      isDisabled: PropTypes.boolean,
-      notificationNumber: PropTypes.oneOfType([PropTypes.boolean, PropTypes.string]),
+      isDisabled: PropTypes.bool,
+      notificationNumber: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
     })
   ),
   margin: PropTypes.oneOfType([
@@ -246,7 +262,7 @@ DxcTabs.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   iconPosition: PropTypes.oneOf(["top", "left"]),
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 
 DxcTabs.defaultProps = {
