@@ -113,6 +113,9 @@ const FooterContainer = styled.footer`
   box-sizing: border-box;
   min-height: ${(props) => props.theme.minHeight};
   color: ${(props) => props.theme.fontColorBase};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const FooterHeader = styled.div`
