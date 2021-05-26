@@ -4,6 +4,7 @@ import LogoConfig from "./widgets/LogoConfig";
 import ColorPicker from "./widgets/ColorPicker";
 import DefaultInput from "./widgets/DefaultInput";
 import LengthInput from "./widgets/LengthInput";
+import FontWeightInput from "./widgets/FontWeightInput";
 
 const makeReadable = (token) =>
   token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
@@ -19,6 +20,7 @@ const ThemeInput = ({
   return (
     <PropertyContainer key={`property-${propertyName}`}>
       <PropertyName>{makeReadable(propertyName)}</PropertyName>
+      <PropertyValue>
       {(() => {
         switch (tokenType) {
           case "color":
@@ -46,7 +48,14 @@ const ThemeInput = ({
               />
             );
           // case "fFamily":
-          // case "fWeight":
+          case "fWeight":
+            return (
+              <FontWeightInput
+                propertyName={propertyName}
+                propertyValue={propertyValue}
+                onChangeCustomTheme={onChangeCustomTheme}
+              />
+            );
           // case "fStyle":
           // case "fTextTransform":
           // case "bStyle":
@@ -68,6 +77,7 @@ const ThemeInput = ({
             );
         }
       })()}
+      </PropertyValue>
     </PropertyContainer>
   );
 };
@@ -77,6 +87,11 @@ const PropertyName = styled.div`
   color: #000000;
   width: 60%;
   line-height: 13px;
+  margin-right: 5px;
+`;
+
+const PropertyValue = styled.div`
+  width: 40%;
 `;
 
 const PropertyContainer = styled.div`
