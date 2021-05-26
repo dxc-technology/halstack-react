@@ -186,8 +186,8 @@ const SocialAnchor = styled.a`
 const SocialIcon = styled.img`
   & {
     display: inline-flex;
-    height: ${(props) => props.theme.socialIconHeight};
-    width: ${(props) => props.theme.socialIconWidth};
+    height: ${(props) => props.theme.socialIconSize};
+    width: ${(props) => props.theme.socialIconSize};
     fill: ${(props) => props.theme.fontColorBase};
   }
 `;
@@ -195,8 +195,8 @@ const SocialIcon = styled.img`
 const SocialIconContainer = styled.div`
   & {
     display: inline-flex;
-    height: ${(props) => props.theme.socialIconHeight};
-    width: ${(props) => props.theme.socialIconWidth};
+    height: ${(props) => props.theme.socialIconSize};
+    width: ${(props) => props.theme.socialIconSize};
     color: ${(props) => props.theme.fontColorBase};
   }
 
