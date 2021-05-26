@@ -61,7 +61,6 @@ const LengthInputContainer = styled.div`
 `;
 
 const StyledInput = styled.input`
-  margin-left: 10px;
   font: normal 12px/17px Open Sans;
   width: 75px;
 `;
