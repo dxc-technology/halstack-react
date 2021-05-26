@@ -991,6 +991,7 @@
     "dataFontTextTransform": "none",
     "dataTextAlign": "left",
     "headerBackgroundColor": "#6f2c91",
+    "headerBorderRadius": "4px",
     "headerFontFamily": "Open Sans, sans-serif",
     "headerFontSize": "0.875rem",
     "headerFontStyle": "normal",

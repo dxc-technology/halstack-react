@@ -81,10 +81,10 @@ const DxcTableContent = styled.table`
     text-align: ${(props) => props.theme.headerTextAlign};
   }
   & th:first-child {
-    border-top-left-radius: 4px;
+    border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
   }
   & th:last-child {
-    border-top-right-radius: 4px;
+    border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
   }
 `;
 

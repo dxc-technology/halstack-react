@@ -992,6 +992,7 @@
     "dataFontTextTransform": "fTextTransform",
     "dataTextAlign": "textAlign",
     "headerBackgroundColor": "color",
+    "headerBorderRadius": "length",
     "headerFontFamily": "fFamily",
     "headerFontSize": "length",
     "headerFontStyle": "fStyle",
