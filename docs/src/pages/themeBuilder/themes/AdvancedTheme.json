@@ -613,8 +613,7 @@
   },
   "radio": {
     "circleLabelSpacing": "10px",
-    "circleHeight": "24px",
-    "circleWidth": "24px",
+    "circleSize": "24px",
     "color": "#000000",
     "colorOnDark": "#FFFFFF",
     "disabledColor": "#b1b1b1",
