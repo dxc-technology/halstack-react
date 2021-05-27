@@ -5,6 +5,7 @@ import ColorPicker from "./widgets/ColorPicker";
 import DefaultInput from "./widgets/DefaultInput";
 import LengthInput from "./widgets/LengthInput";
 import FontWeightInput from "./widgets/FontWeightInput";
+import FontStyleInput from "./widgets/FontStyleInput";
 
 const makeReadable = (token) =>
   token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
@@ -56,7 +57,14 @@ const ThemeInput = ({
                 onChangeCustomTheme={onChangeCustomTheme}
               />
             );
-          // case "fStyle":
+          case "fStyle":
+            return (
+              <FontStyleInput
+                propertyName={propertyName}
+                propertyValue={propertyValue}
+                onChangeCustomTheme={onChangeCustomTheme}
+              />
+            );
           // case "fTextTransform":
           // case "bStyle":
           // case "bWidth":
