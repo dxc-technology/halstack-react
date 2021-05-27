@@ -84,6 +84,10 @@ const useStyles = makeStyles(() => ({
         }`,
         color: `${props.optionsFontColor || props.color}`,
       },
+      "& span.MuiButtonBase-root": {
+        padding: "0px",
+        margin: "0px",
+      },
     },
   }),
 }));
@@ -313,7 +317,8 @@ const OptionContainer = styled.div`
 const ListIcon = styled.img`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+  margin-left: ${(props) =>
+    (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
   margin-right: ${(props) =>
     (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
 `;
@@ -322,7 +327,8 @@ const ListIconContainer = styled.div`
   color: ${(props) => props.theme.iconColor};
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+  margin-left: ${(props) =>
+    (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
   margin-right: ${(props) =>
     (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
   overflow: hidden;
