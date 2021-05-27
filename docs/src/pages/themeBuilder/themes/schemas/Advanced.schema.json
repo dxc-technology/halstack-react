@@ -570,8 +570,7 @@
     "underlineSpacing": "length",
     "underlineStyle": "bStyle",
     "underlineThickness": "bWidth",
-    "iconWidth": "length",
-    "iconHeight": "length",
+    "iconSize": "length",
     "iconGutter": "length"
   },
   "paginator": {
