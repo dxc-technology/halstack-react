@@ -10,8 +10,13 @@ const Link = () => {
       <Mode text="Default">
         <p>
           This is a text with a{" "}
-          <DxcLink href="#" newWindow={true} text="Link"></DxcLink> to another
-          page.
+          <DxcLink
+            href="#"
+            newWindow={true}
+            text="Link"
+            margin={{ top: "xxsmall" }}
+          ></DxcLink>{" "}
+          to another page.
         </p>
       </Mode>
       <Mode text="Undecorated">
@@ -22,6 +27,7 @@ const Link = () => {
             underlined={false}
             inheritColor={true}
             text="Link"
+            margin={{ top: "xxsmall" }}
           ></DxcLink>{" "}
           to another page.
         </p>
@@ -29,7 +35,26 @@ const Link = () => {
       <Mode text="Disabled">
         <p>
           This is a text with a{" "}
-          <DxcLink disabled={true} href="#" text="disabled Link"></DxcLink>.
+          <DxcLink
+            disabled={true}
+            href="#"
+            text="disabled Link"
+            margin={{ top: "xxsmall" }}
+          ></DxcLink>
+          .
+        </p>
+      </Mode>
+      <Mode text="Link with action">
+        <p>
+          This is a{" "}
+          <DxcLink
+            onClick={() => {
+              console.log("click");
+            }}
+            text="link with action"
+            margin={{ top: "xxsmall" }}
+          ></DxcLink>
+          .
         </p>
       </Mode>
       <Mode text="Icon">
@@ -53,6 +78,7 @@ const Link = () => {
             }
             href="#"
             text="Icon after"
+            margin={{ top: "xxsmall" }}
           ></DxcLink>{" "}
           the link.
         </p>
