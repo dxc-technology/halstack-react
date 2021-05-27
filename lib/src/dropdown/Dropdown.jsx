@@ -131,7 +131,6 @@ const DxcDropdown = ({
             disablePortal
             placement="bottom-start"
           >
-            
             {({ TransitionProps }) => (
               <Grow {...TransitionProps}>
                 <Paper>
@@ -211,10 +210,10 @@ const DxcMenu = styled(Popper)`
   }
   .MuiMenuItem-root {
     min-height: 46px;
-    padding-top:${(props) => props.theme.optionsPaddingTop};
-    padding-bottom:${(props) => props.theme.optionsPaddingBottom};
-    padding-left:${(props) => props.theme.optionsPaddingLeft};
-    padding-right:${(props) => props.theme.optionsPaddingRight};
+    padding-top: ${(props) => props.theme.optionsPaddingTop};
+    padding-bottom: ${(props) => props.theme.optionsPaddingBottom};
+    padding-left: ${(props) => props.theme.optionsPaddingLeft};
+    padding-right: ${(props) => props.theme.optionsPaddingRight};
     height: auto;
   }
 
@@ -227,7 +226,6 @@ const DxcMenu = styled(Popper)`
     border-width: ${(props) => props.theme.borderThickness};
     border-style: ${(props) => props.theme.borderStyle};
     border-color: ${(props) => props.theme.borderColor};
-  
 
     border-bottom-left-radius: ${(props) => props.theme.borderRadius};
     border-bottom-right-radius: ${(props) => props.theme.borderRadius};
@@ -244,9 +242,9 @@ const DxcMenu = styled(Popper)`
       flex-direction: ${(props) => (props.optionsIconPosition === "after" && "row-reverse") || "row"};
       justify-content: ${(props) => (props.optionsIconPosition === "after" && "flex-end") || ""};
       font-size: ${(props) => props.theme.optionsFontSize};
-      font-style:${(props) => props.theme.optionsFontStyle};
+      font-style: ${(props) => props.theme.optionsFontStyle};
       font-weight: ${(props) => props.theme.optionsFontWeight};
-      color:${(props) => props.theme.optionsFontColor};
+      color: ${(props) => props.theme.optionsFontColor};
       cursor: pointer;
     }
     .MuiListItem-button:hover {
@@ -274,8 +272,8 @@ const DropdownTrigger = styled.button`
   cursor: pointer;
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.buttonFontSize};
-  font-style:${(props) => props.theme.buttonFontStyle};
-  font-weight:${(props) => props.theme.buttonFontWeight};
+  font-style: ${(props) => props.theme.buttonFontStyle};
+  font-weight: ${(props) => props.theme.buttonFontWeight};
   width: 100%;
   height: auto;
   min-height: 46px;
@@ -301,7 +299,6 @@ const DropdownTrigger = styled.button`
     props.opened === true ? props.theme.buttonHoverBackgroundColor : props.theme.buttonBackgroundColor};
   color: ${(props) => props.theme.buttonFontColor};
 
-
   border-bottom-right-radius: ${(props) => (props.opened === true ? "0px" : props.theme.borderRadius)};
   border-bottom-left-radius: ${(props) => (props.opened === true ? "0px" : props.theme.borderRadius)};
   &:hover {
@@ -326,44 +323,23 @@ const DropdownTriggerContainer = styled.span`
 `;
 
 const ListIcon = styled.img`
-  max-height: 20px;
-  max-width: 20px;
-  width: 20px;
-  height: 20px;
-  margin-right: ${(props) => {
-    if (props.iconPosition === "before" && props.label !== "") {
-      return "10px";
-    } else {
-      return "0px";
-    }
-  }};
-  margin-left: ${(props) => {
-    if (props.iconPosition === "after" && props.label !== "") {
-      return "10px";
-    } else {
-      return "0px";
-    }
-  }};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
+  margin-left: ${(props) =>
+    (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+  margin-right: ${(props) =>
+    (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
 `;
 
 const ListIconContainer = styled.div`
-  width: 20px;
-  height: 20px;
+  color: ${(props) => props.theme.iconColor};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
   overflow: hidden;
-  margin-right: ${(props) => {
-    if (props.iconPosition === "before" && props.label !== "") {
-      return "10px";
-    } else {
-      return "0px";
-    }
-  }};
-  margin-left: ${(props) => {
-    if (props.iconPosition === "after" && props.label !== "") {
-      return "10px";
-    } else {
-      return "0px";
-    }
-  }};
+  margin-left: ${(props) =>
+    (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+  margin-right: ${(props) =>
+    (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
 
   img,
   svg {
