@@ -35,33 +35,48 @@ const DxcLink = ({
 
   return (
     <ThemeProvider theme={colorsTheme.link}>
-      {onClick ? (
-        <StyledButton
-          type="button"
-          onClick={!disabled && onClick}
-          margin={margin}
-          disabled={disabled}
-          underlined={underlined}
-          inheritColor={inheritColor}
-        >
-          {linkContent}
-        </StyledButton>
-      ) : (
-        <StyledLink
-          tabIndex={tabIndex}
-          href={!disabled && href}
-          target={newWindow ? "_blank" : "_self"}
-          margin={margin}
-          disabled={disabled}
-          underlined={underlined}
-          inheritColor={inheritColor}
-        >
-          {linkContent}
-        </StyledLink>
-      )}
+      <DxcLinkContainer margin={margin}>
+        {onClick ? (
+          <StyledButton
+            type="button"
+            onClick={!disabled && onClick}
+            margin={margin}
+            disabled={disabled}
+            underlined={underlined}
+            inheritColor={inheritColor}
+          >
+            {linkContent}
+          </StyledButton>
+        ) : (
+          <StyledLink
+            tabIndex={tabIndex}
+            href={!disabled && href}
+            target={newWindow ? "_blank" : "_self"}
+            margin={margin}
+            disabled={disabled}
+            underlined={underlined}
+            inheritColor={inheritColor}
+          >
+            {linkContent}
+          </StyledLink>
+        )}
+      </DxcLinkContainer>
     </ThemeProvider>
   );
 };
+
+const DxcLinkContainer = styled.div`
+  display: inline-flex;
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+`;
 
 const StyledLink = styled.a`
   text-decoration: none;
@@ -76,16 +91,6 @@ const StyledLink = styled.a`
     };`}
   ${(props) => (!props.underlined ? "text-decoration-color: transparent;" : "")}
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
-  
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   &:visited {
     ${(props) =>
@@ -126,16 +131,6 @@ const StyledButton = styled.button`
     };`}
   ${(props) => (!props.underlined ? "text-decoration-color: transparent;" : "")}
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
-
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
-  margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
-  margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
-  margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   &:visited {
     ${(props) =>
