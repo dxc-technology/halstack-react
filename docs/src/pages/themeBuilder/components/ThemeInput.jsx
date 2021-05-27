@@ -6,6 +6,7 @@ import DefaultInput from "./widgets/DefaultInput";
 import LengthInput from "./widgets/LengthInput";
 import FontWeightInput from "./widgets/FontWeightInput";
 import FontStyleInput from "./widgets/FontStyleInput";
+import TextTransformInput from "./widgets/TextTransformInput";
 
 const makeReadable = (token) =>
   token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
@@ -65,7 +66,14 @@ const ThemeInput = ({
                 onChangeCustomTheme={onChangeCustomTheme}
               />
             );
-          // case "fTextTransform":
+          case "fTextTransform":
+            return (
+              <TextTransformInput
+                propertyName={propertyName}
+                propertyValue={propertyValue}
+                onChangeCustomTheme={onChangeCustomTheme}
+              />
+            );
           // case "bStyle":
           // case "bWidth":
           // case "alphaValue":
