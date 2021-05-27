@@ -24,7 +24,8 @@ const LengthInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
     propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)
   );
   const [unitValue, changeUnitValue] = useState(
-    propertyValue.match(/[a-zA-Z]+|%/g)[0]
+    propertyValue.match(/[a-zA-Z]+|%/g) &&
+      propertyValue.match(/[a-zA-Z]+|%/g)[0]
   );
 
   return (
