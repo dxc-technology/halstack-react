@@ -148,7 +148,7 @@ const DxcDate = ({
           minHeight: "unset",
           padding: "0px 10px",
           height: colorsTheme.date.pickerHeight,
-          width: colorsTheme.date.pickerHeight,
+          width: colorsTheme.date.pickerWidth,
           backgroundColor: colorsTheme.date.pickerBackgroundColor,
           fontFamily: colorsTheme.date.fontFamily,
         },
