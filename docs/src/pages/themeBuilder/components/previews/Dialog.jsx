@@ -91,7 +91,6 @@ const Dialog = () => {
           </DxcDialog>
         )}
       </Mode>
-
     </DialogContainer>
   );
 };

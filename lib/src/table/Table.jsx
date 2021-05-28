@@ -22,7 +22,6 @@ const calculateWidth = (margin) => {
 };
 
 const DxcTableContainer = styled.div`
-  overflow-x: auto;
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -34,8 +33,9 @@ const DxcTableContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
+  overflow-y: auto;
   &::-webkit-scrollbar {
-    height: 6px;
+    width: 8px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme.scrollBarThumbColor};
@@ -54,7 +54,6 @@ const DxcTableContent = styled.table`
   & tr {
     border-bottom: ${(props) =>
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
-    height: ${(props) => props.theme.rowHeight};
   }
   & td {
     background-color: ${(props) => props.theme.dataBackgroundColor};
@@ -65,8 +64,9 @@ const DxcTableContent = styled.table`
     color: ${(props) => props.theme.dataFontColor};
     text-transform: ${(props) => props.theme.dataFontTextTransform};
     text-align: ${(props) => props.theme.dataTextAlign};
-    min-height: 48px;
-    padding: 14px 20px 12px 40px;
+    line-height: ${(props) => props.theme.dataTextLineHeight};
+    padding: ${(props) =>
+      `${props.theme.dataPaddingTop} ${props.theme.dataPaddingRight} ${props.theme.dataPaddingBottom} ${props.theme.dataPaddingLeft}`};
   }
   & th {
     background-color: ${(props) => props.theme.headerBackgroundColor};
@@ -77,8 +77,9 @@ const DxcTableContent = styled.table`
     color: ${(props) => props.theme.headerFontColor};
     text-transform: ${(props) => props.theme.headerFontTextTransform};
     text-align: ${(props) => props.theme.headerTextAlign};
-    min-height: 60px;
-    padding: 16px 20px 16px 40px;
+    line-height: ${(props) => props.theme.headerTextLineHeight};
+    padding: ${(props) =>
+      `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`};
   }
   & th:first-child {
     border-top-left-radius: 4px;
