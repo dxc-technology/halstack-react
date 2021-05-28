@@ -24,6 +24,7 @@ const Link = () => {
           This is a text with a{" "}
           <DxcLink
             href="#"
+            newWindow={true}
             underlined={false}
             inheritColor={true}
             text="Link"
@@ -36,8 +37,9 @@ const Link = () => {
         <p>
           This is a text with a{" "}
           <DxcLink
-            disabled={true}
             href="#"
+            newWindow={true}
+            disabled={true}
             text="disabled Link"
             margin={{ top: "xxsmall" }}
           ></DxcLink>
@@ -77,6 +79,7 @@ const Link = () => {
               </svg>
             }
             href="#"
+            newWindow={true}
             text="Icon after"
             margin={{ top: "xxsmall" }}
           ></DxcLink>{" "}

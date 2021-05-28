@@ -132,13 +132,6 @@ const StyledButton = styled.button`
   ${(props) => (!props.underlined ? "text-decoration-color: transparent;" : "")}
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
 
-  &:visited {
-    ${(props) =>
-      props.underlined && !props.disabled
-        ? `color: ${props.theme.visitedFontColor} !important; 
-           border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} ${props.theme.visitedUnderlineColor} !important;`
-        : ""}
-  }
   &:hover {
     ${(props) =>
       !props.disabled &&
