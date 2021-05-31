@@ -180,7 +180,7 @@ const SwitchContainer = styled.div`
           props.backgroundType === "dark"
             ? props.theme.checkedThumbBackgroundColorOnDark
             : props.theme.checkedThumbBackgroundColor};
-        transform: translateX(${(props) => props.theme.thumbTranslateX});
+        transform: translateX(${(props) => props.theme.thumbShift});
         &:hover {
           background-color: transparent;
         }
@@ -211,7 +211,7 @@ const LabelContainer = styled.span`
   font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
   font-weight: ${(props) => props.theme.labelFontWeight};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
-  margin-right: ${(props) => props.theme.labelMarginRight};
+  ${(props) => props.labelPosition === "after" ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};` : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`}
 `;
 
 DxcSwitch.propTypes = {
