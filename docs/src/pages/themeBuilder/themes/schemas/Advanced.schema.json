@@ -74,8 +74,7 @@
     "iconPaddingRight": "length",
     "iconPaddingTop": "length",
     "iconPaddingBottom": "length",
-    "iconMaxWidth": "length",
-    "iconMaxHeight": "length",
+    "iconSize": "length",
     "textPaddingLeft": "length",
     "textPaddingRight": "length",
     "textPaddingTop": "length",
@@ -257,16 +256,9 @@
     "contentPaddingRight": "length",
     "contentPaddingTop": "length",
     "contentPaddingBottom": "length",
-    "iconMaxHeight": "length",
-    "iconMaxWidth": "length",
-    "suffixIconPaddingLeft":"length",
-    "suffixIconPaddingRight":"length",
-    "suffixIconPaddingTop":"length",
-    "suffixIconPaddingBottom":"length",
-    "prefixIconPaddingLeft":"length",
-    "prefixIconPaddingRight":"length",
-    "prefixIconPaddingTop":"length",
-    "prefixIconPaddingBottom":"length"
+    "iconSize": "length",
+    "iconPaddingLeft": "lenght",
+    "iconPaddingRight": "lenght"
     },
   "date": {
     "pickerSelectedDateBackgroundColor": "color",
@@ -341,7 +333,10 @@
     "optionsFontColor":"color",
     "optionsFontSize":"length",
     "optionsFontStyle":"fStyle",
-    "optionsFontWeight":"fWeight"
+    "optionsFontWeight":"fWeight",
+    "iconSize": "length",
+    "iconOptionSpacing": "length",
+    "iconColor": "color"
   },
   "footer": {
     "backgroundColor": "color",
