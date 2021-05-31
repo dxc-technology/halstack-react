@@ -215,20 +215,9 @@
     "minHeight": "length"
   },
   "card": {
-    "backgroundColor": "color",
-    "textDecoration": "text",
-    "minHeight": "length",
-    "minWidth": "length",
-    "imageMaxWidth": "length",
-    "imageMaxHeight": "length",
-    "cardContentHeight": "length",
-    "cardContentJustifyContent": "flexJustify",
-    "cardContentAlignItems": "flexAlign",
-    "cardContentPaddingLeft": "length",
-    "cardContentPaddingRight": "length",
-    "cardContentPaddingTop": "length",
-    "cardContentPaddingBottom": "length"
-  },
+    "height": "length",
+    "width": "length"
+    },
   "checkbox": {
     "backgroundColorChecked": "color",
     "backgroundHoverColorChecked": "color",

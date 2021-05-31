@@ -27,7 +27,7 @@ import DialogPreview from "./previews/Dialog";
 import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
 import UploadPreview from "./previews/Upload";
-
+import CardPreview from "./previews/Card";
 const SampleComponents = [
   {
     name: "accordion",
@@ -44,6 +44,10 @@ const SampleComponents = [
   {
     name: "button",
     preview: ButtonPreview,
+  },
+  {
+    name: "card",
+    preview: CardPreview,
   },
   {
     name: "checkbox",
