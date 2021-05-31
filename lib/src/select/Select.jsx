@@ -96,6 +96,16 @@ const useStyles = makeStyles(() => ({
           width: "26px",
           height: "26px",
         },
+
+        "&:hover": {
+          color: `${props.backgroundType === "dark" ? props.borderColorOnDark : props.borderColor}`,
+        },
+
+        "&.Mui-checked:hover": {
+          color: `${
+            props.backgroundType === "dark" ? props.backgroundColorCheckedOnDark : props.backgroundColorChecked
+          }`,
+        },
       },
     },
   }),
@@ -119,7 +129,7 @@ const DxcSelect = ({
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
-  const selectValues = { width: "auto", ...colorsTheme.select, backgroundType };
+  const selectValues = { width: "auto", ...colorsTheme.select, ...colorsTheme.checkbox, backgroundType };
   const classes = useStyles(selectValues);
 
   const handleSelectChange = (selectedOption) => {
