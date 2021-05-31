@@ -18,7 +18,7 @@ import advancedSchema from "./themes/schemas/Advanced.schema.json";
 
 const ThemeBuilder = () => {
   const { type } = useParams();
-
+  
   const [customTheme, setCustomTheme] = useState(
     type === "advancedTheme" ? advancedTheme : defaultTheme
   );
@@ -58,6 +58,7 @@ const ThemeBuilder = () => {
           />
           {isDialogVisible && (
             <ImportDialog
+              customThemeSchema={customThemeSchema}
               setCustomTheme={setCustomTheme}
               setDialogVisible={setDialogVisible}
             />
