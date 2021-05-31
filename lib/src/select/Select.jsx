@@ -23,6 +23,9 @@ const useStyles = makeStyles(() => ({
     minWidth: props.width,
     width: props.width,
     maxHeight: "250px",
+    "&:focus": {
+      border: `2px solid ${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor}`,
+    },
     "&::-webkit-scrollbar": {
       width: "3px",
       margin: "5px",
@@ -223,6 +226,7 @@ const DxcSelect = ({
                 vertical: "bottom",
                 horizontal: "left",
               },
+              autoFocus: false,
             }}
             inputProps={{ tabIndex: disabled ? -1 : tabIndex }}
           >
@@ -408,6 +412,8 @@ const SelectContainer = styled.div`
     align-items: center;
     :focus {
       background-color: transparent;
+      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
+        auto 1px;
     }
     & > *:last-child::after {
       content: unset;
@@ -423,10 +429,6 @@ const SelectContainer = styled.div`
   }
   .MuiInputBase-root {
     width: 100%;
-    &.Mui-focused {
-      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
-        auto 1px;
-    }
     &.Mui-disabled {
       opacity: ${(props) => props.theme.disabled};
       cursor: not-allowed;
