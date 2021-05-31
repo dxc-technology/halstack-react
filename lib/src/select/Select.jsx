@@ -23,9 +23,6 @@ const useStyles = makeStyles(() => ({
     minWidth: props.width,
     width: props.width,
     maxHeight: "250px",
-    "&:focus": {
-      border: `2px solid ${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor}`,
-    },
     "&::-webkit-scrollbar": {
       width: "3px",
       margin: "5px",
@@ -79,6 +76,9 @@ const useStyles = makeStyles(() => ({
           }` + props.hoverOptionBackgroundColor,
         color: `${props.optionsFontColor || props.color}`,
       },
+      "&:focus": {
+        border: `2px solid ${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor}`,
+      },
       "&.MuiListItem-root.Mui-selected": {
         backgroundColor: `${
           props.backgroundType === "dark"
@@ -86,6 +86,13 @@ const useStyles = makeStyles(() => ({
             : props.selectedOptionBackgroundColor
         }`,
         color: `${props.optionsFontColor || props.color}`,
+
+        "&.Mui-focusVisible": {
+          backgroundColor: "unset",
+        },
+      },
+      "&.MuiListItem-root.Mui-focusVisible": {
+        backgroundColor: "unset",
       },
       "& span.MuiButtonBase-root": {
         padding: "0px",
@@ -241,7 +248,6 @@ const DxcSelect = ({
                 vertical: "bottom",
                 horizontal: "left",
               },
-              autoFocus: false,
             }}
             inputProps={{ tabIndex: disabled ? -1 : tabIndex }}
           >
