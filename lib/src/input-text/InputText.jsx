@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -12,6 +12,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import errorIcon from "./error.svg";
+import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
@@ -64,6 +65,7 @@ const DxcInputText = ({
   const [isError, changeIsError] = useState(false);
 
   const colorsTheme = useTheme();
+  const backgroundType = useContext(BackgroundColorContext);
 
   const changeValue = (newValue) => {
     if (value === null || value === undefined) {
@@ -165,6 +167,7 @@ const DxcInputText = ({
         assistiveText={assistiveText}
         margin={margin}
         size={size}
+        backgroundType={backgroundType}
       >
         {prefixIcon ? (
           <PrefixIconContainer
@@ -172,6 +175,7 @@ const DxcInputText = ({
             disabled={disabled}
             onClick={!disabled ? onClickPrefix : null}
             interactuable={typeof onClickPrefix === "function" && !disabled}
+            backgroundType={backgroundType}
             onKeyPress={handlePrefixKeyPress}
           >
             {typeof prefixIcon === "object" ? prefixIcon : React.createElement(prefixIcon)}
@@ -193,6 +197,7 @@ const DxcInputText = ({
               disabled={disabled}
               onClick={!disabled ? onClickPrefix : null}
               interactuable={typeof onClickPrefix === "function" && !disabled}
+              backgroundType={backgroundType}
               onKeyPress={handlePrefixKeyPress}
             >
               {prefix}
@@ -229,6 +234,7 @@ const DxcInputText = ({
                     disabled={disabled}
                     onClick={onClickSuffix}
                     interactuable={typeof onClickSuffix === "function" && !disabled}
+                    backgroundType={backgroundType}
                     onKeyPress={handleSuffixKeyPress}
                   >
                     {typeof suffixIcon === "object" ? suffixIcon : React.createElement(suffixIcon)}
@@ -249,6 +255,7 @@ const DxcInputText = ({
                       onClick={onClickSuffix}
                       disabled={disabled}
                       interactuable={typeof onClickSuffix === "function" && !disabled}
+                      backgroundType={backgroundType}
                       onKeyPress={handleSuffixKeyPress}
                     >
                       {suffix}
@@ -373,7 +380,6 @@ const PrefixIcon = styled.img`
   position: absolute;
   top: 20px;
   left: 0px;
-  width: 20px;
   max-height: 20px;
   max-width: 20px;
   z-index: 1;
@@ -388,6 +394,10 @@ const PrefixIconContainer = styled.div`
   width: 20px;
   max-height: 20px;
   max-width: 20px;
+  color: ${(props) =>
+    props.backgroundType === "dark"
+      ? props.theme.prefixIconColorOnDark || props.theme.fontColorBaseOnDark
+      : props.theme.prefixIconColor || props.theme.fontColorBase};
   z-index: 1;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
   ${(props) => getCursor(props.interactuable, props.disabled)};
@@ -404,9 +414,14 @@ const PrefixLabel = styled.span`
   position: absolute;
   top: 20px;
   left: 0px;
-  font-family: ${(props) => props.theme.fontFamily};
-
-  color: ${(props) => props.theme.fontColor};
+  font-weight: ${(props) => props.theme.prefixLabelFontWeight};
+  font-family: ${(props) => props.theme.fontFamilyBase};
+  font-size: ${(props) => props.theme.prefixLabelFontSize};
+  font-style: ${(props) => props.theme.prefixLabelFontStyle};
+  color: ${(props) =>
+    props.backgroundType === "dark"
+      ? props.theme.prefixLabelFontColorOnDark || props.theme.fontColorBaseOnDark
+      : props.theme.prefixLabelFontColor || props.theme.fontColorBase};
   max-height: 20px;
   max-width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
@@ -430,6 +445,10 @@ const SuffixIconContainer = styled.div`
   left: 0;
   max-height: 20px;
   max-width: 20px;
+  color: ${(props) =>
+    props.backgroundType === "dark"
+      ? props.theme.suffixIconColorOnDark || props.theme.fontColorBaseOnDark
+      : props.theme.suffixIconColor || props.theme.fontColorBase};
   margin-right: 8px;
   width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
@@ -445,6 +464,14 @@ const SuffixIconContainer = styled.div`
 
 const SuffixLabel = styled.span`
   ${(props) => getCursor(props.interactuable, props.disabled)};
+  font-weight: ${(props) => props.theme.suffixLabelFontWeight};
+  font-family: ${(props) => props.theme.fontFamilyBase};
+  font-size: ${(props) => props.theme.suffixLabelFontSize};
+  font-style: ${(props) => props.theme.suffixLabelFontStyle};
+  color: ${(props) =>
+    props.backgroundType === "dark"
+      ? props.theme.suffixLabelFontColorOnDark || props.theme.fontColorBaseOnDark
+      : props.theme.suffixLabelFontColor || props.theme.fontColorBase};
 `;
 
 const TextContainer = styled.div`
@@ -465,22 +492,35 @@ const TextContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
-    font-family: ${(props) => props.theme.fontFamily};
+    font-family: ${(props) => props.theme.fontFamilyBase};
     .MuiFormHelperText-root {
-      font-family: ${(props) => props.theme.fontFamily};
+      font-weight: ${(props) => props.theme.assistiveTextFontWeight};
+      font-family: ${(props) => props.theme.fontFamilyBase};
+      font-size: ${(props) => props.theme.assistiveTextFontSize};
+      font-style: ${(props) => props.theme.assistiveTextFontStyle};
+      color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.assistiveTextFontColorOnDark || props.theme.fontColorBaseOnDark
+          : props.theme.assistiveTextFontColor || props.theme.fontColorBase} !important;
+
       margin-top: 6px;
     }
     .MuiFormLabel-root {
-      font-size: ${(props) => props.theme.fontSize};
+      font-size: ${(props) => props.theme.labelFontSize};
 
-      color: ${(props) => props.theme.fontColor};
+      color: ${(props) =>
+        props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
       &.Mui-disabled {
-        color: ${(props) => props.theme.disabledFontColor} !important;
+        color: ${(props) =>
+          props.backgroundType === "dark"
+            ? props.theme.disabledFontColorOnDark
+            : props.theme.disabledFontColor} !important;
         cursor: not-allowed;
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
       &.Mui-focused {
-        color: ${(props) => props.theme.fontColor};
+        color: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
         &.MuiInputLabel-shrink {
           transform: ${(props) =>
             props.prefixIconSrc ||
@@ -490,7 +530,7 @@ const TextContainer = styled.div`
         }
       }
       &.MuiInputLabel-shrink {
-        font-family: ${(props) => props.theme.fontFamily};
+        font-family: ${(props) => props.theme.fontFamilyBase};
 
         transform: ${(props) =>
           (props.prefixIcon && "translate(8px, 1.5px) scale(0.75);") ||
@@ -499,46 +539,68 @@ const TextContainer = styled.div`
           "translate(0, 1.5px) scale(0.75);"};
       }
       &.Mui-error {
-        color: ${(props) => props.theme.error};
+        color: ${(props) => (props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor)};
       }
 
       &:not(.MuiInputLabel-shrink) {
-        font-family: ${(props) => props.theme.fontFamily};
+        font-family: ${(props) => props.theme.fontFamilyBase};
 
-        color: ${(props) => props.theme.fontColor};
+        color: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
         & + div,
         & + div + p {
-          color: ${(props) => props.theme.fontColor};
+          color: ${(props) =>
+            props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
         }
       }
 
       &.MuiInputLabel-shrink {
         & + div::before {
-          border-color: ${(props) => props.theme.fontColor};
+          border-color: ${(props) =>
+            props.backgroundType === "dark"
+              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineColor || props.theme.fontColorBase};
         }
         & + div + p {
-          color: ${(props) => props.theme.fontColor};
+          color: ${(props) =>
+            props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
         }
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
-      font-family: ${(props) => props.theme.fontFamily};
+      font-family: ${(props) => props.theme.fontFamilyBase};
 
       &::before {
-        border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
+        border-bottom: ${(props) =>
+          `${props.theme.underlineThickness} solid ${
+            props.backgroundType === "dark"
+              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineColor || props.theme.fontColorBase
+          }`};
       }
       &:not(.Mui-error)::before,
       &:not(&.Mui-focused)::before {
-        border-bottom: ${(props) => `1px solid ${props.theme.fontColor}`};
+        border-bottom: ${(props) =>
+          `${props.theme.underlineThickness} solid ${
+            props.backgroundType === "dark"
+              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineColor || props.theme.fontColorBase
+          }`};
       }
       &::after {
-        border-bottom: ${(props) => `2px solid ${props.theme.fontColor}`};
+        border-bottom: ${(props) =>
+          `2px solid ${
+            props.backgroundType === "dark"
+              ? props.theme.underlineFocusColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineFocusColor || props.theme.fontColorBase
+          }`};
       }
 
       &.Mui-error {
         &::before {
-          border-width: 1px;
-          border-color: ${(props) => props.theme.error};
+          border-width: ${(props) => props.theme.underlineThickness};
+          border-color: ${(props) =>
+            props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor};
         }
         &::after {
           transform: scaleX(0);
@@ -548,12 +610,16 @@ const TextContainer = styled.div`
       &.Mui-focused {
         &::after {
           border-width: 2px;
-          border-color: ${(props) => props.theme.fontColor};
+          border-color: ${(props) =>
+            props.backgroundType === "dark"
+              ? props.theme.underlineFocusColorOnDark || props.theme.fontColorBaseOnDark
+              : props.theme.underlineFocusColor || props.theme.fontColorBase};
           transform: scaleX(1);
         }
 
         &.Mui-error::after {
-          border-color: ${(props) => props.theme.error};
+          border-color: ${(props) =>
+            props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor};
         }
       }
 
@@ -561,27 +627,36 @@ const TextContainer = styled.div`
         cursor: not-allowed;
 
         &::before {
-          border-bottom: ${(props) => `1px solid ${props.theme.disabledFontColor} !important`};
+          border-bottom: ${(props) =>
+            `${props.theme.underlineThickness} solid ${
+              props.backgroundType === "dark" ? props.theme.disabledFontColorOnDark : props.theme.disabledFontColor
+            } !important`};
           border-bottom-style: solid;
         }
       }
       .MuiInputBase-input {
         padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
-        color: ${(props) => props.theme.fontColor};
+        color: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
         text-overflow: ellipsis;
         &.Mui-disabled {
-          color: ${(props) => props.theme.disabledFontColor} !important;
+          color: ${(props) =>
+            props.backgroundType === "dark"
+              ? props.theme.disabledFontColorOnDark
+              : props.theme.disabledFontColor} !important;
           cursor: not-allowed;
         }
       }
       .MuiInputAdornment-root {
         height: 20px;
-        color: ${(props) => props.theme.fontColor};
+        color: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
         &.MuiInputAdornment-positionEnd {
           & > p {
-            font-family: ${(props) => props.theme.fontFamily};
+            font-family: ${(props) => props.theme.fontFamilyBase};
 
-            color: ${(props) => props.theme.fontColor};
+            color: ${(props) =>
+              props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
             margin-right: 8px;
             margin-bottom: 1px;
           }
@@ -593,16 +668,21 @@ const TextContainer = styled.div`
       }
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before {
-        border-bottom: ${(props) => props.theme.fontColor};
+        border-bottom: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
       }
     }
 
     & > p {
       &.Mui-error {
-        color: ${(props) => props.theme.error} !important;
+        color: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor} !important;
       }
       &.Mui-disabled {
-        color: ${(props) => props.theme.disabledFontColor} !important;
+        color: ${(props) =>
+          props.backgroundType === "dark"
+            ? props.theme.disabledFontColorOnDark
+            : props.theme.disabledFontColor} !important;
         cursor: not-allowed;
       }
     }

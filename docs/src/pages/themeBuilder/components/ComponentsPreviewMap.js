@@ -15,7 +15,7 @@ import RadioButtonPreview from "./previews/RadioButton";
 import FooterPreview from "./previews/Footer";
 import WizardPreview from "./previews/Wizard";
 import HeaderPreview from "./previews/Header";
-import TextFieldPreview from "./previews/TextField";
+import InputTextPreview from "./previews/InputText";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
 import TextareaPreview from "./previews/Textarea";
@@ -79,7 +79,7 @@ const SampleComponents = [
   },
   {
     name: "inputText",
-    preview: TextFieldPreview,
+    preview: InputTextPreview,
   },
   {
     name: "link",
