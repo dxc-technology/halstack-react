@@ -64,7 +64,7 @@ const useStyles = makeStyles(() => ({
           props.backgroundType === "dark"
             ? props.hoveredOptionBackgroundColorOnDark
             : props.hoveredOptionBackgroundColor
-        }`,
+        } !important`,
         color: `${props.optionsFontColor || props.color}`,
       },
       "&:active": {
@@ -84,12 +84,8 @@ const useStyles = makeStyles(() => ({
           props.backgroundType === "dark"
             ? props.selectedOptionBackgroundColorOnDark
             : props.selectedOptionBackgroundColor
-        }`,
+        } !important`,
         color: `${props.optionsFontColor || props.color}`,
-
-        "&.Mui-focusVisible": {
-          backgroundColor: "unset",
-        },
       },
       "&.MuiListItem-root.Mui-focusVisible": {
         backgroundColor: "unset",
