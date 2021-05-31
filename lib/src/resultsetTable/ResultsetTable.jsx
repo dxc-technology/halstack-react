@@ -4,9 +4,6 @@ import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
-import arrowUp from "./arrow_upward-24px_wht.svg";
-import arrowDown from "./arrow_downward-24px_wht.svg";
-import bothArrows from "./unfold_more-24px_wht.svg";
 import useTheme from "../useTheme.js";
 
 function normalizeSortValue(sortValue) {
@@ -36,6 +33,27 @@ const getMinItemsPerPageIndex = (currentPageInternal, itemsPerPage, page) =>
 const getMaxItemsPerPageIndex = (minItemsPerPageIndex, itemsPerPage, resultset, page) =>
   minItemsPerPageIndex + itemsPerPage > resultset.length ? resultset.length : itemsPerPage * page - 1;
 
+const ArrowUp = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" />
+  </svg>
+);
+
+const ArrowDown = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+  </svg>
+);
+
+const BothArrows = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 5.83L15.17 9l1.41-1.41L12 3 7.41 7.59 8.83 9 12 5.83zm0 12.34L8.83 15l-1.41 1.41L12 21l4.59-4.59L15.17 15 12 18.17z" />
+  </svg>
+);
+
 const DxcResultsetTable = ({
   columns,
   rows,
@@ -51,12 +69,10 @@ const DxcResultsetTable = ({
   const [sortOrder, changeSortOrder] = useState("asc");
 
   const minItemsPerPageIndex = useMemo(() => getMinItemsPerPageIndex(page, itemsPerPage, page), [itemsPerPage, page]);
-  const maxItemsPerPageIndex = useMemo(() => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page), [
-    itemsPerPage,
-    minItemsPerPageIndex,
-    page,
-    rows,
-  ]);
+  const maxItemsPerPageIndex = useMemo(
+    () => getMaxItemsPerPageIndex(minItemsPerPageIndex, itemsPerPage, rows, page),
+    [itemsPerPage, minItemsPerPageIndex, page, rows]
+  );
 
   const goToPage = (newPage) => {
     changePage(newPage);
@@ -69,7 +85,7 @@ const DxcResultsetTable = ({
     );
   };
   const getIconForSortableColumn = (clickedColumnIndex) => {
-    return sortColumnIndex === clickedColumnIndex ? (sortOrder === "asc" ? arrowUp : arrowDown) : bothArrows;
+    return sortColumnIndex === clickedColumnIndex ? sortOrder === "asc" ? <ArrowUp /> : <ArrowDown /> : <BothArrows />;
   };
 
   useEffect(() => {
@@ -80,11 +96,10 @@ const DxcResultsetTable = ({
     }
   }, [rows.length, itemsPerPage]);
 
-  const sortedResultset = useMemo(() => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows), [
-    sortColumnIndex,
-    sortOrder,
-    rows,
-  ]);
+  const sortedResultset = useMemo(
+    () => (sortColumnIndex !== "" ? sortArray(sortColumnIndex, sortOrder, rows) : rows),
+    [sortColumnIndex, sortOrder, rows]
+  );
   const filteredResultset = useMemo(
     () => sortedResultset && sortedResultset.slice(minItemsPerPageIndex, maxItemsPerPageIndex + 1),
     [sortedResultset, minItemsPerPageIndex, maxItemsPerPageIndex]
@@ -105,7 +120,7 @@ const DxcResultsetTable = ({
                       tabIndex={column.isSortable ? tabIndex : -1}
                     >
                       <TitleDiv isSortable={column.isSortable}>{column.displayValue}</TitleDiv>
-                      {column.isSortable && <SortIcon src={getIconForSortableColumn(index)} />}
+                      {column.isSortable && <SortIcon>{getIconForSortableColumn(index)}</SortIcon>}
                     </HeaderContainer>
                   </TableHeader>
                 ))}
@@ -154,14 +169,20 @@ const TableRowGroup = styled.tbody`
     bottom: calc(50% - 68.5px - 30px);
   }
   & tr {
-    height: 70px;
+    height: ${(props) => props.theme.rowHeight || "70px"};
   }
 `;
-const SortIcon = styled.img`
+const SortIcon = styled.div`
   top: 409px;
   left: 390px;
   height: 14px;
   cursor: pointer;
+  color: ${(props) => props.theme.sortIconColor};
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const TitleDiv = styled.div`
@@ -171,7 +192,13 @@ const TableHeader = styled.th``;
 const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  width: fit-content;
+  justify-content: ${(props) =>
+    props.theme.headerTextAlign === "center"
+      ? "center"
+      : props.theme.headerTextAlign === "right"
+      ? "flex-end"
+      : "flex-start"};
+  width: 100%;
 `;
 const HeaderRow = styled.thead`
   height: 60px;

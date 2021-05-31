@@ -599,18 +599,6 @@
     "fontStyle": "normal",
     "fontWeight": "400"
   },
-  "resultsetTable": {
-    "cellHeight": "70px",
-    "sortIconHeight": "14px",
-    "headerHeight": "60px",
-    "scrollBarHeight": "6px",
-    "scrollBarTrackBorderRadius": "6px",
-    "scrollBarTrackBorderStyle": "0px",
-    "scrollBarTrackBorderThickness": "0px",
-    "scrollBarThumbBorderRadius": "6px",
-    "scrollBarThumbBorderStyle": "0px",
-    "scrollBarThumbBorderThickness": "0px"
-  },
   "select": {
     "checkboxOptionSpacing": "10px",
     "color": "#000000",
@@ -822,6 +810,7 @@
     "dataFontTextTransform": "none",
     "dataTextAlign": "left",
     "headerBackgroundColor": "#6f2c91",
+    "headerBorderRadius": "4px",
     "headerFontFamily": "Open Sans, sans-serif",
     "headerFontSize": "0.875rem",
     "headerFontStyle": "normal",
@@ -830,7 +819,8 @@
     "headerFontTextTransform": "none",
     "headerTextAlign": "left",
     "scrollBarThumbColor": "#666666",
-    "scrollBarTrackColor": "#D9D9D9"
+    "scrollBarTrackColor": "#D9D9D9",
+    "sortIconColor": "#ffffff"
   },
   "tabs": {
     "fontFamily": "Open Sans, sans-serif",
