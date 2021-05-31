@@ -565,7 +565,7 @@
     "fontWeight": "400"
   },
   "select": {
-    "checkboxOptionSpacing": "10px",
+    "checkboxOptionSpacing": "12px",
     "color": "#000000",
     "colorOnDark": "#FFFFFF",
     "disabledColor": "#b1b1b1",
@@ -578,9 +578,8 @@
     "hoveredOptionBackgroundColor": "#f2f2f2",
     "hoveredOptionBackgroundColorOnDark": "#f2f2f2",
     "iconColor": "",
-    "iconOptionSpacing": "10px",
-    "iconHeight": "20px",
-    "iconWidth": "20px",
+    "iconOptionSpacing": "12px",
+    "iconSize": "20px",
     "labelFontSize": "1rem",
     "labelFontStyle": "normal",
     "labelFontWeight": "400",
