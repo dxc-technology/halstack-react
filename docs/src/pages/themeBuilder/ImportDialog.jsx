@@ -7,10 +7,9 @@ import {
   DxcAlert,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
-import defaultTheme from "./themes/DefaultTheme.json";
 import { deepMerge } from "./utils";
 
-const validateInputTheme = (json) => {
+const validateInputTheme = (json, customThemeSchema) => {
   let inputTheme = [];
   let errMessage = "";
   const isArrayIncluded = (array1, array2) =>
@@ -21,16 +20,13 @@ const validateInputTheme = (json) => {
   try {
     inputTheme = JSON.parse(json);
     const inputComponentNames = Object.keys(inputTheme);
-    const defaultComponentNames = Object.keys(defaultTheme);
+    const schemaComponentNames = Object.keys(customThemeSchema);
 
     inputComponentNames.forEach((componentName) => {
       const errorMessage =
-        (!defaultComponentNames.includes(componentName) &&
+        (!schemaComponentNames.includes(componentName) &&
           "Invalid component name.") ||
-        (!isArrayIncluded(
-          inputTheme[componentName],
-          defaultTheme[componentName]
-        ) &&
+        (!isArrayIncluded(inputTheme[componentName], customThemeSchema[componentName]) &&
           `Invalid theme input name in component ${componentName}.`);
 
       if (errorMessage) throw new Error(errorMessage);
@@ -41,7 +37,7 @@ const validateInputTheme = (json) => {
   return { inputTheme, errMessage };
 };
 
-const ImportDialog = ({ setCustomTheme, setDialogVisible }) => {
+const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }) => {
   const [value, setValue] = useState("");
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
 
@@ -55,7 +51,7 @@ const ImportDialog = ({ setCustomTheme, setDialogVisible }) => {
     setValidationErrorMessage("");
   };
   const validate = () => {
-    const { inputTheme, errMessage } = validateInputTheme(value);
+    const { inputTheme, errMessage } = validateInputTheme(value, customThemeSchema);
 
     if (errMessage === "") {
       setCustomTheme((prevTheme) => deepMerge({}, prevTheme, inputTheme));
