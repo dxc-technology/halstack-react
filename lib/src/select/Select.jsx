@@ -61,7 +61,6 @@ const useStyles = makeStyles(() => ({
       paddingTop: props.optionPaddingTop,
       paddingLeft: props.optionPaddingLeft,
       paddingRight: props.optionPaddingRight,
-      margin: "5px 0px",
 
       "&:hover": {
         backgroundColor: `${
@@ -90,7 +89,7 @@ const useStyles = makeStyles(() => ({
       },
       "& span.MuiButtonBase-root": {
         padding: "0px",
-        margin: "0px",
+        margin: "5px 0px",
 
         "& span.MuiIconButton-label > svg": {
           width: "26px",
