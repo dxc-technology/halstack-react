@@ -61,6 +61,7 @@ const useStyles = makeStyles(() => ({
       paddingTop: props.optionPaddingTop,
       paddingLeft: props.optionPaddingLeft,
       paddingRight: props.optionPaddingRight,
+      margin: "5px 0px",
 
       "&:hover": {
         backgroundColor: `${
