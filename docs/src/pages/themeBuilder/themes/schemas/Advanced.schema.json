@@ -388,8 +388,7 @@
     "logoHeight": "length",
     "logoWidth": "length",
     "minHeight": "length",
-    "socialIconWidth": "length",
-    "socialIconHeight": "length",
+    "socialIconSize": "length",
     "socialIconsGutter": "length"
   },
   "header": {

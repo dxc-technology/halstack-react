@@ -387,8 +387,7 @@
     "logoHeight": "34px",
     "logoWidth": "auto",
     "minHeight": "120px",
-    "socialIconWidth": "25px",
-    "socialIconHeight": "25px",
+    "socialIconSize": "25px",
     "socialIconsGutter": "15px"
   },
   "header": {
