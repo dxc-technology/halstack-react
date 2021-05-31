@@ -90,6 +90,11 @@ const useStyles = makeStyles(() => ({
       "& span.MuiButtonBase-root": {
         padding: "0px",
         margin: "0px",
+
+        "& span.MuiIconButton-label > svg": {
+          width: "26px",
+          height: "26px",
+        },
       },
     },
   }),
