@@ -9,7 +9,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 
-import { spaces, componentTokens } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 import calendarIcon from "./calendar.svg";
 import useTheme from "../useTheme.js";
 
@@ -82,10 +82,25 @@ const DxcDate = ({
     handlerInputBlur(value == null ? innerValue : value);
   };
 
+  const calendarSVG = () => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+        <path data-testid="calendarIcon" d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z" />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg>
+    );
+  };
+
   const dateTheme = createMuiTheme({
     overrides: {
+      MuiTypography: {
+        root: {
+          fontFamily: `${colorsTheme.date.fontFamily} !important`,
+        },
+      },
       MuiPickersYearSelection: {
         container: {
+          color: colorsTheme.date.pickerYearColor,
           "&::-webkit-scrollbar": {
             width: "3px",
           },
@@ -132,24 +147,39 @@ const DxcDate = ({
           maxWidth: "unset",
           minHeight: "unset",
           padding: "0px 10px",
-          height: "316px",
-          fontFamily: componentTokens?.date?.fontFamily,
+          height: colorsTheme.date.pickerHeight,
+          width: colorsTheme.date.pickerWidth,
+          backgroundColor: colorsTheme.date.pickerBackgroundColor,
+          fontFamily: colorsTheme.date.fontFamily,
         },
       },
       MuiPickersToolbarText: {
         toolbarTxt: {
-          color: componentTokens?.date?.pickerFontColor,
-          fontFamily: componentTokens?.date?.fontFamily,
-          fontSize: componentTokens?.date?.fontSize,
+          color: colorsTheme?.date?.pickerActualDate,
+          fontFamily: colorsTheme?.date?.fontFamily,
+          fontSize: "2rem",
         },
         toolbarBtnSelected: {
-          color: colorsTheme.date.pickerFontColor,
+          color: colorsTheme.date.pickerActualDate,
         },
       },
       MuiPickersCalendarHeader: {
+        transitionContainer: {
+          color: colorsTheme.date.pickerMonthColor,
+        },
+        dayLabel: {
+          color: colorsTheme.date.pickerWeekLabelColor,
+          fontFamily: colorsTheme.date.fontFamily,
+        },
         switchHeader: {
           backgroundColor: colorsTheme.white,
           color: colorsTheme.date.pickerFontColor,
+        },
+        iconButton: {
+          backgroundColor: colorsTheme.date.pickerBackgroundColorMonthArrows,
+          "&:hover": {
+            backgroundColor: colorsTheme.date.pickerBackgroundColorMonthArrows,
+          },
         },
       },
       MuiPickersCalendar: {
@@ -163,6 +193,7 @@ const DxcDate = ({
           color: colorsTheme.date.pickerFontColor,
         },
         day: {
+          fontFamily: colorsTheme.date.fontFamily,
           color: colorsTheme.date.pickerFontColor,
           "&:hover": {
             backgroundColor: colorsTheme.date.pickerHoverDateBackgroundColor,
@@ -185,7 +216,6 @@ const DxcDate = ({
           backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
           margin: "0px 100px",
           borderRadius: "20px",
-          fontSize: componentTokens?.date?.fontSize,
         },
         root: {
           "&:focus": {
@@ -210,7 +240,7 @@ const DxcDate = ({
             <DxcInput
               label={label}
               name={name}
-              suffixIcon={<img src={calendarIcon}></img>}
+              suffixIcon={calendarSVG}
               required={required}
               invalid={invalid}
               disabled={disabled}
@@ -266,9 +296,7 @@ const sizes = {
   fillParent: "100%",
 };
 
-const StyledDPicker = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
-`;
+const StyledDPicker = styled.div``;
 
 DxcDate.propTypes = {
   value: PropTypes.string,

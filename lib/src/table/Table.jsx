@@ -82,10 +82,10 @@ const DxcTableContent = styled.table`
       `${props.theme.headerPaddingTop} ${props.theme.headerPaddingRight} ${props.theme.headerPaddingBottom} ${props.theme.headerPaddingLeft}`};
   }
   & th:first-child {
-    border-top-left-radius: 4px;
+    border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
   }
   & th:last-child {
-    border-top-right-radius: 4px;
+    border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
   }
 `;
 

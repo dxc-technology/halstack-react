@@ -97,12 +97,11 @@ const StyledDxcChip = styled.div`
   border-radius: ${(props) => props.theme.borderRadius};
   margin: 2px;
   max-width: ${({ margin }) => `calc(100% - 40px - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`};
-  background-color: ${(props) =>
+  background-color: ${(props) => 
     (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => props.theme.borderColor};
-  height: ${(props) => props.theme.height};
   padding-top: ${(props) => props.theme.contentPaddingTop};
   padding-bottom: ${(props) => props.theme.contentPaddingBottom};
   padding-left: ${(props) => props.theme.contentPaddingLeft};
@@ -124,7 +123,6 @@ const ChipTextContainer = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
-  line-height: 24px;
   color: ${(props) => (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
   cursor: ${({ disabled }) => (disabled && "not-allowed") || "default"};
   text-overflow: ellipsis;
@@ -134,22 +132,18 @@ const ChipTextContainer = styled.span`
 const SuffixIconContainer = styled.img`
   ${(props) => getCursor(props.interactuable, props.disabled)}
   margin-left: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
-  max-width: ${(props) => props.theme.iconMaxWidth};
-  max-height: ${(props) => props.theme.iconMaxHeight};
-  padding-left: ${(props) => props.theme.suffixIconPaddingLeft};
-  padding-right: ${(props) => props.theme.suffixIconPaddingRight};
-  paddin-top: ${(props) => props.theme.suffixIconPaddingTop};
-  padding-bottom: ${(props) => props.theme.suffixIconPaddingBottom};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
+  padding-left: ${(props) => props.theme.iconPaddingLeft};
+  padding-right: ${(props) => props.theme.iconPaddingRight};
 `;
 const PrefixIconContainer = styled.img`
   ${(props) => getCursor(props.interactuable, props.disabled)}
   margin-right: ${(props) => ((props.label || props.suffixIconSrc) && "10px") || (props.prefixIconSrc && "5px")};
-  max-width: ${(props) => props.theme.iconMaxWidth};
-  max-height: ${(props) => props.theme.iconMaxHeight};
-  padding-left: ${(props) => props.theme.suffixIconPaddingLeft};
-  padding-right: ${(props) => props.theme.suffixIconPaddingRight};
-  paddin-top: ${(props) => props.theme.suffixIconPaddingTop};
-  padding-bottom: ${(props) => props.theme.suffixIconPaddingBottom};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
+  padding-left: "${(props) => props.theme.iconPaddingLeft}";
+  padding-right: ${(props) => props.theme.iconPaddingRight};
 `;
 
 const IconContainer = styled.div`
@@ -165,17 +159,16 @@ const IconContainer = styled.div`
           ((props.prefixIcon || props.prefixIconSrc) && "0")
         };`}
   ${(props) => getCursor(props.interactuable, props.disabled)}
-  max-width: ${(props) => props.theme.iconMaxWidth};
-  max-height: ${(props) => props.theme.iconMaxHeight};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
   overflow: hidden;
-  padding-left: ${(props) =>
-    (props.mode === "suffix" && props.theme.suffixIconPaddingLeft) || props.theme.prefixIconPaddingLeft};
-  padding-right: ${(props) =>
-    (props.mode === "suffix" && props.theme.suffixIconPaddingRight) || props.theme.prefixIconPaddingRight};
-  padding-top: ${(props) =>
-    (props.mode === "suffix" && props.theme.suffixIconPaddingTop) || props.theme.prefixIconPaddingTop};
-  padding-bottom: ${(props) =>
-    (props.mode === "suffix" && props.theme.suffixIconPaddingBottom) || props.theme.prefixIconPaddingBottom};
+  padding-left: ${(props) => props.theme.iconPaddingLeft};
+  padding-right: ${(props) =>props.theme.iconPaddingRight};
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 DxcChip.propTypes = {
