@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcResultsetTable, DxcButton } from "@dxc-technology/halstack-react";
+import { DxcTable, DxcResultsetTable, DxcButton } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const iconSVG = () => {
@@ -92,7 +92,7 @@ const Table = () => {
           itemsPerPage={myItemsPerPage}
           itemsPerPageOptions={[2, 3]}
           itemsPerPageFunction={itemsPerPageFunction}
-          margin={{ top: "small" }}
+          margin={{ top: "small", bottom: "xsmall" }}
         ></DxcResultsetTable>
       </Mode>
       <Mode text="With scroll">
