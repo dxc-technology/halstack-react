@@ -15,7 +15,7 @@ import RadioButtonPreview from "./previews/RadioButton";
 import FooterPreview from "./previews/Footer";
 import WizardPreview from "./previews/Wizard";
 import HeaderPreview from "./previews/Header";
-import TextFieldPreview from "./previews/TextField";
+import InputTextPreview from "./previews/InputText";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
 import TextareaPreview from "./previews/Textarea";
@@ -27,7 +27,7 @@ import DialogPreview from "./previews/Dialog";
 import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
 import UploadPreview from "./previews/Upload";
-
+import CardPreview from "./previews/Card";
 const SampleComponents = [
   {
     name: "accordion",
@@ -44,6 +44,10 @@ const SampleComponents = [
   {
     name: "button",
     preview: ButtonPreview,
+  },
+  {
+    name: "card",
+    preview: CardPreview,
   },
   {
     name: "checkbox",
@@ -79,7 +83,7 @@ const SampleComponents = [
   },
   {
     name: "inputText",
-    preview: TextFieldPreview,
+    preview: InputTextPreview,
   },
   {
     name: "link",

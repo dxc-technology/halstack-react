@@ -81,10 +81,10 @@ const DxcTableContent = styled.table`
     padding: 16px 20px 16px 40px;
   }
   & th:first-child {
-    border-top-left-radius: 4px;
+    border-top-left-radius: ${(props) => props.theme.headerBorderRadius};
   }
   & th:last-child {
-    border-top-right-radius: 4px;
+    border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
   }
 `;
 

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcInput } from "@dxc-technology/halstack-react";
+import {
+  DxcInput,
+  DxcHeading,
+  BackgroundColorProvider,
+} from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
@@ -26,11 +30,9 @@ const countries = [
   "Germany",
 ];
 
-const Textfield = () => {
-  const [
-    asynchronousAutocompleteValue,
-    changeAsynchronousAutocompleteValue,
-  ] = useState("");
+const InputText = () => {
+  const [asynchronousAutocompleteValue, changeAsynchronousAutocompleteValue] =
+    useState("");
 
   const onChangeAsynchronousAutocomplete = (newValue) => {
     changeAsynchronousAutocompleteValue(newValue);
@@ -107,10 +109,72 @@ const Textfield = () => {
           margin={{ bottom: "xlarge" }}
         />
       </Mode>
+
+      <DxcHeading
+        text="Dark Mode"
+        level={5}
+        margin={{ top: "small", bottom: "xsmall" }}
+      />
+      <BackgroundColorProvider color="#000000">
+        <Mode mode="dark" text="Default">
+          <DxcInput
+            label="Input label"
+            assistiveText={"assistive text"}
+            margin={{ right: "small", bottom: "small" }}
+          />
+          <DxcInput
+            label="Input label"
+            suffixIcon={facebookIcon}
+            prefixIcon={facebookIcon}
+            assistiveText={"assistive text"}
+            margin={{ right: "small", bottom: "small" }}
+          />
+          <DxcInput
+            label="Input label"
+            suffix={"suf"}
+            prefix={"pre"}
+            assistiveText={"assistive text"}
+            margin={{ bottom: "small" }}
+          />
+        </Mode>
+        <Mode mode="dark" text="Disabled">
+          <DxcInput
+            label="Input label"
+            assistiveText={"assistive text"}
+            disabled
+            margin={{ bottom: "small" }}
+          />
+        </Mode>
+        <Mode mode="dark" text="Required">
+          <DxcInput
+            label="Input label"
+            assistiveText={"assistive text"}
+            required
+            margin={{ bottom: "small" }}
+          />
+        </Mode>
+        <Mode mode="dark" text="Invalid">
+          <DxcInput
+            label="Input label"
+            assistiveText={"assistive text"}
+            invalid
+            margin={{ bottom: "small" }}
+          />
+        </Mode>
+        <Mode mode="dark" text="Autocomplete">
+          <DxcInput
+            label="Autocomplete"
+            value={asynchronousAutocompleteValue}
+            onChange={onChangeAsynchronousAutocomplete}
+            autocompleteOptions={callbackFunc}
+            margin={{ bottom: "xlarge" }}
+          />
+        </Mode>
+      </BackgroundColorProvider>
     </TextFieldContainer>
   );
 };
 
 const TextFieldContainer = styled.div``;
 
-export default Textfield;
+export default InputText;
