@@ -159,17 +159,15 @@ const LinkText = styled.div`
 `;
 
 const LinkIcon = styled.img`
-  width: ${(props) => props.theme.iconWidth};
-  height: ${(props) => props.theme.iconHeight};
-  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${(props) =>
-    props.theme.iconGutter};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
+  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${(props) => props.theme.iconGutter};
 `;
 
 const LinkIconContainer = styled.div`
-  width: ${(props) => props.theme.iconWidth};
-  height: ${(props) => props.theme.iconHeight};
-  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${(props) =>
-    props.theme.iconGutter};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
+  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${(props) => props.theme.iconGutter};
   overflow: hidden;
   img,
   svg {

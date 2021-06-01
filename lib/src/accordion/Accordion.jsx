@@ -129,8 +129,7 @@ DxcAccordion.propTypes = {
 };
 const DXCAccordion = styled.div`
   display: flex;
-  font-size: ${(props) => props.theme.fontSizeBase};
-  min-width: ${(props) => props.theme.minWidth};
+  min-width: 280px;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -153,13 +152,14 @@ const DXCAccordion = styled.div`
     position: static;
     width: 100%;
     border-radius: ${(props) => props.theme.borderRadius};
+   
     &.Mui-expanded {
       border-radius: ${(props) => props.theme.borderRadius}; 
     }
     &.MuiExpansionPanel-root {
       display: flex;
       flex-direction: column;
-     
+      min-height:48px;
     }
     &.MuiExpansionPanel-rounded{
      border-radius:${(props) => props.theme.borderRadius}; 
@@ -172,8 +172,7 @@ const DXCAccordion = styled.div`
 
     .MuiButtonBase-root {
       border-radius: ${(props) => props.theme.borderRadius};
-      
-      height: 48px;
+      height: auto;
       &.Mui-expanded {
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
@@ -187,8 +186,12 @@ const DXCAccordion = styled.div`
       }
 
       .MuiExpansionPanelSummary-content {
-        padding-right: 24px;
+        padding-top: ${(props) => props.theme.titleLabelPaddingTop};
+        padding-bottom: ${(props) => props.theme.titleLabelPaddingBottom};
+        padding-right: 16px;
+        padding-left: 0;
         min-width: 0;
+        align-items: baseline;
         &.Mui-expanded {
           div:nth-child(2) {
             opacity: 1;
@@ -203,10 +206,7 @@ const DXCAccordion = styled.div`
     }
 
     .MuiExpansionPanelSummary-root.Mui-expanded {
-      min-height: ${(props) => props.theme.minHeight};
-      border-width:${(props) => props.theme.headerFocusBorderThickness};
-      border-style:${(props) => props.theme.headerFocusBorderStyle};
-      border-color:${(props) => props.theme.headerFocusBorderColor};
+      min-height: 48px;
     }
 
     .MuiTouchRipple-root {
@@ -233,18 +233,18 @@ const DXCAccordion = styled.div`
     color: ${(props) => props.theme.arrowColor};
   }
 
-  .MuiExpansionPanelSummary-root {
-    padding-top: ${(props) => props.theme.headerPaddingTop};
-    padding-right: ${(props) => props.theme.headerPaddingRight};
-    padding-bottom: ${(props) => props.theme.headerPaddingBottom};
-    padding-left: ${(props) => props.theme.headerPaddingLeft};
-  }
-
   .MuiExpansionPanelSummary-root.Mui-disabled {
     opacity: 1;
   }
+  .MuiExpansionPanelSummary-root.Mui-focused {
+    border-width:${(props) => props.theme.titleFocusBorderThickness};
+    border-style:${(props) => props.theme.titleFocusBorderStyle};
+    border-color:${(props) => props.theme.titleFocusBorderColor};
+
+  }
 
   .MuiExpansionPanelDetails-root {
+    height:${(props) => props.theme.customContentPanelHeight};
     padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
     padding-top: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -261,15 +261,13 @@ const AccordionInfo = styled.div`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  margin-right: ${(props) => props.theme.headerTitleMarginRight};
-  margin-left: ${(props) => props.theme.headerTitleMarginLeft};
-  margin-top: ${(props) => props.theme.headerTitleMarginTop};
-  margin-bottom: ${(props) => props.theme.headerTitleMarginBottom};
-  font-family: ${(props) => props.theme.titleFontFamily};
-  font-size: ${(props) => props.theme.titleFontSize};
-  font-style: ${(props) => props.theme.titleFontStyle};
-  font-weight: ${(props) => props.theme.titleFontWeight};
-  color: ${(props) => props.theme.titleFontColor || props.theme.fontColorBase};
+  padding-left: ${(props) => props.theme.titlePaddingLeft};
+  padding-right: ${(props) => props.theme.titlePaddingRight};
+  font-family: ${(props) => props.theme.titleLabelFontFamily};
+  font-size: ${(props) => props.theme.titleLabelFontSize};
+  font-style: ${(props) => props.theme.titleLabelFontStyle};
+  font-weight: ${(props) => props.theme.titleFonLabeltWeight};
+  color: ${(props) => props.theme.titleLabelFontColor || props.theme.fontColorBase};
 `;
 
 const AccordionLabel = styled.div``;
@@ -283,10 +281,8 @@ const AccordionText = styled.div`
 `;
 
 const AccordionAssistiveText = styled.div`
-  margin-top: ${(props) => props.theme.assistiveTextMarginTop};
-  margin-bottom: ${(props) => props.theme.assistiveTextMarginBottom};
-  margin-left: ${(props) => props.theme.assistiveTextMarginLeft};
-  margin-right: ${(props) => props.theme.assistiveTextMarginRight};
+  padding-left: ${(props) => props.theme.assistiveTextPaddingLeft};
+  padding-right: ${(props) => props.theme.assistiveTextPaddingRight};
   font-size: ${(props) => props.theme.assistiveTextFontSize};
   font-family: ${(props) => props.theme.assistiveTextFontFamily};
   font-style: ${(props) => props.theme.assistiveTextFontStyle};

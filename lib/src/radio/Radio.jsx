@@ -113,8 +113,8 @@ const RadioContainer = styled.span`
     margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
     .MuiIconButton-label {
       .MuiSvgIcon-root {
-        height: ${(props) => props.theme.circleHeight};
-        width: ${(props) => props.theme.circleWidth};
+        height: ${(props) => props.theme.circleSize};
+        width: ${(props) => props.theme.circleSize};
       }
       color: ${(props) =>
         props.backgroundType === "dark"
