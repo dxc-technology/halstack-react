@@ -77,7 +77,7 @@ const useStyles = makeStyles(() => ({
         color: `${props.optionsFontColor || props.color}`,
       },
       "&:focus": {
-        border: `2px solid ${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor}`,
+        outline: `${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor} auto 2px`,
       },
       "&.MuiListItem-root.Mui-selected": {
         backgroundColor: `${
