@@ -9,6 +9,7 @@ import FontStyleInput from "./widgets/FontStyleInput";
 import TextTransformInput from "./widgets/TextTransformInput";
 import BorderStyleInput from "./widgets/BorderStyleInput";
 import FontFamily from "./widgets/FontFamily";
+import BorderWidthInput from "./widgets/BorderWidthInput";
 
 const makeReadable = (token) =>
   token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
@@ -91,7 +92,14 @@ const ThemeInput = ({
                   onChangeCustomTheme={onChangeCustomTheme}
                 />
               );
-            // case "bWidth":
+            case "bWidth":
+              return (
+                <BorderWidthInput
+                  propertyName={propertyName}
+                  propertyValue={propertyValue}
+                  onChangeCustomTheme={onChangeCustomTheme}
+                />
+              );
             // case "alphaValue":
             // case "flexAlign":
             // case "flexJustify":
