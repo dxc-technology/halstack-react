@@ -94,7 +94,6 @@
     "borderColor": "color",
     "height": "length"
   },
-
   "box": {
     "backgroundColor": "color",
     "fontFamily": "fFamily",
@@ -199,8 +198,7 @@
     "textPaddingBottom": "length",
     "focusColor": "color",
     "labelFontLineHeight": "length",
-    "labelFontWeight": "fWeight",
-    "labelLetterSpacing": "length",
+    "labelLetterSpacing": "length", 
     "labelTextTranform": "fTextTransform",
     "iconMaxHeight": "length",
     "iconMaxWidth": "length",
@@ -211,20 +209,16 @@
     "width": "length"
   },
   "checkbox": {
+    "borderColor":"color",
+    "borderHoverColor":"color",
+    "borderColorOnDark":"color",
+    "borderHoverColorOnDark":"color",
     "backgroundColorChecked": "color",
     "backgroundHoverColorChecked": "color",
     "backgroundColorCheckedOnDark": "color",
     "backgroundHoverColorCheckedOnDark": "color",
     "checkColor": "color",
-    "borderColor": "color",
-    "borderHoverColor": "color",
-    "borderColorOnDark": "color",
-    "borderHoverColorOnDark": "color",
     "checkColorOnDark": "color",
-    "fontFamily": "fFamily",
-    "fontSize": "length",
-    "fontStyle": "fStyle",
-    "fontWeight": "fWeight",
     "fontColor": "color",
     "fontColorOnDark": "color",
     "disabledBackgroundColorChecked": "color",
@@ -235,8 +229,11 @@
     "disabledCheckColorOnDark": "color",
     "disabledFontColor": "color",
     "disabledFontColorOnDark": "color",
-    "focusColor": "color",
-    "checkLabelSpacing": "length"
+    "fontFamily": "fFamily",
+    "fontSize":"length",
+    "fontWeight":"fWeight",
+    "checkLabelSpacing": "length",
+    "focusColor": "color"
   },
   "chip": {
     "backgroundColor": "color",
