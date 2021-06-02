@@ -51,13 +51,14 @@ const Dropdown = () => {
           options={options}
           onSelectOption={selectOption}
           label="Default Dropdown"
-          margin={{ right: "small" }}
+          margin={{ top: "xsmall", right: "small" }}
         ></DxcDropdown>
         <DxcDropdown
           options={iconOptions}
           onSelectOption={selectOption}
           icon={linkedinIcon}
           label="Dropdown with icons"
+          margin={{ top: "xsmall" }}
         ></DxcDropdown>
       </Mode>
     </DropdownContainer>

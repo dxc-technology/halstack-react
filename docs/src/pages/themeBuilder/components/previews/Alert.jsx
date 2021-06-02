@@ -16,7 +16,7 @@ const Alert = () => {
           type="info"
           mode="inline"
           inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          margin="xxsmall"
+          margin={{ top: "xsmall" }}
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           malesuada lacus ex.
@@ -27,7 +27,7 @@ const Alert = () => {
           type="confirm"
           mode="inline"
           inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          margin="xxsmall"
+          margin={{ top: "xsmall" }}
         />
       </Mode>
       <Mode text="Warning Alert">
@@ -35,7 +35,7 @@ const Alert = () => {
           type="warning"
           mode="inline"
           inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          margin="xxsmall"
+          margin={{ top: "xsmall" }}
         />
       </Mode>
       <Mode text="Error Alert">
@@ -43,7 +43,7 @@ const Alert = () => {
           type="error"
           mode="inline"
           inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-          margin="xxsmall"
+          margin={{ top: "xsmall" }}
         />
       </Mode>
       <Mode text="Modal Alert">
@@ -51,7 +51,7 @@ const Alert = () => {
           theme="light"
           label="Overlay Alert"
           onClick={handleVisibility}
-          margin="xxsmall"
+          margin={{ top: "xsmall" }}
         />
         {isVisible && (
           <DxcAlert
@@ -59,7 +59,7 @@ const Alert = () => {
             mode="modal"
             onClose={handleVisibility}
             inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            margin="xxsmall"
+            margin={{ top: "xsmall" }}
           ></DxcAlert>
         )}
       </Mode>

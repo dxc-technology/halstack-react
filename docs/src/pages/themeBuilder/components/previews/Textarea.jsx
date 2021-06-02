@@ -5,7 +5,7 @@ import Mode from "../Mode";
 import { BackgroundColorProvider } from "@dxc-technology/halstack-react/dist/BackgroundColorContext";
 
 const Textarea = () => {
-  const [value, changeValue] = useState("");
+  const [value, changeValue] = useState("Sample text");
   const onChange = (newValue) => {
     changeValue(newValue);
   };
@@ -18,7 +18,12 @@ const Textarea = () => {
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <DxcTextarea label="Textarea label" value={value} onChange={onChange} />
+        <DxcTextarea
+          label="Textarea label"
+          value={value}
+          onChange={onChange}
+          margin={{ top: "xsmall", bottom: "xxsmall" }}
+        />
       </Mode>
       <Mode text="Disabled">
         <DxcTextarea
@@ -26,7 +31,7 @@ const Textarea = () => {
           value="Sample text"
           assistiveText="assistive text"
           disabled={true}
-          margin={{ top: "small", bottom: "xsmall" }}
+          margin={{ top: "xsmall", bottom: "xxsmall" }}
         />
       </Mode>
       <Mode text="Invalid">
@@ -36,7 +41,7 @@ const Textarea = () => {
           onChange={onChange}
           assistiveText="assistive text"
           invalid={true}
-          margin={{ top: "small", bottom: "xsmall" }}
+          margin={{ top: "xsmall", bottom: "xxsmall" }}
         />
       </Mode>
       <Mode text="Required">
@@ -46,7 +51,7 @@ const Textarea = () => {
           onChange={onChange}
           assistiveText="assistive text"
           required={true}
-          margin={{ top: "small", bottom: "xsmall" }}
+          margin={{ top: "xsmall", bottom: "xxsmall" }}
         />
       </Mode>
       <DxcHeading
@@ -60,6 +65,7 @@ const Textarea = () => {
             label="Textarea label"
             value={value}
             onChange={onChange}
+            margin={{ top: "xsmall", bottom: "xxsmall" }}
           />
         </Mode>
         <Mode mode="dark" text="Disabled">
@@ -69,7 +75,7 @@ const Textarea = () => {
             onChange={onChange}
             assistiveText="assistive text"
             disabled={true}
-            margin={{ top: "small", bottom: "xsmall" }}
+            margin={{ top: "xsmall", bottom: "xxsmall" }}
           />
         </Mode>
         <Mode mode="dark" text="Invalid">
@@ -79,7 +85,7 @@ const Textarea = () => {
             onChange={onChange}
             assistiveText="assistive text"
             invalid={true}
-            margin={{ top: "small", bottom: "xsmall" }}
+            margin={{ top: "xsmall", bottom: "xxsmall" }}
           />
         </Mode>
         <Mode mode="dark" text="Required">
@@ -89,7 +95,7 @@ const Textarea = () => {
             onChange={onChange}
             assistiveText="assistive text"
             required={true}
-            margin={{ top: "small", bottom: "xsmall" }}
+            margin={{ top: "xsmall", bottom: "xxsmall" }}
           />
         </Mode>
       </BackgroundColorProvider>

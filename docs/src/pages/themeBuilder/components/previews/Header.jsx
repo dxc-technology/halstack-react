@@ -48,7 +48,7 @@ const Header = () => {
               <DxcButton label={"Custom Button"} onClick={closeHandler} />
             </React.Fragment>
           )}
-          margin="medium"
+          margin="xsmall"
           underlined
         />
       </Mode>
@@ -67,7 +67,7 @@ const Header = () => {
                 <DxcButton label={"Custom Button"} onClick={closeHandler} />
               </React.Fragment>
             )}
-            margin="medium"
+            margin="xsmall"
             underlined
           />
         </div>
