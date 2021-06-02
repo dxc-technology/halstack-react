@@ -198,13 +198,13 @@ const IconContainer = styled.div`
 `;
 
 const Icon = styled.img`
-  width: ${(props) => props.theme.wizard.stepContainerIconWidth};
-  height: ${(props) => props.theme.wizard.stepContainerIconHeight};
+  width: ${(props) => props.theme.wizard.stepContainerIconSize};
+  height: ${(props) => props.theme.wizard.stepContainerIconSize};
 `;
 
 const StepIconContainer = styled.div`
-  width: ${(props) => props.theme.wizard.stepContainerIconWidth};
-  height: ${(props) => props.theme.wizard.stepContainerIconHeight};
+  width: ${(props) => props.theme.wizard.stepContainerIconSize};
+  height: ${(props) => props.theme.wizard.stepContainerIconSize};
   overflow: hidden;
   img,
   svg {

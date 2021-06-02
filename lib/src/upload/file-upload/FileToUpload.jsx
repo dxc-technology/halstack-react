@@ -93,9 +93,9 @@ const FileType = styled.div`
 const DeleteFile = styled.button`
   background-color: ${(props) => props.theme.fileDeleteIconColor};
   mask: url(${closeIcon}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.fileDeleteIconWidth} ${props.theme.fileDeleteIconHeight}`};
-  height: ${(props) => props.theme.fileDeleteIconHeight};
-  width: ${(props) => props.theme.fileDeleteIconWidth};
+  mask-size: ${(props) => `${props.theme.fileDeleteIconSize} ${props.theme.fileDeleteIconSize}`};
+  height: ${(props) => props.theme.fileDeleteIconSize};
+  width: ${(props) => props.theme.fileDeleteIconSize};
   border: none;
   display: flex;
   margin-right: 30px;

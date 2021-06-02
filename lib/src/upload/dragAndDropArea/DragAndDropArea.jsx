@@ -139,9 +139,9 @@ const DragAndDropContent = styled.div`
 const DragAndDropIcon = styled.div`
   background-color: ${(props) => props.theme.dragAndDropIconColor};
   mask: url(${uploadFile}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.dragAndDropIconWidth} ${props.theme.dragAndDropIconHeight}`};
-  height: ${(props) => props.theme.dragAndDropIconHeight};
-  width: ${(props) => props.theme.dragAndDropIconWidth};
+  mask-size: ${(props) => `${props.theme.dragAndDropIconSize} ${props.theme.dragAndDropIconSize}`};
+  height: ${(props) => props.theme.dragAndDropIconSize};
+  width: ${(props) => props.theme.dragAndDropIconSize};
   margin-bottom: 20px;
 `;
 
@@ -232,9 +232,10 @@ const DragAndDropContentHover = styled.div`
 const DragAndDropIconHover = styled.div`
   background-color: ${(props) => props.theme.dragAndDropDraggingStateIconColor};
   mask: url(${dropFile}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.dragAndDropDraggingStateIconWidth} ${props.theme.dragAndDropDraggingStateIconHeight}`};
-  height: ${(props) => props.theme.dragAndDropDraggingStateIconHeight};
-  width: ${(props) => props.theme.dragAndDropDraggingStateIconWidth};
+  mask-size: ${(props) =>
+    `${props.theme.dragAndDropDraggingStateIconSize} ${props.theme.dragAndDropDraggingStateIconSize}`};
+  height: ${(props) => props.theme.dragAndDropDraggingStateIconSize};
+  width: ${(props) => props.theme.dragAndDropDraggingStateIconSize};
 `;
 
 const DragAndDropTextHover = styled.div`
