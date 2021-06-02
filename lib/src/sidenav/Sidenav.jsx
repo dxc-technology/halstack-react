@@ -42,22 +42,20 @@ const SideNavContainer = styled.div`
   max-width: 300px;
   width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
   padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
+  
   overflow-y: auto;
   overflow-x: hidden;
   ::-webkit-scrollbar {
     width: 2px;
   }
-
   ::-webkit-scrollbar-track {
     background-color: ${(props) => props.theme.scrollBarTrackColor};
     border-radius: 3px;
   }
-
   ::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme.scrollBarThumbColor};
     border-radius: 3px;
   }
-
   display: flex;
   flex-direction: column;
 `;

@@ -20,54 +20,54 @@ const Button = () => {
           <DxcButton
             mode="primary"
             label="button"
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
           <DxcButton
             mode="primary"
             label="Button"
             icon={linkedinIcon}
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
           <DxcButton
             mode="primary"
             label="button"
             disabled
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
         </Mode>
         <Mode text="Secondary">
           <DxcButton
             mode="secondary"
             label="button"
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
           <DxcButton
             label="Button"
             mode="secondary"
             icon={linkedinIcon}
             iconPosition="after"
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
           <DxcButton
             mode="secondary"
             label="button"
             disabled={true}
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
         </Mode>
         <Mode text="Text">
-          <DxcButton mode="text" label="button" margin={{ right: "small" }} />
+          <DxcButton mode="text" label="button" margin={{ top: "xsmall", right: "small" }} />
           <DxcButton
             label="Button"
             mode="text"
             icon={linkedinIcon}
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
           <DxcButton
             mode="text"
             label="button"
             disabled
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
         </Mode>
         <DxcHeading
@@ -80,54 +80,54 @@ const Button = () => {
             <DxcButton
               mode="primary"
               label="button"
-              margin={{ right: "small" }}
+              margin={{ top: "xsmall", right: "small" }}
             />
             <DxcButton
               mode="primary"
               label="Button"
               icon={linkedinIcon}
-              margin={{ right: "small" }}
+              margin={{ top: "xsmall", right: "small" }}
             />
             <DxcButton
               mode="primary"
               label="button"
               disabled
-              margin={{ right: "small" }}
+              margin={{ top: "xsmall", right: "small" }}
             />
         </Mode>
         <Mode  mode="dark" text="Secondary">
           <DxcButton
             mode="secondary"
             label="button"
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
           <DxcButton
             label="Button"
             mode="secondary"
             icon={linkedinIcon}
             iconPosition="after"
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
           <DxcButton
             mode="secondary"
             label="button"
             disabled={true}
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
         </Mode>
         <Mode mode="dark" text="Text">
-        <DxcButton mode="text" label="button" margin={{ right: "small" }} />
+        <DxcButton mode="text" label="button" margin={{ top: "xsmall", right: "small" }} />
           <DxcButton
             label="Button"
             mode="text"
             icon={linkedinIcon}
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
           <DxcButton
             mode="text"
             label="button"
             disabled
-            margin={{ right: "small" }}
+            margin={{ top: "xsmall", right: "small" }}
           />
         </Mode>
         </BackgroundColorProvider>

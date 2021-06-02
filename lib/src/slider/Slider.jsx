@@ -173,7 +173,7 @@ const SliderContainer = styled.div`
         props.backgroundType === "dark"
           ? props.theme.disabledThumbBackgroundColorOnDark
           : props.theme.disabledThumbBackgroundColor};
-      top: ${(props) => props.theme.disabledThumbTopPosition};
+      top: ${(props) => props.theme.disabledThumbVerticalPosition};
     }
     & .MuiSlider-track {
       background-color: ${(props) =>
@@ -199,7 +199,7 @@ const SliderContainer = styled.div`
       height: ${(props) => props.theme.dotsHeight};
       width: ${(props) => props.theme.dotsWidth};
       border-radius: 18px;
-      top: ${(props) => props.theme.disabledDotsTopPosition};
+      top: ${(props) => props.theme.disabledDotsVerticalPosition};
     }
   }
 
@@ -208,7 +208,7 @@ const SliderContainer = styled.div`
     width: ${(props) => props.theme.thumbWidth};
     background-color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
-    top: ${(props) => props.theme.thumbTopPosition};
+    top: ${(props) => props.theme.thumbVerticalPosition};
     transform: scale(0.7);
 
     :hover,
@@ -240,7 +240,7 @@ const SliderContainer = styled.div`
     background-color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.trackLineOnDark : props.theme.trackLineColor};
     height: ${(props) => props.theme.trackLineThickness};
-    top: ${(props) => props.theme.trackLinePosition};
+    top: ${(props) => props.theme.trackLineVerticalPosition};
   }
   .MuiSlider-track.MuiSlider-trackAfter {
     background-color: ${(props) =>
@@ -250,7 +250,7 @@ const SliderContainer = styled.div`
     background-color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.totalLineOnDark : props.theme.totalLineColor};
     height: ${(props) => props.theme.totalLineThickness};
-    top: ${(props) => props.theme.totalLineTopPosition};
+    top: ${(props) => props.theme.totalLineVerticalPosition};
   }
   .MuiSlider-mark.MuiSlider-markActive {
     background-color: ${(props) =>
@@ -262,7 +262,7 @@ const SliderContainer = styled.div`
     height: ${(props) => props.theme.dotsHeight};
     width: ${(props) => props.theme.dotsWidth};
     border-radius: 18px;
-    top: ${(props) => props.theme.dotsTopPosition};
+    top: ${(props) => props.theme.dotsVerticalPosition};
   }
 `;
 

@@ -59,21 +59,21 @@ const InputText = () => {
         <DxcInput
           label="Input label"
           assistiveText={"assistive text"}
-          margin={{ right: "small", bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall", right: "medium" }}
         />
         <DxcInput
           label="Input label"
           suffixIcon={facebookIcon}
           prefixIcon={facebookIcon}
           assistiveText={"assistive text"}
-          margin={{ right: "small", bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall", right: "medium" }}
         />
         <DxcInput
           label="Input label"
           suffix={"suf"}
           prefix={"pre"}
           assistiveText={"assistive text"}
-          margin={{ bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <Mode text="Disabled">
@@ -81,7 +81,7 @@ const InputText = () => {
           label="Input label"
           assistiveText={"assistive text"}
           disabled
-          margin={{ bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <Mode text="Required">
@@ -89,7 +89,7 @@ const InputText = () => {
           label="Input label"
           assistiveText={"assistive text"}
           required
-          margin={{ bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <Mode text="Invalid">
@@ -97,7 +97,7 @@ const InputText = () => {
           label="Input label"
           assistiveText={"assistive text"}
           invalid
-          margin={{ bottom: "small" }}
+          margin={{ top:"xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <Mode text="Autocomplete">
@@ -106,7 +106,7 @@ const InputText = () => {
           value={asynchronousAutocompleteValue}
           onChange={onChangeAsynchronousAutocomplete}
           autocompleteOptions={callbackFunc}
-          margin={{ bottom: "xlarge" }}
+          margin={{ top:"xxsmall", bottom: "xlarge" }}
         />
       </Mode>
 

@@ -13,7 +13,7 @@ const Mode = ({ text, mode, children }) => {
 const ModeContainer = styled.div`
   background-color: ${(props) =>
     props.mode === "dark" ? "#000000" : "transparent"};
-  padding-bottom:10px;
+  padding-bottom: 10px;
 `;
 
 const PreviewsContainer = styled.div`

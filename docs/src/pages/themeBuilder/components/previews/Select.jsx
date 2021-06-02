@@ -64,16 +64,22 @@ const optionsNoIcons = [
 const Select = () => {
   return (
     <SelectContainer>
+      <DxcHeading
+        text="Light Mode"
+        level={5}
+        margin={{ top: "xsmall", bottom: "xxsmall" }}
+      />
       <Mode text="Default">
         <DxcSelect
           options={options}
           label="Default Select"
-          margin={{ right: "small" }}
+          margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
         ></DxcSelect>
         <DxcSelect
           options={options}
           required
           label="Required Select"
+          margin={{ top: "xxsmall", bottom: "xsmall" }}
         ></DxcSelect>
       </Mode>
       <Mode text="Multiple">
@@ -81,14 +87,14 @@ const Select = () => {
           options={optionsNoIcons}
           multiple
           label="Multiple Select"
-          margin={{ right: "small" }}
+          margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
         ></DxcSelect>
         <DxcSelect
           options={optionsNoIcons}
           multiple
           invalid
           label="Invalid Select"
-          margin={{ right: "small" }}
+          margin={{ top: "xxsmall", bottom: "xsmall" }}
         ></DxcSelect>
       </Mode>
       <Mode text="Disabled">
@@ -96,9 +102,9 @@ const Select = () => {
           options={options}
           disabled
           label="Disabled Select"
+          margin={{ top: "xxsmall", bottom: "xsmall" }}
         ></DxcSelect>
       </Mode>
-
       <DxcHeading
         text="Dark Mode"
         level={5}
@@ -109,12 +115,13 @@ const Select = () => {
           <DxcSelect
             options={options}
             label="Default Select"
-            margin={{ right: "small" }}
+            margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
           ></DxcSelect>
           <DxcSelect
             options={options}
             invalid
             label="Invalid Select"
+            margin={{ top: "xxsmall", bottom: "xsmall" }}
           ></DxcSelect>
         </Mode>
         <Mode mode="dark" text="Disabled">

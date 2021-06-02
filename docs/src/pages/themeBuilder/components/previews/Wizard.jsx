@@ -31,6 +31,7 @@ const Wizard = () => {
               disabled: true,
             },
           ]}
+          margin={{ top: "xsmall", bottom: "xxsmall" }}
         ></DxcWizard>
       </Mode>
       <Mode text="Icons">
@@ -60,6 +61,7 @@ const Wizard = () => {
               icon: facebookIcon,
             },
           ]}
+          margin={{ top: "xsmall", bottom: "xxsmall" }}
         ></DxcWizard>
       </Mode>
     </WizardContainer>
