@@ -83,7 +83,7 @@ const Tabs = () => {
         ></DxcTabs>
       </Mode>
       <LargeTabsContainer>
-        <Title>Large Tab</Title>
+        <Title>Large Tab with Scroll buttons</Title>
         <PreviewContainer>
           <DxcTabs
             activeTabIndex={largeActiveTab}

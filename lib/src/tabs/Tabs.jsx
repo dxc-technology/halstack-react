@@ -137,8 +137,7 @@ const DxCTabs = styled.div`
   .MuiTabs-root {
     background: white;
     min-height: ${(props) =>
-      ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && props.theme.minHeight) ||
-      props.theme.minHeightWithLabelAndIcon};
+      ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
 
     .MuiTabs-scroller {
       .MuiTabs-flexContainer + span {
@@ -158,15 +157,11 @@ const DxCTabs = styled.div`
         ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") ||
         "8px 16px"};
       height: ${(props) =>
-        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
-          props.theme.minHeight) ||
-        props.theme.minHeightWithLabelAndIcon};
-      min-width: ${(props) => props.theme.minWidth};
-      max-width: ${(props) => props.theme.maxWidth};
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
+      min-width: 90px;
+      max-width: 360px;
       min-height: ${(props) =>
-        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) &&
-          props.theme.minHeight) ||
-        props.theme.minHeightWithLabelAndIcon};
+        ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
 
       &:hover {
         background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
