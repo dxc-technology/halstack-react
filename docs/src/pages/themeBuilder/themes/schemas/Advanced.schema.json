@@ -838,9 +838,6 @@
     "badgeWidthWithNotificationNumber": "length",
     "badgeHeightWithNotificationNumber": "length"
   },
-  "tabbedSection": {
-    "zindex": "integer"
-  },
   "textarea": {
     "disabledFontColor": "color",
     "disabledFontColorOnDark": "color",

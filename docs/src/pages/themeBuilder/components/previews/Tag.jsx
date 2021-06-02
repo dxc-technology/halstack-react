@@ -17,9 +17,9 @@ const Tag = () => {
   return (
     <TagContainer>
       <Mode text="Default">
-        <DxcTag margin="medium" icon={iconSVG} label="DXC Technology"></DxcTag>
+        <DxcTag margin="small" icon={iconSVG} label="DXC Technology"></DxcTag>
         <DxcTag
-          margin="medium"
+          margin="small"
           icon={iconSVG}
           label="DXC Technology"
           iconBgColor="#6B4187"

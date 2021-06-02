@@ -30,7 +30,7 @@ const Tabs = () => {
           activeTabIndex={activeTab}
           onTabClick={onTabClick}
           tabs={[{ label: "Tab 1" }, { label: "Tab 2" }, { label: "Tab 3" }]}
-          margin={{ top: "small", bottom: "small" }}
+          margin={{ top: "xsmall", bottom: "xsmall" }}
         ></DxcTabs>
       </Mode>
       <Mode text="Disabled">
@@ -50,7 +50,7 @@ const Tabs = () => {
               label: "Tab 3",
             },
           ]}
-          margin={{ top: "small", bottom: "small" }}
+          margin={{ top: "xsmall", bottom: "xsmall" }}
         ></DxcTabs>
       </Mode>
       <Mode text="With notifications">
@@ -79,7 +79,7 @@ const Tabs = () => {
               notificationNumber: false,
             },
           ]}
-          margin={{ top: "small", bottom: "small" }}
+          margin={{ top: "xsmall", bottom: "xsmall" }}
         ></DxcTabs>
       </Mode>
       <LargeTabsContainer>
@@ -115,7 +115,7 @@ const Tabs = () => {
               { label: "Tab 24" },
               { label: "Tab 25" },
             ]}
-            margin={{ top: "small", bottom: "small" }}
+            margin={{ top: "xsmall", bottom: "xsmall" }}
           ></DxcTabs>
         </PreviewContainer>
       </LargeTabsContainer>
@@ -140,7 +140,7 @@ const Title = styled.div`
   letter-spacing: 1.88px;
   color: ${(props) => (props.mode === "dark" ? "#FFFFFF" : "#000000")};
   text-transform: uppercase;
-  padding: 40px 0 10px 10px;
+  padding: 20px 0 10px 10px;
 `;
 
 export default Tabs;

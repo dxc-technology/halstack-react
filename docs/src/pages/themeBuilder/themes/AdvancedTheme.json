@@ -506,7 +506,8 @@
     "underlineStyle": "solid",
     "underlineThickness": "1px",
     "visitedFontColor": "#8800F6",
-    "visitedUnderlineColor": "#8800F6"
+    "visitedUnderlineColor": "#8800F6",
+    "focusColor": "#005FCC"
   },
   "paginator": {
     "backgroundColor": "#eeeeee",
@@ -834,9 +835,6 @@
     "badgeHeight": "16px",
     "badgeWidthWithNotificationNumber": "23px",
     "badgeHeightWithNotificationNumber": "17px"
-  },
-  "tabbedSection": {
-    "zindex": "10"
   },
   "textarea": {
     "disabledFontColor": "#b1b1b1",

@@ -15,16 +15,42 @@ const Checkbox = () => {
   };
   return (
     <CheckboxContainer>
+      <DxcHeading
+        text="Light Mode"
+        level={5}
+        margin={{ top: "xsmall", bottom: "xxsmall" }}
+      />
       <Mode text="Default">
-        <DxcCheckbox checked={checked} label="Checkbox" onChange={onChange} />
+        <DxcCheckbox
+          checked={checked}
+          label="Checkbox"
+          onChange={onChange}
+          margin={{ top: "xsmall", left: "xsmall" }}
+        />
       </Mode>
       <Mode text="Label position">
-        <DxcCheckbox label="Label before" margin="small"/>
-        <DxcCheckbox labelPosition="after" label="Label after" margin="small"/>
+        <DxcCheckbox
+          label="Label before"
+          margin={{ top: "xsmall", left: "xsmall", right: "xsmall" }}
+        />
+        <DxcCheckbox
+          labelPosition="after"
+          label="Label after"
+          margin={{ top: "xsmall" }}
+        />
       </Mode>
       <Mode text="Disabled">
-        <DxcCheckbox label="Disabled" disabled />
-        <DxcCheckbox label="Disabled Checked" checked disabled />
+        <DxcCheckbox
+          label="Disabled"
+          disabled
+          margin={{ top: "xsmall", left: "xsmall", right: "xsmall" }}
+        />
+        <DxcCheckbox
+          label="Disabled Checked"
+          checked
+          disabled
+          margin={{ top: "xsmall" }}
+        />
       </Mode>
       <DxcHeading
         text="Dark Mode"
@@ -33,15 +59,36 @@ const Checkbox = () => {
       />
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Default">
-          <DxcCheckbox checked={checked} label="Checkbox" onChange={onChange} />
+          <DxcCheckbox
+            checked={checked}
+            label="Checkbox"
+            onChange={onChange}
+            margin={{ top: "xsmall", left: "xsmall" }}
+          />
         </Mode>
         <Mode mode="dark" text="Label position">
-          <DxcCheckbox label="Label before" />
-          <DxcCheckbox labelPosition="after" label="Label after" />
+          <DxcCheckbox
+            label="Label before"
+            margin={{ top: "xsmall", left: "xsmall", right: "xsmall" }}
+          />
+          <DxcCheckbox
+            labelPosition="after"
+            label="Label after"
+            margin={{ top: "xsmall" }}
+          />
         </Mode>
         <Mode mode="dark" text="Disabled">
-          <DxcCheckbox label="Disabled" disabled />
-          <DxcCheckbox label="Disabled Checked" checked disabled />
+          <DxcCheckbox
+            label="Disabled"
+            disabled
+            margin={{ top: "xsmall", left: "xsmall", right: "xsmall" }}
+          />
+          <DxcCheckbox
+            label="Disabled Checked"
+            checked
+            disabled
+            margin={{ top: "xsmall" }}
+          />
         </Mode>
       </BackgroundColorProvider>
     </CheckboxContainer>
