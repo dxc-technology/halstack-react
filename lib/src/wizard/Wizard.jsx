@@ -23,7 +23,7 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
   };
 
   return (
-    <ThemeProvider theme={colorsTheme}>
+    <ThemeProvider theme={colorsTheme.wizard}>
       <StepsContainer mode={mode} margin={margin}>
         {steps.map((step, i) => {
           return (
@@ -40,7 +40,12 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                   <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                     {step.icon ? (
                       <StepIconContainer disabled={step.disabled}>
-                        {typeof step.icon === "object" ? step.icon : React.createElement(step.icon)}
+                        {typeof step.icon === "object" ? (
+                            step.icon.type === "img" 
+                              ? <ImgContainer current={i === renderedCurrent} img={step.icon.props.src} />
+                              : step.icon
+                          ) : React.createElement(step.icon)
+                        }
                       </StepIconContainer>
                     ) : step.iconSrc ? (
                       <Icon src={step.iconSrc}></Icon>
@@ -95,7 +100,7 @@ const StepsContainer = styled.div`
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: "center";
   ${(props) => (props.mode === "vertical" ? "height: 500px" : "width: 100%")};
-  font-family: ${(props) => props.theme.wizard.fontFamily};
+  font-family: ${(props) => props.theme.fontFamily};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -151,46 +156,40 @@ const StepHeader = styled.div`
 
 const IconContainer = styled.div`
   width: ${(props) =>
-    !props.current && !props.disabled
-      ? `${props.theme.wizard.circleSelectedWidth}`
-      : `${props.theme.wizard.circleWidth}`};
+    !props.current && !props.disabled ? `${props.theme.circleSelectedWidth}` : `${props.theme.circleWidth}`};
   height: ${(props) =>
-    !props.current && !props.disabled
-      ? `${props.theme.wizard.circleSelectedHeight}`
-      : `${props.theme.wizard.circleHeight}`};
+    !props.current && !props.disabled ? `${props.theme.circleSelectedHeight}` : `${props.theme.circleHeight}`};
 
   ${(props) => `
     ${
       !props.current && !props.disabled
-        ? `border: ${props.theme.wizard.circleBorderThickness} ${props.theme.wizard.circleBorderStyle} ${props.theme.wizard.circleBorderColor};`
+        ? `border: ${props.theme.circleBorderThickness} ${props.theme.circleBorderStyle} ${props.theme.circleBorderColor};`
         : props.current
-        ? `border: ${props.theme.wizard.circleSelectedBorderThickness} ${props.theme.wizard.circleSelectedBorderStyle} ${props.theme.wizard.circleSelectedBorderColor};`
+        ? `border: ${props.theme.circleSelectedBorderThickness} ${props.theme.circleSelectedBorderStyle} ${props.theme.circleSelectedBorderColor};`
         : props.disabled
-        ? `border: ${props.theme.wizard.circleDisabledBorderThickness} ${props.theme.wizard.circleDisabledBorderStyle} ${props.theme.wizard.circleDisabledBorderColor};`
+        ? `border: ${props.theme.circleDisabledBorderThickness} ${props.theme.circleDisabledBorderStyle} ${props.theme.circleDisabledBorderColor};`
         : ""
     }
     background: ${
       props.disabled
-        ? `${props.theme.wizard.disabledBackgroundColor}`
+        ? `${props.theme.disabledBackgroundColor}`
         : props.current
-        ? `${props.theme.wizard.stepContainerSelectedBackgroundColor}`
-        : `${props.theme.wizard.stepContainerBackgroundColor}`
+        ? `${props.theme.stepContainerSelectedBackgroundColor}`
+        : `${props.theme.stepContainerBackgroundColor}`
     };
   `}
   ${(props) =>
     props.disabled
-      ? `color: ${props.theme.wizard.disabledFontColor};`
-      : `color: ${
-          props.current ? props.theme.wizard.stepContainerSelectedFontColor : props.theme.wizard.stepContainerFontColor
-        };`};
+      ? `color: ${props.theme.disabledFontColor};`
+      : `color: ${props.current ? props.theme.stepContainerSelectedFontColor : props.theme.stepContainerFontColor};`};
 
   border-radius: ${(props) =>
     !props.current && !props.disabled
-      ? props.theme.wizard.circleBorderRadius
+      ? props.theme.circleBorderRadius
       : props.current
-      ? props.theme.wizard.circleSelectedBorderRadius
+      ? props.theme.circleSelectedBorderRadius
       : props.disabled
-      ? props.theme.wizard.circleDisabledBorderRadius
+      ? props.theme.circleDisabledBorderRadius
       : ""};
   display: flex;
   justify-content: center;
@@ -198,13 +197,13 @@ const IconContainer = styled.div`
 `;
 
 const Icon = styled.img`
-  width: ${(props) => props.theme.wizard.stepContainerIconSize};
-  height: ${(props) => props.theme.wizard.stepContainerIconSize};
+  width: ${(props) => props.theme.stepContainerIconSize};
+  height: ${(props) => props.theme.stepContainerIconSize};
 `;
 
 const StepIconContainer = styled.div`
-  width: ${(props) => props.theme.wizard.stepContainerIconSize};
-  height: ${(props) => props.theme.wizard.stepContainerIconSize};
+  width: ${(props) => props.theme.stepContainerIconSize};
+  height: ${(props) => props.theme.stepContainerIconSize};
   overflow: hidden;
   img,
   svg {
@@ -213,12 +212,21 @@ const StepIconContainer = styled.div`
   }
 `;
 
+const ImgContainer = styled.div`
+  background-color: ${(props) =>
+    props.current ? props.theme.stepContainerSelectedFontColor : props.theme.stepContainerFontColor};
+  mask: url(${({ img }) => img}) no-repeat center;
+  mask-size: ${(props) => `${props.theme.stepContainerIconSize} ${props.theme.stepContainerIconSize}`};
+  height: ${(props) => props.theme.stepContainerIconSize};
+  width: ${(props) => props.theme.stepContainerIconSize};
+`;
+
 const Number = styled.p`
-  font-size: ${(props) => props.theme.wizard.stepContainerFontSize};
-  font-family: ${(props) => props.theme.wizard.stepContainerFontFamily};
-  font-style: ${(props) => props.theme.wizard.stepContainerFontStyle};
-  font-weight: ${(props) => props.theme.wizard.stepContainerFontWeight};
-  letter-spacing: ${(props) => props.theme.wizard.stepContainerLetterSpacing};
+  font-size: ${(props) => props.theme.stepContainerFontSize};
+  font-family: ${(props) => props.theme.stepContainerFontFamily};
+  font-style: ${(props) => props.theme.stepContainerFontStyle};
+  font-weight: ${(props) => props.theme.stepContainerFontWeight};
+  letter-spacing: ${(props) => props.theme.stepContainerLetterSpacing};
   opacity: 1;
   margin: 0;
 `;
@@ -236,34 +244,32 @@ const InfoContainer = styled.div`
 `;
 
 const Label = styled.p`
-  text-align: ${(props) => props.theme.wizard.labelTextAlign};
-  font-family: ${(props) => props.theme.wizard.labelFontFamily};
-  font-size: ${(props) => props.theme.wizard.labelFontSize};
-  font-style: ${(props) => props.theme.wizard.labelFontStyle};
-  font-weight: ${(props) => props.theme.wizard.labelFontWeight};
-  letter-spacing: ${(props) => props.theme.wizard.labelLetterSpacing};
+  text-align: ${(props) => props.theme.labelTextAlign};
+  font-family: ${(props) => props.theme.labelFontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => props.theme.labelFontStyle};
+  font-weight: ${(props) => props.theme.labelFontWeight};
+  letter-spacing: ${(props) => props.theme.labelLetterSpacing};
   ${(props) =>
     props.disabled
-      ? `color: ${props.theme.wizard.disabledFontColor};`
-      : `color: ${props.active ? props.theme.wizard.labelActiveFontColor : props.theme.wizard.labelFontColor};`};
-  text-transform: ${(props) => props.theme.wizard.labelFontTextTransform};
+      ? `color: ${props.theme.disabledFontColor};`
+      : `color: ${props.active ? props.theme.labelActiveFontColor : props.theme.labelFontColor};`};
+  text-transform: ${(props) => props.theme.labelFontTextTransform};
   margin: 0;
 `;
 
 const Description = styled.p`
-  text-align: ${(props) => props.theme.wizard.descriptionTextAlign};
-  font-family: ${(props) => props.theme.wizard.descriptionFontFamily};
-  font-size: ${(props) => props.theme.wizard.descriptionFontSize};
-  font-style: ${(props) => props.theme.wizard.descriptionFontStyle};
-  font-weight: ${(props) => props.theme.wizard.descriptionFontWeight};
-  letter-spacing: ${(props) => props.theme.wizard.descriptionLetterSpacing};
-  text-transform: ${(props) => props.theme.wizard.descriptionFontTextTransform};
+  text-align: ${(props) => props.theme.descriptionTextAlign};
+  font-family: ${(props) => props.theme.descriptionFontFamily};
+  font-size: ${(props) => props.theme.descriptionFontSize};
+  font-style: ${(props) => props.theme.descriptionFontStyle};
+  font-weight: ${(props) => props.theme.descriptionFontWeight};
+  letter-spacing: ${(props) => props.theme.descriptionLetterSpacing};
+  text-transform: ${(props) => props.theme.descriptionFontTextTransform};
   ${(props) =>
     props.disabled
-      ? `color: ${props.theme.wizard.disabledFontColor};`
-      : `color: ${
-          props.active ? props.theme.wizard.descriptionActiveFontColor : props.theme.wizard.descriptionFontColor
-        };`};
+      ? `color: ${props.theme.disabledFontColor};`
+      : `color: ${props.active ? props.theme.descriptionActiveFontColor : props.theme.descriptionFontColor};`};
   margin: 0;
 `;
 
@@ -272,7 +278,7 @@ const StepSeparator = styled.div`
   height: ${(props) => (props.mode === "horizontal" ? "0" : "")};
   ${(props) => (props.mode === "vertical" ? "margin: 0 18px;" : "")}
   border: ${(props) =>
-    `${props.theme.wizard.separatorBorderStyle} ${props.theme.wizard.separatorBorderThickness} ${props.theme.wizard.separatorColor}`};
+    `${props.theme.separatorBorderStyle} ${props.theme.separatorBorderThickness} ${props.theme.separatorColor}`};
   opacity: 1;
   flex-grow: 1;
 `;
