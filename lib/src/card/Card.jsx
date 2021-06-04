@@ -81,7 +81,7 @@ const CardContainer = styled.div`
 
 const StyledLink = styled.a`
   cursor: pointer;
-  text-decoration: ${(props) => props.theme.textDecoration};
+  text-decoration: none;
 `;
 
 const TagImage = styled.img`
