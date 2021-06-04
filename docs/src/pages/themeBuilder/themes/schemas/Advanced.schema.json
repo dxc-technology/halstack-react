@@ -1009,6 +1009,7 @@
     "stepContainerIconSize": "length",
     "separatorBorderThickness": "bWidth",
     "separatorBorderStyle": "bStyle",
-    "separatorColor": "color"
+    "separatorColor": "color",
+    "focusColor": "color"
   }
 }

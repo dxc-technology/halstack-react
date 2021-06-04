@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
@@ -8,7 +8,7 @@ import ValidIcon from "./valid_icon.svg";
 import InvalidIcon from "./invalid_icon.svg";
 
 const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margin, tabIndex = 0 }) => {
-  const [innerCurrent, setInnerCurrentStep] = React.useState(currentStep || 0);
+  const [innerCurrent, setInnerCurrentStep] = useState(currentStep || 0);
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const colorsTheme = useTheme();
 
@@ -146,6 +146,9 @@ const Step = styled.button`
   &:hover {
     ${(props) => (props.disabled ? "" : "cursor: pointer")};
   }
+  &:focus {
+    outline: ${(props) => props.theme.focusColor} auto 1px;
+  }
 `;
 
 const StepHeader = styled.div`
@@ -156,9 +159,17 @@ const StepHeader = styled.div`
 
 const IconContainer = styled.div`
   width: ${(props) =>
-    !props.current && !props.disabled ? `${props.theme.circleSelectedWidth}` : `${props.theme.circleWidth}`};
+    props.disabled
+      ? props.theme.circleDisabledWidth
+      : props.current
+      ? props.theme.circleSelectedWidth
+      : props.theme.circleWidth};
   height: ${(props) =>
-    !props.current && !props.disabled ? `${props.theme.circleSelectedHeight}` : `${props.theme.circleHeight}`};
+    props.disabled
+      ? props.theme.circleDisabledHeight
+      : props.current
+      ? props.theme.circleSelectedHeight
+      : props.theme.circleHeight};
 
   ${(props) => `
     ${

@@ -1010,6 +1010,7 @@
     "circleDisabledBorderColor": "#D9D9D9",
     "separatorBorderThickness": "1px",
     "separatorBorderStyle": "solid",
-    "separatorColor": "#D9D9D9"
+    "separatorColor": "#D9D9D9",
+    "focusColor": "#005FCC"
   }
 }
