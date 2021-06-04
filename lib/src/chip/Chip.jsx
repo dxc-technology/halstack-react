@@ -42,7 +42,7 @@ const DxcChip = ({
               src={prefixIconSrc}
               label={label}
               tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
-              onClick={onClickPrefix && !disabled && onClickPrefix(label)}
+              onClick={() => onClickPrefix && !disabled && onClickPrefix(label)}
               interactuable={typeof onClickPrefix === "function" && !disabled}
             />
           )
@@ -59,7 +59,7 @@ const DxcChip = ({
             mode="suffix"
             label={label}
             tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
-            onClick={onClickSuffix && !disabled && onClickSuffix(label)}
+            onClick={() => onClickSuffix && !disabled && onClickSuffix(label)}
             interactuable={typeof onClickSuffix === "function" && !disabled}
           >
             {typeof suffixIcon === "object" ? suffixIcon : React.createElement(suffixIcon)}
@@ -71,7 +71,7 @@ const DxcChip = ({
               src={suffixIconSrc}
               label={label}
               tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
-              onClick={onClickSuffix && !disabled && onClickSuffix(label)}
+              onClick={() => onClickSuffix && !disabled && onClickSuffix(label)}
               interactuable={typeof onClickSuffix === "function" && !disabled}
             />
           )
