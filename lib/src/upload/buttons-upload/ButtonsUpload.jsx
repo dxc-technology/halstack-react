@@ -65,9 +65,9 @@ const DragAndDropLabel = styled.div`
 const DragAndDropIcon = styled.div`
   background-color: ${(props) => props.theme.dragAndDropAreaIconColor};
   mask: url(${dragAndDropIcon}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.dragAndDropAreaIconWidth} ${props.theme.dragAndDropAreaIconHeight}`};
-  height: ${(props) => props.theme.dragAndDropAreaIconHeight};
-  width: ${(props) => props.theme.dragAndDropAreaIconWidth};
+  mask-size: ${(props) => `${props.theme.dragAndDropAreaIconSize} ${props.theme.dragAndDropAreaIconSize}`};
+  height: ${(props) => props.theme.dragAndDropAreaIconSize};
+  width: ${(props) => props.theme.dragAndDropAreaIconSize};
   margin-right: 5px;
 `;
 
