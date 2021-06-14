@@ -192,8 +192,8 @@ const AlertText = styled.div`
 `;
 
 const AlertIcon = styled.img`
-  max-width: ${(props) => props.theme.iconMaxWidth};
-  max-height: ${(props) => props.theme.iconMaxHeight};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
   padding-right: ${(props) => props.theme.iconPaddingRight};
   padding-left: ${(props) => props.theme.iconPaddingLeft};
   padding-top: ${(props) => props.theme.iconPaddingTop};

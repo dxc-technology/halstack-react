@@ -64,7 +64,7 @@ const useStyles = makeStyles(() => ({
           props.backgroundType === "dark"
             ? props.hoveredOptionBackgroundColorOnDark
             : props.hoveredOptionBackgroundColor
-        }`,
+        } !important`,
         color: `${props.optionsFontColor || props.color}`,
       },
       "&:active": {
@@ -76,13 +76,38 @@ const useStyles = makeStyles(() => ({
           }` + props.hoverOptionBackgroundColor,
         color: `${props.optionsFontColor || props.color}`,
       },
+      "&:focus": {
+        outline: `${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor} auto 2px`,
+      },
       "&.MuiListItem-root.Mui-selected": {
         backgroundColor: `${
           props.backgroundType === "dark"
             ? props.selectedOptionBackgroundColorOnDark
             : props.selectedOptionBackgroundColor
-        }`,
+        } !important`,
         color: `${props.optionsFontColor || props.color}`,
+      },
+      "&.MuiListItem-root.Mui-focusVisible": {
+        backgroundColor: "unset",
+      },
+      "& span.MuiButtonBase-root": {
+        padding: "0px",
+        margin: "5px 0px",
+
+        "& span.MuiIconButton-label > svg": {
+          width: "26px",
+          height: "26px",
+        },
+
+        "&:hover": {
+          color: `${props.backgroundType === "dark" ? props.borderColorOnDark : props.borderColor}`,
+        },
+
+        "&.Mui-checked:hover": {
+          color: `${
+            props.backgroundType === "dark" ? props.backgroundColorCheckedOnDark : props.backgroundColorChecked
+          }`,
+        },
       },
     },
   }),
@@ -106,7 +131,7 @@ const DxcSelect = ({
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
-  const selectValues = { width: "auto", ...colorsTheme.select, backgroundType };
+  const selectValues = { width: "auto", ...colorsTheme.select, ...colorsTheme.checkbox, backgroundType };
   const classes = useStyles(selectValues);
 
   const handleSelectChange = (selectedOption) => {
@@ -311,18 +336,20 @@ const OptionContainer = styled.div`
 `;
 
 const ListIcon = styled.img`
-  width: ${(props) => props.theme.iconWidth};
-  height: ${(props) => props.theme.iconHeight};
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
+  margin-left: ${(props) =>
+    (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
   margin-right: ${(props) =>
     (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
 `;
 
 const ListIconContainer = styled.div`
   color: ${(props) => props.theme.iconColor};
-  width: ${(props) => props.theme.iconWidth};
-  height: ${(props) => props.theme.iconHeight};
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
+  margin-left: ${(props) =>
+    (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
   margin-right: ${(props) =>
     (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
   overflow: hidden;
@@ -402,6 +429,8 @@ const SelectContainer = styled.div`
     align-items: center;
     :focus {
       background-color: transparent;
+      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
+        auto 1px;
     }
     & > *:last-child::after {
       content: unset;
@@ -417,10 +446,6 @@ const SelectContainer = styled.div`
   }
   .MuiInputBase-root {
     width: 100%;
-    &.Mui-focused {
-      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
-        auto 1px;
-    }
     &.Mui-disabled {
       opacity: ${(props) => props.theme.disabled};
       cursor: not-allowed;

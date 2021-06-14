@@ -166,13 +166,13 @@ const LabelContainer = styled.span`
 `;
 
 const Icon = styled.img`
-  height: ${(props) => props.theme.iconHeight};
-  width: ${(props) => props.theme.iconWidth};
+  height: ${(props) => props.theme.iconSize};
+  width: ${(props) => props.theme.iconSize};
 `;
 
 const IconContainer = styled.div`
-  height: ${(props) => props.theme.iconHeight};
-  width: ${(props) => props.theme.iconWidth};
+  height: ${(props) => props.theme.iconSize};
+  width: ${(props) => props.theme.iconSize};
   overflow: hidden;
   display: flex;
   img,

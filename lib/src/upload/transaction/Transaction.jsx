@@ -81,9 +81,9 @@ const FileImage = styled.div`
   background-color: ${(props) =>
     (props.status === "error" && props.theme.errorColor) || props.theme.fileUploadedIconColor};
   mask: url(${(props) => props.img}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.fileUploadedIconWidth} ${props.theme.fileUploadedIconHeight}`};
-  height: ${(props) => props.theme.fileUploadedIconHeight};
-  width: ${(props) => props.theme.fileUploadedIconWidth};
+  mask-size: ${(props) => `${props.theme.fileUploadedIconSize} ${props.theme.fileUploadedIconSize}`};
+  height: ${(props) => props.theme.fileUploadedIconSize};
+  width: ${(props) => props.theme.fileUploadedIconSize};
   margin-right: 16px;
   max-width: 20%;
 `;
@@ -97,7 +97,7 @@ const FileName = styled.div`
   margin-right: 16px;
   width: 80%;
   text-overflow: ellipsis;
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: hidden;
 `;
 

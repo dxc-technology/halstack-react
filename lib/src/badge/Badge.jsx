@@ -25,7 +25,8 @@ const StyledDxcBadge = styled.div`
     props.notificationText === true ? props.theme.badgeWidth : props.theme.badgeWidthWithNotificationNumber};
   height: ${(props) =>
     props.notificationText === true ? props.theme.badgeHeight : props.theme.badgeHeightWithNotificationNumber};
-  border-radius: 10px;
+  border-radius: ${(props) =>
+    props.notificationText === true ? props.theme.badgeRadius : props.theme.badgeRadiusWithNotificationNumber};
   display: flex;
   padding-bottom: 1px;
   padding-right: 1px;

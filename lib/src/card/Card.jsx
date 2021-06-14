@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
+import useTheme from "../useTheme.js";
 
 import DxcBox from "../box/Box";
 
@@ -19,18 +20,22 @@ const DxcCard = ({
   imageCover,
   tabIndex = 0,
 }) => {
+  const colorsTheme = useTheme();
+
   const [isHovered, changeIsHovered] = useState(false);
 
   const tagContent = (
     <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
-      <CardContainer hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
-        {imageSrc && (
-          <ImageContainer imageBgColor={imageBgColor}>
-            <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
-          </ImageContainer>
-        )}
-        <CardContent contentPadding={contentPadding}>{children}</CardContent>
-      </CardContainer>
+      <ThemeProvider theme={colorsTheme.card}>
+        <CardContainer hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
+          {imageSrc && (
+            <ImageContainer imageBgColor={imageBgColor}>
+              <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
+            </ImageContainer>
+          )}
+          <CardContent contentPadding={contentPadding}>{children}</CardContent>
+        </CardContainer>
+      </ThemeProvider>
     </DxcBox>
   );
 
@@ -67,8 +72,8 @@ const StyledDxcCard = styled.div`
 const CardContainer = styled.div`
   display: inline-flex;
   flex-direction: ${({ imagePosition }) => (imagePosition === "before" && "row") || "row-reverse"};
-  height: 220px;
-  width: 400px;
+  height: ${(props) => props.theme.height};
+  width: ${(props) => props.theme.width};
   &:hover {
     border-color: ${({ hasAction }) => (hasAction ? "" : "unset")};
   }
@@ -76,7 +81,7 @@ const CardContainer = styled.div`
 
 const StyledLink = styled.a`
   cursor: pointer;
-  text-decoration: ${(props) => props.theme.textDecoration};
+  text-decoration: none;
 `;
 
 const TagImage = styled.img`
@@ -88,7 +93,7 @@ const TagImage = styled.img`
 `;
 
 const ImageContainer = styled.div`
-  width: 140px;
+  width: 35%;
   height: 100%;
   flex-shrink: 0;
   background: ${({ imageBgColor }) => imageBgColor};

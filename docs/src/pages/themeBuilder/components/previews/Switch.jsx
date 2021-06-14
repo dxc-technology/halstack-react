@@ -27,21 +27,21 @@ const Switch = () => {
           checked={checked}
           label="Switch"
           onChange={onChange}
-          margin="small"
+          margin={{ top: "xsmall", left: "xsmall" }}
         />
       </Mode>
       <Mode text="Disabled">
         <DxcSwitch
           checked={true}
           label="Label before"
-          margin="small"
+          margin={{ top: "xsmall", left: "xsmall", right: "xsmall" }}
           disabled
         />
         <DxcSwitch
           checked={false}
           labelPosition="after"
           label="Label after"
-          margin="small"
+          margin={{ top: "xsmall", left: "xsmall" }}
           disabled
         />
       </Mode>
@@ -56,21 +56,21 @@ const Switch = () => {
             checked={checkedDark}
             label="Switch"
             onChange={onChangeDark}
-            margin="small"
+            margin={{ top: "xsmall", left: "xsmall" }}
           />
         </Mode>
         <Mode mode="dark" text="Disabled">
           <DxcSwitch
             checked={true}
             label="Label before"
-            margin="small"
+            margin={{ top: "xsmall", left: "xsmall", right: "xsmall" }}
             disabled
           />
           <DxcSwitch
             checked={false}
             labelPosition="after"
             label="Label after"
-            margin="small"
+            margin={{ top: "xsmall", left: "xsmall" }}
             disabled
           />
         </Mode>

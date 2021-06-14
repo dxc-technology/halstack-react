@@ -63,7 +63,7 @@ const BackgroundSpinner = styled.div`
   left: ${(props) => (props.mode === "overlay" ? 0 : "")};
   right: ${(props) => (props.mode === "overlay" ? 0 : "")};
   bottom: ${(props) => (props.mode === "overlay" ? 0 : "")};
-  z-index: ${(props) => (props.mode === "overlay" ? 1000 : "")};
+  z-index: ${(props) => (props.mode === "overlay" ? 1300 : "")};
 `;
 
 const DXCSpinner = styled.div`
