@@ -12,6 +12,7 @@ import FontFamily from "./widgets/FontFamily";
 import BorderWidthInput from "./widgets/BorderWidthInput";
 import AlphaValueInput from "./widgets/AlphaValueInput";
 import IntegerInput from "./widgets/IntegerInput";
+import TextAlignInput from "./widgets/TextAlignInput";
 
 const makeReadable = (token) =>
   token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
@@ -120,7 +121,14 @@ const ThemeInput = ({
                 />
               );
             // case "scale":
-            // case "textAlign":
+            case "textAlign":
+              return (
+                <TextAlignInput
+                  propertyName={propertyName}
+                  propertyValue={propertyValue}
+                  onChangeCustomTheme={onChangeCustomTheme}
+                />
+              );
             default:
               return (
                 <DefaultInput
