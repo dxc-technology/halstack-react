@@ -82,7 +82,6 @@ const ColorPicker = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
 const ColorContainer = styled.div`
   width: 32px;
   height: 14px;
-  margin-left: 5px;
   background: ${(props) => props.color};
   display: "inline-block";
   cursor: pointer;

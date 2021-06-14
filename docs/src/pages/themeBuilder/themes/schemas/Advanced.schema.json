@@ -17,8 +17,8 @@
     "assistiveTextFontColor": "color",
     "assistiveTextLetterSpacing": "length",
     "assistiveTextMinWidth": "length",
-    "assistivePaddingLeft": "length",
-    "assistivePaddingRight": "length",
+    "assistiveTextPaddingLeft": "length",
+    "assistiveTextPaddingRight": "length",
     "titleLabelFontFamily": "fFamily",
     "titleLabelFontSize": "length",
     "titleLabelFontWeight": "fWeight",
@@ -254,8 +254,8 @@
     "contentPaddingTop": "length",
     "contentPaddingBottom": "length",
     "iconSize": "length",
-    "iconPaddingLeft": "lenght",
-    "iconPaddingRight": "lenght"
+    "iconPaddingLeft": "length",
+    "iconPaddingRight": "length"
   },
   "date": {
     "pickerSelectedDateBackgroundColor": "color",

@@ -57,6 +57,7 @@ const ComponentPreview = ({ customTheme, componentId }) => {
 
 const ComponentPreviewContainer = styled.div`
   flex-grow: 1;
+  overflow-x: auto;
 
   /* width */
   ::-webkit-scrollbar {
