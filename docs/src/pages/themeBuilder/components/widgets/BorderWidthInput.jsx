@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-
-const BorderWidthInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
+const BorderWidthInput = ({
+  propertyName,
+  propertyValue,
+  onChangeCustomTheme,
+}) => {
   const [value, changeValue] = useState(
     propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)
   );
-  const [unitValue, changeUnitValue] = useState(
+  const unitValue =
     propertyValue.match(/[a-zA-Z]+|%/g) &&
-      propertyValue.match(/[a-zA-Z]+|%/g)[0]
-  );
-
+    propertyValue.match(/[a-zA-Z]+|%/g)[0];
   return (
     <BorderWidthInputContainer>
       <StyledInput
@@ -22,7 +23,7 @@ const BorderWidthInput = ({ propertyName, propertyValue, onChangeCustomTheme }) 
           onChangeCustomTheme(propertyName, val + unitValue);
         }}
       />
-      <StyledLabel> px</StyledLabel>
+      <StyledLabel> {unitValue}</StyledLabel>
     </BorderWidthInputContainer>
   );
 };
@@ -38,8 +39,8 @@ const StyledInput = styled.input`
   width: 75px;
 `;
 const StyledLabel = styled.span`
-font: normal 12px/17px Open Sans;
-padding-left:5px;
+  font: normal 12px/17px Open Sans;
+  padding-left: 5px;
 `;
 
 export default BorderWidthInput;
