@@ -109,7 +109,7 @@
     "noneShadowDepthShadowOffsetY": "none",
     "noneShadowDepthShadowBlur": "none",
     "noneShadowDepthShadowSpread": "none",
-    "noneShadowDepthShadowColor": "none",
+    "noneShadowDepthShadowColor": "transparent",
     "oneShadowDepthShadowOffsetX": "0px",
     "oneShadowDepthShadowOffsetY": "2px",
     "oneShadowDepthShadowBlur": "1px",

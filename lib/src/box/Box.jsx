@@ -41,7 +41,7 @@ const StyledDxcBox = styled.div`
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => props.theme.borderColor};
-  letter-spacing:${(props) => props.theme.letterSpacing};
+  letter-spacing: ${(props) => props.theme.letterSpacing};
   overflow: hidden;
   font-size: ${(props) => props.theme.fontSize};
   font-family: ${(props) => props.theme.fontFamily};
@@ -49,13 +49,17 @@ const StyledDxcBox = styled.div`
   color: ${(props) => props.theme.fontColor};
   width: ${(props) => calculateWidth(props.margin, props.size, props.padding)};
   background-color: ${(props) => props.theme.backgroundColor};
-
   box-shadow: ${(props) =>
     props.shadowDepth === 1
       ? `${props.theme.oneShadowDepthShadowOffsetX} ${props.theme.oneShadowDepthShadowOffsetY} ${props.theme.oneShadowDepthShadowBlur}  ${props.theme.oneShadowDepthShadowSpread} ${props.theme.oneShadowDepthShadowColor}`
       : props.shadowDepth === 2
       ? `${props.theme.twoShadowDepthShadowOffsetX} ${props.theme.twoShadowDepthShadowOffsetY} ${props.theme.twoShadowDepthShadowBlur}  ${props.theme.twoShadowDepthShadowSpread} ${props.theme.twoShadowDepthShadowColor}`
       : `${props.theme.noneShadowDepthShadowOffsetX} ${props.theme.noneShadowDepthShadowOffsetY} ${props.theme.noneShadowDepthShadowBlur}  ${props.theme.noneShadowDepthShadowSpread} ${props.theme.noneShadowDepthShadowColor}`};
+
+  :hover {
+    box-shadow: ${(props) =>
+      props.shadowDepth === 0 ? "none" : `0px 3px 3px 2px ${props.theme.oneShadowDepthShadowColor};`};
+  }
 
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
