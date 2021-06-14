@@ -10,6 +10,7 @@ import TextTransformInput from "./widgets/TextTransformInput";
 import BorderStyleInput from "./widgets/BorderStyleInput";
 import FontFamily from "./widgets/FontFamily";
 import BorderWidthInput from "./widgets/BorderWidthInput";
+import AlphaValueInput from "./widgets/AlphaValueInput";
 
 const makeReadable = (token) =>
   token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
@@ -100,7 +101,14 @@ const ThemeInput = ({
                   onChangeCustomTheme={onChangeCustomTheme}
                 />
               );
-            // case "alphaValue":
+            case "alphaValue":
+              return (
+                <AlphaValueInput
+                  propertyName={propertyName}
+                  propertyValue={propertyValue}
+                  onChangeCustomTheme={onChangeCustomTheme}
+                />
+              );
             // case "flexAlign":
             // case "flexJustify":
             // case "text":
