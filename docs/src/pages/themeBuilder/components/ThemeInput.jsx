@@ -11,6 +11,7 @@ import BorderStyleInput from "./widgets/BorderStyleInput";
 import FontFamily from "./widgets/FontFamily";
 import BorderWidthInput from "./widgets/BorderWidthInput";
 import AlphaValueInput from "./widgets/AlphaValueInput";
+import IntegerInput from "./widgets/IntegerInput";
 
 const makeReadable = (token) =>
   token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
@@ -109,10 +110,15 @@ const ThemeInput = ({
                   onChangeCustomTheme={onChangeCustomTheme}
                 />
               );
-            // case "flexAlign":
-            // case "flexJustify":
             // case "text":
-            // case "integer":
+            case "integer":
+              return (
+                <IntegerInput
+                  propertyName={propertyName}
+                  propertyValue={propertyValue}
+                  onChangeCustomTheme={onChangeCustomTheme}
+                />
+              );
             // case "scale":
             // case "textAlign":
             default:
