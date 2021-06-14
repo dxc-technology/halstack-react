@@ -111,7 +111,6 @@ const ThemeInput = ({
                   onChangeCustomTheme={onChangeCustomTheme}
                 />
               );
-            // case "text":
             case "integer":
               return (
                 <IntegerInput
@@ -120,7 +119,6 @@ const ThemeInput = ({
                   onChangeCustomTheme={onChangeCustomTheme}
                 />
               );
-            // case "scale":
             case "textAlign":
               return (
                 <TextAlignInput
@@ -147,13 +145,12 @@ const ThemeInput = ({
 const PropertyName = styled.div`
   font: normal 13px Open Sans;
   color: #000000;
-  width: 60%;
+  width: 160px;
   line-height: 13px;
   margin-right: 5px;
 `;
 
 const PropertyValue = styled.div`
-  width: 40%;
   margin-right: 10px;
 `;
 
