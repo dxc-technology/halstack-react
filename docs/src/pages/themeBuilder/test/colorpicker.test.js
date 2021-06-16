@@ -1,14 +1,10 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import {
-  render,
-  cleanup,
-  act,
-  fireEvent,
-} from "@testing-library/react";
+import { render, cleanup, act, fireEvent } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import routeData from "react-router";
 
 import { versionsResponse } from "./mocks/VersionsMock";
 import ThemeBuilder from "../ThemeBuilder";
@@ -41,12 +37,12 @@ afterAll(() => {
   server.close();
 });
 
-describe("Successful color picker tests", () => {
+describe("Successful color picker tests for default theme", () => {
   const history = createMemoryHistory();
   history.push("/themeBuilder");
   window.location.pathname = "/tools/react/next/";
 
-  it("Change accordion property value", async () => {
+  it("Change accordion component property value", async () => {
     const {
       getByText,
       getAllByRole,
@@ -62,6 +58,7 @@ describe("Successful color picker tests", () => {
     );
     await findByText("next");
     expect(getByText("Accordion component")).toBeTruthy();
+    expect(getByText("Accent color")).toBeTruthy();
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
       "#6f2c91"
     );
@@ -76,48 +73,12 @@ describe("Successful color picker tests", () => {
     act(() => {
       fireEvent.click(getByRole("picker-cover"));
     });
-    expect(getByText(/#555555/)).toBeTruthy();
-  });
-
-  it("Change accordion property value and reset", async () => {
-    const {
-      getByText,
-      queryByText,
-      getAllByRole,
-      findByText,
-      getByRole,
-      getByDisplayValue,
-    } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
-    expect(getByText("Accordion component")).toBeTruthy();
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
-      "#6f2c91"
+      "#555555"
     );
-    act(() => {
-      fireEvent.click(getAllByRole("color-container")[0]);
-    });
-    act(() => {
-      fireEvent.change(getByDisplayValue("6F2C91"), {
-        target: { value: "555555" },
-      });
-    });
-    act(() => {
-      fireEvent.click(getByRole("picker-cover"));
-    });
-    expect(getByText(/#555555/)).toBeTruthy();
-    act(() => {
-      fireEvent.click(getByText("Reset").closest("button"));
-    });
-    expect(queryByText(/#555555/)).toBeFalsy();
   });
 
-  it("Change button property value", async () => {
+  it("Change button component property value", async () => {
     const {
       getByText,
       getAllByRole,
@@ -136,20 +97,71 @@ describe("Successful color picker tests", () => {
       fireEvent.click(getByText("Button"));
     });
     expect(getByText("Button component")).toBeTruthy();
-    expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
-      "#000000"
+    expect(getByText("Primary font color")).toBeTruthy();
+    expect(getAllByRole("color-container")[2].getAttribute("color")).toBe(
+      "#ffffff"
     );
     act(() => {
-      fireEvent.click(getAllByRole("color-container")[1]);
+      fireEvent.click(getAllByRole("color-container")[2]);
     });
     act(() => {
-      fireEvent.change(getByDisplayValue("000000"), {
+      fireEvent.change(getByDisplayValue("FFFFFF"), {
         target: { value: "333333" },
       });
     });
     act(() => {
       fireEvent.click(getByRole("picker-cover"));
     });
-    expect(getByText(/#333333/)).toBeTruthy();
+    expect(getAllByRole("color-container")[2].getAttribute("color")).toBe(
+      "#333333"
+    );
+  });
+});
+
+describe("Successful color picker tests for advanced theme", () => {
+  const history = createMemoryHistory();
+  history.push("/themeBuilder");
+
+  it("Change alert component property value", async () => {
+    jest
+      .spyOn(routeData, "useParams")
+      .mockReturnValue({ type: "advancedTheme" });
+    window.location.pathname = "/tools/react/next/";
+    const {
+      getByText,
+      getAllByRole,
+      findByText,
+      getByRole,
+      getByDisplayValue,
+    } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText("next");
+    act(() => {
+      fireEvent.click(getByText("Alert"));
+    });
+    expect(getByText("Alert component")).toBeTruthy();
+    expect(getByText("Overlay color")).toBeTruthy();
+    expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
+      "#000000"
+    );
+    act(() => {
+      fireEvent.click(getAllByRole("color-container")[0]);
+    });
+    act(() => {
+      fireEvent.change(getByDisplayValue("000000"), {
+        target: { value: "fabada" },
+      });
+    });
+    act(() => {
+      fireEvent.click(getByRole("picker-cover"));
+    });
+    expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
+      "#fabada"
+    );
   });
 });
