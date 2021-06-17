@@ -1,10 +1,18 @@
 export const capitalizeText = (text) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
+export const makeReadable = (token) =>
+  token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
+    return i === 0 ? v.toUpperCase() : " " + v.toLowerCase();
+  });
+
+export const makeReadableSidenav = (token) =>
+  token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
+    return i === 0 ? v.toUpperCase() : " " + v;
+  });
 
 const isObject = (item) =>
   item && typeof item === "object" && !Array.isArray(item);
-
 
 export const deepMerge = (target, ...sources) => {
   if (!sources.length) return target;
