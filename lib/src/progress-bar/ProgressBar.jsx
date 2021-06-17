@@ -54,7 +54,7 @@ const BackgroundProgressBar = styled.div`
   justify-content: ${(props) => (props.overlay === true ? "center" : "")};
   height: ${(props) => (props.overlay === true ? "100vh" : "")};
   align-items: ${(props) => (props.overlay === true ? "center" : "")};
-  min-width: 685px;
+  min-width: 100px;
   max-width: ${(props) => (props.overlay === true ? "100%" : "")};
   position: ${(props) => (props.overlay === true ? "fixed" : "")};
   top: ${(props) => (props.overlay === true ? "0" : "")};
