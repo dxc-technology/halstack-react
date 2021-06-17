@@ -21,7 +21,7 @@ const Date = () => {
           label="Date of birth"
           format="dd-MM-yyyy"
           assistiveText="assistive text"
-          margin="medium"
+          margin={{ top: "xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <DxcHeading
@@ -35,7 +35,7 @@ const Date = () => {
             label="Date of birth"
             format="dd-MM-yyyy"
             assistiveText="assistive text"
-            margin="medium"
+            margin={{ top: "xxsmall", bottom: "xsmall" }}
           />
         </Mode>
       </BackgroundColorProvider>
