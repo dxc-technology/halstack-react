@@ -323,7 +323,7 @@ function Overview() {
           <LinksSection>
             <DxcTag
               margin={{ top: "medium", bottom: "medium", right: "medium" }}
-              linkHref="https://developer.dxc.com/design/principles"
+              linkHref="https://developer.dxc.com/design/guidelines/principles/overview"
               iconSrc={dxcLogo}
               label="Design Guidelines"
             ></DxcTag>

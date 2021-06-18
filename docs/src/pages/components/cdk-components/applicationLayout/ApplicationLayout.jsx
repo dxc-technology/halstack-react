@@ -36,7 +36,7 @@ function ApplicationLayout() {
                   This component has no props. It has children and it follows
                   the design guidelines available{" "}
                   <DxcLink
-                    href="https://developer.dxc.com/design/principles/layout"
+                    href="https://developer.dxc.com/design/guidelines/principles/layout"
                     underlined={false}
                     text="here"
                   ></DxcLink>

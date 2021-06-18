@@ -70,7 +70,7 @@ function App() {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://developer.dxc.com/design/principles"
+              href="https://developer.dxc.com/design/guidelines/principles/overview"
             >
               Design Guidelines
             </a>
@@ -102,7 +102,7 @@ function App() {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://developer.dxc.com/design/principles"
+              href="https://developer.dxc.com/design/guidelines/principles/overview"
             >
               Design Guidelines
             </a>
