@@ -130,15 +130,15 @@ const Step = styled.button`
   margin: ${(props) =>
     props.first
       ? props.mode === "vertical"
-        ? "0 0 25px 0"
-        : "0 25px 0 0"
+        ? "0 0 24px 0"
+        : "0 24px 0 0"
       : props.last
       ? props.mode === "vertical"
-        ? "25px 0 0 0"
-        : "0 0 0 25px"
+        ? "24px 0 0 0"
+        : "0 0 0 24px"
       : props.mode === "vertical"
-      ? "25px 0"
-      : "0 25px"};
+      ? "24px 0"
+      : "0 24px"};
 
   padding: 0px;
   ${(props) => (props.disabled ? "cursor: not-allowed" : "")};
@@ -154,7 +154,7 @@ const Step = styled.button`
 const StepHeader = styled.div`
   position: relative;
   display: inline-flex;
-  padding-bottom: 3px;
+  padding-bottom: 4px;
 `;
 
 const IconContainer = styled.div`
@@ -239,19 +239,19 @@ const Number = styled.p`
   font-weight: ${(props) => props.theme.stepContainerFontWeight};
   letter-spacing: ${(props) => props.theme.stepContainerLetterSpacing};
   opacity: 1;
-  margin: 0;
+  margin: 0px 0px 0px 1px;
 `;
 
 const ValidityIcon = styled.img`
   width: 18px;
   height: 18px;
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  top: 22.5px;
+  left: 22.5px;
 `;
 
 const InfoContainer = styled.div`
-  margin-left: 10px;
+  margin-left: 12px;
 `;
 
 const Label = styled.p`
