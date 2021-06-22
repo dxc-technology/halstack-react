@@ -26,6 +26,7 @@ const code = `() => {
       onChange={onChange}
       label="Uncontrolled Select"
       margin="medium"
+      assistiveText="assistive text"
     ></DxcSelect>
   );
 }`;

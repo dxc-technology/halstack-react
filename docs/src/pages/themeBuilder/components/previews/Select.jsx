@@ -74,12 +74,14 @@ const Select = () => {
           options={options}
           label="Default Select"
           margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
+          assistiveText="assistiveText"
         ></DxcSelect>
         <DxcSelect
           options={options}
           required
           label="Required Select"
           margin={{ top: "xxsmall", bottom: "xsmall" }}
+          assistiveText="assistiveText"
         ></DxcSelect>
       </Mode>
       <Mode text="Multiple">
@@ -88,6 +90,7 @@ const Select = () => {
           multiple
           label="Multiple Select"
           margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
+          assistiveText="assistiveText"
         ></DxcSelect>
         <DxcSelect
           options={optionsNoIcons}
@@ -95,6 +98,7 @@ const Select = () => {
           invalid
           label="Invalid Select"
           margin={{ top: "xxsmall", bottom: "xsmall" }}
+          assistiveText="assistiveText"
         ></DxcSelect>
       </Mode>
       <Mode text="Disabled">
@@ -103,6 +107,7 @@ const Select = () => {
           disabled
           label="Disabled Select"
           margin={{ top: "xxsmall", bottom: "xsmall" }}
+          assistiveText="assistiveText"
         ></DxcSelect>
       </Mode>
       <DxcHeading
@@ -116,12 +121,31 @@ const Select = () => {
             options={options}
             label="Default Select"
             margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
+            assistiveText="assistiveText"
           ></DxcSelect>
           <DxcSelect
             options={options}
+            required
+            label="Required Select"
+            margin={{ top: "xxsmall", bottom: "xsmall" }}
+            assistiveText="assistiveText"
+          ></DxcSelect>
+        </Mode>
+        <Mode mode="dark" text="Multiple">
+          <DxcSelect
+            options={optionsNoIcons}
+            multiple
+            label="Multiple Select"
+            margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
+            assistiveText="assistiveText"
+          ></DxcSelect>
+          <DxcSelect
+            options={optionsNoIcons}
+            multiple
             invalid
             label="Invalid Select"
             margin={{ top: "xxsmall", bottom: "xsmall" }}
+            assistiveText="assistiveText"
           ></DxcSelect>
         </Mode>
         <Mode mode="dark" text="Disabled">
@@ -129,6 +153,8 @@ const Select = () => {
             options={options}
             disabled
             label="Disabled Select"
+            margin={{ top: "xxsmall", bottom: "small" }}
+            assistiveText="assistiveText"
           ></DxcSelect>
         </Mode>
       </BackgroundColorProvider>

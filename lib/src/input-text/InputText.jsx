@@ -502,12 +502,10 @@ const TextContainer = styled.div`
         props.backgroundType === "dark"
           ? props.theme.assistiveTextFontColorOnDark || props.theme.fontColorBaseOnDark
           : props.theme.assistiveTextFontColor || props.theme.fontColorBase} !important;
-
       margin-top: 6px;
     }
     .MuiFormLabel-root {
       font-size: ${(props) => props.theme.labelFontSize};
-
       color: ${(props) =>
         props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
       &.Mui-disabled {
@@ -518,6 +516,7 @@ const TextContainer = styled.div`
         cursor: not-allowed;
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
+      
       &.Mui-focused {
         color: ${(props) =>
           props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
@@ -529,6 +528,7 @@ const TextContainer = styled.div`
             "translate(0, 1.5px) scale(0.75);"};
         }
       }
+
       &.MuiInputLabel-shrink {
         font-family: ${(props) => props.theme.fontFamilyBase};
 
@@ -538,6 +538,7 @@ const TextContainer = styled.div`
           (props.prefix && "translate(8px, 1.5px) scale(0.75);") ||
           "translate(0, 1.5px) scale(0.75);"};
       }
+
       &.Mui-error {
         color: ${(props) => (props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor)};
       }
@@ -567,6 +568,7 @@ const TextContainer = styled.div`
         }
       }
     }
+
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
       font-family: ${(props) => props.theme.fontFamilyBase};
 
@@ -578,6 +580,7 @@ const TextContainer = styled.div`
               : props.theme.underlineColor || props.theme.fontColorBase
           }`};
       }
+
       &:not(.Mui-error)::before,
       &:not(&.Mui-focused)::before {
         border-bottom: ${(props) =>
@@ -616,7 +619,6 @@ const TextContainer = styled.div`
               : props.theme.underlineFocusColor || props.theme.fontColorBase};
           transform: scaleX(1);
         }
-
         &.Mui-error::after {
           border-color: ${(props) =>
             props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor};
