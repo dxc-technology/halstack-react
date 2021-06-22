@@ -71,7 +71,7 @@ const DxcAccordion = ({
           expanded={isExpanded != null ? isExpanded : innerIsExpanded}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
-            <AccordionInfo>
+            <AccordionInfo disabled={disabled}>
               <AccordionLabel>{label}</AccordionLabel>
               {icon ? (
                 <IconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</IconContainer>
@@ -79,10 +79,10 @@ const DxcAccordion = ({
                 iconSrc && <AccordionIcon src={iconSrc} />
               )}
             </AccordionInfo>
-            {assistiveText && <AccordionAssistiveText>{assistiveText}</AccordionAssistiveText>}
+            {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <AccordionText>
+            <AccordionText disabled={disabled}>
               <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>
                 {children}
               </BackgroundColorProvider>
@@ -141,28 +141,29 @@ const DXCAccordion = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   width: ${(props) => calculateWidth(props.margin)};
-  
+
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
   .MuiPaper-root {
     min-width: 0;
     display: flex;
     left: 85px;
     background-color: ${(props) => props.theme.backgroundColor} !important;
-    box-shadow: ${(props)=>`${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
+    box-shadow: ${(props) =>
+      `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
     position: static;
     width: 100%;
     border-radius: ${(props) => props.theme.borderRadius};
-   
+
     &.Mui-expanded {
-      border-radius: ${(props) => props.theme.borderRadius}; 
+      border-radius: ${(props) => props.theme.borderRadius};
     }
     &.MuiExpansionPanel-root {
       display: flex;
       flex-direction: column;
-      min-height:48px;
+      min-height: 48px;
     }
-    &.MuiExpansionPanel-rounded{
-     border-radius:${(props) => props.theme.borderRadius}; 
+    &.MuiExpansionPanel-rounded {
+      border-radius: ${(props) => props.theme.borderRadius};
     }
     .MuiButtonBase-root.MuiExpansionPanelSummary-root {
       :hover {
@@ -223,28 +224,27 @@ const DXCAccordion = styled.div`
   }
 
   .MuiCollapse-container {
-  
     border-radius: 0px 0px 4px 4px;
     cursor: default;
     width: 100%;
   }
-
-  .MuiSvgIcon-root {
-    color: ${(props) => props.theme.arrowColor};
+  .MuiIconButton-label {
+    & > .MuiSvgIcon-root {
+      color: ${(props) => props.theme.arrowColor};
+    }
   }
 
   .MuiExpansionPanelSummary-root.Mui-disabled {
     opacity: 1;
   }
   .MuiExpansionPanelSummary-root.Mui-focused {
-    border-width:${(props) => props.theme.titleFocusBorderThickness};
-    border-style:${(props) => props.theme.titleFocusBorderStyle};
-    border-color:${(props) => props.theme.titleFocusBorderColor};
-
+    border-width: ${(props) => props.theme.titleFocusBorderThickness};
+    border-style: ${(props) => props.theme.titleFocusBorderStyle};
+    border-color: ${(props) => props.theme.titleFocusBorderColor};
   }
 
   .MuiExpansionPanelDetails-root {
-    height:${(props) => props.theme.customContentPanelHeight};
+    height: ${(props) => props.theme.customContentPanelHeight};
     padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
     padding-top: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -267,7 +267,8 @@ const AccordionInfo = styled.div`
   font-size: ${(props) => props.theme.titleLabelFontSize};
   font-style: ${(props) => props.theme.titleLabelFontStyle};
   font-weight: ${(props) => props.theme.titleFonLabeltWeight};
-  color: ${(props) => props.theme.titleLabelFontColor || props.theme.fontColorBase};
+  color: ${(props) =>
+    (props.disabled && props.theme.disabledFontColor) || props.theme.titleLabelFontColor || props.theme.fontColorBase};
 `;
 
 const AccordionLabel = styled.div``;
@@ -275,9 +276,12 @@ const AccordionLabel = styled.div``;
 const AccordionText = styled.div`
   width: 100%;
   font-family: ${(props) => props.theme.customContentFontFamily};
-  font-size:${(props) => props.theme.customContentFontSize};
+  font-size: ${(props) => props.theme.customContentFontSize};
   font-weight: ${(props) => props.theme.customContentFontWeight};
-  color: ${(props) => props.theme.customContentFontColor || props.theme.fontColorBase} !important;
+  color: ${(props) =>
+    (props.disabled && props.theme.disabledFontColor) ||
+    props.theme.customContentFontColor ||
+    props.theme.fontColorBase} !important;
 `;
 
 const AccordionAssistiveText = styled.div`
@@ -287,7 +291,10 @@ const AccordionAssistiveText = styled.div`
   font-family: ${(props) => props.theme.assistiveTextFontFamily};
   font-style: ${(props) => props.theme.assistiveTextFontStyle};
   font-weight: ${(props) => props.theme.assistiveTextFontWeight};
-  color: ${(props) =>props.theme.assistiveTextFontColor || props.theme.fontColorBase};
+  color: ${(props) =>
+    (props.disabled && props.theme.disabledFontColor) ||
+    props.theme.assistiveTextFontColor ||
+    props.theme.fontColorBase};
 
   letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
   flex: 1;
