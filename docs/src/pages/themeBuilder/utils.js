@@ -23,7 +23,7 @@ export const deepMerge = (target, ...sources) => {
 };
 
 export const downloadFile = (content) => {
-  const data = new Blob([JSON.stringify(content)], {
+  const data = new Blob([JSON.stringify(content, null, '\t')], {
     type: "application/json",
   });
   
