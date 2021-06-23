@@ -490,12 +490,12 @@
   "link": {
     "fontColor": "color",
     "visitedFontColor": "color",
-    "underlineColor": "color",
     "visitedUnderlineColor": "color",
     "disabledColor": "color",
-    "disabledUnderlineColor": "color",
     "hoverFontColor": "color",
     "hoverUnderlineColor": "color",
+    "activeFontColor": "color",
+    "activeUnderlineColor": "color",
     "fontSize": "length",
     "fontWeight": "fWeight",
     "fontStyle": "fStyle",
@@ -504,7 +504,8 @@
     "underlineStyle": "bStyle",
     "underlineThickness": "bWidth",
     "iconSize": "length",
-    "iconGutter": "length"
+    "iconGutter": "length",
+    "focusColor": "color"
   },
   "paginator": {
     "backgroundColor": "color",
@@ -575,6 +576,11 @@
     "labelFontSize": "length",
     "labelFontStyle": "fStyle",
     "labelFontWeight": "fWeight",
+    "assistiveTextFontColor": "color",
+    "assistiveTextFontColorOnDark": "color",
+    "assistiveTextFontSize": "length",
+    "assistiveTextFontStyle": "fStyle",
+    "assistiveTextFontWeight": "fWeight",
     "optionsBorderColor": "color",
     "optionsBorderThickness": "bWidth",
     "optionsBorderStyle": "bStyle",
@@ -755,8 +761,7 @@
     "height": "length",
     "iconColor": "color",
     "iconSectionWidth": "length",
-    "iconHeight": "length",
-    "iconWidth": "length"
+    "iconSize": "length"
   },
   "table": {
     "rowSeparatorThickness": "length",

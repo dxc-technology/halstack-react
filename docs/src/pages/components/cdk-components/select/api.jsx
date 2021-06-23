@@ -73,6 +73,11 @@ const inputPropsTable = () => {
         <td>Text to be placed next to the select.</td>
       </tr>
       <tr>
+        <td>assistiveText: string</td>
+        <td></td>
+        <td>Assistive text to be placed bellow the select.</td>
+      </tr>
+      <tr>
         <td>name: string</td>
         <td></td>
         <td>Name attribute of the input element.</td>

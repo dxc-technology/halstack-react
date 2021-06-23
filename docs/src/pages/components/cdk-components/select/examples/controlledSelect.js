@@ -28,6 +28,7 @@ const code = `() => {
       label="Controlled Select"
       value={value}
       margin="medium"
+      assistiveText="assistive text"
     ></DxcSelect>
   );
 }`;
