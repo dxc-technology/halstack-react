@@ -25,7 +25,7 @@ const Dialog = () => {
 
   return (
     <DialogContainer>
-      <Mode text="Default dialog">
+      <Mode text="Default">
         <DxcButton
           label="Open Dialog"
           onClick={handleClickDefaultDialog}
@@ -41,7 +41,7 @@ const Dialog = () => {
           </DxcDialog>
         )}
       </Mode>
-      <Mode text="Modal dialog">
+      <Mode text="Modal">
         <DxcButton
           label="Open Dialog"
           onClick={onClick}
@@ -53,7 +53,7 @@ const Dialog = () => {
           </DxcDialog>
         )}
       </Mode>
-      <Mode text="Close button dialog">
+      <Mode text="With close button">
         <DxcButton
           label="Open Dialog"
           onClick={onClickClosed}
@@ -65,7 +65,7 @@ const Dialog = () => {
           </DxcDialog>
         )}
       </Mode>
-      <Mode text="Modal with scroll">
+      <Mode text="With scroll">
         <DxcButton
           label="Open Dialog"
           onClick={onClickWithScroll}

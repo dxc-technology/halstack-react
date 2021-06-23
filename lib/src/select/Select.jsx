@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import styled, { ThemeProvider } from "styled-components";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
@@ -118,6 +119,7 @@ const DxcSelect = ({
   name,
   onChange,
   label,
+  assistiveText,
   required = false,
   disabled = false,
   invalid = false,
@@ -267,6 +269,7 @@ const DxcSelect = ({
               );
             })}
           </Select>
+          {assistiveText && <FormHelperText disabled={disabled}>{assistiveText}</FormHelperText>}
         </FormControl>
       </SelectContainer>
     </ThemeProvider>
@@ -374,9 +377,33 @@ const SelectContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: inline-block;
+
   .MuiFormControl-root {
     width: 100%;
   }
+
+  .MuiFormHelperText-root {
+    font-family: ${(props) => props.theme.fontFamily};
+    font-size: ${(props) => props.theme.assistiveTextFontSize};
+    font-style: ${(props) => props.theme.assistiveTextFontStyle};
+    font-weight: ${(props) => props.theme.assistiveTextFontWeight};
+    color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.invalid === true
+          ? props.theme.errorColorOnDark
+          : props.theme.assistiveTextFontColorOnDark
+        : props.invalid === true
+        ? props.theme.errorColor
+        : props.theme.assistiveTextFontColor};
+    margin-top: 6px;
+
+    &.Mui-disabled {
+      color: ${(props) =>
+        props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor};
+      cursor: not-allowed;
+    }
+  }
+
   .MuiFormLabel-root {
     font-size: ${(props) => props.theme.labelFontSize};
     font-family: ${(props) => props.theme.fontFamily};
@@ -416,6 +443,7 @@ const SelectContainer = styled.div`
           : props.theme.color};
     }
   }
+
   .MuiSelect-select.MuiSelect-select {
     padding-right: unset;
   }
@@ -519,6 +547,7 @@ const SelectContainer = styled.div`
 DxcSelect.propTypes = {
   size: PropTypes.oneOf([...Object.keys(sizes)]),
   label: PropTypes.string,
+  assistiveText: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,

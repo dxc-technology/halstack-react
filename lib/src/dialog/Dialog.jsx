@@ -61,8 +61,8 @@ const DxcDialog = ({
         {isCloseVisible && (
           <CloseIconContainer onClick={handleClose} tabIndex={tabIndex}>
             <CloseIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="currentColor"/>
-              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
             </CloseIcon>
           </CloseIconContainer>
         )}
@@ -75,7 +75,7 @@ const DxcDialog = ({
 const DialogContainer = styled(Dialog)`
   overflow: unset;
   font-family: ${(props) => props.theme.fontFamily};
- 
+
   .MuiBackdrop-root {
     background-color: ${(props) => (props.overlay === true ? props.theme.overlayColor : "transparent")};
     opacity: ${(props) => props.overlay === true && props.theme.overlayOpacity} !important;
@@ -86,9 +86,11 @@ const DialogContainer = styled(Dialog)`
     min-width: ${(props) => (props.isResponsive ? "92%" : "800px")};
     box-sizing: border-box;
     min-height: ${(props) => (props.isCloseVisible ? "72px" : "")};
-    box-shadow: ${(props)=>`${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
+    box-shadow: ${(props) =>
+      `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
 
-    padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+    padding: ${(props) =>
+      props.padding && typeof props.padding !== "object" ? spaces[props.padding] : spaces["small"]};
     padding-top: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
     padding-right: ${(props) =>
@@ -103,9 +105,9 @@ const DialogContainer = styled(Dialog)`
 const Children = styled.div`
   overflow-y: auto;
   font-family: ${(props) => props.theme.fontFamily};
-  font-size:${(props) => props.theme.fontSize};
+  font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => props.theme.fontColor };
+  color: ${(props) => props.theme.fontColor};
 
   ::-webkit-scrollbar {
     width: 3px;
@@ -162,7 +164,6 @@ const CloseIcon = styled.svg`
   border-width: ${(props) => props.theme.closeIconBorderThickness};
   border-style: ${(props) => props.theme.closeIconBorderStyle};
   border-color: ${(props) => props.theme.closeIconBorderColor};
-
 `;
 
 DxcDialog.propTypes = {

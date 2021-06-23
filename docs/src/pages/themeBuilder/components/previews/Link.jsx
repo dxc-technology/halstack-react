@@ -46,7 +46,7 @@ const Link = () => {
           .
         </p>
       </Mode>
-      <Mode text="Link with action">
+      <Mode text="With action">
         <p>
           This is a{" "}
           <DxcLink

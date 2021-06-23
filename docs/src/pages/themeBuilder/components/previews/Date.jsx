@@ -11,12 +11,17 @@ import Mode from "../Mode";
 const Date = () => {
   return (
     <DateContainer>
+      <DxcHeading
+        text="Light Mode"
+        level={5}
+        margin={{ top: "xsmall", bottom: "xxsmall" }}
+      />
       <Mode text="Default">
         <DxcDate
           label="Date of birth"
           format="dd-MM-yyyy"
           assistiveText="assistive text"
-          margin="medium"
+          margin={{ top: "xxsmall", bottom: "xsmall" }}
         />
       </Mode>
       <DxcHeading
@@ -25,13 +30,13 @@ const Date = () => {
         margin={{ top: "small", bottom: "xsmall" }}
       />
       <BackgroundColorProvider color="#000000">
-      <Mode  mode="dark" text="Default">
-      <DxcDate
-          label="Date of birth"
-          format="dd-MM-yyyy"
-          assistiveText="assistive text"
-          margin="medium"
-        />
+        <Mode mode="dark" text="Default">
+          <DxcDate
+            label="Date of birth"
+            format="dd-MM-yyyy"
+            assistiveText="assistive text"
+            margin={{ top: "xxsmall", bottom: "xsmall" }}
+          />
         </Mode>
       </BackgroundColorProvider>
     </DateContainer>

@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 
 import { spaces } from "../common/variables.js";
-import calendarIcon from "./calendar.svg";
 import useTheme from "../useTheme.js";
 
 const DxcDate = ({
@@ -35,18 +34,17 @@ const DxcDate = ({
 
   const colorsTheme = useTheme();
 
-  function handleMenuItemClick(date) {
+  const handleMenuItemClick = (date) => {
     const stringValue = moment(date).format(format.toUpperCase());
-    if (value == null) {
+    if (value == null)
       setInnerValue(stringValue);
-    }
-    if (typeof onChange === "function") {
+    if (typeof onChange === "function")
       onChange({
         stringValue,
         dateValue: date && date.toJSON() ? date : null,
       });
-    }
   }
+
   const onChangeInput = (string) => {
     const momentDate = moment(string, format.toUpperCase(), true);
     if (value == null) {
@@ -62,9 +60,8 @@ const DxcDate = ({
 
   const handlerInputBlur = (inputString) => {
     setInnerValue(inputString);
-    if (onBlur) {
+    if (onBlur)
       onBlur(inputString);
-    }
   };
 
   const getValueForPicker = () => {
@@ -73,7 +70,6 @@ const DxcDate = ({
   const openCalendar = (event) => {
     if (event) {
       setIsOpen(!isOpen);
-
       setAnchorEl(event.currentTarget);
     }
   };
@@ -84,8 +80,11 @@ const DxcDate = ({
 
   const calendarSVG = () => {
     return (
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-        <path data-testid="calendarIcon" d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z" />
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
+        <path
+          data-testid="calendarIcon"
+          d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"
+        />
         <path d="M0 0h24v24H0z" fill="none" />
       </svg>
     );

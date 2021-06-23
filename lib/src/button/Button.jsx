@@ -81,14 +81,14 @@ const LabelContainer = styled.span`
   font-size: ${(props) => props.theme.fontSize};
   text-overflow: ellipsis;
   overflow: hidden;
-  text-transform: ${(props) => props.theme.labelTextTranform};
+  text-transform: none;
 `;
 
 const IconContainer = styled.div`
-  max-height: 20px;
-  max-width: 20px;
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
-  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
+  max-height: ${(props) => props.theme.iconSize};
+  max-width: ${(props) => props.theme.iconSize};
+  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "8px") || "0px"};
+  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "8px") || "0px"};
   overflow: hidden;
 
   img,
@@ -99,14 +99,13 @@ const IconContainer = styled.div`
 `;
 
 const ButtonIcon = styled.img`
-  max-height: 20px;
-  max-width: 20px;
+  max-height: ${(props) => props.theme.iconSize};
+  max-width: ${(props) => props.theme.iconSize};
   margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
   margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
 `;
 
 const DxCButton = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -128,14 +127,14 @@ const DxCButton = styled.div`
       align-items: center;
     }
     letter-spacing: ${(props) => props.theme.labelLetterSpacing};
-    
+
     box-shadow: none;
     font-size: ${(props) => props.theme.fontSize};
     font-weight: ${(props) => props.theme.fontWeight};
     min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
 
     width: 100%;
-    min-height: ${(props) => props.theme.minHeight};
+    height: ${(props) => props.theme.height};
     font-family: ${(props) => props.theme.fontFamily};
     &:focus {
       outline: ${(props) => props.theme.focusColor} auto 1px;
@@ -164,10 +163,12 @@ const DxCButton = styled.div`
           backgroundType === "dark" ? props.theme.primaryBackgroundColorOnDark : props.theme.primaryBackgroundColor
         };
         color: ${
-            backgroundType === "dark" ? props.theme.primaryFontColorOnDark : props.theme.primaryFontColor
-          } !important;
-          padding-right:${(props.size === "small" && "11px") || "30px"};
-          padding-left:${(props.size === "small" && "11px") || "30px"};
+          backgroundType && backgroundType === "dark"
+            ? props.theme.primaryFontColorOnDark
+            : props.theme.primaryFontColor
+        } !important;
+          padding-right:${(props.size === "small" && "11px") || "24px"};
+          padding-left:${(props.size === "small" && "11px") || "24px"};
           padding-top:${props.theme.primaryPaddingTop};
           padding-bottom:${props.theme.primaryPaddingBottom};
           &:hover{
@@ -302,9 +303,7 @@ const DxCButton = styled.div`
         border-radius: ${props.theme.textBorderRadius};
         border-width:${props.theme.textBorderThickness};
         border-style:${props.theme.textBorderStyle};
-        border-color:${
-          backgroundType === "dark" ? props.theme.textBorderColorOnDark : props.theme.textBorderColor
-        };
+        border-color:${backgroundType === "dark" ? props.theme.textBorderColorOnDark : props.theme.textBorderColor};
         font-family:   ${props.theme.textFontFamily};
         font-size:     ${props.theme.textFontSize};
         font-weight:   ${props.theme.textFontWeight};
@@ -353,7 +352,9 @@ const DxCButton = styled.div`
                 backgroundType === "dark" ? props.theme.textDisabledFontColorOnDark : props.theme.textDisabledFontColor
               } !important;
               background-color: ${
-                backgroundType === "dark" ? props.theme.textDisabledBackgroundColorOnDark : props.theme.textDisabledBackgroundColor
+                backgroundType === "dark"
+                  ? props.theme.textDisabledBackgroundColorOnDark
+                  : props.theme.textDisabledBackgroundColor
               };
   
             }

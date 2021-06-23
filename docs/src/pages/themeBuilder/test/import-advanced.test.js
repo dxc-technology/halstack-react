@@ -4,6 +4,7 @@ import { createMemoryHistory } from "history";
 import { render, cleanup, act, fireEvent } from "@testing-library/react";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import routeData from "react-router";
 
 import { versionsResponse } from "./mocks/VersionsMock";
 import ThemeBuilder from "../ThemeBuilder";
@@ -11,36 +12,40 @@ import ThemeBuilder from "../ThemeBuilder";
 const portalUrl = "https://developer.dxc.com/tools/react/versions.json";
 
 const validThemeInputString = JSON.stringify({
-  accordion: {
-    accentColor: "#fabada",
-    fontColor: "#777777",
+  alert: {
+    overlayColor: "#fabada",
+    infoColor: "#cecece",
   },
-  button: {
-    baseColor: "#fabada",
-    hoverBaseColor: "#777777",
-    primaryFontColor: "",
+  box: {
+    fontFamily: "Helvetica",
+    fontSize: "0.91rem",
+    borderStyle: "dotted",
   },
 });
 
 const wrongComponentNameString = JSON.stringify({
-  accordion: {
-    accentColor: "#fabada",
-    fontColor: "#777777",
+  alert: {
+    overlayColor: "#fabada",
+    infoColor: "#cecece",
+    successColor: "#ffffff",
   },
-  random: {
-    baseColor: "#fabada",
-    hoverBaseColor: "#777777",
-    mal: "#ffffff",
+  boxes: {
+    fontFamily: "Helvetica",
+    fontSize: "0.91rem",
+    borderStyle: "dotted",
   },
 });
 
 const wrongThemeInputString = JSON.stringify({
-  accordion: {
-    random: "#fabada",
+  alert: {
+    accentColor: "#fabada",
+    infoColor: "#CEE0F5",
+    successColor: "#ffffff",
   },
-  button: {
-    baseColor: "#fabada",
-    random: "#777777",
+  box: {
+    fontFamily: "Helvetica",
+    fontSize: "0.91rem",
+    bad: "dotted",
   },
 });
 
@@ -70,10 +75,11 @@ afterAll(() => {
   server.close();
 });
 
-describe("Import theme functionality", () => {
+describe("Import advanced theme", () => {
   const history = createMemoryHistory();
   history.push("/themeBuilder");
   window.location.pathname = "/tools/react/next/";
+  jest.spyOn(routeData, "useParams").mockReturnValue({ type: "advancedTheme" });
 
   it("Should open a dialog when Import button is clicked", async () => {
     const { getByText, getAllByText, getByRole, findByText } = render(
@@ -114,19 +120,14 @@ describe("Import theme functionality", () => {
   });
 
   it("Should show the JSON error message", async () => {
-    const {
-      getByText,
-      getByRole,
-      getAllByText,
-      queryByText,
-      findByText,
-    } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
+    const { getByText, getByRole, getAllByText, queryByText, findByText } =
+      render(
+        <Router history={history}>
+          <Route>
+            <ThemeBuilder />
+          </Route>
+        </Router>
+      );
     await findByText("next");
     act(() => {
       fireEvent.click(getByText("Import"));
@@ -146,19 +147,14 @@ describe("Import theme functionality", () => {
   });
 
   it("Should show the component error message", async () => {
-    const {
-      getByText,
-      getByRole,
-      getAllByText,
-      queryByText,
-      findByText,
-    } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
+    const { getByText, getByRole, getAllByText, queryByText, findByText } =
+      render(
+        <Router history={history}>
+          <Route>
+            <ThemeBuilder />
+          </Route>
+        </Router>
+      );
     await findByText("next");
     act(() => {
       fireEvent.click(getByText("Import"));
@@ -178,19 +174,14 @@ describe("Import theme functionality", () => {
   });
 
   it("Should show the theme input error message", async () => {
-    const {
-      getByText,
-      getByRole,
-      getAllByText,
-      queryByText,
-      findByText,
-    } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
+    const { getByText, getByRole, getAllByText, queryByText, findByText } =
+      render(
+        <Router history={history}>
+          <Route>
+            <ThemeBuilder />
+          </Route>
+        </Router>
+      );
     await findByText("next");
     act(() => {
       fireEvent.click(getByText("Import"));
@@ -206,7 +197,7 @@ describe("Import theme functionality", () => {
       fireEvent.click(getAllByText("Import")[1].closest("button"));
     });
     expect(
-      getByText("Invalid theme input name in component accordion.")
+      getByText("Invalid theme input name in component alert.")
     ).toBeTruthy();
     expect(getAllByText("Import")[1].closest("button").disabled).toBeTruthy();
   });
@@ -218,6 +209,8 @@ describe("Import theme functionality", () => {
       getAllByText,
       queryByText,
       findByText,
+      getAllByRole,
+      getByDisplayValue,
     } = render(
       <Router history={history}>
         <Route>
@@ -236,49 +229,29 @@ describe("Import theme functionality", () => {
       });
     });
     expect(getAllByText("Import")[1].closest("button").disabled).toBeFalsy();
-    act(() => {
-      fireEvent.click(getAllByText("Import")[1].closest("button"));
-    });
-    expect(getByText("Accordion component")).toBeTruthy();
-    expect(getAllByText(/#fabada/).length).toBe(2);
-    expect(getAllByText(/#777777/).length).toBe(2);
-  });
 
-  it("Should reset an imported json and update the current theme of the builder", async () => {
-    const {
-      getByText,
-      getByRole,
-      getAllByText,
-      queryByText,
-      findByText,
-    } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
-    act(() => {
-      fireEvent.click(getByText("Import"));
-    });
-    expect(queryByText("Import theme")).toBeTruthy();
-    act(() => {
-      fireEvent.change(getByRole("textbox"), {
-        target: { value: validThemeInputString },
-      });
-    });
-    expect(getAllByText("Import")[1].closest("button").disabled).toBeFalsy();
     act(() => {
       fireEvent.click(getAllByText("Import")[1].closest("button"));
     });
-    expect(getByText("Accordion component")).toBeTruthy();
-    expect(getAllByText(/#fabada/).length).toBe(2);
-    expect(getAllByText(/#777777/).length).toBe(2);
     act(() => {
-      fireEvent.click(getByText("Reset").closest("button"));
+      fireEvent.click(getByText("Alert"));
     });
-    expect(queryByText(/#fabada/)).toBeFalsy();
-    expect(queryByText(/#777777/)).toBeFalsy();
+
+    expect(getByText("Alert component")).toBeTruthy();
+    expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
+      "#fabada"
+    );
+    expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
+      "#cecece"
+    );
+
+    act(() => {
+      fireEvent.click(getByText("Box"));
+    });
+    expect(getByText("Box component")).toBeTruthy();
+    expect(getByText("ShadowDepth 0")).toBeTruthy();
+    expect(getByDisplayValue("Helvetica")).toBeTruthy();
+    expect(getByDisplayValue("0.91")).toBeTruthy();
+    expect(getByDisplayValue("dotted")).toBeTruthy();
   });
 });

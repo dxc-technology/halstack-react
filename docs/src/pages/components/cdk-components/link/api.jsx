@@ -14,7 +14,9 @@ const linkPropsTable = () => {
         <td>
           <code>true</code>
         </td>
-        <td>If true, the text is underlined.</td>
+        <td>
+          <b>Deprecated.</b> If true, the text is underlined.
+        </td>
       </tr>
       <tr>
         <td>disabled: boolean</td>
@@ -89,9 +91,7 @@ const linkPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex.
-        </td>
+        <td>Value of the tabindex.</td>
       </tr>
     </DxcTable>
   );
