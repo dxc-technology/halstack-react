@@ -33,7 +33,7 @@ const DxcTableContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  overflow-y: auto;
+  overflow: hidden auto;
   &::-webkit-scrollbar {
     width: 8px;
   }
