@@ -49,7 +49,8 @@ const ThemeBuilder = () => {
       <DxcApplicationLayout.Header>
         <Header></Header>
       </DxcApplicationLayout.Header>
-      <DxcApplicationLayout.SideNav mode="push" padding="medium">
+      <DxcApplicationLayout.SideNav mode="push" padding="small">
+      <DxcSidenav.Title>Global theme actions</DxcSidenav.Title>
         <ButtonsContainer>
           <DxcButton
             mode="text"
