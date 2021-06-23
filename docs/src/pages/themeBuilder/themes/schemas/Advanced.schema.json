@@ -761,7 +761,8 @@
     "height": "length",
     "iconColor": "color",
     "iconSectionWidth": "length",
-    "iconSize": "length"
+    "iconHeight": "length",
+    "iconWidth": "length"
   },
   "table": {
     "rowSeparatorThickness": "length",
