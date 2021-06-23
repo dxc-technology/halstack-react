@@ -6,7 +6,9 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 import { versionsResponse } from "./mocks/VersionsMock";
+import defaultTheme from "./mocks/defaultThemeMock.json";
 import ThemeBuilder from "../ThemeBuilder";
+import { makeReadable } from "../utils";
 
 const portalUrl = "https://developer.dxc.com/tools/react/versions.json";
 
@@ -36,13 +38,13 @@ afterAll(() => {
   server.close();
 });
 
-describe("Successful component tests", () => {
+describe("Successful component tests for default theme", () => {
   const history = createMemoryHistory();
   history.push("/themeBuilder");
   window.location.pathname = "/tools/react/next/";
 
   it("Should render accordion component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -55,9 +57,10 @@ describe("Successful component tests", () => {
     expect(getByText("Disabled")).toBeTruthy();
     expect(getByText("Icon")).toBeTruthy();
     expect(getByText("Accordion Group")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("accentColor").length).toBe(8);
-    expect(getAllByText("fontColor").length).toBe(9);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["accordion"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render button component", async () => {
@@ -73,18 +76,15 @@ describe("Successful component tests", () => {
       fireEvent.click(getByText("Button"));
     });
     expect(getByText("Button component")).toBeTruthy();
-    expect(getByText("Primary")).toBeTruthy();
-    expect(getByText("Secondary")).toBeTruthy();
-    expect(getByText("Text")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("hoverBaseColor").length).toBe(2);
-    expect(getAllByText("primaryFontColor").length).toBe(2);
-    expect(getAllByText("primaryHoverFontColor").length).toBe(2);
-    expect(getAllByText("secondaryFontColor").length).toBe(2);
-    expect(getAllByText("secondaryHoverFontColor").length).toBe(2);
-    expect(getAllByText("textFontColor").length).toBe(2);
-    expect(getAllByText("textHoverFontColor").length).toBe(2);
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Primary").length).toBe(2);
+    expect(getAllByText("Secondary").length).toBe(2);
+    expect(getAllByText("Text").length).toBe(2);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["button"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render checkbox component", async () => {
@@ -100,16 +100,19 @@ describe("Successful component tests", () => {
       fireEvent.click(getByText("Checkbox"));
     });
     expect(getByText("Checkbox component")).toBeTruthy();
-    expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Label position")).toBeTruthy();
-    expect(getAllByText("Disabled").length).toBe(2);
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("checkColor").length).toBe(2);
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(2);
+    expect(getAllByText("Label position").length).toBe(2);
+    expect(getAllByText("Disabled").length).toBe(4);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["checkbox"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render chip component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -125,10 +128,11 @@ describe("Successful component tests", () => {
     expect(getByText("With suffix")).toBeTruthy();
     expect(getByText("With prefix")).toBeTruthy();
     expect(getByText("Only icon")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("accentColor").length).toBe(8);
-    expect(getAllByText("fontColor").length).toBe(9);
+    expect(getByText("Disabled")).toBeTruthy();
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["chip"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render date component", async () => {
@@ -144,14 +148,17 @@ describe("Successful component tests", () => {
       fireEvent.click(getByText("Date"));
     });
     expect(getByText("Date component")).toBeTruthy();
-    expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("accentColor").length).toBe(8);
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(2);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["date"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render dropdown component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -164,13 +171,14 @@ describe("Successful component tests", () => {
     });
     expect(getByText("Dropdown component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("fontColor").length).toBe(9);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["dropdown"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render footer component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -183,15 +191,14 @@ describe("Successful component tests", () => {
     });
     expect(getByText("Footer component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("fontColor").length).toBe(9);
-    expect(getAllByText("accentColor").length).toBe(8);
-    expect(getAllByText("logo").length).toBe(3);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["footer"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render header component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -205,16 +212,14 @@ describe("Successful component tests", () => {
     expect(getByText("Header component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
     expect(getByText("Responsive")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("accentColor").length).toBe(8);
-    expect(getAllByText("fontColor").length).toBe(9);
-    expect(getAllByText("menuBaseColor").length).toBe(2);
-    expect(getAllByText("hamburguerColor").length).toBe(2);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["header"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render paginator component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -227,13 +232,14 @@ describe("Successful component tests", () => {
     });
     expect(getByText("Paginator component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("fontColor").length).toBe(9);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["paginator"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
-  it("Should render progressBar component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+  it("Should render progress bar component", async () => {
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -242,14 +248,15 @@ describe("Successful component tests", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("ProgressBar"));
+      fireEvent.click(getByText("Progress Bar"));
     });
     expect(getByText("ProgressBar component")).toBeTruthy();
     expect(getByText("Undeterminate default")).toBeTruthy();
     expect(getByText("Determinate default")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("accentColor").length).toBe(8);
-    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["progressBar"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render radio component", async () => {
@@ -265,10 +272,14 @@ describe("Successful component tests", () => {
       fireEvent.click(getByText("Radio"));
     });
     expect(getByText("Radio component")).toBeTruthy();
-    expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Disabled")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(2);
+    expect(getAllByText("Disabled").length).toBe(2);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["radio"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render select component", async () => {
@@ -284,15 +295,19 @@ describe("Successful component tests", () => {
       fireEvent.click(getByText("Select"));
     });
     expect(getByText("Select component")).toBeTruthy();
-    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(2);
+    expect(getAllByText("Disabled").length).toBe(2);
     expect(getByText("Multiple")).toBeTruthy();
-    expect(getByText("Disabled")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["select"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render sidenav component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -305,10 +320,12 @@ describe("Successful component tests", () => {
     });
     expect(getByText("Sidenav component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("arrowBaseColor").length).toBe(2);
-    expect(getAllByText("arrowAccentColor").length).toBe(2);
+    expect(getByText("With compound components")).toBeTruthy();
+    expect(getByText("With scroll")).toBeTruthy();
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["sidenav"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render slider component", async () => {
@@ -324,15 +341,20 @@ describe("Successful component tests", () => {
       fireEvent.click(getByText("Slider"));
     });
     expect(getByText("Slider component")).toBeTruthy();
-    expect(getByText("Default")).toBeTruthy();
-    expect(getByText("With marks")).toBeTruthy();
-    expect(getByText("Disabled")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(2);
+    expect(getAllByText("Disabled").length).toBe(2);
+    expect(getAllByText("With marks").length).toBe(2);
+    expect(getAllByText("With input").length).toBe(2);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["slider"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render spinner component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -346,9 +368,12 @@ describe("Successful component tests", () => {
     expect(getByText("Spinner component")).toBeTruthy();
     expect(getByText("Undeterminate default")).toBeTruthy();
     expect(getByText("Determinate default")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("accentColor").length).toBe(8);
-    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getByText("Small")).toBeTruthy();
+    expect(getByText("With overlay")).toBeTruthy();
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["spinner"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render switch component", async () => {
@@ -364,14 +389,18 @@ describe("Successful component tests", () => {
       fireEvent.click(getByText("Switch"));
     });
     expect(getByText("Switch component")).toBeTruthy();
-    expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Disabled")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("checkedBaseColor").length).toBe(2);
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(2);
+    expect(getAllByText("Disabled").length).toBe(2);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["switch"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render table component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -384,13 +413,16 @@ describe("Successful component tests", () => {
     });
     expect(getByText("Table component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("fontColor").length).toBe(9);
+    expect(getByText("Resultset Table")).toBeTruthy();
+    expect(getByText("With scroll")).toBeTruthy();
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["table"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render tabs component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -404,11 +436,15 @@ describe("Successful component tests", () => {
     expect(getByText("Tabs component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
     expect(getByText("Disabled")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
+    expect(getByText("With notifications")).toBeTruthy();
+    expect(getByText("With scroll buttons")).toBeTruthy();
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["tabs"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
-  it("Should render inputText component", async () => {
+  it("Should render input text component", async () => {
     const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
@@ -418,20 +454,24 @@ describe("Successful component tests", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("InputText"));
+      fireEvent.click(getByText("Input Text"));
     });
     expect(getByText("InputText component")).toBeTruthy();
-    expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Disabled")).toBeTruthy();
-    expect(getByText("Required")).toBeTruthy();
-    expect(getByText("Invalid")).toBeTruthy();
-    expect(getAllByText("Autocomplete").length).toBe(2);
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("selectedBaseColor").length).toBe(3);
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(2);
+    expect(getAllByText("Disabled").length).toBe(2);
+    expect(getAllByText("Required").length).toBe(2);
+    expect(getAllByText("Invalid").length).toBe(2);
+    expect(getAllByText("Autocomplete").length).toBe(4);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["inputText"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render wizard component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -445,13 +485,14 @@ describe("Successful component tests", () => {
     expect(getByText("Wizard component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
     expect(getByText("Icons")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("baseColor").length).toBe(18);
-    expect(getAllByText("fontColor").length).toBe(9);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["wizard"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 
   it("Should render toggle group component", async () => {
-    const { getByText, getAllByText, findByText } = render(
+    const { getByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -460,18 +501,15 @@ describe("Successful component tests", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("ToggleGroup"));
+      fireEvent.click(getByText("Toggle Group"));
     });
     expect(getByText("ToggleGroup component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
-    expect(getByText("Default with icons")).toBeTruthy();
-    expect(getByText("Theme inputs")).toBeTruthy();
-    expect(getAllByText("selectedBaseColor").length).toBe(3);
-    expect(getAllByText("selectedFontColor").length).toBe(2);
-    expect(getAllByText("selectedHoverFontColor").length).toBe(2);
-    expect(getAllByText("unselectedBaseColor").length).toBe(2);
-    expect(getAllByText("unselectedHoverBaseColor").length).toBe(2);
-    expect(getAllByText("unselectedFontColor").length).toBe(2);
-    expect(getAllByText("unselectedHoverFontColor").length).toBe(2);
+    expect(getByText("Disabled")).toBeTruthy();
+    expect(getByText("Multiple with icons")).toBeTruthy();
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["toggleGroup"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
   });
 });

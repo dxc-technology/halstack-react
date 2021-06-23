@@ -13,11 +13,7 @@ import BorderWidthInput from "./widgets/BorderWidthInput";
 import AlphaValueInput from "./widgets/AlphaValueInput";
 import IntegerInput from "./widgets/IntegerInput";
 import TextAlignInput from "./widgets/TextAlignInput";
-
-const makeReadable = (token) =>
-  token.replace(/^[a-z]|[A-Z]/g, function (v, i) {
-    return i === 0 ? v.toUpperCase() : " " + v.toLowerCase();
-  });
+import { makeReadable } from "../utils";
 
 const ThemeInput = ({
   propertyName,

@@ -8,25 +8,33 @@ const ProgressBar = () => {
   return (
     <ProgressBarContainer>
       <Mode text="Undeterminate default">
-        <DxcProgressBar
-          label="Loading"
-          overlay={false}
-          margin={{ top: "xsmall", bottom: "xxsmall" }}
-        />
+        <Container>
+          <DxcProgressBar
+            label="Loading"
+            overlay={false}
+            margin={{ top: "xsmall", bottom: "xxsmall" }}
+          />
+        </Container>
       </Mode>
       <Mode text="Determinate default">
-        <DxcProgressBar
-          label="Loading"
-          overlay={false}
-          showValue
-          value={45}
-          margin={{ top: "xsmall", bottom: "xxsmall" }}
-        />
+        <Container>
+          <DxcProgressBar
+            label="Loading"
+            overlay={false}
+            showValue
+            value={45}
+            margin={{ top: "xsmall", bottom: "xxsmall" }}
+          />
+        </Container>
       </Mode>
     </ProgressBarContainer>
   );
 };
 
 const ProgressBarContainer = styled.div``;
+
+const Container = styled.div`
+  width: 100%;
+`;
 
 export default ProgressBar;
