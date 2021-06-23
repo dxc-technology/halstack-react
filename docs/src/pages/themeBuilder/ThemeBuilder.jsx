@@ -8,7 +8,7 @@ import {
 import defaultTheme from "./themes/DefaultTheme.json";
 import advancedTheme from "./themes/AdvancedTheme.json";
 import ComponentPreview from "./components/ComponentPreview";
-import { capitalizeText, downloadFile, makeReadableSidenav } from "./utils";
+import { downloadFile, makeReadableSidenav } from "./utils";
 import Header from "../../common/Header";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
 import ImportDialog from "./ImportDialog";
