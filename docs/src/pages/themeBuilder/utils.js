@@ -1,10 +1,8 @@
 export const capitalizeText = (text) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
-
 const isObject = (item) =>
   item && typeof item === "object" && !Array.isArray(item);
-
 
 export const deepMerge = (target, ...sources) => {
   if (!sources.length) return target;
@@ -22,4 +20,16 @@ export const deepMerge = (target, ...sources) => {
   }
 
   return deepMerge(target, ...sources);
+};
+
+export const downloadFile = (content) => {
+  const data = new Blob([JSON.stringify(content)], {
+    type: "application/json",
+  });
+  
+  const element = document.createElement("a");
+  element.href = URL.createObjectURL(data);
+  element.download = "theme.json";
+  document.body.appendChild(element);
+  element.click();
 };
