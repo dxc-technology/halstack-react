@@ -199,10 +199,8 @@
     "focusColor": "color",
     "labelFontLineHeight": "length",
     "labelLetterSpacing": "length",
-    "labelTextTranform": "fTextTransform",
-    "iconMaxHeight": "length",
-    "iconMaxWidth": "length",
-    "minHeight": "length"
+    "iconSize": "length",
+    "height": "length"
   },
   "card": {
     "height": "length",

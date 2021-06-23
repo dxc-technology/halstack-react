@@ -165,21 +165,50 @@ const CheckboxContainer = styled.span`
   position: relative;
   flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiCheckbox-colorSecondary {
-    &.Mui-disabled{
-      color: ${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "border"))};
+    .MuiIconButton-label {
+      & > .MuiSvgIcon-root {
+        color: ${(props) => getNotDisabledColor(props, "border")};
+      }
+    }
+    &.Mui-disabled {
+      .MuiIconButton-label {
+        & > .MuiSvgIcon-root {
+          color: ${(props) => getDisabledColor(props, "border")};
+        }
+      }
     }
     &.Mui-checked {
-      color:${(props) =>
-        props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
+      .MuiIconButton-label {
+        & > .MuiSvgIcon-root {
+          &:hover {
+            color: green;
+          }
+          color: ${(props) =>
+            props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
+        }
+      }
+
       &:hover {
         background-color: transparent;
-        color:${(props) =>
-          props.backgroundType && props.backgroundType === "dark"
-            ? props.theme.backgroundHoverColorCheckedOnDark
-            : props.theme.backgroundHoverColorChecked};
+        .MuiIconButton-label {
+          & > .MuiSvgIcon-root {
+            background-color: transparent;
+            color: ${(props) =>
+              props.backgroundType && props.backgroundType === "dark"
+                ? props.theme.backgroundHoverColorCheckedOnDark
+                : props.theme.backgroundHoverColorChecked};
+          }
+        }
+      }
+    }
+    .MuiIconButton-label {
+      & > .MuiSvgIcon-root {
+        width: 26.6px;
+        height: 26.6px;
       }
     }
   }
+
   .MuiIconButton-colorSecondary {
     &:hover {
       background-color: transparent;
@@ -187,10 +216,14 @@ const CheckboxContainer = styled.span`
   }
   .MuiButtonBase-root {
     &:hover {
-      color: ${(props) =>
-        props.backgroundType && props.backgroundType === "dark"
-          ? props.theme.borderHoverColorOnDark
-          : props.theme.borderHoverColor};
+      .MuiIconButton-label {
+        & > .MuiSvgIcon-root {
+          color: ${(props) =>
+            props.backgroundType && props.backgroundType === "dark"
+              ? props.theme.borderHoverColorOnDark
+              : props.theme.borderHoverColor};
+        }
+      }
     }
     &.Mui-focusVisible {
       .MuiIconButton-label {
@@ -200,18 +233,12 @@ const CheckboxContainer = styled.span`
     z-index: 1;
     padding: 10px;
     ${(props) => (props.labelPosition === "after" ? "padding-right" : "padding-left")}: ${(props) =>
-  props.theme.checkLabelSpacing};
+      props.theme.checkLabelSpacing};
     padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
     margin: 2px;
     margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
-    color:${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "border"))};
-
-  }  }
-  .MuiSvgIcon-root {
-    width: 26.6px;
-    height: 26.6px;
   }
 `;
 const CheckboxBlackBack = styled.span`
