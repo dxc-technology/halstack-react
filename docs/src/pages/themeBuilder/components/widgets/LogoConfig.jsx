@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const LogoConfig = ({propertyName, propertyValue, onChangeCustomTheme}) => {
+const LogoConfig = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
   const [logoImage, setLogoImage] = useState(propertyValue || null);
+
+  useEffect(() => {
+    setLogoImage(propertyValue || null);
+  }, [propertyValue]);
 
   return (
     <UploadContainer>
