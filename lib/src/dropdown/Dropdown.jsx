@@ -35,8 +35,10 @@ const DxcDropdown = ({
   };
 
   useEffect(() => {
-    if (ref.current) ref.current.addEventListener("resize", handleResize);
-    handleResize();
+    if (ref.current) {
+      ref.current.addEventListener("resize", handleResize);
+      handleResize();
+    }
 
     return () => {
       if (ref.current) ref.current.removeEventListener("resize", handleResize);
