@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const LogoConfig = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
+const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
   const [logoImage, setLogoImage] = useState(propertyValue || null);
   
   const clickToUpload = function (event) {
@@ -37,8 +37,8 @@ const UploadContainer = styled.div`
 `;
 
 const LogoImage = styled.img`
-  width: 22px;
-  height: 22px;
+  width: 23px;
+  height: 23px;
   object-fit: contain;
   background-color: #d9d9d9;
 `;
@@ -55,8 +55,8 @@ const UploadInputFile = styled.input`
 const UploadButton = styled.button`
   margin-left: 10px;
   font: normal 12px/17px Open Sans;
-  height: 22px;
-  width: 111px;
+  height: 23px;
+  width: 140px;
 `;
 
-export default LogoConfig;
+export default ImageConfig;
