@@ -454,6 +454,7 @@
     "errorColor": "color",
     "selectedOptionBackgroundColor": "color",
     "hoverOptionColor": "color",
+    "hoverOptionBackgroundColor":"color",
     "scrollBarThumbColor": "color",
     "scrollBarTrackColor": "color",
     "fontFamilyBase": "fFamily",
