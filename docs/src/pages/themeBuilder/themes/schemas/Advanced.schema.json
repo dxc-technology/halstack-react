@@ -2,9 +2,8 @@
   "accordion": {
     "backgroundColor": "color",
     "arrowColor": "color",
-    "fontColorBase": "color",
     "hoverBackgroundColor": "color",
-    "disabledFontColor": "color",
+    "disabledColor": "color",
     "customContentFontFamily": "fFamily",
     "customContentFontSize": "length",
     "customContentFontWeight": "fWeight",
@@ -36,6 +35,7 @@
     "boxShadowOffsetY": "length",
     "boxShadowBlur": "length",
     "boxShadowColor": "color",
+    "iconColor": "color",
     "iconMaxHeight": "length",
     "iconMaxWidth": "length",
     "iconMarginLeft": "length",

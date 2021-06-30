@@ -27,7 +27,6 @@ const DxcAccordion = ({
   const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
   const [isResponsive, setIsResponsive] = useState();
   const colorsTheme = useTheme();
-  // const backgroundType = useContext(BackgroundColorContext);
 
   const handleResize = (width) => {
     if (width) {
@@ -74,7 +73,9 @@ const DxcAccordion = ({
             <AccordionInfo disabled={disabled}>
               <AccordionLabel>{label}</AccordionLabel>
               {icon ? (
-                <IconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</IconContainer>
+                <IconContainer disabled={disabled}>
+                  {typeof icon === "object" ? icon : React.createElement(icon)}
+                </IconContainer>
               ) : (
                 iconSrc && <AccordionIcon src={iconSrc} />
               )}
@@ -220,7 +221,7 @@ const DXCAccordion = styled.div`
   }
 
   .MuiPaper-root.Mui-disabled {
-    color: ${(props) => props.theme.disabledFontColor};
+    color: ${(props) => props.theme.disabledColor};
   }
 
   .MuiCollapse-container {
@@ -230,7 +231,7 @@ const DXCAccordion = styled.div`
   }
   .MuiIconButton-label {
     & > .MuiSvgIcon-root {
-      color: ${(props) => props.theme.arrowColor};
+      color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.arrowColor)};
     }
   }
 
@@ -267,8 +268,7 @@ const AccordionInfo = styled.div`
   font-size: ${(props) => props.theme.titleLabelFontSize};
   font-style: ${(props) => props.theme.titleLabelFontStyle};
   font-weight: ${(props) => props.theme.titleFonLabeltWeight};
-  color: ${(props) =>
-    (props.disabled && props.theme.disabledFontColor) || props.theme.titleLabelFontColor || props.theme.fontColorBase};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.titleLabelFontColor)};
 `;
 
 const AccordionLabel = styled.div``;
@@ -278,10 +278,7 @@ const AccordionText = styled.div`
   font-family: ${(props) => props.theme.customContentFontFamily};
   font-size: ${(props) => props.theme.customContentFontSize};
   font-weight: ${(props) => props.theme.customContentFontWeight};
-  color: ${(props) =>
-    (props.disabled && props.theme.disabledFontColor) ||
-    props.theme.customContentFontColor ||
-    props.theme.fontColorBase} !important;
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.customContentFontColor)};
 `;
 
 const AccordionAssistiveText = styled.div`
@@ -291,11 +288,7 @@ const AccordionAssistiveText = styled.div`
   font-family: ${(props) => props.theme.assistiveTextFontFamily};
   font-style: ${(props) => props.theme.assistiveTextFontStyle};
   font-weight: ${(props) => props.theme.assistiveTextFontWeight};
-  color: ${(props) =>
-    (props.disabled && props.theme.disabledFontColor) ||
-    props.theme.assistiveTextFontColor ||
-    props.theme.fontColorBase};
-
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.assistiveTextFontColor)};
   letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
   flex: 1;
   white-space: nowrap;
@@ -311,7 +304,7 @@ const IconContainer = styled.div`
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRigth};
   overflow: hidden;
-  color: ${(props) => props.theme.arrowColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.iconColor)};
 
   img,
   svg {
