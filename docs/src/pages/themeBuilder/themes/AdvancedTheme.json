@@ -761,7 +761,8 @@
     "height": "43px",
     "iconColor": "#FFFFFF",
     "iconSectionWidth": "48px",
-    "iconSize": "24px"
+    "iconHeight": "24px",
+    "iconWidth": ""
   },
   "table": {
     "rowSeparatorThickness": "1px",
