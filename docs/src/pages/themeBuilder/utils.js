@@ -31,3 +31,15 @@ export const deepMerge = (target, ...sources) => {
 
   return deepMerge(target, ...sources);
 };
+
+export const downloadFile = (content) => {
+  const data = new Blob([JSON.stringify(content, null, '\t')], {
+    type: "application/json",
+  });
+  
+  const element = document.createElement("a");
+  element.href = URL.createObjectURL(data);
+  element.download = "theme.json";
+  document.body.appendChild(element);
+  element.click();
+};

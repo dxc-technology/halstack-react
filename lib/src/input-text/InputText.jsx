@@ -295,6 +295,7 @@ const DxcInputText = ({
                   return (
                     <MenuItem
                       key={suggestion}
+                      disableRipple
                       onMouseDown={(event) => event.preventDefault()}
                       onClick={() => handlerSuggestionClicked(suggestion)}
                     >
@@ -370,6 +371,9 @@ const SuggestionsContainer = styled.div`
     li {
       &:hover {
         color: ${(props) => props.theme.hoverOptionColor};
+        background-color: ${(props) => props.theme.hoverOptionBackgroundColor};
+      }
+      &:active {
         background-color: ${(props) => props.theme.selectedOptionBackgroundColor};
       }
     }
@@ -488,11 +492,13 @@ const TextContainer = styled.div`
 
   display: inline-block;
   position: relative;
+
   height: auto;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiTextField-root {
     width: 100%;
     font-family: ${(props) => props.theme.fontFamilyBase};
+
     .MuiFormHelperText-root {
       font-weight: ${(props) => props.theme.assistiveTextFontWeight};
       font-family: ${(props) => props.theme.fontFamilyBase};
@@ -516,7 +522,7 @@ const TextContainer = styled.div`
         cursor: not-allowed;
       }
       padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
-      
+
       &.Mui-focused {
         color: ${(props) =>
           props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};

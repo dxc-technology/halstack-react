@@ -111,8 +111,8 @@ const StyledButton = styled.button`
 
 const TagIcon = styled.img`
   padding: 10px 12px;
-  height: ${(props) => props.theme.iconSize};
-  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconHeight};
+  width: ${(props) => props.theme.iconWidth};
 `;
 
 const TagIconContainer = styled.div`
@@ -123,8 +123,8 @@ const TagIconContainer = styled.div`
   overflow: hidden;
   img,
   svg {
-    height: ${(props) => props.theme.iconSize};
-    width: ${(props) => props.theme.iconSize};
+    height: ${(props) => props.theme.iconHeight};
+    width: ${(props) => props.theme.iconWidth};
   }
 `;
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const unitOptions = [
@@ -27,6 +27,14 @@ const LengthInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
     propertyValue.match(/[a-zA-Z]+|%/g) &&
       propertyValue.match(/[a-zA-Z]+|%/g)[0]
   );
+
+  useEffect(() => {
+    changeValue(propertyValue.match(/-?[0-9]+(.[0-9]+)?/g));
+    changeUnitValue(
+      propertyValue.match(/[a-zA-Z]+|%/g) &&
+        propertyValue.match(/[a-zA-Z]+|%/g)[0]
+    );
+  }, [propertyValue]);
 
   return (
     <LengthInputContainer>

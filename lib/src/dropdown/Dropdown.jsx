@@ -35,8 +35,10 @@ const DxcDropdown = ({
   };
 
   useEffect(() => {
-    if (ref.current) ref.current.addEventListener("resize", handleResize);
-    handleResize();
+    if (ref.current) {
+      ref.current.addEventListener("resize", handleResize);
+      handleResize();
+    }
 
     return () => {
       if (ref.current) ref.current.removeEventListener("resize", handleResize);
@@ -183,6 +185,7 @@ const calculateWidth = (margin, size) => {
 };
 
 const DxCDropdownContainer = styled.div`
+  height: 40px;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   text-overflow: ellipsis;
   overflow: hidden;
@@ -209,7 +212,7 @@ const DxcMenu = styled(Popper)`
     width: ${(props) => calculateWidth(props.margin, props.size)};
   }
   .MuiMenuItem-root {
-    min-height: 46px;
+    min-height: 36px;
     padding-top: ${(props) => props.theme.optionsPaddingTop};
     padding-bottom: ${(props) => props.theme.optionsPaddingBottom};
     padding-left: ${(props) => props.theme.optionsPaddingLeft};
@@ -219,8 +222,6 @@ const DxcMenu = styled(Popper)`
 
   .MuiPaper-root {
     min-width: ${(props) => `${props.width}px`};
-
-    background-color: ${(props) => props.theme.optionsListBackgroundColor};
 
     color: ${(props) => props.theme.optionsListFontColor};
     border-width: ${(props) => props.theme.borderThickness};
@@ -269,6 +270,7 @@ const DxcMenu = styled(Popper)`
 `;
 
 const DropdownTrigger = styled.button`
+  padding: 0 16px;
   cursor: pointer;
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.buttonFontSize};
@@ -276,7 +278,7 @@ const DropdownTrigger = styled.button`
   font-weight: ${(props) => props.theme.buttonFontWeight};
   width: 100%;
   height: auto;
-  min-height: 46px;
+  min-height: 40px;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -304,6 +306,9 @@ const DropdownTrigger = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.buttonHoverBackgroundColor};
   }
+  &:active {
+    background-color: #d9d9d9;
+  }
 `;
 
 const DropdownTriggerLabel = styled.span`
@@ -318,7 +323,7 @@ const DropdownTriggerContainer = styled.span`
   flex-direction: ${(props) => (props.iconPosition === "after" && "row-reverse") || "row"};
   margin-left: 0px;
   margin-right: 0px;
-  width: ${(props) => (props.caretHidden ? "100%" : "calc(100% - 44px)")};
+  width: ${(props) => (props.caretHidden ? "100%" : "calc(100% - 36px)")};
   white-space: nowrap;
 `;
 
