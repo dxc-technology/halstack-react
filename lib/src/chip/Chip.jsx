@@ -95,9 +95,8 @@ const StyledDxcChip = styled.div`
   display: inline-flex;
   align-items: center;
   border-radius: ${(props) => props.theme.borderRadius};
-  margin: 2px;
   max-width: ${({ margin }) => `calc(100% - 40px - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`};
-  background-color: ${(props) => 
+  background-color: ${(props) =>
     (props.disabled && props.theme.disabledBackgroundColor) || props.theme.backgroundColor};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
@@ -147,7 +146,7 @@ const PrefixIconContainer = styled.img`
 `;
 
 const IconContainer = styled.div`
-  opacity: ${(props) => props.disabled && props.theme.iconMaxWidth};
+  opacity: ${(props) => props.disabled && "0.34"};
   ${(props) =>
     props.prefixIcon
       ? `margin-right: ${
@@ -163,7 +162,7 @@ const IconContainer = styled.div`
   height: ${(props) => props.theme.iconSize};
   overflow: hidden;
   padding-left: ${(props) => props.theme.iconPaddingLeft};
-  padding-right: ${(props) =>props.theme.iconPaddingRight};
+  padding-right: ${(props) => props.theme.iconPaddingRight};
   img,
   svg {
     height: 100%;
