@@ -495,7 +495,7 @@
     "fontWeight": "400",
     "iconSize": "16px",
     "iconGutter": "4px",
-    "underlineSpacing": "1px",
+    "underlineSpacing": "0px",
     "underlineStyle": "solid",
     "underlineThickness": "1px",
     "disabledColor": "#D9D9D9",
