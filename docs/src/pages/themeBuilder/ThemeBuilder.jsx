@@ -8,17 +8,20 @@ import {
 import defaultTheme from "./themes/DefaultTheme.json";
 import advancedTheme from "./themes/AdvancedTheme.json";
 import ComponentPreview from "./components/ComponentPreview";
-import { makeReadableSidenav } from "./utils";
+import { downloadFile, makeReadableSidenav } from "./utils";
 import Header from "../../common/Header";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
 import ImportDialog from "./ImportDialog";
 import { useParams } from "react-router";
 import defaultSchema from "./themes/schemas/Default.schema.json";
 import advancedSchema from "./themes/schemas/Advanced.schema.json";
+import exportIcon from "./images/ExportIcon";
+import importIcon from "./images/ImportIcon";
+import resetIcon from "./images/ResetIcon";
 
 const ThemeBuilder = () => {
   const { type } = useParams();
-  
+
   const [customTheme, setCustomTheme] = useState(
     type === "advancedTheme" ? advancedTheme : defaultTheme
   );
@@ -46,15 +49,27 @@ const ThemeBuilder = () => {
       <DxcApplicationLayout.Header>
         <Header></Header>
       </DxcApplicationLayout.Header>
-      <DxcApplicationLayout.SideNav mode="push" padding="medium">
+      <DxcApplicationLayout.SideNav mode="push" padding="small">
+      <DxcSidenav.Title>Global theme actions</DxcSidenav.Title>
         <ButtonsContainer>
           <DxcButton
-            mode="primary"
+            mode="text"
+            label="Reset"
+            onClick={() => {
+              setCustomTheme(
+                type === "advancedTheme" ? advancedTheme : defaultTheme
+              );
+            }}
+            icon={resetIcon}
+          />
+          <DxcButton
+            mode="secondary"
             label="Import"
             onClick={() => {
               setDialogVisible(true);
             }}
-            margin={{ right: "xxsmall" }}
+            margin={{ top: "xxsmall", bottom: "xxsmall" }}
+            icon={importIcon}
           />
           {isDialogVisible && (
             <ImportDialog
@@ -64,17 +79,18 @@ const ThemeBuilder = () => {
             />
           )}
           <DxcButton
-            mode="text"
-            label="Reset"
+            mode="primary"
+            label="Export"
             onClick={() => {
-              setCustomTheme(
-                type === "advancedTheme" ? advancedTheme : defaultTheme
-              );
+              downloadFile(customTheme);
             }}
+            icon={exportIcon}
           />
         </ButtonsContainer>
         <DxcSidenav.Title>Components</DxcSidenav.Title>
-        {Object.keys(type === "advancedTheme" ? advancedTheme : defaultTheme).map((component, index) => (
+        {Object.keys(
+          type === "advancedTheme" ? advancedTheme : defaultTheme
+        ).map((component, index) => (
           <ComponentLink
             key={`componentLink-${index}`}
             isSelected={currentComponent === component}
@@ -120,6 +136,7 @@ const ComponentLink = styled.p`
 
 const ButtonsContainer = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 export default ThemeBuilder;

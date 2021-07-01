@@ -454,6 +454,7 @@
     "errorColor": "color",
     "selectedOptionBackgroundColor": "color",
     "hoverOptionColor": "color",
+    "hoverOptionBackgroundColor":"color",
     "scrollBarThumbColor": "color",
     "scrollBarTrackColor": "color",
     "fontFamilyBase": "fFamily",
@@ -761,7 +762,8 @@
     "height": "length",
     "iconColor": "color",
     "iconSectionWidth": "length",
-    "iconSize": "length"
+    "iconHeight": "length",
+    "iconWidth": "length"
   },
   "table": {
     "rowSeparatorThickness": "length",

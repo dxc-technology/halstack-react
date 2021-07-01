@@ -299,7 +299,7 @@ describe("Successful component tests for default theme", () => {
     expect(getByText("Dark Mode")).toBeTruthy();
     expect(getAllByText("Default").length).toBe(2);
     expect(getAllByText("Disabled").length).toBe(2);
-    expect(getByText("Multiple")).toBeTruthy();
+    expect(getAllByText("Multiple").length).toBe(2);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["select"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()

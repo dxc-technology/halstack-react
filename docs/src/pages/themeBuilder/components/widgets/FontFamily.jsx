@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const fontFamilyOptions = [
@@ -14,12 +14,13 @@ const FontFamilyInput = ({
   propertyValue,
   onChangeCustomTheme,
 }) => {
-  const [value, changeValue] = useState(
-    propertyValue.split(", ")[0]
-  );
-  const [unitValue, changeUnitValue] = useState(
-    propertyValue.split(", ")[1]
-  );
+  const [value, changeValue] = useState(propertyValue.split(", ")[0]);
+  const [unitValue, changeUnitValue] = useState(propertyValue.split(", ")[1]);
+
+  useEffect(() => {
+    changeValue(propertyValue.split(", ")[0]);
+    changeUnitValue(propertyValue.split(", ")[1]);
+  }, [propertyValue]);
 
   return (
     <FontFamilyWidgetContainer>
@@ -36,7 +37,10 @@ const FontFamilyInput = ({
         onChange={(event) => {
           const val = event.target.value;
           changeUnitValue(val);
-          onChangeCustomTheme(propertyName, `${propertyValue.split(",")[0]}, ${val}`);
+          onChangeCustomTheme(
+            propertyName,
+            `${propertyValue.split(",")[0]}, ${val}`
+          );
         }}
       >
         {fontFamilyOptions.map((familyOption) => (
@@ -50,7 +54,6 @@ const FontFamilyInput = ({
 };
 const FontFamilyWidgetContainer = styled.div`
   display: flex;
-
 `;
 const StyledSelect = styled.select`
   margin-left: 5px;

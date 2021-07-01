@@ -109,7 +109,7 @@ const DxcResultsetTable = ({
     <ThemeProvider theme={colorsTheme.table}>
       <DxcResultsetTableContainer margin={margin}>
         <TableContainer>
-          <DxcTable margin={{ top: margin, right: margin, bottom: "0px", left: margin }}>
+          <DxcTable>
             <HeaderRow>
               <tr>
                 {columns.map((column, index) => (
@@ -137,7 +137,7 @@ const DxcResultsetTable = ({
             </TableRowGroup>
           </DxcTable>
         </TableContainer>
-        <PaginatorContainer margin={margin}>
+        <PaginatorContainer>
           <DxcPaginator
             totalItems={rows.length}
             itemsPerPage={itemsPerPage}
@@ -158,10 +158,7 @@ const TableContainer = styled.div`
     table-layout: auto;
   }
 `;
-const PaginatorContainer = styled.div`
-  margin-left: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-  margin-right: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-`;
+const PaginatorContainer = styled.div``;
 const TableRowGroup = styled.tbody`
   > div:nth-child(1) {
     position: absolute;
@@ -205,8 +202,6 @@ const HeaderRow = styled.thead`
 `;
 const DxcResultsetTableContainer = styled.div`
   font-size: ${(props) => props.theme.fontSizeBase};
-  overflow-y: hidden;
-  overflow-x: auto;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -216,20 +211,7 @@ const DxcResultsetTableContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
-  &::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.scrollBarThumbColor};
-    border-radius: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.scrollBarTrackColor};
-    border-radius: 6px;
-  }
+  overflow: hidden;
 `;
 
 DxcResultsetTable.propTypes = {
