@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const AlphaValueInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
+const AlphaValueInput = ({
+  propertyName,
+  propertyValue,
+  onChangeCustomTheme,
+}) => {
   const [value, changeValue] = useState(
     propertyValue.match(/-?[0-9]+(.[0-9]+)?/g)
   );
+
+  useEffect(() => {
+    changeValue(propertyValue.match(/-?[0-9]+(.[0-9]+)?/g));
+  }, [propertyValue]);
 
   return (
     <AlphaValueInputContainer>
