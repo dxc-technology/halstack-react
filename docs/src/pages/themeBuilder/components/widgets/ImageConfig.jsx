@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
   const [logoImage, setLogoImage] = useState(propertyValue || null);
-  
   const clickToUpload = function (event) {
     event.target.previousSibling.click();
   };
@@ -12,6 +11,10 @@ const ImageConfig = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
     onChangeCustomTheme(propertyName, url);
     setLogoImage(url);
   };
+
+  useEffect(() => {
+    setLogoImage(propertyValue || null);
+  }, [propertyValue]);
 
   return (
     <UploadContainer>
