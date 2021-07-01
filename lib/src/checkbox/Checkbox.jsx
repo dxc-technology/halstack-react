@@ -49,7 +49,12 @@ const DxcCheckbox = ({
       >
         <Checkbox
           checked={checked != undefined ? checked : innerChecked}
-          inputProps={(name = { name })}
+          inputProps={{
+            name: name,
+            "aria-label": label,
+            role: "checkbox",
+            "aria-checked": checked != undefined ? checked : innerChecked,
+          }}
           onChange={handlerCheckboxChange}
           value={value}
           disabled={disabled}
