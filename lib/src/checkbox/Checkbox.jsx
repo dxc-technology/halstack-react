@@ -22,7 +22,7 @@ const DxcCheckbox = ({
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
   const colorsTheme = useTheme();
-  const backgroundType = useContext(BackgroundColorContext) || "light";
+  const backgroundType = useContext(BackgroundColorContext);
   const handlerCheckboxChange = (checkboxValue) => {
     if (checked === undefined) {
       const isChecked = checkboxValue.target.checked === undefined ? !innerChecked : checkboxValue.target.checked;
@@ -199,9 +199,9 @@ const CheckboxContainer = styled.span`
           & > .MuiSvgIcon-root {
             background-color: transparent;
             color: ${(props) =>
-              props.backgroundType && props.backgroundType === "dark"
-                ? props.theme.backgroundHoverColorCheckedOnDark
-                : props.theme.backgroundHoverColorChecked};
+              props.backgroundType === "dark"
+                ? props.theme.hoverBackgroundColorCheckedOnDark
+                : props.theme.hoverBackgroundColorChecked};
           }
         }
       }
@@ -224,15 +224,14 @@ const CheckboxContainer = styled.span`
       .MuiIconButton-label {
         & > .MuiSvgIcon-root {
           color: ${(props) =>
-            props.backgroundType && props.backgroundType === "dark"
-              ? props.theme.borderHoverColorOnDark
-              : props.theme.borderHoverColor};
+            props.backgroundType === "dark" ? props.theme.hoverBorderColorOnDark : props.theme.hoverBorderColor};
         }
       }
     }
     &.Mui-focusVisible {
       .MuiIconButton-label {
-        outline: ${(props) => props.theme.focusColor} auto 1px;
+        outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
+          auto 1px;
       }
     }
     z-index: 1;
