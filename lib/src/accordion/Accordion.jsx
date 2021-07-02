@@ -83,11 +83,11 @@ const DxcAccordion = ({
             {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <AccordionText disabled={disabled}>
+            <AccordionContent disabled={disabled}>
               <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>
                 {children}
               </BackgroundColorProvider>
-            </AccordionText>
+            </AccordionContent>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </DXCAccordion>
@@ -239,13 +239,12 @@ const DXCAccordion = styled.div`
     opacity: 1;
   }
   .MuiExpansionPanelSummary-root.Mui-focused {
-    border-width: ${(props) => props.theme.titleFocusBorderThickness};
-    border-style: ${(props) => props.theme.titleFocusBorderStyle};
-    border-color: ${(props) => props.theme.titleFocusBorderColor};
+    border-width: ${(props) => props.theme.focusBorderThickness};
+    border-style: ${(props) => props.theme.focusBorderStyle};
+    border-color: ${(props) => props.theme.focusBorderColor};
   }
 
   .MuiExpansionPanelDetails-root {
-    height: ${(props) => props.theme.customContentPanelHeight};
     padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
     padding-top: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -273,12 +272,8 @@ const AccordionInfo = styled.div`
 
 const AccordionLabel = styled.div``;
 
-const AccordionText = styled.div`
+const AccordionContent = styled.div`
   width: 100%;
-  font-family: ${(props) => props.theme.customContentFontFamily};
-  font-size: ${(props) => props.theme.customContentFontSize};
-  font-weight: ${(props) => props.theme.customContentFontWeight};
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.customContentFontColor)};
 `;
 
 const AccordionAssistiveText = styled.div`
@@ -299,8 +294,8 @@ const AccordionAssistiveText = styled.div`
 `;
 
 const IconContainer = styled.div`
-  max-height: ${(props) => props.theme.iconMaxHeight};
-  max-width: ${(props) => props.theme.iconMaxWidth};
+  height: ${(props) => props.theme.iconSize};
+  width: ${(props) => props.theme.iconSize};
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRigth};
   overflow: hidden;
@@ -314,10 +309,12 @@ const IconContainer = styled.div`
 `;
 
 const AccordionIcon = styled.img`
-  max-height: 20px;
-  max-width: 20px;
-  margin-left: 0px;
-  margin-right: 10px;
+  height: ${(props) => props.theme.iconSize};
+  width: ${(props) => props.theme.iconSize};
+  margin-left: ${(props) => props.theme.iconMarginLeft};
+  margin-right: ${(props) => props.theme.iconMarginRigth};
+  overflow: hidden;
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.iconColor)};
 `;
 
 export default DxcAccordion;
