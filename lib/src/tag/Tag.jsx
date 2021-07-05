@@ -78,7 +78,6 @@ const calculateWidth = (size) => {
 };
 
 const StyledDxcTag = styled.div`
-  font-style: ${(props) => props.theme.fontStyle};
   display: inline-flex;
   cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
@@ -139,8 +138,13 @@ const IconContainer = styled.div`
 `;
 
 const TagLabel = styled.div`
-  padding: 0px 30px;
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-style: ${(props) => props.theme.fontStyle};
+  font-weight: ${(props) => props.theme.fontWeight};
   text-transform: ${(props) => props.theme.fontTextTransform};
+  color: ${(props) => props.theme.fontColor};
+  padding: 0px 30px;
   letter-spacing: 0.025em;
   flex-grow: 1;
   text-align: center;

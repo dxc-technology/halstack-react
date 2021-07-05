@@ -441,7 +441,7 @@
     "errorColor": "color",
     "selectedOptionBackgroundColor": "color",
     "hoverOptionColor": "color",
-    "hoverOptionBackgroundColor":"color",
+    "hoverOptionBackgroundColor": "color",
     "scrollBarThumbColor": "color",
     "scrollBarTrackColor": "color",
     "fontFamilyBase": "fFamily",
@@ -744,7 +744,11 @@
     "spaceBetweenLabelSwitch": "length"
   },
   "tag": {
+    "fontFamily": "fFamily",
+    "fontColor": "color",
+    "fontSize": "length",
     "fontStyle": "fStyle",
+    "fontWeight": "400",
     "fontTextTransform": "fTextTransform",
     "height": "length",
     "iconColor": "color",

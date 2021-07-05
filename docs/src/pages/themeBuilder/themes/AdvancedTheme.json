@@ -744,10 +744,14 @@
     "spaceBetweenLabelSwitch": "0px"
   },
   "tag": {
+    "fontFamily": "Open Sans, sans-serif",
+    "fontColor": "#000000",
+    "fontSize": "0.875rem",
     "fontStyle": "normal",
+    "fontWeight": "400",
     "fontTextTransform": "uppercase",
     "height": "43px",
-    "iconColor": "#FFFFFF",
+    "iconColor": "#ffffff",
     "iconSectionWidth": "48px",
     "iconHeight": "24px",
     "iconWidth": ""
