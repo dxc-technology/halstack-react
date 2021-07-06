@@ -17,10 +17,9 @@ const Dropdown = (props) => {
 
 const HeaderDropdown = styled.div`
   button {
-    color: ${(props) => props.theme.fontColorBase};
-    background-color: ${(props) => props.theme.dropdownBackgroundColor};
+    background-color: transparent;
     :hover {
-      background-color: ${(props) => props.theme.dropdownHoverBackgroundColor};
+      background-color: transparent;
     }
   }
 `;
@@ -36,9 +35,7 @@ const DxcHeader = ({
   tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
-
   const ref = useRef(null);
-
   const [refSize, setRefSize] = useState();
   const [isResponsive, setIsResponsive] = useState();
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -138,20 +135,13 @@ const DxcHeader = ({
 DxcHeader.Dropdown = Dropdown;
 
 const HeaderContainer = styled(AppBar)`
-  font-size: ${(props) => props.theme.fontSizeBase};
-
   margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
 
   &.MuiAppBar-colorPrimary {
     background-color: ${(props) => props.theme.backgroundColor};
-
-    color: ${(props) => props.theme.fontColorBase};
-
     border-bottom: ${(props) =>
       props.underlined &&
       `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
-
-    font-family: ${(props) => props.theme.fontFamily};
 
     &.MuiPaper-elevation4 {
       box-shadow: none;
@@ -204,11 +194,11 @@ const ChildContainer = styled.div`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
-  font-family: ${(props) => props.theme.customContentFontFamily || props.theme.fontFamilyBase};
+  font-family: ${(props) => props.theme.customContentFontFamily};
   font-style: ${(props) => props.theme.customContentFontStyle};
-  font-size: ${(props) => props.theme.customContentFontSize || props.theme.fontSizeBase};
+  font-size: ${(props) => props.theme.customContentFontSize};
   font-weight: ${(props) => props.theme.customContentFontWeight};
-  color: ${(props) => props.theme.customContentFontColor || props.theme.fontColorBase};
+  color: ${(props) => props.theme.customContentFontColor};
 `;
 
 const HamburguerItem = styled.div`
@@ -225,17 +215,17 @@ const HamburguerItem = styled.div`
     outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
   & > svg {
-    fill: ${(props) => props.theme.hamburguerColor};
+    fill: ${(props) => props.theme.hamburguerIconColor};
   }
 `;
 
 const HamburguerTitle = styled.span`
-  font-family: ${(props) => props.theme.hamburguerFontFamily || props.theme.fontFamilyBase};
+  font-family: ${(props) => props.theme.hamburguerFontFamily};
   font-style: ${(props) => props.theme.hamburguerFontStyle};
   font-size: ${(props) => props.theme.hamburguerFontSize};
   text-transform: ${(props) => props.theme.hamburguerTextTransform};
   font-weight: ${(props) => props.theme.hamburguerFontWeight};
-  color: ${(props) => props.theme.hamburguerFontColor || props.theme.fontColorBase};
+  color: ${(props) => props.theme.hamburguerFontColor};
 `;
 
 const MainContainer = styled.div`
@@ -288,11 +278,11 @@ const MenuContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: ${(props) => props.theme.menuCustomContentFontFamily || props.theme.fontFamilyBase};
+  font-family: ${(props) => props.theme.menuCustomContentFontFamily};
   font-style: ${(props) => props.theme.menuCustomContentFontStyle};
-  font-size: ${(props) => props.theme.menuCustomContentFontSize || props.theme.fontSizeBase};
+  font-size: ${(props) => props.theme.menuCustomContentFontSize};
   font-weight: ${(props) => props.theme.menuCustomContentFontWeight};
-  color: ${(props) => props.theme.menuCustomContentFontColor || props.theme.fontColorBase};
+  color: ${(props) => props.theme.menuCustomContentFontColor};
 `;
 
 const CloseContainer = styled.img`
