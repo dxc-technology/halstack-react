@@ -185,7 +185,6 @@ const calculateWidth = (margin, size) => {
 };
 
 const DxCDropdownContainer = styled.div`
-  height: 40px;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   text-overflow: ellipsis;
   overflow: hidden;
@@ -223,7 +222,6 @@ const DxcMenu = styled(Popper)`
   .MuiPaper-root {
     min-width: ${(props) => `${props.width}px`};
 
-    color: ${(props) => props.theme.optionsListFontColor};
     border-width: ${(props) => props.theme.borderThickness};
     border-style: ${(props) => props.theme.borderStyle};
     border-color: ${(props) => props.theme.borderColor};
@@ -245,7 +243,7 @@ const DxcMenu = styled(Popper)`
       font-size: ${(props) => props.theme.optionsFontSize};
       font-style: ${(props) => props.theme.optionsFontStyle};
       font-weight: ${(props) => props.theme.optionsFontWeight};
-      color: ${(props) => props.theme.optionsFontColor};
+      color: ${(props) => props.theme.optionsListFontColor};
       cursor: pointer;
     }
     .MuiListItem-button:hover {
@@ -278,7 +276,7 @@ const DropdownTrigger = styled.button`
   font-weight: ${(props) => props.theme.buttonFontWeight};
   width: 100%;
   height: auto;
-  min-height: 40px;
+  min-height: ${(props) => props.theme.minHeight};
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
