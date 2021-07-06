@@ -335,7 +335,7 @@
   },
   "footer": {
     "backgroundColor": "#000000",
-    "bottomLinksDividerColor": "#1489fb",
+    "bottomLinksDividerColor": "#0095ff",
     "bottomLinksDividerThickness": "1px",
     "bottomLinksDividerStyle": "solid",
     "bottomLinksDividerSpacing": "8px",
