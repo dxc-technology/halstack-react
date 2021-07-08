@@ -5,7 +5,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import PropTypes from "prop-types";
-
 import Popper from "@material-ui/core/Popper";
 import DxcRequired from "../common/RequiredComponent";
 import { spaces } from "../common/variables.js";
@@ -355,6 +354,7 @@ const SuggestionsContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   .MuiPaper-root {
     max-height: 250px;
+
     overflow: auto;
     ::-webkit-scrollbar {
       width: 3px;
@@ -363,12 +363,18 @@ const SuggestionsContainer = styled.div`
       background-color: ${(props) => props.theme.scrollBarTrackColor};
       border-radius: 3px;
     }
-
     ::-webkit-scrollbar-thumb {
       background-color: ${(props) => props.theme.scrollBarThumbColor};
       border-radius: 3px;
     }
+    
     li {
+      font-family: ${(props) => props.theme.fontFamilyBase};
+      font-size: ${(props) => props.theme.optionFontSize};
+      font-style: ${(props) => props.theme.optionFontStyle};
+      font-weight: ${(props) => props.theme.optionFontWeight};
+      color: ${(props) => props.theme.optionFontColor};
+
       &:hover {
         color: ${(props) => props.theme.hoverOptionColor};
         background-color: ${(props) => props.theme.hoverOptionBackgroundColor};
@@ -399,9 +405,7 @@ const PrefixIconContainer = styled.div`
   max-height: 20px;
   max-width: 20px;
   color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.prefixIconColorOnDark || props.theme.fontColorBaseOnDark
-      : props.theme.prefixIconColor || props.theme.fontColorBase};
+    props.backgroundType === "dark" ? props.theme.prefixIconColorOnDark : props.theme.prefixIconColor};
   z-index: 1;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
   ${(props) => getCursor(props.interactuable, props.disabled)};
@@ -423,9 +427,7 @@ const PrefixLabel = styled.span`
   font-size: ${(props) => props.theme.prefixLabelFontSize};
   font-style: ${(props) => props.theme.prefixLabelFontStyle};
   color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.prefixLabelFontColorOnDark || props.theme.fontColorBaseOnDark
-      : props.theme.prefixLabelFontColor || props.theme.fontColorBase};
+    props.backgroundType === "dark" ? props.theme.prefixLabelFontColorOnDark : props.theme.prefixLabelFontColor};
   max-height: 20px;
   max-width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
@@ -450,9 +452,7 @@ const SuffixIconContainer = styled.div`
   max-height: 20px;
   max-width: 20px;
   color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.suffixIconColorOnDark || props.theme.fontColorBaseOnDark
-      : props.theme.suffixIconColor || props.theme.fontColorBase};
+    props.backgroundType === "dark" ? props.theme.suffixIconColorOnDark : props.theme.suffixIconColor};
   margin-right: 8px;
   width: 20px;
   opacity: ${(props) => (props.disabled && 0.5) || 1};
@@ -473,13 +473,10 @@ const SuffixLabel = styled.span`
   font-size: ${(props) => props.theme.suffixLabelFontSize};
   font-style: ${(props) => props.theme.suffixLabelFontStyle};
   color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.suffixLabelFontColorOnDark || props.theme.fontColorBaseOnDark
-      : props.theme.suffixLabelFontColor || props.theme.fontColorBase};
+    props.backgroundType === "dark" ? props.theme.suffixLabelFontColorOnDark : props.theme.suffixLabelFontColor};
 `;
 
 const TextContainer = styled.div`
-  font-size: ${(props) => props.theme.fontSizeBase};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -489,12 +486,11 @@ const TextContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
   display: inline-block;
   position: relative;
-
   height: auto;
   width: ${(props) => calculateWidth(props.margin, props.size)};
+
   .MuiTextField-root {
     width: 100%;
     font-family: ${(props) => props.theme.fontFamilyBase};
@@ -506,26 +502,30 @@ const TextContainer = styled.div`
       font-style: ${(props) => props.theme.assistiveTextFontStyle};
       color: ${(props) =>
         props.backgroundType === "dark"
-          ? props.theme.assistiveTextFontColorOnDark || props.theme.fontColorBaseOnDark
-          : props.theme.assistiveTextFontColor || props.theme.fontColorBase} !important;
+          ? props.theme.assistiveTextFontColorOnDark
+          : props.theme.assistiveTextFontColor} !important;
       margin-top: 6px;
     }
+    
     .MuiFormLabel-root {
       font-size: ${(props) => props.theme.labelFontSize};
+      font-style: ${(props) => props.theme.labelFontStyle};
+      font-weight: ${(props) => props.theme.labelFontWeight};
       color: ${(props) =>
-        props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+        props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
+      padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
+
       &.Mui-disabled {
         color: ${(props) =>
           props.backgroundType === "dark"
-            ? props.theme.disabledFontColorOnDark
-            : props.theme.disabledFontColor} !important;
+            ? props.theme.disabledColorOnDark
+            : props.theme.disabledColor} !important;
         cursor: not-allowed;
       }
-      padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
 
       &.Mui-focused {
         color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+          props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
         &.MuiInputLabel-shrink {
           transform: ${(props) =>
             props.prefixIconSrc ||
@@ -551,26 +551,24 @@ const TextContainer = styled.div`
 
       &:not(.MuiInputLabel-shrink) {
         font-family: ${(props) => props.theme.fontFamilyBase};
-
         color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+          props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
+
         & + div,
         & + div + p {
           color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
         }
       }
 
       &.MuiInputLabel-shrink {
         & + div::before {
           border-color: ${(props) =>
-            props.backgroundType === "dark"
-              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
-              : props.theme.underlineColor || props.theme.fontColorBase};
+            props.backgroundType === "dark" ? props.theme.underlineColorOnDark : props.theme.underlineColor};
         }
         & + div + p {
           color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
         }
       }
     }
@@ -581,9 +579,7 @@ const TextContainer = styled.div`
       &::before {
         border-bottom: ${(props) =>
           `${props.theme.underlineThickness} solid ${
-            props.backgroundType === "dark"
-              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
-              : props.theme.underlineColor || props.theme.fontColorBase
+            props.backgroundType === "dark" ? props.theme.underlineColorOnDark : props.theme.underlineColor
           }`};
       }
 
@@ -591,17 +587,14 @@ const TextContainer = styled.div`
       &:not(&.Mui-focused)::before {
         border-bottom: ${(props) =>
           `${props.theme.underlineThickness} solid ${
-            props.backgroundType === "dark"
-              ? props.theme.underlineColorOnDark || props.theme.fontColorBaseOnDark
-              : props.theme.underlineColor || props.theme.fontColorBase
+            props.backgroundType === "dark" ? props.theme.underlineColorOnDark : props.theme.underlineColor
           }`};
       }
+
       &::after {
         border-bottom: ${(props) =>
           `2px solid ${
-            props.backgroundType === "dark"
-              ? props.theme.underlineFocusColorOnDark || props.theme.fontColorBaseOnDark
-              : props.theme.underlineFocusColor || props.theme.fontColorBase
+            props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor
           }`};
       }
 
@@ -620,9 +613,7 @@ const TextContainer = styled.div`
         &::after {
           border-width: 2px;
           border-color: ${(props) =>
-            props.backgroundType === "dark"
-              ? props.theme.underlineFocusColorOnDark || props.theme.fontColorBaseOnDark
-              : props.theme.underlineFocusColor || props.theme.fontColorBase};
+            props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor};
           transform: scaleX(1);
         }
         &.Mui-error::after {
@@ -637,34 +628,38 @@ const TextContainer = styled.div`
         &::before {
           border-bottom: ${(props) =>
             `${props.theme.underlineThickness} solid ${
-              props.backgroundType === "dark" ? props.theme.disabledFontColorOnDark : props.theme.disabledFontColor
+              props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor
             } !important`};
           border-bottom-style: solid;
         }
       }
+
       .MuiInputBase-input {
-        padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
+        font-size: ${(props) => props.theme.customContentFontSize};
+        font-style: ${(props) => props.theme.customContentFontStyle};
+        font-weight: ${(props) => props.theme.customContentFontWeight};
         color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+          props.backgroundType === "dark"
+            ? props.theme.customContentFontColorOnDark
+            : props.theme.customContentFontColor};
+        padding-left: ${(props) => ((props.prefixIconSrc || props.prefix || props.prefixIcon) && "32px") || "inherit"};
         text-overflow: ellipsis;
+
         &.Mui-disabled {
           color: ${(props) =>
             props.backgroundType === "dark"
-              ? props.theme.disabledFontColorOnDark
-              : props.theme.disabledFontColor} !important;
+              ? props.theme.disabledColorOnDark
+              : props.theme.disabledColor} !important;
           cursor: not-allowed;
         }
       }
+
       .MuiInputAdornment-root {
         height: 20px;
-        color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+
         &.MuiInputAdornment-positionEnd {
           & > p {
             font-family: ${(props) => props.theme.fontFamilyBase};
-
-            color: ${(props) =>
-              props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
             margin-right: 8px;
             margin-bottom: 1px;
           }
@@ -676,8 +671,8 @@ const TextContainer = styled.div`
       }
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before {
-        border-bottom: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.fontColorBaseOnDark : props.theme.fontColorBase};
+        border-bottom-color: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor};
       }
     }
 
@@ -689,8 +684,8 @@ const TextContainer = styled.div`
       &.Mui-disabled {
         color: ${(props) =>
           props.backgroundType === "dark"
-            ? props.theme.disabledFontColorOnDark
-            : props.theme.disabledFontColor} !important;
+            ? props.theme.disabledColorOnDark
+            : props.theme.disabledColor} !important;
         cursor: not-allowed;
       }
     }
@@ -701,7 +696,6 @@ DxcInputText.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
-  theme: PropTypes.oneOf(["light", "dark", ""]),
   assistiveText: PropTypes.string,
   disabled: PropTypes.bool,
   prefix: PropTypes.string,
