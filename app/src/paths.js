@@ -33,6 +33,7 @@ import ApplicationLayout from "./pages/ApplicationLayout";
 import ToggleGroup from "./pages/ToggleGroup";
 import AccordionGroup from "./pages/AccordionGroup";
 import Badge from "./pages/Badge";
+import NewInputText from "./pages/NewInputText";
 
 export default [
   {
@@ -210,4 +211,9 @@ export default [
     name: "Wizard",
     component: Wizard,
   },
+  {
+    path: "NewInputText",
+    name: "New input text",
+    component: NewInputText
+  }
 ];
