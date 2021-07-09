@@ -34,12 +34,7 @@ const DxcNewInputText = ({
       onChange("");
     },
     icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
       </svg>
@@ -47,22 +42,20 @@ const DxcNewInputText = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.newInputText}>
-      <DxcInput margin={margin}>
-        <Label htmlFor={random}>
-          {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
-        </Label>
-        <HelperText>{helperText}</HelperText>
-        <InputContainer>
-          {prefix && <Prefix>{prefix}</Prefix>}
-          <Input id={random} placeholder={placeholder} value={value} onChange={handleOnChange} />
-          {clearable && <Action onClick={clearAction.onClick}>{clearAction.icon}</Action>}
-          {action && <Action onClick={action.onClick}>{action.icon}</Action>}
-          {suffix && <Suffix>{suffix}</Suffix>}
-        </InputContainer>
-        {/* <Error>{error}</Error> */}
-      </DxcInput>
-    </ThemeProvider>
+    <DxcInput margin={margin}>
+      <Label htmlFor={random}>
+        {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+      </Label>
+      <HelperText>{helperText}</HelperText>
+      <InputContainer>
+        {prefix && <Prefix>{prefix}</Prefix>}
+        <Input id={random} placeholder={placeholder} value={value} onChange={handleOnChange} />
+        {clearable && <Action onClick={clearAction.onClick}>{clearAction.icon}</Action>}
+        {action && <Action onClick={action.onClick}>{action.icon}</Action>}
+        {suffix && <Suffix>{suffix}</Suffix>}
+      </InputContainer>
+      {/* <Error>{error}</Error> */}
+    </DxcInput>
   );
 };
 
@@ -215,7 +208,10 @@ DxcNewInputText.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   helperText: PropTypes.string,
-  action: PropTypes.shape({ onClick: PropTypes.func.isRequired, icon: PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }).isRequired }),
+  action: PropTypes.shape({
+    onClick: PropTypes.func.isRequired,
+    icon: PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }).isRequired,
+  }),
   disabled: PropTypes.bool,
   prefix: PropTypes.string,
   suffix: PropTypes.string,
