@@ -494,7 +494,7 @@
     "underlineStyle": "bStyle",
     "underlineThickness": "bWidth",
     "iconSize": "length",
-    "iconGutter": "length",
+    "iconSpacing": "length",
     "focusColor": "color"
   },
   "paginator": {
@@ -504,6 +504,7 @@
     "fontSize": "length",
     "fontWeight": "fWeight",
     "fontStyle": "fStyle",
+    "fontTextTransform": "fTextTransform",
     "height": "length",
     "width": "length",
     "itemsPerPageSelectorMarginLeft": "length",

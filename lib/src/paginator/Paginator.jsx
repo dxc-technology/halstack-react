@@ -9,7 +9,6 @@ import previous from "./images/previous.svg";
 import next from "./images/next.svg";
 import last from "./images/nextPage.svg";
 
-
 const DxcPaginator = ({
   currentPage = 1,
   itemsPerPage = 5,
@@ -18,7 +17,7 @@ const DxcPaginator = ({
   showGoToPage,
   onPageChange,
   itemsPerPageFunction,
-  tabIndex = 0
+  tabIndex = 0,
 }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
@@ -122,6 +121,7 @@ const DxcPaginator = ({
     </ThemeProvider>
   );
 };
+
 const DxcPaginatorContainer = styled.div`
   display: flex;
   height: ${(props) => props.theme.height};
@@ -130,8 +130,10 @@ const DxcPaginatorContainer = styled.div`
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
+  text-transform: ${(props) => props.theme.fontTextTransform};
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
+
   button {
     &:disabled {
       background-color: transparent !important;
@@ -139,26 +141,30 @@ const DxcPaginatorContainer = styled.div`
     }
   }
 `;
+
 const ItemsPageContainer = styled.span`
   display: flex;
   align-items: center;
   margin-right: ${(props) => props.theme.itemsPerPageSelectorMarginRight};
   margin-left: ${(props) => props.theme.itemsPerPageSelectorMarginLeft};
+
   label {
     height: 0px;
   }
-
   label + .MuiInput-formControl {
     margin-top: 0px;
   }
 `;
+
 const ItemsLabel = styled.span`
   margin-right: 15px;
 `;
+
 const GoToLabel = styled.span`
   margin-right: 10px;
   margin-left: 10px;
 `;
+
 const TotalItemsContainer = styled.span`
   margin-right: ${(props) => props.theme.totalItemsContainerMarginRight};
   margin-left: ${(props) => props.theme.totalItemsContainerMarginLeft};
@@ -171,15 +177,16 @@ const LabelsContainer = styled.div`
   align-items: center;
   margin: 0 ${(props) => props.theme.marginRight} 0 ${(props) => props.theme.marginLeft};
 `;
+
 const PageToSelectContainer = styled.span`
   display: flex;
   align-items: center;
   margin-right: ${(props) => props.theme.pageSelectorMarginRight};
   margin-left: ${(props) => props.theme.pageSelectorMarginLeft};
+
   label {
     height: 0px;
   }
-
   label + .MuiInput-formControl {
     margin-top: 0px;
   }
@@ -194,7 +201,7 @@ DxcPaginator.propTypes = {
   showGoToPage: PropTypes.bool,
   onPageChange: PropTypes.func,
   itemsPerPageFunction: PropTypes.func,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
 };
 DxcPaginator.defaultProps = {
   currentPage: 1,
@@ -203,7 +210,7 @@ DxcPaginator.defaultProps = {
   showGoToPage: false,
   onPageChange: null,
   itemsPerPageFunction: null,
-  tabIndex: 0
+  tabIndex: 0,
 };
 
 export default DxcPaginator;
