@@ -52,13 +52,24 @@ function App() {
       </p>
       <p>
         <DxcNewInputText
-          label="Example label"
-          optional
-          prefix="+34"
-          helperText="Help please"
+          label="Warning label"
+          prefix="€"
+          helperText="More help please"
           placeholder="Placeholder"
           margin="medium"
           action={action}
+        />
+      </p>
+      <p>
+        <DxcNewInputText
+          label="Error input"
+          prefix="€"
+          helperText="This time i really need help, please"
+          placeholder="Placeholder"
+          margin="medium"
+          action={action}
+          error="Error message"
+          clearable
         />
       </p>
     </>

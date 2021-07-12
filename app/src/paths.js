@@ -117,6 +117,11 @@ export default [
     component: InputText,
   },
   {
+    path: "NewInputText",
+    name: "New input text",
+    component: NewInputText,
+  },
+  {
     path: "link",
     name: "Link",
     component: Link,
@@ -211,9 +216,4 @@ export default [
     name: "Wizard",
     component: Wizard,
   },
-  {
-    path: "NewInputText",
-    name: "New input text",
-    component: NewInputText
-  }
 ];

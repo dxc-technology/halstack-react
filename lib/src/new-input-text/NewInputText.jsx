@@ -6,7 +6,7 @@ import { spaces } from "../common/variables.js";
 
 const DxcNewInputText = ({
   label = "",
-  // name = "",
+  name = "",
   value,
   action,
   helperText = "",
@@ -14,7 +14,7 @@ const DxcNewInputText = ({
   prefix = "",
   suffix = "",
   onChange,
-  // onBlur = "",
+  onBlur,
   error = "",
   optional = false,
   clearable = false,
@@ -27,11 +27,11 @@ const DxcNewInputText = ({
   const colorsTheme = useTheme();
   const random = `input-${Math.floor(Math.random() * 1000000000000000) + 1}`;
   const handleOnChange = (event) => {
-    onChange(event.target.value);
+    onChange?.(event.target.value);
   };
-  const clearAction = {
+  const defaultClearAction = {
     onClick: () => {
-      onChange("");
+      onChange?.("");
     },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -40,22 +40,34 @@ const DxcNewInputText = ({
       </svg>
     ),
   };
+  const errorIcon = (
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
+      <path
+        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+        fill="#EE2222"
+      />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </svg>
+  );
 
   return (
-    <DxcInput margin={margin}>
-      <Label htmlFor={random}>
-        {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
-      </Label>
-      <HelperText>{helperText}</HelperText>
-      <InputContainer>
-        {prefix && <Prefix>{prefix}</Prefix>}
-        <Input id={random} placeholder={placeholder} value={value} onChange={handleOnChange} />
-        {clearable && <Action onClick={clearAction.onClick}>{clearAction.icon}</Action>}
-        {action && <Action onClick={action.onClick}>{action.icon}</Action>}
-        {suffix && <Suffix>{suffix}</Suffix>}
-      </InputContainer>
-      {/* <Error>{error}</Error> */}
-    </DxcInput>
+    <ThemeProvider theme={colorsTheme.newInputText}>
+      <DxcInput margin={margin}>
+        <Label htmlFor={random}>
+          {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+        </Label>
+        <HelperText>{helperText}</HelperText>
+        <InputContainer error={error}>
+          {prefix && <Prefix>{prefix}</Prefix>}
+          <Input id={random} placeholder={placeholder} value={value} onChange={handleOnChange} name={name} onBlur={onBlur}/>
+          {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
+          {clearable && <Action onClick={defaultClearAction.onClick}>{defaultClearAction.icon}</Action>}
+          {action && <Action onClick={action.onClick}>{action.icon}</Action>}
+          {suffix && <Suffix>{suffix}</Suffix>}
+        </InputContainer>
+        {error && <Error>{error}</Error>}
+      </DxcInput>
+    </ThemeProvider>
   );
 };
 
@@ -82,23 +94,29 @@ const DxcInput = styled.div`
 `;
 
 const Label = styled.label`
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 600;
+  color: ${(props) => props.theme.labelFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => props.theme.labelFontStyle};
+  font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: 1.75em;
 `;
 
 const OptionalLabel = styled.span`
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
+  color: ${(props) => props.theme.labelFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => props.theme.labelFontStyle};
+  font-weight: ${(props) => props.theme.optionalLabelFontWeight};
   line-height: 1.75em;
 `;
 
 const HelperText = styled.span`
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
+  color: ${(props) => props.theme.helperTextFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.helperTextFontSize};
+  font-style: ${(props) => props.theme.helperTextFontStyle};
+  font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: 1.5em;
 `;
 
@@ -106,13 +124,15 @@ const InputContainer = styled.div`
   display: flex;
   align-items: center;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  border: 1px solid #666666;
+  border: ${(props) => props.error ? `1px solid ${props.theme.errorColor}` : "1px solid #666666"};
+  ${(props) => props.error && `box-shadow: inset 0 0 0 1px ${props.theme.errorColor};`}
   border-radius: 4px;
   margin: calc(1rem * 0.25) 0;
   padding: 0 calc(1rem * 0.5);
 
   &:hover {
     border-color: #a46ede;
+    box-shadow: none;
   }
   &:focus-within {
     border: 1px solid #a46ede;
@@ -121,14 +141,17 @@ const InputContainer = styled.div`
 `;
 
 const Input = styled.input`
-  width: 100%;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
+  width: 100%;
   background: none;
   border: none;
   outline: none;
-  font-size: 1rem;
-  font-family: "Open Sans", sans-serif;
   padding: 0 calc(1rem * 0.5);
+  color: ${(props) => props.theme.customContentFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.customContentFontSize};
+  font-style: ${(props) => props.theme.customContentFontStyle};
+  font-weight: ${(props) => props.theme.customContentFontWeight};
 `;
 
 const Action = styled.button`
@@ -136,7 +159,7 @@ const Action = styled.button`
   width: calc(calc(1rem * 1.5) - calc(1px * 2));
   margin: 0 calc(1rem * 0.25) 0 calc(1rem * 0.25);
   font-size: 1rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
   border-radius: 4px;
   display: flex;
@@ -173,11 +196,26 @@ const Action = styled.button`
 `;
 
 const Error = styled.span`
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;
-  color: #d0011b;
+  color: ${(props) => props.theme.errorColor};
   line-height: 1.5em;
+`;
+
+const ErrorIcon = styled.span`
+  height: calc(24px - (1px * 2));
+  width: calc(24px - (1px * 2));
+  margin-right: calc(1rem * 0.5);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  pointer-events: none;
+
+  svg {
+    font-size: 1.25rem;
+    line-height: 22px;
+  }
 `;
 
 const Prefix = styled.span`
@@ -186,7 +224,7 @@ const Prefix = styled.span`
   line-height: calc(1rem * 1.5);
   padding: 0 calc(1rem * 0.5) 0 0;
   font-size: 1rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   pointer-events: none;
   color: #666666;
 `;
@@ -198,7 +236,7 @@ const Suffix = styled.span`
   margin-left: calc(1rem * 0.25);
   padding: 0 0 0 calc(1rem * 0.5);
   font-size: 1rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily};
   pointer-events: none;
   color: #666666;
 `;
@@ -219,8 +257,6 @@ DxcNewInputText.propTypes = {
   clearable: PropTypes.bool,
   error: PropTypes.string,
   placeholder: PropTypes.string,
-  isMasked: PropTypes.bool,
-  onClickIcon: PropTypes.func,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
