@@ -34,11 +34,6 @@ const Link = ({ href, onClick, children }) => {
 
 const SideNavContainer = styled.div`
   background-color: ${(props) => props.theme.backgroundColor};
-  font-family: ${(props) => props.theme.customContentFontFamily};
-  font-size: ${(props) => props.theme.customContentFontSize};
-  font-style: ${(props) => props.theme.customContentFontStyle};
-  font-weight: ${(props) => props.theme.customContentFontWeight};
-  color: ${(props) => props.theme.customContentFontColor};
   max-width: 300px;
   width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
   padding: ${(props) => (props.padding ? spaces[props.padding] : "")};

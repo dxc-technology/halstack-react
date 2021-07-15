@@ -24,6 +24,10 @@ const useStyles = makeStyles(() => ({
     minWidth: props.width,
     width: props.width,
     maxHeight: "250px",
+    borderColor: props.optionBorderColor,
+    borderWidth: props.optionBorderThickness,
+    borderStyle: props.optionBorderStyle,
+    
     "&::-webkit-scrollbar": {
       width: "3px",
       margin: "5px",
@@ -39,34 +43,27 @@ const useStyles = makeStyles(() => ({
     "& .MuiList-root": {
       width: "auto !important",
       paddingRight: "0 !important",
-      backgroundColor: props.optionsBackgroundColor,
-      borderColor: props.optionsBorderColor,
-      borderWidth: props.optionsBorderThickness,
-      borderStyle: props.optionsBorderStyle,
+      backgroundColor: props.optionBackgroundColor,
     },
   }),
   itemList: (props) => ({
-    color: `${props.optionsFontColor || props.color}`,
+    color: `${props.optionFontColor}`,
     "&.MuiList-padding": {
       paddingBottom: "0px",
       paddingTop: "0px",
     },
     "& li": {
-      fontSize: props.optionsFontSize,
-      fontStyle: props.optionsFontStyle,
-      fontWeight: props.optionsFontWeight,
+      fontSize: props.optionFontSize,
+      fontStyle: props.optionFontStyle,
+      fontWeight: props.optionFontWeight,
       paddingBottom: props.optionPaddingBottom,
       paddingTop: props.optionPaddingTop,
-      paddingLeft: props.optionPaddingLeft,
-      paddingRight: props.optionPaddingRight,
 
       "&:hover": {
         backgroundColor: `${
-          props.backgroundType === "dark"
-            ? props.hoveredOptionBackgroundColorOnDark
-            : props.hoveredOptionBackgroundColor
+          props.backgroundType === "dark" ? props.hoverOptionBackgroundColorOnDark : props.hoverOptionBackgroundColor
         } !important`,
-        color: `${props.optionsFontColor || props.color}`,
+        color: `${props.optionFontColor}`,
       },
       "&:active": {
         backgroundColor:
@@ -75,7 +72,7 @@ const useStyles = makeStyles(() => ({
               ? props.selectedOptionBackgroundColorOnDark
               : props.selectedOptionBackgroundColor
           }` + props.hoverOptionBackgroundColor,
-        color: `${props.optionsFontColor || props.color}`,
+        color: `${props.optionFontColor}`,
       },
       "&:focus": {
         outline: `${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor} auto 2px`,
@@ -86,7 +83,7 @@ const useStyles = makeStyles(() => ({
             ? props.selectedOptionBackgroundColorOnDark
             : props.selectedOptionBackgroundColor
         } !important`,
-        color: `${props.optionsFontColor || props.color}`,
+        color: `${props.optionFontColor}`,
       },
       "&.MuiListItem-root.Mui-focusVisible": {
         backgroundColor: "unset",
@@ -335,26 +332,26 @@ const OptionContainer = styled.div`
   flex-direction: ${(props) => (props.iconPosition === "before" && "row") || "row-reverse"};
   overflow: hidden;
   text-overflow: ellipsis;
-  ${(props) => props.multiple && `margin-left: ${props.theme.checkboxOptionSpacing};`}
+  ${(props) => props.multiple && `margin-left: ${props.theme.optionCheckboxSpacing};`}
 `;
 
 const ListIcon = styled.img`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
   margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+    (props.iconPosition === "after" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
   margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+    (props.iconPosition === "before" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
 `;
 
 const ListIconContainer = styled.div`
-  color: ${(props) => props.theme.iconColor};
-  width: ${(props) => props.theme.iconSize};
-  height: ${(props) => props.theme.iconSize};
+  color: ${(props) => props.theme.optionIconColor};
+  width: ${(props) => props.theme.optionIconSize};
+  height: ${(props) => props.theme.optionIconSize};
   margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+    (props.iconPosition === "after" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
   margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.iconOptionSpacing) || "0px"};
+    (props.iconPosition === "before" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
   overflow: hidden;
   opacity: ${(props) => props.disabled && "0.34"};
 
@@ -405,18 +402,18 @@ const SelectContainer = styled.div`
   }
 
   .MuiFormLabel-root {
-    font-size: ${(props) => props.theme.labelFontSize};
     font-family: ${(props) => props.theme.fontFamily};
+    font-size: ${(props) => props.theme.labelFontSize};
     font-style: ${(props) => props.theme.labelFontStyle};
     font-weight: ${(props) => props.theme.labelFontWeight};
     color: ${(props) =>
       props.backgroundType === "dark"
         ? props.invalid === true
           ? props.theme.errorColorOnDark
-          : props.theme.colorOnDark
+          : props.theme.labelFontColorOnDark
         : props.invalid === true
         ? props.theme.errorColor
-        : props.theme.color};
+        : props.theme.labelFontColor};
     margin-top: -3px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -437,10 +434,10 @@ const SelectContainer = styled.div`
         props.backgroundType === "dark"
           ? props.invalid === true
             ? props.theme.errorColorOnDark
-            : props.theme.colorOnDark
+            : props.theme.labelFontColorOnDark
           : props.invalid === true
           ? props.theme.errorColor
-          : props.theme.color};
+          : props.theme.labelFontColor};
     }
   }
 
@@ -453,7 +450,6 @@ const SelectContainer = styled.div`
     height: 20px;
     display: flex;
     padding-right: 10px;
-    color: ${(props) => (props.backgroundType === "dark" ? props.theme.colorOnDark : props.theme.color)};
     align-items: center;
     :focus {
       background-color: transparent;
@@ -470,72 +466,72 @@ const SelectContainer = styled.div`
       color: ${(props) =>
         props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor};
       cursor: not-allowed;
-    }
-  }
-  .MuiInputBase-root {
-    width: 100%;
-    &.Mui-disabled {
-      opacity: ${(props) => props.theme.disabled};
-      cursor: not-allowed;
       &:focus {
         outline: none;
       }
     }
   }
+  .MuiInputBase-input{
+    font-size: ${(props) => props.theme.valueFontSize};
+    font-style: ${(props) => props.theme.valueFontStyle};
+    font-weight: ${(props) => props.theme.valueFontWeight};
+    color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.valueFontColorOnDark : props.theme.valueFontColor};
+  }
   .MuiInput-underline {
-    &:focus {
-      border-bottom: ${(props) => (props.disabled && "0px solid") || "2px solid"};
+    &.Mui-focused {
+      border-bottom-width: ${(props) => props.theme.underlineThickness};
       border-bottom-color: ${(props) =>
         props.backgroundType === "dark"
           ? (props.invalid === true && props.theme.errorColorOnDark) ||
             (props.disabled && props.theme.disabledColorOnDark) ||
-            props.theme.colorOnDark
+            props.theme.underlineFocusColorOnDark
           : (props.invalid === true && props.theme.errorColor) ||
             (props.disabled && props.theme.disabledColor) ||
-            props.theme.color};
+            props.theme.underlineFocusColor};
     }
     &.Mui-disabled:before {
       border-bottom-style: solid;
     }
   }
   .MuiInput-underline:hover:not(.Mui-disabled):before {
-    border-bottom: 1px solid;
+    border-bottom: ${(props) => props.theme.underlineThickness} solid;
     border-bottom-color: ${(props) =>
       props.backgroundType === "dark"
         ? (props.invalid === true && props.theme.errorColorOnDark) ||
           (props.disabled && props.theme.disabledColorOnDark) ||
-          props.theme.colorOnDark
+          props.theme.underlineColorOnDark
         : (props.invalid === true && props.theme.errorColor) ||
           (props.disabled && props.theme.disabledColor) ||
-          props.theme.color};
+          props.theme.underlineColor};
   }
   .MuiInput-underline:after {
-    border-bottom: 1px solid;
+    border-bottom: ${(props) => props.theme.underlineThickness} solid;
     border-bottom-color: ${(props) =>
       props.backgroundType === "dark"
         ? props.invalid === true
           ? props.theme.errorColorOnDark
-          : props.theme.colorOnDark
+          : props.theme.underlineFocusColorOnDark
         : props.invalid === true
         ? props.theme.errorColor
-        : props.theme.color};
+        : props.theme.underlineFocusColor};
   }
   .MuiInput-underline:before {
-    border-bottom: 1px solid;
+    border-bottom: ${(props) => props.theme.underlineThickness} solid;
     border-bottom-color: ${(props) =>
       props.backgroundType === "dark"
         ? (props.invalid === true && props.theme.errorColorOnDark) ||
           (props.disabled && props.theme.disabledColorOnDark) ||
-          props.theme.colorOnDark
+          props.theme.underlineColorOnDark
         : (props.invalid === true && props.theme.errorColor) ||
           (props.disabled && props.theme.disabledColor) ||
-          props.theme.color};
+          props.theme.underlineColor};
   }
   .MuiSelect-icon {
     color: ${(props) =>
       props.backgroundType === "dark"
-        ? (props.disabled && props.theme.disabledColorOnDark) || props.theme.colorOnDark
-        : (props.disabled && props.theme.disabledColor) || props.theme.color} !important;
+        ? (props.disabled && props.theme.disabledColorOnDark) || props.theme.arrowColorOnDark
+        : (props.disabled && props.theme.disabledColor) || props.theme.arrowColor} !important;
   }
   & label {
     text-overflow: ellipsis;
