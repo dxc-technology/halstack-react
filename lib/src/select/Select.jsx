@@ -13,13 +13,14 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const useStyles = makeStyles(() => ({
   root: (props) => ({
     minWidth: props.width,
   }),
   dropdownStyle: (props) => ({
+    backgroundColor: props.optionBackgroundColor,
     boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.3)",
     minWidth: props.width,
     width: props.width,
@@ -27,7 +28,7 @@ const useStyles = makeStyles(() => ({
     borderColor: props.optionBorderColor,
     borderWidth: props.optionBorderThickness,
     borderStyle: props.optionBorderStyle,
-    
+
     "&::-webkit-scrollbar": {
       width: "3px",
       margin: "5px",
@@ -43,11 +44,9 @@ const useStyles = makeStyles(() => ({
     "& .MuiList-root": {
       width: "auto !important",
       paddingRight: "0 !important",
-      backgroundColor: props.optionBackgroundColor,
     },
   }),
   itemList: (props) => ({
-    color: `${props.optionFontColor}`,
     "&.MuiList-padding": {
       paddingBottom: "0px",
       paddingTop: "0px",
@@ -71,8 +70,10 @@ const useStyles = makeStyles(() => ({
             props.backgroundType === "dark"
               ? props.selectedOptionBackgroundColorOnDark
               : props.selectedOptionBackgroundColor
-          }` + props.hoverOptionBackgroundColor,
-        color: `${props.optionFontColor}`,
+          }` +
+          `${
+            props.backgroundType === "dark" ? props.hoverOptionBackgroundColorOnDark : props.hoverOptionBackgroundColor
+          }`,
       },
       "&:focus": {
         outline: `${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor} auto 2px`,
@@ -83,7 +84,6 @@ const useStyles = makeStyles(() => ({
             ? props.selectedOptionBackgroundColorOnDark
             : props.selectedOptionBackgroundColor
         } !important`,
-        color: `${props.optionFontColor}`,
       },
       "&.MuiListItem-root.Mui-focusVisible": {
         backgroundColor: "unset",
@@ -215,6 +215,26 @@ const DxcSelect = ({
     }
   };
 
+  const ThemedOption = ({ option, value }) => {
+    const backgroundType = useContext(BackgroundColorContext);
+
+    return (
+      <>
+        {multiple && <DxcCheckbox size={"fitContent"} checked={isChecked(selectedValue, value, option)} />}
+        <OptionContainer iconPosition={iconPosition} multiple={multiple}>
+          {option.icon ? (
+            <ListIconContainer backgroundType={backgroundType} label={option.label} iconPosition={iconPosition}>
+              {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+            </ListIconContainer>
+          ) : (
+            option.iconSrc && <ListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />
+          )}{" "}
+          <LabelContainer backgroundType={backgroundType}>{option.label}</LabelContainer>
+        </OptionContainer>
+      </>
+    );
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.select}>
       <SelectContainer
@@ -249,19 +269,9 @@ const DxcSelect = ({
             {options.map((option) => {
               return (
                 <MenuItem id={option.value} value={option.value} disableRipple key={option.value}>
-                  {multiple && <DxcCheckbox size={"fitContent"} checked={isChecked(selectedValue, value, option)} />}
-                  <OptionContainer iconPosition={iconPosition} multiple={multiple}>
-                    {option.icon ? (
-                      <ListIconContainer label={option.label} iconPosition={iconPosition}>
-                        {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
-                      </ListIconContainer>
-                    ) : (
-                      option.iconSrc && (
-                        <ListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />
-                      )
-                    )}{" "}
-                    <LabelCont>{option.label}</LabelCont>
-                  </OptionContainer>
+                  <BackgroundColorProvider color={colorsTheme.select.optionBackgroundColor}>
+                    <ThemedOption option={option} value={value} />
+                  </BackgroundColorProvider>
                 </MenuItem>
               );
             })}
@@ -293,9 +303,11 @@ const MultipleLabelSelected = styled.div`
   text-overflow: ellipsis;
 `;
 
-const LabelCont = styled.span`
+const LabelContainer = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.optionFontColorOnDark : props.theme.optionFontColor};
 `;
 
 const SelectedIconContainer = styled.div`
@@ -345,7 +357,8 @@ const ListIcon = styled.img`
 `;
 
 const ListIconContainer = styled.div`
-  color: ${(props) => props.theme.optionIconColor};
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.optionIconColorOnDark : props.theme.optionIconColor};
   width: ${(props) => props.theme.optionIconSize};
   height: ${(props) => props.theme.optionIconSize};
   margin-left: ${(props) =>
@@ -471,12 +484,17 @@ const SelectContainer = styled.div`
       }
     }
   }
-  .MuiInputBase-input{
+  .MuiInputBase-input {
     font-size: ${(props) => props.theme.valueFontSize};
     font-style: ${(props) => props.theme.valueFontStyle};
     font-weight: ${(props) => props.theme.valueFontWeight};
     color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.valueFontColorOnDark : props.theme.valueFontColor};
+
+    svg {
+      color: ${(props) =>
+        props.backgroundType === "dark" ? props.theme.optionIconColorOnDark : props.theme.optionIconColor};
+    }
   }
   .MuiInput-underline {
     &.Mui-focused {

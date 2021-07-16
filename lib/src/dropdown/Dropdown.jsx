@@ -354,7 +354,7 @@ const ListIconContainer = styled.div`
 const CaretIcon = styled.div`
   display: ${(props) => (props.caretHidden === true ? "none" : "inline-flex")};
   margin-top:${(props) => props.theme.caretIconMarginTop};
-  margin-bottom${(props) => props.theme.caretIconMarginBottom};
+  margin-bottom: ${(props) => props.theme.caretIconMarginBottom};
   margin-left: ${(props) => props.theme.caretIconMarginLeft};
   margin-right: ${(props) => props.theme.caretIconMarginRight};
   & > svg {

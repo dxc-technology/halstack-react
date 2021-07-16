@@ -11,7 +11,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import errorIcon from "./error.svg";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
@@ -156,6 +156,40 @@ const DxcInputText = ({
     }
   };
 
+  const ThemedSuggestions = () => {
+    const backgroundType = useContext(BackgroundColorContext);
+
+    return (
+      <SuggestionsContainer margin={margin} size={size} backgroundType={backgroundType}>
+        <Paper>
+          {isOpen && !isSearching && !isError && filteredOptions.length === 0 && <MenuItem>No matches found.</MenuItem>}
+          {isOpen &&
+            !isSearching &&
+            filteredOptions.length > 0 &&
+            filteredOptions.map((suggestion) => {
+              return (
+                <MenuItem
+                  key={suggestion}
+                  disableRipple
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => handlerSuggestionClicked(suggestion)}
+                >
+                  {suggestion}
+                </MenuItem>
+              );
+            })}
+          {isSearching && <MenuItem>Searching...</MenuItem>}
+          {isError && (
+            <MenuItem>
+              Error fetching data
+              <ErrorIcon src={errorIcon} />
+            </MenuItem>
+          )}
+        </Paper>
+      </SuggestionsContainer>
+    );
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.inputText}>
       <TextContainer
@@ -267,7 +301,6 @@ const DxcInputText = ({
           inputProps={{ tabIndex: tabIndex }}
         />
       </TextContainer>
-
       <DxcSuggestions
         open={isOpen}
         anchorEl={anchorEl}
@@ -281,38 +314,9 @@ const DxcInputText = ({
           },
         }}
       >
-        <SuggestionsContainer margin={margin} size={size} backgroundType={backgroundType}>
-          <React.Fragment>
-            <Paper>
-              {isOpen && !isSearching && !isError && filteredOptions.length === 0 && (
-                <MenuItem>No matches found.</MenuItem>
-              )}
-              {isOpen &&
-                !isSearching &&
-                filteredOptions.length > 0 &&
-                filteredOptions.map((suggestion) => {
-                  return (
-                    <MenuItem
-                      key={suggestion}
-                      disableRipple
-                      onMouseDown={(event) => event.preventDefault()}
-                      onClick={() => handlerSuggestionClicked(suggestion)}
-                    >
-                      {suggestion}
-                    </MenuItem>
-                  );
-                })}
-
-              {isSearching && <MenuItem>Searching...</MenuItem>}
-              {isError && (
-                <MenuItem>
-                  Error fetching data
-                  <ErrorIcon src={errorIcon} />
-                </MenuItem>
-              )}
-            </Paper>
-          </React.Fragment>
-        </SuggestionsContainer>
+        <BackgroundColorProvider color={colorsTheme.inputText.optionBackgroundColor}>
+          <ThemedSuggestions />
+        </BackgroundColorProvider>
       </DxcSuggestions>
     </ThemeProvider>
   );
@@ -355,11 +359,17 @@ const SuggestionsContainer = styled.div`
   .MuiPaper-root {
     max-height: 250px;
     background-color: ${(props) => props.theme.optionBackgroundColor};
+    font-family: ${(props) => props.theme.fontFamily};
+    font-size: ${(props) => props.theme.optionFontSize};
+    font-style: ${(props) => props.theme.optionFontStyle};
+    font-weight: ${(props) => props.theme.optionFontWeight};
+    color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.optionFontColorOnDark : props.theme.optionFontColor};
     border-color: ${(props) => props.theme.optionBorderColor};
     border-width: ${(props) => props.theme.optionBorderThickness};
     border-style: ${(props) => props.theme.optionBorderStyle};
     overflow: auto;
-    
+
     ::-webkit-scrollbar {
       width: 3px;
     }
@@ -373,11 +383,6 @@ const SuggestionsContainer = styled.div`
     }
 
     li {
-      font-family: ${(props) => props.theme.fontFamily};
-      font-size: ${(props) => props.theme.optionFontSize};
-      font-style: ${(props) => props.theme.optionFontStyle};
-      font-weight: ${(props) => props.theme.optionFontWeight};
-      color: ${(props) => props.theme.optionFontColor};
       padding-bottom: ${(props) => props.theme.optionPaddingBottom};
       padding-top: ${(props) => props.theme.optionPaddingTop};
 
