@@ -141,9 +141,7 @@ const TextContainer = styled.div`
 
       &.Mui-disabled {
         color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.disabledColorOnDark
-            : props.theme.disabledColor} !important;
+          props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor} !important;
         cursor: not-allowed;
       }
 
@@ -184,9 +182,7 @@ const TextContainer = styled.div`
         }
         & + div + p {
           color: ${(props) =>
-            props.backgroundType === "dark"
-              ? props.theme.labelFontColorOnDark
-              : props.theme.labelFontColor};
+            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
         }
       }
     }
@@ -208,7 +204,7 @@ const TextContainer = styled.div`
 
       &::after {
         border-bottom: ${(props) =>
-          `calc(${(props) => props.theme.underlineThickness} + 1px) solid ${
+          `calc(${props.theme.underlineThickness} + 1px) solid ${
             props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor
           }`};
       }
@@ -275,9 +271,7 @@ const TextContainer = styled.div`
         font-weight: ${(props) => props.theme.valueFontWeight};
         letter-spacing: ${(props) => props.theme.valueLetterSpacing};
         color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.valueFontColorOnDark
-            : props.theme.valueFontColor};
+          props.backgroundType === "dark" ? props.theme.valueFontColorOnDark : props.theme.valueFontColor};
         line-height: ${(props) => props.theme.valueLineHeight};
         padding-left: "inherit";
         text-overflow: ellipsis;
@@ -302,9 +296,7 @@ const TextContainer = styled.div`
       }
       &.Mui-disabled {
         color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.disabledColorOnDark
-            : props.theme.disabledColor} !important;
+          props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor} !important;
         cursor: not-allowed;
       }
     }

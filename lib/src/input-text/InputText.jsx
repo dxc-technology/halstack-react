@@ -608,7 +608,7 @@ const TextContainer = styled.div`
 
       &::after {
         border-bottom: ${(props) =>
-          `calc(${(props) => props.theme.underlineThickness} + 1px) solid ${
+          `calc(${props.theme.underlineThickness} + 1px) solid ${
             props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor
           }`};
       }
