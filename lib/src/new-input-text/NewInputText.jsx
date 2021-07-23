@@ -1,69 +1,184 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 
+const makeCancelable = (promise) => {
+  let hasCanceled_ = false;
+  const wrappedPromise = new Promise((resolve, reject) => {
+    promise.then(
+      (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
+      (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError))
+    );
+  });
+  return {
+    promise: wrappedPromise,
+    cancel() {
+      hasCanceled_ = true;
+    },
+  };
+};
+
 const DxcNewInputText = ({
   label = "",
   name = "",
   value,
-  action,
   helperText = "",
-  // disabled = false,
+  placeholder = "",
+  action,
+  clearable = false,
+  disabled = false,
+  optional = false,
   prefix = "",
   suffix = "",
   onChange,
   onBlur,
   error = "",
-  optional = false,
-  clearable = false,
-  placeholder = "",
   margin,
   // size = "medium",
-  // autocompleteOptions,
+  suggestions,
   // tabIndex = 0,
 }) => {
+  const [isOpen, changeIsOpen] = useState(false);
+  const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
+  const [isSearching, changeIsSearching] = useState(false);
+  const [isError, changeIsError] = useState(false);
   const colorsTheme = useTheme();
   const random = `input-${Math.floor(Math.random() * 1000000000000000) + 1}`;
+  const autosuggestId = `${random}-listBox`;
+
   const handleOnChange = (event) => {
     onChange?.(event.target.value);
+    suggestions && changeIsOpen(true);
   };
+  const handleOnClick = (event) => {
+    suggestions && changeIsOpen(true);
+  };
+  const handleOnFocus = (event) => {
+    suggestions && changeIsOpen(true);
+  };
+  const handleOnBlur = (event) => {
+    suggestions && changeIsOpen(false);
+    onBlur?.(event.target.value);
+  };
+
+  useEffect(() => {
+    if (typeof suggestions === "function" && value) {
+      changeIsSearching(true);
+      changeIsError(false);
+      changeFilteredSuggestions([]);
+
+      const cancelablePromise = makeCancelable(suggestions(value));
+      cancelablePromise.promise
+        .then((promiseResponse) => {
+          changeIsSearching(false);
+          changeIsError(false);
+          changeFilteredSuggestions(promiseResponse);
+        })
+        .catch((err) => {
+          if (!err.isCanceled) {
+            changeIsSearching(false);
+            changeIsError(true);
+          }
+        });
+
+      return () => {
+        cancelablePromise.cancel();
+      };
+    } else if (suggestions && suggestions.length && value !== null) {
+      changeFilteredSuggestions(
+        suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith(value.toUpperCase()))
+      );
+    }
+  }, [value, suggestions]);
+
   const defaultClearAction = {
     onClick: () => {
       onChange?.("");
+      suggestions && changeIsOpen(true);
     },
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
       </svg>
     ),
   };
   const errorIcon = (
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24">
-      <path
-        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
-        fill="#EE2222"
-      />
-      <path d="M0 0h24v24H0z" fill="none" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
     </svg>
   );
+
+  const HighlightedSuggestion = ({ suggestion }) => {
+    const regEx = new RegExp(value, "i");
+    const matchedWords = suggestion.match(regEx);
+    const noMatchedWords = suggestion.replace(regEx, "");
+
+    return (
+      <Suggestion
+        onMouseDown={(event) => {
+          event.preventDefault();
+        }}
+        onMouseUp={() => {
+          onChange?.(suggestion);
+          changeIsOpen(false);
+        }}
+      >
+        <strong>{matchedWords}</strong>
+        {noMatchedWords}
+      </Suggestion>
+    );
+  };
 
   return (
     <ThemeProvider theme={colorsTheme.newInputText}>
       <DxcInput margin={margin}>
-        <Label htmlFor={random}>
+        <Label htmlFor={random} disabled={disabled}>
           {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
         </Label>
         <HelperText>{helperText}</HelperText>
-        <InputContainer error={error}>
+        <InputContainer error={error} disabled={disabled}>
           {prefix && <Prefix>{prefix}</Prefix>}
-          <Input id={random} placeholder={placeholder} value={value} onChange={handleOnChange} name={name} onBlur={onBlur}/>
+          <Input
+            id={random}
+            name={name}
+            value={value}
+            placeholder={placeholder}
+            onChange={handleOnChange}
+            onClick={handleOnClick}
+            onBlur={handleOnBlur}
+            onFocus={handleOnFocus}
+            disabled={disabled}
+          />
           {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
-          {clearable && <Action onClick={defaultClearAction.onClick}>{defaultClearAction.icon}</Action>}
-          {action && <Action onClick={action.onClick}>{action.icon}</Action>}
+          {!disabled && clearable && <Action onClick={defaultClearAction.onClick}>{defaultClearAction.icon}</Action>}
+          {!disabled && action && <Action onClick={action.onClick}>{action.icon}</Action>}
           {suffix && <Suffix>{suffix}</Suffix>}
+          {isOpen && suggestions && (
+            <Suggestions id={autosuggestId} isError={isError}>
+              {isOpen && !isSearching && !isError && filteredSuggestions.length === 0 && (
+                <SuggestionsSystemMessage>No results found.</SuggestionsSystemMessage>
+              )}
+              {isOpen &&
+                !isSearching &&
+                filteredSuggestions.length > 0 &&
+                filteredSuggestions.map((suggestion) => (
+                  <HighlightedSuggestion
+                    key={`suggestion-${Math.floor(Math.random() * 1000000000000000) + 1}`}
+                    suggestion={suggestion}
+                  />
+                ))}
+              {isSearching && <SuggestionsSystemMessage>Searching...</SuggestionsSystemMessage>}
+              {isError && (
+                <SuggestionsError>
+                  <ErrorIcon>{errorIcon}</ErrorIcon>
+                  Error fetching data.
+                </SuggestionsError>
+              )}
+            </Suggestions>
+          )}
         </InputContainer>
         {error && <Error>{error}</Error>}
       </DxcInput>
@@ -94,7 +209,7 @@ const DxcInput = styled.div`
 `;
 
 const Label = styled.label`
-  color: ${(props) => props.theme.labelFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
@@ -103,12 +218,7 @@ const Label = styled.label`
 `;
 
 const OptionalLabel = styled.span`
-  color: ${(props) => props.theme.labelFontColor};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.labelFontSize};
-  font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
-  line-height: 1.75em;
 `;
 
 const HelperText = styled.span`
@@ -122,22 +232,31 @@ const HelperText = styled.span`
 
 const InputContainer = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  border: ${(props) => props.error ? `1px solid ${props.theme.errorColor}` : "1px solid #666666"};
+  border: ${(props) =>
+    props.error
+      ? `1px solid ${props.theme.errorColor}`
+      : props.disabled
+      ? `1px solid ${props.theme.outlineDisabledColor}`
+      : `1px solid ${props.theme.outlineEnabledColor}`};
+  ${(props) => props.disabled && `background-color: ${props.theme.disabledContainerFillColor};`}
   ${(props) => props.error && `box-shadow: inset 0 0 0 1px ${props.theme.errorColor};`}
   border-radius: 4px;
   margin: calc(1rem * 0.25) 0;
   padding: 0 calc(1rem * 0.5);
 
-  &:hover {
-    border-color: #a46ede;
-    box-shadow: none;
-  }
-  &:focus-within {
-    border: 1px solid #a46ede;
-    box-shadow: inset 0 0 0 1px #a46ede;
-  }
+  ${(props) =>
+    !props.disabled &&
+    `&:hover {
+        border-color: #a46ede;
+        box-shadow: none;
+      }
+      &:focus-within {
+        border: 1px solid #a46ede;
+        box-shadow: inset 0 0 0 1px #a46ede;
+      }`};
 `;
 
 const Input = styled.input`
@@ -147,11 +266,16 @@ const Input = styled.input`
   border: none;
   outline: none;
   padding: 0 calc(1rem * 0.5);
-  color: ${(props) => props.theme.customContentFontColor};
+  color: ${(props) => props.theme.valueFontColor};
   font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.customContentFontSize};
-  font-style: ${(props) => props.theme.customContentFontStyle};
-  font-weight: ${(props) => props.theme.customContentFontWeight};
+  font-size: ${(props) => props.theme.valueFontSize};
+  font-style: ${(props) => props.theme.valueFontStyle};
+  font-weight: ${(props) => props.theme.valueFontWeight};
+  ${(props) => props.disabled && `cursor: not-allowed;`}
+
+  ::placeholder {
+    color: ${(props) => props.disabled && props.theme.placerholderColor};
+  }
 `;
 
 const Action = styled.button`
@@ -195,15 +319,8 @@ const Action = styled.button`
   }
 `;
 
-const Error = styled.span`
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: ${(props) => props.theme.errorColor};
-  line-height: 1.5em;
-`;
-
 const ErrorIcon = styled.span`
+  color: ${(props) => props.theme.errorColor};
   height: calc(24px - (1px * 2));
   width: calc(24px - (1px * 2));
   margin-right: calc(1rem * 0.5);
@@ -223,10 +340,10 @@ const Prefix = styled.span`
   border-right: 1px solid #999999;
   line-height: calc(1rem * 1.5);
   padding: 0 calc(1rem * 0.5) 0 0;
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily};
-  pointer-events: none;
   color: #666666;
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: 1rem;
+  pointer-events: none;
 `;
 
 const Suffix = styled.span`
@@ -235,10 +352,72 @@ const Suffix = styled.span`
   line-height: calc(1rem * 1.5);
   margin-left: calc(1rem * 0.25);
   padding: 0 0 0 calc(1rem * 0.5);
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily};
-  pointer-events: none;
   color: #666666;
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: 1rem;
+  pointer-events: none;
+`;
+
+const Error = styled.span`
+  color: ${(props) => props.theme.errorColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5em;
+`;
+
+const Suggestions = styled.ul`
+  background-color: ${(props) => (props.isError ? props.theme.errorMessageBackgroundColor : "#ffffff")};
+  position: absolute;
+  z-index: 1;
+  max-height: 160px;
+  overflow: auto;
+  top: calc(100% + 4px);
+  left: 0;  
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: default;
+  border: 1px solid
+    ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.outlineEnabledColor)};
+  border-radius: 4px;
+  color: ${(props) => props.theme.listOptionFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.listOptionFontSize};
+  font-style: ${(props) => props.theme.listOptionFontStyle};
+  font-weight: ${(props) => props.theme.listOptionFontWeight};
+`;
+
+const Suggestion = styled.li`
+  padding: calc((39px - 1.75em) / 2) 0 calc((39px - 1.75em) / 2) 1em;
+  line-height: 1.75em;
+  list-style-type: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme.hoverListOptionBackgroundColor};
+  }
+  &:focus {
+    background-color: ${(props) => props.theme.focusListOptionOutlineColor};
+  }
+  &:active {
+    background-color: ${(props) => props.theme.activeListOptionBackgroundColor};
+  }
+`;
+
+const SuggestionsSystemMessage = styled.span`
+  display: flex;
+  padding: calc((39px - 1.75em) / 2) 0 calc((39px - 1.75em) / 2) 1em;
+  color: ${(props) => props.theme.systemMessageFontColor};
+  line-height: 1.75em;
+`;
+
+const SuggestionsError = styled.span`
+  display: flex;
+  padding: calc((39px - 1.75em) / 2) 0 calc((39px - 1.75em) / 2) 1em;
+  align-items: center;
+  line-height: 1.75em;
 `;
 
 DxcNewInputText.propTypes = {
@@ -246,20 +425,19 @@ DxcNewInputText.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   helperText: PropTypes.string,
+  placeholder: PropTypes.string,
   action: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
     icon: PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }).isRequired,
   }),
+  clearable: PropTypes.bool,
   disabled: PropTypes.bool,
+  optional: PropTypes.bool,
   prefix: PropTypes.string,
   suffix: PropTypes.string,
-  optional: PropTypes.bool,
-  clearable: PropTypes.bool,
-  error: PropTypes.string,
-  placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
+  error: PropTypes.string,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
@@ -269,8 +447,9 @@ DxcNewInputText.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  autocompleteOptions: PropTypes.any,
-  tabIndex: PropTypes.number,
+  // size: PropTypes.oneOf([...Object.keys(sizes)]),
+  suggestions: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
+  // tabIndex: PropTypes.number,
 };
 
 export default DxcNewInputText;

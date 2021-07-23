@@ -3,8 +3,12 @@ import { DxcNewInputText } from "@dxc-technology/halstack-react";
 
 function App() {
   const [value, setValue] = useState("Sample text");
+  const [suggestionsValue, setSuggestionsValue] = useState("");
   const onChange = (newValue) => {
     setValue(newValue);
+  };
+  const onChangeSuggestions = (newValue) => {
+    setSuggestionsValue(newValue);
   };
   const action = {
     onClick: () => {
@@ -13,13 +17,13 @@ function App() {
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="23"
-        height="23"
+        height="24px"
         viewBox="0 0 24 24"
-        fill="#FFD806"
+        width="24px"
+        fill="currentColor"
       >
-        <path d="M0 0h24v24H0z" fill="none" />
-        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+        <path d="M0 0h24v24H0V0z" fill="none" />
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
       </svg>
     ),
   };
@@ -46,7 +50,6 @@ function App() {
           helperText="Help please"
           placeholder="Placeholder"
           margin="medium"
-          value={value}
           onChange={onChange}
         />
       </p>
@@ -72,6 +75,53 @@ function App() {
           clearable
         />
       </p>
+      <p>
+        <DxcNewInputText
+          label="Disabled input"
+          placeholder="Placeholder"
+          margin="medium"
+          disabled
+        />
+      </p>
+      <p>
+        <DxcNewInputText
+          label="Input with suggestions"
+          helperText="This one has a lot of help"
+          placeholder="Placeholder"
+          margin="medium"
+          value={suggestionsValue}
+          onChange={onChangeSuggestions}
+          suggestions={[
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Antigua and Barbuda",
+            "Bahamas",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Cabo Verde",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Cayman Islands, The",
+            "Central African Republic",
+            "Chad",
+            "Democratic Republic of the Congo",
+            "Dominican Republic",
+            "Dominica",
+            "Denmark",
+            "Djibouti",
+          ]}
+          clearable
+        />
+      </p>
+
+      {/* <p>
+        <DxcNewInputText value={value} onChange={onChange} margin="medium" />
+      </p> */}
     </>
   );
 }
