@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import icon from "../images/home.svg";
 
 function App() {
   const [value, setValue] = useState("Sample text");
@@ -63,7 +64,7 @@ function App() {
           action={action}
         />
       </p>
-      <p>
+      {/* <p>
         <DxcNewInputText
           label="Error input"
           prefix="€"
@@ -82,7 +83,7 @@ function App() {
           margin="medium"
           disabled
         />
-      </p>
+      </p> */}
       <p>
         <DxcNewInputText
           label="Input with suggestions"
@@ -118,10 +119,6 @@ function App() {
           clearable
         />
       </p>
-
-      {/* <p>
-        <DxcNewInputText value={value} onChange={onChange} margin="medium" />
-      </p> */}
     </>
   );
 }

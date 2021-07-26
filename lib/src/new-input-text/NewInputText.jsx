@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
+import { v4 as uuidv4 } from "uuid";
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
@@ -44,23 +45,57 @@ const DxcNewInputText = ({
   const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
   const [isSearching, changeIsSearching] = useState(false);
   const [isError, changeIsError] = useState(false);
+  const [visualFocusedSuggestion, changeVisualFocusedSuggestion] = useState(-1);
   const colorsTheme = useTheme();
-  const random = `input-${Math.floor(Math.random() * 1000000000000000) + 1}`;
+
+  const random = `input-${uuidv4()}`;
   const autosuggestId = `${random}-listBox`;
 
   const handleOnChange = (event) => {
+    if (suggestions) {
+      changeIsError(false);
+      changeIsOpen(true);
+    }
     onChange?.(event.target.value);
-    suggestions && changeIsOpen(true);
   };
   const handleOnClick = (event) => {
-    suggestions && changeIsOpen(true);
-  };
-  const handleOnFocus = (event) => {
     suggestions && changeIsOpen(true);
   };
   const handleOnBlur = (event) => {
     suggestions && changeIsOpen(false);
     onBlur?.(event.target.value);
+  };
+  const handleOnBlurClear = (event) => {
+    suggestions && changeIsOpen(false);
+  };
+  const handleOnFocus = (event) => {
+    suggestions && changeIsOpen(true);
+  };
+  const handleOnKeyDown = (event) => {
+    switch (event.keyCode) {
+      case 40:
+        event.preventDefault();
+        changeVisualFocusedSuggestion(0);
+        handleOnFocus();
+        break;
+      case 38:
+        event.preventDefault();
+        changeVisualFocusedSuggestion(
+          filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1
+        );
+        handleOnFocus();
+        break;
+      case 13:
+        break;
+      case 27:
+        event.preventDefault();
+        if (suggestions) {
+          changeIsError(false);
+          changeIsOpen(false);
+        }
+        onChange?.("");
+        break;
+    }
   };
 
   useEffect(() => {
@@ -111,7 +146,7 @@ const DxcNewInputText = ({
     </svg>
   );
 
-  const HighlightedSuggestion = ({ suggestion }) => {
+  const HighlightedSuggestion = ({ suggestion, index }) => {
     const regEx = new RegExp(value, "i");
     const matchedWords = suggestion.match(regEx);
     const noMatchedWords = suggestion.replace(regEx, "");
@@ -125,6 +160,10 @@ const DxcNewInputText = ({
           onChange?.(suggestion);
           changeIsOpen(false);
         }}
+        onMouseEnter={() => {
+          changeVisualFocusedSuggestion(index);
+        }}
+        focused={visualFocusedSuggestion === index}
       >
         <strong>{matchedWords}</strong>
         {noMatchedWords}
@@ -140,7 +179,11 @@ const DxcNewInputText = ({
         </Label>
         <HelperText>{helperText}</HelperText>
         <InputContainer error={error} disabled={disabled}>
-          {prefix && <Prefix>{prefix}</Prefix>}
+          {prefix && (
+            <Prefix>
+              {typeof prefix === "object" || typeof prefix === "string" ? prefix : React.createElement(prefix)}
+            </Prefix>
+          )}
           <Input
             id={random}
             name={name}
@@ -150,12 +193,21 @@ const DxcNewInputText = ({
             onClick={handleOnClick}
             onBlur={handleOnBlur}
             onFocus={handleOnFocus}
+            onKeyDown={handleOnKeyDown}
             disabled={disabled}
           />
           {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
-          {!disabled && clearable && <Action onClick={defaultClearAction.onClick}>{defaultClearAction.icon}</Action>}
+          {!disabled && clearable && (
+            <Action onBlur={handleOnBlurClear} onClick={defaultClearAction.onClick}>
+              {defaultClearAction.icon}
+            </Action>
+          )}
           {!disabled && action && <Action onClick={action.onClick}>{action.icon}</Action>}
-          {suffix && <Suffix>{suffix}</Suffix>}
+          {suffix && (
+            <Suffix>
+              {typeof suffix === "object" || typeof suffix === "string" ? suffix : React.createElement(suffix)}
+            </Suffix>
+          )}
           {isOpen && suggestions && (
             <Suggestions id={autosuggestId} isError={isError}>
               {isOpen && !isSearching && !isError && filteredSuggestions.length === 0 && (
@@ -163,12 +215,10 @@ const DxcNewInputText = ({
               )}
               {isOpen &&
                 !isSearching &&
+                !isError &&
                 filteredSuggestions.length > 0 &&
-                filteredSuggestions.map((suggestion) => (
-                  <HighlightedSuggestion
-                    key={`suggestion-${Math.floor(Math.random() * 1000000000000000) + 1}`}
-                    suggestion={suggestion}
-                  />
+                filteredSuggestions.map((suggestion, index) => (
+                  <HighlightedSuggestion key={`suggestion-${uuidv4()}`} suggestion={suggestion} index={index} />
                 ))}
               {isSearching && <SuggestionsSystemMessage>Searching...</SuggestionsSystemMessage>}
               {isError && (
@@ -274,7 +324,7 @@ const Input = styled.input`
   ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
-    color: ${(props) => props.disabled && props.theme.placerholderColor};
+    color: ${(props) => props.theme.placerholderColor};
   }
 `;
 
@@ -373,7 +423,7 @@ const Suggestions = styled.ul`
   max-height: 160px;
   overflow: auto;
   top: calc(100% + 4px);
-  left: 0;  
+  left: 0;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -395,9 +445,7 @@ const Suggestion = styled.li`
   list-style-type: none;
   cursor: pointer;
 
-  &:hover {
-    background-color: ${(props) => props.theme.hoverListOptionBackgroundColor};
-  }
+  ${(props) => props.focused && `background-color: ${props.theme.hoverListOptionBackgroundColor};`}
   &:focus {
     background-color: ${(props) => props.theme.focusListOptionOutlineColor};
   }
