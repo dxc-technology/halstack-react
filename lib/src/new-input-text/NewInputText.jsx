@@ -42,58 +42,68 @@ const DxcNewInputText = ({
   // tabIndex = 0,
 }) => {
   const [isOpen, changeIsOpen] = useState(false);
-  const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
   const [isSearching, changeIsSearching] = useState(false);
   const [isError, changeIsError] = useState(false);
-  const [visualFocusedSuggestion, changeVisualFocusedSuggestion] = useState(-1);
+  const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
+  const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
+  
   const colorsTheme = useTheme();
+  const inputId = `input-${uuidv4()}`;
+  const autosuggestId = `${inputId}-listBox`;
 
-  const random = `input-${uuidv4()}`;
-  const autosuggestId = `${random}-listBox`;
-
-  const handleOnChange = (event) => {
+  const closeSuggestions = () => {
+    changeIsOpen(false);
+    changeVisualFocusedSuggIndex(-1);
+  };
+  const handleIOnChange = (event) => {
     if (suggestions) {
       changeIsError(false);
       changeIsOpen(true);
     }
     onChange?.(event.target.value);
   };
-  const handleOnClick = (event) => {
+  const handleIOnClick = () => {
     suggestions && changeIsOpen(true);
   };
-  const handleOnBlur = (event) => {
-    suggestions && changeIsOpen(false);
+  const handleIOnBlur = (event) => {
+    suggestions && closeSuggestions();
     onBlur?.(event.target.value);
   };
-  const handleOnBlurClear = (event) => {
-    suggestions && changeIsOpen(false);
-  };
-  const handleOnFocus = (event) => {
+  const handleIOnFocus = () => {
     suggestions && changeIsOpen(true);
   };
-  const handleOnKeyDown = (event) => {
+  const handleIOnKeyDown = (event) => {
     switch (event.keyCode) {
-      case 40:
+      case 40: // Arrow Down
         event.preventDefault();
-        changeVisualFocusedSuggestion(0);
-        handleOnFocus();
-        break;
-      case 38:
-        event.preventDefault();
-        changeVisualFocusedSuggestion(
-          filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1
-        );
-        handleOnFocus();
-        break;
-      case 13:
-        break;
-      case 27:
-        event.preventDefault();
-        if (suggestions) {
-          changeIsError(false);
-          changeIsOpen(false);
+        if (!isError && filteredSuggestions.length > 0) {
+          changeVisualFocusedSuggIndex(0);
+          changeIsOpen(true);
         }
+        break;
+      case 38: // Arrow Up
+        event.preventDefault();
+        if (!isError && filteredSuggestions.length > 0) {
+          changeVisualFocusedSuggIndex(
+            filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1
+          );
+          changeIsOpen(true);
+        }
+        break;
+      case 13: // Enter
+        if (!isError) {
+          const validFocusedSuggestion = filteredSuggestions.length > 0 && visualFocusedSuggIndex >= 0 && visualFocusedSuggIndex < filteredSuggestions.length;
+          validFocusedSuggestion && onChange?.(filteredSuggestions[visualFocusedSuggIndex]);
+          closeSuggestions();
+        }
+        break;
+      case 27: // Esc
+        event.preventDefault();
         onChange?.("");
+        if (isOpen) {
+          changeIsError(false);
+          closeSuggestions();
+        }
         break;
     }
   };
@@ -131,7 +141,10 @@ const DxcNewInputText = ({
   const defaultClearAction = {
     onClick: () => {
       onChange?.("");
-      suggestions && changeIsOpen(true);
+      if (suggestions) {
+        changeIsError(false);
+        closeSuggestions();
+      }
     },
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -158,12 +171,12 @@ const DxcNewInputText = ({
         }}
         onMouseUp={() => {
           onChange?.(suggestion);
-          changeIsOpen(false);
+          closeSuggestions();
         }}
         onMouseEnter={() => {
-          changeVisualFocusedSuggestion(index);
+          changeVisualFocusedSuggIndex(index);
         }}
-        focused={visualFocusedSuggestion === index}
+        visualFocused={visualFocusedSuggIndex === index}
       >
         <strong>{matchedWords}</strong>
         {noMatchedWords}
@@ -174,7 +187,7 @@ const DxcNewInputText = ({
   return (
     <ThemeProvider theme={colorsTheme.newInputText}>
       <DxcInput margin={margin}>
-        <Label htmlFor={random} disabled={disabled}>
+        <Label htmlFor={inputId} disabled={disabled}>
           {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
         </Label>
         <HelperText>{helperText}</HelperText>
@@ -185,20 +198,20 @@ const DxcNewInputText = ({
             </Prefix>
           )}
           <Input
-            id={random}
+            id={inputId}
             name={name}
             value={value}
             placeholder={placeholder}
-            onChange={handleOnChange}
-            onClick={handleOnClick}
-            onBlur={handleOnBlur}
-            onFocus={handleOnFocus}
-            onKeyDown={handleOnKeyDown}
+            onChange={handleIOnChange}
+            onClick={handleIOnClick}
+            onBlur={handleIOnBlur}
+            onFocus={handleIOnFocus}
+            onKeyDown={handleIOnKeyDown}
             disabled={disabled}
           />
           {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
           {!disabled && clearable && (
-            <Action onBlur={handleOnBlurClear} onClick={defaultClearAction.onClick}>
+            <Action onClick={defaultClearAction.onClick}>
               {defaultClearAction.icon}
             </Action>
           )}
@@ -209,7 +222,13 @@ const DxcNewInputText = ({
             </Suffix>
           )}
           {isOpen && suggestions && (
-            <Suggestions id={autosuggestId} isError={isError}>
+            <Suggestions
+              id={autosuggestId}
+              isError={isError}
+              onMouseLeave={() => {
+                changeVisualFocusedSuggIndex(-1);
+              }}
+            >
               {isOpen && !isSearching && !isError && filteredSuggestions.length === 0 && (
                 <SuggestionsSystemMessage>No results found.</SuggestionsSystemMessage>
               )}
@@ -324,7 +343,7 @@ const Input = styled.input`
   ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
-    color: ${(props) => props.theme.placerholderColor};
+    color: ${(props) => props.disabled ? props.theme.disabledPlaceholderColor : props.theme.placerholderColor};
   }
 `;
 
@@ -445,10 +464,7 @@ const Suggestion = styled.li`
   list-style-type: none;
   cursor: pointer;
 
-  ${(props) => props.focused && `background-color: ${props.theme.hoverListOptionBackgroundColor};`}
-  &:focus {
-    background-color: ${(props) => props.theme.focusListOptionOutlineColor};
-  }
+  ${(props) => props.visualFocused && `background-color: ${props.theme.hoverListOptionBackgroundColor};`}
   &:active {
     background-color: ${(props) => props.theme.activeListOptionBackgroundColor};
   }

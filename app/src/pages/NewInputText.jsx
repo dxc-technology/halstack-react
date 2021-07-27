@@ -51,7 +51,6 @@ function App() {
           helperText="Help please"
           placeholder="Placeholder"
           margin="medium"
-          onChange={onChange}
         />
       </p>
       <p>
@@ -64,7 +63,7 @@ function App() {
           action={action}
         />
       </p>
-      {/* <p>
+      <p>
         <DxcNewInputText
           label="Error input"
           prefix="€"
@@ -83,7 +82,7 @@ function App() {
           margin="medium"
           disabled
         />
-      </p> */}
+      </p>
       <p>
         <DxcNewInputText
           label="Input with suggestions"
