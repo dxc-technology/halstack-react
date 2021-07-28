@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
@@ -46,7 +46,11 @@ const DxcNewInputText = ({
   const [isError, changeIsError] = useState(false);
   const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
   const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
-  
+  const [isScrollable, changeIsScrollable] = useState(false);
+  const [activeSuggestion, changeActiveSuggestion] = useState(false);
+
+  const refDxcInput = useRef(null);
+
   const colorsTheme = useTheme();
   const inputId = `input-${uuidv4()}`;
   const autosuggestId = `${inputId}-listBox`;
@@ -77,24 +81,24 @@ const DxcNewInputText = ({
       case 40: // Arrow Down
         event.preventDefault();
         if (!isError && filteredSuggestions.length > 0) {
-          changeVisualFocusedSuggIndex(0);
+          changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
+            if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
+            else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
+          });
           changeIsOpen(true);
+          changeIsScrollable(true);
         }
         break;
       case 38: // Arrow Up
         event.preventDefault();
         if (!isError && filteredSuggestions.length > 0) {
-          changeVisualFocusedSuggIndex(
-            filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1
-          );
+          changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
+            if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
+              return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
+            else return visualFocusedSuggIndex - 1;
+          });
           changeIsOpen(true);
-        }
-        break;
-      case 13: // Enter
-        if (!isError) {
-          const validFocusedSuggestion = filteredSuggestions.length > 0 && visualFocusedSuggIndex >= 0 && visualFocusedSuggIndex < filteredSuggestions.length;
-          validFocusedSuggestion && onChange?.(filteredSuggestions[visualFocusedSuggIndex]);
-          closeSuggestions();
+          changeIsScrollable(true);
         }
         break;
       case 27: // Esc
@@ -105,8 +109,29 @@ const DxcNewInputText = ({
           closeSuggestions();
         }
         break;
+      case 13: // Enter
+        if (!isError) {
+          const validFocusedSuggestion =
+            filteredSuggestions.length > 0 &&
+            visualFocusedSuggIndex >= 0 &&
+            visualFocusedSuggIndex < filteredSuggestions.length;
+          validFocusedSuggestion && onChange?.(filteredSuggestions[visualFocusedSuggIndex]);
+          closeSuggestions();
+        }
+        break;
     }
   };
+
+  // Only scrollable by keyboard presses of arrowup and arrowdown
+  useLayoutEffect(() => {
+    if (isScrollable) {
+      const suggsElement = refDxcInput.current.getElementsByTagName("ul")[0];
+      suggsElement?.scrollTo({
+        top: visualFocusedSuggIndex * 39,
+      });
+    }
+    return changeIsScrollable(false);
+  }, [isScrollable, refDxcInput, visualFocusedSuggIndex]);
 
   useEffect(() => {
     if (typeof suggestions === "function" && value) {
@@ -135,6 +160,7 @@ const DxcNewInputText = ({
       changeFilteredSuggestions(
         suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith(value.toUpperCase()))
       );
+      changeVisualFocusedSuggIndex(-1);
     }
   }, [value, suggestions]);
 
@@ -166,17 +192,19 @@ const DxcNewInputText = ({
 
     return (
       <Suggestion
-        onMouseDown={(event) => {
-          event.preventDefault();
+        onMouseDown={() => {
+          changeActiveSuggestion(true);
         }}
         onMouseUp={() => {
           onChange?.(suggestion);
+          changeActiveSuggestion(false);
           closeSuggestions();
         }}
         onMouseEnter={() => {
           changeVisualFocusedSuggIndex(index);
         }}
         visualFocused={visualFocusedSuggIndex === index}
+        active={visualFocusedSuggIndex === index && activeSuggestion}
       >
         <strong>{matchedWords}</strong>
         {noMatchedWords}
@@ -186,7 +214,7 @@ const DxcNewInputText = ({
 
   return (
     <ThemeProvider theme={colorsTheme.newInputText}>
-      <DxcInput margin={margin}>
+      <DxcInput margin={margin} ref={refDxcInput}>
         <Label htmlFor={inputId} disabled={disabled}>
           {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
         </Label>
@@ -210,11 +238,7 @@ const DxcNewInputText = ({
             disabled={disabled}
           />
           {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
-          {!disabled && clearable && (
-            <Action onClick={defaultClearAction.onClick}>
-              {defaultClearAction.icon}
-            </Action>
-          )}
+          {!disabled && clearable && <Action onClick={defaultClearAction.onClick}>{defaultClearAction.icon}</Action>}
           {!disabled && action && <Action onClick={action.onClick}>{action.icon}</Action>}
           {suffix && (
             <Suffix>
@@ -225,6 +249,9 @@ const DxcNewInputText = ({
             <Suggestions
               id={autosuggestId}
               isError={isError}
+              onMouseDown={(event) => {
+                event.preventDefault();
+              }}
               onMouseLeave={() => {
                 changeVisualFocusedSuggIndex(-1);
               }}
@@ -343,7 +370,7 @@ const Input = styled.input`
   ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
-    color: ${(props) => props.disabled ? props.theme.disabledPlaceholderColor : props.theme.placerholderColor};
+    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderColor : props.theme.placerholderColor)};
   }
 `;
 
@@ -464,10 +491,10 @@ const Suggestion = styled.li`
   list-style-type: none;
   cursor: pointer;
 
-  ${(props) => props.visualFocused && `background-color: ${props.theme.hoverListOptionBackgroundColor};`}
-  &:active {
-    background-color: ${(props) => props.theme.activeListOptionBackgroundColor};
-  }
+  ${(props) =>
+    props.active
+      ? `background-color: ${props.theme.activeListOptionBackgroundColor};`
+      : props.visualFocused && `background-color: ${props.theme.hoverListOptionBackgroundColor};`}
 `;
 
 const SuggestionsSystemMessage = styled.span`
