@@ -87,6 +87,7 @@ const DxcNewInputText = ({
           });
           changeIsOpen(true);
           changeIsScrollable(true);
+          changeActiveSuggestion(false);
         }
         break;
       case 38: // Arrow Up
@@ -99,6 +100,7 @@ const DxcNewInputText = ({
           });
           changeIsOpen(true);
           changeIsScrollable(true);
+          changeActiveSuggestion(false);
         }
         break;
       case 27: // Esc
@@ -134,7 +136,7 @@ const DxcNewInputText = ({
   }, [isScrollable, refDxcInput, visualFocusedSuggIndex]);
 
   useEffect(() => {
-    if (typeof suggestions === "function" && value) {
+    if (typeof suggestions === "function" && value !== null) {
       changeIsSearching(true);
       changeIsError(false);
       changeFilteredSuggestions([]);
@@ -196,18 +198,29 @@ const DxcNewInputText = ({
           changeActiveSuggestion(true);
         }}
         onMouseUp={() => {
-          onChange?.(suggestion);
-          changeActiveSuggestion(false);
-          closeSuggestions();
+          if (activeSuggestion) {
+            onChange?.(suggestion);
+            changeActiveSuggestion(false);
+            closeSuggestions();
+          }
         }}
         onMouseEnter={() => {
           changeVisualFocusedSuggIndex(index);
         }}
+        onMouseLeave={() => {
+          changeActiveSuggestion(false);
+        }}
         visualFocused={visualFocusedSuggIndex === index}
         active={visualFocusedSuggIndex === index && activeSuggestion}
       >
-        <strong>{matchedWords}</strong>
-        {noMatchedWords}
+        {typeof suggestions === "function" ? (
+          suggestion
+        ) : (
+          <>
+            <strong>{matchedWords}</strong>
+            {noMatchedWords}
+          </>
+        )}
       </Suggestion>
     );
   };
@@ -238,14 +251,16 @@ const DxcNewInputText = ({
             disabled={disabled}
           />
           {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
-          {!disabled && clearable && <Action onClick={defaultClearAction.onClick}>{defaultClearAction.icon}</Action>}
+          {!disabled && clearable && value?.length > 0 && (
+            <Action onClick={defaultClearAction.onClick}>{defaultClearAction.icon}</Action>
+          )}
           {!disabled && action && <Action onClick={action.onClick}>{action.icon}</Action>}
           {suffix && (
             <Suffix>
               {typeof suffix === "object" || typeof suffix === "string" ? suffix : React.createElement(suffix)}
             </Suffix>
           )}
-          {isOpen && suggestions && (
+          {isOpen && suggestions && suggestions.length > 0 && (
             <Suggestions
               id={autosuggestId}
               isError={isError}

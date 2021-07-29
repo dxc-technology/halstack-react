@@ -28,6 +28,44 @@ function App() {
       </svg>
     ),
   };
+  const countries = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Andorra",
+    "Angola",
+    "Antigua and Barbuda",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Cabo Verde",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Cayman Islands, The",
+    "Central African Republic",
+    "Chad",
+    "Democratic Republic of the Congo",
+    "Dominican Republic",
+    "Dominica",
+    "Denmark",
+    "Djibouti",
+  ];
+  const callbackFunc = (newValue) => {
+    const result = new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(
+          newValue
+            ? countries.filter((option) =>
+                option.toUpperCase().includes(newValue.toUpperCase())
+              )
+            : countries
+        );
+      }, 1500)
+    );
+    return result;
+  }
 
   return (
     <>
@@ -91,30 +129,19 @@ function App() {
           margin="medium"
           value={suggestionsValue}
           onChange={onChangeSuggestions}
-          suggestions={[
-            "Afghanistan",
-            "Albania",
-            "Algeria",
-            "Andorra",
-            "Angola",
-            "Antigua and Barbuda",
-            "Bahamas",
-            "Bahrain",
-            "Bangladesh",
-            "Barbados",
-            "Cabo Verde",
-            "Cambodia",
-            "Cameroon",
-            "Canada",
-            "Cayman Islands, The",
-            "Central African Republic",
-            "Chad",
-            "Democratic Republic of the Congo",
-            "Dominican Republic",
-            "Dominica",
-            "Denmark",
-            "Djibouti",
-          ]}
+          suggestions={countries}
+          clearable
+        />
+      </p>
+      <p>
+        <DxcNewInputText
+          label="Input with suggestions function"
+          helperText="Asynchronous help"
+          placeholder="Placeholder"
+          margin="medium"
+          value={suggestionsValue}
+          onChange={onChangeSuggestions}
+          suggestions={callbackFunc}
           clearable
         />
       </p>
