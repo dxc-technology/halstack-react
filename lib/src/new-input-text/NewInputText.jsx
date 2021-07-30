@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
@@ -21,7 +21,7 @@ const makeCancelable = (promise) => {
   };
 };
 
-const DxcNewInputText = ({
+const DxcNewInputText = React.forwardRef(({
   label = "",
   name = "",
   value,
@@ -40,16 +40,16 @@ const DxcNewInputText = ({
   // size = "medium",
   suggestions,
   // tabIndex = 0,
-}) => {
+}, ref) => {
   const [isOpen, changeIsOpen] = useState(false);
   const [isSearching, changeIsSearching] = useState(false);
   const [isError, changeIsError] = useState(false);
   const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
   const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
   const [isScrollable, changeIsScrollable] = useState(false);
-  const [activeSuggestion, changeActiveSuggestion] = useState(false);
+  const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
 
-  const refDxcInput = useRef(null);
+  const refSuggestions = useRef(null);
 
   const colorsTheme = useTheme();
   const inputId = `input-${uuidv4()}`;
@@ -80,19 +80,19 @@ const DxcNewInputText = ({
     switch (event.keyCode) {
       case 40: // Arrow Down
         event.preventDefault();
-        if (!isError && filteredSuggestions.length > 0) {
+        if (!isError && !isSearching && filteredSuggestions.length > 0) {
           changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
             if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
             else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
           });
           changeIsOpen(true);
           changeIsScrollable(true);
-          changeActiveSuggestion(false);
+          changeIsActiveSuggestion(false);
         }
         break;
       case 38: // Arrow Up
         event.preventDefault();
-        if (!isError && filteredSuggestions.length > 0) {
+        if (!isError && !isSearching && filteredSuggestions.length > 0) {
           changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
             if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
               return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
@@ -100,7 +100,7 @@ const DxcNewInputText = ({
           });
           changeIsOpen(true);
           changeIsScrollable(true);
-          changeActiveSuggestion(false);
+          changeIsActiveSuggestion(false);
         }
         break;
       case 27: // Esc
@@ -112,7 +112,7 @@ const DxcNewInputText = ({
         }
         break;
       case 13: // Enter
-        if (!isError) {
+        if (!isError && !isSearching) {
           const validFocusedSuggestion =
             filteredSuggestions.length > 0 &&
             visualFocusedSuggIndex >= 0 &&
@@ -127,13 +127,12 @@ const DxcNewInputText = ({
   // Only scrollable by keyboard presses of arrowup and arrowdown
   useLayoutEffect(() => {
     if (isScrollable) {
-      const suggsElement = refDxcInput.current.getElementsByTagName("ul")[0];
-      suggsElement?.scrollTo({
+      refSuggestions.current?.scrollTo({
         top: visualFocusedSuggIndex * 39,
       });
     }
     return changeIsScrollable(false);
-  }, [isScrollable, refDxcInput, visualFocusedSuggIndex]);
+  }, [isScrollable, refSuggestions, visualFocusedSuggIndex]);
 
   useEffect(() => {
     if (typeof suggestions === "function" && value !== null) {
@@ -195,12 +194,12 @@ const DxcNewInputText = ({
     return (
       <Suggestion
         onMouseDown={() => {
-          changeActiveSuggestion(true);
+          changeIsActiveSuggestion(true);
         }}
         onMouseUp={() => {
-          if (activeSuggestion) {
+          if (isActiveSuggestion) {
             onChange?.(suggestion);
-            changeActiveSuggestion(false);
+            changeIsActiveSuggestion(false);
             closeSuggestions();
           }
         }}
@@ -208,10 +207,10 @@ const DxcNewInputText = ({
           changeVisualFocusedSuggIndex(index);
         }}
         onMouseLeave={() => {
-          changeActiveSuggestion(false);
+          changeIsActiveSuggestion(false);
         }}
         visualFocused={visualFocusedSuggIndex === index}
-        active={visualFocusedSuggIndex === index && activeSuggestion}
+        active={visualFocusedSuggIndex === index && isActiveSuggestion}
       >
         {typeof suggestions === "function" ? (
           suggestion
@@ -227,7 +226,7 @@ const DxcNewInputText = ({
 
   return (
     <ThemeProvider theme={colorsTheme.newInputText}>
-      <DxcInput margin={margin} ref={refDxcInput}>
+      <DxcInput margin={margin} ref={ref}>
         <Label htmlFor={inputId} disabled={disabled}>
           {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
         </Label>
@@ -270,6 +269,7 @@ const DxcNewInputText = ({
               onMouseLeave={() => {
                 changeVisualFocusedSuggIndex(-1);
               }}
+              ref={refSuggestions}
             >
               {isOpen && !isSearching && !isError && filteredSuggestions.length === 0 && (
                 <SuggestionsSystemMessage>No results found.</SuggestionsSystemMessage>
@@ -295,14 +295,14 @@ const DxcNewInputText = ({
       </DxcInput>
     </ThemeProvider>
   );
-};
+});
 
-const sizes = {
-  small: "42px",
-  medium: "240px",
-  large: "480px",
-  fillParent: "100%",
-};
+// const sizes = {
+//   small: "42px",
+//   medium: "240px",
+//   large: "480px",
+//   fillParent: "100%",
+// };
 
 const DxcInput = styled.div`
   display: flex;

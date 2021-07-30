@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import React, { useRef, useState } from "react";
+import { DxcButton, DxcNewInputText } from "@dxc-technology/halstack-react";
 import icon from "../images/home.svg";
 
 function App() {
   const [value, setValue] = useState("Sample text");
+  const ref = useRef(null);
   const [suggestionsValue, setSuggestionsValue] = useState("");
   const onChange = (newValue) => {
     setValue(newValue);
@@ -65,7 +66,7 @@ function App() {
       }, 1500)
     );
     return result;
-  }
+  };
 
   return (
     <>
@@ -144,6 +145,24 @@ function App() {
           suggestions={callbackFunc}
           clearable
         />
+      </p>
+      <p>
+        <DxcNewInputText
+          label="Input with ref"
+          helperText="Personalized help"
+          placeholder="Placeholder"
+          margin="medium"
+          ref={ref}
+          clearable
+        />
+        <DxcButton
+          onClick={() => {
+            const input = ref.current.getElementsByTagName("input")[0];
+            input.focus();
+          }}
+          label="Focus!"
+          margin={{ left: "medium" }}
+        ></DxcButton>
       </p>
     </>
   );
