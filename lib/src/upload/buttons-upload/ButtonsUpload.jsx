@@ -6,6 +6,7 @@ import Button from "../../button/Button";
 import uploadIcon from "./upload-button.svg";
 import dragAndDropIcon from "./drag-drop-icon.svg";
 import useTheme from "../../useTheme.js";
+import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
 
 const DxcButtonsUpload = ({ addFile, onUpload }) => {
   const colorsTheme = useTheme();
@@ -24,15 +25,17 @@ const DxcButtonsUpload = ({ addFile, onUpload }) => {
 
   return (
     <ThemeProvider theme={colorsTheme.upload}>
-      <DXCButtonsUpload>
-        <DragAndDropLabel>
-          <DragAndDropIcon />
-          Drag and Drop area
-        </DragAndDropLabel>
-        <Button margin={{ right: "small" }} mode="text" label="CHOOSE FILES" onClick={handleClick} />
-        <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
-        <Button label="UPLOAD" iconPosition="after" iconSrc={uploadIcon} onClick={onUpload} />
-      </DXCButtonsUpload>
+      <BackgroundColorProvider color={colorsTheme.upload.backgroundColor}>
+        <DXCButtonsUpload>
+          <DragAndDropLabel>
+            <DragAndDropIcon />
+            Drag and Drop area
+          </DragAndDropLabel>
+          <Button margin={{ right: "small" }} mode="text" label="CHOOSE FILES" onClick={handleClick} />
+          <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
+          <Button label="UPLOAD" iconPosition="after" iconSrc={uploadIcon} onClick={onUpload} />
+        </DXCButtonsUpload>
+      </BackgroundColorProvider>
     </ThemeProvider>
   );
 };

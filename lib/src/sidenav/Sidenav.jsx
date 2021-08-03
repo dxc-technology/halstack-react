@@ -5,13 +5,16 @@ import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcSidenav = ({ padding, children }) => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
-      <SideNavContainer padding={padding}>{children}</SideNavContainer>
+      <SideNavContainer padding={padding}>
+        <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>{children}</BackgroundColorProvider>
+      </SideNavContainer>
     </ThemeProvider>
   );
 };
@@ -37,7 +40,7 @@ const SideNavContainer = styled.div`
   max-width: 300px;
   width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
   padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
-  
+
   overflow-y: auto;
   overflow-x: hidden;
   ::-webkit-scrollbar {

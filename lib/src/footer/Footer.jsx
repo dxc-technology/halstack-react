@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcFooter = ({
   socialLinks = [],
@@ -93,7 +94,9 @@ const DxcFooter = ({
         )}
         {((!isResponsiveTablet && !isResponsivePhone) || isResponsiveTablet) && (
           <div>
-            <ChildComponents padding={padding}>{children}</ChildComponents>
+            <ChildComponents padding={padding}>
+              <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
+            </ChildComponents>
             <FooterFooter className="footerFooter">
               <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
               <Copyright refSize={refSize}>{copyright}</Copyright>

@@ -10,6 +10,7 @@ import successIcon from "./success.svg";
 import warningIcon from "./warning.svg";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcAlert = ({
   type = "info",
@@ -53,7 +54,20 @@ const DxcAlert = ({
               )}
             </AlertInfoText>
           </AlertInfo>
-          {children && <AlertContent>{children}</AlertContent>}
+          {children && (
+            <AlertContent>
+              <BackgroundColorProvider
+                color={
+                  (type === "info" && colorsTheme.alert.infoColor) ||
+                  (type === "confirm" && colorsTheme.alert.successColor) ||
+                  (type === "warning" && colorsTheme.alert.warningColor) ||
+                  (type === "error" && colorsTheme.alert.errorColor)
+                }
+              >
+                {children}
+              </BackgroundColorProvider>
+            </AlertContent>
+          )}
         </AlertContainer>
       </AlertModal>
     </ThemeProvider>

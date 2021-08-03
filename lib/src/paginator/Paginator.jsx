@@ -8,6 +8,7 @@ import first from "./images/previousPage.svg";
 import previous from "./images/previous.svg";
 import next from "./images/next.svg";
 import last from "./images/nextPage.svg";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcPaginator = ({
   currentPage = 1,
@@ -31,93 +32,95 @@ const DxcPaginator = ({
   const colorsTheme = useTheme();
   return (
     <ThemeProvider theme={colorsTheme.paginator}>
-      <DxcPaginatorContainer disabled={currentPageInternal === 1}>
-        <LabelsContainer>
-          {itemsPerPageOptions && (
-            <ItemsPageContainer>
-              <ItemsLabel>Items per page </ItemsLabel>
-              <DxcSelect
-                options={itemsPerPageOptions.map((num) => ({ label: num, value: num }))}
-                onChange={itemsPerPageFunction}
-                value={itemsPerPage}
+      <BackgroundColorProvider color={colorsTheme.paginator.backgroundColor}>
+        <DxcPaginatorContainer disabled={currentPageInternal === 1}>
+          <LabelsContainer>
+            {itemsPerPageOptions && (
+              <ItemsPageContainer>
+                <ItemsLabel>Items per page </ItemsLabel>
+                <DxcSelect
+                  options={itemsPerPageOptions.map((num) => ({ label: num, value: num }))}
+                  onChange={itemsPerPageFunction}
+                  value={itemsPerPage}
+                  size="small"
+                  tabIndex={tabIndex}
+                />
+              </ItemsPageContainer>
+            )}
+            <TotalItemsContainer>
+              {minItemsPerPage} to {maxItemsPerPage} of {totalItems}
+            </TotalItemsContainer>
+            {onPageChange && (
+              <DxcButton
                 size="small"
+                mode="secondary"
+                disabled={currentPageInternal === 1 || currentPageInternal === 0}
+                margin={{ left: "xxsmall", right: "xxsmall" }}
+                iconSrc={first}
                 tabIndex={tabIndex}
-              ></DxcSelect>
-            </ItemsPageContainer>
-          )}
-          <TotalItemsContainer>
-            {minItemsPerPage} to {maxItemsPerPage} of {totalItems}
-          </TotalItemsContainer>
-          {onPageChange && (
-            <DxcButton
-              size="small"
-              mode="secondary"
-              disabled={currentPageInternal === 1 || currentPageInternal === 0}
-              margin={{ left: "xxsmall", right: "xxsmall" }}
-              iconSrc={first}
-              tabIndex={tabIndex}
-              onClick={() => {
-                onPageChange(1);
-              }}
-            />
-          )}
-          {onPageChange && (
-            <DxcButton
-              size="small"
-              mode="secondary"
-              disabled={currentPageInternal === 1 || currentPageInternal === 0}
-              margin={{ left: "xxsmall", right: "xxsmall" }}
-              iconSrc={previous}
-              tabIndex={tabIndex}
-              onClick={() => {
-                onPageChange(currentPage - 1);
-              }}
-            />
-          )}
-          {(showGoToPage && (
-            <PageToSelectContainer>
-              <GoToLabel>Go to page: </GoToLabel>
-              <DxcSelect
-                options={[...Array(totalPages).keys()].map((num) => ({ label: num + 1, value: num + 1 }))}
-                onChange={onPageChange}
-                value={currentPage}
+                onClick={() => {
+                  onPageChange(1);
+                }}
+              />
+            )}
+            {onPageChange && (
+              <DxcButton
                 size="small"
+                mode="secondary"
+                disabled={currentPageInternal === 1 || currentPageInternal === 0}
+                margin={{ left: "xxsmall", right: "xxsmall" }}
+                iconSrc={previous}
                 tabIndex={tabIndex}
-              ></DxcSelect>
-            </PageToSelectContainer>
-          )) || (
-            <TextContainer>
-              Page: {currentPageInternal} of {totalPages}
-            </TextContainer>
-          )}
-          {onPageChange && (
-            <DxcButton
-              size="small"
-              mode="secondary"
-              disabled={currentPageInternal === totalPages}
-              margin={{ left: "xxsmall", right: "xxsmall" }}
-              iconSrc={next}
-              tabIndex={tabIndex}
-              onClick={() => {
-                onPageChange(currentPage + 1);
-              }}
-            />
-          )}
-          {onPageChange && (
-            <DxcButton
-              size="small"
-              mode="secondary"
-              disabled={currentPageInternal === totalPages}
-              margin={{ left: "xxsmall", right: "xxsmall" }}
-              iconSrc={last}
-              tabIndex={tabIndex}
-              onClick={() => {
-                onPageChange(totalPages);
-              }}
-            />
-          )}
-        </LabelsContainer>
-      </DxcPaginatorContainer>
+                onClick={() => {
+                  onPageChange(currentPage - 1);
+                }}
+              />
+            )}
+            {(showGoToPage && (
+              <PageToSelectContainer>
+                <GoToLabel>Go to page: </GoToLabel>
+                <DxcSelect
+                  options={[...Array(totalPages).keys()].map((num) => ({ label: num + 1, value: num + 1 }))}
+                  onChange={onPageChange}
+                  value={currentPage}
+                  size="small"
+                  tabIndex={tabIndex}
+                />
+              </PageToSelectContainer>
+            )) || (
+              <TextContainer>
+                Page: {currentPageInternal} of {totalPages}
+              </TextContainer>
+            )}
+            {onPageChange && (
+              <DxcButton
+                size="small"
+                mode="secondary"
+                disabled={currentPageInternal === totalPages}
+                margin={{ left: "xxsmall", right: "xxsmall" }}
+                iconSrc={next}
+                tabIndex={tabIndex}
+                onClick={() => {
+                  onPageChange(currentPage + 1);
+                }}
+              />
+            )}
+            {onPageChange && (
+              <DxcButton
+                size="small"
+                mode="secondary"
+                disabled={currentPageInternal === totalPages}
+                margin={{ left: "xxsmall", right: "xxsmall" }}
+                iconSrc={last}
+                tabIndex={tabIndex}
+                onClick={() => {
+                  onPageChange(totalPages);
+                }}
+              />
+            )}
+          </LabelsContainer>
+        </DxcPaginatorContainer>
+      </BackgroundColorProvider>
     </ThemeProvider>
   );
 };

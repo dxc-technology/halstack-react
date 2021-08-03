@@ -6,6 +6,7 @@ import DxcDropdown from "../dropdown/Dropdown";
 import CloseIcon from "./close_icon.svg";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const Dropdown = (props) => {
   return (
@@ -126,7 +127,11 @@ const DxcHeader = ({
             }
           </MainContainer>
         )}
-        {!isResponsive && <ChildContainer padding={padding}>{content}</ChildContainer>}
+        {!isResponsive && (
+          <ChildContainer padding={padding}>
+            <BackgroundColorProvider color={colorsTheme.header.backgroundColor}>{content}</BackgroundColorProvider>
+          </ChildContainer>
+        )}
       </HeaderContainer>
     </ThemeProvider>
   );

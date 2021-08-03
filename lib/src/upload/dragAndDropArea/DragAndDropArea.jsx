@@ -7,6 +7,7 @@ import uploadFile from "./upload_file.svg";
 import dropFile from "./upload_drop.svg";
 import Button from "../../button/Button";
 import useTheme from "../../useTheme.js";
+import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
 
 const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
   const [dragging, setDragging] = React.useState(false);
@@ -60,50 +61,52 @@ const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
 
   return (
     <ThemeProvider theme={colorsTheme.upload}>
-      <DXCDragAndDrop
-        onDrop={handleDrop}
-        onDragEnter={handleDragIn}
-        onDragOver={handleDrag}
-        onDragLeave={handleDragOut}
-        dashed={dashed}
-      >
-        {!dragging && !dashed && (
-          <DXCDragAndDropArea>
-            <DragAndDropContent>
-              <DragAndDropIcon />
-              <DragAndDropText>
-                <DragAndDropTitle>{text}</DragAndDropTitle>
-                <DragAndDropDescription>{description}</DragAndDropDescription>
-              </DragAndDropText>
-              <div>
-                <Button label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
-                <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
-              </div>
-            </DragAndDropContent>
-          </DXCDragAndDropArea>
-        )}
-        {!dragging && dashed && (
-          <DragAndDropContentHover>
-            <DragAndDropContent>
-              <DragAndDropIcon />
-              <DragAndDropText>
-                <DragAndDropTitle>{text}</DragAndDropTitle>
-                <DragAndDropDescription>{description}</DragAndDropDescription>
-              </DragAndDropText>
-              <ButtonChooseFiles>
-                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
-                <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
-              </ButtonChooseFiles>
-            </DragAndDropContent>
-          </DragAndDropContentHover>
-        )}
-        {dragging && (
-          <DragAndDropContentHover>
-            <DragAndDropTextHover>{textHover}</DragAndDropTextHover>
-            <DragAndDropIconHover />
-          </DragAndDropContentHover>
-        )}
-      </DXCDragAndDrop>
+      <BackgroundColorProvider color={colorsTheme.upload.backgroundColor}>
+        <DXCDragAndDrop
+          onDrop={handleDrop}
+          onDragEnter={handleDragIn}
+          onDragOver={handleDrag}
+          onDragLeave={handleDragOut}
+          dashed={dashed}
+        >
+          {!dragging && !dashed && (
+            <DXCDragAndDropArea>
+              <DragAndDropContent>
+                <DragAndDropIcon />
+                <DragAndDropText>
+                  <DragAndDropTitle>{text}</DragAndDropTitle>
+                  <DragAndDropDescription>{description}</DragAndDropDescription>
+                </DragAndDropText>
+                <div>
+                  <Button label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
+                  <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
+                </div>
+              </DragAndDropContent>
+            </DXCDragAndDropArea>
+          )}
+          {!dragging && dashed && (
+            <DragAndDropContentHover>
+              <DragAndDropContent>
+                <DragAndDropIcon />
+                <DragAndDropText>
+                  <DragAndDropTitle>{text}</DragAndDropTitle>
+                  <DragAndDropDescription>{description}</DragAndDropDescription>
+                </DragAndDropText>
+                <ButtonChooseFiles>
+                  <Button theme="light" label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
+                  <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
+                </ButtonChooseFiles>
+              </DragAndDropContent>
+            </DragAndDropContentHover>
+          )}
+          {dragging && (
+            <DragAndDropContentHover>
+              <DragAndDropTextHover>{textHover}</DragAndDropTextHover>
+              <DragAndDropIconHover />
+            </DragAndDropContentHover>
+          )}
+        </DXCDragAndDrop>
+      </BackgroundColorProvider>
     </ThemeProvider>
   );
 };
