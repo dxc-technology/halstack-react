@@ -49,7 +49,8 @@ const DxcNewInputText = React.forwardRef(({
   const [isScrollable, changeIsScrollable] = useState(false);
   const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
 
-  const refSuggestions = useRef(null);
+  const suggestionsRef = useRef(null);
+  const inputRef = useRef(null);
 
   const colorsTheme = useTheme();
   const inputId = `input-${uuidv4()}`;
@@ -127,12 +128,12 @@ const DxcNewInputText = React.forwardRef(({
   // Only scrollable by keyboard presses of arrowup and arrowdown
   useLayoutEffect(() => {
     if (isScrollable) {
-      refSuggestions.current?.scrollTo({
+      suggestionsRef.current?.scrollTo({
         top: visualFocusedSuggIndex * 39,
       });
     }
     return changeIsScrollable(false);
-  }, [isScrollable, refSuggestions, visualFocusedSuggIndex]);
+  }, [isScrollable, suggestionsRef, visualFocusedSuggIndex]);
 
   useEffect(() => {
     if (typeof suggestions === "function" && value !== null) {
@@ -168,6 +169,7 @@ const DxcNewInputText = React.forwardRef(({
   const defaultClearAction = {
     onClick: () => {
       onChange?.("");
+      inputRef.current.focus();
       if (suggestions) {
         changeIsError(false);
         closeSuggestions();
@@ -248,6 +250,7 @@ const DxcNewInputText = React.forwardRef(({
             onFocus={handleIOnFocus}
             onKeyDown={handleIOnKeyDown}
             disabled={disabled}
+            ref={inputRef}
           />
           {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
           {!disabled && clearable && value?.length > 0 && (
@@ -269,7 +272,7 @@ const DxcNewInputText = React.forwardRef(({
               onMouseLeave={() => {
                 changeVisualFocusedSuggIndex(-1);
               }}
-              ref={refSuggestions}
+              ref={suggestionsRef}
             >
               {isOpen && !isSearching && !isError && filteredSuggestions.length === 0 && (
                 <SuggestionsSystemMessage>No results found.</SuggestionsSystemMessage>
