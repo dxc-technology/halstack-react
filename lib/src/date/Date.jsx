@@ -154,12 +154,12 @@ const DxcDate = ({
       },
       MuiPickersToolbarText: {
         toolbarTxt: {
-          color: colorsTheme?.date?.pickerActualDate,
+          color: colorsTheme?.date?.pickerActualDateColor,
           fontFamily: colorsTheme?.date?.fontFamily,
           fontSize: "2rem",
         },
         toolbarBtnSelected: {
-          color: colorsTheme.date.pickerActualDate,
+          color: colorsTheme.date.pickerActualDateColor,
         },
       },
       MuiPickersCalendarHeader: {
@@ -188,7 +188,7 @@ const DxcDate = ({
       },
       MuiPickersDay: {
         current: {
-          border: colorsTheme.date.pickerActualDate + " 2px solid",
+          border: colorsTheme.date.pickerActualDateColor + " 2px solid",
           color: colorsTheme.date.pickerFontColor,
         },
         day: {

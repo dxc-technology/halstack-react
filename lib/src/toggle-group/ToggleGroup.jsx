@@ -141,7 +141,7 @@ const ToggleContainer = styled.div`
       !props.disabled
         ? `&:hover {
           background-color: ${
-            props.selected ? props.theme.selectedBackgroundHoverColor : props.theme.unselectedBackgroundHoverColor
+            props.selected ? props.theme.selectedHoverBackgroundColor : props.theme.unselectedHoverBackgroundColor
           };
           color: ${
             props.selected ? props.theme.selectedHoverFontColor : props.theme.unselectedHoverFontColor

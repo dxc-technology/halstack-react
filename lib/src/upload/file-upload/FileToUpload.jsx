@@ -46,7 +46,7 @@ const DXCFileToUpload = styled.div`
   padding-top: 25px;
   border-bottom: ${(props) => props.theme.fileUnderlineThickness} solid ${(props) => props.theme.fileUnderlineColor};
   :hover {
-    background: ${(props) => props.theme.fileHoverColor};
+    background: ${(props) => props.theme.hoverFileColor};
     &:hover {
       cursor: pointer;
     }
