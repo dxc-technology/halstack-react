@@ -167,8 +167,8 @@ const DragAndDropDescription = styled.div`
   font-size: ${(props) => props.theme.dragAndDropDescriptionFontSize};
   font-style: ${(props) => props.theme.dragAndDropDescriptionFontStyle};
   font-weight: ${(props) => props.theme.dragAndDropDescriptionFontWeight};
-  text-transform: ${(props) => props.theme.dragAndDropTextDescriptionFontTextTransform};
-  color: ${(props) => props.theme.dragAndDropTextDescriptionFontColor};
+  text-transform: ${(props) => props.theme.dragAndDropDescriptionFontTextTransform};
+  color: ${(props) => props.theme.dragAndDropDescriptionFontColor};
   margin-bottom: 40px;
 `;
 
@@ -222,7 +222,7 @@ const DragAndDropContentHover = styled.div`
   background-size: var(--dash-size) var(--border-weight), calc(var(--dash-size) + var(--gap-size)) var(--border-weight),
     var(--dash-size) var(--border-weight), var(--border-weight) var(--dash-size),
     var(--border-weight) calc(var(--dash-size) + var(--gap-size)), var(--border-weight) var(--dash-size);
-  background-color: ${(props) => props.theme.draggingAreaBackgroundColor};
+  background-color: ${(props) => props.theme.draggingStateBackgroundColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -245,8 +245,8 @@ const DragAndDropTextHover = styled.div`
   font-size: ${(props) => props.theme.dragAndDropDraggingStateFontSize};
   font-style: ${(props) => props.theme.dragAndDropDraggingStateFontStyle};
   font-weight: ${(props) => props.theme.dragAndDropDraggingStateFontWeight};
-  text-transform: ${(props) => props.theme.dragAndDropTextDraggingStateFontTextTransform};
-  color: ${(props) => props.theme.dragAndDropTextDraggingStateFontColor};
+  text-transform: ${(props) => props.theme.dragAndDropDraggingStateFontTextTransform};
+  color: ${(props) => props.theme.dragAndDropDraggingStateFontColor};
   margin-bottom: 10px;
 `;
 

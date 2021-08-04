@@ -82,11 +82,11 @@ const DXCTransaction = styled.div`
 
 const FileImage = styled.div`
   background-color: ${(props) =>
-    (props.status === "error" && props.theme.errorColor) || props.theme.fileUploadedIconColor};
+    (props.status === "error" && props.theme.errorColor) || props.theme.uploadedFileIconColor};
   mask: url(${(props) => props.img}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.fileUploadedIconSize} ${props.theme.fileUploadedIconSize}`};
-  height: ${(props) => props.theme.fileUploadedIconSize};
-  width: ${(props) => props.theme.fileUploadedIconSize};
+  mask-size: ${(props) => `${props.theme.uploadedFileIconSize} ${props.theme.uploadedFileIconSize}`};
+  height: ${(props) => props.theme.uploadedFileIconSize};
+  width: ${(props) => props.theme.uploadedFileIconSize};
   margin-right: 16px;
   max-width: 20%;
 `;
