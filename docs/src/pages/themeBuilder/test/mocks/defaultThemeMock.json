@@ -1,16 +1,16 @@
 {
   "accordion": {
-    "accentColor": "#6f2c91",
+    "accentColor": "#5f249f",
     "fontColor": "#666666"
   },
   "button": {
-    "baseColor": "#6f2c91",
+    "baseColor": "#5f249f",
     "hoverBaseColor": "#000000",
     "primaryFontColor": "#ffffff",
     "primaryHoverFontColor": "#ffffff",
     "secondaryFontColor": "#000000",
     "secondaryHoverFontColor": "#000000",
-    "textFontColor": "#6f2c91",
+    "textFontColor": "#5f249f",
     "textHoverFontColor": "#ffffff"
   },
   "checkbox": {
@@ -23,7 +23,7 @@
     "fontColor": "#000000"
   },
   "date": {
-    "baseColor": "#6f2c91",
+    "baseColor": "#5f249f",
     "accentColor": "#ffffff"
   },
   "dropdown": {
@@ -53,7 +53,7 @@
     "fontColor": "#000000"
   },
   "progressBar": {
-    "accentColor": "#6f2c91",
+    "accentColor": "#5f249f",
     "baseColor": "#cecece"
   },
   "radio": {
@@ -71,21 +71,21 @@
     "baseColor": "#0067b3"
   },
   "spinner": {
-    "accentColor": "#6f2c91",
+    "accentColor": "#5f249f",
     "baseColor": "#ffffff"
   },
   "switch": {
-    "checkedBaseColor": "#6f2c91"
+    "checkedBaseColor": "#5f249f"
   },
   "table": {
-    "baseColor": "#6f2c91",
+    "baseColor": "#5f249f",
     "fontColor": "#ffffff"
   },
   "tabs": {
-    "baseColor": "#6f2c91"
+    "baseColor": "#5f249f"
   },
   "toggleGroup": {
-    "selectedBaseColor": "#6f2c91",
+    "selectedBaseColor": "#5f249f",
     "selectedHoverBaseColor": "#000000",
     "selectedFontColor": "#ffffff",
     "selectedHoverFontColor": "#ffffff",
@@ -95,7 +95,7 @@
     "unselectedHoverFontColor": "#000000"
   },
   "wizard": {
-    "baseColor": "#6f2c91",
+    "baseColor": "#5f249f",
     "fontColor": "#ffffff"
   }
 }

@@ -36,7 +36,7 @@ const buttonPropsTable = () => {
       <tr>
         <td>iconBgColor: string</td>
         <td>
-          <code>'#6f2c91'</code>
+          <code>'#5f249f'</code>
         </td>
         <td>Background color of the icon section of the tag.</td>
       </tr>

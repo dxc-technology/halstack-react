@@ -27,7 +27,7 @@ const ThemeInputsConfig = ({
 
 const Title = styled.h3`
   font-size: 16px;
-  color: #6F2C91;
+  color: #5f249f;
   font-weight: 600;
   margin: 0px;
   padding: 11.5px 24px;
