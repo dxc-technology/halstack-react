@@ -131,7 +131,7 @@ function App() {
 
 const HeaderLink = styled.div`
   & a {
-    color: ${({ isActive }) => (isActive && "#6f2c91") || "black"};
+    color: ${({ isActive }) => (isActive && "#5f249f") || "black"};
     text-decoration: none;
     margin-left: 100px;
     font-size: 14px;

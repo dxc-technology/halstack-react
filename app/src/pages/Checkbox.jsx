@@ -3,7 +3,7 @@ import { DxcCheckbox, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   checkbox: {
-    baseColor: "#6f2c91",
+    baseColor: "#5f249f",
     checkColor: "#fabada",
   },
 };
