@@ -1,10 +1,34 @@
 import React, { useRef, useState } from "react";
 import { DxcButton, DxcNewInputText } from "@dxc-technology/halstack-react";
-import icon from "../images/home.svg";
+
+const countries = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Antigua and Barbuda",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Cabo Verde",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Cayman Islands, The",
+  "Central African Republic",
+  "Chad",
+  "Democratic Republic of the Congo",
+  "Dominican Republic",
+  "Dominica",
+  "Denmark",
+  "Djibouti",
+];
 
 function App() {
-  const [value, setValue] = useState("Sample text");
   const ref = useRef(null);
+  const [value, setValue] = useState("Sample text");
   const [suggestionsValue, setSuggestionsValue] = useState("");
   const onChange = (newValue) => {
     setValue(newValue);
@@ -14,7 +38,7 @@ function App() {
   };
   const action = {
     onClick: () => {
-      console.log("Warning dude!");
+      console.log("Copy that!");
     },
     icon: (
       <svg
@@ -29,30 +53,11 @@ function App() {
       </svg>
     ),
   };
-  const countries = [
-    "Afghanistan",
-    "Albania",
-    "Algeria",
-    "Andorra",
-    "Angola",
-    "Antigua and Barbuda",
-    "Bahamas",
-    "Bahrain",
-    "Bangladesh",
-    "Barbados",
-    "Cabo Verde",
-    "Cambodia",
-    "Cameroon",
-    "Canada",
-    "Cayman Islands, The",
-    "Central African Republic",
-    "Chad",
-    "Democratic Republic of the Congo",
-    "Dominican Republic",
-    "Dominica",
-    "Denmark",
-    "Djibouti",
-  ];
+
+  const [suggestionsFValue, setSuggestionsFValue] = useState("");
+  const onChangeFSuggestions = (newValue) => {
+    setSuggestionsFValue(newValue);
+  };
   const callbackFunc = (newValue) => {
     const result = new Promise((resolve) =>
       setTimeout(() => {
@@ -71,9 +76,22 @@ function App() {
   return (
     <>
       <p>
-        <DxcNewInputText value={value} onChange={onChange} margin="medium" />
+        <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
+        <DxcNewInputText
+          value={value}
+          onChange={onChange}
+          margin={{ left: "medium", right: "medium" }}
+        />
       </p>
       <p>
+        <h4 style={{ "margin-left": "36px" }}>Uncontrolled</h4>
+        <DxcNewInputText
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>Clearable</h4>
         <DxcNewInputText
           value={value}
           onChange={onChange}
@@ -87,7 +105,7 @@ function App() {
           optional
           prefix="+34"
           suffix="USD"
-          helperText="Help please"
+          helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
         />
@@ -96,7 +114,7 @@ function App() {
         <DxcNewInputText
           label="Warning label"
           prefix="€"
-          helperText="More help please"
+          helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
           action={action}
@@ -106,7 +124,7 @@ function App() {
         <DxcNewInputText
           label="Error input"
           prefix="€"
-          helperText="This time i really need help, please"
+          helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
           action={action}
@@ -117,6 +135,7 @@ function App() {
       <p>
         <DxcNewInputText
           label="Disabled input"
+          helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
           disabled
@@ -125,7 +144,7 @@ function App() {
       <p>
         <DxcNewInputText
           label="Input with suggestions"
-          helperText="This one has a lot of help"
+          helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
           value={suggestionsValue}
@@ -136,12 +155,22 @@ function App() {
       </p>
       <p>
         <DxcNewInputText
-          label="Input with suggestions function"
-          helperText="Asynchronous help"
+          label="Uncontrolled suggestions"
+          helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
-          value={suggestionsValue}
-          onChange={onChangeSuggestions}
+          suggestions={countries}
+          clearable
+        />
+      </p>
+      <p>
+        <DxcNewInputText
+          label="Input with suggestions function"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin="medium"
+          value={suggestionsFValue}
+          onChange={onChangeFSuggestions}
           suggestions={callbackFunc}
           clearable
         />
@@ -149,7 +178,7 @@ function App() {
       <p>
         <DxcNewInputText
           label="Input with ref"
-          helperText="Personalized help"
+          helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
           ref={ref}
