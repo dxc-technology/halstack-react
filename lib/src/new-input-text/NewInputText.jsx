@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
+import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
@@ -59,6 +60,8 @@ const DxcNewInputText = React.forwardRef(
     const inputRef = useRef(null);
 
     const colorsTheme = useTheme();
+    const backgroundType = useContext(BackgroundColorContext);
+
     const inputId = `input-${uuidv4()}`;
     const autosuggestId = `${inputId}-listBox`;
 
@@ -242,13 +245,15 @@ const DxcNewInputText = React.forwardRef(
     return (
       <ThemeProvider theme={colorsTheme.newInputText}>
         <DxcInput margin={margin} ref={ref}>
-          <Label htmlFor={inputId} disabled={disabled}>
+          <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
-          <HelperText disabled={disabled}>{helperText}</HelperText>
-          <InputContainer error={error} disabled={disabled}>
+          <HelperText disabled={disabled} backgroundType={backgroundType}>
+            {helperText}
+          </HelperText>
+          <InputContainer error={error} disabled={disabled} backgroundType={backgroundType}>
             {prefix && (
-              <Prefix>
+              <Prefix backgroundType={backgroundType}>
                 {typeof prefix === "object" || typeof prefix === "string" ? prefix : React.createElement(prefix)}
               </Prefix>
             )}
@@ -264,14 +269,21 @@ const DxcNewInputText = React.forwardRef(
               onKeyDown={handleIOnKeyDown}
               disabled={disabled}
               ref={inputRef}
+              backgroundType={backgroundType}
             />
-            {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
+            {error && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
-              <Action onClick={defaultClearAction.onClick}>{defaultClearAction.icon}</Action>
+              <Action onClick={defaultClearAction.onClick} backgroundType={backgroundType}>
+                {defaultClearAction.icon}
+              </Action>
             )}
-            {!disabled && action && <Action onClick={action.onClick}>{action.icon}</Action>}
+            {!disabled && action && (
+              <Action onClick={action.onClick} backgroundType={backgroundType}>
+                {action.icon}
+              </Action>
+            )}
             {suffix && (
-              <Suffix>
+              <Suffix backgroundType={backgroundType}>
                 {typeof suffix === "object" || typeof suffix === "string" ? suffix : React.createElement(suffix)}
               </Suffix>
             )}
@@ -299,14 +311,14 @@ const DxcNewInputText = React.forwardRef(
                 {isSearching && <SuggestionsSystemMessage>Searching...</SuggestionsSystemMessage>}
                 {isError && (
                   <SuggestionsError>
-                    <ErrorIcon>{errorIcon}</ErrorIcon>
+                    <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>
                     Error fetching data.
                   </SuggestionsError>
                 )}
               </Suggestions>
             )}
           </InputContainer>
-          {error && <Error>{error}</Error>}
+          {error && <Error backgroundType={backgroundType}>{error}</Error>}
         </DxcInput>
       </ThemeProvider>
     );
@@ -336,7 +348,15 @@ const DxcInput = styled.div`
 `;
 
 const Label = styled.label`
-  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledLabelFontColorOnDark
+        : props.theme.disabledLabelFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.labelFontColorOnDark
+      : props.theme.labelFontColor};
+
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
@@ -349,7 +369,15 @@ const OptionalLabel = styled.span`
 `;
 
 const HelperText = styled.span`
-  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledHelperTextFontColorOnDark
+        : props.theme.disabledHelperTextFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.helperTextFontColorOnDark
+      : props.theme.helperTextFontColor};
+
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -362,27 +390,48 @@ const InputContainer = styled.div`
   position: relative;
   align-items: center;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  border: ${(props) =>
-    props.error
-      ? `1px solid ${props.theme.errorOutlineColor}`
-      : props.disabled
-      ? `1px solid ${props.theme.disabledOutlineColor}`
-      : `1px solid ${props.theme.enabledOutlineColor}`};
-  ${(props) => props.disabled && `background-color: ${props.theme.disabledContainerFillColor};`}
+
+  ${(props) => {
+    if (props.disabled)
+      return props.backgroundType === "dark"
+        ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
+        : `background-color: ${props.theme.disabledContainerFillColor};`;
+  }}
   ${(props) => props.error && `box-shadow: inset 0 0 0 1px ${props.theme.errorOutlineColor};`}
+
+  border: 1px solid
+    ${(props) => {
+    if (props.error)
+      return props.backgroundType === "dark" ? props.theme.errorOutlineColorOnDark : props.theme.errorOutlineColor;
+    else
+      return props.disabled
+        ? props.backgroundType === "dark"
+          ? props.theme.disabledOutlineColorOnDark
+          : props.theme.disabledOutlineColor
+        : props.backgroundType === "dark"
+        ? props.theme.enabledOutlineColorOnDark
+        : props.theme.enabledOutlineColor;
+  }};
   border-radius: 4px;
+
   margin: calc(1rem * 0.25) 0;
   padding: 0 calc(1rem * 0.5);
 
   ${(props) =>
     !props.disabled &&
     `&:hover {
-        border-color: #a46ede;
+        border-color: ${
+          props.backgroundType === "dark" ? props.theme.hoverOutlineColorOnDark : props.theme.hoverOutlineColor
+        };
         box-shadow: none;
       }
       &:focus-within {
-        border: 1px solid #a46ede;
-        box-shadow: inset 0 0 0 1px #a46ede;
+        border-color: ${
+          props.backgroundType === "dark" ? props.theme.focusOutlineColorOnDark : props.theme.focusOutlineColor
+        };
+        box-shadow: inset 0 0 0 1px ${
+          props.backgroundType === "dark" ? props.theme.focusOutlineColorOnDark : props.theme.focusOutlineColor
+        };
       }`};
 `;
 
@@ -393,7 +442,8 @@ const Input = styled.input`
   border: none;
   outline: none;
   padding: 0 calc(1rem * 0.5);
-  color: ${(props) => props.theme.valueFontColor};
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.valueFontColorOnDark : props.theme.valueFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
@@ -401,7 +451,12 @@ const Input = styled.input`
   ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
-    color: ${(props) => (props.disabled ? props.theme.disabledPlaceholderFontColor : props.theme.placeholderFontColor)};
+    color: ${(props) =>
+      props.disabled
+        ? props.theme.disabledPlaceholderFontColor
+        : props.backgroundType === "dark"
+        ? props.theme.placeholderFontColorOnDark
+        : props.theme.placeholderFontColor};
   }
 `;
 
@@ -419,25 +474,57 @@ const Action = styled.button`
   cursor: pointer;
   background-color: transparent;
   padding: 0;
+  
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.actionIconColorOnDark : props.theme.actionIconColor};
 
   &:hover {
-    background-color: #f2f2f2;
+    color: ${(props) => props.theme.actionIconColor};
+    background-color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.theme.hoverActionBackgroundColorOnDark
+        : props.theme.hoverActionBackgroundColor};
   }
   &:focus {
-    border: 1px solid #a46ede;
-    box-shadow: inset 0 0 0 1px #a46ede;
+    border: 1px solid
+      ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.focusActionOutlineColorOnDark
+          : props.theme.focusActionOutlineColor};
+    box-shadow: inset 0 0 0 1px
+      ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.focusActionOutlineColorOnDark
+          : props.theme.focusActionOutlineColor};
     outline: none;
   }
   &:focus-visible {
-    border: 1px solid #a46ede;
-    box-shadow: inset 0 0 0 1px #a46ede;
+    border: 1px solid
+      ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.focusActionOutlineColorOnDark
+          : props.theme.focusActionOutlineColor};
+    box-shadow: inset 0 0 0 1px
+      ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.focusActionOutlineColorOnDark
+          : props.theme.focusActionOutlineColor};
     outline: none;
   }
   &:active {
-    border: 1px solid #a46ede;
-    box-shadow: inset 0 0 0 1px #a46ede;
+    color: ${(props) => props.theme.actionIconColor};
+    border: 1px solid
+      ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.focusActionOutlineColorOnDark
+          : props.theme.focusActionOutlineColor};
+    box-shadow: inset 0 0 0 1px
+      ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.focusActionOutlineColorOnDark
+          : props.theme.focusActionOutlineColor};
     outline: none;
-    background-color: #d9d9d9;
+    background-color: ${(props) => props.theme.activeActionBackgroundColor};
   }
   svg {
     line-height: 18px;
@@ -447,7 +534,8 @@ const Action = styled.button`
 `;
 
 const ErrorIcon = styled.span`
-  color: ${(props) => props.theme.errorIconColor};
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
   height: calc(24px - (1px * 2));
   width: calc(24px - (1px * 2));
   margin-right: calc(1rem * 0.5);
@@ -486,7 +574,8 @@ const Suffix = styled.span`
 `;
 
 const Error = styled.span`
-  color: ${(props) => props.theme.errorMessageColor};
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;
@@ -532,7 +621,7 @@ const SuggestionsSystemMessage = styled.span`
   display: flex;
   padding: calc((39px - 1.75em) / 2) 0 calc((39px - 1.75em) / 2) 1em;
   color: ${(props) => props.theme.systemMessageFontColor};
-  font-size: ${(props) => props.theme.systemMessageFontSize};
+  font-size: 0.875rem;
   line-height: 1.75em;
 `;
 

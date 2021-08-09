@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
-import { DxcButton, DxcNewInputText } from "@dxc-technology/halstack-react";
+import {
+  DxcButton,
+  DxcNewInputText,
+  BackgroundColorProvider,
+} from "@dxc-technology/halstack-react";
+import styled from "styled-components";
 
 const countries = [
   "Afghanistan",
@@ -95,7 +100,7 @@ function App() {
         <DxcNewInputText
           value={value}
           onChange={onChange}
-          margin="medium"
+          margin={{ left: "medium", right: "medium" }}
           clearable
         />
       </p>
@@ -193,8 +198,70 @@ function App() {
           margin={{ left: "medium" }}
         ></DxcButton>
       </p>
+
+      <BackgroundColorProvider color="#000000">
+        <Mode mode="dark">
+          <DxcNewInputText
+            label="Example label"
+            optional
+            helperText="Example of helper text"
+            placeholder="Placeholder"
+            margin={{ left: "medium", bottom: "small", top: "small", right: "medium" }}
+          />
+        </Mode>
+        <Mode mode="dark">
+          <DxcNewInputText
+            label="Example label"
+            optional
+            helperText="Example of helper text"
+            placeholder="Placeholder"
+            margin={{ left: "medium", bottom: "small", right: "medium" }}
+            disabled
+          />
+        </Mode>
+        <Mode mode="dark">
+          <DxcNewInputText
+            label="Error input"
+            helperText="Example of helper text"
+            placeholder="Placeholder"
+            margin={{ left: "medium", bottom: "small", right: "medium" }}
+            error="Error message"
+            clearable
+          />
+        </Mode>
+        <Mode mode="dark">
+          <DxcNewInputText
+            label="Warning label"
+            prefix="€"
+            helperText="Example of helper text"
+            placeholder="Placeholder"
+            margin={{ left: "medium", bottom: "small", right: "medium" }}
+            action={action}
+          />
+        </Mode>
+      </BackgroundColorProvider>
     </>
   );
 }
+
+const Mode = ({ mode, children }) => {
+  return (
+    <ModeContainer mode={mode}>
+      <PreviewsContainer mode={mode}>{children}</PreviewsContainer>
+    </ModeContainer>
+  );
+};
+
+const ModeContainer = styled.div`
+  background-color: ${(props) =>
+    props.mode === "dark" ? "#000000" : "transparent"};
+
+  display: flex;
+  flex-flow: row wrap;
+`;
+
+const PreviewsContainer = styled.div`
+  flex: 100%;
+`;
 
 export default App;
