@@ -277,7 +277,7 @@ describe("Import default theme", () => {
       fireEvent.click(getByText("Reset").closest("button"));
     });
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
-      "#6f2c91"
+      "#5f249f"
     );
     expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
       "#666666"

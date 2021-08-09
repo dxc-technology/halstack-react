@@ -60,7 +60,7 @@ describe("Successful color picker tests for default theme", () => {
     expect(getByText("Accordion component")).toBeTruthy();
     expect(getByText("Accent color")).toBeTruthy();
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
-      "#6f2c91"
+      "#5f249f"
     );
     act(() => {
       fireEvent.click(getAllByRole("color-container")[0]);
