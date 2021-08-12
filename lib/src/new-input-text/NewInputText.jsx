@@ -277,8 +277,8 @@ const DxcNewInputText = React.forwardRef(
                 {defaultClearAction.icon}
               </Action>
             )}
-            {!disabled && action && (
-              <Action onClick={action.onClick} backgroundType={backgroundType}>
+            {action && (
+              <Action disabled={disabled} onClick={action.onClick} backgroundType={backgroundType}>
                 {action.icon}
               </Action>
             )}
@@ -287,7 +287,7 @@ const DxcNewInputText = React.forwardRef(
                 {typeof suffix === "object" || typeof suffix === "string" ? suffix : React.createElement(suffix)}
               </Suffix>
             )}
-            {suggestions && suggestions.length > 0 && isOpen && (
+            {(suggestions && suggestions.length > 0 || typeof suggestions === "function") && isOpen && (
               <Suggestions
                 id={autosuggestId}
                 isError={isError}
@@ -442,8 +442,16 @@ const Input = styled.input`
   border: none;
   outline: none;
   padding: 0 calc(1rem * 0.5);
+
   color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.valueFontColorOnDark : props.theme.valueFontColor};
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledValueFontColorOnDark
+        : props.theme.disabledValueFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.valueFontColorOnDark
+      : props.theme.valueFontColor};
+
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
@@ -471,61 +479,71 @@ const Action = styled.button`
   display: flex;
   align-content: center;
   justify-content: center;
-  cursor: pointer;
+  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer`)};
   background-color: transparent;
   padding: 0;
-  
+
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.actionIconColorOnDark : props.theme.actionIconColor};
 
-  &:hover {
-    color: ${(props) => props.theme.actionIconColor};
-    background-color: ${(props) =>
+  ${(props) =>
+    !props.disabled &&
+    `&:hover {
+    color: ${props.theme.actionIconColor};
+    background-color: ${
       props.backgroundType === "dark"
         ? props.theme.hoverActionBackgroundColorOnDark
-        : props.theme.hoverActionBackgroundColor};
+        : props.theme.hoverActionBackgroundColor
+    };
   }
   &:focus {
     border: 1px solid
-      ${(props) =>
+      ${
         props.backgroundType === "dark"
           ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor};
+          : props.theme.focusActionOutlineColor
+      };
     box-shadow: inset 0 0 0 1px
-      ${(props) =>
+      ${
         props.backgroundType === "dark"
           ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor};
+          : props.theme.focusActionOutlineColor
+      };
     outline: none;
   }
   &:focus-visible {
     border: 1px solid
-      ${(props) =>
+      ${
         props.backgroundType === "dark"
           ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor};
+          : props.theme.focusActionOutlineColor
+      };
     box-shadow: inset 0 0 0 1px
-      ${(props) =>
+      ${
         props.backgroundType === "dark"
           ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor};
+          : props.theme.focusActionOutlineColor
+      };
     outline: none;
   }
   &:active {
-    color: ${(props) => props.theme.actionIconColor};
+    color: ${props.theme.actionIconColor};
     border: 1px solid
-      ${(props) =>
+      ${
         props.backgroundType === "dark"
           ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor};
+          : props.theme.focusActionOutlineColor
+      };
     box-shadow: inset 0 0 0 1px
-      ${(props) =>
+      ${
         props.backgroundType === "dark"
           ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor};
+          : props.theme.focusActionOutlineColor
+      };
     outline: none;
-    background-color: ${(props) => props.theme.activeActionBackgroundColor};
-  }
+    background-color: ${props.theme.activeActionBackgroundColor};
+  }`}
+
   svg {
     line-height: 18px;
     width: 100%;
@@ -555,7 +573,8 @@ const Prefix = styled.span`
   border-right: 1px solid #999999;
   line-height: calc(1rem * 1.5);
   padding: 0 calc(1rem * 0.5) 0 0;
-  color: #666666;
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.prefixLabelColorOnDark : props.theme.prefixLabelColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 1rem;
   pointer-events: none;
@@ -567,7 +586,8 @@ const Suffix = styled.span`
   line-height: calc(1rem * 1.5);
   margin-left: calc(1rem * 0.25);
   padding: 0 0 0 calc(1rem * 0.5);
-  color: #666666;
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.suffixLabelColorOnDark : props.theme.suffixLabelColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 1rem;
   pointer-events: none;
@@ -646,8 +666,8 @@ DxcNewInputText.propTypes = {
   clearable: PropTypes.bool,
   disabled: PropTypes.bool,
   optional: PropTypes.bool,
-  prefix: PropTypes.string,
-  suffix: PropTypes.string,
+  prefix: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ type: PropTypes.oneOf(["svg"]) })]),
+  suffix: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ type: PropTypes.oneOf(["svg"]) })]),
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
