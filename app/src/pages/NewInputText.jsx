@@ -5,6 +5,7 @@ import {
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
+import { ReactComponent as Avatar } from "../images/delete-24px.svg";
 
 const countries = [
   "Afghanistan",
@@ -58,6 +59,12 @@ function App() {
       </svg>
     ),
   };
+  const actionImportSVG = {
+    onClick: () => {
+      console.log("Delete that!");
+    },
+    icon: <Avatar></Avatar>,
+  };
 
   const [suggestionsFValue, setSuggestionsFValue] = useState("");
   const onChangeFSuggestions = (newValue) => {
@@ -94,6 +101,32 @@ function App() {
           value={value}
           onChange={onChange}
           margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
+        <DxcNewInputText
+          label="Small"
+          margin={{ left: "medium", right: "medium" }}
+          size="small"
+          clearable
+        />
+        <DxcNewInputText
+          label="Medium"
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+        />
+        <DxcNewInputText
+          label="Large"
+          margin={{ left: "medium", right: "medium" }}
+          size="large"
+          clearable
+        />
+        <DxcNewInputText
+          label="Fill parent"
+          margin={{ left: "medium", right: "medium" }}
+          size="fillParent"
+          clearable
         />
       </p>
       <p>
@@ -155,18 +188,20 @@ function App() {
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
-          action={action}
+          action={actionImportSVG}
         />
       </p>
       <p>
         <DxcNewInputText
+          prefix="😀"
           label="Error input"
-          prefix="€"
+          value="Prueba"
           helperText="Example of helper text"
           placeholder="Placeholder"
-          margin="medium"
-          action={action}
+          margin={{ left: "medium", bottom: "small", right: "medium" }}
           error="Error message"
+          suffix="😠"
+          action={action}
           clearable
         />
       </p>
@@ -178,7 +213,7 @@ function App() {
           margin="medium"
           disabled
         />
-      </p>      
+      </p>
       <p>
         <DxcNewInputText
           label="Disabled input with prefix and suffix"
@@ -290,22 +325,26 @@ function App() {
         </Mode>
         <Mode mode="dark">
           <DxcNewInputText
+            label="Warning label"
+            prefix="+34"
+            helperText="Example of helper text"
+            placeholder="Placeholder"
+            margin={{ left: "medium", bottom: "small", right: "medium" }}
+            action={action}
+          />
+        </Mode>
+        <Mode mode="dark">
+          <DxcNewInputText
+            prefix="😀"
             label="Error input"
             helperText="Example of helper text"
             placeholder="Placeholder"
             margin={{ left: "medium", bottom: "small", right: "medium" }}
             error="Error message"
-            clearable
-          />
-        </Mode>
-        <Mode mode="dark">
-          <DxcNewInputText
-            label="Warning label"
-            prefix="€"
-            helperText="Example of helper text"
-            placeholder="Placeholder"
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
+            suffix="😠"
             action={action}
+            size="large"
+            clearable
           />
         </Mode>
       </BackgroundColorProvider>

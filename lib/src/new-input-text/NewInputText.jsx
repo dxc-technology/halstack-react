@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
+import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 
@@ -40,8 +41,9 @@ const DxcNewInputText = React.forwardRef(
       onBlur,
       error = "",
       margin,
-      // size = "medium",
+      size = "medium",
       suggestions,
+      // length = {min: 0, max: 10},
       // tabIndex = 0,
     },
     ref
@@ -199,7 +201,7 @@ const DxcNewInputText = React.forwardRef(
       ),
     };
     const errorIcon = (
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
       </svg>
     );
@@ -244,7 +246,7 @@ const DxcNewInputText = React.forwardRef(
 
     return (
       <ThemeProvider theme={colorsTheme.newInputText}>
-        <DxcInput margin={margin} ref={ref}>
+        <DxcInput margin={margin} ref={ref} size={size}>
           <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
@@ -253,8 +255,8 @@ const DxcNewInputText = React.forwardRef(
           </HelperText>
           <InputContainer error={error} disabled={disabled} backgroundType={backgroundType}>
             {prefix && (
-              <Prefix backgroundType={backgroundType}>
-                {typeof prefix === "object" || typeof prefix === "string" ? prefix : React.createElement(prefix)}
+              <Prefix disabled={disabled} backgroundType={backgroundType}>
+                {prefix}
               </Prefix>
             )}
             <Input
@@ -283,11 +285,11 @@ const DxcNewInputText = React.forwardRef(
               </Action>
             )}
             {suffix && (
-              <Suffix backgroundType={backgroundType}>
-                {typeof suffix === "object" || typeof suffix === "string" ? suffix : React.createElement(suffix)}
+              <Suffix disabled={disabled} backgroundType={backgroundType}>
+                {suffix}
               </Suffix>
             )}
-            {(suggestions && suggestions.length > 0 || typeof suggestions === "function") && isOpen && (
+            {((suggestions && suggestions.length > 0) || typeof suggestions === "function") && isOpen && (
               <Suggestions
                 id={autosuggestId}
                 isError={isError}
@@ -325,17 +327,23 @@ const DxcNewInputText = React.forwardRef(
   }
 );
 
-// const sizes = {
-//   small: "42px",
-//   medium: "240px",
-//   large: "480px",
-//   fillParent: "100%",
-// };
+const sizes = {
+  small: "60px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
+};
+
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
 const DxcInput = styled.div`
   display: flex;
   flex-direction: column;
 
+  width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -469,27 +477,32 @@ const Input = styled.input`
 `;
 
 const Action = styled.button`
-  height: calc(calc(1rem * 1.5) - calc(1px * 2));
-  width: calc(calc(1rem * 1.5) - calc(1px * 2));
-  margin: 0 calc(1rem * 0.25) 0 calc(1rem * 0.25);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 24px;
+  width: 24px;
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
   border-radius: 4px;
-  display: flex;
-  align-content: center;
-  justify-content: center;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer`)};
   background-color: transparent;
-  padding: 0;
+  padding: 3px;
 
   color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.actionIconColorOnDark : props.theme.actionIconColor};
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledActionColorOnDark
+        : props.theme.disabledActionColor
+      : props.backgroundType === "dark"
+      ? props.theme.actionColorOnDark
+      : props.theme.actionColor};
 
   ${(props) =>
     !props.disabled &&
     `&:hover {
-    color: ${props.theme.actionIconColor};
+    color: #000000;
     background-color: ${
       props.backgroundType === "dark"
         ? props.theme.hoverActionBackgroundColorOnDark
@@ -527,7 +540,7 @@ const Action = styled.button`
     outline: none;
   }
   &:active {
-    color: ${props.theme.actionIconColor};
+    color: #000000;
     border: 1px solid
       ${
         props.backgroundType === "dark"
@@ -541,40 +554,50 @@ const Action = styled.button`
           : props.theme.focusActionOutlineColor
       };
     outline: none;
-    background-color: ${props.theme.activeActionBackgroundColor};
+    background-color: ${
+      props.backgroundType === "dark"
+        ? props.theme.activeActionBackgroundColorOnDark
+        : props.theme.activeActionBackgroundColor
+    };
   }`}
 
   svg {
     line-height: 18px;
-    width: 100%;
-    height: 100%;
   }
 `;
 
 const ErrorIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 18px;
+  width: 18px;
+  margin-right: 4px;
+  pointer-events: none;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
-  height: calc(24px - (1px * 2));
-  width: calc(24px - (1px * 2));
-  margin-right: calc(1rem * 0.5);
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  pointer-events: none;
 
   svg {
+    line-height: 18px;
     font-size: 1.25rem;
-    line-height: 22px;
   }
 `;
 
 const Prefix = styled.span`
   height: calc(1rem * 1.5);
-  border-right: 1px solid #999999;
   line-height: calc(1rem * 1.5);
+  margin-left: calc(1rem * 0.25);
   padding: 0 calc(1rem * 0.5) 0 0;
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.prefixLabelColorOnDark : props.theme.prefixLabelColor};
+  ${(props) => {
+    const color = props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledPrefixColorOnDark
+        : props.theme.disabledPrefixColor
+      : props.backgroundType === "dark"
+      ? props.theme.prefixColorOnDark
+      : props.theme.prefixColor;
+    return `color: ${color}; border-right: 1px solid ${color};`;
+  }};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 1rem;
   pointer-events: none;
@@ -582,12 +605,20 @@ const Prefix = styled.span`
 
 const Suffix = styled.span`
   height: calc(1rem * 1.5);
-  border-left: 1px solid #999999;
   line-height: calc(1rem * 1.5);
+  margin-right: calc(1rem * 0.5);
   margin-left: calc(1rem * 0.25);
   padding: 0 0 0 calc(1rem * 0.5);
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.suffixLabelColorOnDark : props.theme.suffixLabelColor};
+  ${(props) => {
+    const color = props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledSuffixColorOnDark
+        : props.theme.disabledSuffixColor
+      : props.backgroundType === "dark"
+      ? props.theme.suffixColorOnDark
+      : props.theme.suffixColor;
+    return `color: ${color}; border-left: 1px solid ${color};`;
+  }};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 1rem;
   pointer-events: none;
@@ -680,8 +711,9 @@ DxcNewInputText.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
-  // size: PropTypes.oneOf([...Object.keys(sizes)]),
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   suggestions: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
+  // length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
   // tabIndex: PropTypes.number,
 };
 
