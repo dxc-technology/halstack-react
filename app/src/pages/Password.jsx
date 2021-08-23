@@ -3,7 +3,16 @@ import { DxcPassword } from "@dxc-technology/halstack-react";
 
 function App() {
   const [value, setValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
+  const onChange = (newValue, error) => {
+    setValue(newValue);
+    if (error !== "") {
+      setErrorMessage("Change");
+    } else {
+      setErrorMessage(null);
+    }
+  };
   return (
     <>
       <p>
