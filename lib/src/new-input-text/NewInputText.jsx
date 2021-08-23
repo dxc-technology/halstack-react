@@ -43,7 +43,9 @@ const DxcNewInputText = React.forwardRef(
       margin,
       size = "medium",
       suggestions,
-      // length = {min: 0, max: 10},
+      pattern,
+      length = { min: 0, max: 1000 },
+      strict = true,
       // tabIndex = 0,
     },
     ref
@@ -53,6 +55,7 @@ const DxcNewInputText = React.forwardRef(
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
     const [isError, changeIsError] = useState(false);
+    const [validationError, changeValidationError] = useState("");
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
     const [isScrollable, changeIsScrollable] = useState(false);
@@ -71,14 +74,23 @@ const DxcNewInputText = React.forwardRef(
       changeIsOpen(false);
       changeVisualFocusedSuggIndex(-1);
     };
-    const changeValue = (newValue) => {
+
+    const changeValue = (newValue, error) => {
       if (value === null || value === undefined) {
         if (typeof onChange === "function") {
           setInnerValue(newValue);
-          onChange(newValue);
+          onChange(newValue, error);
         } else setInnerValue(newValue);
       } else if (onChange !== null || onChange !== undefined)
-        typeof onChange === "function" ? onChange(newValue) : setInnerValue(newValue);
+        typeof onChange === "function" ? onChange(newValue, error) : setInnerValue(newValue);
+    };
+
+    const checkValidationConstraint = (constrait) => {
+      return inputRef.current.validity[constrait];
+    };
+
+    const checkLength = (value) => {
+      return value !== "" && (value.length < length.min || value.length > length.max);
     };
 
     const handleIOnChange = (event) => {
@@ -86,18 +98,55 @@ const DxcNewInputText = React.forwardRef(
         changeIsError(false);
         changeIsOpen(true);
       }
-      changeValue(event.target.value);
+
+      if (checkLength(event.target.value)) {
+        changeIsError(true);
+        changeValidationError(
+          `Please lengthen this text to ${length.min} characters or more (you are currently using ${event.target.value.length} characters).`
+        );
+      } else {
+        changeIsError(false);
+        changeValidationError("");
+      }
+
+      if (strict) {
+        changeValue(event.target.value);
+      } else {
+        changeValue(event.target.value, validationError);
+      }
     };
+
     const handleIOnClick = () => {
       suggestions && changeIsOpen(true);
     };
+
     const handleIOnBlur = (event) => {
       suggestions && closeSuggestions();
-      onBlur?.(event.target.value);
+
+      if (checkLength(event.target.value)) {
+        changeIsError(true);
+        changeValidationError(
+          `Please lengthen this text to ${length.min} characters or more (you are currently using ${value.length} characters).`
+        );
+      } else if (checkValidationConstraint("patternMismatch")) {
+        changeIsError(true);
+        changeValidationError(inputRef.current.validationMessage);
+      } else {
+        changeIsError(false);
+        changeValidationError("");
+      }
+
+      if (strict) {
+        onBlur?.(event.target.value);
+      } else {
+        onBlur?.(event.target.value, validationError);
+      }
     };
+
     const handleIOnFocus = () => {
       suggestions && changeIsOpen(true);
     };
+
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {
         case 40: // Arrow Down
@@ -272,8 +321,11 @@ const DxcNewInputText = React.forwardRef(
               disabled={disabled}
               ref={inputRef}
               backgroundType={backgroundType}
+              pattern={pattern}
+              strict={strict}
+              data-testid="input-test-id"
             />
-            {error && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
+            {(error || isError) && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
               <Action onClick={defaultClearAction.onClick} backgroundType={backgroundType}>
                 {defaultClearAction.icon}
@@ -320,7 +372,7 @@ const DxcNewInputText = React.forwardRef(
               </Suggestions>
             )}
           </InputContainer>
-          {error && <Error backgroundType={backgroundType}>{error}</Error>}
+          {(error || validationError) && <Error backgroundType={backgroundType}>{error || validationError}</Error>}
         </DxcInput>
       </ThemeProvider>
     );
@@ -713,7 +765,9 @@ DxcNewInputText.propTypes = {
   ]),
   size: PropTypes.oneOf([...Object.keys(sizes)]),
   suggestions: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
-  // length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
+  pattern: PropTypes.string,
+  length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
+  strict: PropTypes.bool,
   // tabIndex: PropTypes.number,
 };
 
