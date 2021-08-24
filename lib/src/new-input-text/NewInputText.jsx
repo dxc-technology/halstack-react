@@ -87,7 +87,7 @@ const DxcNewInputText = React.forwardRef(
         typeof onChange === "function" ? onChange(newValue, error) : setInnerValue(newValue);
     };
 
-    const checkValidationConstraint = (constrait) => {
+    const isConstraintInvalid = (constrait) => {
       return inputRef.current.validity[constrait];
     };
 
@@ -124,18 +124,15 @@ const DxcNewInputText = React.forwardRef(
       if (checkLength(event.target.value)) {
         changeIsError(true);
         changeValidationError(getLengthErrorMessage(length, event));
-      } else if (checkValidationConstraint("patternMismatch")) {
+        strict ? onBlur?.(event.target.value) : onBlur(event.target.value, getLengthErrorMessage(length, event));
+      } else if (isConstraintInvalid("patternMismatch")) {
         changeIsError(true);
         changeValidationError(inputRef.current.validationMessage);
+        strict ? onBlur?.(event.target.value) : onBlur(event.target.value, inputRef.current.validationMessage);
       } else {
         changeIsError(false);
         changeValidationError("");
-      }
-
-      if (strict) {
-        onBlur?.(event.target.value);
-      } else {
-        onBlur?.(event.target.value, validationError);
+        strict ? onBlur?.(event.target.value) : onBlur?.(event.target.value, "");
       }
     };
 
@@ -232,6 +229,7 @@ const DxcNewInputText = React.forwardRef(
     const defaultClearAction = {
       onClick: () => {
         changeValue("");
+        changeValidationError("");
         inputRef.current.focus();
         if (suggestions) {
           changeIsError(false);
@@ -298,7 +296,7 @@ const DxcNewInputText = React.forwardRef(
           <HelperText disabled={disabled} backgroundType={backgroundType}>
             {helperText}
           </HelperText>
-          <InputContainer error={error} disabled={disabled} backgroundType={backgroundType}>
+          <InputContainer error={error || validationError} disabled={disabled} backgroundType={backgroundType}>
             {prefix && (
               <Prefix disabled={disabled} backgroundType={backgroundType}>
                 {prefix}

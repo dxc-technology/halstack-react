@@ -7,12 +7,22 @@ function App() {
 
   const onChange = (newValue, error) => {
     setValue(newValue);
-    if (error !== "") {
-      setErrorMessage("Change");
+    if (error && error !== "") {
+      setErrorMessage("OnChange error message.");
     } else {
       setErrorMessage(null);
     }
   };
+
+  const onBlur = (newValue, error) => {
+    setValue(newValue);
+    if (error !== "") {
+      setErrorMessage("OnBlur error message.");
+    } else {
+      setErrorMessage(null);
+    }
+  };
+
   return (
     <>
       <p>
@@ -20,6 +30,7 @@ function App() {
           value={value}
           clearable
           onChange={onChange}
+          onBlur={onBlur}
           margin="medium"
         />
       </p>
@@ -29,6 +40,7 @@ function App() {
           label="Password"
           clearable
           onChange={onChange}
+          onBlur={onBlur}
           margin="medium"
         />
       </p>
@@ -37,6 +49,7 @@ function App() {
           value={value}
           label="Non clearable password"
           onChange={onChange}
+          onBlur={onBlur}
           margin="medium"
         />
       </p>
@@ -46,6 +59,7 @@ function App() {
           label="Help password"
           clearable
           onChange={onChange}
+          onBlur={onBlur}
           margin="medium"
           helperText="Help message"
         />
@@ -57,18 +71,20 @@ function App() {
           error="Error message"
           clearable
           onChange={onChange}
+          onBlur={onBlur}
           margin="medium"
         />
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
-          character) - Strict{" "}
+          character) - Strict
         </h4>
         <DxcPassword
           value={value}
           clearable
           onChange={onChange}
+          onBlur={onBlur}
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           margin={{ left: "medium", right: "medium" }}
         />
@@ -81,6 +97,7 @@ function App() {
           value={value}
           clearable
           onChange={onChange}
+          onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           length={{ min: "5", max: "10" }}
         />
@@ -94,9 +111,58 @@ function App() {
           value={value}
           clearable
           onChange={onChange}
+          onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           length={{ min: "5", max: "10" }}
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>
+          With pattern (At least one letter, one number and one special
+          character) - Non strict
+        </h4>
+        <DxcPassword
+          value={value}
+          clearable
+          onChange={onChange}
+          onBlur={onBlur}
+          pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
+          margin={{ left: "medium", right: "medium" }}
+          strict={false}
+          error={errorMessage}
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>
+          With min length 5 and max length 10 - Non strict
+        </h4>
+        <DxcPassword
+          value={value}
+          clearable
+          onChange={onChange}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          length={{ min: "5", max: "10" }}
+          strict={false}
+          error={errorMessage}
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>
+          With pattern (At least one letter, one number and one special
+          character) and minimum length 5 and maximum length 10 - Non strict
+        </h4>
+        <DxcPassword
+          value={value}
+          clearable
+          onChange={onChange}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
+          length={{ min: "5", max: "10" }}
+          strict={false}
+          error={errorMessage}
         />
       </p>
     </>
