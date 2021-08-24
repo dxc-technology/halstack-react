@@ -22,7 +22,9 @@ const makeCancelable = (promise) => {
     },
   };
 };
-
+const getLengthErrorMessage = (length, event) => {
+  return `Please lengthen this text to ${length.min} characters or more (you are currently using ${event.target.value.length} characters).`;
+};
 const DxcNewInputText = React.forwardRef(
   (
     {
@@ -101,18 +103,14 @@ const DxcNewInputText = React.forwardRef(
 
       if (checkLength(event.target.value)) {
         changeIsError(true);
-        changeValidationError(
-          `Please lengthen this text to ${length.min} characters or more (you are currently using ${event.target.value.length} characters).`
-        );
+        changeValidationError(getLengthErrorMessage(length, event));
+        strict
+          ? changeValue(event.target.value)
+          : changeValue(event.target.value, getLengthErrorMessage(length, event));
       } else {
         changeIsError(false);
         changeValidationError("");
-      }
-
-      if (strict) {
-        changeValue(event.target.value);
-      } else {
-        changeValue(event.target.value, validationError);
+        strict ? changeValue(event.target.value) : changeValue(event.target.value, "");
       }
     };
 
@@ -125,9 +123,7 @@ const DxcNewInputText = React.forwardRef(
 
       if (checkLength(event.target.value)) {
         changeIsError(true);
-        changeValidationError(
-          `Please lengthen this text to ${length.min} characters or more (you are currently using ${value.length} characters).`
-        );
+        changeValidationError(getLengthErrorMessage(length, event));
       } else if (checkValidationConstraint("patternMismatch")) {
         changeIsError(true);
         changeValidationError(inputRef.current.validationMessage);
