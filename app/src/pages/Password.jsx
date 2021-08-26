@@ -8,7 +8,7 @@ function App() {
   const onChange = (newValue, error) => {
     setValue(newValue);
     if (error && error !== "") {
-      setErrorMessage("OnChange error message.");
+      setErrorMessage("CHANGE error");
     } else {
       setErrorMessage(null);
     }
@@ -16,10 +16,8 @@ function App() {
 
   const onBlur = (newValue, error) => {
     setValue(newValue);
-    if (error !== "") {
-      setErrorMessage("OnBlur error message.");
-    } else {
-      setErrorMessage(null);
+    if (error && error !== "") {
+      setErrorMessage("BLUR error");
     }
   };
 

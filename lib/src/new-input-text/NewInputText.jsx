@@ -62,6 +62,7 @@ const DxcNewInputText = React.forwardRef(
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
     const [isScrollable, changeIsScrollable] = useState(false);
     const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
+    const [isAutosuggestOnError, changeIsAutoSuggestOnError] = useState(false);
 
     const suggestionsRef = useRef(null);
     const inputRef = useRef(null);
@@ -87,7 +88,7 @@ const DxcNewInputText = React.forwardRef(
         typeof onChange === "function" ? onChange(newValue, error) : setInnerValue(newValue);
     };
 
-    const isConstraintInvalid = (constrait) => {
+    const checkValidationConstraint = (constrait) => {
       return inputRef.current.validity[constrait];
     };
 
@@ -110,7 +111,7 @@ const DxcNewInputText = React.forwardRef(
       } else {
         changeIsError(false);
         changeValidationError("");
-        strict ? changeValue(event.target.value) : changeValue(event.target.value, "");
+        changeValue(event.target.value);
       }
     };
 
@@ -120,19 +121,22 @@ const DxcNewInputText = React.forwardRef(
 
     const handleIOnBlur = (event) => {
       suggestions && closeSuggestions();
-
       if (checkLength(event.target.value)) {
         changeIsError(true);
-        changeValidationError(getLengthErrorMessage(length, event));
-        strict ? onBlur?.(event.target.value) : onBlur(event.target.value, getLengthErrorMessage(length, event));
-      } else if (isConstraintInvalid("patternMismatch")) {
+        if (validationError === "") {
+          changeValidationError(getLengthErrorMessage(length, event));
+          strict ? onBlur?.(event.target.value) : onBlur?.(event.target.value, getLengthErrorMessage(length, event));
+        } else {
+          onBlur?.(event.target.value);
+        }
+      } else if (checkValidationConstraint("patternMismatch")) {
         changeIsError(true);
         changeValidationError(inputRef.current.validationMessage);
-        strict ? onBlur?.(event.target.value) : onBlur(event.target.value, inputRef.current.validationMessage);
+        strict ? onBlur?.(event.target.value) : onBlur?.(event.target.value, inputRef.current.validationMessage);
       } else {
         changeIsError(false);
         changeValidationError("");
-        strict ? onBlur?.(event.target.value) : onBlur?.(event.target.value, "");
+        onBlur?.(event.target.value);
       }
     };
 
@@ -198,20 +202,24 @@ const DxcNewInputText = React.forwardRef(
     useEffect(() => {
       if (typeof suggestions === "function") {
         changeIsSearching(true);
-        changeIsError(false);
+        // changeIsError(false);
+        changeIsAutoSuggestOnError(false);
         changeFilteredSuggestions([]);
 
         const cancelablePromise = makeCancelable(suggestions(value ?? innerValue));
         cancelablePromise.promise
           .then((promiseResponse) => {
             changeIsSearching(false);
-            changeIsError(false);
+            // changeIsError(false);
+            changeIsAutoSuggestOnError(false);
+
             changeFilteredSuggestions(promiseResponse);
           })
           .catch((err) => {
             if (!err.isCanceled) {
               changeIsSearching(false);
-              changeIsError(true);
+              // changeIsError(true);
+              changeIsAutoSuggestOnError(true);
             }
           });
 
@@ -230,6 +238,7 @@ const DxcNewInputText = React.forwardRef(
       onClick: () => {
         changeValue("");
         changeValidationError("");
+        changeIsError(false);
         inputRef.current.focus();
         if (suggestions) {
           changeIsError(false);
@@ -338,7 +347,7 @@ const DxcNewInputText = React.forwardRef(
             {((suggestions && suggestions.length > 0) || typeof suggestions === "function") && isOpen && (
               <Suggestions
                 id={autosuggestId}
-                isError={isError}
+                isError={isAutosuggestOnError}
                 onMouseDown={(event) => {
                   event.preventDefault();
                 }}
@@ -347,17 +356,18 @@ const DxcNewInputText = React.forwardRef(
                 }}
                 ref={suggestionsRef}
               >
-                {!isSearching && !isError && filteredSuggestions.length === 0 && (
+                {!isSearching && !isAutosuggestOnError && filteredSuggestions.length === 0 && (
                   <SuggestionsSystemMessage>No results found.</SuggestionsSystemMessage>
                 )}
                 {!isSearching &&
-                  !isError &&
+                  // !isError &&
+                  !isAutosuggestOnError &&
                   filteredSuggestions.length > 0 &&
                   filteredSuggestions.map((suggestion, index) => (
                     <HighlightedSuggestion key={`suggestion-${uuidv4()}`} suggestion={suggestion} index={index} />
                   ))}
                 {isSearching && <SuggestionsSystemMessage>Searching...</SuggestionsSystemMessage>}
-                {isError && (
+                {isAutosuggestOnError && (
                   <SuggestionsError>
                     <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>
                     Error fetching data.

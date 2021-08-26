@@ -40,8 +40,8 @@ function App() {
 
   const onChange = (newValue, error) => {
     setValue(newValue);
-    if (error !== "") {
-      setErrorMessage("Change");
+    if (error && error !== "") {
+      setErrorMessage("CHANGE error");
     } else {
       setErrorMessage(null);
     }
@@ -49,10 +49,8 @@ function App() {
 
   const onBlur = (newValue, error) => {
     setValue(newValue);
-    if (error !== "") {
-      setErrorMessage("Blur");
-    } else {
-      setErrorMessage(null);
+    if (error && error !== "") {
+      setErrorMessage("BLUR error");
     }
   };
 
@@ -112,7 +110,7 @@ function App() {
 
   return (
     <>
-      {/* <p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
         <DxcNewInputText
           value={value}
@@ -161,8 +159,8 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
         />
-      </p> */}
-      {/* <p>
+      </p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
           character) - Strict
@@ -175,7 +173,7 @@ function App() {
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
         />
-      </p> */}
+      </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           With min length 5 and max length 10 - Strict
@@ -188,10 +186,9 @@ function App() {
           clearable
           length={{ min: "5", max: "10" }}
           error={errorMessage}
-          strict={false}
         />
       </p>
-      {/* <p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
           character) and minimum length 5 and maximum length 10 - Strict
@@ -205,11 +202,42 @@ function App() {
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           length={{ min: "5", max: "10" }}
         />
-      </p> */}
-      {/* <p>
+      </p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
-          character) and minimum length 5 and maximum length 10 - Non strict
+          character) - Non Strict
+        </h4>
+        <DxcNewInputText
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+          pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
+          strict={false}
+          error={errorMessage}
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>
+          With min length 5 and max length 10 - Non Strict
+        </h4>
+        <DxcNewInputText
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+          length={{ min: "5", max: "10" }}
+          error={errorMessage}
+          strict={false}
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>
+          With pattern (At least one letter, one number and one special
+          character) and minimum length 5 and maximum length 10 - Non Strict
         </h4>
         <DxcNewInputText
           value={value}
@@ -222,8 +250,8 @@ function App() {
           strict={false}
           error={errorMessage}
         />
-      </p> */}
-      {/* <p>
+      </p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
           special character) - Strict
@@ -237,8 +265,8 @@ function App() {
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
         />
-      </p> */}
-      {/* <p>
+      </p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With min length 5 and max length 10 - Strict
         </h4>
@@ -250,9 +278,10 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           length={{ min: "5", max: "10" }}
+          // error={errorMessage}
         />
-      </p> */}
-      {/* <p>
+      </p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
           special character) and minimum length 5 and maximum length 10 - Strict
@@ -267,8 +296,8 @@ function App() {
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           length={{ min: "5", max: "10" }}
         />
-      </p> */}
-      {/* <p>
+      </p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
           special character) and minimum length 5 and maximum length 10 - Non
@@ -286,8 +315,8 @@ function App() {
           strict={false}
           error={errorMessage}
         />
-      </p> */}
-      {/* <p>
+      </p>
+      <p>
         <DxcNewInputText
           label="Prefix and suffix text input"
           optional
@@ -489,7 +518,7 @@ function App() {
             clearable
           />
         </Mode>
-      </BackgroundColorProvider>*/}
+      </BackgroundColorProvider>
     </>
   );
 }
