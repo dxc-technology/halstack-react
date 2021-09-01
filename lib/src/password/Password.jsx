@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import styled, { ThemeProvider } from "styled-components";
+import useTheme from "../useTheme.js";
 import DxcNewInputText from "../new-input-text/NewInputText";
 import { spaces } from "../common/variables.js";
 import "./styles.css";
@@ -15,8 +17,8 @@ const DxcPassword = ({
   margin,
   length = { min: 0, max: 1000 },
   pattern,
-  strict = true,
 }) => {
+  const colorsTheme = useTheme();
   const inputRef = useRef(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -54,23 +56,32 @@ const DxcPassword = ({
   };
 
   return (
-    <DxcNewInputText
-      ref={inputRef}
-      label={label}
-      value={value}
-      helperText={helperText}
-      action={action}
-      error={error}
-      clearable={clearable}
-      onChange={onChange}
-      onBlur={onBlur}
-      margin={margin}
-      pattern={pattern}
-      length={length}
-      strict={strict}
-    />
+    <ThemeProvider theme={colorsTheme.password}>
+      <PasswordContainer isPasswordVisible={isPasswordVisible}>
+        <DxcNewInputText
+          ref={inputRef}
+          label={label}
+          value={value}
+          helperText={helperText}
+          action={action}
+          error={error}
+          clearable={clearable}
+          onChange={onChange}
+          onBlur={onBlur}
+          margin={margin}
+          pattern={pattern}
+          length={length}
+        />
+      </PasswordContainer>
+    </ThemeProvider>
   );
 };
+
+const PasswordContainer = styled.div`
+  input[type="password"] {
+    font-size: ${(props) => !props.isPasswordVisible && props.theme.dotsSize};
+  }
+`;
 
 DxcPassword.propTypes = {
   label: PropTypes.string,
@@ -92,7 +103,6 @@ DxcPassword.propTypes = {
   ]),
   pattern: PropTypes.string,
   length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
-  strict: PropTypes.bool,
 };
 
 export default DxcPassword;

@@ -22,9 +22,11 @@ const makeCancelable = (promise) => {
     },
   };
 };
+
 const getLengthErrorMessage = (length, event) => {
   return `Please lengthen this text to ${length.min} characters or more (you are currently using ${event.target.value.length} characters).`;
 };
+
 const DxcNewInputText = React.forwardRef(
   (
     {
@@ -47,7 +49,6 @@ const DxcNewInputText = React.forwardRef(
       suggestions,
       pattern,
       length = { min: 0, max: 1000 },
-      strict = true,
       // tabIndex = 0,
     },
     ref
@@ -82,10 +83,10 @@ const DxcNewInputText = React.forwardRef(
       if (value === null || value === undefined) {
         if (typeof onChange === "function") {
           setInnerValue(newValue);
-          onChange(newValue, error);
+          onChange({ value: newValue, error: error });
         } else setInnerValue(newValue);
       } else if (onChange !== null || onChange !== undefined)
-        typeof onChange === "function" ? onChange(newValue, error) : setInnerValue(newValue);
+        typeof onChange === "function" ? onChange({ value: newValue, error: error }) : setInnerValue(newValue);
     };
 
     const checkValidationConstraint = (constrait) => {
@@ -100,14 +101,12 @@ const DxcNewInputText = React.forwardRef(
       if (suggestions) {
         changeIsError(false);
         changeIsOpen(true);
+        changeValue(event.target.value);
       }
-
       if (checkLength(event.target.value)) {
         changeIsError(true);
         changeValidationError(getLengthErrorMessage(length, event));
-        strict
-          ? changeValue(event.target.value)
-          : changeValue(event.target.value, getLengthErrorMessage(length, event));
+        changeValue(event.target.value, getLengthErrorMessage(length, event));
       } else {
         changeIsError(false);
         changeValidationError("");
@@ -125,18 +124,18 @@ const DxcNewInputText = React.forwardRef(
         changeIsError(true);
         if (validationError === "") {
           changeValidationError(getLengthErrorMessage(length, event));
-          strict ? onBlur?.(event.target.value) : onBlur?.(event.target.value, getLengthErrorMessage(length, event));
+          onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length, event) });
         } else {
-          onBlur?.(event.target.value);
+          onBlur?.({ value: event.target.value, error: error });
         }
       } else if (checkValidationConstraint("patternMismatch")) {
         changeIsError(true);
         changeValidationError(inputRef.current.validationMessage);
-        strict ? onBlur?.(event.target.value) : onBlur?.(event.target.value, inputRef.current.validationMessage);
+        onBlur?.({ value: event.target.value, error: inputRef.current.validationMessage });
       } else {
         changeIsError(false);
         changeValidationError("");
-        onBlur?.(event.target.value);
+        onBlur?.({ value: event.target.value });
       }
     };
 
@@ -202,7 +201,6 @@ const DxcNewInputText = React.forwardRef(
     useEffect(() => {
       if (typeof suggestions === "function") {
         changeIsSearching(true);
-        // changeIsError(false);
         changeIsAutoSuggestOnError(false);
         changeFilteredSuggestions([]);
 
@@ -210,7 +208,6 @@ const DxcNewInputText = React.forwardRef(
         cancelablePromise.promise
           .then((promiseResponse) => {
             changeIsSearching(false);
-            // changeIsError(false);
             changeIsAutoSuggestOnError(false);
 
             changeFilteredSuggestions(promiseResponse);
@@ -218,7 +215,6 @@ const DxcNewInputText = React.forwardRef(
           .catch((err) => {
             if (!err.isCanceled) {
               changeIsSearching(false);
-              // changeIsError(true);
               changeIsAutoSuggestOnError(true);
             }
           });
@@ -305,7 +301,11 @@ const DxcNewInputText = React.forwardRef(
           <HelperText disabled={disabled} backgroundType={backgroundType}>
             {helperText}
           </HelperText>
-          <InputContainer error={error || validationError} disabled={disabled} backgroundType={backgroundType}>
+          <InputContainer
+            error={error === undefined ? validationError : error}
+            disabled={disabled}
+            backgroundType={backgroundType}
+          >
             {prefix && (
               <Prefix disabled={disabled} backgroundType={backgroundType}>
                 {prefix}
@@ -325,7 +325,6 @@ const DxcNewInputText = React.forwardRef(
               ref={inputRef}
               backgroundType={backgroundType}
               pattern={pattern}
-              strict={strict}
               data-testid="input-test-id"
             />
             {(error || isError) && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
@@ -360,7 +359,6 @@ const DxcNewInputText = React.forwardRef(
                   <SuggestionsSystemMessage>No results found.</SuggestionsSystemMessage>
                 )}
                 {!isSearching &&
-                  // !isError &&
                   !isAutosuggestOnError &&
                   filteredSuggestions.length > 0 &&
                   filteredSuggestions.map((suggestion, index) => (
@@ -376,7 +374,9 @@ const DxcNewInputText = React.forwardRef(
               </Suggestions>
             )}
           </InputContainer>
-          {(error || validationError) && <Error backgroundType={backgroundType}>{error || validationError}</Error>}
+          {(error !== undefined || validationError) && (
+            <Error backgroundType={backgroundType}>{error || validationError}</Error>
+          )}
         </DxcInput>
       </ThemeProvider>
     );
@@ -771,7 +771,6 @@ DxcNewInputText.propTypes = {
   suggestions: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
   pattern: PropTypes.string,
   length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
-  strict: PropTypes.bool,
   // tabIndex: PropTypes.number,
 };
 

@@ -5,20 +5,14 @@ function App() {
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = (newValue, error) => {
-    setValue(newValue);
-    if (error && error !== "") {
-      setErrorMessage("CHANGE error");
-    } else {
-      setErrorMessage(null);
-    }
+  const onChange = (info) => {
+    setValue(info.value);
+    info.error ? setErrorMessage("CHANGE error") : setErrorMessage(null);
   };
 
-  const onBlur = (newValue, error) => {
-    setValue(newValue);
-    if (error && error !== "") {
-      setErrorMessage("BLUR error");
-    }
+  const onBlur = (info) => {
+    setValue(info.value);
+    info.error ? setErrorMessage("BLUR error") : setErrorMessage(null);
   };
 
   return (
@@ -127,7 +121,6 @@ function App() {
           onBlur={onBlur}
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           margin={{ left: "medium", right: "medium" }}
-          strict={false}
           error={errorMessage}
         />
       </p>
@@ -142,7 +135,6 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           length={{ min: "5", max: "10" }}
-          strict={false}
           error={errorMessage}
         />
       </p>
@@ -159,7 +151,6 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           length={{ min: "5", max: "10" }}
-          strict={false}
           error={errorMessage}
         />
       </p>

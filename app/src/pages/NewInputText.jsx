@@ -38,25 +38,21 @@ function App() {
   const [suggestionsValue, setSuggestionsValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = (newValue, error) => {
-    setValue(newValue);
-    if (error && error !== "") {
-      setErrorMessage("CHANGE error");
-    } else {
-      setErrorMessage(null);
-    }
+  const onChange = (info) => {
+    setValue(info.value);
+    info.error ? setErrorMessage("CHANGE error") : setErrorMessage(null);
   };
 
-  const onBlur = (newValue, error) => {
-    setValue(newValue);
-    if (error && error !== "") {
-      setErrorMessage("BLUR error");
-    }
+  const onBlur = (info) => {
+    setValue(info.value);
+    info.error ? setErrorMessage("BLUR error") : setErrorMessage(null);
   };
 
-  const onChangeSuggestions = (newValue) => {
-    setSuggestionsValue(newValue);
+  const onChangeSuggestions = (info) => {
+    setSuggestionsValue(info.value);
+    info.error ? setErrorMessage("CHANGE error") : setErrorMessage(null);
   };
+
   const action = {
     onClick: () => {
       console.log("Copy that!");
@@ -185,7 +181,6 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           length={{ min: "5", max: "10" }}
-          error={errorMessage}
         />
       </p>
       <p>
@@ -215,7 +210,6 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          strict={false}
           error={errorMessage}
         />
       </p>
@@ -231,7 +225,6 @@ function App() {
           clearable
           length={{ min: "5", max: "10" }}
           error={errorMessage}
-          strict={false}
         />
       </p>
       <p>
@@ -247,7 +240,6 @@ function App() {
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           length={{ min: "5", max: "10" }}
-          strict={false}
           error={errorMessage}
         />
       </p>
@@ -278,7 +270,6 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           length={{ min: "5", max: "10" }}
-          // error={errorMessage}
         />
       </p>
       <p>
@@ -300,8 +291,39 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
+          special character) - Non Strict
+        </h4>
+        <DxcNewInputText
+          value={suggestionsValue}
+          onChange={onChangeSuggestions}
+          suggestions={countries}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+          pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
+          error={errorMessage}
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>
+          Autosuggest - With min length 5 and max length 10 - Non Strict
+        </h4>
+        <DxcNewInputText
+          value={suggestionsValue}
+          onChange={onChangeSuggestions}
+          suggestions={countries}
+          onBlur={onBlur}
+          margin={{ left: "medium", right: "medium" }}
+          clearable
+          length={{ min: "5", max: "10" }}
+          error={errorMessage}
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>
+          Autosuggest - With pattern (At least one letter, one number and one
           special character) and minimum length 5 and maximum length 10 - Non
-          strict
+          Strict
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -312,7 +334,6 @@ function App() {
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           length={{ min: "5", max: "10" }}
-          strict={false}
           error={errorMessage}
         />
       </p>
@@ -468,7 +489,6 @@ function App() {
           margin={{ left: "medium" }}
         ></DxcButton>
       </p>
-
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark">
           <DxcNewInputText
