@@ -24,7 +24,11 @@ const makeCancelable = (promise) => {
 };
 
 const getLengthErrorMessage = (length, event) => {
-  return `Please lengthen this text to ${length.min} characters or more (you are currently using ${event.target.value.length} characters).`;
+  return `Min length ${length.min}, Max length ${length.max}.`;
+};
+const patternMatch = (pattern, value) => {
+  const patternToMatch = new RegExp(pattern);
+  return patternToMatch.test(value);
 };
 
 const DxcNewInputText = React.forwardRef(
@@ -89,10 +93,6 @@ const DxcNewInputText = React.forwardRef(
         typeof onChange === "function" ? onChange({ value: newValue, error: error }) : setInnerValue(newValue);
     };
 
-    const checkValidationConstraint = (constrait) => {
-      return inputRef.current.validity[constrait];
-    };
-
     const checkLength = (value) => {
       return value !== "" && (value.length < length.min || value.length > length.max);
     };
@@ -128,7 +128,7 @@ const DxcNewInputText = React.forwardRef(
         } else {
           onBlur?.({ value: event.target.value, error: error });
         }
-      } else if (checkValidationConstraint("patternMismatch")) {
+      } else if (pattern && !patternMatch(pattern, event.target.value)) {
         changeIsError(true);
         changeValidationError(inputRef.current.validationMessage);
         onBlur?.({ value: event.target.value, error: inputRef.current.validationMessage });
@@ -235,6 +235,7 @@ const DxcNewInputText = React.forwardRef(
         changeValue("");
         changeValidationError("");
         changeIsError(false);
+        changeIsAutoSuggestOnError(false);
         inputRef.current.focus();
         if (suggestions) {
           changeIsError(false);
@@ -374,9 +375,7 @@ const DxcNewInputText = React.forwardRef(
               </Suggestions>
             )}
           </InputContainer>
-          {(error !== undefined || validationError) && (
-            <Error backgroundType={backgroundType}>{error || validationError}</Error>
-          )}
+          <Error backgroundType={backgroundType}>{error || validationError}</Error>
         </DxcInput>
       </ThemeProvider>
     );
@@ -681,6 +680,7 @@ const Suffix = styled.span`
 `;
 
 const Error = styled.span`
+  min-height: 1.5em;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};
