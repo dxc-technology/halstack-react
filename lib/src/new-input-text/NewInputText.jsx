@@ -26,6 +26,7 @@ const makeCancelable = (promise) => {
 const getLengthErrorMessage = (length, event) => {
   return `Min length ${length.min}, Max length ${length.max}.`;
 };
+
 const patternMatch = (pattern, value) => {
   const patternToMatch = new RegExp(pattern);
   return patternToMatch.test(value);
@@ -52,7 +53,7 @@ const DxcNewInputText = React.forwardRef(
       size = "medium",
       suggestions,
       pattern,
-      length = { min: 0, max: 1000 },
+      length,
       // tabIndex = 0,
     },
     ref
@@ -94,7 +95,9 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const checkLength = (value) => {
-      return value !== "" && (value.length < length.min || value.length > length.max);
+      return (
+        value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max)
+      );
     };
 
     const handleIOnChange = (event) => {
@@ -128,7 +131,7 @@ const DxcNewInputText = React.forwardRef(
         } else {
           onBlur?.({ value: event.target.value, error: error });
         }
-      } else if (pattern && !patternMatch(pattern, event.target.value)) {
+      } else if (pattern && value && !patternMatch(pattern, event.target.value)) {
         changeIsError(true);
         changeValidationError(inputRef.current.validationMessage);
         onBlur?.({ value: event.target.value, error: inputRef.current.validationMessage });

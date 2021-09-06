@@ -111,6 +111,7 @@ function App() {
         <DxcNewInputText
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
         />
       </p>

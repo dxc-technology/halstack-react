@@ -118,7 +118,7 @@ export default [
     component: InputText,
   },
   {
-    path: "NewInputText",
+    path: "newInputText",
     name: "New input text",
     component: NewInputText,
   },

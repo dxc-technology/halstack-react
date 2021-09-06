@@ -15,8 +15,9 @@ const DxcPassword = ({
   onChange,
   onBlur,
   margin,
-  length = { min: 0, max: 1000 },
   pattern,
+  length,
+  size = "medium",
 }) => {
   const colorsTheme = useTheme();
   const inputRef = useRef(null);
@@ -69,12 +70,20 @@ const DxcPassword = ({
           onChange={onChange}
           onBlur={onBlur}
           margin={margin}
+          size={size}
           pattern={pattern}
           length={length}
         />
       </PasswordContainer>
     </ThemeProvider>
   );
+};
+
+const sizes = {
+  small: "60px",
+  medium: "240px",
+  large: "480px",
+  fillParent: "100%",
 };
 
 const PasswordContainer = styled.div`
@@ -101,6 +110,7 @@ DxcPassword.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   pattern: PropTypes.string,
   length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
 };

@@ -33,6 +33,8 @@ import Chip from "./cdk-components/chip/Chip";
 import ToggleGroup from "./cdk-components/toggleGroup/ToggleGroup";
 import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLayout";
 import AccordionGroup from "./cdk-components/accordion-group/AccordionGroup";
+import Password from "./cdk-components/password/Password";
+import NewInputText from "./cdk-components/new-input-text/NewInputText";
 
 export const types = {
   FORMS: "Forms",
@@ -151,10 +153,22 @@ export default [
     type: types.UTILS,
   },
   {
+    path: "newInputText",
+    name: "New Input Text",
+    component: NewInputText,
+    type: types.FORMS,
+  },
+  {
     path: "paginator",
     name: "Paginator",
     component: Paginator,
     type: types.UTILS,
+  },
+  {
+    path: "password",
+    name: "Password",
+    component: Password,
+    type: types.FORMS,
   },
   {
     path: "progressBar",

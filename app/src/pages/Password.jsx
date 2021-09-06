@@ -68,6 +68,28 @@ function App() {
         />
       </p>
       <p>
+        <DxcPassword
+          value={value}
+          label="Large size password"
+          clearable
+          onChange={onChange}
+          onBlur={onBlur}
+          margin="medium"
+          size="large"
+        />
+      </p>
+      <p>
+        <DxcPassword
+          value={value}
+          label="Fill parent password"
+          clearable
+          onChange={onChange}
+          onBlur={onBlur}
+          margin="medium"
+          size="fillParent"
+        />
+      </p>
+      <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
           character) - Strict
