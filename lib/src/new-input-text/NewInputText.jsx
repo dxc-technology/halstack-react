@@ -131,7 +131,7 @@ const DxcNewInputText = React.forwardRef(
         } else {
           onBlur?.({ value: event.target.value, error: error });
         }
-      } else if (pattern && value && !patternMatch(pattern, event.target.value)) {
+      } else if (pattern && event.target.value && !patternMatch(pattern, event.target.value)) {
         changeIsError(true);
         changeValidationError(inputRef.current.validationMessage);
         onBlur?.({ value: event.target.value, error: inputRef.current.validationMessage });
