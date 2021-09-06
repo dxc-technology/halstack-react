@@ -98,7 +98,6 @@ DxcPassword.propTypes = {
   helperText: PropTypes.string,
   error: PropTypes.string,
   clearable: PropTypes.bool,
-  requirements: PropTypes.array,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   margin: PropTypes.oneOfType([
