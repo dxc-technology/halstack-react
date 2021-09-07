@@ -490,12 +490,22 @@ const InputContainer = styled.div`
       &:hover {
         border-color: ${
           props.error
-            ? props.theme.hoverErrorOutlineColor
+            ? props.backgroundType === "dark"
+              ? props.theme.hoverErrorOutlineColorOnDark
+              : props.theme.hoverErrorOutlineColor
             : props.backgroundType === "dark"
             ? props.theme.hoverOutlineColorOnDark
             : props.theme.hoverOutlineColor
         };
-        ${props.error ? `box-shadow: inset 0 0 0 1px ${props.theme.hoverErrorOutlineColor};` : `box-shadow: none;`}
+        ${
+          props.error
+            ? `box-shadow: inset 0 0 0 1px ${
+                props.backgroundType === "dark"
+                  ? props.theme.hoverErrorOutlineColorOnDark
+                  : props.theme.hoverErrorOutlineColor
+              };`
+            : `box-shadow: none;`
+        }
       }
       &:focus-within {
         border-color: ${
@@ -607,12 +617,14 @@ const Action = styled.button`
         };
       }
       &:active {
-        color: #000000;
         outline: none;
         background-color: ${
           props.backgroundType === "dark"
             ? props.theme.activeActionBackgroundColorOnDark
             : props.theme.activeActionBackgroundColor
+        };
+        color: ${
+          props.backgroundType === "dark" ? props.theme.activeActionIconColorOnDark : props.theme.activeActionIconColor
         };
       }
     `}
