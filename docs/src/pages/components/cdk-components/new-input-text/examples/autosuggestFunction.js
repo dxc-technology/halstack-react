@@ -26,25 +26,38 @@ const code = `() => {
     "Denmark",
     "Djibouti",
   ];
-
   const [value, setValue] = useState("");
-
   const onChange = (info) => {
     setValue(info.value);
   };
-
   const onBlur = (info) => {
     setValue(info.value);
+  };
+  const callbackFunc = (newValue) => {
+    const result = new Promise((resolve) =>
+      setTimeout(() => {
+        resolve(
+          newValue
+            ? countries.filter((option) =>
+                option.toUpperCase().includes(newValue.toUpperCase())
+              )
+            : countries
+        );
+      }, 1500)
+    );
+    return result;
   };
 
   return (
     <DxcNewInputText
-      label="Autosuggest"
+      label="Autosuggest function"
+      helperText="Checks if any of the options include the incoming string"
       value={value}
       onChange={onChange}
-      suggestions={countries}
+      suggestions={callbackFunc}
       onBlur={onBlur}
       margin="medium"
+      size="large"
       clearable
     />
   );

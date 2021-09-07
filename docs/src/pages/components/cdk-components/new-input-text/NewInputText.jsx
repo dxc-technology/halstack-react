@@ -19,6 +19,7 @@ import disabled from "./examples/disabledInput";
 import helperText from "./examples/helperTextInput";
 import placeholder from "./examples/placeholderInput";
 import autosuggest from "./examples/autosuggest";
+import autosuggestFunction from "./examples/autosuggestFunction";
 import fillParent from "./examples/fillParentInput";
 
 function NewInput() {
@@ -80,6 +81,7 @@ function NewInput() {
                   example={customErrors}
                 ></Example>
                 <Example title="Autosuggest" example={autosuggest}></Example>
+                <Example title="Autosuggest function" example={autosuggestFunction}></Example>
                 <Example
                   title="Fill parent size input"
                   example={fillParent}

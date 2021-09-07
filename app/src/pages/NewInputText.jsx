@@ -70,7 +70,7 @@ function App() {
       </svg>
     ),
   };
-  
+
   const actionTrashSVG = {
     onClick: () => {
       console.log("Delete that!");
@@ -79,8 +79,8 @@ function App() {
   };
 
   const [suggestionsFValue, setSuggestionsFValue] = useState("");
-  const onChangeFSuggestions = (newValue) => {
-    setSuggestionsFValue(newValue);
+  const onChangeFSuggestions = (info) => {
+    setSuggestionsFValue(info.value);
   };
   const callbackFunc = (newValue) => {
     const result = new Promise((resolve) =>
@@ -390,7 +390,7 @@ function App() {
           prefix="😀"
           label="Error input"
           helperText="Example of helper text"
-          placeholder="Placeholder"
+          placeholder="Emojis"
           margin={{ left: "medium", bottom: "small", right: "medium" }}
           error="Error message"
           suffix="😠"
@@ -442,6 +442,19 @@ function App() {
       </p>
       <p>
         <DxcNewInputText
+          label="Suggestions + action"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin="medium"
+          value={suggestionsValue}
+          onChange={onChangeSuggestions}
+          action={action}
+          suggestions={countries}
+          clearable
+        />
+      </p>
+      <p>
+        <DxcNewInputText
           label="Uncontrolled suggestions"
           helperText="Example of helper text"
           placeholder="Placeholder"
@@ -477,7 +490,7 @@ function App() {
           label="Input with ref"
           helperText="Example of helper text"
           placeholder="Placeholder"
-          margin="medium"
+          margin={{ left: "medium", right: "medium" }}
           ref={ref}
           clearable
         />
@@ -518,6 +531,18 @@ function App() {
         </Mode>
         <Mode mode="dark">
           <DxcNewInputText
+            label="Suggestions + action"
+            placeholder="Placeholder"
+            value={suggestionsValue}
+            margin={{ left: "medium", bottom: "small", right: "medium" }}
+            onChange={onChangeSuggestions}
+            action={action}
+            suggestions={countries}
+            clearable
+          />
+        </Mode>
+        <Mode mode="dark">
+          <DxcNewInputText
             label="Warning label"
             prefix="+34"
             helperText="Example of helper text"
@@ -531,12 +556,10 @@ function App() {
             prefix="😀"
             label="Error input"
             helperText="Example of helper text"
-            placeholder="Placeholder"
             margin={{ left: "medium", bottom: "small", right: "medium" }}
             error="Error message"
             suffix="😠"
             action={action}
-            size="large"
             clearable
           />
         </Mode>

@@ -79,11 +79,6 @@ const DxcNewInputText = React.forwardRef(
     const inputId = `input-${uuidv4()}`;
     const autosuggestId = `${inputId}-listBox`;
 
-    const closeSuggestions = () => {
-      changeIsOpen(false);
-      changeVisualFocusedSuggIndex(-1);
-    };
-
     const changeValue = (newValue, error) => {
       if (value === null || value === undefined) {
         if (typeof onChange === "function") {
@@ -96,6 +91,11 @@ const DxcNewInputText = React.forwardRef(
 
     const checkLength = (value) =>
       value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
+
+    const closeSuggestions = () => {
+      changeIsOpen(false);
+      changeVisualFocusedSuggIndex(-1);
+    };
 
     const handleIOnChange = (event) => {
       if (suggestions) {
@@ -209,7 +209,6 @@ const DxcNewInputText = React.forwardRef(
           .then((promiseResponse) => {
             changeIsSearching(false);
             changeIsAutoSuggestOnError(false);
-
             changeFilteredSuggestions(promiseResponse);
           })
           .catch((err) => {
@@ -370,7 +369,7 @@ const DxcNewInputText = React.forwardRef(
                 {isAutosuggestOnError && (
                   <SuggestionsError>
                     <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>
-                    Error fetching data.
+                    Error fetching data
                   </SuggestionsError>
                 )}
               </Suggestions>
@@ -464,21 +463,21 @@ const InputContainer = styled.div`
   ${(props) =>
     props.error &&
     `box-shadow: inset 0 0 0 1px ${
-      props.backgroundType === "dark" ? props.theme.errorOutlineColorOnDark : props.theme.errorOutlineColor
+      props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
     };`}
 
   border: 1px solid
     ${(props) => {
     if (props.error)
-      return props.backgroundType === "dark" ? props.theme.errorOutlineColorOnDark : props.theme.errorOutlineColor;
+      return props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor;
     else
       return props.disabled
         ? props.backgroundType === "dark"
-          ? props.theme.disabledOutlineColorOnDark
-          : props.theme.disabledOutlineColor
+          ? props.theme.disabledBorderColorOnDark
+          : props.theme.disabledBorderColor
         : props.backgroundType === "dark"
-        ? props.theme.enabledOutlineColorOnDark
-        : props.theme.enabledOutlineColor;
+        ? props.theme.enabledBorderColorOnDark
+        : props.theme.enabledBorderColor;
   }};
   border-radius: 4px;
   margin: calc(1rem * 0.25) 0;
@@ -491,28 +490,28 @@ const InputContainer = styled.div`
         border-color: ${
           props.error
             ? props.backgroundType === "dark"
-              ? props.theme.hoverErrorOutlineColorOnDark
-              : props.theme.hoverErrorOutlineColor
+              ? props.theme.hoverErrorBorderColorOnDark
+              : props.theme.hoverErrorBorderColor
             : props.backgroundType === "dark"
-            ? props.theme.hoverOutlineColorOnDark
-            : props.theme.hoverOutlineColor
+            ? props.theme.hoverBorderColorOnDark
+            : props.theme.hoverBorderColor
         };
         ${
           props.error
             ? `box-shadow: inset 0 0 0 1px ${
                 props.backgroundType === "dark"
-                  ? props.theme.hoverErrorOutlineColorOnDark
-                  : props.theme.hoverErrorOutlineColor
+                  ? props.theme.hoverErrorBorderColorOnDark
+                  : props.theme.hoverErrorBorderColor
               };`
             : `box-shadow: none;`
         }
       }
       &:focus-within {
         border-color: ${
-          props.backgroundType === "dark" ? props.theme.focusOutlineColorOnDark : props.theme.focusOutlineColor
+          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
         };
         box-shadow: inset 0 0 0 1px ${
-          props.backgroundType === "dark" ? props.theme.focusOutlineColorOnDark : props.theme.focusOutlineColor
+          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
         };
       }
     `};
@@ -599,25 +598,48 @@ const Action = styled.button`
       }
       &:focus {
         outline: none;
-        background-color: ${
+        border: 1px solid ${
           props.backgroundType === "dark"
-            ? props.theme.focusActionBackgroundColorOnDark
-            : props.theme.focusActionBackgroundColor
-        };    
+            ? props.theme.focusActionBorderColorOnDark
+            : props.theme.focusActionBorderColor
+        };
+        box-shadow: inset 0 0 0 1px ${
+          props.backgroundType === "dark"
+            ? props.theme.focusActionBorderColorOnDark
+            : props.theme.focusActionBorderColor
+        };
         color: ${
           props.backgroundType === "dark" ? props.theme.focusActionIconColorOnDark : props.theme.focusActionIconColor
         };
       }
       &:focus-visible {
         outline: none;
-        background-color: ${
+        border: 1px solid ${
           props.backgroundType === "dark"
-            ? props.theme.focusActionBackgroundColorOnDark
-            : props.theme.focusActionBackgroundColor
+            ? props.theme.focusActionBorderColorOnDark
+            : props.theme.focusActionBorderColor
+        };
+        box-shadow: inset 0 0 0 1px ${
+          props.backgroundType === "dark"
+            ? props.theme.focusActionBorderColorOnDark
+            : props.theme.focusActionBorderColor
+        };
+        color: ${
+          props.backgroundType === "dark" ? props.theme.focusActionIconColorOnDark : props.theme.focusActionIconColor
         };
       }
       &:active {
         outline: none;
+        border: 1px solid ${
+          props.backgroundType === "dark"
+            ? props.theme.focusActionBorderColorOnDark
+            : props.theme.focusActionBorderColor
+        };
+        box-shadow: inset 0 0 0 1px ${
+          props.backgroundType === "dark"
+            ? props.theme.focusActionBorderColorOnDark
+            : props.theme.focusActionBorderColor
+        };
         background-color: ${
           props.backgroundType === "dark"
             ? props.theme.activeActionBackgroundColorOnDark
@@ -716,7 +738,7 @@ const Suggestions = styled.ul`
   box-sizing: border-box;
   cursor: default;
   border: 1px solid
-    ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledOutlineColor)};
+    ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledBorderColor)};
   border-radius: 4px;
   color: ${(props) => props.theme.listOptionFontColor};
   font-family: ${(props) => props.theme.fontFamily};
