@@ -5,7 +5,7 @@ import {
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
-import { ReactComponent as Avatar } from "../images/delete-24px.svg";
+import { ReactComponent as TrashIcon } from "../images/delete-24px.svg";
 
 const countries = [
   "Afghanistan",
@@ -70,11 +70,12 @@ function App() {
       </svg>
     ),
   };
-  const actionImportSVG = {
+  
+  const actionTrashSVG = {
     onClick: () => {
       console.log("Delete that!");
     },
-    icon: <Avatar></Avatar>,
+    icon: <TrashIcon></TrashIcon>,
   };
 
   const [suggestionsFValue, setSuggestionsFValue] = useState("");
@@ -381,14 +382,13 @@ function App() {
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
-          action={actionImportSVG}
+          action={actionTrashSVG}
         />
       </p>
       <p>
         <DxcNewInputText
           prefix="😀"
           label="Error input"
-          value="Prueba"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin={{ left: "medium", bottom: "small", right: "medium" }}
@@ -512,6 +512,7 @@ function App() {
             helperText="Example of helper text"
             placeholder="Placeholder"
             margin={{ left: "medium", bottom: "small", right: "medium" }}
+            action={action}
             disabled
           />
         </Mode>

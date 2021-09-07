@@ -94,11 +94,8 @@ const DxcNewInputText = React.forwardRef(
         typeof onChange === "function" ? onChange({ value: newValue, error: error }) : setInnerValue(newValue);
     };
 
-    const checkLength = (value) => {
-      return (
-        value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max)
-      );
-    };
+    const checkLength = (value) =>
+      value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
 
     const handleIOnChange = (event) => {
       if (suggestions) {
@@ -252,6 +249,7 @@ const DxcNewInputText = React.forwardRef(
         </svg>
       ),
     };
+
     const errorIcon = (
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
@@ -360,7 +358,7 @@ const DxcNewInputText = React.forwardRef(
                 ref={suggestionsRef}
               >
                 {!isSearching && !isAutosuggestOnError && filteredSuggestions.length === 0 && (
-                  <SuggestionsSystemMessage>No results found.</SuggestionsSystemMessage>
+                  <SuggestionsSystemMessage>No results found</SuggestionsSystemMessage>
                 )}
                 {!isSearching &&
                   !isAutosuggestOnError &&
@@ -463,7 +461,11 @@ const InputContainer = styled.div`
         ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
         : `background-color: ${props.theme.disabledContainerFillColor};`;
   }}
-  ${(props) => props.error && `box-shadow: inset 0 0 0 1px ${props.theme.errorOutlineColor};`}
+  ${(props) =>
+    props.error &&
+    `box-shadow: inset 0 0 0 1px ${
+      props.backgroundType === "dark" ? props.theme.errorOutlineColorOnDark : props.theme.errorOutlineColor
+    };`}
 
   border: 1px solid
     ${(props) => {
@@ -479,17 +481,21 @@ const InputContainer = styled.div`
         : props.theme.enabledOutlineColor;
   }};
   border-radius: 4px;
-
   margin: calc(1rem * 0.25) 0;
   padding: 0 calc(1rem * 0.5);
 
   ${(props) =>
     !props.disabled &&
-    `&:hover {
+    `
+      &:hover {
         border-color: ${
-          props.backgroundType === "dark" ? props.theme.hoverOutlineColorOnDark : props.theme.hoverOutlineColor
+          props.error
+            ? props.theme.hoverErrorOutlineColor
+            : props.backgroundType === "dark"
+            ? props.theme.hoverOutlineColorOnDark
+            : props.theme.hoverOutlineColor
         };
-        box-shadow: none;
+        ${props.error ? `box-shadow: inset 0 0 0 1px ${props.theme.hoverErrorOutlineColor};` : `box-shadow: none;`}
       }
       &:focus-within {
         border-color: ${
@@ -498,7 +504,8 @@ const InputContainer = styled.div`
         box-shadow: inset 0 0 0 1px ${
           props.backgroundType === "dark" ? props.theme.focusOutlineColorOnDark : props.theme.focusOutlineColor
         };
-      }`};
+      }
+    `};
 `;
 
 const Input = styled.input`
@@ -527,7 +534,9 @@ const Input = styled.input`
   ::placeholder {
     color: ${(props) =>
       props.disabled
-        ? props.theme.disabledPlaceholderFontColor
+        ? props.backgroundType === "dark"
+          ? props.theme.disabledPlaceholderFontColorOnDark
+          : props.theme.disabledPlaceholderFontColor
         : props.backgroundType === "dark"
         ? props.theme.placeholderFontColorOnDark
         : props.theme.placeholderFontColor};
@@ -544,80 +553,69 @@ const Action = styled.button`
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
   border-radius: 4px;
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer`)};
-  background-color: transparent;
   padding: 3px;
+  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer`)};
+
+  background-color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledActionBackgroundColorOnDark
+        : props.theme.disabledActionBackgroundColor
+      : props.backgroundType === "dark"
+      ? props.theme.actionBackgroundColorOnDark
+      : props.theme.actionBackgroundColor};
 
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
-        ? props.theme.disabledActionColorOnDark
-        : props.theme.disabledActionColor
+        ? props.theme.disabledActionIconColorOnDark
+        : props.theme.disabledActionIconColor
       : props.backgroundType === "dark"
-      ? props.theme.actionColorOnDark
-      : props.theme.actionColor};
+      ? props.theme.actionIconColorOnDark
+      : props.theme.actionIconColor};
 
   ${(props) =>
     !props.disabled &&
-    `&:hover {
-    color: #000000;
-    background-color: ${
-      props.backgroundType === "dark"
-        ? props.theme.hoverActionBackgroundColorOnDark
-        : props.theme.hoverActionBackgroundColor
-    };
-  }
-  &:focus {
-    border: 1px solid
-      ${
-        props.backgroundType === "dark"
-          ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor
-      };
-    box-shadow: inset 0 0 0 1px
-      ${
-        props.backgroundType === "dark"
-          ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor
-      };
-    outline: none;
-  }
-  &:focus-visible {
-    border: 1px solid
-      ${
-        props.backgroundType === "dark"
-          ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor
-      };
-    box-shadow: inset 0 0 0 1px
-      ${
-        props.backgroundType === "dark"
-          ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor
-      };
-    outline: none;
-  }
-  &:active {
-    color: #000000;
-    border: 1px solid
-      ${
-        props.backgroundType === "dark"
-          ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor
-      };
-    box-shadow: inset 0 0 0 1px
-      ${
-        props.backgroundType === "dark"
-          ? props.theme.focusActionOutlineColorOnDark
-          : props.theme.focusActionOutlineColor
-      };
-    outline: none;
-    background-color: ${
-      props.backgroundType === "dark"
-        ? props.theme.activeActionBackgroundColorOnDark
-        : props.theme.activeActionBackgroundColor
-    };
-  }`}
+    `
+      &:hover {
+        background-color: ${
+          props.backgroundType === "dark"
+            ? props.theme.hoverActionBackgroundColorOnDark
+            : props.theme.hoverActionBackgroundColor
+        };
+        color: ${
+          props.backgroundType === "dark" ? props.theme.hoverActionIconColorOnDark : props.theme.hoverActionIconColor
+        };
+      }
+      &:focus {
+        outline: none;
+        background-color: ${
+          props.backgroundType === "dark"
+            ? props.theme.focusActionBackgroundColorOnDark
+            : props.theme.focusActionBackgroundColor
+        };    
+        color: ${
+          props.backgroundType === "dark" ? props.theme.focusActionIconColorOnDark : props.theme.focusActionIconColor
+        };
+      }
+      &:focus-visible {
+        outline: none;
+        background-color: ${
+          props.backgroundType === "dark"
+            ? props.theme.focusActionBackgroundColorOnDark
+            : props.theme.focusActionBackgroundColor
+        };
+      }
+      &:active {
+        color: #000000;
+        outline: none;
+        background-color: ${
+          props.backgroundType === "dark"
+            ? props.theme.activeActionBackgroundColorOnDark
+            : props.theme.activeActionBackgroundColor
+        };
+      }
+    `}
 
   svg {
     line-height: 18px;
@@ -664,7 +662,7 @@ const Prefix = styled.span`
 const Suffix = styled.span`
   height: calc(1rem * 1.5);
   line-height: calc(1rem * 1.5);
-  margin-right: calc(1rem * 0.5);
+  margin-right: calc(1rem * 0.25);
   margin-left: calc(1rem * 0.25);
   padding: 0 0 0 calc(1rem * 0.5);
   ${(props) => {
