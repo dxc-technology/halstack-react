@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
 import DxcNewInputText from "../new-input-text/NewInputText";
 import { spaces } from "../common/variables.js";
 import "./styles.css";
@@ -19,7 +17,6 @@ const DxcPassword = ({
   length,
   size = "medium",
 }) => {
-  const colorsTheme = useTheme();
   const inputRef = useRef(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -57,25 +54,21 @@ const DxcPassword = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.password}>
-      <PasswordContainer isPasswordVisible={isPasswordVisible}>
-        <DxcNewInputText
-          ref={inputRef}
-          label={label}
-          value={value}
-          helperText={helperText}
-          action={action}
-          error={error}
-          clearable={clearable}
-          onChange={onChange}
-          onBlur={onBlur}
-          margin={margin}
-          size={size}
-          pattern={pattern}
-          length={length}
-        />
-      </PasswordContainer>
-    </ThemeProvider>
+    <DxcNewInputText
+      ref={inputRef}
+      label={label}
+      value={value}
+      helperText={helperText}
+      action={action}
+      error={error}
+      clearable={clearable}
+      onChange={onChange}
+      onBlur={onBlur}
+      margin={margin}
+      size={size}
+      pattern={pattern}
+      length={length}
+    />
   );
 };
 
@@ -85,12 +78,6 @@ const sizes = {
   large: "480px",
   fillParent: "100%",
 };
-
-const PasswordContainer = styled.div`
-  input[type="password"] {
-    font-size: ${(props) => !props.isPasswordVisible && props.theme.dotsSize};
-  }
-`;
 
 DxcPassword.propTypes = {
   label: PropTypes.string,
