@@ -38,19 +38,19 @@ function App() {
   const [suggestionsValue, setSuggestionsValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = (info) => {
-    setValue(info.value);
-    info.error ? setErrorMessage("CHANGE error") : setErrorMessage(null);
+  const onChange = ({ value, error }) => {
+    setValue(value);
+    error ? setErrorMessage("CHANGE error") : setErrorMessage(null);
   };
 
-  const onBlur = (info) => {
-    setValue(info.value);
-    info.error ? setErrorMessage("BLUR error") : setErrorMessage(null);
+  const onBlur = ({ value, error }) => {
+    setValue(value);
+    error ? setErrorMessage("BLUR error") : setErrorMessage(null);
   };
 
-  const onChangeSuggestions = (info) => {
-    setSuggestionsValue(info.value);
-    info.error ? setErrorMessage("CHANGE error") : setErrorMessage(null);
+  const onChangeSuggestions = ({ value, error }) => {
+    setSuggestionsValue(value);
+    error ? setErrorMessage("CHANGE error") : setErrorMessage(null);
   };
 
   const action = {
@@ -79,9 +79,11 @@ function App() {
   };
 
   const [suggestionsFValue, setSuggestionsFValue] = useState("");
-  const onChangeFSuggestions = (info) => {
-    setSuggestionsFValue(info.value);
+
+  const onChangeFSuggestions = ({ value }) => {
+    setSuggestionsFValue(value);
   };
+
   const callbackFunc = (newValue) => {
     const result = new Promise((resolve) =>
       setTimeout(() => {
@@ -182,7 +184,7 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           clearable
-          length={{ min: "5", max: "10" }}
+          length={{ min: 5, max: 10 }}
         />
       </p>
       <p>
@@ -197,7 +199,7 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: "5", max: "10" }}
+          length={{ min: 5, max: 10 }}
         />
       </p>
       <p>
@@ -225,7 +227,7 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           clearable
-          length={{ min: "5", max: "10" }}
+          length={{ min: 5, max: 10 }}
           error={errorMessage}
         />
       </p>
@@ -241,7 +243,7 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: "5", max: "10" }}
+          length={{ min: 5, max: 10 }}
           error={errorMessage}
         />
       </p>
@@ -271,7 +273,7 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           clearable
-          length={{ min: "5", max: "10" }}
+          length={{ min: 5, max: 10 }}
         />
       </p>
       <p>
@@ -287,7 +289,7 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: "5", max: "10" }}
+          length={{ min: 5, max: 10 }}
         />
       </p>
       <p>
@@ -317,7 +319,7 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           clearable
-          length={{ min: "5", max: "10" }}
+          length={{ min: 5, max: 10 }}
           error={errorMessage}
         />
       </p>
@@ -335,7 +337,7 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: "5", max: "10" }}
+          length={{ min: 5, max: 10 }}
           error={errorMessage}
         />
       </p>

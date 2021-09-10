@@ -5,12 +5,12 @@ import { ReactComponent as Avatar } from "../images/delete-24px.svg";
 const code = `() => {
   const [value, setValue] = useState("");
 
-  const onChange = (info) => {
-    setValue(info.value);
+  const onChange = ({ value }) => {
+    setValue(value);
   };
 
-  const onBlur = (info) => {
-    setValue(info.value);
+  const onBlur = ({ value }) => {
+    setValue(value);
   };
 
   const action = {

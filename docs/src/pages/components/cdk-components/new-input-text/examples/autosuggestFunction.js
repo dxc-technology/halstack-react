@@ -26,13 +26,17 @@ const code = `() => {
     "Denmark",
     "Djibouti",
   ];
+
   const [value, setValue] = useState("");
-  const onChange = (info) => {
-    setValue(info.value);
+
+  const onChange = ({ value }) => {
+    setValue(value);
   };
-  const onBlur = (info) => {
-    setValue(info.value);
+
+  const onBlur = ({ value }) => {
+    setValue(value);
   };
+  
   const callbackFunc = (newValue) => {
     const result = new Promise((resolve) =>
       setTimeout(() => {

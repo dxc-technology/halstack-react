@@ -2,17 +2,17 @@ import { DxcNewInputText } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const onChange = (info) => {
-    console.log(info.value);
+  const onChange = ({ value }) => {
+    console.log(value);
   };
 
-  const onBlur = (info) => {
-    console.log(info.value);
+  const onBlur = ({ value }) => {
+    console.log(value);
   };
 
   return (
     <DxcNewInputText
-     label="Uncontrolled"
+      label="Uncontrolled"
       onChange={onChange}
       onBlur={onBlur}
       margin="medium"

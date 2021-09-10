@@ -4,12 +4,12 @@ import { useState } from "react";
 const code = `() => {
   const [value, setValue] = useState("");
 
-  const onChange = (info) => {
-    setValue(info.value);
+  const onChange = ({ value }) => {
+    setValue(value);
   };
 
-  const onBlur = (info) => {
-    setValue(info.value);
+  const onBlur = ({ value }) => {
+    setValue(value);
   };
 
   return (
@@ -17,7 +17,7 @@ const code = `() => {
       label="Invalid"
       value={value}
       onChange={onChange}
-      onBllur={onBlur}
+      onBlur={onBlur}
       margin="medium"
       error="Error message"
       clearable
