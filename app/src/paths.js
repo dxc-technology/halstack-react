@@ -35,6 +35,7 @@ import AccordionGroup from "./pages/AccordionGroup";
 import Badge from "./pages/Badge";
 import NewInputText from "./pages/NewInputText";
 import Password from "./pages/Password";
+import NewDate from "./pages/NewDate";
 
 export default [
   {
@@ -86,6 +87,11 @@ export default [
     path: "date",
     name: "Date",
     component: Date,
+  },
+  {
+    path: "newDate",
+    name: "New Date",
+    component: NewDate,
   },
   {
     path: "dialog",

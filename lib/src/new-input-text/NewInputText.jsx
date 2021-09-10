@@ -54,7 +54,6 @@ const DxcNewInputText = React.forwardRef(
       suggestions,
       pattern,
       length,
-      // tabIndex = 0,
     },
     ref
   ) => {
@@ -80,13 +79,8 @@ const DxcNewInputText = React.forwardRef(
     const autosuggestId = `${inputId}-listBox`;
 
     const changeValue = (newValue, error) => {
-      if (value === null || value === undefined) {
-        if (typeof onChange === "function") {
-          setInnerValue(newValue);
-          onChange({ value: newValue, error: error });
-        } else setInnerValue(newValue);
-      } else if (onChange !== null || onChange !== undefined)
-        typeof onChange === "function" ? onChange({ value: newValue, error: error }) : setInnerValue(newValue);
+      value ?? setInnerValue(newValue);
+      typeof onChange === "function" && onChange({ value: newValue, error: error });
     };
 
     const checkLength = (value) =>
@@ -737,8 +731,7 @@ const Suggestions = styled.ul`
   width: 100%;
   box-sizing: border-box;
   cursor: default;
-  border: 1px solid
-    ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledBorderColor)};
+  border: 1px solid ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledBorderColor)};
   border-radius: 4px;
   color: ${(props) => props.theme.listOptionFontColor};
   font-family: ${(props) => props.theme.fontFamily};
@@ -806,7 +799,6 @@ DxcNewInputText.propTypes = {
   suggestions: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
   pattern: PropTypes.string,
   length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
-  // tabIndex: PropTypes.number,
 };
 
 export default DxcNewInputText;

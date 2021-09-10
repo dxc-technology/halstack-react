@@ -91,7 +91,7 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user types within the input. An
-          object including the value and the error (if the value entered is not
+          object including the new value and the error (if the value entered is not
           valid) will be passed to this function. An example of this object is:{" "}
           {"{ "}
           <code>value: value, error: error</code>
@@ -103,7 +103,7 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the input loses the focus. An object
-          including the value and the error (if the value entered is not valid)
+          including the input value and the error (if the value entered is not valid)
           will be passed to this function. An example of this object is: {"{ "}
           <code>value: value, error: error</code>
           {" }"}. If there is no error, error will be undefined.
