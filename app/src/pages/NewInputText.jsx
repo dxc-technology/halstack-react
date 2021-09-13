@@ -573,7 +573,7 @@ function App() {
 const Mode = ({ mode, children }) => {
   return (
     <ModeContainer mode={mode}>
-      <PreviewsContainer mode={mode}>{children}</PreviewsContainer>
+      <PreviewsContainer>{children}</PreviewsContainer>
     </ModeContainer>
   );
 };

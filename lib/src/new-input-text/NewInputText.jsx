@@ -23,9 +23,7 @@ const makeCancelable = (promise) => {
   };
 };
 
-const getLengthErrorMessage = (length, event) => {
-  return `Min length ${length.min}, Max length ${length.max}.`;
-};
+const getLengthErrorMessage = (length, event) => `Min length ${length.min}, Max length ${length.max}.`;
 
 const patternMatch = (pattern, value) => {
   const patternToMatch = new RegExp(pattern);
@@ -54,6 +52,7 @@ const DxcNewInputText = React.forwardRef(
       suggestions,
       pattern,
       length,
+      tabIndex = 0,
     },
     ref
   ) => {
@@ -62,15 +61,17 @@ const DxcNewInputText = React.forwardRef(
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
     const [isError, changeIsError] = useState(false);
+    const [isScrollable, changeIsScrollable] = useState(false);
+    const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
+    const [isAutosuggestOnError, changeIsAutosuggestOnError] = useState(false);
+
     const [validationError, changeValidationError] = useState("");
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
-    const [isScrollable, changeIsScrollable] = useState(false);
-    const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
-    const [isAutosuggestOnError, changeIsAutoSuggestOnError] = useState(false);
 
     const suggestionsRef = useRef(null);
     const inputRef = useRef(null);
+    const actionRef = useRef(null);
 
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
@@ -89,6 +90,10 @@ const DxcNewInputText = React.forwardRef(
     const closeSuggestions = () => {
       changeIsOpen(false);
       changeVisualFocusedSuggIndex(-1);
+    };
+
+    const handleInputContainerOnClick = () => {
+      document.activeElement !== actionRef.current && inputRef.current.focus();
     };
 
     const handleIOnChange = (event) => {
@@ -195,20 +200,20 @@ const DxcNewInputText = React.forwardRef(
     useEffect(() => {
       if (typeof suggestions === "function") {
         changeIsSearching(true);
-        changeIsAutoSuggestOnError(false);
+        changeIsAutosuggestOnError(false);
         changeFilteredSuggestions([]);
 
         const cancelablePromise = makeCancelable(suggestions(value ?? innerValue));
         cancelablePromise.promise
           .then((promiseResponse) => {
             changeIsSearching(false);
-            changeIsAutoSuggestOnError(false);
+            changeIsAutosuggestOnError(false);
             changeFilteredSuggestions(promiseResponse);
           })
           .catch((err) => {
             if (!err.isCanceled) {
               changeIsSearching(false);
-              changeIsAutoSuggestOnError(true);
+              changeIsAutosuggestOnError(true);
             }
           });
 
@@ -228,12 +233,9 @@ const DxcNewInputText = React.forwardRef(
         changeValue("");
         changeValidationError("");
         changeIsError(false);
-        changeIsAutoSuggestOnError(false);
+        changeIsAutosuggestOnError(false);
         inputRef.current.focus();
-        if (suggestions) {
-          changeIsError(false);
-          closeSuggestions();
-        }
+        suggestions && closeSuggestions();
       },
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -300,6 +302,7 @@ const DxcNewInputText = React.forwardRef(
             error={error === undefined ? validationError : error}
             disabled={disabled}
             backgroundType={backgroundType}
+            onClick={handleInputContainerOnClick}
           >
             {prefix && (
               <Prefix disabled={disabled} backgroundType={backgroundType}>
@@ -320,16 +323,27 @@ const DxcNewInputText = React.forwardRef(
               ref={inputRef}
               backgroundType={backgroundType}
               pattern={pattern}
+              tabIndex={tabIndex}
               data-testid="input-test-id"
             />
             {(error || isError) && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
-              <Action onClick={defaultClearAction.onClick} backgroundType={backgroundType}>
+              <Action
+                onClick={defaultClearAction.onClick}
+                backgroundType={backgroundType}
+                tabIndex={tabIndex}
+              >
                 {defaultClearAction.icon}
               </Action>
             )}
             {action && (
-              <Action disabled={disabled} onClick={action.onClick} backgroundType={backgroundType}>
+              <Action
+                ref={actionRef}
+                disabled={disabled}
+                onClick={action.onClick}
+                backgroundType={backgroundType}
+                tabIndex={tabIndex}
+              >
                 {action.icon}
               </Action>
             )}
@@ -799,6 +813,7 @@ DxcNewInputText.propTypes = {
   suggestions: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
   pattern: PropTypes.string,
   length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
+  tabIndex: PropTypes.number,
 };
 
 export default DxcNewInputText;

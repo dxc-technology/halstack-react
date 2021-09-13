@@ -1,11 +1,22 @@
 import React, { useState } from "react";
-import { DxcNewDate, BackgroundColorProvider } from "@dxc-technology/halstack-react";
+import {
+  DxcNewDate,
+  BackgroundColorProvider,
+} from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 
 function App() {
   const [value, setValue] = useState("01-01-1995");
-  const onChange = ({ string, dateValue }) => {
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onChange = ({ string, inputError, date }) => {
     setValue(string);
+    inputError ? setErrorMessage("Input error") : setErrorMessage(null);
+  };
+
+  const onBlur = ({ string, error, date }) => {
+    setValue(string);
+    error ? setErrorMessage("Fecha inválida.") : setErrorMessage(null);
   };
 
   return (
@@ -101,9 +112,8 @@ function App() {
       <p>
         <DxcNewDate
           label="With onBlur event"
-          onBlur={() => {
-            console.log("Bye bye!");
-          }}
+          onBlur={onBlur}
+          error={errorMessage}
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
@@ -117,7 +127,7 @@ function App() {
       <BackgroundColorProvider color="#000000">
         <DarkMode>
           <DxcNewDate
-            label="With helper text"
+            label="Dark date input"
             helperText="Some sample text"
             margin={{
               left: "medium",

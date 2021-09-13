@@ -25,31 +25,58 @@ const DxcNewDate = ({
   error = "",
   margin,
   size = "medium",
+  tabIndex = 0,
 }) => {
   const [innerValue, setInnerValue] = useState("");
+  const [validationError, setValidationError] = useState("");
 
   const [isOpen, setIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const colorsTheme = useTheme();
 
-  const handleCalendarOnClick = (date) => {
-    const stringValue = moment(date).format(format.toUpperCase());
-    value ?? setInnerValue(stringValue);
+  const handleCalendarOnKeyDown = (event) => {
+    switch (event.keyCode) {
+      case 27: // Esc
+        event.preventDefault();
+        setIsOpen(false);
+        break;
+    }
+  };
+
+  const handleCalendarOnClick = (newDate) => {
+    const string = moment(newDate).format(format.toUpperCase());
+    value ?? setInnerValue(string);
     typeof onChange === "function" &&
       onChange({
-        stringValue,
-        dateValue: date && date.toJSON() ? date : null,
+        string,
+        error: null,
+        date: newDate && newDate.toJSON() ? newDate : null,
       });
   };
 
-  const handleIOnChange = ({ value: string }) => {
+  const handleIOnChange = ({ value: string, error: inputError }) => {
+    setValidationError(null);
     const momentDate = moment(string, format.toUpperCase(), true);
     value ?? setInnerValue(string);
     typeof onChange === "function" &&
       onChange({
         string,
-        dateValue: momentDate.isValid() ? momentDate._d : null,
+        inputError,
+        date: momentDate.isValid() ? momentDate._d : null,
+      });
+  };
+
+  const handleIOnBlur = ({ value: string, error: inputError }) => {
+    const momentDate = moment(string, format.toUpperCase(), true);
+    const invalidDateMessage = string !== "" && (momentDate.isValid() ? null : "Invalid date.");
+
+    invalidDateMessage && setValidationError(invalidDateMessage);
+    typeof onBlur === "function" &&
+      onBlur({
+        string,
+        error: invalidDateMessage || inputError,
+        date: momentDate.isValid() ? momentDate._d : null,
       });
   };
 
@@ -221,7 +248,7 @@ const DxcNewDate = ({
     <ThemeProvider theme={colorsTheme}>
       <MuiThemeProvider theme={dateTheme}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <StyledDPicker margin={margin}>
+          <StyledDPicker>
             <DxcNewInputText
               label={label}
               name={name}
@@ -232,12 +259,14 @@ const DxcNewDate = ({
               disabled={disabled}
               optional={optional}
               onChange={handleIOnChange}
-              onBlur={onBlur}
-              error={error}
+              onBlur={handleIOnBlur}
+              error={error || validationError}
               margin={margin}
               size={size}
+              tabIndex={tabIndex}
             />
             <Popover
+              onKeyDown={handleCalendarOnKeyDown}
               open={isOpen}
               anchorEl={anchorEl}
               anchorOrigin={{
@@ -303,6 +332,7 @@ DxcNewDate.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  tabIndex: PropTypes.number,
 };
 
 export default DxcNewDate;
