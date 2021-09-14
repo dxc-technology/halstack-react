@@ -45,37 +45,36 @@ const DxcNewDate = ({
   };
 
   const handleCalendarOnClick = (newDate) => {
+    setValidationError(null);
     const string = moment(newDate).format(format.toUpperCase());
     value ?? setInnerValue(string);
     typeof onChange === "function" &&
       onChange({
-        string,
-        error: null,
+        value: string,
         date: newDate && newDate.toJSON() ? newDate : null,
       });
   };
 
-  const handleIOnChange = ({ value: string, error: inputError }) => {
+  const handleIOnChange = ({ value: string }) => {
     setValidationError(null);
     const momentDate = moment(string, format.toUpperCase(), true);
     value ?? setInnerValue(string);
     typeof onChange === "function" &&
       onChange({
-        string,
-        inputError,
+        value: string,
         date: momentDate.isValid() ? momentDate._d : null,
       });
   };
 
-  const handleIOnBlur = ({ value: string, error: inputError }) => {
-    const momentDate = moment(string, format.toUpperCase(), true);
-    const invalidDateMessage = string !== "" && (momentDate.isValid() ? null : "Invalid date.");
+  const handleIOnBlur = ({ value }) => {
+    const momentDate = moment(value, format.toUpperCase(), true);
+    const invalidDateMessage = momentDate.isValid() ? null : "Invalid date.";
 
-    invalidDateMessage && setValidationError(invalidDateMessage);
+    value !== "" && invalidDateMessage && setValidationError(invalidDateMessage);
     typeof onBlur === "function" &&
       onBlur({
-        string,
-        error: invalidDateMessage || inputError,
+        value,
+        error: invalidDateMessage,
         date: momentDate.isValid() ? momentDate._d : null,
       });
   };

@@ -6,16 +6,16 @@ import {
 import styled from "styled-components";
 
 function App() {
-  const [value, setValue] = useState("01-01-1995");
+  const [inputValue, setInputValue] = useState("01-01-1995");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = ({ string, inputError, date }) => {
-    setValue(string);
-    inputError ? setErrorMessage("Input error") : setErrorMessage(null);
+  const onChange = ({ value }) => {
+    setInputValue(value);
+    setErrorMessage(null);
   };
 
-  const onBlur = ({ string, error, date }) => {
-    setValue(string);
+  const onBlur = ({ value, error }) => {
+    setInputValue(value);
     error ? setErrorMessage("Fecha inválida.") : setErrorMessage(null);
   };
 
@@ -58,7 +58,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
         <DxcNewDate
-          value={value}
+          value={inputValue}
           onChange={onChange}
           margin={{ left: "medium", right: "medium" }}
         />
@@ -111,7 +111,8 @@ function App() {
       </p>
       <p>
         <DxcNewDate
-          label="With onBlur event"
+          label="With onBlur & onChange events"
+          onChange={onChange}
           onBlur={onBlur}
           error={errorMessage}
           margin={{ left: "medium", right: "medium" }}
