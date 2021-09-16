@@ -24,17 +24,11 @@ const makeCancelable = (promise) => {
   };
 };
 
-const getLengthErrorMessage = (length) => {
-  return `Min length ${length.min}, Max length ${length.max}.`;
-};
+const getLengthErrorMessage = (length) => `Min length ${length.min}, Max length ${length.max}.`;
 
-const patternMatch = (pattern, value) => {
-  return new RegExp(pattern).test(value);
-};
+const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
-const getPatternErrorMessage = () => {
-  return `Please match the format requested.`;
-};
+const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const DxcNewInputText = React.forwardRef(
   (
