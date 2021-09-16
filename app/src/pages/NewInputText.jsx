@@ -163,7 +163,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
-          character) - Strict
+          character)
         </h4>
         <DxcNewInputText
           value={value}
@@ -176,7 +176,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>
-          With min length 5 and max length 10 - Strict
+          With min length 5 and max length 10
         </h4>
         <DxcNewInputText
           value={value}
@@ -190,7 +190,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
-          character) and minimum length 5 and maximum length 10 - Strict
+          character) and minimum length 5 and maximum length 10
         </h4>
         <DxcNewInputText
           value={value}
@@ -205,7 +205,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
-          character) - Non Strict
+          character)
         </h4>
         <DxcNewInputText
           value={value}
@@ -219,7 +219,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>
-          With min length 5 and max length 10 - Non Strict
+          With min length 5 and max length 10
         </h4>
         <DxcNewInputText
           value={value}
@@ -234,7 +234,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
-          character) and minimum length 5 and maximum length 10 - Non Strict
+          character) and minimum length 5 and maximum length 10
         </h4>
         <DxcNewInputText
           value={value}
@@ -250,7 +250,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
-          special character) - Strict
+          special character) - Custom error messages
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -264,7 +264,8 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>
-          Autosuggest - With min length 5 and max length 10 - Strict
+          Autosuggest - With min length 5 and max length 10 - Custom error
+          messages
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -279,7 +280,8 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
-          special character) and minimum length 5 and maximum length 10 - Strict
+          special character) and minimum length 5 and maximum length 10 - Custom
+          error messages
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -295,7 +297,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
-          special character) - Non Strict
+          special character) - Custom error messages
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -310,7 +312,8 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>
-          Autosuggest - With min length 5 and max length 10 - Non Strict
+          Autosuggest - With min length 5 and max length 10 - Custom error
+          messages
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -326,8 +329,8 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
-          special character) and minimum length 5 and maximum length 10 - Non
-          Strict
+          special character) and minimum length 5 and maximum length 10 - Custom
+          error messages
         </h4>
         <DxcNewInputText
           value={suggestionsValue}

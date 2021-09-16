@@ -56,7 +56,7 @@ const passwordPropsTable = () => {
           not valid) will be passed to this function. An example of this object
           is: {"{ "}
           <code>value: value, error: error</code>
-          {" }"}. If there is no error, error will be undefined.
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
@@ -68,7 +68,7 @@ const passwordPropsTable = () => {
           valid) will be passed to this function. An example of this object is:{" "}
           {"{ "}
           <code>value: value, error: error</code>
-          {" }"}. If there is no error, error will be undefined.
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
@@ -90,7 +90,7 @@ const passwordPropsTable = () => {
           the value entered does not match the pattern, the onBlur function will
           be called with the value entered and the error informing that the
           value does not match the pattern as parameters. If the pattern is
-          accomplished, the error parameter will be undefined.
+          accomplished, the error parameter will be null.
         </td>
       </tr>
       <tr>
@@ -104,7 +104,7 @@ const passwordPropsTable = () => {
           If the value entered does not comply the length, the onChange function
           will be called with the value entered and the error informing that the
           value does not comply the length as parameters. If the length is
-          accomplished, the error parameter will be undefined.
+          accomplished, the error parameter will be null.
         </td>
       </tr>
       <tr>

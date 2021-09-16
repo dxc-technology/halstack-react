@@ -35,6 +35,7 @@ import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLay
 import AccordionGroup from "./cdk-components/accordion-group/AccordionGroup";
 import Password from "./cdk-components/password/Password";
 import NewInputText from "./cdk-components/new-input-text/NewInputText";
+import Number from "./cdk-components/number/Number";
 
 export const types = {
   FORMS: "Forms",
@@ -156,6 +157,12 @@ export default [
     path: "newInputText",
     name: "New Input Text",
     component: NewInputText,
+    type: types.FORMS,
+  },
+  {
+    path: "number",
+    name: "Number",
+    component: Number,
     type: types.FORMS,
   },
   {
