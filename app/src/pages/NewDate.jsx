@@ -30,19 +30,16 @@ function App() {
         <DxcNewDate
           label="Medium"
           margin={{ left: "medium", right: "medium" }}
-          clearable
         />
         <DxcNewDate
           label="Large"
           margin={{ left: "medium", right: "medium" }}
           size="large"
-          clearable
         />
         <DxcNewDate
           label="Fill parent"
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
-          clearable
         />
       </p>
       <p>
@@ -94,24 +91,28 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>Formats</h4>
         <DxcNewDate
-          label="With format dd/MM/yy"
+          label="With new format"
           margin={{ left: "medium", right: "medium" }}
           format="dd/MM/yy"
+          placeholder
         />
         <DxcNewDate
-          label="With format MM/dd/yyyy"
+          label="With new format"
           margin={{ left: "medium", right: "medium" }}
           format="MM/dd/yyyy"
+          placeholder
         />
         <DxcNewDate
-          label="With format MM-dd-yyyy"
+          label="With new format"
           margin={{ left: "medium", right: "medium" }}
           format="MM-dd-yyyy"
+          placeholder
         />
       </p>
       <p>
         <DxcNewDate
           label="With onBlur & onChange events"
+          value={inputValue}
           onChange={onChange}
           onBlur={onBlur}
           error={errorMessage}

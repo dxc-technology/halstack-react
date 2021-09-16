@@ -68,7 +68,7 @@ const DxcNewDate = ({
 
   const handleIOnBlur = ({ value }) => {
     const momentDate = moment(value, format.toUpperCase(), true);
-    const invalidDateMessage = value !== "" && (momentDate.isValid() ? null : "Invalid date.");
+    const invalidDateMessage = (value !== "" && !momentDate.isValid()) ? "Invalid date." : null;
     invalidDateMessage && setValidationError(invalidDateMessage);
     typeof onBlur === "function" &&
       onBlur({
