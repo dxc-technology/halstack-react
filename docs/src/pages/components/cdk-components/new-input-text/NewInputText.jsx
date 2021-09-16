@@ -81,7 +81,10 @@ function NewInput() {
                   example={customErrors}
                 ></Example>
                 <Example title="Autosuggest" example={autosuggest}></Example>
-                <Example title="Autosuggest function" example={autosuggestFunction}></Example>
+                <Example
+                  title="Autosuggest function"
+                  example={autosuggestFunction}
+                ></Example>
                 <Example
                   title="Fill parent size input"
                   example={fillParent}

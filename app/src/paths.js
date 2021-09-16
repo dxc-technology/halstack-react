@@ -36,6 +36,7 @@ import Badge from "./pages/Badge";
 import NewInputText from "./pages/NewInputText";
 import Password from "./pages/Password";
 import NewDate from "./pages/NewDate";
+import Number from "./pages/Number";
 
 export default [
   {
@@ -127,6 +128,11 @@ export default [
     path: "newInputText",
     name: "New input text",
     component: NewInputText,
+  },
+  {
+    path: "number",
+    name: "Number",
+    component: Number,
   },
   {
     path: "link",

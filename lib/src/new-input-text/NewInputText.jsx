@@ -6,6 +6,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import NumberContext from "../number/NumberContext.js";
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
@@ -23,12 +24,11 @@ const makeCancelable = (promise) => {
   };
 };
 
-const getLengthErrorMessage = (length, event) => `Min length ${length.min}, Max length ${length.max}.`;
+const getLengthErrorMessage = (length) => `Min length ${length.min}, Max length ${length.max}.`;
 
-const patternMatch = (pattern, value) => {
-  const patternToMatch = new RegExp(pattern);
-  return patternToMatch.test(value);
-};
+const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
+
+const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const DxcNewInputText = React.forwardRef(
   (
@@ -69,6 +69,10 @@ const DxcNewInputText = React.forwardRef(
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
 
+    const [minNumber, setMinNumber] = useState(null);
+    const [maxNumber, setMaxNumber] = useState(null);
+    const [stepNumber, setStepNumber] = useState(null);
+
     const suggestionsRef = useRef(null);
     const inputRef = useRef(null);
     const actionRef = useRef(null);
@@ -79,13 +83,27 @@ const DxcNewInputText = React.forwardRef(
     const inputId = `input-${uuidv4()}`;
     const autosuggestId = `${inputId}-listBox`;
 
+    const numberContext = useContext(NumberContext);
+
     const changeValue = (newValue, error) => {
+      const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
       value ?? setInnerValue(newValue);
-      typeof onChange === "function" && onChange({ value: newValue, error: error });
+      typeof onChange === "function" && onChange({ value: changedValue, error: error || null });
     };
 
-    const checkLength = (value) =>
+    const isLengthIncorrect = (value) =>
       value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
+
+    const isNumberIncorrect = (value) =>
+      (minNumber && parseInt(value) < minNumber) || (maxNumber && parseInt(value) > maxNumber);
+
+    const getNumberErrorMessage = (value) => {
+      if (minNumber && parseInt(value) < minNumber) {
+        return `Value must be greater than or equal to ${minNumber}.`;
+      } else if (maxNumber && parseInt(value) > maxNumber) {
+        return `Value must be less than or equal to ${maxNumber}.`;
+      }
+    };
 
     const closeSuggestions = () => {
       changeIsOpen(false);
@@ -102,10 +120,10 @@ const DxcNewInputText = React.forwardRef(
         changeIsOpen(true);
         changeValue(event.target.value);
       }
-      if (checkLength(event.target.value)) {
+      if (isLengthIncorrect(event.target.value)) {
         changeIsError(true);
-        changeValidationError(getLengthErrorMessage(length, event));
-        changeValue(event.target.value, getLengthErrorMessage(length, event));
+        changeValidationError(getLengthErrorMessage(length));
+        changeValue(event.target.value, getLengthErrorMessage(length));
       } else {
         changeIsError(false);
         changeValidationError("");
@@ -119,22 +137,22 @@ const DxcNewInputText = React.forwardRef(
 
     const handleIOnBlur = (event) => {
       suggestions && closeSuggestions();
-      if (checkLength(event.target.value)) {
+      if (isLengthIncorrect(event.target.value)) {
         changeIsError(true);
-        if (validationError === "") {
-          changeValidationError(getLengthErrorMessage(length, event));
-          onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length, event) });
-        } else {
-          onBlur?.({ value: event.target.value, error: error });
-        }
-      } else if (pattern && event.target.value && !patternMatch(pattern, event.target.value)) {
+        changeValidationError(getLengthErrorMessage(length, event));
+        onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
+      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
         changeIsError(true);
-        changeValidationError(inputRef.current.validationMessage);
-        onBlur?.({ value: event.target.value, error: inputRef.current.validationMessage });
+        changeValidationError(getPatternErrorMessage());
+        onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
+      } else if (event.target.value && isNumberIncorrect(event.target.value)) {
+        changeIsError(true);
+        changeValidationError(getNumberErrorMessage(event.target.value));
+        onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
       } else {
         changeIsError(false);
         changeValidationError("");
-        onBlur?.({ value: event.target.value });
+        onBlur?.({ value: event.target.value, error: null });
       }
     };
 
@@ -192,6 +210,16 @@ const DxcNewInputText = React.forwardRef(
       }
     };
 
+    const setNumberProps = (type, min, max, step) => {
+      type && inputRef?.current?.setAttribute("type", type);
+      min && inputRef?.current?.setAttribute("min", min);
+      max && inputRef?.current?.setAttribute("max", max);
+      step && inputRef?.current?.setAttribute("step", step);
+      setMinNumber(min);
+      setMaxNumber(max);
+      setStepNumber(step);
+    };
+
     useLayoutEffect(() => {
       isScrollable && suggestionsRef.current?.scrollTo({ top: visualFocusedSuggIndex * 39 });
       return changeIsScrollable(false);
@@ -226,6 +254,14 @@ const DxcNewInputText = React.forwardRef(
         );
         changeVisualFocusedSuggIndex(-1);
       }
+
+      numberContext &&
+        setNumberProps(
+          numberContext.typeNumber,
+          numberContext.minNumber,
+          numberContext.maxNumber,
+          numberContext.stepNumber
+        );
     }, [value, innerValue, suggestions]);
 
     const defaultClearAction = {
@@ -250,6 +286,84 @@ const DxcNewInputText = React.forwardRef(
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
       </svg>
     );
+
+    const decrementNumber = () => {
+      const numberValue = value || innerValue;
+      if (minNumber && parseInt(numberValue) < minNumber) {
+        changeValue(parseInt(numberValue));
+      } else if (maxNumber && parseInt(numberValue) > maxNumber) {
+        changeValue(maxNumber);
+      } else if (
+        minNumber &&
+        (parseInt(numberValue) === minNumber ||
+          numberValue === "" ||
+          (stepNumber && parseInt(numberValue) - stepNumber < minNumber))
+      ) {
+        changeValue(minNumber);
+      } else if (
+        (stepNumber && minNumber && parseInt(numberValue) - stepNumber >= minNumber) ||
+        (stepNumber && numberValue !== "")
+      ) {
+        changeValue(parseInt(numberValue) - stepNumber);
+      } else if (stepNumber && numberValue == "") {
+        changeValue(-stepNumber);
+      } else if (numberValue === "") {
+        changeValue(-1);
+      } else {
+        changeValue(parseInt(numberValue) - 1);
+      }
+    };
+
+    const incrementNumber = () => {
+      const numberValue = value || innerValue;
+      if (maxNumber && parseInt(numberValue) > maxNumber) {
+        changeValue(parseInt(numberValue));
+      } else if (minNumber && (parseInt(numberValue) < minNumber || numberValue === "")) {
+        changeValue(minNumber);
+      } else if (
+        maxNumber &&
+        (parseInt(numberValue) === maxNumber || (stepNumber && parseInt(numberValue) + stepNumber > maxNumber))
+      ) {
+        changeValue(maxNumber);
+      } else if (
+        (stepNumber && maxNumber && parseInt(numberValue) + stepNumber <= maxNumber) ||
+        (stepNumber && numberValue !== "")
+      ) {
+        changeValue(parseInt(numberValue) + stepNumber);
+      } else if (stepNumber && numberValue == "") {
+        changeValue(stepNumber);
+      } else if (numberValue === "") {
+        changeValue(1);
+      } else {
+        changeValue(parseInt(numberValue) + 1);
+      }
+    };
+
+    const decrementAction = {
+      onClick: () => {
+        decrementNumber();
+        inputRef.current.focus();
+      },
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M19 13H5v-2h14v2z" />
+        </svg>
+      ),
+    };
+
+    const incrementAction = {
+      onClick: () => {
+        incrementNumber();
+        inputRef.current.focus();
+      },
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </svg>
+      ),
+    };
 
     const HighlightedSuggestion = ({ suggestion, index }) => {
       const regEx = new RegExp(value ?? innerValue, "i");
@@ -324,28 +438,46 @@ const DxcNewInputText = React.forwardRef(
               backgroundType={backgroundType}
               pattern={pattern}
               tabIndex={tabIndex}
-              data-testid="input-test-id"
             />
             {(error || isError) && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
-              <Action
-                onClick={defaultClearAction.onClick}
-                backgroundType={backgroundType}
-                tabIndex={tabIndex}
-              >
+              <Action onClick={defaultClearAction.onClick} backgroundType={backgroundType} tabIndex={tabIndex}>
                 {defaultClearAction.icon}
               </Action>
             )}
-            {action && (
-              <Action
-                ref={actionRef}
-                disabled={disabled}
-                onClick={action.onClick}
-                backgroundType={backgroundType}
-                tabIndex={tabIndex}
-              >
-                {action.icon}
-              </Action>
+            {numberContext?.typeNumber === "number" ? (
+              <>
+                <Action
+                  ref={actionRef}
+                  disabled={disabled}
+                  onClick={decrementAction.onClick}
+                  backgroundType={backgroundType}
+                  tabIndex={tabIndex}
+                >
+                  {decrementAction.icon}
+                </Action>
+                <Action
+                  ref={actionRef}
+                  disabled={disabled}
+                  onClick={incrementAction.onClick}
+                  backgroundType={backgroundType}
+                  tabIndex={tabIndex}
+                >
+                  {incrementAction.icon}
+                </Action>
+              </>
+            ) : (
+              action && (
+                <Action
+                  ref={actionRef}
+                  disabled={disabled}
+                  onClick={action.onClick}
+                  backgroundType={backgroundType}
+                  tabIndex={tabIndex}
+                >
+                  {action.icon}
+                </Action>
+              )
             )}
             {suffix && (
               <Suffix disabled={disabled} backgroundType={backgroundType}>
