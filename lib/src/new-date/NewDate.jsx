@@ -45,7 +45,6 @@ const DxcNewDate = ({
   };
 
   const handleCalendarOnClick = (newDate) => {
-    setValidationError(null);
     const string = moment(newDate).format(format.toUpperCase());
     value ?? setInnerValue(string);
     typeof onChange === "function" &&
@@ -56,7 +55,6 @@ const DxcNewDate = ({
   };
 
   const handleIOnChange = ({ value: string }) => {
-    setValidationError(null);
     const momentDate = moment(string, format.toUpperCase(), true);
     value ?? setInnerValue(string);
     typeof onChange === "function" &&
@@ -69,7 +67,7 @@ const DxcNewDate = ({
   const handleIOnBlur = ({ value }) => {
     const momentDate = moment(value, format.toUpperCase(), true);
     const invalidDateMessage = (value !== "" && !momentDate.isValid()) ? "Invalid date." : null;
-    invalidDateMessage && setValidationError(invalidDateMessage);
+    setValidationError(invalidDateMessage);
     typeof onBlur === "function" &&
       onBlur({
         value,

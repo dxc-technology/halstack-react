@@ -72,11 +72,11 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user types within the input. An
-          object including the current string value and the date value (if the
-          date's string value is a valid date, otherwise, it will be null) will
-          be passed to this function. An example of this object is: {"{ "}
+          object including the current string value and the date value will be
+          passed to this function. An example of this object is: {"{ "}
           <code>value: value, date: date </code>
-          {" }"}
+          {" }"}. If the string value is not a valid date,{" "}
+          <code>date</code> will be null.
         </td>
       </tr>
       <tr>
@@ -84,12 +84,13 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the input element of the component
-          loses the focus. An object including the string value, the error (if
-          the string value is a valid date will be null) and the date value (if
-          the string value is not a valid date will be null) will be passed to
-          this function. An example of this object is: {"{ "}
+          loses the focus. An object including the string value, the error and
+          the date value will be passed to this function. An example of this
+          object is: {"{ "}
           <code>value: value, error: error, date: date</code>
-          {" }"}.
+          {" }"}. If the string value is a valid date, <code>error</code> will
+          be null. Also, if the string value is not a valid date,{" "}
+          <code>date</code> will be null.
         </td>
       </tr>
       <tr>

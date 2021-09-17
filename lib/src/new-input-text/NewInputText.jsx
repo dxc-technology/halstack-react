@@ -63,7 +63,7 @@ const DxcNewInputText = React.forwardRef(
     const [isError, changeIsError] = useState(false);
     const [isScrollable, changeIsScrollable] = useState(false);
     const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
-    const [isAutosuggestOnError, changeIsAutosuggestOnError] = useState(false);
+    const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
 
     const [validationError, changeValidationError] = useState("");
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
@@ -164,7 +164,7 @@ const DxcNewInputText = React.forwardRef(
       switch (event.keyCode) {
         case 40: // Arrow Down
           event.preventDefault();
-          if (!isError && !isSearching && filteredSuggestions.length > 0) {
+          if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
             changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
               if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
               else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
@@ -176,7 +176,7 @@ const DxcNewInputText = React.forwardRef(
           break;
         case 38: // Arrow Up
           event.preventDefault();
-          if (!isError && !isSearching && filteredSuggestions.length > 0) {
+          if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
             changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
               if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
                 return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
@@ -198,7 +198,7 @@ const DxcNewInputText = React.forwardRef(
           }
           break;
         case 13: // Enter
-          if (!isError && !isSearching) {
+          if (!isAutosuggestError && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 &&
               visualFocusedSuggIndex >= 0 &&
@@ -228,20 +228,20 @@ const DxcNewInputText = React.forwardRef(
     useEffect(() => {
       if (typeof suggestions === "function") {
         changeIsSearching(true);
-        changeIsAutosuggestOnError(false);
+        changeIsAutosuggestError(false);
         changeFilteredSuggestions([]);
 
         const cancelablePromise = makeCancelable(suggestions(value ?? innerValue));
         cancelablePromise.promise
           .then((promiseResponse) => {
             changeIsSearching(false);
-            changeIsAutosuggestOnError(false);
+            changeIsAutosuggestError(false);
             changeFilteredSuggestions(promiseResponse);
           })
           .catch((err) => {
             if (!err.isCanceled) {
               changeIsSearching(false);
-              changeIsAutosuggestOnError(true);
+              changeIsAutosuggestError(true);
             }
           });
 
@@ -269,7 +269,7 @@ const DxcNewInputText = React.forwardRef(
         changeValue("");
         changeValidationError("");
         changeIsError(false);
-        changeIsAutosuggestOnError(false);
+        changeIsAutosuggestError(false);
         inputRef.current.focus();
         suggestions && closeSuggestions();
       },
@@ -487,7 +487,7 @@ const DxcNewInputText = React.forwardRef(
             {((suggestions && suggestions.length > 0) || typeof suggestions === "function") && isOpen && (
               <Suggestions
                 id={autosuggestId}
-                isError={isAutosuggestOnError}
+                isError={isAutosuggestError}
                 onMouseDown={(event) => {
                   event.preventDefault();
                 }}
@@ -496,17 +496,17 @@ const DxcNewInputText = React.forwardRef(
                 }}
                 ref={suggestionsRef}
               >
-                {!isSearching && !isAutosuggestOnError && filteredSuggestions.length === 0 && (
+                {!isSearching && !isAutosuggestError && filteredSuggestions.length === 0 && (
                   <SuggestionsSystemMessage>No results found</SuggestionsSystemMessage>
                 )}
                 {!isSearching &&
-                  !isAutosuggestOnError &&
+                  !isAutosuggestError &&
                   filteredSuggestions.length > 0 &&
                   filteredSuggestions.map((suggestion, index) => (
                     <HighlightedSuggestion key={`suggestion-${uuidv4()}`} suggestion={suggestion} index={index} />
                   ))}
                 {isSearching && <SuggestionsSystemMessage>Searching...</SuggestionsSystemMessage>}
-                {isAutosuggestOnError && (
+                {isAutosuggestError && (
                   <SuggestionsError>
                     <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>
                     Error fetching data
@@ -623,6 +623,7 @@ const InputContainer = styled.div`
   margin: calc(1rem * 0.25) 0;
   padding: 0 calc(1rem * 0.5);
 
+  ${(props) => props.disabled && "cursor: not-allowed;"};
   ${(props) =>
     !props.disabled &&
     `

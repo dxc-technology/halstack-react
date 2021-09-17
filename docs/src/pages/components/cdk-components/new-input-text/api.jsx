@@ -91,9 +91,8 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user types within the input. An
-          object including the new value and the error (if the value entered is
-          not valid) will be passed to this function. An example of this object
-          is: {"{ "}
+          object including the new value and the error will be passed to this
+          function. An example of this object is: {"{ "}
           <code>value: value, error: error</code>
           {" }"}. If there is no error, error will be null.
         </td>
@@ -103,9 +102,8 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the input loses the focus. An object
-          including the input value and the error (if the value entered is not
-          valid) will be passed to this function. An example of this object is:{" "}
-          {"{ "}
+          including the input value and the error will be passed to this
+          function. An example of this object is: {"{ "}
           <code>value: value, error: error</code>
           {" }"}. If there is no error, error will be null.
         </td>
@@ -183,6 +181,13 @@ const newInputPropsTable = () => {
         <td>
           Size of the component ('small' | 'medium' | 'large' | 'fillParent').
         </td>
+      </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>
+          <code>0</code>
+        </td>
+        <td>Value of the tabindex attribute.</td>
       </tr>
     </DxcTable>
   );
