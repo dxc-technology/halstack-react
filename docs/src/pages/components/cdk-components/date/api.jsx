@@ -83,7 +83,7 @@ const alertPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user types within the input. An
-          object including the current sring value and the date value (if the
+          object including the current string value and the date value (if the
           string typed is a valid date) will be passed to this function. An
           example of this object is: {"{ "}
           <code>stringValue: value, dateValue: date</code>
