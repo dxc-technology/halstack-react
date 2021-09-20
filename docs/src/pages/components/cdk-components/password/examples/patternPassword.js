@@ -4,7 +4,7 @@ import { useState } from "react";
 const code = `() => {
   const [value, setValue] = useState("");
 
-  const onChange = ({ value }) => {
+  const onChange = (value) => {
     setValue(value);
   };
 

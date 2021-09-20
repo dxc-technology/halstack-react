@@ -54,7 +54,7 @@ const DxcNewDate = ({
       });
   };
 
-  const handleIOnChange = ({ value: string }) => {
+  const handleIOnChange = (string) => {
     const momentDate = moment(string, format.toUpperCase(), true);
     value ?? setInnerValue(string);
     typeof onChange === "function" &&
@@ -66,7 +66,7 @@ const DxcNewDate = ({
 
   const handleIOnBlur = ({ value }) => {
     const momentDate = moment(value, format.toUpperCase(), true);
-    const invalidDateMessage = (value !== "" && !momentDate.isValid()) ? "Invalid date." : null;
+    const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : null;
     setValidationError(invalidDateMessage);
     typeof onBlur === "function" &&
       onBlur({

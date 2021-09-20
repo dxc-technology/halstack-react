@@ -38,7 +38,7 @@ function App() {
   const [suggestionsValue, setSuggestionsValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = ({ value }) => {
+  const onChange = (value) => {
     setValue(value);
   };
 

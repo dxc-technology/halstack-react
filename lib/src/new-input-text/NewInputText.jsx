@@ -88,7 +88,7 @@ const DxcNewInputText = React.forwardRef(
     const changeValue = (newValue) => {
       const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
       value ?? setInnerValue(newValue);
-      typeof onChange === "function" && onChange({ value: changedValue });
+      typeof onChange === "function" && onChange(changedValue);
     };
 
     const isLengthIncorrect = (value) =>

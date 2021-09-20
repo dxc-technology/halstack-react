@@ -9,7 +9,7 @@ function App() {
   const [inputValue, setInputValue] = useState("01-01-1995");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = ({ value }) => {
+  const onChange = (value) => {
     setInputValue(value);
     setErrorMessage(null);
   };
