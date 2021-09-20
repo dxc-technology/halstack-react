@@ -125,6 +125,13 @@ const numberPropsTable = () => {
           Size of the component ('small' | 'medium' | 'large' | 'fillParent').
         </td>
       </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>
+          <code>0</code>
+        </td>
+        <td>Value of the tabindex attribute.</td>
+      </tr>
     </DxcTable>
   );
 };

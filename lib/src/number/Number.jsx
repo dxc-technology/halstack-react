@@ -22,6 +22,7 @@ const DxcNumber = ({
   error = "",
   margin,
   size = "medium",
+  tabIndex = 0,
 }) => {
   const inputRef = useRef(null);
 
@@ -43,6 +44,7 @@ const DxcNumber = ({
           onBlur={onBlur}
           margin={margin}
           size={size}
+          tabIndex={tabIndex}
         />
       </NumberContainer>
     </NumberContext.Provider>
@@ -95,6 +97,7 @@ DxcNumber.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   size: PropTypes.oneOf([...Object.keys(sizes)]),
+  tabIndex: PropTypes.number,
 };
 
 export default DxcNumber;
