@@ -5,14 +5,13 @@ const code = `() => {
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = ({ value, error }) => {
+  const onChange = ({ value }) => {
     setValue(value);
-    error ? setErrorMessage("CHANGE error") : setErrorMessage(null);
   };
 
   const onBlur = ({ value, error }) => {
     setValue(value);
-    error ? setErrorMessage("BLUR error") : setErrorMessage(null);
+    error ? setErrorMessage("Custom error") : setErrorMessage(null);
   };
 
   return (

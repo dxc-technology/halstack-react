@@ -85,10 +85,10 @@ const DxcNewInputText = React.forwardRef(
 
     const numberContext = useContext(NumberContext);
 
-    const changeValue = (newValue, error) => {
+    const changeValue = (newValue) => {
       const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
       value ?? setInnerValue(newValue);
-      typeof onChange === "function" && onChange({ value: changedValue, error: error || null });
+      typeof onChange === "function" && onChange({ value: changedValue });
     };
 
     const isLengthIncorrect = (value) =>
@@ -115,20 +115,8 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const handleIOnChange = (event) => {
-      if (suggestions) {
-        changeIsError(false);
-        changeIsOpen(true);
-        changeValue(event.target.value);
-      }
-      if (isLengthIncorrect(event.target.value)) {
-        changeIsError(true);
-        changeValidationError(getLengthErrorMessage(length));
-        changeValue(event.target.value, getLengthErrorMessage(length));
-      } else {
-        changeIsError(false);
-        changeValidationError("");
-        changeValue(event.target.value);
-      }
+      suggestions && changeIsOpen(true);
+      changeValue(event.target.value);
     };
 
     const handleIOnClick = () => {
@@ -163,28 +151,36 @@ const DxcNewInputText = React.forwardRef(
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {
         case 40: // Arrow Down
-          event.preventDefault();
-          if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-            changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
-              if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
-              else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
-            });
-            changeIsOpen(true);
-            changeIsScrollable(true);
-            changeIsActiveSuggestion(false);
+          if (numberContext) {
+            incrementNumber();
+          } else {
+            event.preventDefault();
+            if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
+              changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
+                if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
+                else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
+              });
+              changeIsOpen(true);
+              changeIsScrollable(true);
+              changeIsActiveSuggestion(false);
+            }
           }
           break;
         case 38: // Arrow Up
-          event.preventDefault();
-          if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-            changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
-              if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
-                return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
-              else return visualFocusedSuggIndex - 1;
-            });
-            changeIsOpen(true);
-            changeIsScrollable(true);
-            changeIsActiveSuggestion(false);
+          if (numberContext) {
+            incrementNumber();
+          } else {
+            event.preventDefault();
+            if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
+              changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
+                if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
+                  return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
+                else return visualFocusedSuggIndex - 1;
+              });
+              changeIsOpen(true);
+              changeIsScrollable(true);
+              changeIsActiveSuggestion(false);
+            }
           }
           break;
         case 27: // Esc
