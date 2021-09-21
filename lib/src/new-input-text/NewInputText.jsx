@@ -105,6 +105,10 @@ const DxcNewInputText = React.forwardRef(
       }
     };
 
+    const openSuggestions = () => {
+      (typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && changeIsOpen(true);
+    }
+
     const closeSuggestions = () => {
       changeIsOpen(false);
       changeVisualFocusedSuggIndex(-1);
@@ -115,12 +119,12 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const handleIOnChange = (event) => {
-      suggestions && changeIsOpen(true);
+      openSuggestions();
       changeValue(event.target.value);
     };
 
     const handleIOnClick = () => {
-      suggestions && changeIsOpen(true);
+      openSuggestions();
     };
 
     const handleIOnBlur = (event) => {
@@ -145,7 +149,7 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const handleIOnFocus = () => {
-      suggestions && changeIsOpen(true);
+      openSuggestions();
     };
 
     const handleIOnKeyDown = (event) => {
@@ -155,12 +159,12 @@ const DxcNewInputText = React.forwardRef(
             incrementNumber();
           } else {
             event.preventDefault();
+            openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
                 if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
                 else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
               });
-              changeIsOpen(true);
               changeIsScrollable(true);
               changeIsActiveSuggestion(false);
             }
@@ -171,13 +175,13 @@ const DxcNewInputText = React.forwardRef(
             incrementNumber();
           } else {
             event.preventDefault();
+            openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
                 if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
                   return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
                 else return visualFocusedSuggIndex - 1;
               });
-              changeIsOpen(true);
               changeIsScrollable(true);
               changeIsActiveSuggestion(false);
             }
@@ -185,22 +189,19 @@ const DxcNewInputText = React.forwardRef(
           break;
         case 27: // Esc
           event.preventDefault();
-          if (suggestions && suggestions.length > 0) {
+          if (typeof suggestions === "function" || (suggestions && suggestions.length > 0)) {
             changeValue("");
-            if (isOpen) {
-              changeIsError(false);
-              closeSuggestions();
-            }
+            isOpen && closeSuggestions();
           }
           break;
         case 13: // Enter
-          if (!isAutosuggestError && !isSearching) {
+          if ((typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 &&
               visualFocusedSuggIndex >= 0 &&
               visualFocusedSuggIndex < filteredSuggestions.length;
             validFocusedSuggestion && changeValue(filteredSuggestions[visualFocusedSuggIndex]);
-            closeSuggestions();
+            isOpen && closeSuggestions();
           }
           break;
       }
@@ -263,9 +264,6 @@ const DxcNewInputText = React.forwardRef(
     const defaultClearAction = {
       onClick: () => {
         changeValue("");
-        changeValidationError("");
-        changeIsError(false);
-        changeIsAutosuggestError(false);
         inputRef.current.focus();
         suggestions && closeSuggestions();
       },
@@ -409,7 +407,7 @@ const DxcNewInputText = React.forwardRef(
             {helperText}
           </HelperText>
           <InputContainer
-            error={error === undefined ? validationError : error}
+            error={error || validationError}
             disabled={disabled}
             backgroundType={backgroundType}
             onClick={handleInputContainerOnClick}
@@ -480,7 +478,7 @@ const DxcNewInputText = React.forwardRef(
                 {suffix}
               </Suffix>
             )}
-            {((suggestions && suggestions.length > 0) || typeof suggestions === "function") && isOpen && (
+            {isOpen && (
               <Suggestions
                 id={autosuggestId}
                 isError={isAutosuggestError}
@@ -874,8 +872,8 @@ const Suggestions = styled.ul`
   width: 100%;
   box-sizing: border-box;
   cursor: default;
-  border: 1px solid ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledBorderColor)};
   border-radius: 4px;
+  border: 1px solid ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledBorderColor)};
   color: ${(props) => props.theme.listOptionFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.listOptionFontSize};

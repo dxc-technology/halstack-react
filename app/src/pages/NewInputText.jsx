@@ -47,7 +47,7 @@ function App() {
     error ? setErrorMessage("Custom error") : setErrorMessage(null);
   };
 
-  const onChangeSuggestions = ({ value }) => {
+  const onChangeSuggestions = (value) => {
     setSuggestionsValue(value);
   };
 
@@ -523,7 +523,7 @@ function App() {
         </Mode>
         <Mode mode="dark">
           <DxcNewInputText
-            label="Example label"
+            label="Disabled input"
             optional
             helperText="Example of helper text"
             placeholder="Placeholder"
@@ -537,8 +537,8 @@ function App() {
             label="Suggestions + action"
             placeholder="Placeholder"
             value={suggestionsValue}
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
             onChange={onChangeSuggestions}
+            margin={{ left: "medium", bottom: "small", right: "medium" }}
             action={action}
             suggestions={countries}
             clearable
