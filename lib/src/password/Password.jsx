@@ -16,6 +16,7 @@ const DxcPassword = ({
   pattern,
   length,
   size = "medium",
+  tabIndex = 0,
 }) => {
   const inputRef = useRef(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -68,6 +69,7 @@ const DxcPassword = ({
       size={size}
       pattern={pattern}
       length={length}
+      tabIndex={tabIndex}
     />
   );
 };
@@ -99,6 +101,7 @@ DxcPassword.propTypes = {
   size: PropTypes.oneOf([...Object.keys(sizes)]),
   pattern: PropTypes.string,
   length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
+  tabIndex: PropTypes.number,
 };
 
 export default DxcPassword;
