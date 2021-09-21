@@ -6,6 +6,7 @@ import "./styles.css";
 
 const DxcPassword = ({
   label = "",
+  name = "",
   value,
   helperText = "",
   error = "",
@@ -58,6 +59,7 @@ const DxcPassword = ({
     <DxcNewInputText
       ref={inputRef}
       label={label}
+      name={name}
       value={value}
       helperText={helperText}
       action={action}
@@ -83,6 +85,7 @@ const sizes = {
 
 DxcPassword.propTypes = {
   label: PropTypes.string,
+  name: PropTypes.string,
   value: PropTypes.string,
   helperText: PropTypes.string,
   error: PropTypes.string,

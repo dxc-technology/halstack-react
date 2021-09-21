@@ -7,6 +7,7 @@ import { spaces } from "../common/variables.js";
 
 const DxcNumber = ({
   label = "",
+  name = "",
   value,
   helperText = "",
   placeholder = "",
@@ -32,6 +33,7 @@ const DxcNumber = ({
         <DxcNewInputText
           ref={inputRef}
           label={label}
+          name={name}
           value={value}
           helperText={helperText}
           placeholder={placeholder}
@@ -74,6 +76,7 @@ const NumberContainer = styled.div`
 
 DxcNumber.propTypes = {
   label: PropTypes.string,
+  name: PropTypes.string,
   value: PropTypes.string,
   helperText: PropTypes.string,
   placeholder: PropTypes.string,

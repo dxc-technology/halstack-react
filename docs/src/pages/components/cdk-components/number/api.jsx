@@ -23,6 +23,11 @@ const numberPropsTable = () => {
         <td>Text to be placed above the number.</td>
       </tr>
       <tr>
+        <td>name: string</td>
+        <td></td>
+        <td>Name attribute of the number element.</td>
+      </tr>
+      <tr>
         <td>helperText: string</td>
         <td></td>
         <td>Helper text to be placed above the number.</td>

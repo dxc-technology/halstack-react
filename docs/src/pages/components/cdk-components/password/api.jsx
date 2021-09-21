@@ -24,6 +24,11 @@ const passwordPropsTable = () => {
         <td>Text to be placed above the password.</td>
       </tr>
       <tr>
+        <td>name: string</td>
+        <td></td>
+        <td>Name attribute of the password element.</td>
+      </tr>
+      <tr>
         <td>helperText: string</td>
         <td></td>
         <td>Helper text to be placed above the password.</td>
