@@ -156,7 +156,8 @@ const DxcNewInputText = React.forwardRef(
       switch (event.keyCode) {
         case 40: // Arrow Down
           if (numberContext) {
-            incrementNumber();
+            decrementNumber();
+            event.preventDefault();
           } else {
             event.preventDefault();
             openSuggestions();
@@ -173,6 +174,7 @@ const DxcNewInputText = React.forwardRef(
         case 38: // Arrow Up
           if (numberContext) {
             incrementNumber();
+            event.preventDefault();
           } else {
             event.preventDefault();
             openSuggestions();
