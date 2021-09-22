@@ -107,7 +107,7 @@ const DxcNewInputText = React.forwardRef(
 
     const openSuggestions = () => {
       (typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && changeIsOpen(true);
-    }
+    };
 
     const closeSuggestions = () => {
       changeIsOpen(false);
@@ -261,6 +261,8 @@ const DxcNewInputText = React.forwardRef(
           numberContext.maxNumber,
           numberContext.stepNumber
         );
+
+      ref?.current?.addEventListener("wheel", (event) => event.preventDefault());
     }, [value, innerValue, suggestions]);
 
     const defaultClearAction = {
