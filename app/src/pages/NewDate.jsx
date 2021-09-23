@@ -9,9 +9,10 @@ function App() {
   const [inputValue, setInputValue] = useState("01-01-1995");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = (value) => {
+  const onChange = ({ value, date }) => {
     setInputValue(value);
     setErrorMessage(null);
+    console.log(date);
   };
 
   const onBlur = ({ value, error }) => {
