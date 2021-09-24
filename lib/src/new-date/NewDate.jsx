@@ -299,7 +299,7 @@ const DxcNewDate = ({
 };
 
 const sizes = {
-  medium: "240px",
+  medium: "360px",
   large: "480px",
   fillParent: "100%",
 };

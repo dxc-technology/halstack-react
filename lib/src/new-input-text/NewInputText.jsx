@@ -343,7 +343,7 @@ const DxcNewInputText = React.forwardRef(
         inputRef.current.focus();
       },
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
           <path d="M0 0h24v24H0z" fill="none" />
           <path d="M19 13H5v-2h14v2z" />
         </svg>
@@ -356,7 +356,7 @@ const DxcNewInputText = React.forwardRef(
         inputRef.current.focus();
       },
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
           <path d="M0 0h24v24H0z" fill="none" />
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
         </svg>
@@ -388,6 +388,8 @@ const DxcNewInputText = React.forwardRef(
           }}
           visualFocused={visualFocusedSuggIndex === index}
           active={visualFocusedSuggIndex === index && isActiveSuggestion}
+          role="option"
+          aria-selected={visualFocusedSuggIndex === index && "true"}
         >
           {typeof suggestions === "function" ? (
             suggestion
@@ -436,6 +438,11 @@ const DxcNewInputText = React.forwardRef(
               backgroundType={backgroundType}
               pattern={pattern}
               tabIndex={tabIndex}
+              role="combobox"
+              aria-autocomplete={suggestions && "list"}
+              aria-controls={suggestions && inputId}
+              aria-expanded={suggestions && ((isOpen && "true") || "false")}
+              aria-activedescendant={suggestions && ((isOpen && `suggestion-${uuidv4()}`) || "")}
             />
             {(error || isError) && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
@@ -493,6 +500,8 @@ const DxcNewInputText = React.forwardRef(
                   changeVisualFocusedSuggIndex(-1);
                 }}
                 ref={suggestionsRef}
+                role="listbox"
+                aria-label="States"
               >
                 {!isSearching && !isAutosuggestError && filteredSuggestions.length === 0 && (
                   <SuggestionsSystemMessage>No results found</SuggestionsSystemMessage>
@@ -521,8 +530,8 @@ const DxcNewInputText = React.forwardRef(
 );
 
 const sizes = {
-  small: "60px",
-  medium: "240px",
+  small: "240px",
+  medium: "360px",
   large: "480px",
   fillParent: "100%",
 };

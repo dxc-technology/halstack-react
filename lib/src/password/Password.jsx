@@ -77,8 +77,8 @@ const DxcPassword = ({
 };
 
 const sizes = {
-  small: "60px",
-  medium: "240px",
+  small: "240px",
+  medium: "360px",
   large: "480px",
   fillParent: "100%",
 };
