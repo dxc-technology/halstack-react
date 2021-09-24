@@ -15,7 +15,6 @@ function App() {
   };
   const onBlurCustom = ({ value, error }) => {
     setCustomValue(value);
-    console.log(error);
     error ? setErrorMessage("Custom error") : setErrorMessage(null);
   };
 
