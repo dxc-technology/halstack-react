@@ -439,10 +439,10 @@ const DxcNewInputText = React.forwardRef(
               pattern={pattern}
               tabIndex={tabIndex}
               role="combobox"
-              aria-autocomplete={suggestions && "list"}
-              aria-controls={suggestions && inputId}
-              aria-expanded={suggestions && ((isOpen && "true") || "false")}
-              aria-activedescendant={suggestions && ((isOpen && `suggestion-${uuidv4()}`) || "")}
+              aria-autocomplete={(typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && "list"}
+              aria-controls={(typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && inputId}
+              aria-expanded={(isOpen && "true") || "false"}
+              aria-activedescendant={(isOpen && `suggestion-${uuidv4()}`) || ""}
             />
             {(error || isError) && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
@@ -600,6 +600,8 @@ const InputContainer = styled.div`
   position: relative;
   align-items: center;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
+  margin: calc(1rem * 0.25) 0;
+  padding: 0 calc(1rem * 0.5);
 
   ${(props) => {
     if (props.disabled)
@@ -607,28 +609,26 @@ const InputContainer = styled.div`
         ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
         : `background-color: ${props.theme.disabledContainerFillColor};`;
   }}
-  ${(props) =>
-    props.error &&
-    `box-shadow: inset 0 0 0 1px ${
-      props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
-    };`}
 
+  box-shadow: 0 0 0 2px transparent;
+  border-radius: 4px;
   border: 1px solid
     ${(props) => {
-    if (props.error)
-      return props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor;
-    else
-      return props.disabled
-        ? props.backgroundType === "dark"
+      if (props.disabled)
+        return props.backgroundType === "dark"
           ? props.theme.disabledBorderColorOnDark
-          : props.theme.disabledBorderColor
-        : props.backgroundType === "dark"
-        ? props.theme.enabledBorderColorOnDark
-        : props.theme.enabledBorderColor;
-  }};
-  border-radius: 4px;
-  margin: calc(1rem * 0.25) 0;
-  padding: 0 calc(1rem * 0.5);
+          : props.theme.disabledBorderColor;
+      else
+        return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
+    }};
+  ${(props) =>
+    props.error &&
+    !props.disabled &&
+    `border-color: transparent;
+     box-shadow: 0 0 0 2px ${
+       props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
+     };
+  `}
 
   ${(props) => props.disabled && "cursor: not-allowed;"};
   ${(props) =>
@@ -637,28 +637,23 @@ const InputContainer = styled.div`
       &:hover {
         border-color: ${
           props.error
-            ? props.backgroundType === "dark"
-              ? props.theme.hoverErrorBorderColorOnDark
-              : props.theme.hoverErrorBorderColor
+            ? "transparent"
             : props.backgroundType === "dark"
             ? props.theme.hoverBorderColorOnDark
             : props.theme.hoverBorderColor
         };
         ${
-          props.error
-            ? `box-shadow: inset 0 0 0 1px ${
-                props.backgroundType === "dark"
-                  ? props.theme.hoverErrorBorderColorOnDark
-                  : props.theme.hoverErrorBorderColor
-              };`
-            : `box-shadow: none;`
+          props.error &&
+          `box-shadow: 0 0 0 2px ${
+            props.backgroundType === "dark"
+              ? props.theme.hoverErrorBorderColorOnDark
+              : props.theme.hoverErrorBorderColor
+          };`
         }
       }
       &:focus-within {
-        border-color: ${
-          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-        };
-        box-shadow: inset 0 0 0 1px ${
+        border-color: transparent;
+        box-shadow: 0 0 0 2px ${
           props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
         };
       }
@@ -711,6 +706,7 @@ const Action = styled.button`
   border: 1px solid transparent;
   border-radius: 4px;
   padding: 3px;
+  margin-left: calc(1rem * 0.25);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer`)};
 
   background-color: ${(props) =>
@@ -746,12 +742,7 @@ const Action = styled.button`
       }
       &:focus {
         outline: none;
-        border: 1px solid ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        box-shadow: inset 0 0 0 1px ${
+        box-shadow: 0 0 0 2px ${
           props.backgroundType === "dark"
             ? props.theme.focusActionBorderColorOnDark
             : props.theme.focusActionBorderColor
@@ -762,12 +753,7 @@ const Action = styled.button`
       }
       &:focus-visible {
         outline: none;
-        border: 1px solid ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        box-shadow: inset 0 0 0 1px ${
+        box-shadow: 0 0 0 2px ${
           props.backgroundType === "dark"
             ? props.theme.focusActionBorderColorOnDark
             : props.theme.focusActionBorderColor
@@ -777,17 +763,6 @@ const Action = styled.button`
         };
       }
       &:active {
-        outline: none;
-        border: 1px solid ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        box-shadow: inset 0 0 0 1px ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
         background-color: ${
           props.backgroundType === "dark"
             ? props.theme.activeActionBackgroundColorOnDark
@@ -810,7 +785,7 @@ const ErrorIcon = styled.span`
   align-content: center;
   height: 18px;
   width: 18px;
-  margin-right: 4px;
+  margin-left: calc(1rem * 0.25);
   pointer-events: none;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
@@ -844,8 +819,7 @@ const Prefix = styled.span`
 const Suffix = styled.span`
   height: calc(1rem * 1.5);
   line-height: calc(1rem * 1.5);
-  margin-right: calc(1rem * 0.25);
-  margin-left: calc(1rem * 0.25);
+  margin: 0 calc(1rem * 0.25);
   padding: 0 0 0 calc(1rem * 0.5);
   ${(props) => {
     const color = props.disabled
