@@ -171,6 +171,11 @@ const newInputPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>ref: object</td>
+        <td></td>
+        <td>Reference to the input.</td>
+      </tr>
+      <tr>
         <td>size: string | object</td>
         <td>
           <code>'medium'</code>
