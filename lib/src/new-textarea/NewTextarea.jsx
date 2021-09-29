@@ -6,24 +6,13 @@ import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 const getLengthErrorMessage = (length) => `Min length ${length.min}, Max length ${length.max}.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
 const getPatternErrorMessage = () => `Please match the format requested.`;
-
-const getNumberOfRows = (elementHTML, numRows) => {
-  const textareaLineHeight = parseInt(window.getComputedStyle(elementHTML)["line-height"]);
-  const previousRows = elementHTML.rows;
-  elementHTML.rows = numRows;
-  const updatedRows = ~~(elementHTML.scrollHeight / textareaLineHeight);
-  
-  if (updatedRows === previousRows)
-    elementHTML.rows = updatedRows;
-  return updatedRows;
-};
 
 const DxcNewTextarea = React.forwardRef(
   (
@@ -50,7 +39,6 @@ const DxcNewTextarea = React.forwardRef(
   ) => {
     const [innerValue, setInnerValue] = useState("");
     const [validationError, changeValidationError] = useState("");
-    const [currentRows, setCurrentRows] = useState(rows);
 
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
@@ -80,13 +68,18 @@ const DxcNewTextarea = React.forwardRef(
     };
 
     const handleTOnChange = (event) => {
-      verticalGrow === "auto" && setCurrentRows(getNumberOfRows(event.target, rows));
       changeValue(event.target.value);
     };
 
-    useEffect(() => {
-      verticalGrow === "auto" && setCurrentRows(getNumberOfRows(textareaRef.current, rows));
-    }, []);
+    useLayoutEffect(() => {
+      if (verticalGrow === "auto") {
+        const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
+        const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
+        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
+        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
+        textareaRef.current.style.height = `${newHeight}px`;
+      }
+    }, [value, verticalGrow, rows, innerValue]);
 
     return (
       <ThemeProvider theme={colorsTheme.newTextarea}>
@@ -103,7 +96,7 @@ const DxcNewTextarea = React.forwardRef(
             value={value ?? innerValue}
             placeholder={placeholder}
             verticalGrow={verticalGrow}
-            rows={currentRows}
+            rows={rows}
             onChange={handleTOnChange}
             onBlur={handleTOnBlur}
             disabled={disabled}
@@ -201,22 +194,20 @@ const Textarea = styled.textarea`
 
   margin: calc(1rem * 0.25) 0;
   padding: calc(1rem * 0.5) calc(1rem * 1);
+  box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
     ${(props) => {
-      if (props.error)
-        return props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor;
+      if (props.disabled)
+        return props.backgroundType === "dark"
+          ? props.theme.disabledBorderColorOnDark
+          : props.theme.disabledBorderColor;
       else
-        return props.disabled
-          ? props.backgroundType === "dark"
-            ? props.theme.disabledBorderColorOnDark
-            : props.theme.disabledBorderColor
-          : props.backgroundType === "dark"
-          ? props.theme.enabledBorderColorOnDark
-          : props.theme.enabledBorderColor;
+        return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
     }};
   ${(props) =>
     props.error &&
+    !props.disabled &&
     `border-color: transparent;
      box-shadow: 0 0 0 2px ${
        props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor

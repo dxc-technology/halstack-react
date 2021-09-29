@@ -37,6 +37,7 @@ import Password from "./cdk-components/password/Password";
 import NewInputText from "./cdk-components/new-input-text/NewInputText";
 import NewDate from "./cdk-components/new-date/NewDate";
 import Number from "./cdk-components/number/Number";
+import NewTextarea from "./cdk-components/new-textarea/NewTextarea";
 
 export const types = {
   FORMS: "Forms",
@@ -260,6 +261,12 @@ export default [
     path: "textarea",
     name: "Textarea",
     component: Textarea,
+    type: types.FORMS,
+  },
+  {
+    path: "newTextarea",
+    name: "New Textarea",
+    component: NewTextarea,
     type: types.FORMS,
   },
   {

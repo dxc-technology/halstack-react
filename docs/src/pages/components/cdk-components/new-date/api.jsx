@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const newInputPropsTable = () => {
+const NewDatePropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -130,4 +130,4 @@ const newInputPropsTable = () => {
   );
 };
 
-export default newInputPropsTable;
+export default NewDatePropsTable;
