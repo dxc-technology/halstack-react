@@ -75,8 +75,8 @@ const newInputPropsTable = () => {
           object including the current string value and the date value will be
           passed to this function. An example of this object is: {"{ "}
           <code>value: value, date: date </code>
-          {" }"}. If the string value is not a valid date,{" "}
-          <code>date</code> will be null.
+          {" }"}. If the string value is not a valid date, <code>date</code>{" "}
+          will be null.
         </td>
       </tr>
       <tr>

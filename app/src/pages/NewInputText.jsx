@@ -252,6 +252,7 @@ function App() {
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
+          label="Autosuggest"
           onChange={onChangeSuggestions}
           suggestions={countries}
           onBlur={onBlur}

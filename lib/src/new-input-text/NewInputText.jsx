@@ -106,7 +106,11 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const openSuggestions = () => {
-      (typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && changeIsOpen(true);
+      hasInputSuggestions() && changeIsOpen(true);
+    };
+
+    const hasInputSuggestions = () => {
+      return typeof suggestions === "function" || (suggestions && suggestions.length > 0);
     };
 
     const closeSuggestions = () => {
@@ -191,13 +195,13 @@ const DxcNewInputText = React.forwardRef(
           break;
         case 27: // Esc
           event.preventDefault();
-          if (typeof suggestions === "function" || (suggestions && suggestions.length > 0)) {
+          if (hasInputSuggestions()) {
             changeValue("");
             isOpen && closeSuggestions();
           }
           break;
         case 13: // Enter
-          if ((typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && !isSearching) {
+          if (hasInputSuggestions() && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 &&
               visualFocusedSuggIndex >= 0 &&
@@ -262,7 +266,7 @@ const DxcNewInputText = React.forwardRef(
           numberContext.stepNumber
         );
 
-      ref?.current?.addEventListener("wheel", (event) => event.preventDefault());
+      inputRef?.current?.addEventListener("wheel", (event) => event.preventDefault());
     }, [value, innerValue, suggestions]);
 
     const defaultClearAction = {
@@ -363,6 +367,10 @@ const DxcNewInputText = React.forwardRef(
       ),
     };
 
+    const isTextInputType = () => {
+      return !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
+    };
+
     const HighlightedSuggestion = ({ suggestion, index }) => {
       const regEx = new RegExp(value ?? innerValue, "i");
       const matchedWords = suggestion.match(regEx);
@@ -370,6 +378,7 @@ const DxcNewInputText = React.forwardRef(
 
       return (
         <Suggestion
+          id={`suggestion-${index}`}
           onMouseDown={() => {
             changeIsActiveSuggestion(true);
           }}
@@ -438,15 +447,28 @@ const DxcNewInputText = React.forwardRef(
               backgroundType={backgroundType}
               pattern={pattern}
               tabIndex={tabIndex}
-              role="combobox"
-              aria-autocomplete={(typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && "list"}
-              aria-controls={(typeof suggestions === "function" || (suggestions && suggestions.length > 0)) && inputId}
-              aria-expanded={(isOpen && "true") || "false"}
-              aria-activedescendant={(isOpen && `suggestion-${uuidv4()}`) || ""}
+              role={isTextInputType() && hasInputSuggestions() ? "combobox" : "textbox"}
+              aria-autocomplete={isTextInputType() && hasInputSuggestions() ? "list" : undefined}
+              aria-controls={isTextInputType() && hasInputSuggestions() ? inputId : undefined}
+              aria-expanded={isTextInputType() && hasInputSuggestions() ? (isOpen ? "true" : "false") : undefined}
+              aria-activedescendant={
+                isTextInputType() && hasInputSuggestions() && isOpen && visualFocusedSuggIndex !== -1
+                  ? `suggestion-${visualFocusedSuggIndex}`
+                  : undefined
+              }
             />
-            {(error || isError) && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
+            {(error || isError) && (
+              <ErrorIcon backgroundType={backgroundType} aria-label="Error">
+                {errorIcon}
+              </ErrorIcon>
+            )}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
-              <Action onClick={defaultClearAction.onClick} backgroundType={backgroundType} tabIndex={tabIndex}>
+              <Action
+                onClick={defaultClearAction.onClick}
+                backgroundType={backgroundType}
+                tabIndex={tabIndex}
+                aria-label="Clear"
+              >
                 {defaultClearAction.icon}
               </Action>
             )}
@@ -458,6 +480,7 @@ const DxcNewInputText = React.forwardRef(
                   onClick={decrementAction.onClick}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
+                  aria-label="Decrement"
                 >
                   {decrementAction.icon}
                 </Action>
@@ -467,6 +490,7 @@ const DxcNewInputText = React.forwardRef(
                   onClick={incrementAction.onClick}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
+                  aria-label="Increment"
                 >
                   {incrementAction.icon}
                 </Action>
@@ -501,7 +525,7 @@ const DxcNewInputText = React.forwardRef(
                 }}
                 ref={suggestionsRef}
                 role="listbox"
-                aria-label="States"
+                aria-label={label}
               >
                 {!isSearching && !isAutosuggestError && filteredSuggestions.length === 0 && (
                   <SuggestionsSystemMessage>No results found</SuggestionsSystemMessage>

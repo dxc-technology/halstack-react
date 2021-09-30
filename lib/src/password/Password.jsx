@@ -23,12 +23,32 @@ const DxcPassword = ({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const setInputType = (type) => {
-    inputRef.current.children[2].children[0].setAttribute("type", type);
+    inputRef?.current?.children[2]?.children[0].setAttribute("type", type);
+  };
+
+  const setAriaAttributes = (ariaExpanded, ariaLabel) => {
+    if (error && clearable && value) {
+      inputRef?.current?.children[2]?.children[3]?.setAttribute("aria-expanded", ariaExpanded);
+      inputRef?.current?.children[2]?.children[3]?.setAttribute("aria-label", ariaLabel);
+    } else if (error || (clearable && !value)) {
+      inputRef?.current?.children[2]?.children[2]?.setAttribute("aria-expanded", ariaExpanded);
+      inputRef?.current?.children[2]?.children[2]?.setAttribute("aria-label", ariaLabel);
+    } else {
+      inputRef?.current?.children[2]?.children[1]?.setAttribute("aria-expanded", ariaExpanded);
+      inputRef?.current?.children[2]?.children[1]?.setAttribute("aria-label", ariaLabel);
+    }
   };
 
   useEffect(() => {
-    setInputType("password");
-  }, []);
+    setAriaAttributes(false, "Show");
+    if (isPasswordVisible) {
+      setInputType("text");
+      setAriaAttributes(true, "Hide");
+    } else {
+      setInputType("password");
+      setAriaAttributes(false, "Show");
+    }
+  }, [isPasswordVisible]);
 
   const viewPassword = () => {
     setInputType("text");
