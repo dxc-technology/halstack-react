@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider, Paper } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -34,7 +34,6 @@ const DxcNewDate = ({
   const [anchorEl, setAnchorEl] = useState(null);
 
   const colorsTheme = useTheme();
-  const inputRef = useRef(null);
 
   const handleCalendarOnKeyDown = (event) => {
     switch (event.keyCode) {
@@ -247,7 +246,6 @@ const DxcNewDate = ({
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <StyledDPicker>
             <DxcNewInputText
-              ref={inputRef}
               label={label}
               name={name}
               value={value ?? innerValue}
