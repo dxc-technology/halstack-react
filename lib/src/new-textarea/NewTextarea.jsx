@@ -190,12 +190,13 @@ const Textarea = styled.textarea`
       return props.backgroundType === "dark"
         ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
         : `background-color: ${props.theme.disabledContainerFillColor};`;
+    else return `background-color: transparent;`;
   }}
 
   margin: calc(1rem * 0.25) 0;
   padding: calc(1rem * 0.5) calc(1rem * 1);
   box-shadow: 0 0 0 2px transparent;
-  border-radius: 4px;
+  border-radius: calc(1rem * 0.25);
   border: 1px solid
     ${(props) => {
       if (props.disabled)
@@ -278,12 +279,12 @@ const Textarea = styled.textarea`
 `;
 
 const Error = styled.span`
-  min-height: 1.5em;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;
+  min-height: 1.5em;
   line-height: 1.5em;
 `;
 
