@@ -105,12 +105,10 @@ const DxcNewInputText = React.forwardRef(
       }
     };
 
+    const hasInputSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
+    
     const openSuggestions = () => {
       hasInputSuggestions() && changeIsOpen(true);
-    };
-
-    const hasInputSuggestions = () => {
-      return typeof suggestions === "function" || (suggestions && suggestions.length > 0);
     };
 
     const closeSuggestions = () => {
@@ -224,9 +222,9 @@ const DxcNewInputText = React.forwardRef(
     };
 
     useLayoutEffect(() => {
-      isScrollable && suggestionsRef.current?.scrollTo({ top: visualFocusedSuggIndex * 39 });
+      isScrollable && suggestionsRef?.current?.scrollTo({ top: visualFocusedSuggIndex * 39 });
       return changeIsScrollable(false);
-    }, [isScrollable, suggestionsRef, visualFocusedSuggIndex]);
+    }, [isScrollable, visualFocusedSuggIndex]);
 
     useEffect(() => {
       if (typeof suggestions === "function") {
@@ -705,6 +703,7 @@ const Input = styled.input`
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
+  line-height: 1.5em;
   ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
@@ -803,23 +802,6 @@ const Action = styled.button`
   }
 `;
 
-const ErrorIcon = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: 18px;
-  width: 18px;
-  margin-left: calc(1rem * 0.25);
-  pointer-events: none;
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
-
-  svg {
-    line-height: 18px;
-    font-size: 1.25rem;
-  }
-`;
-
 const Prefix = styled.span`
   height: calc(1rem * 1.5);
   line-height: calc(1rem * 1.5);
@@ -858,6 +840,23 @@ const Suffix = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 1rem;
   pointer-events: none;
+`;
+
+const ErrorIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 18px;
+  width: 18px;
+  margin-left: calc(1rem * 0.25);
+  pointer-events: none;
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
+
+  svg {
+    line-height: 18px;
+    font-size: 1.25rem;
+  }
 `;
 
 const Error = styled.span`

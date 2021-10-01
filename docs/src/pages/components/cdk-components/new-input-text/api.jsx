@@ -174,11 +174,6 @@ const newInputPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>ref: object</td>
-        <td></td>
-        <td>Reference to the input.</td>
-      </tr>
-      <tr>
         <td>size: string | object</td>
         <td>
           <code>'medium'</code>
@@ -193,6 +188,11 @@ const newInputPropsTable = () => {
           <code>0</code>
         </td>
         <td>Value of the tabindex attribute.</td>
+      </tr>
+      <tr>
+        <td>ref: object</td>
+        <td></td>
+        <td>Reference to the input.</td>
       </tr>
     </DxcTable>
   );

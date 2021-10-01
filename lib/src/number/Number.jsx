@@ -5,53 +5,56 @@ import DxcNewInputText from "../new-input-text/NewInputText";
 import NumberContext from "./NumberContext";
 import { spaces } from "../common/variables.js";
 
-const DxcNumber = ({
-  label = "",
-  name = "",
-  value,
-  helperText = "",
-  placeholder = "",
-  disabled = false,
-  optional = false,
-  prefix = "",
-  suffix = "",
-  min,
-  max,
-  step,
-  onChange,
-  onBlur,
-  error = "",
-  margin,
-  size = "medium",
-  tabIndex = 0,
-}) => {
-  const inputRef = useRef(null);
-
-  return (
-    <NumberContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
-      <NumberContainer>
-        <DxcNewInputText
-          ref={inputRef}
-          label={label}
-          name={name}
-          value={value}
-          helperText={helperText}
-          placeholder={placeholder}
-          disabled={disabled}
-          optional={optional}
-          prefix={prefix}
-          suffix={suffix}
-          error={error}
-          onChange={onChange}
-          onBlur={onBlur}
-          margin={margin}
-          size={size}
-          tabIndex={tabIndex}
-        />
-      </NumberContainer>
-    </NumberContext.Provider>
-  );
-};
+const DxcNumber = React.forwardRef(
+  (
+    {
+      label = "",
+      name = "",
+      value,
+      helperText = "",
+      placeholder = "",
+      disabled = false,
+      optional = false,
+      prefix = "",
+      suffix = "",
+      min,
+      max,
+      step,
+      onChange,
+      onBlur,
+      error = "",
+      margin,
+      size = "medium",
+      tabIndex = 0,
+    },
+    ref
+  ) => {
+    return (
+      <NumberContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
+        <NumberContainer>
+          <DxcNewInputText
+            label={label}
+            name={name}
+            value={value}
+            helperText={helperText}
+            placeholder={placeholder}
+            disabled={disabled}
+            optional={optional}
+            prefix={prefix}
+            suffix={suffix}
+            error={error}
+            onChange={onChange}
+            onBlur={onBlur}
+            margin={margin}
+            size={size}
+            tabIndex={tabIndex}
+            ref={ref}
+          />
+        </NumberContainer>
+      </NumberContext.Provider>
+    );
+  }
+);
 
 const sizes = {
   small: "240px",

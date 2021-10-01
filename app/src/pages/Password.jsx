@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { DxcPassword } from "@dxc-technology/halstack-react";
+import React, { useState, useRef } from "react";
+import { DxcPassword, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
+  const ref = useRef(null);
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -174,6 +175,23 @@ function App() {
           length={{ min: 5, max: 10 }}
           error={errorMessage}
         />
+      </p>
+      <p>
+        <DxcPassword
+          label="With ref"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin={{ left: "medium", right: "medium" }}
+          ref={ref}
+        />
+        <DxcButton
+          onClick={() => {
+            const password = ref.current.getElementsByTagName("button")[0];
+            password.focus();
+          }}
+          label="Focus!"
+          margin={{ left: "medium" }}
+        ></DxcButton>
       </p>
     </>
   );

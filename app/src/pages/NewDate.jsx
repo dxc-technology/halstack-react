@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   DxcNewDate,
+  DxcButton,
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 
 function App() {
+  const ref = useRef(null);
   const [inputValue, setInputValue] = useState("01-01-1995");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -126,6 +128,23 @@ function App() {
           error="An error was catched"
           margin={{ left: "medium", right: "medium" }}
         />
+      </p>
+      <p>
+        <DxcNewDate
+          label="With ref"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin={{ left: "medium", right: "medium" }}
+          ref={ref}
+        />
+        <DxcButton
+          onClick={() => {
+            const date = ref.current.getElementsByTagName("button")[0];
+            date.focus();
+          }}
+          label="Focus!"
+          margin={{ left: "medium" }}
+        ></DxcButton>
       </p>
       <BackgroundColorProvider color="#000000">
         <DarkMode>
