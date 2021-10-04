@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { DxcNumber } from "@dxc-technology/halstack-react";
+import React, { useRef, useState } from "react";
+import { DxcNumber, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
+  const ref = useRef(null);
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -236,6 +237,23 @@ function App() {
           step={5}
           error={errorMessage}
         />
+      </p>
+      <p>
+        <DxcNumber
+          label="With ref"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin={{ left: "medium", right: "medium" }}
+          ref={ref}
+        />
+        <DxcButton
+          onClick={() => {
+            const number = ref.current.getElementsByTagName("button")[1];
+            number.focus();
+          }}
+          label="Focus!"
+          margin={{ left: "medium" }}
+        ></DxcButton>
       </p>
     </>
   );

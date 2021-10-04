@@ -24,6 +24,11 @@ const passwordPropsTable = () => {
         <td>Text to be placed above the password.</td>
       </tr>
       <tr>
+        <td>name: string</td>
+        <td></td>
+        <td>Name attribute of the password element.</td>
+      </tr>
+      <tr>
         <td>helperText: string</td>
         <td></td>
         <td>Helper text to be placed above the password.</td>
@@ -111,6 +116,18 @@ const passwordPropsTable = () => {
         <td>
           Size of the component ('small' | 'medium' | 'large' | 'fillParent').
         </td>
+      </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>
+          <code>0</code>
+        </td>
+        <td>Value of the tabindex attribute.</td>
+      </tr>
+      <tr>
+        <td>ref: object</td>
+        <td></td>
+        <td>Reference to the password.</td>
       </tr>
     </DxcTable>
   );

@@ -37,6 +37,7 @@ import NewInputText from "./pages/NewInputText";
 import Password from "./pages/Password";
 import NewDate from "./pages/NewDate";
 import Number from "./pages/Number";
+import NewTextarea from "./pages/NewTextarea";
 
 export default [
   {
@@ -218,6 +219,11 @@ export default [
     path: "textarea",
     name: "Textarea",
     component: Textarea,
+  },
+  {
+    path: "newTextarea",
+    name: "New textarea",
+    component: NewTextarea,
   },
   {
     path: "toggle-group",

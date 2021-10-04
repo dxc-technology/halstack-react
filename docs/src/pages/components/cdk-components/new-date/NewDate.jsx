@@ -4,7 +4,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
-import NewInputPropsTable from "./api.jsx";
+import NewDatePropsTable from "./api.jsx";
 import uncontrolled from "./examples/uncontrolledDate";
 import controlled from "./examples/controlledDate";
 import formatted from "./examples/formattedDate";
@@ -16,7 +16,7 @@ import sized from "./examples/sizedDate";
 import helperText from "./examples/helperTextDate";
 
 
-function NewInput() {
+function NewDate() {
   return (
     <ComponentDoc>
       <ComponentHeader title="New Date" status="ready"></ComponentHeader>
@@ -33,7 +33,7 @@ function NewInput() {
                   text="Props"
                   margin={{ bottom: "small" }}
                 />
-                <NewInputPropsTable />
+                <NewDatePropsTable />
               </Section>
             ),
           },
@@ -64,4 +64,4 @@ function NewInput() {
   );
 }
 
-export default NewInput;
+export default NewDate;

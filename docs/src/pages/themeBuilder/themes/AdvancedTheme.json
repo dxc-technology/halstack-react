@@ -208,7 +208,7 @@
     "hoverBorderColor": "#7BB0D6",
     "hoverBorderColorOnDark": "#B1B1B1",
     "disabledBorderColor": "#b1cee6",
-    "disabledBorderColorOnDark": "#b1cee6",
+    "disabledBorderColorOnDark": "#4d4d4d",
     "checkColor": "#ffffff",
     "checkColorOnDark": "#0067B3",
     "disabledCheckColor": "#ffffff",

@@ -1,4 +1,5 @@
-import { DxcNewDate } from "@dxc-technology/halstack-react";
+import { DxcNewTextarea } from "@dxc-technology/halstack-react";
+import { useState } from "react";
 
 const code = `() => {
   const onChange = (value) => {
@@ -6,7 +7,7 @@ const code = `() => {
   };
 
   return (
-    <DxcNewDate
+    <DxcNewTextarea
       label="Uncontrolled"
       onChange={onChange}
       margin="medium"
@@ -15,7 +16,8 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewDate,
+  DxcNewTextarea,
+  useState,
 };
 
 export default { code, scope };
