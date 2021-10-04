@@ -215,7 +215,7 @@ const DxcSelect = ({
     }
   };
 
-  const ThemedOption = ({ option, value }) => {
+  const ThemedOption = ({ option }) => {
     const backgroundType = useContext(BackgroundColorContext);
 
     return (
@@ -270,7 +270,7 @@ const DxcSelect = ({
               return (
                 <MenuItem id={option.value} value={option.value} disableRipple key={option.value}>
                   <BackgroundColorProvider color={colorsTheme.select.optionBackgroundColor}>
-                    <ThemedOption option={option} value={value} />
+                    <ThemedOption option={option} />
                   </BackgroundColorProvider>
                 </MenuItem>
               );
