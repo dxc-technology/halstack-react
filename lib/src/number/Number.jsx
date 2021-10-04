@@ -5,53 +5,60 @@ import DxcNewInputText from "../new-input-text/NewInputText";
 import NumberContext from "./NumberContext";
 import { spaces } from "../common/variables.js";
 
-const DxcNumber = ({
-  label = "",
-  value,
-  helperText = "",
-  placeholder = "",
-  disabled = false,
-  optional = false,
-  prefix = "",
-  suffix = "",
-  min,
-  max,
-  step,
-  onChange,
-  onBlur,
-  error = "",
-  margin,
-  size = "medium",
-}) => {
-  const inputRef = useRef(null);
-
-  return (
-    <NumberContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
-      <NumberContainer>
-        <DxcNewInputText
-          ref={inputRef}
-          label={label}
-          value={value}
-          helperText={helperText}
-          placeholder={placeholder}
-          disabled={disabled}
-          optional={optional}
-          prefix={prefix}
-          suffix={suffix}
-          error={error}
-          onChange={onChange}
-          onBlur={onBlur}
-          margin={margin}
-          size={size}
-        />
-      </NumberContainer>
-    </NumberContext.Provider>
-  );
-};
+const DxcNumber = React.forwardRef(
+  (
+    {
+      label = "",
+      name = "",
+      value,
+      helperText = "",
+      placeholder = "",
+      disabled = false,
+      optional = false,
+      prefix = "",
+      suffix = "",
+      min,
+      max,
+      step,
+      onChange,
+      onBlur,
+      error = "",
+      margin,
+      size = "medium",
+      tabIndex = 0,
+    },
+    ref
+  ) => {
+    return (
+      <NumberContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
+        <NumberContainer>
+          <DxcNewInputText
+            label={label}
+            name={name}
+            value={value}
+            helperText={helperText}
+            placeholder={placeholder}
+            disabled={disabled}
+            optional={optional}
+            prefix={prefix}
+            suffix={suffix}
+            error={error}
+            onChange={onChange}
+            onBlur={onBlur}
+            margin={margin}
+            size={size}
+            tabIndex={tabIndex}
+            ref={ref}
+          />
+        </NumberContainer>
+      </NumberContext.Provider>
+    );
+  }
+);
 
 const sizes = {
-  small: "60px",
-  medium: "240px",
+  small: "240px",
+  medium: "360px",
   large: "480px",
   fillParent: "100%",
 };
@@ -72,6 +79,7 @@ const NumberContainer = styled.div`
 
 DxcNumber.propTypes = {
   label: PropTypes.string,
+  name: PropTypes.string,
   value: PropTypes.string,
   helperText: PropTypes.string,
   placeholder: PropTypes.string,
@@ -95,6 +103,7 @@ DxcNumber.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   size: PropTypes.oneOf([...Object.keys(sizes)]),
+  tabIndex: PropTypes.number,
 };
 
 export default DxcNumber;

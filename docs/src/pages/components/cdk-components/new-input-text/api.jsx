@@ -22,7 +22,10 @@ const newInputPropsTable = () => {
       <tr>
         <td>label: string</td>
         <td></td>
-        <td>Text to be placed above the input.</td>
+        <td>
+          Text to be placed above the input. This label will be used as the
+          aria-label attribute of the list of suggestions of the autosuggest.
+        </td>
       </tr>
       <tr>
         <td>name: string</td>
@@ -185,6 +188,11 @@ const newInputPropsTable = () => {
           <code>0</code>
         </td>
         <td>Value of the tabindex attribute.</td>
+      </tr>
+      <tr>
+        <td>ref: object</td>
+        <td></td>
+        <td>Reference to the input.</td>
       </tr>
     </DxcTable>
   );

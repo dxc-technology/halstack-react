@@ -15,7 +15,7 @@ const newInputPropsTable = () => {
           <code></code>
         </td>
         <td>
-          Value of the input. If undefined, the component will be uncontrolled
+          Value of the input element. If undefined, the component will be uncontrolled
           and the value will be managed internally by the component.
         </td>
       </tr>
@@ -75,8 +75,8 @@ const newInputPropsTable = () => {
           object including the current string value and the date value will be
           passed to this function. An example of this object is: {"{ "}
           <code>value: value, date: date </code>
-          {" }"}. If the string value is not a valid date,{" "}
-          <code>date</code> will be null.
+          {" }"}. If the string value is not a valid date, <code>date</code>{" "}
+          will be null.
         </td>
       </tr>
       <tr>
@@ -125,6 +125,11 @@ const newInputPropsTable = () => {
           <code>0</code>
         </td>
         <td>Value of the tabindex attribute.</td>
+      </tr>
+      <tr>
+        <td>ref: object</td>
+        <td></td>
+        <td>Reference to the date.</td>
       </tr>
     </DxcTable>
   );

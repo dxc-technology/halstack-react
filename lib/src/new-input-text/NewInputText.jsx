@@ -105,6 +105,12 @@ const DxcNewInputText = React.forwardRef(
       }
     };
 
+    const hasInputSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
+    
+    const openSuggestions = () => {
+      hasInputSuggestions() && changeIsOpen(true);
+    };
+
     const closeSuggestions = () => {
       changeIsOpen(false);
       changeVisualFocusedSuggIndex(-1);
@@ -115,12 +121,12 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const handleIOnChange = (event) => {
-      suggestions && changeIsOpen(true);
+      openSuggestions();
       changeValue(event.target.value);
     };
 
     const handleIOnClick = () => {
-      suggestions && changeIsOpen(true);
+      openSuggestions();
     };
 
     const handleIOnBlur = (event) => {
@@ -145,22 +151,23 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const handleIOnFocus = () => {
-      suggestions && changeIsOpen(true);
+      openSuggestions();
     };
 
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {
         case 40: // Arrow Down
           if (numberContext) {
-            incrementNumber();
+            decrementNumber();
+            event.preventDefault();
           } else {
             event.preventDefault();
+            openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
                 if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
                 else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
               });
-              changeIsOpen(true);
               changeIsScrollable(true);
               changeIsActiveSuggestion(false);
             }
@@ -169,15 +176,16 @@ const DxcNewInputText = React.forwardRef(
         case 38: // Arrow Up
           if (numberContext) {
             incrementNumber();
+            event.preventDefault();
           } else {
             event.preventDefault();
+            openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
                 if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
                   return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
                 else return visualFocusedSuggIndex - 1;
               });
-              changeIsOpen(true);
               changeIsScrollable(true);
               changeIsActiveSuggestion(false);
             }
@@ -185,22 +193,19 @@ const DxcNewInputText = React.forwardRef(
           break;
         case 27: // Esc
           event.preventDefault();
-          if (suggestions && suggestions.length > 0) {
+          if (hasInputSuggestions()) {
             changeValue("");
-            if (isOpen) {
-              changeIsError(false);
-              closeSuggestions();
-            }
+            isOpen && closeSuggestions();
           }
           break;
         case 13: // Enter
-          if (!isAutosuggestError && !isSearching) {
+          if (hasInputSuggestions() && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 &&
               visualFocusedSuggIndex >= 0 &&
               visualFocusedSuggIndex < filteredSuggestions.length;
             validFocusedSuggestion && changeValue(filteredSuggestions[visualFocusedSuggIndex]);
-            closeSuggestions();
+            isOpen && closeSuggestions();
           }
           break;
       }
@@ -217,9 +222,9 @@ const DxcNewInputText = React.forwardRef(
     };
 
     useLayoutEffect(() => {
-      isScrollable && suggestionsRef.current?.scrollTo({ top: visualFocusedSuggIndex * 39 });
+      isScrollable && suggestionsRef?.current?.scrollTo({ top: visualFocusedSuggIndex * 39 });
       return changeIsScrollable(false);
-    }, [isScrollable, suggestionsRef, visualFocusedSuggIndex]);
+    }, [isScrollable, visualFocusedSuggIndex]);
 
     useEffect(() => {
       if (typeof suggestions === "function") {
@@ -258,14 +263,13 @@ const DxcNewInputText = React.forwardRef(
           numberContext.maxNumber,
           numberContext.stepNumber
         );
+
+      inputRef?.current?.addEventListener("wheel", (event) => event.preventDefault());
     }, [value, innerValue, suggestions]);
 
     const defaultClearAction = {
       onClick: () => {
         changeValue("");
-        changeValidationError("");
-        changeIsError(false);
-        changeIsAutosuggestError(false);
         inputRef.current.focus();
         suggestions && closeSuggestions();
       },
@@ -341,7 +345,7 @@ const DxcNewInputText = React.forwardRef(
         inputRef.current.focus();
       },
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
           <path d="M0 0h24v24H0z" fill="none" />
           <path d="M19 13H5v-2h14v2z" />
         </svg>
@@ -354,11 +358,15 @@ const DxcNewInputText = React.forwardRef(
         inputRef.current.focus();
       },
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
           <path d="M0 0h24v24H0z" fill="none" />
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
         </svg>
       ),
+    };
+
+    const isTextInputType = () => {
+      return !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
     };
 
     const HighlightedSuggestion = ({ suggestion, index }) => {
@@ -368,6 +376,7 @@ const DxcNewInputText = React.forwardRef(
 
       return (
         <Suggestion
+          id={`suggestion-${index}`}
           onMouseDown={() => {
             changeIsActiveSuggestion(true);
           }}
@@ -386,6 +395,8 @@ const DxcNewInputText = React.forwardRef(
           }}
           visualFocused={visualFocusedSuggIndex === index}
           active={visualFocusedSuggIndex === index && isActiveSuggestion}
+          role="option"
+          aria-selected={visualFocusedSuggIndex === index && "true"}
         >
           {typeof suggestions === "function" ? (
             suggestion
@@ -409,7 +420,7 @@ const DxcNewInputText = React.forwardRef(
             {helperText}
           </HelperText>
           <InputContainer
-            error={error === undefined ? validationError : error}
+            error={error || validationError}
             disabled={disabled}
             backgroundType={backgroundType}
             onClick={handleInputContainerOnClick}
@@ -434,10 +445,28 @@ const DxcNewInputText = React.forwardRef(
               backgroundType={backgroundType}
               pattern={pattern}
               tabIndex={tabIndex}
+              role={isTextInputType() && hasInputSuggestions() ? "combobox" : "textbox"}
+              aria-autocomplete={isTextInputType() && hasInputSuggestions() ? "list" : undefined}
+              aria-controls={isTextInputType() && hasInputSuggestions() ? inputId : undefined}
+              aria-expanded={isTextInputType() && hasInputSuggestions() ? (isOpen ? "true" : "false") : undefined}
+              aria-activedescendant={
+                isTextInputType() && hasInputSuggestions() && isOpen && visualFocusedSuggIndex !== -1
+                  ? `suggestion-${visualFocusedSuggIndex}`
+                  : undefined
+              }
             />
-            {(error || isError) && <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>}
+            {(error || isError) && (
+              <ErrorIcon backgroundType={backgroundType} aria-label="Error">
+                {errorIcon}
+              </ErrorIcon>
+            )}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
-              <Action onClick={defaultClearAction.onClick} backgroundType={backgroundType} tabIndex={tabIndex}>
+              <Action
+                onClick={defaultClearAction.onClick}
+                backgroundType={backgroundType}
+                tabIndex={tabIndex}
+                aria-label="Clear"
+              >
                 {defaultClearAction.icon}
               </Action>
             )}
@@ -449,6 +478,7 @@ const DxcNewInputText = React.forwardRef(
                   onClick={decrementAction.onClick}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
+                  aria-label="Decrement"
                 >
                   {decrementAction.icon}
                 </Action>
@@ -458,6 +488,7 @@ const DxcNewInputText = React.forwardRef(
                   onClick={incrementAction.onClick}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
+                  aria-label="Increment"
                 >
                   {incrementAction.icon}
                 </Action>
@@ -480,7 +511,7 @@ const DxcNewInputText = React.forwardRef(
                 {suffix}
               </Suffix>
             )}
-            {((suggestions && suggestions.length > 0) || typeof suggestions === "function") && isOpen && (
+            {isOpen && (
               <Suggestions
                 id={autosuggestId}
                 isError={isAutosuggestError}
@@ -491,6 +522,8 @@ const DxcNewInputText = React.forwardRef(
                   changeVisualFocusedSuggIndex(-1);
                 }}
                 ref={suggestionsRef}
+                role="listbox"
+                aria-label={label}
               >
                 {!isSearching && !isAutosuggestError && filteredSuggestions.length === 0 && (
                   <SuggestionsSystemMessage>No results found</SuggestionsSystemMessage>
@@ -519,8 +552,8 @@ const DxcNewInputText = React.forwardRef(
 );
 
 const sizes = {
-  small: "60px",
-  medium: "240px",
+  small: "240px",
+  medium: "360px",
   large: "480px",
   fillParent: "100%",
 };
@@ -589,6 +622,8 @@ const InputContainer = styled.div`
   position: relative;
   align-items: center;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
+  margin: calc(1rem * 0.25) 0;
+  padding: 0 calc(1rem * 0.5);
 
   ${(props) => {
     if (props.disabled)
@@ -596,28 +631,26 @@ const InputContainer = styled.div`
         ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
         : `background-color: ${props.theme.disabledContainerFillColor};`;
   }}
-  ${(props) =>
-    props.error &&
-    `box-shadow: inset 0 0 0 1px ${
-      props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
-    };`}
 
+  box-shadow: 0 0 0 2px transparent;
+  border-radius: 4px;
   border: 1px solid
     ${(props) => {
-    if (props.error)
-      return props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor;
-    else
-      return props.disabled
-        ? props.backgroundType === "dark"
+      if (props.disabled)
+        return props.backgroundType === "dark"
           ? props.theme.disabledBorderColorOnDark
-          : props.theme.disabledBorderColor
-        : props.backgroundType === "dark"
-        ? props.theme.enabledBorderColorOnDark
-        : props.theme.enabledBorderColor;
-  }};
-  border-radius: 4px;
-  margin: calc(1rem * 0.25) 0;
-  padding: 0 calc(1rem * 0.5);
+          : props.theme.disabledBorderColor;
+      else
+        return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
+    }};
+  ${(props) =>
+    props.error &&
+    !props.disabled &&
+    `border-color: transparent;
+     box-shadow: 0 0 0 2px ${
+       props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
+     };
+  `}
 
   ${(props) => props.disabled && "cursor: not-allowed;"};
   ${(props) =>
@@ -626,28 +659,23 @@ const InputContainer = styled.div`
       &:hover {
         border-color: ${
           props.error
-            ? props.backgroundType === "dark"
-              ? props.theme.hoverErrorBorderColorOnDark
-              : props.theme.hoverErrorBorderColor
+            ? "transparent"
             : props.backgroundType === "dark"
             ? props.theme.hoverBorderColorOnDark
             : props.theme.hoverBorderColor
         };
         ${
-          props.error
-            ? `box-shadow: inset 0 0 0 1px ${
-                props.backgroundType === "dark"
-                  ? props.theme.hoverErrorBorderColorOnDark
-                  : props.theme.hoverErrorBorderColor
-              };`
-            : `box-shadow: none;`
+          props.error &&
+          `box-shadow: 0 0 0 2px ${
+            props.backgroundType === "dark"
+              ? props.theme.hoverErrorBorderColorOnDark
+              : props.theme.hoverErrorBorderColor
+          };`
         }
       }
       &:focus-within {
-        border-color: ${
-          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-        };
-        box-shadow: inset 0 0 0 1px ${
+        border-color: transparent;
+        box-shadow: 0 0 0 2px ${
           props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
         };
       }
@@ -675,6 +703,7 @@ const Input = styled.input`
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
+  line-height: 1.5em;
   ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
@@ -700,6 +729,7 @@ const Action = styled.button`
   border: 1px solid transparent;
   border-radius: 4px;
   padding: 3px;
+  margin-left: calc(1rem * 0.25);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer`)};
 
   background-color: ${(props) =>
@@ -735,12 +765,7 @@ const Action = styled.button`
       }
       &:focus {
         outline: none;
-        border: 1px solid ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        box-shadow: inset 0 0 0 1px ${
+        box-shadow: 0 0 0 2px ${
           props.backgroundType === "dark"
             ? props.theme.focusActionBorderColorOnDark
             : props.theme.focusActionBorderColor
@@ -751,12 +776,7 @@ const Action = styled.button`
       }
       &:focus-visible {
         outline: none;
-        border: 1px solid ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        box-shadow: inset 0 0 0 1px ${
+        box-shadow: 0 0 0 2px ${
           props.backgroundType === "dark"
             ? props.theme.focusActionBorderColorOnDark
             : props.theme.focusActionBorderColor
@@ -766,17 +786,6 @@ const Action = styled.button`
         };
       }
       &:active {
-        outline: none;
-        border: 1px solid ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        box-shadow: inset 0 0 0 1px ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
         background-color: ${
           props.backgroundType === "dark"
             ? props.theme.activeActionBackgroundColorOnDark
@@ -790,23 +799,6 @@ const Action = styled.button`
 
   svg {
     line-height: 18px;
-  }
-`;
-
-const ErrorIcon = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: 18px;
-  width: 18px;
-  margin-right: 4px;
-  pointer-events: none;
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
-
-  svg {
-    line-height: 18px;
-    font-size: 1.25rem;
   }
 `;
 
@@ -833,8 +825,7 @@ const Prefix = styled.span`
 const Suffix = styled.span`
   height: calc(1rem * 1.5);
   line-height: calc(1rem * 1.5);
-  margin-right: calc(1rem * 0.25);
-  margin-left: calc(1rem * 0.25);
+  margin: 0 calc(1rem * 0.25);
   padding: 0 0 0 calc(1rem * 0.5);
   ${(props) => {
     const color = props.disabled
@@ -849,6 +840,23 @@ const Suffix = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 1rem;
   pointer-events: none;
+`;
+
+const ErrorIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 18px;
+  width: 18px;
+  margin-left: calc(1rem * 0.25);
+  pointer-events: none;
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
+
+  svg {
+    line-height: 18px;
+    font-size: 1.25rem;
+  }
 `;
 
 const Error = styled.span`
@@ -874,8 +882,8 @@ const Suggestions = styled.ul`
   width: 100%;
   box-sizing: border-box;
   cursor: default;
-  border: 1px solid ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledBorderColor)};
   border-radius: 4px;
+  border: 1px solid ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledBorderColor)};
   color: ${(props) => props.theme.listOptionFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.listOptionFontSize};
