@@ -130,17 +130,17 @@ function CustomThemes() {
 
   const colors = {
       accordion: {
-        accentColor: "#6f2c91", // accordion's accent color theme input
+        accentColor: "#5f249f", // accordion's accent color theme input
         fontColor: "#666666" // accordion's font color theme input
       },
       button: {
-        baseColor: "#6f2c91", // button's base color theme input
+        baseColor: "#5f249f", // button's base color theme input
         hoverBaseColor: "#000000", // button's hover base color theme input
         primaryFontColor: "#ffffff", // button's primary font color theme input
         primaryHoverFontColor: "#ffffff", // button's primary hover font color theme input
         secondaryFontColor: "#000000", // button's secondary font color theme input
         secondaryHoverFontColor: "#000000", // button's secondary hover font color theme input
-        textFontColor: "#6f2c91", // button's text font color theme input
+        textFontColor: "#5f249f", // button's text font color theme input
         textHoverFontColor: "#ffffff", // button's text hover font color theme input
       },
       checkbox: {
@@ -153,7 +153,7 @@ function CustomThemes() {
         fontColor: "#000000", // chip's font color theme input
       },
       date: {
-        baseColor: "#6f2c91", // date's base color theme input
+        baseColor: "#5f249f", // date's base color theme input
         accentColor: "#ffffff", // date's accent color theme input
       },
       dropdown: {
@@ -201,21 +201,21 @@ function CustomThemes() {
         baseColor: "#0067b3", // slider's base color theme input
       },
       spinner: {
-        accentColor: "#6f2c91", // spinner's accent color theme input
+        accentColor: "#5f249f", // spinner's accent color theme input
         baseColor: "#ffffff", // spinner's base color theme input
       },
       switch: {
-        checkedBaseColor: "#6f2c91", // switch's checked base color theme input
+        checkedBaseColor: "#5f249f", // switch's checked base color theme input
       },
       table: {
-        baseColor: "#6f2c91", // table's base color theme input
+        baseColor: "#5f249f", // table's base color theme input
         fontColor: "#ffffff", // table's font color theme input
       },
       tabs: {
-        baseColor: "#6f2c91", // tabs' base color theme input
+        baseColor: "#5f249f", // tabs' base color theme input
       },
       toggleGroup: {
-        selectedBaseColor: "#6f2c91", // toggle group's selected base color theme input
+        selectedBaseColor: "#5f249f", // toggle group's selected base color theme input
         selectedHoverBaseColor: "#000000", // toggle group's selected hover base color theme input
         selectedFontColor: "#ffffff", // toggle group's selected font color theme input
         selectedHoverFontColor: "#ffffff", // toggle group's selected hover font color theme input
@@ -225,7 +225,7 @@ function CustomThemes() {
         unselectedHoverFontColor: "#000000", // toggle group's unselected hover font color theme input
       },
       wizard: {
-        baseColor: "#6f2c91", // wizard's base color theme input
+        baseColor: "#5f249f", // wizard's base color theme input
         fontColor: "#ffffff", // wizard's font color theme input
       },
     

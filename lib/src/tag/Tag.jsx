@@ -13,7 +13,7 @@ const DxcTag = ({
   margin,
   linkHref,
   onClick,
-  iconBgColor = "#6f2c91",
+  iconBgColor = "#5f249f",
   labelPosition = "after",
   newWindow = false,
   size = "fitContent",
@@ -182,7 +182,7 @@ DxcTag.defaultProps = {
   margin: null,
   linkHref: null,
   onClick: null,
-  iconBgColor: "#6f2c91",
+  iconBgColor: "#5f249f",
   labelPosition: "after",
   newWindow: false,
 };

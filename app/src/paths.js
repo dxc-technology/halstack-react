@@ -33,6 +33,10 @@ import ApplicationLayout from "./pages/ApplicationLayout";
 import ToggleGroup from "./pages/ToggleGroup";
 import AccordionGroup from "./pages/AccordionGroup";
 import Badge from "./pages/Badge";
+import NewInputText from "./pages/NewInputText";
+import Password from "./pages/Password";
+import NewDate from "./pages/NewDate";
+import Number from "./pages/Number";
 
 export default [
   {
@@ -86,6 +90,11 @@ export default [
     component: Date,
   },
   {
+    path: "newDate",
+    name: "New Date",
+    component: NewDate,
+  },
+  {
     path: "dialog",
     name: "Dialog",
     component: Dialog,
@@ -116,6 +125,16 @@ export default [
     component: InputText,
   },
   {
+    path: "newInputText",
+    name: "New input text",
+    component: NewInputText,
+  },
+  {
+    path: "number",
+    name: "Number",
+    component: Number,
+  },
+  {
     path: "link",
     name: "Link",
     component: Link,
@@ -124,6 +143,11 @@ export default [
     path: "paginator",
     name: "Paginator",
     component: Paginator,
+  },
+  {
+    path: "password",
+    name: "Password",
+    component: Password,
   },
   {
     path: "progressBar",
