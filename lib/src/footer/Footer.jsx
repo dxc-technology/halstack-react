@@ -137,8 +137,6 @@ const FooterFooter = styled.div`
 
 const BottomLinks = styled.div`
   padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
-  border-top: ${(props) =>
-    `${props.theme.bottomLinksDividerThickness} ${props.theme.bottomLinksDividerStyle} ${props.theme.bottomLinksDividerColor}`};
   display: inline-flex;
   flex-wrap: wrap;
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "60%")};
@@ -176,7 +174,7 @@ const Copyright = styled.div`
 `;
 
 const LogoIcon = styled.img`
-  height: ${(props) => props.theme.logoHeight};
+  max-height: ${(props) => props.theme.logoHeight};
   width: ${(props) => props.theme.logoWidth};
 `;
 
