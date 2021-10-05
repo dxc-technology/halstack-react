@@ -1,29 +1,36 @@
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
-import { useState } from "react";
+import { DxcNewInputText, DxcButton } from "@dxc-technology/halstack-react";
+import { useState, useRef } from "react";
 
 const code = `() => {
-  const onChange = (value) => {
-    console.log(value);
-  };
+  const inputRef = useRef();
 
-  const onBlur = ({ value }) => {
-    console.log(value);
+  const handleSubmit = () => {
+    const input = inputRef.current.getElementsByTagName("input")[0];
+    console.log(input.value);
   };
 
   return (
-    <DxcNewInputText
-      label="Uncontrolled"
-      onChange={onChange}
-      onBlur={onBlur}
-      margin="medium"
-      clearable
-    />
+    <>
+      <DxcNewInputText
+        label="Uncontrolled"
+        margin="medium"
+        ref={inputRef}
+        clearable
+      />
+      <DxcButton
+        onClick={handleSubmit}
+        label="Submit"
+        margin={{ left: "medium", right: "medium", bottom: "medium" }}
+      ></DxcButton>
+    </>
   );
 }`;
 
 const scope = {
   DxcNewInputText,
+  DxcButton,
   useState,
+  useRef,
 };
 
 export default { code, scope };
