@@ -31,13 +31,15 @@ const countries = [
 ];
 
 const InputText = () => {
+  const [value, changeValue] = useState("Sample text");  
+  const onChange = (newValue) => {
+    changeValue(newValue);
+  };
   const [asynchronousAutocompleteValue, changeAsynchronousAutocompleteValue] =
     useState("");
-
   const onChangeAsynchronousAutocomplete = (newValue) => {
     changeAsynchronousAutocompleteValue(newValue);
   };
-
   function callbackFunc(newValue) {
     const result = new Promise((resolve) =>
       setTimeout(() => {
@@ -64,6 +66,8 @@ const InputText = () => {
         <DxcInput
           label="Input label"
           assistiveText={"assistive text"}
+          value={value}
+          onChange={onChange}
           margin={{ top: "xxsmall", bottom: "xsmall", right: "medium" }}
         />
         <DxcInput
@@ -114,7 +118,6 @@ const InputText = () => {
           margin={{ top: "xxsmall", bottom: "medium" }}
         />
       </Mode>
-
       <DxcHeading
         text="Dark Mode"
         level={5}
@@ -125,6 +128,8 @@ const InputText = () => {
           <DxcInput
             label="Input label"
             assistiveText={"assistive text"}
+            value={value}
+            onChange={onChange}
             margin={{ right: "small", bottom: "small" }}
           />
           <DxcInput

@@ -20,9 +20,9 @@ const alertPropsTable = () => {
           <code>[]</code>
         </td>
         <td>
-          An array of objects representing the links that will be rendered at
-          the bottom part of the footer. Each object has the following
-          properties:
+          An array of objects representing the links that will be rendered as
+          icons at the top-right side of the footer. Each object has the
+          following properties:
           <ul>
             <li>
               <b>logo</b>: Element used as the icon for the link.
@@ -43,8 +43,8 @@ const alertPropsTable = () => {
           <code>[]</code>
         </td>
         <td>
-          An array of objects representing the incon links that will be rendered
-          at the top-right side of the footer. Each object has the following
+          An array of objects representing the links that will be rendered at
+          the bottom part of the footer. Each object has the following
           properties:
           <ul>
             <li>
@@ -91,7 +91,8 @@ const alertPropsTable = () => {
         <td>tabIndex: number</td>
         <td>0</td>
         <td>
-          Value of the tabindex for all interactuable elements, except those inside the custom area.
+          Value of the tabindex for all interactuable elements, except those
+          inside the custom area.
         </td>
       </tr>
     </DxcTable>

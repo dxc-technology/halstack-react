@@ -25,14 +25,52 @@ const Tabs = () => {
 
   return (
     <TabsContainer>
-      <Mode text="Default">
+      <div>
+        <Title>Default with content</Title>
         <DxcTabs
           activeTabIndex={activeTab}
           onTabClick={onTabClick}
           tabs={[{ label: "Tab 1" }, { label: "Tab 2" }, { label: "Tab 3" }]}
           margin={{ top: "xsmall", bottom: "xsmall" }}
         ></DxcTabs>
-      </Mode>
+        
+        {activeTab === 0 && (
+          <div
+            style={{
+              height: "150px",
+              background: "#fabada",
+              margin: "15px",
+              padding: "10px",
+            }}
+          >
+            Content 1
+          </div>
+        )}
+        {activeTab === 1 && (
+          <div
+            style={{
+              height: "150px",
+              background: "#7ce3ff",
+              margin: "15px",
+              padding: "10px",
+            }}
+          >
+            Content 2
+          </div>
+        )}
+        {activeTab === 2 && (
+          <div
+            style={{
+              height: "150px",
+              background: "#beffa4",
+              margin: "15px",
+              padding: "10px",
+            }}
+          >
+            Content 3
+          </div>
+        )}
+      </div>
       <Mode text="Disabled">
         <DxcTabs
           activeTabIndex={disabledActiveTab}

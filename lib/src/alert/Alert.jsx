@@ -10,6 +10,7 @@ import successIcon from "./success.svg";
 import warningIcon from "./warning.svg";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcAlert = ({
   type = "info",
@@ -53,7 +54,20 @@ const DxcAlert = ({
               )}
             </AlertInfoText>
           </AlertInfo>
-          {children && <AlertContent>{children}</AlertContent>}
+          {children && (
+            <AlertContent>
+              <BackgroundColorProvider
+                color={
+                  (type === "info" && colorsTheme.alert.infoColor) ||
+                  (type === "confirm" && colorsTheme.alert.successColor) ||
+                  (type === "warning" && colorsTheme.alert.warningColor) ||
+                  (type === "error" && colorsTheme.alert.errorColor)
+                }
+              >
+                {children}
+              </BackgroundColorProvider>
+            </AlertContent>
+          )}
         </AlertContainer>
       </AlertModal>
     </ThemeProvider>
@@ -171,7 +185,7 @@ const AlertType = styled.div`
   font-family: ${(props) => props.theme.titleFontFamily};
   font-size: ${(props) => props.theme.titleFontSize};
   font-weight: ${(props) => props.theme.titleFontWeight};
-  color:  ${(props) => props.theme.titleFontColor};
+  color: ${(props) => props.theme.titleFontColor};
   font-style: ${(props) => props.theme.titleFontStyle};
   text-transform: ${(props) => props.theme.titleTextTransform};
 `;
@@ -188,7 +202,7 @@ const AlertText = styled.div`
   font-family: ${(props) => props.theme.contentFontFamily};
   font-size: ${(props) => props.theme.contentFontSize};
   font-weight: ${(props) => props.theme.contentFontWeight};
-  color:  ${(props) => props.theme.contentFontColor};
+  color: ${(props) => props.theme.contentFontColor};
 `;
 
 const AlertIcon = styled.img`
@@ -214,11 +228,12 @@ const AlertInfoText = styled.div`
 
 const AlertContent = styled.div`
   flex: 1 1 auto;
-  padding: ${(props)=>`${props.theme.contentPaddingTop} ${props.theme.contentPaddingRight} ${props.theme.contentPaddingBottom} ${props.theme.contentPaddingLeft}`};
+  padding: ${(props) =>
+    `${props.theme.contentPaddingTop} ${props.theme.contentPaddingRight} ${props.theme.contentPaddingBottom} ${props.theme.contentPaddingLeft}`};
   font-family: ${(props) => props.theme.contentFontFamily};
   font-size: ${(props) => props.theme.contentFontSize};
   font-weight: ${(props) => props.theme.contentFontWeight};
-  color:  ${(props) => props.theme.contentFontColor};
+  color: ${(props) => props.theme.contentFontColor};
   overflow-y: auto;
 `;
 

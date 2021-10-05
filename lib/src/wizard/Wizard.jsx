@@ -68,14 +68,14 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                 {step.label || step.description ? (
                   <InfoContainer>
                     {step.label ? (
-                      <Label disabled={step.disabled} active={i <= innerCurrent}>
+                      <Label disabled={step.disabled} visited={i <= innerCurrent}>
                         {step.label}
                       </Label>
                     ) : (
                       ""
                     )}
                     {step.description ? (
-                      <Description disabled={step.disabled} active={i <= innerCurrent}>
+                      <Description disabled={step.disabled} visited={i <= innerCurrent}>
                         {step.description}
                       </Description>
                     ) : (
@@ -160,15 +160,15 @@ const StepHeader = styled.div`
 const IconContainer = styled.div`
   width: ${(props) =>
     props.disabled
-      ? props.theme.circleDisabledWidth
+      ? props.theme.disabledCircleWidth
       : props.current
-      ? props.theme.circleSelectedWidth
+      ? props.theme.selectedCircleWidth
       : props.theme.circleWidth};
   height: ${(props) =>
     props.disabled
-      ? props.theme.circleDisabledHeight
+      ? props.theme.disabledCircleHeight
       : props.current
-      ? props.theme.circleSelectedHeight
+      ? props.theme.selectedCircleHeight
       : props.theme.circleHeight};
 
   ${(props) => `
@@ -176,9 +176,9 @@ const IconContainer = styled.div`
       !props.current && !props.disabled
         ? `border: ${props.theme.circleBorderThickness} ${props.theme.circleBorderStyle} ${props.theme.circleBorderColor};`
         : props.current
-        ? `border: ${props.theme.circleSelectedBorderThickness} ${props.theme.circleSelectedBorderStyle} ${props.theme.circleSelectedBorderColor};`
+        ? `border: ${props.theme.selectedCircleBorderThickness} ${props.theme.selectedCircleBorderStyle} ${props.theme.selectedCircleBorderColor};`
         : props.disabled
-        ? `border: ${props.theme.circleDisabledBorderThickness} ${props.theme.circleDisabledBorderStyle} ${props.theme.circleDisabledBorderColor};`
+        ? `border: ${props.theme.disabledCircleBorderThickness} ${props.theme.disabledCircleBorderStyle} ${props.theme.disabledCircleBorderColor};`
         : ""
     }
     background: ${
@@ -198,9 +198,9 @@ const IconContainer = styled.div`
     !props.current && !props.disabled
       ? props.theme.circleBorderRadius
       : props.current
-      ? props.theme.circleSelectedBorderRadius
+      ? props.theme.selectedCircleBorderRadius
       : props.disabled
-      ? props.theme.circleDisabledBorderRadius
+      ? props.theme.disabledCircleBorderRadius
       : ""};
   display: flex;
   justify-content: center;
@@ -264,7 +264,7 @@ const Label = styled.p`
   ${(props) =>
     props.disabled
       ? `color: ${props.theme.disabledFontColor};`
-      : `color: ${props.active ? props.theme.labelActiveFontColor : props.theme.labelFontColor};`};
+      : `color: ${props.visited ? props.theme.visitedLabelFontColor : props.theme.labelFontColor};`};
   text-transform: ${(props) => props.theme.labelFontTextTransform};
   margin: 0;
 `;
@@ -280,7 +280,7 @@ const Description = styled.p`
   ${(props) =>
     props.disabled
       ? `color: ${props.theme.disabledFontColor};`
-      : `color: ${props.active ? props.theme.descriptionActiveFontColor : props.theme.descriptionFontColor};`};
+      : `color: ${props.visited ? props.theme.visitedDescriptionFontColor : props.theme.descriptionFontColor};`};
   margin: 0;
 `;
 

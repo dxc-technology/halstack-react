@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcSpinner, DxcButton } from "@dxc-technology/halstack-react";
+import {
+  DxcSpinner,
+  DxcButton,
+  BackgroundColorProvider,
+} from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 
@@ -38,10 +42,19 @@ const Spinner = () => {
           onClick={showModal}
           margin={{ top: "small", bottom: "xlarge" }}
         />
-        {isVisible && (
-          <DxcSpinner label="Loading..." mode="overlay" />
-        )}
+        {isVisible && <DxcSpinner label="Loading..." mode="overlay" />}
       </Mode>
+      <BackgroundColorProvider color="#000000">
+        <Mode mode="dark" text="Undeterminate default">
+          <DxcSpinner label="Loading..." margin="small" />
+        </Mode>
+        <Mode mode="dark" text="Determinate default">
+          <DxcSpinner label="Loading..." showValue value={50} margin="small" />
+        </Mode>
+        <Mode mode="dark" text="Small">
+          <DxcSpinner margin="small" mode="small" />
+        </Mode>
+      </BackgroundColorProvider>
     </SpinnerContainer>
   );
 };

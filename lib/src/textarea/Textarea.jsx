@@ -123,7 +123,7 @@ const TextContainer = styled.div`
     width: 100%;
 
     .MuiFormHelperText-root {
-      font-family: ${(props) => props.theme.assistiveTextFontFamily};
+      font-family: ${(props) => props.theme.fontFamily};
       font-size: ${(props) => props.theme.assistiveTextFontSize};
       font-style: ${(props) => props.theme.assistiveTextFontStyle};
       font-weight: ${(props) => props.theme.assistiveTextFontWeight};
@@ -141,9 +141,7 @@ const TextContainer = styled.div`
 
       &.Mui-disabled {
         color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.disabledFontColorOnDark
-            : props.theme.disabledFontColor} !important;
+          props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor} !important;
         cursor: not-allowed;
       }
 
@@ -156,7 +154,7 @@ const TextContainer = styled.div`
       }
 
       &.MuiInputLabel-shrink {
-        font-family: ${(props) => props.theme.labelFontFamily};
+        font-family: ${(props) => props.theme.fontFamily};
         transform: "translate(0, 1.5px) scale(0.75)";
       }
 
@@ -165,7 +163,7 @@ const TextContainer = styled.div`
       }
 
       &:not(.MuiInputLabel-shrink) {
-        font-family: ${(props) => props.theme.labelFontFamily};
+        font-family: ${(props) => props.theme.fontFamily};
         color: ${(props) =>
           props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
         & + div,
@@ -180,34 +178,34 @@ const TextContainer = styled.div`
       &.MuiInputLabel-shrink {
         & + div::before {
           border-color: ${(props) =>
-            props.backgroundType ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
+            props.backgroundType ? props.theme.underlineColorOnDark : props.theme.underlineColor};
         }
         & + div + p {
           color: ${(props) =>
-            props.backgroundType === "dark"
-              ? props.theme.assistiveTextFontColorOnDark
-              : props.theme.assistiveTextFontColor};
+            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
         }
       }
     }
     .MuiInputBase-root.MuiInput-root.MuiInput-underline {
       &::before {
         border-bottom: ${(props) =>
-          `1px solid ${
-            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor
+          `${props.theme.underlineThickness} solid ${
+            props.backgroundType === "dark" ? props.theme.underlineColorOnDark : props.theme.underlineColor
           }`};
       }
+
       &:not(.Mui-error)::before,
       &:not(&.Mui-focused)::before {
         border-bottom: ${(props) =>
-          `1px solid ${
-            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor
+          `${props.theme.underlineThickness} solid ${
+            props.backgroundType === "dark" ? props.theme.underlineColorOnDark : props.theme.underlineColor
           }`};
       }
+
       &::after {
         border-bottom: ${(props) =>
-          `2px solid ${
-            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor
+          `calc(${props.theme.underlineThickness} + 1px) solid ${
+            props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor
           }`};
       }
 
@@ -233,7 +231,7 @@ const TextContainer = styled.div`
 
       &.Mui-error {
         &::before {
-          border-width: 1px;
+          border-width: ${(props) => props.theme.underlineThickness};
           border-color: ${(props) =>
             props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor};
         }
@@ -244,10 +242,9 @@ const TextContainer = styled.div`
 
       &.Mui-focused {
         &::after {
-          border-width: 2px;
+          border-width: calc(${(props) => props.theme.underlineThickness} + 1px);
           border-color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
-          transform: scaleX(1);
+            props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor};
         }
         &.Mui-error::after {
           border-color: ${(props) =>
@@ -260,37 +257,35 @@ const TextContainer = styled.div`
 
         &::before {
           border-bottom: ${(props) =>
-            `1px solid ${
-              props.backgroundType === "dark" ? props.theme.disabledFontColorOnDark : props.theme.disabledFontColor
+            `${props.theme.underlineThickness} solid ${
+              props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor
             } !important`};
           border-bottom-style: solid;
         }
       }
 
       .MuiInputBase-input {
-        font-family: ${(props) => props.theme.customContentFontFamily};
-        font-size: ${(props) => props.theme.customContentFontSize};
-        font-style: ${(props) => props.theme.customContentFontStyle};
-        font-weight: ${(props) => props.theme.customContentFontWeight};
-        letter-spacing: ${(props) => props.theme.customContentLetterSpacing};
+        font-family: ${(props) => props.theme.fontFamily};
+        font-size: ${(props) => props.theme.valueFontSize};
+        font-style: ${(props) => props.theme.valueFontStyle};
+        font-weight: ${(props) => props.theme.valueFontWeight};
+        letter-spacing: ${(props) => props.theme.valueLetterSpacing};
         color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.customContentFontColorOnDark
-            : props.theme.customContentFontColor};
-        line-height: ${(props) => props.theme.customContentLineHeight};
+          props.backgroundType === "dark" ? props.theme.valueFontColorOnDark : props.theme.valueFontColor};
+        line-height: ${(props) => props.theme.valueLineHeight};
         padding-left: "inherit";
         text-overflow: ellipsis;
 
         &.Mui-disabled {
           cursor: not-allowed;
           color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.disabledFontColorOnDark : props.theme.disabledFontColor};
+            props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor};
         }
       }
 
       &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before {
-        border-bottom: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
+        border-bottom-color: ${(props) =>
+          props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor};
       }
     }
 
@@ -301,9 +296,7 @@ const TextContainer = styled.div`
       }
       &.Mui-disabled {
         color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.disabledFontColorOnDark
-            : props.theme.disabledFontColor} !important;
+          props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor} !important;
         cursor: not-allowed;
       }
     }
