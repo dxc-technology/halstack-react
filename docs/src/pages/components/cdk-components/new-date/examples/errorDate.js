@@ -4,7 +4,7 @@ const code = `() => {
   return (
     <DxcNewDate
       label="Invalid"
-      error="Error message"
+      error="Error message."
       margin="medium"
     />
   );

@@ -11,7 +11,7 @@ const code = `() => {
 
   const onBlur = ({ value, error }) => {
     setValue(value);
-    error ? setErrorMessage("Custom error") : setErrorMessage(null);
+    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
   };
 
   return (
