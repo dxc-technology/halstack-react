@@ -10,6 +10,7 @@ const code = `() => {
       label="Uncontrolled"
       onChange={onChange}
       margin="medium"
+      clearable
     />
   );
 }`;

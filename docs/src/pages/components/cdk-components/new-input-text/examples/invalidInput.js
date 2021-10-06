@@ -20,7 +20,6 @@ const code = `() => {
       onBlur={onBlur}
       margin="medium"
       error="Error message"
-      clearable
     />
   );
 }`;
