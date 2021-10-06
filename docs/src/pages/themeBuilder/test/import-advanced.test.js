@@ -17,8 +17,8 @@ const validThemeInputString = JSON.stringify({
     infoColor: "#cecece",
   },
   box: {
-    fontFamily: "Helvetica",
-    fontSize: "0.91rem",
+    borderRadius: "9.7px",
+    borderThickness: "3.5px",
     borderStyle: "dotted",
   },
 });
@@ -30,8 +30,8 @@ const wrongComponentNameString = JSON.stringify({
     successColor: "#ffffff",
   },
   boxes: {
-    fontFamily: "Helvetica",
-    fontSize: "0.91rem",
+    borderRadius: "6px",
+    borderThickness: "1px",
     borderStyle: "dotted",
   },
 });
@@ -43,8 +43,8 @@ const wrongThemeInputString = JSON.stringify({
     successColor: "#ffffff",
   },
   box: {
-    fontFamily: "Helvetica",
-    fontSize: "0.91rem",
+    borderRadius: "6px",
+    borderThickness: "1px",
     bad: "dotted",
   },
 });
@@ -233,10 +233,10 @@ describe("Import advanced theme", () => {
     act(() => {
       fireEvent.click(getAllByText("Import")[1].closest("button"));
     });
+
     act(() => {
       fireEvent.click(getByText("Alert"));
     });
-
     expect(getByText("Alert component")).toBeTruthy();
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
       "#fabada"
@@ -250,8 +250,8 @@ describe("Import advanced theme", () => {
     });
     expect(getByText("Box component")).toBeTruthy();
     expect(getByText("ShadowDepth 0")).toBeTruthy();
-    expect(getByDisplayValue("Helvetica")).toBeTruthy();
-    expect(getByDisplayValue("0.91")).toBeTruthy();
+    expect(getByDisplayValue("9.7")).toBeTruthy();
+    expect(getByDisplayValue("3.5")).toBeTruthy();
     expect(getByDisplayValue("dotted")).toBeTruthy();
   });
 });

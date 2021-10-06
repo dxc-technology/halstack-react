@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
-import { spaces, responsiveSizes, componentTokens } from "../common/variables.js";
+import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcFooter = ({
   socialLinks = [],
@@ -93,7 +94,9 @@ const DxcFooter = ({
         )}
         {((!isResponsiveTablet && !isResponsivePhone) || isResponsiveTablet) && (
           <div>
-            <ChildComponents padding={padding}>{children}</ChildComponents>
+            <ChildComponents padding={padding}>
+              <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
+            </ChildComponents>
             <FooterFooter className="footerFooter">
               <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
               <Copyright refSize={refSize}>{copyright}</Copyright>
@@ -111,8 +114,7 @@ const FooterContainer = styled.footer`
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   width: 100%;
   box-sizing: border-box;
-  min-height: ${(props) => props.theme.minHeight};
-  color: ${(props) => props.theme.fontColorBase};
+  min-height: ${(props) => props.theme.height};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -129,7 +131,8 @@ const FooterFooter = styled.div`
   align-items: flex-end;
   flex-direction: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "column" : "row")};
   align-items: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "")};
-  border-top: ${(props) => props.theme.bottomLinksDividerThickness} ${(props) => props.theme.bottomLinksDividerStyle} ${(props) => props.theme.bottomLinksDividerColor};
+  border-top: ${(props) =>
+    `${props.theme.bottomLinksDividerThickness} ${props.theme.bottomLinksDividerStyle} ${props.theme.bottomLinksDividerColor}`};
 `;
 
 const BottomLinks = styled.div`
@@ -145,11 +148,7 @@ const BottomLinks = styled.div`
 `;
 
 const ChildComponents = styled.div`
-  font-family: ${(props) => props.theme.customContentFontFamily};
-  font-size: ${(props) => props.theme.customContentFontSize};
-  font-style: ${(props) => props.theme.customContentFontStyle};
-  font-weight: ${(props) => props.theme.customContentFontWeight};
-  min-height: 16px;
+  min-height: 15px;
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -159,7 +158,6 @@ const ChildComponents = styled.div`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
-  color: ${(props) => props.theme.customContentFontColor};
   overflow: hidden;
 `;
 
@@ -176,32 +174,32 @@ const Copyright = styled.div`
 `;
 
 const LogoIcon = styled.img`
-  height: ${(props) => props.theme.logoHeight};
+  max-height: ${(props) => props.theme.logoHeight};
   width: ${(props) => props.theme.logoWidth};
 `;
 
 const SocialAnchor = styled.a`
   & {
     display: inline-flex;
-    margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialIconsGutter)};
+    margin-left: ${(props) => (props.index === 0 ? "0px" : props.theme.socialLinksGutter)};
   }
 `;
 
 const SocialIcon = styled.img`
   & {
     display: inline-flex;
-    height: ${(props) => props.theme.socialIconSize};
-    width: ${(props) => props.theme.socialIconSize};
-    fill: ${(props) => props.theme.fontColorBase};
+    height: ${(props) => props.theme.socialLinksSize};
+    width: ${(props) => props.theme.socialLinksSize};
+    fill: ${(props) => props.theme.socialLinksColor};
   }
 `;
 
 const SocialIconContainer = styled.div`
   & {
     display: inline-flex;
-    height: ${(props) => props.theme.socialIconSize};
-    width: ${(props) => props.theme.socialIconSize};
-    color: ${(props) => props.theme.fontColorBase};
+    height: ${(props) => props.theme.socialLinksSize};
+    width: ${(props) => props.theme.socialLinksSize};
+    color: ${(props) => props.theme.socialLinksColor};
   }
 
   overflow: hidden;
@@ -220,7 +218,7 @@ const Point = styled.span`
 
 const BottomLink = styled.a`
   text-decoration: ${(props) => props.theme.bottomLinksTextDecoration};
-  color: ${(props) => props.theme.bottomLinksFontColor || props.theme.fontColorBase};
+  color: ${(props) => props.theme.bottomLinksFontColor};
   font-family: ${(props) => props.theme.bottomLinksFontFamily};
   font-size: ${(props) => props.theme.bottomLinksFontSize};
   font-style: ${(props) => props.theme.bottomLinksFontStyle};

@@ -14,6 +14,10 @@ const deleteIcon = () => {
 };
 
 const Chip = () => {
+  const onClick = () => {
+    console.log("click");
+  };
+
   return (
     <ChipContainer>
       <Mode text="Default">
@@ -24,6 +28,7 @@ const Chip = () => {
           label="Chip with suffix"
           suffixIcon={deleteIcon}
           margin={{ top: "xsmall" }}
+          onClickSuffix={onClick}
         />
       </Mode>
       <Mode text="With prefix">
@@ -31,10 +36,15 @@ const Chip = () => {
           label="Chip with prefix"
           prefixIcon={deleteIcon}
           margin={{ top: "xsmall" }}
+          onClickPrefix={onClick}
         />
       </Mode>
       <Mode text="Only icon">
-        <DxcChip prefixIcon={deleteIcon} margin={{ top: "xsmall" }} />
+        <DxcChip
+          prefixIcon={deleteIcon}
+          margin={{ top: "xsmall" }}
+          onClickPrefix={onClick}
+        />
       </Mode>
       <Mode text="Disabled">
         <DxcChip
@@ -42,6 +52,7 @@ const Chip = () => {
           disabled
           prefixIcon={deleteIcon}
           margin={{ top: "xsmall" }}
+          onClickPrefix={onClick}
         />
       </Mode>
     </ChipContainer>

@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const DxcSpinner = ({ label = "", value, showValue = false, mode = "large", margin }) => {
   const colorsTheme = useTheme();
+  const backgroundType = useContext(BackgroundColorContext);
 
   return (
     <ThemeProvider theme={colorsTheme.spinner}>
       <BackgroundSpinner mode={mode}>
-        <DXCSpinner margin={margin} showValue={showValue} label={label} mode={mode}>
+        <DXCSpinner backgroundType={backgroundType} margin={margin} showValue={showValue} label={label} mode={mode}>
           {label && mode !== "small" && (
-            <SpinnerLabel showValue={showValue} mode={mode}>
+            <SpinnerLabel backgroundType={backgroundType} showValue={showValue} mode={mode}>
               {label}
             </SpinnerLabel>
           )}
           {value && mode !== "small" && (
-            <SpinnerProgress mode={mode} showValue={showValue} label={label}>
+            <SpinnerProgress backgroundType={backgroundType} mode={mode} showValue={showValue} label={label}>
               {value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}%
             </SpinnerProgress>
           )}
@@ -70,10 +72,10 @@ const DXCSpinner = styled.div`
   box-sizing: unset;
   border-radius: 80px;
   border: ${(props) =>
-    (props.mode === "small" && `6px solid ${props.theme.totalCircleColor}`) ||
+    (props.mode === "small" && `2px solid ${props.theme.totalCircleColor}`) ||
     `8.5px solid ${props.theme.totalCircleColor}`};
-  width: ${(props) => (props.mode === "small" && "30px") || "120px"};
-  height: ${(props) => (props.mode === "small" && "30px") || "120px"};
+  width: ${(props) => (props.mode === "small" && "16px") || "120px"};
+  height: ${(props) => (props.mode === "small" && "16px") || "120px"};
   z-index: ${(props) => (props.mode === "overlay" ? "100" : "")};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -87,29 +89,30 @@ const DXCSpinner = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   .MuiCircularProgress-colorPrimary {
-    color: ${(props) => props.theme.trackCircleColor};
-    width: ${(props) => (props.mode === "small" && "44px !important") || "141px !important"};
-    height: ${(props) => (props.mode === "small" && "44px !important") || "141px !important"};
+    color: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.trackCircleColorOnDark : props.theme.trackCircleColor};
+    width: ${(props) => (props.mode === "small" && "22px !important") || "140px !important"};
+    height: ${(props) => (props.mode === "small" && "22px !important") || "140px !important"};
     margin-top: ${(props) =>
       props.label === "" && props.showValue === false && props.mode === "large"
         ? "-10px"
         : props.mode === "small"
-        ? "-7px"
+        ? "-3px"
         : props.label !== "" && props.showValue === false
-        ? "-80px"
+        ? "-81px"
         : props.label === "" && props.showValue === true && props.mode === "overlay"
         ? "-10.75px"
         : props.label === "" && props.showValue === true && props.mode !== "overlay"
         ? "-79.75px"
         : props.label !== "" && props.showValue === true && props.mode === "overlay"
         ? "-72.5px"
-        : "-89.5px"};
-    margin-left: ${(props) => (props.mode === "small" && "-7px !important") || "-11px !important"};
+        : "-90.5px"};
+    margin-left: ${(props) => (props.mode === "small" && "-3px !important") || "-10px !important"};
   }
 
   .MuiCircularProgress-circle {
-    stroke-width: ${(props) => (props.mode === "small" && "6.2px") || "2.7px"};
-    r: ${(props) => (props.mode === "small" && "18.2") || "20.2"};
+    stroke-width: ${(props) => (props.mode === "small" && "5px") || "2.9px"};
+    r: ${(props) => (props.mode === "small" && "18.5") || "20.2"};
   }
 `;
 
@@ -121,9 +124,12 @@ const SpinnerLabel = styled.div`
   font-size: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontSize : props.theme.labelFontSize)};
   font-style: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontStyle : props.theme.labelFontStyle)};
   margin-top: ${(props) => (props.showValue === false && "52px") || "45px"};
-  color: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelFontColor : props.theme.labelFontColor)};
-  text-transform: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayLabelFontTextTransform : props.theme.labelFontTextTransform};
+  color: ${(props) =>
+    props.mode === "overlay"
+      ? props.theme.overlayLabelFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.labelFontColorOnDark
+      : props.theme.labelFontColor};
   text-align: ${(props) => (props.mode === "overlay" ? props.theme.overlayLabelTextAlign : props.theme.labelTextAlign)};
   letter-spacing: ${(props) =>
     props.mode === "overlay" ? props.theme.overlayLabelLetterSpacing : props.theme.labelLetterSpacing};
@@ -144,7 +150,11 @@ const SpinnerProgress = styled.div`
   margin-top: ${(props) => (props.label === "" && "52px") || ""};
   display: ${(props) => (props.value !== "" && props.showValue === true && "block") || "none"};
   color: ${(props) =>
-    props.mode === "overlay" ? props.theme.overlayProgressValueFontColor : props.theme.progressValueFontColor};
+    props.mode === "overlay"
+      ? props.theme.overlayProgressValueFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.progressValueFontColorOnDark
+      : props.theme.progressValueFontColor};
   text-align: ${(props) =>
     props.mode === "overlay" ? props.theme.overlayProgressValueTextAlign : props.theme.progressValueTextAlign};
   letter-spacing: ${(props) =>

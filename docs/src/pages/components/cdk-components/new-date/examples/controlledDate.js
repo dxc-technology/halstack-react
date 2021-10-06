@@ -19,6 +19,7 @@ const code = `() => {
       onChange={onChange}
       onBlur={onBlur}
       margin="medium"
+      clearable
     />
   );
 }`;

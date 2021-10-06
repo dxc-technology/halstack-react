@@ -66,7 +66,7 @@ describe("Successful color picker tests for default theme", () => {
       fireEvent.click(getAllByRole("color-container")[0]);
     });
     act(() => {
-      fireEvent.change(getByDisplayValue("6F2C91"), {
+      fireEvent.change(getByDisplayValue("5F249F"), {
         target: { value: "555555" },
       });
     });

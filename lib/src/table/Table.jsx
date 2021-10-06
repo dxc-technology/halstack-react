@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcTable = ({ children, margin }) => {
   const colorsTheme = useTheme();
@@ -11,7 +12,9 @@ const DxcTable = ({ children, margin }) => {
   return (
     <ThemeProvider theme={colorsTheme.table}>
       <DxcTableContainer margin={margin}>
-        <DxcTableContent>{children}</DxcTableContent>
+        <DxcTableContent>
+          <BackgroundColorProvider color={colorsTheme.table.dataBackgroundColor}>{children}</BackgroundColorProvider>
+        </DxcTableContent>
       </DxcTableContainer>
     </ThemeProvider>
   );
