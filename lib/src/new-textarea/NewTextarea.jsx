@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import { useLayoutEffect } from "react";
 
-const getLengthErrorMessage = (length) => `Min length ${length.min}, Max length ${length.max}.`;
+const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
