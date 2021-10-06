@@ -5,7 +5,7 @@ const code = `() => {
   return (
     <DxcNewTextarea
       label="Invalid"
-      error="Error message"
+      error="Error message."
       margin="medium"
     />
   );
