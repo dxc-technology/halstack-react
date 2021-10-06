@@ -20,6 +20,7 @@ const DxcNewDate = React.forwardRef(
       format = "dd-MM-yyyy",
       helperText = "",
       placeholder = false,
+      clearable = false,
       disabled = false,
       optional = false,
       onChange,
@@ -257,6 +258,7 @@ const DxcNewDate = React.forwardRef(
                 helperText={helperText}
                 placeholder={placeholder ? format.toUpperCase() : null}
                 action={calendarAction}
+                clearable={clearable}
                 disabled={disabled}
                 optional={optional}
                 onChange={handleIOnChange}
@@ -321,6 +323,7 @@ DxcNewDate.propTypes = {
   format: PropTypes.string,
   helperText: PropTypes.string,
   placeholder: PropTypes.bool,
+  clearable: PropTypes.bool,
   disabled: PropTypes.bool,
   optional: PropTypes.bool,
   onChange: PropTypes.func,

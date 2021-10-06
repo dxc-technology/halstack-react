@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const numberPropsTable = () => {
+const NumberPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -13,8 +13,9 @@ const numberPropsTable = () => {
         <td>value: string</td>
         <td></td>
         <td>
-          Value of the number. If undefined, the component will be uncontrolled
-          and the value will be managed internally by the component.
+          Value of the input element. If undefined, the component will be
+          uncontrolled and the value will be managed internally by the
+          component.
         </td>
       </tr>
       <tr>
@@ -25,7 +26,7 @@ const numberPropsTable = () => {
       <tr>
         <td>name: string</td>
         <td></td>
-        <td>Name attribute of the number element.</td>
+        <td>Name attribute of the input element.</td>
       </tr>
       <tr>
         <td>helperText: string</td>
@@ -83,32 +84,32 @@ const numberPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>error: string</td>
-        <td></td>
-        <td>
-          If it is defined, the component will change its appearance, showing
-          the error below the number component. If it is not defined, the error
-          messages will be created internally by the component.
-        </td>
-      </tr>
-      <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user types within the number.
-          The new value will be passed as a parameter.
+          This function will be called when the user types within the input
+          element of the component. The new value will be passed as a parameter.
         </td>
       </tr>
       <tr>
         <td>onBlur: function</td>
         <td></td>
         <td>
-          This function will be called when the number loses the focus. An
-          object including the value and the error (if the value entered is not
-          valid) will be passed to this function. An example of this object is:{" "}
-          {"{ "}
+          This function will be called when the input element loses the focus.
+          An object including the value and the error (if the value entered is
+          not valid) will be passed to this function. An example of this object
+          is: {"{ "}
           <code>value: value, error: error</code>
           {" }"}. If there is no error, error will be null.
+        </td>
+      </tr>
+      <tr>
+        <td>error: string</td>
+        <td></td>
+        <td>
+          If it is defined, the component will change its appearance, showing
+          the error below the number component. If it is not defined, the error
+          messages will be created and managed internally.
         </td>
       </tr>
       <tr>
@@ -125,7 +126,7 @@ const numberPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>margin: function</td>
+        <td>margin: string | object</td>
         <td></td>
         <td>
           Size of the margin to be applied to the component ('xxsmall' |
@@ -153,10 +154,10 @@ const numberPropsTable = () => {
       <tr>
         <td>ref: object</td>
         <td></td>
-        <td>Reference to the number.</td>
+        <td>Reference to the component.</td>
       </tr>
     </DxcTable>
   );
 };
 
-export default numberPropsTable;
+export default NumberPropsTable;

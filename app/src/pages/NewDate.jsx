@@ -61,6 +61,7 @@ function App() {
           value={inputValue}
           onChange={onChange}
           margin={{ left: "medium", right: "medium" }}
+          clearable
         />
       </p>
       <p>
@@ -68,6 +69,7 @@ function App() {
           label="With label + placerholder"
           placeholder
           margin={{ left: "medium", right: "medium" }}
+          clearable
         />
       </p>
       <p>

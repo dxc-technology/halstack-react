@@ -23,7 +23,7 @@ const NewDatePropsTable = () => {
       <tr>
         <td>label: string</td>
         <td></td>
-        <td>Text to be placed above the input.</td>
+        <td>Text to be placed above the date.</td>
       </tr>
       <tr>
         <td>name: string</td>
@@ -33,13 +33,13 @@ const NewDatePropsTable = () => {
       <tr>
         <td>helperText: string</td>
         <td></td>
-        <td>Helper text to be placed above the input.</td>
+        <td>Helper text to be placed above the date.</td>
       </tr>
       <tr>
         <td>placeholder: boolean</td>
         <td>false</td>
         <td>
-          If true the date format will appear as placeholder in the field.
+          If true, the date format will appear as placeholder in the field.
         </td>
       </tr>
       <tr>
@@ -47,8 +47,17 @@ const NewDatePropsTable = () => {
         <td>'dd-MM-yyyy'</td>
         <td>
           The format in which the date value will be displayed. User must use
-          this format when editing the input or it will be considered as an
+          this format when editing the value or it will be considered as an
           invalid date.
+        </td>
+      </tr>
+      <tr>
+        <td>clearable: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>
+          If true, the date will have an action to clear the entered value.
         </td>
       </tr>
       <tr>
@@ -64,7 +73,7 @@ const NewDatePropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, the input will be optional, showing <code>(Optional)</code>{" "}
+          If true, the date will be optional, showing <code>(Optional)</code>{" "}
           next to the label.
         </td>
       </tr>
@@ -72,10 +81,11 @@ const NewDatePropsTable = () => {
         <td>onChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user types within the input. An
-          object including the current string value and the date value will be
-          passed to this function. An example of this object is: {"{ "}
-          <code>value: value, date: date </code>
+          This function will be called when the user types within the input
+          element of the component. An object including the current string value
+          and the date value will be passed to this function. An example of this
+          object is: {"{ "}
+          <code>value: value, date: date</code>
           {" }"}. If the string value is not a valid date, <code>date</code>{" "}
           will be null.
         </td>
@@ -84,10 +94,9 @@ const NewDatePropsTable = () => {
         <td>onBlur: function</td>
         <td></td>
         <td>
-          This function will be called when the input element of the component
-          loses the focus. An object including the string value, the error and
-          the date value will be passed to this function. An example of this
-          object is: {"{ "}
+          This function will be called when the input element loses the focus.
+          An object including the string value, the error and the date value
+          will be passed to this function. An example of this object is: {"{ "}
           <code>value: value, error: error, date: date</code>
           {" }"}. If the string value is a valid date, <code>error</code> will
           be null. Also, if the string value is not a valid date,{" "}
@@ -100,7 +109,7 @@ const NewDatePropsTable = () => {
         <td>
           If it is defined, the component will change its appearance, showing
           the error below the date component. If it is not defined, the error
-          messages will be managed internally by the component.
+          messages will be created and managed internally.
         </td>
       </tr>
       <tr>
@@ -143,7 +152,7 @@ const NewDatePropsTable = () => {
       <tr>
         <td>ref: object</td>
         <td></td>
-        <td>Reference to the date.</td>
+        <td>Reference to the component.</td>
       </tr>
     </DxcTable>
   );

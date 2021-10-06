@@ -15,8 +15,9 @@ const newInputPropsTable = () => {
           <code></code>
         </td>
         <td>
-          Value of the input. If undefined, the component will be uncontrolled
-          and the value will be managed internally by the component.
+          Value of the input. If undefined, the component will be
+          uncontrolled and the value will be managed internally by the
+          component.
         </td>
       </tr>
       <tr>
@@ -58,8 +59,7 @@ const newInputPropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, the input will have an action to clear the value entered in
-          the input.
+          If true, the input will have an action to clear the entered value.
         </td>
       </tr>
       <tr>
@@ -114,17 +114,7 @@ const newInputPropsTable = () => {
         <td>
           If it is defined, the component will change its appearance, showing
           the error below the input component. If it is not defined, the error
-          messages will be created internally by the component.
-        </td>
-      </tr>
-      <tr>
-        <td>margin: string | object</td>
-        <td></td>
-        <td>
-          Size of the margin to be applied to the component ('xxsmall' |
-          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
-          can pass an object with 'top', 'bottom', 'left' and 'right' properties
-          in order to specify different margin sizes.
+          messages will be created and managed internally.
         </td>
       </tr>
       <tr>
@@ -187,6 +177,16 @@ const newInputPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>margin: string | object</td>
+        <td></td>
+        <td>
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
+        </td>
+      </tr>
+      <tr>
         <td>size: string | object</td>
         <td>
           <code>'medium'</code>
@@ -205,7 +205,7 @@ const newInputPropsTable = () => {
       <tr>
         <td>ref: object</td>
         <td></td>
-        <td>Reference to the input.</td>
+        <td>Reference to the component.</td>
       </tr>
     </DxcTable>
   );

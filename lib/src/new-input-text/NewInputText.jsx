@@ -848,6 +848,7 @@ const ErrorIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  padding: 3px;
   height: 18px;
   width: 18px;
   margin-left: calc(1rem * 0.25);
