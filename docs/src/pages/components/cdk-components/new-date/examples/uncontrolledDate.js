@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <>
-      <DxcNewDate label="Uncontrolled" ref={inputRef} margin="medium" />
+      <DxcNewDate label="Uncontrolled" ref={inputRef} margin="medium" clearable/>
       <DxcButton
         onClick={handleSubmit}
         label="Submit"
