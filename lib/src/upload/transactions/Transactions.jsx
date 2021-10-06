@@ -69,24 +69,24 @@ const TransactionsText = styled.span`
 `;
 
 const TransactionsTitle = styled.span`
-  font-size: ${(props) => props.theme.filesUploadedTitleFontSize};
-  font-style: ${(props) => props.theme.filesUploadedTitleFontStyle};
-  font-weight: ${(props) => props.theme.filesUploadedTitleFontWeight};
-  text-transform: ${(props) => props.theme.filesUploadedTitleFontTextTransform};
-  color: ${(props) => props.theme.filesUploadedTitleFontColor};
+  font-size: ${(props) => props.theme.uploadedFilesTitleFontSize};
+  font-style: ${(props) => props.theme.uploadedFilesTitleFontStyle};
+  font-weight: ${(props) => props.theme.uploadedFilesTitleFontWeight};
+  text-transform: ${(props) => props.theme.uploadedFilesTitleFontTextTransform};
+  color: ${(props) => props.theme.uploadedFilesTitleFontColor};
   margin-bottom: 4px;
 `;
 
 const TransactionsSubTitle = styled.span`
-  font-size: ${(props) => props.theme.filesUploadedSubtitleFontSize};
-  font-style: ${(props) => props.theme.filesUploadedSubtitleFontStyle};
-  font-weight: ${(props) => props.theme.filesUploadedSubtitleFontWeight};
-  text-transform: ${(props) => props.theme.filesUploadedSubtitleFontTextTransform};
-  color: ${(props) => props.theme.filesUploadedSubtitleFontColor};
+  font-size: ${(props) => props.theme.uploadedFilesSubtitleFontSize};
+  font-style: ${(props) => props.theme.uploadedFilesSubtitleFontStyle};
+  font-weight: ${(props) => props.theme.uploadedFilesSubtitleFontWeight};
+  text-transform: ${(props) => props.theme.uploadedFilesSubtitleFontTextTransform};
+  color: ${(props) => props.theme.uploadedFilesSubtitleFontColor};
 `;
 
 const TransactionsNumber = styled.span`
-  font-weight: ${(props) => props.theme.filesUploadedNumberFontWeight};
+  font-weight: ${(props) => props.theme.uploadedFilesNumberFontWeight};
 `;
 
 export default DxcTransactions;

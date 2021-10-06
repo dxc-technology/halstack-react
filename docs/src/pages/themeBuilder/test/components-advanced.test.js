@@ -356,7 +356,7 @@ describe("Successful component tests for advanced theme", () => {
   });
 
   it("Should render spinner component", async () => {
-    const { getByText, findByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -368,9 +368,9 @@ describe("Successful component tests for advanced theme", () => {
       fireEvent.click(getByText("Spinner"));
     });
     expect(getByText("Spinner component")).toBeTruthy();
-    expect(getByText("Undeterminate default")).toBeTruthy();
-    expect(getByText("Determinate default")).toBeTruthy();
-    expect(getByText("Small")).toBeTruthy();
+    expect(getAllByText("Undeterminate default").length).toBe(2);
+    expect(getAllByText("Determinate default").length).toBe(2);
+    expect(getAllByText("Small").length).toBe(2);
     expect(getByText("With overlay")).toBeTruthy();
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(advancedTheme["spinner"]).forEach((themeInputs) =>
@@ -436,7 +436,7 @@ describe("Successful component tests for advanced theme", () => {
       fireEvent.click(getByText("Tabs"));
     });
     expect(getByText("Tabs component")).toBeTruthy();
-    expect(getByText("Default")).toBeTruthy();
+    expect(getByText("Default with content")).toBeTruthy();
     expect(getByText("Disabled")).toBeTruthy();
     expect(getByText("With notifications")).toBeTruthy();
     expect(getByText("With scroll buttons")).toBeTruthy();

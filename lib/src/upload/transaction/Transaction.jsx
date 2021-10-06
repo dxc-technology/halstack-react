@@ -14,6 +14,7 @@ import videoIconError from "./video-icon-err.svg";
 import audioIconError from "./audio-icon-err.svg";
 import Spinner from "../../spinner/Spinner";
 import useTheme from "../../useTheme.js";
+import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
 
 const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => {
   const colorsTheme = useTheme();
@@ -33,24 +34,26 @@ const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => 
       <DXCTransaction status={status}>
         <FileImage status={status} img={icon} />
         {(status === "processing" && (
-          <Prueba>
+          <FileData>
             <FileName>{name}</FileName>
-            <Spinner mode="small" />
-          </Prueba>
+            <BackgroundColorProvider color={colorsTheme.upload.backgroundColor}>
+              <Spinner mode="small" />
+            </BackgroundColorProvider>
+          </FileData>
         )) ||
           (status === "success" && (
-            <Prueba>
+            <FileData>
               <FileName>{name}</FileName>
-              <FileStatus status={status} />
-            </Prueba>
+              <Spinner mode="small" />
+            </FileData>
           )) ||
           (status === "error" && (
-            <Prueba>
+            <FileData>
               <Tooltip title={message}>
                 <FileName>{name}</FileName>
               </Tooltip>
               <FileStatus status={status} />
-            </Prueba>
+            </FileData>
           ))}
       </DXCTransaction>
     </ThemeProvider>
@@ -79,11 +82,11 @@ const DXCTransaction = styled.div`
 
 const FileImage = styled.div`
   background-color: ${(props) =>
-    (props.status === "error" && props.theme.errorColor) || props.theme.fileUploadedIconColor};
+    (props.status === "error" && props.theme.errorColor) || props.theme.uploadedFileIconColor};
   mask: url(${(props) => props.img}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.fileUploadedIconSize} ${props.theme.fileUploadedIconSize}`};
-  height: ${(props) => props.theme.fileUploadedIconSize};
-  width: ${(props) => props.theme.fileUploadedIconSize};
+  mask-size: ${(props) => `${props.theme.uploadedFileIconSize} ${props.theme.uploadedFileIconSize}`};
+  height: ${(props) => props.theme.uploadedFileIconSize};
+  width: ${(props) => props.theme.uploadedFileIconSize};
   margin-right: 16px;
   max-width: 20%;
 `;
@@ -110,7 +113,7 @@ const FileStatus = styled.div`
   max-width: 20%;
 `;
 
-const Prueba = styled.div`
+const FileData = styled.div`
   display: flex;
   flex-direction: row;
   width: 80%;

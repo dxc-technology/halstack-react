@@ -19,8 +19,7 @@ const code = `() => {
       onChange={onChange}
       onBlur={onBlur}
       margin="medium"
-      error="Error message."
-      clearable
+      error="Error message"
     />
   );
 }`;

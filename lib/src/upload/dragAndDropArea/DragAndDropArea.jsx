@@ -7,6 +7,7 @@ import uploadFile from "./upload_file.svg";
 import dropFile from "./upload_drop.svg";
 import Button from "../../button/Button";
 import useTheme from "../../useTheme.js";
+import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
 
 const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
   const [dragging, setDragging] = React.useState(false);
@@ -60,50 +61,52 @@ const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
 
   return (
     <ThemeProvider theme={colorsTheme.upload}>
-      <DXCDragAndDrop
-        onDrop={handleDrop}
-        onDragEnter={handleDragIn}
-        onDragOver={handleDrag}
-        onDragLeave={handleDragOut}
-        dashed={dashed}
-      >
-        {!dragging && !dashed && (
-          <DXCDragAndDropArea>
-            <DragAndDropContent>
-              <DragAndDropIcon />
-              <DragAndDropText>
-                <DragAndDropTitle>{text}</DragAndDropTitle>
-                <DragAndDropDescription>{description}</DragAndDropDescription>
-              </DragAndDropText>
-              <div>
-                <Button label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
-                <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
-              </div>
-            </DragAndDropContent>
-          </DXCDragAndDropArea>
-        )}
-        {!dragging && dashed && (
-          <DragAndDropContentHover>
-            <DragAndDropContent>
-              <DragAndDropIcon />
-              <DragAndDropText>
-                <DragAndDropTitle>{text}</DragAndDropTitle>
-                <DragAndDropDescription>{description}</DragAndDropDescription>
-              </DragAndDropText>
-              <ButtonChooseFiles>
-                <Button theme="light" label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
-                <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
-              </ButtonChooseFiles>
-            </DragAndDropContent>
-          </DragAndDropContentHover>
-        )}
-        {dragging && (
-          <DragAndDropContentHover>
-            <DragAndDropTextHover>{textHover}</DragAndDropTextHover>
-            <DragAndDropIconHover />
-          </DragAndDropContentHover>
-        )}
-      </DXCDragAndDrop>
+      <BackgroundColorProvider color={colorsTheme.upload.backgroundColor}>
+        <DXCDragAndDrop
+          onDrop={handleDrop}
+          onDragEnter={handleDragIn}
+          onDragOver={handleDrag}
+          onDragLeave={handleDragOut}
+          dashed={dashed}
+        >
+          {!dragging && !dashed && (
+            <DXCDragAndDropArea>
+              <DragAndDropContent>
+                <DragAndDropIcon />
+                <DragAndDropText>
+                  <DragAndDropTitle>{text}</DragAndDropTitle>
+                  <DragAndDropDescription>{description}</DragAndDropDescription>
+                </DragAndDropText>
+                <div>
+                  <Button label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
+                  <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
+                </div>
+              </DragAndDropContent>
+            </DXCDragAndDropArea>
+          )}
+          {!dragging && dashed && (
+            <DragAndDropContentHover>
+              <DragAndDropContent>
+                <DragAndDropIcon />
+                <DragAndDropText>
+                  <DragAndDropTitle>{text}</DragAndDropTitle>
+                  <DragAndDropDescription>{description}</DragAndDropDescription>
+                </DragAndDropText>
+                <ButtonChooseFiles>
+                  <Button theme="light" label="CHOOSE FILES" onClick={handleClick} tabIndex={tabIndexValue} />
+                  <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
+                </ButtonChooseFiles>
+              </DragAndDropContent>
+            </DragAndDropContentHover>
+          )}
+          {dragging && (
+            <DragAndDropContentHover>
+              <DragAndDropTextHover>{textHover}</DragAndDropTextHover>
+              <DragAndDropIconHover />
+            </DragAndDropContentHover>
+          )}
+        </DXCDragAndDrop>
+      </BackgroundColorProvider>
     </ThemeProvider>
   );
 };
@@ -164,8 +167,8 @@ const DragAndDropDescription = styled.div`
   font-size: ${(props) => props.theme.dragAndDropDescriptionFontSize};
   font-style: ${(props) => props.theme.dragAndDropDescriptionFontStyle};
   font-weight: ${(props) => props.theme.dragAndDropDescriptionFontWeight};
-  text-transform: ${(props) => props.theme.dragAndDropTextDescriptionFontTextTransform};
-  color: ${(props) => props.theme.dragAndDropTextDescriptionFontColor};
+  text-transform: ${(props) => props.theme.dragAndDropDescriptionFontTextTransform};
+  color: ${(props) => props.theme.dragAndDropDescriptionFontColor};
   margin-bottom: 40px;
 `;
 
@@ -219,7 +222,7 @@ const DragAndDropContentHover = styled.div`
   background-size: var(--dash-size) var(--border-weight), calc(var(--dash-size) + var(--gap-size)) var(--border-weight),
     var(--dash-size) var(--border-weight), var(--border-weight) var(--dash-size),
     var(--border-weight) calc(var(--dash-size) + var(--gap-size)), var(--border-weight) var(--dash-size);
-  background-color: ${(props) => props.theme.draggingAreaBackgroundColor};
+  background-color: ${(props) => props.theme.draggingStateBackgroundColor};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -242,8 +245,8 @@ const DragAndDropTextHover = styled.div`
   font-size: ${(props) => props.theme.dragAndDropDraggingStateFontSize};
   font-style: ${(props) => props.theme.dragAndDropDraggingStateFontStyle};
   font-weight: ${(props) => props.theme.dragAndDropDraggingStateFontWeight};
-  text-transform: ${(props) => props.theme.dragAndDropTextDraggingStateFontTextTransform};
-  color: ${(props) => props.theme.dragAndDropTextDraggingStateFontColor};
+  text-transform: ${(props) => props.theme.dragAndDropDraggingStateFontTextTransform};
+  color: ${(props) => props.theme.dragAndDropDraggingStateFontColor};
   margin-bottom: 10px;
 `;
 

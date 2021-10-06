@@ -37,8 +37,6 @@ const Textarea = () => {
       <Mode text="Invalid">
         <DxcTextarea
           label="Textarea label"
-          value={value}
-          onChange={onChange}
           assistiveText="assistive text"
           invalid={true}
           margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -47,8 +45,6 @@ const Textarea = () => {
       <Mode text="Required">
         <DxcTextarea
           label="Textarea label"
-          value={value}
-          onChange={onChange}
           assistiveText="assistive text"
           required={true}
           margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -72,7 +68,6 @@ const Textarea = () => {
           <DxcTextarea
             label="Textarea label"
             value="Sample text"
-            onChange={onChange}
             assistiveText="assistive text"
             disabled={true}
             margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -81,8 +76,6 @@ const Textarea = () => {
         <Mode mode="dark" text="Invalid">
           <DxcTextarea
             label="Textarea label"
-            value={value}
-            onChange={onChange}
             assistiveText="assistive text"
             invalid={true}
             margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -91,8 +84,6 @@ const Textarea = () => {
         <Mode mode="dark" text="Required">
           <DxcTextarea
             label="Textarea label"
-            value={value}
-            onChange={onChange}
             assistiveText="assistive text"
             required={true}
             margin={{ top: "xsmall", bottom: "xxsmall" }}
