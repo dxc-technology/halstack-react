@@ -15,8 +15,9 @@ const NewDatePropsTable = () => {
           <code></code>
         </td>
         <td>
-          Value of the input element. If undefined, the component will be uncontrolled
-          and the value will be managed internally by the component.
+          Value of the input element. If undefined, the component will be
+          uncontrolled and the value will be managed internally by the
+          component.
         </td>
       </tr>
       <tr>
@@ -100,6 +101,19 @@ const NewDatePropsTable = () => {
           If it is defined, the component will change its appearance, showing
           the error below the date component. If it is not defined, the error
           messages will be managed internally by the component.
+        </td>
+      </tr>
+      <tr>
+        <td>autocomplete: string</td>
+        <td>
+          <code>'off'</code>
+        </td>
+        <td>
+          HTML autocomplete attribute. Lets the user specify if any permission
+          the user agent has to provide automated assistance in filling out the
+          input value. Its value must be one of all the possible values of the
+          HTML autocomplete attribute: 'on', 'off', 'email', 'username',
+          'new-password', ...
         </td>
       </tr>
       <tr>

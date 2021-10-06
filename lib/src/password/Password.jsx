@@ -19,6 +19,7 @@ const DxcPassword = React.forwardRef(
       margin,
       pattern,
       length,
+      autocomplete = "off",
       size = "medium",
       tabIndex = 0,
     },
@@ -97,6 +98,7 @@ const DxcPassword = React.forwardRef(
           size={size}
           pattern={pattern}
           length={length}
+          autocomplete={autocomplete}
           tabIndex={tabIndex}
         />
       </DXCPassword>
@@ -122,6 +124,7 @@ DxcPassword.propTypes = {
   clearable: PropTypes.bool,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  autocomplete: PropTypes.string,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

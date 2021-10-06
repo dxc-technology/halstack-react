@@ -240,6 +240,14 @@ function App() {
       </p>
       <p>
         <DxcNumber
+          label="With 'on' autocomplete"
+          placeholder="Placeholder"
+          margin={{ left: "medium", right: "medium" }}
+          autocomplete="on"
+        />
+      </p>
+      <p>
+        <DxcNumber
           label="With ref"
           helperText="Example of helper text"
           placeholder="Placeholder"

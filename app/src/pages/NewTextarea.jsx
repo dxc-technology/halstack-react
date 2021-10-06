@@ -58,6 +58,11 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
+      <DxcNewTextarea
+        label="With 'on' autocomplete"
+        margin={{ left: "medium", right: "medium" }}
+        autocomplete="on"
+      />
       <p>
         <DxcNewTextarea
           label="Disabled"

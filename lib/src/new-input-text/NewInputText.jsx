@@ -52,6 +52,7 @@ const DxcNewInputText = React.forwardRef(
       suggestions,
       pattern,
       length,
+      autocomplete = "off",
       tabIndex = 0,
     },
     ref
@@ -106,7 +107,7 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const hasInputSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
-    
+
     const openSuggestions = () => {
       hasInputSuggestions() && changeIsOpen(true);
     };
@@ -444,6 +445,7 @@ const DxcNewInputText = React.forwardRef(
               ref={inputRef}
               backgroundType={backgroundType}
               pattern={pattern}
+              autoComplete={autocomplete}
               tabIndex={tabIndex}
               role={isTextInputType() && hasInputSuggestions() ? "combobox" : "textbox"}
               aria-autocomplete={isTextInputType() && hasInputSuggestions() ? "list" : undefined}
@@ -937,6 +939,7 @@ DxcNewInputText.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  autocomplete: PropTypes.string,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

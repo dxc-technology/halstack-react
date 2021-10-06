@@ -79,6 +79,13 @@ function App() {
       </p>
       <p>
         <DxcNewDate
+          label="With 'on' autocomplete"
+          autocomplete="on"
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcNewDate
           label="Disabled"
           disabled
           margin={{ left: "medium", right: "medium" }}

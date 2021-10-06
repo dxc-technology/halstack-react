@@ -23,6 +23,7 @@ const DxcNumber = React.forwardRef(
       onChange,
       onBlur,
       error = "",
+      autocomplete = "off",
       margin,
       size = "medium",
       tabIndex = 0,
@@ -45,6 +46,7 @@ const DxcNumber = React.forwardRef(
             error={error}
             onChange={onChange}
             onBlur={onBlur}
+            autocomplete={autocomplete}
             margin={margin}
             size={size}
             tabIndex={tabIndex}
@@ -93,6 +95,7 @@ DxcNumber.propTypes = {
   step: PropTypes.number,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  autocomplete: PropTypes.string,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

@@ -25,6 +25,7 @@ const DxcNewDate = React.forwardRef(
       onChange,
       onBlur,
       error = "",
+      autocomplete = "off",
       margin,
       size = "medium",
       tabIndex = 0,
@@ -261,6 +262,7 @@ const DxcNewDate = React.forwardRef(
                 onChange={handleIOnChange}
                 onBlur={handleIOnBlur}
                 error={error || validationError}
+                autocomplete={autocomplete}
                 margin={margin}
                 size={size}
                 tabIndex={tabIndex}
@@ -324,6 +326,7 @@ DxcNewDate.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  autocomplete: PropTypes.string,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
   margin: PropTypes.oneOfType([
     PropTypes.shape({
