@@ -1,16 +1,46 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-
 import { spaces } from "../common/variables.js";
-import closeIcon from "./close.svg";
-import errorIcon from "./error.svg";
-import infoIcon from "./info.svg";
-import successIcon from "./success.svg";
-import warningIcon from "./warning.svg";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+
+const alertIcons = {
+  close: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </svg>
+  ),
+  info: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+    </svg>
+  ),
+  success: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+    </svg>
+  ),
+  warning: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+    </svg>
+  ),
+  error: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+        fill="currentColor"
+      />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </svg>
+  ),
+};
 
 const DxcAlert = ({
   type = "info",
@@ -24,9 +54,8 @@ const DxcAlert = ({
 }) => {
   const colorsTheme = useTheme();
 
-  const getTypeText = () => {
-    return type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
-  };
+  const getTypeText = () =>
+    type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
 
   return (
     <ThemeProvider theme={colorsTheme.alert}>
@@ -34,34 +63,31 @@ const DxcAlert = ({
         {mode === "modal" && <OverlayContainer mode={mode} onClick={onClose}></OverlayContainer>}
         <AlertContainer mode={mode} type={type} margin={margin} size={size}>
           <AlertInfo>
-            <AlertIcon
-              src={
-                (type === "info" && infoIcon) ||
-                (type === "confirm" && successIcon) ||
-                (type === "warning" && warningIcon) ||
-                (type === "error" && errorIcon) ||
-                errorIcon
-              }
-            />
-            <AlertInfoText>
+            <AlertIcon type={type}>
+              {(type === "info" && alertIcons.info) ||
+                (type === "confirm" && alertIcons.success) ||
+                (type === "warning" && alertIcons.warning) ||
+                (type === "error" && alertIcons.error)}
+            </AlertIcon>
+            <AlertText>
               <AlertType type={type}>{getTypeText(type)}</AlertType>
               {inlineText && inlineText !== "" && "-"}
-              <AlertText>{inlineText}</AlertText>
-              {onClose && (
-                <CloseAlertIcon onClick={onClose} tabIndex={tabIndex}>
-                  <CloseImg src={closeIcon} />
-                </CloseAlertIcon>
-              )}
-            </AlertInfoText>
+              <AlertInlineText>{inlineText}</AlertInlineText>
+            </AlertText>
+            {onClose && (
+              <AlertCloseAction onClick={onClose} tabIndex={tabIndex}>
+                {alertIcons.close}
+              </AlertCloseAction>
+            )}
           </AlertInfo>
           {children && (
             <AlertContent>
               <BackgroundColorProvider
                 color={
-                  (type === "info" && colorsTheme.alert.infoColor) ||
-                  (type === "confirm" && colorsTheme.alert.successColor) ||
-                  (type === "warning" && colorsTheme.alert.warningColor) ||
-                  (type === "error" && colorsTheme.alert.errorColor)
+                  (type === "info" && colorsTheme.alert.infoBackgroundColor) ||
+                  (type === "confirm" && colorsTheme.alert.successBackgroundColor) ||
+                  (type === "warning" && colorsTheme.alert.warningBackgroundColor) ||
+                  (type === "error" && colorsTheme.alert.errorBackgroundColor)
                 }
               >
                 {children}
@@ -83,29 +109,9 @@ const sizes = {
 };
 
 const calculateWidth = (margin, size) => {
-  if (size === "fillParent") {
-    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-  }
-  return sizes[size];
-};
-
-DxcAlert.propTypes = {
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  type: PropTypes.oneOf(["info", "confirm", "warning", "error"]),
-  mode: PropTypes.oneOf(["inline", "modal"]),
-  inlineText: PropTypes.string,
-  onClose: PropTypes.func,
-  children: PropTypes.element,
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  tabIndex: PropTypes.number,
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 };
 
 const AlertModal = styled.div`
@@ -123,7 +129,6 @@ const AlertModal = styled.div`
 
 const OverlayContainer = styled.div`
   background-color: ${(props) => (props.mode === "modal" ? `${props.theme.overlayColor}` : "transparent")};
-  opacity: ${(props) => props.mode === "modal" && props.theme.overlayOpacity};
   position: ${(props) => (props.mode === "modal" ? "fixed" : "")};
   top: ${(props) => (props.mode === "modal" ? "0" : "")};
   bottom: ${(props) => (props.mode === "modal" ? "0" : "")};
@@ -143,13 +148,24 @@ const AlertContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: ${(props) => (props.children && "inline-block") || "inline-flex"};
   overflow: hidden;
-  box-shadow: ${(props) =>
-    `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
+
+  background-color: ${(props) =>
+    (props.type === "info" && props.theme.infoBackgroundColor) ||
+    (props.type === "confirm" && props.theme.successBackgroundColor) ||
+    (props.type === "warning" && props.theme.warningBackgroundColor) ||
+    (props.type === "error" && props.theme.errorBackgroundColor)};
 
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
-  border-color: ${(props) => props.theme.borderColor};
+  border-color: ${(props) =>
+    (props.type === "info" && props.theme.infoBorderColor) ||
+    (props.type === "confirm" && props.theme.successBorderColor) ||
+    (props.type === "warning" && props.theme.warningBorderColor) ||
+    (props.type === "error" && props.theme.errorBorderColor)};
+
+  padding-left: 12px;
+  padding-right: 12px;
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
   align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
   max-width: ${(props) =>
@@ -157,14 +173,6 @@ const AlertContainer = styled.div`
       ? calculateWidth(props.margin, "fillParent")
       : calculateWidth(props.margin, props.size)};
   width: ${(props) => calculateWidth(props.margin, props.size)};
-  min-height: ${(props) =>
-    (props.children && props.children.filter((child) => child === undefined).length === 0 && "92px") || "48px"};
-  background-color: ${(props) =>
-    (props.type === "info" && props.theme.infoColor) ||
-    (props.type === "confirm" && props.theme.successColor) ||
-    (props.type === "warning" && props.theme.warningColor) ||
-    (props.type === "error" && props.theme.errorColor) ||
-    props.theme.lightPink};
   z-index: ${(props) => (props.mode === "modal" ? "1300" : "")};
   cursor: default;
 `;
@@ -172,16 +180,15 @@ const AlertContainer = styled.div`
 const AlertInfo = styled.div`
   display: flex;
   flex-direction: row;
-  height: ${(props) => props.theme.height};
+  height: calc(48px - calc(${(props) => props.theme.borderThickness} * 2));
   align-items: center;
   width: 100%;
 `;
 
 const AlertType = styled.div`
+  margin-right: 8px;
   padding-right: ${(props) => props.theme.titlePaddingRight};
   padding-left: ${(props) => props.theme.titlePaddingLeft};
-  padding-top: ${(props) => props.theme.titlePaddingTop};
-  padding-bottom: ${(props) => props.theme.titlePaddingBottom};
   font-family: ${(props) => props.theme.titleFontFamily};
   font-size: ${(props) => props.theme.titleFontSize};
   font-weight: ${(props) => props.theme.titleFontWeight};
@@ -190,64 +197,104 @@ const AlertType = styled.div`
   text-transform: ${(props) => props.theme.titleTextTransform};
 `;
 
-const AlertText = styled.div`
+const AlertInlineText = styled.div`
+  margin-left: 8px;
   padding-right: ${(props) => props.theme.inlineTextPaddingRight};
   padding-left: ${(props) => props.theme.inlineTextPaddingLeft};
-  padding-top: ${(props) => props.theme.inlineTextPaddingTop};
-  padding-bottom: ${(props) => props.theme.inlineTextPaddingBottom};
   flex-grow: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: ${(props) => props.theme.contentFontFamily};
-  font-size: ${(props) => props.theme.contentFontSize};
-  font-weight: ${(props) => props.theme.contentFontWeight};
-  color: ${(props) => props.theme.contentFontColor};
+  font-family: ${(props) => props.theme.inlineTextFontFamily};
+  font-size: ${(props) => props.theme.inlineTextFontSize};
+  font-style: ${(props) => props.theme.inlineTextFontStyle};
+  font-weight: ${(props) => props.theme.inlineTextFontColor};
+  color: ${(props) => props.theme.inlineTextFontWeight};
 `;
 
-const AlertIcon = styled.img`
+const AlertIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
+  margin-right: 12px;
   padding-right: ${(props) => props.theme.iconPaddingRight};
   padding-left: ${(props) => props.theme.iconPaddingLeft};
-  padding-top: ${(props) => props.theme.iconPaddingTop};
-  padding-bottom: ${(props) => props.theme.iconPaddingBottom};
+
+  color: ${(props) =>
+    (props.type === "info" && props.theme.infoIconColor) ||
+    (props.type === "confirm" && props.theme.successIconColor) ||
+    (props.type === "warning" && props.theme.warningIconColor) ||
+    (props.type === "error" && props.theme.errorIconColor)};
 `;
 
-const AlertInfoText = styled.div`
+const AlertText = styled.div`
   display: flex;
   flex-direction: row;
-  padding-left: ${(props) => props.theme.textPaddingLeft};
-  padding-right: ${(props) => props.theme.textPaddingRight};
-  padding-top: ${(props) => props.theme.textPaddingTop};
-  padding-bottom: ${(props) => props.theme.textPaddingBottom};
-  overflow: hidden;
   flex-grow: 1;
   align-items: center;
+  overflow: hidden;
 `;
 
 const AlertContent = styled.div`
   flex: 1 1 auto;
   padding: ${(props) =>
     `${props.theme.contentPaddingTop} ${props.theme.contentPaddingRight} ${props.theme.contentPaddingBottom} ${props.theme.contentPaddingLeft}`};
-  font-family: ${(props) => props.theme.contentFontFamily};
-  font-size: ${(props) => props.theme.contentFontSize};
-  font-weight: ${(props) => props.theme.contentFontWeight};
-  color: ${(props) => props.theme.contentFontColor};
   overflow-y: auto;
 `;
 
-const CloseAlertIcon = styled.button`
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  background: none;
-  border: none;
-  height: 20px;
-  width: 20px;
+const AlertCloseAction = styled.button`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 24px;
+  width: 24px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px transparent;
+  padding: 3px;
+  margin-left: 12px;
+  background-color: transparent;
   display: inline-flex;
+
+  &:hover {
+    background-color: ${(props) => props.theme.hoverActionBackgroundColor};
+    color: ${(props) => props.theme.hoverActionIconColor};
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
+    color: ${(props) => props.theme.focusActionIconColor};
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
+    color: ${(props) => props.theme.focusActionIconColor};
+  }
+  &:active {
+    background-color: ${(props) => props.theme.activeActionBackgroundColor};
+    color: ${(props) => props.theme.activeActionIconColor};
+  }
 `;
 
-const CloseImg = styled.img``;
+DxcAlert.propTypes = {
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces)),
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
+  type: PropTypes.oneOf(["info", "confirm", "warning", "error"]),
+  mode: PropTypes.oneOf(["inline", "modal"]),
+  inlineText: PropTypes.string,
+  onClose: PropTypes.func,
+  children: PropTypes.element,
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
+  tabIndex: PropTypes.number,
+};
 
 export default DxcAlert;
