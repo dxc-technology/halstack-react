@@ -78,7 +78,6 @@
     "warningBackgroundColor": "color",
     "errorBackgroundColor": "color",
     "overlayColor": "color",
-    "focusColor": "color",
     "hoverActionBackgroundColor": "color",
     "hoverActionIconColor": "color",
     "focusActionBorderColor": "color",

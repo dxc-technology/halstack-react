@@ -208,8 +208,8 @@ const AlertInlineText = styled.div`
   font-family: ${(props) => props.theme.inlineTextFontFamily};
   font-size: ${(props) => props.theme.inlineTextFontSize};
   font-style: ${(props) => props.theme.inlineTextFontStyle};
-  font-weight: ${(props) => props.theme.inlineTextFontColor};
-  color: ${(props) => props.theme.inlineTextFontWeight};
+  font-weight: ${(props) => props.theme.inlineTextFontWeight};
+  color: ${(props) => props.theme.inlineTextFontColor};
 `;
 
 const AlertIcon = styled.span`
