@@ -162,18 +162,18 @@ const SliderContainer = styled.div`
     & > .MuiSlider-mark.MuiSlider-markActive {
       background-color: ${(props) =>
         props.backgroundType === "dark"
-          ? props.theme.disabledDotsBackgroundColorOnDark
-          : props.theme.disabledDotsBackgroundColor} !important;
+          ? props.theme.disabledTickBackgroundColorOnDark
+          : props.theme.disabledTickBackgroundColor} !important;
     }
     & > .MuiSlider-mark {
       background-color: ${(props) =>
         props.backgroundType === "dark"
-          ? props.theme.disabledDotsBackgroundColorOnDark
-          : props.theme.disabledDotsBackgroundColor};
-      height: ${(props) => props.theme.dotsHeight};
-      width: ${(props) => props.theme.dotsWidth};
+          ? props.theme.disabledTickBackgroundColorOnDark
+          : props.theme.disabledTickBackgroundColor};
+      height: ${(props) => props.theme.tickHeight};
+      width: ${(props) => props.theme.tickWidth};
       border-radius: 18px;
-      top: ${(props) => props.theme.disabledDotsVerticalPosition};
+      top: ${(props) => props.theme.disabledTickVerticalPosition};
     }
   }
 
@@ -183,6 +183,7 @@ const SliderContainer = styled.div`
     background-color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
     top: ${(props) => props.theme.thumbVerticalPosition};
+    border-radius: 9999px;
 
     :hover,
     &.Mui-focusVisible {
@@ -192,12 +193,14 @@ const SliderContainer = styled.div`
       box-shadow: none;
     }
     :hover:not(:active) {
-      box-shadow: "0px 0px 0px 18px #66666633";
-      transform: scale(${(props) => props.theme.activeThumbScale});
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.hoverThumbBackgroundColorOnDark
+          : props.theme.hoverThumbBackgroundColor};
+      transform: scale(${(props) => props.theme.hoverThumbScale});
       transform-origin: center;
     }
     :active {
-      // box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
       background-color: ${(props) =>
         props.backgroundType === "dark"
           ? props.theme.activeThumbBackgroundColorOnDark
@@ -208,9 +211,7 @@ const SliderContainer = styled.div`
     &:focus {
       outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
         auto 1px;
-      outline-offset: 3px;
-      transform: scale(${(props) => props.theme.activeThumbScale});
-      transform-origin: center;
+      outline-offset: 2px;
     }
   }
 
@@ -219,6 +220,7 @@ const SliderContainer = styled.div`
       props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
     height: ${(props) => props.theme.trackLineThickness};
     top: ${(props) => props.theme.trackLineVerticalPosition};
+    border-radius: 9999px;
   }
   .MuiSlider-track.MuiSlider-trackAfter {
     background-color: ${(props) =>
@@ -232,15 +234,15 @@ const SliderContainer = styled.div`
   }
   .MuiSlider-mark.MuiSlider-markActive {
     background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.dotsBackgroundColorOnDark : props.theme.dotsBackgroundColor};
+      props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
   }
   .MuiSlider-mark {
     background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.dotsBackgroundColorOnDark : props.theme.dotsBackgroundColor};
-    height: ${(props) => props.theme.dotsHeight};
-    width: ${(props) => props.theme.dotsWidth};
+      props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
+    height: ${(props) => props.theme.tickHeight};
+    width: ${(props) => props.theme.tickWidth};
     border-radius: 18px;
-    top: ${(props) => props.theme.dotsVerticalPosition};
+    top: ${(props) => props.theme.tickVerticalPosition};
   }
 `;
 
