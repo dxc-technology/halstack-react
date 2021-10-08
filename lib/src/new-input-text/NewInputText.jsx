@@ -106,7 +106,7 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const hasInputSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
-    
+
     const openSuggestions = () => {
       hasInputSuggestions() && changeIsOpen(true);
     };
@@ -730,7 +730,7 @@ const Action = styled.button`
   border-radius: 4px;
   padding: 3px;
   margin-left: calc(1rem * 0.25);
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer`)};
+  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
 
   background-color: ${(props) =>
     props.disabled

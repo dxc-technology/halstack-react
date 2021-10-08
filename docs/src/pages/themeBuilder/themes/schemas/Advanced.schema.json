@@ -79,11 +79,8 @@
     "errorBackgroundColor": "color",
     "overlayColor": "color",
     "hoverActionBackgroundColor": "color",
-    "hoverActionIconColor": "color",
     "focusActionBorderColor": "color",
-    "focusActionIconColor": "color",
-    "activeActionBackgroundColor": "color",
-    "activeActionIconColor": "color"
+    "activeActionBackgroundColor": "color"
   },
   "box": {
     "backgroundColor": "color",

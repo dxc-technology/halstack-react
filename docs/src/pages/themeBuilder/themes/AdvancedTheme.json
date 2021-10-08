@@ -78,12 +78,9 @@
     "warningBackgroundColor": "#fef9e6",
     "errorBackgroundColor": "#ffe6e9",
     "overlayColor": "#000000B3",
-    "hoverActionBackgroundColor": "#f2f2f2",
-    "hoverActionIconColor": "#000000",
+    "hoverActionBackgroundColor": "#0000000D",
     "focusActionBorderColor": "#0095ff",
-    "focusActionIconColor": "#000000",
-    "activeActionBackgroundColor": "#cccccc",
-    "activeActionIconColor": "#000000"
+    "activeActionBackgroundColor": "#0000001A"
   },
   "box": {
     "backgroundColor": "#ffffff",

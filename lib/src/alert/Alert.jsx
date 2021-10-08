@@ -174,7 +174,6 @@ const AlertContainer = styled.div`
       : calculateWidth(props.margin, props.size)};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   z-index: ${(props) => (props.mode === "modal" ? "1300" : "")};
-  cursor: default;
 `;
 
 const AlertInfo = styled.div`
@@ -216,8 +215,6 @@ const AlertIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  width: ${(props) => props.theme.iconSize};
-  height: ${(props) => props.theme.iconSize};
   margin-right: 12px;
   padding-right: ${(props) => props.theme.iconPaddingRight};
   padding-left: ${(props) => props.theme.iconPaddingLeft};
@@ -227,6 +224,11 @@ const AlertIcon = styled.span`
     (props.type === "confirm" && props.theme.successIconColor) ||
     (props.type === "warning" && props.theme.warningIconColor) ||
     (props.type === "error" && props.theme.errorIconColor)};
+
+  svg {
+    width: ${(props) => props.theme.iconSize};
+    height: ${(props) => props.theme.iconSize};
+  }
 `;
 
 const AlertText = styled.div`
@@ -257,24 +259,22 @@ const AlertCloseAction = styled.button`
   margin-left: 12px;
   background-color: transparent;
   display: inline-flex;
+  color: #000000;
+  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => props.theme.hoverActionBackgroundColor};
-    color: ${(props) => props.theme.hoverActionIconColor};
   }
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
-    color: ${(props) => props.theme.focusActionIconColor};
   }
   &:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
-    color: ${(props) => props.theme.focusActionIconColor};
   }
   &:active {
     background-color: ${(props) => props.theme.activeActionBackgroundColor};
-    color: ${(props) => props.theme.activeActionIconColor};
   }
 `;
 
