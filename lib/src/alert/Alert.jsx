@@ -70,7 +70,7 @@ const DxcAlert = ({
                 (type === "error" && alertIcons.error)}
             </AlertIcon>
             <AlertText>
-              <AlertType type={type}>{getTypeText(type)}</AlertType>
+              <AlertTitle type={type}>{getTypeText(type)}</AlertTitle>
               {inlineText && inlineText !== "" && "-"}
               <AlertInlineText>{inlineText}</AlertInlineText>
             </AlertText>
@@ -184,15 +184,15 @@ const AlertInfo = styled.div`
   width: 100%;
 `;
 
-const AlertType = styled.div`
+const AlertTitle = styled.div`
   margin-right: 8px;
   padding-right: ${(props) => props.theme.titlePaddingRight};
   padding-left: ${(props) => props.theme.titlePaddingLeft};
   font-family: ${(props) => props.theme.titleFontFamily};
   font-size: ${(props) => props.theme.titleFontSize};
+  font-style: ${(props) => props.theme.titleFontStyle};
   font-weight: ${(props) => props.theme.titleFontWeight};
   color: ${(props) => props.theme.titleFontColor};
-  font-style: ${(props) => props.theme.titleFontStyle};
   text-transform: ${(props) => props.theme.titleTextTransform};
 `;
 
@@ -258,7 +258,6 @@ const AlertCloseAction = styled.button`
   padding: 3px;
   margin-left: 12px;
   background-color: transparent;
-  display: inline-flex;
   color: #000000;
   cursor: pointer;
 
