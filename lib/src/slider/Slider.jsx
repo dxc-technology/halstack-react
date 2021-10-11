@@ -61,7 +61,11 @@ const DxcSlider = ({
   return (
     <ThemeProvider theme={colorsTheme.slider}>
       <SliderContainer margin={margin} size={size} backgroundType={backgroundType}>
-        {showLimitsValues && <MinLabelContainer backgroundType={backgroundType}>{minLabel}</MinLabelContainer>}
+        {showLimitsValues && (
+          <MinLabelContainer backgroundType={backgroundType} disabled={disabled}>
+            {minLabel}
+          </MinLabelContainer>
+        )}
         <Slider
           value={(value != null && value >= 0 && value) || innerValue}
           min={minValue}
@@ -73,7 +77,7 @@ const DxcSlider = ({
           disabled={disabled}
         />
         {showLimitsValues && (
-          <MaxLabelContainer backgroundType={backgroundType} step={step}>
+          <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
             {maxLabel}
           </MaxLabelContainer>
         )}
@@ -106,6 +110,10 @@ const calculateWidth = (margin, size) =>
 
 const StyledTextInput = styled.div`
   margin-left: 32px;
+
+  label + .MuiInput-formControl {
+    margin-top: 2px;
+  }
 `;
 
 const SliderContainer = styled.div`
@@ -136,7 +144,6 @@ const SliderContainer = styled.div`
         : props.theme.disabledThumbBackgroundColor};
     cursor: not-allowed;
   }
-
   .Mui-disabled {
     & .MuiSlider-thumb {
       height: ${(props) => props.theme.thumbHeight};
@@ -176,7 +183,6 @@ const SliderContainer = styled.div`
       top: ${(props) => props.theme.disabledTickVerticalPosition};
     }
   }
-
   .MuiSlider-thumb {
     height: ${(props) => props.theme.thumbHeight};
     width: ${(props) => props.theme.thumbWidth};
@@ -192,7 +198,16 @@ const SliderContainer = styled.div`
     &.MuiSlider-active {
       box-shadow: none;
     }
-    :hover:not(:active) {
+    :focus {
+      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
+        auto 1px;
+      outline-offset: 2px;
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.focusThumbBackgroundColorOnDark
+          : props.theme.focusThumbBackgroundColor};
+    }
+    :hover {
       background-color: ${(props) =>
         props.backgroundType === "dark"
           ? props.theme.hoverThumbBackgroundColorOnDark
@@ -208,13 +223,7 @@ const SliderContainer = styled.div`
       transform: scale(${(props) => props.theme.activeThumbScale});
       transform-origin: center;
     }
-    &:focus {
-      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
-        auto 1px;
-      outline-offset: 2px;
-    }
   }
-
   .MuiSlider-track {
     background-color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
@@ -251,7 +260,12 @@ const MinLabelContainer = styled.span`
   font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
   font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => (props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.fontColorOnDark
+      : props.theme.fontColor};
   letter-spacing: ${(props) => props.theme.fontLetterSpacing};
   margin-right: 16px;
 `;
@@ -261,7 +275,12 @@ const MaxLabelContainer = styled.span`
   font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
   font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => (props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.fontColorOnDark
+      : props.theme.fontColor};
   letter-spacing: ${(props) => props.theme.fontLetterSpacing};
   margin-left: ${(props) => (props.step === 1 ? "16px" : "20px")};
 `;
