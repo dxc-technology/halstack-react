@@ -44,7 +44,7 @@ function App() {
 
   const onBlur = ({ value, error }) => {
     setValue(value);
-    error ? setErrorMessage("Custom error") : setErrorMessage(null);
+    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
   };
 
   const onChangeSuggestions = (value) => {
@@ -203,7 +203,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
-          character)
+          character) - Custom error message
         </h4>
         <DxcNewInputText
           value={value}
@@ -217,7 +217,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>
-          With min length 5 and max length 10
+          With min length 5 and max length 10 - Custom error message
         </h4>
         <DxcNewInputText
           value={value}
@@ -232,7 +232,8 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           With pattern (At least one letter, one number and one special
-          character) and minimum length 5 and maximum length 10
+          character) and minimum length 5 and maximum length 10 - Custom error
+          message
         </h4>
         <DxcNewInputText
           value={value}
@@ -248,7 +249,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
-          special character) - Custom error messages
+          special character)
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -263,8 +264,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>
-          Autosuggest - With min length 5 and max length 10 - Custom error
-          messages
+          Autosuggest - With min length 5 and max length 10
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -279,8 +279,7 @@ function App() {
       <p>
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
-          special character) and minimum length 5 and maximum length 10 - Custom
-          error messages
+          special character) and minimum length 5 and maximum length 10
         </h4>
         <DxcNewInputText
           value={suggestionsValue}
@@ -396,7 +395,7 @@ function App() {
           helperText="Example of helper text"
           placeholder="Emojis"
           margin={{ left: "medium", bottom: "small", right: "medium" }}
-          error="Error message"
+          error="Error message."
           suffix="😠"
           action={action}
           clearable
@@ -561,7 +560,7 @@ function App() {
             label="Error input"
             helperText="Example of helper text"
             margin={{ left: "medium", bottom: "small", right: "medium" }}
-            error="Error message"
+            error="Error message."
             suffix="😠"
             action={action}
             clearable

@@ -127,7 +127,7 @@ function App() {
       <p>
         <DxcNewDate
           label="With error"
-          error="An error was catched"
+          error="An error was catched."
           margin={{ left: "medium", right: "medium" }}
         />
       </p>

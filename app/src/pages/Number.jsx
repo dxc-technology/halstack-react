@@ -12,7 +12,7 @@ function App() {
 
   const onBlur = ({ value, error }) => {
     setValue(value);
-    error ? setErrorMessage("Custom error") : setErrorMessage(null);
+    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
   };
 
   return (
@@ -169,7 +169,7 @@ function App() {
           onChange={onChange}
           onBlur={onBlur}
           margin="medium"
-          error="Error message"
+          error="Error message."
         />
       </p>
       <p>

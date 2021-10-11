@@ -12,7 +12,7 @@ function App() {
 
   const onBlur = ({ value, error }) => {
     setValue(value);
-    error ? setErrorMessage("Custom error") : setErrorMessage(null);
+    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
   };
 
   return (
@@ -60,7 +60,7 @@ function App() {
         <DxcPassword
           value={value}
           label="Error password"
-          error="Error message"
+          error="Error message."
           clearable
           onChange={onChange}
           onBlur={onBlur}

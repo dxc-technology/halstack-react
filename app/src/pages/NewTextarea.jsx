@@ -20,7 +20,7 @@ function App() {
   };
   const onBlurCustom = ({ value, error }) => {
     setCustomValue(value);
-    error ? setErrorMessage("Custom error") : setErrorMessage(null);
+    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
   };
 
   const [disabledInput, setDisabledInput] = useState(false);
@@ -203,7 +203,7 @@ function App() {
             helperText="Example of helper text"
             placeholder="Enter your text here..."
             margin={{ left: "medium", bottom: "small", right: "medium" }}
-            error="Error message"
+            error="Error message."
           />
         </Mode>
       </BackgroundColorProvider>
