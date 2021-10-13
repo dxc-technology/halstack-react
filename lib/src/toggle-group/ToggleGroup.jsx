@@ -19,6 +19,7 @@ const DxcToggleGroup = ({
 
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
+    
     if (value == null) {
       if (multiple) {
         newSelectedOptions = selectedValue.map((value) => value);
@@ -29,24 +30,22 @@ const DxcToggleGroup = ({
           newSelectedOptions.push(selectedOption);
         }
         setSelectedValue(newSelectedOptions);
-      } else {
-        setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
-      }
+      } else setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
     } else if (multiple) {
       newSelectedOptions = value.map((v) => v);
-      newSelectedOptions.push(selectedOption);
+      if (newSelectedOptions.includes(selectedOption)) {
+        const index = newSelectedOptions.indexOf(selectedOption);
+        newSelectedOptions.splice(index, 1);
+      } else newSelectedOptions.push(selectedOption);
     }
 
-    if (typeof onChange === "function") {
-      onChange(multiple ? newSelectedOptions : selectedOption);
-    }
+    typeof onChange === "function" && onChange(multiple ? newSelectedOptions : selectedOption);
   };
 
   const handleKeyPress = (event, optionValue) => {
     event.preventDefault();
-    if (!disabled && (event.nativeEvent.code === "Enter" || event.nativeEvent.code === "Space")) {
+    if (!disabled && (event.nativeEvent.code === "Enter" || event.nativeEvent.code === "Space"))
       handleToggleChange(optionValue);
-    }
   };
 
   return (
