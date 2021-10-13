@@ -62,7 +62,7 @@ const DxcSlider = ({
     <ThemeProvider theme={colorsTheme.slider}>
       <SliderContainer margin={margin} size={size} backgroundType={backgroundType}>
         {showLimitsValues && (
-          <MinLabelContainer backgroundType={backgroundType}>
+          <MinLabelContainer backgroundType={backgroundType} disabled={disabled}>
             {minLabel}
           </MinLabelContainer>
         )}
@@ -77,7 +77,7 @@ const DxcSlider = ({
           disabled={disabled}
         />
         {showLimitsValues && (
-          <MaxLabelContainer backgroundType={backgroundType} step={step}>
+          <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
             {maxLabel}
           </MaxLabelContainer>
         )}
@@ -89,7 +89,6 @@ const DxcSlider = ({
               disabled={disabled}
               onChange={handlerInputChange}
               size="small"
-              margin={{ left: "medium" }}
             />
           </StyledTextInput>
         )}
@@ -109,32 +108,13 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-DxcSlider.propTypes = {
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  minValue: PropTypes.number,
-  maxValue: PropTypes.number,
-  step: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  showLimitsValues: PropTypes.bool,
-  showInput: PropTypes.bool,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-  onDragEnd: PropTypes.func,
-  disabled: PropTypes.bool,
-  marks: PropTypes.bool,
-  labelFormatCallback: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
+const StyledTextInput = styled.div`
+  margin-left: 32px;
 
-const StyledTextInput = styled.div``;
+  label + .MuiInput-formControl {
+    margin-top: 2px;
+  }
+`;
 
 const SliderContainer = styled.div`
   display: flex;
@@ -164,7 +144,6 @@ const SliderContainer = styled.div`
         : props.theme.disabledThumbBackgroundColor};
     cursor: not-allowed;
   }
-
   .Mui-disabled {
     & .MuiSlider-thumb {
       height: ${(props) => props.theme.thumbHeight};
@@ -177,7 +156,9 @@ const SliderContainer = styled.div`
     }
     & .MuiSlider-track {
       background-color: ${(props) =>
-        props.backgroundType === "dark" ? props.theme.disabledTrackLineOnDark : props.theme.disabledTrackLineColor};
+        props.backgroundType === "dark"
+          ? props.theme.disabledTrackLineColorOnDark
+          : props.theme.disabledTrackLineColor};
     }
     & .MuiSlider-rail {
       background-color: ${(props) =>
@@ -188,28 +169,27 @@ const SliderContainer = styled.div`
     & > .MuiSlider-mark.MuiSlider-markActive {
       background-color: ${(props) =>
         props.backgroundType === "dark"
-          ? props.theme.disabledDotsBackgroundColorOnDark
-          : props.theme.disabledDotsBackgroundColor} !important;
+          ? props.theme.disabledTickBackgroundColorOnDark
+          : props.theme.disabledTickBackgroundColor} !important;
     }
     & > .MuiSlider-mark {
       background-color: ${(props) =>
         props.backgroundType === "dark"
-          ? props.theme.disabledDotsBackgroundColorOnDark
-          : props.theme.disabledDotsBackgroundColor};
-      height: ${(props) => props.theme.dotsHeight};
-      width: ${(props) => props.theme.dotsWidth};
+          ? props.theme.disabledTickBackgroundColorOnDark
+          : props.theme.disabledTickBackgroundColor};
+      height: ${(props) => props.theme.tickHeight};
+      width: ${(props) => props.theme.tickWidth};
       border-radius: 18px;
-      top: ${(props) => props.theme.disabledDotsVerticalPosition};
+      top: ${(props) => props.theme.disabledTickVerticalPosition};
     }
   }
-
   .MuiSlider-thumb {
     height: ${(props) => props.theme.thumbHeight};
     width: ${(props) => props.theme.thumbWidth};
     background-color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
     top: ${(props) => props.theme.thumbVerticalPosition};
-    transform: scale(0.7);
+    border-radius: 9999px;
 
     :hover,
     &.Mui-focusVisible {
@@ -218,72 +198,116 @@ const SliderContainer = styled.div`
     &.MuiSlider-active {
       box-shadow: none;
     }
-    :hover:not(:active) {
-      box-shadow: "0px 0px 0px 18px #66666633";
-    }
-    :active {
-      box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.draggedThumbBackgroundColorOnDark
-          : props.theme.draggedThumbBackgroundColor};
-      transform: scale(${(props) => props.theme.draggedThumbScale});
-      transform-origin: center;
-    }
-    &:focus {
+    :focus {
       outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
         auto 1px;
+      outline-offset: 2px;
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.focusThumbBackgroundColorOnDark
+          : props.theme.focusThumbBackgroundColor};
+    }
+    :hover {
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.hoverThumbBackgroundColorOnDark
+          : props.theme.hoverThumbBackgroundColor};
+      transform: scale(${(props) => props.theme.hoverThumbScale});
+      transform-origin: center;
+    }
+    :active {
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.activeThumbBackgroundColorOnDark
+          : props.theme.activeThumbBackgroundColor};
+      transform: scale(${(props) => props.theme.activeThumbScale});
+      transform-origin: center;
     }
   }
-
   .MuiSlider-track {
     background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.trackLineOnDark : props.theme.trackLineColor};
+      props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
     height: ${(props) => props.theme.trackLineThickness};
     top: ${(props) => props.theme.trackLineVerticalPosition};
+    border-radius: 9999px;
   }
   .MuiSlider-track.MuiSlider-trackAfter {
     background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.trackLineOnDark : props.theme.trackLineColor};
+      props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
   }
   .MuiSlider-rail {
     background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.totalLineOnDark : props.theme.totalLineColor};
+      props.backgroundType === "dark" ? props.theme.totalLineColorOnDark : props.theme.totalLineColor};
     height: ${(props) => props.theme.totalLineThickness};
     top: ${(props) => props.theme.totalLineVerticalPosition};
   }
   .MuiSlider-mark.MuiSlider-markActive {
     background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.dotsBackgroundColorOnDark : props.theme.dotsBackgroundColor};
+      props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
   }
   .MuiSlider-mark {
     background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.dotsBackgroundColorOnDark : props.theme.dotsBackgroundColor};
-    height: ${(props) => props.theme.dotsHeight};
-    width: ${(props) => props.theme.dotsWidth};
+      props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
+    height: ${(props) => props.theme.tickHeight};
+    width: ${(props) => props.theme.tickWidth};
     border-radius: 18px;
-    top: ${(props) => props.theme.dotsVerticalPosition};
+    top: ${(props) => props.theme.tickVerticalPosition};
   }
 `;
 
 const MinLabelContainer = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
-  font-style: ${(props) => (props.theme.fontStyle)};
+  font-style: ${(props) => props.theme.fontStyle};
   font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => (props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.fontColorOnDark
+      : props.theme.fontColor};
   letter-spacing: ${(props) => props.theme.fontLetterSpacing};
-  margin-right: 15px;
+  margin-right: 16px;
 `;
 
 const MaxLabelContainer = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
-  font-style: ${(props) => (props.theme.fontStyle)};
+  font-style: ${(props) => props.theme.fontStyle};
   font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => (props.backgroundType === "dark" ? props.theme.fontColorOnDark : props.theme.fontColor)};
+  color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.fontColorOnDark
+      : props.theme.fontColor};
   letter-spacing: ${(props) => props.theme.fontLetterSpacing};
-  margin-left: ${(props) => (props.step === 1 ? "15px" : "20px")};
+  margin-left: ${(props) => (props.step === 1 ? "16px" : "20px")};
 `;
+
+DxcSlider.propTypes = {
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
+  minValue: PropTypes.number,
+  maxValue: PropTypes.number,
+  step: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  showLimitsValues: PropTypes.bool,
+  showInput: PropTypes.bool,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  onDragEnd: PropTypes.func,
+  disabled: PropTypes.bool,
+  marks: PropTypes.bool,
+  labelFormatCallback: PropTypes.func,
+  margin: PropTypes.oneOfType([
+    PropTypes.shape({
+      top: PropTypes.oneOf(Object.keys(spaces)),
+      bottom: PropTypes.oneOf(Object.keys(spaces)),
+      left: PropTypes.oneOf(Object.keys(spaces)),
+      right: PropTypes.oneOf(Object.keys(spaces)),
+    }),
+    PropTypes.oneOf([...Object.keys(spaces)]),
+  ]),
+};
 
 export default DxcSlider;
