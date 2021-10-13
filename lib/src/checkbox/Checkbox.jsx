@@ -7,6 +7,7 @@ import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+
 const DxcCheckbox = ({
   checked,
   value,
@@ -21,6 +22,8 @@ const DxcCheckbox = ({
   tabIndex = 0,
 }) => {
   const [innerChecked, setInnerChecked] = useState(false);
+  const [isLabelHovered, setIsLabelHovered] = useState(false);
+
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
   const handlerCheckboxChange = (checkboxValue) => {
@@ -36,6 +39,11 @@ const DxcCheckbox = ({
       }
     }
   };
+
+  const handleLabelHover = () => {
+    setIsLabelHovered(!isLabelHovered);
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
       <CheckboxContainer
@@ -46,6 +54,7 @@ const DxcCheckbox = ({
         margin={margin}
         size={size}
         backgroundType={backgroundType}
+        isLabelHovered={isLabelHovered}
       >
         <Checkbox
           checked={checked != undefined ? checked : innerChecked}
@@ -76,6 +85,8 @@ const DxcCheckbox = ({
             disabled={disabled}
             className="labelContainer"
             backgroundType={backgroundType}
+            onMouseOver={handleLabelHover}
+            onMouseOut={handleLabelHover}
           >
             {label}
           </LabelContainer>
@@ -172,7 +183,12 @@ const CheckboxContainer = styled.span`
   .MuiCheckbox-colorSecondary {
     .MuiIconButton-label {
       & > .MuiSvgIcon-root {
-        color: ${(props) => getNotDisabledColor(props, "border")};
+        color: ${(props) =>
+          props.isLabelHovered
+            ? props.backgroundType === "dark"
+              ? props.theme.hoverBorderColorOnDark
+              : props.theme.hoverBorderColor
+            : getNotDisabledColor(props, "border")};
       }
     }
     &.Mui-disabled {
@@ -206,8 +222,8 @@ const CheckboxContainer = styled.span`
     }
     .MuiIconButton-label {
       & > .MuiSvgIcon-root {
-        width: 26.6px;
-        height: 26.6px;
+        width: 24px;
+        height: 24px;
       }
     }
   }
@@ -226,21 +242,20 @@ const CheckboxContainer = styled.span`
         }
       }
     }
+
     &.Mui-focusVisible {
       .MuiIconButton-label {
-        outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
-          auto 1px;
+        box-shadow: 0 0 0 2px
+          ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
       }
     }
     z-index: 1;
-    padding: 10px;
-    ${(props) => (props.labelPosition === "after" ? "padding-right" : "padding-left")}: ${(props) =>
-      props.theme.checkLabelSpacing};
-    padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
-    padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
-    margin: 2px;
+    margin: ${(props) => props.theme.checkLabelSpacing};
     margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
     margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
+    padding: 0px;
+    left: ${(props) => (props.labelPosition === "before" ? "unset" : "1px")};
+    right: ${(props) => (props.labelPosition === "before" ? "1px" : "unset")};
   }
 `;
 const CheckboxBlackBack = styled.span`
@@ -250,14 +265,12 @@ const CheckboxBlackBack = styled.span`
       : props.disabled
       ? getDisabledColor(props, "check")
       : getNotDisabledColor(props, "check")};
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   position: absolute;
   left: ${(props) => (props.labelPosition === "before" ? "unset" : "5px")};
   right: ${(props) => (props.labelPosition === "before" ? "5px" : "unset")};
   z-index: 0;
-  padding-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
-  padding-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
   margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
   margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
 `;
