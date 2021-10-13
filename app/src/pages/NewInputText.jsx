@@ -403,6 +403,13 @@ function App() {
       </p>
       <p>
         <DxcNewInputText
+          label="With 'on' autocomplete"
+          autocomplete="on"
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcNewInputText
           label="Disabled input"
           helperText="Example of helper text"
           placeholder="Placeholder"

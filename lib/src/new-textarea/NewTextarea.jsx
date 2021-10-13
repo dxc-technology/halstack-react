@@ -31,6 +31,7 @@ const DxcNewTextarea = React.forwardRef(
       onChange,
       onBlur,
       error = "",
+      autocomplete = "off",
       margin,
       size = "medium",
       tabIndex = 0,
@@ -101,6 +102,7 @@ const DxcNewTextarea = React.forwardRef(
             onBlur={handleTOnBlur}
             disabled={disabled}
             error={error || validationError}
+            autoComplete={autocomplete}
             backgroundType={backgroundType}
             ref={textareaRef}
             tabIndex={tabIndex}
@@ -303,6 +305,7 @@ DxcNewTextarea.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
+  autocomplete: PropTypes.string,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),

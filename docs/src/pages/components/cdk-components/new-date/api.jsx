@@ -113,6 +113,19 @@ const NewDatePropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>autocomplete: string</td>
+        <td>
+          <code>'off'</code>
+        </td>
+        <td>
+          HTML autocomplete attribute. Lets the user specify if any permission
+          the user agent has to provide automated assistance in filling out the
+          input value. Its value must be one of all the possible values of the
+          HTML autocomplete attribute: 'on', 'off', 'email', 'username',
+          'new-password', ...
+        </td>
+      </tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>

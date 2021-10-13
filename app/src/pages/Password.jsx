@@ -58,6 +58,14 @@ function App() {
       </p>
       <p>
         <DxcPassword
+          label="With 'on' autocomplete"
+          clearable
+          autocomplete="on"
+          margin="medium"
+        />
+      </p>
+      <p>
+        <DxcPassword
           value={value}
           label="Error password"
           error="Error message."
