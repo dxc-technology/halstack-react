@@ -6,8 +6,8 @@ import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import DialogPropsTable from "./api.jsx";
 import defaultDialog from "./examples/defaultDialog.js";
-import modalDialog from "./examples/modalDialog.js";
-import buttonCloseDialog from "./examples/closeButtonDialog.js";
+import noOverlay from "./examples/noOverlayDialog.js";
+import backgroundClose from "./examples/backgroundCloseDialog.js";
 
 function Dialog() {
   return (
@@ -40,14 +40,14 @@ function Dialog() {
                   margin={{ bottom: "small" }}
                 />
                 <Example
-                  title="Default Dialog"
+                  title="Dialog using Halstack components"
                   example={defaultDialog}
                 ></Example>
-                <Example title="Modal Dialog" example={modalDialog}></Example>
                 <Example
-                  title="Close button Dialog"
-                  example={buttonCloseDialog}
+                  title="Dialog with background click event"
+                  example={backgroundClose}
                 ></Example>
+                <Example title="Dialog without overlay" example={noOverlay}></Example>
               </Section>
             ),
           },

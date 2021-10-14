@@ -313,13 +313,7 @@
   "dialog": {
     "overlayColor": "color",
     "overlayOpacity": "alphaValue",
-    "scrollBarThumbColor": "color",
-    "scrollBarTrackColor": "color",
     "backgroundColor": "color",
-    "fontFamily": "fFamily",
-    "fontSize": "length",
-    "fontWeight": "fWeight",
-    "fontColor": "color",
     "closeIconWidth": "length",
     "closeIconHeight": "length",
     "closeIconTopPosition": "length",

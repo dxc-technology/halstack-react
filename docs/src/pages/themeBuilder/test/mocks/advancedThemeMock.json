@@ -313,13 +313,7 @@
   "dialog": {
     "overlayColor": "#000000",
     "overlayOpacity": "0.7",
-    "scrollBarThumbColor": "#666666",
-    "scrollBarTrackColor": "#D9D9D9",
     "backgroundColor": "#ffffff",
-    "fontFamily": "Open Sans, sans-serif",
-    "fontSize": "1rem",
-    "fontWeight": "400",
-    "fontColor": "#000000",
     "closeIconWidth": "24px",
     "closeIconHeight": "24px",
     "closeIconTopPosition": "20px",
