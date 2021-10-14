@@ -1,8 +1,10 @@
 import { DxcToggleGroup } from "@dxc-technology/halstack-react";
+import { useState } from "react";
 
 const code = `() => {
+  const [value, changeValue] = useState([]);
   const onChange = (newValue) => {
-    console.log(newValue);
+    changeValue(newValue);
   };
   const options = [
     {
@@ -22,6 +24,7 @@ const code = `() => {
   return (
     <DxcToggleGroup
       options={options}
+      value={value}
       onChange={onChange}
       margin="medium"
       multiple
@@ -31,6 +34,7 @@ const code = `() => {
 
 const scope = {
   DxcToggleGroup,
+  useState,
 };
 
 export default { code, scope };
