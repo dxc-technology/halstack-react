@@ -148,7 +148,7 @@ const DXCAccordion = styled.div`
     min-width: 0;
     display: flex;
     left: 85px;
-    background-color: ${(props) => props.theme.backgroundColor} !important;
+    background-color: ${(props) => props.disabled ? props.theme.disabledBackgroundColor : props.theme.backgroundColor} !important;
     box-shadow: ${(props) =>
       `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
     position: static;
@@ -190,8 +190,8 @@ const DXCAccordion = styled.div`
       .MuiExpansionPanelSummary-content {
         padding-top: ${(props) => props.theme.titleLabelPaddingTop};
         padding-bottom: ${(props) => props.theme.titleLabelPaddingBottom};
-        padding-right: 16px;
-        padding-left: 0;
+        padding-right: ${(props) => props.theme.titleLabelPaddingRight};
+        padding-left: ${(props) => props.theme.titleLabelPaddingLeft};
         min-width: 0;
         align-items: baseline;
         &.Mui-expanded {
@@ -220,10 +220,6 @@ const DXCAccordion = styled.div`
     display: none;
   }
 
-  .MuiPaper-root.Mui-disabled {
-    color: ${(props) => props.theme.disabledColor};
-  }
-
   .MuiCollapse-container {
     border-radius: 0px 0px 4px 4px;
     cursor: default;
@@ -231,7 +227,7 @@ const DXCAccordion = styled.div`
   }
   .MuiIconButton-label {
     & > .MuiSvgIcon-root {
-      color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.arrowColor)};
+      color: ${(props) => (props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor)};
     }
   }
 
@@ -267,7 +263,7 @@ const AccordionInfo = styled.div`
   font-size: ${(props) => props.theme.titleLabelFontSize};
   font-style: ${(props) => props.theme.titleLabelFontStyle};
   font-weight: ${(props) => props.theme.titleFonLabeltWeight};
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.titleLabelFontColor)};
+  color: ${(props) => (props.disabled ? props.theme.disabledTitleLabelFontColor : props.theme.titleLabelFontColor)};
 `;
 
 const AccordionLabel = styled.div``;
@@ -283,7 +279,7 @@ const AccordionAssistiveText = styled.div`
   font-family: ${(props) => props.theme.assistiveTextFontFamily};
   font-style: ${(props) => props.theme.assistiveTextFontStyle};
   font-weight: ${(props) => props.theme.assistiveTextFontWeight};
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.assistiveTextFontColor)};
+  color: ${(props) => (props.disabled ? props.theme.disabledAssistiveTextFontColor : props.theme.assistiveTextFontColor)};
   letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
   flex: 1;
   white-space: nowrap;
@@ -299,7 +295,7 @@ const IconContainer = styled.div`
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRigth};
   overflow: hidden;
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.iconColor)};
+  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
 
   img,
   svg {
@@ -314,7 +310,7 @@ const AccordionIcon = styled.img`
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRigth};
   overflow: hidden;
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.iconColor)};
+  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
 `;
 
 export default DxcAccordion;

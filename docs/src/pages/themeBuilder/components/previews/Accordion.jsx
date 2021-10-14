@@ -32,11 +32,11 @@ const Accordion = () => {
           </div>
         </DxcAccordion>
       </Mode>
-      <Mode text="Disabled">
+      <Mode text="Icon">
         <DxcAccordion
-          disabled
           label="Default Accordion"
           onChange={onChange}
+          icon={facebookIcon}
           margin="medium"
           padding="medium"
         >
@@ -46,11 +46,13 @@ const Accordion = () => {
           </div>
         </DxcAccordion>
       </Mode>
-      <Mode text="Icon">
+      <Mode text="Disabled">
         <DxcAccordion
-          label="Default Accordion"
-          onChange={onChange}
+          disabled
           icon={facebookIcon}
+          label="Default Accordion"
+          assistiveText="Assistive text"
+          onChange={onChange}
           margin="medium"
           padding="medium"
         >
