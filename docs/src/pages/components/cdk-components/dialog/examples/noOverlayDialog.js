@@ -11,8 +11,8 @@ const code = `() => {
     <div>
       <DxcButton label="Open Dialog" onClick={onClick}></DxcButton>
       {isDialogVisible && (
-        <DxcDialog padding="medium">
-            <DxcButton label="Close Dialog" onClick={onClick}></DxcButton>
+        <DxcDialog padding="medium" onBackgroundClick={onClick} onCloseClick={onClick} overlay={false}>
+          <p>An example of Dialog without darker background (overlay).</p>
         </DxcDialog>
       )}
     </div>
