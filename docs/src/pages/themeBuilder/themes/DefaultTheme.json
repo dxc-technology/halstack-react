@@ -1,6 +1,6 @@
 {
   "accordion": {
-    "accentColor": "#5f249f",
+    "accentColor": "#6f2c91",
     "fontColor": "#666666"
   },
   "button": {
@@ -18,12 +18,12 @@
     "checkColor": "#ffffff"
   },
   "chip": {
-    "baseColor": "#eeeeee",
-    "accentColor": "",
+    "baseColor": "#e6e6e6",
+    "accentColor": "transparent",
     "fontColor": "#000000"
   },
   "date": {
-    "baseColor": "#5f249f",
+    "baseColor": "#6f2c91",
     "accentColor": "#ffffff"
   },
   "dropdown": {
@@ -33,7 +33,7 @@
   "footer": {
     "baseColor": "#000000",
     "fontColor": "#ffffff",
-    "accentColor": "#0067b3",
+    "accentColor": "#0095ff",
     "logo": "/static/media/dxc_logo_wht.3803423d.png"
   },
   "header": {
