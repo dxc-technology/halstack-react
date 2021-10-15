@@ -86,13 +86,11 @@
   },
   "toggleGroup": {
     "selectedBaseColor": "#5f249f",
-    "selectedHoverBaseColor": "#000000",
+    "selectedHoverBaseColor": "#4b1c7d",
     "selectedFontColor": "#ffffff",
-    "selectedHoverFontColor": "#ffffff",
-    "unselectedBaseColor": "#D9D9D9",
-    "unselectedHoverBaseColor": "#eeeeee",
-    "unselectedFontColor": "#000000",
-    "unselectedHoverFontColor": "#000000"
+    "unselectedBaseColor": "#e6e6e6",
+    "unselectedHoverBaseColor": "#cccccc",
+    "unselectedFontColor": "#000000"
   },
   "wizard": {
     "baseColor": "#5f249f",

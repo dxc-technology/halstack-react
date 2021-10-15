@@ -218,11 +218,9 @@ function CustomThemes() {
         selectedBaseColor: "#5f249f", // toggle group's selected base color theme input
         selectedHoverBaseColor: "#000000", // toggle group's selected hover base color theme input
         selectedFontColor: "#ffffff", // toggle group's selected font color theme input
-        selectedHoverFontColor: "#ffffff", // toggle group's selected hover font color theme input
         unselectedBaseColor: "#D9D9D9", // toggle group's unselected base color theme input
         unselectedHoverBaseColor: "#eeeeee", // toggle group's selected hover base color theme input
         unselectedFontColor: "#000000", // toggle group's unselected font color theme input
-        unselectedHoverFontColor: "#000000", // toggle group's unselected hover font color theme input
       },
       wizard: {
         baseColor: "#5f249f", // wizard's base color theme input

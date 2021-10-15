@@ -699,6 +699,15 @@ function App() {
             size="medium"
             margin="xsmall"
           ></DxcSelect>
+          <DxcSelect
+            onChange={onChange}
+            value={inputValue}
+            label={"Medium"}
+            options={optionsWithIconAndLabels}
+            size="medium"
+            margin="xsmall"
+            disabled
+          ></DxcSelect>
         </ThemeProvider>
       </div>
     </div>
