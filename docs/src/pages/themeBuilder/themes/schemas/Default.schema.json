@@ -88,11 +88,9 @@
     "selectedBaseColor": "color",
     "selectedHoverBaseColor": "color",
     "selectedFontColor": "color",
-    "selectedHoverFontColor": "color",
     "unselectedBaseColor": "color",
     "unselectedHoverBaseColor": "color",
-    "unselectedFontColor": "color",
-    "unselectedHoverFontColor": "color"
+    "unselectedFontColor": "color"
   },
   "wizard": {
     "baseColor": "color",

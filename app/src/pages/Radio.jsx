@@ -280,6 +280,12 @@ function App() {
         <h4>Custom Radio</h4>
         <ThemeProvider theme={colors}>
           <DxcRadio label="Radio" checked={checked} onClick={onClick} />
+          <DxcRadio
+            label="Radio"
+            checked={checked}
+            onClick={onClick}
+            disabled
+          />
         </ThemeProvider>
       </div>
     </div>
