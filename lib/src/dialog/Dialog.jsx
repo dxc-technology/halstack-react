@@ -20,21 +20,15 @@ const DxcDialog = ({
   const colorsTheme = useTheme();
 
   const handleClose = () => {
-    if (typeof onCloseClick === "function") {
-      onCloseClick();
-    }
+    typeof onCloseClick === "function" && onCloseClick();
   };
 
   const handleOverlayClick = () => {
-    if (typeof onBackgroundClick === "function") {
-      onBackgroundClick();
-    }
+    typeof onBackgroundClick === "function" && onBackgroundClick();
   };
 
   const handleResize = (width) => {
-    if (width) {
-      if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
-    }
+    (width && width <= responsiveSizes.tablet) ? setIsResponsive(true) : setIsResponsive(false);
   };
 
   const handleEventListener = () => {
@@ -111,46 +105,9 @@ const DialogContainer = styled(Dialog)`
   }
 `;
 
-const Children = styled.div`
-  overflow-y: auto;
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
-  font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => props.theme.fontColor};
-
-  ::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.scrollBarTrackColor};
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.scrollBarThumbColor};
-    border-radius: 3px;
-  }
-
-  & * {
-    ::-webkit-scrollbar {
-      width: 3px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background-color: ${(props) => props.theme.scrollBarTrackColor};
-      border-radius: 3px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.scrollBarThumbColor};
-      border-radius: 3px;
-    }
-  }
-`;
+const Children = styled.div``;
 
 const CloseIconContainer = styled.button`
-  color: ${(props) => props.theme.closeIconColor};
   display: flex;
   justify-content: flex-end;
   position: absolute;
@@ -160,6 +117,7 @@ const CloseIconContainer = styled.button`
   padding: 0;
   margin: 0;
   background: none;
+  color: ${(props) => props.theme.closeIconColor};
   width: ${(props) => props.theme.closeIconWidth};
   height: ${(props) => props.theme.closeIconHeight};
   border: none;

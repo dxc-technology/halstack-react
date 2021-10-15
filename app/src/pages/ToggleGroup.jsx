@@ -24,12 +24,17 @@ const favoriteSVG = () => {
 };
 
 function App() {
-  const [selected, changeSelected] = useState(true);
   const [value, changeValue] = useState(1);
   const [multipleValue, changeMultipleValue] = useState([1, 2]);
 
   const onChangeConsole = (newValue) => {
     console.log(newValue);
+    changeValue(newValue);
+  };
+
+  const onChangeMultiple = (values) => {
+    console.log(values);
+    changeMultipleValue(values);
   };
 
   const optionsWithoutIcon = [
@@ -77,10 +82,6 @@ function App() {
       value: 3,
       icon: <img src={twitterPath} />,
     },
-    {
-      value: 4,
-      icon: <p>This is a test.</p>,
-    },
   ];
 
   return (
@@ -93,15 +94,6 @@ function App() {
       <div className="test-case" id="basic-toggle-group">
         <h4>Icons toggle group</h4>
         <DxcToggleGroup label="Choose one" options={optionsWithIcon} />
-      </div>
-
-      <div className="test-case" id="multiple-toggle-group">
-        <h4>Multiple toggle group</h4>
-        <DxcToggleGroup
-          label="Choose multiple"
-          options={optionsWithoutIcon}
-          multiple
-        />
       </div>
 
       <div className="test-case" id="disabled-toggle-group">
@@ -134,8 +126,8 @@ function App() {
         <DxcToggleGroup
           label="Choose multiple"
           value={multipleValue}
+          onChange={onChangeMultiple}
           options={optionsWithoutIcon}
-          onChange={onChangeConsole}
           multiple
         />
       </div>

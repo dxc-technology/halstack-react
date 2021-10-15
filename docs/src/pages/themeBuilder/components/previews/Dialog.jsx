@@ -1,117 +1,133 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcDialog, DxcButton, DxcHeading } from "@dxc-technology/halstack-react";
+import {
+  DxcDialog,
+  DxcButton,
+  DxcHeading,
+  DxcInput,
+} from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Dialog = () => {
   const [isDefaultDialogVisible, setDefaultDialogVisible] = useState(false);
   const [isModalDialogVisible, setModalDialogVisible] = useState(false);
-  const [isClosedDialogVisible, setClosedDialogVisible] = useState(false);
-  const [isModalWithScrollDialogVisible, setModalWithScrollDialogVisible] =
-    useState(false);
-
+  const [isNoOverlayDialogVisible, setNoOverlayDialogVisible] = useState(false);
+  
   const handleClickDefaultDialog = () => {
     setDefaultDialogVisible(!isDefaultDialogVisible);
   };
-  const onClick = () => {
+  const handleClickBackground = () => {
     setModalDialogVisible(!isModalDialogVisible);
   };
-  const onClickClosed = () => {
-    setClosedDialogVisible(!isClosedDialogVisible);
+  const handleClickNoOverlay = () => {
+    setNoOverlayDialogVisible(!isNoOverlayDialogVisible);
   };
-  const onClickWithScroll = () => {
-    setModalWithScrollDialogVisible(!isModalWithScrollDialogVisible);
-  };
+
+  const ErrorIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="red"
+    >
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+    </svg>
+  );
 
   return (
     <DialogContainer>
       <Mode text="Default">
         <DxcButton
-          label="Open Dialog"
+          label="Delete"
           onClick={handleClickDefaultDialog}
           margin={{ top: "xsmall" }}
         ></DxcButton>
         {isDefaultDialogVisible && (
-          <DxcDialog
-            overlay={false}
-            isCloseVisible={true}
-            onCloseClick={handleClickDefaultDialog}
-          >
-            Close Icon
+          <DxcDialog onCloseClick={handleClickDefaultDialog}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignContent: "center",
+              }}
+            >
+              <span
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignContent: "center",
+                  marginRight: "10px",
+                }}
+              >
+                <ErrorIcon />
+              </span>
+              <DxcHeading level={5} text="Delete document" />
+            </div>
+            <p>Are you sure you want to delete the 3 selected documents?</p>
+            <p style={{ textAlign: "right" }}>
+              <DxcButton
+                label="Cancel"
+                onClick={handleClickDefaultDialog}
+                mode="text"
+                margin={{ top: "medium", right: "xxsmall" }}
+              ></DxcButton>
+              <DxcButton
+                label="Delete"
+                onClick={handleClickDefaultDialog}
+              ></DxcButton>
+            </p>
           </DxcDialog>
         )}
       </Mode>
       <Mode text="Modal">
         <DxcButton
-          label="Open Dialog"
-          onClick={onClick}
+          label="See account information"
+          onClick={handleClickBackground}
           margin={{ top: "xsmall" }}
         ></DxcButton>
         {isModalDialogVisible && (
-          <DxcDialog padding="medium" onBackgroundClick={onClick}>
-            Click on Background
+          <DxcDialog padding="medium" onBackgroundClick={handleClickBackground}>
+            <DxcHeading level={4} text="Account information" />
+            <DxcHeading level={5} text="Client" margin={{ top: "xsmall" }} />
+            <p>
+              <DxcInput label="Name" />
+            </p>
+            <p>
+              <DxcInput label="Surname" />
+            </p>
+            <p>
+              <DxcInput label="Address" />
+            </p>
+            <p style={{ textAlign: "right" }}>
+              <DxcButton
+                label="Cancel"
+                onClick={handleClickBackground}
+                mode="text"
+                margin={{ top: "medium", right: "xxsmall" }}
+              ></DxcButton>
+              <DxcButton
+                label="Add client"
+                onClick={handleClickBackground}
+              ></DxcButton>
+            </p>
           </DxcDialog>
         )}
       </Mode>
       <Mode text="With close button">
         <DxcButton
           label="Open Dialog"
-          onClick={onClickClosed}
+          onClick={handleClickNoOverlay}
           margin={{ top: "xsmall" }}
         ></DxcButton>
-        {isClosedDialogVisible && (
-          <DxcDialog padding="medium">
-            <DxcButton label="Close Dialog" onClick={onClickClosed}></DxcButton>
-          </DxcDialog>
-        )}
-      </Mode>
-      <Mode text="With scroll">
-        <DxcButton
-          label="Open Dialog"
-          onClick={onClickWithScroll}
-          margin={{ top: "xsmall" }}
-        ></DxcButton>
-        {isModalWithScrollDialogVisible && (
-          <DxcDialog padding="medium" onBackgroundClick={onClickWithScroll}>
-            <DxcHeading
-              text={"Title"}
-              level={2}
-              margin={{ bottom: "small" }}
-              weight="normal"
-            />
-            <div style={{ height: "150px", width: "1200px" }}>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </p>
-            </div>
+        {isNoOverlayDialogVisible && (
+          <DxcDialog
+            padding="medium"
+            onBackgroundClick={handleClickNoOverlay}
+            onCloseClick={handleClickNoOverlay}
+            overlay={false}
+          >
+            <p>An example of Dialog without darker background (overlay).</p>
           </DxcDialog>
         )}
       </Mode>

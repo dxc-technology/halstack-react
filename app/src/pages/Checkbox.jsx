@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { DxcCheckbox, ThemeProvider } from "@dxc-technology/halstack-react";
+import {
+  DxcCheckbox,
+  ThemeProvider,
+  BackgroundColorProvider,
+} from "@dxc-technology/halstack-react";
+import styled from "styled-components";
 
 const colors = {
   checkbox: {
@@ -275,8 +280,56 @@ function App() {
           <DxcCheckbox checked disabled label="Checkbox " onChange={onChange} />
         </ThemeProvider>
       </div>
+      <div>
+        <h4>Dark</h4>
+        <BackgroundColorProvider color="#000000">
+          <Mode mode="dark">
+            <DxcCheckbox
+              checked={checked}
+              label="Checkbox "
+              onChange={onChange}
+            />
+          </Mode>
+          <Mode mode="dark">
+            <DxcCheckbox checked={true} label="Checkbox " onChange={onChange} />
+          </Mode>
+          <Mode mode="dark">
+            <DxcCheckbox
+              checked={checked}
+              label="Checkbox "
+              onChange={onChange}
+              disabled
+            />
+            <DxcCheckbox
+              checked={true}
+              label="Checkbox "
+              onChange={onChange}
+              disabled
+            />
+          </Mode>
+        </BackgroundColorProvider>
+      </div>
     </div>
   );
 }
+
+const Mode = ({ mode, children }) => {
+  return (
+    <ModeContainer mode={mode}>
+      <PreviewsContainer>{children}</PreviewsContainer>
+    </ModeContainer>
+  );
+};
+
+const ModeContainer = styled.div`
+  background-color: ${(props) =>
+    props.mode === "dark" ? "#000000" : "transparent"};
+  display: flex;
+  flex-flow: row wrap;
+`;
+
+const PreviewsContainer = styled.div`
+  flex: 100%;
+`;
 
 export default App;
