@@ -87,9 +87,11 @@
   "toggleGroup": {
     "selectedBaseColor": "color",
     "selectedHoverBaseColor": "color",
+    "selectedActiveBaseColor": "color",
     "selectedFontColor": "color",
     "unselectedBaseColor": "color",
     "unselectedHoverBaseColor": "color",
+    "unselectedActiveBaseColor": "color",
     "unselectedFontColor": "color"
   },
   "wizard": {
