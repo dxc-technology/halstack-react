@@ -86,8 +86,8 @@ const LabelContainer = styled.span`
 `;
 
 const IconContainer = styled.div`
-  max-height: ${(props) => props.theme.iconSize};
-  max-width: ${(props) => props.theme.iconSize};
+  max-height: 24px;
+  max-width: 24px;
   margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "8px") || "0px"};
   margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "8px") || "0px"};
   overflow: hidden;
@@ -100,8 +100,8 @@ const IconContainer = styled.div`
 `;
 
 const ButtonIcon = styled.img`
-  max-height: ${(props) => props.theme.iconSize};
-  max-width: ${(props) => props.theme.iconSize};
+  max-height: 24px;
+  max-width: 24px;
   margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
   margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
 `;
@@ -120,6 +120,7 @@ const DxCButton = styled.div`
   display: inline-block;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
+  box-shadow: 0 0 0 2px transparent;
 
   .MuiButtonBase-root {
     .MuiButton-label {
@@ -135,7 +136,7 @@ const DxCButton = styled.div`
     min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
 
     width: 100%;
-    height: ${(props) => props.theme.height};
+    height: 40px;
     font-family: ${(props) => props.theme.fontFamily};
     transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out;
     transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out;
@@ -147,100 +148,69 @@ const DxCButton = styled.div`
       const { mode, backgroundType } = props;
       if (mode === "primary") {
         return `
-          border-radius: ${props.theme.primaryBorderRadius};
-          border-width:  ${props.theme.primaryBorderThickness};
-          border-style:  ${props.theme.primaryBorderStyle};
-          font-family:   ${props.theme.primaryFontFamily};
-          font-size:     ${props.theme.primaryFontSize};
-          font-weight:   ${props.theme.primaryFontWeight};
+        border-radius: ${props.theme.primaryBorderRadius};
+        border-width:  ${props.theme.primaryBorderThickness};
+        border-style:  ${props.theme.primaryBorderStyle};
+        font-family:   ${props.theme.primaryFontFamily};
+        font-size:     ${props.theme.primaryFontSize};
+        font-weight:   ${props.theme.primaryFontWeight};
+        background-color: ${
+          backgroundType === "dark" ? props.theme.primaryBackgroundColorOnDark : props.theme.primaryBackgroundColor
+        };
+        color: ${
+          backgroundType && backgroundType === "dark"
+            ? props.theme.primaryFontColorOnDark
+            : props.theme.primaryFontColor
+        } !important;
+        padding-right:${(props.icon && !props.label && "8px") || props.theme.primaryPaddingRight};
+        padding-left:${(props.icon && !props.label && "8px") || props.theme.primaryPaddingLeft};
+        padding-top:${props.theme.primaryPaddingTop};
+        padding-bottom:${props.theme.primaryPaddingBottom};
+        &:hover{
           background-color: ${
-            backgroundType === "dark" ? props.theme.primaryBackgroundColorOnDark : props.theme.primaryBackgroundColor
+            backgroundType === "dark"
+              ? props.theme.primaryHoverBackgroundColorOnDark
+              : props.theme.primaryHoverBackgroundColor
+          };
+        }
+        &:focus {
+          border-color: transparent;
+          box-shadow: 0 0 0 2px ${
+            backgroundType === "dark"
+              ? props.theme.secondaryFocusBorderColorOnDark
+              : props.theme.secondaryFocusBorderColor
+          };
+        }
+        &:active {
+          background-color: ${
+            backgroundType === "dark"
+              ? props.theme.primaryActiveBackgroundColorOnDark
+              : props.theme.primaryActiveBackgroundColor
+          } !important;
+          border-color: transparent;
+          box-shadow: 0 0 0 2px ${
+            backgroundType === "dark"
+              ? props.theme.secondaryFocusBorderColorOnDark
+              : props.theme.secondaryFocusBorderColor
+          };
+        }
+        &:disabled{ 
+          cursor: not-allowed;
+          background-color: ${
+            backgroundType === "dark"
+              ? props.theme.primaryDisabledBackgroundColorOnDark
+              : props.theme.primaryDisabledBackgroundColor
           };
           color: ${
-            backgroundType && backgroundType === "dark"
-              ? props.theme.primaryFontColorOnDark
-              : props.theme.primaryFontColor
-          } !important;
-          border-color: ${
-            backgroundType === "dark" ? props.theme.primaryBorderColorOnDark : props.theme.primaryBorderColor
-          };
-          padding-right:${
-            (props.icon && !props.label && props.theme.primaryOnlyIconPaddingRight) || props.theme.primaryPaddingRight
-          };
-          padding-left:${
-            (props.icon && !props.label && props.theme.primaryOnlyIconPaddingLeft) || props.theme.primaryPaddingLeft
-          };
-          padding-top:${props.theme.primaryPaddingTop};
-          padding-bottom:${props.theme.primaryPaddingBottom};
-          &:hover{
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.primaryHoverBackgroundColorOnDark
-                : props.theme.primaryHoverBackgroundColor
-            };
-            color: ${
-              backgroundType === "dark" ? props.theme.primaryHoverFontColorOnDark : props.theme.primaryHoverFontColor
-            } !important; 
-            border-color: ${
-              backgroundType === "dark"
-                ? props.theme.primaryHoverBorderColorOnDark
-                : props.theme.primaryHoverBorderColor
-            }
-          }
-          &:active {
-            color: ${
-              backgroundType === "dark" ? props.theme.primaryActiveFontColorOnDark : props.theme.primaryActiveFontColor
-            } !important; 
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.primaryActiveBackgroundColorOnDark
-                : props.theme.primaryActiveBackgroundColor
-            } !important;
-            border-color: transparent;
-            box-shadow: 0 0 0 2px ${
-              backgroundType === "dark"
-                ? props.theme.primaryActiveBorderColorOnDark
-                : props.theme.primaryActiveBorderColor
-            };
-          }
-          &:focus {
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.primaryFocusBackgroundColorOnDark
-                : props.theme.primaryFocusBackgroundColor
-            };
-            color: ${
-              backgroundType === "dark" ? props.theme.primaryFocusFontColorOnDark : props.theme.primaryFocusFontColor
-            } !important;
-            border-color: transparent;
-            box-shadow: 0 0 0 2px ${
-              backgroundType === "dark"
-                ? props.theme.primaryFocusBorderColorOnDark
-                : props.theme.primaryFocusBorderColor
-            };
-          }
-          &:disabled{ 
-            cursor: not-allowed;
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.primaryDisabledBackgroundColorOnDark
-                : props.theme.primaryDisabledBackgroundColor
-            };
-            color: ${
-              backgroundType === "dark"
-                ? props.theme.primaryDisabledFontColorOnDark
-                : props.theme.primaryDisabledFontColor
-            }!important; 
-            border-color: ${
-              backgroundType === "dark"
-                ? props.theme.primaryDisabledBorderColorOnDark
-                : props.theme.primaryDisabledBorderColor
-            }
-          }
-          .MuiButton-label {
-            z-index: 5
-          }
-        `;
+            backgroundType === "dark"
+              ? props.theme.primaryDisabledFontColorOnDark
+              : props.theme.primaryDisabledFontColor
+          }!important; 
+        }
+        .MuiButton-label {
+          z-index: 5
+        }
+      `;
       } else if (mode === "secondary") {
         return `
         border-radius: ${props.theme.secondaryBorderRadius};
@@ -252,175 +222,128 @@ const DxCButton = styled.div`
         background-color: ${
           backgroundType === "dark" ? props.theme.secondaryBackgroundColorOnDark : props.theme.secondaryBackgroundColor
         };
-          padding-right:${
-            (props.icon && !props.label && props.theme.secondaryOnlyIconPaddingRight) ||
-            props.theme.secondaryPaddingRight
+        padding-right:${(props.icon && !props.label && "8px") || props.theme.secondaryPaddingRight};
+        padding-left:${(props.icon && !props.label && "8px") || props.theme.secondaryPaddingLeft};
+        padding-top:${props.theme.secondaryPaddingTop};
+        padding-bottom:${props.theme.secondaryPaddingBottom};
+        color: ${
+          backgroundType === "dark" ? props.theme.secondaryFontColorOnDark : props.theme.secondaryFontColor
+        } !important;
+        border-color: ${
+          backgroundType === "dark" ? props.theme.secondaryBorderColorOnDark : props.theme.secondaryBorderColor
+        };
+        &:hover{
+          background-color: ${
+            backgroundType === "dark"
+              ? props.theme.secondaryHoverBackgroundColorOnDark
+              : props.theme.secondaryHoverBackgroundColor
           };
-          padding-left:${
-            (props.icon && !props.label && props.theme.secondaryOnlyIconPaddingLeft) || props.theme.secondaryPaddingLeft
-          };
-          padding-top:${props.theme.secondaryPaddingTop};
-          padding-bottom:${props.theme.secondaryPaddingBottom};
           color: ${
-            backgroundType === "dark" ? props.theme.secondaryFontColorOnDark : props.theme.secondaryFontColor
+            backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
+          } !important;
+        }
+        &:focus{
+          border-color: transparent;
+          box-shadow: 0 0 0 2px ${
+            backgroundType === "dark"
+              ? props.theme.secondaryFocusBorderColorOnDark
+              : props.theme.secondaryFocusBorderColor
+          };
+        }
+        &:active {
+          background-color: ${
+            backgroundType === "dark"
+              ? props.theme.secondaryActiveBackgroundColorOnDark
+              : props.theme.secondaryActiveBackgroundColor
+          } !important;
+          color: ${
+            backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
+          } !important;
+          border-color: transparent;
+          box-shadow: 0 0 0 2px ${
+            backgroundType === "dark"
+              ? props.theme.secondaryFocusBorderColorOnDark
+              : props.theme.secondaryFocusBorderColor
+          };
+        }
+        &:disabled{
+          cursor: not-allowed;
+          background-color: ${
+            backgroundType === "dark"
+              ? props.theme.secondaryDisabledBackgroundColorOnDark
+              : props.theme.secondaryDisabledBackgroundColor
+          } !important;
+          color: ${
+            backgroundType === "dark"
+              ? props.theme.secondaryDisabledFontColorOnDark
+              : props.theme.secondaryDisabledFontColor
           } !important;
           border-color: ${
-            backgroundType === "dark" ? props.theme.secondaryBorderColorOnDark : props.theme.secondaryBorderColor
+            backgroundType === "dark"
+              ? props.theme.secondaryDisabledBorderColorOnDark
+              : props.theme.secondaryDisabledBorderColor
           };
-          &:hover{
-            border-color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryHoverBorderColorOnDark
-                : props.theme.secondaryHoverBorderColor
-            };
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryHoverBackgroundColorOnDark
-                : props.theme.secondaryHoverBackgroundColor
-            };
-            color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryHoverFontColorOnDark
-                : props.theme.secondaryHoverFontColor
-            } !important; 
-          }
-          &:focus {
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryFocusBackgroundColorOnDark
-                : props.theme.secondaryFocusBackgroundColor
-            };
-            color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryFocusFontColorOnDark
-                : props.theme.secondaryFocusFontColor
-            } !important;
-            border-color: transparent;
-            box-shadow: 0 0 0 2px ${
-              backgroundType === "dark"
-                ? props.theme.secondaryFocusBorderColorOnDark
-                : props.theme.secondaryFocusBorderColor
-            } !important;
-          }
-          &:active {
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryActiveBackgroundColorOnDark
-                : props.theme.secondaryActiveBackgroundColor
-            } !important;
-            color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryActiveFontColorOnDark
-                : props.theme.secondaryActiveFontColor
-            } !important;
-            border-color: transparent;
-            box-shadow: 0 0 0 2px ${
-              backgroundType === "dark"
-                ? props.theme.secondaryActiveBorderColorOnDark
-                : props.theme.secondaryActiveBorderColor
-            }
-          }
-          &:disabled{
-            cursor: not-allowed;
-            color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryDisabledFontColorOnDark
-                : props.theme.secondaryDisabledFontColor
-            } !important;
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryDisabledBackgroundColorOnDark
-                : props.theme.secondaryDisabledBackgroundColor
-            };
-            border-color: ${
-              backgroundType === "dark"
-                ? props.theme.secondaryDisabledBorderColorOnDark
-                : props.theme.secondaryDisabledBorderColor
-            };
           }
           .MuiButton-label {
-            z-index: 5
-          }
-          `;
-      } else if (mode === "text") {
-        return `
-          border-radius: ${props.theme.textBorderRadius};
-          border-width: ${props.theme.textBorderThickness};
-          border-style: ${props.theme.textBorderStyle};
-          font-family: ${props.theme.textFontFamily};
-          font-size: ${props.theme.textFontSize};
-          font-weight: ${props.theme.textFontWeight};
-          background-color: ${
-            backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
-          };
-          color: ${backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor} !important;
-          border-color: ${backgroundType === "dark" ? props.theme.textBorderColorOnDark : props.theme.textBorderColor};
-          padding-right:${
-            (props.icon && !props.label && props.theme.textOnlyIconPaddingRight) || props.theme.textPaddingRight
-          };
-          padding-left:${
-            (props.icon && !props.label && props.theme.textOnlyIconPaddingLeft) || props.theme.textPaddingLeft
-          };
-          padding-top:${props.theme.textPaddingTop};
-          padding-bottom:${props.theme.textPaddingBottom};
-          &:hover{
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.textHoverBackgroundColorOnDark
-                : props.theme.textHoverBackgroundColor
-            };
-            color: ${
-              backgroundType === "dark" ? props.theme.textHoverFontColorOnDark : props.theme.textHoverFontColor
-            } !important;
-            border-color: ${
-              backgroundType === "dark" ? props.theme.textHoverBorderColorOnDark : props.theme.textHoverBorderColor
-            };
-          }
-          &:active {
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.textActiveBackgroundColorOnDark
-                : props.theme.textActiveBackgroundColor
-            } !important;
-            color: ${
-              backgroundType === "dark" ? props.theme.textActiveFontColorOnDark : props.theme.textActiveFontColor
-            } !important;
-            border-color: transparent;
-             box-shadow: 0 0 0 2px ${
-               backgroundType === "dark" ? props.theme.textActiveBorderColorOnDark : props.theme.textActiveBorderColor
-             };
-          }
-          &:focus {
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.textFocusBackgroundColorOnDark
-                : props.theme.textFocusBackgroundColor
-            };
-            color: ${
-              backgroundType === "dark" ? props.theme.textFocusFontColorOnDark : props.theme.textFocusFontColor
-            } !important; 
-            border-color: transparent;
-            box-shadow: 0 0 0 2px ${
-              backgroundType === "dark" ? props.theme.textFocusBorderColorOnDark : props.theme.textFocusBorderColor
-            };
-          }
-          &:disabled{
-            cursor:not-allowed;
-            color: ${
-              backgroundType === "dark" ? props.theme.textDisabledFontColorOnDark : props.theme.textDisabledFontColor
-            } !important;
-            background-color: ${
-              backgroundType === "dark"
-                ? props.theme.textDisabledBackgroundColorOnDark
-                : props.theme.textDisabledBackgroundColor
-            };
-            border-color: ${
-              backgroundType === "dark"
-                ? props.theme.textDisabledBorderColorOnDark
-                : props.theme.textDisabledBorderColor
-            };
+              z-index: 5
           }
         `;
+      } else if (mode === "text") {
+        return `
+        border-radius: ${props.theme.textBorderRadius};
+        border-width:${props.theme.textBorderThickness};
+        border-style:${props.theme.textBorderStyle};
+        font-family:   ${props.theme.textFontFamily};
+        font-size:     ${props.theme.textFontSize};
+        font-weight:   ${props.theme.textFontWeight};
+        background-color: ${
+          backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
+        };
+        color: ${backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor} !important;
+        padding-right:${(props.icon && !props.label && "8px") || props.theme.textPaddingRight};
+        padding-left:${(props.icon && !props.label && "8px") || props.theme.textPaddingLeft};
+        padding-top:${props.theme.textPaddingTop};
+        padding-bottom:${props.theme.textPaddingBottom};
+        &:hover{
+          background-color: ${
+            backgroundType === "dark"
+              ? props.theme.textHoverBackgroundColorOnDark
+              : props.theme.textHoverBackgroundColor
+          };
+        }
+        &:focus {
+          border-color: transparent;
+          box-shadow: 0 0 0 2px ${
+            backgroundType === "dark"
+              ? props.theme.secondaryFocusBorderColorOnDark
+              : props.theme.secondaryFocusBorderColor
+          };
+        }
+        &:active {
+          background-color: ${
+            backgroundType === "dark"
+              ? props.theme.textActiveBackgroundColorOnDark
+              : props.theme.textActiveBackgroundColor
+          } !important;
+          border-color: transparent;
+          box-shadow: 0 0 0 2px ${
+            backgroundType === "dark"
+              ? props.theme.secondaryFocusBorderColorOnDark
+              : props.theme.secondaryFocusBorderColor
+          };
+        }
+        &:disabled{
+          cursor:not-allowed;
+          color: ${
+            backgroundType === "dark" ? props.theme.textDisabledFontColorOnDark : props.theme.textDisabledFontColor
+          } !important;
+          background-color: ${
+            backgroundType === "dark"
+              ? props.theme.textDisabledBackgroundColorOnDark
+              : props.theme.textDisabledBackgroundColor
+          };
+        }
+      `;
       }
     }}
   }
