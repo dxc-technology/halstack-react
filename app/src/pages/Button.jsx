@@ -11,11 +11,7 @@ const colors = {
   button: {
     baseColor: "#fcf2bd",
     primaryFontColor: "#006BF6",
-    primaryHoverBackgroundColor: "#000000",
-    secondaryFontColor: "#fabada",
     secondaryHoverFontColor: "#cee0f5",
-    secondaryHoverBackgroundColor: "#120421",
-    textFontColor: "#fabada",
     textHoverBackgroundColor: "#000000",
   },
 };
