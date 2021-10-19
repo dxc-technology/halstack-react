@@ -604,7 +604,9 @@
     "valueFontStyle": "fStyle",
     "valueFontWeight": "fWeight",
     "arrowColor": "color",
-    "arrowColorOnDark": "color"
+    "arrowColorOnDark": "color",
+    "activeOptionBackgroundColor": "color",
+    "activeOptionBackgroundColorOnDark": "color"
   },
   "sidenav": {
     "backgroundColor": "color",
