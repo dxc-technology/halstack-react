@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {
   DxcButton,
   DxcProgressBar,
-  DxcHeading,
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 
