@@ -56,7 +56,8 @@
     "baseColor": "color"
   },
   "select": {
-    "baseColor": "color"
+    "baseColor": "color",
+    "fontColor": "color"
   },
   "sidenav": {
     "baseColor": "color",
