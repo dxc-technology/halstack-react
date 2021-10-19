@@ -48,7 +48,11 @@ const DxcButton = ({
             }
           }}
         >
-          <LabelContainer>{label}</LabelContainer>
+          {label && (
+            <LabelContainer icon={icon} iconPosition={iconPosition}>
+              {label}
+            </LabelContainer>
+          )}
           {icon ? (
             <IconContainer label={label} iconPosition={iconPosition}>
               {typeof icon === "object" ? icon : React.createElement(icon)}
@@ -83,13 +87,17 @@ const LabelContainer = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   text-transform: none;
+  margin-right: ${(props) => (!props.icon || props.iconPosition === "before" ? "8px" : "0px")};
+  margin-left: ${(props) => (!props.icon || props.iconPosition === "after" ? "8px" : "0px")};
 `;
 
 const IconContainer = styled.div`
   max-height: 24px;
   max-width: 24px;
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "8px") || "0px"};
-  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "8px") || "0px"};
+  margin-left: ${(props) =>
+    !props.label ? "0px" : (props.iconPosition === "after" && props.label !== "" && "8px") || "8px"};
+  margin-right: ${(props) =>
+    !props.label ? "0px" : (props.iconPosition === "before" && props.label !== "" && "8px") || "8px"};
   overflow: hidden;
 
   img,
@@ -123,6 +131,11 @@ const DxCButton = styled.div`
   box-shadow: 0 0 0 2px transparent;
 
   .MuiButtonBase-root {
+    padding-left: ${(props) => props.theme.paddingLeft};
+    padding-right: ${(props) => props.theme.paddingRight};
+    padding-top: ${(props) => props.theme.paddingTop};
+    padding-bottom: ${(props) => props.theme.paddingBottom};
+
     .MuiButton-label {
       display: flex;
       flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
@@ -162,10 +175,6 @@ const DxCButton = styled.div`
             ? props.theme.primaryFontColorOnDark
             : props.theme.primaryFontColor
         } !important;
-        padding-right:${(props.icon && !props.label && "8px") || props.theme.primaryPaddingRight};
-        padding-left:${(props.icon && !props.label && "8px") || props.theme.primaryPaddingLeft};
-        padding-top:${props.theme.primaryPaddingTop};
-        padding-bottom:${props.theme.primaryPaddingBottom};
         &:hover{
           background-color: ${
             backgroundType === "dark"
@@ -222,10 +231,6 @@ const DxCButton = styled.div`
         background-color: ${
           backgroundType === "dark" ? props.theme.secondaryBackgroundColorOnDark : props.theme.secondaryBackgroundColor
         };
-        padding-right:${(props.icon && !props.label && "8px") || props.theme.secondaryPaddingRight};
-        padding-left:${(props.icon && !props.label && "8px") || props.theme.secondaryPaddingLeft};
-        padding-top:${props.theme.secondaryPaddingTop};
-        padding-bottom:${props.theme.secondaryPaddingBottom};
         color: ${
           backgroundType === "dark" ? props.theme.secondaryFontColorOnDark : props.theme.secondaryFontColor
         } !important;
@@ -300,10 +305,6 @@ const DxCButton = styled.div`
           backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
         };
         color: ${backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor} !important;
-        padding-right:${(props.icon && !props.label && "8px") || props.theme.textPaddingRight};
-        padding-left:${(props.icon && !props.label && "8px") || props.theme.textPaddingLeft};
-        padding-top:${props.theme.textPaddingTop};
-        padding-bottom:${props.theme.textPaddingBottom};
         &:hover{
           background-color: ${
             backgroundType === "dark"

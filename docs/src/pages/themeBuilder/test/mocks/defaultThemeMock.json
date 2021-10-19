@@ -6,12 +6,8 @@
   "button": {
     "baseColor": "#5f249f",
     "primaryFontColor": "#ffffff",
-    "primaryHoverBackgroundColor": "#4B1C7D",
-    "secondaryFontColor": "#5f249f",
     "secondaryHoverFontColor": "#ffffff",
-    "secondaryHoverBackgroundColor": "#5f249f",
-    "textFontColor": "#5f249f",
-    "textHoverBackgroundColor": "#F2EAFA"
+    "textHoverBackgroundColor": "#f2eafa"
   },
   "checkbox": {
     "baseColor": "#0067b3",
@@ -60,7 +56,8 @@
     "baseColor": "#000000"
   },
   "select": {
-    "baseColor": "#D9D9D9"
+    "baseColor": "#D9D9D9",
+    "fontColor": "#000000"
   },
   "sidenav": {
     "baseColor": "#F8F8F8",
@@ -86,12 +83,8 @@
   },
   "toggleGroup": {
     "selectedBaseColor": "#5f249f",
-    "selectedHoverBaseColor": "#4b1c7d",
-    "selectedActiveBaseColor": "#321353",
     "selectedFontColor": "#ffffff",
     "unselectedBaseColor": "#e6e6e6",
-    "unselectedHoverBaseColor": "#cccccc",
-    "unselectedActiveBaseColor": "#5f249f",
     "unselectedFontColor": "#000000"
   },
   "wizard": {

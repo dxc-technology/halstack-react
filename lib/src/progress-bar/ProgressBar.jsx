@@ -7,7 +7,7 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 
-const DxcProgressBar = ({ label = "", overlay = true, value, showValue = false, margin }) => {
+const DxcProgressBar = ({ label = "", helperText = "", overlay = true, value, showValue = false, margin }) => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
@@ -26,7 +26,13 @@ const DxcProgressBar = ({ label = "", overlay = true, value, showValue = false, 
           <LinearProgress
             variant={showValue ? "determinate" : "indeterminate"}
             value={value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}
+            helperText={helperText}
           />
+          {helperText && (
+            <HelperText overlay={overlay} backgroundType={backgroundType}>
+              {helperText}
+            </HelperText>
+          )}
         </DXCProgressBar>
       </BackgroundProgressBar>
     </ThemeProvider>
@@ -59,6 +65,7 @@ const DXCProgressBar = styled.div`
     height: ${(props) => props.theme.thickness};
     background-color: ${(props) => props.theme.totalLineColor};
     border-radius: ${(props) => props.theme.borderRadius};
+    margin-bottom: ${(props) => props.helperText !== "" && "8px"};
   }
   .MuiLinearProgress-bar {
     background-color: ${(props) =>
@@ -120,8 +127,23 @@ const ProgressBarProgress = styled.div`
   flex-shrink: 0;
 `;
 
+const HelperText = styled.span`
+  color: ${(props) =>
+    props.backgroundType === "dark"
+      ? props.theme.helperTextFontColorOnDark
+      : props.overlay === true
+      ? "#FFFFFF"
+      : props.theme.helperTextFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.helperTextFontSize};
+  font-style: ${(props) => props.theme.helperTextFontStyle};
+  font-weight: ${(props) => props.theme.helperTextFontWeight};
+  line-height: 1.5em;
+`;
+
 DxcProgressBar.propTypes = {
   label: PropTypes.string,
+  helperText: PropTypes.string,
   overlay: PropTypes.bool,
   value: PropTypes.number,
   showValue: PropTypes.bool,

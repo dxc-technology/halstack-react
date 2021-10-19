@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {
   DxcButton,
   DxcProgressBar,
-  DxcHeading,
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 
@@ -31,6 +30,7 @@ const ProgressBar = () => {
         <Container>
           <DxcProgressBar
             label="Loading"
+            helperText="Helper text"
             overlay={false}
             margin={{ top: "xsmall", bottom: "xxsmall" }}
           />
@@ -40,6 +40,7 @@ const ProgressBar = () => {
         <Container>
           <DxcProgressBar
             label="Loading"
+            helperText="Helper text"
             overlay={false}
             showValue
             value={45}
@@ -54,7 +55,13 @@ const ProgressBar = () => {
           onClick={showModal}
         />
 
-        {isVisible && <DxcProgressBar label="Loading" overlay={true} />}
+        {isVisible && (
+          <DxcProgressBar
+            label="Loading"
+            helperText="Helper text"
+            overlay={true}
+          />
+        )}
       </Mode>
 
       <h4>Dark mode</h4>
@@ -63,6 +70,7 @@ const ProgressBar = () => {
           <Container>
             <DxcProgressBar
               label="Loading"
+              helperText="Helper text"
               overlay={false}
               margin={{ top: "xsmall", bottom: "xxsmall" }}
             />
@@ -72,6 +80,7 @@ const ProgressBar = () => {
           <Container>
             <DxcProgressBar
               label="Loading"
+              helperText="Helper text"
               overlay={false}
               showValue
               value={45}

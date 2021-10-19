@@ -25,7 +25,7 @@ const code = `() => {
         onClick={showModal}
       />
 
-      {isVisible && <DxcProgressBar label="Loading" overlay={true} />}
+      {isVisible && <DxcProgressBar label="Loading" helperText="Helper text" overlay={true} />}
     </div>
   );
 }`;

@@ -4,14 +4,14 @@ import { useState } from "react";
 const code = `() => {
   return (
     <div>
-      <DxcProgressBar margin="medium" label="Loading" overlay={false} />
+      <DxcProgressBar margin="medium" label="Loading" helperText="Helper text" overlay={false} />
     </div>
   );
 }`;
 
 const scope = {
   DxcProgressBar,
-  useState
+  useState,
 };
 
 export default { code, scope };

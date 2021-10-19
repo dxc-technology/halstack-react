@@ -15,6 +15,11 @@ const progressBarPropsTable = () => {
         <td>Text to be placed above the progress bar.</td>
       </tr>
       <tr>
+        <td>helperText: string</td>
+        <td></td>
+        <td>Helper text to be placed under the progress bar.</td>
+      </tr>
+      <tr>
         <td>overlay: boolean</td>
         <td>
           <code>true</code>
