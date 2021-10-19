@@ -31,6 +31,17 @@ function App() {
         <DxcProgressBar overlay={false} showValue value={50} />
       </div>
 
+      <div className="test-case" id="with-helperText">
+        <h4>With helper text</h4>
+        <DxcProgressBar
+          label="Loading..."
+          helperText="Helper text"
+          overlay={false}
+          showValue
+          value={50}
+        />
+      </div>
+
       <div>
         <h4>Margins</h4>
         <div className="test-case" id="xxsmall-margin">
