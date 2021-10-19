@@ -136,7 +136,7 @@ const DxcDate = ({
       MuiButtonBase: {
         root: {
           "&:focus": {
-            outline: colorsTheme.date.focusColor + " 2px solid",
+            outline: colorsTheme.date.focusColor + " solid 2px",
           },
         },
       },
