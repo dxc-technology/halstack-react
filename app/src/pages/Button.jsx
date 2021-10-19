@@ -10,13 +10,13 @@ import homeLogo from "../images/home.svg";
 const colors = {
   button: {
     baseColor: "#fcf2bd",
-    hoverBaseColor: "#d0011b",
     primaryFontColor: "#006BF6",
-    primaryHoverFontColor: "#000000",
+    primaryHoverBackgroundColor: "#000000",
     secondaryFontColor: "#fabada",
     secondaryHoverFontColor: "#cee0f5",
+    secondaryHoverBackgroundColor: "#120421",
     textFontColor: "#fabada",
-    textHoverFontColor: "#000000",
+    textHoverBackgroundColor: "#000000",
   },
 };
 

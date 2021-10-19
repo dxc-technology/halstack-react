@@ -135,13 +135,13 @@ function CustomThemes() {
       },
       button: {
         baseColor: "#5f249f", // button's base color theme input
-        hoverBaseColor: "#000000", // button's hover base color theme input
-        primaryFontColor: "#ffffff", // button's primary font color theme input
-        primaryHoverFontColor: "#ffffff", // button's primary hover font color theme input
-        secondaryFontColor: "#000000", // button's secondary font color theme input
-        secondaryHoverFontColor: "#000000", // button's secondary hover font color theme input
+        primaryFontColor: "#ffffff",  // button's primary font color theme input
+        primaryHoverBackgroundColor: "#4B1C7D",  // button's primary hover background color theme input
+        secondaryFontColor: "#5f249f",  // button's secondary font color theme input
+        secondaryHoverFontColor: "#ffffff", // button's secondary hover font color theme input
+        secondaryHoverBackgroundColor: "#5f249f", // button's secondary hover background color theme input
         textFontColor: "#5f249f", // button's text font color theme input
-        textHoverFontColor: "#ffffff", // button's text hover font color theme input
+        textHoverBackgroundColor: "#F2EAFA" // button's text hover font color theme input
       },
       checkbox: {
         baseColor: "#0067b3", // checkbox's base color theme input

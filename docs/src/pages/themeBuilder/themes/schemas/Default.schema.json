@@ -5,13 +5,13 @@
   },
   "button": {
     "baseColor": "color",
-    "hoverBaseColor": "color",
     "primaryFontColor": "color",
-    "primaryHoverFontColor": "color",
+    "primaryHoverBackgroundColor": "color",
     "secondaryFontColor": "color",
     "secondaryHoverFontColor": "color",
+    "secondaryHoverBackgroundColor": "color",
     "textFontColor": "color",
-    "textHoverFontColor": "color"
+    "textHoverBackgroundColor": "color"
   },
   "checkbox": {
     "baseColor": "color",

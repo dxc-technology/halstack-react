@@ -5,13 +5,13 @@
   },
   "button": {
     "baseColor": "#5f249f",
-    "hoverBaseColor": "#000000",
     "primaryFontColor": "#ffffff",
-    "primaryHoverFontColor": "#ffffff",
-    "secondaryFontColor": "#000000",
-    "secondaryHoverFontColor": "#000000",
+    "primaryHoverBackgroundColor": "#4B1C7D",
+    "secondaryFontColor": "#5f249f",
+    "secondaryHoverFontColor": "#ffffff",
+    "secondaryHoverBackgroundColor": "#5f249f",
     "textFontColor": "#5f249f",
-    "textHoverFontColor": "#ffffff"
+    "textHoverBackgroundColor": "#F2EAFA"
   },
   "checkbox": {
     "baseColor": "#0067b3",
