@@ -6,7 +6,8 @@
   "button": {
     "baseColor": "color",
     "primaryFontColor": "color",
-    "secondaryHoverFontColor": "color"
+    "secondaryHoverFontColor": "color",
+    "textHoverBackgroundColor": "color"
   },
   "checkbox": {
     "baseColor": "color",
@@ -81,12 +82,8 @@
   },
   "toggleGroup": {
     "selectedBaseColor": "color",
-    "selectedHoverBaseColor": "color",
-    "selectedActiveBaseColor": "color",
     "selectedFontColor": "color",
     "unselectedBaseColor": "color",
-    "unselectedHoverBaseColor": "color",
-    "unselectedActiveBaseColor": "color",
     "unselectedFontColor": "color"
   },
   "wizard": {

@@ -4,9 +4,10 @@
     "fontColor": "#666666"
   },
   "button": {
-    "baseColor": "#321353",
+    "baseColor": "#5f249f",
     "primaryFontColor": "#ffffff",
-    "secondaryHoverFontColor": "#ffffff"
+    "secondaryHoverFontColor": "#ffffff",
+    "textHoverBackgroundColor": "#f2eafa"
   },
   "checkbox": {
     "baseColor": "#0067b3",
@@ -81,12 +82,8 @@
   },
   "toggleGroup": {
     "selectedBaseColor": "#5f249f",
-    "selectedHoverBaseColor": "#4b1c7d",
-    "selectedActiveBaseColor": "#321353",
     "selectedFontColor": "#ffffff",
     "unselectedBaseColor": "#e6e6e6",
-    "unselectedHoverBaseColor": "#cccccc",
-    "unselectedActiveBaseColor": "#5f249f",
     "unselectedFontColor": "#000000"
   },
   "wizard": {
