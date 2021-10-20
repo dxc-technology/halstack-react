@@ -6,8 +6,7 @@
   "button": {
     "baseColor": "color",
     "primaryFontColor": "color",
-    "secondaryHoverFontColor": "color",
-    "textHoverBackgroundColor": "color"
+    "secondaryHoverFontColor": "color"
   },
   "checkbox": {
     "baseColor": "color",
