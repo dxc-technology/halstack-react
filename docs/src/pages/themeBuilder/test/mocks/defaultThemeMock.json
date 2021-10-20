@@ -14,7 +14,6 @@
   },
   "chip": {
     "baseColor": "#e6e6e6",
-    "accentColor": "transparent",
     "fontColor": "#000000"
   },
   "date": {

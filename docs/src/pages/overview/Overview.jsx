@@ -144,7 +144,6 @@ function CustomThemes() {
       },
       chip: {
         baseColor: "#e6e6e6", // chip's base color theme input
-        accentColor: "transparent", // chip's accent color theme input
         fontColor: "#000000", // chip's font color theme input
       },
       date: {
