@@ -100,7 +100,7 @@ const NewInputText = () => {
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          margin="small"
+          margin={{ top: "small" }}
         />
       </Mode>
       <Mode text="Disabled">
@@ -108,7 +108,7 @@ const NewInputText = () => {
           label="Disabled input"
           helperText="Example of helper text"
           placeholder="Placeholder"
-          margin="small"
+          margin={{ top: "small" }}
           disabled
         />
       </Mode>
@@ -118,7 +118,7 @@ const NewInputText = () => {
           optional
           helperText="Example of helper text"
           placeholder="Placeholder"
-          margin="small"
+          margin={{ top: "small" }}
         />
       </Mode>
       <Mode text="Invalid">
@@ -126,8 +126,7 @@ const NewInputText = () => {
           label="Error input"
           helperText="Example of helper text"
           placeholder="Placeholder"
-          margin="small"
-          margin="small"
+          margin={{ top: "small", bottom: "xsmall" }}
           error="Error message."
           action={action}
           clearable
@@ -139,7 +138,7 @@ const NewInputText = () => {
           placeholder="Placeholder"
           value={suggestionsValue}
           onChange={onChangeSuggestions}
-          margin="small"
+          margin={{ top: "small" }}
           action={action}
           suggestions={countries}
           clearable
@@ -150,7 +149,7 @@ const NewInputText = () => {
           label="Input with suggestions function"
           helperText="Example of helper text"
           placeholder="Placeholder"
-          margin="small"
+          margin={{ top: "small" }}
           value={suggestionsFValue}
           onChange={onChangeFSuggestions}
           suggestions={callbackFunc}
@@ -162,67 +161,71 @@ const NewInputText = () => {
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
       />
-      <BackgroundColorProvider color="#000000">
-        <Mode mode="dark" text="Default">
-          <DxcNewInputText
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            margin={{ left: "medium", right: "medium" }}
-          />
-        </Mode>
-        <Mode mode="dark" text="Disabled">
-          <DxcNewInputText
-            label="Disabled input"
-            helperText="Example of helper text"
-            placeholder="Placeholder"
-            margin="medium"
-            disabled
-          />
-        </Mode>
-        <Mode mode="dark" text="Required">
-          <DxcNewInputText
-            label="Example label"
-            optional
-            helperText="Example of helper text"
-            placeholder="Placeholder"
-            margin="medium"
-          />
-        </Mode>
-        <Mode mode="dark" text="Invalid">
-          <DxcNewInputText
-            label="Error input"
-            helperText="Example of helper text"
-            placeholder="Emojis"
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
-            error="Error message."
-            action={action}
-            clearable
-          />
-        </Mode>
-        <Mode mode="dark" text="Autosuggest">
-          <DxcNewInputText
-            label="Suggestions"
-            placeholder="Placeholder"
-            value={suggestionsValue}
-            onChange={onChangeSuggestions}
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
-            action={action}
-            suggestions={countries}
-            clearable
-          />
-          <DxcNewInputText
-            label="Input with suggestions function"
-            helperText="Example of helper text"
-            placeholder="Placeholder"
-            margin="medium"
-            value={suggestionsFValue}
-            onChange={onChangeFSuggestions}
-            suggestions={callbackFunc}
-            clearable
-          />
-        </Mode>
-      </BackgroundColorProvider>
+      <div style={{ marginBottom: "25px" }}>
+        <BackgroundColorProvider color="#000000">
+          <Mode mode="dark" text="Default">
+            <DxcNewInputText
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              margin={{ top: "small" }}
+            />
+          </Mode>
+          <Mode mode="dark" text="Disabled">
+            <DxcNewInputText
+              label="Disabled input"
+              helperText="Example of helper text"
+              placeholder="Placeholder"
+              margin={{ top: "small" }}
+              disabled
+            />
+          </Mode>
+          <Mode mode="dark" text="Required">
+            <DxcNewInputText
+              label="Example label"
+              optional
+              helperText="Example of helper text"
+              placeholder="Placeholder"
+              margin={{ top: "small" }}
+            />
+          </Mode>
+          <Mode mode="dark" text="Invalid">
+            <DxcNewInputText
+              label="Error input"
+              helperText="Example of helper text"
+              placeholder="Emojis"
+              margin={{ top: "small" }}
+              error="Error message."
+              action={action}
+              clearable
+            />
+          </Mode>
+          <Mode mode="dark" text="Autosuggest">
+            <DxcNewInputText
+              label="Suggestions"
+              placeholder="Placeholder"
+              value={suggestionsValue}
+              onChange={onChangeSuggestions}
+              margin={{ top: "small" }}
+              action={action}
+              suggestions={countries}
+              clearable
+            />
+          </Mode>
+          <Mode mode="dark" text="Asynchronous autosuggest">
+            <DxcNewInputText
+              label="Input with suggestions function"
+              helperText="Example of helper text"
+              placeholder="Placeholder"
+              margin={{ top: "small", bottom: "small" }}
+              value={suggestionsFValue}
+              onChange={onChangeFSuggestions}
+              suggestions={callbackFunc}
+              clearable
+            />
+          </Mode>
+        </BackgroundColorProvider>
+      </div>
     </TextFieldContainer>
   );
 };
