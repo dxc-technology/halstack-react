@@ -44,6 +44,9 @@
   "inputText": {
     "selectedBaseColor": "color"
   },
+  "newInputText": {
+    "baseColor": "color"
+  },
   "paginator": {
     "baseColor": "color",
     "fontColor": "color"
