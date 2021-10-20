@@ -150,14 +150,11 @@ const DxCButton = styled.div`
     width: 100%;
     height: 40px;
     transition: none !important;
-    
+
     &:focus {
       border-color: transparent;
       box-shadow: 0 0 0 2px
-        ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.secondaryFocusBorderColorOnDark
-            : props.theme.secondaryFocusBorderColor};
+        ${(props) => props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor};
     }
 
     ${(props) => {
@@ -194,9 +191,7 @@ const DxCButton = styled.div`
           } !important;
           border-color: transparent;
           box-shadow: 0 0 0 2px ${
-            backgroundType === "dark"
-              ? props.theme.secondaryFocusBorderColorOnDark
-              : props.theme.secondaryFocusBorderColor
+            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
           };
         }
         &:disabled { 
@@ -255,9 +250,7 @@ const DxCButton = styled.div`
           } !important;
           border-color: transparent;
           box-shadow: 0 0 0 2px ${
-            backgroundType === "dark"
-              ? props.theme.secondaryFocusBorderColorOnDark
-              : props.theme.secondaryFocusBorderColor
+            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
           };
         }
         &:disabled {
@@ -310,9 +303,7 @@ const DxCButton = styled.div`
           } !important;
           border-color: transparent;
           box-shadow: 0 0 0 2px ${
-            backgroundType === "dark"
-              ? props.theme.secondaryFocusBorderColorOnDark
-              : props.theme.secondaryFocusBorderColor
+            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
           };
         }
         &:disabled {
