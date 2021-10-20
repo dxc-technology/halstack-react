@@ -128,7 +128,6 @@ const DxCButton = styled.div`
   display: inline-block;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
-  box-shadow: 0 0 0 2px transparent;
 
   .MuiButtonBase-root {
     padding-left: ${(props) => props.theme.paddingLeft};
@@ -141,22 +140,26 @@ const DxCButton = styled.div`
       flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
-    letter-spacing: ${(props) => props.theme.labelLetterSpacing};
 
-    box-shadow: none;
+    box-shadow: 0 0 0 2px transparent;
+    font-family: ${(props) => props.theme.fontFamily};
     font-size: ${(props) => props.theme.fontSize};
     font-weight: ${(props) => props.theme.fontWeight};
+    letter-spacing: ${(props) => props.theme.labelLetterSpacing};
     min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
-
     width: 100%;
     height: 40px;
-    font-family: ${(props) => props.theme.fontFamily};
-    transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out;
-    transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out;
-    &:hover {
-      transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out;
-      transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out;
+    transition: none !important;
+    
+    &:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 2px
+        ${(props) =>
+          props.backgroundType === "dark"
+            ? props.theme.secondaryFocusBorderColorOnDark
+            : props.theme.secondaryFocusBorderColor};
     }
+
     ${(props) => {
       const { mode, backgroundType } = props;
       if (mode === "primary") {
@@ -175,19 +178,12 @@ const DxCButton = styled.div`
             ? props.theme.primaryFontColorOnDark
             : props.theme.primaryFontColor
         } !important;
-        &:hover{
+
+        &:hover {
           background-color: ${
             backgroundType === "dark"
               ? props.theme.primaryHoverBackgroundColorOnDark
               : props.theme.primaryHoverBackgroundColor
-          };
-        }
-        &:focus {
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark"
-              ? props.theme.secondaryFocusBorderColorOnDark
-              : props.theme.secondaryFocusBorderColor
           };
         }
         &:active {
@@ -203,7 +199,7 @@ const DxCButton = styled.div`
               : props.theme.secondaryFocusBorderColor
           };
         }
-        &:disabled{ 
+        &:disabled { 
           cursor: not-allowed;
           background-color: ${
             backgroundType === "dark"
@@ -217,14 +213,14 @@ const DxCButton = styled.div`
           }!important; 
         }
         .MuiButton-label {
-          z-index: 5
+          z-index: 5;
         }
       `;
       } else if (mode === "secondary") {
         return `
         border-radius: ${props.theme.secondaryBorderRadius};
-        border-width:${props.theme.secondaryBorderThickness};
-        border-style:${props.theme.secondaryBorderStyle};
+        border-width:  ${props.theme.secondaryBorderThickness};
+        border-style:  ${props.theme.secondaryBorderStyle};
         font-family:   ${props.theme.secondaryFontFamily};
         font-size:     ${props.theme.secondaryFontSize};
         font-weight:   ${props.theme.secondaryFontWeight};
@@ -237,7 +233,8 @@ const DxCButton = styled.div`
         border-color: ${
           backgroundType === "dark" ? props.theme.secondaryBorderColorOnDark : props.theme.secondaryBorderColor
         };
-        &:hover{
+
+        &:hover {
           background-color: ${
             backgroundType === "dark"
               ? props.theme.secondaryHoverBackgroundColorOnDark
@@ -246,14 +243,6 @@ const DxCButton = styled.div`
           color: ${
             backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
           } !important;
-        }
-        &:focus{
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark"
-              ? props.theme.secondaryFocusBorderColorOnDark
-              : props.theme.secondaryFocusBorderColor
-          };
         }
         &:active {
           background-color: ${
@@ -271,7 +260,7 @@ const DxCButton = styled.div`
               : props.theme.secondaryFocusBorderColor
           };
         }
-        &:disabled{
+        &:disabled {
           cursor: not-allowed;
           background-color: ${
             backgroundType === "dark"
@@ -290,14 +279,14 @@ const DxCButton = styled.div`
           };
           }
           .MuiButton-label {
-              z-index: 5
+            z-index: 5;
           }
         `;
       } else if (mode === "text") {
         return `
         border-radius: ${props.theme.textBorderRadius};
-        border-width:${props.theme.textBorderThickness};
-        border-style:${props.theme.textBorderStyle};
+        border-width:  ${props.theme.textBorderThickness};
+        border-style:  ${props.theme.textBorderStyle};
         font-family:   ${props.theme.textFontFamily};
         font-size:     ${props.theme.textFontSize};
         font-weight:   ${props.theme.textFontWeight};
@@ -305,19 +294,12 @@ const DxCButton = styled.div`
           backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
         };
         color: ${backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor} !important;
-        &:hover{
+
+        &:hover {
           background-color: ${
             backgroundType === "dark"
               ? props.theme.textHoverBackgroundColorOnDark
               : props.theme.textHoverBackgroundColor
-          };
-        }
-        &:focus {
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark"
-              ? props.theme.secondaryFocusBorderColorOnDark
-              : props.theme.secondaryFocusBorderColor
           };
         }
         &:active {
@@ -333,7 +315,7 @@ const DxCButton = styled.div`
               : props.theme.secondaryFocusBorderColor
           };
         }
-        &:disabled{
+        &:disabled {
           cursor:not-allowed;
           color: ${
             backgroundType === "dark" ? props.theme.textDisabledFontColorOnDark : props.theme.textDisabledFontColor
@@ -371,4 +353,5 @@ DxcButton.propTypes = {
   type: PropTypes.oneOf(["button", "reset", "submit"]),
   tabIndex: PropTypes.number,
 };
+
 export default DxcButton;
