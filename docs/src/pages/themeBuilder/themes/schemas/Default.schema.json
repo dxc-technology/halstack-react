@@ -5,13 +5,9 @@
   },
   "button": {
     "baseColor": "color",
-    "hoverBaseColor": "color",
     "primaryFontColor": "color",
-    "primaryHoverFontColor": "color",
-    "secondaryFontColor": "color",
     "secondaryHoverFontColor": "color",
-    "textFontColor": "color",
-    "textHoverFontColor": "color"
+    "textHoverBackgroundColor": "color"
   },
   "checkbox": {
     "baseColor": "color",
@@ -48,6 +44,9 @@
   "inputText": {
     "selectedBaseColor": "color"
   },
+  "newInputText": {
+    "baseColor": "color"
+  },
   "paginator": {
     "baseColor": "color",
     "fontColor": "color"
@@ -60,7 +59,8 @@
     "baseColor": "color"
   },
   "select": {
-    "baseColor": "color"
+    "baseColor": "color",
+    "fontColor": "color"
   },
   "sidenav": {
     "baseColor": "color",
@@ -86,13 +86,9 @@
   },
   "toggleGroup": {
     "selectedBaseColor": "color",
-    "selectedHoverBaseColor": "color",
     "selectedFontColor": "color",
-    "selectedHoverFontColor": "color",
     "unselectedBaseColor": "color",
-    "unselectedHoverBaseColor": "color",
-    "unselectedFontColor": "color",
-    "unselectedHoverFontColor": "color"
+    "unselectedFontColor": "color"
   },
   "wizard": {
     "baseColor": "color",

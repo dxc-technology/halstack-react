@@ -9,6 +9,7 @@ const code = `() => {
         disabled
         label="Disabled Accordion"
         onChange={onChange}
+        margin="medium"
         padding="medium"
       >
         <div>

@@ -1,5 +1,10 @@
 import React from "react";
-import { DxcProgressBar, ThemeProvider } from "@dxc-technology/halstack-react";
+import styled from "styled-components";
+import {
+  DxcProgressBar,
+  ThemeProvider,
+  BackgroundColorProvider,
+} from "@dxc-technology/halstack-react";
 
 const colors = {
   progressBar: {
@@ -24,6 +29,17 @@ function App() {
       <div className="test-case" id="without-label">
         <h4>Without label</h4>
         <DxcProgressBar overlay={false} showValue value={50} />
+      </div>
+
+      <div className="test-case" id="with-helperText">
+        <h4>With helper text</h4>
+        <DxcProgressBar
+          label="Loading..."
+          helperText="Helper text"
+          overlay={false}
+          showValue
+          value={50}
+        />
       </div>
 
       <div>
@@ -110,8 +126,45 @@ function App() {
           />
         </ThemeProvider>
       </div>
+      <h4>Dark mode</h4>
+      <BackgroundColorProvider color="#000000">
+        <Mode mode="dark" text="Undeterminate default">
+          <DxcProgressBar
+            label="Loading"
+            overlay={false}
+            margin={{ top: "xsmall", bottom: "xxsmall" }}
+          />
+        </Mode>
+        <Mode mode="dark" text="Determinate default">
+          <DxcProgressBar
+            label="Loading"
+            overlay={false}
+            showValue
+            value={45}
+            margin={{ top: "xsmall", bottom: "xxsmall" }}
+          />
+        </Mode>
+      </BackgroundColorProvider>
     </div>
   );
 }
 
+const Mode = ({ mode, children }) => {
+  return (
+    <ModeContainer mode={mode}>
+      <PreviewsContainer>{children}</PreviewsContainer>
+    </ModeContainer>
+  );
+};
+
+const ModeContainer = styled.div`
+  background-color: ${(props) =>
+    props.mode === "dark" ? "#000000" : "transparent"};
+  display: flex;
+  flex-flow: row wrap;
+`;
+
+const PreviewsContainer = styled.div`
+  flex: 100%;
+`;
 export default App;

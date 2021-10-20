@@ -65,15 +65,9 @@ const useStyles = makeStyles(() => ({
         color: `${props.optionFontColor}`,
       },
       "&:active": {
-        backgroundColor:
-          `${
-            props.backgroundType === "dark"
-              ? props.selectedOptionBackgroundColorOnDark
-              : props.selectedOptionBackgroundColor
-          }` +
-          `${
-            props.backgroundType === "dark" ? props.hoverOptionBackgroundColorOnDark : props.hoverOptionBackgroundColor
-          }`,
+        backgroundColor: `${
+          props.backgroundType === "dark" ? props.activeOptionBackgroundColorOnDark : props.activeOptionBackgroundColor
+        } !important`,
       },
       "&:focus": {
         outline: `${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor} auto 2px`,

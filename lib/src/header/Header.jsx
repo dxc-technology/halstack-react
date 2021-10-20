@@ -114,7 +114,6 @@ const DxcHeader = ({
                 <HamburguerTitle>Menu</HamburguerTitle>
               </HamburguerItem>
             </ChildContainer>
-
             {
               <div>
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
@@ -199,11 +198,6 @@ const ChildContainer = styled.div`
     props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
-  font-family: ${(props) => props.theme.customContentFontFamily};
-  font-style: ${(props) => props.theme.customContentFontStyle};
-  font-size: ${(props) => props.theme.customContentFontSize};
-  font-weight: ${(props) => props.theme.customContentFontWeight};
-  color: ${(props) => props.theme.customContentFontColor};
 `;
 
 const HamburguerItem = styled.div`
@@ -283,11 +277,6 @@ const MenuContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: ${(props) => props.theme.menuCustomContentFontFamily};
-  font-style: ${(props) => props.theme.menuCustomContentFontStyle};
-  font-size: ${(props) => props.theme.menuCustomContentFontSize};
-  font-weight: ${(props) => props.theme.menuCustomContentFontWeight};
-  color: ${(props) => props.theme.menuCustomContentFontColor};
 `;
 
 const CloseContainer = styled.img`

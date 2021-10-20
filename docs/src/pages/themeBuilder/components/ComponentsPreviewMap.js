@@ -28,6 +28,8 @@ import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
 import UploadPreview from "./previews/Upload";
 import CardPreview from "./previews/Card";
+import NewInputTextPreview from "./previews/NewInputText";
+
 const SampleComponents = [
   {
     name: "accordion",
@@ -88,6 +90,10 @@ const SampleComponents = [
   {
     name: "link",
     preview: LinkPreview,
+  },
+  {
+    name: "newInputText",
+    preview: NewInputTextPreview,
   },
   {
     name: "paginator",

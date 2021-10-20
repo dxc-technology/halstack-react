@@ -130,30 +130,26 @@ function CustomThemes() {
 
   const colors = {
       accordion: {
-        accentColor: "#5f249f", // accordion's accent color theme input
+        accentColor: "#6f2c91", // accordion's accent color theme input
         fontColor: "#666666" // accordion's font color theme input
       },
       button: {
         baseColor: "#5f249f", // button's base color theme input
-        hoverBaseColor: "#000000", // button's hover base color theme input
-        primaryFontColor: "#ffffff", // button's primary font color theme input
-        primaryHoverFontColor: "#ffffff", // button's primary hover font color theme input
-        secondaryFontColor: "#000000", // button's secondary font color theme input
-        secondaryHoverFontColor: "#000000", // button's secondary hover font color theme input
-        textFontColor: "#5f249f", // button's text font color theme input
-        textHoverFontColor: "#ffffff", // button's text hover font color theme input
+        primaryFontColor: "#ffffff",  // button's primary font color theme input
+        secondaryHoverFontColor: "#ffffff", // button's secondary hover font color theme input
+        textHoverBackgroundColor: "#f2eafa",  // button's text hover background color theme input
       },
       checkbox: {
         baseColor: "#0067b3", // checkbox's base color theme input
         checkColor: "#ffffff", // checkbox's check color theme input
       },
       chip: {
-        baseColor: "#eeeeee", // chip's base color theme input
-        accentColor: "", // chip's accent color theme input
+        baseColor: "#e6e6e6", // chip's base color theme input
+        accentColor: "transparent", // chip's accent color theme input
         fontColor: "#000000", // chip's font color theme input
       },
       date: {
-        baseColor: "#5f249f", // date's base color theme input
+        baseColor: "#6f2c91", // date's base color theme input
         accentColor: "#ffffff", // date's accent color theme input
       },
       dropdown: {
@@ -163,7 +159,7 @@ function CustomThemes() {
       footer: {
         baseColor: "#000000", // footer's base color theme input
         fontColor: "#ffffff", // footer's font color theme input
-        accentColor: "#0067b3", // footer's accent color theme input
+        accentColor: "#0095ff", // footer's accent color theme input
         logo: "yahooLogo", // footer's logo theme input
       },
       header: {
@@ -176,25 +172,29 @@ function CustomThemes() {
         logoResponsive: "yahooLogo", // header's logo responsive theme input
       },
       inputText: {
-        selectedBaseColor: "#D9D9D9", // input text's selected base color theme input
+        selectedBaseColor: "#d9d9d9", // input text's selected base color theme input
+      },
+      newInputText: {
+        baseColor: "#f2f2f2", // new input text's base color theme input
       },
       paginator: {
         baseColor: "#eeeeee", // paginator's base color theme input
         fontColor: "#000000", // paginator's font color theme input
       },
       progressBar: {
-        accentColor: "#FFED00", // progress bar's accent color theme input
-        baseColor: "#000000", // progress bar's base color theme input
+        accentColor: "#5f249f", // progress bar's accent color theme input
+        baseColor: "#cecece", // progress bar's base color theme input
       },
       radio: {
         baseColor: "#000000", // radio's base color theme input
       },
       select: {
-        baseColor: "#D9D9D9", // select's base color theme input
+        baseColor: "#d9d9d9", // select's base color theme input
+        fontColor: "#000000", // select's font color theme input
       },
       sidenav: {
-        baseColor: "#F8F8F8", // sidenav's base color theme input
-        arrowBaseColor: "#F8F8F8", // sidenav's arrow base color theme input
+        baseColor: "#f8f8f8", // sidenav's base color theme input
+        arrowBaseColor: "#f8f8f8", // sidenav's arrow base color theme input
         arrowAccentColor: "#000000", // sidenav's arrow accent color theme input
       },
       slider: {
@@ -215,14 +215,10 @@ function CustomThemes() {
         baseColor: "#5f249f", // tabs' base color theme input
       },
       toggleGroup: {
-        selectedBaseColor: "#5f249f", // toggle group's selected base color theme input
-        selectedHoverBaseColor: "#000000", // toggle group's selected hover base color theme input
+        selectedBaseColor: "#5f249f", // toggle group's selected base color theme input        
         selectedFontColor: "#ffffff", // toggle group's selected font color theme input
-        selectedHoverFontColor: "#ffffff", // toggle group's selected hover font color theme input
-        unselectedBaseColor: "#D9D9D9", // toggle group's unselected base color theme input
-        unselectedHoverBaseColor: "#eeeeee", // toggle group's selected hover base color theme input
+        unselectedBaseColor: "#e6e6e6", // toggle group's unselected base color theme input
         unselectedFontColor: "#000000", // toggle group's unselected font color theme input
-        unselectedHoverFontColor: "#000000", // toggle group's unselected hover font color theme input
       },
       wizard: {
         baseColor: "#5f249f", // wizard's base color theme input
