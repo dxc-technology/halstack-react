@@ -193,7 +193,7 @@ const NewInputText = () => {
             <DxcNewInputText
               label="Error input"
               helperText="Example of helper text"
-              placeholder="Emojis"
+              placeholder="Placeholder"
               margin={{ top: "small" }}
               error="Error message."
               action={action}
