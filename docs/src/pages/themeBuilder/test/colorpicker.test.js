@@ -60,21 +60,21 @@ describe("Successful color picker tests for default theme", () => {
     expect(getByText("Accordion component")).toBeTruthy();
     expect(getByText("Accent color")).toBeTruthy();
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
-      "#5f249f"
+      "#6f2c91"
     );
     act(() => {
       fireEvent.click(getAllByRole("color-container")[0]);
     });
     act(() => {
-      fireEvent.change(getByDisplayValue("5F249F"), {
-        target: { value: "555555" },
+      fireEvent.change(getByDisplayValue("6F2C91"), {
+        target: { value: "cecece" },
       });
     });
     act(() => {
       fireEvent.click(getByRole("picker-cover"));
     });
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
-      "#555555"
+      "#cecece"
     );
   });
 
@@ -98,22 +98,22 @@ describe("Successful color picker tests for default theme", () => {
     });
     expect(getByText("Button component")).toBeTruthy();
     expect(getByText("Primary font color")).toBeTruthy();
-    expect(getAllByRole("color-container")[2].getAttribute("color")).toBe(
+    expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
       "#ffffff"
     );
     act(() => {
-      fireEvent.click(getAllByRole("color-container")[2]);
+      fireEvent.click(getAllByRole("color-container")[1]);
     });
     act(() => {
       fireEvent.change(getByDisplayValue("FFFFFF"), {
-        target: { value: "333333" },
+        target: { value: "fabada" },
       });
     });
     act(() => {
       fireEvent.click(getByRole("picker-cover"));
     });
-    expect(getAllByRole("color-container")[2].getAttribute("color")).toBe(
-      "#333333"
+    expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
+      "#fabada"
     );
   });
 });
@@ -145,7 +145,7 @@ describe("Successful color picker tests for advanced theme", () => {
       fireEvent.click(getByText("Alert"));
     });
     expect(getByText("Alert component")).toBeTruthy();
-    expect(getByText("Overlay color")).toBeTruthy();
+    expect(getByText("Title font color")).toBeTruthy();
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
       "#000000"
     );

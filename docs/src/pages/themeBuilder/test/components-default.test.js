@@ -6,7 +6,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 import { versionsResponse } from "./mocks/VersionsMock";
-import defaultTheme from "./mocks/defaultThemeMock.json";
+import defaultTheme from "../themes/DefaultTheme.json";
 import ThemeBuilder from "../ThemeBuilder";
 import { makeReadable } from "../utils";
 
@@ -239,7 +239,7 @@ describe("Successful component tests for default theme", () => {
   });
 
   it("Should render progress bar component", async () => {
-    const { getByText, findByText } = render(
+    const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
@@ -250,9 +250,10 @@ describe("Successful component tests for default theme", () => {
     act(() => {
       fireEvent.click(getByText("Progress Bar"));
     });
-    expect(getByText("ProgressBar component")).toBeTruthy();
-    expect(getByText("Undeterminate default")).toBeTruthy();
-    expect(getByText("Determinate default")).toBeTruthy();
+    expect(getByText("ProgressBar component")).toBeTruthy();    
+    expect(getAllByText("Undeterminate default").length).toBe(2);
+    expect(getAllByText("Determinate default").length).toBe(2);
+    expect(getByText("With overlay")).toBeTruthy();
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["progressBar"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
@@ -466,6 +467,32 @@ describe("Successful component tests for default theme", () => {
     expect(getAllByText("Autocomplete").length).toBe(4);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["inputText"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
+  });
+
+  it("Should render new input text component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText("next");
+    act(() => {
+      fireEvent.click(getByText("New Input Text"));
+    });
+    expect(getByText("NewInputText component")).toBeTruthy();
+    expect(getByText("Light Mode")).toBeTruthy();
+    expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(2);
+    expect(getAllByText("Disabled").length).toBe(2);
+    expect(getAllByText("Invalid").length).toBe(2);
+    expect(getAllByText("Action & Optional").length).toBe(2);
+    expect(getAllByText("Suggestions").length).toBe(2);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(defaultTheme["newInputText"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
     );
   });

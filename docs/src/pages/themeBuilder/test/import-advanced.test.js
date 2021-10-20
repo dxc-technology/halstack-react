@@ -13,8 +13,8 @@ const portalUrl = "https://developer.dxc.com/tools/react/versions.json";
 
 const validThemeInputString = JSON.stringify({
   alert: {
-    overlayColor: "#fabada",
-    infoColor: "#cecece",
+    titleFontColor: "#fabada",
+    infoIconColor: "#cecece",
   },
   box: {
     borderRadius: "9.7px",
@@ -25,9 +25,9 @@ const validThemeInputString = JSON.stringify({
 
 const wrongComponentNameString = JSON.stringify({
   alert: {
-    overlayColor: "#fabada",
-    infoColor: "#cecece",
-    successColor: "#ffffff",
+    titleFontColor: "#fabada",
+    infoIconColor: "#cecece",
+    successBackgroundColor: "#ffffff",
   },
   boxes: {
     borderRadius: "6px",
@@ -39,8 +39,8 @@ const wrongComponentNameString = JSON.stringify({
 const wrongThemeInputString = JSON.stringify({
   alert: {
     accentColor: "#fabada",
-    infoColor: "#CEE0F5",
-    successColor: "#ffffff",
+    infoIconColor: "#CEE0F5",
+    successIconColor: "#ffffff",
   },
   box: {
     borderRadius: "6px",
@@ -229,7 +229,6 @@ describe("Import advanced theme", () => {
       });
     });
     expect(getAllByText("Import")[1].closest("button").disabled).toBeFalsy();
-
     act(() => {
       fireEvent.click(getAllByText("Import")[1].closest("button"));
     });
@@ -241,7 +240,7 @@ describe("Import advanced theme", () => {
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
       "#fabada"
     );
-    expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
+    expect(getAllByRole("color-container")[6].getAttribute("color")).toBe(
       "#cecece"
     );
 

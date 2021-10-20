@@ -11,10 +11,9 @@ import {
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import routeData from "react-router";
-
 import { versionsResponse } from "./mocks/VersionsMock";
-import defaultTheme from "./mocks/defaultThemeMock.json";
-import advancedTheme from "./mocks/advancedThemeMock.json";
+import defaultTheme from "../themes/DefaultTheme.json";
+import advancedTheme from "../themes/AdvancedTheme.json";
 import ThemeBuilder from "../ThemeBuilder";
 
 const portalUrl = "https://developer.dxc.com/tools/react/versions.json";

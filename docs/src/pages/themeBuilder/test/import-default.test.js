@@ -17,8 +17,9 @@ const validThemeInputString = JSON.stringify({
   },
   button: {
     baseColor: "#fabada",
-    hoverBaseColor: "#777777",
-    primaryFontColor: "",
+    primaryFontColor: "#000000",
+    secondaryHoverFontColor: "#777777",
+    textHoverBackgroundColor: "#cecece",
   },
 });
 
@@ -28,9 +29,9 @@ const wrongComponentNameString = JSON.stringify({
     fontColor: "#777777",
   },
   box: {
-    baseColor: "#fabada",
-    hoverBaseColor: "#777777",
-    mal: "#ffffff",
+    backgroundColor: "#fabada",
+    letterSpacing: "0.05em",
+    borderRadius: "5px",
   },
 });
 
@@ -84,6 +85,7 @@ describe("Import default theme", () => {
       </Router>
     );
     await findByText("next");
+
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -102,6 +104,7 @@ describe("Import default theme", () => {
       </Router>
     );
     await findByText("next");
+
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -123,6 +126,7 @@ describe("Import default theme", () => {
         </Router>
       );
     await findByText("next");
+
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -150,6 +154,7 @@ describe("Import default theme", () => {
         </Router>
       );
     await findByText("next");
+
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -177,6 +182,7 @@ describe("Import default theme", () => {
         </Router>
       );
     await findByText("next");
+
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -212,6 +218,7 @@ describe("Import default theme", () => {
       </Router>
     );
     await findByText("next");
+
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -231,6 +238,22 @@ describe("Import default theme", () => {
     );
     expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
       "#777777"
+    );
+    act(() => {
+      fireEvent.click(getByText("Button"));
+    });
+    expect(getByText("Button component")).toBeTruthy();
+    expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
+      "#fabada"
+    );
+    expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
+      "#000000"
+    );
+    expect(getAllByRole("color-container")[2].getAttribute("color")).toBe(
+      "#777777"
+    );
+    expect(getAllByRole("color-container")[3].getAttribute("color")).toBe(
+      "#cecece"
     );
   });
 
@@ -264,7 +287,6 @@ describe("Import default theme", () => {
     act(() => {
       fireEvent.click(getAllByText("Import")[1].closest("button"));
     });
-
     expect(getByText("Accordion component")).toBeTruthy();
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
       "#fabada"
@@ -272,12 +294,11 @@ describe("Import default theme", () => {
     expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
       "#777777"
     );
-
     act(() => {
       fireEvent.click(getByText("Reset").closest("button"));
     });
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
-      "#5f249f"
+      "#6f2c91"
     );
     expect(getAllByRole("color-container")[1].getAttribute("color")).toBe(
       "#666666"
