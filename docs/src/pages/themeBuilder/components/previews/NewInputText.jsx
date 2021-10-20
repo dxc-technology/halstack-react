@@ -36,15 +36,13 @@ const countries = [
 const NewInputText = () => {
   const [value, setValue] = useState("Example text");
   const [suggestionsValue, setSuggestionsValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   const onChange = (value) => {
     setValue(value);
   };
 
-  const onBlur = ({ value, error }) => {
+  const onBlur = ({ value }) => {
     setValue(value);
-    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
   };
 
   const onChangeSuggestions = (value) => {
