@@ -54,7 +54,7 @@ const code = `() => {
 
   return (
     <DxcNewInputText
-      label="Autosuggest function"
+      label="Suggestions as a function"
       helperText="Checks if any of the options include the incoming string"
       value={value}
       onChange={onChange}

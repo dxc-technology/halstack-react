@@ -25,7 +25,7 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           Text to be placed above the input. This label will be used as the
-          aria-label attribute of the list of suggestions of the autosuggest.
+          aria-label attribute of the list of suggestions.
         </td>
       </tr>
       <tr>

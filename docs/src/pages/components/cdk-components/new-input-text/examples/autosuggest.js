@@ -39,7 +39,7 @@ const code = `() => {
 
   return (
     <DxcNewInputText
-      label="Autosuggest"
+      label="Suggestions"
       value={value}
       onChange={onChange}
       suggestions={countries}

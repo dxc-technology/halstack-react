@@ -80,9 +80,9 @@ function NewInput() {
                   title="Input with custom error messages"
                   example={customErrors}
                 ></Example>
-                <Example title="Autosuggest" example={autosuggest}></Example>
+                <Example title="Input with suggestions" example={autosuggest}></Example>
                 <Example
-                  title="Autosuggest function"
+                  title="Input with a function as suggestions"
                   example={autosuggestFunction}
                 ></Example>
                 <Example

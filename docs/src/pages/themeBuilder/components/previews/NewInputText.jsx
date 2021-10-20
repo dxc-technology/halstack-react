@@ -36,15 +36,12 @@ const countries = [
 const NewInputText = () => {
   const [value, setValue] = useState("Example text");
   const [suggestionsValue, setSuggestionsValue] = useState("");
-
   const onChange = (value) => {
     setValue(value);
   };
-
   const onBlur = ({ value }) => {
     setValue(value);
   };
-
   const onChangeSuggestions = (value) => {
     setSuggestionsValue(value);
   };
@@ -67,23 +64,11 @@ const NewInputText = () => {
     ),
   };
 
-  const [suggestionsFValue, setSuggestionsFValue] = useState("");
-
-  const onChangeFSuggestions = ({ value }) => {
-    setSuggestionsFValue(value);
-  };
-
-  const callbackFunc = (newValue) => {
-    const result = new Promise((resolve) =>
+  const errorCallbackFunc = () => {
+    const result = new Promise((resolve, reject) =>
       setTimeout(() => {
-        resolve(
-          newValue
-            ? countries.filter((option) =>
-                option.toUpperCase().includes(newValue.toUpperCase())
-              )
-            : countries
-        );
-      }, 1500)
+        reject("err");
+      }, 3000)
     );
     return result;
   };
@@ -100,66 +85,75 @@ const NewInputText = () => {
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          margin={{ top: "small" }}
+          margin={{ top: "xsmall" }}
+          clearable
         />
       </Mode>
       <Mode text="Disabled">
         <DxcNewInputText
           label="Disabled input"
           helperText="Example of helper text"
-          placeholder="Placeholder"
-          margin={{ top: "small" }}
+          value="Example text"
+          margin={{ top: "xsmall" }}
+          action={action}
+          prefix="Pre"
+          suffix="Suf"
           disabled
-        />
-      </Mode>
-      <Mode text="Required">
-        <DxcNewInputText
-          label="Example label"
-          optional
-          helperText="Example of helper text"
-          placeholder="Placeholder"
-          margin={{ top: "small" }}
         />
       </Mode>
       <Mode text="Invalid">
         <DxcNewInputText
-          label="Error input"
+          label="Invalid input"
           helperText="Example of helper text"
           placeholder="Placeholder"
-          margin={{ top: "small", bottom: "xsmall" }}
+          margin={{ top: "xsmall", bottom: "xxsmall" }}
           error="Error message."
-          action={action}
           clearable
         />
       </Mode>
-      <Mode text="Autosuggest">
+      <Mode text="Action & Optional">
         <DxcNewInputText
-          label="Suggestions"
+          label="Input with action and optional"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin={{ top: "xsmall", bottom: "xxsmall" }}
+          action={action}
+          optional
+          clearable
+        />
+      </Mode>
+      <Mode text="Prefix & Suffix">
+        <DxcNewInputText
+          label="Prefix and suffix text input"
+          prefix="+34"
+          suffix="USD"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin={{ top: "xsmall" }}
+        />
+      </Mode>
+      <Mode text="Suggestions">
+        <DxcNewInputText
+          label="Suggestions input"
           placeholder="Placeholder"
           value={suggestionsValue}
           onChange={onChangeSuggestions}
-          margin={{ top: "small" }}
-          action={action}
+          margin={{ top: "xsmall" }}
           suggestions={countries}
           clearable
         />
-      </Mode>
-      <Mode text="Asynchronous autosuggest">
         <DxcNewInputText
-          label="Input with suggestions function"
-          helperText="Example of helper text"
+          label="Suggestions error input"
           placeholder="Placeholder"
-          margin={{ top: "small" }}
-          value={suggestionsFValue}
-          onChange={onChangeFSuggestions}
-          suggestions={callbackFunc}
+          margin={{ top: "xsmall", left: "large" }}
+          suggestions={errorCallbackFunc}
           clearable
         />
       </Mode>
       <DxcHeading
         text="Dark Mode"
         level={5}
-        margin={{ top: "small", bottom: "xsmall" }}
+        margin={{ top: "xsmall", bottom: "xsmall" }}
       />
       <div style={{ marginBottom: "25px" }}>
         <BackgroundColorProvider color="#000000">
@@ -168,59 +162,69 @@ const NewInputText = () => {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-              margin={{ top: "small" }}
+              margin={{ top: "xsmall" }}
+              clearable
             />
           </Mode>
           <Mode mode="dark" text="Disabled">
             <DxcNewInputText
               label="Disabled input"
               helperText="Example of helper text"
-              placeholder="Placeholder"
-              margin={{ top: "small" }}
+              value="Example text"
+              margin={{ top: "xsmall" }}
+              action={action}
+              prefix="Pre"
+              suffix="Suf"
               disabled
-            />
-          </Mode>
-          <Mode mode="dark" text="Required">
-            <DxcNewInputText
-              label="Example label"
-              optional
-              helperText="Example of helper text"
-              placeholder="Placeholder"
-              margin={{ top: "small" }}
             />
           </Mode>
           <Mode mode="dark" text="Invalid">
             <DxcNewInputText
-              label="Error input"
+              label="Invalid input"
               helperText="Example of helper text"
               placeholder="Placeholder"
-              margin={{ top: "small" }}
+              margin={{ top: "xsmall", bottom: "xxsmall" }}
               error="Error message."
-              action={action}
               clearable
             />
           </Mode>
-          <Mode mode="dark" text="Autosuggest">
+          <Mode mode="dark" text="Action & Optional">
             <DxcNewInputText
-              label="Suggestions"
+              label="Input with action and optional"
+              helperText="Example of helper text"
+              placeholder="Placeholder"
+              margin={{ top: "xsmall", bottom: "xxsmall" }}
+              action={action}
+              optional
+              clearable
+            />
+          </Mode>
+          <Mode mode="dark" text="Prefix & Suffix">
+            <DxcNewInputText
+              label="Prefix and suffix text input"
+              prefix="+34"
+              suffix="USD"
+              helperText="Example of helper text"
+              placeholder="Placeholder"
+              margin={{ top: "xsmall" }}
+            />
+          </Mode>
+          <Mode mode="dark" text="Suggestions">
+            <DxcNewInputText
+              label="Suggestions input"
               placeholder="Placeholder"
               value={suggestionsValue}
               onChange={onChangeSuggestions}
-              margin={{ top: "small" }}
+              margin={{ top: "xsmall" }}
               action={action}
               suggestions={countries}
               clearable
             />
-          </Mode>
-          <Mode mode="dark" text="Asynchronous autosuggest">
             <DxcNewInputText
-              label="Input with suggestions function"
-              helperText="Example of helper text"
+              label="Suggestions error input"
               placeholder="Placeholder"
-              margin={{ top: "small", bottom: "small" }}
-              value={suggestionsFValue}
-              onChange={onChangeFSuggestions}
-              suggestions={callbackFunc}
+              margin={{ top: "xsmall", left: "large" }}
+              suggestions={errorCallbackFunc}
               clearable
             />
           </Mode>
