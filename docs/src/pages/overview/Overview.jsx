@@ -137,7 +137,6 @@ function CustomThemes() {
         baseColor: "#5f249f", // button's base color theme input
         primaryFontColor: "#ffffff",  // button's primary font color theme input
         secondaryHoverFontColor: "#ffffff", // button's secondary hover font color theme input
-        textHoverBackgroundColor: "#f2eafa",  // button's text hover background color theme input
       },
       checkbox: {
         baseColor: "#0067b3", // checkbox's base color theme input
@@ -145,7 +144,6 @@ function CustomThemes() {
       },
       chip: {
         baseColor: "#e6e6e6", // chip's base color theme input
-        accentColor: "transparent", // chip's accent color theme input
         fontColor: "#000000", // chip's font color theme input
       },
       date: {

@@ -12,7 +12,6 @@ const colors = {
     baseColor: "#fcf2bd",
     primaryFontColor: "#006BF6",
     secondaryHoverFontColor: "#cee0f5",
-    textHoverBackgroundColor: "#000000",
   },
 };
 

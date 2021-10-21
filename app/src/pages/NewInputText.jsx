@@ -393,7 +393,7 @@ function App() {
           prefix="😀"
           label="Error input"
           helperText="Example of helper text"
-          placeholder="Emojis"
+          placeholder="Placeholder"
           margin={{ left: "medium", bottom: "small", right: "medium" }}
           error="Error message."
           suffix="😠"
