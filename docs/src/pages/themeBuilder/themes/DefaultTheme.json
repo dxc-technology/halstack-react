@@ -6,8 +6,7 @@
   "button": {
     "baseColor": "#5f249f",
     "primaryFontColor": "#ffffff",
-    "secondaryHoverFontColor": "#ffffff",
-    "textHoverBackgroundColor": "#f2eafa"
+    "secondaryHoverFontColor": "#ffffff"
   },
   "checkbox": {
     "baseColor": "#0067b3",
@@ -15,7 +14,6 @@
   },
   "chip": {
     "baseColor": "#e6e6e6",
-    "accentColor": "transparent",
     "fontColor": "#000000"
   },
   "date": {
