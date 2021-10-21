@@ -53,7 +53,6 @@ const calculateWidth = (margin) => {
 };
 
 const AccordionGroupContainer = styled.div`
-  min-width: ${(props) => props.theme.minWidth};
   width: ${(props) => calculateWidth(props.margin)};
 
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
