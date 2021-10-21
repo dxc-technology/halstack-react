@@ -44,7 +44,7 @@ const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => 
           (status === "success" && (
             <FileData>
               <FileName>{name}</FileName>
-              <Spinner mode="small" />
+              <FileStatus status={status} />
             </FileData>
           )) ||
           (status === "error" && (
