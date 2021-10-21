@@ -111,13 +111,8 @@ const DxcDropdown = ({
                 {label}
               </DropdownTriggerLabel>
             </DropdownTriggerContainer>
-            <CaretIconContainer disabled={disabled}>
-              {caretHidden !== true &&
-                (anchorEl === null ? (
-                  <DownArrowIcon caretHidden={caretHidden} margin={margin} />
-                ) : (
-                  <UpArrowIcon caretHidden={caretHidden} margin={margin} />
-                ))}
+            <CaretIconContainer caretHidden={caretHidden} disabled={disabled}>
+              {!caretHidden && (anchorEl === null ? <DownArrowIcon /> : <UpArrowIcon />)}
             </CaretIconContainer>
           </DropdownTrigger>
           <DXCMenu
@@ -386,15 +381,13 @@ const ListIconContainer = styled.div`
 `;
 
 const CaretIconContainer = styled.div`
-  display: ${(props) => (props.caretHidden === true ? "none" : "inline-flex")};
-  width: ${(props) => props.theme.caretIconSize};
-  height: ${(props) => props.theme.caretIconSize};
+  display: ${(props) => (props.caretHidden ? "none" : "inline-flex")};
   margin-left: ${(props) => props.theme.caretIconSpacing};
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
 
   svg {
-    height: 100%;
-    width: 100%;
+    width: ${(props) => props.theme.caretIconSize};
+    height: ${(props) => props.theme.caretIconSize};
   }
 `;
 
