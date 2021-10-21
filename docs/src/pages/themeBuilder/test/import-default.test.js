@@ -19,7 +19,6 @@ const validThemeInputString = JSON.stringify({
     baseColor: "#fabada",
     primaryFontColor: "#000000",
     secondaryHoverFontColor: "#777777",
-    textHoverBackgroundColor: "#cecece",
   },
 });
 
@@ -251,9 +250,6 @@ describe("Import default theme", () => {
     );
     expect(getAllByRole("color-container")[2].getAttribute("color")).toBe(
       "#777777"
-    );
-    expect(getAllByRole("color-container")[3].getAttribute("color")).toBe(
-      "#cecece"
     );
   });
 
