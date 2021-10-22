@@ -29,7 +29,7 @@ const DxcSpinner = ({ label = "", value, showValue = false, mode = "large", marg
           </BackgroundSpinner>
 
           {value >= 0 && value <= 100 ? (
-            <Spinner mode={mode}>
+            <Spinner role="progressbar" mode={mode}>
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={true}>
                   <CircleSpinner cx="70" cy="70" r="65" backgroundType={backgroundType} mode={mode} isDeterminated={true} value={value}></CircleSpinner>
@@ -42,7 +42,7 @@ const DxcSpinner = ({ label = "", value, showValue = false, mode = "large", marg
               )}
             </Spinner>
           ) : (
-            <Spinner mode={mode}>
+            <Spinner role="progressbar" mode={mode}>
               {mode !== "small" && (
                 <SVGSpinner viewBox="0 0 140 140" isDeterminated={false}>
                   <CircleSpinner cx="70" cy="70" r="65" backgroundType={backgroundType} mode={mode} isDeterminated={false}></CircleSpinner>
