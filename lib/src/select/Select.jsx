@@ -79,9 +79,6 @@ const useStyles = makeStyles(() => ({
             : props.selectedOptionBackgroundColor
         } !important`,
       },
-      "&.MuiListItem-root.Mui-focusVisible": {
-        backgroundColor: "unset",
-      },
       "& span.MuiButtonBase-root": {
         padding: "0px",
         margin: "5px 0px",
@@ -89,16 +86,6 @@ const useStyles = makeStyles(() => ({
         "& span.MuiIconButton-label > svg": {
           width: "26px",
           height: "26px",
-        },
-
-        "&:hover": {
-          color: `${props.backgroundType === "dark" ? props.borderColorOnDark : props.borderColor}`,
-        },
-
-        "&.Mui-checked:hover": {
-          color: `${
-            props.backgroundType === "dark" ? props.backgroundColorCheckedOnDark : props.backgroundColorChecked
-          }`,
         },
       },
     },
