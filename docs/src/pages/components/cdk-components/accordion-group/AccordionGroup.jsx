@@ -48,7 +48,7 @@ function AccordionGroup() {
                   This component includes different compound components that are
                   customized following the{" "}
                   <DxcLink
-                    href="https://developer.dxc.com/design/components/accordion"
+                    href="https://developer.dxc.com/design/guidelines/components/accordion"
                     underlined={false}
                     text="design guidelines"
                   ></DxcLink>

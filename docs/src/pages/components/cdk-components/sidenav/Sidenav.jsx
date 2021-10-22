@@ -47,7 +47,7 @@ function Sidenav() {
                   This component includes different compound components that are
                   customized following the{" "}
                   <DxcLink
-                    href="https://developer.dxc.com/design/components/sidenav"
+                    href="https://developer.dxc.com/design/guidelines/components/sidenav"
                     underlined={false}
                     text="design guidelines"
                   ></DxcLink>
