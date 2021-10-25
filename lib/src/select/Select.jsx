@@ -52,9 +52,6 @@ const useStyles = makeStyles(() => ({
       paddingTop: "0px",
     },
     "& li": {
-      fontSize: props.optionFontSize,
-      fontStyle: props.optionFontStyle,
-      fontWeight: props.optionFontWeight,
       paddingBottom: props.optionPaddingBottom,
       paddingTop: props.optionPaddingTop,
 
@@ -71,6 +68,7 @@ const useStyles = makeStyles(() => ({
       },
       "&:focus": {
         outline: `${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor} auto 2px`,
+        outlineOffset: "-1px",
       },
       "&.MuiListItem-root.Mui-selected": {
         backgroundColor: `${
@@ -131,57 +129,67 @@ const DxcSelect = ({
   const getLabelForSingleSelect = (selected) => {
     const selectedItem = options.filter((option) => option.value === selected)[0];
     return (
-      <SelectedIconContainer
+      <SelectedOptionContainer
         iconPosition={iconPosition}
         multiple={multiple}
         label={selectedItem && selectedItem.label}
         key={selectedItem && selectedItem.label}
       >
         {selectedItem && selectedItem.icon ? (
-          <ListIconContainer disabled={disabled}>
+          <SelectedOptionIconContainer
+            backgroundType={backgroundType}
+            disabled={disabled}
+            label={selectedItem.label}
+            iconPosition={iconPosition}
+          >
             {typeof selectedItem.icon === "object" ? selectedItem.icon : React.createElement(selectedItem.icon)}
-          </ListIconContainer>
+          </SelectedOptionIconContainer>
         ) : (
-          selectedItem && selectedItem.iconSrc && <ListIcon src={selectedItem && selectedItem.iconSrc} />
+          selectedItem &&
+          selectedItem.iconSrc && (
+            <SelectedOptionIcon
+              src={selectedItem && selectedItem.iconSrc}
+              disabled={disabled}
+              label={selectedItem.label}
+              iconPosition={iconPosition}
+            />
+          )
         )}
         {selectedItem && selectedItem.label && (
-          <SelectedLabelContainer
+          <SelectedOptionLabelContainer
             iconSrc={selectedItem && selectedItem.iconSrc && selectedItem.icon}
             iconPosition={iconPosition}
             disabled={disabled}
           >
             {selectedItem && selectedItem.label}
-          </SelectedLabelContainer>
+          </SelectedOptionLabelContainer>
         )}
-      </SelectedIconContainer>
+      </SelectedOptionContainer>
     );
   };
 
-  const getSelectedValuesWithLabel = (optionsList, selected) => {
-    return (
-      <MultipleLabelSelected>
-        {optionsList
-          .filter((x) => selected.includes(x.value))
-          .map((optionToRender) => optionToRender.label)
-          .join(", ")}
-      </MultipleLabelSelected>
-    );
-  };
+  const getSelectedValuesWithLabel = (optionsList, selected) => (
+    <MultipleLabelSelected>
+      {optionsList
+        .filter((x) => selected.includes(x.value))
+        .map((optionToRender) => optionToRender.label)
+        .join(", ")}
+    </MultipleLabelSelected>
+  );
 
-  const getSelectedValuesWithIcons = (optionsList, selected) => {
-    return options
+  const getSelectedValuesWithIcons = (optionsList, selected) =>
+    optionsList
       .filter((x) => selected.includes(x.value))
       .map((optionToRender) => getLabelForSingleSelect(optionToRender.value));
-  };
 
-  const labelForMultipleSelect = (selected) => {
-    return options.findIndex((option) => !option.label) !== -1
+  const labelForMultipleSelect = (selected) =>
+    options.findIndex((option) => !option.label) !== -1
       ? getSelectedValuesWithIcons(options, selected)
       : getSelectedValuesWithLabel(options, selected);
-  };
-  const getRenderValue = (selected) => {
-    return (multiple && labelForMultipleSelect(selected)) || getLabelForSingleSelect(selected);
-  };
+
+  const getRenderValue = (selected) =>
+    (multiple && labelForMultipleSelect(selected)) || getLabelForSingleSelect(selected);
+
   const isChecked = (checkedValue, value, option) => {
     if (value !== undefined) {
       let result = false;
@@ -202,16 +210,21 @@ const DxcSelect = ({
     return (
       <>
         {multiple && <DxcCheckbox size={"fitContent"} checked={isChecked(selectedValue, value, option)} />}
-        <OptionContainer iconPosition={iconPosition} multiple={multiple}>
+        <OptionListContainer iconPosition={iconPosition} multiple={multiple}>
           {option.icon ? (
-            <ListIconContainer backgroundType={backgroundType} label={option.label} iconPosition={iconPosition}>
+            <OptionListIconContainer
+              backgroundType={backgroundType}
+              disabled={disabled}
+              label={option.label}
+              iconPosition={iconPosition}
+            >
               {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
-            </ListIconContainer>
+            </OptionListIconContainer>
           ) : (
-            option.iconSrc && <ListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />
+            option.iconSrc && <OptionListIcon src={option.iconSrc} label={option.label} iconPosition={iconPosition} />
           )}{" "}
-          <LabelContainer backgroundType={backgroundType}>{option.label}</LabelContainer>
-        </OptionContainer>
+          <OptionListLabelContainer backgroundType={backgroundType}>{option.label}</OptionListLabelContainer>
+        </OptionListContainer>
       </>
     );
   };
@@ -284,14 +297,59 @@ const MultipleLabelSelected = styled.div`
   text-overflow: ellipsis;
 `;
 
-const LabelContainer = styled.span`
+const OptionListContainer = styled.div`
+  font-family: ${(props) => props.theme.fontFamily};
+  display: flex;
+  align-items: center;
+  flex-direction: ${(props) => (props.iconPosition === "before" && "row") || "row-reverse"};
   overflow: hidden;
   text-overflow: ellipsis;
+  ${(props) => props.multiple && `margin-left: ${props.theme.optionCheckboxSpacing};`}
+`;
+
+const OptionListIconContainer = styled.div`
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledColorOnDark
+        : props.theme.disabledColor
+      : props.backgroundType === "dark"
+      ? props.theme.optionIconColorOnDark
+      : props.theme.optionIconColor};
+  width: ${(props) => props.theme.optionIconSize};
+  height: ${(props) => props.theme.optionIconSize};
+  margin-left: ${(props) => (props.iconPosition === "after" && props.label && props.theme.optionIconSpacing) || "0px"};
+  margin-right: ${(props) =>
+    (props.iconPosition === "before" && props.label && props.theme.optionIconSpacing) || "0px"};
+  overflow: hidden;
+
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
+const OptionListIcon = styled.img`
+  width: ${(props) => props.theme.iconSize};
+  height: ${(props) => props.theme.iconSize};
+  margin-left: ${(props) =>
+    (props.iconPosition === "after" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
+  margin-right: ${(props) =>
+    (props.iconPosition === "before" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
+`;
+
+const OptionListLabelContainer = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: ${(props) => props.theme.optionFontSize};
+  font-style: ${(props) => props.theme.optionFontStyle};
+  font-weight: ${(props) => props.theme.optionFontWeight};
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.optionFontColorOnDark : props.theme.optionFontColor};
 `;
 
-const SelectedIconContainer = styled.div`
+const SelectedOptionContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.iconPosition === "before" && "row") || "row-reverse"};
   justify-content: ${(props) => (props.iconPosition === "before" && "flex-start") || "flex-end"};
@@ -310,44 +368,37 @@ const SelectedIconContainer = styled.div`
   }
 `;
 
-const SelectedLabelContainer = styled.span`
+const SelectedOptionLabelContainer = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
-  margin-left: ${(props) => ((props.iconPosition === "after" || !props.iconSrc) && "0px") || "10px"};
-  margin-right: ${(props) => ((props.iconPosition === "before" || !props.iconSrc) && "0px") || "10px"};
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
-const OptionContainer = styled.div`
-  font-family: ${(props) => props.theme.fontFamily};
-  display: flex;
-  align-items: center;
-  flex-direction: ${(props) => (props.iconPosition === "before" && "row") || "row-reverse"};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  ${(props) => props.multiple && `margin-left: ${props.theme.optionCheckboxSpacing};`}
-`;
-
-const ListIcon = styled.img`
-  width: ${(props) => props.theme.iconSize};
-  height: ${(props) => props.theme.iconSize};
+const SelectedOptionIcon = styled.img`
+  width: ${(props) => props.theme.valueIconSize};
+  height: ${(props) => props.theme.valueIconSize};
   margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
+    (props.iconPosition === "after" && props.label !== "" && props.theme.valueIconSpacing) || "0px"};
   margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
+    (props.iconPosition === "before" && props.label !== "" && props.theme.valueIconSpacing) || "0px"};
 `;
 
-const ListIconContainer = styled.div`
+const SelectedOptionIconContainer = styled.div`
   color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.optionIconColorOnDark : props.theme.optionIconColor};
-  width: ${(props) => props.theme.optionIconSize};
-  height: ${(props) => props.theme.optionIconSize};
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledColorOnDark
+        : props.theme.disabledColor
+      : props.backgroundType === "dark"
+      ? props.theme.valueIconColorOnDark
+      : props.theme.valueIconColor};
+  width: ${(props) => props.theme.valueIconSize};
+  height: ${(props) => props.theme.valueIconSize};
   margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
+    (props.iconPosition === "after" && props.label !== "" && props.theme.valueIconSpacing) || "0px"};
   margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
+    (props.iconPosition === "before" && props.label !== "" && props.theme.valueIconSpacing) || "0px"};
   overflow: hidden;
-  opacity: ${(props) => props.disabled && "0.34"};
 
   img,
   svg {
@@ -445,10 +496,11 @@ const SelectContainer = styled.div`
     display: flex;
     padding-right: 10px;
     align-items: center;
+
     :focus {
       background-color: transparent;
       outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
-        auto 1px;
+        auto 2px;
     }
     & > *:last-child::after {
       content: unset;
@@ -471,11 +523,6 @@ const SelectContainer = styled.div`
     font-weight: ${(props) => props.theme.valueFontWeight};
     color: ${(props) =>
       props.backgroundType === "dark" ? props.theme.valueFontColorOnDark : props.theme.valueFontColor};
-
-    svg {
-      color: ${(props) =>
-        props.backgroundType === "dark" ? props.theme.optionIconColorOnDark : props.theme.optionIconColor};
-    }
   }
   .MuiInput-underline {
     &.Mui-focused {
