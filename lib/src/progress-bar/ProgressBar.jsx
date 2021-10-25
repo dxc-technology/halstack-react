@@ -56,6 +56,7 @@ const BackgroundProgressBar = styled.div`
   left: ${(props) => (props.overlay === true ? "0" : "")};
   right: ${(props) => (props.overlay === true ? "0" : "")};
   z-index: ${(props) => (props.overlay ? 1300 : "")};
+  width: 100%;
 `;
 
 const DXCProgressBar = styled.div`
