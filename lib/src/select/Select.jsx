@@ -5,7 +5,6 @@ import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import styled, { ThemeProvider } from "styled-components";
 import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import DxcCheckbox from "../checkbox/Checkbox";
 
@@ -15,80 +14,6 @@ import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
 import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
-const useStyles = makeStyles(() => ({
-  root: (props) => ({
-    minWidth: props.width,
-  }),
-  dropdownStyle: (props) => ({
-    backgroundColor: props.optionBackgroundColor,
-    boxShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.3)",
-    minWidth: props.width,
-    width: props.width,
-    maxHeight: "250px",
-    borderColor: props.optionBorderColor,
-    borderWidth: props.optionBorderThickness,
-    borderStyle: props.optionBorderStyle,
-
-    "&::-webkit-scrollbar": {
-      width: "3px",
-      margin: "5px",
-    },
-    "&::-webkit-scrollbar-track": {
-      borderRadius: "3px",
-      backgroundColor: props.scrollBarTrackColor,
-    },
-    "&::-webkit-scrollbar-thumb": {
-      borderRadius: "3px",
-      backgroundColor: props.scrollBarThumbColor,
-    },
-    "& .MuiList-root": {
-      width: "auto !important",
-      paddingRight: "0 !important",
-    },
-  }),
-  itemList: (props) => ({
-    "&.MuiList-padding": {
-      paddingBottom: "0px",
-      paddingTop: "0px",
-    },
-    "& li": {
-      paddingBottom: props.optionPaddingBottom,
-      paddingTop: props.optionPaddingTop,
-
-      "&:hover": {
-        backgroundColor: `${
-          props.backgroundType === "dark" ? props.hoverOptionBackgroundColorOnDark : props.hoverOptionBackgroundColor
-        } !important`,
-        color: `${props.optionFontColor}`,
-      },
-      "&:active": {
-        backgroundColor: `${
-          props.backgroundType === "dark" ? props.activeOptionBackgroundColorOnDark : props.activeOptionBackgroundColor
-        } !important`,
-      },
-      "&:focus": {
-        outline: `${props.backgroundType === "dark" ? props.focusColorOnDark : props.focusColor} auto 2px`,
-        outlineOffset: "-1px",
-      },
-      "&.MuiListItem-root.Mui-selected": {
-        backgroundColor: `${
-          props.backgroundType === "dark"
-            ? props.selectedOptionBackgroundColorOnDark
-            : props.selectedOptionBackgroundColor
-        } !important`,
-      },
-      "& span.MuiButtonBase-root": {
-        padding: "0px",
-        margin: "5px 0px",
-
-        "& span.MuiIconButton-label > svg": {
-          width: "26px",
-          height: "26px",
-        },
-      },
-    },
-  }),
-}));
 
 const DxcSelect = ({
   value,
@@ -109,8 +34,6 @@ const DxcSelect = ({
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
   const [selectedValue, setSelectedValue] = useState((multiple && []) || "");
-  const selectValues = { width: "auto", ...colorsTheme.select, ...colorsTheme.checkbox, backgroundType };
-  const classes = useStyles(selectValues);
 
   const handleSelectChange = (selectedOption) => {
     if (multiple) {
@@ -251,24 +174,22 @@ const DxcSelect = ({
             value={value !== undefined ? value : selectedValue}
             disabled={disabled}
             MenuProps={{
-              classes: { paper: classes.dropdownStyle, list: classes.itemList },
               getContentAnchorEl: null,
               anchorOrigin: {
                 vertical: "bottom",
                 horizontal: "left",
               },
+              disablePortal: true,
             }}
             inputProps={{ tabIndex: disabled ? -1 : tabIndex }}
           >
-            {options.map((option) => {
-              return (
-                <MenuItem id={option.value} value={option.value} disableRipple key={option.value}>
-                  <BackgroundColorProvider color={colorsTheme.select.optionBackgroundColor}>
-                    <ThemedOption option={option} />
-                  </BackgroundColorProvider>
-                </MenuItem>
-              );
-            })}
+            {options.map((option) => (
+              <MenuItem id={option.value} value={option.value} disableRipple key={option.value}>
+                <BackgroundColorProvider color={colorsTheme.select.optionBackgroundColor}>
+                  <ThemedOption option={option} />
+                </BackgroundColorProvider>
+              </MenuItem>
+            ))}
           </Select>
           {assistiveText && <FormHelperText disabled={disabled}>{assistiveText}</FormHelperText>}
         </FormControl>
@@ -284,12 +205,10 @@ const sizes = {
   fillParent: "100%",
 };
 
-const calculateWidth = (margin, size) => {
-  if (size === "fillParent") {
-    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-  }
-  return sizes[size];
-};
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
 const MultipleLabelSelected = styled.div`
   width: calc(100% - 24px);
@@ -583,6 +502,71 @@ const SelectContainer = styled.div`
     text-overflow: ellipsis;
     overflow: hidden;
     width: calc(100% - 24px);
+  }
+
+  .MuiMenu-paper {
+    background-color: ${(props) => props.theme.optionBackgroundColor};
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
+    min-width: auto;
+    width: auto;
+    max-height: 250px;
+    border-color: ${(props) => props.theme.optionBorderColor};
+    border-width: ${(props) => props.theme.optionBorderThickness};
+    border-style: ${(props) => props.theme.optionBorderStyle};
+
+    &::-webkit-scrollbar {
+      width: 3px;
+      margin: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 3px;
+      background-color: ${(props) => props.theme.scrollBarTrackColor};
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      background-color: ${(props) => props.theme.scrollBarThumbColor};
+    }
+  }
+  .MuiList-root {
+    width: auto !important;
+    padding-right: 0 !important;
+  }
+  .MuiList-padding {
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+  .MuiMenuItem-root {
+    padding-bottom: ${(props) => props.theme.optionPaddingBottom};
+    padding-top: ${(props) => props.theme.optionPaddingTop};
+
+    &:hover {
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.hoverOptionBackgroundColorOnDark
+          : props.theme.hoverOptionBackgroundColor};
+    }
+    &:active {
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.activeOptionBackgroundColorOnDark
+          : props.theme.activeOptionBackgroundColor};
+    }
+    &:focus {
+      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
+        auto 2px;
+      outline-offset: -1px;
+    }
+    &.MuiListItem-root.Mui-selected {
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.selectedOptionBackgroundColorOnDark
+          : props.theme.selectedOptionBackgroundColor};
+    }
+    & span.MuiButtonBase-root {
+      // multiple checkbox
+      padding: 0px;
+      margin: 5px 0px;
+    }
   }
 `;
 

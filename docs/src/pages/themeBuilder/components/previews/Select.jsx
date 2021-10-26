@@ -10,6 +10,7 @@ import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";
 import twitterIcon from "../../images/TwitterIcon";
+import importIcon from "../../images/ImportIcon";
 
 const options = [
   {
@@ -29,8 +30,8 @@ const options = [
   },
   {
     value: 4,
-    label: "Instagram",
-    icon: linkedinIcon,
+    label: "Import",
+    icon: importIcon,
   },
 ];
 
