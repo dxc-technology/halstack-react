@@ -108,11 +108,10 @@ const sizes = {
   fitContent: "auto",
 };
 
-const calculateWidth = (margin, size) => {
+const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
-};
 
 const AlertModal = styled.div`
   font-size: ${(props) => props.theme.fontSizeBase};
