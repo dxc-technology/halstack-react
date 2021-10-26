@@ -72,7 +72,6 @@ const DxcSelect = ({
           selectedItem.iconSrc && (
             <SelectedOptionIcon
               src={selectedItem && selectedItem.iconSrc}
-              disabled={disabled}
               label={selectedItem.label}
               iconPosition={iconPosition}
             />
@@ -250,8 +249,8 @@ const OptionListIconContainer = styled.div`
 `;
 
 const OptionListIcon = styled.img`
-  width: ${(props) => props.theme.iconSize};
-  height: ${(props) => props.theme.iconSize};
+  width: ${(props) => props.theme.optionIconSize};
+  height: ${(props) => props.theme.optionIconSize};
   margin-left: ${(props) =>
     (props.iconPosition === "after" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
   margin-right: ${(props) =>
