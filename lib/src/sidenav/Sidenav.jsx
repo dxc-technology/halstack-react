@@ -19,23 +19,19 @@ const DxcSidenav = ({ padding, children }) => {
   );
 };
 
-const Title = ({ children }) => {
-  return <SideNavMenuTitle>{children}</SideNavMenuTitle>;
-};
+const Title = ({ children }) => <SideNavMenuTitle>{children}</SideNavMenuTitle>;
 
-const Subtitle = ({ children }) => {
-  return <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>;
-};
+const Subtitle = ({ children }) => <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>;
 
-const Link = ({ href, onClick, children }) => {
-  return (
-    <SideNavMenuLink href={href} onClick={onClick}>
-      {children}
-    </SideNavMenuLink>
-  );
-};
+const Link = ({ href, onClick, children }) => (
+  <SideNavMenuLink href={href} onClick={onClick}>
+    {children}
+  </SideNavMenuLink>
+);
 
 const SideNavContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
   max-width: 300px;
   width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
@@ -54,8 +50,6 @@ const SideNavContainer = styled.div`
     background-color: ${(props) => props.theme.scrollBarThumbColor};
     border-radius: 3px;
   }
-  display: flex;
-  flex-direction: column;
 `;
 
 const SideNavMenuTitle = styled.div`
@@ -66,7 +60,7 @@ const SideNavMenuTitle = styled.div`
   color: ${(props) => props.theme.titleFontColor};
   letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
   text-transform: ${(props) => props.theme.titleFontTextTransform};
-  margin: 15px 0;
+  margin-bottom: 16px;
 `;
 
 const SideNavMenuSubTitle = styled.div`
@@ -77,7 +71,7 @@ const SideNavMenuSubTitle = styled.div`
   color: ${(props) => props.theme.subtitleFontColor};
   letter-spacing: ${(props) => props.theme.subtitleFontLetterSpacing};
   text-transform: ${(props) => props.theme.subtitleFontTextTransform};
-  margin-top: 15px;
+  margin-bottom: 4px;
 `;
 
 const SideNavMenuLink = styled.a`
@@ -92,6 +86,11 @@ const SideNavMenuLink = styled.a`
   margin: ${(props) =>
     `${props.theme.linkMarginTop} ${props.theme.linkMarginRight} ${props.theme.linkMarginBottom} ${props.theme.linkMarginLeft}`};
   cursor: pointer;
+
+  :focus-visible {
+    outline: 2px solid ${(props) => props.theme.linkFocusColor};
+    outline-offset: 1px;
+  }
 `;
 
 DxcSidenav.propTypes = {
