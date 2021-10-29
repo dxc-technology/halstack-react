@@ -2,7 +2,7 @@ import {
   DxcButton,
   DxcDialog,
   DxcHeading,
-  DxcInput
+  DxcInput,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
@@ -16,25 +16,27 @@ const code = `() => {
     <> 
       <DxcHeading level={4} text="Account information" />
       <DxcHeading level={5} text="Client" margin={{top: "xsmall"}} />
-      <p>
+      <div style={{ display: "flex", flexDirection: "column", padding: "35px" }}>
         <DxcInput
           label="Name"
+          margin={{ top:"xxsmall", bottom: "medium" }}
+          size="large"
         />
-      </p>
-      <p>
         <DxcInput
-          label="Surname"
+          label="Last name"
+          margin={{ bottom: "medium" }}
+          size="large"
         />
-      </p>
-      <p>
         <DxcInput
           label="Address"
+          margin={{ bottom: "medium" }}
+          size="large"
         />
-      </p>
-      <p style={{ textAlign: "right" }}>
-        <DxcButton label="Cancel" onClick={handleClick} mode="text" margin={{ top: "medium", right: "xxsmall" }}></DxcButton>
+      </div>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <DxcButton label="Cancel" onClick={handleClick} mode="text" margin={{ right: "xxsmall" }}></DxcButton>
         <DxcButton label="Add client" onClick={handleClick}></DxcButton>
-      </p>
+      </div>
     </>
   );
 
