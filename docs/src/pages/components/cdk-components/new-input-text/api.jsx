@@ -15,9 +15,8 @@ const newInputPropsTable = () => {
           <code></code>
         </td>
         <td>
-          Value of the input. If undefined, the component will be
-          uncontrolled and the value will be managed internally by the
-          component.
+          Value of the input. If undefined, the component will be uncontrolled
+          and the value will be managed internally by the component.
         </td>
       </tr>
       <tr>
@@ -76,7 +75,8 @@ const newInputPropsTable = () => {
         </td>
         <td>
           If true, the input will be optional, showing <code>(Optional)</code>{" "}
-          next to the label.
+          next to the label. Otherwise, the field will be considered required
+          and will display an error when not filled in.
         </td>
       </tr>
       <tr>

@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import { useLayoutEffect } from "react";
 
+const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
+
 const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
@@ -46,17 +48,23 @@ const DxcNewTextarea = React.forwardRef(
 
     const textareaRef = useRef(null);
     const textareaId = `textarea-${uuidv4()}`;
+    const errorId = `error-message-${textareaId}`;
 
     const changeValue = (newValue) => {
       value ?? setInnerValue(newValue);
       typeof onChange === "function" && onChange(newValue);
     };
 
+    const notOptionalCheck = (value) => value === "" && !optional;
+
     const isLengthIncorrect = (value) =>
       value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
 
     const handleTOnBlur = (event) => {
-      if (isLengthIncorrect(event.target.value)) {
+      if (notOptionalCheck(event.target.value)) {
+        changeValidationError(getNotOptionalErrorMessage());
+        onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
+      } else if (isLengthIncorrect(event.target.value)) {
         changeValidationError(getLengthErrorMessage(length, event));
         onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
       } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
@@ -106,8 +114,15 @@ const DxcNewTextarea = React.forwardRef(
             backgroundType={backgroundType}
             ref={textareaRef}
             tabIndex={tabIndex}
+            aria-invalid={error || validationError ? "true" : "false"}
+            aria-describedBy={error || validationError ? errorId : undefined}
+            aria-required={optional ? "false" : "true"}
           />
-          <Error backgroundType={backgroundType}>{error || validationError}</Error>
+          {!disabled && (
+            <Error id={errorId} backgroundType={backgroundType}>
+              {error || validationError}
+            </Error>
+          )}
         </DxcTextarea>
       </ThemeProvider>
     );
