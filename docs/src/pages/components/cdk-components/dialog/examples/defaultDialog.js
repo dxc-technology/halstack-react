@@ -28,10 +28,10 @@ const code = `() => {
       <p>
         Are you sure you want to delete the 3 selected documents?
       </p>
-      <p style={{ textAlign: "right" }}>
-        <DxcButton label="Cancel" onClick={handleClick} mode="text" margin={{ top: "medium", right: "xxsmall" }}></DxcButton>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <DxcButton label="Cancel" onClick={handleClick} mode="text" margin={{ right: "xxsmall" }}></DxcButton>
         <DxcButton label="Delete" onClick={handleClick}></DxcButton>
-      </p>
+      </div>
     </>
   );
 
