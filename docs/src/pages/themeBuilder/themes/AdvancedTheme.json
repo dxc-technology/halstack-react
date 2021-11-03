@@ -851,12 +851,16 @@
     "fontSize": "0.875rem",
     "fontStyle": "normal",
     "fontWeight": "400",
-    "fontTextTransform": "uppercase",
-    "height": "43px",
+    "labelPaddingTop": "0px",
+    "labelPaddingBottom": "0px",
+    "labelPaddingLeft": "16px",
+    "labelPaddingRight": "16px",
+    "height": "40px",
     "iconColor": "#ffffff",
-    "iconSectionWidth": "48px",
+    "iconSectionWidth": "40px",
     "iconHeight": "24px",
-    "iconWidth": "24px"
+    "iconWidth": "24px",
+    "focusColor": "#0095ff"
   },
   "table": {
     "rowSeparatorThickness": "1px",
