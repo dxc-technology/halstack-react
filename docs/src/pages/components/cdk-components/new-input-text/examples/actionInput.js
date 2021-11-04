@@ -1,6 +1,5 @@
 import { DxcNewInputText } from "@dxc-technology/halstack-react";
 import { useState } from "react";
-import { ReactComponent as Avatar } from "../images/delete-24px.svg";
 
 const code = `() => {
   const [value, setValue] = useState("");
@@ -13,9 +12,16 @@ const code = `() => {
     setValue(value);
   };
 
-  const action = {
+  const actionImg = {
     onClick: () => {
-      console.log("Copy that!");
+      console.log("Searching...");
+    },
+    icon: "https://cdn.iconscout.com/icon/free/png-256/search-1767866-1502119.png",
+  };
+
+  const actionSvg = {
+    onClick: () => {
+      console.log("Copied.");
     },
     icon: (
       <svg
@@ -32,21 +38,31 @@ const code = `() => {
   };
 
   return (
-    <DxcNewInputText
-      label="Action"
-      value={value}
-      onChange={onChange}
-      onBlur={onBlur}
-      clearable
-      margin="medium"
-      action={action}
-    />
+    <div style={{ display: "flex" }}>
+      <DxcNewInputText
+        label="Using a SVG"
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        clearable
+        margin="medium"
+        action={actionSvg}
+      />
+      <DxcNewInputText
+        label="Using a URL"
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        clearable
+        margin="medium"
+        action={actionImg}
+      />
+    </div>
   );
 }`;
 
 const scope = {
   DxcNewInputText,
-  Avatar,
   useState,
 };
 

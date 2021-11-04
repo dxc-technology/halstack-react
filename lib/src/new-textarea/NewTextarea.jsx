@@ -115,7 +115,7 @@ const DxcNewTextarea = React.forwardRef(
             ref={textareaRef}
             tabIndex={tabIndex}
             aria-invalid={error || validationError ? "true" : "false"}
-            aria-describedBy={error || validationError ? errorId : undefined}
+            aria-describedby={error || validationError ? errorId : undefined}
             aria-required={optional ? "false" : "true"}
           />
           {!disabled && (

@@ -366,9 +366,8 @@ const DxcNewInputText = React.forwardRef(
       ),
     };
 
-    const isTextInputType = () => {
-      return !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
-    };
+    const isTextInputType = () =>
+      !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
 
     const HighlightedSuggestion = ({ suggestion, index }) => {
       const regEx = new RegExp(value ?? innerValue, "i");
@@ -457,7 +456,7 @@ const DxcNewInputText = React.forwardRef(
                   : undefined
               }
               aria-invalid={error || validationError ? "true" : "false"}
-              aria-describedBy={error || validationError ? errorId : undefined}
+              aria-describedby={error || validationError ? errorId : undefined}
               aria-required={optional ? "false" : "true"}
             />
             {!disabled && (error || validationError) && (
@@ -507,7 +506,7 @@ const DxcNewInputText = React.forwardRef(
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                 >
-                  {action.icon}
+                  {typeof action.icon === "string" ? <ActionIcon src={action.icon}></ActionIcon> : action.icon}
                 </Action>
               )
             )}
@@ -726,6 +725,11 @@ const Input = styled.input`
   }
 `;
 
+const ActionIcon = styled.img`
+  width: 16px;
+  height: 16px;
+`;
+
 const Action = styled.button`
   display: flex;
   flex-wrap: wrap;
@@ -936,13 +940,13 @@ DxcNewInputText.propTypes = {
   placeholder: PropTypes.string,
   action: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
-    icon: PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }).isRequired,
+    icon: PropTypes.oneOfType([PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }), PropTypes.string]).isRequired,
   }),
   clearable: PropTypes.bool,
   disabled: PropTypes.bool,
   optional: PropTypes.bool,
-  prefix: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ type: PropTypes.oneOf(["svg"]) })]),
-  suffix: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ type: PropTypes.oneOf(["svg"]) })]),
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,

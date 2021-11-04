@@ -47,8 +47,9 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           Action to be shown in the input. This is an object composed of an
-          onClick function and the icon. An example of this object is: {"{ "}
-          <code>onClick: onClickFunction, icon: svgIcon</code>
+          onClick function and an icon, being the latter either an inline svg or
+          a URL to the image. An example of this object is: {"{ "}
+          <code>onClick: onClickFunction, icon: string | svgIcon</code>
           {" }"}.
         </td>
       </tr>
