@@ -726,6 +726,7 @@
     "linkMarginRight": "length",
     "linkMarginBottom": "length",
     "linkMarginLeft": "length",
+    "linkFocusColor": "color",
     "scrollBarThumbColor": "color",
     "scrollBarTrackColor": "color"
   },

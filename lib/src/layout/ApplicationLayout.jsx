@@ -137,39 +137,39 @@ const DxcApplicationLayout = ({ children }) => {
 
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
-          <ApplicationLayoutContainer ref={ref}>
-          <HeaderContainer>{header}</HeaderContainer>
-          <BodyContainer>
-            <ContentContainer>
-              <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
-                {sideNav}
-                <ArrowContainer>
-                  {sideNav && (displayArrow || isResponsive) && (
-                    <ArrowTrigger tabIndex={0} onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
-                      <ArrowIcon />
-                    </ArrowTrigger>
-                  )}
-                </ArrowContainer>
-              </SideNavArrowContainer>
-              <MainBodyContainer>
-                <MainContent
-                  sideNav={sideNav}
-                  mode={isResponsive ? "overlay" : sideNavMode}
-                  isSideNavVisible={isSideNavVisible}
-                >
-                  {main}
-                </MainContent>
-                <FooterContainer
-                  sideNav={sideNav}
-                  mode={isResponsive ? "overlay" : sideNavMode}
-                  isSideNavVisible={isSideNavVisible}
-                >
-                  {footer}
-                </FooterContainer>
-              </MainBodyContainer>
-            </ContentContainer>
-          </BodyContainer>
-          </ApplicationLayoutContainer>
+      <ApplicationLayoutContainer ref={ref}>
+        <HeaderContainer>{header}</HeaderContainer>
+        <BodyContainer>
+          <ContentContainer>
+            <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
+              {sideNav}
+              <ArrowContainer>
+                {sideNav && (displayArrow || isResponsive) && (
+                  <ArrowTrigger tabIndex={0} onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
+                    <ArrowIcon />
+                  </ArrowTrigger>
+                )}
+              </ArrowContainer>
+            </SideNavArrowContainer>
+            <MainBodyContainer>
+              <MainContent
+                sideNav={sideNav}
+                mode={isResponsive ? "overlay" : sideNavMode}
+                isSideNavVisible={isSideNavVisible}
+              >
+                {main}
+              </MainContent>
+              <FooterContainer
+                sideNav={sideNav}
+                mode={isResponsive ? "overlay" : sideNavMode}
+                isSideNavVisible={isSideNavVisible}
+              >
+                {footer}
+              </FooterContainer>
+            </MainBodyContainer>
+          </ContentContainer>
+        </BodyContainer>
+      </ApplicationLayoutContainer>
     </ThemeProvider>
   );
 };
@@ -186,7 +186,7 @@ const ApplicationLayoutContainer = styled.div`
   top: 64px;
   bottom: 0;
   left: 0;
-  right:0;
+  right: 0;
 `;
 
 const HeaderContainer = styled.div`
