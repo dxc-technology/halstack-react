@@ -232,7 +232,7 @@
     "iconSpacing": "8px",
     "iconColor": "#000000",
     "disabledIconColor": "#999999",
-    "focusColor": "#0067b3"
+    "focusColor": "#0095ff"
   },
   "date": {
     "pickerSelectedDateBackgroundColor": "#5f249f",
@@ -246,7 +246,7 @@
     "pickerMonthColor": "#000000",
     "pickerWeekLabelColor": "#000000",
     "pickerBackgroundColorMonthArrows": "transparent",
-    "focusColor": "#005FCC",
+    "focusColor": "#0095ff",
     "fontFamily": "Open Sans, sans-serif",
     "pickerHeight": "316px",
     "pickerWidth": "290px"
@@ -313,7 +313,7 @@
     "borderColor": "transparent",
     "scrollBarThumbColor": "#666666",
     "scrollBarTrackColor": "#D9D9D9",
-    "focusColor": "#005FCC"
+    "focusColor": "#0095ff"
   },
   "footer": {
     "height": "124px",
@@ -485,7 +485,7 @@
     "visitedUnderlineColor": "#5f249f",
     "activeFontColor": "#000000",
     "activeUnderlineColor": "#000000",
-    "focusColor": "#0067b3"
+    "focusColor": "#0095ff"
   },
   "newInputText": {
     "fontFamily": "Open Sans, sans-serif",
@@ -632,53 +632,51 @@
     "disabledColorOnDark": "#575757",
     "disabledFontColor": "#b1b1b1",
     "disabledFontColorOnDark": "#575757",
-    "focusColor": "#005FCC",
+    "focusColor": "#0095ff",
     "focusColorOnDark": "#1682FF",
     "circleLabelSpacing": "10px",
     "circleSize": "24px"
   },
   "select": {
     "fontFamily": "Open Sans, sans-serif",
-    "disabledColor": "#b1b1b1",
-    "disabledColorOnDark": "#575757",
-    "errorColor": "#D0011B",
-    "errorColorOnDark": "#FE344F",
-    "focusColor": "#005FCC",
-    "focusColorOnDark": "#1682FF",
-    "labelFontColor": "#000000",
-    "labelFontColorOnDark": "#ffffff",
-    "labelFontSize": "1rem",
-    "labelFontStyle": "normal",
-    "labelFontWeight": "400",
     "assistiveTextFontColor": "#000000",
     "assistiveTextFontColorOnDark": "#ffffff",
     "assistiveTextFontSize": "0.75rem",
     "assistiveTextFontStyle": "normal",
     "assistiveTextFontWeight": "400",
-    "optionPaddingBottom": "6px",
-    "optionPaddingTop": "6px",
-    "optionBackgroundColor": "#FFFFFF",
+    "labelFontColor": "#000000",
+    "labelFontColorOnDark": "#ffffff",
+    "labelFontSize": "1rem",
+    "labelFontStyle": "normal",
+    "labelFontWeight": "400",
+    "disabledColor": "#b1b1b1",
+    "disabledColorOnDark": "#575757",
+    "errorColor": "#D0011B",
+    "errorColorOnDark": "#fe344f",
+    "optionBackgroundColor": "#ffffff",
     "optionBorderColor": "#000000",
     "optionBorderThickness": "0px",
     "optionBorderStyle": "solid",
     "optionFontColor": "#000000",
-    "optionFontColorOnDark": "#FFFFFF",
+    "optionFontColorOnDark": "#ffffff",
     "optionFontSize": "16px",
     "optionFontStyle": "normal",
     "optionFontWeight": "400",
+    "optionPaddingBottom": "6px",
+    "optionPaddingTop": "6px",
+    "scrollBarThumbColor": "#666666",
+    "scrollBarTrackColor": "#D9D9D9",
     "optionIconColor": "#000000",
-    "optionIconColorOnDark": "#FFFFFF",
+    "optionIconColorOnDark": "#ffffff",
     "optionIconSpacing": "12px",
     "optionIconSize": "20px",
     "optionCheckboxSpacing": "12px",
-    "scrollBarThumbColor": "#666666",
-    "scrollBarTrackColor": "#D9D9D9",
-    "selectedOptionBackgroundColor": "#D9D9D9",
-    "selectedOptionBackgroundColorOnDark": "#D9D9D9",
     "hoverOptionBackgroundColor": "#f2f2f2",
-    "hoverOptionBackgroundColorOnDark": "#bfbfbf",
+    "hoverOptionBackgroundColorOnDark": "#f2f2f2",
     "activeOptionBackgroundColor": "#cccccc",
     "activeOptionBackgroundColorOnDark": "#cccccc",
+    "selectedOptionBackgroundColor": "#D9D9D9",
+    "selectedOptionBackgroundColorOnDark": "#D9D9D9",
     "underlineColor": "#000000",
     "underlineColorOnDark": "#ffffff",
     "underlineFocusColor": "#000000",
@@ -689,8 +687,14 @@
     "valueFontSize": "1rem",
     "valueFontStyle": "normal",
     "valueFontWeight": "400",
+    "valueIconColor": "#000000",
+    "valueIconColorOnDark": "#ffffff",
+    "valueIconSize": "20px",
+    "valueIconSpacing": "12px",
     "arrowColor": "#000000",
-    "arrowColorOnDark": "#ffffff"
+    "arrowColorOnDark": "#ffffff",
+    "focusColor": "#0095ff",
+    "focusColorOnDark": "#0095ff"
   },
   "sidenav": {
     "backgroundColor": "#F8F8F8",
@@ -1105,6 +1109,6 @@
     "separatorBorderThickness": "1px",
     "separatorBorderStyle": "solid",
     "separatorColor": "#D9D9D9",
-    "focusColor": "#005FCC"
+    "focusColor": "#0095ff"
   }
 }
