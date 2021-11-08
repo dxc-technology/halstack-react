@@ -84,6 +84,13 @@ const buttonPropsTable = () => {
           'fitContent').
         </td>
       </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>
+          <code>0</code>
+        </td>
+        <td>Value of the tabindex attribute.</td>
+      </tr>
     </DxcTable>
   );
 };
