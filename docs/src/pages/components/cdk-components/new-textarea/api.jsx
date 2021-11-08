@@ -53,7 +53,8 @@ const NewTextareaPropsTable = () => {
         </td>
         <td>
           If true, the textarea will be marked as optional, showing{" "}
-          <code>(Optional)</code> next to the label.
+          <code>(Optional)</code> next to the label. Otherwise, the field will
+          be considered required and will display an error when not filled in.
         </td>
       </tr>
       <tr>

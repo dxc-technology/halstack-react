@@ -381,11 +381,23 @@ function App() {
       </p>
       <p>
         <DxcNewInputText
-          label="Action input"
+          label="Action input with a SVG"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
           action={actionTrashSVG}
+        />
+      </p>
+      <p>
+        <DxcNewInputText
+          label="Action input with a URL"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin="medium"
+          action={{
+            onClick: () => console.log("Take a pic!"),
+            icon: "https://cdn.icon-icons.com/icons2/2518/PNG/512/brand_instagram_icon_151534.png",
+          }}
         />
       </p>
       <p>

@@ -24,6 +24,8 @@ const makeCancelable = (promise) => {
   };
 };
 
+const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
+
 const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
@@ -61,7 +63,6 @@ const DxcNewInputText = React.forwardRef(
 
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
-    const [isError, changeIsError] = useState(false);
     const [isScrollable, changeIsScrollable] = useState(false);
     const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
@@ -83,6 +84,7 @@ const DxcNewInputText = React.forwardRef(
 
     const inputId = `input-${uuidv4()}`;
     const autosuggestId = `${inputId}-listBox`;
+    const errorId = `error-message-${inputId}`;
 
     const numberContext = useContext(NumberContext);
 
@@ -92,6 +94,8 @@ const DxcNewInputText = React.forwardRef(
       typeof onChange === "function" && onChange(changedValue);
     };
 
+    const notOptionalCheck = (value) => value === "" && !optional;
+
     const isLengthIncorrect = (value) =>
       value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
 
@@ -99,11 +103,8 @@ const DxcNewInputText = React.forwardRef(
       (minNumber && parseInt(value) < minNumber) || (maxNumber && parseInt(value) > maxNumber);
 
     const getNumberErrorMessage = (value) => {
-      if (minNumber && parseInt(value) < minNumber) {
-        return `Value must be greater than or equal to ${minNumber}.`;
-      } else if (maxNumber && parseInt(value) > maxNumber) {
-        return `Value must be less than or equal to ${maxNumber}.`;
-      }
+      if (minNumber && parseInt(value) < minNumber) return `Value must be greater than or equal to ${minNumber}.`;
+      else if (maxNumber && parseInt(value) > maxNumber) return `Value must be less than or equal to ${maxNumber}.`;
     };
 
     const hasInputSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
@@ -132,20 +133,19 @@ const DxcNewInputText = React.forwardRef(
 
     const handleIOnBlur = (event) => {
       suggestions && closeSuggestions();
-      if (isLengthIncorrect(event.target.value)) {
-        changeIsError(true);
+      if (notOptionalCheck(event.target.value)) {
+        changeValidationError(getNotOptionalErrorMessage());
+        onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
+      } else if (isLengthIncorrect(event.target.value)) {
         changeValidationError(getLengthErrorMessage(length, event));
         onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
       } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
-        changeIsError(true);
         changeValidationError(getPatternErrorMessage());
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
       } else if (event.target.value && isNumberIncorrect(event.target.value)) {
-        changeIsError(true);
         changeValidationError(getNumberErrorMessage(event.target.value));
         onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
       } else {
-        changeIsError(false);
         changeValidationError("");
         onBlur?.({ value: event.target.value, error: null });
       }
@@ -366,9 +366,8 @@ const DxcNewInputText = React.forwardRef(
       ),
     };
 
-    const isTextInputType = () => {
-      return !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
-    };
+    const isTextInputType = () =>
+      !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
 
     const HighlightedSuggestion = ({ suggestion, index }) => {
       const regEx = new RegExp(value ?? innerValue, "i");
@@ -456,8 +455,11 @@ const DxcNewInputText = React.forwardRef(
                   ? `suggestion-${visualFocusedSuggIndex}`
                   : undefined
               }
+              aria-invalid={error || validationError ? "true" : "false"}
+              aria-describedby={error || validationError ? errorId : undefined}
+              aria-required={optional ? "false" : "true"}
             />
-            {(error || isError) && (
+            {!disabled && (error || validationError) && (
               <ErrorIcon backgroundType={backgroundType} aria-label="Error">
                 {errorIcon}
               </ErrorIcon>
@@ -504,7 +506,7 @@ const DxcNewInputText = React.forwardRef(
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                 >
-                  {action.icon}
+                  {typeof action.icon === "string" ? <ActionIcon src={action.icon}></ActionIcon> : action.icon}
                 </Action>
               )
             )}
@@ -546,7 +548,11 @@ const DxcNewInputText = React.forwardRef(
               </Suggestions>
             )}
           </InputContainer>
-          <Error backgroundType={backgroundType}>{error || validationError}</Error>
+          {!disabled && (
+            <Error id={errorId} backgroundType={backgroundType}>
+              {error || validationError}
+            </Error>
+          )}
         </DxcInput>
       </ThemeProvider>
     );
@@ -633,7 +639,6 @@ const InputContainer = styled.div`
         ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
         : `background-color: ${props.theme.disabledContainerFillColor};`;
   }}
-
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
@@ -653,8 +658,8 @@ const InputContainer = styled.div`
        props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
      };
   `}
-
   ${(props) => props.disabled && "cursor: not-allowed;"};
+
   ${(props) =>
     !props.disabled &&
     `
@@ -718,6 +723,11 @@ const Input = styled.input`
         ? props.theme.placeholderFontColorOnDark
         : props.theme.placeholderFontColor};
   }
+`;
+
+const ActionIcon = styled.img`
+  width: 16px;
+  height: 16px;
 `;
 
 const Action = styled.button`
@@ -930,13 +940,13 @@ DxcNewInputText.propTypes = {
   placeholder: PropTypes.string,
   action: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
-    icon: PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }).isRequired,
+    icon: PropTypes.oneOfType([PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }), PropTypes.string]).isRequired,
   }),
   clearable: PropTypes.bool,
   disabled: PropTypes.bool,
   optional: PropTypes.bool,
-  prefix: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ type: PropTypes.oneOf(["svg"]) })]),
-  suffix: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ type: PropTypes.oneOf(["svg"]) })]),
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   error: PropTypes.string,
