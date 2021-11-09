@@ -17,19 +17,17 @@ const DxcTag = ({
   labelPosition = "after",
   newWindow = false,
   size = "fitContent",
-  tabIndex = 1,
+  tabIndex = 0,
 }) => {
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
-    if (onClick) {
-      onClick();
-    }
+    onClick && onClick();
   };
 
   const tagContent = (
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
-      <TagContent labelPosition={labelPosition} margin={margin} size={size}>
+      <TagContent labelPosition={labelPosition} size={size}>
         <IconContainer iconBgColor={iconBgColor}>
           {icon ? (
             <TagIconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</TagIconContainer>
@@ -73,9 +71,7 @@ const sizes = {
   fitContent: "unset",
 };
 
-const calculateWidth = (size) => {
-  return sizes[size];
-};
+const calculateWidth = (size) => sizes[size];
 
 const StyledDxcTag = styled.div`
   display: inline-flex;
@@ -97,33 +93,46 @@ const TagContent = styled.div`
 
 const StyledLink = styled.a`
   text-decoration: none;
+  border-radius: 4px;
+
+  :focus {
+    outline: 2px solid ${(props) => props.theme.focusColor};
+    outline-offset: 0px;
+  }
 `;
 
 const StyledButton = styled.button`
   background: none;
+  border-radius: 4px;
   border: none;
   padding: 0;
   cursor: pointer;
-  outline: 0;
   font-family: inherit;
+
+  :focus {
+    outline: 2px solid ${(props) => props.theme.focusColor};
+  }
 `;
 
 const TagIcon = styled.img`
-  padding: 10px 12px;
-  height: ${(props) => props.theme.iconHeight};
-  width: ${(props) => props.theme.iconWidth};
-`;
-
-const TagIconContainer = styled.div`
-  height: 43px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  width: ${(props) => props.theme.iconWidth};
+  height: ${(props) => props.theme.iconHeight};
+`;
+
+const TagIconContainer = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
   img,
   svg {
-    height: ${(props) => props.theme.iconHeight};
     width: ${(props) => props.theme.iconWidth};
+    height: ${(props) => props.theme.iconHeight};
   }
 `;
 
@@ -131,10 +140,10 @@ const IconContainer = styled.div`
   display: inline-flex;
   background: ${({ iconBgColor }) => iconBgColor};
   width: ${(props) => props.theme.iconSectionWidth};
+  height: 100%;
   justify-content: center;
   align-items: center;
   color: ${(props) => props.theme.iconColor};
-  height: ${(props) => props.theme.height};
 `;
 
 const TagLabel = styled.div`
@@ -142,10 +151,11 @@ const TagLabel = styled.div`
   font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
   font-weight: ${(props) => props.theme.fontWeight};
-  text-transform: ${(props) => props.theme.fontTextTransform};
   color: ${(props) => props.theme.fontColor};
-  padding: 0px 30px;
-  letter-spacing: 0.025em;
+  padding-top: ${(props) => props.theme.labelPaddingTop};
+  padding-bottom: ${(props) => props.theme.labelPaddingBottom};
+  padding-left: ${(props) => props.theme.labelPaddingLeft};
+  padding-right: ${(props) => props.theme.labelPaddingRight};
   flex-grow: 1;
   text-align: center;
   text-overflow: ellipsis;
@@ -173,18 +183,6 @@ DxcTag.propTypes = {
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
   tabIndex: PropTypes.number,
-};
-
-DxcTag.defaultProps = {
-  icon: null,
-  iconSrc: null,
-  label: null,
-  margin: null,
-  linkHref: null,
-  onClick: null,
-  iconBgColor: "#5f249f",
-  labelPosition: "after",
-  newWindow: false,
 };
 
 export default DxcTag;

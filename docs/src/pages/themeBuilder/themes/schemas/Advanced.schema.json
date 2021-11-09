@@ -732,6 +732,10 @@
     "valueFontSize": "length",
     "valueFontStyle": "fStyle",
     "valueFontWeight": "fWeight",
+    "valueIconColor": "color",
+    "valueIconColorOnDark": "color",
+    "valueIconSize": "length",
+    "valueIconSpacing": "length",
     "arrowColor": "color",
     "arrowColorOnDark": "color",
     "activeOptionBackgroundColor": "color",
@@ -767,6 +771,7 @@
     "linkMarginRight": "length",
     "linkMarginBottom": "length",
     "linkMarginLeft": "length",
+    "linkFocusColor": "color",
     "scrollBarThumbColor": "color",
     "scrollBarTrackColor": "color"
   },
@@ -892,12 +897,16 @@
     "fontSize": "length",
     "fontStyle": "fStyle",
     "fontWeight": "fWeight",
-    "fontTextTransform": "fTextTransform",
+    "labelPaddingTop": "length",
+    "labelPaddingBottom": "length",
+    "labelPaddingLeft": "length",
+    "labelPaddingRight": "length",
     "height": "length",
     "iconColor": "color",
     "iconSectionWidth": "length",
     "iconHeight": "length",
-    "iconWidth": "length"
+    "iconWidth": "length",
+    "focusColor": "color"
   },
   "table": {
     "rowSeparatorThickness": "length",

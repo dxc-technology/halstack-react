@@ -161,16 +161,15 @@ const LinkText = styled.div`
 const LinkIcon = styled.img`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${(props) =>
-    props.theme.iconSpacing};
+  ${(props) => `${(props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${props.theme.iconSpacing}`};
 `;
 
 const LinkIconContainer = styled.div`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  ${(props) => (props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${(props) =>
-    props.theme.iconSpacing};
+  ${(props) => `${(props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${props.theme.iconSpacing}`};
   overflow: hidden;
+  
   img,
   svg {
     height: 100%;
