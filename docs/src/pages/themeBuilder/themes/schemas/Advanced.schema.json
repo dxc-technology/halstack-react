@@ -487,6 +487,23 @@
     "iconSpacing": "length",
     "focusColor": "color"
   },
+  "newDate": {
+    "pickerFontFamily": "fFamily",
+    "pickerBackgroundColor": "color",
+    "pickerHoverDateFontColor": "color",
+    "pickerHoverDateBackgroundColor": "color",
+    "pickerSelectedDateColor": "color",
+    "pickerSelectedDateBackgroundColor": "color",
+    "pickerActualDateFontColor": "color",
+    "pickerYearFontColor": "color",
+    "pickerMonthFontColor": "color",
+    "pickerWeekFontColor": "color",
+    "pickerDayFontColor": "color",
+    "pickerMonthArrowsBackgroundColor": "color",
+    "pickerFocusColor": "color",
+    "pickerHeight": "length",
+    "pickerWidth": "length"
+  },
   "newInputText": {
     "fontFamily": "fFamily",
     "enabledBorderColor": "color",

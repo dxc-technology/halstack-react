@@ -32,7 +32,7 @@ type Props = {
   /**
    * If true, the date format will appear as placeholder in the field.
    */
-  placeholder?: string;
+  placeholder?: boolean;
   /**
    * If true, the date will have an action to clear the entered value.
    */
