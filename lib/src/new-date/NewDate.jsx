@@ -170,7 +170,7 @@ const DxcNewDate = React.forwardRef(
         MuiPickersToolbarText: {
           toolbarTxt: {
             color: colorsTheme.newDate.pickerActualDateFontColor,
-            fontFamily: colorsTheme.newDate.fontFamily,
+            fontFamily: colorsTheme.newDate.pickerFontFamily,
             fontSize: "2rem",
           },
           toolbarBtnSelected: {
@@ -186,7 +186,7 @@ const DxcNewDate = React.forwardRef(
             fontFamily: colorsTheme.newDate.pickerFontFamily,
           },
           switchHeader: {
-            backgroundColor: colorsTheme.white,
+            backgroundColor: "#ffffff",
             color: colorsTheme.newDate.pickerDayFontColor,
           },
           iconButton: {
