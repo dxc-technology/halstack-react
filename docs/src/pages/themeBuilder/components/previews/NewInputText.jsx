@@ -74,7 +74,7 @@ const NewInputText = () => {
   };
 
   return (
-    <TextFieldContainer>
+    <NewInputTextContainer>
       <DxcHeading
         text="Light Mode"
         level={5}
@@ -230,10 +230,10 @@ const NewInputText = () => {
           </Mode>
         </BackgroundColorProvider>
       </div>
-    </TextFieldContainer>
+    </NewInputTextContainer>
   );
 };
 
-const TextFieldContainer = styled.div``;
+const NewInputTextContainer = styled.div``;
 
 export default NewInputText;
