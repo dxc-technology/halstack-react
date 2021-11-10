@@ -27,7 +27,8 @@ const DxcFileInput = ({
 
   const colorsTheme = useTheme();
 
-  const inputId = `input-${uuidv4()}`;
+  const fileInputId = `file-input-${uuidv4()}`;
+  const labelFileInputId = `label-${fileInputId}`;
 
   useEffect(() => {
     if (value && !multiple) {
@@ -45,7 +46,7 @@ const DxcFileInput = ({
   }, [value, multiple, disabled]);
 
   const handleClick = () => {
-    document.getElementById(inputId).click();
+    document.getElementById(fileInputId).click();
   };
 
   const checkFileSize = (file) => {
@@ -126,7 +127,7 @@ const DxcFileInput = ({
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <FileInputContainer margin={margin} name={name}>
-        <Label for={inputId} disabled={disabled}>
+        <Label for={labelFileInputId} disabled={disabled}>
           {label}
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
@@ -141,7 +142,7 @@ const DxcFileInput = ({
                 size="medium"
                 tabIndex={tabIndex}
               />
-              <input id={inputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+              <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
               {files.map((file) => {
                 return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
               })}
@@ -175,7 +176,7 @@ const DxcFileInput = ({
             >
               <ButtonContainer mode={mode}>
                 <DxcButton mode="secondary" label="Select" onClick={handleClick} disabled={disabled} size="medium" />
-                <input id={inputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+                <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
               </ButtonContainer>
               <DropLabel disabled={disabled}>or drop files</DropLabel>
             </DragDropArea>

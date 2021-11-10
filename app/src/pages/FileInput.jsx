@@ -1,29 +1,18 @@
 import React, { useState } from "react";
 import { DxcFileInput } from "@dxc-technology/halstack-react";
 
+const file1 = new File(["file1"], "file1.png", { type: "image/png" });
+const file2 = new File(["file2"], "file2.txt", {
+  type: "text/plain",
+});
+
 const filesExamples = [
   {
-    file: {
-      lastModified: 1625153395476,
-      lastModifiedDate:
-        "Thu Jul 01 2021 17:29:55 GMT+0200 (Central European Summer Time)",
-      name: "file-1.png",
-      size: 76251,
-      type: "image/png",
-      webkitRelativePath: "",
-    },
+    file: file1,
   },
   {
     error: "Error message",
-    file: {
-      lastModified: 1625153334576,
-      lastModifiedDate:
-        "Thu Jul 01 2021 17:29:55 GMT+0200 (Central European Summer Time)",
-      name: "file-2.pdf",
-      size: 76251,
-      type: ".pdf",
-      webkitRelativePath: "",
-    },
+    file: file2,
   },
 ];
 

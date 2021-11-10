@@ -73,13 +73,7 @@ const fileInputPropsTable = () => {
             uncontrolled and the value will be managed internally by the
             component. Value must be passed including the list of files. An
             example of the value could be: {"{ "}
-            <code>
-              error: "Error text", file: {"{"} lastModified: 1625153395476,
-              lastModifiedDate: "Thu Jul 01 2021 17:29:55 GMT+0200 (Central
-              European Summer Time)", name: "create.png", size: 76251, type:
-              "image/png", webkitRelativePath: ""{"}"}
-            </code>
-            {" }"}.
+            <code>error: "Error text", file: file</code>.
           </td>
         </tr>
         <tr>
@@ -145,9 +139,9 @@ const fileInputPropsTable = () => {
           </td>
         </tr>
         <tr>
-          <td>file: object</td>
+          <td>file: File</td>
           <td></td>
-          <td>File object with the info of the selected file.</td>
+          <td>Selected file.</td>
         </tr>
       </DxcTable>
     </>
