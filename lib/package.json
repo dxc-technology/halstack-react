@@ -11,6 +11,7 @@
     "url": "https://dxc.com"
   },
   "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
