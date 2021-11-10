@@ -38,6 +38,7 @@ import NewInputText from "./cdk-components/new-input-text/NewInputText";
 import NewDate from "./cdk-components/new-date/NewDate";
 import Number from "./cdk-components/number/Number";
 import NewTextarea from "./cdk-components/new-textarea/NewTextarea";
+import FileInput from "./cdk-components/file-input/FileInput";
 
 export const types = {
   FORMS: "Forms",
@@ -129,6 +130,12 @@ export default [
     path: "dropdown",
     name: "Dropdown",
     component: Dropdown,
+    type: types.UTILS,
+  },
+  {
+    path: "fileInput",
+    name: "File Input",
+    component: FileInput,
     type: types.UTILS,
   },
   {
