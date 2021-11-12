@@ -6,8 +6,9 @@ const code = `() => {
     <DxcFileInput
       label="File Input"
       helperText="Please select files"
+      multiple
+      showPreview
       margin="medium"
-      multiple={false}
     />
   );
 }`;

@@ -50,7 +50,9 @@ const DxcFileInput = ({
     if (file.size < minSize) {
       return "File size must be greater than min size.";
     }
-    return "File size must be less than max size.";
+    if (file.size > maxSize) {
+      return "File size must be less than max size.";
+    }
   };
 
   const getFilePreview = (file) => {
@@ -85,16 +87,19 @@ const DxcFileInput = ({
   };
 
   const addFile = async (selectedFiles) => {
-    if ((!multiple && files.length === 0) || multiple) {
+    if (multiple) {
       const filesToAdd = await getFilesToAdd(selectedFiles);
       const finalFiles = [...files, ...filesToAdd];
       setFiles(finalFiles);
       if (typeof callbackFile === "function") {
         callbackFile(finalFiles);
       }
-    } else if (!multiple && files.length > 0) {
-      const fileToAdd = selectedFiles.length === 1 ? getFilesToAdd(selectedFiles) : getFilesToAdd([selectedFiles[0]]);
+    } else {
+      const fileToAdd = await getFilesToAdd(selectedFiles);
       setFiles(fileToAdd);
+      if (typeof callbackFile === "function") {
+        callbackFile(fileToAdd);
+      }
     }
   };
 
@@ -177,7 +182,7 @@ const DxcFileInput = ({
                       multiple={multiple}
                       name={file.file.name}
                       error={file.error}
-                      showPreview={showPreview}
+                      showPreview={mode === "file" && !multiple ? false : showPreview}
                       numFiles={files.length}
                       preview={file.preview}
                       onDelete={onDelete}
@@ -264,8 +269,8 @@ const HelperText = styled.span`
 `;
 
 const DragDropArea = styled.div`
-  height: ${(props) => (props.mode === "filedrop" ? "48px" : "160px")};
-  width: calc(320px - 4px);
+  height: ${(props) => (props.mode === "filedrop" ? "calc(48px - 2px)" : "calc(160px - 2px)")};
+  width: calc(320px - 2px);
   display: flex;
   flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
   align-items: center;
@@ -299,7 +304,7 @@ const ButtonErrorContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  padding: ${(props) => (props.mode === "filedrop" ? "4px 12px 4px 4px" : "47px 122px 8px 122px")};
+  padding: ${(props) => (props.mode === "filedrop" ? "2px 12px 2px 2px" : "47px 122px 8px 122px")};
   input[type="file"] {
     visibility: hidden;
     position: absolute;

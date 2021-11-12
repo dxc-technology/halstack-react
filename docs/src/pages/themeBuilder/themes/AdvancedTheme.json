@@ -353,8 +353,8 @@
     "errorMessageFontSize": "0.75rem",
     "errorMessageFontWeight": "400",
     "errorMessageLineHeight": "1.5rem",
-    "dropBorder": "dashed 2px",
-    "dropBorderRadius": "4px",
+    "dropBorder": "dashed 1px",
+    "dropBorderRadius": "6px",
     "fileItemBorder": "solid 1px",
     "fileItemBorderRadius": "4px"
   },
