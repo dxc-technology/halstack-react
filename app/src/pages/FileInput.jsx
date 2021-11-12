@@ -21,23 +21,19 @@ function App() {
   const [files, setFiles] = useState([]);
 
   const callbackFile = (files) => {
-    const updatedFiles = files.map((file) => {
-      let customError;
-      if (file.error) {
-        customError = "Custom error";
+    const updatedFiles = files.map((file, index) => {
+      if (index === 1) {
+        return { ...file, error: "Error message" };
       }
-      return { ...file, error: customError };
+      return { ...file };
     });
     setFiles(updatedFiles);
-    preloadedFiles.length > 0
-      ? setPreloadedFiles(updatedFiles)
-      : setFiles(updatedFiles);
   };
 
   return (
     <>
       <DxcFileInput
-        label="Multiple controlled file"
+        label="Multiple file"
         helperText="Please select files"
         margin="medium"
         callbackFile={callbackFile}
@@ -45,7 +41,7 @@ function App() {
         multiple
       />
       <DxcFileInput
-        label="Single controlled file"
+        label="Single file"
         helperText="Please select files"
         margin="medium"
         callbackFile={callbackFile}
@@ -53,14 +49,14 @@ function App() {
         multiple={false}
       />
       <DxcFileInput
-        label="Multiple controlled file"
+        label="Multiple file with files in value"
         helperText="Please select files"
         margin="medium"
         callbackFile={callbackFile}
         value={preloadedFiles}
       />
       <DxcFileInput
-        label="Single controlled file"
+        label="Single file with files in value"
         helperText="Please select files"
         margin="medium"
         callbackFile={callbackFile}
@@ -68,14 +64,91 @@ function App() {
         multiple={false}
       />
       <DxcFileInput
-        label="Multiple uncontrolled files"
+        label="Disabled file"
         helperText="Please select files"
+        disabled
         margin="medium"
       />
       <DxcFileInput
-        label="Single uncontrolled files"
+        label="Multiple filedrop"
         helperText="Please select files"
+        mode="filedrop"
+        callbackFile={callbackFile}
+        value={files}
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Single filedrop"
+        helperText="Please select files"
+        mode="filedrop"
+        callbackFile={callbackFile}
+        value={files}
         multiple={false}
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Multiple filedrop with files in value"
+        helperText="Please select files"
+        mode="filedrop"
+        callbackFile={callbackFile}
+        value={preloadedFiles}
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Single filedrop with files in value"
+        helperText="Please select files"
+        mode="filedrop"
+        callbackFile={callbackFile}
+        value={preloadedFiles}
+        multiple={false}
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Disabled filedrop"
+        helperText="Please select files"
+        mode="filedrop"
+        disabled
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Multiple dropzone"
+        helperText="Please select files"
+        mode="dropzone"
+        callbackFile={callbackFile}
+        value={files}
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Single dropzone"
+        helperText="Please select files"
+        mode="dropzone"
+        callbackFile={callbackFile}
+        value={files}
+        multiple={false}
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Multiple dropzone with files in value"
+        helperText="Please select files"
+        mode="dropzone"
+        callbackFile={callbackFile}
+        value={preloadedFiles}
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Single dropzone with files in value"
+        helperText="Please select files"
+        mode="dropzone"
+        callbackFile={callbackFile}
+        value={preloadedFiles}
+        multiple={false}
+        margin="medium"
+      />
+      <DxcFileInput
+        label="Disabled dropzone"
+        helperText="Please select files"
+        mode="dropzone"
+        disabled
         margin="medium"
       />
       <DxcFileInput
@@ -91,120 +164,6 @@ function App() {
         helperText="Please select files"
         margin="medium"
         accept=".pdf"
-      />
-      <DxcFileInput
-        label="Disabled file"
-        helperText="Please select files"
-        disabled
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Multiple controlled filedrop"
-        helperText="Please select files"
-        mode="filedrop"
-        callbackFile={callbackFile}
-        value={files}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Single controlled filedrop"
-        helperText="Please select files"
-        mode="filedrop"
-        callbackFile={callbackFile}
-        value={files}
-        multiple={false}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Multiple controlled filedrop"
-        helperText="Please select files"
-        mode="filedrop"
-        callbackFile={callbackFile}
-        value={preloadedFiles}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Single controlled filedrop"
-        helperText="Please select files"
-        mode="filedrop"
-        callbackFile={callbackFile}
-        value={preloadedFiles}
-        multiple={false}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Multiple uncontrolled filedrop"
-        helperText="Please select files"
-        mode="filedrop"
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Single uncontrolled filedrop"
-        helperText="Please select files"
-        mode="filedrop"
-        multiple={false}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Disabled filedrop"
-        helperText="Please select files"
-        mode="filedrop"
-        disabled
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Multiple controlled dropzone"
-        helperText="Please select files"
-        mode="dropzone"
-        callbackFile={callbackFile}
-        value={files}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Single controlled dropzone"
-        helperText="Please select files"
-        mode="dropzone"
-        callbackFile={callbackFile}
-        value={files}
-        multiple={false}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Multiple controlled dropzone"
-        helperText="Please select files"
-        mode="dropzone"
-        callbackFile={callbackFile}
-        value={preloadedFiles}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Single controlled dropzone"
-        helperText="Please select files"
-        mode="dropzone"
-        callbackFile={callbackFile}
-        value={preloadedFiles}
-        multiple={false}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Multiple uncontrolled dropzone"
-        helperText="Please select files"
-        mode="dropzone"
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Single uncontrolled dropzone"
-        helperText="Please select files"
-        mode="dropzone"
-        multiple={false}
-        margin="medium"
-      />
-      <DxcFileInput
-        label="Disabled dropzone"
-        helperText="Please select files"
-        mode="dropzone"
-        disabled
-        margin="medium"
       />
     </>
   );

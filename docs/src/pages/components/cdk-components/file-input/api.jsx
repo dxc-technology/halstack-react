@@ -69,10 +69,8 @@ const fileInputPropsTable = () => {
           <td>value: []</td>
           <td></td>
           <td>
-            Value of the input file. If undefined, the component will be
-            uncontrolled and the value will be managed internally by the
-            component. Value must be passed including the list of files. An
-            example of the value could be: {"{ "}
+            Value of the input file. Value must be passed including the list of
+            files. An example of the value could be: {"{ "}
             <code>error: "Error text", file: file</code>.
           </td>
         </tr>

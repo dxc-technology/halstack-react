@@ -5,9 +5,7 @@ import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import Section from "../../common/Section";
 import FileInputPropsTable from "./api.jsx";
-import controlled from "./examples/controlled";
-import uncontrolled from "./examples/uncontrolled";
-import multiple from "./examples/multiple";
+import defaultFileInput from "./examples/default";
 import single from "./examples/single";
 import disabled from "./examples/disabled";
 import filedrop from "./examples/filedrop";
@@ -43,9 +41,7 @@ function FileInput() {
                   text="Examples"
                   margin={{ bottom: "small" }}
                 />
-                <Example title="Controlled" example={controlled}></Example>
-                <Example title="Uncontrolled" example={uncontrolled}></Example>
-                <Example title="Multiple" example={multiple}></Example>
+                <Example title="Default" example={defaultFileInput}></Example>
                 <Example title="Single" example={single}></Example>
                 <Example title="Filedrop" example={filedrop}></Example>
                 <Example title="Dropzone" example={dropzone}></Example>

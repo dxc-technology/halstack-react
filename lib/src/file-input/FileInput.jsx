@@ -6,6 +6,9 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import DxcButton from "../button/Button";
 import FileItem from "./FileItem";
+import defaultIcon from "./file-icon.svg";
+import videoIcon from "./video-icon.svg";
+import audioIcon from "./audio-icon.svg";
 
 const DxcFileInput = ({
   name = "",
@@ -15,6 +18,7 @@ const DxcFileInput = ({
   accept,
   minSize,
   maxSize,
+  showPreview = false,
   multiple = true,
   disabled = false,
   callbackFile,
@@ -31,19 +35,12 @@ const DxcFileInput = ({
   const labelFileInputId = `label-${fileInputId}`;
 
   useEffect(() => {
-    if (value && !multiple) {
-      if (value.length > 0) {
-        setFiles([value[0]]);
-      } else {
-        setFiles(value);
-      }
-    } else if (value && multiple) {
+    if (value) {
       setFiles(value);
-    }
-    if (value?.length > 0 && disabled) {
+    } else {
       setFiles([]);
     }
-  }, [value, multiple, disabled]);
+  }, [value]);
 
   const handleClick = () => {
     document.getElementById(fileInputId).click();
@@ -52,21 +49,44 @@ const DxcFileInput = ({
   const checkFileSize = (file) => {
     if (file.size < minSize) {
       return "File size must be greater than min size.";
-    } else if (file.size > maxSize) {
-      return "File size must be less than max size.";
     }
+    return "File size must be less than max size.";
   };
 
-  const getFilesToAdd = (selectedFiles) => {
-    return selectedFiles.map((selectedFile) => {
-      const fileInfo = { file: selectedFile, error: checkFileSize(selectedFile) };
-      return fileInfo;
-    });
+  const getFilePreview = (file) => {
+    if (file.type.includes("video")) {
+      return videoIcon;
+    }
+    if (file.type.includes("audio")) {
+      return audioIcon;
+    }
+    if (file.type.includes("image")) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+          resolve(e.target.result);
+        };
+      });
+    }
+    return defaultIcon;
   };
 
-  const addFile = (selectedFiles) => {
+  const getFilesToAdd = async (selectedFiles) => {
+    const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
+      (previews) => {
+        return selectedFiles.map((selectedFile, index) => {
+          const fileInfo = { file: selectedFile, error: checkFileSize(selectedFile), preview: previews[index] };
+          return fileInfo;
+        });
+      }
+    );
+    return filesToAdd;
+  };
+
+  const addFile = async (selectedFiles) => {
     if ((!multiple && files.length === 0) || multiple) {
-      const filesToAdd = getFilesToAdd(selectedFiles);
+      const filesToAdd = await getFilesToAdd(selectedFiles);
       const finalFiles = [...files, ...filesToAdd];
       setFiles(finalFiles);
       if (typeof callbackFile === "function") {
@@ -132,7 +152,7 @@ const DxcFileInput = ({
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
         {mode === "file" ? (
-          <FileContainer multiple={multiple}>
+          <FileContainer multiple={multiple} files={files}>
             <ButtonErrorContainer>
               <DxcButton
                 mode="secondary"
@@ -143,19 +163,23 @@ const DxcFileInput = ({
                 tabIndex={tabIndex}
               />
               <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
-              {files.map((file) => {
-                return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
-              })}
+              {files.length === 1 &&
+                files.map((file) => {
+                  return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
+                })}
             </ButtonErrorContainer>
             {files.map((file) => {
               return (
                 <>
-                  <FileItemContainer mode={mode} multiple={multiple}>
+                  <FileItemContainer mode={mode} multiple={multiple} files={files}>
                     <FileItem
                       mode={mode}
                       multiple={multiple}
                       name={file.file.name}
                       error={file.error}
+                      showPreview={showPreview}
+                      numFiles={files.length}
+                      preview={file.preview}
                       onDelete={onDelete}
                     />
                   </FileItemContainer>
@@ -175,19 +199,28 @@ const DxcFileInput = ({
               onDragLeave={handleDragOut}
             >
               <ButtonContainer mode={mode}>
-                <DxcButton mode="secondary" label="Select" onClick={handleClick} disabled={disabled} size="medium" />
+                <DxcButton
+                  mode="secondary"
+                  label="Select"
+                  onClick={handleClick}
+                  disabled={disabled}
+                  size="fitContent"
+                />
                 <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
               </ButtonContainer>
               <DropLabel disabled={disabled}>or drop files</DropLabel>
             </DragDropArea>
             {files.map((file) => {
               return (
-                <FileItemContainer mode={mode} multiple={multiple}>
+                <FileItemContainer mode={mode} multiple={multiple} files={files}>
                   <FileItem
                     mode={mode}
                     multiple={multiple}
                     name={file.file.name}
                     error={file.error}
+                    showPreview={showPreview}
+                    numFiles={files.length}
+                    preview={file.preview}
                     onDelete={onDelete}
                   />
                 </FileItemContainer>
@@ -238,19 +271,19 @@ const DragDropArea = styled.div`
   align-items: center;
   border-radius: ${(props) => props.theme.dropBorderRadius};
   background-color: ${(props) => props.isDragging && props.theme.focusDropBackgroundColor};
-  border: ${(props) => props.theme.dropBorder}
-    ${(props) =>
-      props.disabled
-        ? props.theme.disabledDropBorderColor
-        : props.isDragging
-        ? props.theme.focusDropBorderColor
-        : props.theme.dropBorderColor};
+  border: ${(props) => (!props.isDragging ? props.theme.dropBorder : "solid 2px")};
+  border-color: ${(props) =>
+    props.disabled
+      ? props.theme.disabledDropBorderColor
+      : props.isDragging
+      ? props.theme.focusDropBorderColor
+      : props.theme.dropBorderColor};
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;
 
 const FileContainer = styled.div`
   display: flex;
-  flex-direction: ${(props) => (props.multiple ? "column" : "row")};
+  flex-direction: ${(props) => (props.multiple || props.files.length > 1 ? "column" : "row")};
 `;
 
 const ButtonErrorContainer = styled.div`
@@ -288,8 +321,8 @@ const Container = styled.div`
 `;
 
 const FileItemContainer = styled.div`
-  margin-top: ${(props) => (props.multiple || props.mode !== "file") && "4px"};
-  margin-left: ${(props) => props.mode === "file" && !props.multiple && "4px"};
+  margin-top: ${(props) => (props.multiple || props.files.length > 1 || props.mode !== "file") && "4px"};
+  margin-left: ${(props) => props.mode === "file" && props.files.length === 1 && !props.multiple && "4px"};
 `;
 
 const ErrorMessage = styled.div`

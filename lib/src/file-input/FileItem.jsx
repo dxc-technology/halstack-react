@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 
-const FileItem = ({ mode, multiple, name = "", error = "", onDelete }) => {
+const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview, numFiles, onDelete }) => {
   const colorsTheme = useTheme();
 
   const deleteIcon = (
@@ -21,51 +21,78 @@ const FileItem = ({ mode, multiple, name = "", error = "", onDelete }) => {
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
-      <FileItemContent mode={mode} multiple={multiple} error={error}>
-        <FileItemContainer>
-          <FileName mode={mode} multiple={multiple} error={error}>
-            {name}
-          </FileName>
-          {error && <ErrorIcon aria-label="Error">{errorIcon}</ErrorIcon>}
-          <DeleteIcon onClick={() => onDelete(name)} aria-label="Remove">
-            {deleteIcon}
-          </DeleteIcon>
-        </FileItemContainer>
-        {error && multiple && <ErrorMessage>{error}</ErrorMessage>}
-      </FileItemContent>
+      <Container mode={mode} multiple={multiple} error={error} showPreview={showPreview} numFiles={numFiles}>
+        {showPreview && <FilePreview src={preview} />}
+        <FileItemContent>
+          <FileItemContainer>
+            <FileName mode={mode} multiple={multiple} error={error} showPreview={showPreview} numFiles={numFiles}>
+              {name}
+            </FileName>
+            {error && <ErrorIcon aria-label="Error">{errorIcon}</ErrorIcon>}
+            <DeleteIcon onClick={() => onDelete(name)} aria-label="Remove">
+              {deleteIcon}
+            </DeleteIcon>
+          </FileItemContainer>
+          {error && (multiple || numFiles > 1) && <ErrorMessage>{error}</ErrorMessage>}
+        </FileItemContent>
+      </Container>
     </ThemeProvider>
   );
 };
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: ${(props) => (props.showPreview ? "8px" : "8px 8px 8px 16px")};
+  background-color: ${(props) => props.error && props.theme.errorFileItemBackgroundColor};
+  border-radius: ${(props) => props.theme.fileItemBorderRadius};
+  width: ${(props) =>
+    props.mode === "file" && !props.multiple && props.numFiles === 1
+      ? "calc(230px - 26px)"
+      : !props.showPreview
+      ? "calc(320px - 26px)"
+      : props.showPreview && "calc(320px - 18px)"};
+  height: ${(props) =>
+    (props.mode === "file" && !props.multiple && props.numFiles === 1) || (!props.showPreview && !props.error)
+      ? "calc(40px - 18px)"
+      : !props.showPreview && props.error
+      ? "calc(59px - 18px)"
+      : "calc(64px - 18px)"};
+  border: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)}
+    ${(props) => props.theme.fileItemBorder};
+`;
+
 const FileItemContent = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: ${(props) => !props.error && "center"};
-  width: ${(props) =>
-    props.mode === "file" && !props.multiple ? "calc(230px - 16px - 8px - 2px)" : "calc(320px - 16px - 8px - 2px)"};
-  height: ${(props) =>
-    props.mode === "file" && !props.multiple ? "calc(40px - 8px - 8px - 2px)" : "calc(64px - 8px - 8px - 2px);"};
-  padding: 8px 8px 8px 16px;
-  background-color: ${(props) => props.error && props.theme.errorFileItemBackgroundColor};
-  border-radius: ${(props) => props.theme.fileItemBorderRadius};
-  border: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)}
-    ${(props) => props.theme.fileItemBorder};
 `;
 
 const FileItemContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 `;
 
-const FileName = styled.div`
+const FilePreview = styled.img`
+  min-width: 48px;
+  min-height: 48px;
+  margin-right: 12px;
+  object-fit: contain;
+`;
+
+const FileName = styled.span`
+  color: ${(props) => props.theme.fileNameFontColor};
   width: ${(props) =>
-    props.mode === "file" && !props.multiple
-      ? "calc(230px - 16px - 8px - 24px)"
-      : props.error
-      ? "calc(320px - 16px - 8px - 48px)"
-      : "calc(320px - 16px - 8px - 24px)"};
+    props.mode === "file" && !props.multiple && props.error && props.numFiles === 1
+      ? "calc(230px - 76px)"
+      : props.mode === "file" && !props.multiple && !props.error && props.numFiles === 1
+      ? "calc(230px - 50px)"
+      : !props.showPreview && !props.error
+      ? "calc(320px - 52px)"
+      : !props.showPreview && props.error
+      ? "calc(320px - 76px)"
+      : props.showPreview && props.error
+      ? "calc(320px - 128px)"
+      : props.showPreview && !props.error && "calc(320px - 102px)"};
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -104,7 +131,7 @@ const DeleteIcon = styled.button`
   }
 `;
 
-const ErrorMessage = styled.div`
+const ErrorMessage = styled.span`
   color: ${(props) => props.theme.errorMessageFontColor};
   font-family: ${(props) => props.theme.errorMessageFontFamily};
   font-size: ${(props) => props.theme.errorMessageFontSize};
@@ -116,6 +143,10 @@ FileItem.propTypes = {
   mode: PropTypes.string,
   multiple: PropTypes.bool,
   name: PropTypes.string,
+  type: PropTypes.string,
+  showPreview: PropTypes.boolean,
+  numFiles: PropTypes.number,
+  preview: PropTypes.string,
   error: PropTypes.string,
   onDelete: PropTypes.func,
 };
