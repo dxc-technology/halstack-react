@@ -38,6 +38,7 @@ import Password from "./pages/Password";
 import NewDate from "./pages/NewDate";
 import Number from "./pages/Number";
 import NewTextarea from "./pages/NewTextarea";
+import FileInput from "./pages/FileInput";
 
 export default [
   {
@@ -104,6 +105,11 @@ export default [
     path: "dropdown",
     name: "Dropdown",
     component: Dropdown,
+  },
+  {
+    path: "fileInput",
+    name: "File Input",
+    component: FileInput,
   },
   {
     path: "footer",

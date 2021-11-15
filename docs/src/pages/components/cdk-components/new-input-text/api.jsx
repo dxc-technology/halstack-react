@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTable } from "@dxc-technology/halstack-react";
+import { DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 
 const newInputPropsTable = () => {
   return (
@@ -173,8 +173,12 @@ const newInputPropsTable = () => {
           HTML autocomplete attribute. Lets the user specify if any permission
           the user agent has to provide automated assistance in filling out the
           input value. Its value must be one of all the possible values of the
-          HTML autocomplete attribute: 'on', 'off', 'email', 'username',
-          'new-password', ...
+          HTML autocomplete attribute. Please check the documentation{" "}
+          <DxcLink
+            text="here"
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
+          />
+          .
         </td>
       </tr>
       <tr>
