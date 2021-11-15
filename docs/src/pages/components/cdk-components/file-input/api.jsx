@@ -73,11 +73,23 @@ const fileInputPropsTable = () => {
           </td>
         </tr>
         <tr>
-          <td>value: []</td>
+          <td>value: object[]</td>
           <td></td>
           <td>
-            Value of the input file. Value must be passed including the list of
-            files.
+            An array of files representing the selected files. Each file has the
+            following properties:
+            <ul>
+              <li>
+                <b>error: string</b>: Error of the file. If it is defined, it
+                will be shown and the file item will be mark as invalid.
+              </li>
+              <li>
+                <b>preview: string</b>: Preview of the file.
+              </li>
+              <li>
+                <b>file: File</b>: Selected file.
+              </li>
+            </ul>
           </td>
         </tr>
         <tr>
@@ -121,29 +133,6 @@ const fileInputPropsTable = () => {
           <td>tabIndex: number</td>
           <td>0</td>
           <td>Value of the tabindex.</td>
-        </tr>
-      </DxcTable>
-      <DxcHeading
-        level={3}
-        text="File"
-        margin={{ top: "medium", bottom: "medium" }}
-      />
-      <DxcTable>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td>error: string</td>
-          <td>If it is defined, an error will be shown in the file item.</td>
-        </tr>
-        <tr>
-          <td>preview: string</td>
-          <td>Preview of the file.</td>
-        </tr>
-        <tr>
-          <td>file: File</td>
-          <td>Selected file.</td>
         </tr>
       </DxcTable>
     </>
