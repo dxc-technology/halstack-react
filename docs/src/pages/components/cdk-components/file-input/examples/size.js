@@ -18,8 +18,8 @@ const code = `() => {
       helperText="Please select files"
       value={files}
       callbackFile={callbackFile}
-      minSize={2000}
-      maxSize={20000}
+      minSize={100000}
+      maxSize={200000}
       margin="medium"
     />
   );

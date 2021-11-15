@@ -45,14 +45,20 @@ const fileInputPropsTable = () => {
           </td>
         </tr>
         <tr>
-          <td>maxSize: number</td>
-          <td></td>
-          <td>The maximum file size (in bytes) allowed.</td>
-        </tr>
-        <tr>
           <td>minSize: number</td>
           <td></td>
-          <td>The minimum file size (in bytes) allowed.</td>
+          <td>
+            The minimum file size (in bytes) allowed. If the size of the file
+            does not comply the minSize, the file will have an error.
+          </td>
+        </tr>
+        <tr>
+          <td>maxSize: number</td>
+          <td></td>
+          <td>
+            The maximum file size (in bytes) allowed. If the size of the file
+            does not comply the maxSize, the file will have an error.
+          </td>
         </tr>
         <tr>
           <td>multiple: boolean</td>
@@ -61,8 +67,9 @@ const fileInputPropsTable = () => {
           </td>
           <td>
             If true, the component allows multiple file items and will show all
-            of them. If false, the selected file will be replaced by the new
-            selected one.
+            of them. If false, only one file will be shown, and if there is
+            already one file selected and a new one is chosen, it will be
+            replaced by the new selected one.
           </td>
         </tr>
         <tr>
@@ -70,8 +77,7 @@ const fileInputPropsTable = () => {
           <td></td>
           <td>
             Value of the input file. Value must be passed including the list of
-            files. An example of the value could be: {"{ "}
-            <code>error: "Error text", file: file</code>.
+            files.
           </td>
         </tr>
         <tr>
@@ -80,9 +86,8 @@ const fileInputPropsTable = () => {
             <code>false</code>
           </td>
           <td>
-            If true, the preview of each file item will be shown. If it's not
-            possible to show a preview, an icon refering to the file type will
-            be shown.
+            If true, if the file is an image, a preview of it will be shown. If
+            not, an icon refering to the file type will be shown.
           </td>
         </tr>
         <tr>
@@ -97,7 +102,7 @@ const fileInputPropsTable = () => {
           <td></td>
           <td>
             This function will be called when the user selects or drops a file.
-            The file or list of files will be sent as a parameter.
+            The list of files will be sent as a parameter.
           </td>
         </tr>
         <tr>
@@ -124,21 +129,18 @@ const fileInputPropsTable = () => {
       <DxcTable>
         <tr>
           <th>Name</th>
-          <th>Default</th>
           <th>Description</th>
         </tr>
         <tr>
           <td>error: string</td>
-          <td></td>
-          <td>
-            If it is defined, an error will be shown below the file name. If it
-            is not defined, the error messages will be created and managed
-            internally.
-          </td>
+          <td>If it is defined, an error will be shown in the file item.</td>
+        </tr>
+        <tr>
+          <td>preview: string</td>
+          <td>Preview of the file.</td>
         </tr>
         <tr>
           <td>file: File</td>
-          <td></td>
           <td>Selected file.</td>
         </tr>
       </DxcTable>

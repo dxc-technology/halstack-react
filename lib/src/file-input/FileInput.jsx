@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
@@ -108,14 +109,12 @@ const DxcFileInput = ({
     if (multiple) {
       const filesToAdd = await getFilesToAdd(selectedFiles);
       const finalFiles = [...files, ...filesToAdd];
-      setFiles(finalFiles);
       if (typeof callbackFile === "function") {
         callbackFile(finalFiles);
       }
     } else {
       const fileToAdd =
         selectedFiles.length === 1 ? await getFilesToAdd(selectedFiles) : await getFilesToAdd([selectedFiles[0]]);
-      setFiles(fileToAdd);
       if (typeof callbackFile === "function") {
         callbackFile(fileToAdd);
       }
@@ -135,7 +134,9 @@ const DxcFileInput = ({
     });
     const fileIndex = filesCopy.indexOf(fileToRemove);
     filesCopy.splice(fileIndex, 1);
-    setFiles(filesCopy);
+    if (typeof callbackFile === "function") {
+      callbackFile(filesCopy);
+    }
   };
 
   const handleDrag = (e) => {

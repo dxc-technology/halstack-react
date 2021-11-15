@@ -36,17 +36,18 @@ function App() {
         label="Multiple file"
         helperText="Please select files"
         margin="medium"
-        callbackFile={callbackFile}
         value={files}
+        callbackFile={callbackFile}
         multiple
       />
       <DxcFileInput
         label="Single file"
         helperText="Please select files"
         margin="medium"
-        callbackFile={callbackFile}
+        showPreview
         value={files}
-        multiple={false}
+        callbackFile={callbackFile}
+        multiple
       />
       <DxcFileInput
         label="Multiple file with files in value"
@@ -68,6 +69,8 @@ function App() {
         helperText="Please select files"
         disabled
         margin="medium"
+        value={files}
+        callbackFile={callbackFile}
       />
       <DxcFileInput
         label="Multiple filedrop"
@@ -75,6 +78,8 @@ function App() {
         mode="filedrop"
         callbackFile={callbackFile}
         value={files}
+        showPreview
+        multiple={false}
         margin="medium"
       />
       <DxcFileInput
@@ -109,6 +114,8 @@ function App() {
         mode="filedrop"
         disabled
         margin="medium"
+        value={files}
+        callbackFile={callbackFile}
       />
       <DxcFileInput
         label="Multiple dropzone"
@@ -150,20 +157,25 @@ function App() {
         mode="dropzone"
         disabled
         margin="medium"
+        value={files}
+        callbackFile={callbackFile}
       />
       <DxcFileInput
-        label="Min size and max size"
+        label="File Input"
         helperText="Please select files"
-        multiple={false}
+        value={files}
+        callbackFile={callbackFile}
+        minSize={100000}
+        maxSize={200000}
         margin="medium"
-        minSize={99999}
-        maxSize={99900000}
       />
       <DxcFileInput
         label="Only .pdf allowed"
         helperText="Please select files"
         margin="medium"
         accept=".pdf"
+        value={files}
+        callbackFile={callbackFile}
       />
     </>
   );
