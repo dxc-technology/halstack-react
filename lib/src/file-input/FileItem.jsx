@@ -3,26 +3,34 @@ import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 
-const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview, numFiles, onDelete }) => {
+const deleteIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+  </svg>
+);
+
+const errorIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+  </svg>
+);
+
+const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview, type, numFiles, onDelete }) => {
   const colorsTheme = useTheme();
-
-  const deleteIcon = (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M0 0h24v24H0V0z" fill="none" />
-      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-    </svg>
-  );
-
-  const errorIcon = (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-    </svg>
-  );
+  const isImage = type.includes("image");
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <Container mode={mode} multiple={multiple} error={error} showPreview={showPreview} numFiles={numFiles}>
-        {showPreview && <FilePreview src={preview} />}
+        {showPreview &&
+          (isImage ? (
+            <ImagePreview src={preview} />
+          ) : (
+            <IconPreviewContainer error={error}>
+              <IconPreview error={error}>{preview}</IconPreview>
+            </IconPreviewContainer>
+          ))}
         <FileItemContent>
           <FileItemContainer>
             <FileName mode={mode} multiple={multiple} error={error} showPreview={showPreview} numFiles={numFiles}>
@@ -72,12 +80,27 @@ const FileItemContainer = styled.div`
   flex-direction: row;
 `;
 
-const FilePreview = styled.img`
-  min-width: 48px;
-  min-height: 48px;
-  margin-right: 12px;
+const ImagePreview = styled.img`
+  width: 48px;
+  height: 48px;
   object-fit: contain;
+  margin-right: 12px;
+  border-radius: 2px;
 `;
+
+const IconPreviewContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  background-color: ${(props) => (props.error ? "#ffccd3" : "#f2f2f2")};
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  color: ${(props) => (props.error ? "#d0011b" : "#808080")};
+`;
+
+const IconPreview = styled.div``;
 
 const FileName = styled.span`
   color: ${(props) => props.theme.fileNameFontColor};

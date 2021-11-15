@@ -6,9 +6,27 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import DxcButton from "../button/Button";
 import FileItem from "./FileItem";
-import defaultIcon from "./file-icon.svg";
-import videoIcon from "./video-icon.svg";
-import audioIcon from "./audio-icon.svg";
+
+const audioIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path fill="none" d="M0 0h24v24H0V0z" />
+    <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM8 15c0-1.66 1.34-3 3-3 .35 0 .69.07 1 .18V6h5v2h-3v7.03c-.02 1.64-1.35 2.97-3 2.97-1.66 0-3-1.34-3-3z" />
+  </svg>
+);
+
+const videoIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z" />
+    <path d="M0 0h24v24H0z" fill="none" />
+  </svg>
+);
+
+const fileIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path fill="none" d="M0 0h24v24H0V0z" />
+    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z" />
+  </svg>
+);
 
 const DxcFileInput = ({
   name = "",
@@ -71,7 +89,7 @@ const DxcFileInput = ({
         };
       });
     }
-    return defaultIcon;
+    return fileIcon;
   };
 
   const getFilesToAdd = async (selectedFiles) => {
@@ -95,7 +113,8 @@ const DxcFileInput = ({
         callbackFile(finalFiles);
       }
     } else {
-      const fileToAdd = await getFilesToAdd(selectedFiles);
+      const fileToAdd =
+        selectedFiles.length === 1 ? await getFilesToAdd(selectedFiles) : await getFilesToAdd([selectedFiles[0]]);
       setFiles(fileToAdd);
       if (typeof callbackFile === "function") {
         callbackFile(fileToAdd);
@@ -151,7 +170,7 @@ const DxcFileInput = ({
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
-      <FileInputContainer margin={margin} name={name}>
+      <FileInputContainer margin={margin} name={name} tabIndex={tabIndex}>
         <Label for={labelFileInputId} disabled={disabled}>
           {label}
         </Label>
@@ -185,6 +204,7 @@ const DxcFileInput = ({
                       showPreview={mode === "file" && !multiple ? false : showPreview}
                       numFiles={files.length}
                       preview={file.preview}
+                      type={file.file.type}
                       onDelete={onDelete}
                     />
                   </FileItemContainer>
@@ -226,6 +246,7 @@ const DxcFileInput = ({
                     showPreview={showPreview}
                     numFiles={files.length}
                     preview={file.preview}
+                    type={file.file.type}
                     onDelete={onDelete}
                   />
                 </FileItemContainer>
@@ -352,6 +373,7 @@ DxcFileInput.propTypes = {
   error: PropTypes.string,
   callbackFile: PropTypes.func,
   value: PropTypes.array,
+  tabIndex: PropTypes.number,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
