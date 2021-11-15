@@ -1,5 +1,3 @@
-import { FunctionComponent } from "react";
-
 type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
@@ -79,7 +77,7 @@ type Props = {
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
-  margin?: string | Margin;
+  margin?: Space | Margin;
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
    */
@@ -94,5 +92,4 @@ type Props = {
    ref?: React.RefObject<HTMLDivElement>;
 };
 
-declare const DxcNumber: FunctionComponent<Props>;
-export default DxcNumber;
+export default function DxcNumber(props: Props): JSX.Element;

@@ -1,5 +1,3 @@
-import { FunctionComponent } from "react";
-
 type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
@@ -9,6 +7,7 @@ type Margin = {
   right?: Space;
 };
 type VerticalGrow = "auto" | "manual" | "none";
+
 type Props = {
   /**
    * Text to be placed above the textarea.
@@ -79,12 +78,12 @@ type Props = {
    * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the textarea value. 
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
    */
-  autocomplete?: "on" | "off";
+  autocomplete?: string;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
-  margin?: string | Margin;
+  margin?: Space | Margin;
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
    */
@@ -99,5 +98,4 @@ type Props = {
   ref?: React.RefObject<HTMLDivElement>;
 };
 
-declare const DxcNewTextarea: FunctionComponent<Props>;
-export default DxcNewTextarea;
+export default function DxcNewTextarea(props: Props): JSX.Element;

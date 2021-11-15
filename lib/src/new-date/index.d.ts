@@ -1,5 +1,3 @@
-import { FunctionComponent } from "react";
-
 type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
@@ -8,6 +6,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
+
 type Props = {
   /**
    * Text to be placed above the date.
@@ -46,13 +45,13 @@ type Props = {
    */
   optional?: boolean;
   /**
-   * This function will be called when the user types within the input element of the component. 
-   * An object including the current string value and the date value will be passed to this function. 
+   * This function will be called when the user types within the input element of the component.
+   * An object including the current string value and the date value will be passed to this function.
    * If the string value is not a valid date, date will be null.
    */
   onChange?: (value: string) => void;
   /**
-   * This function will be called when the input element loses the focus. An object including the string value, the error and the date value will be passed to this function. 
+   * This function will be called when the input element loses the focus. An object including the string value, the error and the date value will be passed to this function.
    * If the string value is a valid date, error will be null. Also, if the string value is not a valid date, date will be null.
    */
   onBlur?: (val: { value: string; error: string }) => void;
@@ -61,15 +60,15 @@ type Props = {
    */
   error?: string;
   /**
-   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value. 
+   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
    */
   autocomplete?: string;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
-  margin?: string | Margin;
+  margin?: Space | Margin;
   /**
    * Size of the component ('medium' | 'large' | 'fillParent').
    */
@@ -84,6 +83,4 @@ type Props = {
   ref?: React.RefObject<HTMLDivElement>;
 };
 
-declare const DxcNewDate: FunctionComponent<Props>;
-export default DxcNewDate;
-
+export default function DxcNewDate(props: Props): JSX.Element;

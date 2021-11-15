@@ -1,5 +1,3 @@
-import { FunctionComponent } from "react";
-
 type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
@@ -13,6 +11,7 @@ type Action = {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   icon: SVG;
 };
+
 type Props = {
   /**
    * Text to be placed above the input. This label will be used as the aria-label attribute of the list of suggestions.
@@ -77,33 +76,33 @@ type Props = {
   /**
    * These are the options to be displayed as suggestions. It can be either an array or a function:
    *    - Array:    Array of options that will be filtered by the component.
-   *    - Function: This function will be called when the user changes the value, we will send as a parameter the new value; 
+   *    - Function: This function will be called when the user changes the value, we will send as a parameter the new value;
    *                apart from that this function should return one promise on which we should make 'then' to get the suggestions filtered.
    */
   suggestions?: string[] | (() => void);
   /**
    * Regular expression that defines the valid format allowed by the input. This will be checked when the input loses the focus.
-   * If the value entered does not match the pattern, the onBlur function will be called with the value entered 
-   * and the error informing that the value does not match the pattern as parameters. If the pattern is accomplished, 
+   * If the value entered does not match the pattern, the onBlur function will be called with the value entered
+   * and the error informing that the value does not match the pattern as parameters. If the pattern is accomplished,
    * the error parameter will be null.
    */
   pattern?: string;
   /**
-   * Specifies the minimun and maximum length allowed by the input. This will be checked when the input loses the focus. If the value entered does not comply the length, 
+   * Specifies the minimun and maximum length allowed by the input. This will be checked when the input loses the focus. If the value entered does not comply the length,
    * the onBlur function will be called with the value entered and the error informing that the value does not comply the length as parameters.
    * If the length is accomplished, the error parameter will be null.
    */
   length?: { min?: number; max?: number };
   /**
-   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value. 
+   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
    */
   autocomplete?: string;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
-  margin?: string | Margin;
+  margin?: Space | Margin;
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
    */
@@ -118,5 +117,4 @@ type Props = {
   ref?: React.RefObject<HTMLDivElement>;
 };
 
-declare const DxcNewInputText: FunctionComponent<Props>;
-export default DxcNewInputText;
+export default function DxcNewInputText(props: Props): JSX.Element;
