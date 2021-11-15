@@ -38,6 +38,7 @@ import Password from "./pages/Password";
 import NewDate from "./pages/NewDate";
 import Number from "./pages/Number";
 import NewTextarea from "./pages/NewTextarea";
+import NewSelect from "./pages/NewSelect";
 
 export default [
   {
@@ -174,6 +175,11 @@ export default [
     path: "select",
     name: "Select",
     component: Select,
+  },
+  {
+    path: "newSelect",
+    name: "New select",
+    component: NewSelect,
   },
   {
     path: "sidenav",
