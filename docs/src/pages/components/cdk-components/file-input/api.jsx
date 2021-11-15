@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTable, DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
+import { DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 
 const fileInputPropsTable = () => {
   return (
