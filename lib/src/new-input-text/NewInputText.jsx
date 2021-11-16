@@ -28,9 +28,9 @@ const getNotOptionalErrorMessage = () => `This field is required. Please, enter 
 
 const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
 
-const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
-
 const getPatternErrorMessage = () => `Please match the format requested.`;
+
+const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
 const DxcNewInputText = React.forwardRef(
   (
@@ -67,7 +67,6 @@ const DxcNewInputText = React.forwardRef(
     const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
 
-    const [validationError, changeValidationError] = useState("");
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
 
@@ -89,18 +88,28 @@ const DxcNewInputText = React.forwardRef(
     const numberContext = useContext(NumberContext);
 
     const changeValue = (newValue) => {
-      const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
       value ?? setInnerValue(newValue);
-      typeof onChange === "function" && onChange(changedValue);
+      const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
+
+      if (isNotOptional(newValue)) onChange?.({ value: changedValue, error: getNotOptionalErrorMessage() });
+      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage(length) });
+      else if (newValue && pattern && !patternMatch(pattern, newValue))
+        onChange?.({ value: changedValue, error: getPatternErrorMessage() });
+      else if (newValue && isNumberIncorrect(newValue))
+        onChange?.({ value: changedValue, error: getNumberErrorMessage(event.target.value) });
+      else onChange?.({ value: changedValue, error: null });
     };
 
-    const notOptionalCheck = (value) => value === "" && !optional;
+    const isNotOptional = (value) => value === "" && !optional;
 
     const isLengthIncorrect = (value) =>
       value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
 
     const isNumberIncorrect = (value) =>
       (minNumber && parseInt(value) < minNumber) || (maxNumber && parseInt(value) > maxNumber);
+
+    const isTextInputType = () =>
+      !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
 
     const getNumberErrorMessage = (value) => {
       if (minNumber && parseInt(value) < minNumber) return `Value must be greater than or equal to ${minNumber}.`;
@@ -133,22 +142,16 @@ const DxcNewInputText = React.forwardRef(
 
     const handleIOnBlur = (event) => {
       suggestions && closeSuggestions();
-      if (notOptionalCheck(event.target.value)) {
-        changeValidationError(getNotOptionalErrorMessage());
+
+      if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
-      } else if (isLengthIncorrect(event.target.value)) {
-        changeValidationError(getLengthErrorMessage(length, event));
+      else if (isLengthIncorrect(event.target.value))
         onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
-      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
-        changeValidationError(getPatternErrorMessage());
+      else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
-      } else if (event.target.value && isNumberIncorrect(event.target.value)) {
-        changeValidationError(getNumberErrorMessage(event.target.value));
+      else if (event.target.value && isNumberIncorrect(event.target.value))
         onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
-      } else {
-        changeValidationError("");
-        onBlur?.({ value: event.target.value, error: null });
-      }
+      else onBlur?.({ value: event.target.value, error: null });
     };
 
     const handleIOnFocus = () => {
@@ -366,9 +369,6 @@ const DxcNewInputText = React.forwardRef(
       ),
     };
 
-    const isTextInputType = () =>
-      !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
-
     const HighlightedSuggestion = ({ suggestion, index }) => {
       const regEx = new RegExp(value ?? innerValue, "i");
       const matchedWords = suggestion.match(regEx);
@@ -420,7 +420,7 @@ const DxcNewInputText = React.forwardRef(
             {helperText}
           </HelperText>
           <InputContainer
-            error={error || validationError}
+            error={error}
             disabled={disabled}
             backgroundType={backgroundType}
             onClick={handleInputContainerOnClick}
@@ -444,6 +444,8 @@ const DxcNewInputText = React.forwardRef(
               ref={inputRef}
               backgroundType={backgroundType}
               pattern={pattern}
+              minLength={length?.min}
+              maxLength={length?.max}
               autoComplete={autocomplete}
               tabIndex={tabIndex}
               role={isTextInputType() && hasInputSuggestions() ? "combobox" : "textbox"}
@@ -455,11 +457,11 @@ const DxcNewInputText = React.forwardRef(
                   ? `suggestion-${visualFocusedSuggIndex}`
                   : undefined
               }
-              aria-invalid={error || validationError ? "true" : "false"}
-              aria-describedby={error || validationError ? errorId : undefined}
+              aria-invalid={error ? "true" : "false"}
+              aria-describedby={error ? errorId : undefined}
               aria-required={optional ? "false" : "true"}
             />
-            {!disabled && (error || validationError) && (
+            {!disabled && error && (
               <ErrorIcon backgroundType={backgroundType} aria-label="Error">
                 {errorIcon}
               </ErrorIcon>
@@ -541,7 +543,7 @@ const DxcNewInputText = React.forwardRef(
                 {isSearching && <SuggestionsSystemMessage>Searching...</SuggestionsSystemMessage>}
                 {isAutosuggestError && (
                   <SuggestionsError>
-                    <ErrorIcon backgroundType={backgroundType}>{errorIcon}</ErrorIcon>
+                    <SuggestionsErrorIcon backgroundType={backgroundType}>{errorIcon}</SuggestionsErrorIcon>
                     Error fetching data
                   </SuggestionsError>
                 )}
@@ -550,7 +552,7 @@ const DxcNewInputText = React.forwardRef(
           </InputContainer>
           {!disabled && (
             <Error id={errorId} backgroundType={backgroundType}>
-              {error || validationError}
+              {error}
             </Error>
           )}
         </DxcInput>
@@ -744,6 +746,7 @@ const Action = styled.button`
   margin-left: calc(1rem * 0.25);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
 
+  box-shadow: 0 0 0 2px transparent;
   background-color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -862,7 +865,6 @@ const ErrorIcon = styled.span`
   height: 18px;
   width: 18px;
   margin-left: calc(1rem * 0.25);
-  pointer-events: none;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
 
@@ -922,6 +924,22 @@ const SuggestionsSystemMessage = styled.span`
   color: ${(props) => props.theme.systemMessageFontColor};
   font-size: 0.875rem;
   line-height: 1.75em;
+`;
+
+const SuggestionsErrorIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  margin-right: 0.5rem;
+  height: 18px;
+  width: 18px;
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
+
+  svg {
+    line-height: 1.75em;
+    font-size: 0.875rem;
+  }
 `;
 
 const SuggestionsError = styled.span`

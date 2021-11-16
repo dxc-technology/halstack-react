@@ -34,7 +34,6 @@ const DxcNewDate = React.forwardRef(
     ref
   ) => {
     const [innerValue, setInnerValue] = useState("");
-    const [validationError, setValidationError] = useState("");
 
     const [isOpen, setIsOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -51,35 +50,37 @@ const DxcNewDate = React.forwardRef(
     };
 
     const handleCalendarOnClick = (newDate) => {
-      const string = moment(newDate).format(format.toUpperCase());
-      value ?? setInnerValue(string);
-      typeof onChange === "function" &&
-        onChange({
-          value: string,
-          date: newDate && newDate.toJSON() ? newDate : null,
-        });
+      value ?? setInnerValue(newValue);
+      const newValue = moment(newDate).format(format.toUpperCase());
+
+      onChange?.({
+        value: newValue,
+        error: null,
+        date: newDate && newDate.toJSON() ? newDate : null,
+      });
     };
 
-    const handleIOnChange = (string) => {
-      const momentDate = moment(string, format.toUpperCase(), true);
-      value ?? setInnerValue(string);
-      typeof onChange === "function" &&
-        onChange({
-          value: string,
-          date: momentDate.isValid() ? momentDate._d : null,
-        });
+    const handleIOnChange = ({ value: newValue, error: inputError }) => {
+      value ?? setInnerValue(newValue);
+      const momentDate = moment(newValue, format.toUpperCase(), true);
+      const invalidDateMessage = newValue !== "" && !momentDate.isValid() ? "Invalid date." : null;
+
+      onChange?.({
+        value: newValue,
+        error: inputError || invalidDateMessage,
+        date: momentDate.isValid() ? momentDate._d : null,
+      });
     };
 
-    const handleIOnBlur = ({ value }) => {
+    const handleIOnBlur = ({ value, error: inputError }) => {
       const momentDate = moment(value, format.toUpperCase(), true);
       const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : null;
-      setValidationError(invalidDateMessage);
-      typeof onBlur === "function" &&
-        onBlur({
-          value,
-          error: invalidDateMessage,
-          date: momentDate.isValid() ? momentDate._d : null,
-        });
+
+      onBlur?.({
+        value,
+        error: inputError || invalidDateMessage,
+        date: momentDate.isValid() ? momentDate._d : null,
+      });
     };
 
     const getValueForPicker = () => moment(value ?? innerValue, format.toUpperCase(), true).format();
@@ -262,7 +263,7 @@ const DxcNewDate = React.forwardRef(
                 optional={optional}
                 onChange={handleIOnChange}
                 onBlur={handleIOnBlur}
-                error={error || validationError}
+                error={error}
                 autocomplete={autocomplete}
                 margin={margin}
                 size={size}
