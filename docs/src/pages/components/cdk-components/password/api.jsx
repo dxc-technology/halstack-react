@@ -47,7 +47,11 @@ const PasswordPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user types within the input
-          element of the component. The new value will be passed as a parameter.
+          element of the component. An object including the current value and
+          the error (if the value entered is not valid) will be passed to this
+          function. An example of this object is: {"{ "}
+          <code>value: value, error: error</code>
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
@@ -68,7 +72,8 @@ const PasswordPropsTable = () => {
         <td>
           If it is defined, the component will change its appearance, showing
           the error below the password component. If it is not defined, the
-          error messages will be created and managed internally.
+          error messages will be managed internally, but never displayed on its
+          own.
         </td>
       </tr>
       <tr>
@@ -76,11 +81,12 @@ const PasswordPropsTable = () => {
         <td></td>
         <td>
           Regular expression that defines the valid format allowed by the
-          password. This will be checked when the input element loses the focus.
-          If the value entered does not match the pattern, the onBlur function
-          will be called with the value entered and the error informing that the
-          value does not match the pattern as parameters. If the pattern is
-          accomplished, the error parameter will be null.
+          password. This will be checked both when the input element loses the
+          focus and while typing within it. If the string entered does not match
+          the pattern, the onBlur and onChange functions will be called with the
+          current value and an internal error informing that this value does not
+          match the pattern. If the pattern is met, the error parameter of both
+          events will be null.
         </td>
       </tr>
       <tr>
@@ -90,11 +96,12 @@ const PasswordPropsTable = () => {
           Specifies the minimun and maximum length allowed by the password. It
           follows this structure: {"{ "}
           <code>min: minLength, max: maxLength</code>
-          {" }"}. This will be checked when the password loses the focus. If the
-          value entered does not comply the length, the onBlur function will be
-          called with the value entered and the error informing that the value
-          does not comply the length as parameters. If the length is
-          accomplished, the error parameter will be null.
+          {" }"}. This will be checked both when the input element loses the
+          focus and while typing within it. If the string entered does not
+          comply the length, the onBlur and onChange functions will be called
+          with the current value and an internal error informing that the value
+          length does not comply the specified range. If a valid length is
+          reached, the error parameter of both events will be null.
         </td>
       </tr>
       <tr>

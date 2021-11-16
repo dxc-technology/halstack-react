@@ -4,7 +4,7 @@ import { useState } from "react";
 const code = `() => {
   const [value, setValue] = useState("");
 
-  const onChange = (value) => {
+  const onChange = ({ value }) => {
     setValue(value);
   };
 
@@ -14,8 +14,9 @@ const code = `() => {
 
   return (
     <DxcNumber
+      label="Number" 
+      helperText="Helper text"
       value={value}
-      label="Number"
       onChange={onChange}
       onBlur={onBlur}
       margin="medium"

@@ -52,7 +52,8 @@ const NumberPropsTable = () => {
         </td>
         <td>
           If true, the number will be optional, showing <code>(Optional)</code>{" "}
-          next to the label.
+          next to the label. Otherwise, the field will be considered required
+          and will display an error when not filled in.
         </td>
       </tr>
       <tr>
@@ -68,12 +69,24 @@ const NumberPropsTable = () => {
       <tr>
         <td>min: number</td>
         <td></td>
-        <td>Minimum value allowed by the number.</td>
+        <td>
+          Minimum value allowed by the number. If the typed value by the user
+          is lower than min, the onBlur and onChange functions will be called with
+          the current value and an internal error informing that the current
+          value is not correct. If a valid state is reached, the error
+          parameter will be null in both events.
+        </td>
       </tr>
       <tr>
         <td>max: number</td>
         <td></td>
-        <td>Maximum value allowed by the number.</td>
+        <td>
+          Maximum value allowed by the number. If the typed value by the user
+          surpasses max, the onBlur and onChange functions will be called with
+          the current value and an internal error informing that the current
+          value is not correct. If a valid state is reached, the error
+          parameter will be null in both events.
+        </td>
       </tr>
       <tr>
         <td>step: number</td>
@@ -88,7 +101,11 @@ const NumberPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user types within the input
-          element of the component. The new value will be passed as a parameter.
+          element of the component. An object including the current value and
+          the error (if the value entered is not valid) will be passed to this
+          function. An example of this object is: {"{ "}
+          <code>value: value, error: error</code>
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
@@ -96,9 +113,9 @@ const NumberPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the input element loses the focus.
-          An object including the value and the error (if the value entered is
-          not valid) will be passed to this function. An example of this object
-          is: {"{ "}
+          An object including the input value and the error (if the value
+          entered is not valid) will be passed to this function. An example of
+          this object is: {"{ "}
           <code>value: value, error: error</code>
           {" }"}. If there is no error, error will be null.
         </td>
@@ -108,8 +125,8 @@ const NumberPropsTable = () => {
         <td></td>
         <td>
           If it is defined, the component will change its appearance, showing
-          the error below the number component. If it is not defined, the error
-          messages will be created and managed internally.
+          the error below the input component. If it is not defined, the error
+          messages will be managed internally, but never displayed on its own.
         </td>
       </tr>
       <tr>

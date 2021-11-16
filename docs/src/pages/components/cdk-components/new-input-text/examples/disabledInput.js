@@ -5,7 +5,7 @@ import { ReactComponent as Avatar } from "../images/delete-24px.svg";
 const code = `() => {
   const [value, setValue] = useState("");
 
-  const onChange = (value) => {
+  const onChange = ({ value }) => {
     setValue(value);
   };
 

@@ -16,7 +16,6 @@ import suffix from "./examples/suffixInput";
 import action from "./examples/actionInput";
 import optional from "./examples/optionalInput";
 import disabled from "./examples/disabledInput";
-import helperText from "./examples/helperTextInput";
 import placeholder from "./examples/placeholderInput";
 import autosuggest from "./examples/autosuggest";
 import autosuggestFunction from "./examples/autosuggestFunction";
@@ -52,12 +51,8 @@ function NewInput() {
                   text="Examples"
                   margin={{ bottom: "small" }}
                 />
-                <Example title="Controlled Input" example={controlled} />
-                <Example title="Uncontrolled Input" example={uncontrolled} />
-                <Example
-                  title="Input with helper text"
-                  example={helperText}
-                ></Example>
+                <Example title="Controlled input" example={controlled} />
+                <Example title="Uncontrolled input" example={uncontrolled} />
                 <Example
                   title="Input with placeholder"
                   example={placeholder}

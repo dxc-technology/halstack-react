@@ -46,9 +46,10 @@ const NewDatePropsTable = () => {
         <td>format: string</td>
         <td>'dd-MM-yyyy'</td>
         <td>
-          The format in which the date value will be displayed. User must use
+          The format in which the date value will be displayed. User must follow
           this format when editing the value or it will be considered as an
-          invalid date.
+          invalid date. In this case, the onBlur and onChange functions will be
+          called with an internal error as a parameter reporting the situation.
         </td>
       </tr>
       <tr>
@@ -74,7 +75,8 @@ const NewDatePropsTable = () => {
         </td>
         <td>
           If true, the date will be optional, showing <code>(Optional)</code>{" "}
-          next to the label.
+          next to the label. Otherwise, the field will be considered required
+          and will display an error when not filled in.
         </td>
       </tr>
       <tr>
@@ -82,12 +84,13 @@ const NewDatePropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user types within the input
-          element of the component. An object including the current string value
-          and the date value will be passed to this function. An example of this
-          object is: {"{ "}
-          <code>value: value, date: date</code>
-          {" }"}. If the string value is not a valid date, <code>date</code>{" "}
-          will be null.
+          element of the component. An object including the string value, the
+          error and the date value will be passed to this function. An example
+          of this object is: {"{ "}
+          <code>value: value, error: error, date: date</code>
+          {" }"}. If the string value is a valid date, <code>error</code> will
+          be null. Also, if the string value is not a valid date,{" "}
+          <code>date</code> will be null.
         </td>
       </tr>
       <tr>
@@ -109,7 +112,7 @@ const NewDatePropsTable = () => {
         <td>
           If it is defined, the component will change its appearance, showing
           the error below the date component. If it is not defined, the error
-          messages will be created and managed internally.
+          messages will be managed internally, but never displayed on its own.
         </td>
       </tr>
       <tr>

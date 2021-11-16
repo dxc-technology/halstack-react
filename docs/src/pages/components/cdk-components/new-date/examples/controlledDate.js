@@ -15,6 +15,7 @@ const code = `() => {
   return (
     <DxcNewDate
       label="Controlled"
+      helperText="Helper Text"
       value={value}
       onChange={onChange}
       onBlur={onBlur}

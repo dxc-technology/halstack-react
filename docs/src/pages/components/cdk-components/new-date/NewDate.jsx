@@ -13,7 +13,6 @@ import customError from "./examples/customErrorDate";
 import optional from "./examples/optionalDate";
 import disabled from "./examples/disabledDate";
 import sized from "./examples/sizedDate";
-import helperText from "./examples/helperTextDate";
 
 
 function NewDate() {
@@ -46,14 +45,13 @@ function NewDate() {
                   text="Examples"
                   margin={{ bottom: "small" }}
                 />
-                <Example title="Controlled Date" example={controlled} />
-                <Example title="Uncontrolled Date" example={uncontrolled} />
-                <Example title="Date with helper text" example={helperText} />
-                <Example title="Formatted Date" example={formatted} />
-                <Example title="Invalid Date" example={error} />
-                <Example title="Date with custom error message" example={customError} />
+                <Example title="Controlled date" example={controlled} />
+                <Example title="Uncontrolled date" example={uncontrolled} />
+                <Example title="Formatted date" example={formatted} />
                 <Example title="Optional date" example={optional} />
                 <Example title="Disabled date" example={disabled} />
+                <Example title="Invalid date" example={error} />
+                <Example title="Date with custom error message" example={customError} />
                 <Example title="Fill parent size date" example={sized} />
               </Section>
             ),

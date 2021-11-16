@@ -44,11 +44,11 @@ function Password() {
                   margin={{ bottom: "small" }}
                 />
                 <Example
-                  title="Controlled Password"
+                  title="Controlled password"
                   example={controlled}
                 ></Example>
                 <Example
-                  title="Uncontrolled Password"
+                  title="Uncontrolled password"
                   example={uncontrolled}
                 ></Example>
                 <Example
