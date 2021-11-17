@@ -60,14 +60,17 @@ const Container = styled.div`
       : !props.showPreview
       ? "calc(320px - 26px)"
       : props.showPreview && "calc(320px - 18px)"};
-  height: ${(props) =>
+  min-height: ${(props) =>
     (props.mode === "file" && !props.multiple && props.numFiles === 1) || (!props.showPreview && !props.error)
       ? "calc(40px - 18px)"
       : !props.showPreview && props.error
       ? "calc(59px - 18px)"
       : "calc(64px - 18px)"};
-  border: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)}
-    ${(props) => props.theme.fileItemBorder};
+  border-color: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)};
+  border-width: ${(props) => props.theme.fileItemBorderThickness};
+  border-style: ${(props) => props.theme.fileItemBorderStyle};
+  display: flex;
+  justify-content: center;
 `;
 
 const FileItemContent = styled.div`
@@ -78,6 +81,7 @@ const FileItemContent = styled.div`
 const FileItemContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const ImagePreview = styled.img`
@@ -93,11 +97,12 @@ const IconPreviewContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 12px;
-  background-color: ${(props) => (props.error ? "#ffccd3" : "#f2f2f2")};
+  background-color: ${(props) =>
+    props.error ? props.theme.errorFileItemIconBackgroundColor : props.theme.fileItemIconBackgroundColor};
   width: 48px;
   height: 48px;
   border-radius: 2px;
-  color: ${(props) => (props.error ? "#d0011b" : "#808080")};
+  color: ${(props) => (props.error ? props.theme.errorFileItemIconColor : props.theme.fileItemIconColor)};
 `;
 
 const IconPreview = styled.div``;

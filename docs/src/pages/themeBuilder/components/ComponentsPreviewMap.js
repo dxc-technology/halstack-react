@@ -29,6 +29,7 @@ import TagPreview from "./previews/Tag";
 import UploadPreview from "./previews/Upload";
 import CardPreview from "./previews/Card";
 import NewInputTextPreview from "./previews/NewInputText";
+import FileInputPreview from "./previews/FileInput";
 
 const SampleComponents = [
   {
@@ -70,6 +71,10 @@ const SampleComponents = [
   {
     name: "dropdown",
     preview: DropdownPreview,
+  },
+  {
+    name: "fileInput",
+    preview: FileInputPreview,
   },
   {
     name: "footer",

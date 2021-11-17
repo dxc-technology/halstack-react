@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { DxcFileInput } from "@dxc-technology/halstack-react";
 
-const file1 = new File(["file1"], "file1.png", { type: "image/png" });
-const file2 = new File(["file2"], "file2.txt", {
-  type: "text/plain",
+const file1 = new File(["file1"], "file1.pdf", { type: "text/plain" });
+const file2 = new File(["file2"], "file2.png", {
+  type: "image/png",
 });
 
 const filesExamples = [
@@ -28,6 +28,7 @@ function App() {
       return { ...file };
     });
     setFiles(updatedFiles);
+    setPreloadedFiles(updatedFiles);
   };
 
   return (
@@ -38,16 +39,14 @@ function App() {
         margin="medium"
         value={files}
         callbackFile={callbackFile}
-        multiple
       />
       <DxcFileInput
         label="Single file"
         helperText="Please select files"
         margin="medium"
-        showPreview
         value={files}
         callbackFile={callbackFile}
-        multiple
+        multiple={false}
       />
       <DxcFileInput
         label="Multiple file with files in value"
@@ -65,6 +64,14 @@ function App() {
         multiple={false}
       />
       <DxcFileInput
+        label="With preview"
+        helperText="Please select files"
+        callbackFile={callbackFile}
+        value={files}
+        showPreview
+        margin="medium"
+      />
+      <DxcFileInput
         label="Disabled file"
         helperText="Please select files"
         disabled
@@ -78,7 +85,6 @@ function App() {
         mode="filedrop"
         callbackFile={callbackFile}
         value={files}
-        showPreview
         multiple={false}
         margin="medium"
       />
