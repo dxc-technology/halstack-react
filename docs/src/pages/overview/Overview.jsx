@@ -154,6 +154,9 @@ function CustomThemes() {
         baseColor: "#ffffff", // dropdown's base color theme input
         fontColor: "#000000", // dropdown's font color theme input
       },
+      fileInput: {
+        fontColor: "#000000", // file input's font color theme input
+      },
       footer: {
         baseColor: "#000000", // footer's base color theme input
         fontColor: "#ffffff", // footer's font color theme input
