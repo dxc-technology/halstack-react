@@ -24,6 +24,9 @@
     "baseColor": "color",
     "fontColor": "color"
   },
+  "fileInput": {
+    "fontColor": "color"
+  },
   "footer": {
     "baseColor": "color",
     "fontColor": "color",
