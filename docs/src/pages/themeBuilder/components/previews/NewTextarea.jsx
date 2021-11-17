@@ -10,7 +10,7 @@ import Mode from "../Mode";
 
 const NewTextarea = () => {
   const [value, setValue] = useState("");
-  const onChange = (value) => {
+  const onChange = ({ value }) => {
     setValue(value);
   };
   const onBlur = ({ value }) => {

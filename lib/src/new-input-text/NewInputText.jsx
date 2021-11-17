@@ -87,19 +87,6 @@ const DxcNewInputText = React.forwardRef(
 
     const numberContext = useContext(NumberContext);
 
-    const changeValue = (newValue) => {
-      value ?? setInnerValue(newValue);
-      const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
-
-      if (isNotOptional(newValue)) onChange?.({ value: changedValue, error: getNotOptionalErrorMessage() });
-      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage(length) });
-      else if (newValue && pattern && !patternMatch(pattern, newValue))
-        onChange?.({ value: changedValue, error: getPatternErrorMessage() });
-      else if (newValue && isNumberIncorrect(newValue))
-        onChange?.({ value: changedValue, error: getNumberErrorMessage(event.target.value) });
-      else onChange?.({ value: changedValue, error: null });
-    };
-
     const isNotOptional = (value) => value === "" && !optional;
 
     const isLengthIncorrect = (value) =>
@@ -125,6 +112,19 @@ const DxcNewInputText = React.forwardRef(
     const closeSuggestions = () => {
       changeIsOpen(false);
       changeVisualFocusedSuggIndex(-1);
+    };
+
+    const changeValue = (newValue) => {
+      value ?? setInnerValue(newValue);
+      const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
+
+      if (isNotOptional(newValue)) onChange?.({ value: changedValue, error: getNotOptionalErrorMessage() });
+      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage(length) });
+      else if (newValue && pattern && !patternMatch(pattern, newValue))
+        onChange?.({ value: changedValue, error: getPatternErrorMessage() });
+      else if (newValue && isNumberIncorrect(newValue))
+        onChange?.({ value: changedValue, error: getNumberErrorMessage(event.target.value) });
+      else onChange?.({ value: changedValue, error: null });
     };
 
     const handleInputContainerOnClick = () => {

@@ -8,14 +8,13 @@ import NewTextareaPropsTable from "./api.jsx";
 import controlled from "./examples/controlledTextarea";
 import uncontrolled from "./examples/uncontrolledTextarea";
 import placeholder from "./examples/placeholderTextarea";
-import helperText from "./examples/helperTextTextarea";
 import optional from "./examples/optionalTextarea";
 import disabled from "./examples/disabledTextarea";
 import pattern from "./examples/patternTextarea";
 import length from "./examples/lengthTextarea";
 import invalid from "./examples/invalidTextarea";
 import fillParent from "./examples/fillParentTextarea";
-import customErrors from "./examples/customErrorTextarea";
+import customErrors from "./examples/customErrorsTextarea";
 import vgManual from "./examples/vgManualTextarea";
 import vgNone from "./examples/vgNoneTextarea";
 import rows from "./examples/rowsTextarea";
@@ -54,11 +53,7 @@ function NewTextarea() {
                 <Example
                   title="Uncontrolled textarea"
                   example={uncontrolled}
-                />{" "}
-                <Example
-                  title="Textarea with helper text"
-                  example={helperText}
-                ></Example>
+                />
                 <Example
                   title="Textarea with placeholder"
                   example={placeholder}

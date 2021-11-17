@@ -52,9 +52,10 @@ const NewTextareaPropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, the textarea will be marked as optional, showing{" "}
+          If true, the textarea will be optional, showing{" "}
           <code>(Optional)</code> next to the label. Otherwise, the field will
-          be considered required and will display an error when not filled in.
+          be considered required and an error will be passed as a parameter to
+          the OnBlur and onChange functions when it has not been filled.
         </td>
       </tr>
       <tr>
@@ -90,7 +91,11 @@ const NewTextareaPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user types within the textarea.
-          The new value will be passed as a parameter.
+          An object including the current value and the error (if the value
+          entered is not valid) will be passed to this function. An example of
+          this object is: {"{ "}
+          <code>value: value, error: error</code>
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
@@ -98,8 +103,9 @@ const NewTextareaPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the textarea loses the focus. An
-          object including the textarea value and the error will be passed to
-          this function. An example of this object is: {"{ "}
+          object including the textarea value and the error (if the value entered
+          is not valid) will be passed to this function. An example of this
+          object is: {"{ "}
           <code>value: value, error: error</code>
           {" }"}. If there is no error, error will be null.
         </td>
@@ -109,8 +115,8 @@ const NewTextareaPropsTable = () => {
         <td></td>
         <td>
           If it is defined, the component will change its appearance, showing
-          the error below the textarea component. If it is not defined, the
-          error messages will be created and managed internally.
+          the error below the textarea. If it is not defined, the error
+          messages will be managed internally, but never displayed on its own.
         </td>
       </tr>
       <tr>
@@ -118,11 +124,12 @@ const NewTextareaPropsTable = () => {
         <td></td>
         <td>
           Regular expression that defines the valid format allowed by the
-          textarea. This will be checked when the textarea loses the focus. If
-          the value entered does not match the pattern, the onBlur function will
-          be called with the value entered and the error informing that the
-          value does not match the pattern as parameters. If the pattern is
-          accomplished, the error parameter will be null.
+          textarea. This will be checked both when the textarea loses the focus
+          and while typing within it. If the string entered does not match the
+          pattern, the onBlur and onChange functions will be called with the
+          current value and an internal error informing that this value does not
+          match the pattern. If the pattern is met, the error parameter of both
+          events will be null.
         </td>
       </tr>
       <tr>
@@ -130,13 +137,14 @@ const NewTextareaPropsTable = () => {
         <td></td>
         <td>
           Specifies the minimun and maximum length allowed by the textarea. It
-          follows this structure: {"{ "}
-          <code>min: minLength, max: maxLength</code>
-          {" }"}. This will be checked when the textarea loses the focus. If the
-          value entered does not comply the length, the onBlur function will be
-          called with the value entered and the error informing that the value
-          does not comply the length as parameters. If the length is
-          accomplished, the error parameter will be null.
+          follows the structure: {"{ "}
+          <code>min: number, max: number</code>
+          {" }"}. This will be checked both when the textarea loses the
+          focus and while typing within it. If the string entered does not
+          comply the length, the onBlur and onChange functions will be called
+          with the current value and an internal error informing that the value
+          length does not comply the specified range. If a valid length is
+          reached, the error parameter of both events will be null.
         </td>
       </tr>
       <tr>

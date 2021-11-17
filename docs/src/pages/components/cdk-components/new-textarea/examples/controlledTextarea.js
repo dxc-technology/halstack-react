@@ -4,7 +4,7 @@ import { useState } from "react";
 const code = `() => {
   const [value, setValue] = useState("");
 
-  const onChange = (value) => {
+  const onChange = ({ value }) => {
     setValue(value);
   };
 
@@ -15,6 +15,7 @@ const code = `() => {
   return (
     <DxcNewTextarea
       label="Controlled"
+      helperText="Helper text"
       value={value}
       onChange={onChange}
       onBlur={onBlur}

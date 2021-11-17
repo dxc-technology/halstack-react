@@ -9,18 +9,30 @@ import styled from "styled-components";
 function App() {
   const ref = useRef(null);
   const [value, setValue] = useState("");
-  const onChange = (value) => {
+  const [error, setError] = useState("");
+  const onChange = ({ value }) => {
     setValue(value);
+  };
+  const onBlur = ({ value, error }) => {
+    setValue(value);
+    error ? setError(error) : setError(null);
   };
 
   const [customValue, setCustomValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const onChangeCustom = (value) => {
+  const onChangeCustom = ({ value }) => {
     setCustomValue(value);
   };
   const onBlurCustom = ({ value, error }) => {
     setCustomValue(value);
-    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
+    error ? setErrorMessage("Custom length error.") : setErrorMessage(null);
+  };
+
+  const [customPatternValue, setCustomPatternValue] = useState("");
+  const [customPatternError, setCustomPatternError] = useState("");
+  const onChangeCustomPattern = ({ value, error }) => {
+    setCustomPatternValue(value);
+    error ? setCustomPatternError("Custom pattern error.") : setCustomPatternError(null);
   };
 
   const [disabledInput, setDisabledInput] = useState(false);
@@ -80,6 +92,8 @@ function App() {
           placeholder="Enter your text here..."
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
+          error={error}
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
@@ -112,6 +126,19 @@ function App() {
           onChange={onChangeCustom}
           onBlur={onBlurCustom}
           length={{ min: 5, max: 10 }}
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcNewTextarea
+          label="Custom pattern error"
+          helperText="The value should have at least one letter, one number and one special
+          character"
+          placeholder="Enter your text here..."
+          value={customPatternValue}
+          error={customPatternError}
+          onChange={onChangeCustomPattern}
+          pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           margin={{ left: "medium", right: "medium" }}
         />
       </p>

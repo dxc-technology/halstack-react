@@ -3,13 +3,15 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
+  const [error, setError] = useState("");
 
   const onChange = ({ value }) => {
     setValue(value);
   };
 
-  const onBlur = ({ value }) => {
+  const onBlur = ({ value, error }) => {
     setValue(value);
+    setError(error);
   };
 
   return (
@@ -19,6 +21,7 @@ const code = `() => {
       clearable
       onChange={onChange}
       onBlur={onBlur}
+      error={error}
       length={{ min: 5, max: 10 }}
       margin="medium"
     />
