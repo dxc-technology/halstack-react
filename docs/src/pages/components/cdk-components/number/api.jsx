@@ -53,7 +53,8 @@ const NumberPropsTable = () => {
         <td>
           If true, the number will be optional, showing <code>(Optional)</code>{" "}
           next to the label. Otherwise, the field will be considered required
-          and will display an error when not filled in.
+          and an error will be passed as a parameter to the OnBlur and onChange
+          functions when it has not been filled.
         </td>
       </tr>
       <tr>
@@ -70,11 +71,11 @@ const NumberPropsTable = () => {
         <td>min: number</td>
         <td></td>
         <td>
-          Minimum value allowed by the number. If the typed value by the user
-          is lower than min, the onBlur and onChange functions will be called with
+          Minimum value allowed by the number. If the typed value by the user is
+          lower than min, the onBlur and onChange functions will be called with
           the current value and an internal error informing that the current
-          value is not correct. If a valid state is reached, the error
-          parameter will be null in both events.
+          value is not correct. If a valid state is reached, the error parameter
+          will be null in both events.
         </td>
       </tr>
       <tr>
@@ -84,8 +85,8 @@ const NumberPropsTable = () => {
           Maximum value allowed by the number. If the typed value by the user
           surpasses max, the onBlur and onChange functions will be called with
           the current value and an internal error informing that the current
-          value is not correct. If a valid state is reached, the error
-          parameter will be null in both events.
+          value is not correct. If a valid state is reached, the error parameter
+          will be null in both events.
         </td>
       </tr>
       <tr>

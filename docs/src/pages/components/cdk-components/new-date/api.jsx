@@ -76,7 +76,8 @@ const NewDatePropsTable = () => {
         <td>
           If true, the date will be optional, showing <code>(Optional)</code>{" "}
           next to the label. Otherwise, the field will be considered required
-          and will display an error when not filled in.
+          and an error will be passed as a parameter to the OnBlur and onChange
+          functions when it has not been filled.
         </td>
       </tr>
       <tr>

@@ -6,7 +6,6 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type VerticalGrow = "auto" | "manual" | "none";
 
 type Props = {
   /**
@@ -43,17 +42,18 @@ type Props = {
    *    - 'manual': The height of the textarea is enabled to be manually modified.
    *    - 'none': The textarea has a fixed height and can't be modified.
    */
-  verticalGrow?: VerticalGrow;
+  verticalGrow?: "auto" | "manual" | "none";
   /**
    * Number of rows of the textarea.
    */
   rows?: number;
   /**
-   * This function will be called when the user types within the textarea. The new value will be passed as a parameter.
+   * This function will be called when the user types within the input element of the component. An object including the value and the error
+   * (if the value entered is not valid) will be passed to this function. If there is no error, error will be null.
    */
-  onChange?: (value: string) => void;
+  onChange?: (val: { value: string; error: string }) => void;
   /**
-   * This function will be called when the textarea loses the focus. An object including the textarea value and the error will be passed to this function. 
+   * This function will be called when the textarea loses the focus. An object including the textarea value and the error will be passed to this function.
    * If there is no error, error will be null.
    */
   onBlur?: (val: { value: string; error: string }) => void;
@@ -62,25 +62,25 @@ type Props = {
    */
   error?: string;
   /**
-   * Regular expression that defines the valid format allowed by the textarea. This will be checked when the textarea loses the focus. 
-   * If the value entered does not match the pattern, the onBlur function will be called with the value entered and the error informing that the value does not match the pattern as parameters. 
+   * Regular expression that defines the valid format allowed by the textarea. This will be checked when the textarea loses the focus.
+   * If the value entered does not match the pattern, the onBlur function will be called with the value entered and the error informing that the value does not match the pattern as parameters.
    * If the pattern is accomplished, the error parameter will be null.
    */
   pattern?: string;
   /**
-   * Specifies the minimun and maximum length allowed by the textarea. It follows this structure: { min: minLength, max: maxLength }. 
-   * This will be checked when the textarea loses the focus. If the value entered does not comply the length, 
-   * the onBlur function will be called with the value entered and the error informing that the value does not comply the length as parameters. 
+   * Specifies the minimun and maximum length allowed by the textarea. It follows this structure: { min: minLength, max: maxLength }.
+   * This will be checked when the textarea loses the focus. If the value entered does not comply the length,
+   * the onBlur function will be called with the value entered and the error informing that the value does not comply the length as parameters.
    * If the length is accomplished, the error parameter will be null.
    */
   length?: { min: number; max: number };
   /**
-   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the textarea value. 
+   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the textarea value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
    */
   autocomplete?: string;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
