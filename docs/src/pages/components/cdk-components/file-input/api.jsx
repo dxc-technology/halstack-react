@@ -38,7 +38,7 @@ const fileInputPropsTable = () => {
             all the possible values of the HTML file input's accept attribute.
             Please check the documentation{" "}
             <DxcLink
-              href="https://developer.mozilla.org/es/docs/Web/HTML/Attributes/accept"
+              href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept"
               text="here"
             ></DxcLink>
             .

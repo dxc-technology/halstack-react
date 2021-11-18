@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
@@ -51,7 +50,6 @@ const DxcFileInput = ({
   const colorsTheme = useTheme();
 
   const fileInputId = `file-input-${uuidv4()}`;
-  const labelFileInputId = `label-${fileInputId}`;
 
   useEffect(() => {
     if (value) {
@@ -172,7 +170,7 @@ const DxcFileInput = ({
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <FileInputContainer margin={margin} name={name} tabIndex={tabIndex}>
-        <Label for={labelFileInputId} disabled={disabled}>
+        <Label htmlFor={fileInputId} disabled={disabled}>
           {label}
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
@@ -187,7 +185,13 @@ const DxcFileInput = ({
                 size="medium"
                 tabIndex={tabIndex}
               />
-              <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+              <input
+                id={fileInputId}
+                type="file"
+                accept={accept}
+                multiple={multiple}
+                onChange={selectFiles}
+              />
               {files.length === 1 &&
                 files.map((file) => {
                   return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
@@ -232,7 +236,13 @@ const DxcFileInput = ({
                   disabled={disabled}
                   size="fitContent"
                 />
-                <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+                <input
+                  id={fileInputId}
+                  type="file"
+                  accept={accept}
+                  multiple={multiple}
+                  onChange={selectFiles}
+                />
               </ButtonContainer>
               <DropLabel disabled={disabled}>or drop files</DropLabel>
             </DragDropArea>
@@ -272,6 +282,7 @@ const FileInputContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  width: fit-content;
 `;
 
 const Label = styled.label`
@@ -297,8 +308,9 @@ const DragDropArea = styled.div`
   flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
   align-items: center;
   border-radius: ${(props) => props.theme.dropBorderRadius};
+  border-width: ${(props) => (!props.isDragging ? props.theme.dropBorderThickness : "2px")};
+  border-style: ${(props) => (!props.isDragging ? props.theme.dropBorderStyle : "solid")};
   background-color: ${(props) => props.isDragging && props.theme.focusDropBackgroundColor};
-  border: ${(props) => (!props.isDragging ? props.theme.dropBorder : "solid 2px")};
   border-color: ${(props) =>
     props.disabled
       ? props.theme.disabledDropBorderColor

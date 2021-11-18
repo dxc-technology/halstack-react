@@ -318,7 +318,6 @@
   "fileInput": {
     "dropBorderColor": "#000000",
     "fileItemBorderColor": "#cccccc",
-    "fileItemIconColor": "#000000",
     "fileNameFontColor": "#000000",
     "labelFontColor": "#000000",
     "helperTextFontColor": "#000000",
@@ -333,6 +332,10 @@
     "activeFileItemIconBackgrounColor": "#cccccc",
     "errorFileItemBorderColor": "#d0011b",
     "errorFileItemBackgroundColor": "#ffccd3",
+    "errorFileItemIconBackgroundColor": "#ffccd3",
+    "errorFileItemIconColor":"#d0011b",
+    "fileItemIconBackgroundColor": "#f2f2f2",
+    "fileItemIconColor": "#808080",
     "errorMessageFontColor": "#d0011b",
     "labelFontFamily": "Open Sans, sans-serif",
     "labelFontSize": "0.875rem",
@@ -353,9 +356,11 @@
     "errorMessageFontSize": "0.75rem",
     "errorMessageFontWeight": "400",
     "errorMessageLineHeight": "1.5rem",
-    "dropBorder": "dashed 1px",
+    "dropBorderThickness": "1px",
+    "dropBorderStyle": "dashed",
     "dropBorderRadius": "6px",
-    "fileItemBorder": "solid 1px",
+    "fileItemBorderThickness": "1px",
+    "fileItemBorderStyle": "solid",
     "fileItemBorderRadius": "4px"
   },
   "footer": {
