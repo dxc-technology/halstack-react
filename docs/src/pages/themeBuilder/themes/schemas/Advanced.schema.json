@@ -335,7 +335,7 @@
     "errorFileItemIconBackgroundColor": "color",
     "errorFileItemIconColor":"color",
     "fileItemIconBackgroundColor": "color",
-    "fileItemIconColor": "#color",
+    "fileItemIconColor": "color",
     "errorMessageFontColor": "color",
     "labelFontFamily": "fFamily",
     "labelFontSize": "length",
