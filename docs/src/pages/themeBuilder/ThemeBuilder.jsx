@@ -50,7 +50,7 @@ const ThemeBuilder = () => {
         <Header></Header>
       </DxcApplicationLayout.Header>
       <DxcApplicationLayout.SideNav mode="push" padding="small">
-      <DxcSidenav.Title>Global theme actions</DxcSidenav.Title>
+        <DxcSidenav.Title>Global theme actions</DxcSidenav.Title>
         <ButtonsContainer>
           <DxcButton
             mode="text"
@@ -137,6 +137,7 @@ const ComponentLink = styled.p`
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 16px;
 `;
 
 export default ThemeBuilder;
