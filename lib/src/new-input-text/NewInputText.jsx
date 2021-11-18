@@ -123,7 +123,7 @@ const DxcNewInputText = React.forwardRef(
       else if (newValue && pattern && !patternMatch(pattern, newValue))
         onChange?.({ value: changedValue, error: getPatternErrorMessage() });
       else if (newValue && isNumberIncorrect(newValue))
-        onChange?.({ value: changedValue, error: getNumberErrorMessage(event.target.value) });
+        onChange?.({ value: changedValue, error: getNumberErrorMessage(newValue) });
       else onChange?.({ value: changedValue, error: null });
     };
 

@@ -50,8 +50,8 @@ const DxcNewDate = React.forwardRef(
     };
 
     const handleCalendarOnClick = (newDate) => {
-      value ?? setInnerValue(newValue);
       const newValue = moment(newDate).format(format.toUpperCase());
+      value ?? setInnerValue(newValue);
 
       onChange?.({
         value: newValue,
