@@ -188,7 +188,6 @@ const DxcFileInput = ({
               <input
                 id={fileInputId}
                 type="file"
-                data-testid="input-file"
                 accept={accept}
                 multiple={multiple}
                 onChange={selectFiles}
@@ -240,7 +239,6 @@ const DxcFileInput = ({
                 <input
                   id={fileInputId}
                   type="file"
-                  data-testid="input-file"
                   accept={accept}
                   multiple={multiple}
                   onChange={selectFiles}
