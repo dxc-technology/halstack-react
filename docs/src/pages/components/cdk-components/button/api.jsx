@@ -14,7 +14,7 @@ const buttonPropsTable = () => {
         <td>
           <code>'primary'</code>
         </td>
-        <td>Uses on of the available button modes.</td>
+        <td>Uses one of the available button modes.</td>
       </tr>
       <tr>
         <td>type: 'button' | 'reset' | 'submit'</td>
@@ -88,9 +88,7 @@ const buttonPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex.
-        </td>
+        <td>Value of the tabindex.</td>
       </tr>
     </DxcTable>
   );

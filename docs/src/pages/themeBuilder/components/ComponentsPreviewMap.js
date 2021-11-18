@@ -30,6 +30,7 @@ import UploadPreview from "./previews/Upload";
 import CardPreview from "./previews/Card";
 import NewDatePreview from "./previews/NewDate";
 import NewInputTextPreview from "./previews/NewInputText";
+import FileInputPreview from "./previews/FileInput";
 import NewTextareaPreview from "./previews/NewTextarea";
 
 const SampleComponents = [
@@ -72,6 +73,10 @@ const SampleComponents = [
   {
     name: "dropdown",
     preview: DropdownPreview,
+  },
+  {
+    name: "fileInput",
+    preview: FileInputPreview,
   },
   {
     name: "footer",
