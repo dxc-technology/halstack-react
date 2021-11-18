@@ -50,7 +50,6 @@ const DxcFileInput = ({
   const colorsTheme = useTheme();
 
   const fileInputId = `file-input-${uuidv4()}`;
-  const labelFileInputId = `label-${fileInputId}`;
 
   useEffect(() => {
     if (value) {
@@ -171,7 +170,7 @@ const DxcFileInput = ({
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <FileInputContainer margin={margin} name={name} tabIndex={tabIndex}>
-        <Label htmlFor={labelFileInputId} disabled={disabled}>
+        <Label htmlFor={fileInputId} disabled={disabled}>
           {label}
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
