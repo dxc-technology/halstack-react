@@ -267,8 +267,6 @@ const DxcNewInputText = React.forwardRef(
           numberContext.maxNumber,
           numberContext.stepNumber
         );
-
-      inputRef?.current?.addEventListener("wheel", (event) => event.preventDefault());
     }, [value, innerValue, suggestions]);
 
     const defaultClearAction = {
