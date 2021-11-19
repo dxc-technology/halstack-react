@@ -115,7 +115,7 @@ const fileInputPropsTable = () => {
           <td>
             This function will be called when the user selects or drops a file.
             The list of files will be sent as a parameter. In this function, the
-            files can be updated or returned as they come. This files must be
+            files can be updated or returned as they come. These files must be
             passed to the value in order to be shown.
           </td>
         </tr>

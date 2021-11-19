@@ -185,13 +185,7 @@ const DxcFileInput = ({
                 size="medium"
                 tabIndex={tabIndex}
               />
-              <input
-                id={fileInputId}
-                type="file"
-                accept={accept}
-                multiple={multiple}
-                onChange={selectFiles}
-              />
+              <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
               {files.length === 1 &&
                 files.map((file) => {
                   return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
@@ -236,13 +230,7 @@ const DxcFileInput = ({
                   disabled={disabled}
                   size="fitContent"
                 />
-                <input
-                  id={fileInputId}
-                  type="file"
-                  accept={accept}
-                  multiple={multiple}
-                  onChange={selectFiles}
-                />
+                <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
               </ButtonContainer>
               <DropLabel disabled={disabled}>or drop files</DropLabel>
             </DragDropArea>
@@ -383,7 +371,6 @@ DxcFileInput.propTypes = {
   multiple: PropTypes.bool,
   showPreview: PropTypes.bool,
   disabled: PropTypes.bool,
-  error: PropTypes.string,
   callbackFile: PropTypes.func,
   value: PropTypes.array,
   tabIndex: PropTypes.number,
