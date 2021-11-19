@@ -76,8 +76,9 @@ const newInputPropsTable = () => {
         </td>
         <td>
           If true, the input will be optional, showing <code>(Optional)</code>{" "}
-          next to the label. Otherwise, the field will be considered required
-          and will display an error when not filled in.
+          next to the label. Otherwise, the field will be considered required and an error will be
+          passed as a parameter to the OnBlur and onChange functions when it has
+          not been filled.
         </td>
       </tr>
       <tr>
@@ -94,17 +95,22 @@ const newInputPropsTable = () => {
         <td>onChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user types within the input. The
-          new value will be passed as a parameter.
+          This function will be called when the user types within the input
+          element of the component. An object including the current value and
+          the error (if the value entered is not valid) will be passed to this
+          function. An example of this object is: {"{ "}
+          <code>value: value, error: error</code>
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
         <td>onBlur: function</td>
         <td></td>
         <td>
-          This function will be called when the input loses the focus. An object
-          including the input value and the error will be passed to this
-          function. An example of this object is: {"{ "}
+          This function will be called when the input element loses the focus.
+          An object including the input value and the error (if the value
+          entered is not valid) will be passed to this function. An example of
+          this object is: {"{ "}
           <code>value: value, error: error</code>
           {" }"}. If there is no error, error will be null.
         </td>
@@ -115,7 +121,7 @@ const newInputPropsTable = () => {
         <td>
           If it is defined, the component will change its appearance, showing
           the error below the input component. If it is not defined, the error
-          messages will be created and managed internally.
+          messages will be managed internally, but never displayed on its own.
         </td>
       </tr>
       <tr>
@@ -143,11 +149,12 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           Regular expression that defines the valid format allowed by the input.
-          This will be checked when the input loses the focus. If the value
-          entered does not match the pattern, the onBlur function will be called
-          with the value entered and the error informing that the value does not
-          match the pattern as parameters. If the pattern is accomplished, the
-          error parameter will be null.
+          This will be checked both when the input element loses the focus and
+          while typing within it. If the string entered does not match the
+          pattern, the onBlur and onChange functions will be called with the
+          current value and an internal error informing that this value does not
+          match the pattern. If the pattern is met, the error parameter of both
+          events will be null.
         </td>
       </tr>
       <tr>
@@ -155,13 +162,14 @@ const newInputPropsTable = () => {
         <td></td>
         <td>
           Specifies the minimun and maximum length allowed by the input. It
-          follows this structure: {"{ "}
-          <code>min: minLength, max: maxLength</code>
-          {" }"}. This will be checked when the input loses the focus. If the
-          value entered does not comply the length, the onBlur function will be
-          called with the value entered and the error informing that the value
-          does not comply the length as parameters. If the length is
-          accomplished, the error parameter will be null.
+          follows the structure: {"{ "}
+          <code>min: number, max: number</code>
+          {" }"}. This will be checked both when the input element loses the
+          focus and while typing within it. If the string entered does not
+          comply the length, the onBlur and onChange functions will be called
+          with the current value and an internal error informing that the value
+          length does not comply the specified range. If a valid length is
+          reached, the error parameter of both events will be null.
         </td>
       </tr>
       <tr>

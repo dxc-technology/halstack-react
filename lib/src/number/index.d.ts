@@ -32,7 +32,10 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * If true, the number will be optional, showing (Optional) next to the label.
+   * If true, the number will be optional, showing '(Optional)'
+   * next to the label. Otherwise, the field will be considered required
+   * and an error will be passed as a parameter to the OnBlur and onChange
+   * functions when it has not been filled.
    */
   optional?: boolean;
   /**
@@ -44,11 +47,19 @@ type Props = {
    */
   suffix?: string;
   /**
-   * Minimum value allowed by the number.
+   * Minimum value allowed by the number. If the typed value by the user is
+   * lower than min, the onBlur and onChange functions will be called with
+   * the current value and an internal error informing that the current
+   * value is not correct. If a valid state is reached, the error parameter
+   * will be null in both events.
    */
   min?: number;
   /**
-   * Maximum value allowed by the number.
+   * Maximum value allowed by the number. If the typed value by the user
+   * surpasses max, the onBlur and onChange functions will be called with
+   * the current value and an internal error informing that the current
+   * value is not correct. If a valid state is reached, the error parameter
+   * will be null in both events.
    */
   max?: number;
   /**
@@ -56,16 +67,23 @@ type Props = {
    */
   step?: number;
   /**
-   * This function will be called when the user types within the input element of the component. The new value will be passed as a parameter.
+   * This function will be called when the user types within the input
+   * element of the component. An object including the current value and
+   * the error (if the value entered is not valid) will be passed to this
+   * function. If there is no error, error will be null.
    */
-  onChange?: (value: string) => void;
+  onChange?: (val: { value: string; error: string }) => void;
   /**
-   * This function will be called when the input element loses the focus. An object including the value and the error (if the value entered is not valid) 
-   * will be passed to this function. If there is no error, error will be null.
+   * This function will be called when the input element loses the focus.
+   * An object including the input value and the error (if the value
+   * entered is not valid) will be passed to this function. If there is no error, 
+   * error will be null.
    */
   onBlur?: (val: { value: string; error: string }) => void;
   /**
-   * If it is defined, the component will change its appearance, showing the error below the number component. If it is not defined, the error messages will be created and managed internally.
+   * If it is defined, the component will change its appearance, showing
+   * the error below the input component. If it is not defined, the error
+   * messages will be managed internally, but never displayed on its own.
    */
   error?: string;
   /**

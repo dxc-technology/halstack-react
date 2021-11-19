@@ -12,9 +12,9 @@ const getNotOptionalErrorMessage = () => `This field is required. Please, enter 
 
 const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
 
-const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
-
 const getPatternErrorMessage = () => `Please match the format requested.`;
+
+const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
 const DxcNewTextarea = React.forwardRef(
   (
@@ -41,7 +41,6 @@ const DxcNewTextarea = React.forwardRef(
     ref
   ) => {
     const [innerValue, setInnerValue] = useState("");
-    const [validationError, changeValidationError] = useState("");
 
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
@@ -50,30 +49,29 @@ const DxcNewTextarea = React.forwardRef(
     const textareaId = `textarea-${uuidv4()}`;
     const errorId = `error-message-${textareaId}`;
 
-    const changeValue = (newValue) => {
-      value ?? setInnerValue(newValue);
-      typeof onChange === "function" && onChange(newValue);
-    };
-
-    const notOptionalCheck = (value) => value === "" && !optional;
+    const isNotOptional = (value) => value === "" && !optional;
 
     const isLengthIncorrect = (value) =>
       value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
 
+    const changeValue = (newValue) => {
+      value ?? setInnerValue(newValue);
+
+      if (isNotOptional(newValue)) onChange?.({ value: newValue, error: getNotOptionalErrorMessage() });
+      else if (isLengthIncorrect(newValue)) onChange?.({ value: newValue, error: getLengthErrorMessage(length) });
+      else if (newValue && pattern && !patternMatch(pattern, newValue))
+        onChange?.({ value: newValue, error: getPatternErrorMessage() });
+      else onChange?.({ value: newValue, error: null });
+    };
+
     const handleTOnBlur = (event) => {
-      if (notOptionalCheck(event.target.value)) {
-        changeValidationError(getNotOptionalErrorMessage());
+      if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
-      } else if (isLengthIncorrect(event.target.value)) {
-        changeValidationError(getLengthErrorMessage(length, event));
+      else if (isLengthIncorrect(event.target.value))
         onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
-      } else if (event.target.value && pattern && !patternMatch(pattern, event.target.value)) {
-        changeValidationError(getPatternErrorMessage());
+      else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
-      } else {
-        changeValidationError("");
-        onBlur?.({ value: event.target.value, error: null });
-      }
+      else onBlur?.({ value: event.target.value, error: null });
     };
 
     const handleTOnChange = (event) => {
@@ -109,18 +107,20 @@ const DxcNewTextarea = React.forwardRef(
             onChange={handleTOnChange}
             onBlur={handleTOnBlur}
             disabled={disabled}
-            error={error || validationError}
+            error={error}
+            minLength={length?.min}
+            maxLength={length?.max}
             autoComplete={autocomplete}
             backgroundType={backgroundType}
             ref={textareaRef}
             tabIndex={tabIndex}
-            aria-invalid={error || validationError ? "true" : "false"}
-            aria-describedby={error || validationError ? errorId : undefined}
+            aria-invalid={error ? "true" : "false"}
+            aria-describedby={error ? errorId : undefined}
             aria-required={optional ? "false" : "true"}
           />
           {!disabled && (
             <Error id={errorId} backgroundType={backgroundType}>
-              {error || validationError}
+              {error}
             </Error>
           )}
         </DxcTextarea>

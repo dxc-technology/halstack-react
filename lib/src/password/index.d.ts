@@ -29,37 +29,51 @@ type Props = {
    */
   clearable?: boolean;
   /**
-   * This function will be called when the user types within the input element of the component. The new value will be passed as a parameter.
-   */
-  onChange?: (value: string) => void;
+   * This function will be called when the user types within the input
+   * element of the component. An object including the current value and
+   * the error (if the value entered is not valid) will be passed to this
+   * function. If there is no error, error will be null.
+   * */
+  onChange?: (val: { value: string; error: string }) => void;
   /**
-   * This function will be called when the input element loses the focus. An object including the value and the error (if the value entered is not valid) will be passed to this function. 
-   * If there is no error, error will be null.
+   * This function will be called when the input element loses the focus.
+   * An object including the input value and the error (if the value entered is
+   * not valid) will be passed to this function. If there is no error, error will be null.
    */
   onBlur?: (val: { value: string; error: string }) => void;
   /**
-   * If it is defined, the component will change its appearance, showing the error below the password component. If it is not defined, the error messages will be created and managed internally.
+   * If it is defined, the component will change its appearance, showing
+   * the error below the password component. If it is not defined, the
+   * error messages will be managed internally, but never displayed on its own.
    */
   error?: string;
   /**
-   * Regular expression that defines the valid format allowed by the password. This will be checked when the input element loses the focus. 
-   * If the value entered does not match the pattern, the onBlur function will be called with the value entered and the error informing that the value does not match the pattern as parameters. 
-   * If the pattern is accomplished, the error parameter will be null.
+   * Regular expression that defines the valid format allowed by the
+   * password. This will be checked both when the input element loses the
+   * focus and while typing within it. If the string entered does not match
+   * the pattern, the onBlur and onChange functions will be called with the
+   * current value and an internal error informing that this value does not
+   * match the pattern. If the pattern is met, the error parameter of both
+   * events will be null.
    */
   pattern?: string;
   /**
-   * Specifies the minimun and maximum length allowed by the password. This will be checked when the password loses the focus. If the value entered does not comply the length, 
-   * the onBlur function will be called with the value entered and the error informing that the value does not comply the length as parameters. 
-   * If the length is accomplished, the error parameter will be null.
+   * Specifies the minimun and maximum length allowed by the password.
+   * This will be checked both when the input element loses the
+   * focus and while typing within it. If the string entered does not
+   * comply the length, the onBlur and onChange functions will be called
+   * with the current value and an internal error informing that the value
+   * length does not comply the specified range. If a valid length is
+   * reached, the error parameter of both events will be null.
    */
   length?: { min?: number; max?: number };
   /**
-   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value. 
+   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
    */
   autocomplete?: string;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;

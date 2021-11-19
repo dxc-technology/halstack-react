@@ -13,7 +13,6 @@ import prefix from "./examples/prefixNumber";
 import suffix from "./examples/suffixNumber";
 import optional from "./examples/optionalNumber";
 import disabled from "./examples/disabledNumber";
-import helperText from "./examples/helperTextNumber";
 import placeholder from "./examples/placeholderNumber";
 import fillParent from "./examples/fillParentNumber";
 import minMaxStep from "./examples/minMaxStepNumber";
@@ -48,12 +47,8 @@ function Number() {
                   text="Examples"
                   margin={{ bottom: "small" }}
                 />
-                <Example title="Controlled Number" example={controlled} />
-                <Example title="Uncontrolled Number" example={uncontrolled} />
-                <Example
-                  title="Number with helper text"
-                  example={helperText}
-                ></Example>
+                <Example title="Controlled number" example={controlled} />
+                <Example title="Uncontrolled number" example={uncontrolled} />
                 <Example
                   title="Number with placeholder"
                   example={placeholder}

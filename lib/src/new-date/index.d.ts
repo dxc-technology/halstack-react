@@ -41,22 +41,31 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * If true, the date will be optional, showing (Optional) next to the label.
+   * If true, the date will be optional, showing '(Optional)'
+   * next to the label. Otherwise, the field will be considered required and an error will be
+   * passed as a parameter to the OnBlur and onChange functions when it has
+   * not been filled.
    */
   optional?: boolean;
-  /**
-   * This function will be called when the user types within the input element of the component.
-   * An object including the current string value and the date value will be passed to this function.
-   * If the string value is not a valid date, date will be null.
+  /**          
+   * This function will be called when the user types within the input
+   * element of the component. An object including the string value, the
+   * error and the date value will be passed to this function.
+   * If the string value is a valid date, error will
+   * be null. Also, if the string value is not a valid date, date will be null.
    */
-  onChange?: (value: string) => void;
-  /**
-   * This function will be called when the input element loses the focus. An object including the string value, the error and the date value will be passed to this function.
-   * If the string value is a valid date, error will be null. Also, if the string value is not a valid date, date will be null.
+  onChange?: (val: { value: string; error: string; date: Date }) => void;
+  /**          
+   * This function will be called when the input element loses the focus.
+   * An object including the string value, the error and the date value
+   * will be passed to this function. If the string value is a valid date, error will
+   * be null. Also, if the string value is not a valid date, date will be null.
    */
-  onBlur?: (val: { value: string; error: string }) => void;
+  onBlur?: (val: { value: string; error: string; date: Date }) => void;
   /**
-   * If it is defined, the component will change its appearance, showing the error below the date component. If it is not defined, the error messages will be created and managed internally.
+   * If it is defined, the component will change its appearance, showing
+   * the error below the date component. If it is not defined, the error
+   * messages will be managed internally, but never displayed on its own.
    */
   error?: string;
   /**

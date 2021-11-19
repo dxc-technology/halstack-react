@@ -38,8 +38,9 @@ function App() {
   const [suggestionsValue, setSuggestionsValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = (value) => {
+  const onChange = ({ value, error }) => {
     setValue(value);
+    console.log(error);
   };
 
   const onBlur = ({ value, error }) => {
@@ -47,7 +48,7 @@ function App() {
     error ? setErrorMessage("Custom error.") : setErrorMessage(null);
   };
 
-  const onChangeSuggestions = (value) => {
+  const onChangeSuggestions = ({ value }) => {
     setSuggestionsValue(value);
   };
 
@@ -114,6 +115,7 @@ function App() {
           onChange={onChange}
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
+          clearable
         />
       </p>
       <p>

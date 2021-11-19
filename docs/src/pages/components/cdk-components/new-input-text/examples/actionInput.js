@@ -2,16 +2,6 @@ import { DxcNewInputText } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const [value, setValue] = useState("");
-
-  const onChange = (value) => {
-    setValue(value);
-  };
-
-  const onBlur = ({ value }) => {
-    setValue(value);
-  };
-
   const actionImg = {
     onClick: () => {
       console.log("Searching...");
@@ -40,22 +30,16 @@ const code = `() => {
   return (
     <div style={{ display: "flex" }}>
       <DxcNewInputText
+        action={actionSvg}
         label="Using a SVG"
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
         clearable
         margin="medium"
-        action={actionSvg}
       />
       <DxcNewInputText
+        action={actionImg}
         label="Using a URL"
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
         clearable
         margin="medium"
-        action={actionImg}
       />
     </div>
   );
