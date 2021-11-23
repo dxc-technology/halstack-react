@@ -23,6 +23,8 @@ const code = `() => {
 
   return (
     <DxcToggleGroup
+      label="Toggle group"
+      helperText="Please select one"
       options={options}
       onChange={onChange}
       value={value}
@@ -33,7 +35,7 @@ const code = `() => {
 
 const scope = {
   DxcToggleGroup,
-  useState
+  useState,
 };
 
 export default { code, scope };

@@ -17,6 +17,7 @@ const code = `() => {
   const optionsWithIcons = [
     {
       value: 1,
+      label: "Facebook",
       icon: favoriteSVG
     },
     {

@@ -10,6 +10,16 @@ const toggleGroupPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>label: string</td>
+        <td></td>
+        <td>Text to be placed above the component.</td>
+      </tr>
+      <tr>
+        <td>helperText: string</td>
+        <td></td>
+        <td>Helper text to be placed above the component.</td>
+      </tr>
+      <tr>
         <td>value: any | any[]</td>
         <td></td>
         <td>
@@ -87,9 +97,7 @@ const toggleGroupPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex.
-        </td>
+        <td>Value of the tabindex.</td>
       </tr>
     </DxcTable>
   );

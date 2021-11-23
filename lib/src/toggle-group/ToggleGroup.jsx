@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
-
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
 const DxcToggleGroup = ({
+  label,
+  helperText,
   value,
   onChange,
   disabled = false,
@@ -17,9 +19,11 @@ const DxcToggleGroup = ({
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
 
+  const toggleGroupId = `file-input-${uuidv4()}`;
+
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
-    
+
     if (value == null) {
       if (multiple) {
         newSelectedOptions = selectedValue.map((value) => value);
@@ -51,45 +55,72 @@ const DxcToggleGroup = ({
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
       <ToggleGroup margin={margin} disabled={disabled}>
-        {options.map((option, i) => (
-          <ToggleContainer
-            selected={
-              multiple
-                ? value
-                  ? value.includes(option.value)
-                  : selectedValue.includes(option.value)
-                : value
-                ? option.value === value
-                : option.value === selectedValue
-            }
-            tabIndex={!disabled ? tabIndex : -1}
-            onClick={() => !disabled && handleToggleChange(option.value)}
-            isFirst={i === 0}
-            isLast={i === options.length - 1}
-            isIcon={option.iconSrc || option.icon}
-            disabled={disabled}
-            onKeyPress={(event) => {
-              handleKeyPress(event, option.value);
-            }}
-            key={`toggle-${i}-${option.label}`}
-          >
-            {option.icon ? (
-              <IconContainer>
-                {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
-              </IconContainer>
-            ) : option.iconSrc ? (
-              <Icon src={option.iconSrc}></Icon>
-            ) : (
-              <LabelContainer disabled={disabled}>{option.label}</LabelContainer>
-            )}
-          </ToggleContainer>
-        ))}
+        <Label htmlFor={toggleGroupId} disabled={disabled}>
+          {label}
+        </Label>
+        <HelperText disabled={disabled}>{helperText}</HelperText>
+        <OptionsContainer id={toggleGroupId}>
+          {options.map((option, i) => (
+            <ToggleContainer
+              selected={
+                multiple
+                  ? value
+                    ? value.includes(option.value)
+                    : selectedValue.includes(option.value)
+                  : value
+                  ? option.value === value
+                  : option.value === selectedValue
+              }
+              tabIndex={!disabled ? tabIndex : -1}
+              onClick={() => !disabled && handleToggleChange(option.value)}
+              isFirst={i === 0}
+              isLast={i === options.length - 1}
+              isIcon={option.iconSrc || option.icon}
+              optionLabel={option.label}
+              disabled={disabled}
+              onKeyPress={(event) => {
+                handleKeyPress(event, option.value);
+              }}
+              key={`toggle-${i}-${option.label}`}
+            >
+              <OptionContent>
+                {option.icon && (
+                  <IconContainer optionLabel={option.label}>
+                    {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+                  </IconContainer>
+                )}
+                {option.iconSrc && <Icon src={option.iconSrc} optionLabel={option.label} />}
+                {option.label && <LabelContainer>{option.label}</LabelContainer>}
+              </OptionContent>
+            </ToggleContainer>
+          ))}
+        </OptionsContainer>
       </ToggleGroup>
     </ThemeProvider>
   );
 };
 
+const Label = styled.label`
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
+  font-family: ${(props) => props.theme.labelFontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => props.theme.labelFontStyle};
+  font-weight: ${(props) => props.theme.labelFontWeight};
+  line-height: ${(props) => props.theme.labelLineHeight};
+`;
+
+const HelperText = styled.span`
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontcolor : props.theme.helperTextFontColor)};
+  font-family: ${(props) => props.theme.helperTextFontFamily};
+  font-size: ${(props) => props.theme.helperTextFontSize};
+  font-style: ${(props) => props.theme.helperTextFontStyle};
+  font-weight: ${(props) => props.theme.helperTextFontWeight};
+  line-height: ${(props) => props.theme.helperTextLineHeight};
+`;
+
 const ToggleGroup = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -99,17 +130,28 @@ const ToggleGroup = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+  width: fit-content;
+`;
 
+const OptionsContainer = styled.div`
   display: flex;
   flex-direction: row;
   opacity: 1;
-  min-height: 40px;
+  height: calc(48px - 4px - 4px);
+  border-width: ${(props) => props.theme.containerBorderThickness};
+  border-style: ${(props) => props.theme.containerBorderStyle};
+  border-radius: ${(props) => props.theme.containerBorderRadius};
+  border-color: ${(props) => props.theme.containerBorderColor};
+  background-color: ${(props) => props.theme.containerBackgroundColor};
+  padding: 4px;
+  margin-top: ${(props) => props.theme.containerMarginTop};
 `;
 
 const ToggleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: ${(props) => !props.isLast && "4px"};
 
   ${(props) => `
     background-color: ${
@@ -121,14 +163,19 @@ const ToggleContainer = styled.div`
         ? props.theme.unselectedDisabledBackgroundColor
         : props.theme.unselectedBackgroundColor
     };
-    border-radius: ${props.isFirst ? "4px 0 0 4px" : props.isLast ? "0 4px 4px 0" : "0"};
-    color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
-    padding: ${
-      props.isIcon
-        ? `${props.theme.iconPaddingTop} ${props.theme.iconPaddingRight} ${props.theme.iconPaddingBottom} ${props.theme.iconPaddingLeft}`
-        : `${props.theme.labelPaddingTop} ${props.theme.labelPaddingRight} ${props.theme.labelPaddingBottom} ${props.theme.labelPaddingLeft}`
+    border-width: ${props.theme.optionBorderThickness};
+    border-style: ${props.theme.optionBorderStyle};
+    border-radius: ${props.theme.optionBorderRadius};
+    padding-left: ${
+      (props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon)
+        ? props.theme.labelPaddingLeft
+        : props.theme.iconPaddingLeft
     };
-    
+    padding-right: ${
+      (props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon)
+        ? props.theme.labelPaddingRight
+        : props.theme.iconPaddingRight
+    };
     ${
       !props.disabled
         ? `:hover {
@@ -143,33 +190,46 @@ const ToggleContainer = styled.div`
           color: #ffffff;
         }        
         :focus {
-          outline: ${props.theme.focusColor} solid 2px;
-          outline-offset: -2px;
+          border-color: ${props.theme.focusColor};
+          border-width: ${props.theme.optionFocusBorderThickness};
+          border-style: ${props.theme.optionFocusBorderStyle};
+          border-radius: ${props.theme.optionFocusBorderRadius};
+          padding-left: ${(props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon) ? "22px" : "6px"};
+          padding-right: ${
+            (props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon) ? "22px" : "6px"
+          };
         }
-        cursor: pointer;`
-        : `color: ${
-            props.selected ? props.theme.selectedDisabledFontColor : props.theme.unselectedDisabledFontColor
-          } !important;
+        cursor: pointer;
+        color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
+`
+        : `color: ${props.selected ? props.theme.selectedDisabledFontColor : props.theme.unselectedDisabledFontColor};
         cursor: not-allowed;`
     }
   `}
 `;
 
 const LabelContainer = styled.span`
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
+  font-family: ${(props) => props.theme.optionLabelFontFamily};
+  font-size: ${(props) => props.theme.optionLabelFontSize};
+  font-style: ${(props) => props.theme.optionLabelFontStyle};
+  font-weight: ${(props) => props.theme.optionLabelFontWeight};
+`;
+
+const OptionContent = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const Icon = styled.img`
-  height: ${(props) => props.theme.iconSize};
-  width: ${(props) => props.theme.iconSize};
+  height: 24px;
+  width: 24px;
+  margin-right: ${(props) => props.optionLabel && "8px"};
 `;
 
 const IconContainer = styled.div`
-  height: ${(props) => props.theme.iconSize};
-  width: ${(props) => props.theme.iconSize};
+  margin-right: ${(props) => props.optionLabel && "8px"};
+  height: 24px;
+  width: 24px;
   overflow: hidden;
   display: flex;
   img,
@@ -180,6 +240,8 @@ const IconContainer = styled.div`
 `;
 
 DxcToggleGroup.propTypes = {
+  label: PropTypes.string,
+  helperText: PropTypes.string,
   value: PropTypes.any,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,

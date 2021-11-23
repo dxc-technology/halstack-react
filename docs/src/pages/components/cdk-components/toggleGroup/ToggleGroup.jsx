@@ -41,19 +41,19 @@ function ToggleGroup() {
                   margin={{ bottom: "small" }}
                 />
                 <Example
-                  title="Controlled Toggle Group"
+                  title="Controlled toggle group"
                   example={controlled}
                 ></Example>
                 <Example
-                  title="Uncontrolled Toggle Group"
+                  title="Uncontrolled toggle group"
                   example={defaultToggleGroup}
                 ></Example>
                 <Example
-                  title="Multiple Toggle Group"
+                  title="Multiple toggle group"
                   example={multiple}
                 ></Example>
                 <Example
-                  title="Toggle group with Icons"
+                  title="Toggle group with icons"
                   example={withIcons}
                 ></Example>
               </Section>
