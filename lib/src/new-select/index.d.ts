@@ -22,14 +22,13 @@ type Props = {
   name: string;
   value: string | string[];
   options: Option[] | OptionGroup[];
-  placeholder: string;
   helperText: string;
+  placeholder: string;
+  disabled: boolean;
+  optional: boolean;
   searchable: boolean;
-  clearable: boolean;
   readOnly: boolean;
   multiple: boolean;
-  optional: boolean;
-  disabled: boolean;
   onChange: (value: string | string[]) => void;
   onBlur: (val: { value: string | string[]; error: string }) => void;
   error: string;

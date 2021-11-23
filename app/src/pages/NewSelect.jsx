@@ -7,8 +7,8 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const onBlur = ({ value, error }) => {
     setValue(value);
-    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
-    console.log("blur!")
+    error ? setErrorMessage(error) : setErrorMessage(null);
+    console.log("blur!");
   };
   const onChange = (value) => {
     setValue(value);
@@ -19,6 +19,7 @@ function App() {
     { label: "Option 01", value: "1" },
     { label: "Option 02", value: "2" },
     { label: "Option 03", value: "3" },
+    { label: "Option 00000000000000000000000000000000000000000000000000000", value: "4" },
   ];
 
   return (
@@ -44,12 +45,11 @@ function App() {
           onBlur={onBlur}
           onChange={onChange}
           error={errorMessage}
-          searchable
           margin="medium"
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Default</h4>
+        <h4 style={{ "margin-left": "36px" }}>Searchable</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"

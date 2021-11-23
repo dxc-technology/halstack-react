@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import { spaces } from "../common/variables.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
-import { v4 as uuidv4 } from "uuid";
+import { getMargin } from "../common/utils.js";
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 
@@ -31,6 +31,12 @@ const selectIcons = {
       <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
     </svg>
   ),
+  selected: (
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+    </svg>
+  ),
 };
 
 const DxcNewSelect = React.forwardRef(
@@ -56,19 +62,17 @@ const DxcNewSelect = React.forwardRef(
   ) => {
     const [innerValue, setInnerValue] = useState("");
     const [searchValue, setSearchValue] = useState("");
-    const [isChildrenFocused, changeIsChildrenFocused] = useState(false);
 
     const [isOpen, changeIsOpen] = useState(false);
+    const [isActiveOption, changeIsActiveOption] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState([]);
+    const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
 
+    const selectContainerRef = useRef(null);
     const selectInputRef = useRef(null);
-    const clearRef = useRef(null);
 
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
-
-    const selectId = `select-${uuidv4()}`;
-    const errorId = `error-message-${selectId}`;
 
     const notOptionalCheck = (value) => value === "" && !optional;
 
@@ -77,23 +81,24 @@ const DxcNewSelect = React.forwardRef(
       typeof onChange === "function" && onChange(newValue);
     };
 
-    const canBeOpen = () => options && options.length > 0;
-
+    const canBeOpenOptions = () => options && options.length > 0;
     const openOptions = () => {
-      canBeOpen() && changeIsOpen(true);
+      canBeOpenOptions() && changeIsOpen(true);
     };
-
     const closeOptions = () => {
       changeIsOpen(false);
+      changeVisualFocusedSuggIndex(-1);
     };
 
     const handleSelectOnClick = () => {
-      isOpen ? closeOptions() : openOptions();
+      // clear should be consider as a click on the select container or no? Not right now
+      const clear = selectContainerRef?.current?.getElementsByTagName("button")[0];
+      isOpen && document.activeElement !== clear ? closeOptions() : openOptions();
       searchable && selectInputRef.current.focus();
     };
-
     const handleSelectOnBlur = (event) => {
-      if (!isChildrenFocused) {
+      // focus leaves container (outside, not to childs)
+      if (!event.currentTarget.contains(event.relatedTarget)) {
         setSearchValue("");
         closeOptions();
 
@@ -108,122 +113,131 @@ const DxcNewSelect = React.forwardRef(
       setSearchValue(event.target.value);
     };
 
-    const handleSearchIOnMouseDown = () => {
-      changeIsChildrenFocused(true);
-    };
-
     const handleClearActionOnClick = () => {
       setSearchValue("");
-      selectInputRef.current.focus();
     };
 
     const getSingleSelectedOptionLabel = () => {
-      const index = value ?? innerValue;
-      // Mas optimo condicionar a searchable?? Busqueda en array menor cuando hay
-      return options.filter((option) => option.value === index)[0]?.label;
+      const val = value ?? innerValue;
+      return options.filter((option) => option.value === val)[0]?.label;
     };
 
     useEffect(() => {
-      if (options && options.length)
+      if (searchable && options && options.length) {
+        changeVisualFocusedSuggIndex(-1);
         setFilteredOptions(
           options.filter((option) => option.label.toUpperCase().startsWith(searchValue.toUpperCase()))
         );
-    }, [searchValue, options]);
+      }
+    }, [options, searchable, searchValue]);
 
     const Option = ({ option, index }) => {
       const isSelected = (value ?? innerValue) === option.value;
       const isLastOption = filteredOptions.length ? index === filteredOptions.length - 1 : index === options.length - 1;
 
       return (
-        <OptionContainer
-          selected={isSelected}
-          onMouseUp={() => {
-            changeValue(option.value);
-            closeOptions(); // condicionar, si es multiple no
+        <OptionItem
+          onMouseDown={(event) => {
+            event.button === 0 && changeIsActiveOption(true); // Left button only
           }}
+          onMouseUp={(event) => {
+            if (event.button === 0 && isActiveOption) {
+              changeValue(option.value);
+              setSearchValue("");
+              changeIsActiveOption(false);
+              closeOptions(); // condicionar, si es multiple no
+              selectContainerRef?.current?.focus();
+            }
+          }}
+          onMouseEnter={() => {
+            changeVisualFocusedSuggIndex(index);
+          }}
+          onMouseLeave={() => {
+            changeIsActiveOption(false);
+          }}
+          visualFocused={visualFocusedSuggIndex === index}
+          active={visualFocusedSuggIndex === index && isActiveOption}
+          selected={isSelected}
         >
-          <StyledOption selected={isSelected} last={isLastOption}>
+          <StyledOption
+            visualFocused={visualFocusedSuggIndex === index}
+            active={visualFocusedSuggIndex === index && isActiveOption}
+            selected={isSelected}
+            last={isLastOption}
+          >
             <OptionLabel>{option.label}</OptionLabel>
+            {isSelected && <SelectedIcon>{selectIcons.selected}</SelectedIcon>}
           </StyledOption>
-        </OptionContainer>
+        </OptionItem>
       );
     };
 
     return (
       <ThemeProvider theme={colorsTheme.newSelect}>
         <DxcSelect margin={margin} size={size} ref={ref}>
-          <Label htmlFor={selectId} disabled={disabled} backgroundType={backgroundType}>
+          <Label htmlFor="input-id" disabled={disabled} backgroundType={backgroundType}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
           <HelperText disabled={disabled} backgroundType={backgroundType}>
             {helperText}
           </HelperText>
           <SelectContainer
-            error={error}
-            disabled={disabled}
             backgroundType={backgroundType}
-            onClick={handleSelectOnClick}
+            disabled={disabled}
+            error={error}
             onBlur={handleSelectOnBlur}
+            onClick={handleSelectOnClick}
             tabIndex={tabIndex}
+            ref={selectContainerRef}
           >
-            {searchable ? (
-              <SearchInput
-                id={selectId}
-                name={name}
-                value={searchValue}
-                placeholder={placeholder}
-                onChange={handleSearchIOnChange}
-                onMouseDown={handleSearchIOnMouseDown}
-                // onKeyDown={handleSearchIOnMouseDown}
-                disabled={disabled}
-                ref={selectInputRef}
-                autoComplete="off"
-              ></SearchInput>
-            ) : (
-              <SelectedOption
-                id={selectId}
-                name={name}
-                disabled={disabled}
-                placeholder={getSingleSelectedOptionLabel() ? false : true}
-              >
-                {getSingleSelectedOptionLabel() ?? placeholder}
-              </SelectedOption>
-            )}
+            <SearchableValueContainer>
+              {searchable && (
+                <SearchInput
+                  id="input-id"
+                  name={name}
+                  value={searchValue}
+                  disabled={disabled}
+                  onChange={handleSearchIOnChange}
+                  ref={selectInputRef}
+                  autoComplete="off"
+                  autoCorrect="off"
+                ></SearchInput>
+              )}
+              {(!searchable || searchValue === "") && (
+                <SelectedOption
+                  disabled={disabled}
+                  beInBackground={searchable}
+                  placeholder={getSingleSelectedOptionLabel() ? false : true}
+                >
+                  {getSingleSelectedOptionLabel() ?? placeholder}
+                </SelectedOption>
+              )}
+            </SearchableValueContainer>
             {!disabled && error && <ErrorIcon backgroundType={backgroundType}>{selectIcons.error}</ErrorIcon>}
             {!disabled && searchable && searchValue.length > 0 && (
-              <ClearAction
-                onClick={handleClearActionOnClick}
-                onMouseDown={handleSearchIOnMouseDown}
-                // onKeyDown={handleSearchIOnMouseDown}
-                backgroundType={backgroundType}
-                ref={clearRef}
-              >
+              <ClearAction onClick={handleClearActionOnClick} backgroundType={backgroundType} tabIndex={-1}>
                 {selectIcons.clear}
               </ClearAction>
             )}
             <Arrow disabled={disabled} backgroundType={backgroundType}>
               {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
             </Arrow>
-            {isOpen && (
-              <OptionsContainer
+            {((searchable && filteredOptions.length > 0 && isOpen) || (!searchable && isOpen)) && (
+              <OptionsList
                 onMouseDown={(event) => {
                   event.preventDefault();
                 }}
+                onMouseLeave={() => {
+                  changeVisualFocusedSuggIndex(-1);
+                }}
               >
-                {searchable && filteredOptions.length === 0 && (
-                  <NoOptionsSystemMessage>No options available</NoOptionsSystemMessage>
-                )}
                 {searchable
                   ? filteredOptions.map((option, index) => <Option option={option} index={index} />)
                   : options.map((option, index) => <Option option={option} index={index} />)}
-              </OptionsContainer>
+              </OptionsList>
             )}
           </SelectContainer>
-          {!disabled && (
-            <Error id={errorId} backgroundType={backgroundType}>
-              {error}
-            </Error>
-          )}
+          {!disabled && <Error backgroundType={backgroundType}>{error}</Error>}
         </DxcSelect>
       </ThemeProvider>
     );
@@ -360,12 +374,20 @@ const SelectContainer = styled.div`
     `};
 `;
 
+const SearchableValueContainer = styled.div`
+  display: grid;
+  width: 100%;
+`;
+
 const SelectedOption = styled.span`
+  grid-area: 1 / 1 / 1 / 1;
   display: inline-flex;
   align-items: center;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
+  max-width: 100%;
   padding: 0 calc(1rem * 0.5);
-  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 
   color: ${(props) => {
     if (props.placeholder)
@@ -395,8 +417,9 @@ const SelectedOption = styled.span`
 `;
 
 const SearchInput = styled.input`
+  grid-area: 1 / 1 / 1 / 1;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  width: 100%;
+  max-width: 100%;
   background: none;
   border: none;
   outline: none;
@@ -503,7 +526,6 @@ const ClearAction = styled.button`
       : props.backgroundType === "dark"
       ? props.theme.actionBackgroundColorOnDark
       : props.theme.actionBackgroundColor};
-  box-shadow: 0 0 0 2px transparent;
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -526,28 +548,6 @@ const ClearAction = styled.button`
           props.backgroundType === "dark" ? props.theme.hoverActionIconColorOnDark : props.theme.hoverActionIconColor
         };
       }
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.focusActionIconColorOnDark : props.theme.focusActionIconColor
-        };
-      }
-      &:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 2px ${
-          props.backgroundType === "dark"
-            ? props.theme.focusActionBorderColorOnDark
-            : props.theme.focusActionBorderColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.focusActionIconColorOnDark : props.theme.focusActionIconColor
-        };
-      }
       &:active {
         background-color: ${
           props.backgroundType === "dark"
@@ -565,13 +565,11 @@ const ClearAction = styled.button`
   }
 `;
 
-const OptionsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+const OptionsList = styled.ul`
   position: absolute;
   z-index: 1;
   max-height: 160px;
-  overflow: auto;
+  overflow-x: auto;
   top: calc(100% + 4px);
   left: 0;
   margin: 0;
@@ -588,45 +586,46 @@ const OptionsContainer = styled.div`
   font-weight: ${(props) => props.theme.listOptionFontWeight};
 `;
 
-const NoOptionsSystemMessage = styled.span`
-  padding: 4px 8px 4px 16.15px;
-  color: ${(props) => props.theme.systemMessageFontColor};
-  font-size: 0.875rem;
-`;
-
-const OptionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+const OptionItem = styled.li`
   padding: 0 8px 0 8px;
   line-height: 1.75em;
 
-  background-color: ${(props) => props.selected && `${props.theme.selectedListOptionBackgroundColor}`};
-  :hover {
-    background-color: ${(props) => (props.selected ? "#CCCCCC" : props.theme.hoverListOptionBackgroundColor)};
-  }
-  :active {
-    background-color: ${(props) => (props.selected ? "#BFBFBF" : props.theme.activeListOptionBackgroundColor)};
-  }
+  ${(props) => {
+    if (props.selected) {
+      if (props.active) return `background-color: #BFBFBF`;
+      else if (props.visualFocused) return `background-color: #CCCCCC`;
+      else return `background-color: ${props.theme.selectedListOptionBackgroundColor}`;
+    } else {
+      if (props.active) return `background-color: ${props.theme.activeListOptionBackgroundColor};`;
+      else if (props.visualFocused) return `background-color: ${props.theme.hoverListOptionBackgroundColor};`;
+    }
+  }};
 `;
 
-const StyledOption = styled.span`
-  padding: 4px 0 3px 0;
+const StyledOption = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4px 8px 3px 8px;
   ${(props) =>
-    !props.last &&
-    `border-bottom: 1px solid ${
-      props.selected ? props.theme.selectedListOptionBackgroundColor : props.theme.listOptionBorderBottomColor
-    }`};
-
-  :hover {
-    border-bottom-color: ${(props) => (props.selected ? "#CCCCCC" : props.theme.hoverListOptionBackgroundColor)};
-  }
-  :active {
-    border-bottom-color: ${(props) => (props.selected ? "#BFBFBF" : props.theme.activeListOptionBackgroundColor)};
-  }
+    props.last
+      ? `border-bottom: 1px solid transparent`
+      : `border-bottom: 1px solid ${props.theme.listOptionBorderBottomColor}`};
 `;
 
 const OptionLabel = styled.span`
-  padding-left: 8.15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const SelectedIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  height: 16px;
+  width: 16px;
+  margin-left: 8px;
+  color: #4d4d4d;
 `;
 
 export default DxcNewSelect;
