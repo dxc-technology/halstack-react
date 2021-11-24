@@ -1119,6 +1119,7 @@
     "iconPaddingLeft": "0.5rem",
     "labelPaddingLeft": "1.5rem",
     "labelPaddingRight": "1.5rem",
+    "iconMarginRight": "0.5rem",
     "containerMarginTop": "0.25rem",
     "optionBorderThickness": "0px",
     "optionBorderStyle": "none",

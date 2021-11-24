@@ -223,11 +223,11 @@ const OptionContent = styled.div`
 const Icon = styled.img`
   height: 24px;
   width: 24px;
-  margin-right: ${(props) => props.optionLabel && "8px"};
+  margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
 `;
 
 const IconContainer = styled.div`
-  margin-right: ${(props) => props.optionLabel && "8px"};
+  margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
   height: 24px;
   width: 24px;
   overflow: hidden;

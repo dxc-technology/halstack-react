@@ -1119,6 +1119,7 @@
     "iconPaddingLeft": "length",
     "labelPaddingLeft": "length",
     "labelPaddingRight": "length",
+    "iconMarginRight": "length",
     "containerMarginTop": "length",
     "optionBorderThickness": "bWidth",
     "optionBorderStyle": "bStyle",
