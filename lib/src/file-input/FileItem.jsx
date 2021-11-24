@@ -20,14 +20,24 @@ const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview,
   const colorsTheme = useTheme();
   const isImage = type.includes("image");
 
+  const getIconAriaLabel = () => {
+    if (type.includes("video")) {
+      return "video";
+    }
+    if (type.includes("audio")) {
+      return "audio";
+    }
+    return "file";
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <Container mode={mode} multiple={multiple} error={error} showPreview={showPreview} numFiles={numFiles}>
         {showPreview &&
           (isImage ? (
-            <ImagePreview src={preview} />
+            <ImagePreview src={preview} alt={name} />
           ) : (
-            <IconPreviewContainer error={error}>
+            <IconPreviewContainer error={error} aria-label={getIconAriaLabel()}>
               <IconPreview error={error}>{preview}</IconPreview>
             </IconPreviewContainer>
           ))}
@@ -37,7 +47,7 @@ const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview,
               {name}
             </FileName>
             {error && <ErrorIcon aria-label="Error">{errorIcon}</ErrorIcon>}
-            <DeleteIcon onClick={() => onDelete(name)} aria-label="Remove">
+            <DeleteIcon onClick={() => onDelete(name)} aria-label={`Remove ${name}`}>
               {deleteIcon}
             </DeleteIcon>
           </FileItemContainer>
