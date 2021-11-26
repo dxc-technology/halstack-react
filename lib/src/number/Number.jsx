@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import DxcNewInputText from "../new-input-text/NewInputText";
