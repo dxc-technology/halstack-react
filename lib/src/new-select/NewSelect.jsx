@@ -78,10 +78,12 @@ const DxcNewSelect = React.forwardRef(
 
     const changeValue = (newValue) => {
       value ?? setInnerValue(newValue);
-      typeof onChange === "function" && onChange(newValue);
+
+      if (notOptionalCheck(newValue)) onChange?.({ value: newValue, error: getNotOptionalErrorMessage() });
+      else onChange?.({ value: newValue, error: null });
     };
 
-    const canBeOpenOptions = () => options && options.length > 0;
+    const canBeOpenOptions = () => !disabled && options && options.length;
     const openOptions = () => {
       canBeOpenOptions() && changeIsOpen(true);
     };
@@ -91,7 +93,6 @@ const DxcNewSelect = React.forwardRef(
     };
 
     const handleSelectOnClick = () => {
-      // clear should be consider as a click on the select container or no? Not right now
       const clear = selectContainerRef?.current?.getElementsByTagName("button")[0];
       isOpen && document.activeElement !== clear ? closeOptions() : openOptions();
       searchable && selectInputRef.current.focus();
@@ -119,26 +120,56 @@ const DxcNewSelect = React.forwardRef(
 
     const getSingleSelectedOptionLabel = () => {
       const val = value ?? innerValue;
-      return options.filter((option) => option.value === val)[0]?.label;
+      let selectedOptionLabel;
+      options.forEach((option) => {
+        if (option.options) {
+          option.options.forEach((singleOption) => {
+            if (singleOption.value === val) selectedOptionLabel = singleOption.label;
+          });
+        } else if (option.value === val) selectedOptionLabel = option.label;
+      });
+      return selectedOptionLabel;
     };
 
     useEffect(() => {
       if (searchable && options && options.length) {
         changeVisualFocusedSuggIndex(-1);
-        setFilteredOptions(
-          options.filter((option) => option.label.toUpperCase().startsWith(searchValue.toUpperCase()))
-        );
+        if (options[0].options) {
+          setFilteredOptions(
+            options.map((optionGroup) => {
+              let group = JSON.parse(JSON.stringify(optionGroup)); // anything better?
+              group.options = group.options.filter((option) =>
+                option.label.toUpperCase().startsWith(searchValue.toUpperCase())
+              );
+              return group;
+            })
+          );
+        } else
+          setFilteredOptions(
+            options.filter((option) => option.label.toUpperCase().startsWith(searchValue.toUpperCase()))
+          );
       }
     }, [options, searchable, searchValue]);
 
-    const Option = ({ option, index }) => {
+    const lastIndex = (isGroupedOptions) => {
+      let last = 0;
+
+      if (isGroupedOptions) {
+        filteredOptions.length
+          ? filteredOptions.forEach((option) => (last += option.options.length))
+          : options.forEach((option) => (last += option.options.length));
+      } else last = filteredOptions.length ? filteredOptions.length - 1 : options.length - 1;
+
+      return last;
+    };
+    const Option = ({ option, index, isGroupedOption = false }) => {
       const isSelected = (value ?? innerValue) === option.value;
-      const isLastOption = filteredOptions.length ? index === filteredOptions.length - 1 : index === options.length - 1;
+      const isLastOption = index === lastIndex(isGroupedOption);
 
       return (
         <OptionItem
           onMouseDown={(event) => {
-            event.button === 0 && changeIsActiveOption(true); // Left button only
+            event.button === 0 && changeIsActiveOption(true); // left button only
           }}
           onMouseUp={(event) => {
             if (event.button === 0 && isActiveOption) {
@@ -165,11 +196,25 @@ const DxcNewSelect = React.forwardRef(
             selected={isSelected}
             last={isLastOption}
           >
-            <OptionLabel>{option.label}</OptionLabel>
+            <OptionLabel grouped={isGroupedOption}>{option.label}</OptionLabel>
             {isSelected && <SelectedIcon>{selectIcons.selected}</SelectedIcon>}
           </StyledOption>
         </OptionItem>
       );
+    };
+    let global_index = 0;
+    const mapOptionFunc = (option, index) => {
+      if (option.options) {
+        return (
+          <>
+            {option.options.length > 0 && <OptionGroup>{option.label}</OptionGroup>}
+            {option.options.map((singleOption) => {
+              global_index++;
+              return <Option option={singleOption} index={global_index} isGroupedOption={true} />;
+            })}
+          </>
+        );
+      } else return <Option option={option} index={index} />;
     };
 
     return (
@@ -206,8 +251,10 @@ const DxcNewSelect = React.forwardRef(
               {(!searchable || searchValue === "") && (
                 <SelectedOption
                   disabled={disabled}
-                  beInBackground={searchable}
-                  placeholder={getSingleSelectedOptionLabel() ? false : true}
+                  beInBackground={
+                    (value ?? innerValue) && !searchValue && document.activeElement === selectInputRef?.current
+                  }
+                  placeholder={!(value ?? innerValue)}
                 >
                   {getSingleSelectedOptionLabel() ?? placeholder}
                 </SelectedOption>
@@ -231,9 +278,7 @@ const DxcNewSelect = React.forwardRef(
                   changeVisualFocusedSuggIndex(-1);
                 }}
               >
-                {searchable
-                  ? filteredOptions.map((option, index) => <Option option={option} index={index} />)
-                  : options.map((option, index) => <Option option={option} index={index} />)}
+                {searchable ? filteredOptions.map(mapOptionFunc) : options.map(mapOptionFunc)}
               </OptionsList>
             )}
           </SelectContainer>
@@ -286,7 +331,7 @@ const Label = styled.label`
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: 1.75em;
+  line-height: 1.715em;
 `;
 
 const OptionalLabel = styled.span`
@@ -318,12 +363,6 @@ const SelectContainer = styled.div`
   margin: calc(1rem * 0.25) 0;
   padding: 0 calc(1rem * 0.5);
   outline: none;
-  ${(props) => {
-    if (props.disabled)
-      return props.backgroundType === "dark"
-        ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
-        : `background-color: ${props.theme.disabledContainerFillColor};`;
-  }}
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
@@ -390,7 +429,7 @@ const SelectedOption = styled.span`
   white-space: nowrap;
 
   color: ${(props) => {
-    if (props.placeholder)
+    if (props.placeholder || props.beInBackground)
       return props.disabled
         ? props.backgroundType === "dark"
           ? props.theme.disabledPlaceholderFontColorOnDark
@@ -568,7 +607,7 @@ const ClearAction = styled.button`
 const OptionsList = styled.ul`
   position: absolute;
   z-index: 1;
-  max-height: 160px;
+  max-height: 304px;
   overflow-x: auto;
   top: calc(100% + 4px);
   left: 0;
@@ -586,9 +625,15 @@ const OptionsList = styled.ul`
   font-weight: ${(props) => props.theme.listOptionFontWeight};
 `;
 
+const OptionGroup = styled.li`
+  padding: 4px 16px 4px 16px;
+  line-height: 1.715em;
+  font-weight: 600;
+`;
+
 const OptionItem = styled.li`
   padding: 0 8px 0 8px;
-  line-height: 1.75em;
+  line-height: 1.715em;
 
   ${(props) => {
     if (props.selected) {
@@ -617,6 +662,7 @@ const OptionLabel = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  ${(props) => props.grouped && `padding-left: 8px;`}
 `;
 
 const SelectedIcon = styled.span`
