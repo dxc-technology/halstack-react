@@ -171,7 +171,7 @@ const Label = styled.label`
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: 1.75em;
+  line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
 const OptionalLabel = styled.span`
@@ -192,7 +192,7 @@ const HelperText = styled.span`
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: 1.5em;
+  line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
 const Textarea = styled.textarea`
