@@ -286,7 +286,7 @@ const DxcNewInputText = React.forwardRef(
     );
 
     const decrementNumber = () => {
-      const numberValue = value || innerValue;
+      const numberValue = value ?? innerValue;
       if (numberContext?.minNumber && parseInt(numberValue) < numberContext?.minNumber) {
         changeValue(parseInt(numberValue));
       } else if (numberContext?.maxNumber && parseInt(numberValue) > numberContext?.maxNumber) {
@@ -315,7 +315,7 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const incrementNumber = () => {
-      const numberValue = value || innerValue;
+      const numberValue = value ?? innerValue;
       if (numberContext?.maxNumber && parseInt(numberValue) > numberContext?.maxNumber) {
         changeValue(parseInt(numberValue));
       } else if (numberContext?.minNumber && (parseInt(numberValue) < numberContext?.minNumber || numberValue === "")) {
