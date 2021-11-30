@@ -199,6 +199,9 @@ const ToggleContainer = styled.div`
             (props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon) ? "22px" : "6px"
           };
         }
+        &:focus-visible {
+          outline: none;
+        }
         cursor: pointer;
         color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
 `
