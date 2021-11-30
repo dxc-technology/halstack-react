@@ -27,7 +27,6 @@ type Props = {
   disabled: boolean;
   optional: boolean;
   searchable: boolean;
-  readOnly: boolean;
   multiple: boolean;
   onChange: (value: string | string[]) => void;
   onBlur: (val: { value: string | string[]; error: string }) => void;

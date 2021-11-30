@@ -105,19 +105,6 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Read only</h4>
-        <DxcNewSelect
-          label="Label"
-          helperText="Helper text"
-          value={"1"}
-          options={single_options}
-          placeholder="Choose an option"
-          margin="medium"
-          readOnly
-          searchable
-        />
-      </p>
-      <p>
         <h4 style={{ "margin-left": "36px" }}>Optional</h4>
         <DxcNewSelect
           label="Label"

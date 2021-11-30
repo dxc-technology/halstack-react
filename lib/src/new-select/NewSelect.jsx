@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import { spaces } from "../common/variables.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
@@ -51,7 +52,6 @@ const DxcNewSelect = React.forwardRef(
       disabled = false,
       optional = false,
       searchable = false,
-      readOnly = false,
       // multiple = false,
       onChange,
       onBlur,
@@ -62,6 +62,7 @@ const DxcNewSelect = React.forwardRef(
     },
     ref
   ) => {
+    const [selectId] = useState(`select-${uuidv4()}`);
     const [innerValue, setInnerValue] = useState("");
     const [searchValue, setSearchValue] = useState("");
     const [isBackgroundValue, changeIsBackgroundValue] = useState(false);
@@ -79,7 +80,7 @@ const DxcNewSelect = React.forwardRef(
 
     const notOptionalCheck = (value) => value === "" && !optional;
 
-    const canBeOpenOptions = () => !disabled && !readOnly && options && options.length; // === options?.length ???
+    const canBeOpenOptions = () => !disabled && options && options.length; // === options?.length ???
     const groupsHaveOptions = () =>
       options[0].options ? filteredOptions.some((option) => option.options?.length > 0) : true;
     const openOptions = () => {
@@ -222,7 +223,7 @@ const DxcNewSelect = React.forwardRef(
       if (option.options) {
         return (
           <>
-            {option.options.length > 0 && <OptionGroup>{option.label}</OptionGroup>}
+            {option.options.length > 0 && <OptionGroupLabel>{option.label}</OptionGroupLabel>}
             {option.options.map((singleOption) => {
               global_index++;
               return <Option option={singleOption} index={global_index} isGroupedOption={true} />;
@@ -235,7 +236,7 @@ const DxcNewSelect = React.forwardRef(
     return (
       <ThemeProvider theme={colorsTheme.newSelect}>
         <DxcSelect margin={margin} size={size} ref={ref}>
-          <Label htmlFor="input-id" disabled={disabled} backgroundType={backgroundType}>
+          <Label htmlFor={selectId} disabled={disabled} backgroundType={backgroundType}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
           <HelperText disabled={disabled} backgroundType={backgroundType}>
@@ -254,11 +255,10 @@ const DxcNewSelect = React.forwardRef(
             <SearchableValueContainer>
               {searchable && (
                 <SearchInput
-                  id="input-id"
+                  id={selectId}
                   name={name}
                   value={searchValue}
                   disabled={disabled}
-                  readOnly={readOnly}
                   onChange={handleSearchIOnChange}
                   ref={selectInputRef}
                   autoComplete="off"
@@ -285,6 +285,9 @@ const DxcNewSelect = React.forwardRef(
               <OptionsList
                 onMouseDown={(event) => {
                   event.preventDefault();
+                }}
+                onClick={(event) => {
+                  event.stopPropagation();
                 }}
                 onMouseLeave={() => {
                   changeVisualFocusedSuggIndex(-1);
@@ -375,6 +378,12 @@ const SelectContainer = styled.div`
   margin: calc(1rem * 0.25) 0;
   padding: 0 calc(1rem * 0.5);
   outline: none;
+  ${(props) => {
+    if (props.disabled)
+      return props.backgroundType === "dark"
+        ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
+        : `background-color: ${props.theme.disabledContainerFillColor};`;
+  }}
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
@@ -394,7 +403,7 @@ const SelectContainer = styled.div`
        props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
      };
   `}
-  ${(props) => props.disabled && "cursor: not-allowed;"};
+  ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor: pointer;")};
 
   ${(props) =>
     !props.disabled &&
@@ -439,6 +448,7 @@ const SelectedOption = styled.span`
   padding: 0 calc(1rem * 0.5);
   overflow: hidden;
   white-space: nowrap;
+  user-select: none;
 
   color: ${(props) => {
     if (props.placeholder)
@@ -464,7 +474,6 @@ const SelectedOption = styled.span`
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
   line-height: 1.5em;
-  ${(props) => props.disabled && `cursor: not-allowed;`}
 `;
 
 const SearchInput = styled.input`
@@ -490,7 +499,6 @@ const SearchInput = styled.input`
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
   line-height: 1.5em;
-  ${(props) => props.disabled && `cursor: not-allowed;`}
 
   ::placeholder {
     color: ${(props) =>
@@ -629,6 +637,7 @@ const OptionsList = styled.ul`
   box-sizing: border-box;
   background-color: #ffffff;
   border-radius: 4px;
+  cursor: default;
   border: 1px solid ${(props) => props.theme.enabledListBorderColor};
   font-family: ${(props) => props.theme.fontFamily};
   color: ${(props) => props.theme.listOptionFontColor};
@@ -637,7 +646,7 @@ const OptionsList = styled.ul`
   font-weight: ${(props) => props.theme.listOptionFontWeight};
 `;
 
-const OptionGroup = styled.li`
+const OptionGroupLabel = styled.li`
   padding: 4px 16px 4px 16px;
   line-height: 1.715em;
   font-weight: 600;
@@ -646,6 +655,7 @@ const OptionGroup = styled.li`
 const OptionItem = styled.li`
   padding: 0 8px 0 8px;
   line-height: 1.715em;
+  cursor: pointer;
 
   ${(props) => {
     if (props.selected) {
