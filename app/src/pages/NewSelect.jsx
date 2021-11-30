@@ -97,10 +97,24 @@ function App() {
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
+          value={"1"}
           options={single_options}
           placeholder="Choose an option"
           margin="medium"
           disabled
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>Read only</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          value={"1"}
+          options={single_options}
+          placeholder="Choose an option"
+          margin="medium"
+          readOnly
+          searchable
         />
       </p>
       <p>
@@ -116,6 +130,40 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
           optional
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>Error</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options}
+          placeholder="Choose an option"
+          margin="medium"
+          error="Error message"
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
+        <DxcNewSelect
+          label="Small"
+          margin={{ left: "medium", right: "medium" }}
+          size="small"
+        />
+        <DxcNewSelect
+          label="Medium"
+          margin={{ left: "medium", right: "medium" }}
+          size="medium"
+        />
+        <DxcNewSelect
+          label="Large"
+          margin={{ left: "medium", right: "medium" }}
+          size="large"
+        />
+        <DxcNewSelect
+          label="Fill parent"
+          margin={{ left: "medium", right: "medium" }}
+          size="fillParent"
           searchable
         />
       </p>

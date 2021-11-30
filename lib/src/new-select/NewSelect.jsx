@@ -51,6 +51,8 @@ const DxcNewSelect = React.forwardRef(
       disabled = false,
       optional = false,
       searchable = false,
+      readOnly = false,
+      // multiple = false,
       onChange,
       onBlur,
       error = "",
@@ -62,6 +64,7 @@ const DxcNewSelect = React.forwardRef(
   ) => {
     const [innerValue, setInnerValue] = useState("");
     const [searchValue, setSearchValue] = useState("");
+    const [isBackgroundValue, changeIsBackgroundValue] = useState(false);
 
     const [isOpen, changeIsOpen] = useState(false);
     const [isActiveOption, changeIsActiveOption] = useState(false);
@@ -76,25 +79,32 @@ const DxcNewSelect = React.forwardRef(
 
     const notOptionalCheck = (value) => value === "" && !optional;
 
-    const changeValue = (newValue) => {
+    const canBeOpenOptions = () => !disabled && !readOnly && options && options.length; // === options?.length ???
+    const groupsHaveOptions = () =>
+      options[0].options ? filteredOptions.some((option) => option.options?.length > 0) : true;
+    const openOptions = () => {
+      if (canBeOpenOptions()) {
+        searchable && changeIsBackgroundValue(true);
+        changeIsOpen(true);
+      }
+    };
+    const closeOptions = () => {
+      searchable && changeIsBackgroundValue(false);
+      changeIsOpen(false);
+      changeVisualFocusedSuggIndex(-1);
+    };
+
+    const handleSelectChangeValue = (newValue) => {
       value ?? setInnerValue(newValue);
 
       if (notOptionalCheck(newValue)) onChange?.({ value: newValue, error: getNotOptionalErrorMessage() });
       else onChange?.({ value: newValue, error: null });
     };
-
-    const canBeOpenOptions = () => !disabled && options && options.length;
-    const openOptions = () => {
-      canBeOpenOptions() && changeIsOpen(true);
-    };
-    const closeOptions = () => {
-      changeIsOpen(false);
-      changeVisualFocusedSuggIndex(-1);
-    };
-
     const handleSelectOnClick = () => {
-      const clear = selectContainerRef?.current?.getElementsByTagName("button")[0];
-      isOpen && document.activeElement !== clear ? closeOptions() : openOptions();
+      isOpen ? closeOptions() : openOptions();
+      searchable && selectInputRef.current.focus();
+    };
+    const handleSelectOnFocus = () => {
       searchable && selectInputRef.current.focus();
     };
     const handleSelectOnBlur = (event) => {
@@ -114,20 +124,25 @@ const DxcNewSelect = React.forwardRef(
       setSearchValue(event.target.value);
     };
 
-    const handleClearActionOnClick = () => {
+    const handleClearActionOnClick = (event) => {
+      event.stopPropagation(); // not bubbling, clear not executes select event onClick
       setSearchValue("");
     };
 
     const getSingleSelectedOptionLabel = () => {
       const val = value ?? innerValue;
       let selectedOptionLabel;
-      options.forEach((option) => {
-        if (option.options) {
-          option.options.forEach((singleOption) => {
-            if (singleOption.value === val) selectedOptionLabel = singleOption.label;
-          });
-        } else if (option.value === val) selectedOptionLabel = option.label;
-      });
+
+      if (options && options.length) {
+        options.forEach((option) => {
+          if (option.options) {
+            option.options.forEach((singleOption) => {
+              if (singleOption.value === val) selectedOptionLabel = singleOption.label;
+            });
+          } else if (option.value === val) selectedOptionLabel = option.label;
+        });
+      }
+
       return selectedOptionLabel;
     };
 
@@ -139,14 +154,14 @@ const DxcNewSelect = React.forwardRef(
             options.map((optionGroup) => {
               let group = JSON.parse(JSON.stringify(optionGroup)); // anything better?
               group.options = group.options.filter((option) =>
-                option.label.toUpperCase().startsWith(searchValue.toUpperCase())
+                option.label.toUpperCase().includes(searchValue.toUpperCase())
               );
               return group;
             })
           );
         } else
           setFilteredOptions(
-            options.filter((option) => option.label.toUpperCase().startsWith(searchValue.toUpperCase()))
+            options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()))
           );
       }
     }, [options, searchable, searchValue]);
@@ -173,11 +188,11 @@ const DxcNewSelect = React.forwardRef(
           }}
           onMouseUp={(event) => {
             if (event.button === 0 && isActiveOption) {
-              changeValue(option.value);
+              // left button only
+              handleSelectChangeValue(option.value);
               setSearchValue("");
               changeIsActiveOption(false);
-              closeOptions(); // condicionar, si es multiple no
-              selectContainerRef?.current?.focus();
+              closeOptions(); // if not multiple
             }
           }}
           onMouseEnter={() => {
@@ -232,6 +247,7 @@ const DxcNewSelect = React.forwardRef(
             error={error}
             onBlur={handleSelectOnBlur}
             onClick={handleSelectOnClick}
+            onFocus={handleSelectOnFocus}
             tabIndex={tabIndex}
             ref={selectContainerRef}
           >
@@ -242,6 +258,7 @@ const DxcNewSelect = React.forwardRef(
                   name={name}
                   value={searchValue}
                   disabled={disabled}
+                  readOnly={readOnly}
                   onChange={handleSearchIOnChange}
                   ref={selectInputRef}
                   autoComplete="off"
@@ -249,19 +266,13 @@ const DxcNewSelect = React.forwardRef(
                 ></SearchInput>
               )}
               {(!searchable || searchValue === "") && (
-                <SelectedOption
-                  disabled={disabled}
-                  beInBackground={
-                    (value ?? innerValue) && !searchValue && document.activeElement === selectInputRef?.current
-                  }
-                  placeholder={!(value ?? innerValue)}
-                >
+                <SelectedOption disabled={disabled} placeholder={!(value ?? innerValue) || isBackgroundValue}>
                   {getSingleSelectedOptionLabel() ?? placeholder}
                 </SelectedOption>
               )}
             </SearchableValueContainer>
             {!disabled && error && <ErrorIcon backgroundType={backgroundType}>{selectIcons.error}</ErrorIcon>}
-            {!disabled && searchable && searchValue.length > 0 && (
+            {searchable && searchValue.length > 0 && (
               <ClearAction onClick={handleClearActionOnClick} backgroundType={backgroundType} tabIndex={-1}>
                 {selectIcons.clear}
               </ClearAction>
@@ -269,7 +280,8 @@ const DxcNewSelect = React.forwardRef(
             <Arrow disabled={disabled} backgroundType={backgroundType}>
               {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
             </Arrow>
-            {((searchable && filteredOptions.length > 0 && isOpen) || (!searchable && isOpen)) && (
+            {((searchable && filteredOptions.length > 0 && groupsHaveOptions() && isOpen) ||
+              (!searchable && isOpen)) && (
               <OptionsList
                 onMouseDown={(event) => {
                   event.preventDefault();
@@ -429,7 +441,7 @@ const SelectedOption = styled.span`
   white-space: nowrap;
 
   color: ${(props) => {
-    if (props.placeholder || props.beInBackground)
+    if (props.placeholder)
       return props.disabled
         ? props.backgroundType === "dark"
           ? props.theme.disabledPlaceholderFontColorOnDark
@@ -438,7 +450,7 @@ const SelectedOption = styled.span`
         ? props.theme.placeholderFontColorOnDark
         : props.theme.placeholderFontColor;
     else
-      props.disabled
+      return props.disabled
         ? props.backgroundType === "dark"
           ? props.theme.disabledValueFontColorOnDark
           : props.theme.disabledValueFontColor
@@ -670,7 +682,7 @@ const SelectedIcon = styled.span`
   flex-wrap: wrap;
   height: 16px;
   width: 16px;
-  margin-left: 8px;
+  margin-left: 4px;
   color: #4d4d4d;
 `;
 
