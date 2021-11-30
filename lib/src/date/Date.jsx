@@ -105,12 +105,12 @@ const DxcDate = ({
           },
 
           "&::-webkit-scrollbar-track": {
-            backgroundColor: colorsTheme.date.scrollBarTrackColor,
+            backgroundColor: "#D9D9D9",
             borderRadius: "3px",
           },
 
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: colorsTheme.date.scrollBarThumbColor,
+            backgroundColor: "#666666",
             borderRadius: "3px",
           },
         },
@@ -154,8 +154,8 @@ const DxcDate = ({
       },
       MuiPickersToolbarText: {
         toolbarTxt: {
-          color: colorsTheme?.date?.pickerActualDateColor,
-          fontFamily: colorsTheme?.date?.fontFamily,
+          color: colorsTheme.date.pickerActualDateColor,
+          fontFamily: colorsTheme.date.fontFamily,
           fontSize: "2rem",
         },
         toolbarBtnSelected: {

@@ -11,15 +11,16 @@ function App() {
   const [inputValue, setInputValue] = useState("01-01-1995");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = ({ value, date }) => {
+  const onChange = ({ value, error, date }) => {
     setInputValue(value);
-    setErrorMessage(null);
+    console.log(error);
     console.log(date);
   };
 
-  const onBlur = ({ value, error }) => {
+  const onBlur = ({ value, error, date }) => {
     setInputValue(value);
-    error ? setErrorMessage("Fecha inválida.") : setErrorMessage(null);
+    error ? setErrorMessage(error) : setErrorMessage(null);
+    console.log(date);
   };
 
   return (
@@ -60,6 +61,8 @@ function App() {
         <DxcNewDate
           value={inputValue}
           onChange={onChange}
+          onBlur={onBlur}
+          error={errorMessage}
           margin={{ left: "medium", right: "medium" }}
           clearable
         />

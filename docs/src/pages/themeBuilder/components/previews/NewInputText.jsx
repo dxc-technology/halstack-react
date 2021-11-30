@@ -36,13 +36,13 @@ const countries = [
 const NewInputText = () => {
   const [value, setValue] = useState("Example text");
   const [suggestionsValue, setSuggestionsValue] = useState("");
-  const onChange = (value) => {
+  const onChange = ({ value }) => {
     setValue(value);
   };
   const onBlur = ({ value }) => {
     setValue(value);
   };
-  const onChangeSuggestions = (value) => {
+  const onChangeSuggestions = ({ value }) => {
     setSuggestionsValue(value);
   };
 
@@ -74,7 +74,7 @@ const NewInputText = () => {
   };
 
   return (
-    <TextFieldContainer>
+    <NewInputTextContainer>
       <DxcHeading
         text="Light Mode"
         level={5}
@@ -230,10 +230,10 @@ const NewInputText = () => {
           </Mode>
         </BackgroundColorProvider>
       </div>
-    </TextFieldContainer>
+    </NewInputTextContainer>
   );
 };
 
-const TextFieldContainer = styled.div``;
+const NewInputTextContainer = styled.div``;
 
 export default NewInputText;

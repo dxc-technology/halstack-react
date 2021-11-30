@@ -6,8 +6,9 @@ function App() {
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = (value) => {
+  const onChange = ({ value, error }) => {
     setValue(value);
+    console.log(error);
   };
 
   const onBlur = ({ value, error }) => {

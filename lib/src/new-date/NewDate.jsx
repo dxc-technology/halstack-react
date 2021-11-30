@@ -34,7 +34,6 @@ const DxcNewDate = React.forwardRef(
     ref
   ) => {
     const [innerValue, setInnerValue] = useState("");
-    const [validationError, setValidationError] = useState("");
 
     const [isOpen, setIsOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -51,35 +50,37 @@ const DxcNewDate = React.forwardRef(
     };
 
     const handleCalendarOnClick = (newDate) => {
-      const string = moment(newDate).format(format.toUpperCase());
-      value ?? setInnerValue(string);
-      typeof onChange === "function" &&
-        onChange({
-          value: string,
-          date: newDate && newDate.toJSON() ? newDate : null,
-        });
+      const newValue = moment(newDate).format(format.toUpperCase());
+      value ?? setInnerValue(newValue);
+
+      onChange?.({
+        value: newValue,
+        error: null,
+        date: newDate && newDate.toJSON() ? newDate : null,
+      });
     };
 
-    const handleIOnChange = (string) => {
-      const momentDate = moment(string, format.toUpperCase(), true);
-      value ?? setInnerValue(string);
-      typeof onChange === "function" &&
-        onChange({
-          value: string,
-          date: momentDate.isValid() ? momentDate._d : null,
-        });
+    const handleIOnChange = ({ value: newValue, error: inputError }) => {
+      value ?? setInnerValue(newValue);
+      const momentDate = moment(newValue, format.toUpperCase(), true);
+      const invalidDateMessage = newValue !== "" && !momentDate.isValid() ? "Invalid date." : null;
+
+      onChange?.({
+        value: newValue,
+        error: inputError || invalidDateMessage,
+        date: momentDate.isValid() ? momentDate._d : null,
+      });
     };
 
-    const handleIOnBlur = ({ value }) => {
+    const handleIOnBlur = ({ value, error: inputError }) => {
       const momentDate = moment(value, format.toUpperCase(), true);
       const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : null;
-      setValidationError(invalidDateMessage);
-      typeof onBlur === "function" &&
-        onBlur({
-          value,
-          error: invalidDateMessage,
-          date: momentDate.isValid() ? momentDate._d : null,
-        });
+
+      onBlur?.({
+        value,
+        error: inputError || invalidDateMessage,
+        date: momentDate.isValid() ? momentDate._d : null,
+      });
     };
 
     const getValueForPicker = () => moment(value ?? innerValue, format.toUpperCase(), true).format();
@@ -98,9 +99,9 @@ const DxcNewDate = React.forwardRef(
     const calendarAction = {
       onClick: openCalendar,
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-          <path d="M0 0h24v24H0V0z" fill="none" />
-          <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z" />
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z" />
         </svg>
       ),
     };
@@ -109,31 +110,31 @@ const DxcNewDate = React.forwardRef(
       overrides: {
         MuiTypography: {
           root: {
-            fontFamily: `${colorsTheme.date.fontFamily} !important`,
+            fontFamily: `${colorsTheme.newDate.pickerFontFamily} !important`,
           },
         },
         MuiPickersYearSelection: {
           container: {
-            color: colorsTheme.date.pickerYearColor,
+            color: colorsTheme.newDate.pickerYearFontColor,
             "&::-webkit-scrollbar": {
               width: "3px",
             },
 
             "&::-webkit-scrollbar-track": {
-              backgroundColor: colorsTheme.date.scrollBarTrackColor,
+              backgroundColor: "#D9D9D9",
               borderRadius: "3px",
             },
 
             "&::-webkit-scrollbar-thumb": {
-              backgroundColor: colorsTheme.date.scrollBarThumbColor,
+              backgroundColor: "#666666",
               borderRadius: "3px",
             },
           },
         },
         MuiPickersToolbar: {
           toolbar: {
-            backgroundColor: colorsTheme.date.pickerBackgroundColor,
-            color: colorsTheme.date.pickerFontColor,
+            backgroundColor: colorsTheme.newDate.pickerBackgroundColor,
+            color: colorsTheme.newDate.pickerDayFontColor,
           },
         },
         MuiIconButton: {
@@ -151,7 +152,7 @@ const DxcNewDate = React.forwardRef(
         MuiButtonBase: {
           root: {
             "&:focus": {
-              outline: colorsTheme.date.focusColor + " solid 2px",
+              outline: colorsTheme.newDate.pickerFocusColor + " solid 2px",
             },
           },
         },
@@ -161,38 +162,38 @@ const DxcNewDate = React.forwardRef(
             maxWidth: "unset",
             minHeight: "unset",
             padding: "0px 10px",
-            height: colorsTheme.date.pickerHeight,
-            width: colorsTheme.date.pickerWidth,
-            backgroundColor: colorsTheme.date.pickerBackgroundColor,
-            fontFamily: colorsTheme.date.fontFamily,
+            height: colorsTheme.newDate.pickerHeight,
+            width: colorsTheme.newDate.pickerWidth,
+            backgroundColor: colorsTheme.newDate.pickerBackgroundColor,
+            fontFamily: colorsTheme.newDate.pickerFontFamily,
           },
         },
         MuiPickersToolbarText: {
           toolbarTxt: {
-            color: colorsTheme?.date?.pickerActualDate,
-            fontFamily: colorsTheme?.date?.fontFamily,
+            color: colorsTheme.newDate.pickerActualDateFontColor,
+            fontFamily: colorsTheme.newDate.pickerFontFamily,
             fontSize: "2rem",
           },
           toolbarBtnSelected: {
-            color: colorsTheme.date.pickerActualDate,
+            color: colorsTheme.newDate.pickerActualDateFontColor,
           },
         },
         MuiPickersCalendarHeader: {
           transitionContainer: {
-            color: colorsTheme.date.pickerMonthColor,
+            color: colorsTheme.newDate.pickerMonthFontColor,
           },
           dayLabel: {
-            color: colorsTheme.date.pickerWeekLabelColor,
-            fontFamily: colorsTheme.date.fontFamily,
+            color: colorsTheme.newDate.pickerWeekFontColor,
+            fontFamily: colorsTheme.newDate.pickerFontFamily,
           },
           switchHeader: {
-            backgroundColor: colorsTheme.white,
-            color: colorsTheme.date.pickerFontColor,
+            backgroundColor: "#ffffff",
+            color: colorsTheme.newDate.pickerDayFontColor,
           },
           iconButton: {
-            backgroundColor: colorsTheme.date.pickerBackgroundColorMonthArrows,
+            backgroundColor: colorsTheme.newDate.pickerMonthArrowsBackgroundColor,
             "&:hover": {
-              backgroundColor: colorsTheme.date.pickerBackgroundColorMonthArrows,
+              backgroundColor: colorsTheme.newDate.pickerMonthArrowsBackgroundColor,
             },
           },
         },
@@ -203,38 +204,37 @@ const DxcNewDate = React.forwardRef(
         },
         MuiPickersDay: {
           current: {
-            border: colorsTheme.date.pickerActualDate + " 2px solid",
-            color: colorsTheme.date.pickerFontColor,
+            color: colorsTheme.newDate.pickerDayFontColor,
           },
           day: {
-            fontFamily: colorsTheme.date.fontFamily,
-            color: colorsTheme.date.pickerFontColor,
+            fontFamily: colorsTheme.newDate.pickerFontFamily,
+            color: colorsTheme.newDate.pickerDayFontColor,
             "&:hover": {
-              backgroundColor: colorsTheme.date.pickerHoverDateBackgroundColor,
-              color: colorsTheme.date.pickerHoverDateFontColor,
+              backgroundColor: colorsTheme.newDate.pickerHoverDateBackgroundColor,
+              color: colorsTheme.newDate.pickerHoverDateFontColor,
             },
           },
           daySelected: {
-            backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
-            color: colorsTheme.date.pickerSelectedDateColor,
+            backgroundColor: colorsTheme.newDate.pickerSelectedDateBackgroundColor,
+            color: colorsTheme.newDate.pickerSelectedDateColor,
             "&:hover": {
-              backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
-              color: colorsTheme.date.pickerSelectedDateColor,
+              backgroundColor: colorsTheme.newDate.pickerSelectedDateBackgroundColor,
+              color: colorsTheme.newDate.pickerSelectedDateColor,
               opacity: "1",
             },
           },
         },
         MuiPickersYear: {
           yearSelected: {
-            color: colorsTheme.date.pickerSelectedDateColor,
-            backgroundColor: colorsTheme.date.pickerSelectedDateBackgroundColor,
+            color: colorsTheme.newDate.pickerSelectedDateColor,
+            backgroundColor: colorsTheme.newDate.pickerSelectedDateBackgroundColor,
             margin: "0px 100px",
             borderRadius: "20px",
           },
           root: {
             "&:focus": {
-              color: colorsTheme.date.pickerHoverDateFontColor,
-              backgroundColor: colorsTheme.date.pickerHoverDateBackgroundColor,
+              color: colorsTheme.newDate.pickerHoverDateFontColor,
+              backgroundColor: colorsTheme.newDate.pickerHoverDateBackgroundColor,
             },
           },
         },
@@ -263,7 +263,7 @@ const DxcNewDate = React.forwardRef(
                 optional={optional}
                 onChange={handleIOnChange}
                 onBlur={handleIOnBlur}
-                error={error || validationError}
+                error={error}
                 autocomplete={autocomplete}
                 margin={margin}
                 size={size}

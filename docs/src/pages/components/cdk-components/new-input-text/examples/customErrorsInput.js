@@ -2,30 +2,49 @@ import { DxcNewInputText } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const [value, setValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const onChange = (value) => {
-    setValue(value);
+  const [firstValue, setFirstValue] = useState("");
+  const [customLengthError, setCustomLengthError] = useState("");
+  const onChangeFirst = ({ value, error }) => {
+    setFirstValue(value);
+    error ? setCustomLengthError("The input value does not have the right length.") : setCustomLengthError(null);
   };
 
+  const [secondValue, setSecondValue] = useState("");
+  const [customPatternError, setCustomPatternError] = useState("");
+  const onChangeSecond = ({ value }) => {
+    setSecondValue(value);
+  };
   const onBlur = ({ value, error }) => {
-    setValue(value);
-    error ? setErrorMessage("Custom error.") : setErrorMessage(null);
+    setSecondValue(value);
+    error ? setCustomPatternError("The input value does not comply the allowed format.") : setCustomPatternError(null);
   };
 
   return (
-    <DxcNewInputText
-      label="Custom errors"
-      value={value}
-      onChange={onChange}
-      onBlur={onBlur}
-      margin="medium"
-      clearable
-      pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
-      length={{ min: 5, max: 10 }}
-      error={errorMessage}
-    />
+    <div style={{ display: "flex" }}>
+      <DxcNewInputText
+        label="Custom length error"
+        helperText="Using onChange event for handling errors"
+        value={firstValue}
+        onChange={onChangeFirst}
+        length={{ min: 5, max: 15 }}
+        error={customLengthError}
+        margin="medium"
+        clearable
+        optional
+      />
+      <DxcNewInputText
+        label="Custom pattern error"
+        helperText="Using onBlur event for handling errors"
+        value={secondValue}
+        onChange={onChangeSecond}
+        onBlur={onBlur}
+        pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
+        error={customPatternError}
+        margin="medium"
+        clearable
+        optional
+      />
+    </div>
   );
 }`;
 

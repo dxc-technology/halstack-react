@@ -11,7 +11,15 @@ function ComponentHeader({ title, status }) {
       <DxcHeading level={2} text={title} margin={{ bottom: "medium" }} />
       {status ? (
         <DxcChip
-          label="Ready"
+          label={
+            status === "ready"
+              ? "Ready"
+              : status === "experimental"
+              ? "Experimental"
+              : status === "planned"
+              ? "Planned"
+              : ""
+          }
           margin={{ left: "small", bottom: "medium" }}
           prefixIconSrc={
             status === "ready"
