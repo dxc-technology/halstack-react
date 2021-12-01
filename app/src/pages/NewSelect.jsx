@@ -116,10 +116,22 @@ function App() {
           }}
           placeholder="Choose an option"
           margin="medium"
+          searchable
           optional
         />
       </p>
       <p>
+        <h4 style={{ "margin-left": "36px" }}>Optional without placeholder</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options}
+          margin="medium"
+          searchable
+          optional
+        />
+      </p>
+      {/* <p>
         <h4 style={{ "margin-left": "36px" }}>Error</h4>
         <DxcNewSelect
           label="Label"
@@ -129,51 +141,62 @@ function App() {
           margin="medium"
           error="Error message"
         />
-      </p>
+      </p> */}
       <p>
         <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
         <DxcNewSelect
           label="Small"
+          options={grouped_options}
           margin={{ left: "medium", right: "medium" }}
           size="small"
         />
         <DxcNewSelect
           label="Medium"
+          options={grouped_options}
           margin={{ left: "medium", right: "medium" }}
           size="medium"
         />
         <DxcNewSelect
           label="Large"
+          options={grouped_options}
           margin={{ left: "medium", right: "medium" }}
           size="large"
         />
         <DxcNewSelect
           label="Fill parent"
+          options={grouped_options}
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
           searchable
         />
       </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>Empty options</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={[]}
+          placeholder="Choose an option"
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>Empty grouped options</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={[
+            {
+              label: "Group 1",
+              options: [],
+            },
+          ]}
+          placeholder="Choose an option"
+          margin="medium"
+        />
+      </p>
     </>
   );
 }
-
-const DarkMode = ({ children }) => {
-  return (
-    <ModeContainer>
-      <PreviewsContainer>{children}</PreviewsContainer>
-    </ModeContainer>
-  );
-};
-
-const ModeContainer = styled.div`
-  background-color: #000000;
-  display: flex;
-  flex-flow: row wrap;
-`;
-
-const PreviewsContainer = styled.div`
-  flex: 100%;
-`;
 
 export default App;

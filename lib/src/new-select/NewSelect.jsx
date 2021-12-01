@@ -38,6 +38,26 @@ const selectIcons = {
       <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
     </svg>
   ),
+  searchOff: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      enable-background="new 0 0 24 24"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="currentColor"
+    >
+      <g>
+        <rect fill="none" height="24" width="24" />
+      </g>
+      <g>
+        <g>
+          <path d="M15.5,14h-0.79l-0.28-0.27C15.41,12.59,16,11.11,16,9.5C16,5.91,13.09,3,9.5,3C6.08,3,3.28,5.64,3.03,9h2.02 C5.3,6.75,7.18,5,9.5,5C11.99,5,14,7.01,14,9.5S11.99,14,9.5,14c-0.17,0-0.33-0.03-0.5-0.05v2.02C9.17,15.99,9.33,16,9.5,16 c1.61,0,3.09-0.59,4.23-1.57L14,14.71v0.79l5,4.99L20.49,19L15.5,14z" />
+          <polygon points="6.47,10.82 4,13.29 1.53,10.82 0.82,11.53 3.29,14 0.82,16.47 1.53,17.18 4,14.71 6.47,17.18 7.18,16.47 4.71,14 7.18,11.53" />
+        </g>
+      </g>
+    </svg>
+  ),
 };
 
 const DxcNewSelect = React.forwardRef(
@@ -70,9 +90,8 @@ const DxcNewSelect = React.forwardRef(
     const [isOpen, changeIsOpen] = useState(false);
     const [isActiveOption, changeIsActiveOption] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState([]);
-    const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
+    const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
-    const selectContainerRef = useRef(null);
     const selectInputRef = useRef(null);
 
     const colorsTheme = useTheme();
@@ -80,8 +99,9 @@ const DxcNewSelect = React.forwardRef(
 
     const notOptionalCheck = (value) => value === "" && !optional;
 
-    const canBeOpenOptions = () => !disabled && options && options.length; // === options?.length ???
-    const groupsHaveOptions = () =>
+    const canBeOpenOptions = () => !disabled && options && options.length && groupsHaveOptions(); // === options?.length ???
+    const groupsHaveOptions = () => (options[0].options ? options.some((option) => option.options.length > 0) : true);
+    const filteredGroupsHaveOptions = () =>
       options[0].options ? filteredOptions.some((option) => option.options?.length > 0) : true;
     const openOptions = () => {
       if (canBeOpenOptions()) {
@@ -92,7 +112,7 @@ const DxcNewSelect = React.forwardRef(
     const closeOptions = () => {
       searchable && changeIsBackgroundValue(false);
       changeIsOpen(false);
-      changeVisualFocusedSuggIndex(-1);
+      changeVisualFocusIndex(-1);
     };
 
     const handleSelectChangeValue = (newValue) => {
@@ -149,7 +169,7 @@ const DxcNewSelect = React.forwardRef(
 
     useEffect(() => {
       if (searchable && options && options.length) {
-        changeVisualFocusedSuggIndex(-1);
+        changeVisualFocusIndex(-1);
         if (options[0].options) {
           setFilteredOptions(
             options.map((optionGroup) => {
@@ -174,7 +194,7 @@ const DxcNewSelect = React.forwardRef(
         filteredOptions.length
           ? filteredOptions.forEach((option) => (last += option.options.length))
           : options.forEach((option) => (last += option.options.length));
-      } else last = filteredOptions.length ? filteredOptions.length - 1 : options.length - 1;
+      } else last = filteredOptions.length ? filteredOptions.length : options.length;
 
       return last;
     };
@@ -197,18 +217,18 @@ const DxcNewSelect = React.forwardRef(
             }
           }}
           onMouseEnter={() => {
-            changeVisualFocusedSuggIndex(index);
+            changeVisualFocusIndex(index);
           }}
           onMouseLeave={() => {
             changeIsActiveOption(false);
           }}
-          visualFocused={visualFocusedSuggIndex === index}
-          active={visualFocusedSuggIndex === index && isActiveOption}
+          visualFocused={visualFocusIndex === index}
+          active={visualFocusIndex === index && isActiveOption}
           selected={isSelected}
         >
           <StyledOption
-            visualFocused={visualFocusedSuggIndex === index}
-            active={visualFocusedSuggIndex === index && isActiveOption}
+            visualFocused={visualFocusIndex === index}
+            active={visualFocusIndex === index && isActiveOption}
             selected={isSelected}
             last={isLastOption}
           >
@@ -230,7 +250,7 @@ const DxcNewSelect = React.forwardRef(
             })}
           </>
         );
-      } else return <Option option={option} index={index} />;
+      } else return <Option option={option} index={index + 1} />;
     };
 
     return (
@@ -250,7 +270,6 @@ const DxcNewSelect = React.forwardRef(
             onClick={handleSelectOnClick}
             onFocus={handleSelectOnFocus}
             tabIndex={tabIndex}
-            ref={selectContainerRef}
           >
             <SearchableValueContainer>
               {searchable && (
@@ -280,19 +299,26 @@ const DxcNewSelect = React.forwardRef(
             <Arrow disabled={disabled} backgroundType={backgroundType}>
               {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
             </Arrow>
-            {((searchable && filteredOptions.length > 0 && groupsHaveOptions() && isOpen) ||
-              (!searchable && isOpen)) && (
+            {isOpen && (
               <OptionsList
-                onMouseDown={(event) => {
-                  event.preventDefault();
-                }}
                 onClick={(event) => {
                   event.stopPropagation();
                 }}
+                onMouseDown={(event) => {
+                  event.preventDefault();
+                }}
                 onMouseLeave={() => {
-                  changeVisualFocusedSuggIndex(-1);
+                  changeVisualFocusIndex(-1);
                 }}
               >
+                {searchable && (filteredOptions.length === 0 || !filteredGroupsHaveOptions()) ? (
+                  <OptionsSystemMessage>
+                    <NoMatchesFoundIcon>{selectIcons.searchOff}</NoMatchesFoundIcon>
+                    No matches found
+                  </OptionsSystemMessage>
+                ) : (
+                  optional && /*!multiple*/ <Option option={{ label: placeholder, value: "" }} index={0} />
+                )}
                 {searchable ? filteredOptions.map(mapOptionFunc) : options.map(mapOptionFunc)}
               </OptionsList>
             )}
@@ -546,11 +572,7 @@ const Arrow = styled.span`
   align-content: center;
   height: 16px;
   width: 16px;
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily};
-  border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 3px;
+  padding: 4px;
   margin-left: calc(1rem * 0.25);
 
   color: ${(props) =>
@@ -637,8 +659,8 @@ const OptionsList = styled.ul`
   box-sizing: border-box;
   background-color: #ffffff;
   border-radius: 4px;
-  cursor: default;
   border: 1px solid ${(props) => props.theme.enabledListBorderColor};
+  cursor: default;
   font-family: ${(props) => props.theme.fontFamily};
   color: ${(props) => props.theme.listOptionFontColor};
   font-size: ${(props) => props.theme.listOptionFontSize};
@@ -646,14 +668,32 @@ const OptionsList = styled.ul`
   font-weight: ${(props) => props.theme.listOptionFontWeight};
 `;
 
+const OptionsSystemMessage = styled.span`
+  display: flex;
+  padding: 4px 16px;
+  color: ${(props) => props.theme.systemMessageFontColor};
+  font-size: 0.875rem;
+  line-height: 1.715em;
+`;
+
+const NoMatchesFoundIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 16px;
+  width: 16px;
+  padding: 4px;
+  margin-right: calc(1rem * 0.25);
+`;
+
 const OptionGroupLabel = styled.li`
-  padding: 4px 16px 4px 16px;
+  padding: 4px 16px;
   line-height: 1.715em;
   font-weight: 600;
 `;
 
 const OptionItem = styled.li`
-  padding: 0 8px 0 8px;
+  padding: 0 8px;
   line-height: 1.715em;
   cursor: pointer;
 
@@ -674,6 +714,7 @@ const StyledOption = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 4px 8px 3px 8px;
+  min-height: 24px;
   ${(props) =>
     props.last
       ? `border-bottom: 1px solid transparent`
