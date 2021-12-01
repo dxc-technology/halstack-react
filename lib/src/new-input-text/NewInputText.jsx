@@ -70,10 +70,6 @@ const DxcNewInputText = React.forwardRef(
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
 
-    const [minNumber, setMinNumber] = useState(null);
-    const [maxNumber, setMaxNumber] = useState(null);
-    const [stepNumber, setStepNumber] = useState(null);
-
     const suggestionsRef = useRef(null);
     const inputRef = useRef(null);
     const actionRef = useRef(null);
@@ -93,14 +89,17 @@ const DxcNewInputText = React.forwardRef(
       value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
 
     const isNumberIncorrect = (value) =>
-      (minNumber && parseInt(value) < minNumber) || (maxNumber && parseInt(value) > maxNumber);
+      (numberContext?.minNumber && parseInt(value) < numberContext?.minNumber) ||
+      (numberContext?.maxNumber && parseInt(value) > numberContext?.maxNumber);
 
     const isTextInputType = () =>
       !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
 
     const getNumberErrorMessage = (value) => {
-      if (minNumber && parseInt(value) < minNumber) return `Value must be greater than or equal to ${minNumber}.`;
-      else if (maxNumber && parseInt(value) > maxNumber) return `Value must be less than or equal to ${maxNumber}.`;
+      if (numberContext?.minNumber && parseInt(value) < numberContext?.minNumber)
+        return `Value must be greater than or equal to ${numberContext?.minNumber}.`;
+      else if (numberContext?.maxNumber && parseInt(value) > numberContext?.maxNumber)
+        return `Value must be less than or equal to ${numberContext?.maxNumber}.`;
     };
 
     const hasInputSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
@@ -220,9 +219,6 @@ const DxcNewInputText = React.forwardRef(
       min && inputRef?.current?.setAttribute("min", min);
       max && inputRef?.current?.setAttribute("max", max);
       step && inputRef?.current?.setAttribute("step", step);
-      setMinNumber(min);
-      setMaxNumber(max);
-      setStepNumber(step);
     };
 
     useLayoutEffect(() => {
@@ -290,25 +286,27 @@ const DxcNewInputText = React.forwardRef(
     );
 
     const decrementNumber = () => {
-      const numberValue = value || innerValue;
-      if (minNumber && parseInt(numberValue) < minNumber) {
+      const numberValue = value ?? innerValue;
+      if (numberContext?.minNumber && parseInt(numberValue) < numberContext?.minNumber) {
         changeValue(parseInt(numberValue));
-      } else if (maxNumber && parseInt(numberValue) > maxNumber) {
-        changeValue(maxNumber);
+      } else if (numberContext?.maxNumber && parseInt(numberValue) > numberContext?.maxNumber) {
+        changeValue(numberContext?.maxNumber);
       } else if (
-        minNumber &&
-        (parseInt(numberValue) === minNumber ||
+        numberContext?.minNumber &&
+        (parseInt(numberValue) === numberContext?.minNumber ||
           numberValue === "" ||
-          (stepNumber && parseInt(numberValue) - stepNumber < minNumber))
+          (numberContext?.stepNumber && parseInt(numberValue) - numberContext?.stepNumber < numberContext?.minNumber))
       ) {
-        changeValue(minNumber);
+        changeValue(numberContext?.minNumber);
       } else if (
-        (stepNumber && minNumber && parseInt(numberValue) - stepNumber >= minNumber) ||
-        (stepNumber && numberValue !== "")
+        (numberContext?.stepNumber &&
+          numberContext?.minNumber &&
+          parseInt(numberValue) - numberContext?.stepNumber >= numberContext?.minNumber) ||
+        (numberContext?.stepNumber && numberValue !== "")
       ) {
-        changeValue(parseInt(numberValue) - stepNumber);
-      } else if (stepNumber && numberValue == "") {
-        changeValue(-stepNumber);
+        changeValue(parseInt(numberValue) - numberContext?.stepNumber);
+      } else if (numberContext?.stepNumber && numberValue == "") {
+        changeValue(-numberContext?.stepNumber);
       } else if (numberValue === "") {
         changeValue(-1);
       } else {
@@ -317,23 +315,26 @@ const DxcNewInputText = React.forwardRef(
     };
 
     const incrementNumber = () => {
-      const numberValue = value || innerValue;
-      if (maxNumber && parseInt(numberValue) > maxNumber) {
+      const numberValue = value ?? innerValue;
+      if (numberContext?.maxNumber && parseInt(numberValue) > numberContext?.maxNumber) {
         changeValue(parseInt(numberValue));
-      } else if (minNumber && (parseInt(numberValue) < minNumber || numberValue === "")) {
-        changeValue(minNumber);
+      } else if (numberContext?.minNumber && (parseInt(numberValue) < numberContext?.minNumber || numberValue === "")) {
+        changeValue(numberContext?.minNumber);
       } else if (
-        maxNumber &&
-        (parseInt(numberValue) === maxNumber || (stepNumber && parseInt(numberValue) + stepNumber > maxNumber))
+        numberContext?.maxNumber &&
+        (parseInt(numberValue) === numberContext?.maxNumber ||
+          (numberContext?.stepNumber && parseInt(numberValue) + numberContext?.stepNumber > numberContext?.maxNumber))
       ) {
-        changeValue(maxNumber);
+        changeValue(numberContext?.maxNumber);
       } else if (
-        (stepNumber && maxNumber && parseInt(numberValue) + stepNumber <= maxNumber) ||
-        (stepNumber && numberValue !== "")
+        (numberContext?.stepNumber &&
+          numberContext?.maxNumber &&
+          parseInt(numberValue) + numberContext?.stepNumber <= numberContext?.maxNumber) ||
+        (numberContext?.stepNumber && numberValue !== "")
       ) {
-        changeValue(parseInt(numberValue) + stepNumber);
-      } else if (stepNumber && numberValue == "") {
-        changeValue(stepNumber);
+        changeValue(parseInt(numberValue) + numberContext?.stepNumber);
+      } else if (numberContext?.stepNumber && numberValue == "") {
+        changeValue(numberContext?.stepNumber);
       } else if (numberValue === "") {
         changeValue(1);
       } else {
