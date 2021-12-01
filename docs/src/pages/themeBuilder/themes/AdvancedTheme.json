@@ -1127,13 +1127,13 @@
     "containerMarginTop": "0.25rem",
     "optionBorderThickness": "0px",
     "optionBorderStyle": "none",
-    "optionBorderRadius": "4px",
+    "optionBorderRadius": "0.25rem",
     "containerBorderThickness": "1px",
     "containerBorderStyle": "solid",
-    "containerBorderRadius": "6px",
+    "containerBorderRadius": "0.375rem",
     "optionFocusBorderThickness": "2px",
     "optionFocusBorderStyle":  "solid",
-    "optionFocusBorderRadius": "4px"
+    "optionFocusBorderRadius": "0.25rem"
   },
   "upload": {
     "fontFamily": "Open Sans, sans-serif",

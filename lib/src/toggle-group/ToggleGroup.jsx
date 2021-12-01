@@ -130,7 +130,7 @@ const ToggleGroup = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  width: fit-content;
+  display: inline-flex;
 `;
 
 const OptionsContainer = styled.div`
