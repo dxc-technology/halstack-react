@@ -18,8 +18,7 @@ const DxcToggleGroup = ({
 }) => {
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
-
-  const toggleGroupId = `file-input-${uuidv4()}`;
+  const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
