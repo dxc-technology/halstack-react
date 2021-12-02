@@ -111,7 +111,7 @@ const Select = () => {
           assistiveText="assistiveText"
         ></DxcSelect>
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
@@ -158,7 +158,7 @@ const Select = () => {
             assistiveText="assistiveText"
           ></DxcSelect>
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </SelectContainer>
   );
 };

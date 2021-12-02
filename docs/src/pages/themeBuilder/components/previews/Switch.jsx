@@ -20,7 +20,7 @@ const Switch = () => {
       <DxcHeading
         text="Light Mode"
         level={5}
-        margin={{ top:"xsmall", bottom: "xxsmall" }}
+        margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
         <DxcSwitch
@@ -45,7 +45,7 @@ const Switch = () => {
           disabled
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top:"xsmall", bottom: "xxsmall" }}
@@ -74,7 +74,7 @@ const Switch = () => {
             disabled
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </SwitchContainer>
   );
 };

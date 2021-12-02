@@ -75,12 +75,12 @@ const Button = () => {
           margin={{ top: "xsmall", right: "small" }}
         />
       </Mode>
-      <DxcHeading
+      {/*<DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
       />
-      <BackgroundColorProvider color="#000000">
+       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Primary">
           <DxcButton
             mode="primary"
@@ -139,7 +139,7 @@ const Button = () => {
             margin={{ top: "xsmall", right: "small" }}
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </ButtonContainer>
   );
 };

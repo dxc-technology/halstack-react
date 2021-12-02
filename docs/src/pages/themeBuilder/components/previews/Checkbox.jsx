@@ -52,7 +52,7 @@ const Checkbox = () => {
           margin={{ top: "xsmall" }}
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
@@ -90,7 +90,7 @@ const Checkbox = () => {
             margin={{ top: "xsmall" }}
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </CheckboxContainer>
   );
 };

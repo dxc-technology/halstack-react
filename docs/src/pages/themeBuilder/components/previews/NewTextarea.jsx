@@ -56,7 +56,7 @@ const NewTextarea = () => {
           error="Error message."
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xsmall" }}
@@ -96,7 +96,7 @@ const NewTextarea = () => {
             />
           </Mode>
         </BackgroundColorProvider>
-      </div>
+      </div> */}
     </NewTextareaContainer>
   );
 };

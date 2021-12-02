@@ -64,7 +64,7 @@ const ProgressBar = () => {
         )}
       </Mode>
 
-      <h4>Dark mode</h4>
+      {/* <h4>Dark mode</h4>
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Undeterminate default">
           <Container>
@@ -88,7 +88,7 @@ const ProgressBar = () => {
             />
           </Container>
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </ProgressBarContainer>
   );
 };

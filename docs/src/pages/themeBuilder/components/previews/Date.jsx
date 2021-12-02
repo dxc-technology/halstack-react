@@ -24,7 +24,7 @@ const Date = () => {
           margin={{ top: "xxsmall", bottom: "xsmall" }}
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
@@ -38,7 +38,7 @@ const Date = () => {
             margin={{ top: "xxsmall", bottom: "xsmall" }}
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </DateContainer>
   );
 };

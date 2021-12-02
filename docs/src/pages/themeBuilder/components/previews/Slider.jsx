@@ -68,7 +68,7 @@ const Slider = () => {
           margin="medium"
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -122,7 +122,7 @@ const Slider = () => {
             margin="medium"
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </SliderContainer>
   );
 };

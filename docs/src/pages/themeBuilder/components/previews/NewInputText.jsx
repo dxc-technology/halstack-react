@@ -150,7 +150,7 @@ const NewInputText = () => {
           clearable
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xsmall" }}
@@ -228,8 +228,8 @@ const NewInputText = () => {
               clearable
             />
           </Mode>
-        </BackgroundColorProvider>
-      </div>
+        </BackgroundColorProvider> 
+      </div>*/}
     </NewInputTextContainer>
   );
 };
