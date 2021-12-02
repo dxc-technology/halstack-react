@@ -66,10 +66,8 @@ const DxcNewInputText = React.forwardRef(
     const [isScrollable, changeIsScrollable] = useState(false);
     const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
-
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
-
     const [inputId] = useState(`input-${uuidv4()}`);
 
     const suggestionsRef = useRef(null);
