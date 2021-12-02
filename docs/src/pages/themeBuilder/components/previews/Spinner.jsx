@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcSpinner,
-  DxcButton,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
+import { DxcSpinner, DxcButton } from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 

@@ -5,13 +5,14 @@ import Mode from "../Mode";
 
 const Switch = () => {
   const [checked, changeChecked] = useState(false);
-  const [checkedDark, changeCheckedDark] = useState(false);
+  // const [checkedDark, changeCheckedDark] = useState(false);
+
   const onChange = (newValue) => {
     changeChecked(newValue);
   };
-  const onChangeDark = (newValue) => {
-    changeCheckedDark(newValue);
-  };
+  // const onChangeDark = (newValue) => {
+  //   changeCheckedDark(newValue);
+  // };
 
   return (
     <SwitchContainer>
