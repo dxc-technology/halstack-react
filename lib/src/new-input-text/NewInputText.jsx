@@ -70,6 +70,8 @@ const DxcNewInputText = React.forwardRef(
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
 
+    const [inputId] = useState(`input-${uuidv4()}`);
+
     const suggestionsRef = useRef(null);
     const inputRef = useRef(null);
     const actionRef = useRef(null);
@@ -77,7 +79,6 @@ const DxcNewInputText = React.forwardRef(
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
 
-    const inputId = `input-${uuidv4()}`;
     const autosuggestId = `${inputId}-listBox`;
     const errorId = `error-message-${inputId}`;
 

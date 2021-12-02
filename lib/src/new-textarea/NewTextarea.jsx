@@ -41,12 +41,12 @@ const DxcNewTextarea = React.forwardRef(
     ref
   ) => {
     const [innerValue, setInnerValue] = useState("");
+    const [textareaId] = useState(`textarea-${uuidv4()}`);
 
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
 
     const textareaRef = useRef(null);
-    const textareaId = `textarea-${uuidv4()}`;
     const errorId = `error-message-${textareaId}`;
 
     const isNotOptional = (value) => value === "" && !optional;
