@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { DxcSlider, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import { BackgroundColorProvider } from "@dxc-technology/halstack-react/dist/BackgroundColorContext";
 
 const Slider = () => {
   const [value, changeValue] = useState(0);

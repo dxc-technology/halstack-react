@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcCheckbox,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcCheckbox, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Checkbox = () => {

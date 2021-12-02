@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  DxcNewDate,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcNewDate, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const NewDate = () => {
@@ -26,7 +21,7 @@ const NewDate = () => {
           clearable
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xsmall" }}
@@ -42,7 +37,7 @@ const NewDate = () => {
             clearable
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </NewDateContainer>
   );
 };

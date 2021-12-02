@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { DxcTextarea, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
-import { BackgroundColorProvider } from "@dxc-technology/halstack-react/dist/BackgroundColorContext";
 
 const Textarea = () => {
   const [value, changeValue] = useState("Sample text");
@@ -50,7 +49,7 @@ const Textarea = () => {
           margin={{ top: "xsmall", bottom: "xxsmall" }}
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -89,7 +88,7 @@ const Textarea = () => {
             margin={{ top: "xsmall", bottom: "xxsmall" }}
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </TextareaContainer>
   );
 };

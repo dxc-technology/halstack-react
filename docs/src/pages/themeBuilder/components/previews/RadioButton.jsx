@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  DxcRadio,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcRadio, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const RadioButton = () => {

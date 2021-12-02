@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { DxcSwitch, DxcHeading } from "@dxc-technology/halstack-react";
-
 import Mode from "../Mode";
-import { BackgroundColorProvider } from "@dxc-technology/halstack-react/dist/BackgroundColorContext";
 
 const Switch = () => {
   const [checked, changeChecked] = useState(false);

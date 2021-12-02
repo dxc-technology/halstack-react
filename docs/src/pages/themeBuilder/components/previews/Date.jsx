@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  DxcDate,
-  BackgroundColorProvider,
-  DxcHeading,
-} from "@dxc-technology/halstack-react";
-
+import { DxcDate, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Date = () => {

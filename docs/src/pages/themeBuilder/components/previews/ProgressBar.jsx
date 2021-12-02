@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcButton,
-  DxcProgressBar,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcButton, DxcProgressBar } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const ProgressBar = () => {

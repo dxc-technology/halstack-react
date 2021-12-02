@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcNewTextarea,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcNewTextarea, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const NewTextarea = () => {

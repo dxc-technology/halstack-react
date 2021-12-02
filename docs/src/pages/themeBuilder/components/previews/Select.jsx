@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  DxcSelect,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcSelect, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";
