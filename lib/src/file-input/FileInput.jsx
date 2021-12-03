@@ -46,10 +46,9 @@ const DxcFileInput = ({
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState([]);
+  const [fileInputId] = useState(`file-input-${uuidv4()}`);
 
   const colorsTheme = useTheme();
-
-  const fileInputId = `file-input-${uuidv4()}`;
 
   useEffect(() => {
     if (value) {
