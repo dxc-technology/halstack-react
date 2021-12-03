@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import { spaces } from "../common/variables.js";
@@ -90,7 +90,7 @@ const DxcNewSelect = React.forwardRef(
     const [isOpen, changeIsOpen] = useState(false);
     const [isActiveOption, changeIsActiveOption] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState([]);
-    const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
+    const [visualFocusIndex, changeVisualFocusIndex] = useState(0);
 
     const selectInputRef = useRef(null);
 
@@ -99,10 +99,15 @@ const DxcNewSelect = React.forwardRef(
 
     const notOptionalCheck = (value) => value === "" && !optional;
 
-    const canBeOpenOptions = () => !disabled && options && options.length && groupsHaveOptions(); // === options?.length ???
-    const groupsHaveOptions = () => (options[0].options ? options.some((option) => option.options.length > 0) : true);
+    const canBeOpenOptions = () => !disabled && options?.length > 0 && groupsHaveOptions();
+    const groupsHaveOptions = () =>
+      options[0]?.hasOwnProperty("options")
+        ? options[0].options
+          ? options.some((groupOption) => groupOption.options.length > 0)
+          : false
+        : true;
     const filteredGroupsHaveOptions = () =>
-      options[0].options ? filteredOptions.some((option) => option.options?.length > 0) : true;
+      filteredOptions[0]?.options ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
     const openOptions = () => {
       if (canBeOpenOptions()) {
         searchable && changeIsBackgroundValue(true);
@@ -112,7 +117,7 @@ const DxcNewSelect = React.forwardRef(
     const closeOptions = () => {
       searchable && changeIsBackgroundValue(false);
       changeIsOpen(false);
-      changeVisualFocusIndex(-1);
+      changeVisualFocusIndex(0);
     };
 
     const handleSelectChangeValue = (newValue) => {
@@ -150,30 +155,31 @@ const DxcNewSelect = React.forwardRef(
       setSearchValue("");
     };
 
-    const getSingleSelectedOptionLabel = () => {
+    const getSingleSelectedOption = () => {
       const val = value ?? innerValue;
-      let selectedOptionLabel;
+      let selectedOption;
 
-      if (options && options.length) {
+      if (options?.length > 0) {
         options.forEach((option) => {
           if (option.options) {
             option.options.forEach((singleOption) => {
-              if (singleOption.value === val) selectedOptionLabel = singleOption.label;
+              if (singleOption.value === val) selectedOption = singleOption;
             });
-          } else if (option.value === val) selectedOptionLabel = option.label;
+          } else if (option.value === val) selectedOption = option;
         });
       }
 
-      return selectedOptionLabel;
+      return selectedOption;
     };
+    const selectedOption = useMemo(() => getSingleSelectedOption(), [value ?? innerValue]);
 
     useEffect(() => {
-      if (searchable && options && options.length) {
-        changeVisualFocusIndex(-1);
+      if (searchable && options?.length > 0) {
+        changeVisualFocusIndex(0);
         if (options[0].options) {
           setFilteredOptions(
             options.map((optionGroup) => {
-              let group = JSON.parse(JSON.stringify(optionGroup)); // anything better?
+              const group = JSON.parse(JSON.stringify(optionGroup)); // anything better?
               group.options = group.options.filter((option) =>
                 option.label.toUpperCase().includes(searchValue.toUpperCase())
               );
@@ -187,20 +193,23 @@ const DxcNewSelect = React.forwardRef(
       }
     }, [options, searchable, searchValue]);
 
-    const lastIndex = (isGroupedOptions) => {
+    const lastIndex = () => {
       let last = 0;
+      const reducer = (acc, current) => acc + current.options.length;
 
-      if (isGroupedOptions) {
-        filteredOptions.length
-          ? filteredOptions.forEach((option) => (last += option.options.length))
-          : options.forEach((option) => (last += option.options.length));
-      } else last = filteredOptions.length ? filteredOptions.length : options.length;
+      if (searchable && filteredOptions.length > 0)
+        filteredOptions[0].options
+          ? (last = filteredOptions.reduce(reducer, 0) - 1)
+          : (last = filteredOptions.length - 1);
+      else options[0]?.options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
 
       return last;
     };
+    const lastIndexValue = useMemo(() => lastIndex(), [searchable, searchable ? filteredOptions : options]);
+
     const Option = ({ option, index, isGroupedOption = false }) => {
       const isSelected = (value ?? innerValue) === option.value;
-      const isLastOption = index === lastIndex(isGroupedOption);
+      const isLastOption = index === (optional ? lastIndexValue + 1 : lastIndexValue);
 
       return (
         <OptionItem
@@ -232,13 +241,17 @@ const DxcNewSelect = React.forwardRef(
             selected={isSelected}
             last={isLastOption}
           >
-            <OptionLabel grouped={isGroupedOption}>{option.label}</OptionLabel>
+            <OptionContent grouped={isGroupedOption}>
+              {option.icon && <OptionIcon>{option.icon}</OptionIcon>}
+              <OptionLabel>{option.label}</OptionLabel>
+            </OptionContent>
             {isSelected && <SelectedIcon>{selectIcons.selected}</SelectedIcon>}
           </StyledOption>
         </OptionItem>
       );
     };
-    let global_index = 0;
+
+    let global_index = optional /*&& !multiple*/ ? 0 : -1; // placeholder becomes an option and its always index = 0
     const mapOptionFunc = (option, index) => {
       if (option.options) {
         return (
@@ -250,7 +263,7 @@ const DxcNewSelect = React.forwardRef(
             })}
           </>
         );
-      } else return <Option option={option} index={index + 1} />;
+      } else return <Option option={option} index={optional /*&& !multiple*/ ? index + 1 : index} />;
     };
 
     return (
@@ -286,7 +299,8 @@ const DxcNewSelect = React.forwardRef(
               )}
               {(!searchable || searchValue === "") && (
                 <SelectedOption disabled={disabled} placeholder={!(value ?? innerValue) || isBackgroundValue}>
-                  {getSingleSelectedOptionLabel() ?? placeholder}
+                  {selectedOption?.icon && <OptionIcon selected={true}>{selectedOption.icon}</OptionIcon>}
+                  <OptionLabel>{selectedOption?.label ?? placeholder}</OptionLabel>
                 </SelectedOption>
               )}
             </SearchableValueContainer>
@@ -307,9 +321,6 @@ const DxcNewSelect = React.forwardRef(
                 onMouseDown={(event) => {
                   event.preventDefault();
                 }}
-                onMouseLeave={() => {
-                  changeVisualFocusIndex(-1);
-                }}
               >
                 {searchable && (filteredOptions.length === 0 || !filteredGroupsHaveOptions()) ? (
                   <OptionsSystemMessage>
@@ -317,7 +328,7 @@ const DxcNewSelect = React.forwardRef(
                     No matches found
                   </OptionsSystemMessage>
                 ) : (
-                  optional && /*!multiple*/ <Option option={{ label: placeholder, value: "" }} index={0} />
+                  optional && /*!multiple &&*/ <Option option={{ label: placeholder, value: "" }} index={0} />
                 )}
                 {searchable ? filteredOptions.map(mapOptionFunc) : options.map(mapOptionFunc)}
               </OptionsList>
@@ -470,11 +481,9 @@ const SelectedOption = styled.span`
   display: inline-flex;
   align-items: center;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  max-width: 100%;
   padding: 0 calc(1rem * 0.5);
-  overflow: hidden;
-  white-space: nowrap;
   user-select: none;
+  overflow: hidden;
 
   color: ${(props) => {
     if (props.placeholder)
@@ -505,7 +514,6 @@ const SelectedOption = styled.span`
 const SearchInput = styled.input`
   grid-area: 1 / 1 / 1 / 1;
   height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  max-width: 100%;
   background: none;
   border: none;
   outline: none;
@@ -660,6 +668,7 @@ const OptionsList = styled.ul`
   background-color: #ffffff;
   border-radius: 4px;
   border: 1px solid ${(props) => props.theme.enabledListBorderColor};
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   cursor: default;
   font-family: ${(props) => props.theme.fontFamily};
   color: ${(props) => props.theme.listOptionFontColor};
@@ -709,9 +718,8 @@ const OptionItem = styled.li`
   }};
 `;
 
-const StyledOption = styled.div`
+const StyledOption = styled.span`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   padding: 4px 8px 3px 8px;
   min-height: 24px;
@@ -721,16 +729,29 @@ const StyledOption = styled.div`
       : `border-bottom: 1px solid ${props.theme.listOptionBorderBottomColor}`};
 `;
 
+const OptionContent = styled.span`
+  display: flex;
+  overflow: hidden;
+  ${(props) => props.grouped && `padding-left: 8px;`}
+`;
+
+const OptionIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 24px;
+  width: 24px;
+  margin-right: ${(props) => (props.selected ? "4px" : "8px")};
+`;
+
 const OptionLabel = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  ${(props) => props.grouped && `padding-left: 8px;`}
 `;
 
 const SelectedIcon = styled.span`
   display: flex;
-  flex-wrap: wrap;
   height: 16px;
   width: 16px;
   margin-left: 4px;
