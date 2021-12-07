@@ -58,10 +58,20 @@ const DxcToggleGroup = ({
           {label}
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
-        <OptionsContainer id={toggleGroupId}>
+        <OptionsContainer id={toggleGroupId} role={multiple ? "group" : "radiogroup"}>
           {options.map((option, i) => (
             <ToggleContainer
               selected={
+                multiple
+                  ? value
+                    ? value.includes(option.value)
+                    : selectedValue.includes(option.value)
+                  : value
+                  ? option.value === value
+                  : option.value === selectedValue
+              }
+              role={multiple ? "switch" : "radio"}
+              aria-checked={
                 multiple
                   ? value
                     ? value.includes(option.value)
