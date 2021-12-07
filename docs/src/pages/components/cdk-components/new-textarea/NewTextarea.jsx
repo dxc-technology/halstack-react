@@ -22,7 +22,10 @@ import rows from "./examples/rowsTextarea";
 function NewTextarea() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="New Textarea" status="ready"></ComponentHeader>
+      <ComponentHeader
+        title="New Textarea"
+        status="experimental"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -50,10 +53,7 @@ function NewTextarea() {
                   margin={{ bottom: "small" }}
                 />
                 <Example title="Controlled textarea" example={controlled} />
-                <Example
-                  title="Uncontrolled textarea"
-                  example={uncontrolled}
-                />
+                <Example title="Uncontrolled textarea" example={uncontrolled} />
                 <Example
                   title="Textarea with placeholder"
                   example={placeholder}
@@ -68,7 +68,10 @@ function NewTextarea() {
                   title="Textarea with verticalGrow set to 'none'"
                   example={vgNone}
                 ></Example>
-                <Example title="Textarea with default rows" example={rows}></Example>
+                <Example
+                  title="Textarea with default rows"
+                  example={rows}
+                ></Example>
                 <Example title="Invalid textarea" example={invalid}></Example>
                 <Example
                   title="Textarea with pattern constraint"

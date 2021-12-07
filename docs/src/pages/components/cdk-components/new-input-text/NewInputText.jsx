@@ -24,7 +24,10 @@ import fillParent from "./examples/fillParentInput";
 function NewInput() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="New Input Text" status="ready"></ComponentHeader>
+      <ComponentHeader
+        title="New Input Text"
+        status="experimental"
+      ></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -75,7 +78,10 @@ function NewInput() {
                   title="Input with custom error messages"
                   example={customErrors}
                 ></Example>
-                <Example title="Input with suggestions" example={autosuggest}></Example>
+                <Example
+                  title="Input with suggestions"
+                  example={autosuggest}
+                ></Example>
                 <Example
                   title="Input with a function as suggestions"
                   example={autosuggestFunction}

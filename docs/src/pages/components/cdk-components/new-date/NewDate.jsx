@@ -14,11 +14,10 @@ import optional from "./examples/optionalDate";
 import disabled from "./examples/disabledDate";
 import sized from "./examples/sizedDate";
 
-
 function NewDate() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="New Date" status="ready"></ComponentHeader>
+      <ComponentHeader title="New Date" status="experimental"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -51,7 +50,10 @@ function NewDate() {
                 <Example title="Optional date" example={optional} />
                 <Example title="Disabled date" example={disabled} />
                 <Example title="Invalid date" example={error} />
-                <Example title="Date with custom error message" example={customError} />
+                <Example
+                  title="Date with custom error message"
+                  example={customError}
+                />
                 <Example title="Fill parent size date" example={sized} />
               </Section>
             ),
