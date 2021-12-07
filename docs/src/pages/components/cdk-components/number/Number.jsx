@@ -20,7 +20,7 @@ import minMaxStep from "./examples/minMaxStepNumber";
 function Number() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Number" status="ready"></ComponentHeader>
+      <ComponentHeader title="Number" status="experimental"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

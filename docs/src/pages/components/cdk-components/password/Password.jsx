@@ -16,7 +16,7 @@ import fillParent from "./examples/fillParentPassword";
 function Password() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Password" status="ready"></ComponentHeader>
+      <ComponentHeader title="Password" status="experimental"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
