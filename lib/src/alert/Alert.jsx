@@ -168,11 +168,7 @@ const AlertContainer = styled.div`
   padding-right: 12px;
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
   align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
-  max-width: ${(props) =>
-    props.size !== "fillParent" &&
-    (props.size === "fitContent"
-      ? calculateWidth(props.margin, "fillParent")
-      : calculateWidth(props.margin, props.size))};
+  max-width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, "fillParent")};
   width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, props.size)};
   z-index: ${(props) => (props.mode === "modal" ? "1300" : "")};
 `;
