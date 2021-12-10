@@ -145,8 +145,9 @@ const AlertContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: ${(props) => (props.children && "inline-block") || "inline-flex"};
+  display: ${(props) => (props.size === "fitContent" ? "inline-block" : "block")};
   overflow: hidden;
+  box-sizing: border-box;
 
   background-color: ${(props) =>
     (props.type === "info" && props.theme.infoBackgroundColor) ||
@@ -167,11 +168,8 @@ const AlertContainer = styled.div`
   padding-right: 12px;
   justify-content: ${(props) => (props.mode === "modal" ? "center" : "")};
   align-items: ${(props) => (props.mode === "modal" ? "center" : "")};
-  max-width: ${(props) =>
-    props.size === "fitContent"
-      ? calculateWidth(props.margin, "fillParent")
-      : calculateWidth(props.margin, props.size)};
-  width: ${(props) => calculateWidth(props.margin, props.size)};
+  max-width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, "fillParent")};
+  width: ${(props) => props.size !== "fillParent" && calculateWidth(props.margin, props.size)};
   z-index: ${(props) => (props.mode === "modal" ? "1300" : "")};
 `;
 
