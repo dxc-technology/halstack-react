@@ -10,6 +10,16 @@ const sliderPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>label: string</td>
+        <td></td>
+        <td>Text to be placed above the slider.</td>
+      </tr>
+      <tr>
+        <td>helperText: string</td>
+        <td></td>
+        <td>Helper text to be placed above the slider.</td>
+      </tr>
+      <tr>
         <td>minValue: number</td>
         <td>
           <code>0</code>

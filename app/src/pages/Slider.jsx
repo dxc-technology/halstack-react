@@ -27,6 +27,8 @@ function App() {
       <div className="test-case" id="light-theme">
         <h4>Light theme</h4>
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={100}
           showLimitsValues={true}
@@ -39,6 +41,8 @@ function App() {
       <div className="test-case" id="light-theme">
         <h4>Label format slider</h4>
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={100}
           showLimitsValues={true}
@@ -52,6 +56,8 @@ function App() {
       <div className="test-case" id="discrete-slider">
         <h4>Discrete Slider</h4>
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={50}
           showLimitsValues={true}
@@ -65,6 +71,8 @@ function App() {
       <div className="test-case" id="continuous-slider">
         <h4>Continuous Slider</h4>
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={100}
           showLimitsValues={true}
@@ -77,6 +85,8 @@ function App() {
       <div className="test-case" id="no-limits-slider">
         <h4>Slider without limit values</h4>
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={100}
           name="input"
@@ -88,6 +98,8 @@ function App() {
       <div className="test-case" id="input-slider">
         <h4>Slider with input</h4>
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={50}
           showLimitsValues={true}
@@ -102,6 +114,8 @@ function App() {
           margin="medium"
         />
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           disabled
           minValue={0}
           maxValue={50}
@@ -120,6 +134,8 @@ function App() {
       <div className="test-case" id="disabled-slider">
         <h4>Disabled slider</h4>
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={100}
           showLimitsValues={true}
@@ -134,6 +150,8 @@ function App() {
         <div className="test-case" id="medium-size-slider">
           <h5>Medium size</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -146,6 +164,8 @@ function App() {
         <div className="test-case" id="large-size-slider">
           <h5>Large size</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -158,6 +178,8 @@ function App() {
         <div className="test-case" id="fillParent-size-slider">
           <h5>FillParent size</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -173,6 +195,8 @@ function App() {
         <div className="test-case" id="xxsmall-margin">
           <h5>xxsmall margin</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -185,6 +209,8 @@ function App() {
         <div className="test-case" id="xsmall-margin">
           <h5>xsmall margin</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -197,6 +223,8 @@ function App() {
         <div className="test-case" id="small-margin">
           <h5>small margin</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -209,6 +237,8 @@ function App() {
         <div className="test-case" id="medium-margin">
           <h5>Medium margin</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -221,6 +251,8 @@ function App() {
         <div className="test-case" id="large-margin">
           <h5>Large margin</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -233,6 +265,8 @@ function App() {
         <div className="test-case" id="xlarge-margin">
           <h5>xlarge margin</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -245,6 +279,8 @@ function App() {
         <div className="test-case" id="xxlarge-margin">
           <h5>xxlarge margin</h5>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -259,6 +295,8 @@ function App() {
         <h4>Custom Slider</h4>
         <ThemeProvider theme={colors}>
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={50}
             showLimitsValues={true}
@@ -273,6 +311,8 @@ function App() {
             margin="medium"
           />
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             disabled
             minValue={0}
             maxValue={50}

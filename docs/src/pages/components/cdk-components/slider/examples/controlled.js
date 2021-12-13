@@ -9,6 +9,8 @@ const code = `() => {
 
   return (
     <DxcSlider
+      label="Select a value"
+      helperText="Helper text"
       minValue={0}
       maxValue={100}
       value={value}
@@ -23,7 +25,7 @@ const code = `() => {
 
 const scope = {
   DxcSlider,
-  useState
+  useState,
 };
 
 export default { code, scope };
