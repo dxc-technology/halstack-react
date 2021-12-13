@@ -10,6 +10,8 @@ import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 
 const DxcSlider = ({
+  label,
+  helperText,
   minValue = 0,
   maxValue = 100,
   step = 1,
@@ -60,39 +62,43 @@ const DxcSlider = ({
 
   return (
     <ThemeProvider theme={colorsTheme.slider}>
-      <SliderContainer margin={margin} size={size} backgroundType={backgroundType}>
-        {showLimitsValues && (
-          <MinLabelContainer backgroundType={backgroundType} disabled={disabled}>
-            {minLabel}
-          </MinLabelContainer>
-        )}
-        <Slider
-          value={(value != null && value >= 0 && value) || innerValue}
-          min={minValue}
-          max={maxValue}
-          onChange={handlerSliderChange}
-          onChangeCommitted={onDragEnd && ((event, selectedValue) => onDragEnd(selectedValue))}
-          step={step}
-          marks={marks || []}
-          disabled={disabled}
-        />
-        {showLimitsValues && (
-          <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
-            {maxLabel}
-          </MaxLabelContainer>
-        )}
-        {showInput && (
-          <StyledTextInput>
-            <DxcInput
-              name={name}
-              value={(value != null && value >= 0 && value) || innerValue}
-              disabled={disabled}
-              onChange={handlerInputChange}
-              size="small"
-            />
-          </StyledTextInput>
-        )}
-      </SliderContainer>
+      <Container margin={margin} size={size}>
+        <Label>{label}</Label>
+        <HelperText>{helperText}</HelperText>
+        <SliderContainer backgroundType={backgroundType}>
+          {showLimitsValues && (
+            <MinLabelContainer backgroundType={backgroundType} disabled={disabled}>
+              {minLabel}
+            </MinLabelContainer>
+          )}
+          <Slider
+            value={(value != null && value >= 0 && value) || innerValue}
+            min={minValue}
+            max={maxValue}
+            onChange={handlerSliderChange}
+            onChangeCommitted={onDragEnd && ((event, selectedValue) => onDragEnd(selectedValue))}
+            step={step}
+            marks={marks || []}
+            disabled={disabled}
+          />
+          {showLimitsValues && (
+            <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
+              {maxLabel}
+            </MaxLabelContainer>
+          )}
+          {showInput && (
+            <StyledTextInput>
+              <DxcInput
+                name={name}
+                value={(value != null && value >= 0 && value) || innerValue}
+                disabled={disabled}
+                onChange={handlerInputChange}
+                size="small"
+              />
+            </StyledTextInput>
+          )}
+        </SliderContainer>
+      </Container>
     </ThemeProvider>
   );
 };
@@ -108,17 +114,9 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const StyledTextInput = styled.div`
-  margin-left: 32px;
-
-  label + .MuiInput-formControl {
-    margin-top: 2px;
-  }
-`;
-
-const SliderContainer = styled.div`
+const Container = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -129,6 +127,30 @@ const SliderContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   width: ${(props) => calculateWidth(props.margin, props.size)};
+`;
+
+const Label = styled.label`
+  color: ${(props) => props.theme.labelFontColor};
+  font-family: ${(props) => props.theme.labelFontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => props.theme.labelFontStyle};
+  font-weight: ${(props) => props.theme.labelFontWeight};
+  line-height: ${(props) => props.theme.labelLineHeight};
+`;
+
+const HelperText = styled.span`
+  color: ${(props) => props.theme.helperTextFontColor};
+  font-family: ${(props) => props.theme.helperTextFontFamily};
+  font-size: ${(props) => props.theme.helperTextFontSize};
+  font-style: ${(props) => props.theme.helperTextFontstyle};
+  font-weight: ${(props) => props.theme.helperTextFontWeight};
+  line-height: ${(props) => props.theme.helperTextLineHeight};
+`;
+
+const SliderContainer = styled.div`
+  display: flex;
+  height: 48px;
+  align-items: center;
 
   .MultiSlider-root {
     display: flex;
@@ -214,6 +236,8 @@ const SliderContainer = styled.div`
           : props.theme.hoverThumbBackgroundColor};
       transform: scale(${(props) => props.theme.hoverThumbScale});
       transform-origin: center;
+      height: ${(props) => props.theme.hoverThumbHeight};
+      width: ${(props) => props.theme.hoverThumbWidth};
     }
     :active {
       background-color: ${(props) =>
@@ -267,7 +291,7 @@ const MinLabelContainer = styled.span`
       ? props.theme.fontColorOnDark
       : props.theme.fontColor};
   letter-spacing: ${(props) => props.theme.fontLetterSpacing};
-  margin-right: 16px;
+  margin-right: ${(props) => props.theme.floorLabelMarginRight};
 `;
 
 const MaxLabelContainer = styled.span`
@@ -282,10 +306,19 @@ const MaxLabelContainer = styled.span`
       ? props.theme.fontColorOnDark
       : props.theme.fontColor};
   letter-spacing: ${(props) => props.theme.fontLetterSpacing};
-  margin-left: ${(props) => (props.step === 1 ? "16px" : "20px")};
+  margin-left: ${(props) => (props.step === 1 ? props.theme.ceilLabelMarginLeft : "1.25rem")};
+`;
+
+const StyledTextInput = styled.div`
+  margin-left: ${(props) => props.theme.inputMarginLeft};
+  label + .MuiInput-formControl {
+    margin-top: 2px;
+  }
 `;
 
 DxcSlider.propTypes = {
+  label: PropTypes.string,
+  helperText: PropTypes.string,
   size: PropTypes.oneOf([...Object.keys(sizes)]),
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
