@@ -866,6 +866,7 @@
     "hoverThumbHeight": "14px",
     "hoverThumbWidth": "14px",
     "thumbVerticalPosition": "12px",
+    "hoverThumbVerticalPosition": "11px",
     "thumbBackgroundColor": "#0067b3",
     "thumbBackgroundColorOnDark": "#0095ff",
     "hoverThumbScale": "1.166666",

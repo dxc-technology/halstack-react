@@ -866,6 +866,7 @@
     "hoverThumbHeight": "length",
     "hoverThumbWidth": "length",
     "thumbVerticalPosition": "length",
+    "hoverThumbVerticalPosition": "length",
     "thumbBackgroundColor": "color",
     "thumbBackgroundColorOnDark": "color",
     "hoverThumbScale": "scale",

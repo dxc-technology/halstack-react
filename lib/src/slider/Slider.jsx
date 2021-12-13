@@ -238,7 +238,7 @@ const SliderContainer = styled.div`
       transform-origin: center;
       height: ${(props) => props.theme.hoverThumbHeight};
       width: ${(props) => props.theme.hoverThumbWidth};
-      top: 11px;
+      top: ${(props) => props.theme.hoverThumbVerticalPosition};
     }
     :active {
       background-color: ${(props) =>
