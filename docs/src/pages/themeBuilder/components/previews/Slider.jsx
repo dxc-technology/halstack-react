@@ -22,6 +22,8 @@ const Slider = () => {
       />
       <Mode text="Default">
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={100}
           showLimitsValues={true}
@@ -32,6 +34,8 @@ const Slider = () => {
       </Mode>
       <Mode text="Disabled">
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={100}
           showLimitsValues={true}
@@ -44,6 +48,8 @@ const Slider = () => {
       </Mode>
       <Mode text="With marks">
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={100}
           showLimitsValues={true}
@@ -55,6 +61,8 @@ const Slider = () => {
       </Mode>
       <Mode text="With input">
         <DxcSlider
+          label="Select a value"
+          helperText="Helper text"
           minValue={0}
           maxValue={50}
           showLimitsValues={true}
@@ -76,6 +84,8 @@ const Slider = () => {
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Default">
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -86,6 +96,8 @@ const Slider = () => {
         </Mode>
         <Mode mode="dark" text="Disabled">
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -98,6 +110,8 @@ const Slider = () => {
         </Mode>
         <Mode mode="dark" text="With marks">
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={100}
             showLimitsValues={true}
@@ -109,6 +123,8 @@ const Slider = () => {
         </Mode>
         <Mode mode="dark" text="With input">
           <DxcSlider
+            label="Select a value"
+            helperText="Helper text"
             minValue={0}
             maxValue={50}
             showLimitsValues={true}
