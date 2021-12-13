@@ -7,7 +7,7 @@ import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";
 import twitterIcon from "../../images/TwitterIcon";
 
-const ProgressBar = () => {
+const ToggleGroup = () => {
   const [value, changeValue] = useState(1);
   const onChange = (newValue) => {
     changeValue(newValue);
@@ -75,4 +75,4 @@ const ProgressBar = () => {
 
 const ToggleGroupContainer = styled.div``;
 
-export default ProgressBar;
+export default ToggleGroup;

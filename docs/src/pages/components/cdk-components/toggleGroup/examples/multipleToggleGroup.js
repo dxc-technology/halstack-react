@@ -23,6 +23,8 @@ const code = `() => {
 
   return (
     <DxcToggleGroup
+      label="Toggle group"
+      helperText="Please select one or more"
       options={options}
       value={value}
       onChange={onChange}
