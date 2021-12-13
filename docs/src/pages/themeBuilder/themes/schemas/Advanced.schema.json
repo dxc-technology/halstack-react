@@ -1131,9 +1131,7 @@
     "containerBorderThickness": "bWidth",
     "containerBorderStyle": "bStyle",
     "containerBorderRadius": "length",
-    "optionFocusBorderThickness": "bWidth",
-    "optionFocusBorderStyle":  "bStyle",
-    "optionFocusBorderRadius": "length"
+    "optionFocusBorderThickness": "bWidth"
   },
   "upload": {
     "fontFamily": "fFamily",

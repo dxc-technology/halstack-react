@@ -198,13 +198,9 @@ const ToggleContainer = styled.div`
           color: #ffffff;
         }        
         :focus {
-          border-color: ${props.theme.focusColor};
-          border-width: ${props.theme.optionFocusBorderThickness};
-          border-style: ${props.theme.optionFocusBorderStyle};
-          border-radius: ${props.theme.optionFocusBorderRadius};
-          padding-left: ${(props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon) ? "22px" : "6px"};
-          padding-right: ${
-            (props.optionLabel && props.isIcon) || (props.optionLabel && !props.isIcon) ? "22px" : "6px"
+          border-color: transparent;
+          box-shadow: 0 0 0 ${props.theme.optionFocusBorderThickness} ${
+            props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor
           };
         }
         &:focus-visible {

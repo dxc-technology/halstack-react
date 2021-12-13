@@ -1131,9 +1131,7 @@
     "containerBorderThickness": "1px",
     "containerBorderStyle": "solid",
     "containerBorderRadius": "0.375rem",
-    "optionFocusBorderThickness": "2px",
-    "optionFocusBorderStyle":  "solid",
-    "optionFocusBorderRadius": "0.25rem"
+    "optionFocusBorderThickness": "2px"
   },
   "upload": {
     "fontFamily": "Open Sans, sans-serif",
