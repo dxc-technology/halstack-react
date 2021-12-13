@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcCheckbox,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcCheckbox, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Checkbox = () => {
@@ -52,7 +47,7 @@ const Checkbox = () => {
           margin={{ top: "xsmall" }}
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
@@ -90,7 +85,7 @@ const Checkbox = () => {
             margin={{ top: "xsmall" }}
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </CheckboxContainer>
   );
 };

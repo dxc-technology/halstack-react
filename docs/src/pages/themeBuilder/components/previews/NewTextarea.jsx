@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcNewTextarea,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcNewTextarea, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const NewTextarea = () => {
@@ -56,7 +51,7 @@ const NewTextarea = () => {
           error="Error message."
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xsmall" }}
@@ -96,7 +91,7 @@ const NewTextarea = () => {
             />
           </Mode>
         </BackgroundColorProvider>
-      </div>
+      </div> */}
     </NewTextareaContainer>
   );
 };

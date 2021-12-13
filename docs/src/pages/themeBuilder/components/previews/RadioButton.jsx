@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  DxcRadio,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcRadio, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const RadioButton = () => {
@@ -17,17 +12,40 @@ const RadioButton = () => {
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <DxcRadio checked={true} label="Option1" margin={{ top: "xsmall", right: "small", left: "xsmall" }} />
-        <DxcRadio checked={false} label="Option2" margin={{ top: "xsmall", right: "small" }} />
+        <DxcRadio
+          checked={true}
+          label="Option1"
+          margin={{ top: "xsmall", right: "small", left: "xsmall" }}
+        />
+        <DxcRadio
+          checked={false}
+          label="Option2"
+          margin={{ top: "xsmall", right: "small" }}
+        />
         <DxcRadio checked={false} label="Option3" margin={{ top: "xsmall" }} />
       </Mode>
       <Mode text="Disabled">
-        <DxcRadio checked={true} label="Option1" margin={{ top: "xsmall", right: "small", left: "xsmall" }} disabled />
-        <DxcRadio checked={false} label="Option2" margin={{ top: "xsmall", right: "small" }} disabled />
-        <DxcRadio checked={false} label="Option3" margin={{ top: "xsmall" }} disabled />
+        <DxcRadio
+          checked={true}
+          label="Option1"
+          margin={{ top: "xsmall", right: "small", left: "xsmall" }}
+          disabled
+        />
+        <DxcRadio
+          checked={false}
+          label="Option2"
+          margin={{ top: "xsmall", right: "small" }}
+          disabled
+        />
+        <DxcRadio
+          checked={false}
+          label="Option3"
+          margin={{ top: "xsmall" }}
+          disabled
+        />
       </Mode>
 
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
@@ -43,7 +61,7 @@ const RadioButton = () => {
           <DxcRadio checked={false} label="Option2" margin={{ top: "xsmall", right: "small" }} disabled />
           <DxcRadio checked={false} label="Option3" margin={{ top: "xsmall" }} disabled />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </RadioButtonContainer>
   );
 };

@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  DxcButton,
-  BackgroundColorProvider,
-  DxcHeading,
-} from "@dxc-technology/halstack-react";
+import { DxcButton, DxcHeading } from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 import linkedinIcon from "../../images/LinkedinIcon";
@@ -75,12 +71,12 @@ const Button = () => {
           margin={{ top: "xsmall", right: "small" }}
         />
       </Mode>
-      <DxcHeading
-        text="Dark Mode"
+      {/*<DxcHeading
+        text=""
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
       />
-      <BackgroundColorProvider color="#000000">
+       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Primary">
           <DxcButton
             mode="primary"
@@ -139,7 +135,7 @@ const Button = () => {
             margin={{ top: "xsmall", right: "small" }}
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </ButtonContainer>
   );
 };

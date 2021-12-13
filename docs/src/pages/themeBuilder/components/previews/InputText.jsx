@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcInput,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcInput, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 
@@ -31,7 +26,7 @@ const countries = [
 ];
 
 const InputText = () => {
-  const [value, changeValue] = useState("Sample text");  
+  const [value, changeValue] = useState("Sample text");
   const onChange = (newValue) => {
     changeValue(newValue);
   };
@@ -118,7 +113,7 @@ const InputText = () => {
           margin={{ top: "xxsmall", bottom: "medium" }}
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "small", bottom: "xsmall" }}
@@ -180,7 +175,7 @@ const InputText = () => {
             margin={{ bottom: "medium" }}
           />
         </Mode>
-      </BackgroundColorProvider>
+      </BackgroundColorProvider> */}
     </TextFieldContainer>
   );
 };

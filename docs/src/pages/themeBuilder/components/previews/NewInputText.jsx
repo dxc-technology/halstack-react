@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  DxcNewInputText,
-  DxcHeading,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-
+import { DxcNewInputText, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const countries = [
@@ -150,7 +145,7 @@ const NewInputText = () => {
           clearable
         />
       </Mode>
-      <DxcHeading
+      {/* <DxcHeading
         text="Dark Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xsmall" }}
@@ -228,8 +223,8 @@ const NewInputText = () => {
               clearable
             />
           </Mode>
-        </BackgroundColorProvider>
-      </div>
+        </BackgroundColorProvider> 
+      </div>*/}
     </NewInputTextContainer>
   );
 };
