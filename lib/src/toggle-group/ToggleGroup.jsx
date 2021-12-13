@@ -128,7 +128,7 @@ const HelperText = styled.span`
 `;
 
 const ToggleGroup = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -139,7 +139,6 @@ const ToggleGroup = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: inline-flex;
 `;
 
 const OptionsContainer = styled.div`
