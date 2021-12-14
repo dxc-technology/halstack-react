@@ -376,10 +376,10 @@ const DxcNewInputText = React.forwardRef(
         <Suggestion
           id={`suggestion-${index}`}
           onMouseDown={() => {
-            changeIsActiveSuggestion(true);
+            event.button === 0 && changeIsActiveSuggestion(true);
           }}
           onMouseUp={() => {
-            if (isActiveSuggestion) {
+            if (event.button === 0 && isActiveSuggestion) {
               changeValue(suggestion);
               changeIsActiveSuggestion(false);
               closeSuggestions();

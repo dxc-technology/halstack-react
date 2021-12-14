@@ -6,8 +6,6 @@ import BackgroundColorContext from "../BackgroundColorContext.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
 
-const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
-
 const selectIcons = {
   error: (
     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -60,6 +58,8 @@ const selectIcons = {
   ),
 };
 
+const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
+
 const DxcNewSelect = React.forwardRef(
   (
     {
@@ -90,7 +90,7 @@ const DxcNewSelect = React.forwardRef(
     const [isOpen, changeIsOpen] = useState(false);
     const [isActiveOption, changeIsActiveOption] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState([]);
-    const [visualFocusIndex, changeVisualFocusIndex] = useState(0);
+    const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
     const selectInputRef = useRef(null);
 
@@ -109,15 +109,17 @@ const DxcNewSelect = React.forwardRef(
     const filteredGroupsHaveOptions = () =>
       filteredOptions[0]?.options ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
     const openOptions = () => {
-      if (canBeOpenOptions()) {
+      if (!isOpen && canBeOpenOptions()) {
         searchable && changeIsBackgroundValue(true);
         changeIsOpen(true);
       }
     };
     const closeOptions = () => {
-      searchable && changeIsBackgroundValue(false);
-      changeIsOpen(false);
-      changeVisualFocusIndex(0);
+      if (isOpen) {
+        searchable && changeIsBackgroundValue(false);
+        changeIsOpen(false);
+        changeVisualFocusIndex(-1);
+      }
     };
 
     const handleSelectChangeValue = (newValue) => {
@@ -127,6 +129,7 @@ const DxcNewSelect = React.forwardRef(
       else onChange?.({ value: newValue, error: null });
     };
     const handleSelectOnClick = () => {
+      changeVisualFocusIndex(0);
       isOpen ? closeOptions() : openOptions();
       searchable && selectInputRef.current.focus();
     };
@@ -136,18 +139,74 @@ const DxcNewSelect = React.forwardRef(
     const handleSelectOnBlur = (event) => {
       // focus leaves container (outside, not to childs)
       if (!event.currentTarget.contains(event.relatedTarget)) {
-        setSearchValue("");
         closeOptions();
+        setSearchValue("");
 
         if (notOptionalCheck(value ?? innerValue))
           onBlur?.({ value: value ?? innerValue, error: getNotOptionalErrorMessage() });
         else onBlur?.({ value: value ?? innerValue, error: null });
       }
     };
+    const handleSelectOnKeyDown = (event) => {
+      switch (event.keyCode) {
+        case 40: // Arrow Down
+          event.preventDefault();
+          changeVisualFocusIndex((visualFocusIndex) => {
+            if (visualFocusIndex < lastOptionIndex) return visualFocusIndex + 1;
+            else if (visualFocusIndex === lastOptionIndex) return 0;
+          });
+          openOptions();
+          changeIsActiveOption(false);
+          break;
+        case 38: // Arrow Up
+          event.preventDefault();
+          changeVisualFocusIndex((visualFocusIndex) =>
+            visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
+          );
+          openOptions();
+          changeIsActiveOption(false);
+          break;
+        case 27: // Esc
+          event.preventDefault();
+          closeOptions();
+          setSearchValue("");
+          break;
+        case 13: // Enter
+          if (isOpen) {
+            let accLength = optional /*&& !multiple*/ ? 1 : 0;
+            if (optional && visualFocusIndex === 0) handleSelectChangeValue(""); // optional empty option (index = 0)
+            else if (searchable && filteredOptions.length > 0) {
+              filteredOptions[0].options
+                ? filteredOptions.some((groupOption) => {
+                    const groupLength = accLength + groupOption.options.length;
+                    groupLength > visualFocusIndex &&
+                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength].value);
+                    accLength = groupLength;
+                    return groupLength > visualFocusIndex;
+                  })
+                : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength].value);
+            } else {
+              options[0].options
+                ? options.some((groupOption) => {
+                    const groupLength = accLength + groupOption.options.length;
+                    groupLength > visualFocusIndex &&
+                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength].value);
+                    accLength = groupLength;
+                    return groupLength > visualFocusIndex;
+                  })
+                : handleSelectChangeValue(options[visualFocusIndex - accLength].value);
+            }
+            closeOptions();
+            setSearchValue("");
+          }
+          break;
+      }
+    };
 
     const handleSearchIOnChange = (event) => {
-      openOptions();
       setSearchValue(event.target.value);
+      !isOpen && changeVisualFocusIndex(0);
+      openOptions();
     };
 
     const handleClearActionOnClick = (event) => {
@@ -171,11 +230,27 @@ const DxcNewSelect = React.forwardRef(
 
       return selectedOption;
     };
-    const selectedOption = useMemo(() => getSingleSelectedOption(), [value ?? innerValue]);
+    const selectedOption = useMemo(() => getSingleSelectedOption(), [value ?? innerValue, options]);
+
+    const getLastOptionIndex = () => {
+      let last = 0;
+      const reducer = (acc, current) => acc + current.options.length;
+
+      if (searchable && filteredOptions.length > 0)
+        filteredOptions[0].options
+          ? (last = filteredOptions.reduce(reducer, 0) - 1)
+          : (last = filteredOptions.length - 1);
+      else options[0]?.options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
+
+      return optional ? last + 1 : last;
+    };
+    const lastOptionIndex = useMemo(
+      () => getLastOptionIndex(),
+      [searchable, optional, searchable ? filteredOptions : options]
+    );
 
     useEffect(() => {
       if (searchable && options?.length > 0) {
-        changeVisualFocusIndex(0);
         if (options[0].options) {
           setFilteredOptions(
             options.map((optionGroup) => {
@@ -193,23 +268,13 @@ const DxcNewSelect = React.forwardRef(
       }
     }, [options, searchable, searchValue]);
 
-    const lastIndex = () => {
-      let last = 0;
-      const reducer = (acc, current) => acc + current.options.length;
-
-      if (searchable && filteredOptions.length > 0)
-        filteredOptions[0].options
-          ? (last = filteredOptions.reduce(reducer, 0) - 1)
-          : (last = filteredOptions.length - 1);
-      else options[0]?.options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
-
-      return last;
-    };
-    const lastIndexValue = useMemo(() => lastIndex(), [searchable, searchable ? filteredOptions : options]);
+    useEffect(() => {
+      visualFocusIndex > lastOptionIndex && changeVisualFocusIndex(0); // Not the best functionality
+    }, [filteredOptions]);
 
     const Option = ({ option, index, isGroupedOption = false }) => {
       const isSelected = (value ?? innerValue) === option.value;
-      const isLastOption = index === (optional ? lastIndexValue + 1 : lastIndexValue);
+      const isLastOption = index === lastOptionIndex;
 
       return (
         <OptionItem
@@ -220,9 +285,9 @@ const DxcNewSelect = React.forwardRef(
             if (event.button === 0 && isActiveOption) {
               // left button only
               handleSelectChangeValue(option.value);
+              closeOptions(); // if not multiple
               setSearchValue("");
               changeIsActiveOption(false);
-              closeOptions(); // if not multiple
             }
           }}
           onMouseEnter={() => {
@@ -251,7 +316,7 @@ const DxcNewSelect = React.forwardRef(
       );
     };
 
-    let global_index = optional /*&& !multiple*/ ? 0 : -1; // placeholder becomes an option and its always index = 0
+    let global_index = optional /*&& !multiple*/ ? 0 : -1; // placeholder becomes an option and its always index = 0, so we start at 1
     const mapOptionFunc = (option, index) => {
       if (option.options) {
         return (
@@ -282,6 +347,7 @@ const DxcNewSelect = React.forwardRef(
             onBlur={handleSelectOnBlur}
             onClick={handleSelectOnClick}
             onFocus={handleSelectOnFocus}
+            onKeyDown={handleSelectOnKeyDown}
             tabIndex={tabIndex}
           >
             <SearchableValueContainer>
@@ -298,7 +364,7 @@ const DxcNewSelect = React.forwardRef(
                 ></SearchInput>
               )}
               {(!searchable || searchValue === "") && (
-                <SelectedOption disabled={disabled} placeholder={!(value ?? innerValue) || isBackgroundValue}>
+                <SelectedOption disabled={disabled} backgroundValue={!(value ?? innerValue) || isBackgroundValue}>
                   {selectedOption?.icon && <OptionIcon selected={true}>{selectedOption.icon}</OptionIcon>}
                   <OptionLabel>{selectedOption?.label ?? placeholder}</OptionLabel>
                 </SelectedOption>
@@ -486,7 +552,7 @@ const SelectedOption = styled.span`
   overflow: hidden;
 
   color: ${(props) => {
-    if (props.placeholder)
+    if (props.backgroundValue)
       return props.disabled
         ? props.backgroundType === "dark"
           ? props.theme.disabledPlaceholderFontColorOnDark

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { DxcNewSelect } from "@dxc-technology/halstack-react";
+import { DxcNewSelect, DxcButton } from "@dxc-technology/halstack-react";
+import { useRef } from "react/cjs/react.development";
 
 function App() {
+  const ref = useRef(null);
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorOptional, setErrorOptional] = useState("");
@@ -36,17 +38,17 @@ function App() {
     {
       label: "Group 2",
       options: [
-        { label: "Option 04", value: "4" },
+        { label: "Option 0004", value: "4" },
         { label: "Option 05", value: "5" },
-        { label: "Option 06", value: "6" },
+        { label: "Option 006", value: "6" },
       ],
     },
     {
       label: "Group 3",
       options: [
-        { label: "Option 07", value: "7" },
-        { label: "Option 08", value: "8" },
-        { label: "Option 09", value: "9" },
+        { label: "Option 0007", value: "7" },
+        { label: "Option 008", value: "8" },
+        { label: "Option 9", value: "9" },
       ],
     },
   ];
@@ -128,7 +130,7 @@ function App() {
   return (
     <>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Default (uncontrolled)</h4>
+        <h4 style={{ marginLeft: "36px" }}>Default (uncontrolled)</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -138,7 +140,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
+        <h4 style={{ marginLeft: "36px" }}>Controlled</h4>
         <DxcNewSelect
           label="Label"
           value={value}
@@ -152,7 +154,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Searchable</h4>
+        <h4 style={{ marginLeft: "36px" }}>Searchable</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -163,7 +165,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Grouped</h4>
+        <h4 style={{ marginLeft: "36px" }}>Grouped</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -171,10 +173,11 @@ function App() {
           placeholder="Choose an option"
           searchable
           margin="medium"
+          optional
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Icons</h4>
+        <h4 style={{ marginLeft: "36px" }}>Icons</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -185,7 +188,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Disabled</h4>
+        <h4 style={{ marginLeft: "36px" }}>Disabled</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -197,7 +200,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Optional</h4>
+        <h4 style={{ marginLeft: "36px" }}>Optional</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -208,12 +211,11 @@ function App() {
           }}
           placeholder="Choose an option"
           margin="medium"
-          searchable
           optional
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Optional without placeholder</h4>
+        <h4 style={{ marginLeft: "36px" }}>Optional without placeholder</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -224,7 +226,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Error</h4>
+        <h4 style={{ marginLeft: "36px" }}>Error</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -235,7 +237,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
+        <h4 style={{ marginLeft: "36px" }}>Sizes</h4>
         <DxcNewSelect
           label="Small"
           options={grouped_options}
@@ -263,7 +265,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Empty options</h4>
+        <h4 style={{ marginLeft: "36px" }}>Empty options</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -273,7 +275,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Empty grouped options</h4>
+        <h4 style={{ marginLeft: "36px" }}>Empty grouped options</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -288,7 +290,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Undefined groups</h4>
+        <h4 style={{ marginLeft: "36px" }}>Undefined groups</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -301,6 +303,26 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
         />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Using ref prop</h4>
+        <DxcNewSelect
+          label="Select with ref"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          options={single_options}
+          searchable
+          margin={{ left: "medium", right: "medium" }}
+          ref={ref}
+        />
+        <DxcButton
+          onClick={() => {
+            const select = ref.current.getElementsByTagName("div")[0];
+            select.focus();
+          }}
+          label="Focus!"
+          margin={{ left: "medium" }}
+        ></DxcButton>
       </p>
     </>
   );
