@@ -3,9 +3,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
-import "./styles.css";
 
-const DxcPassword = React.forwardRef(
+const DxcPasswordInput = React.forwardRef(
   (
     {
       label = "",
@@ -82,7 +81,7 @@ const DxcPassword = React.forwardRef(
     };
 
     return (
-      <DXCPassword ref={ref}>
+      <PasswordInput ref={ref}>
         <DxcTextInput
           ref={inputRef}
           label={label}
@@ -101,7 +100,7 @@ const DxcPassword = React.forwardRef(
           autocomplete={autocomplete}
           tabIndex={tabIndex}
         />
-      </DXCPassword>
+      </PasswordInput>
     );
   }
 );
@@ -113,9 +112,13 @@ const sizes = {
   fillParent: "100%",
 };
 
-const DXCPassword = styled.div``;
+const PasswordInput = styled.div`
+  & ::-ms-reveal {
+    display: none;
+  }
+`;
 
-DxcPassword.propTypes = {
+DxcPasswordInput.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -140,4 +143,4 @@ DxcPassword.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcPassword;
+export default DxcPasswordInput;

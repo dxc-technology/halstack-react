@@ -25,7 +25,7 @@ type Props = {
    */
   helperText?: string;
   /**
-   * If true, the password will have an action to clear the entered value.
+   * If true, the password input will have an action to clear the entered value.
    */
   clearable?: boolean;
   /**
@@ -43,13 +43,13 @@ type Props = {
   onBlur?: (val: { value: string; error: string }) => void;
   /**
    * If it is defined, the component will change its appearance, showing
-   * the error below the password component. If it is not defined, the
+   * the error below the password input component. If it is not defined, the
    * error messages will be managed internally, but never displayed on its own.
    */
   error?: string;
   /**
    * Regular expression that defines the valid format allowed by the
-   * password. This will be checked both when the input element loses the
+   * password input. This will be checked both when the input element loses the
    * focus and while typing within it. If the string entered does not match
    * the pattern, the onBlur and onChange functions will be called with the
    * current value and an internal error informing that this value does not
@@ -58,7 +58,7 @@ type Props = {
    */
   pattern?: string;
   /**
-   * Specifies the minimun and maximum length allowed by the password.
+   * Specifies the minimun and maximum length allowed by the password input.
    * This will be checked both when the input element loses the
    * focus and while typing within it. If the string entered does not
    * comply the length, the onBlur and onChange functions will be called
@@ -91,4 +91,4 @@ type Props = {
   ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcPassword(props: Props): JSX.Element;
+export default function DxcPasswordInput(props: Props): JSX.Element;

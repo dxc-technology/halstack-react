@@ -4,19 +4,19 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
-import PasswordPropsTable from "./api.jsx";
-import controlled from "./examples/controlledPassword";
-import uncontrolled from "./examples/uncontrolledPassword";
-import pattern from "./examples/patternPassword";
-import length from "./examples/lengthPassword";
-import invalid from "./examples/invalidPassword";
-import customErrors from "./examples/customErrorsPassword";
-import fillParent from "./examples/fillParentPassword";
+import PasswordInputPropsTable from "./api.jsx";
+import controlled from "./examples/controlledPasswordInput";
+import uncontrolled from "./examples/uncontrolledPasswordInput";
+import pattern from "./examples/patternPasswordInput";
+import length from "./examples/lengthPasswordInput";
+import invalid from "./examples/invalidPasswordInput";
+import customErrors from "./examples/customErrorsPasswordInput";
+import fillParent from "./examples/fillParentPasswordInput";
 
-function Password() {
+function PasswordInput() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Password" status="experimental"></ComponentHeader>
+      <ComponentHeader title="Password Input" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -30,7 +30,7 @@ function Password() {
                   text="Props"
                   margin={{ bottom: "small" }}
                 />
-                <PasswordPropsTable />
+                <PasswordInputPropsTable />
               </Section>
             ),
           },
@@ -44,28 +44,31 @@ function Password() {
                   margin={{ bottom: "small" }}
                 />
                 <Example
-                  title="Controlled password"
+                  title="Controlled password input"
                   example={controlled}
                 ></Example>
                 <Example
-                  title="Uncontrolled password"
+                  title="Uncontrolled password input"
                   example={uncontrolled}
                 ></Example>
                 <Example
-                  title="Password with pattern constraint"
+                  title="Password input with pattern constraint"
                   example={pattern}
                 ></Example>
                 <Example
-                  title="Password with length constraint"
+                  title="Password input with length constraint"
                   example={length}
                 ></Example>
-                <Example title="Invalid password" example={invalid}></Example>
                 <Example
-                  title="Password with custom error messages"
+                  title="Invalid password input"
+                  example={invalid}
+                ></Example>
+                <Example
+                  title="Password input with custom error messages"
                   example={customErrors}
                 ></Example>
                 <Example
-                  title="Fill parent size password"
+                  title="Fill parent size password input"
                   example={fillParent}
                 ></Example>
               </Section>
@@ -76,4 +79,4 @@ function Password() {
     </ComponentDoc>
   );
 }
-export default Password;
+export default PasswordInput;

@@ -33,8 +33,8 @@ import Chip from "./cdk-components/chip/Chip";
 import ToggleGroup from "./cdk-components/toggleGroup/ToggleGroup";
 import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLayout";
 import AccordionGroup from "./cdk-components/accordion-group/AccordionGroup";
-import Password from "./cdk-components/password/Password";
 import TextInput from "./cdk-components/text-input/TextInput";
+import PasswordInput from "./cdk-components/password-input/PasswordInput";
 import NewDate from "./cdk-components/new-date/NewDate";
 import Number from "./cdk-components/number/Number";
 import NewTextarea from "./cdk-components/new-textarea/NewTextarea";
@@ -187,9 +187,9 @@ export default [
     type: types.UTILS,
   },
   {
-    path: "password",
-    name: "Password",
-    component: Password,
+    path: "passwordInput",
+    name: "Password Input",
+    component: PasswordInput,
     type: types.FORMS,
   },
   {

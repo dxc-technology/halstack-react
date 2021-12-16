@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { DxcPassword, DxcButton } from "@dxc-technology/halstack-react";
+import { DxcPasswordInput, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
   const ref = useRef(null);
@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
           clearable
           onChange={onChange}
@@ -28,9 +28,9 @@ function App() {
         />
       </p>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
-          label="Password"
+          label="Password input"
           clearable
           onChange={onChange}
           onBlur={onBlur}
@@ -38,18 +38,18 @@ function App() {
         />
       </p>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
-          label="Non clearable password"
+          label="Non clearable password input"
           onChange={onChange}
           onBlur={onBlur}
           margin="medium"
         />
       </p>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
-          label="Help password"
+          label="Help password input"
           clearable
           onChange={onChange}
           onBlur={onBlur}
@@ -58,7 +58,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           label="With 'on' autocomplete"
           clearable
           autocomplete="on"
@@ -66,9 +66,9 @@ function App() {
         />
       </p>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
-          label="Error password"
+          label="Error password input"
           error="Error message."
           clearable
           onChange={onChange}
@@ -77,9 +77,9 @@ function App() {
         />
       </p>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
-          label="Large size password"
+          label="Large size password input"
           clearable
           onChange={onChange}
           onBlur={onBlur}
@@ -88,9 +88,9 @@ function App() {
         />
       </p>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
-          label="Fill parent password"
+          label="Fill parent password input"
           clearable
           onChange={onChange}
           onBlur={onBlur}
@@ -103,7 +103,7 @@ function App() {
           With pattern (At least one letter, one number and one special
           character) - Strict
         </h4>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
           clearable
           onChange={onChange}
@@ -116,7 +116,7 @@ function App() {
         <h4 style={{ "margin-left": "36px" }}>
           With min length 5 and max length 10 - Strict
         </h4>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
           clearable
           onChange={onChange}
@@ -130,7 +130,7 @@ function App() {
           With pattern (At least one letter, one number and one special
           character) and minimum length 5 and maximum length 10 - Strict
         </h4>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
           clearable
           onChange={onChange}
@@ -145,7 +145,7 @@ function App() {
           With pattern (At least one letter, one number and one special
           character) - Non strict
         </h4>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
           clearable
           onChange={onChange}
@@ -159,7 +159,7 @@ function App() {
         <h4 style={{ "margin-left": "36px" }}>
           With min length 5 and max length 10 - Non strict
         </h4>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
           clearable
           onChange={onChange}
@@ -174,7 +174,7 @@ function App() {
           With pattern (At least one letter, one number and one special
           character) and minimum length 5 and maximum length 10 - Non strict
         </h4>
-        <DxcPassword
+        <DxcPasswordInput
           value={value}
           clearable
           onChange={onChange}
@@ -186,7 +186,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcPassword
+        <DxcPasswordInput
           label="With ref"
           helperText="Example of helper text"
           placeholder="Placeholder"
@@ -195,8 +195,8 @@ function App() {
         />
         <DxcButton
           onClick={() => {
-            const password = ref.current.getElementsByTagName("button")[0];
-            password.focus();
+            const passwordInput = ref.current.getElementsByTagName("button")[0];
+            passwordInput.focus();
           }}
           label="Focus!"
           margin={{ left: "medium" }}

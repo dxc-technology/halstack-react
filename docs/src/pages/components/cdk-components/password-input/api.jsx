@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const PasswordPropsTable = () => {
+const PasswordInputPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -39,7 +39,8 @@ const PasswordPropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, the password will have an action to clear the entered value.
+          If true, the password input will have an action to clear the entered
+          value.
         </td>
       </tr>
       <tr>
@@ -71,9 +72,9 @@ const PasswordPropsTable = () => {
         <td></td>
         <td>
           If it is defined, the component will change its appearance, showing
-          the error below the password component. If it is not defined, the
-          error messages will be managed internally, but never displayed on its
-          own.
+          the error below the password input component. If it is not defined,
+          the error messages will be managed internally, but never displayed on
+          its own.
         </td>
       </tr>
       <tr>
@@ -81,20 +82,20 @@ const PasswordPropsTable = () => {
         <td></td>
         <td>
           Regular expression that defines the valid format allowed by the
-          password. This will be checked both when the input element loses the
-          focus and while typing within it. If the string entered does not match
-          the pattern, the onBlur and onChange functions will be called with the
-          current value and an internal error informing that this value does not
-          match the pattern. If the pattern is met, the error parameter of both
-          events will be null.
+          password input. This will be checked both when the input element loses
+          the focus and while typing within it. If the string entered does not
+          match the pattern, the onBlur and onChange functions will be called
+          with the current value and an internal error informing that this value
+          does not match the pattern. If the pattern is met, the error parameter
+          of both events will be null.
         </td>
       </tr>
       <tr>
         <td>length: object</td>
         <td></td>
         <td>
-          Specifies the minimun and maximum length allowed by the password. It
-          follows this structure: {"{ "}
+          Specifies the minimun and maximum length allowed by the password
+          input. It follows this structure: {"{ "}
           <code>min: minLength, max: maxLength</code>
           {" }"}. This will be checked both when the input element loses the
           focus and while typing within it. If the string entered does not
@@ -152,4 +153,4 @@ const PasswordPropsTable = () => {
   );
 };
 
-export default PasswordPropsTable;
+export default PasswordInputPropsTable;
