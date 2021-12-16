@@ -1,4 +1,4 @@
-import { DxcNumber, DxcButton } from "@dxc-technology/halstack-react";
+import { DxcNumberInput, DxcButton } from "@dxc-technology/halstack-react";
 import { useState, useRef } from "react";
 
 const code = `() => {
@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <>
-      <DxcNumber label="Number" ref={inputRef} margin="medium" />
+      <DxcNumberInput label="Number input" ref={inputRef} margin="medium" />
       <DxcButton
         onClick={handleSubmit}
         label="Submit"
@@ -22,7 +22,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNumber,
+  DxcNumberInput,
   DxcButton,
   useState,
   useRef,

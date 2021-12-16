@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const NumberPropsTable = () => {
+const NumberInputPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -71,22 +71,22 @@ const NumberPropsTable = () => {
         <td>min: number</td>
         <td></td>
         <td>
-          Minimum value allowed by the number. If the typed value by the user is
-          lower than min, the onBlur and onChange functions will be called with
-          the current value and an internal error informing that the current
-          value is not correct. If a valid state is reached, the error parameter
-          will be null in both events.
+          Minimum value allowed by the number input. If the typed value by the
+          user is lower than min, the onBlur and onChange functions will be
+          called with the current value and an internal error informing that the
+          current value is not correct. If a valid state is reached, the error
+          parameter will be null in both events.
         </td>
       </tr>
       <tr>
         <td>max: number</td>
         <td></td>
         <td>
-          Maximum value allowed by the number. If the typed value by the user
-          surpasses max, the onBlur and onChange functions will be called with
-          the current value and an internal error informing that the current
-          value is not correct. If a valid state is reached, the error parameter
-          will be null in both events.
+          Maximum value allowed by the number input. If the typed value by the
+          user surpasses max, the onBlur and onChange functions will be called
+          with the current value and an internal error informing that the
+          current value is not correct. If a valid state is reached, the error
+          parameter will be null in both events.
         </td>
       </tr>
       <tr>
@@ -178,4 +178,4 @@ const NumberPropsTable = () => {
   );
 };
 
-export default NumberPropsTable;
+export default NumberInputPropsTable;

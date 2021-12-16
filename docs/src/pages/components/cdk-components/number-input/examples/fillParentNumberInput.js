@@ -1,4 +1,4 @@
-import { DxcNumber } from "@dxc-technology/halstack-react";
+import { DxcNumberInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -13,19 +13,19 @@ const code = `() => {
   };
 
   return (
-    <DxcNumber
-      label="Suffix"
+    <DxcNumberInput
+      label="Fill parent"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      suffix="USD"
       margin="medium"
+      size="fillParent"
     />
   );
 }`;
 
 const scope = {
-  DxcNumber,
+  DxcNumberInput,
   useState,
 };
 

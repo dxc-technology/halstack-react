@@ -36,7 +36,7 @@ import Badge from "./pages/Badge";
 import TextInput from "./pages/TextInput";
 import PasswordInput from "./pages/PasswordInput";
 import NewDate from "./pages/NewDate";
-import Number from "./pages/Number";
+import NumberInput from "./pages/NumberInput";
 import NewTextarea from "./pages/NewTextarea";
 import NewSelect from "./pages/NewSelect";
 import FileInput from "./pages/FileInput";
@@ -56,6 +56,11 @@ export default [
     path: "alert",
     name: "Alert",
     component: Alert,
+  },
+  {
+    path: "applicationLayout",
+    name: "Application Layout",
+    component: ApplicationLayout,
   },
   {
     path: "badge",
@@ -93,11 +98,6 @@ export default [
     component: Date,
   },
   {
-    path: "newDate",
-    name: "New Date",
-    component: NewDate,
-  },
-  {
     path: "dialog",
     name: "Dialog",
     component: Dialog,
@@ -133,19 +133,29 @@ export default [
     component: InputText,
   },
   {
-    path: "textInput",
-    name: "Text Input",
-    component: TextInput,
-  },
-  {
-    path: "number",
-    name: "Number",
-    component: Number,
-  },
-  {
     path: "link",
     name: "Link",
     component: Link,
+  },
+  {
+    path: "newDate",
+    name: "New Date",
+    component: NewDate,
+  },
+  {
+    path: "newSelect",
+    name: "New Select",
+    component: NewSelect,
+  },
+  {
+    path: "newTextarea",
+    name: "New Textarea",
+    component: NewTextarea,
+  },
+  {
+    path: "numberInput",
+    name: "Number Input",
+    component: NumberInput,
   },
   {
     path: "paginator",
@@ -173,19 +183,9 @@ export default [
     component: ResultsetTable,
   },
   {
-    path: "applicationLayout",
-    name: "Application Layout",
-    component: ApplicationLayout,
-  },
-  {
     path: "select",
     name: "Select",
     component: Select,
-  },
-  {
-    path: "newSelect",
-    name: "New select",
-    component: NewSelect,
   },
   {
     path: "sidenav",
@@ -231,11 +231,6 @@ export default [
     path: "textarea",
     name: "Textarea",
     component: Textarea,
-  },
-  {
-    path: "newTextarea",
-    name: "New textarea",
-    component: NewTextarea,
   },
   {
     path: "toggle-group",

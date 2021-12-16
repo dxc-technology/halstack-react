@@ -1,4 +1,4 @@
-import { DxcNumber } from "@dxc-technology/halstack-react";
+import { DxcNumberInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -21,7 +21,7 @@ const code = `() => {
 
   return (
     <div style={{ display: "flex" }}>
-      <DxcNumber
+      <DxcNumberInput
         label="Min 5, max 20, step 5"
         helperText="Using onChange event for handling errors"
         value={secondValue}
@@ -33,7 +33,7 @@ const code = `() => {
         margin="medium"
         optional
       />
-      <DxcNumber
+      <DxcNumberInput
         label="Min 5, max 20, step 5"
         helperText="Using onChange event for handling errors"
         value={value}
@@ -51,7 +51,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNumber,
+  DxcNumberInput,
   useState,
 };
 

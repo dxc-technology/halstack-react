@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
-import NumberContext from "./NumberContext";
+import NumberInputContext from "./NumberInputContext";
 import { spaces } from "../common/variables.js";
 
-const DxcNumber = React.forwardRef(
+const DxcNumberInput = React.forwardRef(
   (
     {
       label = "",
@@ -31,8 +31,8 @@ const DxcNumber = React.forwardRef(
     ref
   ) => {
     return (
-      <NumberContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
-        <NumberContainer>
+      <NumberInputContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
+        <NumberInputContainer>
           <DxcTextInput
             label={label}
             name={name}
@@ -52,8 +52,8 @@ const DxcNumber = React.forwardRef(
             tabIndex={tabIndex}
             ref={ref}
           />
-        </NumberContainer>
-      </NumberContext.Provider>
+        </NumberInputContainer>
+      </NumberInputContext.Provider>
     );
   }
 );
@@ -65,7 +65,7 @@ const sizes = {
   fillParent: "100%",
 };
 
-const NumberContainer = styled.div`
+const NumberInputContainer = styled.div`
   // Chrome, Safari, Edge, Opera
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -79,7 +79,7 @@ const NumberContainer = styled.div`
   }
 `;
 
-DxcNumber.propTypes = {
+DxcNumberInput.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -109,4 +109,4 @@ DxcNumber.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcNumber;
+export default DxcNumberInput;
