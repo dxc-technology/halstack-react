@@ -34,7 +34,7 @@ import ToggleGroup from "./pages/ToggleGroup";
 import AccordionGroup from "./pages/AccordionGroup";
 import Badge from "./pages/Badge";
 import NewInputText from "./pages/NewInputText";
-import Password from "./pages/Password";
+import PasswordInput from "./pages/PasswordInput";
 import NewDate from "./pages/NewDate";
 import Number from "./pages/Number";
 import NewTextarea from "./pages/NewTextarea";
@@ -153,9 +153,9 @@ export default [
     component: Paginator,
   },
   {
-    path: "password",
-    name: "Password",
-    component: Password,
+    path: "passwordInput",
+    name: "Password Input",
+    component: PasswordInput,
   },
   {
     path: "progressBar",

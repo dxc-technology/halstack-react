@@ -1,4 +1,4 @@
-import { DxcPassword } from "@dxc-technology/halstack-react";
+import { DxcPasswordInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -13,7 +13,7 @@ const code = `() => {
   };
 
   return (
-    <DxcPassword
+    <DxcPasswordInput
       value={value}
       label="Controlled"
       clearable
@@ -25,7 +25,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcPassword,
+  DxcPasswordInput,
   useState,
 };
 
