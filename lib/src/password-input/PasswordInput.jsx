@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import DxcNewInputText from "../new-input-text/NewInputText";
 import { spaces } from "../common/variables.js";
-import "./styles.css";
 
 const DxcPasswordInput = React.forwardRef(
   (
@@ -113,7 +112,11 @@ const sizes = {
   fillParent: "100%",
 };
 
-const PasswordInput = styled.div``;
+const PasswordInput = styled.div`
+  & ::-ms-reveal {
+    display: none;
+  }
+`;
 
 DxcPasswordInput.propTypes = {
   label: PropTypes.string,
