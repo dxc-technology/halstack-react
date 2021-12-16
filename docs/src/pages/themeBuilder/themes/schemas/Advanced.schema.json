@@ -552,7 +552,7 @@
     "pickerHeight": "length",
     "pickerWidth": "length"
   },
-  "newInputText": {
+  "textInput": {
     "fontFamily": "fFamily",
     "enabledBorderColor": "color",
     "enabledBorderColorOnDark": "color",

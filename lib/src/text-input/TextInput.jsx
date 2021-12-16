@@ -32,7 +32,7 @@ const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
-const DxcNewInputText = React.forwardRef(
+const DxcTextInput = React.forwardRef(
   (
     {
       label = "",
@@ -409,7 +409,7 @@ const DxcNewInputText = React.forwardRef(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.newInputText}>
+      <ThemeProvider theme={colorsTheme.textInput}>
         <DxcInput margin={margin} ref={ref} size={size}>
           <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
@@ -948,7 +948,7 @@ const SuggestionsError = styled.span`
   line-height: 1.75em;
 `;
 
-DxcNewInputText.propTypes = {
+DxcTextInput.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -983,4 +983,4 @@ DxcNewInputText.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcNewInputText;
+export default DxcTextInput;

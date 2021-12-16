@@ -1,4 +1,4 @@
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import { DxcTextInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -13,20 +13,19 @@ const code = `() => {
   };
 
   return (
-    <DxcNewInputText
-      label="Prefix"
+    <DxcTextInput
+      placeholder="Placeholder"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      clearable
-      prefix="+34"
       margin="medium"
+      clearable
     />
   );
 }`;
 
 const scope = {
-  DxcNewInputText,
+  DxcTextInput,
   useState,
 };
 

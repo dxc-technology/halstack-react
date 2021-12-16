@@ -132,4 +132,4 @@ type Props = {
   ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcNewInputText(props: Props): JSX.Element;
+export default function DxcTextInput(props: Props): JSX.Element;

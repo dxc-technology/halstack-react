@@ -28,7 +28,7 @@ const inputPropsTable = () => {
       <tr>
         <td>assistiveText: string</td>
         <td></td>
-        <td>Assistive text to be placed bellow the input.</td>
+        <td>Assistive text to be placed below the input.</td>
       </tr>
       <tr>
         <td>prefix: string</td>
@@ -191,7 +191,8 @@ const inputPropsTable = () => {
         <td>tabIndex: number</td>
         <td>0</td>
         <td>
-          Value of the tabindex, it also applies to prefix and suffix when a function is given.
+          Value of the tabindex, it also applies to prefix and suffix when a
+          function is given.
         </td>
       </tr>
     </DxcTable>

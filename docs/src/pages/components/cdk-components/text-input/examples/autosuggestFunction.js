@@ -1,4 +1,4 @@
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import { DxcTextInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -53,7 +53,7 @@ const code = `() => {
   };
 
   return (
-    <DxcNewInputText
+    <DxcTextInput
       label="Suggestions as a function"
       helperText="Checks if any of the options include the incoming string"
       value={value}
@@ -68,7 +68,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewInputText,
+  DxcTextInput,
   useState,
 };
 

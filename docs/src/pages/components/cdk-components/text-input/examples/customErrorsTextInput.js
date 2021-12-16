@@ -1,4 +1,4 @@
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import { DxcTextInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -6,7 +6,7 @@ const code = `() => {
   const [customLengthError, setCustomLengthError] = useState("");
   const onChangeFirst = ({ value, error }) => {
     setFirstValue(value);
-    error ? setCustomLengthError("The input value does not have the right length.") : setCustomLengthError(null);
+    error ? setCustomLengthError("The text input value does not have the right length.") : setCustomLengthError(null);
   };
 
   const [secondValue, setSecondValue] = useState("");
@@ -16,12 +16,12 @@ const code = `() => {
   };
   const onBlur = ({ value, error }) => {
     setSecondValue(value);
-    error ? setCustomPatternError("The input value does not comply the allowed format.") : setCustomPatternError(null);
+    error ? setCustomPatternError("The text input value does not comply the allowed format.") : setCustomPatternError(null);
   };
 
   return (
     <div style={{ display: "flex" }}>
-      <DxcNewInputText
+      <DxcTextInput
         label="Custom length error"
         helperText="Using onChange event for handling errors"
         value={firstValue}
@@ -32,7 +32,7 @@ const code = `() => {
         clearable
         optional
       />
-      <DxcNewInputText
+      <DxcTextInput
         label="Custom pattern error"
         helperText="Using onBlur event for handling errors"
         value={secondValue}
@@ -49,7 +49,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewInputText,
+  DxcTextInput,
   useState,
 };
 
