@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcNewInputText, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcTextInput, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const countries = [
@@ -28,7 +28,7 @@ const countries = [
   "Djibouti",
 ];
 
-const NewInputText = () => {
+const TextInput = () => {
   const [value, setValue] = useState("Example text");
   const [suggestionsValue, setSuggestionsValue] = useState("");
   const onChange = ({ value }) => {
@@ -69,14 +69,14 @@ const NewInputText = () => {
   };
 
   return (
-    <NewInputTextContainer>
+    <TextInputContainer>
       <DxcHeading
         text="Light Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -85,8 +85,8 @@ const NewInputText = () => {
         />
       </Mode>
       <Mode text="Disabled">
-        <DxcNewInputText
-          label="Disabled input"
+        <DxcTextInput
+          label="Disabled text input"
           helperText="Example of helper text"
           value="Example text"
           margin={{ top: "xsmall" }}
@@ -97,8 +97,8 @@ const NewInputText = () => {
         />
       </Mode>
       <Mode text="Invalid">
-        <DxcNewInputText
-          label="Invalid input"
+        <DxcTextInput
+          label="Invalid text input"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -107,8 +107,8 @@ const NewInputText = () => {
         />
       </Mode>
       <Mode text="Action & Optional">
-        <DxcNewInputText
-          label="Input with action and optional"
+        <DxcTextInput
+          label="Text input with action and optional"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -118,7 +118,7 @@ const NewInputText = () => {
         />
       </Mode>
       <Mode text="Prefix & Suffix">
-        <DxcNewInputText
+        <DxcTextInput
           label="Prefix and suffix text input"
           prefix="+34"
           suffix="USD"
@@ -128,8 +128,8 @@ const NewInputText = () => {
         />
       </Mode>
       <Mode text="Suggestions">
-        <DxcNewInputText
-          label="Suggestions input"
+        <DxcTextInput
+          label="Suggestions text input"
           placeholder="Placeholder"
           value={suggestionsValue}
           onChange={onChangeSuggestions}
@@ -137,8 +137,8 @@ const NewInputText = () => {
           suggestions={countries}
           clearable
         />
-        <DxcNewInputText
-          label="Suggestions error input"
+        <DxcTextInput
+          label="Suggestions error text input"
           placeholder="Placeholder"
           margin={{ top: "xsmall", left: "large" }}
           suggestions={errorCallbackFunc}
@@ -153,7 +153,7 @@ const NewInputText = () => {
       <div style={{ marginBottom: "25px" }}>
         <BackgroundColorProvider color="#000000">
           <Mode mode="dark" text="Default">
-            <DxcNewInputText
+            <DxcTextInput
               value={value}
               onChange={onChange}
               onBlur={onBlur}
@@ -162,8 +162,8 @@ const NewInputText = () => {
             />
           </Mode>
           <Mode mode="dark" text="Disabled">
-            <DxcNewInputText
-              label="Disabled input"
+            <DxcTextInput
+              label="Disabled text input"
               helperText="Example of helper text"
               value="Example text"
               margin={{ top: "xsmall" }}
@@ -174,8 +174,8 @@ const NewInputText = () => {
             />
           </Mode>
           <Mode mode="dark" text="Invalid">
-            <DxcNewInputText
-              label="Invalid input"
+            <DxcTextInput
+              label="Invalid text input"
               helperText="Example of helper text"
               placeholder="Placeholder"
               margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -184,8 +184,8 @@ const NewInputText = () => {
             />
           </Mode>
           <Mode mode="dark" text="Action & Optional">
-            <DxcNewInputText
-              label="Input with action and optional"
+            <DxcTextInput
+              label="Text input with action and optional"
               helperText="Example of helper text"
               placeholder="Placeholder"
               margin={{ top: "xsmall", bottom: "xxsmall" }}
@@ -195,7 +195,7 @@ const NewInputText = () => {
             />
           </Mode>
           <Mode mode="dark" text="Prefix & Suffix">
-            <DxcNewInputText
+            <DxcTextInput
               label="Prefix and suffix text input"
               prefix="+34"
               suffix="USD"
@@ -205,8 +205,8 @@ const NewInputText = () => {
             />
           </Mode>
           <Mode mode="dark" text="Suggestions">
-            <DxcNewInputText
-              label="Suggestions input"
+            <DxcTextInput
+              label="Suggestions text input"
               placeholder="Placeholder"
               value={suggestionsValue}
               onChange={onChangeSuggestions}
@@ -215,8 +215,8 @@ const NewInputText = () => {
               suggestions={countries}
               clearable
             />
-            <DxcNewInputText
-              label="Suggestions error input"
+            <DxcTextInput
+              label="Suggestions error text input"
               placeholder="Placeholder"
               margin={{ top: "xsmall", left: "large" }}
               suggestions={errorCallbackFunc}
@@ -225,10 +225,10 @@ const NewInputText = () => {
           </Mode>
         </BackgroundColorProvider> 
       </div>*/}
-    </NewInputTextContainer>
+    </TextInputContainer>
   );
 };
 
-const NewInputTextContainer = styled.div``;
+const TextInputContainer = styled.div``;
 
-export default NewInputText;
+export default TextInput;

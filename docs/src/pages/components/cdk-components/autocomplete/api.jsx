@@ -28,7 +28,7 @@ const autocompletePropsTable = () => {
       <tr>
         <td>assistiveText: string</td>
         <td></td>
-        <td>Assistive text to be placed bellow the input.</td>
+        <td>Assistive text to be placed below the input.</td>
       </tr>
       <tr>
         <td>prefix: string</td>

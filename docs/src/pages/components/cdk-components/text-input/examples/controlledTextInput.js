@@ -1,35 +1,32 @@
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import { DxcTextInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
 
   const onChange = ({ value }) => {
     setValue(value);
   };
 
-  const onBlur = ({ value, error }) => {
+  const onBlur = ({ value }) => {
     setValue(value);
-    setError(error);
   };
 
   return (
-    <DxcNewInputText
-      label="Pattern"
+    <DxcTextInput
+      label="Controlled"
+      helperText="Helper text"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      error={error}
       margin="medium"
       clearable
-      pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
     />
   );
 }`;
 
 const scope = {
-  DxcNewInputText,
+  DxcTextInput,
   useState,
 };
 

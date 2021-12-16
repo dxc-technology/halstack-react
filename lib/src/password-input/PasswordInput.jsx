@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import DxcNewInputText from "../new-input-text/NewInputText";
+import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
 
 const DxcPasswordInput = React.forwardRef(
@@ -82,7 +82,7 @@ const DxcPasswordInput = React.forwardRef(
 
     return (
       <PasswordInput ref={ref}>
-        <DxcNewInputText
+        <DxcTextInput
           ref={inputRef}
           label={label}
           name={name}

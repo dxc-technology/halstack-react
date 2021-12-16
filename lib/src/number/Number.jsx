@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import DxcNewInputText from "../new-input-text/NewInputText";
+import DxcTextInput from "../text-input/TextInput";
 import NumberContext from "./NumberContext";
 import { spaces } from "../common/variables.js";
 
@@ -33,7 +33,7 @@ const DxcNumber = React.forwardRef(
     return (
       <NumberContext.Provider value={{ typeNumber: "number", minNumber: min, maxNumber: max, stepNumber: step }}>
         <NumberContainer>
-          <DxcNewInputText
+          <DxcTextInput
             label={label}
             name={name}
             value={value}

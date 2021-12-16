@@ -250,7 +250,7 @@ describe("Successful component tests for default theme", () => {
     act(() => {
       fireEvent.click(getByText("Progress Bar"));
     });
-    expect(getByText("ProgressBar component")).toBeTruthy();    
+    expect(getByText("ProgressBar component")).toBeTruthy();
     expect(getAllByText("Undeterminate default").length).toBe(2);
     expect(getAllByText("Determinate default").length).toBe(2);
     expect(getByText("With overlay")).toBeTruthy();
@@ -445,7 +445,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render input text component", async () => {
+  it("Should render text input component", async () => {
     const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
@@ -455,7 +455,7 @@ describe("Successful component tests for default theme", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("Input Text"));
+      fireEvent.click(getByText("Text Input"));
     });
     expect(getByText("InputText component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
@@ -471,7 +471,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render new input text component", async () => {
+  it("Should render text input component", async () => {
     const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
@@ -481,9 +481,9 @@ describe("Successful component tests for default theme", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("New Input Text"));
+      fireEvent.click(getByText("Text Input"));
     });
-    expect(getByText("NewInputText component")).toBeTruthy();
+    expect(getByText("TextInput component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
     expect(getByText("Dark Mode")).toBeTruthy();
     expect(getAllByText("Default").length).toBe(2);
@@ -492,7 +492,7 @@ describe("Successful component tests for default theme", () => {
     expect(getAllByText("Action & Optional").length).toBe(2);
     expect(getAllByText("Suggestions").length).toBe(2);
     expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(defaultTheme["newInputText"]).forEach((themeInputs) =>
+    Object.keys(defaultTheme["textInput"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
     );
   });

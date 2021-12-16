@@ -1,5 +1,10 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import {
+  DxcTabsForSections,
+  DxcHeading,
+  DxcAlert,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -15,7 +20,17 @@ import maskedInput from "./examples/maskedInput";
 function Input() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Input Text" status="ready"></ComponentHeader>
+      <ComponentHeader title="Input Text" status="deprecated"></ComponentHeader>
+      <DxcAlert type="warning" margin={{ bottom: "small" }}>
+        This component has been deprecated. Use{" "}
+        <DxcLink
+          href="#/components/textInput"
+          underlined={false}
+          inheritedColor={true}
+          text="Text Input"
+        ></DxcLink>{" "}
+        instead.
+      </DxcAlert>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

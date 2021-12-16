@@ -33,7 +33,7 @@ import ApplicationLayout from "./pages/ApplicationLayout";
 import ToggleGroup from "./pages/ToggleGroup";
 import AccordionGroup from "./pages/AccordionGroup";
 import Badge from "./pages/Badge";
-import NewInputText from "./pages/NewInputText";
+import TextInput from "./pages/TextInput";
 import PasswordInput from "./pages/PasswordInput";
 import NewDate from "./pages/NewDate";
 import Number from "./pages/Number";
@@ -133,9 +133,9 @@ export default [
     component: InputText,
   },
   {
-    path: "newInputText",
-    name: "New input text",
-    component: NewInputText,
+    path: "textInput",
+    name: "Text Input",
+    component: TextInput,
   },
   {
     path: "number",
