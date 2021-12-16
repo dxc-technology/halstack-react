@@ -36,7 +36,7 @@ import AccordionGroup from "./cdk-components/accordion-group/AccordionGroup";
 import TextInput from "./cdk-components/text-input/TextInput";
 import PasswordInput from "./cdk-components/password-input/PasswordInput";
 import NewDate from "./cdk-components/new-date/NewDate";
-import Number from "./cdk-components/number/Number";
+import NumberInput from "./cdk-components/number-input/NumberInput";
 import NewTextarea from "./cdk-components/new-textarea/NewTextarea";
 import FileInput from "./cdk-components/file-input/FileInput";
 
@@ -115,12 +115,6 @@ export default [
     type: types.FORMS,
   },
   {
-    path: "newDate",
-    name: "New Date",
-    component: NewDate,
-    type: types.FORMS,
-  },
-  {
     path: "dialog",
     name: "Dialog",
     component: Dialog,
@@ -169,17 +163,24 @@ export default [
     type: types.UTILS,
   },
   {
-    path: "textInput",
-    name: "Text Input",
-    component: TextInput,
+    path: "newDate",
+    name: "New Date",
+    component: NewDate,
     type: types.FORMS,
   },
   {
-    path: "number",
-    name: "Number",
-    component: Number,
+    path: "newTextarea",
+    name: "New Textarea",
+    component: NewTextarea,
     type: types.FORMS,
   },
+  {
+    path: "numberInput",
+    name: "Number Input",
+    component: NumberInput,
+    type: types.FORMS,
+  },
+
   {
     path: "paginator",
     name: "Paginator",
@@ -271,9 +272,9 @@ export default [
     type: types.FORMS,
   },
   {
-    path: "newTextarea",
-    name: "New Textarea",
-    component: NewTextarea,
+    path: "textInput",
+    name: "Text Input",
+    component: TextInput,
     type: types.FORMS,
   },
   {

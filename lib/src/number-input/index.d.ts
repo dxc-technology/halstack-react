@@ -47,7 +47,7 @@ type Props = {
    */
   suffix?: string;
   /**
-   * Minimum value allowed by the number. If the typed value by the user is
+   * Minimum value allowed by the number input. If the typed value by the user is
    * lower than min, the onBlur and onChange functions will be called with
    * the current value and an internal error informing that the current
    * value is not correct. If a valid state is reached, the error parameter
@@ -55,7 +55,7 @@ type Props = {
    */
   min?: number;
   /**
-   * Maximum value allowed by the number. If the typed value by the user
+   * Maximum value allowed by the number input. If the typed value by the user
    * surpasses max, the onBlur and onChange functions will be called with
    * the current value and an internal error informing that the current
    * value is not correct. If a valid state is reached, the error parameter
@@ -110,4 +110,4 @@ type Props = {
    ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcNumber(props: Props): JSX.Element;
+export default function DxcNumberInput(props: Props): JSX.Element;
