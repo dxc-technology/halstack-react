@@ -1,4 +1,4 @@
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import { DxcTextInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -29,13 +29,13 @@ const code = `() => {
 
   return (
     <div style={{ display: "flex" }}>
-      <DxcNewInputText
+      <DxcTextInput
         action={actionSvg}
         label="Using a SVG"
         clearable
         margin="medium"
       />
-      <DxcNewInputText
+      <DxcTextInput
         action={actionImg}
         label="Using a URL"
         clearable
@@ -46,7 +46,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewInputText,
+  DxcTextInput,
   useState,
 };
 

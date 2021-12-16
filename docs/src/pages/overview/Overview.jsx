@@ -175,9 +175,6 @@ function CustomThemes() {
       inputText: {
         selectedBaseColor: "#d9d9d9", // input text's selected base color theme input
       },
-      newInputText: {
-        baseColor: "#f2f2f2", // new input text's base color theme input
-      },
       paginator: {
         baseColor: "#eeeeee", // paginator's base color theme input
         fontColor: "#000000", // paginator's font color theme input
@@ -214,6 +211,9 @@ function CustomThemes() {
       },
       tabs: {
         baseColor: "#5f249f", // tabs' base color theme input
+      },
+      textInput: {
+        baseColor: "#f2f2f2", // text input's base color theme input
       },
       toggleGroup: {
         selectedBaseColor: "#5f249f", // toggle group's selected base color theme input        

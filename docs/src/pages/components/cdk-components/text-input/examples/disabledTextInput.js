@@ -1,4 +1,4 @@
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import { DxcTextInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import { ReactComponent as Avatar } from "../images/delete-24px.svg";
 
@@ -32,7 +32,7 @@ const code = `() => {
   };
 
   return (
-    <DxcNewInputText
+    <DxcTextInput
       label="Disabled"
       value={value}
       onChange={onChange}
@@ -45,7 +45,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewInputText,
+  DxcTextInput,
   Avatar,
   useState,
 };

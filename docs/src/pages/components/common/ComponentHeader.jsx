@@ -4,6 +4,7 @@ import { DxcChip, DxcHeading } from "@dxc-technology/halstack-react";
 import ReadyIcon from "./ready.svg";
 import ExperimentalIcon from "./experimental.svg";
 import PlannedIcon from "./planned.svg";
+import DeprecatedIcon from "./deprecated.svg";
 
 function ComponentHeader({ title, status }) {
   return (
@@ -18,6 +19,8 @@ function ComponentHeader({ title, status }) {
               ? "Experimental"
               : status === "planned"
               ? "Planned"
+              : status === "deprecated"
+              ? "Deprecated"
               : ""
           }
           margin={{ left: "small", bottom: "medium" }}
@@ -28,6 +31,8 @@ function ComponentHeader({ title, status }) {
               ? ExperimentalIcon
               : status === "planned"
               ? PlannedIcon
+              : status === "deprecated"
+              ? DeprecatedIcon
               : ""
           }
         ></DxcChip>

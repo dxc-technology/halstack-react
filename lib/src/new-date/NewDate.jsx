@@ -9,7 +9,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
-import DxcNewInputText from "../new-input-text/NewInputText";
+import DxcTextInput from "../text-input/TextInput";
 
 const DxcNewDate = React.forwardRef(
   (
@@ -251,7 +251,7 @@ const DxcNewDate = React.forwardRef(
         <MuiThemeProvider theme={dateTheme}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <StyledDPicker>
-              <DxcNewInputText
+              <DxcTextInput
                 label={label}
                 name={name}
                 value={value ?? innerValue}

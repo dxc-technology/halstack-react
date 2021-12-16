@@ -34,7 +34,7 @@ import ToggleGroup from "./cdk-components/toggleGroup/ToggleGroup";
 import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLayout";
 import AccordionGroup from "./cdk-components/accordion-group/AccordionGroup";
 import Password from "./cdk-components/password/Password";
-import NewInputText from "./cdk-components/new-input-text/NewInputText";
+import TextInput from "./cdk-components/text-input/TextInput";
 import NewDate from "./cdk-components/new-date/NewDate";
 import Number from "./cdk-components/number/Number";
 import NewTextarea from "./cdk-components/new-textarea/NewTextarea";
@@ -169,9 +169,9 @@ export default [
     type: types.UTILS,
   },
   {
-    path: "newInputText",
-    name: "New Input Text",
-    component: NewInputText,
+    path: "textInput",
+    name: "Text Input",
+    component: TextInput,
     type: types.FORMS,
   },
   {

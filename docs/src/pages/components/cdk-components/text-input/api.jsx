@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable, DxcLink } from "@dxc-technology/halstack-react";
 
-const newInputPropsTable = () => {
+const textInputPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -76,9 +76,9 @@ const newInputPropsTable = () => {
         </td>
         <td>
           If true, the input will be optional, showing <code>(Optional)</code>{" "}
-          next to the label. Otherwise, the field will be considered required and an error will be
-          passed as a parameter to the OnBlur and onChange functions when it has
-          not been filled.
+          next to the label. Otherwise, the field will be considered required
+          and an error will be passed as a parameter to the OnBlur and onChange
+          functions when it has not been filled.
         </td>
       </tr>
       <tr>
@@ -224,4 +224,4 @@ const newInputPropsTable = () => {
   );
 };
 
-export default newInputPropsTable;
+export default textInputPropsTable;

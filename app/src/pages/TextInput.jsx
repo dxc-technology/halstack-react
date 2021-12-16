@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import {
   DxcButton,
-  DxcNewInputText,
+  DxcTextInput,
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
@@ -110,7 +110,7 @@ function App() {
     <>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -120,24 +120,24 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
-        <DxcNewInputText
+        <DxcTextInput
           label="Small"
           margin={{ left: "medium", right: "medium" }}
           size="small"
           clearable
         />
-        <DxcNewInputText
+        <DxcTextInput
           label="Medium"
           margin={{ left: "medium", right: "medium" }}
           clearable
         />
-        <DxcNewInputText
+        <DxcTextInput
           label="Large"
           margin={{ left: "medium", right: "medium" }}
           size="large"
           clearable
         />
-        <DxcNewInputText
+        <DxcTextInput
           label="Fill parent"
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
@@ -146,14 +146,11 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Uncontrolled</h4>
-        <DxcNewInputText
-          margin={{ left: "medium", right: "medium" }}
-          clearable
-        />
+        <DxcTextInput margin={{ left: "medium", right: "medium" }} clearable />
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Clearable</h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           margin={{ left: "medium", right: "medium" }}
@@ -165,7 +162,7 @@ function App() {
           With pattern (At least one letter, one number and one special
           character)
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -178,7 +175,7 @@ function App() {
         <h4 style={{ "margin-left": "36px" }}>
           With min length 5 and max length 10
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -192,7 +189,7 @@ function App() {
           With pattern (At least one letter, one number and one special
           character) and minimum length 5 and maximum length 10
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -207,7 +204,7 @@ function App() {
           With pattern (At least one letter, one number and one special
           character) - Custom error message
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -221,7 +218,7 @@ function App() {
         <h4 style={{ "margin-left": "36px" }}>
           With min length 5 and max length 10 - Custom error message
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -237,7 +234,7 @@ function App() {
           character) and minimum length 5 and maximum length 10 - Custom error
           message
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -253,7 +250,7 @@ function App() {
           Autosuggest - With pattern (At least one letter, one number and one
           special character)
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={suggestionsValue}
           label="Autosuggest"
           onChange={onChangeSuggestions}
@@ -268,7 +265,7 @@ function App() {
         <h4 style={{ "margin-left": "36px" }}>
           Autosuggest - With min length 5 and max length 10
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={suggestionsValue}
           onChange={onChangeSuggestions}
           suggestions={countries}
@@ -283,7 +280,7 @@ function App() {
           Autosuggest - With pattern (At least one letter, one number and one
           special character) and minimum length 5 and maximum length 10
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={suggestionsValue}
           onChange={onChangeSuggestions}
           suggestions={countries}
@@ -299,7 +296,7 @@ function App() {
           Autosuggest - With pattern (At least one letter, one number and one
           special character) - Custom error messages
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={suggestionsValue}
           onChange={onChangeSuggestions}
           suggestions={countries}
@@ -315,7 +312,7 @@ function App() {
           Autosuggest - With min length 5 and max length 10 - Custom error
           messages
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={suggestionsValue}
           onChange={onChangeSuggestions}
           suggestions={countries}
@@ -332,7 +329,7 @@ function App() {
           special character) and minimum length 5 and maximum length 10 - Custom
           error messages
         </h4>
-        <DxcNewInputText
+        <DxcTextInput
           value={suggestionsValue}
           onChange={onChangeSuggestions}
           suggestions={countries}
@@ -345,7 +342,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
+        <DxcTextInput
           label="Prefix and suffix text input"
           optional
           prefix="+34"
@@ -356,8 +353,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Prefix icon input"
+        <DxcTextInput
+          label="Prefix icon text input"
           prefix={
             <svg
               version="1.1"
@@ -382,8 +379,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Action input with a SVG"
+        <DxcTextInput
+          label="Action text input with a SVG"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
@@ -391,8 +388,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Action input with a URL"
+        <DxcTextInput
+          label="Action text input with a URL"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
@@ -403,9 +400,9 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
+        <DxcTextInput
           prefix="😀"
-          label="Error input"
+          label="Error text input"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin={{ left: "medium", bottom: "small", right: "medium" }}
@@ -416,15 +413,15 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
+        <DxcTextInput
           label="With 'on' autocomplete"
           autocomplete="on"
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Disabled input"
+        <DxcTextInput
+          label="Disabled text input"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
@@ -432,8 +429,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Disabled input with prefix and suffix"
+        <DxcTextInput
+          label="Disabled text input with prefix and suffix"
           helperText="Example of helper text"
           value="Example text"
           prefix="+34"
@@ -443,8 +440,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Disabled input with action"
+        <DxcTextInput
+          label="Disabled text input with action"
           helperText="Example of helper text"
           placeholder="Placeholder"
           action={action}
@@ -453,8 +450,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Input with suggestions"
+        <DxcTextInput
+          label="Text input with suggestions"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
@@ -465,7 +462,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
+        <DxcTextInput
           label="Suggestions + action"
           helperText="Example of helper text"
           placeholder="Placeholder"
@@ -478,7 +475,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
+        <DxcTextInput
           label="Uncontrolled suggestions"
           helperText="Example of helper text"
           placeholder="Placeholder"
@@ -488,8 +485,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Input with suggestions function"
+        <DxcTextInput
+          label="Text input with suggestions function"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
@@ -500,8 +497,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Input with suggestions error function"
+        <DxcTextInput
+          label="Text input with suggestions error function"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
@@ -510,8 +507,8 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewInputText
-          label="Input with ref"
+        <DxcTextInput
+          label="Text input with ref"
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin={{ left: "medium", right: "medium" }}
@@ -529,7 +526,7 @@ function App() {
       </p>
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark">
-          <DxcNewInputText
+          <DxcTextInput
             label="Example label"
             optional
             helperText="Example of helper text"
@@ -543,8 +540,8 @@ function App() {
           />
         </Mode>
         <Mode mode="dark">
-          <DxcNewInputText
-            label="Disabled input"
+          <DxcTextInput
+            label="Disabled text input"
             optional
             helperText="Example of helper text"
             placeholder="Placeholder"
@@ -554,7 +551,7 @@ function App() {
           />
         </Mode>
         <Mode mode="dark">
-          <DxcNewInputText
+          <DxcTextInput
             label="Suggestions + action"
             placeholder="Placeholder"
             value={suggestionsValue}
@@ -566,7 +563,7 @@ function App() {
           />
         </Mode>
         <Mode mode="dark">
-          <DxcNewInputText
+          <DxcTextInput
             label="Warning label"
             prefix="+34"
             helperText="Example of helper text"
@@ -576,9 +573,9 @@ function App() {
           />
         </Mode>
         <Mode mode="dark">
-          <DxcNewInputText
+          <DxcTextInput
             prefix="😀"
-            label="Error input"
+            label="Error text input"
             helperText="Example of helper text"
             margin={{ left: "medium", bottom: "small", right: "medium" }}
             error="Error message."

@@ -1,4 +1,4 @@
-import { DxcNewInputText, DxcButton } from "@dxc-technology/halstack-react";
+import { DxcTextInput, DxcButton } from "@dxc-technology/halstack-react";
 import { useState, useRef } from "react";
 
 const code = `() => {
@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <>
-      <DxcNewInputText
+      <DxcTextInput
         label="Uncontrolled"
         margin="medium"
         ref={inputRef}
@@ -27,7 +27,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewInputText,
+  DxcTextInput,
   DxcButton,
   useState,
   useRef,

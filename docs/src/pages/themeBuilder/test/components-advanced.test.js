@@ -447,7 +447,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render input text component", async () => {
+  it("Should render text input component", async () => {
     const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
@@ -457,7 +457,7 @@ describe("Successful component tests for advanced theme", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("Input Text"));
+      fireEvent.click(getByText("Text Input"));
     });
     expect(getByText("InputText component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
@@ -726,7 +726,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render new input text component", async () => {
+  it("Should render text input component", async () => {
     const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
@@ -736,9 +736,9 @@ describe("Successful component tests for advanced theme", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("New Input Text"));
+      fireEvent.click(getByText("Text input"));
     });
-    expect(getByText("NewInputText component")).toBeTruthy();
+    expect(getByText("TextInput component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
     expect(getByText("Dark Mode")).toBeTruthy();
     expect(getAllByText("Default").length).toBe(2);
@@ -747,7 +747,7 @@ describe("Successful component tests for advanced theme", () => {
     expect(getAllByText("Action & Optional").length).toBe(2);
     expect(getAllByText("Suggestions").length).toBe(2);
     expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(advancedTheme["newInputText"]).forEach((themeInputs) =>
+    Object.keys(advancedTheme["textInput"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
     );
   });

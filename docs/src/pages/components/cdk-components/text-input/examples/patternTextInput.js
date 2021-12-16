@@ -1,4 +1,4 @@
-import { DxcNewInputText } from "@dxc-technology/halstack-react";
+import { DxcTextInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -15,21 +15,21 @@ const code = `() => {
   };
 
   return (
-    <DxcNewInputText
-      label="Length"
+    <DxcTextInput
+      label="Pattern"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
       error={error}
       margin="medium"
       clearable
-      length={{ min: 5, max: 10 }}
+      pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
     />
   );
 }`;
 
 const scope = {
-  DxcNewInputText,
+  DxcTextInput,
   useState,
 };
 
