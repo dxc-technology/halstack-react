@@ -11,7 +11,7 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import DxcTextInput from "../text-input/TextInput";
 
-const DxcNewDate = React.forwardRef(
+const DxcDateInput = React.forwardRef(
   (
     {
       label = "",
@@ -110,12 +110,12 @@ const DxcNewDate = React.forwardRef(
       overrides: {
         MuiTypography: {
           root: {
-            fontFamily: `${colorsTheme.newDate.pickerFontFamily} !important`,
+            fontFamily: `${colorsTheme.dateInput.pickerFontFamily} !important`,
           },
         },
         MuiPickersYearSelection: {
           container: {
-            color: colorsTheme.newDate.pickerYearFontColor,
+            color: colorsTheme.dateInput.pickerYearFontColor,
             "&::-webkit-scrollbar": {
               width: "3px",
             },
@@ -133,8 +133,8 @@ const DxcNewDate = React.forwardRef(
         },
         MuiPickersToolbar: {
           toolbar: {
-            backgroundColor: colorsTheme.newDate.pickerBackgroundColor,
-            color: colorsTheme.newDate.pickerDayFontColor,
+            backgroundColor: colorsTheme.dateInput.pickerBackgroundColor,
+            color: colorsTheme.dateInput.pickerDayFontColor,
           },
         },
         MuiIconButton: {
@@ -152,7 +152,7 @@ const DxcNewDate = React.forwardRef(
         MuiButtonBase: {
           root: {
             "&:focus": {
-              outline: colorsTheme.newDate.pickerFocusColor + " solid 2px",
+              outline: colorsTheme.dateInput.pickerFocusColor + " solid 2px",
             },
           },
         },
@@ -162,38 +162,38 @@ const DxcNewDate = React.forwardRef(
             maxWidth: "unset",
             minHeight: "unset",
             padding: "0px 10px",
-            height: colorsTheme.newDate.pickerHeight,
-            width: colorsTheme.newDate.pickerWidth,
-            backgroundColor: colorsTheme.newDate.pickerBackgroundColor,
-            fontFamily: colorsTheme.newDate.pickerFontFamily,
+            height: colorsTheme.dateInput.pickerHeight,
+            width: colorsTheme.dateInput.pickerWidth,
+            backgroundColor: colorsTheme.dateInput.pickerBackgroundColor,
+            fontFamily: colorsTheme.dateInput.pickerFontFamily,
           },
         },
         MuiPickersToolbarText: {
           toolbarTxt: {
-            color: colorsTheme.newDate.pickerActualDateFontColor,
-            fontFamily: colorsTheme.newDate.pickerFontFamily,
+            color: colorsTheme.dateInput.pickerActualDateFontColor,
+            fontFamily: colorsTheme.dateInput.pickerFontFamily,
             fontSize: "2rem",
           },
           toolbarBtnSelected: {
-            color: colorsTheme.newDate.pickerActualDateFontColor,
+            color: colorsTheme.dateInput.pickerActualDateFontColor,
           },
         },
         MuiPickersCalendarHeader: {
           transitionContainer: {
-            color: colorsTheme.newDate.pickerMonthFontColor,
+            color: colorsTheme.dateInput.pickerMonthFontColor,
           },
           dayLabel: {
-            color: colorsTheme.newDate.pickerWeekFontColor,
-            fontFamily: colorsTheme.newDate.pickerFontFamily,
+            color: colorsTheme.dateInput.pickerWeekFontColor,
+            fontFamily: colorsTheme.dateInput.pickerFontFamily,
           },
           switchHeader: {
             backgroundColor: "#ffffff",
-            color: colorsTheme.newDate.pickerDayFontColor,
+            color: colorsTheme.dateInput.pickerDayFontColor,
           },
           iconButton: {
-            backgroundColor: colorsTheme.newDate.pickerMonthArrowsBackgroundColor,
+            backgroundColor: colorsTheme.dateInput.pickerMonthArrowsBackgroundColor,
             "&:hover": {
-              backgroundColor: colorsTheme.newDate.pickerMonthArrowsBackgroundColor,
+              backgroundColor: colorsTheme.dateInput.pickerMonthArrowsBackgroundColor,
             },
           },
         },
@@ -204,37 +204,37 @@ const DxcNewDate = React.forwardRef(
         },
         MuiPickersDay: {
           current: {
-            color: colorsTheme.newDate.pickerDayFontColor,
+            color: colorsTheme.dateInput.pickerDayFontColor,
           },
           day: {
-            fontFamily: colorsTheme.newDate.pickerFontFamily,
-            color: colorsTheme.newDate.pickerDayFontColor,
+            fontFamily: colorsTheme.dateInput.pickerFontFamily,
+            color: colorsTheme.dateInput.pickerDayFontColor,
             "&:hover": {
-              backgroundColor: colorsTheme.newDate.pickerHoverDateBackgroundColor,
-              color: colorsTheme.newDate.pickerHoverDateFontColor,
+              backgroundColor: colorsTheme.dateInput.pickerHoverDateBackgroundColor,
+              color: colorsTheme.dateInput.pickerHoverDateFontColor,
             },
           },
           daySelected: {
-            backgroundColor: colorsTheme.newDate.pickerSelectedDateBackgroundColor,
-            color: colorsTheme.newDate.pickerSelectedDateColor,
+            backgroundColor: colorsTheme.dateInput.pickerSelectedDateBackgroundColor,
+            color: colorsTheme.dateInput.pickerSelectedDateColor,
             "&:hover": {
-              backgroundColor: colorsTheme.newDate.pickerSelectedDateBackgroundColor,
-              color: colorsTheme.newDate.pickerSelectedDateColor,
+              backgroundColor: colorsTheme.dateInput.pickerSelectedDateBackgroundColor,
+              color: colorsTheme.dateInput.pickerSelectedDateColor,
               opacity: "1",
             },
           },
         },
         MuiPickersYear: {
           yearSelected: {
-            color: colorsTheme.newDate.pickerSelectedDateColor,
-            backgroundColor: colorsTheme.newDate.pickerSelectedDateBackgroundColor,
+            color: colorsTheme.dateInput.pickerSelectedDateColor,
+            backgroundColor: colorsTheme.dateInput.pickerSelectedDateBackgroundColor,
             margin: "0px 100px",
             borderRadius: "20px",
           },
           root: {
             "&:focus": {
-              color: colorsTheme.newDate.pickerHoverDateFontColor,
-              backgroundColor: colorsTheme.newDate.pickerHoverDateBackgroundColor,
+              color: colorsTheme.dateInput.pickerHoverDateFontColor,
+              backgroundColor: colorsTheme.dateInput.pickerHoverDateBackgroundColor,
             },
           },
         },
@@ -316,7 +316,7 @@ const sizes = {
 
 const StyledDPicker = styled.div``;
 
-DxcNewDate.propTypes = {
+DxcDateInput.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -343,4 +343,4 @@ DxcNewDate.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcNewDate;
+export default DxcDateInput;

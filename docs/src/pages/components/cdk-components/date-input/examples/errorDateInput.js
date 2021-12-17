@@ -1,8 +1,8 @@
-import { DxcNewDate } from "@dxc-technology/halstack-react";
+import { DxcDateInput } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcNewDate
+    <DxcDateInput
       label="Invalid"
       error="Error message."
       margin="medium"
@@ -11,7 +11,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewDate,
+  DxcDateInput,
 };
 
 export default { code, scope };

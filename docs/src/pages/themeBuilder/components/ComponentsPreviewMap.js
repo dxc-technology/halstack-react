@@ -28,7 +28,7 @@ import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
 import UploadPreview from "./previews/Upload";
 import CardPreview from "./previews/Card";
-import NewDatePreview from "./previews/NewDate";
+import DateInputPreview from "./previews/DateInput";
 import TextInputPreview from "./previews/TextInput";
 import FileInputPreview from "./previews/FileInput";
 import NewTextareaPreview from "./previews/NewTextarea";
@@ -67,6 +67,10 @@ const SampleComponents = [
     preview: DatePreview,
   },
   {
+    name: "dateInput",
+    preview: DateInputPreview,
+  },
+  {
     name: "dialog",
     preview: DialogPreview,
   },
@@ -97,10 +101,6 @@ const SampleComponents = [
   {
     name: "link",
     preview: LinkPreview,
-  },
-  {
-    name: "newDate",
-    preview: NewDatePreview,
   },
   {
     name: "newTextarea",

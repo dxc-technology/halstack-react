@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const NewDatePropsTable = () => {
+const DateInputPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -58,7 +58,8 @@ const NewDatePropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, the date will have an action to clear the entered value.
+          If true, the date input will have an action to clear the entered
+          value.
         </td>
       </tr>
       <tr>
@@ -112,8 +113,9 @@ const NewDatePropsTable = () => {
         <td></td>
         <td>
           If it is defined, the component will change its appearance, showing
-          the error below the date component. If it is not defined, the error
-          messages will be managed internally, but never displayed on its own.
+          the error below the date input component. If it is not defined, the
+          error messages will be managed internally, but never displayed on its
+          own.
         </td>
       </tr>
       <tr>
@@ -162,4 +164,4 @@ const NewDatePropsTable = () => {
   );
 };
 
-export default NewDatePropsTable;
+export default DateInputPropsTable;

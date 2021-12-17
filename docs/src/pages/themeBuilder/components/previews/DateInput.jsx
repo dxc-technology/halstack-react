@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcNewDate, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcDateInput, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
-const NewDate = () => {
+const DateInput = () => {
   return (
-    <NewDateContainer>
+    <DateInputContainer>
       <DxcHeading
         text="Light Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <DxcNewDate
+        <DxcDateInput
           label="Format"
           helperText="Example of helper text"
           format="MM/dd/yyyy"
@@ -28,7 +28,7 @@ const NewDate = () => {
       />
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Default">
-          <DxcNewDate
+          <DxcDateInput
             label="Format"
             helperText="Example of helper text"
             format="MM/dd/yyyy"
@@ -38,10 +38,10 @@ const NewDate = () => {
           />
         </Mode>
       </BackgroundColorProvider> */}
-    </NewDateContainer>
+    </DateInputContainer>
   );
 };
 
-const NewDateContainer = styled.div``;
+const DateInputContainer = styled.div``;
 
-export default NewDate;
+export default DateInput;

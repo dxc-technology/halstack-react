@@ -1,5 +1,10 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import {
+  DxcTabsForSections,
+  DxcHeading,
+  DxcAlert,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import DatePropsTable from "./api.jsx";
@@ -12,7 +17,17 @@ import sized from "./examples/sized";
 function Date() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Date" status="ready"></ComponentHeader>
+      <ComponentHeader title="Date" status="deprecated" />
+      <DxcAlert type="warning" margin={{ bottom: "small" }} size="fillParent">
+        The component status has been changed to deprecated. Use the new{" "}
+        <DxcLink
+          href="#/components/dateInput"
+          underlined={false}
+          inheritedColor={true}
+          text="Date Input"
+        ></DxcLink>{" "}
+        component instead.
+      </DxcAlert>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

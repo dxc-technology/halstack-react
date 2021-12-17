@@ -81,9 +81,9 @@ function Components() {
                   .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
                   .map((path) => (
                     <NavLink
-                      isActive={location.pathname.startsWith(
-                        `/components/${path.path}`
-                      )}
+                      isActive={
+                        location.pathname === `/components/${path.path}`
+                      }
                       key={path.path}
                     >
                       <Link to={`/components/${path.path}`}>{path.name}</Link>
@@ -158,7 +158,6 @@ const SideNavContainer = styled.div`
   margin-bottom: 40px;
 `;
 const MainContent = styled.div`
-
   height: 100%;
   min-height: 100vh;
 `;

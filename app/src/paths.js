@@ -35,7 +35,7 @@ import AccordionGroup from "./pages/AccordionGroup";
 import Badge from "./pages/Badge";
 import TextInput from "./pages/TextInput";
 import PasswordInput from "./pages/PasswordInput";
-import NewDate from "./pages/NewDate";
+import DateInput from "./pages/DateInput";
 import NumberInput from "./pages/NumberInput";
 import NewTextarea from "./pages/NewTextarea";
 import NewSelect from "./pages/NewSelect";
@@ -98,6 +98,11 @@ export default [
     component: Date,
   },
   {
+    path: "dateInput",
+    name: "Date Input",
+    component: DateInput,
+  },
+  {
     path: "dialog",
     name: "Dialog",
     component: Dialog,
@@ -136,11 +141,6 @@ export default [
     path: "link",
     name: "Link",
     component: Link,
-  },
-  {
-    path: "newDate",
-    name: "New Date",
-    component: NewDate,
   },
   {
     path: "newSelect",
@@ -231,6 +231,11 @@ export default [
     path: "textarea",
     name: "Textarea",
     component: Textarea,
+  },
+  {
+    path: "textInput",
+    name: "Text Input",
+    component: TextInput,
   },
   {
     path: "toggle-group",
