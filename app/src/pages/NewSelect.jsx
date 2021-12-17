@@ -22,9 +22,31 @@ function App() {
     { label: "Option 02", value: "2" },
     { label: "Option 03", value: "3" },
     {
-      label: "Option 00000000000000000000000000000000000000000000000000000",
+      label: "Option 00000000000000000000000000000000000000000000000000004",
       value: "4",
     },
+  ];
+  const single_options_long = [
+    { label: "Option 01", value: "1" },
+    { label: "Option 02", value: "2" },
+    { label: "Option 03", value: "3" },
+    { label: "Option 04", value: "4" },
+    { label: "Option 05", value: "5" },
+    { label: "Option 06", value: "6" },
+    { label: "Option 07", value: "7" },
+    { label: "Option 08", value: "8" },
+    { label: "Option 09", value: "9" },
+    { label: "Option 10", value: "10" },
+    { label: "Option 11", value: "11" },
+    { label: "Option 12", value: "12" },
+    { label: "Option 13", value: "13" },
+    { label: "Option 14", value: "14" },
+    { label: "Option 15", value: "15" },    
+    { label: "Option 16", value: "16" },
+    { label: "Option 17", value: "17" },
+    { label: "Option 18", value: "18" },
+    { label: "Option 19", value: "19" },
+    { label: "Option 20", value: "20" },
   ];
   const grouped_options = [
     {
@@ -49,6 +71,32 @@ function App() {
         { label: "Option 0007", value: "7" },
         { label: "Option 008", value: "8" },
         { label: "Option 9", value: "9" },
+      ],
+    },
+  ];
+  const group_options = [
+    {
+      label: "Group 001",
+      options: [
+        { label: "Option 001", value: "1" },
+        { label: "Option 002", value: "2" },
+        { label: "Option 003", value: "3" },
+      ],
+    },
+    {
+      label: "Group 002",
+      options: [
+        { label: "Option 004", value: "4" },
+        { label: "Option 005", value: "5" },
+        { label: "Option 006", value: "6" },
+      ],
+    },
+    {
+      label: "Group 003",
+      options: [
+        { label: "Option 007", value: "7" },
+        { label: "Option 008", value: "8" },
+        { label: "Option 009", value: "9" },
       ],
     },
   ];
@@ -158,7 +206,7 @@ function App() {
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
-          options={single_options}
+          options={single_options_long}
           placeholder="Choose an option"
           searchable
           margin="medium"
@@ -173,7 +221,6 @@ function App() {
           placeholder="Choose an option"
           searchable
           margin="medium"
-          optional
         />
       </p>
       <p>
@@ -211,6 +258,22 @@ function App() {
           }}
           placeholder="Choose an option"
           margin="medium"
+          optional
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional grouped</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          margin="medium"
+          searchable
           optional
         />
       </p>

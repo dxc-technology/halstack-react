@@ -5,6 +5,7 @@ import { spaces } from "../common/variables.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
+import { useLayoutEffect } from "react";
 
 const selectIcons = {
   error: (
@@ -83,19 +84,27 @@ const DxcNewSelect = React.forwardRef(
     ref
   ) => {
     const [selectId] = useState(`select-${uuidv4()}`);
+    const selectLabelId = `label-${selectId}`;
     const [innerValue, setInnerValue] = useState("");
+    const [innerOption, setInnerOption] = useState({});
     const [searchValue, setSearchValue] = useState("");
     const [isBackgroundValue, changeIsBackgroundValue] = useState(false);
 
     const [isOpen, changeIsOpen] = useState(false);
     const [isActiveOption, changeIsActiveOption] = useState(false);
+    const [isScrollableAbove, changeIsScrollableAbove] = useState(false);
+    const [isScrollableBelow, changeIsScrollableBelow] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
-    const selectInputRef = useRef(null);
+    const selectContainerRef = useRef(null);
+    const selectSearchInputRef = useRef(null);
+    const selectOptionsListRef = useRef(null);
 
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
+
+    const optionalEmptyOption = { label: placeholder, value: "" };
 
     const notOptionalCheck = (value) => value === "" && !optional;
 
@@ -122,19 +131,21 @@ const DxcNewSelect = React.forwardRef(
       }
     };
 
-    const handleSelectChangeValue = (newValue) => {
-      value ?? setInnerValue(newValue);
+    const handleSelectChangeValue = (newOption) => {
+      value ?? setInnerValue(newOption.value);
+      setInnerOption(newOption);
 
-      if (notOptionalCheck(newValue)) onChange?.({ value: newValue, error: getNotOptionalErrorMessage() });
-      else onChange?.({ value: newValue, error: null });
+      if (notOptionalCheck(newOption.value))
+        onChange?.({ value: newOption.value, error: getNotOptionalErrorMessage() });
+      else onChange?.({ value: newOption.value, error: null });
     };
     const handleSelectOnClick = () => {
       changeVisualFocusIndex(0);
       isOpen ? closeOptions() : openOptions();
-      searchable && selectInputRef.current.focus();
+      searchable && selectSearchInputRef.current.focus();
     };
     const handleSelectOnFocus = () => {
-      searchable && selectInputRef.current.focus();
+      searchable && selectSearchInputRef.current.focus();
     };
     const handleSelectOnBlur = (event) => {
       // focus leaves container (outside, not to childs)
@@ -157,6 +168,7 @@ const DxcNewSelect = React.forwardRef(
           });
           openOptions();
           changeIsActiveOption(false);
+          changeIsScrollableBelow(true);
           break;
         case 38: // Arrow Up
           event.preventDefault();
@@ -165,6 +177,7 @@ const DxcNewSelect = React.forwardRef(
           );
           openOptions();
           changeIsActiveOption(false);
+          changeIsScrollableAbove(true);
           break;
         case 27: // Esc
           event.preventDefault();
@@ -174,27 +187,28 @@ const DxcNewSelect = React.forwardRef(
         case 13: // Enter
           if (isOpen) {
             let accLength = optional /*&& !multiple*/ ? 1 : 0;
-            if (optional && visualFocusIndex === 0) handleSelectChangeValue(""); // optional empty option (index = 0)
+            if (optional && visualFocusIndex === 0) handleSelectChangeValue(optionalEmptyOption);
+            // optional empty option (index = 0)
             else if (searchable && filteredOptions.length > 0) {
               filteredOptions[0].options
                 ? filteredOptions.some((groupOption) => {
                     const groupLength = accLength + groupOption.options.length;
                     groupLength > visualFocusIndex &&
-                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength].value);
+                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
                     accLength = groupLength;
                     return groupLength > visualFocusIndex;
                   })
-                : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength].value);
+                : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength]);
             } else {
               options[0].options
                 ? options.some((groupOption) => {
                     const groupLength = accLength + groupOption.options.length;
                     groupLength > visualFocusIndex &&
-                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength].value);
+                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
                     accLength = groupLength;
                     return groupLength > visualFocusIndex;
                   })
-                : handleSelectChangeValue(options[visualFocusIndex - accLength].value);
+                : handleSelectChangeValue(options[visualFocusIndex - accLength]);
             }
             closeOptions();
             setSearchValue("");
@@ -214,24 +228,6 @@ const DxcNewSelect = React.forwardRef(
       setSearchValue("");
     };
 
-    const getSingleSelectedOption = () => {
-      const val = value ?? innerValue;
-      let selectedOption;
-
-      if (options?.length > 0) {
-        options.forEach((option) => {
-          if (option.options) {
-            option.options.forEach((singleOption) => {
-              if (singleOption.value === val) selectedOption = singleOption;
-            });
-          } else if (option.value === val) selectedOption = option;
-        });
-      }
-
-      return selectedOption;
-    };
-    const selectedOption = useMemo(() => getSingleSelectedOption(), [value ?? innerValue, options]);
-
     const getLastOptionIndex = () => {
       let last = 0;
       const reducer = (acc, current) => acc + current.options.length;
@@ -248,6 +244,27 @@ const DxcNewSelect = React.forwardRef(
       () => getLastOptionIndex(),
       [searchable, optional, searchable ? filteredOptions : options]
     );
+
+    useLayoutEffect(() => {
+      const optionPosition = visualFocusIndex * 32 + 4;
+      const scrollPosition = selectOptionsListRef?.current?.scrollTop;
+      const optionListHeight = selectOptionsListRef?.current?.offsetHeight;
+
+      const isBelow = optionPosition > optionListHeight + scrollPosition - 32;
+      const isAbove = scrollPosition > 0 && optionPosition < scrollPosition;
+      const isAtTheEndScroll =
+        scrollPosition + optionListHeight > selectOptionsListRef?.current?.scrollHeight;
+
+      if (isBelow && isScrollableBelow) selectOptionsListRef?.current?.scrollTo({ top: scrollPosition + 32 });
+      else if (isAbove && isScrollableAbove) selectOptionsListRef?.current?.scrollTo({ top: scrollPosition - 32 });
+      else if (isBelow && optionPosition !== 0) selectOptionsListRef?.current?.scrollTo({ top: visualFocusIndex * 32 });
+      else if (isScrollableBelow && isAtTheEndScroll) selectOptionsListRef?.current?.scrollTo({ top: 0 });
+
+      return (() => {
+        changeIsScrollableBelow(false);
+        changeIsScrollableAbove(false);
+      })();
+    }, [isScrollableAbove, isScrollableBelow]);
 
     useEffect(() => {
       if (searchable && options?.length > 0) {
@@ -284,7 +301,7 @@ const DxcNewSelect = React.forwardRef(
           onMouseUp={(event) => {
             if (event.button === 0 && isActiveOption) {
               // left button only
-              handleSelectChangeValue(option.value);
+              handleSelectChangeValue(option);
               closeOptions(); // if not multiple
               setSearchValue("");
               changeIsActiveOption(false);
@@ -317,30 +334,56 @@ const DxcNewSelect = React.forwardRef(
     };
 
     let global_index = optional /*&& !multiple*/ ? 0 : -1; // placeholder becomes an option and its always index = 0, so we start at 1
-    const mapOptionFunc = (option, index) => {
+    const mapOptionFunc = (option) => {
       if (option.options) {
         return (
           <>
             {option.options.length > 0 && <OptionGroupLabel>{option.label}</OptionGroupLabel>}
             {option.options.map((singleOption) => {
               global_index++;
-              return <Option option={singleOption} index={global_index} isGroupedOption={true} />;
+              return (
+                <Option
+                  option={singleOption}
+                  index={global_index}
+                  isGroupedOption={true}
+                  role="option"
+                  aria-selected={visualFocusIndex === global_index && "true"}
+                />
+              );
             })}
           </>
         );
-      } else return <Option option={option} index={optional /*&& !multiple*/ ? index + 1 : index} />;
+      } else {
+        global_index++;
+        return (
+          <Option
+            option={option}
+            index={global_index}
+            role="option"
+            aria-selected={visualFocusIndex === global_index && "true"}
+          />
+        );
+      }
     };
 
     return (
       <ThemeProvider theme={colorsTheme.newSelect}>
         <DxcSelect margin={margin} size={size} ref={ref}>
-          <Label htmlFor={selectId} disabled={disabled} backgroundType={backgroundType}>
+          <Label
+            id={selectLabelId}
+            disabled={disabled}
+            backgroundType={backgroundType}
+            onClick={() => {
+              selectContainerRef.current.focus();
+            }}
+          >
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
           <HelperText disabled={disabled} backgroundType={backgroundType}>
             {helperText}
           </HelperText>
           <SelectContainer
+            id={selectId}
             backgroundType={backgroundType}
             disabled={disabled}
             error={error}
@@ -348,31 +391,37 @@ const DxcNewSelect = React.forwardRef(
             onClick={handleSelectOnClick}
             onFocus={handleSelectOnFocus}
             onKeyDown={handleSelectOnKeyDown}
+            ref={selectContainerRef}
             tabIndex={tabIndex}
+            aria-labelledby={selectLabelId}
           >
             <SearchableValueContainer>
+              <ValueInput name={name} value={value ?? innerValue} readOnly />
               {searchable && (
                 <SearchInput
-                  id={selectId}
-                  name={name}
                   value={searchValue}
                   disabled={disabled}
                   onChange={handleSearchIOnChange}
-                  ref={selectInputRef}
+                  ref={selectSearchInputRef}
                   autoComplete="off"
                   autoCorrect="off"
                 ></SearchInput>
               )}
               {(!searchable || searchValue === "") && (
                 <SelectedOption disabled={disabled} backgroundValue={!(value ?? innerValue) || isBackgroundValue}>
-                  {selectedOption?.icon && <OptionIcon selected={true}>{selectedOption.icon}</OptionIcon>}
-                  <OptionLabel>{selectedOption?.label ?? placeholder}</OptionLabel>
+                  <OptionLabel>{innerOption?.label ?? placeholder}</OptionLabel>
                 </SelectedOption>
               )}
             </SearchableValueContainer>
             {!disabled && error && <ErrorIcon backgroundType={backgroundType}>{selectIcons.error}</ErrorIcon>}
             {searchable && searchValue.length > 0 && (
-              <ClearAction onClick={handleClearActionOnClick} backgroundType={backgroundType} tabIndex={-1}>
+              <ClearAction
+                onClick={handleClearActionOnClick}
+                backgroundType={backgroundType}
+                tabIndex={-1}
+                title="Clear search text"
+                aria-label="Clear search text"
+              >
                 {selectIcons.clear}
               </ClearAction>
             )}
@@ -387,6 +436,9 @@ const DxcNewSelect = React.forwardRef(
                 onMouseDown={(event) => {
                   event.preventDefault();
                 }}
+                ref={selectOptionsListRef}
+                role="listbox"
+                aria-label={label}
               >
                 {searchable && (filteredOptions.length === 0 || !filteredGroupsHaveOptions()) ? (
                   <OptionsSystemMessage>
@@ -394,7 +446,14 @@ const DxcNewSelect = React.forwardRef(
                     No matches found
                   </OptionsSystemMessage>
                 ) : (
-                  optional && /*!multiple &&*/ <Option option={{ label: placeholder, value: "" }} index={0} />
+                  optional && (
+                    /*!multiple &&*/ <Option
+                      option={optionalEmptyOption}
+                      index={0}
+                      role="option"
+                      aria-selected={visualFocusIndex === 0 && "true"}
+                    />
+                  )
                 )}
                 {searchable ? filteredOptions.map(mapOptionFunc) : options.map(mapOptionFunc)}
               </OptionsList>
@@ -435,7 +494,7 @@ const DxcSelect = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.label`
+const Label = styled.span`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -450,6 +509,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: 1.715em;
+  cursor: default;
 `;
 
 const OptionalLabel = styled.span`
@@ -575,6 +635,10 @@ const SelectedOption = styled.span`
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
   line-height: 1.5em;
+`;
+
+const ValueInput = styled.input`
+  display: none;
 `;
 
 const SearchInput = styled.input`
