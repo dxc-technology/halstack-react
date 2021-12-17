@@ -2,8 +2,7 @@ import React, { useState, useMemo, useContext } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-
-import DxcInput from "../input-text/InputText";
+import V3DxcInputText from "../input-text/InputText";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
@@ -88,7 +87,7 @@ const DxcSlider = ({
           )}
           {showInput && (
             <StyledTextInput>
-              <DxcInput
+              <V3DxcInputText
                 name={name}
                 value={(value != null && value >= 0 && value) || innerValue}
                 disabled={disabled}

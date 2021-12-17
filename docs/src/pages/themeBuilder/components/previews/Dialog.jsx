@@ -4,7 +4,7 @@ import {
   DxcDialog,
   DxcButton,
   DxcHeading,
-  DxcInput,
+  V3DxcInputText,
 } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
@@ -12,7 +12,7 @@ const Dialog = () => {
   const [isDefaultDialogVisible, setDefaultDialogVisible] = useState(false);
   const [isModalDialogVisible, setModalDialogVisible] = useState(false);
   const [isNoOverlayDialogVisible, setNoOverlayDialogVisible] = useState(false);
-  
+
   const handleClickDefaultDialog = () => {
     setDefaultDialogVisible(!isDefaultDialogVisible);
   };
@@ -91,13 +91,13 @@ const Dialog = () => {
             <DxcHeading level={4} text="Account information" />
             <DxcHeading level={5} text="Client" margin={{ top: "xsmall" }} />
             <p>
-              <DxcInput label="Name" />
+              <V3DxcInputText label="Name" />
             </p>
             <p>
-              <DxcInput label="Surname" />
+              <V3DxcInputText label="Surname" />
             </p>
             <p>
-              <DxcInput label="Address" />
+              <V3DxcInputText label="Address" />
             </p>
             <p style={{ textAlign: "right" }}>
               <DxcButton

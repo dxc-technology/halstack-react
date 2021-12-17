@@ -1,4 +1,4 @@
-import { DxcInput } from "@dxc-technology/halstack-react";
+import { V3DxcInputText } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -34,7 +34,7 @@ const code = `() => {
   }
 
   return (
-    <DxcInput
+    <V3DxcInputText
       label="Autocomplete"
       value={value}
       onChange={onChange}
@@ -45,8 +45,8 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcInput,
-  useState
+  V3DxcInputText,
+  useState,
 };
 
 export default { code, scope };
