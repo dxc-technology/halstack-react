@@ -6,7 +6,7 @@ import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
 import Tabs from "./cdk-components/tabs/Tabs";
 import Upload from "./cdk-components/upload/Upload";
-import Input from "./cdk-components/input/Input";
+import InputText from "./cdk-components/input-text/InputText";
 import Accordion from "./cdk-components/accordion/Accordion";
 import Select from "./cdk-components/select/Select";
 import Slider from "./cdk-components/slider/Slider";
@@ -151,9 +151,9 @@ export default [
     type: types.UTILS,
   },
   {
-    path: "input",
+    path: "inputText",
     name: "Input Text",
-    component: Input,
+    component: InputText,
     type: types.FORMS,
   },
   {

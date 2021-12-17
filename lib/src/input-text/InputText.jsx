@@ -31,7 +31,7 @@ const makeCancelable = (promise) => {
   };
 };
 
-const DxcInputText = ({
+const V3DxcInputText = ({
   label = " ",
   name = "",
   value,
@@ -700,7 +700,7 @@ const TextContainer = styled.div`
   }
 `;
 
-DxcInputText.propTypes = {
+V3DxcInputText.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -735,4 +735,4 @@ DxcInputText.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcInputText;
+export default V3DxcInputText;

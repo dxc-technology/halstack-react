@@ -10,14 +10,14 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
-import controlled from "./examples/controlledInput";
-import uncontrolled from "./examples/uncontrolledInput";
-import labeled from "./examples/lebeledInput";
-import fillParent from "./examples/fillParentInput";
-import sized from "./examples/sizedInput";
-import maskedInput from "./examples/maskedInput";
+import controlled from "./examples/controlledInputText";
+import uncontrolled from "./examples/uncontrolledInputText";
+import labeled from "./examples/lebeledInputText";
+import fillParent from "./examples/fillParentInputInputText";
+import sized from "./examples/sizedInputText";
+import maskedInput from "./examples/maskedInputText";
 
-function Input() {
+function InputText() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Input Text" status="deprecated"></ComponentHeader>
@@ -58,21 +58,24 @@ function Input() {
                   margin={{ bottom: "small" }}
                 />
                 <Example
-                  title="Controlled Input"
+                  title="Controlled input text"
                   example={controlled}
                 ></Example>
                 <Example
-                  title="Uncontrolled Input"
+                  title="Uncontrolled input text"
                   example={uncontrolled}
                 ></Example>
-                <Example title="Masked Input" example={maskedInput}></Example>
                 <Example
-                  title="Input with prefix/suffix"
+                  title="Masked input text"
+                  example={maskedInput}
+                ></Example>
+                <Example
+                  title="Input text with prefix/suffix"
                   example={labeled}
                 ></Example>
-                <Example title="Sized Input" example={sized}></Example>
+                <Example title="Sized input text" example={sized}></Example>
                 <Example
-                  title="Fill Parent Input"
+                  title="Fill parent input text"
                   example={fillParent}
                 ></Example>
               </Section>
@@ -84,4 +87,4 @@ function Input() {
   );
 }
 
-export default Input;
+export default InputText;
