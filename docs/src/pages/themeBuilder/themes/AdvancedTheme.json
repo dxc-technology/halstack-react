@@ -251,6 +251,23 @@
     "pickerHeight": "316px",
     "pickerWidth": "290px"
   },
+  "dateInput": {
+    "pickerFontFamily": "Open Sans, sans-serif",
+    "pickerBackgroundColor": "#ffffff",
+    "pickerHoverDateFontColor": "#000000",
+    "pickerHoverDateBackgroundColor": "#e5d5f6",
+    "pickerSelectedDateColor": "#ffffff",
+    "pickerSelectedDateBackgroundColor": "#5f249f",
+    "pickerActualDateFontColor": "#999999",
+    "pickerYearFontColor": "#000000",
+    "pickerMonthFontColor": "#000000",
+    "pickerWeekFontColor": "#000000",
+    "pickerDayFontColor": "#000000",
+    "pickerMonthArrowsBackgroundColor": "transparent",
+    "pickerFocusColor": "#0095ff",
+    "pickerHeight": "316px",
+    "pickerWidth": "290px"
+  },
   "dialog": {
     "overlayColor": "#000000",
     "overlayOpacity": "0.7",
@@ -534,23 +551,6 @@
     "activeFontColor": "#000000",
     "activeUnderlineColor": "#000000",
     "focusColor": "#0095ff"
-  },
-  "newDate": {
-    "pickerFontFamily": "Open Sans, sans-serif",
-    "pickerBackgroundColor": "#ffffff",
-    "pickerHoverDateFontColor": "#000000",
-    "pickerHoverDateBackgroundColor": "#e5d5f6",
-    "pickerSelectedDateColor": "#ffffff",
-    "pickerSelectedDateBackgroundColor": "#5f249f",
-    "pickerActualDateFontColor": "#999999",
-    "pickerYearFontColor": "#000000",
-    "pickerMonthFontColor": "#000000",
-    "pickerWeekFontColor": "#000000",
-    "pickerDayFontColor": "#000000",
-    "pickerMonthArrowsBackgroundColor": "transparent",
-    "pickerFocusColor": "#0095ff",
-    "pickerHeight": "316px",
-    "pickerWidth": "290px"
   },
   "newTextarea": {
     "fontFamily": "Open Sans, sans-serif",

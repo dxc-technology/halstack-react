@@ -35,7 +35,7 @@ import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLay
 import AccordionGroup from "./cdk-components/accordion-group/AccordionGroup";
 import TextInput from "./cdk-components/text-input/TextInput";
 import PasswordInput from "./cdk-components/password-input/PasswordInput";
-import NewDate from "./cdk-components/new-date/NewDate";
+import DateInput from "./cdk-components/date-input/DateInput";
 import NumberInput from "./cdk-components/number-input/NumberInput";
 import NewTextarea from "./cdk-components/new-textarea/NewTextarea";
 import FileInput from "./cdk-components/file-input/FileInput";
@@ -115,6 +115,12 @@ export default [
     type: types.FORMS,
   },
   {
+    path: "dateInput",
+    name: "Date Input",
+    component: DateInput,
+    type: types.FORMS,
+  },
+  {
     path: "dialog",
     name: "Dialog",
     component: Dialog,
@@ -161,12 +167,6 @@ export default [
     name: "Link",
     component: Link,
     type: types.UTILS,
-  },
-  {
-    path: "newDate",
-    name: "New Date",
-    component: NewDate,
-    type: types.FORMS,
   },
   {
     path: "newTextarea",

@@ -1,4 +1,4 @@
-import { DxcNewDate } from "@dxc-technology/halstack-react";
+import { DxcDateInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -13,7 +13,7 @@ const code = `() => {
   };
 
   return (
-    <DxcNewDate
+    <DxcDateInput
       label="Custom error"
       helperText="Using onBlur event for handling errors"
       value={value}
@@ -27,7 +27,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewDate,
+  DxcDateInput,
   useState,
 };
 
