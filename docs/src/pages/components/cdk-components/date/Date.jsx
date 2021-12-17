@@ -18,15 +18,15 @@ function Date() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Date" status="deprecated" />
-      <DxcAlert type="warning" margin={{ bottom: "small" }}>
-        This component has been deprecated. Use{" "}
+      <DxcAlert type="warning" margin={{ bottom: "small" }} size="fillParent">
+        The component status has been changed to deprecated. Use the new{" "}
         <DxcLink
           href="#/components/dateInput"
           underlined={false}
           inheritedColor={true}
           text="Date Input"
         ></DxcLink>{" "}
-        instead.
+        component instead.
       </DxcAlert>
       <DxcTabsForSections
         stickAtPx={64}
