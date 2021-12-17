@@ -1,4 +1,4 @@
-import { DxcDate } from "@dxc-technology/halstack-react";
+import { V3DxcDate } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcDate
+    <V3DxcDate
     label="Input label"
     value={value}
     assistiveText="assistive text"
@@ -22,8 +22,8 @@ const code = `() => {
   );
 }`;
 const scope = {
-  DxcDate,
-  useState
+  V3DxcDate,
+  useState,
 };
 
 export default { code, scope };
