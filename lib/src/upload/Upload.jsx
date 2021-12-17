@@ -8,7 +8,7 @@ import FilesToUpload from "./files-upload/FilesToUpload";
 import Transactions from "./transactions/Transactions";
 import { spaces } from "../common/variables.js";
 
-const DxcUpload = ({ callbackUpload, margin, tabIndex = 0 }) => {
+const V3DxcUpload = ({ callbackUpload, margin, tabIndex = 0 }) => {
   const [files, setFiles] = useState([]);
 
   const getFilesToUpload = () => {
@@ -130,7 +130,7 @@ const DxcUpload = ({ callbackUpload, margin, tabIndex = 0 }) => {
   );
 };
 
-DxcUpload.propTypes = {
+V3DxcUpload.propTypes = {
   callbackUpload: PropTypes.func,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
@@ -162,4 +162,4 @@ const DXCUpload = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-export default DxcUpload;
+export default V3DxcUpload;
