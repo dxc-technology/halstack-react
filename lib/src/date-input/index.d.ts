@@ -33,7 +33,7 @@ type Props = {
    */
   placeholder?: boolean;
   /**
-   * If true, the date will have an action to clear the entered value.
+   * If true, the date input will have an action to clear the entered value.
    */
   clearable?: boolean;
   /**
@@ -64,7 +64,7 @@ type Props = {
   onBlur?: (val: { value: string; error: string; date: Date }) => void;
   /**
    * If it is defined, the component will change its appearance, showing
-   * the error below the date component. If it is not defined, the error
+   * the error below the date input component. If it is not defined, the error
    * messages will be managed internally, but never displayed on its own.
    */
   error?: string;
@@ -92,4 +92,4 @@ type Props = {
   ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcNewDate(props: Props): JSX.Element;
+export default function DxcDateInput(props: Props): JSX.Element;

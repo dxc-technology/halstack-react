@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import {
-  DxcNewDate,
+  DxcDateInput,
   DxcButton,
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
@@ -27,20 +27,20 @@ function App() {
     <>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Default</h4>
-        <DxcNewDate margin={{ left: "medium", right: "medium" }} />
+        <DxcDateInput margin={{ left: "medium", right: "medium" }} />
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
-        <DxcNewDate
+        <DxcDateInput
           label="Medium"
           margin={{ left: "medium", right: "medium" }}
         />
-        <DxcNewDate
+        <DxcDateInput
           label="Large"
           margin={{ left: "medium", right: "medium" }}
           size="large"
         />
-        <DxcNewDate
+        <DxcDateInput
           label="Fill parent"
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
@@ -48,17 +48,17 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Margins</h4>
-        <DxcNewDate margin="xxsmall" />
-        <DxcNewDate margin="xsmall" />
-        <DxcNewDate margin="small" />
-        <DxcNewDate margin="medium" />
-        <DxcNewDate margin="large" />
-        <DxcNewDate margin="xlarge" />
-        <DxcNewDate margin="xxlarge" />
+        <DxcDateInput margin="xxsmall" />
+        <DxcDateInput margin="xsmall" />
+        <DxcDateInput margin="small" />
+        <DxcDateInput margin="medium" />
+        <DxcDateInput margin="large" />
+        <DxcDateInput margin="xlarge" />
+        <DxcDateInput margin="xxlarge" />
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
-        <DxcNewDate
+        <DxcDateInput
           value={inputValue}
           onChange={onChange}
           onBlur={onBlur}
@@ -68,7 +68,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewDate
+        <DxcDateInput
           label="With label + placerholder"
           placeholder
           margin={{ left: "medium", right: "medium" }}
@@ -76,28 +76,28 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewDate
+        <DxcDateInput
           label="With helper text"
           helperText="Some sample text"
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
       <p>
-        <DxcNewDate
+        <DxcDateInput
           label="With 'on' autocomplete"
           autocomplete="on"
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
       <p>
-        <DxcNewDate
+        <DxcDateInput
           label="Disabled"
           disabled
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
       <p>
-        <DxcNewDate
+        <DxcDateInput
           label="Optional"
           optional
           margin={{ left: "medium", right: "medium" }}
@@ -105,19 +105,19 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Formats</h4>
-        <DxcNewDate
+        <DxcDateInput
           label="With new format"
           margin={{ left: "medium", right: "medium" }}
           format="dd/MM/yy"
           placeholder
         />
-        <DxcNewDate
+        <DxcDateInput
           label="With new format"
           margin={{ left: "medium", right: "medium" }}
           format="MM/dd/yyyy"
           placeholder
         />
-        <DxcNewDate
+        <DxcDateInput
           label="With new format"
           margin={{ left: "medium", right: "medium" }}
           format="MM-dd-yyyy"
@@ -125,7 +125,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewDate
+        <DxcDateInput
           label="With onBlur & onChange events"
           value={inputValue}
           onChange={onChange}
@@ -135,14 +135,14 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewDate
+        <DxcDateInput
           label="With error"
           error="An error was catched."
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
       <p>
-        <DxcNewDate
+        <DxcDateInput
           label="With ref"
           helperText="Example of helper text"
           placeholder="Placeholder"
@@ -160,7 +160,7 @@ function App() {
       </p>
       <BackgroundColorProvider color="#000000">
         <DarkMode>
-          <DxcNewDate
+          <DxcDateInput
             label="Dark date input"
             helperText="Some sample text"
             margin={{

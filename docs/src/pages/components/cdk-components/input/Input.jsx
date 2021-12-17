@@ -21,15 +21,15 @@ function Input() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Input Text" status="deprecated"></ComponentHeader>
-      <DxcAlert type="warning" margin={{ bottom: "small" }}>
-        This component has been deprecated. Use{" "}
+      <DxcAlert type="warning" margin={{ bottom: "small" }} size="fillParent">
+        The component status has been changed to deprecated. Use the new{" "}
         <DxcLink
           href="#/components/textInput"
           underlined={false}
           inheritedColor={true}
           text="Text Input"
         ></DxcLink>{" "}
-        instead.
+        component instead.
       </DxcAlert>
       <DxcTabsForSections
         stickAtPx={64}

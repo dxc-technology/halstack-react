@@ -1,4 +1,4 @@
-import { DxcNewDate, DxcButton } from "@dxc-technology/halstack-react";
+import { DxcDateInput, DxcButton } from "@dxc-technology/halstack-react";
 import { useState, useRef } from "react";
 
 const code = `() => {
@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <>
-      <DxcNewDate label="Uncontrolled" ref={inputRef} margin="medium" clearable/>
+      <DxcDateInput label="Uncontrolled" ref={inputRef} margin="medium" clearable/>
       <DxcButton
         onClick={handleSubmit}
         label="Submit"
@@ -26,7 +26,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewDate,
+  DxcDateInput,
   DxcButton,
   useState,
   useRef,
