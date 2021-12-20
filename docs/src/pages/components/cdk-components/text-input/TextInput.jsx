@@ -17,8 +17,6 @@ import action from "./examples/actionTextInput";
 import optional from "./examples/optionalTextInput";
 import disabled from "./examples/disabledTextInput";
 import placeholder from "./examples/placeholderTextInput";
-import autosuggest from "./examples/autosuggest";
-import autosuggestFunction from "./examples/autosuggestFunction";
 import fillParent from "./examples/fillParentTextInput";
 
 function TextInput() {
@@ -92,14 +90,6 @@ function TextInput() {
                 <Example
                   title="Text input with custom error messages"
                   example={customErrors}
-                ></Example>
-                <Example
-                  title="Text input with suggestions"
-                  example={autosuggest}
-                ></Example>
-                <Example
-                  title="Text input with a function as suggestions"
-                  example={autosuggestFunction}
                 ></Example>
                 <Example
                   title="Fill parent size text input"
