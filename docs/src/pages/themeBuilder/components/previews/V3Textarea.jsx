@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcTextarea, DxcHeading } from "@dxc-technology/halstack-react";
+import { V3DxcTextarea, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Textarea = () => {
@@ -17,7 +17,7 @@ const Textarea = () => {
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           value={value}
           onChange={onChange}
@@ -25,7 +25,7 @@ const Textarea = () => {
         />
       </Mode>
       <Mode text="Disabled">
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           value="Sample text"
           assistiveText="assistive text"
@@ -34,7 +34,7 @@ const Textarea = () => {
         />
       </Mode>
       <Mode text="Invalid">
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           assistiveText="assistive text"
           invalid={true}
@@ -42,7 +42,7 @@ const Textarea = () => {
         />
       </Mode>
       <Mode text="Required">
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           assistiveText="assistive text"
           required={true}
@@ -56,7 +56,7 @@ const Textarea = () => {
       />
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Default">
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={value}
             onChange={onChange}
@@ -64,7 +64,7 @@ const Textarea = () => {
           />
         </Mode>
         <Mode mode="dark" text="Disabled">
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value="Sample text"
             assistiveText="assistive text"
@@ -73,7 +73,7 @@ const Textarea = () => {
           />
         </Mode>
         <Mode mode="dark" text="Invalid">
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             assistiveText="assistive text"
             invalid={true}
@@ -81,7 +81,7 @@ const Textarea = () => {
           />
         </Mode>
         <Mode mode="dark" text="Required">
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             assistiveText="assistive text"
             required={true}

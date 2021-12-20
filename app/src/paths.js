@@ -26,7 +26,7 @@ import Sidenav from "./pages/Sidenav";
 import Wizard from "./pages/Wizard";
 import Link from "./pages/Link";
 import Heading from "./pages/Heading";
-import Textarea from "./pages/Textarea";
+import V3Textarea from "./pages/V3Textarea";
 import ResultsetTable from "./pages/ResultsetTable";
 import Chip from "./pages/Chip";
 import ApplicationLayout from "./pages/ApplicationLayout";
@@ -228,9 +228,9 @@ export default [
     component: TabsForSections,
   },
   {
-    path: "textarea",
+    path: "V3Textarea",
     name: "Textarea",
-    component: Textarea,
+    component: V3Textarea,
   },
   {
     path: "textInput",

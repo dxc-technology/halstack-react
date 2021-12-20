@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   DxcButton,
   DxcDialog,
-  DxcTextarea,
+  V3DxcTextarea,
   DxcHeading,
   DxcAlert,
 } from "@dxc-technology/halstack-react";
@@ -26,7 +26,10 @@ const validateInputTheme = (json, customThemeSchema) => {
       const errorMessage =
         (!schemaComponentNames.includes(componentName) &&
           "Invalid component name.") ||
-        (!isArrayIncluded(inputTheme[componentName], customThemeSchema[componentName]) &&
+        (!isArrayIncluded(
+          inputTheme[componentName],
+          customThemeSchema[componentName]
+        ) &&
           `Invalid theme input name in component ${componentName}.`);
 
       if (errorMessage) throw new Error(errorMessage);
@@ -37,7 +40,11 @@ const validateInputTheme = (json, customThemeSchema) => {
   return { inputTheme, errMessage };
 };
 
-const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }) => {
+const ImportDialog = ({
+  customThemeSchema,
+  setCustomTheme,
+  setDialogVisible,
+}) => {
   const [value, setValue] = useState("");
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
 
@@ -51,7 +58,10 @@ const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }) =
     setValidationErrorMessage("");
   };
   const validate = () => {
-    const { inputTheme, errMessage } = validateInputTheme(value, customThemeSchema);
+    const { inputTheme, errMessage } = validateInputTheme(
+      value,
+      customThemeSchema
+    );
 
     if (errMessage === "") {
       setCustomTheme((prevTheme) => deepMerge({}, prevTheme, inputTheme));
@@ -72,7 +82,7 @@ const ImportDialog = ({ customThemeSchema, setCustomTheme, setDialogVisible }) =
           margin={{ bottom: "small" }}
           weight="normal"
         />
-        <DxcTextarea
+        <V3DxcTextarea
           label="Paste here your theme"
           value={value}
           onChange={onChange}

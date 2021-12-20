@@ -25,7 +25,7 @@ import Paginator from "./cdk-components/paginator/Paginator";
 import Sidenav from "./cdk-components/sidenav/Sidenav";
 import Link from "./cdk-components/link/Link";
 import Wizard from "./cdk-components/wizard/Wizard";
-import Textarea from "./cdk-components/textarea/Textarea";
+import V3Textarea from "./cdk-components/V3Textarea/V3Textarea";
 import Heading from "./cdk-components/heading/Heading";
 import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
 import Autocomplete from "./cdk-components/autocomplete/Autocomplete";
@@ -266,9 +266,9 @@ export default [
     type: types.LAYOUT,
   },
   {
-    path: "textarea",
+    path: "V3Textarea",
     name: "Textarea",
-    component: Textarea,
+    component: V3Textarea,
     type: types.FORMS,
   },
   {
