@@ -16,6 +16,7 @@ import labeled from "./examples/lebeledInputText";
 import fillParent from "./examples/fillParentInputInputText";
 import sized from "./examples/sizedInputText";
 import maskedInput from "./examples/maskedInputText";
+import autocomplete from "./examples/autocomplete";
 
 function InputText() {
   return (
@@ -77,6 +78,10 @@ function InputText() {
                 <Example
                   title="Fill parent input text"
                   example={fillParent}
+                ></Example>
+                <Example
+                  title="Synchronous controlled autocomplete"
+                  example={autocomplete}
                 ></Example>
               </Section>
             ),
