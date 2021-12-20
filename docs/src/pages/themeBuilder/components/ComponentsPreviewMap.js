@@ -18,7 +18,7 @@ import HeaderPreview from "./previews/Header";
 import InputTextPreview from "./previews/InputText";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
-import TextareaPreview from "./previews/Textarea";
+import V3TextareaPreview from "./previews/V3Textarea";
 import ToggleGroupPreview from "./previews/ToggleGroup";
 import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
@@ -151,8 +151,8 @@ const SampleComponents = [
     preview: TagPreview,
   },
   {
-    name: "textarea",
-    preview: TextareaPreview,
+    name: "V3Textarea",
+    preview: V3TextareaPreview,
   },
   {
     name: "textInput",

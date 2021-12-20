@@ -9,7 +9,7 @@ import useTheme from "../useTheme.js";
 import DxcRequired from "../common/RequiredComponent";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 
-const DxcTextarea = ({
+const V3DxcTextarea = ({
   label = " ",
   name = "",
   value,
@@ -54,7 +54,7 @@ const DxcTextarea = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.textarea}>
+    <ThemeProvider theme={colorsTheme.V3Textarea}>
       <TextContainer
         required={required}
         assistiveText={assistiveText}
@@ -303,7 +303,7 @@ const TextContainer = styled.div`
   }
 `;
 
-DxcTextarea.propTypes = {
+V3DxcTextarea.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -328,4 +328,4 @@ DxcTextarea.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcTextarea;
+export default V3DxcTextarea;

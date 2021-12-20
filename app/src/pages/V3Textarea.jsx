@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcTextarea, ThemeContext } from "@dxc-technology/halstack-react";
+import { V3DxcTextarea, ThemeContext } from "@dxc-technology/halstack-react";
 
 function App() {
   const [inputValue, changeInput] = useState("");
@@ -11,7 +11,7 @@ function App() {
     <div>
       <div className="test-case" id="light-theme-label">
         <h4>With label</h4>
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           value={inputValue}
           onChange={onChange}
@@ -20,12 +20,12 @@ function App() {
 
       <div className="test-case" id="without-label">
         <h4>Without label</h4>
-        <DxcTextarea value={inputValue} onChange={onChange} />
+        <V3DxcTextarea value={inputValue} onChange={onChange} />
       </div>
 
       <div className="test-case" id="assistive-text">
         <h4>With assistive text</h4>
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           value={inputValue}
           onChange={onChange}
@@ -35,7 +35,7 @@ function App() {
 
       <div className="test-case" id="disabled">
         <h4>Disabled textarea</h4>
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           value={inputValue}
           onChange={onChange}
@@ -46,7 +46,7 @@ function App() {
 
       <div className="test-case" id="required">
         <h4>Required textarea</h4>
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           value={inputValue}
           onChange={onChange}
@@ -57,7 +57,7 @@ function App() {
 
       <div className="test-case" id="invalid">
         <h4>Invalid textarea</h4>
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           value={inputValue}
           onChange={onChange}
@@ -68,7 +68,7 @@ function App() {
 
       <div className="test-case" id="with-placeholder">
         <h4>With placeholder</h4>
-        <DxcTextarea
+        <V3DxcTextarea
           label="Textarea label"
           value={inputValue}
           onChange={onChange}
@@ -81,7 +81,7 @@ function App() {
         <h4>Margins</h4>
         <div className="test-case" id="xxsmall-margin">
           <h5>xxsmall margin</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -92,7 +92,7 @@ function App() {
 
         <div className="test-case" id="xsmall-margin">
           <h5>xsmall margin</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -103,7 +103,7 @@ function App() {
 
         <div className="test-case" id="small-margin">
           <h5>Small margin</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -114,7 +114,7 @@ function App() {
 
         <div className="test-case" id="medium-margin">
           <h5>Medium margin</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -125,7 +125,7 @@ function App() {
 
         <div className="test-case" id="large-margin">
           <h5>Large margin</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -136,7 +136,7 @@ function App() {
 
         <div className="test-case" id="xlarge-margin">
           <h5>xlarge margin</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -147,7 +147,7 @@ function App() {
 
         <div className="test-case" id="xxlarge-margin">
           <h5>xxlarge margin</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -161,7 +161,7 @@ function App() {
         <h4>Sizes</h4>
         <div className="test-case" id="small-size">
           <h5>Small size</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -172,7 +172,7 @@ function App() {
 
         <div className="test-case" id="medium-size">
           <h5>Medium size</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -183,7 +183,7 @@ function App() {
 
         <div className="test-case" id="large-size">
           <h5>Large size</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -194,7 +194,7 @@ function App() {
 
         <div className="test-case" id="fillParent-size">
           <h5>FillParent margin</h5>
-          <DxcTextarea
+          <V3DxcTextarea
             label="Textarea label"
             value={inputValue}
             assistiveText={"assistive text"}

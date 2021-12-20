@@ -1,4 +1,4 @@
-import { DxcTextarea } from "@dxc-technology/halstack-react";
+import { V3DxcTextarea } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcTextarea
+    <V3DxcTextarea
       label="Textarea label"
       value={value}
       assistiveText={"assistive text"}
@@ -20,7 +20,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcTextarea,
+  V3DxcTextarea,
   useState,
 };
 
