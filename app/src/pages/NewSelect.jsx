@@ -72,6 +72,37 @@ function App() {
         { label: "Option 008", value: "8" },
         { label: "Option 9", value: "9" },
       ],
+    },{
+      label: "Group 4",
+      options: [
+        { label: "Option 10", value: "10" },
+        { label: "Option 11", value: "11" },
+        { label: "Option 12", value: "12" },
+      ],
+    },
+    {
+      label: "Group 5",
+      options: [
+        { label: "Option x", value: "13" },
+        { label: "Option y", value: "14" },
+        { label: "Option z", value: "15" },
+      ],
+    },
+    {
+      label: "Group 6",
+      options: [
+        { label: "Option 001", value: "16" },
+        { label: "Option 002", value: "17" },
+        { label: "Option 003", value: "18" },
+      ],
+    },
+    {
+      label: "Group 7",
+      options: [
+        { label: "Option 001", value: "19" },
+        { label: "Option 002", value: "20" },
+        { label: "Option 003", value: "21" },
+      ],
     },
   ];
   const group_options = [
@@ -99,6 +130,22 @@ function App() {
         { label: "Option 009", value: "9" },
       ],
     },
+    {
+      label: "Group 004",
+      options: [
+        { label: "Option 010", value: "10" },
+        { label: "Option 011", value: "11" },
+        { label: "Option 012", value: "12" },
+      ],
+    },
+    {
+      label: "Group 005",
+      options: [
+        { label: "Option 013", value: "13" },
+        { label: "Option 014", value: "14" },
+        { label: "Option 015", value: "15" },
+      ],
+    },
   ];
 
   const icon_options = [
@@ -108,7 +155,6 @@ function App() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          enable-background="new 0 0 24 24"
           height="24px"
           viewBox="0 0 24 24"
           width="24px"

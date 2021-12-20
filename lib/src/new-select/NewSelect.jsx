@@ -38,14 +38,7 @@ const selectIcons = {
     </svg>
   ),
   searchOff: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      enable-background="new 0 0 24 24"
-      height="24px"
-      viewBox="0 0 24 24"
-      width="24px"
-      fill="currentColor"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
       <g>
         <rect fill="none" height="24" width="24" />
       </g>
@@ -92,8 +85,7 @@ const DxcNewSelect = React.forwardRef(
 
     const [isOpen, changeIsOpen] = useState(false);
     const [isActiveOption, changeIsActiveOption] = useState(false);
-    const [isScrollableAbove, changeIsScrollableAbove] = useState(false);
-    const [isScrollableBelow, changeIsScrollableBelow] = useState(false);
+    const [isScrollable, changeIsScrollable] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
@@ -117,6 +109,7 @@ const DxcNewSelect = React.forwardRef(
         : true;
     const filteredGroupsHaveOptions = () =>
       filteredOptions[0]?.options ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
+
     const openOptions = () => {
       if (!isOpen && canBeOpenOptions()) {
         searchable && changeIsBackgroundValue(true);
@@ -168,7 +161,7 @@ const DxcNewSelect = React.forwardRef(
           });
           openOptions();
           changeIsActiveOption(false);
-          changeIsScrollableBelow(true);
+          isOpen && changeIsScrollable(true);
           break;
         case 38: // Arrow Up
           event.preventDefault();
@@ -177,7 +170,7 @@ const DxcNewSelect = React.forwardRef(
           );
           openOptions();
           changeIsActiveOption(false);
-          changeIsScrollableAbove(true);
+          isOpen && changeIsScrollable(true);
           break;
         case 27: // Esc
           event.preventDefault();
@@ -187,8 +180,8 @@ const DxcNewSelect = React.forwardRef(
         case 13: // Enter
           if (isOpen) {
             let accLength = optional /*&& !multiple*/ ? 1 : 0;
-            if (optional && visualFocusIndex === 0) handleSelectChangeValue(optionalEmptyOption);
             // optional empty option (index = 0)
+            if (optional && visualFocusIndex === 0) handleSelectChangeValue(optionalEmptyOption);
             else if (searchable && filteredOptions.length > 0) {
               filteredOptions[0].options
                 ? filteredOptions.some((groupOption) => {
@@ -246,25 +239,13 @@ const DxcNewSelect = React.forwardRef(
     );
 
     useLayoutEffect(() => {
-      const optionPosition = visualFocusIndex * 32 + 4;
-      const scrollPosition = selectOptionsListRef?.current?.scrollTop;
-      const optionListHeight = selectOptionsListRef?.current?.offsetHeight;
-
-      const isBelow = optionPosition > optionListHeight + scrollPosition - 32;
-      const isAbove = scrollPosition > 0 && optionPosition < scrollPosition;
-      const isAtTheEndScroll =
-        scrollPosition + optionListHeight > selectOptionsListRef?.current?.scrollHeight;
-
-      if (isBelow && isScrollableBelow) selectOptionsListRef?.current?.scrollTo({ top: scrollPosition + 32 });
-      else if (isAbove && isScrollableAbove) selectOptionsListRef?.current?.scrollTo({ top: scrollPosition - 32 });
-      else if (isBelow && optionPosition !== 0) selectOptionsListRef?.current?.scrollTo({ top: visualFocusIndex * 32 });
-      else if (isScrollableBelow && isAtTheEndScroll) selectOptionsListRef?.current?.scrollTo({ top: 0 });
-
-      return (() => {
-        changeIsScrollableBelow(false);
-        changeIsScrollableAbove(false);
-      })();
-    }, [isScrollableAbove, isScrollableBelow]);
+      if (isScrollable) {
+        const visualFocusedOptionEl =
+          selectOptionsListRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
+        visualFocusedOptionEl?.scrollIntoView({ block: "nearest", inline: "start" });
+        return changeIsScrollable(false);
+      }
+    }, [isScrollable]);
 
     useEffect(() => {
       if (searchable && options?.length > 0) {
@@ -316,6 +297,8 @@ const DxcNewSelect = React.forwardRef(
           visualFocused={visualFocusIndex === index}
           active={visualFocusIndex === index && isActiveOption}
           selected={isSelected}
+          aria-selected={isSelected && "true"}
+          role="option"
         >
           <StyledOption
             visualFocused={visualFocusIndex === index}
@@ -341,28 +324,13 @@ const DxcNewSelect = React.forwardRef(
             {option.options.length > 0 && <OptionGroupLabel>{option.label}</OptionGroupLabel>}
             {option.options.map((singleOption) => {
               global_index++;
-              return (
-                <Option
-                  option={singleOption}
-                  index={global_index}
-                  isGroupedOption={true}
-                  role="option"
-                  aria-selected={visualFocusIndex === global_index && "true"}
-                />
-              );
+              return <Option option={singleOption} index={global_index} isGroupedOption={true} />;
             })}
           </>
         );
       } else {
         global_index++;
-        return (
-          <Option
-            option={option}
-            index={global_index}
-            role="option"
-            aria-selected={visualFocusIndex === global_index && "true"}
-          />
-        );
+        return <Option option={option} index={global_index} />;
       }
     };
 
@@ -446,14 +414,7 @@ const DxcNewSelect = React.forwardRef(
                     No matches found
                   </OptionsSystemMessage>
                 ) : (
-                  optional && (
-                    /*!multiple &&*/ <Option
-                      option={optionalEmptyOption}
-                      index={0}
-                      role="option"
-                      aria-selected={visualFocusIndex === 0 && "true"}
-                    />
-                  )
+                  optional && /*!multiple &&*/ <Option option={optionalEmptyOption} index={0} />
                 )}
                 {searchable ? filteredOptions.map(mapOptionFunc) : options.map(mapOptionFunc)}
               </OptionsList>
