@@ -1,26 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import dxcLogo from "./Icons";
 
-const DxcFooter = ({
-  socialLinks = [],
-  bottomLinks = [],
-  copyright = "",
-  logoSrc = "default",
-  children,
-  padding,
-  margin,
-  tabIndex = 0,
-}) => {
+const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", children, padding, margin, tabIndex = 0 }) => {
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
   const [isResponsivePhone, setIsResponsivePhone] = useState(false);
   const colorsTheme = useTheme();
+
+  const footerLogo = useMemo(() => {
+    if (!colorsTheme.footer.logo) {
+      return dxcLogo;
+    }
+    if (typeof colorsTheme.footer.logo === "string") {
+      return <LogoImg alt="Logo" src={colorsTheme.footer.logo}></LogoImg>;
+    }
+    return colorsTheme.footer.logo;
+  }, [colorsTheme.footer.logo]);
 
   const handleResize = (refWidth) => {
     if (ref.current) {
@@ -81,7 +83,7 @@ const DxcFooter = ({
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} refSize={refSize} ref={ref}>
         <FooterHeader>
-          <LogoIcon logoSrc={logoSrc} src={logoSrc === "default" ? colorsTheme.footer.logo : logoSrc} />
+          <LogoContainer>{footerLogo}</LogoContainer>
           <div>{socialLink}</div>
         </FooterHeader>
         {isResponsivePhone && (
@@ -173,7 +175,12 @@ const Copyright = styled.div`
   padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
 `;
 
-const LogoIcon = styled.img`
+const LogoContainer = styled.div`
+  max-height: ${(props) => props.theme.logoHeight};
+  width: ${(props) => props.theme.logoWidth};
+`;
+
+const LogoImg = styled.img`
   max-height: ${(props) => props.theme.logoHeight};
   width: ${(props) => props.theme.logoWidth};
 `;
@@ -226,7 +233,6 @@ const BottomLink = styled.a`
 `;
 
 DxcFooter.propTypes = {
-  logoSrc: PropTypes.string,
   socialLinks: PropTypes.arrayOf(
     PropTypes.shape({
       logo: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
