@@ -19,13 +19,6 @@ const headerPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>logoSrc: string</td>
-        <td>
-          <code>'default'</code>
-        </td>
-        <td>The path of an icon to replace the theme logo.</td>
-      </tr>
-      <tr>
         <td>content: object</td>
         <td></td>
         <td>
