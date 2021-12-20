@@ -1,8 +1,8 @@
-import { DxcNewTextarea } from "@dxc-technology/halstack-react";
+import { DxcTextarea } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcNewTextarea
+    <DxcTextarea
       label="Disabled"
       disabled
       margin="medium"
@@ -11,7 +11,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewTextarea,
+  DxcTextarea,
 };
 
 export default { code, scope };

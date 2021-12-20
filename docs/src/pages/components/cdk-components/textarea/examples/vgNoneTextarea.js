@@ -1,9 +1,9 @@
-import { DxcNewTextarea } from "@dxc-technology/halstack-react";
+import { DxcTextarea } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
   return (
-    <DxcNewTextarea
+    <DxcTextarea
       label="Vertical grow"
       helperText="'none'"
       verticalGrow="none"
@@ -13,7 +13,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewTextarea,
+  DxcTextarea,
   useState,
 };
 

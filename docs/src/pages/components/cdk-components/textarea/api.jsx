@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const NewTextareaPropsTable = () => {
+const TextareaPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -103,9 +103,9 @@ const NewTextareaPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the textarea loses the focus. An
-          object including the textarea value and the error (if the value entered
-          is not valid) will be passed to this function. An example of this
-          object is: {"{ "}
+          object including the textarea value and the error (if the value
+          entered is not valid) will be passed to this function. An example of
+          this object is: {"{ "}
           <code>value: value, error: error</code>
           {" }"}. If there is no error, error will be null.
         </td>
@@ -115,8 +115,8 @@ const NewTextareaPropsTable = () => {
         <td></td>
         <td>
           If it is defined, the component will change its appearance, showing
-          the error below the textarea. If it is not defined, the error
-          messages will be managed internally, but never displayed on its own.
+          the error below the textarea. If it is not defined, the error messages
+          will be managed internally, but never displayed on its own.
         </td>
       </tr>
       <tr>
@@ -139,12 +139,12 @@ const NewTextareaPropsTable = () => {
           Specifies the minimun and maximum length allowed by the textarea. It
           follows the structure: {"{ "}
           <code>min: number, max: number</code>
-          {" }"}. This will be checked both when the textarea loses the
-          focus and while typing within it. If the string entered does not
-          comply the length, the onBlur and onChange functions will be called
-          with the current value and an internal error informing that the value
-          length does not comply the specified range. If a valid length is
-          reached, the error parameter of both events will be null.
+          {" }"}. This will be checked both when the textarea loses the focus
+          and while typing within it. If the string entered does not comply the
+          length, the onBlur and onChange functions will be called with the
+          current value and an internal error informing that the value length
+          does not comply the specified range. If a valid length is reached, the
+          error parameter of both events will be null.
         </td>
       </tr>
       <tr>
@@ -195,4 +195,4 @@ const NewTextareaPropsTable = () => {
   );
 };
 
-export default NewTextareaPropsTable;
+export default TextareaPropsTable;

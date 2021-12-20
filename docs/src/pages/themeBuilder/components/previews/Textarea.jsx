@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcNewTextarea, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcTextarea, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
-const NewTextarea = () => {
+const Textarea = () => {
   const [value, setValue] = useState("");
   const onChange = ({ value }) => {
     setValue(value);
@@ -13,14 +13,14 @@ const NewTextarea = () => {
   };
 
   return (
-    <NewTextareaContainer>
+    <TextareaContainer>
       <DxcHeading
         text="Light Mode"
         level={5}
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <DxcNewTextarea
+        <DxcTextarea
           label="Regular textarea"
           helperText="Example of helper text"
           value={value}
@@ -32,7 +32,7 @@ const NewTextarea = () => {
         />
       </Mode>
       <Mode text="Disabled">
-        <DxcNewTextarea
+        <DxcTextarea
           label="Disabled textarea"
           helperText="Example of helper text"
           placeholder="Placeholder"
@@ -43,7 +43,7 @@ const NewTextarea = () => {
         />
       </Mode>
       <Mode text="Invalid">
-        <DxcNewTextarea
+        <DxcTextarea
           label="Invalid textarea"
           helperText="Example of helper text"
           placeholder="Placeholder"
@@ -59,7 +59,7 @@ const NewTextarea = () => {
       <div style={{ marginBottom: "25px" }}>
         <BackgroundColorProvider color="#000000">
           <Mode mode="dark" text="Default">
-            <DxcNewTextarea
+            <DxcTextarea
               label="Regular textarea"
               helperText="Example of helper text"
               value={value}
@@ -71,7 +71,7 @@ const NewTextarea = () => {
             />
           </Mode>
           <Mode mode="dark" text="Disabled">
-            <DxcNewTextarea
+            <DxcTextarea
               label="Disabled textarea"
               helperText="Example of helper text"
               placeholder="Placeholder"
@@ -82,7 +82,7 @@ const NewTextarea = () => {
             />
           </Mode>
           <Mode mode="dark" text="Invalid">
-            <DxcNewTextarea
+            <DxcTextarea
               label="Invalid textarea"
               helperText="Example of helper text"
               placeholder="Placeholder"
@@ -92,10 +92,10 @@ const NewTextarea = () => {
           </Mode>
         </BackgroundColorProvider>
       </div> */}
-    </NewTextareaContainer>
+    </TextareaContainer>
   );
 };
 
-const NewTextareaContainer = styled.div``;
+const TextareaContainer = styled.div``;
 
-export default NewTextarea;
+export default Textarea;

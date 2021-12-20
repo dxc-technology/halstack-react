@@ -1,31 +1,34 @@
-import { DxcNewTextarea } from "@dxc-technology/halstack-react";
+import { DxcTextarea } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
+  const [error, setError] = useState("");
 
   const onChange = ({ value }) => {
     setValue(value);
   };
 
-  const onBlur = ({ value }) => {
+  const onBlur = ({ value, error }) => {
     setValue(value);
+    setError(error);
   };
 
   return (
-    <DxcNewTextarea
-      label="Controlled"
-      helperText="Helper text"
+    <DxcTextarea
+      label="Length"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
+      error={error}
+      length={{ min: 5, max: 10 }}
       margin="medium"
     />
   );
 }`;
 
 const scope = {
-  DxcNewTextarea,
+  DxcTextarea,
   useState,
 };
 

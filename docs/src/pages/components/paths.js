@@ -37,7 +37,7 @@ import TextInput from "./cdk-components/text-input/TextInput";
 import PasswordInput from "./cdk-components/password-input/PasswordInput";
 import DateInput from "./cdk-components/date-input/DateInput";
 import NumberInput from "./cdk-components/number-input/NumberInput";
-import NewTextarea from "./cdk-components/new-textarea/NewTextarea";
+import Textarea from "./cdk-components/textarea/Textarea";
 import FileInput from "./cdk-components/file-input/FileInput";
 
 export const types = {
@@ -169,12 +169,6 @@ export default [
     type: types.UTILS,
   },
   {
-    path: "newTextarea",
-    name: "New Textarea",
-    component: NewTextarea,
-    type: types.FORMS,
-  },
-  {
     path: "numberInput",
     name: "Number Input",
     component: NumberInput,
@@ -269,6 +263,12 @@ export default [
     path: "V3Textarea",
     name: "Textarea",
     component: V3Textarea,
+    type: types.FORMS,
+  },
+  {
+    path: "textarea",
+    name: "Textarea",
+    component: Textarea,
     type: types.FORMS,
   },
   {

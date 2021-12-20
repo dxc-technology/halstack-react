@@ -16,7 +16,7 @@ const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
-const DxcNewTextarea = React.forwardRef(
+const DxcTextarea = React.forwardRef(
   (
     {
       label = "",
@@ -89,8 +89,8 @@ const DxcNewTextarea = React.forwardRef(
     }, [value, verticalGrow, rows, innerValue]);
 
     return (
-      <ThemeProvider theme={colorsTheme.newTextarea}>
-        <DxcTextarea margin={margin} size={size} ref={ref}>
+      <ThemeProvider theme={colorsTheme.textarea}>
+        <TextareaContainer margin={margin} size={size} ref={ref}>
           <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
@@ -123,7 +123,7 @@ const DxcNewTextarea = React.forwardRef(
               {error}
             </Error>
           )}
-        </DxcTextarea>
+        </TextareaContainer>
       </ThemeProvider>
     );
   }
@@ -141,7 +141,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const DxcTextarea = styled.div`
+const TextareaContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -305,7 +305,7 @@ const Error = styled.span`
   line-height: 1.5em;
 `;
 
-DxcNewTextarea.propTypes = {
+DxcTextarea.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -334,4 +334,4 @@ DxcNewTextarea.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcNewTextarea;
+export default DxcTextarea;

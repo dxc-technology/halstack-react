@@ -37,7 +37,7 @@ import TextInput from "./pages/TextInput";
 import PasswordInput from "./pages/PasswordInput";
 import DateInput from "./pages/DateInput";
 import NumberInput from "./pages/NumberInput";
-import NewTextarea from "./pages/NewTextarea";
+import Textarea from "./pages/Textarea";
 import NewSelect from "./pages/NewSelect";
 import FileInput from "./pages/FileInput";
 
@@ -148,11 +148,6 @@ export default [
     component: NewSelect,
   },
   {
-    path: "newTextarea",
-    name: "New Textarea",
-    component: NewTextarea,
-  },
-  {
     path: "numberInput",
     name: "Number Input",
     component: NumberInput,
@@ -231,6 +226,11 @@ export default [
     path: "V3Textarea",
     name: "Textarea",
     component: V3Textarea,
+  },
+  {
+    path: "textarea",
+    name: "Textarea",
+    component: Textarea,
   },
   {
     path: "textInput",

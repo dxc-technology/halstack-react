@@ -4,7 +4,7 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
-import NewTextareaPropsTable from "./api.jsx";
+import TextareaPropsTable from "./api.jsx";
 import controlled from "./examples/controlledTextarea";
 import uncontrolled from "./examples/uncontrolledTextarea";
 import placeholder from "./examples/placeholderTextarea";
@@ -19,13 +19,10 @@ import vgManual from "./examples/vgManualTextarea";
 import vgNone from "./examples/vgNoneTextarea";
 import rows from "./examples/rowsTextarea";
 
-function NewTextarea() {
+function Textarea() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="New Textarea"
-        status="experimental"
-      ></ComponentHeader>
+      <ComponentHeader title="Textarea" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"
@@ -39,7 +36,7 @@ function NewTextarea() {
                   text="Props"
                   margin={{ bottom: "small" }}
                 />
-                <NewTextareaPropsTable />
+                <TextareaPropsTable />
               </Section>
             ),
           },
@@ -98,4 +95,4 @@ function NewTextarea() {
   );
 }
 
-export default NewTextarea;
+export default Textarea;

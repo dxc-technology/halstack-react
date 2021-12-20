@@ -114,4 +114,4 @@ type Props = {
   ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcNewTextarea(props: Props): JSX.Element;
+export default function DxcTextarea(props: Props): JSX.Element;

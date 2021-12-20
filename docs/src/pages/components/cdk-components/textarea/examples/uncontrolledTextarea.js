@@ -1,4 +1,4 @@
-import { DxcNewTextarea, DxcButton } from "@dxc-technology/halstack-react";
+import { DxcTextarea, DxcButton } from "@dxc-technology/halstack-react";
 import { useState, useRef } from "react";
 
 const code = `() => {
@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <>
-      <DxcNewTextarea label="Uncontrolled" ref={inputRef} margin="medium" />
+      <DxcTextarea label="Uncontrolled" ref={inputRef} margin="medium" />
       <DxcButton
         onClick={handleSubmit}
         label="Submit"
@@ -22,7 +22,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewTextarea,
+  DxcTextarea,
   DxcButton,
   useState,
   useRef,
