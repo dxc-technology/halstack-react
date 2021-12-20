@@ -250,7 +250,7 @@ const AlertCloseAction = styled.button`
   height: 24px;
   width: 24px;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 2px;
   box-shadow: 0 0 0 2px transparent;
   padding: 3px;
   margin-left: 12px;

@@ -739,7 +739,7 @@ const Action = styled.button`
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 3px;
   margin-left: calc(1rem * 0.25);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
