@@ -250,9 +250,8 @@ const CheckboxContainer = styled.span`
       }
     }
     z-index: 1;
-    margin: ${(props) => props.theme.checkLabelSpacing};
-    margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
-    margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
+    margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : props.theme.checkLabelSpacing)};
+    margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : props.theme.checkLabelSpacing)};
     padding: 0px;
     left: ${(props) => (props.labelPosition === "before" ? "unset" : "1px")};
     right: ${(props) => (props.labelPosition === "before" ? "1px" : "unset")};
