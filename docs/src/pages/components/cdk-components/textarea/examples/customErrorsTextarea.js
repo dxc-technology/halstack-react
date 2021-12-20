@@ -1,4 +1,4 @@
-import { DxcNewTextarea } from "@dxc-technology/halstack-react";
+import { DxcTextarea } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -21,7 +21,7 @@ const code = `() => {
 
   return (
     <div style={{ display: "flex" }}>
-      <DxcNewTextarea
+      <DxcTextarea
         label="Custom length error"
         helperText="Using onChange event for handling errors"
         value={firstValue}
@@ -31,7 +31,7 @@ const code = `() => {
         margin="medium"
         optional
       />
-      <DxcNewTextarea
+      <DxcTextarea
         label="Custom pattern error"
         helperText="Using onBlur event for handling errors"
         value={secondValue}
@@ -47,7 +47,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcNewTextarea,
+  DxcTextarea,
   useState,
 };
 

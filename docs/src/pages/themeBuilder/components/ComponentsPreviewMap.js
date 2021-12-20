@@ -31,7 +31,7 @@ import CardPreview from "./previews/Card";
 import DateInputPreview from "./previews/DateInput";
 import TextInputPreview from "./previews/TextInput";
 import FileInputPreview from "./previews/FileInput";
-import NewTextareaPreview from "./previews/NewTextarea";
+import TextareaPreview from "./previews/Textarea";
 
 const SampleComponents = [
   {
@@ -103,8 +103,8 @@ const SampleComponents = [
     preview: LinkPreview,
   },
   {
-    name: "newTextarea",
-    preview: NewTextareaPreview,
+    name: "textarea",
+    preview: TextareaPreview,
   },
   {
     name: "paginator",

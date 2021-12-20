@@ -1,18 +1,18 @@
-import { DxcNewTextarea } from "@dxc-technology/halstack-react";
+import { DxcTextarea } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
   return (
-    <DxcNewTextarea
-      label="Fill parent"
-      size="fillParent"
+    <DxcTextarea
+      label="Invalid"
+      error="Error message."
       margin="medium"
     />
   );
 }`;
 
 const scope = {
-  DxcNewTextarea,
+  DxcTextarea,
   useState,
 };
 

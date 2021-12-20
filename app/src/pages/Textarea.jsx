@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import {
-  DxcNewTextarea,
+  DxcTextarea,
   DxcButton,
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
@@ -32,7 +32,9 @@ function App() {
   const [customPatternError, setCustomPatternError] = useState("");
   const onChangeCustomPattern = ({ value, error }) => {
     setCustomPatternValue(value);
-    error ? setCustomPatternError("Custom pattern error.") : setCustomPatternError(null);
+    error
+      ? setCustomPatternError("Custom pattern error.")
+      : setCustomPatternError(null);
   };
 
   const [disabledInput, setDisabledInput] = useState(false);
@@ -41,28 +43,28 @@ function App() {
     <>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Small"
           margin={{ left: "medium", right: "medium" }}
           size="small"
         />
-        <DxcNewTextarea
+        <DxcTextarea
           label="Medium"
           margin={{ left: "medium", right: "medium" }}
         />
-        <DxcNewTextarea
+        <DxcTextarea
           label="Large"
           margin={{ left: "medium", right: "medium" }}
           size="large"
         />
-        <DxcNewTextarea
+        <DxcTextarea
           label="Fill parent"
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Default"
           helperText="Sample text"
           placeholder="Enter your text here..."
@@ -70,13 +72,13 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
-      <DxcNewTextarea
+      <DxcTextarea
         label="With 'on' autocomplete"
         margin={{ left: "medium", right: "medium" }}
         autocomplete="on"
       />
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Disabled"
           helperText="Sample text"
           placeholder="Enter your text here..."
@@ -86,7 +88,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Controlled"
           helperText="Sample text"
           placeholder="Enter your text here..."
@@ -98,7 +100,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Pattern"
           helperText="The value should have at least one letter, one number and one special
           character"
@@ -108,7 +110,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Length"
           helperText="The value should be 5 < value < 10"
           placeholder="Enter your text here..."
@@ -117,7 +119,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Custom length error"
           helperText="The value should be 5 < value < 10"
           placeholder="Enter your text here..."
@@ -130,7 +132,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Custom pattern error"
           helperText="The value should have at least one letter, one number and one special
           character"
@@ -143,7 +145,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Vertical grow 'none'"
           placeholder="Enter your text here..."
           verticalGrow="none"
@@ -151,7 +153,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Vertical grow 'manual'"
           placeholder="Enter your text here..."
           verticalGrow="manual"
@@ -159,7 +161,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Vertical grow 'auto' with long initial value"
           helperText="Initially should also be changed"
           placeholder="Enter your text here..."
@@ -168,7 +170,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="With rows"
           placeholder="Enter your text here..."
           rows={10}
@@ -177,7 +179,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Error"
           placeholder="Enter your text here..."
           error="Custom and very long error."
@@ -185,7 +187,7 @@ function App() {
         />
       </p>
       <p>
-        <DxcNewTextarea
+        <DxcTextarea
           label="Ref"
           placeholder="Enter your text here..."
           margin={{ left: "medium", right: "medium" }}
@@ -202,7 +204,7 @@ function App() {
       </p>
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark">
-          <DxcNewTextarea
+          <DxcTextarea
             label="Example label"
             optional
             helperText="Example of helper text"
@@ -215,7 +217,7 @@ function App() {
           />
         </Mode>
         <Mode mode="dark">
-          <DxcNewTextarea
+          <DxcTextarea
             label="Disabled"
             helperText="Sample text"
             placeholder="Enter your text here..."
@@ -230,7 +232,7 @@ function App() {
           />
         </Mode>
         <Mode mode="dark">
-          <DxcNewTextarea
+          <DxcTextarea
             label="Error input"
             helperText="Example of helper text"
             placeholder="Enter your text here..."

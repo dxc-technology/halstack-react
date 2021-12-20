@@ -1,17 +1,18 @@
-import { DxcNewTextarea } from "@dxc-technology/halstack-react";
+import { DxcTextarea } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
   return (
-    <DxcNewTextarea
-      placeholder="Placeholder"
+    <DxcTextarea
+      label="Rows"
+      rows={10}
       margin="medium"
     />
   );
 }`;
 
 const scope = {
-  DxcNewTextarea,
+  DxcTextarea,
   useState,
 };
 

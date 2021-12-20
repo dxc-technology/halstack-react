@@ -1,4 +1,4 @@
-import { DxcNewTextarea } from "@dxc-technology/halstack-react";
+import { DxcTextarea } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -15,20 +15,20 @@ const code = `() => {
   };
 
   return (
-    <DxcNewTextarea
-      label="Length"
+    <DxcTextarea
+      label="Pattern"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
       error={error}
-      length={{ min: 5, max: 10 }}
+      pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
       margin="medium"
     />
   );
 }`;
 
 const scope = {
-  DxcNewTextarea,
+  DxcTextarea,
   useState,
 };
 
