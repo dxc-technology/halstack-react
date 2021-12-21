@@ -4,13 +4,23 @@ import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
-const DxcHeading = ({ level = 1, text = "", weight = "", margin }) => {
+const DxcHeading = ({ level = 1, text = "", as, weight = "", margin }) => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.heading}>
       <HeadingContainer margin={margin}>
-        {level === 1 ? (
+        {as === "h1" ? (
+          <HeadingLevel1 weight={weight}>{text}</HeadingLevel1>
+        ) : as === "h2" ? (
+          <HeadingLevel2 weight={weight}>{text}</HeadingLevel2>
+        ) : as === "h3" ? (
+          <HeadingLevel3 weight={weight}>{text}</HeadingLevel3>
+        ) : as === "h4" ? (
+          <HeadingLevel4 weight={weight}>{text}</HeadingLevel4>
+        ) : as === "h5" ? (
+          <HeadingLevel5 weight={weight}>{text}</HeadingLevel5>
+        ) : level === 1 ? (
           <HeadingLevel1 weight={weight}>{text}</HeadingLevel1>
         ) : level === 2 ? (
           <HeadingLevel2 weight={weight}>{text}</HeadingLevel2>
@@ -131,6 +141,7 @@ const HeadingLevel5 = styled.h5`
 DxcHeading.propTypes = {
   level: PropTypes.number,
   text: PropTypes.string,
+  as: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5"]),
   weight: PropTypes.oneOf(["light", "normal", "bold", ""]),
   margin: PropTypes.oneOfType([
     PropTypes.shape({
