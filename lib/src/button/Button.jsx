@@ -99,7 +99,7 @@ const IconContainer = styled.div`
   margin-right: ${(props) =>
     !props.label ? "0px" : (props.iconPosition === "before" && props.label !== "" && "8px") || "8px"};
   overflow: hidden;
-
+  display: flex;
   img,
   svg {
     height: 100%;
@@ -154,7 +154,8 @@ const DxCButton = styled.div`
     &:focus {
       border-color: transparent;
       box-shadow: 0 0 0 2px
-        ${(props) => props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor};
+        ${(props) =>
+          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor};
     }
 
     ${(props) => {
