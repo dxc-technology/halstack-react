@@ -3,8 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import Button from "../../button/Button";
-import uploadIcon from "./upload-button.svg";
-import dragAndDropIcon from "./drag-drop-icon.svg";
+import { dragAndDropIcon, uploadIcon } from "./Icons";
 import useTheme from "../../useTheme.js";
 import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
 
@@ -28,12 +27,12 @@ const DxcButtonsUpload = ({ addFile, onUpload }) => {
       <BackgroundColorProvider color={colorsTheme.upload.backgroundColor}>
         <DXCButtonsUpload>
           <DragAndDropLabel>
-            <DragAndDropIcon />
+            <DragAndDropIconContainer>{dragAndDropIcon}</DragAndDropIconContainer>
             Drag and Drop area
           </DragAndDropLabel>
           <Button margin={{ right: "small" }} mode="text" label="CHOOSE FILES" onClick={handleClick} />
           <input id="chooseFiles" type="file" multiple onChange={selectFile} style={{ display: "none" }} />
-          <Button label="UPLOAD" iconPosition="after" iconSrc={uploadIcon} onClick={onUpload} />
+          <Button label="UPLOAD" iconPosition="after" icon={uploadIcon} onClick={onUpload} />
         </DXCButtonsUpload>
       </BackgroundColorProvider>
     </ThemeProvider>
@@ -65,13 +64,13 @@ const DragAndDropLabel = styled.div`
   margin-right: 50px;
 `;
 
-const DragAndDropIcon = styled.div`
-  background-color: ${(props) => props.theme.dragAndDropAreaIconColor};
-  mask: url(${dragAndDropIcon}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.dragAndDropAreaIconSize} ${props.theme.dragAndDropAreaIconSize}`};
+const DragAndDropIconContainer = styled.div`
   height: ${(props) => props.theme.dragAndDropAreaIconSize};
   width: ${(props) => props.theme.dragAndDropAreaIconSize};
   margin-right: 5px;
+  & svg {
+    fill: ${(props) => props.theme.dragAndDropAreaIconColor};
+  }
 `;
 
 export default DxcButtonsUpload;
