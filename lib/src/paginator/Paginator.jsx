@@ -4,10 +4,7 @@ import PropTypes from "prop-types";
 import useTheme from "../useTheme.js";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
-import first from "./images/previousPage.svg";
-import previous from "./images/previous.svg";
-import next from "./images/next.svg";
-import last from "./images/nextPage.svg";
+import {firstIcon, lastIcon, nextIcon, previousIcon} from "./Icons";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcPaginator = ({
@@ -56,7 +53,7 @@ const DxcPaginator = ({
                 mode="secondary"
                 disabled={currentPageInternal === 1 || currentPageInternal === 0}
                 margin={{ left: "xxsmall", right: "xxsmall" }}
-                iconSrc={first}
+                icon={firstIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
                   onPageChange(1);
@@ -69,7 +66,7 @@ const DxcPaginator = ({
                 mode="secondary"
                 disabled={currentPageInternal === 1 || currentPageInternal === 0}
                 margin={{ left: "xxsmall", right: "xxsmall" }}
-                iconSrc={previous}
+                icon={previousIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
                   onPageChange(currentPage - 1);
@@ -98,7 +95,7 @@ const DxcPaginator = ({
                 mode="secondary"
                 disabled={currentPageInternal === totalPages}
                 margin={{ left: "xxsmall", right: "xxsmall" }}
-                iconSrc={next}
+                icon={nextIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
                   onPageChange(currentPage + 1);
@@ -111,7 +108,7 @@ const DxcPaginator = ({
                 mode="secondary"
                 disabled={currentPageInternal === totalPages}
                 margin={{ left: "xxsmall", right: "xxsmall" }}
-                iconSrc={last}
+                icon={lastIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
                   onPageChange(totalPages);
