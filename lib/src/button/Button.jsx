@@ -1,6 +1,6 @@
 /* eslint-disable no-else-return */
 import React, { useContext } from "react";
-import { Button } from "@material-ui/core";
+import Button from '@material-ui/core/Button';
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 
