@@ -15,9 +15,10 @@ const headingPropsTable = () => {
           <code>1</code>
         </td>
         <td>
-          Defines the heading level from 1 to 5. The styles of the specified in
-          'as' prop are applied. If 'as' is not specified, the heading will be
-          rendered according to the level.
+          Defines the heading level from 1 to 5. The styles of the heading are
+          applied according to the level. The html tag of the heading will be
+          the one specified in the 'as' prop. If 'as' is not specified, the html
+          tag of the heading is the one specified in the 'level' prop.
         </td>
       </tr>
       <tr>
@@ -28,11 +29,7 @@ const headingPropsTable = () => {
       <tr>
         <td>as: 'h1' | 'h2' | 'h3' | 'h4'| 'h5' </td>
         <td></td>
-        <td>
-          Defines the styles to be applied to the heading. This prop can be used
-          to render any level heading with the styles of the one specified in
-          'as'.
-        </td>
+        <td>Specifies the html tag of the heading.</td>
       </tr>
       <tr>
         <td>weight: 'light' | 'normal' | 'bold'</td>

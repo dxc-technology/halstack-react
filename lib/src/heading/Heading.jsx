@@ -10,26 +10,26 @@ const DxcHeading = ({ level = 1, text = "", as, weight = "", margin }) => {
   return (
     <ThemeProvider theme={colorsTheme.heading}>
       <HeadingContainer margin={margin}>
-        {as === "h1" ? (
-          <HeadingLevel1 weight={weight}>{text}</HeadingLevel1>
-        ) : as === "h2" ? (
-          <HeadingLevel2 weight={weight}>{text}</HeadingLevel2>
-        ) : as === "h3" ? (
-          <HeadingLevel3 weight={weight}>{text}</HeadingLevel3>
-        ) : as === "h4" ? (
-          <HeadingLevel4 weight={weight}>{text}</HeadingLevel4>
-        ) : as === "h5" ? (
-          <HeadingLevel5 weight={weight}>{text}</HeadingLevel5>
-        ) : level === 1 ? (
-          <HeadingLevel1 weight={weight}>{text}</HeadingLevel1>
+        {level === 1 ? (
+          <HeadingLevel1 as={as} weight={weight}>
+            {text}
+          </HeadingLevel1>
         ) : level === 2 ? (
-          <HeadingLevel2 weight={weight}>{text}</HeadingLevel2>
+          <HeadingLevel2 as={as} weight={weight}>
+            {text}
+          </HeadingLevel2>
         ) : level === 3 ? (
-          <HeadingLevel3 weight={weight}>{text}</HeadingLevel3>
+          <HeadingLevel3 as={as} weight={weight}>
+            {text}
+          </HeadingLevel3>
         ) : level === 4 ? (
-          <HeadingLevel4 weight={weight}>{text}</HeadingLevel4>
+          <HeadingLevel4 as={as} weight={weight}>
+            {text}
+          </HeadingLevel4>
         ) : (
-          <HeadingLevel5 weight={weight}>{text}</HeadingLevel5>
+          <HeadingLevel5 as={as} weight={weight}>
+            {text}
+          </HeadingLevel5>
         )}
       </HeadingContainer>
     </ThemeProvider>
