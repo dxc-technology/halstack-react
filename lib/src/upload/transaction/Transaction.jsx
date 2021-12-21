@@ -2,16 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import Tooltip from "@material-ui/core/Tooltip";
-import successIcon from "./success-icon.svg";
-import errorIcon from "./error-icon.svg";
-import defaultIcon from "./file-icon.svg";
-import imageIcon from "./image-icon.svg";
-import videoIcon from "./video-icon.svg";
-import audioIcon from "./audio-icon.svg";
-import defaultIconError from "./file-icon-err.svg";
-import imageIconError from "./image-icon-err.svg";
-import videoIconError from "./video-icon-err.svg";
-import audioIconError from "./audio-icon-err.svg";
+import {
+  successIcon,
+  errorIcon,
+  defaultIcon,
+  imageIcon,
+  videoIcon,
+  audioIcon,
+  defaultIconError,
+  imageIconError,
+  videoIconError,
+  audioIconError,
+} from "./Icons";
 import Spinner from "../../spinner/Spinner";
 import useTheme from "../../useTheme.js";
 import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
@@ -32,7 +34,7 @@ const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => 
   return (
     <ThemeProvider theme={colorsTheme.upload}>
       <DXCTransaction status={status}>
-        <FileImage status={status} img={icon} />
+        <FileImage status={status}>{icon}</FileImage>
         {(status === "processing" && (
           <FileData>
             <FileName>{name}</FileName>
@@ -44,7 +46,7 @@ const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => 
           (status === "success" && (
             <FileData>
               <FileName>{name}</FileName>
-              <FileStatus status={status} />
+              <FileStatus>{successIcon}</FileStatus>
             </FileData>
           )) ||
           (status === "error" && (
@@ -52,7 +54,7 @@ const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => 
               <Tooltip title={message}>
                 <FileName>{name}</FileName>
               </Tooltip>
-              <FileStatus status={status} />
+              <FileStatus>{errorIcon}</FileStatus>{" "}
             </FileData>
           ))}
       </DXCTransaction>
@@ -81,14 +83,14 @@ const DXCTransaction = styled.div`
 `;
 
 const FileImage = styled.div`
-  background-color: ${(props) =>
-    (props.status === "error" && props.theme.errorColor) || props.theme.uploadedFileIconColor};
-  mask: url(${(props) => props.img}) no-repeat center;
   mask-size: ${(props) => `${props.theme.uploadedFileIconSize} ${props.theme.uploadedFileIconSize}`};
   height: ${(props) => props.theme.uploadedFileIconSize};
   width: ${(props) => props.theme.uploadedFileIconSize};
   margin-right: 16px;
   max-width: 20%;
+  & svg {
+    fill: ${(props) => (props.status === "error" && props.theme.errorColor) || props.theme.uploadedFileIconColor};
+  }
 `;
 
 const FileName = styled.div`
@@ -105,9 +107,6 @@ const FileName = styled.div`
 `;
 
 const FileStatus = styled.div`
-  background: ${(props) =>
-    (props.status === "success" && `url('${successIcon}') no-repeat padding-box`) ||
-    (props.status === "error" && `url('${errorIcon}') no-repeat padding-box`)};
   width: 25px;
   height: 20px;
   max-width: 20%;
