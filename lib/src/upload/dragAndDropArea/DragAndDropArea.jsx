@@ -2,9 +2,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import {} from "../../common/variables.js";
-import uploadFile from "./upload_file.svg";
-import dropFile from "./upload_drop.svg";
+import { dropFileIcon, uploadFileIcon } from "./Icons";
 import Button from "../../button/Button";
 import useTheme from "../../useTheme.js";
 import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
@@ -72,7 +70,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
           {!dragging && !dashed && (
             <DXCDragAndDropArea>
               <DragAndDropContent>
-                <DragAndDropIcon />
+                <DragAndDropIcon>{uploadFileIcon}</DragAndDropIcon>
                 <DragAndDropText>
                   <DragAndDropTitle>{text}</DragAndDropTitle>
                   <DragAndDropDescription>{description}</DragAndDropDescription>
@@ -87,7 +85,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
           {!dragging && dashed && (
             <DragAndDropContentHover>
               <DragAndDropContent>
-                <DragAndDropIcon />
+                <DragAndDropIcon>{uploadFileIcon}</DragAndDropIcon>
                 <DragAndDropText>
                   <DragAndDropTitle>{text}</DragAndDropTitle>
                   <DragAndDropDescription>{description}</DragAndDropDescription>
@@ -102,7 +100,7 @@ const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
           {dragging && (
             <DragAndDropContentHover>
               <DragAndDropTextHover>{textHover}</DragAndDropTextHover>
-              <DragAndDropIconHover />
+              <DragAndDropIconHover>{dropFileIcon}</DragAndDropIconHover>
             </DragAndDropContentHover>
           )}
         </DXCDragAndDrop>
@@ -140,12 +138,14 @@ const DragAndDropContent = styled.div`
 `;
 
 const DragAndDropIcon = styled.div`
-  background-color: ${(props) => props.theme.dragAndDropIconColor};
-  mask: url(${uploadFile}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.dragAndDropIconSize} ${props.theme.dragAndDropIconSize}`};
   height: ${(props) => props.theme.dragAndDropIconSize};
   width: ${(props) => props.theme.dragAndDropIconSize};
   margin-bottom: 20px;
+  & svg {
+    fill: ${(props) => props.theme.dragAndDropIconColor};
+    height: ${(props) => props.theme.dragAndDropIconSize};
+    width: ${(props) => props.theme.dragAndDropIconSize};
+  }
 `;
 
 const DragAndDropText = styled.div`
@@ -233,12 +233,13 @@ const DragAndDropContentHover = styled.div`
 `;
 
 const DragAndDropIconHover = styled.div`
-  background-color: ${(props) => props.theme.dragAndDropDraggingStateIconColor};
-  mask: url(${dropFile}) no-repeat center;
-  mask-size: ${(props) =>
-    `${props.theme.dragAndDropDraggingStateIconSize} ${props.theme.dragAndDropDraggingStateIconSize}`};
   height: ${(props) => props.theme.dragAndDropDraggingStateIconSize};
   width: ${(props) => props.theme.dragAndDropDraggingStateIconSize};
+  & svg {
+    fill: ${(props) => props.theme.dragAndDropDraggingStateIconColor};
+    height: ${(props) => props.theme.dragAndDropDraggingStateIconSize};
+    width: ${(props) => props.theme.dragAndDropDraggingStateIconSize};
+  }
 `;
 
 const DragAndDropTextHover = styled.div`
