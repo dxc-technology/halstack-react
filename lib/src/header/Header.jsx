@@ -94,7 +94,7 @@ const DxcHeader = ({
 
   return (
     <ThemeProvider theme={colorsTheme.header}>
-      <HeaderContainer underlined={underlined} position="static" margin={margin} ref={ref}>
+      <HeaderContainer $underlined={underlined} position="static" margin={margin} ref={ref}>
         <LogoAnchor
           tabIndex={typeof onClick === "function" ? tabIndex : -1}
           interactuable={typeof onClick === "function"}
@@ -142,7 +142,7 @@ const HeaderContainer = styled(AppBar)`
   &.MuiAppBar-colorPrimary {
     background-color: ${(props) => props.theme.backgroundColor};
     border-bottom: ${(props) =>
-      props.underlined &&
+      props.$underlined &&
       `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
 
     &.MuiPaper-elevation4 {
