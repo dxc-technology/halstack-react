@@ -6,6 +6,7 @@ import BackgroundColorContext from "../BackgroundColorContext.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
 import { useLayoutEffect } from "react";
+import DxcCheckbox from "../checkbox/Checkbox";
 
 const selectIcons = {
   error: (
@@ -66,7 +67,7 @@ const DxcNewSelect = React.forwardRef(
       disabled = false,
       optional = false,
       searchable = false,
-      // multiple = false,
+      multiple = false,
       onChange,
       onBlur,
       error = "",
@@ -78,8 +79,7 @@ const DxcNewSelect = React.forwardRef(
   ) => {
     const [selectId] = useState(`select-${uuidv4()}`);
     const selectLabelId = `label-${selectId}`;
-    const [innerValue, setInnerValue] = useState("");
-    const [innerOption, setInnerOption] = useState({});
+    const [innerValue, setInnerValue] = useState(multiple ? [] : "");
     const [searchValue, setSearchValue] = useState("");
     const [isBackgroundValue, changeIsBackgroundValue] = useState(false);
 
@@ -99,6 +99,8 @@ const DxcNewSelect = React.forwardRef(
     const optionalEmptyOption = { label: placeholder, value: "" };
 
     const notOptionalCheck = (value) => value === "" && !optional;
+
+    const notOptionalMultipleCheck = () => (value ?? innerValue).length === 0 && !optional;
 
     const canBeOpenOptions = () => !disabled && options?.length > 0 && groupsHaveOptions();
     const groupsHaveOptions = () =>
@@ -125,12 +127,24 @@ const DxcNewSelect = React.forwardRef(
     };
 
     const handleSelectChangeValue = (newOption) => {
-      value ?? setInnerValue(newOption.value);
-      setInnerOption(newOption);
+      if (multiple) {
+        let res;
+        if ((value ?? innerValue).includes(newOption.value))
+          value
+            ? (res = value.filter((optionVal) => optionVal !== newOption.value))
+            : setInnerValue((previous) => previous.filter((optionVal) => optionVal !== newOption.value));
+        else value ? (res = [...value, newOption.value]) : setInnerValue((previous) => [...previous, newOption.value]);
 
-      if (notOptionalCheck(newOption.value))
-        onChange?.({ value: newOption.value, error: getNotOptionalErrorMessage() });
-      else onChange?.({ value: newOption.value, error: null });
+        if (notOptionalMultipleCheck(newOption.value))
+          onChange?.({ value: res ?? innerValue, error: getNotOptionalErrorMessage() });
+        else onChange?.({ value: res ?? innerValue, error: null });
+      } else {
+        value ?? setInnerValue(newOption.value);
+
+        if (notOptionalCheck(newOption.value))
+          onChange?.({ value: newOption.value, error: getNotOptionalErrorMessage() });
+        else onChange?.({ value: newOption.value, error: null });
+      }
     };
     const handleSelectOnClick = () => {
       changeVisualFocusIndex(0);
@@ -179,9 +193,8 @@ const DxcNewSelect = React.forwardRef(
           break;
         case 13: // Enter
           if (isOpen) {
-            let accLength = optional /*&& !multiple*/ ? 1 : 0;
-            // optional empty option (index = 0)
-            if (optional && visualFocusIndex === 0) handleSelectChangeValue(optionalEmptyOption);
+            let accLength = optional && !multiple ? 1 : 0;
+            if (optional && !multiple && visualFocusIndex === 0) handleSelectChangeValue(optionalEmptyOption);
             else if (searchable && filteredOptions.length > 0) {
               filteredOptions[0].options
                 ? filteredOptions.some((groupOption) => {
@@ -203,7 +216,7 @@ const DxcNewSelect = React.forwardRef(
                   })
                 : handleSelectChangeValue(options[visualFocusIndex - accLength]);
             }
-            closeOptions();
+            !multiple && closeOptions();
             setSearchValue("");
           }
           break;
@@ -217,8 +230,15 @@ const DxcNewSelect = React.forwardRef(
     };
 
     const handleClearActionOnClick = (event) => {
-      event.stopPropagation(); // not bubbling, clear not executes select event onClick
+      event.stopPropagation();
       setSearchValue("");
+    };
+
+    const handleClearOptionsActionOnClick = (event) => {
+      event.stopPropagation();
+      value ?? setInnerValue([]);
+      onChange?.({ value: [], error: getNotOptionalErrorMessage() });
+      selectContainerRef.current.focus();
     };
 
     const getLastOptionIndex = () => {
@@ -231,12 +251,42 @@ const DxcNewSelect = React.forwardRef(
           : (last = filteredOptions.length - 1);
       else options[0]?.options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
 
-      return optional ? last + 1 : last;
+      return optional && !multiple ? last + 1 : last;
     };
     const lastOptionIndex = useMemo(
       () => getLastOptionIndex(),
-      [searchable, optional, searchable ? filteredOptions : options]
+      [searchable, optional, multiple, searchable ? filteredOptions : options]
     );
+
+    const getSelectedOption = () => {
+      const val = value ?? innerValue;
+      let selectedOption = multiple ? [] : "";
+
+      if (multiple) {
+        if (options?.length > 0) {
+          options.forEach((option) => {
+            if (option.options) {
+              option.options.forEach((singleOption) => {
+                if (val.includes(singleOption.value)) selectedOption.push(singleOption);
+              });
+            } else if (val.includes(option.value)) selectedOption.push(option);
+          });
+        }
+      } else {
+        if (options?.length > 0) {
+          options.forEach((option) => {
+            if (option.options) {
+              option.options.forEach((singleOption) => {
+                if (singleOption.value === val) selectedOption = singleOption;
+              });
+            } else if (option.value === val) selectedOption = option;
+          });
+        }
+      }
+
+      return selectedOption;
+    };
+    const selectedOption = useMemo(() => getSelectedOption(), [options, multiple, value ?? innerValue]);
 
     useLayoutEffect(() => {
       if (isScrollable) {
@@ -252,7 +302,7 @@ const DxcNewSelect = React.forwardRef(
         if (options[0].options) {
           setFilteredOptions(
             options.map((optionGroup) => {
-              const group = JSON.parse(JSON.stringify(optionGroup)); // anything better?
+              const group = JSON.parse(JSON.stringify(optionGroup)); // circular issue
               group.options = group.options.filter((option) =>
                 option.label.toUpperCase().includes(searchValue.toUpperCase())
               );
@@ -267,23 +317,26 @@ const DxcNewSelect = React.forwardRef(
     }, [options, searchable, searchValue]);
 
     useEffect(() => {
-      visualFocusIndex > lastOptionIndex && changeVisualFocusIndex(0); // Not the best functionality
+      visualFocusIndex > lastOptionIndex && changeVisualFocusIndex(0);
     }, [filteredOptions]);
 
     const Option = ({ option, index, isGroupedOption = false }) => {
-      const isSelected = (value ?? innerValue) === option.value;
+      const isSelected = multiple
+        ? (value ?? innerValue).includes(option.value)
+        : (value ?? innerValue) === option.value;
       const isLastOption = index === lastOptionIndex;
 
       return (
         <OptionItem
           onMouseDown={(event) => {
-            event.button === 0 && changeIsActiveOption(true); // left button only
+             // left mouse button only
+            event.button === 0 && changeIsActiveOption(true);
           }}
           onMouseUp={(event) => {
             if (event.button === 0 && isActiveOption) {
-              // left button only
+              // left mouse button only
               handleSelectChangeValue(option);
-              closeOptions(); // if not multiple
+              !multiple && closeOptions();
               setSearchValue("");
               changeIsActiveOption(false);
             }
@@ -305,18 +358,25 @@ const DxcNewSelect = React.forwardRef(
             active={visualFocusIndex === index && isActiveOption}
             selected={isSelected}
             last={isLastOption}
+            grouped={isGroupedOption}
+            multiple={multiple}
           >
-            <OptionContent grouped={isGroupedOption}>
-              {option.icon && <OptionIcon>{option.icon}</OptionIcon>}
+            {multiple && <DxcCheckbox tabIndex={-1} checked={isSelected} />}
+            {option.icon && (
+              <OptionIcon>
+                {typeof option.icon === "string" ? <OptionIconImg src={option.icon}></OptionIconImg> : option.icon}
+              </OptionIcon>
+            )}
+            <OptionContent grouped={isGroupedOption} hasIcon={option.icon} multiple={multiple}>
               <OptionLabel>{option.label}</OptionLabel>
+              {!multiple && isSelected && <SelectedIcon>{selectIcons.selected}</SelectedIcon>}
             </OptionContent>
-            {isSelected && <SelectedIcon>{selectIcons.selected}</SelectedIcon>}
           </StyledOption>
         </OptionItem>
       );
     };
 
-    let global_index = optional /*&& !multiple*/ ? 0 : -1; // placeholder becomes an option and its always index = 0, so we start at 1
+    let global_index = optional && !multiple ? 0 : -1; // index for options (not groups), starting from 0 to options.length -1
     const mapOptionFunc = (option) => {
       if (option.options) {
         return (
@@ -363,6 +423,20 @@ const DxcNewSelect = React.forwardRef(
             tabIndex={tabIndex}
             aria-labelledby={selectLabelId}
           >
+            {multiple && selectedOption.length > 0 && (
+              <SelectionIndicator>
+                <SelectionValue>{selectedOption.length} </SelectionValue>
+                <ClearOptionsAction
+                  onClick={handleClearOptionsActionOnClick}
+                  backgroundType={backgroundType}
+                  tabIndex={-1}
+                  title="Clear selected options"
+                  aria-label="Clear selected options"
+                >
+                  {selectIcons.clear}
+                </ClearOptionsAction>
+              </SelectionIndicator>
+            )}
             <SearchableValueContainer>
               <ValueInput name={name} value={value ?? innerValue} readOnly />
               {searchable && (
@@ -375,11 +449,20 @@ const DxcNewSelect = React.forwardRef(
                   autoCorrect="off"
                 ></SearchInput>
               )}
-              {(!searchable || searchValue === "") && (
-                <SelectedOption disabled={disabled} backgroundValue={!(value ?? innerValue) || isBackgroundValue}>
-                  <OptionLabel>{innerOption?.label ?? placeholder}</OptionLabel>
-                </SelectedOption>
-              )}
+              {(!searchable || searchValue === "") &&
+                (multiple ? (
+                  <SelectedOption
+                    disabled={disabled}
+                    backgroundValue={(value ?? innerValue).length === 0 || isBackgroundValue}
+                  >
+                    <OptionLabel>{selectedOption.map((option) => option.label).join(", ")}</OptionLabel>
+                    {selectedOption.length === 0 && placeholder}
+                  </SelectedOption>
+                ) : (
+                  <SelectedOption disabled={disabled} backgroundValue={!(value ?? innerValue) || isBackgroundValue}>
+                    <OptionLabel>{selectedOption?.label ?? placeholder}</OptionLabel>
+                  </SelectedOption>
+                ))}
             </SearchableValueContainer>
             {!disabled && error && <ErrorIcon backgroundType={backgroundType}>{selectIcons.error}</ErrorIcon>}
             {searchable && searchValue.length > 0 && (
@@ -414,7 +497,7 @@ const DxcNewSelect = React.forwardRef(
                     No matches found
                   </OptionsSystemMessage>
                 ) : (
-                  optional && /*!multiple &&*/ <Option option={optionalEmptyOption} index={0} />
+                  optional && !multiple && <Option option={optionalEmptyOption} index={0} />
                 )}
                 {searchable ? filteredOptions.map(mapOptionFunc) : options.map(mapOptionFunc)}
               </OptionsList>
@@ -558,6 +641,58 @@ const SelectContainer = styled.div`
     `};
 `;
 
+const SelectionIndicator = styled.span`
+  display: flex;
+  border: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
+  border-radius: 2px;
+  width: 48px;
+`;
+
+const ClearOptionsAction = styled.button`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 24px;
+  width: 24px;
+  font-size: 1rem;
+  font-family: ${(props) => props.theme.fontFamily};
+  border: 1px solid transparent;
+  padding: 3px;
+  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
+  background-color: ${(props) => props.theme.enabledSelectionIndicatorActionBackgroundColor};
+  color: ${(props) => props.theme.enabledSelectionIndicatorActionIconColor};
+
+  ${(props) =>
+    !props.disabled &&
+    `
+      &:hover {
+        background-color: ${props.theme.hoverSelectionIndicatorActionBackgroundColor};
+        color: ${props.theme.hoverSelectionIndicatorActionIconColor};
+      }
+      &:active {
+        background-color: ${props.theme.activeSelectionIndicatorActionBackgroundColor};
+        color: ${props.theme.activeSelectionIndicatorActionIconColor};
+      }
+    `}
+
+  svg {
+    line-height: 18px;
+  }
+`;
+
+const SelectionValue = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  user-select: none;
+  background-color: ${(props) => props.theme.selectionIndicatorBackgroundColor};
+  border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: 11px;
+  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: default;`)}
+`;
+
 const SearchableValueContainer = styled.div`
   display: grid;
   width: 100%;
@@ -693,7 +828,7 @@ const ClearAction = styled.button`
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 3px;
   margin-left: calc(1rem * 0.25);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
@@ -811,9 +946,9 @@ const OptionItem = styled.li`
 
 const StyledOption = styled.span`
   display: flex;
-  justify-content: space-between;
-  padding: 4px 8px 3px 8px;
+  padding: 4px 8px 3px 0;
   min-height: 24px;
+  ${(props) => props.grouped && props.multiple && `padding-left: 16px;`}
   ${(props) =>
     props.last
       ? `border-bottom: 1px solid transparent`
@@ -822,8 +957,11 @@ const StyledOption = styled.span`
 
 const OptionContent = styled.span`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   overflow: hidden;
-  ${(props) => props.grouped && `padding-left: 8px;`}
+  padding-left: 8px;
+  ${(props) => props.grouped && !props.multiple && !props.hasIcon && `padding-left: 16px;`}
 `;
 
 const OptionIcon = styled.span`
@@ -832,7 +970,12 @@ const OptionIcon = styled.span`
   align-content: center;
   height: 24px;
   width: 24px;
-  margin-right: ${(props) => (props.selected ? "4px" : "8px")};
+  margin-left: 8px;
+`;
+
+const OptionIconImg = styled.img`
+  width: 16px;
+  height: 16px;
 `;
 
 const OptionLabel = styled.span`
