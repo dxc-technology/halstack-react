@@ -6,7 +6,6 @@ import Upload from "./pages/Upload";
 import InputText from "./pages/InputText";
 import Table from "./pages/Table";
 import Tabs from "./pages/Tabs";
-import TabsForSections from "./pages/TabsForSections";
 import Accordion from "./pages/Accordion";
 import Slider from "./pages/Slider";
 import Radio from "./pages/Radio";
@@ -216,11 +215,6 @@ export default [
     path: "tabs",
     name: "Tabs",
     component: Tabs,
-  },
-  {
-    path: "tabs-for-sections",
-    name: "Tabs for sections",
-    component: TabsForSections,
   },
   {
     path: "V3Textarea",

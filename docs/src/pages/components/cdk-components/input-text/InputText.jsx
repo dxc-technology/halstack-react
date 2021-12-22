@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  DxcTabsForSections,
-  DxcHeading,
-  DxcAlert,
-  DxcLink,
-} from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -32,62 +27,29 @@ function InputText() {
         ></DxcLink>{" "}
         component instead.
       </DxcAlert>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <InputPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example
-                  title="Controlled input text"
-                  example={controlled}
-                ></Example>
-                <Example
-                  title="Uncontrolled input text"
-                  example={uncontrolled}
-                ></Example>
-                <Example
-                  title="Masked input text"
-                  example={maskedInput}
-                ></Example>
-                <Example
-                  title="Input text with prefix/suffix"
-                  example={labeled}
-                ></Example>
-                <Example title="Sized input text" example={sized}></Example>
-                <Example
-                  title="Fill parent input text"
-                  example={fillParent}
-                ></Example>
-                <Example
-                  title="Synchronous controlled autocomplete"
-                  example={autocomplete}
-                ></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <InputPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Controlled input text" example={controlled}></Example>
+        <Example
+          title="Uncontrolled input text"
+          example={uncontrolled}
+        ></Example>
+        <Example title="Masked input text" example={maskedInput}></Example>
+        <Example
+          title="Input text with prefix/suffix"
+          example={labeled}
+        ></Example>
+        <Example title="Sized input text" example={sized}></Example>
+        <Example title="Fill parent input text" example={fillParent}></Example>
+        <Example
+          title="Synchronous controlled autocomplete"
+          example={autocomplete}
+        ></Example>
+      </Section>
     </ComponentDoc>
   );
 }

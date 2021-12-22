@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -23,74 +23,47 @@ function Textarea() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Textarea" status="ready"></ComponentHeader>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <TextareaPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example title="Controlled textarea" example={controlled} />
-                <Example title="Uncontrolled textarea" example={uncontrolled} />
-                <Example
-                  title="Textarea with placeholder"
-                  example={placeholder}
-                ></Example>
-                <Example title="Disabled textarea" example={disabled}></Example>
-                <Example title="Optional textarea" example={optional}></Example>
-                <Example
-                  title="Textarea with verticalGrow set to 'manual'"
-                  example={vgManual}
-                ></Example>
-                <Example
-                  title="Textarea with verticalGrow set to 'none'"
-                  example={vgNone}
-                ></Example>
-                <Example
-                  title="Textarea with default rows"
-                  example={rows}
-                ></Example>
-                <Example title="Invalid textarea" example={invalid}></Example>
-                <Example
-                  title="Textarea with pattern constraint"
-                  example={pattern}
-                ></Example>
-                <Example
-                  title="Textarea with length constraint"
-                  example={length}
-                ></Example>
-                <Example
-                  title="Textarea with custom error messages"
-                  example={customErrors}
-                ></Example>
-                <Example
-                  title="Fill parent size textarea"
-                  example={fillParent}
-                ></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <TextareaPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Controlled textarea" example={controlled} />
+        <Example title="Uncontrolled textarea" example={uncontrolled} />
+        <Example
+          title="Textarea with placeholder"
+          example={placeholder}
+        ></Example>
+        <Example title="Disabled textarea" example={disabled}></Example>
+        <Example title="Optional textarea" example={optional}></Example>
+        <Example
+          title="Textarea with verticalGrow set to 'manual'"
+          example={vgManual}
+        ></Example>
+        <Example
+          title="Textarea with verticalGrow set to 'none'"
+          example={vgNone}
+        ></Example>
+        <Example title="Textarea with default rows" example={rows}></Example>
+        <Example title="Invalid textarea" example={invalid}></Example>
+        <Example
+          title="Textarea with pattern constraint"
+          example={pattern}
+        ></Example>
+        <Example
+          title="Textarea with length constraint"
+          example={length}
+        ></Example>
+        <Example
+          title="Textarea with custom error messages"
+          example={customErrors}
+        ></Example>
+        <Example
+          title="Fill parent size textarea"
+          example={fillParent}
+        ></Example>
+      </Section>
     </ComponentDoc>
   );
 }

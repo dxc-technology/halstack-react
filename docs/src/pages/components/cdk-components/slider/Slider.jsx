@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import SliderPropsTable from "./api.jsx";
@@ -18,57 +18,24 @@ function Slider() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Slider" status="ready"></ComponentHeader>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <SliderPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example
-                  title="Controlled Slider"
-                  example={controlled}
-                ></Example>
-                <Example
-                  title="Uncontrolled Slider"
-                  example={uncontrolled}
-                ></Example>
-                <Example title="Discrete Slider" example={discrete}></Example>
-                <Example
-                  title="Continuous Slider"
-                  example={continuous}
-                ></Example>
-                <Example
-                  title="Slider without limit values"
-                  example={withoutLimits}
-                ></Example>
-                <Example title="Slider with input" example={input}></Example>
-                <Example title="Sized Slider" example={sized}></Example>
-                <Example title="Disabled Slider" example={disabled}></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <SliderPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Controlled Slider" example={controlled}></Example>
+        <Example title="Uncontrolled Slider" example={uncontrolled}></Example>
+        <Example title="Discrete Slider" example={discrete}></Example>
+        <Example title="Continuous Slider" example={continuous}></Example>
+        <Example
+          title="Slider without limit values"
+          example={withoutLimits}
+        ></Example>
+        <Example title="Slider with input" example={input}></Example>
+        <Example title="Sized Slider" example={sized}></Example>
+        <Example title="Disabled Slider" example={disabled}></Example>
+      </Section>
     </ComponentDoc>
   );
 }

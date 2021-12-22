@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  DxcTabsForSections,
   DxcTag,
   DxcHeading,
   DxcLink,
@@ -356,28 +355,10 @@ function Overview() {
               </li>
             </ul>
           </Introduction>
-          <DxcTabsForSections
-            stickAtPx={64}
-            tabsMode="underlined"
-            sections={[
-              {
-                tabLabel: "Install",
-                section: Install,
-              },
-              {
-                tabLabel: "Use Components",
-                section: UseComponents,
-              },
-              {
-                tabLabel: "Custom Themes",
-                section: CustomThemes,
-              },
-              {
-                tabLabel: "Support",
-                section: Support,
-              },
-            ]}
-          ></DxcTabsForSections>
+          <Install></Install>
+          <UseComponents></UseComponents>
+          <CustomThemes></CustomThemes>
+          <Support></Support>
         </Content>
       </DxcApplicationLayout.Main>
       <DxcApplicationLayout.Footer>
@@ -444,7 +425,7 @@ const LinksSection = styled.div`
 `;
 
 const Introduction = styled.div`
-  padding: 0px 0px 100px 0px;
+  padding: 0px 0px 30px 0px;
   max-width: 800px;
   & li {
     margin-top: 30px;

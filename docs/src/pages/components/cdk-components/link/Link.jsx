@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -15,48 +15,21 @@ function Link() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Link" status="ready"></ComponentHeader>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <LinkPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example title="Default Link" example={defaultLink}></Example>
-                <Example
-                  title="Undecorated link with new window"
-                  example={undecoratedLink}
-                ></Example>
-                <Example title="Disabled Link" example={disabledLink}></Example>
-                <Example
-                  title="Link with action"
-                  example={actionLink}
-                ></Example>
-                <Example title="Link with icon" example={iconLink}></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <LinkPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Default Link" example={defaultLink}></Example>
+        <Example
+          title="Undecorated link with new window"
+          example={undecoratedLink}
+        ></Example>
+        <Example title="Disabled Link" example={disabledLink}></Example>
+        <Example title="Link with action" example={actionLink}></Example>
+        <Example title="Link with icon" example={iconLink}></Example>
+      </Section>
     </ComponentDoc>
   );
 }

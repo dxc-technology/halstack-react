@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  DxcTabsForSections,
-  DxcHeading,
-  DxcAlert,
-  DxcLink,
-} from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -31,49 +26,19 @@ function Textarea() {
         ></DxcLink>{" "}
         component instead.
       </DxcAlert>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <InputPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example
-                  title="Controlled Textarea"
-                  example={controlled}
-                ></Example>
-                <Example
-                  title="Uncontrolled Textarea"
-                  example={uncontrolled}
-                ></Example>
-                <Example title="Fill Parent  Textarea" example={size}></Example>
-                <Example title="Disabled Textarea" example={disabled}></Example>
-                <Example title="Invalid Textarea" example={invalid}></Example>
-                <Example title="Required Textarea" example={required}></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <InputPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Controlled Textarea" example={controlled}></Example>
+        <Example title="Uncontrolled Textarea" example={uncontrolled}></Example>
+        <Example title="Fill Parent  Textarea" example={size}></Example>
+        <Example title="Disabled Textarea" example={disabled}></Example>
+        <Example title="Invalid Textarea" example={invalid}></Example>
+        <Example title="Required Textarea" example={required}></Example>
+      </Section>
     </ComponentDoc>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
@@ -18,48 +18,21 @@ function FileInput() {
   return (
     <ComponentDoc>
       <ComponentHeader title="File Input" status="ready"></ComponentHeader>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <FileInputPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example title="Default" example={defaultFileInput}></Example>
-                <Example title="Single" example={single}></Example>
-                <Example title="With preview" example={preview}></Example>
-                <Example title="Accept file formats" example={accept}></Example>
-                <Example
-                  title="Min file size, max file size"
-                  example={size}
-                ></Example>
-                <Example title="Filedrop" example={filedrop}></Example>
-                <Example title="Dropzone" example={dropzone}></Example>
-                <Example title="Disabled" example={disabled}></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <FileInputPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Default" example={defaultFileInput}></Example>
+        <Example title="Single" example={single}></Example>
+        <Example title="With preview" example={preview}></Example>
+        <Example title="Accept file formats" example={accept}></Example>
+        <Example title="Min file size, max file size" example={size}></Example>
+        <Example title="Filedrop" example={filedrop}></Example>
+        <Example title="Dropzone" example={dropzone}></Example>
+        <Example title="Disabled" example={disabled}></Example>
+      </Section>
     </ComponentDoc>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -13,46 +13,22 @@ function Paginator() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Paginator" status="ready"></ComponentHeader>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <PaginatorPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example title="Paginator" example={paginator}></Example>
-                <Example
-                  title="Paginator with items per page"
-                  example={paginatorItemsPerPage}
-                ></Example>
-                <Example
-                  title="Paginator with Go to Page"
-                  example={paginatorGoToPage}
-                ></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <PaginatorPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Paginator" example={paginator}></Example>
+        <Example
+          title="Paginator with items per page"
+          example={paginatorItemsPerPage}
+        ></Example>
+        <Example
+          title="Paginator with Go to Page"
+          example={paginatorGoToPage}
+        ></Example>
+      </Section>
     </ComponentDoc>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -14,53 +14,17 @@ function Dropdown() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Toggle" status="ready"></ComponentHeader>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <TogglePropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example
-                  title="Default Toggle"
-                  example={defaultToggle}
-                ></Example>
-                <Example
-                  title="Toggle with Icons"
-                  example={toggleWithIcons}
-                ></Example>
-                <Example
-                  title="Outlined Toggle"
-                  example={outlinedToggle}
-                ></Example>
-                <Example
-                  title="Dark theme Toggle"
-                  example={toggleDarkTheme}
-                ></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <TogglePropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Default Toggle" example={defaultToggle}></Example>
+        <Example title="Toggle with Icons" example={toggleWithIcons}></Example>
+        <Example title="Outlined Toggle" example={outlinedToggle}></Example>
+        <Example title="Dark theme Toggle" example={toggleDarkTheme}></Example>
+      </Section>
     </ComponentDoc>
   );
 }

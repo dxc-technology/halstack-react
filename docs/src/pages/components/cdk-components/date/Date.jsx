@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  DxcTabsForSections,
-  DxcHeading,
-  DxcAlert,
-  DxcLink,
-} from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import DatePropsTable from "./api.jsx";
@@ -28,43 +23,16 @@ function Date() {
         ></DxcLink>{" "}
         component instead.
       </DxcAlert>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <DatePropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example title="Controlled Date" example={controlled}></Example>
-                <Example
-                  title="Uncontrolled Date"
-                  example={uncontrolled}
-                ></Example>
-                <Example title="Sized Date" example={sized}></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <DatePropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Controlled Date" example={controlled}></Example>
+        <Example title="Uncontrolled Date" example={uncontrolled}></Example>
+        <Example title="Sized Date" example={sized}></Example>
+      </Section>
     </ComponentDoc>
   );
 }

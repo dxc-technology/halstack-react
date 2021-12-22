@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  DxcTabsForSections,
-  DxcHeading,
-  DxcAlert,
-  DxcLink,
-} from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
@@ -26,38 +21,14 @@ function Upload() {
         ></DxcLink>{" "}
         component instead.
       </DxcAlert>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <AlertPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example title="Upload" example={upload}></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <AlertPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Upload" example={upload}></Example>
+      </Section>
     </ComponentDoc>
   );
 }

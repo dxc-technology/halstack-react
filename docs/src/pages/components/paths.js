@@ -10,7 +10,6 @@ import InputText from "./cdk-components/input-text/InputText";
 import Accordion from "./cdk-components/accordion/Accordion";
 import Select from "./cdk-components/select/Select";
 import Slider from "./cdk-components/slider/Slider";
-import TabbedSections from "./cdk-components/tabbed-sections/TabbedSections";
 import Card from "./cdk-components/card/Card";
 import Dialog from "./cdk-components/dialog/Dialog";
 import ProgressBar from "./cdk-components/progressBar/progressBar";
@@ -246,12 +245,6 @@ export default [
     name: "Tabs",
     component: Tabs,
     type: types.NAVIGATION,
-  },
-  {
-    path: "tabbed-sections",
-    name: "Tabbed Sections",
-    component: TabbedSections,
-    type: types.LAYOUT,
   },
   {
     path: "tag",

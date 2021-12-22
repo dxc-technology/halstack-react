@@ -4,7 +4,7 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
-import { DxcTabsForSections, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading } from "@dxc-technology/halstack-react";
 import defaultSelect from "./examples/default";
 import controlled from "./examples/controlledSelect";
 import multipleSelect from "./examples/multipleSelect";
@@ -15,54 +15,18 @@ function Input() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Select" status="ready"></ComponentHeader>
-      <DxcTabsForSections
-        stickAtPx={64}
-        tabsMode="underlined"
-        sections={[
-          {
-            tabLabel: "Props",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Props"
-                  margin={{ bottom: "small" }}
-                />
-                <InputPropsTable />
-              </Section>
-            ),
-          },
-          {
-            tabLabel: "Examples",
-            section: () => (
-              <Section>
-                <DxcHeading
-                  level={3}
-                  text="Examples"
-                  margin={{ bottom: "small" }}
-                />
-                <Example
-                  title="Controlled Select"
-                  example={controlled}
-                ></Example>
-                <Example
-                  title="Uncontrolled Select"
-                  example={defaultSelect}
-                ></Example>
-                <Example
-                  title="Multiple Select"
-                  example={multipleSelect}
-                ></Example>
-                <Example
-                  title="Select with Icons"
-                  example={withIcons}
-                ></Example>
-                <Example title="Sized Select" example={sized}></Example>
-              </Section>
-            ),
-          },
-        ]}
-      ></DxcTabsForSections>
+      <Section>
+        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <InputPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Controlled Select" example={controlled}></Example>
+        <Example title="Uncontrolled Select" example={defaultSelect}></Example>
+        <Example title="Multiple Select" example={multipleSelect}></Example>
+        <Example title="Select with Icons" example={withIcons}></Example>
+        <Example title="Sized Select" example={sized}></Example>
+      </Section>
     </ComponentDoc>
   );
 }
