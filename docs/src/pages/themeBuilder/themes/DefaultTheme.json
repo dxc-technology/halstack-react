@@ -40,7 +40,9 @@
     "menuBaseColor": "#ffffff",
     "hamburguerColor": "#000000",
     "logo": "/static/media/dxc_logo_blk_rgb.46e4aef2.svg",
-    "logoResponsive": "/static/media/dxc_logo_blk_rgb.46e4aef2.svg"
+    "logoResponsive": "/static/media/dxc_logo_blk_rgb.46e4aef2.svg",
+    "contentColor": "#000000",
+    "contentColorOnDark": "#ffffff"
   },
   "inputText": {
     "selectedBaseColor": "#D9D9D9"
