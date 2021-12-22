@@ -434,7 +434,9 @@
     "hamburguerFontStyle": "fStyle",
     "hamburguerFontColor": "color",
     "hamburguerFontSize": "length",
-    "hamburguerFontWeight": "fWeight"
+    "hamburguerFontWeight": "fWeight",
+    "contentColor": "color",
+    "contentColorOnDark": "color"
   },
   "heading": {
     "level5FontSize": "length",
