@@ -37,7 +37,10 @@ function App() {
           <DxcHeading text="Level 4 as h2" level={4} as="h2" />
         </div>
         <div className="test-case" id="heading-level5-as-h1">
-          <DxcHeading text="Level 5 as h1" level={5} as="h2" />
+          <DxcHeading text="Level 5 as h1" level={5} as="h1" />
+        </div>
+        <div className="test-case" id="heading-level5-as-invalid">
+          <DxcHeading text="Level 5 and invalid as" level={5} as="adfasdsd" />
         </div>
       </div>
       <div>

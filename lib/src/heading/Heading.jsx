@@ -7,27 +7,31 @@ import useTheme from "../useTheme.js";
 const DxcHeading = ({ level = 1, text = "", as, weight = "", margin }) => {
   const colorsTheme = useTheme();
 
+  const checkValidAs = () => {
+    if (as === "h1" || as === "h2" || as === "h3" || as === "h4" || as === "h5") return as;
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.heading}>
       <HeadingContainer margin={margin}>
         {level === 1 ? (
-          <HeadingLevel1 as={as} weight={weight}>
+          <HeadingLevel1 as={checkValidAs(as)} weight={weight}>
             {text}
           </HeadingLevel1>
         ) : level === 2 ? (
-          <HeadingLevel2 as={as} weight={weight}>
+          <HeadingLevel2 as={checkValidAs(as)} weight={weight}>
             {text}
           </HeadingLevel2>
         ) : level === 3 ? (
-          <HeadingLevel3 as={as} weight={weight}>
+          <HeadingLevel3 as={checkValidAs(as)} weight={weight}>
             {text}
           </HeadingLevel3>
         ) : level === 4 ? (
-          <HeadingLevel4 as={as} weight={weight}>
+          <HeadingLevel4 as={checkValidAs(as)} weight={weight}>
             {text}
           </HeadingLevel4>
         ) : (
-          <HeadingLevel5 as={as} weight={weight}>
+          <HeadingLevel5 as={checkValidAs(as)} weight={weight}>
             {text}
           </HeadingLevel5>
         )}
