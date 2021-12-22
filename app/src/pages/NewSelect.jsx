@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { DxcNewSelect, DxcButton } from "@dxc-technology/halstack-react";
-import { useEffect, useRef } from "react/cjs/react.development";
 
 function App() {
   const ref = useRef(null);
