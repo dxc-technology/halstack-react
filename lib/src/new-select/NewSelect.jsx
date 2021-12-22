@@ -104,13 +104,13 @@ const DxcNewSelect = React.forwardRef(
 
     const canBeOpenOptions = () => !disabled && options?.length > 0 && groupsHaveOptions();
     const groupsHaveOptions = () =>
-      options[0]?.hasOwnProperty("options")
+      options[0].hasOwnProperty("options")
         ? options[0].options
           ? options.some((groupOption) => groupOption.options.length > 0)
           : false
         : true;
     const filteredGroupsHaveOptions = () =>
-      filteredOptions[0]?.options ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
+      filteredOptions?.[0].options ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
 
     const openOptions = () => {
       if (!isOpen && canBeOpenOptions()) {
@@ -194,27 +194,34 @@ const DxcNewSelect = React.forwardRef(
         case 13: // Enter
           if (isOpen) {
             let accLength = optional && !multiple ? 1 : 0;
-            if (optional && !multiple && visualFocusIndex === 0) handleSelectChangeValue(optionalEmptyOption);
-            else if (searchable && filteredOptions.length > 0) {
-              filteredOptions[0].options
-                ? filteredOptions.some((groupOption) => {
-                    const groupLength = accLength + groupOption.options.length;
-                    groupLength > visualFocusIndex &&
-                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
-                    accLength = groupLength;
-                    return groupLength > visualFocusIndex;
-                  })
-                : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength]);
+            if (searchable) {
+              if (filteredOptions.length > 0) {
+                if (optional && !multiple && visualFocusIndex === 0 && filteredGroupsHaveOptions())
+                  handleSelectChangeValue(optionalEmptyOption);
+                else
+                  filteredOptions[0].options
+                    ? filteredGroupsHaveOptions() &&
+                      filteredOptions.some((groupOption) => {
+                        const groupLength = accLength + groupOption.options.length;
+                        groupLength > visualFocusIndex &&
+                          handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
+                        accLength = groupLength;
+                        return groupLength > visualFocusIndex;
+                      })
+                    : handleSelectChangeValue(filteredOptions[visualFocusIndex - accLength]);
+              }
             } else {
-              options[0].options
-                ? options.some((groupOption) => {
-                    const groupLength = accLength + groupOption.options.length;
-                    groupLength > visualFocusIndex &&
-                      handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
-                    accLength = groupLength;
-                    return groupLength > visualFocusIndex;
-                  })
-                : handleSelectChangeValue(options[visualFocusIndex - accLength]);
+              if (optional && !multiple && visualFocusIndex === 0) handleSelectChangeValue(optionalEmptyOption);
+              else
+                options[0].options
+                  ? options.some((groupOption) => {
+                      const groupLength = accLength + groupOption.options.length;
+                      groupLength > visualFocusIndex &&
+                        handleSelectChangeValue(groupOption.options[visualFocusIndex - accLength]);
+                      accLength = groupLength;
+                      return groupLength > visualFocusIndex;
+                    })
+                  : handleSelectChangeValue(options[visualFocusIndex - accLength]);
             }
             !multiple && closeOptions();
             setSearchValue("");
@@ -243,13 +250,14 @@ const DxcNewSelect = React.forwardRef(
 
     const getLastOptionIndex = () => {
       let last = 0;
-      const reducer = (acc, current) => acc + current.options.length;
+      const reducer = (acc, current) => acc + current.options?.length;
 
       if (searchable && filteredOptions.length > 0)
         filteredOptions[0].options
           ? (last = filteredOptions.reduce(reducer, 0) - 1)
           : (last = filteredOptions.length - 1);
-      else options[0]?.options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
+      else if (options?.length > 0)
+        options[0].options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
 
       return optional && !multiple ? last + 1 : last;
     };
@@ -329,7 +337,7 @@ const DxcNewSelect = React.forwardRef(
       return (
         <OptionItem
           onMouseDown={(event) => {
-             // left mouse button only
+            // left mouse button only
             event.button === 0 && changeIsActiveOption(true);
           }}
           onMouseUp={(event) => {

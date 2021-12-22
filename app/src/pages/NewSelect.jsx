@@ -456,6 +456,24 @@ function App() {
         />
       </p>
       <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional & Grouped & Searchable & Multiple</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Multiple shouldn't alow optional to add a new option, this is exclusive from single selection, no matter if it is grouped or not"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+          optional
+          multiple
+        />
+      </p>
+      <p>
         <h4 style={{ marginLeft: "36px" }}>Optional grouped</h4>
         <DxcNewSelect
           label="Label"
@@ -467,7 +485,22 @@ function App() {
           }}
           placeholder="Choose an option"
           margin="medium"
+          optional
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional grouped searchable</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
           searchable
+          margin="medium"
           optional
         />
       </p>
@@ -519,6 +552,15 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
           searchable
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Undefined options</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          placeholder="Choose an option"
+          margin="medium"
         />
       </p>
       <p>
