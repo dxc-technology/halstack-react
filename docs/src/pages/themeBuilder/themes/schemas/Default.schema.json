@@ -40,7 +40,9 @@
     "menuBaseColor": "color",
     "hamburguerColor": "color",
     "logo": "image",
-    "logoResponsive": "image"
+    "logoResponsive": "image",
+    "contentColor": "color",
+    "contentColorOnDark": "color"
   },
   "inputText": {
     "selectedBaseColor": "color"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
@@ -6,7 +6,7 @@ import DxcDropdown from "../dropdown/Dropdown";
 import { hamburgerIcon, closeIcon, dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
-import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const Dropdown = (props) => {
   return (
@@ -35,15 +35,7 @@ const getLogoElement = (themeInput) => {
   return themeInput;
 };
 
-const DxcHeader = ({
-  underlined = false,
-  onClick,
-  content,
-  responsiveContent,
-  margin,
-  padding,
-  tabIndex = 0,
-}) => {
+const DxcHeader = ({ underlined = false, onClick, content, responsiveContent, margin, padding, tabIndex = 0 }) => {
   const colorsTheme = useTheme();
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
@@ -59,6 +51,16 @@ const DxcHeader = ({
         setIsResponsive(false);
       }
     }
+  };
+  const ContentContainerComponent = () => {
+    const backgroundType = useContext(BackgroundColorContext);
+    return (
+      (isResponsive && <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>) || (
+        <ContentContainer padding={padding} backgroundType={backgroundType}>
+          {content}
+        </ContentContainer>
+      )
+    );
   };
 
   const handleMenu = () => {
@@ -114,7 +116,9 @@ const DxcHeader = ({
               <div>
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                   <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                  <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
+                  <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
+                    <ContentContainerComponent>{responsiveContent(handleMenu)}</ContentContainerComponent>
+                  </BackgroundColorProvider>
                   <CloseContainer tabIndex={tabIndex} onClick={handleMenu} className="closeIcon">
                     {closeIcon}
                   </CloseContainer>
@@ -125,9 +129,9 @@ const DxcHeader = ({
           </MainContainer>
         )}
         {!isResponsive && (
-          <ChildContainer padding={padding}>
-            <BackgroundColorProvider color={colorsTheme.header.backgroundColor}>{content}</BackgroundColorProvider>
-          </ChildContainer>
+          <BackgroundColorProvider color={colorsTheme.header.backgroundColor}>
+            <ContentContainerComponent />
+          </BackgroundColorProvider>
         )}
       </HeaderContainer>
     </ThemeProvider>
@@ -190,6 +194,7 @@ const ChildContainer = styled.div`
   display: flex;
   align-items: center;
   flex-grow: 1;
+
   justify-content: flex-end;
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
@@ -201,7 +206,24 @@ const ChildContainer = styled.div`
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
+const ContentContainer = styled.div`
+  width: calc(100% - 186px);
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
 
+  justify-content: flex-end;
+  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+  padding-top: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+  padding-right: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+  padding-bottom: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+  padding-left: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+`;
 const HamburguerItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -285,6 +307,7 @@ const MenuContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
 `;
 
 const Overlay = styled.div`

@@ -434,7 +434,9 @@
     "paddingLeft": "20px",
     "underlinedColor": "#000000",
     "underlinedThickness": "2px",
-    "underlinedStyle": "solid"
+    "underlinedStyle": "solid",
+    "contentColor": "#000000",
+    "contentColorOnDark": "#ffffff"
   },
   "heading": {
     "level1FontColor": "#000000",
