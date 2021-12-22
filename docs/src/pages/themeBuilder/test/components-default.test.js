@@ -77,10 +77,10 @@ describe("Successful component tests for default theme", () => {
     });
     expect(getByText("Button component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Primary").length).toBe(2);
-    expect(getAllByText("Secondary").length).toBe(2);
-    expect(getAllByText("Text").length).toBe(2);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Primary").length).toBe(1);
+    expect(getAllByText("Secondary").length).toBe(1);
+    expect(getAllByText("Text").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["button"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
@@ -101,10 +101,10 @@ describe("Successful component tests for default theme", () => {
     });
     expect(getByText("Checkbox component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(2);
-    expect(getAllByText("Label position").length).toBe(2);
-    expect(getAllByText("Disabled").length).toBe(4);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
+    expect(getAllByText("Label position").length).toBe(1);
+    expect(getAllByText("Disabled").length).toBe(2);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["checkbox"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
@@ -149,8 +149,8 @@ describe("Successful component tests for default theme", () => {
     });
     expect(getByText("Date component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(2);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["date"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
@@ -250,9 +250,9 @@ describe("Successful component tests for default theme", () => {
     act(() => {
       fireEvent.click(getByText("Progress Bar"));
     });
-    expect(getByText("ProgressBar component")).toBeTruthy();    
-    expect(getAllByText("Undeterminate default").length).toBe(2);
-    expect(getAllByText("Determinate default").length).toBe(2);
+    expect(getByText("ProgressBar component")).toBeTruthy();
+    expect(getAllByText("Undeterminate default").length).toBe(1);
+    expect(getAllByText("Determinate default").length).toBe(1);
     expect(getByText("With overlay")).toBeTruthy();
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["progressBar"]).forEach((themeInputs) =>
@@ -274,9 +274,9 @@ describe("Successful component tests for default theme", () => {
     });
     expect(getByText("Radio component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(2);
-    expect(getAllByText("Disabled").length).toBe(2);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
+    expect(getAllByText("Disabled").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["radio"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
@@ -297,10 +297,10 @@ describe("Successful component tests for default theme", () => {
     });
     expect(getByText("Select component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(2);
-    expect(getAllByText("Disabled").length).toBe(2);
-    expect(getAllByText("Multiple").length).toBe(2);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
+    expect(getAllByText("Disabled").length).toBe(1);
+    expect(getAllByText("Multiple").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["select"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
@@ -343,11 +343,11 @@ describe("Successful component tests for default theme", () => {
     });
     expect(getByText("Slider component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(2);
-    expect(getAllByText("Disabled").length).toBe(2);
-    expect(getAllByText("With marks").length).toBe(2);
-    expect(getAllByText("With input").length).toBe(2);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
+    expect(getAllByText("Disabled").length).toBe(1);
+    expect(getAllByText("With marks").length).toBe(1);
+    expect(getAllByText("With input").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["slider"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
@@ -367,9 +367,9 @@ describe("Successful component tests for default theme", () => {
       fireEvent.click(getByText("Spinner"));
     });
     expect(getByText("Spinner component")).toBeTruthy();
-    expect(getAllByText("Undeterminate default").length).toBe(2);
-    expect(getAllByText("Determinate default").length).toBe(2);
-    expect(getAllByText("Small").length).toBe(2);
+    expect(getAllByText("Undeterminate default").length).toBe(1);
+    expect(getAllByText("Determinate default").length).toBe(1);
+    expect(getAllByText("Small").length).toBe(1);
     expect(getByText("With overlay")).toBeTruthy();
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["spinner"]).forEach((themeInputs) =>
@@ -391,9 +391,9 @@ describe("Successful component tests for default theme", () => {
     });
     expect(getByText("Switch component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(2);
-    expect(getAllByText("Disabled").length).toBe(2);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
+    expect(getAllByText("Disabled").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["switch"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
@@ -459,19 +459,19 @@ describe("Successful component tests for default theme", () => {
     });
     expect(getByText("InputText component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(2);
-    expect(getAllByText("Disabled").length).toBe(2);
-    expect(getAllByText("Required").length).toBe(2);
-    expect(getAllByText("Invalid").length).toBe(2);
-    expect(getAllByText("Autocomplete").length).toBe(4);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
+    expect(getAllByText("Disabled").length).toBe(1);
+    expect(getAllByText("Required").length).toBe(1);
+    expect(getAllByText("Invalid").length).toBe(1);
+    expect(getAllByText("Autocomplete").length).toBe(2);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["inputText"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
     );
   });
 
-  it("Should render new input text component", async () => {
+  it("Should render text input component", async () => {
     const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
         <Route>
@@ -481,18 +481,18 @@ describe("Successful component tests for default theme", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("New Input Text"));
+      fireEvent.click(getByText("Text Input"));
     });
-    expect(getByText("NewInputText component")).toBeTruthy();
+    expect(getByText("TextInput component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
-    expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(2);
-    expect(getAllByText("Disabled").length).toBe(2);
-    expect(getAllByText("Invalid").length).toBe(2);
-    expect(getAllByText("Action & Optional").length).toBe(2);
-    expect(getAllByText("Suggestions").length).toBe(2);
+    // expect(getByText("Dark Mode")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
+    expect(getAllByText("Disabled").length).toBe(1);
+    expect(getAllByText("Invalid").length).toBe(1);
+    expect(getAllByText("Action & Optional").length).toBe(1);
+    expect(getAllByText("Suggestions").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(defaultTheme["newInputText"]).forEach((themeInputs) =>
+    Object.keys(defaultTheme["textInput"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
     );
   });

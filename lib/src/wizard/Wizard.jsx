@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
-import ValidIcon from "./valid_icon.svg";
-import InvalidIcon from "./invalid_icon.svg";
+import { validIcon, invalidIcon } from "./Icons";
 
 const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margin, tabIndex = 0 }) => {
   const [innerCurrent, setInnerCurrentStep] = useState(currentStep || 0);
@@ -41,11 +40,14 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                     {step.icon ? (
                       <StepIconContainer disabled={step.disabled}>
                         {typeof step.icon === "object" ? (
-                            step.icon.type === "img" 
-                              ? <ImgContainer current={i === renderedCurrent} img={step.icon.props.src} />
-                              : step.icon
-                          ) : React.createElement(step.icon)
-                        }
+                          step.icon.type === "img" ? (
+                            <ImgContainer current={i === renderedCurrent} img={step.icon.props.src} />
+                          ) : (
+                            step.icon
+                          )
+                        ) : (
+                          React.createElement(step.icon)
+                        )}
                       </StepIconContainer>
                     ) : step.iconSrc ? (
                       <Icon src={step.iconSrc}></Icon>
@@ -57,9 +59,9 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
                   </IconContainer>
                   {step.valid !== undefined ? (
                     step.valid ? (
-                      <ValidityIcon src={ValidIcon}></ValidityIcon>
+                      <ValidityIconContainer>{validIcon}</ValidityIconContainer>
                     ) : (
-                      <ValidityIcon src={InvalidIcon}></ValidityIcon>
+                      <ValidityIconContainer>{invalidIcon}</ValidityIconContainer>
                     )
                   ) : (
                     ""
@@ -242,7 +244,7 @@ const Number = styled.p`
   margin: 0px 0px 0px 1px;
 `;
 
-const ValidityIcon = styled.img`
+const ValidityIconContainer = styled.div`
   width: 18px;
   height: 18px;
   position: absolute;

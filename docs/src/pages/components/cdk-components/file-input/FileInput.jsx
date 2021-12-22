@@ -17,10 +17,7 @@ import disabled from "./examples/disabled";
 function FileInput() {
   return (
     <ComponentDoc>
-      <ComponentHeader
-        title="File Input"
-        status="experimental"
-      ></ComponentHeader>
+      <ComponentHeader title="File Input" status="ready"></ComponentHeader>
       <DxcTabsForSections
         stickAtPx={64}
         tabsMode="underlined"

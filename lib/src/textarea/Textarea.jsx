@@ -1,100 +1,137 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
-
-import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
-import DxcRequired from "../common/RequiredComponent";
+import PropTypes from "prop-types";
+import { spaces } from "../common/variables.js";
+import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import { useLayoutEffect } from "react";
 
-const DxcTextarea = ({
-  label = " ",
-  name = "",
-  value,
-  assistiveText = "",
-  disabled = false,
-  onChange = "",
-  onBlur = "",
-  numRows = 4,
-  invalid = false,
-  required = false,
-  placeholder = "",
-  margin,
-  size = "medium",
-  tabIndex = 0,
-}) => {
-  const [innerValue, setInnerValue] = useState("");
-  const colorsTheme = useTheme();
-  const backgroundType = useContext(BackgroundColorContext);
+const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 
-  const handlerTextareaChange = (event) => {
-    if (value === null || value === undefined) {
-      if (typeof onChange === "function") {
-        setInnerValue(event.target.value);
-        onChange(event.target.value);
-      } else {
-        setInnerValue(event.target.value);
+const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
+
+const getPatternErrorMessage = () => `Please match the format requested.`;
+
+const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
+
+const DxcTextarea = React.forwardRef(
+  (
+    {
+      label = "",
+      name = "",
+      value,
+      helperText = "",
+      placeholder = "",
+      disabled = false,
+      optional = false,
+      verticalGrow = "auto",
+      rows = 4,
+      onChange,
+      onBlur,
+      error = "",
+      pattern,
+      length,
+      autocomplete = "off",
+      margin,
+      size = "medium",
+      tabIndex = 0,
+    },
+    ref
+  ) => {
+    const [innerValue, setInnerValue] = useState("");
+    const [textareaId] = useState(`textarea-${uuidv4()}`);
+
+    const colorsTheme = useTheme();
+    const backgroundType = useContext(BackgroundColorContext);
+
+    const textareaRef = useRef(null);
+    const errorId = `error-message-${textareaId}`;
+
+    const isNotOptional = (value) => value === "" && !optional;
+
+    const isLengthIncorrect = (value) =>
+      value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
+
+    const changeValue = (newValue) => {
+      value ?? setInnerValue(newValue);
+
+      if (isNotOptional(newValue)) onChange?.({ value: newValue, error: getNotOptionalErrorMessage() });
+      else if (isLengthIncorrect(newValue)) onChange?.({ value: newValue, error: getLengthErrorMessage(length) });
+      else if (newValue && pattern && !patternMatch(pattern, newValue))
+        onChange?.({ value: newValue, error: getPatternErrorMessage() });
+      else onChange?.({ value: newValue, error: null });
+    };
+
+    const handleTOnBlur = (event) => {
+      if (isNotOptional(event.target.value))
+        onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
+      else if (isLengthIncorrect(event.target.value))
+        onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
+      else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
+        onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
+      else onBlur?.({ value: event.target.value, error: null });
+    };
+
+    const handleTOnChange = (event) => {
+      changeValue(event.target.value);
+    };
+
+    useLayoutEffect(() => {
+      if (verticalGrow === "auto") {
+        const textareaLineHeight = parseInt(window.getComputedStyle(textareaRef.current)["line-height"]);
+        const textareaPaddingTopBottom = parseInt(window.getComputedStyle(textareaRef.current)["padding-top"]) * 2;
+        textareaRef.current.style.height = `${textareaLineHeight * rows}px`;
+        const newHeight = textareaRef.current.scrollHeight - textareaPaddingTopBottom;
+        textareaRef.current.style.height = `${newHeight}px`;
       }
-    } else if (onChange !== "") {
-      if (typeof onChange === "function") {
-        onChange(event.target.value);
-      } else {
-        setInnerValue(event.target.value);
-      }
-    }
-  };
+    }, [value, verticalGrow, rows, innerValue]);
 
-  const handlerTextareaBlur = (event) => {
-    setInnerValue(event.target.value);
-    if (onBlur) {
-      onBlur(event.target.value);
-    }
-  };
-
-  return (
-    <ThemeProvider theme={colorsTheme.textarea}>
-      <TextContainer
-        required={required}
-        assistiveText={assistiveText}
-        margin={margin}
-        size={size}
-        backgroundType={backgroundType}
-      >
-        <TextField
-          error={invalid}
-          value={value !== null ? value : innerValue}
-          name={name}
-          multiline
-          disabled={disabled}
-          label={
-            required ? (
-              <React.Fragment>
-                <DxcRequired />
-                {label}
-              </React.Fragment>
-            ) : (
-              label
-            )
-          }
-          helperText={assistiveText}
-          onChange={handlerTextareaChange}
-          onBlur={(onBlur && handlerTextareaBlur) || null}
-          rows={numRows}
-          placeholder={placeholder}
-          inputProps={{
-            tabIndex: tabIndex,
-          }}
-        />
-      </TextContainer>
-    </ThemeProvider>
-  );
-};
+    return (
+      <ThemeProvider theme={colorsTheme.textarea}>
+        <TextareaContainer margin={margin} size={size} ref={ref}>
+          <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType}>
+            {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+          </Label>
+          <HelperText disabled={disabled} backgroundType={backgroundType}>
+            {helperText}
+          </HelperText>
+          <Textarea
+            id={textareaId}
+            name={name}
+            value={value ?? innerValue}
+            placeholder={placeholder}
+            verticalGrow={verticalGrow}
+            rows={rows}
+            onChange={handleTOnChange}
+            onBlur={handleTOnBlur}
+            disabled={disabled}
+            error={error}
+            minLength={length?.min}
+            maxLength={length?.max}
+            autoComplete={autocomplete}
+            backgroundType={backgroundType}
+            ref={textareaRef}
+            tabIndex={tabIndex}
+            aria-invalid={error ? "true" : "false"}
+            aria-describedby={error ? errorId : undefined}
+            aria-required={optional ? "false" : "true"}
+          />
+          {!disabled && (
+            <Error id={errorId} backgroundType={backgroundType}>
+              {error}
+            </Error>
+          )}
+        </TextareaContainer>
+      </ThemeProvider>
+    );
+  }
+);
 
 const sizes = {
-  small: "42px",
-  medium: "240px",
+  small: "240px",
+  medium: "360px",
   large: "480px",
   fillParent: "100%",
 };
@@ -104,7 +141,11 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const TextContainer = styled.div`
+const TextareaContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -114,208 +155,172 @@ const TextContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: inline-block;
-  position: relative;
-  height: auto;
-  width: ${(props) => calculateWidth(props.margin, props.size)};
+`;
 
-  .MuiTextField-root {
-    width: 100%;
+const Label = styled.label`
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledLabelFontColorOnDark
+        : props.theme.disabledLabelFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.labelFontColorOnDark
+      : props.theme.labelFontColor};
 
-    .MuiFormHelperText-root {
-      font-family: ${(props) => props.theme.fontFamily};
-      font-size: ${(props) => props.theme.assistiveTextFontSize};
-      font-style: ${(props) => props.theme.assistiveTextFontStyle};
-      font-weight: ${(props) => props.theme.assistiveTextFontWeight};
-      letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
-      margin-top: 6px;
-    }
-    .MuiFormLabel-root {
-      font-size: ${(props) => props.theme.labelFontSize};
-      font-style: ${(props) => props.theme.labelFontStyle};
-      font-weight: ${(props) => props.theme.labelFontWeight};
-      letter-spacing: ${(props) => props.theme.labelLetterSpacing};
-      color: ${(props) =>
-        props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
-      padding-left: "inherit";
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.labelFontSize};
+  font-style: ${(props) => props.theme.labelFontStyle};
+  font-weight: ${(props) => props.theme.labelFontWeight};
+  line-height: ${(props) => props.theme.labelLineHeight};
+`;
 
-      &.Mui-disabled {
-        color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor} !important;
-        cursor: not-allowed;
-      }
+const OptionalLabel = styled.span`
+  font-weight: ${(props) => props.theme.optionalLabelFontWeight};
+`;
 
-      &.Mui-focused {
-        color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
-        &.MuiInputLabel-shrink {
-          transform: "translate(0, 1.5px) scale(0.75);";
-        }
-      }
+const HelperText = styled.span`
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledHelperTextFontColorOnDark
+        : props.theme.disabledHelperTextFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.helperTextFontColorOnDark
+      : props.theme.helperTextFontColor};
 
-      &.MuiInputLabel-shrink {
-        font-family: ${(props) => props.theme.fontFamily};
-        transform: "translate(0, 1.5px) scale(0.75)";
-      }
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.helperTextFontSize};
+  font-style: ${(props) => props.theme.helperTextFontStyle};
+  font-weight: ${(props) => props.theme.helperTextFontWeight};
+  line-height: ${(props) => props.theme.helperTextLineHeight};
+`;
 
-      &.Mui-error {
-        color: ${(props) => (props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor)};
-      }
+const Textarea = styled.textarea`
+  ${(props) => {
+    if (props.verticalGrow === "none") return "resize: none;";
+    else if (props.verticalGrow === "auto") return `resize: none; overflow: hidden;`;
+    else if (props.verticalGrow === "manual") return "resize: vertical;";
+    else return `resize: none;`;
+  }};
+  ${(props) => {
+    if (props.disabled)
+      return props.backgroundType === "dark"
+        ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
+        : `background-color: ${props.theme.disabledContainerFillColor};`;
+    else return `background-color: transparent;`;
+  }}
 
-      &:not(.MuiInputLabel-shrink) {
-        font-family: ${(props) => props.theme.fontFamily};
-        color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
-        & + div,
-        & + div + p {
-          color: ${(props) =>
+  margin: calc(1rem * 0.25) 0;
+  padding: calc(1rem * 0.5) calc(1rem * 1);
+  box-shadow: 0 0 0 2px transparent;
+  border-radius: calc(1rem * 0.25);
+  border: 1px solid
+    ${(props) => {
+      if (props.disabled)
+        return props.backgroundType === "dark"
+          ? props.theme.disabledBorderColorOnDark
+          : props.theme.disabledBorderColor;
+      else
+        return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
+    }};
+  ${(props) =>
+    props.error &&
+    !props.disabled &&
+    `border-color: transparent;
+     box-shadow: 0 0 0 2px ${
+       props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
+     };
+  `}
+
+  ${(props) => props.disabled && "cursor: not-allowed;"};
+  ${(props) =>
+    !props.disabled &&
+    `
+      &:hover {
+        border-color: ${
+          props.error
+            ? "transparent"
+            : props.backgroundType === "dark"
+            ? props.theme.hoverBorderColorOnDark
+            : props.theme.hoverBorderColor
+        };
+        ${
+          props.error &&
+          `box-shadow: 0 0 0 2px ${
             props.backgroundType === "dark"
-              ? props.theme.assistiveTextFontColorOnDark
-              : props.theme.assistiveTextFontColor};
+              ? props.theme.hoverErrorBorderColorOnDark
+              : props.theme.hoverErrorBorderColor
+          };`
         }
       }
-
-      &.MuiInputLabel-shrink {
-        & + div::before {
-          border-color: ${(props) =>
-            props.backgroundType ? props.theme.underlineColorOnDark : props.theme.underlineColor};
-        }
-        & + div + p {
-          color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.labelFontColorOnDark : props.theme.labelFontColor};
-        }
+      &:focus {
+        outline: none;
+        border-color: transparent;
+        box-shadow: 0 0 0 2px ${
+          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
+        };
       }
-    }
-    .MuiInputBase-root.MuiInput-root.MuiInput-underline {
-      &::before {
-        border-bottom: ${(props) =>
-          `${props.theme.underlineThickness} solid ${
-            props.backgroundType === "dark" ? props.theme.underlineColorOnDark : props.theme.underlineColor
-          }`};
+      &:focus-within {
+        outline: none;
+        border-color: transparent;
+        box-shadow: 0 0 0 2px ${
+          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
+        };
       }
+    `};
 
-      &:not(.Mui-error)::before,
-      &:not(&.Mui-focused)::before {
-        border-bottom: ${(props) =>
-          `${props.theme.underlineThickness} solid ${
-            props.backgroundType === "dark" ? props.theme.underlineColorOnDark : props.theme.underlineColor
-          }`};
-      }
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledValueFontColorOnDark
+        : props.theme.disabledValueFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.valueFontColorOnDark
+      : props.theme.valueFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.valueFontSize};
+  font-style: ${(props) => props.theme.valueFontStyle};
+  font-weight: ${(props) => props.theme.valueFontWeight};
+  line-height: 1.5em;
 
-      &::after {
-        border-bottom: ${(props) =>
-          `calc(${props.theme.underlineThickness} + 1px) solid ${
-            props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor
-          }`};
-      }
-
-      .MuiInputBase-inputMultiline {
-        overflow: auto !important;
-
-        ::-webkit-scrollbar {
-          width: 3px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background-color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.scrollBarTrackColorOnDark : props.theme.scrollBarTrackColor};
-          border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background-color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.scrollBarThumbColorOnDark : props.theme.scrollBarThumbColor};
-          border-radius: 3px;
-        }
-      }
-
-      &.Mui-error {
-        &::before {
-          border-width: ${(props) => props.theme.underlineThickness};
-          border-color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor};
-        }
-        &::after {
-          transform: scaleX(0);
-        }
-      }
-
-      &.Mui-focused {
-        &::after {
-          border-width: calc(${(props) => props.theme.underlineThickness} + 1px);
-          border-color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor};
-        }
-        &.Mui-error::after {
-          border-color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor};
-        }
-      }
-
-      &.Mui-disabled {
-        cursor: not-allowed;
-
-        &::before {
-          border-bottom: ${(props) =>
-            `${props.theme.underlineThickness} solid ${
-              props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor
-            } !important`};
-          border-bottom-style: solid;
-        }
-      }
-
-      .MuiInputBase-input {
-        font-family: ${(props) => props.theme.fontFamily};
-        font-size: ${(props) => props.theme.valueFontSize};
-        font-style: ${(props) => props.theme.valueFontStyle};
-        font-weight: ${(props) => props.theme.valueFontWeight};
-        letter-spacing: ${(props) => props.theme.valueLetterSpacing};
-        color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.valueFontColorOnDark : props.theme.valueFontColor};
-        line-height: ${(props) => props.theme.valueLineHeight};
-        padding-left: "inherit";
-        text-overflow: ellipsis;
-
-        &.Mui-disabled {
-          cursor: not-allowed;
-          color: ${(props) =>
-            props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor};
-        }
-      }
-
-      &:hover:not(.Mui-disabled):before &:hover:not(.Mui-error):before {
-        border-bottom-color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.underlineFocusColorOnDark : props.theme.underlineFocusColor};
-      }
-    }
-
-    & > p {
-      &.Mui-error {
-        color: ${(props) =>
-          `${props.backgroundType === "dark" ? props.theme.errorColorOnDark : props.theme.errorColor} !important`};
-      }
-      &.Mui-disabled {
-        color: ${(props) =>
-          props.backgroundType === "dark" ? props.theme.disabledColorOnDark : props.theme.disabledColor} !important;
-        cursor: not-allowed;
-      }
-    }
+  ::placeholder {
+    color: ${(props) =>
+      props.disabled
+        ? props.backgroundType === "dark"
+          ? props.theme.disabledPlaceholderFontColorOnDark
+          : props.theme.disabledPlaceholderFontColor
+        : props.backgroundType === "dark"
+        ? props.theme.placeholderFontColorOnDark
+        : props.theme.placeholderFontColor};
   }
+`;
+
+const Error = styled.span`
+  color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: 0.75rem;
+  font-weight: 400;
+  min-height: 1.5em;
+  line-height: 1.5em;
 `;
 
 DxcTextarea.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
-  assistiveText: PropTypes.string,
-  disabled: PropTypes.bool,
-  required: PropTypes.bool,
-  invalid: PropTypes.bool,
+  helperText: PropTypes.string,
   placeholder: PropTypes.string,
+  verticalGrow: PropTypes.oneOf(["auto", "none", "manual"]),
+  rows: PropTypes.number,
+  length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
+  pattern: PropTypes.string,
+  disabled: PropTypes.bool,
+  optional: PropTypes.bool,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
-  numRows: PropTypes.number,
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
+  error: PropTypes.string,
+  autocomplete: PropTypes.string,
   margin: PropTypes.oneOfType([
     PropTypes.shape({
       top: PropTypes.oneOf(Object.keys(spaces)),
@@ -325,6 +330,7 @@ DxcTextarea.propTypes = {
     }),
     PropTypes.oneOf([...Object.keys(spaces)]),
   ]),
+  size: PropTypes.oneOf([...Object.keys(sizes)]),
   tabIndex: PropTypes.number,
 };
 

@@ -23,6 +23,27 @@ function App() {
         </div>
       </div>
       <div>
+        <h4>As prop</h4>
+        <div className="test-case" id="heading-level1-as-h5">
+          <DxcHeading text="Level 1 as h5" level={1} as="h5" />
+        </div>
+        <div className="test-case" id="heading-level2-as-h3">
+          <DxcHeading text="Level 2 as h3" level={2} as="h3" />
+        </div>
+        <div className="test-case" id="heading-level3-as-h4">
+          <DxcHeading text="Level 3 as h4" level={3} as="h4" />
+        </div>
+        <div className="test-case" id="heading-level4-as-h2">
+          <DxcHeading text="Level 4 as h2" level={4} as="h2" />
+        </div>
+        <div className="test-case" id="heading-level5-as-h1">
+          <DxcHeading text="Level 5 as h1" level={5} as="h1" />
+        </div>
+        <div className="test-case" id="heading-level5-as-invalid">
+          <DxcHeading text="Level 5 and invalid as" level={5} as="adfasdsd" />
+        </div>
+      </div>
+      <div>
         <h4>Weights</h4>
         <div className="test-case" id="heading-level1-weight-normal">
           <DxcHeading text="Hello world!" level={1} weight="normal" />

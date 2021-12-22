@@ -4,9 +4,7 @@ import { DxcHeader, DxcFooter, DxcSidenav } from "../main";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces, responsiveSizes } from "../common/variables.js";
-import linkedinLogo from "./linkedin.svg";
-import twitterLogo from "./twitter.svg";
-import facebookLogo from "./facebook.svg";
+import { facebookLogo, linkedinLogo, twitterLogo } from "./Icons";
 import useTheme from "../useTheme.js";
 
 const year = new Date().getFullYear();
@@ -62,15 +60,15 @@ const defaultFooter = () => {
       socialLinks={[
         {
           href: "https://www.linkedin.com/company/dxctechnology",
-          logoSrc: linkedinLogo,
+          logo: linkedinLogo,
         },
         {
           href: "https://twitter.com/dxctechnology",
-          logoSrc: twitterLogo,
+          logo: twitterLogo,
         },
         {
           href: "https://www.facebook.com/DXCTechnology/",
-          logoSrc: facebookLogo,
+          logo: facebookLogo,
         },
       ]}
     />

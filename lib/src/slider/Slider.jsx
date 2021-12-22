@@ -2,8 +2,7 @@ import React, { useState, useMemo, useContext } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-
-import DxcInput from "../input-text/InputText";
+import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
@@ -51,12 +50,22 @@ const DxcSlider = ({
       onChange(newValue);
     }
   };
+
   const handlerInputChange = (event) => {
+    const intValue = parseInt(event.value, 10);
     if (value == null) {
-      setInnerValue(event > maxValue ? maxValue : event);
+      if (!Number.isNaN(intValue)) {
+        setInnerValue(intValue > maxValue ? maxValue : intValue);
+      } else {
+        setInnerValue("");
+      }
     }
     if (typeof onChange === "function") {
-      onChange(event > maxValue ? maxValue : event);
+      if (!Number.isNaN(intValue)) {
+        onChange(intValue > maxValue ? maxValue : intValue);
+      } else {
+        onChange("");
+      }
     }
   };
 
@@ -88,12 +97,12 @@ const DxcSlider = ({
           )}
           {showInput && (
             <StyledTextInput>
-              <DxcInput
+              <DxcTextInput
                 name={name}
                 value={(value != null && value >= 0 && value) || innerValue}
                 disabled={disabled}
                 onChange={handlerInputChange}
-                size="small"
+                size="fillParent"
               />
             </StyledTextInput>
           )}
@@ -315,6 +324,7 @@ const StyledTextInput = styled.div`
   label + .MuiInput-formControl {
     margin-top: 2px;
   }
+  max-width: 70px;
 `;
 
 DxcSlider.propTypes = {

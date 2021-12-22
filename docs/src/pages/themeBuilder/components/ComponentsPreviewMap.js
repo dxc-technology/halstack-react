@@ -18,7 +18,7 @@ import HeaderPreview from "./previews/Header";
 import InputTextPreview from "./previews/InputText";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
-import TextareaPreview from "./previews/Textarea";
+import V3TextareaPreview from "./previews/V3Textarea";
 import ToggleGroupPreview from "./previews/ToggleGroup";
 import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
@@ -28,10 +28,10 @@ import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
 import UploadPreview from "./previews/Upload";
 import CardPreview from "./previews/Card";
-import NewDatePreview from "./previews/NewDate";
-import NewInputTextPreview from "./previews/NewInputText";
+import DateInputPreview from "./previews/DateInput";
+import TextInputPreview from "./previews/TextInput";
 import FileInputPreview from "./previews/FileInput";
-import NewTextareaPreview from "./previews/NewTextarea";
+import TextareaPreview from "./previews/Textarea";
 
 const SampleComponents = [
   {
@@ -67,6 +67,10 @@ const SampleComponents = [
     preview: DatePreview,
   },
   {
+    name: "dateInput",
+    preview: DateInputPreview,
+  },
+  {
     name: "dialog",
     preview: DialogPreview,
   },
@@ -99,16 +103,8 @@ const SampleComponents = [
     preview: LinkPreview,
   },
   {
-    name: "newDate",
-    preview: NewDatePreview,
-  },
-  {
-    name: "newInputText",
-    preview: NewInputTextPreview,
-  },
-  {
-    name: "newTextarea",
-    preview: NewTextareaPreview,
+    name: "textarea",
+    preview: TextareaPreview,
   },
   {
     name: "paginator",
@@ -155,8 +151,12 @@ const SampleComponents = [
     preview: TagPreview,
   },
   {
-    name: "textarea",
-    preview: TextareaPreview,
+    name: "V3Textarea",
+    preview: V3TextareaPreview,
+  },
+  {
+    name: "textInput",
+    preview: TextInputPreview,
   },
   {
     name: "toggleGroup",

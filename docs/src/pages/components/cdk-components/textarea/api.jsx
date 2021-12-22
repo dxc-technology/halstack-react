@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const textareaPropsTable = () => {
+const TextareaPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -15,35 +15,29 @@ const textareaPropsTable = () => {
           <code></code>
         </td>
         <td>
-          Value of the input element. If undefined, the component will be
-          uncontrolled and the value will be managed internally by the
-          component.
+          Value of the textarea. If undefined, the component will be
+          uncontrolled and the value will be managed internally.
         </td>
       </tr>
       <tr>
         <td>label: string</td>
         <td></td>
-        <td>Text to be placed next to the input.</td>
-      </tr>
-      <tr>
-        <td>assistiveText: string</td>
-        <td></td>
-        <td>Assistive text to be placed bellow the input.</td>
+        <td>Text to be placed above the textarea.</td>
       </tr>
       <tr>
         <td>name: string</td>
         <td></td>
-        <td>Name attribute of the input element.</td>
+        <td>Name attribute of the textarea element.</td>
       </tr>
       <tr>
-        <td>numRows: number</td>
-        <td>4</td>
-        <td>Number of rows of the textarea.</td>
+        <td>helperText: string</td>
+        <td></td>
+        <td>Helper text to be placed above the textarea.</td>
       </tr>
       <tr>
         <td>placeholder: string</td>
         <td></td>
-        <td>Text to be put as placeholder in the textarea.</td>
+        <td>Text to be put as placeholder of the textarea.</td>
       </tr>
       <tr>
         <td>disabled: boolean</td>
@@ -53,39 +47,117 @@ const textareaPropsTable = () => {
         <td>If true, the component will be disabled.</td>
       </tr>
       <tr>
-        <td>required: boolean</td>
+        <td>optional: boolean</td>
         <td>
           <code>false</code>
         </td>
         <td>
-          If true, the input will change its appearence, showing that the value
-          is required.
+          If true, the textarea will be optional, showing{" "}
+          <code>(Optional)</code> next to the label. Otherwise, the field will
+          be considered required and an error will be passed as a parameter to
+          the OnBlur and onChange functions when it has not been filled.
         </td>
       </tr>
       <tr>
-        <td>invalid: boolean</td>
+        <td>verticalGrow: 'auto' | 'manual' | 'none'</td>
         <td>
-          <code>false</code>
+          <code>'auto'</code>
         </td>
         <td>
-          If true, the input will change its appearence, showing that the value
-          is invalid.
+          Defines the textarea's ability to resize vertically. It can be:
+          <ul>
+            <li>
+              <b>'auto'</b>: The textarea grows or shrinks automatically in
+              order to fit the content.
+            </li>
+            <li>
+              <b>'manual'</b>: The height of the textarea is enabled to be
+              manually modified.
+            </li>
+            <li>
+              <b>'none'</b>: The textarea has a fixed height and can't be
+              modified.
+            </li>
+          </ul>
         </td>
+      </tr>
+      <tr>
+        <td>rows: number</td>
+        <td>4</td>
+        <td>Number of rows of the textarea.</td>
       </tr>
       <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user changes the value of the
-          input. The new value will be passed as a parameter.
+          This function will be called when the user types within the textarea.
+          An object including the current value and the error (if the value
+          entered is not valid) will be passed to this function. An example of
+          this object is: {"{ "}
+          <code>value: value, error: error</code>
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
         <td>onBlur: function</td>
         <td></td>
         <td>
-          This function will be called when the the input loses the focus. The
-          input value will be passed as a parameter.
+          This function will be called when the textarea loses the focus. An
+          object including the textarea value and the error (if the value
+          entered is not valid) will be passed to this function. An example of
+          this object is: {"{ "}
+          <code>value: value, error: error</code>
+          {" }"}. If there is no error, error will be null.
+        </td>
+      </tr>
+      <tr>
+        <td>error: string</td>
+        <td></td>
+        <td>
+          If it is defined, the component will change its appearance, showing
+          the error below the textarea. If it is not defined, the error messages
+          will be managed internally, but never displayed on its own.
+        </td>
+      </tr>
+      <tr>
+        <td>pattern: string</td>
+        <td></td>
+        <td>
+          Regular expression that defines the valid format allowed by the
+          textarea. This will be checked both when the textarea loses the focus
+          and while typing within it. If the string entered does not match the
+          pattern, the onBlur and onChange functions will be called with the
+          current value and an internal error informing that this value does not
+          match the pattern. If the pattern is met, the error parameter of both
+          events will be null.
+        </td>
+      </tr>
+      <tr>
+        <td>length: object</td>
+        <td></td>
+        <td>
+          Specifies the minimun and maximum length allowed by the textarea. It
+          follows the structure: {"{ "}
+          <code>min: number, max: number</code>
+          {" }"}. This will be checked both when the textarea loses the focus
+          and while typing within it. If the string entered does not comply the
+          length, the onBlur and onChange functions will be called with the
+          current value and an internal error informing that the value length
+          does not comply the specified range. If a valid length is reached, the
+          error parameter of both events will be null.
+        </td>
+      </tr>
+      <tr>
+        <td>autocomplete: string</td>
+        <td>
+          <code>'off'</code>
+        </td>
+        <td>
+          HTML autocomplete attribute. Lets the user specify if any permission
+          the user agent has to provide automated assistance in filling out the
+          textarea value. Its value must be one of all the possible values of
+          the HTML autocomplete attribute: 'on', 'off', 'email', 'username',
+          'new-password', ...
         </td>
       </tr>
       <tr>
@@ -109,11 +181,18 @@ const textareaPropsTable = () => {
       </tr>
       <tr>
         <td>tabIndex: number</td>
-        <td>0</td>
-        <td>Value of the tabindex.</td>
+        <td>
+          <code>0</code>
+        </td>
+        <td>Value of the tabindex attribute.</td>
+      </tr>
+      <tr>
+        <td>ref: object</td>
+        <td></td>
+        <td>Reference to the component.</td>
       </tr>
     </DxcTable>
   );
 };
 
-export default textareaPropsTable;
+export default TextareaPropsTable;

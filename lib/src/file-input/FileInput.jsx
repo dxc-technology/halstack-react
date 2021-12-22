@@ -315,6 +315,7 @@ const FileContainer = styled.div`
 const ButtonErrorContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 0.25rem;
 
   input[type="file"] {
     visibility: hidden;
@@ -344,6 +345,7 @@ const DropLabel = styled.span`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 0.25rem;
 `;
 
 const FileItemContainer = styled.div`

@@ -10,11 +10,6 @@ const alertPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>logoSrc: string</td>
-        <td></td>
-        <td>The path of an icon to replace the theme logo.</td>
-      </tr>
-      <tr>
         <td>socialLinks: object[]</td>
         <td>
           <code>[]</code>

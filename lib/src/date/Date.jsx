@@ -7,12 +7,12 @@ import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import DxcInput from "../input-text/InputText";
+import V3DxcInputText from "../input-text/InputText";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
-const DxcDate = ({
+const V3DxcDate = ({
   value,
   format = "dd-MM-yyyy",
   label = "",
@@ -36,14 +36,13 @@ const DxcDate = ({
 
   const handleMenuItemClick = (date) => {
     const stringValue = moment(date).format(format.toUpperCase());
-    if (value == null)
-      setInnerValue(stringValue);
+    if (value == null) setInnerValue(stringValue);
     if (typeof onChange === "function")
       onChange({
         stringValue,
         dateValue: date && date.toJSON() ? date : null,
       });
-  }
+  };
 
   const onChangeInput = (string) => {
     const momentDate = moment(string, format.toUpperCase(), true);
@@ -60,8 +59,7 @@ const DxcDate = ({
 
   const handlerInputBlur = (inputString) => {
     setInnerValue(inputString);
-    if (onBlur)
-      onBlur(inputString);
+    if (onBlur) onBlur(inputString);
   };
 
   const getValueForPicker = () => {
@@ -236,7 +234,7 @@ const DxcDate = ({
       <MuiThemeProvider theme={dateTheme}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <StyledDPicker margin={margin}>
-            <DxcInput
+            <V3DxcInputText
               label={label}
               name={name}
               suffixIcon={calendarSVG}
@@ -297,7 +295,7 @@ const sizes = {
 
 const StyledDPicker = styled.div``;
 
-DxcDate.propTypes = {
+V3DxcDate.propTypes = {
   value: PropTypes.string,
   format: PropTypes.string,
   label: PropTypes.string,
@@ -324,4 +322,4 @@ DxcDate.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcDate;
+export default V3DxcDate;

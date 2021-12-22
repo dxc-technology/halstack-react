@@ -10,7 +10,7 @@ import DxcRequired from "../common/RequiredComponent";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
-import errorIcon from "./error.svg";
+import errorIcon from "./Icons";
 import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const makeCancelable = (promise) => {
@@ -31,7 +31,7 @@ const makeCancelable = (promise) => {
   };
 };
 
-const DxcInputText = ({
+const V3DxcInputText = ({
   label = " ",
   name = "",
   value,
@@ -182,7 +182,9 @@ const DxcInputText = ({
           {isError && (
             <MenuItem>
               Error fetching data
-              <ErrorIcon src={errorIcon} />
+              <ErrorIconContainer>
+                {errorIcon}
+              </ErrorIconContainer>
             </MenuItem>
           )}
         </Paper>
@@ -329,8 +331,9 @@ const sizes = {
   fillParent: "100%",
 };
 
-const ErrorIcon = styled.img`
+const ErrorIconContainer = styled.div`
   padding-left: 12px;
+  color:red;
 `;
 
 const calculateWidth = (margin, size) => {
@@ -700,7 +703,7 @@ const TextContainer = styled.div`
   }
 `;
 
-DxcInputText.propTypes = {
+V3DxcInputText.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -735,4 +738,4 @@ DxcInputText.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default DxcInputText;
+export default V3DxcInputText;

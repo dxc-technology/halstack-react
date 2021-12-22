@@ -2,10 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
-import closeIcon from "./close.svg";
-import defaultIcon from "./file-icon.svg";
-import videoIcon from "./video-icon.svg";
-import audioIcon from "./audio-icon.svg";
+import { defaultIcon, videoIcon, audioIcon, closeIcon } from "./Icons";
 import useTheme from "../../useTheme.js";
 
 const DxcFileToUpload = ({ name = "", type = "", image, onDelete, tabIndexValue }) => {
@@ -17,12 +14,14 @@ const DxcFileToUpload = ({ name = "", type = "", image, onDelete, tabIndexValue 
     <ThemeProvider theme={colorsTheme.upload}>
       <DXCFileToUpload>
         <FileContent>
-          {(hasImage && <FileImage src={image} />) || <FileImage src={icon} />}
+          {(hasImage && <FileImage src={image} />) || <FileIconContainer>{icon}</FileIconContainer>}
           <FileInfo>
             <FileName>{name}</FileName>
             <FileType>{type}</FileType>
           </FileInfo>
-          <DeleteFile className="delete-file" onClick={onDelete} tabIndex={tabIndexValue} />
+          <DeleteFile onClick={onDelete} tabIndex={tabIndexValue}>
+            {closeIcon}
+          </DeleteFile>
         </FileContent>
       </DXCFileToUpload>
     </ThemeProvider>
@@ -67,6 +66,16 @@ const FileImage = styled.img`
   object-fit: contain;
 `;
 
+const FileIconContainer = styled.div`
+  margin-right: 30px;
+  width: 70px;
+  height: 52px;
+  & svg {
+    width: 70px;
+    height: 52px;
+  }
+`;
+
 const FileInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -91,17 +100,21 @@ const FileType = styled.div`
 `;
 
 const DeleteFile = styled.button`
-  background-color: ${(props) => props.theme.fileDeleteIconColor};
-  mask: url(${closeIcon}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.fileDeleteIconSize} ${props.theme.fileDeleteIconSize}`};
   height: ${(props) => props.theme.fileDeleteIconSize};
   width: ${(props) => props.theme.fileDeleteIconSize};
   border: none;
   display: flex;
   margin-right: 30px;
   margin-top: 11px;
+  padding: 0px;
+  background: none;
   &:focus {
     visibility: visible;
+  }
+  & svg {
+    fill: ${(props) => props.theme.fileDeleteIconColor};
+    height: ${(props) => props.theme.fileDeleteIconSize};
+    width: ${(props) => props.theme.fileDeleteIconSize};
   }
 `;
 

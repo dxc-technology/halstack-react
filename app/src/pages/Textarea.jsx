@@ -1,210 +1,268 @@
-import React, { useState } from "react";
-import { DxcTextarea, ThemeContext } from "@dxc-technology/halstack-react";
+import React, { useRef, useState } from "react";
+import {
+  DxcTextarea,
+  DxcButton,
+  BackgroundColorProvider,
+} from "@dxc-technology/halstack-react";
+import styled from "styled-components";
 
 function App() {
-  const [inputValue, changeInput] = useState("");
-  const onChange = (newValue) => {
-    changeInput(newValue);
+  const ref = useRef(null);
+  const [value, setValue] = useState("");
+  const [error, setError] = useState("");
+  const onChange = ({ value }) => {
+    setValue(value);
+  };
+  const onBlur = ({ value, error }) => {
+    setValue(value);
+    error ? setError(error) : setError(null);
   };
 
+  const [customValue, setCustomValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const onChangeCustom = ({ value }) => {
+    setCustomValue(value);
+  };
+  const onBlurCustom = ({ value, error }) => {
+    setCustomValue(value);
+    error ? setErrorMessage("Custom length error.") : setErrorMessage(null);
+  };
+
+  const [customPatternValue, setCustomPatternValue] = useState("");
+  const [customPatternError, setCustomPatternError] = useState("");
+  const onChangeCustomPattern = ({ value, error }) => {
+    setCustomPatternValue(value);
+    error
+      ? setCustomPatternError("Custom pattern error.")
+      : setCustomPatternError(null);
+  };
+
+  const [disabledInput, setDisabledInput] = useState(false);
+
   return (
-    <div>
-      <div className="test-case" id="light-theme-label">
-        <h4>With label</h4>
+    <>
+      <p>
+        <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
         <DxcTextarea
-          label="Textarea label"
-          value={inputValue}
-          onChange={onChange}
+          label="Small"
+          margin={{ left: "medium", right: "medium" }}
+          size="small"
         />
-      </div>
-
-      <div className="test-case" id="without-label">
-        <h4>Without label</h4>
-        <DxcTextarea value={inputValue} onChange={onChange} />
-      </div>
-
-      <div className="test-case" id="assistive-text">
-        <h4>With assistive text</h4>
         <DxcTextarea
-          label="Textarea label"
-          value={inputValue}
-          onChange={onChange}
-          assistiveText="assistive text"
+          label="Medium"
+          margin={{ left: "medium", right: "medium" }}
         />
-      </div>
-
-      <div className="test-case" id="disabled">
-        <h4>Disabled textarea</h4>
         <DxcTextarea
-          label="Textarea label"
-          value={inputValue}
-          onChange={onChange}
-          assistiveText="assistive text"
-          disabled={true}
+          label="Large"
+          margin={{ left: "medium", right: "medium" }}
+          size="large"
         />
-      </div>
-
-      <div className="test-case" id="required">
-        <h4>Required textarea</h4>
         <DxcTextarea
-          label="Textarea label"
-          value={inputValue}
-          onChange={onChange}
-          assistiveText="assistive text"
-          required={true}
+          label="Fill parent"
+          margin={{ left: "medium", right: "medium" }}
+          size="fillParent"
         />
-      </div>
-
-      <div className="test-case" id="invalid">
-        <h4>Invalid textarea</h4>
+      </p>
+      <p>
         <DxcTextarea
-          label="Textarea label"
-          value={inputValue}
-          onChange={onChange}
-          assistiveText="assistive text"
-          invalid={true}
+          label="Default"
+          helperText="Sample text"
+          placeholder="Enter your text here..."
+          optional
+          margin={{ left: "medium", right: "medium" }}
         />
-      </div>
-
-      <div className="test-case" id="with-placeholder">
-        <h4>With placeholder</h4>
+      </p>
+      <DxcTextarea
+        label="With 'on' autocomplete"
+        margin={{ left: "medium", right: "medium" }}
+        autocomplete="on"
+      />
+      <p>
         <DxcTextarea
-          label="Textarea label"
-          value={inputValue}
-          onChange={onChange}
-          assistiveText="assistive text"
-          placeholder="Placeholder text"
+          label="Disabled"
+          helperText="Sample text"
+          placeholder="Enter your text here..."
+          disabled
+          verticalGrow="manual"
+          margin={{ left: "medium", right: "medium" }}
         />
-      </div>
-
-      <div>
-        <h4>Margins</h4>
-        <div className="test-case" id="xxsmall-margin">
-          <h5>xxsmall margin</h5>
+      </p>
+      <p>
+        <DxcTextarea
+          label="Controlled"
+          helperText="Sample text"
+          placeholder="Enter your text here..."
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          error={error}
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Pattern"
+          helperText="The value should have at least one letter, one number and one special
+          character"
+          placeholder="Enter your text here..."
+          pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Length"
+          helperText="The value should be 5 < value < 10"
+          placeholder="Enter your text here..."
+          length={{ min: 5, max: 10 }}
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Custom length error"
+          helperText="The value should be 5 < value < 10"
+          placeholder="Enter your text here..."
+          value={customValue}
+          error={errorMessage}
+          onChange={onChangeCustom}
+          onBlur={onBlurCustom}
+          length={{ min: 5, max: 10 }}
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Custom pattern error"
+          helperText="The value should have at least one letter, one number and one special
+          character"
+          placeholder="Enter your text here..."
+          value={customPatternValue}
+          error={customPatternError}
+          onChange={onChangeCustomPattern}
+          pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Vertical grow 'none'"
+          placeholder="Enter your text here..."
+          verticalGrow="none"
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Vertical grow 'manual'"
+          placeholder="Enter your text here..."
+          verticalGrow="manual"
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Vertical grow 'auto' with long initial value"
+          helperText="Initially should also be changed"
+          placeholder="Enter your text here..."
+          value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="With rows"
+          placeholder="Enter your text here..."
+          rows={10}
+          verticalGrow="manual"
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Error"
+          placeholder="Enter your text here..."
+          error="Custom and very long error."
+          margin={{ left: "medium", right: "medium" }}
+        />
+      </p>
+      <p>
+        <DxcTextarea
+          label="Ref"
+          placeholder="Enter your text here..."
+          margin={{ left: "medium", right: "medium" }}
+          ref={ref}
+          disabled={disabledInput}
+        />
+        <DxcButton
+          onClick={() => {
+            setDisabledInput((disabled) => !disabled);
+          }}
+          label="Change disable"
+          margin={{ left: "medium" }}
+        ></DxcButton>
+      </p>
+      <BackgroundColorProvider color="#000000">
+        <Mode mode="dark">
           <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            margin="xxsmall"
+            label="Example label"
+            optional
+            helperText="Example of helper text"
+            placeholder="Placeholder"
+            margin={{
+              left: "medium",
+              top: "small",
+              right: "medium",
+            }}
           />
-        </div>
-
-        <div className="test-case" id="xsmall-margin">
-          <h5>xsmall margin</h5>
+        </Mode>
+        <Mode mode="dark">
           <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            margin="xsmall"
+            label="Disabled"
+            helperText="Sample text"
+            placeholder="Enter your text here..."
+            disabled
+            verticalGrow="manual"
+            margin={{
+              left: "medium",
+              bottom: "small",
+              top: "small",
+              right: "medium",
+            }}
           />
-        </div>
-
-        <div className="test-case" id="small-margin">
-          <h5>Small margin</h5>
+        </Mode>
+        <Mode mode="dark">
           <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            margin="small"
+            label="Error input"
+            helperText="Example of helper text"
+            placeholder="Enter your text here..."
+            margin={{ left: "medium", bottom: "small", right: "medium" }}
+            error="Error message."
           />
-        </div>
-
-        <div className="test-case" id="medium-margin">
-          <h5>Medium margin</h5>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            margin="medium"
-          />
-        </div>
-
-        <div className="test-case" id="large-margin">
-          <h5>Large margin</h5>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            margin="large"
-          />
-        </div>
-
-        <div className="test-case" id="xlarge-margin">
-          <h5>xlarge margin</h5>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            margin="xlarge"
-          />
-        </div>
-
-        <div className="test-case" id="xxlarge-margin">
-          <h5>xxlarge margin</h5>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            margin="xxlarge"
-          />
-        </div>
-      </div>
-
-      <div>
-        <h4>Sizes</h4>
-        <div className="test-case" id="small-size">
-          <h5>Small size</h5>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            size="small"
-          />
-        </div>
-
-        <div className="test-case" id="medium-size">
-          <h5>Medium size</h5>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            size="medium"
-          />
-        </div>
-
-        <div className="test-case" id="large-size">
-          <h5>Large size</h5>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            size="large"
-          />
-        </div>
-
-        <div className="test-case" id="fillParent-size">
-          <h5>FillParent margin</h5>
-          <DxcTextarea
-            label="Textarea label"
-            value={inputValue}
-            assistiveText={"assistive text"}
-            onChange={onChange}
-            size="fillParent"
-          />
-        </div>
-      </div>
-    </div>
+        </Mode>
+      </BackgroundColorProvider>
+    </>
   );
 }
+
+const Mode = ({ mode, children }) => {
+  return (
+    <ModeContainer mode={mode}>
+      <PreviewsContainer>{children}</PreviewsContainer>
+    </ModeContainer>
+  );
+};
+
+const ModeContainer = styled.div`
+  background-color: ${(props) =>
+    props.mode === "dark" ? "#000000" : "transparent"};
+
+  display: flex;
+  flex-flow: row wrap;
+`;
+
+const PreviewsContainer = styled.div`
+  flex: 100%;
+`;
 
 export default App;

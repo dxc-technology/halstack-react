@@ -26,18 +26,18 @@ import Sidenav from "./pages/Sidenav";
 import Wizard from "./pages/Wizard";
 import Link from "./pages/Link";
 import Heading from "./pages/Heading";
-import Textarea from "./pages/Textarea";
+import V3Textarea from "./pages/V3Textarea";
 import ResultsetTable from "./pages/ResultsetTable";
 import Chip from "./pages/Chip";
 import ApplicationLayout from "./pages/ApplicationLayout";
 import ToggleGroup from "./pages/ToggleGroup";
 import AccordionGroup from "./pages/AccordionGroup";
 import Badge from "./pages/Badge";
-import NewInputText from "./pages/NewInputText";
-import Password from "./pages/Password";
-import NewDate from "./pages/NewDate";
-import Number from "./pages/Number";
-import NewTextarea from "./pages/NewTextarea";
+import TextInput from "./pages/TextInput";
+import PasswordInput from "./pages/PasswordInput";
+import DateInput from "./pages/DateInput";
+import NumberInput from "./pages/NumberInput";
+import Textarea from "./pages/Textarea";
 import NewSelect from "./pages/NewSelect";
 import FileInput from "./pages/FileInput";
 
@@ -56,6 +56,11 @@ export default [
     path: "alert",
     name: "Alert",
     component: Alert,
+  },
+  {
+    path: "applicationLayout",
+    name: "Application Layout",
+    component: ApplicationLayout,
   },
   {
     path: "badge",
@@ -93,9 +98,9 @@ export default [
     component: Date,
   },
   {
-    path: "newDate",
-    name: "New Date",
-    component: NewDate,
+    path: "dateInput",
+    name: "Date Input",
+    component: DateInput,
   },
   {
     path: "dialog",
@@ -133,19 +138,19 @@ export default [
     component: InputText,
   },
   {
-    path: "newInputText",
-    name: "New input text",
-    component: NewInputText,
-  },
-  {
-    path: "number",
-    name: "Number",
-    component: Number,
-  },
-  {
     path: "link",
     name: "Link",
     component: Link,
+  },
+  {
+    path: "newSelect",
+    name: "New Select",
+    component: NewSelect,
+  },
+  {
+    path: "numberInput",
+    name: "Number Input",
+    component: NumberInput,
   },
   {
     path: "paginator",
@@ -153,9 +158,9 @@ export default [
     component: Paginator,
   },
   {
-    path: "password",
-    name: "Password",
-    component: Password,
+    path: "passwordInput",
+    name: "Password Input",
+    component: PasswordInput,
   },
   {
     path: "progressBar",
@@ -173,19 +178,9 @@ export default [
     component: ResultsetTable,
   },
   {
-    path: "applicationLayout",
-    name: "Application Layout",
-    component: ApplicationLayout,
-  },
-  {
     path: "select",
     name: "Select",
     component: Select,
-  },
-  {
-    path: "newSelect",
-    name: "New select",
-    component: NewSelect,
   },
   {
     path: "sidenav",
@@ -228,14 +223,19 @@ export default [
     component: TabsForSections,
   },
   {
+    path: "V3Textarea",
+    name: "Textarea",
+    component: V3Textarea,
+  },
+  {
     path: "textarea",
     name: "Textarea",
     component: Textarea,
   },
   {
-    path: "newTextarea",
-    name: "New textarea",
-    component: NewTextarea,
+    path: "textInput",
+    name: "Text Input",
+    component: TextInput,
   },
   {
     path: "toggle-group",

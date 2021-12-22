@@ -4,9 +4,12 @@ import { DxcTextarea, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Textarea = () => {
-  const [value, changeValue] = useState("Sample text");
-  const onChange = (newValue) => {
-    changeValue(newValue);
+  const [value, setValue] = useState("");
+  const onChange = ({ value }) => {
+    setValue(value);
+  };
+  const onBlur = ({ value }) => {
+    setValue(value);
   };
 
   return (
@@ -18,77 +21,77 @@ const Textarea = () => {
       />
       <Mode text="Default">
         <DxcTextarea
-          label="Textarea label"
+          label="Regular textarea"
+          helperText="Example of helper text"
           value={value}
           onChange={onChange}
-          margin={{ top: "xsmall", bottom: "xxsmall" }}
+          onBlur={onBlur}
+          margin={{ top: "xsmall" }}
+          optional
+          verticalGrow="manual"
         />
       </Mode>
       <Mode text="Disabled">
         <DxcTextarea
-          label="Textarea label"
-          value="Sample text"
-          assistiveText="assistive text"
-          disabled={true}
-          margin={{ top: "xsmall", bottom: "xxsmall" }}
+          label="Disabled textarea"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          value={value}
+          onChange={onChange}
+          margin={{ top: "xsmall" }}
+          disabled
         />
       </Mode>
       <Mode text="Invalid">
         <DxcTextarea
-          label="Textarea label"
-          assistiveText="assistive text"
-          invalid={true}
+          label="Invalid textarea"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
           margin={{ top: "xsmall", bottom: "xxsmall" }}
-        />
-      </Mode>
-      <Mode text="Required">
-        <DxcTextarea
-          label="Textarea label"
-          assistiveText="assistive text"
-          required={true}
-          margin={{ top: "xsmall", bottom: "xxsmall" }}
+          error="Error message."
         />
       </Mode>
       {/* <DxcHeading
         text="Dark Mode"
         level={5}
-        margin={{ top: "xsmall", bottom: "xxsmall" }}
+        margin={{ top: "xsmall", bottom: "xsmall" }}
       />
-      <BackgroundColorProvider color="#000000">
-        <Mode mode="dark" text="Default">
-          <DxcTextarea
-            label="Textarea label"
-            value={value}
-            onChange={onChange}
-            margin={{ top: "xsmall", bottom: "xxsmall" }}
-          />
-        </Mode>
-        <Mode mode="dark" text="Disabled">
-          <DxcTextarea
-            label="Textarea label"
-            value="Sample text"
-            assistiveText="assistive text"
-            disabled={true}
-            margin={{ top: "xsmall", bottom: "xxsmall" }}
-          />
-        </Mode>
-        <Mode mode="dark" text="Invalid">
-          <DxcTextarea
-            label="Textarea label"
-            assistiveText="assistive text"
-            invalid={true}
-            margin={{ top: "xsmall", bottom: "xxsmall" }}
-          />
-        </Mode>
-        <Mode mode="dark" text="Required">
-          <DxcTextarea
-            label="Textarea label"
-            assistiveText="assistive text"
-            required={true}
-            margin={{ top: "xsmall", bottom: "xxsmall" }}
-          />
-        </Mode>
-      </BackgroundColorProvider> */}
+      <div style={{ marginBottom: "25px" }}>
+        <BackgroundColorProvider color="#000000">
+          <Mode mode="dark" text="Default">
+            <DxcTextarea
+              label="Regular textarea"
+              helperText="Example of helper text"
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              margin={{ top: "xsmall" }}
+              optional
+              verticalGrow="manual"
+            />
+          </Mode>
+          <Mode mode="dark" text="Disabled">
+            <DxcTextarea
+              label="Disabled textarea"
+              helperText="Example of helper text"
+              placeholder="Placeholder"
+              value={value}
+              onChange={onChange}
+              margin={{ top: "xsmall" }}
+              disabled
+            />
+          </Mode>
+          <Mode mode="dark" text="Invalid">
+            <DxcTextarea
+              label="Invalid textarea"
+              helperText="Example of helper text"
+              placeholder="Placeholder"
+              margin={{ top: "xsmall", bottom: "xxsmall" }}
+              error="Error message."
+            />
+          </Mode>
+        </BackgroundColorProvider>
+      </div> */}
     </TextareaContainer>
   );
 };

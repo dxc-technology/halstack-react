@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
 import DxcDropdown from "../dropdown/Dropdown";
-import CloseIcon from "./close_icon.svg";
+import { hamburgerIcon, closeIcon, dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
@@ -25,9 +25,18 @@ const HeaderDropdown = styled.div`
   }
 `;
 
+const getLogoElement = (themeInput) => {
+  if (!themeInput) {
+    return dxcLogo;
+  }
+  if (typeof themeInput === "string") {
+    return <LogoImg alt="Logo" src={themeInput}></LogoImg>;
+  }
+  return themeInput;
+};
+
 const DxcHeader = ({
   underlined = false,
-  logoSrc = "default",
   onClick,
   content,
   responsiveContent,
@@ -60,20 +69,13 @@ const DxcHeader = ({
     }
   };
 
-  const getLogoRendered = (intoMenu) => {
-    return (
-      <LogoIcon
-        logoSrc={logoSrc}
-        src={
-          intoMenu && logoSrc === "default"
-            ? colorsTheme.header.logoResponsive
-            : !intoMenu && logoSrc === "default"
-            ? colorsTheme.header.logo
-            : logoSrc
-        }
-      />
-    );
-  };
+  const headerLogo = useMemo(() => {
+    return getLogoElement(colorsTheme.header.logo);
+  }, [colorsTheme.header.logo]);
+
+  const headerResponsiveLogo = useMemo(() => {
+    return getLogoElement(colorsTheme.header.logoResponsive);
+  }, [colorsTheme.header.logoResponsive]);
 
   const handleEventListener = () => {
     handleResize(ref.current.offsetWidth);
@@ -90,36 +92,32 @@ const DxcHeader = ({
     };
   }, []);
 
-  const HamburgerIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-      <path d="M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
-    </svg>
-  );
-
   return (
     <ThemeProvider theme={colorsTheme.header}>
-      <HeaderContainer underlined={underlined} position="static" margin={margin} ref={ref}>
+      <HeaderContainer $underlined={underlined} position="static" margin={margin} ref={ref}>
         <LogoAnchor
           tabIndex={typeof onClick === "function" ? tabIndex : -1}
           interactuable={typeof onClick === "function"}
           onClick={onClick}
         >
-          {getLogoRendered(false)}
+          <LogoContainer>{headerLogo}</LogoContainer>
         </LogoAnchor>
         {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer padding={padding}>
               <HamburguerItem tabIndex={tabIndex} underlined={underlined} onClick={handleMenu}>
-                <HamburgerIcon />
+                {hamburgerIcon}
                 <HamburguerTitle>Menu</HamburguerTitle>
               </HamburguerItem>
             </ChildContainer>
             {
               <div>
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
-                  {getLogoRendered(true)}
+                  <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
                   <MenuContent>{responsiveContent(handleMenu)}</MenuContent>
-                  <CloseContainer tabIndex={tabIndex} onClick={handleMenu} src={CloseIcon} className="closeIcon" />
+                  <CloseContainer tabIndex={tabIndex} onClick={handleMenu} className="closeIcon">
+                    {closeIcon}
+                  </CloseContainer>
                 </ResponsiveMenu>
                 <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
               </div>
@@ -144,7 +142,7 @@ const HeaderContainer = styled(AppBar)`
   &.MuiAppBar-colorPrimary {
     background-color: ${(props) => props.theme.backgroundColor};
     border-bottom: ${(props) =>
-      props.underlined &&
+      props.$underlined &&
       `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
 
     &.MuiPaper-elevation4 {
@@ -171,13 +169,17 @@ const LogoAnchor = styled.a`
   ${(props) => {
     if (!props.interactuable) {
       return "cursor: default; outline:none;";
-    } else {
-      return "cursor: pointer;";
     }
+    return "cursor: pointer;";
   }}
 `;
 
-const LogoIcon = styled.img`
+const LogoImg = styled.img`
+  max-height: ${(props) => props.theme.logoHeight};
+  width: ${(props) => props.theme.logoWidth};
+`;
+
+const LogoContainer = styled.div`
   max-height: ${(props) => props.theme.logoHeight};
   width: ${(props) => props.theme.logoWidth};
   vertical-align: middle;
@@ -254,21 +256,27 @@ const ResponsiveMenu = styled.div`
   transition-duration: 0.6s;
   transition-timing-function: ease-in-out;
   box-sizing: border-box;
+`;
 
-  & > img:first-of-type {
-    position: absolute;
-    top: 23px;
-    left: 20px;
-  }
+const ResponsiveLogoContainer = styled.div`
+  max-height: ${(props) => props.theme.logoHeight};
+  width: ${(props) => props.theme.logoWidth};
+  position: absolute;
+  top: 23px;
+  left: 20px;
+`;
 
-  & > img:last-of-type {
-    position: fixed;
-    top: 23px;
-    right: 20px;
-    width: 24px;
-    height: 24px;
-    padding: ${spaces.xxsmall};
+const CloseContainer = styled.div`
+  cursor: pointer;
+  :focus {
+    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
+  position: fixed;
+  top: 23px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  padding: ${spaces.xxsmall};
 `;
 
 const MenuContent = styled.div`
@@ -277,13 +285,6 @@ const MenuContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-`;
-
-const CloseContainer = styled.img`
-  cursor: pointer;
-  :focus {
-    outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
-  }
 `;
 
 const Overlay = styled.div`
@@ -302,7 +303,6 @@ const Overlay = styled.div`
 `;
 
 DxcHeader.propTypes = {
-  logoSrc: PropTypes.string,
   underlined: PropTypes.bool,
   onClick: PropTypes.func,
   margin: PropTypes.oneOfType([

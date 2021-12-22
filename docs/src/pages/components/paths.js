@@ -6,7 +6,7 @@ import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
 import Tabs from "./cdk-components/tabs/Tabs";
 import Upload from "./cdk-components/upload/Upload";
-import Input from "./cdk-components/input/Input";
+import InputText from "./cdk-components/input-text/InputText";
 import Accordion from "./cdk-components/accordion/Accordion";
 import Select from "./cdk-components/select/Select";
 import Slider from "./cdk-components/slider/Slider";
@@ -25,19 +25,19 @@ import Paginator from "./cdk-components/paginator/Paginator";
 import Sidenav from "./cdk-components/sidenav/Sidenav";
 import Link from "./cdk-components/link/Link";
 import Wizard from "./cdk-components/wizard/Wizard";
-import Textarea from "./cdk-components/textarea/Textarea";
+import V3Textarea from "./cdk-components/V3Textarea/V3Textarea";
 import Heading from "./cdk-components/heading/Heading";
 import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
-import Autocomplete from "./cdk-components/autocomplete/Autocomplete";
+import Autosuggest from "./cdk-components/autosuggest/Autosuggest";
 import Chip from "./cdk-components/chip/Chip";
 import ToggleGroup from "./cdk-components/toggleGroup/ToggleGroup";
 import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLayout";
 import AccordionGroup from "./cdk-components/accordion-group/AccordionGroup";
-import Password from "./cdk-components/password/Password";
-import NewInputText from "./cdk-components/new-input-text/NewInputText";
-import NewDate from "./cdk-components/new-date/NewDate";
-import Number from "./cdk-components/number/Number";
-import NewTextarea from "./cdk-components/new-textarea/NewTextarea";
+import TextInput from "./cdk-components/text-input/TextInput";
+import PasswordInput from "./cdk-components/password-input/PasswordInput";
+import DateInput from "./cdk-components/date-input/DateInput";
+import NumberInput from "./cdk-components/number-input/NumberInput";
+import Textarea from "./cdk-components/textarea/Textarea";
 import FileInput from "./cdk-components/file-input/FileInput";
 
 export const types = {
@@ -73,9 +73,9 @@ export default [
     type: types.LAYOUT,
   },
   {
-    path: "autocomplete",
-    name: "Autocomplete",
-    component: Autocomplete,
+    path: "autosuggest",
+    name: "Autosuggest",
+    component: Autosuggest,
     type: types.FORMS,
   },
   {
@@ -115,9 +115,9 @@ export default [
     type: types.FORMS,
   },
   {
-    path: "newDate",
-    name: "New Date",
-    component: NewDate,
+    path: "dateInput",
+    name: "Date Input",
+    component: DateInput,
     type: types.FORMS,
   },
   {
@@ -157,9 +157,9 @@ export default [
     type: types.UTILS,
   },
   {
-    path: "input",
+    path: "inputText",
     name: "Input Text",
-    component: Input,
+    component: InputText,
     type: types.FORMS,
   },
   {
@@ -169,17 +169,12 @@ export default [
     type: types.UTILS,
   },
   {
-    path: "newInputText",
-    name: "New Input Text",
-    component: NewInputText,
+    path: "numberInput",
+    name: "Number Input",
+    component: NumberInput,
     type: types.FORMS,
   },
-  {
-    path: "number",
-    name: "Number",
-    component: Number,
-    type: types.FORMS,
-  },
+
   {
     path: "paginator",
     name: "Paginator",
@@ -187,9 +182,9 @@ export default [
     type: types.UTILS,
   },
   {
-    path: "password",
-    name: "Password",
-    component: Password,
+    path: "passwordInput",
+    name: "Password Input",
+    component: PasswordInput,
     type: types.FORMS,
   },
   {
@@ -265,15 +260,21 @@ export default [
     type: types.LAYOUT,
   },
   {
+    path: "V3Textarea",
+    name: "Textarea",
+    component: V3Textarea,
+    type: types.FORMS,
+  },
+  {
     path: "textarea",
     name: "Textarea",
     component: Textarea,
     type: types.FORMS,
   },
   {
-    path: "newTextarea",
-    name: "New Textarea",
-    component: NewTextarea,
+    path: "textInput",
+    name: "Text Input",
+    component: TextInput,
     type: types.FORMS,
   },
   {
