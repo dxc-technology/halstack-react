@@ -7,6 +7,7 @@ import ComponentHeader from "../../common/ComponentHeader";
 import HeadingPropsTable from "./api.jsx";
 import defaultHeadings from "./examples/defaultHeadings";
 import weightHeadings from "./examples/weightHeadings";
+import asHeadings from "./examples/asHeadings";
 
 function Heading() {
   return (
@@ -45,6 +46,10 @@ function Heading() {
                 <Example
                   title="Headings with different weights"
                   example={weightHeadings}
+                ></Example>
+                <Example
+                  title="Headings using as"
+                  example={asHeadings}
                 ></Example>
               </Section>
             ),
