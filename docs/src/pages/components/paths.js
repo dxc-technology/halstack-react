@@ -38,6 +38,7 @@ import DateInput from "./cdk-components/date-input/DateInput";
 import NumberInput from "./cdk-components/number-input/NumberInput";
 import Textarea from "./cdk-components/textarea/Textarea";
 import FileInput from "./cdk-components/file-input/FileInput";
+import Select from "./cdk-components/select/Select";
 
 export const types = {
   FORMS: "Forms",
@@ -233,6 +234,13 @@ export default [
     path: "V3Select",
     name: "Select",
     component: V3Select,
+    type: types.FORMS,
+    status: "deprecated",
+  },
+  {
+    path: "select",
+    name: "Select",
+    component: Select,
     type: types.FORMS,
     status: "ready",
   },

@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const inputPropsTable = () => {
+const selectPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -141,12 +141,10 @@ const inputPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex.
-        </td>
+        <td>Value of the tabindex.</td>
       </tr>
     </DxcTable>
   );
 };
 
-export default inputPropsTable;
+export default selectPropsTable;
