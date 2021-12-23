@@ -9,7 +9,7 @@ import Tabs from "./pages/Tabs";
 import Accordion from "./pages/Accordion";
 import Slider from "./pages/Slider";
 import Radio from "./pages/Radio";
-import Select from "./pages/Select";
+import V3Select from "./pages/V3Select";
 import Dropdown from "./pages/Dropdown";
 import ProgressBar from "./pages/ProgressBar";
 import Header from "./pages/Header";
@@ -142,11 +142,6 @@ export default [
     component: Link,
   },
   {
-    path: "newSelect",
-    name: "New Select",
-    component: NewSelect,
-  },
-  {
     path: "numberInput",
     name: "Number Input",
     component: NumberInput,
@@ -177,9 +172,14 @@ export default [
     component: ResultsetTable,
   },
   {
-    path: "select",
+    path: "V3Select",
     name: "Select",
-    component: Select,
+    component: V3Select,
+  },
+  {
+    path: "newSelect",
+    name: "New Select",
+    component: NewSelect,
   },
   {
     path: "sidenav",

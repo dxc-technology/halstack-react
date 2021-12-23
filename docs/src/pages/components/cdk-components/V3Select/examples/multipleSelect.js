@@ -1,9 +1,9 @@
-import { DxcSelect } from "@dxc-technology/halstack-react";
+import { V3DxcSelect } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const [value, changeValue] = useState(1);
-  const onChange = (newValue) => {
+  const [value, changeValue] = useState([]);
+  const onChange = newValue => {
     changeValue(newValue);
   };
   const optionsWithoutIcon = [
@@ -22,19 +22,19 @@ const code = `() => {
   ];
 
   return (
-    <DxcSelect
+    <V3DxcSelect
       options={optionsWithoutIcon}
       onChange={onChange}
-      label="Controlled Select"
+      label="Multiple select"
+      multiple={true}
       value={value}
       margin="medium"
-      assistiveText="assistive text"
-    ></DxcSelect>
+    ></V3DxcSelect>
   );
 }`;
 
 const scope = {
-  DxcSelect,
+  V3DxcSelect,
   useState
 };
 

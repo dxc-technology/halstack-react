@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcSelect, DxcHeading } from "@dxc-technology/halstack-react";
+import { V3DxcSelect, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 import linkedinIcon from "../../images/LinkedinIcon";
@@ -66,45 +66,45 @@ const Select = () => {
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <DxcSelect
+        <V3DxcSelect
           options={options}
           label="Default Select"
           margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
           assistiveText="assistiveText"
-        ></DxcSelect>
-        <DxcSelect
+        ></V3DxcSelect>
+        <V3DxcSelect
           options={options}
           required
           label="Required Select"
           margin={{ top: "xxsmall", bottom: "xsmall" }}
           assistiveText="assistiveText"
-        ></DxcSelect>
+        ></V3DxcSelect>
       </Mode>
       <Mode text="Multiple">
-        <DxcSelect
+        <V3DxcSelect
           options={optionsNoIcons}
           multiple
           label="Multiple Select"
           margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
           assistiveText="assistiveText"
-        ></DxcSelect>
-        <DxcSelect
+        ></V3DxcSelect>
+        <V3DxcSelect
           options={optionsNoIcons}
           multiple
           invalid
           label="Invalid Select"
           margin={{ top: "xxsmall", bottom: "xsmall" }}
           assistiveText="assistiveText"
-        ></DxcSelect>
+        ></V3DxcSelect>
       </Mode>
       <Mode text="Disabled">
-        <DxcSelect
+        <V3DxcSelect
           options={options}
           disabled
           label="Disabled Select"
           margin={{ top: "xxsmall", bottom: "xsmall" }}
           assistiveText="assistiveText"
-        ></DxcSelect>
+        ></V3DxcSelect>
       </Mode>
       {/* <DxcHeading
         text="Dark Mode"
@@ -113,45 +113,45 @@ const Select = () => {
       />
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Default">
-          <DxcSelect
+          <V3DxcSelect
             options={options}
             label="Default Select"
             margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
             assistiveText="assistiveText"
-          ></DxcSelect>
-          <DxcSelect
+          ></V3DxcSelect>
+          <V3DxcSelect
             options={options}
             required
             label="Required Select"
             margin={{ top: "xxsmall", bottom: "xsmall" }}
             assistiveText="assistiveText"
-          ></DxcSelect>
+          ></V3DxcSelect>
         </Mode>
         <Mode mode="dark" text="Multiple">
-          <DxcSelect
+          <V3DxcSelect
             options={optionsNoIcons}
             multiple
             label="Multiple Select"
             margin={{ top: "xxsmall", bottom: "xsmall", right: "small" }}
             assistiveText="assistiveText"
-          ></DxcSelect>
-          <DxcSelect
+          ></V3DxcSelect>
+          <V3DxcSelect
             options={optionsNoIcons}
             multiple
             invalid
             label="Invalid Select"
             margin={{ top: "xxsmall", bottom: "xsmall" }}
             assistiveText="assistiveText"
-          ></DxcSelect>
+          ></V3DxcSelect>
         </Mode>
         <Mode mode="dark" text="Disabled">
-          <DxcSelect
+          <V3DxcSelect
             options={options}
             disabled
             label="Disabled Select"
             margin={{ top: "xxsmall", bottom: "small" }}
             assistiveText="assistiveText"
-          ></DxcSelect>
+          ></V3DxcSelect>
         </Mode>
       </BackgroundColorProvider> */}
     </SelectContainer>

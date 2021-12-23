@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
   DxcHeader,
   DxcDropdown,
-  DxcSelect,
+  V3DxcSelect,
 } from "@dxc-technology/halstack-react";
 import axios from "axios";
 import portal from "./portal.json";
@@ -107,13 +107,13 @@ function App() {
               Design Guidelines
             </a>
           </ResponsiveHeaderLink>
-          <DxcSelect
+          <V3DxcSelect
             options={versions}
             onChange={selectVersion}
             size="small"
             value={selectedVersion}
             margin={{ bottom: "small" }}
-          ></DxcSelect>
+          ></V3DxcSelect>
           <ResponsiveHeaderLink>
             <a
               target="_blank"

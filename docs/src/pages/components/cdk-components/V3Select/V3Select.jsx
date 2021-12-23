@@ -4,7 +4,7 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import InputPropsTable from "./api.jsx";
-import { DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
 import defaultSelect from "./examples/default";
 import controlled from "./examples/controlledSelect";
 import multipleSelect from "./examples/multipleSelect";
@@ -14,7 +14,17 @@ import sized from "./examples/sizedSelect";
 function Input() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Select" status="ready"></ComponentHeader>
+      <ComponentHeader title="Select" status="deprecated"></ComponentHeader>
+      <DxcAlert type="warning" margin={{ bottom: "small" }} size="fillParent">
+        The component status has been changed to deprecated. Use the new{" "}
+        <DxcLink
+          href="#/components/select"
+          underlined={false}
+          inheritedColor={true}
+          text="Select"
+        ></DxcLink>{" "}
+        component instead.
+      </DxcAlert>
       <Section>
         <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
         <InputPropsTable />

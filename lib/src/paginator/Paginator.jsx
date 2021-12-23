@@ -3,8 +3,8 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import useTheme from "../useTheme.js";
 import DxcButton from "../button/Button";
-import DxcSelect from "../select/Select";
-import {firstIcon, lastIcon, nextIcon, previousIcon} from "./Icons";
+import V3DxcSelect from "../V3Select/V3Select";
+import { firstIcon, lastIcon, nextIcon, previousIcon } from "./Icons";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 const DxcPaginator = ({
@@ -35,7 +35,7 @@ const DxcPaginator = ({
             {itemsPerPageOptions && (
               <ItemsPageContainer>
                 <ItemsLabel>Items per page </ItemsLabel>
-                <DxcSelect
+                <V3DxcSelect
                   options={itemsPerPageOptions.map((num) => ({ label: num, value: num }))}
                   onChange={itemsPerPageFunction}
                   value={itemsPerPage}
@@ -76,7 +76,7 @@ const DxcPaginator = ({
             {(showGoToPage && (
               <PageToSelectContainer>
                 <GoToLabel>Go to page: </GoToLabel>
-                <DxcSelect
+                <V3DxcSelect
                   options={[...Array(totalPages).keys()].map((num) => ({ label: num + 1, value: num + 1 }))}
                   onChange={onPageChange}
                   value={currentPage}

@@ -1,4 +1,4 @@
-import { DxcSelect } from "@dxc-technology/halstack-react";
+import { V3DxcSelect } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 import twitterLogoPath from "./images/twitter.svg";
@@ -26,19 +26,19 @@ const code = `() => {
   ];
 
   return (
-    <DxcSelect
+    <V3DxcSelect
       options={optionsWithIcons}
       onChange={onChange}
       label="Icons"
       value={value}
       margin="medium"
       size="small"
-    ></DxcSelect>
+    ></V3DxcSelect>
   );
 }`;
 
 const scope = {
-  DxcSelect,
+  V3DxcSelect,
   useState,
   linkedinLogoPath,
   twitterLogoPath,

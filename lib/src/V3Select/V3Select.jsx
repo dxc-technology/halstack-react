@@ -15,7 +15,7 @@ import DxcRequired from "../common/RequiredComponent";
 import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
 
-const DxcSelect = ({
+const V3DxcSelect = ({
   value,
   name,
   onChange,
@@ -569,7 +569,7 @@ const SelectContainer = styled.div`
   }
 `;
 
-DxcSelect.propTypes = {
+V3DxcSelect.propTypes = {
   size: PropTypes.oneOf([...Object.keys(sizes)]),
   label: PropTypes.string,
   assistiveText: PropTypes.string,
@@ -604,4 +604,4 @@ DxcSelect.propTypes = {
   ]),
   tabIndex: PropTypes.number,
 };
-export default DxcSelect;
+export default V3DxcSelect;
