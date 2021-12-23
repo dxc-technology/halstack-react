@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { DxcNewSelect } from "@dxc-technology/halstack-react";
+import React, { useState, useRef } from "react";
+import { DxcNewSelect, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
+  const ref = useRef(null);
   const [value, setValue] = useState("");
+  const [valueMultiple, setValueMultiple] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [errorOptional, setErrorOptional] = useState("");
   const onBlur = ({ value, error }) => {
@@ -14,15 +16,38 @@ function App() {
     setValue(value);
     console.log("change!");
   };
+  const onChangeMultiple = ({ value, error }) => {
+    setValueMultiple(value);
+    console.log("multiple change!");
+  };
 
   const single_options = [
     { label: "Option 01", value: "1" },
     { label: "Option 02", value: "2" },
     { label: "Option 03", value: "3" },
-    {
-      label: "Option 00000000000000000000000000000000000000000000000000000",
-      value: "4",
-    },
+    { label: "Option 04", value: "4" },
+  ];
+  const single_options_long = [
+    { label: "Option 01", value: "1" },
+    { label: "Option 02", value: "2" },
+    { label: "Option 03", value: "3" },
+    { label: "Option 04", value: "4" },
+    { label: "Option 05", value: "5" },
+    { label: "Option 06", value: "6" },
+    { label: "Option 07", value: "7" },
+    { label: "Option 08", value: "8" },
+    { label: "Option 09", value: "9" },
+    { label: "Option 10", value: "10" },
+    { label: "Option 11", value: "11" },
+    { label: "Option 12", value: "12" },
+    { label: "Option 13", value: "13" },
+    { label: "Option 14", value: "14" },
+    { label: "Option 15", value: "15" },
+    { label: "Option 16", value: "16" },
+    { label: "Option 17", value: "17" },
+    { label: "Option 18", value: "18" },
+    { label: "Option 19", value: "19" },
+    { label: "Option 20", value: "20" },
   ];
   const grouped_options = [
     {
@@ -36,21 +61,94 @@ function App() {
     {
       label: "Group 2",
       options: [
-        { label: "Option 04", value: "4" },
+        { label: "Option 0004", value: "4" },
         { label: "Option 05", value: "5" },
-        { label: "Option 06", value: "6" },
+        { label: "Option 006", value: "6" },
       ],
     },
     {
       label: "Group 3",
       options: [
-        { label: "Option 07", value: "7" },
-        { label: "Option 08", value: "8" },
-        { label: "Option 09", value: "9" },
+        { label: "Option 0007", value: "7" },
+        { label: "Option 008", value: "8" },
+        { label: "Option 9", value: "9" },
+      ],
+    },
+    {
+      label: "Group 4",
+      options: [
+        { label: "Option 10", value: "10" },
+        { label: "Option 11", value: "11" },
+        { label: "Option 12", value: "12" },
+      ],
+    },
+    {
+      label: "Group 5",
+      options: [
+        { label: "Option x", value: "13" },
+        { label: "Option y", value: "14" },
+        { label: "Option z", value: "15" },
+      ],
+    },
+    {
+      label: "Group 6",
+      options: [
+        { label: "Option 001", value: "16" },
+        { label: "Option 002", value: "17" },
+        { label: "Option 003", value: "18" },
+      ],
+    },
+    {
+      label: "Group 7",
+      options: [
+        { label: "Option 001", value: "19" },
+        { label: "Option 002", value: "20" },
+        { label: "Option 003", value: "21" },
       ],
     },
   ];
-
+  const group_options = [
+    {
+      label: "Group 001",
+      options: [
+        { label: "Option 001", value: "1" },
+        { label: "Option 002", value: "2" },
+        { label: "Option 003", value: "3" },
+      ],
+    },
+    {
+      label: "Group 002",
+      options: [
+        { label: "Option 004", value: "4" },
+        { label: "Option 005", value: "5" },
+        { label: "Option 006", value: "6" },
+      ],
+    },
+    {
+      label: "Group 003",
+      options: [
+        { label: "Option 007", value: "7" },
+        { label: "Option 008", value: "8" },
+        { label: "Option 009", value: "9" },
+      ],
+    },
+    {
+      label: "Group 004",
+      options: [
+        { label: "Option 010", value: "10" },
+        { label: "Option 011", value: "11" },
+        { label: "Option 012", value: "12" },
+      ],
+    },
+    {
+      label: "Group 005",
+      options: [
+        { label: "Option 013", value: "13" },
+        { label: "Option 014", value: "14" },
+        { label: "Option 015", value: "15" },
+      ],
+    },
+  ];
   const icon_options = [
     {
       label: "3G Mobile",
@@ -58,7 +156,6 @@ function App() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          enable-background="new 0 0 24 24"
           height="24px"
           viewBox="0 0 24 24"
           width="24px"
@@ -124,11 +221,54 @@ function App() {
       ),
     },
   ];
+  const grouped_icon_options = [
+    {
+      label: "Social Media",
+      options: [
+        {
+          label: "Instagram",
+          value: "1",
+          icon: "https://cdn.icon-icons.com/icons2/2518/PNG/512/brand_instagram_icon_151534.png",
+        },
+        {
+          label: "Twitter",
+          value: "2",
+          icon: "https://cdn-icons-png.flaticon.com/512/81/81609.png",
+        },
+        {
+          label: "Facebook",
+          value: "3",
+          icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
+        },
+        {
+          label: "Pinterest",
+          value: "4",
+          icon: "https://cdn-icons-png.flaticon.com/512/145/145808.png",
+        },
+      ],
+    },
+    {
+      label: "Group 2",
+      options: [
+        { label: "Option 4", value: "5" },
+        { label: "Option 5", value: "6" },
+        { label: "Option 6", value: "7" },
+      ],
+    },
+    {
+      label: "Group 3",
+      options: [
+        { label: "Option 7", value: "8" },
+        { label: "Option 8", value: "9" },
+        { label: "Option 9", value: "10" },
+      ],
+    },
+  ];
 
   return (
     <>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Default (uncontrolled)</h4>
+        <h4 style={{ marginLeft: "36px" }}>Default (uncontrolled)</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -138,7 +278,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
+        <h4 style={{ marginLeft: "36px" }}>Controlled</h4>
         <DxcNewSelect
           label="Label"
           value={value}
@@ -152,18 +292,69 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Searchable</h4>
+        <h4 style={{ marginLeft: "36px" }}>Multiple</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
           options={single_options}
+          placeholder="Choose options"
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Controlled multiple</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          value={valueMultiple}
+          onChange={onChangeMultiple}
+          onBlur={() => {
+            console.log("blur!");
+          }}
+          options={single_options_long}
+          placeholder="Choose options"
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Controlled multiple inmutable</h4>
+        <DxcNewSelect
+          label="Label"
+          value={["2", "4"]}
+          helperText="Helper text"
+          options={single_options_long}
+          placeholder="Choose an option"
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Searchable</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options_long}
           placeholder="Choose an option"
           searchable
           margin="medium"
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Grouped</h4>
+        <h4 style={{ marginLeft: "36px" }}>Searchable & Multiple</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options_long}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Grouped</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -174,7 +365,19 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Icons</h4>
+        <h4 style={{ marginLeft: "36px" }}>Grouped & Multiple</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={grouped_options}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Icons</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -185,7 +388,31 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Disabled</h4>
+        <h4 style={{ marginLeft: "36px" }}>Icons & Multiple</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={icon_options}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Icons & Multiple & Grouped</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={grouped_icon_options}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Disabled</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -197,7 +424,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Optional</h4>
+        <h4 style={{ marginLeft: "36px" }}>Optional</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -208,12 +435,76 @@ function App() {
           }}
           placeholder="Choose an option"
           margin="medium"
-          searchable
           optional
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Optional without placeholder</h4>
+        <h4 style={{ marginLeft: "36px" }}>Optional & Multiple</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Multiple shouldn't alow optional to add a new option, this is exclusive from single selection"
+          options={single_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          margin="medium"
+          optional
+          multiple
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional & Grouped & Searchable & Multiple</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Multiple shouldn't alow optional to add a new option, this is exclusive from single selection, no matter if it is grouped or not"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+          optional
+          multiple
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional grouped</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          margin="medium"
+          optional
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional grouped searchable</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          searchable
+          margin="medium"
+          optional
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional without placeholder</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -224,7 +515,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Error</h4>
+        <h4 style={{ marginLeft: "36px" }}>Error</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -235,7 +526,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
+        <h4 style={{ marginLeft: "36px" }}>Sizes</h4>
         <DxcNewSelect
           label="Small"
           options={grouped_options}
@@ -263,7 +554,16 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Empty options</h4>
+        <h4 style={{ marginLeft: "36px" }}>Undefined options</h4>
+        <DxcNewSelect
+          label="Label"
+          helperText="Helper text"
+          placeholder="Choose an option"
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Empty options</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -273,7 +573,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Empty grouped options</h4>
+        <h4 style={{ marginLeft: "36px" }}>Empty grouped options</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -288,7 +588,7 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Undefined groups</h4>
+        <h4 style={{ marginLeft: "36px" }}>Undefined groups</h4>
         <DxcNewSelect
           label="Label"
           helperText="Helper text"
@@ -301,6 +601,26 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
         />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Using ref prop</h4>
+        <DxcNewSelect
+          label="Select with ref"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          options={single_options}
+          searchable
+          margin={{ left: "medium", right: "medium" }}
+          ref={ref}
+        />
+        <DxcButton
+          onClick={() => {
+            const select = ref.current.getElementsByTagName("div")[0];
+            select.focus();
+          }}
+          label="Focus!"
+          margin={{ left: "medium" }}
+        ></DxcButton>
       </p>
     </>
   );
