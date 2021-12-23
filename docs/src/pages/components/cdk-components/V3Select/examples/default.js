@@ -1,4 +1,4 @@
-import { DxcSelect } from "@dxc-technology/halstack-react";
+import { V3DxcSelect } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -21,18 +21,18 @@ const code = `() => {
   ];
 
   return (
-    <DxcSelect
+    <V3DxcSelect
       options={optionsWithoutIcon}
       onChange={onChange}
       label="Uncontrolled Select"
       margin="medium"
       assistiveText="assistive text"
-    ></DxcSelect>
+    ></V3DxcSelect>
   );
 }`;
 
 const scope = {
-  DxcSelect,
+  V3DxcSelect,
   useState
 };
 

@@ -61,7 +61,7 @@
   "radio": {
     "baseColor": "color"
   },
-  "select": {
+  "V3Select": {
     "baseColor": "color",
     "fontColor": "color"
   },

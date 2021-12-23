@@ -1,716 +1,628 @@
-import React, { useState } from "react";
-import { DxcSelect, ThemeProvider } from "@dxc-technology/halstack-react";
-import homePath from "../images/home.svg";
-
-const colors = {
-  select: {
-    baseColor: "#FABADA",
-  },
-};
-
-const iconSVG = () => {
-  return (
-    <svg viewBox="0 0 24 24">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    </svg>
-  );
-};
+import React, { useState, useRef } from "react";
+import { DxcSelect, DxcButton } from "@dxc-technology/halstack-react";
 
 function App() {
-  const [inputValue, changeInput] = useState(1);
-  const onChange = (newValue) => {
-    changeInput(newValue);
+  const ref = useRef(null);
+  const [value, setValue] = useState("");
+  const [valueMultiple, setValueMultiple] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorOptional, setErrorOptional] = useState("");
+  const onBlur = ({ value, error }) => {
+    setValue(value);
+    error ? setErrorMessage(error) : setErrorMessage(null);
+    console.log("blur!");
+  };
+  const onChange = ({ value, error }) => {
+    setValue(value);
+    console.log("change!");
+  };
+  const onChangeMultiple = ({ value, error }) => {
+    setValueMultiple(value);
+    console.log("multiple change!");
   };
 
-  const [inputMultipleValue, changeMultipleInput] = useState([1, 2]);
-  const onChangeMultiple = (newValue) => {
-    changeMultipleInput(newValue);
-  };
-
-  const optionsWithoutIcon = [
+  const single_options = [
+    { label: "Option 01", value: "1" },
+    { label: "Option 02", value: "2" },
+    { label: "Option 03", value: "3" },
+    { label: "Option 04", value: "4" },
+  ];
+  const single_options_long = [
+    { label: "Option 01", value: "1" },
+    { label: "Option 02", value: "2" },
+    { label: "Option 03", value: "3" },
+    { label: "Option 04", value: "4" },
+    { label: "Option 05", value: "5" },
+    { label: "Option 06", value: "6" },
+    { label: "Option 07", value: "7" },
+    { label: "Option 08", value: "8" },
+    { label: "Option 09", value: "9" },
+    { label: "Option 10", value: "10" },
+    { label: "Option 11", value: "11" },
+    { label: "Option 12", value: "12" },
+    { label: "Option 13", value: "13" },
+    { label: "Option 14", value: "14" },
+    { label: "Option 15", value: "15" },
+    { label: "Option 16", value: "16" },
+    { label: "Option 17", value: "17" },
+    { label: "Option 18", value: "18" },
+    { label: "Option 19", value: "19" },
+    { label: "Option 20", value: "20" },
+  ];
+  const grouped_options = [
     {
-      value: 1,
-      label: "Amazon",
+      label: "Group 1",
+      options: [
+        { label: "Option 001", value: "1" },
+        { label: "Option 002", value: "2" },
+        { label: "Option 003", value: "3" },
+      ],
     },
     {
-      value: 2,
-      label: "Ebay",
+      label: "Group 2",
+      options: [
+        { label: "Option 0004", value: "4" },
+        { label: "Option 05", value: "5" },
+        { label: "Option 006", value: "6" },
+      ],
     },
     {
-      value: 3,
-      label: "Apple",
+      label: "Group 3",
+      options: [
+        { label: "Option 0007", value: "7" },
+        { label: "Option 008", value: "8" },
+        { label: "Option 9", value: "9" },
+      ],
     },
     {
-      value: 4,
-      label: "Google",
+      label: "Group 4",
+      options: [
+        { label: "Option 10", value: "10" },
+        { label: "Option 11", value: "11" },
+        { label: "Option 12", value: "12" },
+      ],
+    },
+    {
+      label: "Group 5",
+      options: [
+        { label: "Option x", value: "13" },
+        { label: "Option y", value: "14" },
+        { label: "Option z", value: "15" },
+      ],
+    },
+    {
+      label: "Group 6",
+      options: [
+        { label: "Option 001", value: "16" },
+        { label: "Option 002", value: "17" },
+        { label: "Option 003", value: "18" },
+      ],
+    },
+    {
+      label: "Group 7",
+      options: [
+        { label: "Option 001", value: "19" },
+        { label: "Option 002", value: "20" },
+        { label: "Option 003", value: "21" },
+      ],
     },
   ];
-
-  const optionsWithIcon = [
+  const group_options = [
     {
-      value: 1,
-      icon: <p>This is a test</p>,
+      label: "Group 001",
+      options: [
+        { label: "Option 001", value: "1" },
+        { label: "Option 002", value: "2" },
+        { label: "Option 003", value: "3" },
+      ],
     },
     {
-      value: 2,
-      icon: <img src={homePath} />,
+      label: "Group 002",
+      options: [
+        { label: "Option 004", value: "4" },
+        { label: "Option 005", value: "5" },
+        { label: "Option 006", value: "6" },
+      ],
     },
     {
-      value: 3,
-      icon: <img src={homePath} />,
+      label: "Group 003",
+      options: [
+        { label: "Option 007", value: "7" },
+        { label: "Option 008", value: "8" },
+        { label: "Option 009", value: "9" },
+      ],
+    },
+    {
+      label: "Group 004",
+      options: [
+        { label: "Option 010", value: "10" },
+        { label: "Option 011", value: "11" },
+        { label: "Option 012", value: "12" },
+      ],
+    },
+    {
+      label: "Group 005",
+      options: [
+        { label: "Option 013", value: "13" },
+        { label: "Option 014", value: "14" },
+        { label: "Option 015", value: "15" },
+      ],
     },
   ];
-
-  const optionsWithIconAndLabels = [
+  const icon_options = [
     {
-      value: 1,
+      label: "3G Mobile",
+      value: "1",
       icon: (
         <svg
-          width="24px"
+          xmlns="http://www.w3.org/2000/svg"
           height="24px"
           viewBox="0 0 24 24"
-          enable-background="new 0 0 24 24"
+          width="24px"
+          fill="currentColor"
         >
-          <g id="Bounding_Box">
-            <rect fill="none" width="24" height="24" />
+          <g>
+            <path d="M0,0h24v24H0V0z" fill="none" />
           </g>
-          <g id="Master">
-            <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
+          <g>
+            <g>
+              <path d="M3,7v2h5v2H4v2h4v2H3v2h5c1.1,0,2-0.9,2-2v-1.5c0-0.83-0.67-1.5-1.5-1.5c0.83,0,1.5-0.67,1.5-1.5V9c0-1.1-0.9-2-2-2H3z M21,11v4c0,1.1-0.9,2-2,2h-5c-1.1,0-2-0.9-2-2V9c0-1.1,0.9-2,2-2h5c1.1,0,2,0.9,2,2h-7v6h5v-2h-2.5v-2H21z" />
+            </g>
           </g>
         </svg>
       ),
-      label: "Home",
     },
     {
-      value: 2,
+      label: "Ethernet",
+      value: "2",
       icon: (
         <svg
-          width="24px"
+          xmlns="http://www.w3.org/2000/svg"
           height="24px"
           viewBox="0 0 24 24"
-          enable-background="new 0 0 24 24"
+          width="24px"
+          fill="currentColor"
         >
-          <g id="Bounding_Box">
-            <rect fill="none" width="24" height="24" />
-          </g>
-          <g id="Master">
-            <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-          </g>
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M7.77 6.76L6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm6.77-7.52l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12l-5.41-6.52z" />
         </svg>
       ),
-      label: "House",
     },
     {
-      value: 3,
+      label: "Wi-fi",
+      value: "3",
       icon: (
         <svg
-          width="24px"
+          xmlns="http://www.w3.org/2000/svg"
           height="24px"
           viewBox="0 0 24 24"
-          enable-background="new 0 0 24 24"
+          width="24px"
+          fill="currentColor"
         >
-          <g id="Bounding_Box">
-            <rect fill="none" width="24" height="24" />
-          </g>
-          <g id="Master">
-            <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-          </g>
+          <path d="M0 0h24v24H0V0zm0 0h24v24H0V0z" fill="none" />
+          <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
         </svg>
       ),
-      label:
-        "Home is the selected option for this select component of the Csss",
+    },
+    {
+      label: "Settings backup restore (just for previous configuration)",
+      value: "4",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 0 24 24"
+          width="24px"
+          fill="currentColor"
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.51 0-2.91-.49-4.06-1.3l-1.42 1.44C8.04 20.3 9.94 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z" />
+        </svg>
+      ),
     },
   ];
-  const optionsWithIconAndLabelsMinLongOneLine = [
+  const grouped_icon_options = [
     {
-      value: 1,
-      icon: iconSVG,
-      label: "Ho",
+      label: "Social Media",
+      options: [
+        {
+          label: "Instagram",
+          value: "1",
+          icon: "https://cdn.icon-icons.com/icons2/2518/PNG/512/brand_instagram_icon_151534.png",
+        },
+        {
+          label: "Twitter",
+          value: "2",
+          icon: "https://cdn-icons-png.flaticon.com/512/81/81609.png",
+        },
+        {
+          label: "Facebook",
+          value: "3",
+          icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
+        },
+        {
+          label: "Pinterest",
+          value: "4",
+          icon: "https://cdn-icons-png.flaticon.com/512/145/145808.png",
+        },
+      ],
     },
     {
-      value: 2,
-      icon: iconSVG,
-      label: "Housesssssssssssssssssss",
+      label: "Group 2",
+      options: [
+        { label: "Option 4", value: "5" },
+        { label: "Option 5", value: "6" },
+        { label: "Option 6", value: "7" },
+      ],
     },
     {
-      value: 3,
-      icon: iconSVG,
-      label: "Home is the selected option for this select component12",
-    },
-    {
-      value: 4,
-      icon: iconSVG,
-      label: "Housessssssssssssssssss",
-    },
-    {
-      value: 5,
-      icon: iconSVG,
-      label: "Home is the selected opt",
-    },
-  ];
-  const optionsWithIconAndLabelsMaxLongMultiLine = [
-    {
-      value: 1,
-      icon: iconSVG,
-      label: "Hom",
-    },
-    {
-      value: 2,
-      icon: iconSVG,
-      label: "Housesssssssssssssssssss",
-    },
-    {
-      value: 3,
-      icon: iconSVG,
-      label: "Home is the selected option for this select component123",
-    },
-  ];
-
-  const longOptionLabels = [
-    {
-      value: 1,
-      label: "Home is the selected option for this select component of the Css",
-    },
-    {
-      value: 2,
-      label: "Houses",
-    },
-    {
-      value: 3,
-      label: "Housess",
-    },
-    {
-      value: 4,
-      label: "Habitatsssssssssssssssssssss",
-    },
-    {
-      value: 5,
-      label: "Habitatssssssssssssssssssssss",
-    },
-    {
-      value: 6,
-      label:
-        "Home is the selected option for this select component of the Csss",
-    },
-    {
-      value: 7,
-      label: "Home is the selected option for this select component of this",
+      label: "Group 3",
+      options: [
+        { label: "Option 7", value: "8" },
+        { label: "Option 8", value: "9" },
+        { label: "Option 9", value: "10" },
+      ],
     },
   ];
 
   return (
-    <div>
-      <div>
-        <h4>Sizes</h4>
-        <div className="test-case" id="small-size">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Small"}
-            options={optionsWithIcon}
-            size="small"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="medium-size">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Medium"}
-            options={optionsWithIconAndLabels}
-            size="medium"
-            margin="xsmall"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="large-size">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Large"}
-            options={optionsWithIconAndLabels}
-            size="large"
-            margin="xsmall"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="fillParent-size">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Fill Parent"}
-            options={optionsWithIcon}
-            size="fillParent"
-          ></DxcSelect>
-        </div>
-      </div>
-      <div>
-        <h4>Margins</h4>
-        <div className="test-case" id="xxsmall-margin">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"xxSmall margin"}
-            options={optionsWithIconAndLabels}
-            margin="xxsmall"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="xsmall-margin">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"xSmall margin"}
-            options={optionsWithIconAndLabels}
-            margin="xsmall"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="small-margin">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Small margin"}
-            options={optionsWithIconAndLabels}
-            margin="small"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="medium-margin">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Medium margin"}
-            options={optionsWithIconAndLabels}
-            margin="medium"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="large-margin">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Large margin"}
-            options={optionsWithIconAndLabels}
-            margin="large"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="xlarge-margin">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"xLarge margin"}
-            options={optionsWithIconAndLabels}
-            margin="xlarge"
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="xxlarge-margin">
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"xxLarge margin"}
-            options={optionsWithIconAndLabels}
-            margin="xxlarge"
-          ></DxcSelect>
-        </div>
-      </div>
-      <div>
-        <div className="test-case" id="Medium-max-label-size-oneline">
-          <h4>Medium select - Max label size in one line</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            size="medium"
-            label={"MaximumSizeForMultilineLabel1"}
-            options={optionsWithIconAndLabels}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="Medium-min-label-size-multiline">
-          <h4>Medium select - Min label size in multi line</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            size="medium"
-            label={"Maximum Size For Multiline Label12"}
-            options={optionsWithIconAndLabels}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="Large-max-label-size-oneline">
-          <h4>Large select - Max label size in one line</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            size="large"
-            label={
-              "Large size example label one single line select component select1"
-            }
-            options={optionsWithIconAndLabels}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="Large-min-label-size-multiline">
-          <h4>Large select - Min label size in multi line</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            size="large"
-            label={
-              "Large size example label one single line select component select12"
-            }
-            options={optionsWithIconAndLabels}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Medium-select-max-size-selected-item-oneline"
-        >
-          <h4>Medium select - Max size selected option label oneline</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={4}
-            size="medium"
-            label={"Medium Select"}
-            options={longOptionLabels}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Medium-select-min-size-selected-item-multiline"
-        >
-          <h4>Medium select - Min size selected option label multiline</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={5}
-            size="medium"
-            label={"Medium Select"}
-            options={longOptionLabels}
-          />
-        </div>
-        <div
-          className="test-case"
-          id="Large-select-max-size-selected-item-oneline"
-        >
-          <h4>Large select - Max size selected option label oneline</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={7}
-            size="large"
-            label={"Large Select"}
-            options={longOptionLabels}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Large-select-min-size-selected-item-multiline"
-        >
-          <h4>Large select - Min size selected option label multiline</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={6}
-            size="large"
-            label={"Large Select"}
-            options={longOptionLabels}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Medium-select-Max-label-size-oneline-Icon-Before&Label"
-        >
-          <h4>
-            Medium select - Icon and label - Max label size oneline (Icon
-            Before){" "}
-          </h4>
-          <DxcSelect
-            onChange={onChange}
-            value={4}
-            size="medium"
-            label={"Medium Select"}
-            iconPosition={"before"}
-            options={optionsWithIconAndLabelsMinLongOneLine}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Medium-select-Min-label-size-multiline-Icon-Before&Label-Multiline"
-        >
-          <h4>
-            Medium select - Icon and label - Min label size multiline (Icon
-            Before)
-          </h4>
-          <DxcSelect
-            onChange={onChange}
-            value={2}
-            size="medium"
-            label={"Medium Select"}
-            iconPosition={"before"}
-            options={optionsWithIconAndLabelsMaxLongMultiLine}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Large-select-Max-label-size-oneline-Icon-Before&Label"
-        >
-          <h4>
-            Large select - Icon and label - Max label size oneline (Icon Before){" "}
-          </h4>
-          <DxcSelect
-            onChange={onChange}
-            value={3}
-            size="large"
-            label={"Large Select"}
-            iconPosition={"before"}
-            options={optionsWithIconAndLabelsMinLongOneLine}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Large-select-Min-label-size-multiline-Icon-Before&Label"
-        >
-          <h4>
-            Large select - Icon and label - Min label size multiline (Icon
-            Before){" "}
-          </h4>
-          <DxcSelect
-            onChange={onChange}
-            value={3}
-            size="large"
-            label={"Large Select"}
-            iconPosition={"before"}
-            options={optionsWithIconAndLabelsMaxLongMultiLine}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Medium-select-Max-label-size-oneline-Icon-after&Label"
-        >
-          <h4>
-            Medium select - Icon and label - Max label size oneline (Icon After){" "}
-          </h4>
-          <DxcSelect
-            onChange={onChange}
-            value={5}
-            iconPosition="after"
-            size="medium"
-            label={"Medium Select"}
-            options={optionsWithIconAndLabelsMinLongOneLine}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Medium-select-Min-label-size-multiline-Icon-after&Label-Multiline"
-        >
-          <h4>
-            Medium select - Icon and label - Min label size multiline (Icon
-            After)
-          </h4>
-          <DxcSelect
-            onChange={onChange}
-            value={2}
-            iconPosition="after"
-            size="medium"
-            label={"Medium Select"}
-            options={optionsWithIconAndLabelsMaxLongMultiLine}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Large-select-Max-label-size-oneline-Icon-after&Label"
-        >
-          <h4>
-            Large select - Icon and label - Max label size oneline (Icon After){" "}
-          </h4>
-          <DxcSelect
-            onChange={onChange}
-            value={3}
-            iconPosition="after"
-            size="large"
-            label={"Large Select"}
-            options={optionsWithIconAndLabelsMinLongOneLine}
-          ></DxcSelect>
-        </div>
-        <div
-          className="test-case"
-          id="Large-select-min-label-size-multiline-Icon-after&Label"
-        >
-          <h4>
-            Large select - Icon and label - Min label size multiline (Icon
-            After){" "}
-          </h4>
-          <DxcSelect
-            onChange={onChange}
-            value={3}
-            iconPosition="after"
-            size="large"
-            label={"Large Select"}
-            options={optionsWithIconAndLabelsMaxLongMultiLine}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="Medium-select-Max-label-size-oneline">
-          <h4>Medium select - Only label - Max label size oneline</h4>
-          <DxcSelect
-            onChange={onChange}
-            iconPosition="after"
-            size="medium"
-            label={"Medium Select max max max"}
-            options={longOptionLabels}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="Medium-select-Min-label-size-multiline">
-          <h4>Medium select - Only label - Min label size multiline</h4>
-          <DxcSelect
-            onChange={onChange}
-            iconPosition="after"
-            size="medium"
-            label={"Medium Select max max max1"}
-            options={longOptionLabels}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="Large-select-Max-label-size-oneline">
-          <h4>Large select - Only label - Max label size oneline</h4>
-          <DxcSelect
-            onChange={onChange}
-            iconPosition="after"
-            size="large"
-            label={"Large Select max max max max max max max max max m1"}
-            options={longOptionLabels}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="Large-select-Min-label-size-multiline">
-          <h4>Large select - Only label - Min label size multiline</h4>
-          <DxcSelect
-            onChange={onChange}
-            iconPosition="after"
-            size="large"
-            label={"Large Select max max max max max max max max max m1234"}
-            options={longOptionLabels}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="multiple-icons&labels">
-          <h4>Multiple select labels and icons selected</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={[1, 2, 3]}
-            multiple={true}
-            size="medium"
-            label={"Multiple Labels"}
-            options={optionsWithIconAndLabels}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="multiple icons">
-          <h4>Multiple select only icons selected</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={[1, 2]}
-            multiple={true}
-            size="medium"
-            label={"Multiple Icons"}
-            options={optionsWithIcon}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="invalid-select">
-          <h4>Invalid select</h4>
-          <DxcSelect
-            onChange={onChange}
-            invalid
-            size="medium"
-            label={"Invalid Select"}
-            options={optionsWithoutIcon}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="mandatory-no-value">
-          <h4>Mandatory select</h4>
-          <DxcSelect
-            onChange={onChange}
-            required={true}
-            size="medium"
-            label={"Multiple no value"}
-            options={optionsWithIcon}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="mandatory-with-value">
-          <h4>Mandatory select with selected option</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={1}
-            required={true}
-            size="medium"
-            label={"Mandatory Icons"}
-            options={optionsWithIcon}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="disabled-no-value">
-          <h4>disabled select</h4>
-          <DxcSelect
-            onChange={onChange}
-            // value={1}
-            disabled={true}
-            size="medium"
-            label={"Disabled Icons"}
-            options={optionsWithIcon}
-          ></DxcSelect>
-        </div>
-        <div className="test-case" id="disabled-with-value">
-          <h4>disabled select with selected option</h4>
-          <DxcSelect
-            onChange={onChange}
-            value={1}
-            disabled={true}
-            size="medium"
-            label={"Disabled Icons"}
-            options={optionsWithIcon}
-          ></DxcSelect>
-        </div>
-      </div>
-      <DxcSelect
-        onChange={onChange}
-        value={inputValue}
-        label={"Controlled Select"}
-        options={optionsWithoutIcon}
-        margin="medium"
-      ></DxcSelect>
-
-      <DxcSelect
-        onChange={onChangeMultiple}
-        value={inputMultipleValue}
-        label={"Controlled Select"}
-        options={optionsWithoutIcon}
-        multiple={true}
-        margin="medium"
-        size="large"
-      ></DxcSelect>
-
-      <DxcSelect
-        label={"Icons"}
-        options={optionsWithIcon}
-        margin="medium"
-        size="small"
-      ></DxcSelect>
-
-      <DxcSelect
-        label={"Controlled Select"}
-        options={optionsWithIconAndLabels}
-        multiple={true}
-        iconPosition={"before"}
-        margin="medium"
-        size="large"
-      ></DxcSelect>
-
-      <div className="test-case" id="custom-colors">
-        <h4>Custom Select</h4>
-        <ThemeProvider theme={colors}>
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Medium"}
-            options={optionsWithIconAndLabels}
-            size="medium"
-            margin="xsmall"
-          ></DxcSelect>
-          <DxcSelect
-            onChange={onChange}
-            value={inputValue}
-            label={"Medium"}
-            options={optionsWithIconAndLabels}
-            size="medium"
-            margin="xsmall"
-            disabled
-          ></DxcSelect>
-        </ThemeProvider>
-      </div>
-    </div>
+    <>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Default (uncontrolled)</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options}
+          placeholder="Choose an option"
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Controlled</h4>
+        <DxcSelect
+          label="Label"
+          value={value}
+          helperText="Helper text"
+          options={single_options}
+          placeholder="Choose an option"
+          onBlur={onBlur}
+          onChange={onChange}
+          error={errorMessage}
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Multiple</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options}
+          placeholder="Choose options"
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Controlled multiple</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          value={valueMultiple}
+          onChange={onChangeMultiple}
+          onBlur={() => {
+            console.log("blur!");
+          }}
+          options={single_options_long}
+          placeholder="Choose options"
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Controlled multiple inmutable</h4>
+        <DxcSelect
+          label="Label"
+          value={["2", "4"]}
+          helperText="Helper text"
+          options={single_options_long}
+          placeholder="Choose an option"
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Searchable</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options_long}
+          placeholder="Choose an option"
+          searchable
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Searchable & Multiple</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options_long}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Grouped</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={grouped_options}
+          placeholder="Choose an option"
+          searchable
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Grouped & Multiple</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={grouped_options}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Icons</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={icon_options}
+          placeholder="Choose an option"
+          searchable
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Icons & Multiple</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={icon_options}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Icons & Multiple & Grouped</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={grouped_icon_options}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Disabled</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          value={"1"}
+          options={single_options}
+          placeholder="Choose an option"
+          margin="medium"
+          disabled
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          margin="medium"
+          optional
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional & Multiple</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Multiple shouldn't alow optional to add a new option, this is exclusive from single selection"
+          options={single_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          margin="medium"
+          optional
+          multiple
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional & Grouped & Searchable & Multiple</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Multiple shouldn't alow optional to add a new option, this is exclusive from single selection, no matter if it is grouped or not"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          searchable
+          multiple
+          margin="medium"
+          optional
+          multiple
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional grouped</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          margin="medium"
+          optional
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional grouped searchable</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={group_options}
+          error={errorOptional}
+          onBlur={({ value, error }) => {
+            error ? setErrorOptional(error) : setErrorOptional(null);
+          }}
+          placeholder="Choose an option"
+          searchable
+          margin="medium"
+          optional
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Optional without placeholder</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options}
+          margin="medium"
+          searchable
+          optional
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Error</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={single_options}
+          placeholder="Choose an option"
+          margin="medium"
+          error="Error message"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Sizes</h4>
+        <DxcSelect
+          label="Small"
+          options={grouped_options}
+          margin={{ left: "medium", right: "medium" }}
+          size="small"
+        />
+        <DxcSelect
+          label="Medium"
+          options={grouped_options}
+          margin={{ left: "medium", right: "medium" }}
+          size="medium"
+        />
+        <DxcSelect
+          label="Large"
+          options={grouped_options}
+          margin={{ left: "medium", right: "medium" }}
+          size="large"
+        />
+        <DxcSelect
+          label="Fill parent"
+          options={grouped_options}
+          margin={{ left: "medium", right: "medium" }}
+          size="fillParent"
+          searchable
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Undefined options</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          placeholder="Choose an option"
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Empty options</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={[]}
+          placeholder="Choose an option"
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Empty grouped options</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={[
+            {
+              label: "Group 1",
+              options: [],
+            },
+          ]}
+          placeholder="Choose an option"
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Undefined groups</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          options={[
+            {
+              label: "Group 1",
+              options: undefined,
+            },
+          ]}
+          placeholder="Choose an option"
+          margin="medium"
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Using ref prop</h4>
+        <DxcSelect
+          label="Select with ref"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          options={single_options}
+          searchable
+          margin={{ left: "medium", right: "medium" }}
+          ref={ref}
+        />
+        <DxcButton
+          onClick={() => {
+            const select = ref.current.getElementsByTagName("div")[0];
+            select.focus();
+          }}
+          label="Focus!"
+          margin={{ left: "medium" }}
+        ></DxcButton>
+      </p>
+    </>
   );
 }
 

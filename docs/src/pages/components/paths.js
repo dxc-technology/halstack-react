@@ -8,7 +8,7 @@ import Tabs from "./cdk-components/tabs/Tabs";
 import Upload from "./cdk-components/upload/Upload";
 import InputText from "./cdk-components/input-text/InputText";
 import Accordion from "./cdk-components/accordion/Accordion";
-import Select from "./cdk-components/select/Select";
+import V3Select from "./cdk-components/V3Select/V3Select";
 import Slider from "./cdk-components/slider/Slider";
 import Card from "./cdk-components/card/Card";
 import Dialog from "./cdk-components/dialog/Dialog";
@@ -230,9 +230,9 @@ export default [
     status: "ready",
   },
   {
-    path: "select",
+    path: "V3Select",
     name: "Select",
-    component: Select,
+    component: V3Select,
     type: types.FORMS,
     status: "ready",
   },

@@ -1,5 +1,5 @@
 export { default as DxcAlert } from "./alert/index";
-export { default as DxcNewSelect } from "./new-select/index";
+export { default as DxcSelect } from "./select/index";
 export { default as DxcTextInput } from "./text-input/index";
 export { default as DxcDateInput } from "./date-input/index";
 export { default as DxcTextarea } from "./textarea/index";
