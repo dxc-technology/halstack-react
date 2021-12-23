@@ -620,7 +620,7 @@
     "disabledFontColorOnDark": "color",
     "focusColorOnDark": "color"
   },
-  "select": {
+  "V3Select": {
     "selectedOptionBackgroundColor": "color",
     "hoverOptionBackgroundColor": "color",
     "errorColor": "color",

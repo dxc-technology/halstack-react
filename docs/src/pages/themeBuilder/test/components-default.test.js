@@ -293,16 +293,16 @@ describe("Successful component tests for default theme", () => {
     );
     await findByText("next");
     act(() => {
-      fireEvent.click(getByText("Select"));
+      fireEvent.click(getByText("V3 Select"));
     });
-    expect(getByText("Select component")).toBeTruthy();
+    expect(getByText("V3Select component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
     // expect(getByText("Dark Mode")).toBeTruthy();
     expect(getAllByText("Default").length).toBe(1);
     expect(getAllByText("Disabled").length).toBe(1);
     expect(getAllByText("Multiple").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(defaultTheme["select"]).forEach((themeInputs) =>
+    Object.keys(defaultTheme["V3Select"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
     );
   });

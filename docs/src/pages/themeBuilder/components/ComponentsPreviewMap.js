@@ -1,7 +1,7 @@
 import ButtonPreview from "./previews/Button";
 import CheckboxPreview from "./previews/Checkbox";
 import ChipPreview from "./previews/Chip";
-import SelectPreview from "./previews/Select";
+import V3SelectPreview from "./previews/V3Select";
 import TablePreview from "./previews/Table";
 import SwitchPreview from "./previews/Switch";
 import SliderPreview from "./previews/Slider";
@@ -119,8 +119,8 @@ const SampleComponents = [
     preview: RadioButtonPreview,
   },
   {
-    name: "select",
-    preview: SelectPreview,
+    name: "V3Select",
+    preview: V3SelectPreview,
   },
   {
     name: "sidenav",

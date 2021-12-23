@@ -152,7 +152,7 @@ const V3DxcSelect = ({
   };
 
   return (
-    <ThemeProvider theme={colorsTheme.select}>
+    <ThemeProvider theme={colorsTheme.V3Select}>
       <SelectContainer
         margin={margin}
         size={size}
@@ -184,7 +184,7 @@ const V3DxcSelect = ({
           >
             {options.map((option) => (
               <MenuItem id={option.value} value={option.value} disableRipple key={option.value}>
-                <BackgroundColorProvider color={colorsTheme.select.optionBackgroundColor}>
+                <BackgroundColorProvider color={colorsTheme.V3Select.optionBackgroundColor}>
                   <ThemedOption option={option} />
                 </BackgroundColorProvider>
               </MenuItem>

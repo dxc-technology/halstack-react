@@ -57,7 +57,7 @@ const optionsNoIcons = [
   },
 ];
 
-const Select = () => {
+const V3Select = () => {
   return (
     <SelectContainer>
       <DxcHeading
@@ -160,4 +160,4 @@ const Select = () => {
 
 const SelectContainer = styled.div``;
 
-export default Select;
+export default V3Select;

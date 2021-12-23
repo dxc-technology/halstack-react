@@ -620,7 +620,7 @@
     "circleLabelSpacing": "10px",
     "circleSize": "24px"
   },
-  "select": {
+  "V3Select": {
     "fontFamily": "Open Sans, sans-serif",
     "assistiveTextFontColor": "#000000",
     "assistiveTextFontColorOnDark": "#ffffff",
