@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcNewSelect } from "@dxc-technology/halstack-react";
+import { DxcSelect } from "@dxc-technology/halstack-react";
 
 function App() {
   const [value, setValue] = useState("");
@@ -129,7 +129,7 @@ function App() {
     <>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Default (uncontrolled)</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={single_options}
@@ -139,7 +139,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           value={value}
           helperText="Helper text"
@@ -153,7 +153,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Searchable</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={single_options}
@@ -164,7 +164,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Grouped</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={grouped_options}
@@ -175,7 +175,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Icons</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={icon_options}
@@ -186,7 +186,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Disabled</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           value={"1"}
@@ -198,7 +198,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Optional</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={single_options}
@@ -214,7 +214,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Optional without placeholder</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={single_options}
@@ -225,7 +225,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Error</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={single_options}
@@ -236,25 +236,25 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Small"
           options={grouped_options}
           margin={{ left: "medium", right: "medium" }}
           size="small"
         />
-        <DxcNewSelect
+        <DxcSelect
           label="Medium"
           options={grouped_options}
           margin={{ left: "medium", right: "medium" }}
           size="medium"
         />
-        <DxcNewSelect
+        <DxcSelect
           label="Large"
           options={grouped_options}
           margin={{ left: "medium", right: "medium" }}
           size="large"
         />
-        <DxcNewSelect
+        <DxcSelect
           label="Fill parent"
           options={grouped_options}
           margin={{ left: "medium", right: "medium" }}
@@ -264,7 +264,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Empty options</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={[]}
@@ -274,7 +274,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Empty grouped options</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={[
@@ -289,7 +289,7 @@ function App() {
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Undefined groups</h4>
-        <DxcNewSelect
+        <DxcSelect
           label="Label"
           helperText="Helper text"
           options={[

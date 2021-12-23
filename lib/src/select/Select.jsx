@@ -60,7 +60,7 @@ const selectIcons = {
   ),
 };
 
-const DxcNewSelect = React.forwardRef(
+const DxcSelect = React.forwardRef(
   (
     {
       label = "",
@@ -267,8 +267,8 @@ const DxcNewSelect = React.forwardRef(
     };
 
     return (
-      <ThemeProvider theme={colorsTheme.newSelect}>
-        <DxcSelect margin={margin} size={size} ref={ref}>
+      <ThemeProvider theme={colorsTheme.select}>
+        <DxcSelectContainer margin={margin} size={size} ref={ref}>
           <Label htmlFor={selectId} disabled={disabled} backgroundType={backgroundType}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
@@ -335,7 +335,7 @@ const DxcNewSelect = React.forwardRef(
             )}
           </SelectContainer>
           {!disabled && <Error backgroundType={backgroundType}>{error}</Error>}
-        </DxcSelect>
+        </DxcSelectContainer>
       </ThemeProvider>
     );
   }
@@ -353,7 +353,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const DxcSelect = styled.div`
+const DxcSelectContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -758,4 +758,4 @@ const SelectedIcon = styled.span`
   color: #4d4d4d;
 `;
 
-export default DxcNewSelect;
+export default DxcSelect;

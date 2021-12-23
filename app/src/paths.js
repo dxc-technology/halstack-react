@@ -37,7 +37,7 @@ import PasswordInput from "./pages/PasswordInput";
 import DateInput from "./pages/DateInput";
 import NumberInput from "./pages/NumberInput";
 import Textarea from "./pages/Textarea";
-import NewSelect from "./pages/NewSelect";
+import Select from "./pages/Select";
 import FileInput from "./pages/FileInput";
 
 export default [
@@ -177,9 +177,9 @@ export default [
     component: V3Select,
   },
   {
-    path: "newSelect",
-    name: "New Select",
-    component: NewSelect,
+    path: "select",
+    name: "Select",
+    component: Select,
   },
   {
     path: "sidenav",

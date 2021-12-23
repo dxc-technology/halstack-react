@@ -50,4 +50,4 @@ type Props = {
   ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcNewSelect(props: Props): JSX.Element;
+export default function DxcSelect(props: Props): JSX.Element;
