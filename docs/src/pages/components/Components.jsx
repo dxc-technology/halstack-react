@@ -14,6 +14,7 @@ import paths from "./paths.js";
 import reactIcon from "../../common/react-icon.png";
 import ComponentDoc from "./common/ComponentDoc";
 import Header from "../../common/Header";
+import StatusTag from "../../common/StatusTag.jsx";
 
 const getComponentsLinks = (type) => {
   const dividedList = paths
@@ -87,6 +88,14 @@ function Components() {
                       key={path.path}
                     >
                       <Link to={`/components/${path.path}`}>{path.name}</Link>
+                      {path.status === "deprecated" && (
+                        <StatusTag
+                          status={
+                            path.status.charAt(0).toUpperCase() +
+                            path.status.slice(1)
+                          }
+                        />
+                      )}
                     </NavLink>
                   ))}
               </ComponentsList>
@@ -192,12 +201,25 @@ const ComponentsList = styled.div`
 `;
 
 const NavLink = styled.div`
-  padding: 3px 0px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 4px 0px;
   & a {
     font-size: 14px;
     text-decoration: none;
     font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
     color: ${({ isActive }) => (isActive && "black") || "gray"};
+    ::before {
+      display: table;
+      content: "";
+      margin-bottom: 0.21875rem;
+    }
+    ::after {
+      display: table;
+      content: "";
+      margin-top: 0.21875rem;
+    }
   }
 `;
 

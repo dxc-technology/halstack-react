@@ -49,6 +49,7 @@ const DxcCheckbox = ({
       <CheckboxContainer
         id={name}
         brightness={componentTokens}
+        label={label}
         labelPosition={labelPosition}
         disabled={disabled}
         margin={margin}
@@ -250,9 +251,8 @@ const CheckboxContainer = styled.span`
       }
     }
     z-index: 1;
-    margin: ${(props) => props.theme.checkLabelSpacing};
-    margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
-    margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
+    margin-left: ${(props) => (props.labelPosition === "before" && props.label ? props.theme.checkLabelSpacing : "0")};
+    margin-right: ${(props) => (props.labelPosition === "after" && props.label ? props.theme.checkLabelSpacing : "0")};
     padding: 0px;
     left: ${(props) => (props.labelPosition === "before" ? "unset" : "1px")};
     right: ${(props) => (props.labelPosition === "before" ? "1px" : "unset")};

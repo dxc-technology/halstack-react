@@ -380,11 +380,11 @@ const DxcTextInput = React.forwardRef(
       return (
         <Suggestion
           id={`suggestion-${index}`}
-          onMouseDown={() => {
-            changeIsActiveSuggestion(true);
+          onMouseDown={(event) => {
+            event.button === 0 && changeIsActiveSuggestion(true);
           }}
-          onMouseUp={() => {
-            if (isActiveSuggestion) {
+          onMouseUp={(event) => {
+            if (event.button === 0 && isActiveSuggestion) {
               changeValue(suggestion);
               changeIsActiveSuggestion(false);
               closeSuggestions();
@@ -744,7 +744,7 @@ const Action = styled.button`
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 3px;
   margin-left: calc(1rem * 0.25);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
