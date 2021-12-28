@@ -378,7 +378,11 @@
     "dropBorderRadius": "6px",
     "fileItemBorderThickness": "1px",
     "fileItemBorderStyle": "solid",
-    "fileItemBorderRadius": "4px"
+    "fileItemBorderRadius": "4px",
+    "hoverDeleteFileItemBackgroundColor": "#f2f2f2",
+    "activeDeleteFileItemBackgroundColor": "#cccccc",
+    "errorHoverDeleteFileItemBackgroundColor": "#ffe6e9",
+    "errorActiveDeleteFileItemBackgroundColor": "#d0011b"
   },
   "footer": {
     "height": "124px",

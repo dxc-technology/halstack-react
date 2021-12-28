@@ -378,7 +378,11 @@
     "dropBorderRadius": "length",
     "fileItemBorderThickness": "bWidth",
     "fileItemBorderStyle": "bStyle",
-    "fileItemBorderRadius": "length"
+    "fileItemBorderRadius": "length",
+    "hoverDeleteFileItemBackgroundColor": "color",
+    "activeDeleteFileItemBackgroundColor": "color",
+    "errorHoverDeleteFileItemBackgroundColor": "color",
+    "errorActiveDeleteFileItemBackgroundColor": "color"
   },
   "footer": {
     "height": "length",
