@@ -45,7 +45,7 @@ const DxcPasswordInput = React.forwardRef(
     };
 
     const getIconTitle = () => {
-      return isPasswordVisible ? "Hide" : "Show";
+      return isPasswordVisible ? "Hide password" : "Show password";
     };
 
     useEffect(() => {
