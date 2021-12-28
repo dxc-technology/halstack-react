@@ -307,6 +307,14 @@ const DxcSelect = React.forwardRef(
       visualFocusedOptionEl?.scrollIntoView({ block: "nearest", inline: "start" });
     }, [visualFocusIndex]);
 
+    useLayoutEffect(() => {
+      if (isOpen) {
+        const listEl = selectOptionsListRef?.current;
+        const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+        listEl?.scrollTo({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
+      }
+    }, [isOpen]);
+
     const Option = ({ option, index, isGroupedOption = false }) => {
       const isSelected = multiple
         ? (value ?? innerValue).includes(option.value)
@@ -393,8 +401,9 @@ const DxcSelect = React.forwardRef(
           >
             {multiple && selectedOption.length > 0 && (
               <SelectionIndicator>
-                <SelectionValue>{selectedOption.length} </SelectionValue>
+                <SelectionNumber disabled={disabled}>{selectedOption.length} </SelectionNumber>
                 <ClearOptionsAction
+                  disabled={disabled}
                   onClick={handleClearOptionsActionOnClick}
                   tabIndex={-1}
                   title="Clear selected options"
@@ -569,6 +578,22 @@ const SelectionIndicator = styled.span`
   width: 48px;
 `;
 
+const SelectionNumber = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  user-select: none;
+  background-color: ${(props) => props.theme.selectionIndicatorBackgroundColor};
+  border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.selectionIndicatorFontColor)};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.selectionIndicatorFontSize};
+  font-style: ${(props) => props.theme.selectionIndicatorFontStyle};
+  font-weight: ${(props) => props.theme.selectionIndicatorFontWeight};
+  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: default;`)}
+`;
+
 const ClearOptionsAction = styled.button`
   display: flex;
   flex-wrap: wrap;
@@ -581,7 +606,8 @@ const ClearOptionsAction = styled.button`
   padding: 3px;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
   background-color: ${(props) => props.theme.enabledSelectionIndicatorActionBackgroundColor};
-  color: ${(props) => props.theme.enabledSelectionIndicatorActionIconColor};
+  color: ${(props) =>
+    props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
 
   ${(props) =>
     !props.disabled &&
@@ -599,19 +625,6 @@ const ClearOptionsAction = styled.button`
   svg {
     line-height: 18px;
   }
-`;
-
-const SelectionValue = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  user-select: none;
-  background-color: ${(props) => props.theme.selectionIndicatorBackgroundColor};
-  border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: 11px;
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: default;`)}
 `;
 
 const SearchableValueContainer = styled.div`
@@ -711,7 +724,6 @@ const ClearAction = styled.button`
   padding: 3px;
   margin-left: calc(1rem * 0.25);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-
   background-color: ${(props) =>
     props.disabled ? props.theme.disabledActionBackgroundColor : props.theme.actionBackgroundColor};
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.actionIconColor)};
@@ -750,8 +762,8 @@ const OptionsList = styled.ul`
   border-radius: 4px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   cursor: default;
-  font-family: ${(props) => props.theme.fontFamily};
   color: ${(props) => props.theme.listItemFontColor};
+  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.listItemFontSize};
   font-style: ${(props) => props.theme.listItemFontStyle};
   font-weight: ${(props) => props.theme.listItemFontWeight};
