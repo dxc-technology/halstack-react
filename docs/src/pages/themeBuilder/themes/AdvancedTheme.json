@@ -354,6 +354,10 @@
     "fileItemIconBackgroundColor": "#f2f2f2",
     "fileItemIconColor": "#808080",
     "errorMessageFontColor": "#d0011b",
+    "hoverDeleteFileItemBackgroundColor": "#f2f2f2",
+    "activeDeleteFileItemBackgroundColor": "#cccccc",
+    "errorHoverDeleteFileItemBackgroundColor": "#ffe6e9",
+    "errorActiveDeleteFileItemBackgroundColor": "#d0011b",
     "labelFontFamily": "Open Sans, sans-serif",
     "labelFontSize": "0.875rem",
     "labelFontWeight": "600",
@@ -378,11 +382,7 @@
     "dropBorderRadius": "6px",
     "fileItemBorderThickness": "1px",
     "fileItemBorderStyle": "solid",
-    "fileItemBorderRadius": "4px",
-    "hoverDeleteFileItemBackgroundColor": "#f2f2f2",
-    "activeDeleteFileItemBackgroundColor": "#cccccc",
-    "errorHoverDeleteFileItemBackgroundColor": "#ffe6e9",
-    "errorActiveDeleteFileItemBackgroundColor": "#d0011b"
+    "fileItemBorderRadius": "4px"
   },
   "footer": {
     "height": "124px",
