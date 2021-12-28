@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import { spaces } from "../common/variables.js";
@@ -308,7 +308,7 @@ const DxcSelect = React.forwardRef(
     }, [visualFocusIndex]);
 
     useLayoutEffect(() => {
-      if (isOpen) {
+      if (isOpen && !multiple) {
         const listEl = selectOptionsListRef?.current;
         const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
         listEl?.scrollTo({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
