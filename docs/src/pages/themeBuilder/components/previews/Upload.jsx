@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { V3DxcUpload } from "@dxc-technology/halstack-react";
+import { DxcUpload } from "@dxc-technology/halstack-react";
 
 const Upload = () => {
   const callbackFunc = async (file) => {
@@ -12,7 +12,7 @@ const Upload = () => {
     <UploadContainer>
       <Title>Default</Title>
       <UploadPreview>
-        <V3DxcUpload margin={{ top: "small" }} callbackUpload={callbackFunc} />
+        <DxcUpload margin={{ top: "small" }} callbackUpload={callbackFunc} />
       </UploadPreview>
     </UploadContainer>
   );

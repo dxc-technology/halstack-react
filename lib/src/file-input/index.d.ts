@@ -78,4 +78,4 @@ type Props = {
   tabIndex?: number;
 };
 
-export default function DxcTextInput(props: Props): JSX.Element;
+export default function DxcFileInput(props: Props): JSX.Element;
