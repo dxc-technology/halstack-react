@@ -7,12 +7,12 @@ import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import V3DxcInputText from "../input-text/InputText";
+import DxcInputText from "../input-text/InputText";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
-const V3DxcDate = ({
+const DxcDate = ({
   value,
   format = "dd-MM-yyyy",
   label = "",
@@ -234,7 +234,7 @@ const V3DxcDate = ({
       <MuiThemeProvider theme={dateTheme}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <StyledDPicker margin={margin}>
-            <V3DxcInputText
+            <DxcInputText
               label={label}
               name={name}
               suffixIcon={calendarSVG}
@@ -295,7 +295,7 @@ const sizes = {
 
 const StyledDPicker = styled.div``;
 
-V3DxcDate.propTypes = {
+DxcDate.propTypes = {
   value: PropTypes.string,
   format: PropTypes.string,
   label: PropTypes.string,
@@ -322,4 +322,4 @@ V3DxcDate.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default V3DxcDate;
+export default DxcDate;

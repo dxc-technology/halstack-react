@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { V3DxcInputText, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcInputText, ThemeProvider } from "@dxc-technology/halstack-react";
 import icon from "../images/home.svg";
 
 const colors = {
@@ -138,7 +138,7 @@ function App() {
     <div>
       <div className="test-case" id="prefix-suffix-icon-input">
         <h4>With prefix and suffix icons</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Input text label"
           suffixIcon={iconSVG}
           prefixIcon={iconSVG}
@@ -149,7 +149,7 @@ function App() {
 
       <div className="test-case" id="prefix-icon-input">
         <h4>With prefix icon</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Input text label"
           prefixIcon={
             <svg
@@ -176,7 +176,7 @@ function App() {
 
       <div className="test-case" id="suffix-icon-input">
         <h4>With suffix icon</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Input text label"
           suffixIcon={<img src={icon} />}
           value={inputValue}
@@ -186,7 +186,7 @@ function App() {
 
       <div className="test-case" id="assistive-text-input">
         <h4>With assistive text</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Input text label"
           value={inputValue}
           assistiveText="assistive text"
@@ -196,7 +196,7 @@ function App() {
 
       <div className="test-case" id="invalid-text-input">
         <h4>Invalid input text</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Input text label"
           value={inputValue}
           assistiveText="assistive text"
@@ -207,7 +207,7 @@ function App() {
 
       <div className="test-case" id="without-label-input">
         <h4>Without label</h4>
-        <V3DxcInputText
+        <DxcInputText
           value={inputValue}
           assistiveText="assistive text"
           onChange={onChange}
@@ -216,12 +216,12 @@ function App() {
 
       <div className="test-case" id="without-assistive-text-label-input">
         <h4>Without assistive text and label</h4>
-        <V3DxcInputText value={inputValue} onChange={onChange} />
+        <DxcInputText value={inputValue} onChange={onChange} />
       </div>
 
       <div className="test-case" id="light-theme">
         <h4>Light theme</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Input text label"
           value={inputValue}
           assistiveText="assistive text"
@@ -231,7 +231,7 @@ function App() {
 
       <div className="test-case" id="disabled-input">
         <h4>Disabled input text</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Input text label"
           value={inputValue}
           disabled={true}
@@ -242,7 +242,7 @@ function App() {
 
       <div className="test-case" id="required-input">
         <h4>Required input text</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Input text label"
           value={inputValue}
           required={true}
@@ -256,7 +256,7 @@ function App() {
         <h4>Sizes</h4>
         <div className="test-case" id="small-single-line-label-text">
           <h5>Small size - Label and assistive text max size single line</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Label "
             value={inputValue}
             assistiveText="assistive"
@@ -268,7 +268,7 @@ function App() {
           <h5>
             Small size - Label, assistive text and value max size single line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Label"
             value="Input text"
             assistiveText="assistive"
@@ -280,7 +280,7 @@ function App() {
           <h5>
             Small size - Label, assistive text and value min size single line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Label i"
             value="Input i"
             assistiveText="assistive t"
@@ -291,7 +291,7 @@ function App() {
 
         <div className="test-case" id="small-max-size-prefix">
           <h5>Small size - Value max size single line with prefix</h5>
-          <V3DxcInputText
+          <DxcInputText
             value="I"
             prefix="pre"
             onClickPrefix={onPrefixClick}
@@ -301,7 +301,7 @@ function App() {
         </div>
         <div className="test-case" id="small-max-size-suffix">
           <h5>Small size - Value max size single line with suffix</h5>
-          <V3DxcInputText
+          <DxcInputText
             value="I"
             suffix="suf"
             onClickSuffix={onSuffixClick}
@@ -313,7 +313,7 @@ function App() {
           <h5>
             Small size - Value max size single line with prefix and suffix
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             value=""
             prefix="pre"
             suffix="suf"
@@ -325,7 +325,7 @@ function App() {
         </div>
         <div className="test-case" id="medium-single-line-label-text">
           <h5>Medium size - Label and assistive text max size single line</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label input label input lab"
             value={inputValue}
             assistiveText="assistive text assistive text assistive text"
@@ -337,7 +337,7 @@ function App() {
           <h5>
             Medium size - Label, assistive text and value max size single line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label input label input lab"
             value="Input value input value input val"
             assistiveText="assistive text assistive text assistive text"
@@ -349,7 +349,7 @@ function App() {
           <h5>
             Medium size - Label, assistive text and value min size single line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label input label input labe"
             value="Input value input value input valu"
             assistiveText="assistive text assistive text assistive text a"
@@ -360,7 +360,7 @@ function App() {
 
         <div className="test-case" id="medium-max-size-prefix">
           <h5>Medium size - Value max size single line with prefix</h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input value inp"
             prefix="pre"
             onClickPrefix={onPrefixClick}
@@ -370,7 +370,7 @@ function App() {
         </div>
         <div className="test-case" id="medium-max-size-suffix">
           <h5>Medium size - Value max size single line with suffix</h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input value inp"
             suffix="suf"
             onClickSuffix={onSuffixClick}
@@ -382,7 +382,7 @@ function App() {
           <h5>
             Medium size - Value max size single line with prefix and suffix
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input valu"
             prefix="pre"
             suffix="suf"
@@ -394,7 +394,7 @@ function App() {
         </div>
         <div className="test-case" id="large-single-line-label-text">
           <h5>Large size - Label and assistive text max size single line</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label input label input label input label input label input l"
             value={inputValue}
             assistiveText="assistive text assistive text assistive text assistive text assistive text assistive tex"
@@ -406,7 +406,7 @@ function App() {
           <h5>
             Large size - Label, assistive text and value max size single line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label input label input label input label input label input l"
             value="Input value input value input value input value input value input"
             assistiveText="assistive text assistive text assistive text assistive text assistive text assistive tex"
@@ -418,7 +418,7 @@ function App() {
           <h5>
             Large size - Label, assistive text and value min size single line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label input label input label input label input label input la"
             value="Input value input value input value input value input value input v"
             assistiveText="assistive text assistive text assistive text assistive text assistive text assistive text"
@@ -429,7 +429,7 @@ function App() {
 
         <div className="test-case" id="large-max-size-prefix">
           <h5>Large size - Value max size single line with prefix</h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input value input value input value input value i"
             prefix="pre"
             onClickPrefix={onPrefixClick}
@@ -439,7 +439,7 @@ function App() {
         </div>
         <div className="test-case" id="large-max-size-suffix">
           <h5>Large size - Value max size single line with suffix</h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input value input value input value input value i"
             suffix="suf"
             onClickSuffix={onSuffixClick}
@@ -451,7 +451,7 @@ function App() {
           <h5>
             Large size - Value max size single line with prefix and suffix
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input value input value input value input v"
             prefix="pre"
             suffix="suf"
@@ -465,7 +465,7 @@ function App() {
           <h5>
             FillParent size - Label and assistive text max size single line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input i"
             value={inputValue}
             assistiveText="assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistiv"
@@ -478,7 +478,7 @@ function App() {
             FillParent size - Label, assistive text and value max size single
             line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input i"
             value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value i"
             assistiveText="assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistiv"
@@ -491,7 +491,7 @@ function App() {
             FillParent size - Label, assistive text and value min size single
             line
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label example input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input in"
             value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value in"
             assistiveText="assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive text assistive"
@@ -502,7 +502,7 @@ function App() {
 
         <div className="test-case" id="fillParent-max-size-prefix">
           <h5>FillParent size - Value max size single line with prefix</h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input va"
             prefix="pre"
             onClickPrefix={onPrefixClick}
@@ -512,7 +512,7 @@ function App() {
         </div>
         <div className="test-case" id="fillParent-max-size-suffix">
           <h5>FillParent size - Value max size single line with suffix</h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input v"
             suffix="suf"
             onClickSuffix={onSuffixClick}
@@ -524,7 +524,7 @@ function App() {
           <h5>
             FillParent size - Value max size single line with prefix and suffix
           </h5>
-          <V3DxcInputText
+          <DxcInputText
             value="Input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value input value in"
             prefix="pre"
             suffix="suf"
@@ -540,7 +540,7 @@ function App() {
         <h4>Margins</h4>
         <div className="test-case" id="xxsmall-margin">
           <h5>xxsmall margin</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -551,7 +551,7 @@ function App() {
 
         <div className="test-case" id="xsmall-margin">
           <h5>xsmall margin</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -562,7 +562,7 @@ function App() {
 
         <div className="test-case" id="small-margin">
           <h5>Small margin</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -573,7 +573,7 @@ function App() {
 
         <div className="test-case" id="large-margin">
           <h5>Large margin</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -584,7 +584,7 @@ function App() {
 
         <div className="test-case" id="xlarge-margin">
           <h5>xlarge margin</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -595,7 +595,7 @@ function App() {
 
         <div className="test-case" id="xxlarge-margin">
           <h5>xxlarge margin</h5>
-          <V3DxcInputText
+          <DxcInputText
             label="Input label"
             value={inputValue}
             assistiveText={"assistive text"}
@@ -607,7 +607,7 @@ function App() {
 
       <div className="test-case" id="async-autocomplete">
         <h4>Asynchronous Autocomplete</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Asynchronous Autocomplete"
           value={asynchronousAutocompleteValue}
           onChange={onChangeAsynchronousAutocomplete}
@@ -617,7 +617,7 @@ function App() {
       </div>
       <div className="test-case" id="sync-autocomplete">
         <h4>Synchronous Autocomplete</h4>
-        <V3DxcInputText
+        <DxcInputText
           label="Synchronous Autocomplete"
           value={autocompleteValue}
           onChange={onChangeAutocomplete}
@@ -629,7 +629,7 @@ function App() {
       <div className="test-case" id="custom-colors">
         <h4>Custom Autocomplete</h4>
         <ThemeProvider theme={colors}>
-          <V3DxcInputText
+          <DxcInputText
             label="Asynchronous Autocomplete"
             value={asynchronousAutocompleteValue}
             onChange={onChangeAsynchronousAutocomplete}
