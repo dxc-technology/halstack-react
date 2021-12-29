@@ -4,7 +4,7 @@ import {
   DxcDialog,
   DxcButton,
   DxcHeading,
-  V3DxcInputText,
+  DxcInputText,
 } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
@@ -91,13 +91,13 @@ const Dialog = () => {
             <DxcHeading level={4} text="Account information" />
             <DxcHeading level={5} text="Client" margin={{ top: "xsmall" }} />
             <p>
-              <V3DxcInputText label="Name" />
+              <DxcInputText label="Name" />
             </p>
             <p>
-              <V3DxcInputText label="Surname" />
+              <DxcInputText label="Surname" />
             </p>
             <p>
-              <V3DxcInputText label="Address" />
+              <DxcInputText label="Address" />
             </p>
             <p style={{ textAlign: "right" }}>
               <DxcButton

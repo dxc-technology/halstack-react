@@ -31,7 +31,7 @@ const makeCancelable = (promise) => {
   };
 };
 
-const V3DxcInputText = ({
+const DxcInputText = ({
   label = " ",
   name = "",
   value,
@@ -182,9 +182,7 @@ const V3DxcInputText = ({
           {isError && (
             <MenuItem>
               Error fetching data
-              <ErrorIconContainer>
-                {errorIcon}
-              </ErrorIconContainer>
+              <ErrorIconContainer>{errorIcon}</ErrorIconContainer>
             </MenuItem>
           )}
         </Paper>
@@ -333,7 +331,7 @@ const sizes = {
 
 const ErrorIconContainer = styled.div`
   padding-left: 12px;
-  color:red;
+  color: red;
 `;
 
 const calculateWidth = (margin, size) => {
@@ -703,7 +701,7 @@ const TextContainer = styled.div`
   }
 `;
 
-V3DxcInputText.propTypes = {
+DxcInputText.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
@@ -738,4 +736,4 @@ V3DxcInputText.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default V3DxcInputText;
+export default DxcInputText;
