@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import { spaces } from "../common/variables.js";
-import BackgroundColorContext from "../BackgroundColorContext.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
 import { useLayoutEffect } from "react";
@@ -55,6 +54,22 @@ const selectIcons = {
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 
+const filterOptionsBySearchValue = (options, searchValue) => {
+  if (options?.length > 0) {
+    if (options[0].options)
+      return options.map((optionGroup) => {
+        const group = {
+          label: optionGroup.label,
+          options: optionGroup.options.filter((option) =>
+            option.label.toUpperCase().includes(searchValue.toUpperCase())
+          ),
+        };
+        return group;
+      });
+    else return options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()));
+  }
+};
+
 const DxcSelect = React.forwardRef(
   (
     {
@@ -81,20 +96,16 @@ const DxcSelect = React.forwardRef(
     const selectLabelId = `label-${selectId}`;
     const [innerValue, setInnerValue] = useState(multiple ? [] : "");
     const [searchValue, setSearchValue] = useState("");
-    const [isBackgroundValue, changeIsBackgroundValue] = useState(false);
-
-    const [isOpen, changeIsOpen] = useState(false);
-    const [isActiveOption, changeIsActiveOption] = useState(false);
-    const [isScrollable, changeIsScrollable] = useState(false);
-    const [filteredOptions, setFilteredOptions] = useState([]);
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
+    const [isOpen, changeIsOpen] = useState(false);
 
     const selectContainerRef = useRef(null);
     const selectSearchInputRef = useRef(null);
     const selectOptionsListRef = useRef(null);
 
     const colorsTheme = useTheme();
-    const backgroundType = useContext(BackgroundColorContext);
+
+    const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
 
     const optionalEmptyOption = { label: placeholder, value: "" };
 
@@ -113,14 +124,10 @@ const DxcSelect = React.forwardRef(
       filteredOptions?.[0].options ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
 
     const openOptions = () => {
-      if (!isOpen && canBeOpenOptions()) {
-        searchable && changeIsBackgroundValue(true);
-        changeIsOpen(true);
-      }
+      if (!isOpen && canBeOpenOptions()) changeIsOpen(true);
     };
     const closeOptions = () => {
       if (isOpen) {
-        searchable && changeIsBackgroundValue(false);
         changeIsOpen(false);
         changeVisualFocusIndex(-1);
       }
@@ -147,8 +154,10 @@ const DxcSelect = React.forwardRef(
       }
     };
     const handleSelectOnClick = () => {
-      changeVisualFocusIndex(0);
-      isOpen ? closeOptions() : openOptions();
+      if (isOpen) {
+        closeOptions();
+        setSearchValue("");
+      } else openOptions();
       searchable && selectSearchInputRef.current.focus();
     };
     const handleSelectOnFocus = () => {
@@ -174,8 +183,6 @@ const DxcSelect = React.forwardRef(
             else if (visualFocusIndex === lastOptionIndex) return 0;
           });
           openOptions();
-          changeIsActiveOption(false);
-          isOpen && changeIsScrollable(true);
           break;
         case 38: // Arrow Up
           event.preventDefault();
@@ -183,8 +190,6 @@ const DxcSelect = React.forwardRef(
             visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
           );
           openOptions();
-          changeIsActiveOption(false);
-          isOpen && changeIsScrollable(true);
           break;
         case 27: // Esc
           event.preventDefault();
@@ -232,7 +237,7 @@ const DxcSelect = React.forwardRef(
 
     const handleSearchIOnChange = (event) => {
       setSearchValue(event.target.value);
-      !isOpen && changeVisualFocusIndex(0);
+      changeVisualFocusIndex(-1);
       openOptions();
     };
 
@@ -297,36 +302,18 @@ const DxcSelect = React.forwardRef(
     const selectedOption = useMemo(() => getSelectedOption(), [options, multiple, value ?? innerValue]);
 
     useLayoutEffect(() => {
-      if (isScrollable) {
-        const visualFocusedOptionEl =
-          selectOptionsListRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-        visualFocusedOptionEl?.scrollIntoView({ block: "nearest", inline: "start" });
-        return changeIsScrollable(false);
-      }
-    }, [isScrollable]);
+      const visualFocusedOptionEl =
+        selectOptionsListRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
+      visualFocusedOptionEl?.scrollIntoView({ block: "nearest", inline: "start" });
+    }, [visualFocusIndex]);
 
-    useEffect(() => {
-      if (searchable && options?.length > 0) {
-        if (options[0].options) {
-          setFilteredOptions(
-            options.map((optionGroup) => {
-              const group = JSON.parse(JSON.stringify(optionGroup)); // circular issue
-              group.options = group.options.filter((option) =>
-                option.label.toUpperCase().includes(searchValue.toUpperCase())
-              );
-              return group;
-            })
-          );
-        } else
-          setFilteredOptions(
-            options.filter((option) => option.label.toUpperCase().includes(searchValue.toUpperCase()))
-          );
+    useLayoutEffect(() => {
+      if (isOpen && !multiple) {
+        const listEl = selectOptionsListRef?.current;
+        const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+        listEl?.scrollTo({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
       }
-    }, [options, searchable, searchValue]);
-
-    useEffect(() => {
-      visualFocusIndex > lastOptionIndex && changeVisualFocusIndex(0);
-    }, [filteredOptions]);
+    }, [isOpen]);
 
     const Option = ({ option, index, isGroupedOption = false }) => {
       const isSelected = multiple
@@ -336,34 +323,19 @@ const DxcSelect = React.forwardRef(
 
       return (
         <OptionItem
-          onMouseDown={(event) => {
+          onClick={(event) => {
             // left mouse button only
-            event.button === 0 && changeIsActiveOption(true);
-          }}
-          onMouseUp={(event) => {
-            if (event.button === 0 && isActiveOption) {
-              // left mouse button only
-              handleSelectChangeValue(option);
-              !multiple && closeOptions();
-              setSearchValue("");
-              changeIsActiveOption(false);
-            }
-          }}
-          onMouseEnter={() => {
-            changeVisualFocusIndex(index);
-          }}
-          onMouseLeave={() => {
-            changeIsActiveOption(false);
+            handleSelectChangeValue(option);
+            !multiple && closeOptions();
+            setSearchValue("");
           }}
           visualFocused={visualFocusIndex === index}
-          active={visualFocusIndex === index && isActiveOption}
           selected={isSelected}
           aria-selected={isSelected && "true"}
           role="option"
         >
           <StyledOption
             visualFocused={visualFocusIndex === index}
-            active={visualFocusIndex === index && isActiveOption}
             selected={isSelected}
             last={isLastOption}
             grouped={isGroupedOption}
@@ -371,13 +343,13 @@ const DxcSelect = React.forwardRef(
           >
             {multiple && <DxcCheckbox tabIndex={-1} checked={isSelected} />}
             {option.icon && (
-              <OptionIcon>
+              <OptionIcon selected={isSelected}>
                 {typeof option.icon === "string" ? <OptionIconImg src={option.icon}></OptionIconImg> : option.icon}
               </OptionIcon>
             )}
             <OptionContent grouped={isGroupedOption} hasIcon={option.icon} multiple={multiple}>
               <OptionLabel>{option.label}</OptionLabel>
-              {!multiple && isSelected && <SelectedIcon>{selectIcons.selected}</SelectedIcon>}
+              {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
             </OptionContent>
           </StyledOption>
         </OptionItem>
@@ -408,19 +380,15 @@ const DxcSelect = React.forwardRef(
           <Label
             id={selectLabelId}
             disabled={disabled}
-            backgroundType={backgroundType}
             onClick={() => {
               selectContainerRef.current.focus();
             }}
           >
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
-          <HelperText disabled={disabled} backgroundType={backgroundType}>
-            {helperText}
-          </HelperText>
+          <HelperText disabled={disabled}>{helperText}</HelperText>
           <SelectContainer
             id={selectId}
-            backgroundType={backgroundType}
             disabled={disabled}
             error={error}
             onBlur={handleSelectOnBlur}
@@ -433,10 +401,10 @@ const DxcSelect = React.forwardRef(
           >
             {multiple && selectedOption.length > 0 && (
               <SelectionIndicator>
-                <SelectionValue>{selectedOption.length} </SelectionValue>
+                <SelectionNumber disabled={disabled}>{selectedOption.length} </SelectionNumber>
                 <ClearOptionsAction
+                  disabled={disabled}
                   onClick={handleClearOptionsActionOnClick}
-                  backgroundType={backgroundType}
                   tabIndex={-1}
                   title="Clear selected options"
                   aria-label="Clear selected options"
@@ -446,7 +414,11 @@ const DxcSelect = React.forwardRef(
               </SelectionIndicator>
             )}
             <SearchableValueContainer>
-              <ValueInput name={name} value={value ?? innerValue} readOnly />
+              <ValueInput
+                name={name}
+                value={multiple ? (value ?? innerValue).join(", ") : value ?? innerValue}
+                readOnly
+              />
               {searchable && (
                 <SearchInput
                   value={searchValue}
@@ -459,24 +431,20 @@ const DxcSelect = React.forwardRef(
               )}
               {(!searchable || searchValue === "") &&
                 (multiple ? (
-                  <SelectedOption
-                    disabled={disabled}
-                    backgroundValue={(value ?? innerValue).length === 0 || isBackgroundValue}
-                  >
+                  <SelectedOption disabled={disabled} atBackground={(value ?? innerValue).length === 0 || isOpen}>
                     <OptionLabel>{selectedOption.map((option) => option.label).join(", ")}</OptionLabel>
                     {selectedOption.length === 0 && placeholder}
                   </SelectedOption>
                 ) : (
-                  <SelectedOption disabled={disabled} backgroundValue={!(value ?? innerValue) || isBackgroundValue}>
+                  <SelectedOption disabled={disabled} atBackground={!(value ?? innerValue) || isOpen}>
                     <OptionLabel>{selectedOption?.label ?? placeholder}</OptionLabel>
                   </SelectedOption>
                 ))}
             </SearchableValueContainer>
-            {!disabled && error && <ErrorIcon backgroundType={backgroundType}>{selectIcons.error}</ErrorIcon>}
+            {!disabled && error && <ErrorIcon>{selectIcons.error}</ErrorIcon>}
             {searchable && searchValue.length > 0 && (
               <ClearAction
                 onClick={handleClearActionOnClick}
-                backgroundType={backgroundType}
                 tabIndex={-1}
                 title="Clear search text"
                 aria-label="Clear search text"
@@ -484,9 +452,9 @@ const DxcSelect = React.forwardRef(
                 {selectIcons.clear}
               </ClearAction>
             )}
-            <Arrow disabled={disabled} backgroundType={backgroundType}>
+            <CollapseIndicator disabled={disabled}>
               {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
-            </Arrow>
+            </CollapseIndicator>
             {isOpen && (
               <OptionsList
                 onClick={(event) => {
@@ -511,7 +479,7 @@ const DxcSelect = React.forwardRef(
               </OptionsList>
             )}
           </SelectContainer>
-          {!disabled && <Error backgroundType={backgroundType}>{error}</Error>}
+          {!disabled && <Error>{error}</Error>}
         </DxcSelectContainer>
       </ThemeProvider>
     );
@@ -547,20 +515,12 @@ const DxcSelectContainer = styled.div`
 `;
 
 const Label = styled.span`
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledLabelFontColorOnDark
-        : props.theme.disabledLabelFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.labelFontColorOnDark
-      : props.theme.labelFontColor};
-
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
-  line-height: 1.715em;
+  line-height: ${(props) => props.theme.labelLineHeight};
   cursor: default;
 `;
 
@@ -569,20 +529,12 @@ const OptionalLabel = styled.span`
 `;
 
 const HelperText = styled.span`
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledHelperTextFontColorOnDark
-        : props.theme.disabledHelperTextFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.helperTextFontColorOnDark
-      : props.theme.helperTextFontColor};
-
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
-  line-height: 1.5em;
+  line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
 const SelectContainer = styled.div`
@@ -593,30 +545,15 @@ const SelectContainer = styled.div`
   margin: calc(1rem * 0.25) 0;
   padding: 0 calc(1rem * 0.5);
   outline: none;
-  ${(props) => {
-    if (props.disabled)
-      return props.backgroundType === "dark"
-        ? `background-color: ${props.theme.disabledContainerFillColorOnDark};`
-        : `background-color: ${props.theme.disabledContainerFillColor};`;
-  }}
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
-    ${(props) => {
-      if (props.disabled)
-        return props.backgroundType === "dark"
-          ? props.theme.disabledBorderColorOnDark
-          : props.theme.disabledBorderColor;
-      else
-        return props.backgroundType === "dark" ? props.theme.enabledBorderColorOnDark : props.theme.enabledBorderColor;
-    }};
+    ${(props) => (props.disabled ? props.theme.disabledInputBorderColor : props.theme.enabledInputBorderColor)};
   ${(props) =>
     props.error &&
     !props.disabled &&
     `border-color: transparent;
-     box-shadow: 0 0 0 2px ${
-       props.backgroundType === "dark" ? props.theme.errorBorderColorOnDark : props.theme.errorBorderColor
-     };
+     box-shadow: 0 0 0 2px ${props.theme.errorInputBorderColor};
   `}
   ${(props) => (props.disabled ? "cursor: not-allowed;" : "cursor: pointer;")};
 
@@ -624,27 +561,12 @@ const SelectContainer = styled.div`
     !props.disabled &&
     `
       &:hover {
-        border-color: ${
-          props.error
-            ? "transparent"
-            : props.backgroundType === "dark"
-            ? props.theme.hoverBorderColorOnDark
-            : props.theme.hoverBorderColor
-        };
-        ${
-          props.error &&
-          `box-shadow: 0 0 0 2px ${
-            props.backgroundType === "dark"
-              ? props.theme.hoverErrorBorderColorOnDark
-              : props.theme.hoverErrorBorderColor
-          };`
-        }
+        border-color: ${props.error ? "transparent" : props.theme.hoverInputBorderColor};
+        ${props.error && `box-shadow: 0 0 0 2px ${props.theme.hoverInputErrorBorderColor};`}
       }
       &:focus-within {
         border-color: transparent;
-        box-shadow: 0 0 0 2px ${
-          props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-        };
+        box-shadow: 0 0 0 2px ${props.theme.focusInputBorderColor};
       }
     `};
 `;
@@ -654,6 +576,22 @@ const SelectionIndicator = styled.span`
   border: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
   border-radius: 2px;
   width: 48px;
+`;
+
+const SelectionNumber = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  user-select: none;
+  background-color: ${(props) => props.theme.selectionIndicatorBackgroundColor};
+  border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.selectionIndicatorFontColor)};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.selectionIndicatorFontSize};
+  font-style: ${(props) => props.theme.selectionIndicatorFontStyle};
+  font-weight: ${(props) => props.theme.selectionIndicatorFontWeight};
+  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: default;`)}
 `;
 
 const ClearOptionsAction = styled.button`
@@ -668,7 +606,8 @@ const ClearOptionsAction = styled.button`
   padding: 3px;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
   background-color: ${(props) => props.theme.enabledSelectionIndicatorActionBackgroundColor};
-  color: ${(props) => props.theme.enabledSelectionIndicatorActionIconColor};
+  color: ${(props) =>
+    props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
 
   ${(props) =>
     !props.disabled &&
@@ -688,19 +627,6 @@ const ClearOptionsAction = styled.button`
   }
 `;
 
-const SelectionValue = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  user-select: none;
-  background-color: ${(props) => props.theme.selectionIndicatorBackgroundColor};
-  border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: 11px;
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: default;`)}
-`;
-
 const SearchableValueContainer = styled.div`
   display: grid;
   width: 100%;
@@ -716,22 +642,9 @@ const SelectedOption = styled.span`
   overflow: hidden;
 
   color: ${(props) => {
-    if (props.backgroundValue)
-      return props.disabled
-        ? props.backgroundType === "dark"
-          ? props.theme.disabledPlaceholderFontColorOnDark
-          : props.theme.disabledPlaceholderFontColor
-        : props.backgroundType === "dark"
-        ? props.theme.placeholderFontColorOnDark
-        : props.theme.placeholderFontColor;
-    else
-      return props.disabled
-        ? props.backgroundType === "dark"
-          ? props.theme.disabledValueFontColorOnDark
-          : props.theme.disabledValueFontColor
-        : props.backgroundType === "dark"
-        ? props.theme.valueFontColorOnDark
-        : props.theme.valueFontColor;
+    if (props.disabled) return props.theme.disabledColor;
+    else if (props.atBackground) return props.theme.placeholderFontColor;
+    else return props.theme.valueFontColor;
   }};
 
   font-family: ${(props) => props.theme.fontFamily};
@@ -752,32 +665,12 @@ const SearchInput = styled.input`
   border: none;
   outline: none;
   padding: 0 calc(1rem * 0.5);
-
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledValueFontColorOnDark
-        : props.theme.disabledValueFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.valueFontColorOnDark
-      : props.theme.valueFontColor};
-
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.valueFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
   line-height: 1.5em;
-
-  ::placeholder {
-    color: ${(props) =>
-      props.disabled
-        ? props.backgroundType === "dark"
-          ? props.theme.disabledPlaceholderFontColorOnDark
-          : props.theme.disabledPlaceholderFontColor
-        : props.backgroundType === "dark"
-        ? props.theme.placeholderFontColorOnDark
-        : props.theme.placeholderFontColor};
-  }
 `;
 
 const ErrorIcon = styled.span`
@@ -789,8 +682,7 @@ const ErrorIcon = styled.span`
   width: 18px;
   margin-left: calc(1rem * 0.25);
   pointer-events: none;
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
+  color: ${(props) => props.theme.errorColor};
 
   svg {
     line-height: 18px;
@@ -800,15 +692,15 @@ const ErrorIcon = styled.span`
 
 const Error = styled.span`
   min-height: 1.5em;
-  color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
+  color: ${(props) => props.theme.errorColor};
   font-family: ${(props) => props.theme.fontFamily};
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1.5em;
+  font-size: ${(props) => props.theme.errorMessageFontSize};
+  font-style: ${(props) => props.theme.errorMessagetFontStyle};
+  font-weight: ${(props) => props.theme.errorMessageFontWeight};
+  line-height: ${(props) => props.theme.errorMessagetLineHeight};
 `;
 
-const Arrow = styled.span`
+const CollapseIndicator = styled.span`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -816,15 +708,7 @@ const Arrow = styled.span`
   width: 16px;
   padding: 4px;
   margin-left: calc(1rem * 0.25);
-
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledArrowColorOnDark
-        : props.theme.disabledArrowColor
-      : props.backgroundType === "dark"
-      ? props.theme.arrowColorOnDark
-      : props.theme.arrowColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.collapseIndicatorColor)};
 `;
 
 const ClearAction = styled.button`
@@ -840,46 +724,20 @@ const ClearAction = styled.button`
   padding: 3px;
   margin-left: calc(1rem * 0.25);
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-
   background-color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledActionBackgroundColorOnDark
-        : props.theme.disabledActionBackgroundColor
-      : props.backgroundType === "dark"
-      ? props.theme.actionBackgroundColorOnDark
-      : props.theme.actionBackgroundColor};
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledActionIconColorOnDark
-        : props.theme.disabledActionIconColor
-      : props.backgroundType === "dark"
-      ? props.theme.actionIconColorOnDark
-      : props.theme.actionIconColor};
+    props.disabled ? props.theme.disabledActionBackgroundColor : props.theme.actionBackgroundColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.actionIconColor)};
 
   ${(props) =>
     !props.disabled &&
     `
       &:hover {
-        background-color: ${
-          props.backgroundType === "dark"
-            ? props.theme.hoverActionBackgroundColorOnDark
-            : props.theme.hoverActionBackgroundColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.hoverActionIconColorOnDark : props.theme.hoverActionIconColor
-        };
+        background-color: ${props.theme.hoverActionBackgroundColor};
+        color: ${props.theme.hoverActionIconColor};
       }
       &:active {
-        background-color: ${
-          props.backgroundType === "dark"
-            ? props.theme.activeActionBackgroundColorOnDark
-            : props.theme.activeActionBackgroundColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.activeActionIconColorOnDark : props.theme.activeActionIconColor
-        };
+        background-color: ${props.theme.activeActionBackgroundColor};
+        color: ${props.theme.activeActionIconColor};
       }
     `}
 
@@ -899,16 +757,16 @@ const OptionsList = styled.ul`
   padding: 4px 0;
   width: 100%;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.itemListBackgroundColor};
+  border: 1px solid ${(props) => props.theme.itemListBorderColor};
   border-radius: 4px;
-  border: 1px solid ${(props) => props.theme.enabledListBorderColor};
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   cursor: default;
+  color: ${(props) => props.theme.listItemFontColor};
   font-family: ${(props) => props.theme.fontFamily};
-  color: ${(props) => props.theme.listOptionFontColor};
-  font-size: ${(props) => props.theme.listOptionFontSize};
-  font-style: ${(props) => props.theme.listOptionFontStyle};
-  font-weight: ${(props) => props.theme.listOptionFontWeight};
+  font-size: ${(props) => props.theme.listItemFontSize};
+  font-style: ${(props) => props.theme.listItemFontStyle};
+  font-weight: ${(props) => props.theme.listItemFontWeight};
 `;
 
 const OptionsSystemMessage = styled.span`
@@ -931,25 +789,30 @@ const NoMatchesFoundIcon = styled.span`
 
 const OptionGroupLabel = styled.li`
   padding: 4px 16px;
+  font-weight: ${(props) => props.theme.listGroupItemFontWeight};
   line-height: 1.715em;
-  font-weight: 600;
 `;
 
 const OptionItem = styled.li`
   padding: 0 8px;
+  box-shadow: inset 0 0 0 2px transparent;
+  ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListItemBorderColor};`}
+  ${(props) => props.selected && `background-color: ${props.theme.selectedListItemBackgroundColor}`};
   line-height: 1.715em;
   cursor: pointer;
 
-  ${(props) => {
-    if (props.selected) {
-      if (props.active) return `background-color: #BFBFBF`;
-      else if (props.visualFocused) return `background-color: #CCCCCC`;
-      else return `background-color: ${props.theme.selectedListOptionBackgroundColor}`;
-    } else {
-      if (props.active) return `background-color: ${props.theme.activeListOptionBackgroundColor};`;
-      else if (props.visualFocused) return `background-color: ${props.theme.hoverListOptionBackgroundColor};`;
-    }
-  }};
+  &:hover {
+    ${(props) =>
+      props.selected
+        ? `background-color: ${props.theme.selectedHoverListItemBackgroundColor};`
+        : `background-color: ${props.theme.unselectedHoverListItemBackgroundColor};`};
+  }
+  &:active {
+    ${(props) =>
+      props.selected
+        ? `background-color: ${props.theme.selectedActiveListItemBackgroundColor};`
+        : `background-color: ${props.theme.unselectedActiveListItemBackgroundColor};`};
+  }
 `;
 
 const StyledOption = styled.span`
@@ -958,9 +821,9 @@ const StyledOption = styled.span`
   min-height: 24px;
   ${(props) => props.grouped && props.multiple && `padding-left: 16px;`}
   ${(props) =>
-    props.last
+    props.last || props.visualFocused || props.selected
       ? `border-bottom: 1px solid transparent`
-      : `border-bottom: 1px solid ${props.theme.listOptionBorderBottomColor}`};
+      : `border-bottom: 1px solid ${props.theme.listItemDividerColor}`};
 `;
 
 const OptionContent = styled.span`
@@ -979,6 +842,7 @@ const OptionIcon = styled.span`
   height: 24px;
   width: 24px;
   margin-left: 8px;
+  color: ${(props) => props.theme.listItemIconColor};
 `;
 
 const OptionIconImg = styled.img`
@@ -992,12 +856,12 @@ const OptionLabel = styled.span`
   white-space: nowrap;
 `;
 
-const SelectedIcon = styled.span`
+const OptionSelectedIndicator = styled.span`
   display: flex;
   height: 16px;
   width: 16px;
   margin-left: 4px;
-  color: #4d4d4d;
+  color: ${(props) => props.theme.selectedListItemIconColor};
 `;
 
 export default DxcSelect;

@@ -48,6 +48,16 @@ function App() {
     { label: "Option 18", value: "18" },
     { label: "Option 19", value: "19" },
     { label: "Option 20", value: "20" },
+    { label: "Option 21", value: "21" },
+    { label: "Option 22", value: "22" },
+    { label: "Option 23", value: "23" },
+    { label: "Option 24", value: "24" },
+    { label: "Option 25", value: "25" },
+    { label: "Option 26", value: "26" },
+    { label: "Option 27", value: "27" },
+    { label: "Option 28", value: "28" },
+    { label: "Option 29", value: "29" },
+    { label: "Option 30", value: "30" },
   ];
   const grouped_options = [
     {
@@ -421,6 +431,19 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
           disabled
+        />
+      </p>
+      <p>
+        <h4 style={{ marginLeft: "36px" }}>Disabled & Multiple</h4>
+        <DxcSelect
+          label="Label"
+          helperText="Helper text"
+          value={["1", "3"]}
+          options={single_options}
+          placeholder="Choose an option"
+          margin="medium"
+          disabled
+          multiple
         />
       </p>
       <p>
