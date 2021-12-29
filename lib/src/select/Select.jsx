@@ -94,6 +94,7 @@ const DxcSelect = React.forwardRef(
   ) => {
     const [selectId] = useState(`select-${uuidv4()}`);
     const selectLabelId = `label-${selectId}`;
+    const optionsListId = `${selectId}-listbox`;
     const [innerValue, setInnerValue] = useState(multiple ? [] : "");
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
@@ -197,7 +198,7 @@ const DxcSelect = React.forwardRef(
           setSearchValue("");
           break;
         case 13: // Enter
-          if (isOpen) {
+          if (isOpen && visualFocusIndex >= 0) {
             let accLength = optional && !multiple ? 1 : 0;
             if (searchable) {
               if (filteredOptions.length > 0) {
@@ -323,6 +324,7 @@ const DxcSelect = React.forwardRef(
 
       return (
         <OptionItem
+          id={`option-${index}`}
           onClick={(event) => {
             // left mouse button only
             handleSelectChangeValue(option);
@@ -331,8 +333,8 @@ const DxcSelect = React.forwardRef(
           }}
           visualFocused={visualFocusIndex === index}
           selected={isSelected}
-          aria-selected={isSelected && "true"}
           role="option"
+          aria-selected={isSelected && "true"}
         >
           <StyledOption
             visualFocused={visualFocusIndex === index}
@@ -360,13 +362,17 @@ const DxcSelect = React.forwardRef(
     const mapOptionFunc = (option) => {
       if (option.options) {
         return (
-          <>
-            {option.options.length > 0 && <OptionGroupLabel>{option.label}</OptionGroupLabel>}
-            {option.options.map((singleOption) => {
-              global_index++;
-              return <Option option={singleOption} index={global_index} isGroupedOption={true} />;
-            })}
-          </>
+          option.options.length > 0 && (
+            <li>
+              <GroupList role="group">
+                <GroupLabel role="presentation">{option.label}</GroupLabel>
+                {option.options.map((singleOption) => {
+                  global_index++;
+                  return <Option option={singleOption} index={global_index} isGroupedOption={true} />;
+                })}
+              </GroupList>
+            </li>
+          )
         );
       } else {
         global_index++;
@@ -376,7 +382,7 @@ const DxcSelect = React.forwardRef(
 
     return (
       <ThemeProvider theme={colorsTheme.select}>
-        <DxcSelectContainer margin={margin} size={size} ref={ref}>
+        <SelectContainer margin={margin} size={size} ref={ref}>
           <Label
             id={selectLabelId}
             disabled={disabled}
@@ -387,7 +393,7 @@ const DxcSelect = React.forwardRef(
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
           <HelperText disabled={disabled}>{helperText}</HelperText>
-          <SelectContainer
+          <Select
             id={selectId}
             disabled={disabled}
             error={error}
@@ -397,7 +403,14 @@ const DxcSelect = React.forwardRef(
             onKeyDown={handleSelectOnKeyDown}
             ref={selectContainerRef}
             tabIndex={tabIndex}
+            role="combobox"
+            aria-controls={optionsListId}
+            aria-expanded={isOpen ? "true" : "false"}
+            aria-haspopup="listbox"
             aria-labelledby={selectLabelId}
+            aria-activedescendant={visualFocusIndex >= 0 && `option-${visualFocusIndex}`}
+            aria-invalid={error ? "true" : "false"}
+            aria-required={optional ? "false" : "true"}
           >
             {multiple && selectedOption.length > 0 && (
               <SelectionIndicator>
@@ -457,6 +470,7 @@ const DxcSelect = React.forwardRef(
             </CollapseIndicator>
             {isOpen && (
               <OptionsList
+                id={optionsListId}
                 onClick={(event) => {
                   event.stopPropagation();
                 }}
@@ -465,7 +479,8 @@ const DxcSelect = React.forwardRef(
                 }}
                 ref={selectOptionsListRef}
                 role="listbox"
-                aria-label={label}
+                aria-labelledby={selectLabelId}
+                aria-multiselectable={multiple ? "true" : "false"}
               >
                 {searchable && (filteredOptions.length === 0 || !filteredGroupsHaveOptions()) ? (
                   <OptionsSystemMessage>
@@ -478,9 +493,9 @@ const DxcSelect = React.forwardRef(
                 {searchable ? filteredOptions.map(mapOptionFunc) : options.map(mapOptionFunc)}
               </OptionsList>
             )}
-          </SelectContainer>
+          </Select>
           {!disabled && <Error>{error}</Error>}
-        </DxcSelectContainer>
+        </SelectContainer>
       </ThemeProvider>
     );
   }
@@ -498,7 +513,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const DxcSelectContainer = styled.div`
+const SelectContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -537,7 +552,7 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const SelectContainer = styled.div`
+const Select = styled.div`
   display: flex;
   position: relative;
   align-items: center;
@@ -787,7 +802,11 @@ const NoMatchesFoundIcon = styled.span`
   margin-right: calc(1rem * 0.25);
 `;
 
-const OptionGroupLabel = styled.li`
+const GroupList = styled.ul`
+  padding: 0;
+`;
+
+const GroupLabel = styled.li`
   padding: 4px 16px;
   font-weight: ${(props) => props.theme.listGroupItemFontWeight};
   line-height: 1.715em;
