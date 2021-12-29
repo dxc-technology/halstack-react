@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { V3DxcDate, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcDate, ThemeProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   date: {
@@ -24,7 +24,7 @@ function App() {
     <div>
       <div className="test-case" id="assistive-text-date">
         <h4>With assistive text</h4>
-        <V3DxcDate
+        <DxcDate
           label="Input label"
           value={inputValue}
           assistiveText="assistive text"
@@ -39,7 +39,7 @@ function App() {
       </div>
       <div className="test-case" id="invalid-date">
         <h4>Invalid date</h4>
-        <V3DxcDate
+        <DxcDate
           label="Input label"
           value={inputValue}
           assistiveText="assistive text"
@@ -51,7 +51,7 @@ function App() {
 
       <div className="test-case" id="without-label-date">
         <h4>Without label</h4>
-        <V3DxcDate
+        <DxcDate
           value={inputValue}
           assistiveText="assistive text"
           onChange={onChange}
@@ -62,7 +62,7 @@ function App() {
 
       <div className="test-case" id="without-assistive-text-label-date">
         <h4>Without assistive text and label</h4>
-        <V3DxcDate
+        <DxcDate
           value={inputValue}
           onChange={onChange}
           invalid={isInvalid}
@@ -72,7 +72,7 @@ function App() {
 
       <div className="test-case" id="light-theme">
         <h4>Light theme</h4>
-        <V3DxcDate
+        <DxcDate
           label="Input label"
           value={inputValue}
           assistiveText="assistive text"
@@ -83,7 +83,7 @@ function App() {
 
       <div className="test-case" id="disabled-date">
         <h4>Disabled input</h4>
-        <V3DxcDate
+        <DxcDate
           label="Input label"
           value={inputValue}
           disabled={true}
@@ -91,7 +91,7 @@ function App() {
           onChange={onChange}
           invalid={isInvalid}
         />
-        <V3DxcDate
+        <DxcDate
           label="Input label"
           value="16/10/1994"
           disabled={true}
@@ -103,7 +103,7 @@ function App() {
 
       <div className="test-case" id="required-date-with-value">
         <h4>Required date with value</h4>
-        <V3DxcDate
+        <DxcDate
           label="Input label"
           value={inputValue}
           required={true}
@@ -115,7 +115,7 @@ function App() {
       </div>
       <div className="test-case" id="required-date-without-value">
         <h4>Required date without value</h4>
-        <V3DxcDate
+        <DxcDate
           label="Input label"
           required={true}
           assistiveText="assistive text"
@@ -127,7 +127,7 @@ function App() {
       <div>
         <div className="test-case" id="max-size-oneline-with-value">
           <h5>Label Max size oneline with value</h5>
-          <V3DxcDate
+          <DxcDate
             label="Input label 123456789012"
             value={inputValue}
             onChange={onChange}
@@ -136,7 +136,7 @@ function App() {
         </div>
         <div className="test-case" id="min-size-multiline-with-value">
           <h5>Min size multiline with value</h5>
-          <V3DxcDate
+          <DxcDate
             label="Input label 1234567890123"
             value={inputValue}
             onChange={onChange}
@@ -145,7 +145,7 @@ function App() {
         </div>
         <div className="test-case" id="max-size-oneline-without-value">
           <h5>Label Max size oneline without value</h5>
-          <V3DxcDate
+          <DxcDate
             label="Input label 123456789012"
             onChange={onChange}
             invalid={isInvalid}
@@ -153,7 +153,7 @@ function App() {
         </div>
         <div className="test-case" id="min-size-multiline-without-value">
           <h5>Min size multiline without value</h5>
-          <V3DxcDate
+          <DxcDate
             label="Input label 123456789012"
             onChange={onChange}
             invalid={isInvalid}
@@ -161,7 +161,7 @@ function App() {
         </div>
         <div className="test-case" id="min-size-oneline-assistiveText">
           <h5>Min size oneline assistive text</h5>
-          <V3DxcDate
+          <DxcDate
             label="Label"
             value={inputValue}
             assistiveText="Assistive test 12345678901234 56789012"
@@ -171,7 +171,7 @@ function App() {
         </div>
         <div className="test-case" id="min-size-multiline-assistiveText">
           <h5>Min size multiline assistive text</h5>
-          <V3DxcDate
+          <DxcDate
             label="Label"
             value={inputValue}
             assistiveText="Assistive test 12345678901234 567890123"
@@ -184,7 +184,7 @@ function App() {
           <h4>Sizes</h4>
           <div className="test-case" id="medium-size">
             <h5>Medium size</h5>
-            <V3DxcDate
+            <DxcDate
               label="Label"
               value={inputValue}
               assistiveText="assistive text"
@@ -195,7 +195,7 @@ function App() {
           </div>
           <div className="test-case" id="large-size">
             <h5>Large size</h5>
-            <V3DxcDate
+            <DxcDate
               label="Label"
               value={inputValue}
               assistiveText="assistive text"
@@ -206,7 +206,7 @@ function App() {
           </div>
           <div className="test-case" id="fillParent-size">
             <h5>FillParent size</h5>
-            <V3DxcDate
+            <DxcDate
               label="Label"
               value={inputValue}
               assistiveText="assistive text"
@@ -221,7 +221,7 @@ function App() {
           <h4>Margins</h4>
           <div className="test-case" id="xxsmall-margin">
             <h5>xxsmall margin</h5>
-            <V3DxcDate
+            <DxcDate
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
@@ -233,7 +233,7 @@ function App() {
 
           <div className="test-case" id="xsmall-margin">
             <h5>xsmall margin</h5>
-            <V3DxcDate
+            <DxcDate
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
@@ -245,7 +245,7 @@ function App() {
 
           <div className="test-case" id="small-margin">
             <h5>Small margin</h5>
-            <V3DxcDate
+            <DxcDate
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
@@ -257,7 +257,7 @@ function App() {
 
           <div className="test-case" id="large-margin">
             <h5>Large margin</h5>
-            <V3DxcDate
+            <DxcDate
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
@@ -269,7 +269,7 @@ function App() {
 
           <div className="test-case" id="xlarge-margin">
             <h5>xlarge margin</h5>
-            <V3DxcDate
+            <DxcDate
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
@@ -281,7 +281,7 @@ function App() {
 
           <div className="test-case" id="xxlarge-margin">
             <h5>xxlarge margin</h5>
-            <V3DxcDate
+            <DxcDate
               label="Input label"
               value={inputValue}
               assistiveText={"assistive text"}
@@ -295,7 +295,7 @@ function App() {
       <div className="test-case" id="custom-colors">
         <h4>Custom Date</h4>
         <ThemeProvider theme={colors}>
-          <V3DxcDate
+          <DxcDate
             label="Input label"
             value={inputValue}
             assistiveText="assistive text"

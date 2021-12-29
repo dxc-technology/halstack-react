@@ -1,4 +1,4 @@
-import { V3DxcUpload } from "@dxc-technology/halstack-react";
+import { DxcUpload } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   async function callbackFunc(file) {
@@ -6,11 +6,11 @@ const code = `() => {
     return new Promise(resolve => setTimeout(resolve, 1000));
   }
 
-  return <V3DxcUpload margin="small" callbackUpload={callbackFunc} />;
+  return <DxcUpload margin="small" callbackUpload={callbackFunc} />;
 }`;
 
 const scope = {
-  V3DxcUpload,
+  DxcUpload,
 };
 
 export default { code, scope };

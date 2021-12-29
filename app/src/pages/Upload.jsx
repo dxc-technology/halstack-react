@@ -1,5 +1,5 @@
 import React from "react";
-import { V3DxcUpload } from "@dxc-technology/halstack-react";
+import { DxcUpload } from "@dxc-technology/halstack-react";
 
 function App() {
   async function callbackFunc() {
@@ -7,7 +7,7 @@ function App() {
     return result;
   }
 
-  return <V3DxcUpload margin="small" callbackUpload={callbackFunc} />;
+  return <DxcUpload margin="small" callbackUpload={callbackFunc} />;
 }
 
 export default App;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { V3DxcDate, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcDate, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Date = () => {
@@ -12,7 +12,7 @@ const Date = () => {
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <V3DxcDate
+        <DxcDate
           label="Date of birth"
           format="dd-MM-yyyy"
           assistiveText="assistive text"
@@ -26,7 +26,7 @@ const Date = () => {
       />
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Default">
-          <V3DxcDate
+          <DxcDate
             label="Date of birth"
             format="dd-MM-yyyy"
             assistiveText="assistive text"
