@@ -508,6 +508,7 @@ const DxcTextInput = React.forwardRef(
                   ref={actionRef}
                   disabled={disabled}
                   onClick={action.onClick}
+                  title={action.title ?? action.title}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                 >

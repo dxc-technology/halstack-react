@@ -47,7 +47,7 @@ const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview,
               {name}
             </FileName>
             {error && <ErrorIcon aria-label="Error">{errorIcon}</ErrorIcon>}
-            <DeleteIcon onClick={() => onDelete(name)} aria-label={`Remove ${name}`}>
+            <DeleteIcon error={error} onClick={() => onDelete(name)} aria-label={`Remove ${name}`}>
               {deleteIcon}
             </DeleteIcon>
           </FileItemContainer>
@@ -166,6 +166,24 @@ const DeleteIcon = styled.button`
   cursor: pointer;
   svg {
     line-height: 18px;
+  }
+  &:hover {
+    background-color: ${(props) =>
+      props.error
+        ? props.theme.errorHoverDeleteFileItemBackgroundColor
+        : props.theme.hoverDeleteFileItemBackgroundColor};
+  }
+  &:focus {
+    background-color: ${(props) =>
+      props.error
+        ? props.theme.errorHoverDeleteFileItemBackgroundColor
+        : props.theme.hoverDeleteFileItemBackgroundColor};
+  }
+  &:active {
+    background-color: ${(props) =>
+      props.error
+        ? props.theme.errorActiveDeleteFileItemBackgroundColor
+        : props.theme.activeDeleteFileItemBackgroundColor};
   }
 `;
 
