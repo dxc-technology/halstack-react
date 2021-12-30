@@ -35,7 +35,7 @@ Install the library dependencies.
 npm install
 ```
 
-Run the build process into `dist` folder, detecting and automatically building changes in src.
+Run the build process into `dist` folder, detecting and automatically building changes in src. 
 
 ```bash
 npm run build:watch #'npm run build' if there is no need to watch for changes
