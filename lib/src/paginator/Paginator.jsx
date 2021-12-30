@@ -88,7 +88,7 @@ const DxcPaginator = ({
                       value: (num + 1).toString(),
                     }))}
                     onChange={(newValue) => {
-                      onPageChange(newValue.value);
+                      onPageChange(Number(newValue.value));
                     }}
                     value={currentPage.toString()}
                     size="fillParent"
