@@ -4,6 +4,7 @@ import { DxcPaginator, ThemeProvider } from "@dxc-technology/halstack-react";
 
 function App() {
   const [page, changePage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const colors = {
     paginator: {
@@ -22,7 +23,7 @@ function App() {
         <h4>Normal Status</h4>
         <DxcPaginator
           currentPage={page}
-          itemsPerPage={10}
+          itemsPerPage={itemsPerPage}
           totalItems={27}
           onPageChange={goToPageFunc}
         ></DxcPaginator>
@@ -31,9 +32,9 @@ function App() {
         <h4>Normal Status</h4>
         <DxcPaginator
           currentPage={page}
-          itemsPerPage={10}
+          itemsPerPage={itemsPerPage}
           itemsPerPageOptions={[10, 15]}
-          itemsPerPageFunction={(value) => console.log(value)}
+          itemsPerPageFunction={setItemsPerPage}
           totalItems={27}
           showGoToPage={true}
           onPageChange={goToPageFunc}
@@ -44,9 +45,9 @@ function App() {
         <ThemeProvider theme={colors}>
           <DxcPaginator
             currentPage={page}
-            itemsPerPage={10}
+            itemsPerPage={itemsPerPage}
             itemsPerPageOptions={[10, 15]}
-            itemsPerPageFunction={(value) => console.log(value)}
+            itemsPerPageFunction={setItemsPerPage}
             totalItems={27}
             onPageChange={goToPageFunc}
           ></DxcPaginator>

@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import useTheme from "../useTheme.js";
 import DxcButton from "../button/Button";
-import V3DxcSelect from "../V3Select/V3Select";
+import DxcSelect from "../select/Select";
 import { firstIcon, lastIcon, nextIcon, previousIcon } from "./Icons";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
@@ -35,13 +35,18 @@ const DxcPaginator = ({
             {itemsPerPageOptions && (
               <ItemsPageContainer>
                 <ItemsLabel>Items per page </ItemsLabel>
-                <V3DxcSelect
-                  options={itemsPerPageOptions.map((num) => ({ label: num, value: num }))}
-                  onChange={itemsPerPageFunction}
-                  value={itemsPerPage}
-                  size="small"
-                  tabIndex={tabIndex}
-                />
+                <SelectContainer>
+                  <DxcSelect
+                    options={itemsPerPageOptions.map((num) => ({ label: num.toString(), value: num.toString() }))}
+                    onChange={(newValue) => {
+                      itemsPerPageFunction(Number(newValue.value));
+                    }}
+                    value={itemsPerPage.toString()}
+                    size="fillParent"
+                    margin={{ top: "xsmall" }}
+                    tabIndex={tabIndex}
+                  />
+                </SelectContainer>
               </ItemsPageContainer>
             )}
             <TotalItemsContainer>
@@ -76,13 +81,21 @@ const DxcPaginator = ({
             {(showGoToPage && (
               <PageToSelectContainer>
                 <GoToLabel>Go to page: </GoToLabel>
-                <V3DxcSelect
-                  options={[...Array(totalPages).keys()].map((num) => ({ label: num + 1, value: num + 1 }))}
-                  onChange={onPageChange}
-                  value={currentPage}
-                  size="small"
-                  tabIndex={tabIndex}
-                />
+                <SelectContainer>
+                  <DxcSelect
+                    options={[...Array(totalPages).keys()].map((num) => ({
+                      label: (num + 1).toString(),
+                      value: (num + 1).toString(),
+                    }))}
+                    onChange={(newValue) => {
+                      onPageChange(newValue.value);
+                    }}
+                    value={currentPage.toString()}
+                    size="fillParent"
+                    margin={{ top: "xsmall" }}
+                    tabIndex={tabIndex}
+                  />
+                </SelectContainer>
               </PageToSelectContainer>
             )) || (
               <TextContainer>
@@ -140,6 +153,10 @@ const DxcPaginatorContainer = styled.div`
       opacity: 0.3 !important;
     }
   }
+`;
+
+const SelectContainer = styled.div`
+  max-width: 100px;
 `;
 
 const ItemsPageContainer = styled.span`
