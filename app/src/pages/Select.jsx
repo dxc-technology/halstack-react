@@ -59,64 +59,6 @@ function App() {
     { label: "Option 29", value: "29" },
     { label: "Option 30", value: "30" },
   ];
-  const grouped_options = [
-    {
-      label: "Group 1",
-      options: [
-        { label: "Option 001", value: "1" },
-        { label: "Option 002", value: "2" },
-        { label: "Option 003", value: "3" },
-      ],
-    },
-    {
-      label: "Group 2",
-      options: [
-        { label: "Option 0004", value: "4" },
-        { label: "Option 05", value: "5" },
-        { label: "Option 006", value: "6" },
-      ],
-    },
-    {
-      label: "Group 3",
-      options: [
-        { label: "Option 0007", value: "7" },
-        { label: "Option 008", value: "8" },
-        { label: "Option 9", value: "9" },
-      ],
-    },
-    {
-      label: "Group 4",
-      options: [
-        { label: "Option 10", value: "10" },
-        { label: "Option 11", value: "11" },
-        { label: "Option 12", value: "12" },
-      ],
-    },
-    {
-      label: "Group 5",
-      options: [
-        { label: "Option x", value: "13" },
-        { label: "Option y", value: "14" },
-        { label: "Option z", value: "15" },
-      ],
-    },
-    {
-      label: "Group 6",
-      options: [
-        { label: "Option 001", value: "16" },
-        { label: "Option 002", value: "17" },
-        { label: "Option 003", value: "18" },
-      ],
-    },
-    {
-      label: "Group 7",
-      options: [
-        { label: "Option 001", value: "19" },
-        { label: "Option 002", value: "20" },
-        { label: "Option 003", value: "21" },
-      ],
-    },
-  ];
   const group_options = [
     {
       label: "Group 001",
@@ -156,6 +98,64 @@ function App() {
         { label: "Option 013", value: "13" },
         { label: "Option 014", value: "14" },
         { label: "Option 015", value: "15" },
+      ],
+    },
+  ];
+  const group_options_long = [
+    {
+      label: "Group 1",
+      options: [
+        { label: "Option 001", value: "1" },
+        { label: "Option 002", value: "2" },
+        { label: "Option 003", value: "3" },
+      ],
+    },
+    {
+      label: "Group 2",
+      options: [
+        { label: "Option 0004", value: "4" },
+        { label: "Option 05", value: "5" },
+        { label: "Option 006", value: "6" },
+      ],
+    },
+    {
+      label: "Group 3",
+      options: [
+        { label: "Option 0007", value: "7" },
+        { label: "Option 008", value: "8" },
+        { label: "Option 9", value: "9" },
+      ],
+    },
+    {
+      label: "Group 4",
+      options: [
+        { label: "Option 10", value: "10" },
+        { label: "Option 11", value: "11" },
+        { label: "Option 12", value: "12" },
+      ],
+    },
+    {
+      label: "Group 5",
+      options: [
+        { label: "Option x", value: "x" },
+        { label: "Option y", value: "y" },
+        { label: "Option z", value: "z" },
+      ],
+    },
+    {
+      label: "Group 6",
+      options: [
+        { label: "Option 016", value: "16" },
+        { label: "Option 017", value: "17" },
+        { label: "Option 018", value: "18" },
+      ],
+    },
+    {
+      label: "Group 7",
+      options: [
+        { label: "Option xx", value: "xx" },
+        { label: "Option yy", value: "yy" },
+        { label: "Option zz", value: "zz" },
       ],
     },
   ];
@@ -368,7 +368,7 @@ function App() {
         <DxcSelect
           label="Label"
           helperText="Helper text"
-          options={grouped_options}
+          options={group_options_long}
           placeholder="Choose an option"
           searchable
           margin="medium"
@@ -379,7 +379,7 @@ function App() {
         <DxcSelect
           label="Label"
           helperText="Helper text"
-          options={grouped_options}
+          options={group_options_long}
           placeholder="Choose an option"
           searchable
           multiple
@@ -552,25 +552,25 @@ function App() {
         <h4 style={{ marginLeft: "36px" }}>Sizes</h4>
         <DxcSelect
           label="Small"
-          options={grouped_options}
+          options={group_options_long}
           margin={{ left: "medium", right: "medium" }}
           size="small"
         />
         <DxcSelect
           label="Medium"
-          options={grouped_options}
+          options={group_options_long}
           margin={{ left: "medium", right: "medium" }}
           size="medium"
         />
         <DxcSelect
           label="Large"
-          options={grouped_options}
+          options={group_options_long}
           margin={{ left: "medium", right: "medium" }}
           size="large"
         />
         <DxcSelect
           label="Fill parent"
-          options={grouped_options}
+          options={group_options_long}
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
           searchable
