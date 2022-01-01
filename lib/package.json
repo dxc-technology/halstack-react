@@ -1,21 +1,85 @@
 {
-  "name": "@dxc-technology/halstack-react",
   "version": "0.0.0",
+  "name": "@dxc-technology/halstack-react",
+  "module": "dist/lib.esm.js",
   "description": "DXC Halstack React components library",
   "repository": "dxc-technology/halstack-react",
   "homepage": "http://developer.dxc.com/tools/react",
   "license": "Apache-2.0",
-  "author": {
-    "name": "DXC Technology",
-    "email": "DigitalInsurance@dxc.com",
-    "url": "https://dxc.com"
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
   },
-  "main": "./dist/main.js",
-  "types": "./dist/main.d.ts",
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
   "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": ">=16",
+    "react-dom": ">=16",
     "styled-components": "^5.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "size-limit": [
+    {
+      "path": "dist/lib.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/lib.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.13.8",
+    "@babel/plugin-proposal-optional-chaining": "7.13.8",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "@size-limit/preset-small-lib": "^7.0.5",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/addons": "^6.4.9",
+    "@storybook/react": "^6.4.9",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "babel-loader": "^8.2.3",
+    "husky": "^7.0.4",
+    "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
+    "react-is": "^17.0.2",
+    "size-limit": "^7.0.5",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.6.3",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4",
+    "styled-components": "file:../node_modules/styled-components"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.9",
@@ -24,46 +88,12 @@
     "@material-ui/lab": "4.0.0-alpha.17",
     "@material-ui/pickers": "3.2.2",
     "@material-ui/styles": "4.0.2",
-    "@testing-library/user-event": "^12.6.3",
     "color": "^3.1.3",
     "date-fns": "^2.0.0-beta.4",
     "moment": "2.24.0",
     "prop-types": "^15.7.2",
     "rgb-hex": "^3.0.0",
     "uuid": "^8.3.2"
-  },
-  "scripts": {
-    "test": "jest",
-    "test:watch": "npm test -- --watch --coverage",
-    "build": "babel src --out-dir dist --copy-files --verbose && node ../scripts/build/copy-readme.js",
-    "build:watch": "babel src --watch --out-dir dist --copy-files --verbose"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "7.13.8",
-    "@babel/plugin-proposal-optional-chaining": "7.13.8",
-    "@babel/plugin-transform-runtime": "^7.10.1",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-react": "^7.0.0",
-    "@testing-library/react": "^11.2.5",
-    "babel-jest": "^24.8.0",
-    "babel-loader": "^8.0.6",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jest": "^22.7.1",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^25.5.4",
-    "react": "file:../node_modules/react",
-    "react-dom": "file:../node_modules/react-dom",
-    "react-test-renderer": "^16.8.6",
-    "styled-components": "file:../node_modules/styled-components"
   },
   "jest": {
     "moduleNameMapper": {
