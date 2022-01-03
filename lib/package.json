@@ -36,7 +36,9 @@
     "test": "jest",
     "test:watch": "npm test -- --watch --coverage",
     "build": "babel src --out-dir dist --copy-files --verbose && node ../scripts/build/copy-readme.js",
-    "build:watch": "babel src --watch --out-dir dist --copy-files --verbose"
+    "build:watch": "babel src --watch --out-dir dist --copy-files --verbose",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
@@ -47,6 +49,10 @@
     "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/react": "^6.4.9",
     "@testing-library/react": "^11.2.5",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
@@ -58,6 +64,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-storybook": "^0.5.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.5.4",
     "react": "file:../node_modules/react",
