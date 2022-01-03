@@ -12,7 +12,7 @@ import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import Section from "../components/common/Section";
 import githubLogo from "./github-logo.png";
-import dxcLogo from "./dxc-logo.png";
+import dxcLogo from "./dxc-logo.svg";
 import reactLogo from "../../common/react-icon.png";
 import Header from "../../common/Header";
 
