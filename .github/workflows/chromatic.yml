@@ -9,6 +9,9 @@ on:
 jobs:
   chromatic-deployment:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: lib
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
