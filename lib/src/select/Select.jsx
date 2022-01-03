@@ -178,7 +178,11 @@ const DxcSelect = React.forwardRef(
           });
         }
       } else {
-        if (options?.length > 0) {
+        if (optional && val === ""){
+          selectedOption = optionalEmptyOption;
+          singleSelectionIndex = 0;
+        }
+        else if (options?.length > 0) {
           let group_index = 0;
           options.some((option, index) => {
             if (option.options) {
@@ -253,14 +257,14 @@ const DxcSelect = React.forwardRef(
       }
     };
     const handleSelectOnClick = () => {
+      searchable && selectSearchInputRef.current.focus();
       if (isOpen) {
         closeOptions();
         setSearchValue("");
       } else openOptions();
-      searchable && selectSearchInputRef.current.focus();
     };
-    const handleSelectOnFocus = () => {
-      searchable && selectSearchInputRef.current.focus();
+    const handleSelectOnFocus = (event) => {
+      if (!event.currentTarget.contains(event.relatedTarget)) searchable && selectSearchInputRef.current.focus();
     };
     const handleSelectOnBlur = (event) => {
       // focus leaves container (outside, not to childs)
@@ -346,16 +350,15 @@ const DxcSelect = React.forwardRef(
       openOptions();
     };
 
-    const handleClearActionOnClick = (event) => {
-      event.stopPropagation();
-      setSearchValue("");
-    };
-
     const handleClearOptionsActionOnClick = (event) => {
       event.stopPropagation();
       value ?? setInnerValue([]);
       onChange?.({ value: [], error: getNotOptionalErrorMessage() });
-      selectContainerRef.current.focus();
+    };
+
+    const handleClearSearchActionOnClick = (event) => {
+      event.stopPropagation();
+      setSearchValue("");
     };
 
     useLayoutEffect(() => {
@@ -381,7 +384,7 @@ const DxcSelect = React.forwardRef(
       return (
         <OptionItem
           id={`option-${index}`}
-          onClick={(event) => {
+          onClick={() => {
             // left mouse button only
             handleSelectChangeValue(option);
             !multiple && closeOptions();
@@ -414,7 +417,7 @@ const DxcSelect = React.forwardRef(
       );
     };
 
-    let global_index = optional && !multiple ? 0 : -1; // index for options (not groups), starting from 0 to options.length -1
+    let global_index = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
     const mapOptionFunc = (option) => {
       if (option.options) {
         return (
@@ -464,7 +467,7 @@ const DxcSelect = React.forwardRef(
             aria-expanded={isOpen ? "true" : "false"}
             aria-haspopup="listbox"
             aria-labelledby={selectLabelId}
-            aria-activedescendant={visualFocusIndex >= 0 && `option-${visualFocusIndex}`}
+            aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
             aria-invalid={error ? "true" : "false"}
             aria-required={optional ? "false" : "true"}
           >
@@ -473,6 +476,10 @@ const DxcSelect = React.forwardRef(
                 <SelectionNumber disabled={disabled}>{selectedOption.length} </SelectionNumber>
                 <ClearOptionsAction
                   disabled={disabled}
+                  onMouseDown={(event) => {
+                    // Avoid input to lose focus when pressed
+                    event.preventDefault();
+                  }}
                   onClick={handleClearOptionsActionOnClick}
                   tabIndex={-1}
                   title="Clear selected options"
@@ -513,14 +520,18 @@ const DxcSelect = React.forwardRef(
             </SearchableValueContainer>
             {!disabled && error && <ErrorIcon>{selectIcons.error}</ErrorIcon>}
             {searchable && searchValue.length > 0 && (
-              <ClearAction
-                onClick={handleClearActionOnClick}
+              <ClearSearchAction
+                onMouseDown={(event) => {
+                  // Avoid input to lose focus
+                  event.preventDefault();
+                }}
+                onClick={handleClearSearchActionOnClick}
                 tabIndex={-1}
                 title="Clear search text"
                 aria-label="Clear search text"
               >
                 {selectIcons.clear}
-              </ClearAction>
+              </ClearSearchAction>
             )}
             <CollapseIndicator disabled={disabled}>
               {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
@@ -681,6 +692,9 @@ const ClearOptionsAction = styled.button`
   color: ${(props) =>
     props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
 
+  :focus-visible {
+    outline: none;
+  }
   ${(props) =>
     !props.disabled &&
     `
@@ -783,7 +797,7 @@ const CollapseIndicator = styled.span`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.collapseIndicatorColor)};
 `;
 
-const ClearAction = styled.button`
+const ClearSearchAction = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
