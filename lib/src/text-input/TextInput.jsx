@@ -453,7 +453,7 @@ const DxcTextInput = React.forwardRef(
               tabIndex={tabIndex}
               role={isTextInputType() && hasInputSuggestions() ? "combobox" : "textbox"}
               aria-autocomplete={isTextInputType() && hasInputSuggestions() ? "list" : undefined}
-              aria-controls={isTextInputType() && hasInputSuggestions() ? inputId : undefined}
+              aria-controls={isTextInputType() && hasInputSuggestions() ? autosuggestId : undefined}
               aria-expanded={isTextInputType() && hasInputSuggestions() ? (isOpen ? "true" : "false") : undefined}
               aria-activedescendant={
                 isTextInputType() && hasInputSuggestions() && isOpen && visualFocusedSuggIndex !== -1
@@ -772,16 +772,6 @@ const Action = styled.button`
   ${(props) =>
     !props.disabled &&
     `
-      &:hover {
-        background-color: ${
-          props.backgroundType === "dark"
-            ? props.theme.hoverActionBackgroundColorOnDark
-            : props.theme.hoverActionBackgroundColor
-        };
-        color: ${
-          props.backgroundType === "dark" ? props.theme.hoverActionIconColorOnDark : props.theme.hoverActionIconColor
-        };
-      }
       &:focus {
         outline: none;
         box-shadow: 0 0 0 2px ${
@@ -802,6 +792,16 @@ const Action = styled.button`
         };
         color: ${
           props.backgroundType === "dark" ? props.theme.focusActionIconColorOnDark : props.theme.focusActionIconColor
+        };
+      }
+      &:hover {
+        background-color: ${
+          props.backgroundType === "dark"
+            ? props.theme.hoverActionBackgroundColorOnDark
+            : props.theme.hoverActionBackgroundColor
+        };
+        color: ${
+          props.backgroundType === "dark" ? props.theme.hoverActionIconColorOnDark : props.theme.hoverActionIconColor
         };
       }
       &:active {

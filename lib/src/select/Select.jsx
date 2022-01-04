@@ -9,36 +9,71 @@ import DxcCheckbox from "../checkbox/Checkbox";
 
 const selectIcons = {
   error: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <svg
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="currentColor"
+    >
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
     </svg>
   ),
   arrowUp: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <svg
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="currentColor"
+    >
       <path d="M0 0h24v24H0V0z" fill="none" />
       <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z" />
     </svg>
   ),
   arrowDown: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <svg
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="currentColor"
+    >
       <path d="M0 0h24v24H0V0z" fill="none" />
       <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
     </svg>
   ),
   clear: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
       <path d="M0 0h24v24H0V0z" fill="none" />
       <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
     </svg>
   ),
   selected: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <svg
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="currentColor"
+    >
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
     </svg>
   ),
   searchOff: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <svg
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      fill="currentColor"
+    >
       <g>
         <rect fill="none" height="24" width="24" />
       </g>
@@ -106,12 +141,78 @@ const DxcSelect = React.forwardRef(
 
     const colorsTheme = useTheme();
 
+    const optionalEmptyOption = { label: placeholder, value: "" };
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
 
-    const optionalEmptyOption = { label: placeholder, value: "" };
+    const getLastOptionIndex = () => {
+      let last = 0;
+      const reducer = (acc, current) => acc + current.options?.length;
+
+      if (searchable && filteredOptions.length > 0)
+        filteredOptions[0].options
+          ? (last = filteredOptions.reduce(reducer, 0) - 1)
+          : (last = filteredOptions.length - 1);
+      else if (options?.length > 0)
+        options[0].options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
+
+      return optional && !multiple ? last + 1 : last;
+    };
+    const lastOptionIndex = useMemo(
+      () => getLastOptionIndex(),
+      [searchable, optional, multiple, filteredOptions, options]
+    );
+
+    const getSelectedOption = () => {
+      const val = value ?? innerValue;
+      let selectedOption = multiple ? [] : "";
+      let singleSelectionIndex;
+
+      if (multiple) {
+        if (options?.length > 0) {
+          options.forEach((option) => {
+            if (option.options) {
+              option.options.forEach((singleOption) => {
+                if (val.includes(singleOption.value)) selectedOption.push(singleOption);
+              });
+            } else if (val.includes(option.value)) selectedOption.push(option);
+          });
+        }
+      } else {
+        if (optional && val === "") {
+          selectedOption = optionalEmptyOption;
+          singleSelectionIndex = 0;
+        } else if (options?.length > 0) {
+          let group_index = 0;
+          options.some((option, index) => {
+            if (option.options) {
+              option.options.some((singleOption) => {
+                if (singleOption.value === val) {
+                  selectedOption = singleOption;
+                  singleSelectionIndex = optional ? group_index + 1 : group_index;
+                  return true;
+                }
+                group_index++;
+              });
+            } else if (option.value === val) {
+              selectedOption = option;
+              singleSelectionIndex = optional ? index + 1 : index;
+              return true;
+            }
+          });
+        }
+      }
+
+      return {
+        selectedOption,
+        singleSelectionIndex,
+      };
+    };
+    const { selectedOption, singleSelectionIndex } = useMemo(
+      () => getSelectedOption(),
+      [options, multiple, value, innerValue]
+    );
 
     const notOptionalCheck = (value) => value === "" && !optional;
-
     const notOptionalMultipleCheck = () => (value ?? innerValue).length === 0 && !optional;
 
     const canBeOpenOptions = () => !disabled && options?.length > 0 && groupsHaveOptions();
@@ -155,14 +256,14 @@ const DxcSelect = React.forwardRef(
       }
     };
     const handleSelectOnClick = () => {
+      searchable && selectSearchInputRef.current.focus();
       if (isOpen) {
         closeOptions();
         setSearchValue("");
       } else openOptions();
-      searchable && selectSearchInputRef.current.focus();
     };
-    const handleSelectOnFocus = () => {
-      searchable && selectSearchInputRef.current.focus();
+    const handleSelectOnFocus = (event) => {
+      if (!event.currentTarget.contains(event.relatedTarget)) searchable && selectSearchInputRef.current.focus();
     };
     const handleSelectOnBlur = (event) => {
       // focus leaves container (outside, not to childs)
@@ -179,17 +280,23 @@ const DxcSelect = React.forwardRef(
       switch (event.keyCode) {
         case 40: // Arrow Down
           event.preventDefault();
-          changeVisualFocusIndex((visualFocusIndex) => {
-            if (visualFocusIndex < lastOptionIndex) return visualFocusIndex + 1;
-            else if (visualFocusIndex === lastOptionIndex) return 0;
-          });
+          singleSelectionIndex !== undefined &&
+          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
+            ? changeVisualFocusIndex(singleSelectionIndex)
+            : changeVisualFocusIndex((visualFocusIndex) => {
+                if (visualFocusIndex < lastOptionIndex) return visualFocusIndex + 1;
+                else if (visualFocusIndex === lastOptionIndex) return 0;
+              });
           openOptions();
           break;
         case 38: // Arrow Up
           event.preventDefault();
-          changeVisualFocusIndex((visualFocusIndex) =>
-            visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
-          );
+          singleSelectionIndex !== undefined &&
+          (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
+            ? changeVisualFocusIndex(singleSelectionIndex)
+            : changeVisualFocusIndex((visualFocusIndex) =>
+                visualFocusIndex === 0 || visualFocusIndex === -1 ? lastOptionIndex : visualFocusIndex - 1
+              );
           openOptions();
           break;
         case 27: // Esc
@@ -242,79 +349,30 @@ const DxcSelect = React.forwardRef(
       openOptions();
     };
 
-    const handleClearActionOnClick = (event) => {
-      event.stopPropagation();
-      setSearchValue("");
-    };
-
     const handleClearOptionsActionOnClick = (event) => {
       event.stopPropagation();
       value ?? setInnerValue([]);
       onChange?.({ value: [], error: getNotOptionalErrorMessage() });
-      selectContainerRef.current.focus();
     };
 
-    const getLastOptionIndex = () => {
-      let last = 0;
-      const reducer = (acc, current) => acc + current.options?.length;
-
-      if (searchable && filteredOptions.length > 0)
-        filteredOptions[0].options
-          ? (last = filteredOptions.reduce(reducer, 0) - 1)
-          : (last = filteredOptions.length - 1);
-      else if (options?.length > 0)
-        options[0].options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
-
-      return optional && !multiple ? last + 1 : last;
+    const handleClearSearchActionOnClick = (event) => {
+      event.stopPropagation();
+      setSearchValue("");
     };
-    const lastOptionIndex = useMemo(
-      () => getLastOptionIndex(),
-      [searchable, optional, multiple, searchable ? filteredOptions : options]
-    );
 
-    const getSelectedOption = () => {
-      const val = value ?? innerValue;
-      let selectedOption = multiple ? [] : "";
-
-      if (multiple) {
-        if (options?.length > 0) {
-          options.forEach((option) => {
-            if (option.options) {
-              option.options.forEach((singleOption) => {
-                if (val.includes(singleOption.value)) selectedOption.push(singleOption);
-              });
-            } else if (val.includes(option.value)) selectedOption.push(option);
-          });
-        }
-      } else {
-        if (options?.length > 0) {
-          options.forEach((option) => {
-            if (option.options) {
-              option.options.forEach((singleOption) => {
-                if (singleOption.value === val) selectedOption = singleOption;
-              });
-            } else if (option.value === val) selectedOption = option;
-          });
-        }
+    useLayoutEffect(() => {
+      if (isOpen && singleSelectionIndex) {
+        const listEl = selectOptionsListRef?.current;
+        const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+        listEl?.scrollTo?.({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
       }
-
-      return selectedOption;
-    };
-    const selectedOption = useMemo(() => getSelectedOption(), [options, multiple, value ?? innerValue]);
+    }, [isOpen]);
 
     useLayoutEffect(() => {
       const visualFocusedOptionEl =
         selectOptionsListRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-      visualFocusedOptionEl?.scrollIntoView({ block: "nearest", inline: "start" });
+      visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
     }, [visualFocusIndex]);
-
-    useLayoutEffect(() => {
-      if (isOpen && !multiple) {
-        const listEl = selectOptionsListRef?.current;
-        const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
-        listEl?.scrollTo({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
-      }
-    }, [isOpen]);
 
     const Option = ({ option, index, isGroupedOption = false }) => {
       const isSelected = multiple
@@ -325,7 +383,7 @@ const DxcSelect = React.forwardRef(
       return (
         <OptionItem
           id={`option-${index}`}
-          onClick={(event) => {
+          onClick={() => {
             // left mouse button only
             handleSelectChangeValue(option);
             !multiple && closeOptions();
@@ -345,7 +403,11 @@ const DxcSelect = React.forwardRef(
           >
             {multiple && <DxcCheckbox tabIndex={-1} checked={isSelected} />}
             {option.icon && (
-              <OptionIcon grouped={isGroupedOption} multiple={multiple}>
+              <OptionIcon
+                grouped={isGroupedOption}
+                multiple={multiple}
+                role={!(typeof option.icon === "string") && "img"}
+              >
                 {typeof option.icon === "string" ? <OptionIconImg src={option.icon}></OptionIconImg> : option.icon}
               </OptionIcon>
             )}
@@ -358,7 +420,7 @@ const DxcSelect = React.forwardRef(
       );
     };
 
-    let global_index = optional && !multiple ? 0 : -1; // index for options (not groups), starting from 0 to options.length -1
+    let global_index = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
     const mapOptionFunc = (option) => {
       if (option.options) {
         return (
@@ -408,7 +470,7 @@ const DxcSelect = React.forwardRef(
             aria-expanded={isOpen ? "true" : "false"}
             aria-haspopup="listbox"
             aria-labelledby={selectLabelId}
-            aria-activedescendant={visualFocusIndex >= 0 && `option-${visualFocusIndex}`}
+            aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
             aria-invalid={error ? "true" : "false"}
             aria-required={optional ? "false" : "true"}
           >
@@ -417,6 +479,10 @@ const DxcSelect = React.forwardRef(
                 <SelectionNumber disabled={disabled}>{selectedOption.length} </SelectionNumber>
                 <ClearOptionsAction
                   disabled={disabled}
+                  onMouseDown={(event) => {
+                    // Avoid input to lose focus when pressed
+                    event.preventDefault();
+                  }}
                   onClick={handleClearOptionsActionOnClick}
                   tabIndex={-1}
                   title="Clear selected options"
@@ -431,6 +497,7 @@ const DxcSelect = React.forwardRef(
                 name={name}
                 value={multiple ? (value ?? innerValue).join(", ") : value ?? innerValue}
                 readOnly
+                aria-hidden="true"
               />
               {searchable && (
                 <SearchInput
@@ -456,14 +523,18 @@ const DxcSelect = React.forwardRef(
             </SearchableValueContainer>
             {!disabled && error && <ErrorIcon>{selectIcons.error}</ErrorIcon>}
             {searchable && searchValue.length > 0 && (
-              <ClearAction
-                onClick={handleClearActionOnClick}
+              <ClearSearchAction
+                onMouseDown={(event) => {
+                  // Avoid input to lose focus
+                  event.preventDefault();
+                }}
+                onClick={handleClearSearchActionOnClick}
                 tabIndex={-1}
                 title="Clear search text"
                 aria-label="Clear search text"
               >
                 {selectIcons.clear}
-              </ClearAction>
+              </ClearSearchAction>
             )}
             <CollapseIndicator disabled={disabled}>
               {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
@@ -624,6 +695,9 @@ const ClearOptionsAction = styled.button`
   color: ${(props) =>
     props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
 
+  :focus-visible {
+    outline: none;
+  }
   ${(props) =>
     !props.disabled &&
     `
@@ -726,7 +800,7 @@ const CollapseIndicator = styled.span`
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.collapseIndicatorColor)};
 `;
 
-const ClearAction = styled.button`
+const ClearSearchAction = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -850,7 +924,7 @@ const OptionContent = styled.span`
   justify-content: space-between;
   width: 100%;
   overflow: hidden;
-  ${(props) => props.grouped && !props.multiple && !props.hasIcon ? "padding-left: 16px;" : "padding-left: 8px;"}
+  ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "padding-left: 16px;" : "padding-left: 8px;")}
 `;
 
 const OptionIcon = styled.span`
@@ -859,7 +933,7 @@ const OptionIcon = styled.span`
   align-content: center;
   height: 24px;
   width: 24px;
-  ${(props) => props.grouped && !props.multiple ? "padding-left: 16px;" : "padding-left: 8px;"}
+  ${(props) => (props.grouped && !props.multiple ? "padding-left: 16px;" : "padding-left: 8px;")}
   color: ${(props) => props.theme.listItemIconColor};
 `;
 
