@@ -168,9 +168,7 @@ const DxCButton = styled.div`
         font-family:   ${props.theme.primaryFontFamily};
         font-size:     ${props.theme.primaryFontSize};
         font-weight:   ${props.theme.primaryFontWeight};
-        background-color: ${
-          backgroundType === "dark" ? props.theme.primaryBackgroundColorOnDark : props.theme.primaryBackgroundColor
-        };
+        background-color: red;
         color: ${
           backgroundType && backgroundType === "dark"
             ? props.theme.primaryFontColorOnDark
