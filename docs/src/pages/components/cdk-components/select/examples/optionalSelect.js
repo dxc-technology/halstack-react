@@ -14,6 +14,7 @@ const code = `() => {
       label="Label"
       placeholder="Choose an option"
       options={options}
+      optional
       margin="medium"
     />
   );

@@ -178,11 +178,10 @@ const DxcSelect = React.forwardRef(
           });
         }
       } else {
-        if (optional && val === ""){
+        if (optional && val === "") {
           selectedOption = optionalEmptyOption;
           singleSelectionIndex = 0;
-        }
-        else if (options?.length > 0) {
+        } else if (options?.length > 0) {
           let group_index = 0;
           options.some((option, index) => {
             if (option.options) {
@@ -404,7 +403,11 @@ const DxcSelect = React.forwardRef(
           >
             {multiple && <DxcCheckbox tabIndex={-1} checked={isSelected} />}
             {option.icon && (
-              <OptionIcon selected={isSelected} role={!(typeof option.icon === "string") && "img"}>
+              <OptionIcon
+                grouped={isGroupedOption}
+                multiple={multiple}
+                role={!(typeof option.icon === "string") && "img"}
+              >
                 {typeof option.icon === "string" ? <OptionIconImg src={option.icon}></OptionIconImg> : option.icon}
               </OptionIcon>
             )}
@@ -921,8 +924,7 @@ const OptionContent = styled.span`
   justify-content: space-between;
   width: 100%;
   overflow: hidden;
-  padding-left: 8px;
-  ${(props) => props.grouped && !props.multiple && !props.hasIcon && `padding-left: 16px;`}
+  ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "padding-left: 16px;" : "padding-left: 8px;")}
 `;
 
 const OptionIcon = styled.span`
@@ -931,7 +933,7 @@ const OptionIcon = styled.span`
   align-content: center;
   height: 24px;
   width: 24px;
-  margin-left: 8px;
+  ${(props) => (props.grouped && !props.multiple ? "padding-left: 16px;" : "padding-left: 8px;")}
   color: ${(props) => props.theme.listItemIconColor};
 `;
 
