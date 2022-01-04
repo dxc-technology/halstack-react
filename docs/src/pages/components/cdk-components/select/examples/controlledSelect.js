@@ -3,8 +3,9 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
+  const [error, setError] = useState("");
 
-  const single_options = [
+  const options = [
     { label: "Option 01", value: "1" },
     { label: "Option 02", value: "2" },
     { label: "Option 03", value: "3" },
@@ -15,19 +16,20 @@ const code = `() => {
     setValue(value);
   };
 
-  const onBlur = ({ value }) => {
+  const onBlur = ({ value, error }) => {
     setValue(value);
+    setError(error);
   };
 
   return (
     <DxcSelect
       label="Label"
-      value={value}
-      helperText="Helper text"
-      options={single_options}
       placeholder="Choose an option"
+      options={options}
+      value={value}
       onBlur={onBlur}
       onChange={onChange}
+      error={error}
       margin="medium"
     />
   );
