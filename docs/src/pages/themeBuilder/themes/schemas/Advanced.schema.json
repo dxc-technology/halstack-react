@@ -1064,6 +1064,9 @@
     "focusActionBorderColorOnDark": "color",
     "activeActionBackgroundColor": "color",
     "activeActionBackgroundColorOnDark": "color",
+    "listDialogBackgroundColor": "color",
+    "listDialogBorderColor": "color",
+    "listOptionDividerColor": "color",
     "listOptionFontColor": "color",
     "listOptionFontSize": "length",
     "listOptionFontStyle": "fStyle",
@@ -1072,7 +1075,8 @@
     "errorMessageBorderColor": "color",
     "errorMessageBackgroundColor": "color",
     "hoverListOptionBackgroundColor": "color",
-    "activeListOptionBackgroundColor": "color"
+    "activeListOptionBackgroundColor": "color",
+    "focusListOptionBorderColor": "color"
   },
   "toggleGroup": {
     "containerBackgroundColor": "color",
