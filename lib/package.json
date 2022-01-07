@@ -68,10 +68,10 @@
     "eslint-plugin-storybook": "^0.5.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.5.4",
-    "react": "file:../node_modules/react",
-    "react-dom": "file:../node_modules/react-dom",
-    "react-test-renderer": "^16.8.6",
-    "styled-components": "file:../node_modules/styled-components"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.0.1",
+    "react-test-renderer": "^16.8.6"
   },
   "jest": {
     "moduleNameMapper": {
