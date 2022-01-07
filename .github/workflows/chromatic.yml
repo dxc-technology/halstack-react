@@ -9,16 +9,13 @@ on:
 jobs:
   chromatic-deployment:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: lib
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Install dependencies
-        run: npm install
+      - name: Install lib dependencies
+        run: cd lib && npm install
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
