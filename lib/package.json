@@ -10,8 +10,8 @@
     "email": "DigitalInsurance@dxc.com",
     "url": "https://dxc.com"
   },
-  "main": "./dist/main.js",
-  "types": "./dist/main.d.ts",
+  "main": "./main.js",
+  "types": "./main.d.ts",
   "peerDependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -35,8 +35,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "npm test -- --watch --coverage",
-    "build": "babel src --out-dir dist --copy-files --verbose && node ../scripts/build/copy-readme.js",
-    "build:watch": "babel src --watch --out-dir dist --copy-files --verbose",
+    "build": "babel src --out-dir ../dist --copy-files --verbose && node ../scripts/build/copy-readme.js",
+    "build:watch": "babel src --watch --out-dir ../dist --copy-files --verbose",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

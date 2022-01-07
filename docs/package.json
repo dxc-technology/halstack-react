@@ -3,23 +3,23 @@
   "version": "0.0.0",
   "homepage": ".",
   "dependencies": {
-    "@dxc-technology/halstack-react": "file:../lib",
+    "@dxc-technology/halstack-react": "file:../dist",
     "@material-ui/core": "4.11.1",
     "@material-ui/utils": "4.11.2",
     "@testing-library/dom": "^7.29.4",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "jest-canvas-mock": "^2.2.0",
-    "react": "file:../node_modules/react",
     "react-color": "^2.19.3",
-    "react-dom": "file:../node_modules/react-dom",
     "react-error-boundary": "^3.1.1",
     "react-json-view": "^1.21.3",
     "react-live": "^2.2.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-syntax-highlighter": "^12.2.1",
-    "styled-components": "file:../node_modules/styled-components"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -27,12 +27,6 @@ jobs:
         role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
         role-duration-seconds: 3600
         role-skip-session-tagging: true
-
-    - name: Install common dependencies
-      run: npm install
-
-    - name: Install app dependencies
-      run: cd app && npm install
     
     - name: Install lib dependencies
       run: cd lib && npm install
@@ -51,8 +45,8 @@ jobs:
 
     - name: Publish RELEASE to npm
       run: |
-        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${TAG_NAME}\"#" ./lib/package.json
-        cd lib
+        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"${TAG_NAME}\"#" ./dist/package.json
+        cd dist
         npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

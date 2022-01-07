@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dxc-technology/halstack-react": "file:../lib",
+    "@dxc-technology/halstack-react": "file:../dist",
     "@reach/router": "^1.2.1",
-    "react": "file:../node_modules/react",
-    "react-dom": "file:../node_modules/react-dom",
-    "styled-components": "file:../node_modules/styled-components",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.0.1",
     "react-scripts": "3.2.0"
   },
   "scripts": {
