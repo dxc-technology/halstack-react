@@ -12,10 +12,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+
       - name: Install lib dependencies
         run: cd lib && npm install
+        
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
