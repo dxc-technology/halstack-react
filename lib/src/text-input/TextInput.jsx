@@ -882,7 +882,7 @@ const Error = styled.span`
 const Suggestions = styled.ul`
   position: absolute;
   z-index: 1;
-  max-height: 160px;
+  max-height: 304px;
   overflow-x: auto;
   top: calc(100% + 4px);
   left: 0;
