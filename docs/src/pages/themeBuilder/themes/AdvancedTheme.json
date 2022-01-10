@@ -344,7 +344,7 @@
     "disabledDropLabelFontColor": "#999999",
     "focusDropBorderColor": "#0095ff",
     "disabledDropBorderColor": "#999999",
-    "dragoverDropBackgroundColor": "#33AAFF",
+    "dragoverDropBackgroundColor": "#f5fbff",
     "hoverFileItemIconBackgroundColor": "#f2f2f2",
     "activeFileItemIconBackgrounColor": "#cccccc",
     "errorFileItemBorderColor": "#d0011b",
