@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
@@ -7,6 +7,32 @@ import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import NumberInputContext from "../number-input/NumberInputContext.js";
+
+const textInputIcons = {
+  error: (
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+    </svg>
+  ),
+  clear: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M0 0h24v24H0V0z" fill="none" />
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+    </svg>
+  ),
+  increment: (
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+    </svg>
+  ),
+  decrement: (
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M19 13H5v-2h14v2z" />
+    </svg>
+  ),
+};
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
@@ -59,16 +85,14 @@ const DxcTextInput = React.forwardRef(
     },
     ref
   ) => {
+    const [inputId] = useState(`input-${uuidv4()}`);
     const [innerValue, setInnerValue] = useState("");
 
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
-    const [isScrollable, changeIsScrollable] = useState(false);
-    const [isActiveSuggestion, changeIsActiveSuggestion] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
-    const [inputId] = useState(`input-${uuidv4()}`);
 
     const suggestionsRef = useRef(null);
     const inputRef = useRef(null);
@@ -101,10 +125,10 @@ const DxcTextInput = React.forwardRef(
         return `Value must be less than or equal to ${numberInputContext?.maxNumber}.`;
     };
 
-    const hasInputSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
+    const hasSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
 
     const openSuggestions = () => {
-      hasInputSuggestions() && changeIsOpen(true);
+      if (hasSuggestions() && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)) changeIsOpen(true);
     };
 
     const closeSuggestions = () => {
@@ -133,11 +157,9 @@ const DxcTextInput = React.forwardRef(
       openSuggestions();
       changeValue(event.target.value);
     };
-
     const handleIOnClick = () => {
       openSuggestions();
     };
-
     const handleIOnBlur = (event) => {
       suggestions && closeSuggestions();
 
@@ -151,11 +173,9 @@ const DxcTextInput = React.forwardRef(
         onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
       else onBlur?.({ value: event.target.value, error: null });
     };
-
     const handleIOnFocus = () => {
       openSuggestions();
     };
-
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {
         case 40: // Arrow Down
@@ -170,8 +190,6 @@ const DxcTextInput = React.forwardRef(
                 if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
                 else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
               });
-              changeIsScrollable(true);
-              changeIsActiveSuggestion(false);
             }
           }
           break;
@@ -188,20 +206,18 @@ const DxcTextInput = React.forwardRef(
                   return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
                 else return visualFocusedSuggIndex - 1;
               });
-              changeIsScrollable(true);
-              changeIsActiveSuggestion(false);
             }
           }
           break;
         case 27: // Esc
           event.preventDefault();
-          if (hasInputSuggestions()) {
+          if (hasSuggestions()) {
             changeValue("");
             isOpen && closeSuggestions();
           }
           break;
         case 13: // Enter
-          if (hasInputSuggestions() && !isSearching) {
+          if (hasSuggestions() && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 &&
               visualFocusedSuggIndex >= 0 &&
@@ -213,76 +229,27 @@ const DxcTextInput = React.forwardRef(
       }
     };
 
+    const handleClearActionOnClick = () => {
+      changeValue("");
+      inputRef.current.focus();
+      suggestions && closeSuggestions();
+    };
+
+    const handleDecrementActionOnClick = () => {
+      decrementNumber();
+      inputRef.current.focus();
+    };
+    const handleIncrementActionOnClick = () => {
+      incrementNumber();
+      inputRef.current.focus();
+    };
+
     const setNumberProps = (type, min, max, step) => {
       type && inputRef?.current?.setAttribute("type", type);
       min && inputRef?.current?.setAttribute("min", min);
       max && inputRef?.current?.setAttribute("max", max);
       step && inputRef?.current?.setAttribute("step", step);
     };
-
-    useLayoutEffect(() => {
-      isScrollable && suggestionsRef?.current?.scrollTo({ top: visualFocusedSuggIndex * 39 });
-      return changeIsScrollable(false);
-    }, [isScrollable, visualFocusedSuggIndex]);
-
-    useEffect(() => {
-      if (typeof suggestions === "function") {
-        changeIsSearching(true);
-        changeIsAutosuggestError(false);
-        changeFilteredSuggestions([]);
-
-        const cancelablePromise = makeCancelable(suggestions(value ?? innerValue));
-        cancelablePromise.promise
-          .then((promiseResponse) => {
-            changeIsSearching(false);
-            changeIsAutosuggestError(false);
-            changeFilteredSuggestions(promiseResponse);
-          })
-          .catch((err) => {
-            if (!err.isCanceled) {
-              changeIsSearching(false);
-              changeIsAutosuggestError(true);
-            }
-          });
-
-        return () => {
-          cancelablePromise.cancel();
-        };
-      } else if (suggestions && suggestions.length) {
-        changeFilteredSuggestions(
-          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
-        );
-        changeVisualFocusedSuggIndex(-1);
-      }
-
-      numberInputContext &&
-        setNumberProps(
-          numberInputContext.typeNumber,
-          numberInputContext.minNumber,
-          numberInputContext.maxNumber,
-          numberInputContext.stepNumber
-        );
-    }, [value, innerValue, suggestions]);
-
-    const defaultClearAction = {
-      onClick: () => {
-        changeValue("");
-        inputRef.current.focus();
-        suggestions && closeSuggestions();
-      },
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M0 0h24v24H0V0z" fill="none" />
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-        </svg>
-      ),
-    };
-
-    const errorIcon = (
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-      </svg>
-    );
 
     const decrementNumber = () => {
       const numberValue = value ?? innerValue;
@@ -346,69 +313,95 @@ const DxcTextInput = React.forwardRef(
       }
     };
 
-    const decrementAction = {
-      onClick: () => {
-        decrementNumber();
-        inputRef.current.focus();
-      },
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-          <path d="M0 0h24v24H0z" fill="none" />
-          <path d="M19 13H5v-2h14v2z" />
-        </svg>
-      ),
-    };
+    useLayoutEffect(() => {
+      const visualFocusedOptionEl =
+        suggestionsRef?.current?.querySelectorAll("[role='option']")[visualFocusedSuggIndex];
+      visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+    }, [visualFocusedSuggIndex]);
 
-    const incrementAction = {
-      onClick: () => {
-        incrementNumber();
-        inputRef.current.focus();
-      },
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-          <path d="M0 0h24v24H0z" fill="none" />
-          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-        </svg>
-      ),
+    useEffect(() => {
+      if (typeof suggestions === "function") {
+        changeIsSearching(true);
+        changeIsAutosuggestError(false);
+        changeFilteredSuggestions([]);
+
+        const cancelablePromise = makeCancelable(suggestions(value ?? innerValue));
+        cancelablePromise.promise
+          .then((promiseResponse) => {
+            changeIsSearching(false);
+            changeIsAutosuggestError(false);
+            changeFilteredSuggestions(promiseResponse);
+          })
+          .catch((err) => {
+            if (!err.isCanceled) {
+              changeIsSearching(false);
+              changeIsAutosuggestError(true);
+            }
+          });
+
+        return () => {
+          cancelablePromise.cancel();
+        };
+      } else if (suggestions?.length > 0) {
+        changeFilteredSuggestions(
+          suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
+        );
+        changeVisualFocusedSuggIndex(-1);
+      }
+
+      numberInputContext &&
+        setNumberProps(
+          numberInputContext.typeNumber,
+          numberInputContext.minNumber,
+          numberInputContext.maxNumber,
+          numberInputContext.stepNumber
+        );
+    }, [value, innerValue, suggestions]);
+
+    useLayoutEffect(() => {
+      if (filteredSuggestions.length === 0 && !isSearching && !isAutosuggestError) closeSuggestions();
+    }, [filteredSuggestions]);
+
+    const getLastOptionIndex = () => {
+      let last = 0;
+      const reducer = (acc, current) => acc + current.options?.length;
+
+      if (filteredSuggestions.length > 0)
+        filteredSuggestions[0].options
+          ? (last = filteredSuggestions.reduce(reducer, 0) - 1)
+          : (last = filteredSuggestions.length - 1);
+
+      return last;
     };
+    const lastOptionIndex = useMemo(() => getLastOptionIndex(), [filteredSuggestions]);
 
     const HighlightedSuggestion = ({ suggestion, index }) => {
       const regEx = new RegExp(value ?? innerValue, "i");
       const matchedWords = suggestion.match(regEx);
       const noMatchedWords = suggestion.replace(regEx, "");
+      const isLastOption = index === lastOptionIndex;
 
       return (
         <Suggestion
           id={`suggestion-${index}`}
-          onMouseDown={(event) => {
-            event.button === 0 && changeIsActiveSuggestion(true);
+          onClick={() => {
+            changeValue(suggestion);
+            closeSuggestions();
           }}
-          onMouseUp={(event) => {
-            if (event.button === 0 && isActiveSuggestion) {
-              changeValue(suggestion);
-              changeIsActiveSuggestion(false);
-              closeSuggestions();
-            }
-          }}
-          onMouseEnter={() => {
-            changeVisualFocusedSuggIndex(index);
-          }}
-          onMouseLeave={() => {
-            changeIsActiveSuggestion(false);
-          }}
-          visualFocused={visualFocusedSuggIndex === index}
-          active={visualFocusedSuggIndex === index && isActiveSuggestion}
           role="option"
           aria-selected={visualFocusedSuggIndex === index && "true"}
+          visualFocused={visualFocusedSuggIndex === index}
         >
-          {typeof suggestions === "function" ? (
-            suggestion
-          ) : (
-            <>
-              <strong>{matchedWords}</strong>
-              {noMatchedWords}
-            </>
-          )}
+          <StyledSuggestion last={isLastOption} visualFocused={visualFocusedSuggIndex === index}>
+            {typeof suggestions === "function" ? (
+              suggestion
+            ) : (
+              <>
+                <strong>{matchedWords}</strong>
+                {noMatchedWords}
+              </>
+            )}
+          </StyledSuggestion>
         </Suggestion>
       );
     };
@@ -451,12 +444,12 @@ const DxcTextInput = React.forwardRef(
               maxLength={length?.max}
               autoComplete={autocomplete}
               tabIndex={tabIndex}
-              role={isTextInputType() && hasInputSuggestions() ? "combobox" : "textbox"}
-              aria-autocomplete={isTextInputType() && hasInputSuggestions() ? "list" : undefined}
-              aria-controls={isTextInputType() && hasInputSuggestions() ? autosuggestId : undefined}
-              aria-expanded={isTextInputType() && hasInputSuggestions() ? (isOpen ? "true" : "false") : undefined}
+              role={isTextInputType() && hasSuggestions() ? "combobox" : "textbox"}
+              aria-autocomplete={isTextInputType() && hasSuggestions() ? "list" : undefined}
+              aria-controls={isTextInputType() && hasSuggestions() ? autosuggestId : undefined}
+              aria-expanded={isTextInputType() && hasSuggestions() ? (isOpen ? "true" : "false") : undefined}
               aria-activedescendant={
-                isTextInputType() && hasInputSuggestions() && isOpen && visualFocusedSuggIndex !== -1
+                isTextInputType() && hasSuggestions() && isOpen && visualFocusedSuggIndex !== -1
                   ? `suggestion-${visualFocusedSuggIndex}`
                   : undefined
               }
@@ -466,17 +459,17 @@ const DxcTextInput = React.forwardRef(
             />
             {!disabled && error && (
               <ErrorIcon backgroundType={backgroundType} aria-label="Error">
-                {errorIcon}
+                {textInputIcons.error}
               </ErrorIcon>
             )}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
               <Action
-                onClick={defaultClearAction.onClick}
+                onClick={handleClearActionOnClick}
                 backgroundType={backgroundType}
                 tabIndex={tabIndex}
                 aria-label="Clear"
               >
-                {defaultClearAction.icon}
+                {textInputIcons.clear}
               </Action>
             )}
             {numberInputContext?.typeNumber === "number" ? (
@@ -484,22 +477,22 @@ const DxcTextInput = React.forwardRef(
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={decrementAction.onClick}
+                  onClick={handleDecrementActionOnClick}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                   aria-label="Decrement"
                 >
-                  {decrementAction.icon}
+                  {textInputIcons.decrement}
                 </Action>
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={incrementAction.onClick}
+                  onClick={handleIncrementActionOnClick}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                   aria-label="Increment"
                 >
-                  {incrementAction.icon}
+                  {textInputIcons.increment}
                 </Action>
               </>
             ) : (
@@ -535,9 +528,6 @@ const DxcTextInput = React.forwardRef(
                 role="listbox"
                 aria-label={label}
               >
-                {!isSearching && !isAutosuggestError && filteredSuggestions.length === 0 && (
-                  <SuggestionsSystemMessage>No results found</SuggestionsSystemMessage>
-                )}
                 {!isSearching &&
                   !isAutosuggestError &&
                   filteredSuggestions.length > 0 &&
@@ -547,7 +537,7 @@ const DxcTextInput = React.forwardRef(
                 {isSearching && <SuggestionsSystemMessage>Searching...</SuggestionsSystemMessage>}
                 {isAutosuggestError && (
                   <SuggestionsError>
-                    <SuggestionsErrorIcon backgroundType={backgroundType}>{errorIcon}</SuggestionsErrorIcon>
+                    <SuggestionsErrorIcon backgroundType={backgroundType}>{textInputIcons.error}</SuggestionsErrorIcon>
                     Error fetching data
                   </SuggestionsError>
                 )}
@@ -580,6 +570,7 @@ const calculateWidth = (margin, size) =>
 const DxcInput = styled.div`
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -889,20 +880,22 @@ const Error = styled.span`
 `;
 
 const Suggestions = styled.ul`
-  background-color: ${(props) => (props.isError ? props.theme.errorMessageBackgroundColor : "#ffffff")};
   position: absolute;
   z-index: 1;
-  max-height: 160px;
-  overflow: auto;
+  max-height: 304px;
+  overflow-y: auto;
   top: calc(100% + 4px);
   left: 0;
   margin: 0;
-  padding: 0;
+  padding: 0.25rem 0;
   width: 100%;
-  box-sizing: border-box;
+  background-color: ${(props) =>
+    props.isError ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
+  border: 1px solid
+    ${(props) => (props.isError ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   cursor: default;
-  border-radius: 4px;
-  border: 1px solid ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.enabledBorderColor)};
   color: ${(props) => props.theme.listOptionFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.listOptionFontSize};
@@ -911,23 +904,37 @@ const Suggestions = styled.ul`
 `;
 
 const Suggestion = styled.li`
-  padding: calc((39px - 1.75em) / 2) 0 calc((39px - 1.75em) / 2) 1em;
-  line-height: 1.75em;
-  list-style-type: none;
+  padding: 0 0.5rem;
+  line-height: 1.715em;
   cursor: pointer;
 
+  box-shadow: inset 0 0 0 2px
+    ${(props) => (props.visualFocused ? props.theme.focusListOptionBorderColor : "transparent")};
+  &:hover {
+    background-color: ${(props) => props.theme.hoverListOptionBackgroundColor};
+  }
+  &:active {
+    background-color: ${(props) => props.theme.activeListOptionBackgroundColor};
+  }
+`;
+
+const StyledSuggestion = styled.span`
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.25rem 0.5rem 0.188rem 0.5rem;
   ${(props) =>
-    props.active
-      ? `background-color: ${props.theme.activeListOptionBackgroundColor};`
-      : props.visualFocused && `background-color: ${props.theme.hoverListOptionBackgroundColor};`}
+    props.last || props.visualFocused
+      ? `border-bottom: 1px solid transparent`
+      : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
 `;
 
 const SuggestionsSystemMessage = styled.span`
   display: flex;
-  padding: calc((39px - 1.75em) / 2) 0 calc((39px - 1.75em) / 2) 1em;
+  padding: 0.25rem 1rem;
   color: ${(props) => props.theme.systemMessageFontColor};
-  font-size: 0.875rem;
-  line-height: 1.75em;
+  line-height: 1.715em;
 `;
 
 const SuggestionsErrorIcon = styled.span`
@@ -939,19 +946,14 @@ const SuggestionsErrorIcon = styled.span`
   width: 18px;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
-
-  svg {
-    line-height: 1.75em;
-    font-size: 0.875rem;
-  }
 `;
 
 const SuggestionsError = styled.span`
   display: flex;
-  padding: calc((39px - 1.75em) / 2) 0 calc((39px - 1.75em) / 2) 1em;
+  padding: 0.25rem 1rem;
   align-items: center;
-  font-size: 0.875rem;
-  line-height: 1.75em;
+  line-height: 1.715em;
+  color: ${(props) => props.theme.errorListDialogFontColor};
 `;
 
 DxcTextInput.propTypes = {

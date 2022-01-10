@@ -7,7 +7,7 @@ const code = `() => {
       label: "Managers",
       options: [
         { label: "Pablo", value: "pablo" },
-        { label: "Marcos", value: "marcoss" },
+        { label: "Marcos", value: "marcos" },
         { label: "Rachel", value: "rachel" },
         { label: "Margaret", value: "margaret" },
       ],

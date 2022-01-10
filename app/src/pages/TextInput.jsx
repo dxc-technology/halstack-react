@@ -480,7 +480,12 @@ function App() {
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
-          suggestions={countries}
+          suggestions={[
+            "Suggestion 1",
+            "Suggestion 2",
+            "Suggestion 3",
+            "Suggestion 4",
+          ]}
           clearable
         />
       </p>
@@ -524,67 +529,6 @@ function App() {
           margin={{ left: "medium" }}
         ></DxcButton>
       </p>
-      <BackgroundColorProvider color="#000000">
-        <Mode mode="dark">
-          <DxcTextInput
-            label="Example label"
-            optional
-            helperText="Example of helper text"
-            placeholder="Placeholder"
-            margin={{
-              left: "medium",
-              bottom: "small",
-              top: "small",
-              right: "medium",
-            }}
-          />
-        </Mode>
-        <Mode mode="dark">
-          <DxcTextInput
-            label="Disabled text input"
-            optional
-            helperText="Example of helper text"
-            placeholder="Placeholder"
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
-            action={action}
-            disabled
-          />
-        </Mode>
-        <Mode mode="dark">
-          <DxcTextInput
-            label="Suggestions + action"
-            placeholder="Placeholder"
-            value={suggestionsValue}
-            onChange={onChangeSuggestions}
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
-            action={action}
-            suggestions={countries}
-            clearable
-          />
-        </Mode>
-        <Mode mode="dark">
-          <DxcTextInput
-            label="Warning label"
-            prefix="+34"
-            helperText="Example of helper text"
-            placeholder="Placeholder"
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
-            action={action}
-          />
-        </Mode>
-        <Mode mode="dark">
-          <DxcTextInput
-            prefix="😀"
-            label="Error text input"
-            helperText="Example of helper text"
-            margin={{ left: "medium", bottom: "small", right: "medium" }}
-            error="Error message."
-            suffix="😠"
-            action={action}
-            clearable
-          />
-        </Mode>
-      </BackgroundColorProvider>
     </>
   );
 }

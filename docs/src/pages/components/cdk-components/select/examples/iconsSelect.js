@@ -127,7 +127,7 @@ const code = `() => {
       <DxcSelect
         label="Svg icons"
         placeholder="Choose options"
-        helperText="Icons are passed using inline Svg"
+        helperText="Icons are passed using inline svg"
         options={svg_options}
         multiple
         margin="medium"

@@ -384,7 +384,6 @@ const DxcSelect = React.forwardRef(
         <OptionItem
           id={`option-${index}`}
           onClick={() => {
-            // left mouse button only
             handleSelectChangeValue(option);
             !multiple && closeOptions();
             setSearchValue("");
@@ -587,6 +586,7 @@ const calculateWidth = (margin, size) =>
 const SelectContainer = styled.div`
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -839,16 +839,15 @@ const OptionsList = styled.ul`
   position: absolute;
   z-index: 1;
   max-height: 304px;
-  overflow-x: auto;
+  overflow-y: auto;
   top: calc(100% + 4px);
   left: 0;
   margin: 0;
-  padding: 4px 0;
+  padding: 0.25rem 0;
   width: 100%;
-  box-sizing: border-box;
   background-color: ${(props) => props.theme.itemListBackgroundColor};
   border: 1px solid ${(props) => props.theme.itemListBorderColor};
-  border-radius: 4px;
+  border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   cursor: default;
   color: ${(props) => props.theme.listItemFontColor};
@@ -887,7 +886,7 @@ const GroupLabel = styled.li`
 `;
 
 const OptionItem = styled.li`
-  padding: 0 8px;
+  padding: 0 0.5rem;
   box-shadow: inset 0 0 0 2px transparent;
   ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListItemBorderColor};`}
   ${(props) => props.selected && `background-color: ${props.theme.selectedListItemBackgroundColor}`};
@@ -910,7 +909,7 @@ const OptionItem = styled.li`
 
 const StyledOption = styled.span`
   display: flex;
-  padding: 4px 8px 3px 0;
+  padding: 0.25rem 0.5rem 0.188rem 0;
   min-height: 24px;
   ${(props) => props.grouped && props.multiple && `padding-left: 16px;`}
   ${(props) =>
