@@ -297,7 +297,7 @@ const DragDropArea = styled.div`
   border-radius: ${(props) => props.theme.dropBorderRadius};
   border-width: ${(props) => (!props.isDragging ? props.theme.dropBorderThickness : "2px")};
   border-style: ${(props) => (!props.isDragging ? props.theme.dropBorderStyle : "solid")};
-  background-color: ${(props) => props.isDragging && props.theme.focusDropBackgroundColor};
+  background-color: ${(props) => props.isDragging && props.theme.dragoverDropBackgroundColor};
   border-color: ${(props) =>
     props.disabled
       ? props.theme.disabledDropBorderColor

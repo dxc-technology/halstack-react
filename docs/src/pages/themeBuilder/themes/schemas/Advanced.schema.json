@@ -344,13 +344,13 @@
     "disabledDropLabelFontColor": "color",
     "focusDropBorderColor": "color",
     "disabledDropBorderColor": "color",
-    "focusDropBackgroundColor": "color",
+    "dragoverDropBackgroundColor": "color",
     "hoverFileItemIconBackgroundColor": "color",
     "activeFileItemIconBackgrounColor": "color",
     "errorFileItemBorderColor": "color",
     "errorFileItemBackgroundColor": "color",
     "errorFileItemIconBackgroundColor": "color",
-    "errorFileItemIconColor":"color",
+    "errorFileItemIconColor": "color",
     "fileItemIconBackgroundColor": "color",
     "fileItemIconColor": "color",
     "errorMessageFontColor": "color",
@@ -781,7 +781,7 @@
     "focusColorOnDark": "color",
     "floorLabelMarginRight": "length",
     "ceilLabelMarginLeft": "length",
-    "inputMarginLeft":"length"
+    "inputMarginLeft": "length"
   },
   "spinner": {
     "trackCircleColor": "color",
