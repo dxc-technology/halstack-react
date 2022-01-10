@@ -480,7 +480,12 @@ function App() {
           helperText="Example of helper text"
           placeholder="Placeholder"
           margin="medium"
-          suggestions={countries}
+          suggestions={[
+            "Suggestion 1",
+            "Suggestion 2",
+            "Suggestion 3",
+            "Suggestion 4",
+          ]}
           clearable
         />
       </p>

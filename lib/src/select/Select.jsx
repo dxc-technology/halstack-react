@@ -839,7 +839,7 @@ const OptionsList = styled.ul`
   position: absolute;
   z-index: 1;
   max-height: 304px;
-  overflow-x: auto;
+  overflow-y: auto;
   top: calc(100% + 4px);
   left: 0;
   margin: 0;
