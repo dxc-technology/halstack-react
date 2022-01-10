@@ -890,9 +890,9 @@ const Suggestions = styled.ul`
   padding: 0.25rem 0;
   width: 100%;
   background-color: ${(props) =>
-    props.isError ? props.theme.errorMessageBackgroundColor : props.theme.listDialogBackgroundColor};
+    props.isError ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
   border: 1px solid
-    ${(props) => (props.isError ? props.theme.errorMessageBorderColor : props.theme.listDialogBorderColor)};
+    ${(props) => (props.isError ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
   border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   cursor: default;
@@ -953,6 +953,7 @@ const SuggestionsError = styled.span`
   padding: 0.25rem 1rem;
   align-items: center;
   line-height: 1.715em;
+  color: ${(props) => props.theme.errorListDialogFontColor};
 `;
 
 DxcTextInput.propTypes = {

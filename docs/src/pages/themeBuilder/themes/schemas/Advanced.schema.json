@@ -1072,8 +1072,9 @@
     "listOptionFontStyle": "fStyle",
     "listOptionFontWeight": "fWeight",
     "systemMessageFontColor": "color",
-    "errorMessageBorderColor": "color",
-    "errorMessageBackgroundColor": "color",
+    "errorListDialogFontColor": "color",
+    "errorListDialogBackgroundColor": "color",
+    "errorListDialogBorderColor": "color",
     "hoverListOptionBackgroundColor": "color",
     "activeListOptionBackgroundColor": "color",
     "focusListOptionBorderColor": "color"
