@@ -21,6 +21,7 @@ const StatusTagContainer = styled.div`
   padding: 4px 8px;
   font-size: 0.75rem;
   font-weight: 600;
+  line-height: 1.125em;
   color: ${(props) =>
     props.status === "Ready"
       ? "#135325"
