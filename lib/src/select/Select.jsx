@@ -437,7 +437,7 @@ const DxcSelect = React.forwardRef(
         );
       } else {
         global_index++;
-        return <Option option={option} index={global_index} />;
+        return <Option key={`option-${option.value}`} option={option} index={global_index} />;
       }
     };
 
