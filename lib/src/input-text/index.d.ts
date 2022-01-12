@@ -33,4 +33,4 @@ type Props = {
   tabIndex?: number;
 };
 
-export default function DxcInputText(props: Props): JSX.Element;
+export default function DxcInput(props: Props): JSX.Element;

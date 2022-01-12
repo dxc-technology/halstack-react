@@ -27,7 +27,6 @@ import Wizard from "./cdk-components/wizard/Wizard";
 import V3Textarea from "./cdk-components/V3Textarea/V3Textarea";
 import Heading from "./cdk-components/heading/Heading";
 import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
-import Autosuggest from "./cdk-components/autosuggest/Autosuggest";
 import Chip from "./cdk-components/chip/Chip";
 import ToggleGroup from "./cdk-components/toggleGroup/ToggleGroup";
 import ApplicationLayout from "./cdk-components/applicationLayout/ApplicationLayout";
@@ -74,13 +73,6 @@ export default [
     name: "Application Layout",
     component: ApplicationLayout,
     type: types.LAYOUT,
-    status: "ready",
-  },
-  {
-    path: "autosuggest",
-    name: "Autosuggest",
-    component: Autosuggest,
-    type: types.FORMS,
     status: "ready",
   },
   {

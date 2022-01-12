@@ -18,6 +18,8 @@ import optional from "./examples/optionalTextInput";
 import disabled from "./examples/disabledTextInput";
 import placeholder from "./examples/placeholderTextInput";
 import fillParent from "./examples/fillParentTextInput";
+import autosuggest from "./examples/autosuggest";
+import autosuggestFunction from "./examples/autosuggestFunction";
 
 function TextInput() {
   return (
@@ -56,6 +58,14 @@ function TextInput() {
         <Example
           title="Fill parent size text input"
           example={fillParent}
+        ></Example>
+        <Example
+          title="Text input with suggestions"
+          example={autosuggest}
+        ></Example>
+        <Example
+          title="Text input with a function as suggestions"
+          example={autosuggestFunction}
         ></Example>
       </Section>
     </ComponentDoc>

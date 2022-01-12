@@ -437,7 +437,7 @@ const DxcSelect = React.forwardRef(
         );
       } else {
         global_index++;
-        return <Option option={option} index={global_index} />;
+        return <Option key={`option-${option.value}`} option={option} index={global_index} />;
       }
     };
 
@@ -475,7 +475,7 @@ const DxcSelect = React.forwardRef(
           >
             {multiple && selectedOption.length > 0 && (
               <SelectionIndicator>
-                <SelectionNumber disabled={disabled}>{selectedOption.length} </SelectionNumber>
+                <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
                 <ClearOptionsAction
                   disabled={disabled}
                   onMouseDown={(event) => {
@@ -506,16 +506,20 @@ const DxcSelect = React.forwardRef(
                   ref={selectSearchInputRef}
                   autoComplete="off"
                   autoCorrect="off"
+                  size="1"
                 ></SearchInput>
               )}
               {(!searchable || searchValue === "") &&
                 (multiple ? (
-                  <SelectedOption disabled={disabled} atBackground={(value ?? innerValue).length === 0 || isOpen}>
+                  <SelectedOption
+                    disabled={disabled}
+                    atBackground={(value ?? innerValue).length === 0 || (searchable && isOpen)}
+                  >
                     <OptionLabel>{selectedOption.map((option) => option.label).join(", ")}</OptionLabel>
                     {selectedOption.length === 0 && placeholder}
                   </SelectedOption>
                 ) : (
-                  <SelectedOption disabled={disabled} atBackground={!(value ?? innerValue) || isOpen}>
+                  <SelectedOption disabled={disabled} atBackground={!(value ?? innerValue) || (searchable && isOpen)}>
                     <OptionLabel>{selectedOption?.label ?? placeholder}</OptionLabel>
                   </SelectedOption>
                 ))}
@@ -627,10 +631,11 @@ const Select = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  margin: calc(1rem * 0.25) 0;
-  padding: 0 calc(1rem * 0.5);
+  height: calc(2.5rem - 2px);
+  margin: ${(props) => `${props.theme.inputMarginTop} 0 ${props.theme.inputMarginBottom} 0`};
+  padding: 0 0.5rem;
   outline: none;
+  ${(props) => props.disabled && `background-color: ${props.theme.disabledInputBackgroundColor}`};
   box-shadow: 0 0 0 2px transparent;
   border-radius: 4px;
   border: 1px solid
@@ -661,14 +666,16 @@ const SelectionIndicator = styled.span`
   display: flex;
   border: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
   border-radius: 2px;
-  width: 48px;
+  max-height: 22px;
+  width: 46px;
 `;
 
 const SelectionNumber = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
+  width: 22px;
+  height: 22px;
   user-select: none;
   background-color: ${(props) => props.theme.selectionIndicatorBackgroundColor};
   border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
@@ -684,12 +691,12 @@ const ClearOptionsAction = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  height: 24px;
-  width: 24px;
+  width: 23px;
+  height: 22px;
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily};
-  border: 1px solid transparent;
-  padding: 3px;
+  border: none;
+  padding: 0.25rem;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
   background-color: ${(props) => props.theme.enabledSelectionIndicatorActionBackgroundColor};
   color: ${(props) =>
@@ -725,8 +732,8 @@ const SelectedOption = styled.span`
   grid-area: 1 / 1 / 1 / 1;
   display: inline-flex;
   align-items: center;
-  height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  padding: 0 calc(1rem * 0.5);
+  height: calc(2.5rem - 2px);
+  padding: 0 0.5rem;
   user-select: none;
   overflow: hidden;
 
@@ -740,7 +747,6 @@ const SelectedOption = styled.span`
   font-size: ${(props) => props.theme.valueFontSize};
   font-style: ${(props) => props.theme.valueFontStyle};
   font-weight: ${(props) => props.theme.valueFontWeight};
-  line-height: 1.5em;
 `;
 
 const ValueInput = styled.input`
@@ -749,11 +755,11 @@ const ValueInput = styled.input`
 
 const SearchInput = styled.input`
   grid-area: 1 / 1 / 1 / 1;
-  height: calc(calc(1rem * 2.5) - calc(1px * 2));
+  height: calc(2.5rem - 2px);
   background: none;
   border: none;
   outline: none;
-  padding: 0 calc(1rem * 0.5);
+  padding: 0 0.5rem;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.valueFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.valueFontSize};
@@ -769,9 +775,9 @@ const ErrorIcon = styled.span`
   padding: 3px;
   height: 18px;
   width: 18px;
-  margin-left: calc(1rem * 0.25);
+  margin-left: 0.25rem;
   pointer-events: none;
-  color: ${(props) => props.theme.errorColor};
+  color: ${(props) => props.theme.errorIconColor};
 
   svg {
     line-height: 18px;
@@ -781,12 +787,10 @@ const ErrorIcon = styled.span`
 
 const Error = styled.span`
   min-height: 1.5em;
-  color: ${(props) => props.theme.errorColor};
+  color: ${(props) => props.theme.errorMessageColor};
   font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.errorMessageFontSize};
-  font-style: ${(props) => props.theme.errorMessagetFontStyle};
-  font-weight: ${(props) => props.theme.errorMessageFontWeight};
-  line-height: ${(props) => props.theme.errorMessagetLineHeight};
+  font-size: 0.75rem;
+  font-weight: 400;
 `;
 
 const CollapseIndicator = styled.span`
@@ -796,7 +800,7 @@ const CollapseIndicator = styled.span`
   height: 16px;
   width: 16px;
   padding: 4px;
-  margin-left: calc(1rem * 0.25);
+  margin-left: 0.25rem;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.collapseIndicatorColor)};
 `;
 
@@ -811,25 +815,19 @@ const ClearSearchAction = styled.button`
   border: 1px solid transparent;
   border-radius: 2px;
   padding: 3px;
-  margin-left: calc(1rem * 0.25);
-  ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-  background-color: ${(props) =>
-    props.disabled ? props.theme.disabledActionBackgroundColor : props.theme.actionBackgroundColor};
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.actionIconColor)};
+  margin-left: 0.25rem;
+  background-color: ${(props) => props.theme.actionBackgroundColor};
+  color: ${(props) => props.theme.actionIconColor};
 
-  ${(props) =>
-    !props.disabled &&
-    `
-      &:hover {
-        background-color: ${props.theme.hoverActionBackgroundColor};
-        color: ${props.theme.hoverActionIconColor};
-      }
-      &:active {
-        background-color: ${props.theme.activeActionBackgroundColor};
-        color: ${props.theme.activeActionIconColor};
-      }
-    `}
-
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.theme.hoverActionBackgroundColor};
+    color: ${(props) => props.theme.hoverActionIconColor};
+  }
+  &:active {
+    background-color: ${(props) => props.theme.activeActionBackgroundColor};
+    color: ${(props) => props.theme.activeActionIconColor};
+  }
   svg {
     line-height: 18px;
   }
@@ -845,16 +843,16 @@ const OptionsList = styled.ul`
   margin: 0;
   padding: 0.25rem 0;
   width: 100%;
-  background-color: ${(props) => props.theme.itemListBackgroundColor};
-  border: 1px solid ${(props) => props.theme.itemListBorderColor};
+  background-color: ${(props) => props.theme.listDialogBackgroundColor};
+  border: 1px solid ${(props) => props.theme.listDialogBorderColor};
   border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   cursor: default;
-  color: ${(props) => props.theme.listItemFontColor};
+  color: ${(props) => props.theme.listOptionFontColor};
   font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.listItemFontSize};
-  font-style: ${(props) => props.theme.listItemFontStyle};
-  font-weight: ${(props) => props.theme.listItemFontWeight};
+  font-size: ${(props) => props.theme.listOptionFontSize};
+  font-style: ${(props) => props.theme.listOptionFontStyle};
+  font-weight: ${(props) => props.theme.listOptionFontWeight};
 `;
 
 const OptionsSystemMessage = styled.span`
@@ -872,7 +870,7 @@ const NoMatchesFoundIcon = styled.span`
   height: 16px;
   width: 16px;
   padding: 4px;
-  margin-right: calc(1rem * 0.25);
+  margin-right: 0.25rem;
 `;
 
 const GroupList = styled.ul`
@@ -881,29 +879,29 @@ const GroupList = styled.ul`
 
 const GroupLabel = styled.li`
   padding: 4px 16px;
-  font-weight: ${(props) => props.theme.listGroupItemFontWeight};
+  font-weight: ${(props) => props.theme.listGroupLabelFontWeight};
   line-height: 1.715em;
 `;
 
 const OptionItem = styled.li`
   padding: 0 0.5rem;
   box-shadow: inset 0 0 0 2px transparent;
-  ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListItemBorderColor};`}
-  ${(props) => props.selected && `background-color: ${props.theme.selectedListItemBackgroundColor}`};
+  ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
+  ${(props) => props.selected && `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
   line-height: 1.715em;
   cursor: pointer;
 
   &:hover {
     ${(props) =>
       props.selected
-        ? `background-color: ${props.theme.selectedHoverListItemBackgroundColor};`
-        : `background-color: ${props.theme.unselectedHoverListItemBackgroundColor};`};
+        ? `background-color: ${props.theme.selectedHoverListOptionBackgroundColor};`
+        : `background-color: ${props.theme.unselectedHoverListOptionBackgroundColor};`};
   }
   &:active {
     ${(props) =>
       props.selected
-        ? `background-color: ${props.theme.selectedActiveListItemBackgroundColor};`
-        : `background-color: ${props.theme.unselectedActiveListItemBackgroundColor};`};
+        ? `background-color: ${props.theme.selectedActiveListOptionBackgroundColor};`
+        : `background-color: ${props.theme.unselectedActiveListOptionBackgroundColor};`};
   }
 `;
 
@@ -915,7 +913,7 @@ const StyledOption = styled.span`
   ${(props) =>
     props.last || props.visualFocused || props.selected
       ? `border-bottom: 1px solid transparent`
-      : `border-bottom: 1px solid ${props.theme.listItemDividerColor}`};
+      : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
 `;
 
 const OptionContent = styled.span`
@@ -933,7 +931,7 @@ const OptionIcon = styled.span`
   height: 24px;
   width: 24px;
   ${(props) => (props.grouped && !props.multiple ? "padding-left: 16px;" : "padding-left: 8px;")}
-  color: ${(props) => props.theme.listItemIconColor};
+  color: ${(props) => props.theme.listOptionIconColor};
 `;
 
 const OptionIconImg = styled.img`
@@ -952,7 +950,7 @@ const OptionSelectedIndicator = styled.span`
   height: 16px;
   width: 16px;
   margin-left: 4px;
-  color: ${(props) => props.theme.selectedListItemIconColor};
+  color: ${(props) => props.theme.selectedListOptionIconColor};
 `;
 
 export default DxcSelect;

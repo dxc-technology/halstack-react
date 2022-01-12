@@ -1,4 +1,4 @@
-import { DxcInputText } from "@dxc-technology/halstack-react";
+import { DxcInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -7,7 +7,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInputText
+    <DxcInput
       label="Input label"
       assistiveText={"assistive text"}
       onChange={onChange}
@@ -18,7 +18,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcInputText,
+  DxcInput,
   useState,
 };
 
