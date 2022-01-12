@@ -298,6 +298,28 @@ describe("Successful component tests for advanced theme", () => {
       fireEvent.click(getByText("V3 Select"));
     });
     expect(getByText("V3Select component")).toBeTruthy();
+    expect(getAllByText("Default").length).toBe(1);
+    expect(getAllByText("Searchable and optional").length).toBe(1);
+    expect(getAllByText("Multiple selection with groups and icons").length).toBe(1);
+    expect(getByText("Theme Inputs")).toBeTruthy();
+    Object.keys(advancedTheme["select"]).forEach((themeInputs) =>
+      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
+    );
+  });
+
+  it("Should render V3Select component", async () => {
+    const { getByText, getAllByText, findByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
+    await findByText("next");
+    act(() => {
+      fireEvent.click(getByText("V3 Select"));
+    });
+    expect(getByText("V3Select component")).toBeTruthy();
     expect(getByText("Light Mode")).toBeTruthy();
     // expect(getByText("Dark Mode")).toBeTruthy();
     expect(getAllByText("Default").length).toBe(1);
