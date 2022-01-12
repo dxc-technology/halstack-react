@@ -52,6 +52,9 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         TAG_NAME: ${{ github.event.release.tag_name }}
 
+    - name: Install scripts dependencies
+      run: cd scripts && npm install
+
     - name: Move RELEASE docs to S3
       run: node scripts/release-docs.js $TAG_NAME
       env:
