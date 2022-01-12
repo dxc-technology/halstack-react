@@ -478,7 +478,9 @@ function App() {
         />
       </p>
       <p>
-        <h4 style={{ marginLeft: "36px" }}>Optional & Grouped & Searchable & Multiple</h4>
+        <h4 style={{ marginLeft: "36px" }}>
+          Optional & Grouped & Searchable & Multiple
+        </h4>
         <DxcSelect
           label="Label"
           helperText="Multiple shouldn't alow optional to add a new option, this is exclusive from single selection, no matter if it is grouped or not"

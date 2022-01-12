@@ -626,9 +626,9 @@ const InputContainer = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  height: calc(calc(1rem * 2.5) - calc(1px * 2));
-  margin: calc(1rem * 0.25) 0;
-  padding: 0 calc(1rem * 0.5);
+  height: calc(2.5rem - 2px);
+  margin: ${(props) => `${props.theme.inputMarginTop} 0 ${props.theme.inputMarginBottom} 0`};
+  padding: 0 0.5rem;
 
   ${(props) => {
     if (props.disabled)
@@ -687,12 +687,12 @@ const InputContainer = styled.div`
 `;
 
 const Input = styled.input`
-  height: calc(calc(1rem * 2.5) - calc(1px * 2));
+  height: calc(2.5rem - 2px);
   width: 100%;
   background: none;
   border: none;
   outline: none;
-  padding: 0 calc(1rem * 0.5);
+  padding: 0 0.5rem;
 
   color: ${(props) =>
     props.disabled
@@ -738,7 +738,7 @@ const Action = styled.button`
   border: 1px solid transparent;
   border-radius: 2px;
   padding: 3px;
-  margin-left: calc(1rem * 0.25);
+  margin-left: 0.25rem;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
 
   box-shadow: 0 0 0 2px transparent;
@@ -813,10 +813,10 @@ const Action = styled.button`
 `;
 
 const Prefix = styled.span`
-  height: calc(1rem * 1.5);
-  line-height: calc(1rem * 1.5);
-  margin-left: calc(1rem * 0.25);
-  padding: 0 calc(1rem * 0.5) 0 0;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  margin-left: 0.25rem;
+  padding: 0 0.5rem 0 0;
   ${(props) => {
     const color = props.disabled
       ? props.backgroundType === "dark"
@@ -833,10 +833,10 @@ const Prefix = styled.span`
 `;
 
 const Suffix = styled.span`
-  height: calc(1rem * 1.5);
-  line-height: calc(1rem * 1.5);
-  margin: 0 calc(1rem * 0.25);
-  padding: 0 0 0 calc(1rem * 0.5);
+  height: 1.5rem;
+  line-height: 1.5rem;
+  margin: 0 0.25rem;
+  padding: 0 0 0 0.5rem;
   ${(props) => {
     const color = props.disabled
       ? props.backgroundType === "dark"
@@ -859,7 +859,7 @@ const ErrorIcon = styled.span`
   padding: 3px;
   height: 18px;
   width: 18px;
-  margin-left: calc(1rem * 0.25);
+  margin-left: 0.25rem;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorIconColorOnDark : props.theme.errorIconColor};
 
