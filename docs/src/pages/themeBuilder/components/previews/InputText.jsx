@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcInputText, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcInput, DxcHeading } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
 
@@ -58,21 +58,21 @@ const InputText = () => {
         margin={{ top: "xsmall", bottom: "xxsmall" }}
       />
       <Mode text="Default">
-        <DxcInputText
+        <DxcInput
           label="Input label"
           assistiveText={"assistive text"}
           value={value}
           onChange={onChange}
           margin={{ top: "xxsmall", bottom: "xsmall", right: "medium" }}
         />
-        <DxcInputText
+        <DxcInput
           label="Input label"
           suffixIcon={facebookIcon}
           prefixIcon={facebookIcon}
           assistiveText={"assistive text"}
           margin={{ top: "xxsmall", bottom: "xsmall", right: "medium" }}
         />
-        <DxcInputText
+        <DxcInput
           label="Input label"
           suffix={"suf"}
           prefix={"pre"}
@@ -81,7 +81,7 @@ const InputText = () => {
         />
       </Mode>
       <Mode text="Disabled">
-        <DxcInputText
+        <DxcInput
           label="Input label"
           assistiveText={"assistive text"}
           disabled
@@ -89,7 +89,7 @@ const InputText = () => {
         />
       </Mode>
       <Mode text="Required">
-        <DxcInputText
+        <DxcInput
           label="Input label"
           assistiveText={"assistive text"}
           required
@@ -97,7 +97,7 @@ const InputText = () => {
         />
       </Mode>
       <Mode text="Invalid">
-        <DxcInputText
+        <DxcInput
           label="Input label"
           assistiveText={"assistive text"}
           invalid
@@ -105,7 +105,7 @@ const InputText = () => {
         />
       </Mode>
       <Mode text="Autocomplete">
-        <DxcInputText
+        <DxcInput
           label="Autocomplete"
           value={asynchronousAutocompleteValue}
           onChange={onChangeAsynchronousAutocomplete}
@@ -120,21 +120,21 @@ const InputText = () => {
       />
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Default">
-          <DxcInputText
+          <DxcInput
             label="Input label"
             assistiveText={"assistive text"}
             value={value}
             onChange={onChange}
             margin={{ right: "small", bottom: "small" }}
           />
-          <DxcInputText
+          <DxcInput
             label="Input label"
             suffixIcon={facebookIcon}
             prefixIcon={facebookIcon}
             assistiveText={"assistive text"}
             margin={{ right: "small", bottom: "small" }}
           />
-          <DxcInputText
+          <DxcInput
             label="Input label"
             suffix={"suf"}
             prefix={"pre"}
@@ -143,7 +143,7 @@ const InputText = () => {
           />
         </Mode>
         <Mode mode="dark" text="Disabled">
-          <DxcInputText
+          <DxcInput
             label="Input label"
             assistiveText={"assistive text"}
             disabled
@@ -151,7 +151,7 @@ const InputText = () => {
           />
         </Mode>
         <Mode mode="dark" text="Required">
-          <DxcInputText
+          <DxcInput
             label="Input label"
             assistiveText={"assistive text"}
             required
@@ -159,7 +159,7 @@ const InputText = () => {
           />
         </Mode>
         <Mode mode="dark" text="Invalid">
-          <DxcInputText
+          <DxcInput
             label="Input label"
             assistiveText={"assistive text"}
             invalid
@@ -167,7 +167,7 @@ const InputText = () => {
           />
         </Mode>
         <Mode mode="dark" text="Autocomplete">
-          <DxcInputText
+          <DxcInput
             label="Autocomplete"
             value={asynchronousAutocompleteValue}
             onChange={onChangeAsynchronousAutocomplete}
