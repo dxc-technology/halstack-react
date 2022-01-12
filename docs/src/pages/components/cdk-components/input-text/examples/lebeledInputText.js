@@ -1,4 +1,4 @@
-import { DxcInputText } from "@dxc-technology/halstack-react";
+import { DxcInput } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import prefixPath from "./images/text_fields-24px.svg";
 
@@ -10,7 +10,7 @@ const code = `() => {
 
   return (
     <div>
-      <DxcInputText
+      <DxcInput
         label="Input label"
         suffixIcon={
           <svg x="0px" y="0px" viewBox="0 0 24 24" enable-background="new 0 0 24 24">
@@ -28,7 +28,7 @@ const code = `() => {
         onChange={onChange}
         margin="medium"
       />
-      <DxcInputText
+      <DxcInput
         label="Input label"
         suffix={"suf"}
         prefix={"pre"}
@@ -42,7 +42,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcInputText,
+  DxcInput,
   useState,
   prefixPath,
 };

@@ -7,7 +7,7 @@ import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
-import DxcInputText from "../input-text/InputText";
+import DxcInput from "../input-text/InputText";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
@@ -234,7 +234,7 @@ const DxcDate = ({
       <MuiThemeProvider theme={dateTheme}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <StyledDPicker margin={margin}>
-            <DxcInputText
+            <DxcInput
               label={label}
               name={name}
               suffixIcon={calendarSVG}

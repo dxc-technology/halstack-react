@@ -14,7 +14,7 @@ export { default as DxcFileInput } from "./file-input/index";
 export { default as DxcFooter } from "./footer/index";
 export { default as DxcHeader } from "./header/index";
 export { default as DxcHeading } from "./heading/index";
-export { default as DxcInputText } from "./input-text/index";
+export { default as DxcInput } from "./input-text/index";
 export { default as DxcLink } from "./link/index";
 export { default as DxcNumberInput } from "./number-input/index";
 export { default as DxcPaginator } from "./paginator/index";
