@@ -32,6 +32,7 @@ import DateInputPreview from "./previews/DateInput";
 import TextInputPreview from "./previews/TextInput";
 import FileInputPreview from "./previews/FileInput";
 import TextareaPreview from "./previews/Textarea";
+import SelectPreview from "./previews/Select";
 
 const SampleComponents = [
   {
@@ -117,6 +118,10 @@ const SampleComponents = [
   {
     name: "radio",
     preview: RadioButtonPreview,
+  },
+  {
+    name: "select",
+    preview: SelectPreview,
   },
   {
     name: "V3Select",

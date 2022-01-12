@@ -677,7 +677,7 @@ const SelectionNumber = styled.span`
   width: 22px;
   height: 22px;
   user-select: none;
-  background-color: ${(props) => props.theme.selectionIndicatorBackgroundColor};
+  ${(props) => !props.disabled && `background-color: ${props.theme.selectionIndicatorBackgroundColor}`};
   border-right: 1px solid ${(props) => props.theme.selectionIndicatorBorderColor};
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.selectionIndicatorFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
@@ -698,7 +698,8 @@ const ClearOptionsAction = styled.button`
   border: none;
   padding: 0.25rem;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}
-  background-color: ${(props) => props.theme.enabledSelectionIndicatorActionBackgroundColor};
+  background-color: ${(props) =>
+    props.disabled ? "transparent" : props.theme.enabledSelectionIndicatorActionBackgroundColor};
   color: ${(props) =>
     props.disabled ? props.theme.disabledColor : props.theme.enabledSelectionIndicatorActionIconColor};
 
