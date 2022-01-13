@@ -297,7 +297,7 @@ describe("Successful component tests for advanced theme", () => {
     act(() => {
       fireEvent.click(getByText("V3 Select"));
     });
-    expect(getByText("V3Select component")).toBeTruthy();
+    expect(getByText("Select component")).toBeTruthy();
     expect(getAllByText("Default").length).toBe(1);
     expect(getAllByText("Searchable and optional").length).toBe(1);
     expect(getAllByText("Multiple selection with groups and icons").length).toBe(1);
