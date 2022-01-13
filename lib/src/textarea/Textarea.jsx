@@ -210,10 +210,10 @@ const Textarea = styled.textarea`
     else return `background-color: transparent;`;
   }}
 
-  margin: calc(1rem * 0.25) 0;
-  padding: calc(1rem * 0.5) calc(1rem * 1);
+  margin: ${(props) => `${props.theme.inputMarginTop} 0 ${props.theme.inputMarginBottom} 0`};
+  padding: 0.5rem 1rem;
   box-shadow: 0 0 0 2px transparent;
-  border-radius: calc(1rem * 0.25);
+  border-radius: 0.25rem;
   border: 1px solid
     ${(props) => {
       if (props.disabled)
