@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcSelect, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcSelect } from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 
