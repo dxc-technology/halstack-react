@@ -87,6 +87,7 @@ const LabelContainer = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   text-transform: none;
+  white-space: nowrap;
   margin-right: ${(props) => (!props.icon || props.iconPosition === "before" ? "8px" : "0px")};
   margin-left: ${(props) => (!props.icon || props.iconPosition === "after" ? "8px" : "0px")};
 `;
