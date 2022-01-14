@@ -1,10 +1,9 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
-import { useLayoutEffect } from "react";
 import DxcCheckbox from "../checkbox/Checkbox";
 
 const selectIcons = {
@@ -105,6 +104,64 @@ const filterOptionsBySearchValue = (options, searchValue) => {
   }
 };
 
+const getLastOptionIndex = (options, filteredOptions, searchable, optional, multiple) => {
+  let last = 0;
+  const reducer = (acc, current) => acc + current.options?.length;
+
+  if (searchable && filteredOptions.length > 0)
+    filteredOptions[0].options ? (last = filteredOptions.reduce(reducer, 0) - 1) : (last = filteredOptions.length - 1);
+  else if (options?.length > 0)
+    options[0].options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
+
+  return optional && !multiple ? last + 1 : last;
+};
+
+const getSelectedOption = (options, multiple, optional, optionalEmptyOption, value, innerValue) => {
+  const val = value ?? innerValue;
+  let selectedOption = multiple ? [] : "";
+  let singleSelectionIndex;
+
+  if (multiple) {
+    if (options?.length > 0) {
+      options.forEach((option) => {
+        if (option.options) {
+          option.options.forEach((singleOption) => {
+            if (val.includes(singleOption.value)) selectedOption.push(singleOption);
+          });
+        } else if (val.includes(option.value)) selectedOption.push(option);
+      });
+    }
+  } else {
+    if (optional && val === "") {
+      selectedOption = optionalEmptyOption;
+      singleSelectionIndex = 0;
+    } else if (options?.length > 0) {
+      let group_index = 0;
+      options.some((option, index) => {
+        if (option.options) {
+          option.options.some((singleOption) => {
+            if (singleOption.value === val) {
+              selectedOption = singleOption;
+              singleSelectionIndex = optional ? group_index + 1 : group_index;
+              return true;
+            }
+            group_index++;
+          });
+        } else if (option.value === val) {
+          selectedOption = option;
+          singleSelectionIndex = optional ? index + 1 : index;
+          return true;
+        }
+      });
+    }
+  }
+
+  return {
+    selectedOption,
+    singleSelectionIndex,
+  };
+};
+
 const DxcSelect = React.forwardRef(
   (
     {
@@ -143,73 +200,13 @@ const DxcSelect = React.forwardRef(
 
     const optionalEmptyOption = { label: placeholder, value: "" };
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
-
-    const getLastOptionIndex = () => {
-      let last = 0;
-      const reducer = (acc, current) => acc + current.options?.length;
-
-      if (searchable && filteredOptions.length > 0)
-        filteredOptions[0].options
-          ? (last = filteredOptions.reduce(reducer, 0) - 1)
-          : (last = filteredOptions.length - 1);
-      else if (options?.length > 0)
-        options[0].options ? (last = options.reduce(reducer, 0) - 1) : (last = options.length - 1);
-
-      return optional && !multiple ? last + 1 : last;
-    };
     const lastOptionIndex = useMemo(
-      () => getLastOptionIndex(),
+      () => getLastOptionIndex(options, filteredOptions, searchable, optional, multiple),
       [searchable, optional, multiple, filteredOptions, options]
     );
-
-    const getSelectedOption = () => {
-      const val = value ?? innerValue;
-      let selectedOption = multiple ? [] : "";
-      let singleSelectionIndex;
-
-      if (multiple) {
-        if (options?.length > 0) {
-          options.forEach((option) => {
-            if (option.options) {
-              option.options.forEach((singleOption) => {
-                if (val.includes(singleOption.value)) selectedOption.push(singleOption);
-              });
-            } else if (val.includes(option.value)) selectedOption.push(option);
-          });
-        }
-      } else {
-        if (optional && val === "") {
-          selectedOption = optionalEmptyOption;
-          singleSelectionIndex = 0;
-        } else if (options?.length > 0) {
-          let group_index = 0;
-          options.some((option, index) => {
-            if (option.options) {
-              option.options.some((singleOption) => {
-                if (singleOption.value === val) {
-                  selectedOption = singleOption;
-                  singleSelectionIndex = optional ? group_index + 1 : group_index;
-                  return true;
-                }
-                group_index++;
-              });
-            } else if (option.value === val) {
-              selectedOption = option;
-              singleSelectionIndex = optional ? index + 1 : index;
-              return true;
-            }
-          });
-        }
-      }
-
-      return {
-        selectedOption,
-        singleSelectionIndex,
-      };
-    };
     const { selectedOption, singleSelectionIndex } = useMemo(
-      () => getSelectedOption(),
-      [options, multiple, value, innerValue]
+      () => getSelectedOption(options, multiple, optional, optionalEmptyOption, value, innerValue),
+      [options, multiple, optional, value, innerValue]
     );
 
     const notOptionalCheck = (value) => value === "" && !optional;
