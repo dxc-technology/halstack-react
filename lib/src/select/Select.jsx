@@ -388,7 +388,7 @@ const DxcSelect = React.forwardRef(
           visualFocused={visualFocusIndex === index}
           selected={isSelected}
           role="option"
-          aria-selected={isSelected && "true"}
+          aria-selected={isSelected}
         >
           <StyledOption
             visualFocused={visualFocusIndex === index}
@@ -416,25 +416,28 @@ const DxcSelect = React.forwardRef(
       );
     };
 
-    let global_index = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
-    const mapOptionFunc = (option) => {
+    let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
+    const mapOptionFunc = (option, mapIndex) => {
       if (option.options) {
+        const groupId = `group-${mapIndex}`;
         return (
           option.options.length > 0 && (
             <li>
-              <GroupList role="group">
-                <GroupLabel role="presentation">{option.label}</GroupLabel>
+              <GroupList role="group" aria-labelledby={groupId}>
+                <GroupLabel role="presentation" id={groupId}>
+                  {option.label}
+                </GroupLabel>
                 {option.options.map((singleOption) => {
-                  global_index++;
-                  return <Option option={singleOption} index={global_index} isGroupedOption={true} />;
+                  globalIndex++;
+                  return <Option option={singleOption} index={globalIndex} isGroupedOption={true} />;
                 })}
               </GroupList>
             </li>
           )
         );
       } else {
-        global_index++;
-        return <Option key={`option-${option.value}`} option={option} index={global_index} />;
+        globalIndex++;
+        return <Option key={`option-${option.value}`} option={option} index={globalIndex} />;
       }
     };
 
@@ -463,12 +466,12 @@ const DxcSelect = React.forwardRef(
             tabIndex={tabIndex}
             role="combobox"
             aria-controls={optionsListId}
-            aria-expanded={isOpen ? "true" : "false"}
+            aria-expanded={isOpen}
             aria-haspopup="listbox"
             aria-labelledby={selectLabelId}
             aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
             aria-invalid={error ? "true" : "false"}
-            aria-required={optional ? "false" : "true"}
+            aria-required={!optional}
           >
             {multiple && selectedOption.length > 0 && (
               <SelectionIndicator>
@@ -550,8 +553,7 @@ const DxcSelect = React.forwardRef(
                 }}
                 ref={selectOptionsListRef}
                 role="listbox"
-                aria-labelledby={selectLabelId}
-                aria-multiselectable={multiple ? "true" : "false"}
+                aria-multiselectable={multiple}
               >
                 {searchable && (filteredOptions.length === 0 || !filteredGroupsHaveOptions()) ? (
                   <OptionsSystemMessage>
