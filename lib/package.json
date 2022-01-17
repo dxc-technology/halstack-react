@@ -35,20 +35,20 @@
   "scripts": {
     "test": "jest",
     "test:watch": "npm test -- --watch --coverage",
-    "build": "babel src --out-dir ../dist --copy-files --verbose && node ../scripts/build/copy-readme.js",
+    "build": "babel src --extensions '.js,.jsx,.ts,.tsx' --out-dir ../dist --copy-files --verbose && node ../scripts/build/copy-readme.js",
     "build:watch": "babel src --watch --out-dir ../dist --copy-files --verbose",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "7.13.8",
-    "@babel/plugin-proposal-optional-chaining": "7.13.8",
-    "@babel/plugin-transform-runtime": "^7.10.1",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.7",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
+    "@babel/plugin-proposal-optional-chaining": "^7.13.8",
+    "@babel/plugin-transform-runtime": "^7.16.8",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
     "@storybook/addon-actions": "^6.4.9",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/addon-links": "^6.4.9",
@@ -70,8 +70,8 @@
     "jest": "^25.5.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "styled-components": "^5.0.1",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "styled-components": "^5.0.1"
   },
   "jest": {
     "moduleNameMapper": {

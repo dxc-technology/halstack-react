@@ -21,4 +21,4 @@ type Props = {
   tabIndex?: number;
 };
 
-export default function DxcButton(props: Props): JSX.Element;
+export default Props;

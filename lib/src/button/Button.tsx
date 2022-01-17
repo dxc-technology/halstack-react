@@ -1,13 +1,13 @@
 /* eslint-disable no-else-return */
 import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
-import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import ButtonPropsType from "./types";
 
 const DxcButton = ({
   label = "",
@@ -21,7 +21,7 @@ const DxcButton = ({
   margin,
   size,
   tabIndex = 0,
-}) => {
+}: ButtonPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
   return (
@@ -323,27 +323,5 @@ const DxCButton = styled.div`
     }}
   }
 `;
-
-DxcButton.propTypes = {
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  label: PropTypes.string,
-  mode: PropTypes.oneOf(["primary", "secondary", "text"]),
-  disabled: PropTypes.bool,
-  iconPosition: PropTypes.oneOf(["after", "before"]),
-  onClick: PropTypes.func,
-  iconSrc: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  type: PropTypes.oneOf(["button", "reset", "submit"]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcButton;
