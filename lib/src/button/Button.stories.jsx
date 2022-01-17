@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DxcButton from "./Button";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
 
 export default {
   title: "Button ",
@@ -17,7 +18,7 @@ const iconSVG = () => {
 export const Chromatic = () => (
   <>
     <>
-      <h1>Primary</h1>
+      <h2>Primary</h2>
       <Container>
         <h4>Enabled</h4>
         <DxcButton label="Primary enabled" />
@@ -141,7 +142,7 @@ export const Chromatic = () => (
     </>
     <>
       <div>
-        <h1>Secondary</h1>
+        <h2>Secondary</h2>
         <Container>
           <h4>Enabled</h4>
           <DxcButton mode="secondary" label="Secondary enabled" />
@@ -264,7 +265,7 @@ export const Chromatic = () => (
         </Container>
       </div>
       <div>
-        <h1>Text</h1>
+        <h2>Text</h2>
         <Container>
           <h4>Enabled</h4>
           <DxcButton mode="text" label="Text enabled" />
@@ -287,78 +288,15 @@ export const Chromatic = () => (
         </Container>
         <Container>
           <h4>With left icon</h4>
-          <DxcButton
-            label="Text"
-            mode="text"
-            icon={
-              <svg
-                x="0px"
-                y="0px"
-                width="24px"
-                height="24px"
-                viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
-                fill="currentColor"
-              >
-                <g id="Bounding_Box">
-                  <rect fill="none" width="24" height="24" />
-                </g>
-                <g id="Master">
-                  <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
-              </svg>
-            }
-          />
+          <DxcButton label="Text" mode="text" icon={iconSVG} />
         </Container>
         <Container>
           <h4>With right icon</h4>
-          <DxcButton
-            label="Text"
-            mode="text"
-            iconPosition="after"
-            icon={
-              <svg
-                x="0px"
-                y="0px"
-                width="24px"
-                height="24px"
-                viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
-                fill="currentColor"
-              >
-                <g id="Bounding_Box">
-                  <rect fill="none" width="24" height="24" />
-                </g>
-                <g id="Master">
-                  <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
-              </svg>
-            }
-          />
+          <DxcButton label="Text" mode="text" iconPosition="after" icon={iconSVG} />
         </Container>
         <Container>
           <h4>Only icon</h4>
-          <DxcButton
-            mode="text"
-            icon={
-              <svg
-                x="0px"
-                y="0px"
-                width="24px"
-                height="24px"
-                viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
-                fill="currentColor"
-              >
-                <g id="Bounding_Box">
-                  <rect fill="none" width="24" height="24" />
-                </g>
-                <g id="Master">
-                  <path d="M19,9.3V4h-3v2.6L12,3L2,12h3v8h5v-6h4v6h5v-8h3L19,9.3z M10,10c0-1.1,0.9-2,2-2s2,0.9,2,2H10z" />
-                </g>
-              </svg>
-            }
-          />
+          <DxcButton mode="text" icon={iconSVG} />
         </Container>
         <Container>
           <h4>Small size</h4>
@@ -451,9 +389,86 @@ export const Chromatic = () => (
         </Container>
       </div>
     </>
+    <BackgroundColorProvider color="#000000">
+      <DarkContainer>
+        <>
+          <h2 style={{ color: "white" }}>Primary</h2>
+
+          <Container>
+            <h4 style={{ color: "white" }}>Enabled</h4>
+            <DxcButton label="Primary enabled" />
+          </Container>
+          <Container className="pseudo-hover">
+            <h4 style={{ color: "white" }}>Hovered</h4>
+            <DxcButton label="Primary hovered" />
+          </Container>
+          <Container className="pseudo-focus">
+            <h4 style={{ color: "white" }}>Focused</h4>
+            <DxcButton label="Primary focused" />
+          </Container>
+          <Container className="pseudo-active">
+            <h4 style={{ color: "white" }}>Actived</h4>
+            <DxcButton label="Primary actived" />
+          </Container>
+          <Container>
+            <h4 style={{ color: "white" }}>Disabled</h4>
+            <DxcButton label="Primary disabled" disabled />
+          </Container>
+        </>
+        <>
+          <h2 style={{ color: "white" }}>Secondary</h2>
+          <Container>
+            <h4 style={{ color: "white" }}>Enabled</h4>
+            <DxcButton mode="secondary" label="Secondary enabled" />
+          </Container>
+          <Container className="pseudo-hover">
+            <h4 style={{ color: "white" }}>Hovered</h4>
+            <DxcButton mode="secondary" label="Secondary hovered" />
+          </Container>
+          <Container className="pseudo-focus">
+            <h4 style={{ color: "white" }}>Focused</h4>
+            <DxcButton mode="secondary" label="Secondary focused" />
+          </Container>
+          <Container className="pseudo-active">
+            <h4 style={{ color: "white" }}>Actived</h4>
+            <DxcButton mode="secondary" label="Secondary actived" />
+          </Container>
+          <Container>
+            <h4 style={{ color: "white" }}>Disabled</h4>
+            <DxcButton mode="secondary" disabled label="Secondary disabled" />
+          </Container>
+        </>
+        <>
+          <h2 style={{ color: "white" }}>Text</h2>
+          <Container>
+            <h4 style={{ color: "white" }}>Enabled</h4>
+            <DxcButton mode="text" label="Text enabled" />
+          </Container>
+          <Container className="pseudo-hover">
+            <h4 style={{ color: "white" }}>Hovered</h4>
+            <DxcButton mode="text" label="Text hovered" />
+          </Container>
+          <Container className="pseudo-focus">
+            <h4 style={{ color: "white" }}>Focused</h4>
+            <DxcButton mode="text" label="Text focused" />
+          </Container>
+          <Container className="pseudo-active">
+            <h4 style={{ color: "white" }}>Actived</h4>
+            <DxcButton mode="text" label="Text actived" />
+          </Container>
+          <Container>
+            <h4 style={{ color: "white" }}>Disabled</h4>
+            <DxcButton mode="text" label="Text disabled" disabled />
+          </Container>
+        </>
+      </DarkContainer>
+    </BackgroundColorProvider>
   </>
 );
 
 const Container = styled.div`
   margin: 15px;
+`;
+const DarkContainer = styled.div`
+  background-color: #000000;
 `;
