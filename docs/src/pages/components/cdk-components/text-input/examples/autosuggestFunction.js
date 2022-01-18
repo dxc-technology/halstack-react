@@ -61,7 +61,6 @@ const code = `() => {
       suggestions={callbackFunc}
       onBlur={onBlur}
       margin="medium"
-      size="large"
       clearable
     />
   );
