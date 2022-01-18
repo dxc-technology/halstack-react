@@ -7,6 +7,7 @@ export default {
   title: "Button ",
   component: DxcButton,
 };
+
 const iconSVG = () => {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -18,457 +19,288 @@ const iconSVG = () => {
 export const Chromatic = () => (
   <>
     <>
-      <h2>Primary</h2>
+      <MainTitle>Primary</MainTitle>
       <Container>
-        <h4>Enabled</h4>
+        <ContainerTitle>Enabled</ContainerTitle>
         <DxcButton label="Primary enabled" />
       </Container>
       <Container className="pseudo-hover">
-        <h4>Hovered</h4>
+        <ContainerTitle>Hovered</ContainerTitle>
         <DxcButton label="Primary hovered" />
       </Container>
       <Container className="pseudo-focus">
-        <h4>Focused</h4>
+        <ContainerTitle>Focused</ContainerTitle>
         <DxcButton label="Primary focused" />
       </Container>
       <Container className="pseudo-active">
-        <h4>Actived</h4>
+        <ContainerTitle>Actived</ContainerTitle>
         <DxcButton label="Primary actived" />
       </Container>
       <Container>
-        <h4>Disabled</h4>
+        <ContainerTitle>Disabled</ContainerTitle>
         <DxcButton label="Primary disabled" disabled />
       </Container>
       <Container>
-        <h4>With left icon</h4>
+        <ContainerTitle>With left icon</ContainerTitle>
         <DxcButton label="Primary" icon={iconSVG} />
       </Container>
       <Container>
-        <h4>With right icon</h4>
-        <DxcButton label="Primary" iconPosition="after" icon={iconSVG} />
+        <ContainerTitle>With right icon</ContainerTitle>
+        <DxcButton label="Primary" icon={iconSVG} iconPosition="after" />
       </Container>
       <Container>
-        <h4>Only icon</h4>
+        <ContainerTitle>Only icon</ContainerTitle>
         <DxcButton icon={iconSVG} />
-      </Container>
-      <Container>
-        <h4>Small size</h4>
-        <DxcButton label="Small" size="small" />
-      </Container>
-      <Container>
-        <h4>Medium size</h4>
-        <DxcButton label="MediumSiz" size="medium" />
-      </Container>
-      <Container>
-        <h4>Medium size with ellipsis</h4>
-        <DxcButton label="MediumSize" size="medium" />
-      </Container>
-      <Container>
-        <h4>Medium size icon after</h4>
-        <DxcButton label="Mediu" iconPosition="after" icon={iconSVG} size="medium" />
-      </Container>
-      <Container>
-        <h4>Medium size icon before</h4>
-        <DxcButton label="Mediu" iconPosition="before" icon={iconSVG} size="medium" />
-      </Container>
-      <Container>
-        <h4>Medium size icon after with ellipsis</h4>
-        <DxcButton label="Medium" iconPosition="after" icon={iconSVG} size="medium" />
-      </Container>
-      <Container>
-        <h4>Medium size icon before with ellipsis</h4>
-        <DxcButton label="Medium" iconPosition="before" icon={iconSVG} size="medium" />
-      </Container>
-      <Container>
-        <h4>Large size</h4>
-        <DxcButton label="LargeSizePrimaryButtonEx" size="large" />
-      </Container>
-      <Container>
-        <h4>Large size with ellipsis</h4>
-        <DxcButton label="LargeSizePrimaryButtonExa" size="large" />
-      </Container>
-      <Container>
-        <h4>Large size icon after</h4>
-        <DxcButton label="LargeSizePrimaryButto" iconPosition="after" icon={iconSVG} size="large" />
-      </Container>
-      <Container>
-        <h4>Large size icon before</h4>
-        <DxcButton label="LargeSizePrimaryButto" iconPosition="before" icon={iconSVG} size="large" />
-      </Container>
-      <Container>
-        <h4>Large size icon after with ellipsis</h4>
-        <DxcButton label="LargeSizePrimaryButton" iconPosition="after" icon={iconSVG} size="large" />
-      </Container>
-      <Container>
-        <h4>Large size icon before with ellipsis</h4>
-        <DxcButton label="LargeSizePrimaryButton" iconPosition="before" icon={iconSVG} size="large" />
-      </Container>
-      <Container>
-        <h4>Fill parent size</h4>
-        <DxcButton label="FillParent" size="fillParent" />
-      </Container>
-      <Container>
-        <h4>Fit content size</h4>
-        <DxcButton label="FitContent" size="fitContent" />
-      </Container>
-      <Container>
-        <h4>Xxsmall margin</h4>
-        <DxcButton label="Xxsmall margin" margin="xxsmall" />
-      </Container>
-      <Container>
-        <h4>Xsmall margin</h4>
-        <DxcButton label="Xsmall margin" margin="xsmall" />
-      </Container>
-      <Container>
-        <h4>Small margin</h4>
-        <DxcButton label="Small margin" margin="small" />
-      </Container>
-      <Container>
-        <h4>Medium margin</h4>
-        <DxcButton label="Medium margin" margin="medium" />
-      </Container>
-      <Container>
-        <h4>Large margin</h4>
-        <DxcButton label="Large margin" margin="large" />
-      </Container>
-      <Container>
-        <h4>Xlarge margin</h4>
-        <DxcButton label="Xlarge margin" margin="xlarge" />
-      </Container>
-      <Container>
-        <h4>Xxlarge margin</h4>
-        <DxcButton label="Xxlarge margin" margin="xxlarge" />
       </Container>
     </>
     <>
-      <div>
-        <h2>Secondary</h2>
+      <>
+        <MainTitle>Secondary</MainTitle>
         <Container>
-          <h4>Enabled</h4>
+          <ContainerTitle>Enabled</ContainerTitle>
           <DxcButton mode="secondary" label="Secondary enabled" />
         </Container>
         <Container className="pseudo-hover">
-          <h4>Hovered</h4>
+          <ContainerTitle>Hovered</ContainerTitle>
           <DxcButton mode="secondary" label="Secondary hovered" />
         </Container>
         <Container className="pseudo-focus">
-          <h4>Focused</h4>
+          <ContainerTitle>Focused</ContainerTitle>
           <DxcButton mode="secondary" label="Secondary focused" />
         </Container>
         <Container className="pseudo-active">
-          <h4>Actived</h4>
+          <ContainerTitle>Actived</ContainerTitle>
           <DxcButton mode="secondary" label="Secondary actived" />
         </Container>
         <Container>
-          <h4>Disabled</h4>
+          <ContainerTitle>Disabled</ContainerTitle>
           <DxcButton mode="secondary" disabled label="Secondary disabled" />
         </Container>
         <Container>
-          <h4>With left icon</h4>
+          <ContainerTitle>With icon</ContainerTitle>
           <DxcButton mode="secondary" label="Secondary" icon={iconSVG} />
         </Container>
+      </>
+      <>
+        <MainTitle>Text</MainTitle>
         <Container>
-          <h4>With right icon</h4>
-          <DxcButton mode="secondary" label="Secondary" iconPosition="after" icon={iconSVG} />
-        </Container>
-        <Container>
-          <h4> Only icon</h4>
-          <DxcButton mode="secondary" icon={iconSVG} />
-        </Container>
-        <Container>
-          <h4>Small size</h4>
-          <DxcButton mode="secondary" label="Small" size="small" />
-        </Container>
-        <Container>
-          <h4>Medium size</h4>
-          <DxcButton mode="secondary" label="MediumSiz" size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size with ellipsis</h4>
-          <DxcButton mode="secondary" label="MediumSize" size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size icon after</h4>
-          <DxcButton mode="secondary" label="Mediu" iconPosition="after" icon={iconSVG} size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size icon before</h4>
-          <DxcButton mode="secondary" label="Mediu" iconPosition="before" icon={iconSVG} size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size icon after with ellipsis</h4>
-          <DxcButton mode="secondary" label="Medium" iconPosition="after" icon={iconSVG} size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size icon before with ellipsis</h4>
-          <DxcButton mode="secondary" label="Medium" iconPosition="before" icon={iconSVG} size="medium" />
-        </Container>
-        <Container>
-          <h4>Large size</h4>
-          <DxcButton mode="secondary" label="LargeSizeSecondaryButton" size="large" />
-        </Container>
-        <Container>
-          <h4>Large size with ellipsis</h4>
-          <DxcButton mode="secondary" label="LargeSizeSecondaryButtonE" size="large" />
-        </Container>
-        <Container>
-          <h4>Large size icon after</h4>
-          <DxcButton mode="secondary" label="LargeSizeSecondaryB" iconPosition="after" icon={iconSVG} size="large" />
-        </Container>
-        <Container>
-          <h4>Large size icon before</h4>
-          <DxcButton mode="secondary" label="LargeSizeSecondaryB" iconPosition="before" icon={iconSVG} size="large" />
-        </Container>
-        <Container>
-          <h4>Large size icon after with ellipsis</h4>
-          <DxcButton mode="secondary" label="LargeSizeSecondaryBu" iconPosition="after" icon={iconSVG} size="large" />
-        </Container>
-        <Container>
-          <h4>Large size icon before with ellipsis</h4>
-          <DxcButton mode="secondary" label="LargeSizeSecondaryBu" iconPosition="before" icon={iconSVG} size="large" />
-        </Container>
-        <Container>
-          <h4>Fill parent size</h4>
-          <DxcButton mode="secondary" label="FillParent" size="fillParent" />
-        </Container>
-        <Container>
-          <h4>Fit content size</h4>
-          <DxcButton mode="secondary" label="FitContent" size="fitContent" />
-        </Container>
-        <Container>
-          <h4>Xxsmall margin</h4>
-          <DxcButton mode="secondary" label="Xxsmall margin" size="large" margin="xxsmall" />
-        </Container>
-        <Container>
-          <h4>xsmall margin</h4>
-          <DxcButton mode="secondary" label="Xsmall margin" size="large" margin="xsmall" />
-        </Container>
-        <Container>
-          <h4>Small margin</h4>
-          <DxcButton mode="secondary" label="Small margin" size="large" margin="small" />
-        </Container>
-        <Container>
-          <h4>Medium margin</h4>
-          <DxcButton mode="secondary" label="Medium margin" size="large" margin="medium" />
-        </Container>
-        <Container>
-          <h4>Large margin</h4>
-          <DxcButton mode="secondary" label="Large margin" size="large" margin="large" />
-        </Container>
-        <Container>
-          <h4>Xlarge margin</h4>
-          <DxcButton mode="secondary" label="Xlarge margin" size="large" margin="xlarge" />
-        </Container>
-        <Container>
-          <h4>Xxlarge margin</h4>
-          <DxcButton mode="secondary" label="Xxlarge margin" size="large" margin="xxlarge" />
-        </Container>
-      </div>
-      <div>
-        <h2>Text</h2>
-        <Container>
-          <h4>Enabled</h4>
+          <ContainerTitle>Enabled</ContainerTitle>
           <DxcButton mode="text" label="Text enabled" />
         </Container>
         <Container className="pseudo-hover">
-          <h4>Hovered</h4>
+          <ContainerTitle>Hovered</ContainerTitle>
           <DxcButton mode="text" label="Text hovered" />
         </Container>
         <Container className="pseudo-focus">
-          <h4>Focused</h4>
+          <ContainerTitle>Focused</ContainerTitle>
           <DxcButton mode="text" label="Text focused" />
         </Container>
         <Container className="pseudo-active">
-          <h4>Actived</h4>
+          <ContainerTitle>Actived</ContainerTitle>
           <DxcButton mode="text" label="Text actived" />
         </Container>
         <Container>
-          <h4>Disabled</h4>
+          <ContainerTitle>Disabled</ContainerTitle>
           <DxcButton mode="text" label="Text disabled" disabled />
         </Container>
         <Container>
-          <h4>With left icon</h4>
+          <ContainerTitle>With icon</ContainerTitle>
           <DxcButton label="Text" mode="text" icon={iconSVG} />
         </Container>
-        <Container>
-          <h4>With right icon</h4>
-          <DxcButton label="Text" mode="text" iconPosition="after" icon={iconSVG} />
-        </Container>
-        <Container>
-          <h4>Only icon</h4>
-          <DxcButton mode="text" icon={iconSVG} />
-        </Container>
-        <Container>
-          <h4>Small size</h4>
-          <DxcButton mode="text" label="Small" size="small" />
-        </Container>
-        <Container>
-          <h4>Medium size</h4>
-          <DxcButton mode="text" label="MediumSiz" size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size with ellipsis</h4>
-          <DxcButton mode="text" label="MediumSize" size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size icon after</h4>
-          <DxcButton mode="text" label="Mediu" iconPosition="after" icon={iconSVG} size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size icon before</h4>
-          <DxcButton mode="text" label="Mediu" iconPosition="before" icon={iconSVG} size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size icon after with ellipsis</h4>
-          <DxcButton mode="text" label="Medium" iconPosition="after" icon={iconSVG} size="medium" />
-        </Container>
-        <Container>
-          <h4>Medium size icon before with ellipsis</h4>
-          <DxcButton mode="text" label="Medium" iconPosition="before" icon={iconSVG} size="medium" />
-        </Container>
-        <Container>
-          <h4>Large size</h4>
-          <DxcButton mode="text" label="LargeSizeExampleTextButt" size="large" />
-        </Container>
-        <Container>
-          <h4>Large size with ellipsis</h4>
-          <DxcButton mode="text" label="LargeSizeExampleTextButto" size="large" />
-        </Container>
-        <Container>
-          <h4>Large size icon after</h4>
-          <DxcButton mode="text" label="LargeSizeSecondaryB" iconPosition="after" icon={iconSVG} size="large" />
-        </Container>
-        <Container>
-          <h4>Large size icon before</h4>
-          <DxcButton mode="text" label="LargeSizeSecondaryB" iconPosition="before" icon={iconSVG} size="large" />
-        </Container>
-        <Container>
-          <h4>Large size icon after with ellipsis</h4>
-          <DxcButton mode="text" label="LargeSizeSecondaryBu" iconPosition="after" icon={iconSVG} size="large" />
-        </Container>
-        <Container>
-          <h4>Large size icon before with ellipsis</h4>
-          <DxcButton mode="text" label="LargeSizeSecondaryBu" iconPosition="before" icon={iconSVG} size="large" />
-        </Container>
-        <Container>
-          <h4>Fill parent size</h4>
-          <DxcButton mode="text" label="FillParent" size="fillParent" />
-        </Container>
-
-        <Container>
-          <h4>Fit content size</h4>
-          <DxcButton mode="text" label="FitContent" size="fitContent" />
-        </Container>
-        <Container>
-          <h4>Xxsmall margin</h4>
-          <DxcButton mode="text" label="Xxsmall margin" margin="xxsmall" />
-        </Container>
-        <Container>
-          <h4>Xsmall margin</h4>
-          <DxcButton mode="text" label="Xsmall margin" margin="xsmall" />
-        </Container>
-        <Container>
-          <h4>Small margin</h4>
-          <DxcButton mode="text" label="Small margin" margin="small" />
-        </Container>
-        <Container>
-          <h4>Medium margin</h4>
-          <DxcButton mode="text" label="Medium margin" margin="medium" />
-        </Container>
-        <Container>
-          <h4>Large margin</h4>
-          <DxcButton mode="text" label="Large margin" margin="large" />
-        </Container>
-        <Container>
-          <h4>Xlarge margin</h4>
-          <DxcButton mode="text" label="Xlarge margin" margin="xlarge" />
-        </Container>
-        <Container>
-          <h4>Xxlarge margin</h4>
-          <DxcButton mode="text" label="Xxlarge margin" margin="xxlarge" />
-        </Container>
-      </div>
+      </>
     </>
-    <BackgroundColorProvider color="#000000">
+    <BackgroundColorProvider color="#333333">
       <DarkContainer>
         <>
-          <h2 style={{ color: "white" }}>Primary</h2>
-
+          <MainTitle style={{ color: "white" }}>Primary</MainTitle>
           <Container>
-            <h4 style={{ color: "white" }}>Enabled</h4>
+            <ContainerTitle style={{ color: "white" }}>Enabled</ContainerTitle>
             <DxcButton label="Primary enabled" />
           </Container>
           <Container className="pseudo-hover">
-            <h4 style={{ color: "white" }}>Hovered</h4>
+            <ContainerTitle style={{ color: "white" }}>Hovered</ContainerTitle>
             <DxcButton label="Primary hovered" />
           </Container>
           <Container className="pseudo-focus">
-            <h4 style={{ color: "white" }}>Focused</h4>
+            <ContainerTitle style={{ color: "white" }}>Focused</ContainerTitle>
             <DxcButton label="Primary focused" />
           </Container>
           <Container className="pseudo-active">
-            <h4 style={{ color: "white" }}>Actived</h4>
+            <ContainerTitle style={{ color: "white" }}>Actived</ContainerTitle>
             <DxcButton label="Primary actived" />
           </Container>
           <Container>
-            <h4 style={{ color: "white" }}>Disabled</h4>
+            <ContainerTitle style={{ color: "white" }}>Disabled</ContainerTitle>
             <DxcButton label="Primary disabled" disabled />
+          </Container>
+          <Container style={{ color: "white" }}>
+            <ContainerTitle>With icon</ContainerTitle>
+            <DxcButton label="Primary" icon={iconSVG} />
           </Container>
         </>
         <>
-          <h2 style={{ color: "white" }}>Secondary</h2>
+          <MainTitle style={{ color: "white" }}>Secondary</MainTitle>
           <Container>
-            <h4 style={{ color: "white" }}>Enabled</h4>
+            <ContainerTitle style={{ color: "white" }}>Enabled</ContainerTitle>
             <DxcButton mode="secondary" label="Secondary enabled" />
           </Container>
           <Container className="pseudo-hover">
-            <h4 style={{ color: "white" }}>Hovered</h4>
+            <ContainerTitle style={{ color: "white" }}>Hovered</ContainerTitle>
             <DxcButton mode="secondary" label="Secondary hovered" />
           </Container>
           <Container className="pseudo-focus">
-            <h4 style={{ color: "white" }}>Focused</h4>
+            <ContainerTitle style={{ color: "white" }}>Focused</ContainerTitle>
             <DxcButton mode="secondary" label="Secondary focused" />
           </Container>
           <Container className="pseudo-active">
-            <h4 style={{ color: "white" }}>Actived</h4>
+            <ContainerTitle style={{ color: "white" }}>Actived</ContainerTitle>
             <DxcButton mode="secondary" label="Secondary actived" />
           </Container>
           <Container>
-            <h4 style={{ color: "white" }}>Disabled</h4>
+            <ContainerTitle style={{ color: "white" }}>Disabled</ContainerTitle>
             <DxcButton mode="secondary" disabled label="Secondary disabled" />
+          </Container>
+          <Container style={{ color: "white" }}>
+            <ContainerTitle>With icon</ContainerTitle>
+            <DxcButton mode="secondary" label="Primary" icon={iconSVG} />
           </Container>
         </>
         <>
-          <h2 style={{ color: "white" }}>Text</h2>
+          <MainTitle style={{ color: "white" }}>Text</MainTitle>
           <Container>
-            <h4 style={{ color: "white" }}>Enabled</h4>
+            <ContainerTitle style={{ color: "white" }}>Enabled</ContainerTitle>
             <DxcButton mode="text" label="Text enabled" />
           </Container>
           <Container className="pseudo-hover">
-            <h4 style={{ color: "white" }}>Hovered</h4>
+            <ContainerTitle style={{ color: "white" }}>Hovered</ContainerTitle>
             <DxcButton mode="text" label="Text hovered" />
           </Container>
           <Container className="pseudo-focus">
-            <h4 style={{ color: "white" }}>Focused</h4>
+            <ContainerTitle style={{ color: "white" }}>Focused</ContainerTitle>
             <DxcButton mode="text" label="Text focused" />
           </Container>
           <Container className="pseudo-active">
-            <h4 style={{ color: "white" }}>Actived</h4>
+            <ContainerTitle style={{ color: "white" }}>Actived</ContainerTitle>
             <DxcButton mode="text" label="Text actived" />
           </Container>
           <Container>
-            <h4 style={{ color: "white" }}>Disabled</h4>
+            <ContainerTitle style={{ color: "white" }}>Disabled</ContainerTitle>
             <DxcButton mode="text" label="Text disabled" disabled />
+          </Container>
+          <Container style={{ color: "white" }}>
+            <ContainerTitle>With icon</ContainerTitle>
+            <DxcButton mode="text" label="Primary" icon={iconSVG} />
           </Container>
         </>
       </DarkContainer>
     </BackgroundColorProvider>
+    <>
+      <MainTitle>Sizes</MainTitle>
+      <Container>
+        <ContainerTitle>Small size</ContainerTitle>
+        <DxcButton label="Small" size="small" />
+      </Container>
+      <Container>
+        <ContainerTitle>Medium size</ContainerTitle>
+        <DxcButton label="MediumSiz" size="medium" />
+      </Container>
+      <Container>
+        <ContainerTitle>Medium size with ellipsis</ContainerTitle>
+        <DxcButton label="MediumSize" size="medium" />
+      </Container>
+      <Container>
+        <ContainerTitle>Medium size icon after</ContainerTitle>
+        <DxcButton label="Mediu" iconPosition="after" icon={iconSVG} size="medium" />
+      </Container>
+      <Container>
+        <ContainerTitle>Medium size icon before</ContainerTitle>
+        <DxcButton label="Mediu" iconPosition="before" icon={iconSVG} size="medium" />
+      </Container>
+      <Container>
+        <ContainerTitle>Medium size icon after with ellipsis</ContainerTitle>
+        <DxcButton label="Medium" iconPosition="after" icon={iconSVG} size="medium" />
+      </Container>
+      <Container>
+        <ContainerTitle>Medium size icon before with ellipsis</ContainerTitle>
+        <DxcButton label="Medium" iconPosition="before" icon={iconSVG} size="medium" />
+      </Container>
+      <Container>
+        <ContainerTitle>Large size</ContainerTitle>
+        <DxcButton label="LargeSizePrimaryButtonEx" size="large" />
+      </Container>
+      <Container>
+        <ContainerTitle>Large size with ellipsis</ContainerTitle>
+        <DxcButton label="LargeSizePrimaryButtonExa" size="large" />
+      </Container>
+      <Container>
+        <ContainerTitle>Large size icon after</ContainerTitle>
+        <DxcButton label="LargeSizePrimaryButto" iconPosition="after" icon={iconSVG} size="large" />
+      </Container>
+      <Container>
+        <ContainerTitle>Large size icon before</ContainerTitle>
+        <DxcButton label="LargeSizePrimaryButto" iconPosition="before" icon={iconSVG} size="large" />
+      </Container>
+      <Container>
+        <ContainerTitle>Large size icon after with ellipsis</ContainerTitle>
+        <DxcButton label="LargeSizePrimaryButton" iconPosition="after" icon={iconSVG} size="large" />
+      </Container>
+      <Container>
+        <ContainerTitle>Large size icon before with ellipsis</ContainerTitle>
+        <DxcButton label="LargeSizePrimaryButton" iconPosition="before" icon={iconSVG} size="large" />
+      </Container>
+      <Container>
+        <ContainerTitle>Fill parent size</ContainerTitle>
+        <DxcButton label="FillParent" size="fillParent" />
+      </Container>
+      <Container>
+        <ContainerTitle>Fit content size</ContainerTitle>
+        <DxcButton label="FitContent" size="fitContent" />
+      </Container>
+      <MainTitle>Margins</MainTitle>
+      <Container>
+        <ContainerTitle>Xxsmall margin</ContainerTitle>
+        <DxcButton label="Xxsmall margin" margin="xxsmall" />
+      </Container>
+      <Container>
+        <ContainerTitle>Xsmall margin</ContainerTitle>
+        <DxcButton label="Xsmall margin" margin="xsmall" />
+      </Container>
+      <Container>
+        <ContainerTitle>Small margin</ContainerTitle>
+        <DxcButton label="Small margin" margin="small" />
+      </Container>
+      <Container>
+        <ContainerTitle>Medium margin</ContainerTitle>
+        <DxcButton label="Medium margin" margin="medium" />
+      </Container>
+      <Container>
+        <ContainerTitle>Large margin</ContainerTitle>
+        <DxcButton label="Large margin" margin="large" />
+      </Container>
+      <Container>
+        <ContainerTitle>Xlarge margin</ContainerTitle>
+        <DxcButton label="Xlarge margin" margin="xlarge" />
+      </Container>
+      <Container>
+        <ContainerTitle>Xxlarge margin</ContainerTitle>
+        <DxcButton label="Xxlarge margin" margin="xxlarge" />
+      </Container>
+    </>
   </>
 );
+
+const MainTitle = styled.h2`
+  font-family: Open Sans, sans-serif;
+`;
+
+const ContainerTitle = styled.h4`
+  font-family: Open Sans, sans-serif;
+`;
 
 const Container = styled.div`
   margin: 15px;
 `;
+
 const DarkContainer = styled.div`
-  background-color: #000000;
+  background-color: #333333;
 `;
