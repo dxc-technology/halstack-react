@@ -35,7 +35,6 @@ type Props = {
    * DEPRECATED. URL of the icon that will be placed next to the button label.
    */
   iconSrc?: string;
-<<<<<<< HEAD:lib/src/button/index.d.ts
   /**
    * Element used as the icon that will be placed next to the button label.
    */
@@ -48,10 +47,6 @@ type Props = {
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
-=======
-  icon?: any;
-  onClick?: any;
->>>>>>> 6f3bc2c5f05390dec2f764c23268292b6643f911:lib/src/button/types.ts
   margin?: Space | Margin;
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent' | 'fitContent').
