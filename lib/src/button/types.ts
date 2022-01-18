@@ -15,7 +15,7 @@ type Props = {
   type?: "button" | "reset" | "submit";
   iconSrc?: string;
   icon?: any;
-  onClick?: void;
+  onClick?: any;
   margin?: Space | Margin;
   size?: Size;
   tabIndex?: number;

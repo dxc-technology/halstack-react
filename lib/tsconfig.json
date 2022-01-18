@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "isolatedModules": true,
+    "rootDir": "./src",
+    "outDir": "../dist",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+  },
+  "exclude": ["**/*.stories.tsx"]
+}
