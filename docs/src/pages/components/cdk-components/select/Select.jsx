@@ -25,13 +25,13 @@ function Select() {
       <Section>
         <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
         <Example title="Basic usage" example={basic}></Example>
+        <Example title="Controlled Select" example={controlled}></Example>
+        <Example title="Uncontrolled Select" example={uncontrolled}></Example>
         <Example title="Searchable" example={searchable}></Example>
         <Example title="Multiple selection" example={multiple}></Example>
         <Example title="Optional" example={optional}></Example>
         <Example title="Grouped options" example={groups}></Example>
         <Example title="Options with icon" example={icons}></Example>
-        <Example title="Controlled Select" example={controlled}></Example>
-        <Example title="Uncontrolled Select" example={uncontrolled}></Example>
       </Section>
     </ComponentDoc>
   );

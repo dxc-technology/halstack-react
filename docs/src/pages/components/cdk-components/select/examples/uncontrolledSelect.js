@@ -1,5 +1,5 @@
-import { DxcSelect } from "@dxc-technology/halstack-react";
-import { useState } from "react";
+import { DxcSelect, DxcButton } from "@dxc-technology/halstack-react";
+import { useState, useRef } from "react";
 
 const code = `() => {
   const options = [
@@ -8,20 +8,33 @@ const code = `() => {
     { label: "Option 03", value: "3" },
     { label: "Option 04", value: "4" },
   ];
+  const selectRef = useRef();
+  const handleSubmit = () => {
+    const select = selectRef.current.getElementsByTagName("input")[0];
+    console.log(select.value);
+  };
 
-  return (
+  return <>
     <DxcSelect
       label="Label"
       placeholder="Choose an option"
       options={options}
       margin="medium"
+      ref={selectRef}
     />
-  );
+    <DxcButton
+      onClick={handleSubmit}
+      label="Submit"
+      margin={{ left: "medium", right: "medium", bottom: "medium" }}
+    ></DxcButton>
+  </>;
 }`;
 
 const scope = {
   DxcSelect,
+  DxcButton,
   useState,
+  useRef,
 };
 
 export default { code, scope };

@@ -9,17 +9,14 @@ import controlled from "./examples/controlledTextInput";
 import uncontrolled from "./examples/uncontrolledTextInput";
 import pattern from "./examples/patternTextInput";
 import length from "./examples/lengthTextInput";
-import invalid from "./examples/invalidTextInput";
 import customErrors from "./examples/customErrorsTextInput";
 import prefix from "./examples/prefixTextInput";
 import suffix from "./examples/suffixTextInput";
 import action from "./examples/actionTextInput";
 import optional from "./examples/optionalTextInput";
-import disabled from "./examples/disabledTextInput";
-import placeholder from "./examples/placeholderTextInput";
-import fillParent from "./examples/fillParentTextInput";
 import autosuggest from "./examples/autosuggest";
 import autosuggestFunction from "./examples/autosuggestFunction";
+import basic from "./examples/basicTextInput";
 
 function TextInput() {
   return (
@@ -31,17 +28,13 @@ function TextInput() {
       </Section>
       <Section>
         <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Basic usage" example={basic}></Example>
         <Example title="Controlled text input" example={controlled} />
         <Example title="Uncontrolled text input" example={uncontrolled} />
-        <Example
-          title="Text input with placeholder"
-          example={placeholder}
-        ></Example>
         <Example title="Text input with prefix" example={prefix}></Example>
         <Example title="Text input with suffix" example={suffix}></Example>
         <Example title="Text input with action" example={action}></Example>
         <Example title="Optional text input" example={optional}></Example>
-        <Example title="Disabled text input" example={disabled}></Example>
         <Example
           title="Text input with pattern constraint"
           example={pattern}
@@ -50,14 +43,9 @@ function TextInput() {
           title="Text input with length constraint"
           example={length}
         ></Example>
-        <Example title="Invalid text input" example={invalid}></Example>
         <Example
           title="Text input with custom error messages"
           example={customErrors}
-        ></Example>
-        <Example
-          title="Fill parent size text input"
-          example={fillParent}
         ></Example>
         <Example
           title="Text input with suggestions"

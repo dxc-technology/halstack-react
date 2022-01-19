@@ -58,6 +58,18 @@ const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
+const getLastOptionIndex = (filteredSuggestions) => {
+  let last = 0;
+  const reducer = (acc, current) => acc + current.options?.length;
+
+  if (filteredSuggestions.length > 0)
+    filteredSuggestions[0].options
+      ? (last = filteredSuggestions.reduce(reducer, 0) - 1)
+      : (last = filteredSuggestions.length - 1);
+
+  return last;
+};
+
 const DxcTextInput = React.forwardRef(
   (
     {
@@ -106,15 +118,14 @@ const DxcTextInput = React.forwardRef(
 
     const numberInputContext = useContext(NumberInputContext);
 
+    const lastOptionIndex = useMemo(() => getLastOptionIndex(filteredSuggestions), [filteredSuggestions]);
+
     const isNotOptional = (value) => value === "" && !optional;
-
     const isLengthIncorrect = (value) =>
-      value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
-
+      value && length?.min && length?.max && (value.length < length.min || value.length > length.max);
     const isNumberIncorrect = (value) =>
       (numberInputContext?.minNumber && parseInt(value) < numberInputContext?.minNumber) ||
       (numberInputContext?.maxNumber && parseInt(value) > numberInputContext?.maxNumber);
-
     const isTextInputType = () =>
       !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
 
@@ -125,10 +136,10 @@ const DxcTextInput = React.forwardRef(
         return `Value must be less than or equal to ${numberInputContext?.maxNumber}.`;
     };
 
-    const hasSuggestions = () => typeof suggestions === "function" || (suggestions && suggestions.length > 0);
+    const hasSuggestions = () => typeof suggestions === "function" || suggestions?.length > 0;
 
     const openSuggestions = () => {
-      if (hasSuggestions() && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)) changeIsOpen(true);
+      hasSuggestions() && changeIsOpen(true);
     };
 
     const closeSuggestions = () => {
@@ -152,13 +163,14 @@ const DxcTextInput = React.forwardRef(
     const handleInputContainerOnClick = () => {
       document.activeElement !== actionRef.current && inputRef.current.focus();
     };
+    const handleInputContainerOnMouseDown = (event) => {
+      // Avoid input to lose the focus when the container is pressed
+      document.activeElement === inputRef.current && event.preventDefault();
+    };
 
     const handleIOnChange = (event) => {
       openSuggestions();
       changeValue(event.target.value);
-    };
-    const handleIOnClick = () => {
-      openSuggestions();
     };
     const handleIOnBlur = (event) => {
       suggestions && closeSuggestions();
@@ -172,9 +184,6 @@ const DxcTextInput = React.forwardRef(
       else if (event.target.value && isNumberIncorrect(event.target.value))
         onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
       else onBlur?.({ value: event.target.value, error: null });
-    };
-    const handleIOnFocus = () => {
-      openSuggestions();
     };
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {
@@ -356,24 +365,7 @@ const DxcTextInput = React.forwardRef(
           numberInputContext.maxNumber,
           numberInputContext.stepNumber
         );
-    }, [value, innerValue, suggestions]);
-
-    useLayoutEffect(() => {
-      if (filteredSuggestions.length === 0 && !isSearching && !isAutosuggestError) closeSuggestions();
-    }, [filteredSuggestions]);
-
-    const getLastOptionIndex = () => {
-      let last = 0;
-      const reducer = (acc, current) => acc + current.options?.length;
-
-      if (filteredSuggestions.length > 0)
-        filteredSuggestions[0].options
-          ? (last = filteredSuggestions.reduce(reducer, 0) - 1)
-          : (last = filteredSuggestions.length - 1);
-
-      return last;
-    };
-    const lastOptionIndex = useMemo(() => getLastOptionIndex(), [filteredSuggestions]);
+    }, [value, innerValue, suggestions, numberInputContext]);
 
     const HighlightedSuggestion = ({ suggestion, index }) => {
       const regEx = new RegExp(value ?? innerValue, "i");
@@ -388,9 +380,9 @@ const DxcTextInput = React.forwardRef(
             changeValue(suggestion);
             closeSuggestions();
           }}
+          visualFocused={visualFocusedSuggIndex === index}
           role="option"
           aria-selected={visualFocusedSuggIndex === index && "true"}
-          visualFocused={visualFocusedSuggIndex === index}
         >
           <StyledSuggestion last={isLastOption} visualFocused={visualFocusedSuggIndex === index}>
             {typeof suggestions === "function" ? (
@@ -420,6 +412,7 @@ const DxcTextInput = React.forwardRef(
             disabled={disabled}
             backgroundType={backgroundType}
             onClick={handleInputContainerOnClick}
+            onMouseDown={handleInputContainerOnMouseDown}
           >
             {prefix && (
               <Prefix disabled={disabled} backgroundType={backgroundType}>
@@ -431,11 +424,15 @@ const DxcTextInput = React.forwardRef(
               name={name}
               value={value ?? innerValue}
               placeholder={placeholder}
-              onChange={handleIOnChange}
-              onClick={handleIOnClick}
               onBlur={handleIOnBlur}
-              onFocus={handleIOnFocus}
+              onChange={handleIOnChange}
+              onFocus={() => {
+                openSuggestions();
+              }}
               onKeyDown={handleIOnKeyDown}
+              onMouseDown={(event) => {
+                event.stopPropagation();
+              }}
               disabled={disabled}
               ref={inputRef}
               backgroundType={backgroundType}
@@ -465,6 +462,9 @@ const DxcTextInput = React.forwardRef(
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
               <Action
                 onClick={handleClearActionOnClick}
+                onMouseDown={(event) => {
+                  event.stopPropagation();
+                }}
                 backgroundType={backgroundType}
                 tabIndex={tabIndex}
                 aria-label="Clear"
@@ -478,6 +478,9 @@ const DxcTextInput = React.forwardRef(
                   ref={actionRef}
                   disabled={disabled}
                   onClick={handleDecrementActionOnClick}
+                  onMouseDown={(event) => {
+                    event.stopPropagation();
+                  }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                   aria-label="Decrement"
@@ -488,6 +491,9 @@ const DxcTextInput = React.forwardRef(
                   ref={actionRef}
                   disabled={disabled}
                   onClick={handleIncrementActionOnClick}
+                  onMouseDown={(event) => {
+                    event.stopPropagation();
+                  }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                   aria-label="Increment"
@@ -501,6 +507,9 @@ const DxcTextInput = React.forwardRef(
                   ref={actionRef}
                   disabled={disabled}
                   onClick={action.onClick}
+                  onMouseDown={(event) => {
+                    event.stopPropagation();
+                  }}
                   title={action.title ?? action.title}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
@@ -514,15 +523,12 @@ const DxcTextInput = React.forwardRef(
                 {suffix}
               </Suffix>
             )}
-            {isOpen && (
+            {isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError) && (
               <Suggestions
                 id={autosuggestId}
                 isError={isAutosuggestError}
                 onMouseDown={(event) => {
                   event.preventDefault();
-                }}
-                onMouseLeave={() => {
-                  changeVisualFocusedSuggIndex(-1);
                 }}
                 ref={suggestionsRef}
                 role="listbox"
