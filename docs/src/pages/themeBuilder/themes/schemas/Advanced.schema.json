@@ -1024,6 +1024,8 @@
     "errorBorderColorOnDark": "color",
     "hoverErrorBorderColor": "color",
     "hoverErrorBorderColorOnDark": "color",
+    "inputMarginTop": "length",
+    "inputMarginBottom": "length",
     "errorMessageColor": "color",
     "errorMessageColorOnDark": "color",
     "labelFontColor": "color",

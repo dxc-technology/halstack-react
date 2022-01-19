@@ -1024,6 +1024,8 @@
     "errorBorderColorOnDark": "#fe344f",
     "hoverErrorBorderColor": "#fe0123",
     "hoverErrorBorderColorOnDark": "#fe677b",
+    "inputMarginTop": "0.25rem",
+    "inputMarginBottom": "0.25rem",
     "errorMessageColor": "#d0011b",
     "errorMessageColorOnDark": "#fe344f",
     "labelFontColor": "#000000",
