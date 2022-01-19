@@ -32,7 +32,7 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * This function will be called when the user clicks the radio. The new value will be passed as a parameter.
+   * This function will be called when the user changes the state of the switch. The new state will be passed as a parameter.
    */
   onChange?: (checked: boolean) => void;
   /**
