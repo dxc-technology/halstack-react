@@ -1,10 +1,10 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import AlertPropsType from "./types";
 
 const alertIcons = {
   close: (
@@ -51,7 +51,7 @@ const DxcAlert = ({
   margin,
   size = "fitContent",
   tabIndex,
-}) => {
+}: AlertPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   const getTypeText = () =>
@@ -70,7 +70,7 @@ const DxcAlert = ({
                 (type === "error" && alertIcons.error)}
             </AlertIcon>
             <AlertText>
-              <AlertTitle type={type}>{getTypeText(type)}</AlertTitle>
+              <AlertTitle type={type}>{getTypeText()}</AlertTitle>
               {inlineText && inlineText !== "" && "-"}
               <AlertInlineText>{inlineText}</AlertInlineText>
             </AlertText>
@@ -273,24 +273,5 @@ const AlertCloseAction = styled.button`
     background-color: ${(props) => props.theme.activeActionBackgroundColor};
   }
 `;
-
-DxcAlert.propTypes = {
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  type: PropTypes.oneOf(["info", "confirm", "warning", "error"]),
-  mode: PropTypes.oneOf(["inline", "modal"]),
-  inlineText: PropTypes.string,
-  onClose: PropTypes.func,
-  children: PropTypes.element,
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcAlert;
