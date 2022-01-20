@@ -89,7 +89,7 @@ const PasswordShown = () => (
 export const ShowTooltip = PasswordTooltip.bind({});
 
 ShowTooltip.parameters = {
-  chromatic: { delay: 30000 },
+  chromatic: { delay: 10000 },
 };
 
 export const ShowPassword = PasswordShown.bind({});
