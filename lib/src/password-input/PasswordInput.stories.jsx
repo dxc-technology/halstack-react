@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, waitFor, within } from "@storybook/testing-library";
 import DxcPasswordInput from "./PasswordInput";
 
 export default {
@@ -73,7 +73,7 @@ export const Chromatic = () => (
 );
 
 const PasswordTooltip = () => (
-  <Container className="pseudo-hover">
+  <Container>
     <ContainerTitle>Show tooltip</ContainerTitle>
     <DxcPasswordInput label="Password input" value="Password" />
   </Container>
@@ -87,9 +87,12 @@ const PasswordShown = () => (
 );
 
 export const ShowTooltip = PasswordTooltip.bind({});
-
-ShowTooltip.parameters = {
-  chromatic: { delay: 10000 },
+ShowTooltip.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const passwordBtn = canvas.getByRole("button");
+  await waitFor(async () => {
+    await userEvent.hover(passwordBtn);
+  });
 };
 
 export const ShowPassword = PasswordShown.bind({});
