@@ -1,4 +1,4 @@
-type Size = "small" | "medium" | "large" | "fillParent";
+type Size = "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -47,7 +47,7 @@ type Props = {
    * not been filled.
    */
   optional?: boolean;
-  /**          
+  /**
    * This function will be called when the user types within the input
    * element of the component. An object including the string value, the
    * error and the date value will be passed to this function.
@@ -55,7 +55,7 @@ type Props = {
    * be null. Also, if the string value is not a valid date, date will be null.
    */
   onChange?: (val: { value: string; error: string; date: Date }) => void;
-  /**          
+  /**
    * This function will be called when the input element loses the focus.
    * An object including the string value, the error and the date value
    * will be passed to this function. If the string value is a valid date, error will
@@ -86,10 +86,11 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-  /**
-   * Reference to the component.
-   */
-  ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcDateInput(props: Props): JSX.Element;
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
+
+export default Props;
