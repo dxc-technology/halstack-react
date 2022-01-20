@@ -22,11 +22,11 @@ type Props = {
   /**
    * Whether the label should appear after or before the switch.
    */
-  labelPosition?: "before" | "after";t
+  labelPosition?: "before" | "after";
   /**
    * Name attribute of the input element.
    */
-  name?: string,
+  name?: string;
   /**
    * If true, the component will be disabled.
    */
