@@ -1,7 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { userEvent, waitFor, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/testing-library";
 import DxcPasswordInput from "./PasswordInput";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
+import Title from "../../.storybook/components/Title";
+import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import DarkContainer from "../../.storybook/components/DarkSection";
 
 export default {
   title: "Password input ",
@@ -10,106 +13,119 @@ export default {
 
 export const Chromatic = () => (
   <>
-    <Container>
-      <ContainerTitle>Without label</ContainerTitle>
+    <ExampleContainer>
+      <Title title="Without label" theme="light" level={4} />
       <DxcPasswordInput />
-    </Container>
-    <Container>
-      <ContainerTitle>With label</ContainerTitle>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With label" theme="light" level={4} />
       <DxcPasswordInput label="Password input" clearable />
-    </Container>
-    <Container>
-      <ContainerTitle>Clearable</ContainerTitle>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Clearable" theme="light" level={4} />
       <DxcPasswordInput label="Password input" clearable value="password" />
-    </Container>
-    <Container>
-      <ContainerTitle>Non clearable</ContainerTitle>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Non clearable" theme="light" level={4} />
       <DxcPasswordInput label="Non clearable password input" value="password" />
-    </Container>
-    <Container>
-      <ContainerTitle>Helper text</ContainerTitle>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Helper text" theme="light" level={4} />
       <DxcPasswordInput label="Help password input" helperText="Help message" />
-    </Container>
-    <Container>
-      <ContainerTitle>Invalid</ContainerTitle>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Invalid" theme="light" level={4} />
       <DxcPasswordInput label="Error password input" error="Error message." />
-    </Container>
-    <MainTitle>Margin</MainTitle>
-    <Container>
+    </ExampleContainer>
+    <BackgroundColorProvider color="#333333">
+      <DarkContainer>
+        <Title title="Dark" theme="dark" level={2} />
+        <ExampleContainer>
+          <Title title="With label, helper text and value" theme="dark" level={4} />
+          <DxcPasswordInput label="Password input" helperText="Help message" value="Password" />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Invalid" theme="dark" level={4} />
+          <DxcPasswordInput label="Password input" helperText="Help message" error="Error message." value="Password" />
+        </ExampleContainer>
+      </DarkContainer>
+    </BackgroundColorProvider>
+    <Title title="Margins" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Xxsmall margin" theme="light" level={4} />
       <DxcPasswordInput label="Xxsmmall" margin="xxsmall" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xsmall margin" theme="light" level={4} />
       <DxcPasswordInput label="Xsmall" margin="xsmall" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Small margin" theme="light" level={4} />
       <DxcPasswordInput label="Small" margin="small" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium margin" theme="light" level={4} />
       <DxcPasswordInput label="Medium" margin="medium" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large margin" theme="light" level={4} />
       <DxcPasswordInput label="Large" margin="large" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xlarge margin" theme="light" level={4} />
       <DxcPasswordInput label="Xlarge" margin="xlarge" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcPasswordInput label="Xxlarge" margin="xxlarge" />
-    </Container>
-    <MainTitle>Sizes</MainTitle>
-    <Container>
+    </ExampleContainer>
+    <Title title="Sizes" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Small size" theme="light" level={4} />
       <DxcPasswordInput label="Small" size="small" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium size" theme="light" level={4} />
       <DxcPasswordInput label="Medium" size="medium" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large size" theme="light" level={4} />
       <DxcPasswordInput label="Large" size="large" />
-    </Container>
-    <Container>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="FillParent size" theme="light" level={4} />
       <DxcPasswordInput label="FillParent" size="fillParent" />
-    </Container>
+    </ExampleContainer>
   </>
 );
 
-const PasswordTooltip = () => (
-  <Container>
-    <ContainerTitle>Show tooltip</ContainerTitle>
+const Password = () => (
+  <ExampleContainer>
+    <Title>Show password</Title>
     <DxcPasswordInput label="Password input" value="Password" />
-  </Container>
+  </ExampleContainer>
+);
+const PasswordDark = () => (
+  <BackgroundColorProvider color="#333333">
+    <DarkContainer>
+      <ExampleContainer>
+        <Title>Show password</Title>
+        <DxcPasswordInput label="Password input" value="Password" />
+      </ExampleContainer>
+    </DarkContainer>
+  </BackgroundColorProvider>
 );
 
-const PasswordShown = () => (
-  <Container>
-    <ContainerTitle>Show password</ContainerTitle>
-    <DxcPasswordInput label="Password input" value="Password" />
-  </Container>
-);
-
-export const ShowTooltip = PasswordTooltip.bind({});
-ShowTooltip.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const passwordBtn = canvas.getByRole("button");
-  await waitFor(async () => {
-    await userEvent.hover(passwordBtn);
-  });
-};
-
-export const ShowPassword = PasswordShown.bind({});
+export const ShowPassword = Password.bind({});
 ShowPassword.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const passwordBtn = canvas.getByRole("button");
   await userEvent.click(passwordBtn);
 };
 
-const MainTitle = styled.h2`
-  font-family: Open Sans, sans-serif;
-`;
-
-const ContainerTitle = styled.h4`
-  font-family: Open Sans, sans-serif;
-`;
-
-const Container = styled.div`
-  margin: 15px;
-`;
+export const ShowPasswordDark = PasswordDark.bind({});
+ShowPasswordDark.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const passwordBtn = canvas.getByRole("button");
+  await userEvent.click(passwordBtn);
+};
