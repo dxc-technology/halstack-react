@@ -348,7 +348,7 @@
     "hoverFileItemIconBackgroundColor": "#f2f2f2",
     "activeFileItemIconBackgrounColor": "#cccccc",
     "errorFileItemBorderColor": "#d0011b",
-    "errorFileItemBackgroundColor": "#ffccd3",
+    "errorFileItemBackgroundColor": "#fff5f6",
     "errorFileItemIconBackgroundColor": "#ffccd3",
     "errorFileItemIconColor": "#d0011b",
     "fileItemIconBackgroundColor": "#f2f2f2",
@@ -379,10 +379,10 @@
     "errorMessageLineHeight": "1.5rem",
     "dropBorderThickness": "1px",
     "dropBorderStyle": "dashed",
-    "dropBorderRadius": "6px",
+    "dropBorderRadius": "0.375rem",
     "fileItemBorderThickness": "1px",
     "fileItemBorderStyle": "solid",
-    "fileItemBorderRadius": "4px"
+    "fileItemBorderRadius": "0.25rem"
   },
   "footer": {
     "height": "124px",
