@@ -45,7 +45,7 @@ export const Chromatic = () => (
           <DxcPasswordInput label="Password input" helperText="Help message" value="Password" />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Invalid" theme="dark" level={4} />
+          <Title title="With label, helper text, value and error" theme="dark" level={4} />
           <DxcPasswordInput label="Password input" helperText="Help message" error="Error message." value="Password" />
         </ExampleContainer>
       </DarkContainer>
