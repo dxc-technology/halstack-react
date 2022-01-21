@@ -53,14 +53,14 @@ type Props = {
    * If the string value is a valid date, error will
    * be null. Also, if the string value is not a valid date, date will be null.
    */
-  onChange?: (val: { value: string; error: string; date: Date }) => void;
+  onChange?: (val?: { value?: string; error?: string; date?: Date }) => void;
   /**
    * This function will be called when the input element loses the focus.
    * An object including the string value, the error and the date value
    * will be passed to this function. If the string value is a valid date, error will
    * be null. Also, if the string value is not a valid date, date will be null.
    */
-  onBlur?: (val: { value: string; error: string; date: Date }) => void;
+  onBlur?: (val?: { value?: string; error?: string; date?: Date }) => void;
   /**
    * If it is defined, the component will change its appearance, showing
    * the error below the date input component. If it is not defined, the error
