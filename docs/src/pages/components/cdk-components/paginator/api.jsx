@@ -28,7 +28,11 @@ const paginatorPropsTable = () => {
         <td>
           <code>[]</code>
         </td>
-        <td>An array of numbers representing the items per page options.</td>
+        <td>
+          An array of numbers representing the items per page options. If
+          undefined, the select with items per page options will not be
+          displayed.
+        </td>
       </tr>
       <tr>
         <td>itemsPerPageFunction: function</td>
