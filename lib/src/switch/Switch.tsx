@@ -74,11 +74,10 @@ const sizes = {
   fitContent: "unset",
 };
 
-const calculateWidth = (margin, size) => {
+const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
-};
 
 const SwitchContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
