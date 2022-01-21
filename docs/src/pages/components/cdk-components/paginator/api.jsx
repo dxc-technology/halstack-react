@@ -28,7 +28,11 @@ const paginatorPropsTable = () => {
         <td>
           <code>[]</code>
         </td>
-        <td>An array of numbers representing the items per page options.</td>
+        <td>
+          An array of numbers representing the items per page options. If
+          undefined, the select with items per page options will not be
+          displayed.
+        </td>
       </tr>
       <tr>
         <td>itemsPerPageFunction: function</td>
@@ -50,14 +54,24 @@ const paginatorPropsTable = () => {
         <td>
           <code>false</code>
         </td>
-        <td>If true, a select will be displayed with the page numbers to move through them</td>
+        <td>
+          If true, a select will be displayed with the page numbers to move
+          through them
+        </td>
       </tr>
       <tr>
         <td>onPageChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks on any of the button to change pages. The page number will be passed as a parameter to this function.
+          This function will be called when the user clicks on any of the button
+          to change pages. The page number will be passed as a parameter to this
+          function.
         </td>
+      </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>0</td>
+        <td>Value of the tabindex.</td>
       </tr>
     </DxcTable>
   );

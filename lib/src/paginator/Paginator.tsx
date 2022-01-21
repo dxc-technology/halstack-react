@@ -1,11 +1,11 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import useTheme from "../useTheme.js";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
 import { firstIcon, lastIcon, nextIcon, previousIcon } from "./Icons";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import PaginatorPropsType from "./types";
 
 const DxcPaginator = ({
   currentPage = 1,
@@ -16,7 +16,7 @@ const DxcPaginator = ({
   onPageChange,
   itemsPerPageFunction,
   tabIndex = 0,
-}) => {
+}: PaginatorPropsType): JSX.Element => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const currentPageInternal = currentPage === -1 ? totalPages : currentPage;
   const minItemsPerPage =
@@ -83,7 +83,7 @@ const DxcPaginator = ({
                 <GoToLabel>Go to page: </GoToLabel>
                 <SelectContainer>
                   <DxcSelect
-                    options={[...Array(totalPages).keys()].map((num) => ({
+                    options={Array.from(Array(totalPages), (e, num) => ({
                       label: (num + 1).toString(),
                       value: (num + 1).toString(),
                     }))}
@@ -209,25 +209,5 @@ const PageToSelectContainer = styled.span`
   }
 `;
 const TextContainer = styled.span``;
-
-DxcPaginator.propTypes = {
-  currentPage: PropTypes.number,
-  itemsPerPage: PropTypes.number,
-  itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
-  totalItems: PropTypes.number.isRequired,
-  showGoToPage: PropTypes.bool,
-  onPageChange: PropTypes.func,
-  itemsPerPageFunction: PropTypes.func,
-  tabIndex: PropTypes.number,
-};
-DxcPaginator.defaultProps = {
-  currentPage: 1,
-  itemsPerPage: 5,
-  itemsPerPageOptions: null,
-  showGoToPage: false,
-  onPageChange: null,
-  itemsPerPageFunction: null,
-  tabIndex: 0,
-};
 
 export default DxcPaginator;
