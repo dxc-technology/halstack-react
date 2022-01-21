@@ -37,7 +37,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "npm test -- --watch --coverage",
-    "build": "babel src --extensions '.js,.jsx,.ts,.tsx' --out-dir ../dist --copy-files --verbose && node ../scripts/build/copy-package.js && tsc ",
+    "build": "babel src --extensions .js,.jsx,.ts,.tsx --out-dir ../dist --copy-files --verbose && node ../scripts/build/copy-package.js && tsc ",
     "build:watch": "babel src --watch --out-dir ../dist --copy-files --verbose",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
