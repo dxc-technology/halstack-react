@@ -5,12 +5,12 @@ type Props = {
   children?: React.ReactNode,
 };
 
-const DarkContainer = ({ children }: Props): JSX.Element => {
-  return <DivContainer>{children}</DivContainer>;
+const DarkSection = ({ children }: Props): JSX.Element => {
+  return <DivSection>{children}</DivSection>;
 };
 
-const DivContainer = styled.div`
+const DivSection = styled.div`
   background-color: #333333;
 `;
 
-export default DarkContainer;
+export default DarkSection;
