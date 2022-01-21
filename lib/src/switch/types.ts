@@ -8,11 +8,13 @@ type Margin = {
 
 type Props = {
   /**
-   * If true, the component is checked. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
+   * If true, the component is checked. If undefined, the component will be uncontrolled 
+   * and the checked attribute will be managed internally by the component.
    */
   checked?: boolean;
   /**
-   * Will be passed to the value attribute of the html input element. When inside a form, this value will be only submitted if the switch is checked.
+   * Will be passed to the value attribute of the html input element. When inside a form, 
+   * this value will be only submitted if the switch is checked.
    */
   value?: string;
   /**
@@ -32,7 +34,8 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * This function will be called when the user changes the state of the switch. The new state will be passed as a parameter.
+   * This function will be called when the user changes the state of the switch. 
+   * The new value of the checked attribute will be passed as a parameter.
    */
   onChange?: (checked: boolean) => void;
   /**
