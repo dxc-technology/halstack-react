@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Radio from "@material-ui/core/Radio";
-import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
+import RadioPropsType from "./types";
 
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
@@ -12,7 +12,7 @@ import BackgroundColorContext from "../BackgroundColorContext.js";
 const DxcRadio = ({
   checked = false,
   value,
-  label,
+  label = "",
   labelPosition = "before",
   name,
   disabled = false,
@@ -20,12 +20,12 @@ const DxcRadio = ({
   required = false,
   margin,
   size = "fitContent",
-}) => {
+}: RadioPropsType): JSX.Element => {
   const [innerChecked, setInnerChecked] = useState(false);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
-  const handlerRadioChange = (value) => {
+  const handlerRadioChange = () => {
     if (checked == null) {
       setInnerChecked(true);
     }
@@ -33,6 +33,7 @@ const DxcRadio = ({
       onClick(true);
     }
   };
+
   return (
     <ThemeProvider theme={colorsTheme.radio}>
       <RadioContainer
@@ -48,7 +49,6 @@ const DxcRadio = ({
           name={name}
           onClick={handlerRadioChange}
           value={value}
-          label={label}
           disabled={disabled}
           disableRipple
         />
@@ -156,6 +156,7 @@ const RadioContainer = styled.span`
     }
   }
 `;
+
 const LabelContainer = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
@@ -167,26 +168,5 @@ const LabelContainer = styled.span`
       : (props.disabled && props.theme.disabledFontColor) || props.theme.fontColor};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 `;
-
-DxcRadio.propTypes = {
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  checked: PropTypes.bool,
-  value: PropTypes.any,
-  label: PropTypes.string,
-  labelPosition: PropTypes.oneOf(["after", "before", ""]),
-  name: PropTypes.string,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  required: PropTypes.bool,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
 
 export default DxcRadio;
