@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
-import PropTypes from "prop-types";
 import DxcRequired from "../common/RequiredComponent";
 import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import CheckboxPropsType from "./types";
 
 const DxcCheckbox = ({
   checked,
@@ -20,7 +20,7 @@ const DxcCheckbox = ({
   margin,
   size = "fitContent",
   tabIndex = 0,
-}) => {
+}: CheckboxPropsType): JSX.Element => {
   const [innerChecked, setInnerChecked] = useState(false);
   const [isLabelHovered, setIsLabelHovered] = useState(false);
 
@@ -274,25 +274,5 @@ const CheckboxBlackBack = styled.span`
   margin-left: ${(props) => (props.labelPosition === "after" ? "0px" : "")};
   margin-right: ${(props) => (props.labelPosition === "before" ? "0px" : "")};
 `;
-DxcCheckbox.propTypes = {
-  checked: PropTypes.bool,
-  value: PropTypes.any,
-  label: PropTypes.string,
-  labelPosition: PropTypes.oneOf(["after", "before", ""]),
-  name: PropTypes.string,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  required: PropTypes.bool,
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
+
 export default DxcCheckbox;
