@@ -22,7 +22,7 @@ const DxcAccordion = ({
   margin,
   padding,
   tabIndex = 0,
-}: AccordionProps) => {
+}: AccordionProps): JSX.Element => {
   const [innerIsExpanded, setInnerIsExpanded] = useState(false);
   const [isResponsive, setIsResponsive] = useState(false);
   const colorsTheme = useTheme();

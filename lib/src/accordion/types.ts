@@ -19,7 +19,9 @@ type Props = {
    */
   label?: string;
   /**
-   * If true, the component will be expanded. If undefined, the component will be uncontrolled and its value will be managed internally by the component.
+   * Represents the state of the panel. When true, the component will be
+   * expanded. If undefined, the component will be uncontrolled and its
+   * value will be managed internally by the component.
    */
   isExpanded?: boolean;
   /**
@@ -39,12 +41,12 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * This function will be called when the user clicks the icon to open/close the panel.
-   * The state of the panel (opened/closed) should be passed as a parameter.
+   * This function will be called when the user clicks the accordion to expand or collapse
+   * the panel. The new state of the panel will be passed as a parameter.
    */
   onChange?: (isExpanded: boolean) => void;
   /**
-   * The expanded section of the accordion. This area can be used to render
+   * The expanded panel of the accordion. This area can be used to render
    * custom content.
    */
   children: React.ReactNode;

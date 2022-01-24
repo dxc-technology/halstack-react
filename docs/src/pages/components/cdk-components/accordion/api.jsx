@@ -46,14 +46,18 @@ const accordionPropsTable = () => {
         <td>
           <code>false</code>
         </td>
-        <td>If true, the component will be expanded.</td>
+        <td>
+          Represents the state of the panel. When true, the component will be
+          expanded. If undefined, the component will be uncontrolled and its
+          value will be managed internally by the component.
+        </td>
       </tr>
       <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the icon to
-          open/close the panel. The state of the panel (opened/closed) should be
+          This function will be called when the user clicks the accordion to
+          expand or collapse the panel. The new state of the panel will be
           passed as a parameter.
         </td>
       </tr>
@@ -61,7 +65,7 @@ const accordionPropsTable = () => {
         <td>children: node</td>
         <td></td>
         <td>
-          The expanded section of the accordion. This area can be used to render
+          The expanded panel of the accordion. This area can be used to render
           custom content.
         </td>
       </tr>
