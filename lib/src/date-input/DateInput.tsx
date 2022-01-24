@@ -56,7 +56,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       onChange?.({
         value: newValue,
         error: null,
-        date: newDate && newDate.toJSON() ? newDate : null,
+        date: newDate?.toJSON() ? newDate : null,
       });
     };
 
