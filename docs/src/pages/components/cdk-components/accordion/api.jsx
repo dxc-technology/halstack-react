@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const alertPropsTable = () => {
+const accordionPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -58,6 +58,14 @@ const alertPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          The expanded section of the accordion. This area can be used to render
+          custom content.
+        </td>
+      </tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>
@@ -80,12 +88,10 @@ const alertPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex.
-        </td>
+        <td>Value of the tabindex.</td>
       </tr>
     </DxcTable>
   );
 };
 
-export default alertPropsTable;
+export default accordionPropsTable;
