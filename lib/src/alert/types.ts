@@ -1,4 +1,3 @@
-type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -41,7 +40,7 @@ type Props = {
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent' | 'fitContent').
    */
-  size?: Size;
+  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   /**
    * Tabindex value given to the close button.
    */
