@@ -43,9 +43,7 @@ const accordionPropsTable = () => {
       </tr>
       <tr>
         <td>isExpanded: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
+        <td></td>
         <td>
           Represents the state of the panel. When true, the component will be
           expanded. If undefined, the component will be uncontrolled and its
