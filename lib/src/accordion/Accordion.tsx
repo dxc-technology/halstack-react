@@ -5,33 +5,31 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PropTypes from "prop-types";
-
 import { getMargin } from "../common/utils.js";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import AccordionProps from "./types";
 
 const DxcAccordion = ({
   label = "",
-  iconSrc = "",
+  isExpanded,
+  iconSrc,
   icon,
   assistiveText = "",
   disabled = false,
-  onChange = "",
-  isExpanded,
+  onChange,
   children,
   margin,
   padding,
   tabIndex = 0,
-}) => {
-  const [innerIsExpanded, setInnerIsExpanded] = React.useState(false);
-  const [isResponsive, setIsResponsive] = useState();
+}: AccordionProps) => {
+  const [innerIsExpanded, setInnerIsExpanded] = useState(false);
+  const [isResponsive, setIsResponsive] = useState(false);
   const colorsTheme = useTheme();
 
   const handleResize = (width) => {
-    if (width) {
-      if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
-    }
+    (width && width <= responsiveSizes.tablet) ? setIsResponsive(true) : setIsResponsive(false);
   };
 
   const handleEventListener = () => {
@@ -277,35 +275,5 @@ const AccordionIcon = styled.img`
   overflow: hidden;
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
 `;
-
-DxcAccordion.propTypes = {
-  label: PropTypes.string,
-  iconSrc: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  assistiveText: PropTypes.string,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  isExpanded: PropTypes.bool,
-  children: PropTypes.element,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcAccordion;
