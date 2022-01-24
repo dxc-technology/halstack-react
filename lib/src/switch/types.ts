@@ -37,7 +37,7 @@ type Props = {
    * This function will be called when the user changes the state of the switch. 
    * The new value of the checked attribute will be passed as a parameter.
    */
-  onChange?: (checked: boolean) => void;
+  onChange?: (checked?: boolean) => void;
   /**
    * If true, the switch will change its appearence, showing that the value is required.
    */
