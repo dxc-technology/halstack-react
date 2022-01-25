@@ -18,8 +18,7 @@ type Option = {
    */
   icon?: SVG;
   /**
-   * URL of the icon that will be placed next to the option label.
-   * Deprecated.
+   * @deprecated URL of the icon that will be placed next to the option label.
    */
   iconSrc?: string;
   /**
@@ -44,7 +43,7 @@ type Props = {
    */
   icon?: SVG;
   /**
-   * Deprecated. URL of the icon that will be placed next to the
+   * @deprecated URL of the icon that will be placed next to the
    * dropdown label.
    */
   iconSrc?: string;
