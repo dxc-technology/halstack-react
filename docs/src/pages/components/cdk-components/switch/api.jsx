@@ -16,12 +16,12 @@ const switchPropsTable = () => {
         </td>
         <td>
           If true, the component is checked. If undefined, the component will be
-          uncontrolled and the value will be managed internally by the
+          uncontrolled and the checked attribute will be managed internally by the
           component.
         </td>
       </tr>
       <tr>
-        <td>value: any</td>
+        <td>value: string</td>
         <td></td>
         <td>
           Will be passed to the value attribute of the html input element. When
@@ -67,8 +67,8 @@ const switchPropsTable = () => {
         <td>onChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the radio. The new
-          value will be passed as a parameter.
+          This function will be called when the user clicks the switch. The new
+          value of the checked attribute will be passed as a parameter.
         </td>
       </tr>
       <tr>
@@ -82,7 +82,7 @@ const switchPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'fitContent'</code>
         </td>

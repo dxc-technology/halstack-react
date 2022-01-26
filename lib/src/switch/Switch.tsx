@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { Switch } from "@material-ui/core";
 import DxcRequired from "../common/RequiredComponent";
 
@@ -9,35 +8,31 @@ import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 
+import SwitchPropsType from "./types";
+
 const DxcSwitch = ({
   checked,
   value,
-  label,
+  label = "",
   labelPosition = "before",
-  name,
+  name = "",
   disabled = false,
   onChange,
   required = false,
   margin,
   size = "fitContent",
   tabIndex = 0,
-}) => {
-  const [innerChecked, setInnerChecked] = useState(0);
+}: SwitchPropsType): JSX.Element => {
+  const [innerChecked, setInnerChecked] = useState(false);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
-  const handlerSwitchChange = (newValue) => {
+  const handlerSwitchChange = (event) => {
     if (checked === undefined) {
-      const isChecked = newValue.target.checked === undefined ? !innerChecked : newValue.target.checked;
+      const isChecked = event.target.checked ?? !innerChecked;
       setInnerChecked(isChecked);
-      if (typeof onChange === "function") {
-        onChange(isChecked);
-      }
-    } else {
-      if (typeof onChange === "function") {
-        onChange(!checked);
-      }
-    }
+      onChange?.(isChecked);
+    } else onChange?.(!checked);
   };
 
   return (
@@ -50,7 +45,7 @@ const DxcSwitch = ({
         backgroundType={backgroundType}
       >
         <Switch
-          checked={checked != undefined ? checked : innerChecked}
+          checked={checked ?? innerChecked}
           inputProps={{ name: name, tabIndex: tabIndex }}
           onChange={handlerSwitchChange}
           value={value}
@@ -59,7 +54,7 @@ const DxcSwitch = ({
         />
         <LabelContainer
           labelPosition={labelPosition}
-          onClick={disabled === true ? () => {} : handlerSwitchChange}
+          onClick={!disabled && handlerSwitchChange}
           disabled={disabled}
           backgroundType={backgroundType}
         >
@@ -79,12 +74,10 @@ const sizes = {
   fitContent: "unset",
 };
 
-const calculateWidth = (margin, size) => {
-  if (size === "fillParent") {
-    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-  }
-  return sizes[size];
-};
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
 const SwitchContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
@@ -102,8 +95,7 @@ const SwitchContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
-  opacity: 1;
-  
+
   .MuiSwitch-root {
     align-items: center;
     width: ${(props) => props.theme.trackWidth};
@@ -203,37 +195,18 @@ const LabelContainer = styled.span`
         ? props.theme.disabledLabelFontColorOnDark
         : props.theme.disabledLabelFontColor
       : props.backgroundType === "dark"
-        ? props.theme.labelFontColorOnDark
-        : props.theme.labelFontColor};
+      ? props.theme.labelFontColorOnDark
+      : props.theme.labelFontColor};
   opacity: 1;
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
   font-weight: ${(props) => props.theme.labelFontWeight};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
-  ${(props) => props.labelPosition === "after" ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};` : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`}
+  ${(props) =>
+    props.labelPosition === "after"
+      ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};`
+      : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`}
 `;
-
-DxcSwitch.propTypes = {
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  checked: PropTypes.bool,
-  value: PropTypes.any,
-  label: PropTypes.string,
-  labelPosition: PropTypes.oneOf(["after", "before", ""]),
-  name: PropTypes.string,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  required: PropTypes.bool,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcSwitch;
