@@ -101,7 +101,7 @@ export const Chromatic = () => (
 
 const Password = () => (
   <ExampleContainer>
-    <Title>Show password</Title>
+    <Title title="Show password" theme="light" level={4} />
     <DxcPasswordInput label="Password input" value="Password" />
   </ExampleContainer>
 );
@@ -109,7 +109,7 @@ const PasswordDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
       <ExampleContainer>
-        <Title>Show password</Title>
+        <Title title="Show password" theme="dark" level={4} />
         <DxcPasswordInput label="Password input" value="Password" />
       </ExampleContainer>
     </DarkContainer>
