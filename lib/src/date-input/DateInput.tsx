@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider, Paper } from "@material-ui/core";
@@ -6,12 +7,11 @@ import Popover from "@material-ui/core/Popover";
 import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
-import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import DxcTextInput from "../text-input/TextInput";
+import DateInputPropsType, { RefType } from "./types";
 
-const DxcDateInput = React.forwardRef(
+const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
     {
       label = "",
@@ -56,7 +56,7 @@ const DxcDateInput = React.forwardRef(
       onChange?.({
         value: newValue,
         error: null,
-        date: newDate && newDate.toJSON() ? newDate : null,
+        date: newDate?.toJSON() ? newDate : null,
       });
     };
 
@@ -68,7 +68,7 @@ const DxcDateInput = React.forwardRef(
       onChange?.({
         value: newValue,
         error: inputError || invalidDateMessage,
-        date: momentDate.isValid() ? momentDate._d : null,
+        date: momentDate.isValid() ? momentDate.toDate() : null,
       });
     };
 
@@ -79,7 +79,7 @@ const DxcDateInput = React.forwardRef(
       onBlur?.({
         value,
         error: inputError || invalidDateMessage,
-        date: momentDate.isValid() ? momentDate._d : null,
+        date: momentDate.isValid() ? momentDate.toDate() : null,
       });
     };
 
@@ -308,39 +308,6 @@ const DxcDateInput = React.forwardRef(
   }
 );
 
-const sizes = {
-  medium: "360px",
-  large: "480px",
-  fillParent: "100%",
-};
-
 const StyledDPicker = styled.div``;
-
-DxcDateInput.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  format: PropTypes.string,
-  helperText: PropTypes.string,
-  placeholder: PropTypes.bool,
-  clearable: PropTypes.bool,
-  disabled: PropTypes.bool,
-  optional: PropTypes.bool,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  error: PropTypes.string,
-  autocomplete: PropTypes.string,
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcDateInput;
