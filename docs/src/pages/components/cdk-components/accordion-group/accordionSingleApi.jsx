@@ -30,13 +30,6 @@ const AccordionGroupSinglePropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>iconPosition: 'before' | 'after'</td>
-        <td>
-          <code>'before'</code>
-        </td>
-        <td>Whether the icon should appear after or before the label.</td>
-      </tr>
-      <tr>
         <td>assistiveText: string</td>
         <td></td>
         <td>Assistive text to be placed on the right side of the panel.</td>
@@ -47,6 +40,14 @@ const AccordionGroupSinglePropsTable = () => {
           <code>false</code>
         </td>
         <td>If true, the component will be disabled.</td>
+      </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          The expanded panel of the accordion. This area can be used to render
+          custom content.
+        </td>
       </tr>
       <tr>
         <td>padding: string | object</td>

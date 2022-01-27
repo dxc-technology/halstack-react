@@ -1,5 +1,3 @@
-import AccordionPropsType from "../accordion/types";
-
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -7,30 +5,50 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
+type Padding = {
+  top?: Space;
+  bottom?: Space;
+  left?: Space;
+  right?: Space;
+};
+type SVG = HTMLElement & SVGElement;
 
-// type Padding = {
-//   top?: Space;
-//   bottom?: Space;
-//   left?: Space;
-//   right?: Space;
-// };
-// type SVG = HTMLElement & SVGElement;
-// type AccordionPropsType = {
-//   label?: string;
-//   icon?: SVG;
-//   /**
-//    * @deprecated
-//    */
-//   iconSrc?: string;
-//   // iconPosition?: "before" | "after";
-//   assistiveText?: string;
-//   disabled?: boolean;
-//   padding?: Space | Padding;
-// };
+export type AccordionPropsType = {
+  /**
+   * The panel label.
+   */
+  label?: string;
+  /**
+   * Element used as the icon that will be placed next to panel label.
+   */
+  icon?: SVG;
+  /**
+   * @deprecated URL of the icon that will be placed next to panel label.
+   */
+  iconSrc?: string;
+  /**
+   * Assistive text to be placed on the right side of the panel.
+   */
+  assistiveText?: string;
+  /**
+   * If true, the component will be disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Size of the padding to be applied to the custom area ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different padding sizes.
+   */
+  padding?: Space | Padding;
+  /**
+   * The expanded panel of the accordion. This area can be used to render
+   * custom content.
+   */
+  children: React.ReactNode;
+};
 
 type Props = {
   /**
-   * The index of the active accordion. If undefined, the component will be uncontrolled and the active accordion will be managed internally by the component. 
+   * The index of the active accordion. If undefined, the component will be uncontrolled and the active accordion will be managed internally by the component.
    * If null, the component will be controlled and all accordions will be closed.
    */
   indexActive?: number;
@@ -48,7 +66,7 @@ type Props = {
    */
   margin?: Space | Margin;
   /**
-   * Customized accordion(s) that are allowed inside an Accordion Group. 
+   * Customized accordion(s) that are allowed inside an Accordion Group.
    */
   children: React.ReactElement<AccordionPropsType>[] | React.ReactElement<AccordionPropsType>;
 };

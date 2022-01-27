@@ -1,36 +1,57 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcAccordion from "../accordion/Accordion";
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
-import AccordionGroupPropsType from "./types";
+import AccordionGroupPropsType, { AccordionPropsType } from "./types";
 
-const Accordion = ({ margin, ...childProps }): JSX.Element => (
-  <DxcAccordion {...childProps}>{childProps.children}</DxcAccordion>
-);
+type AccordionGroupAccordionContext = {
+  innerIsExpanded: number;
+  handlerActiveChange: (index: number) => void;
+  disabled: boolean;
+  index: number;
+};
+const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContext | null>(null);
+
+const AccordionGroupAccordion = ({ ...childProps }: AccordionPropsType): JSX.Element => {
+  const { innerIsExpanded, handlerActiveChange, disabled, index } = useContext(AccordionGroupAccordionContext);
+
+  return (
+    <DxcAccordion
+      isExpanded={innerIsExpanded === index}
+      onChange={() => {
+        handlerActiveChange(index);
+      }}
+      disabled={disabled}
+      {...childProps}
+    >
+      {childProps.children}
+    </DxcAccordion>
+  );
+};
 
 const DxcAccordionGroup = ({
-  disabled = false,
   indexActive,
+  disabled = false,
   onActiveChange,
   margin,
   children,
 }: AccordionGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
-  const [innerIsExpanded, setInnerIsExpanded] = useState(indexActive);
+  const [innerIsExpanded, setInnerIsExpanded] = useState(0);
+  const handlerActiveChange = useCallback(
+    (index) => {
+      indexActive === undefined
+        ? setInnerIsExpanded((prev) => (index === prev ? -1 : index))
+        : setInnerIsExpanded(indexActive);
 
-  const handlerActiveChange = (index) => {
-    if (indexActive === undefined) {
-      setInnerIsExpanded(index === innerIsExpanded ? -1 : index);
-    } else {
-      setInnerIsExpanded(indexActive);
-    }
-    if (typeof onActiveChange === "function" && !disabled) {
-      onActiveChange(index);
-    }
-  };
+      !disabled && onActiveChange?.(index);
+    },
+    [disabled, indexActive, onActiveChange]
+  );
+  const value = useMemo(() => ({ innerIsExpanded, handlerActiveChange, disabled }), [innerIsExpanded, disabled]);
 
   useEffect(() => {
     setInnerIsExpanded(indexActive);
@@ -40,24 +61,20 @@ const DxcAccordionGroup = ({
     <ThemeProvider theme={colorsTheme.accordion}>
       <AccordionGroupContainer margin={margin} disabled={disabled}>
         {(Array.isArray(children) ? children : [children])
-          .filter((el) => el.type === Accordion)
-          .map((el, index) =>
-            React.cloneElement(el, {
-              onChange: () => {
-                handlerActiveChange(index);
-              },
-              isExpanded: index === innerIsExpanded,
-              disabled: disabled || el.props.disabled,
-            })
-          )}
+          .filter((child) => child.type === AccordionGroupAccordion)
+          .map((accordion, index) => (
+            <AccordionGroupAccordionContext.Provider value={{ index, ...value }}>
+              {accordion}
+            </AccordionGroupAccordionContext.Provider>
+          ))}
       </AccordionGroupContainer>
     </ThemeProvider>
   );
 };
 
-const calculateWidth = (margin) => {
-  return `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-};
+DxcAccordionGroup.Accordion = AccordionGroupAccordion;
+
+const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const AccordionGroupContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin)};
@@ -69,7 +86,7 @@ const AccordionGroupContainer = styled.div`
     margin && typeof margin === "object" && margin.bottom ? spaces[margin.bottom] : ""};
   margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
 
-  cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   & > :not(div:last-child) {
     & > div:first-child {
@@ -81,7 +98,6 @@ const AccordionGroupContainer = styled.div`
       & > .Mui-expanded {
         border-radius: 0;
       }
-
       & > .MuiButtonBase-root {
         border-radius: 0;
       }
@@ -104,7 +120,6 @@ const AccordionGroupContainer = styled.div`
         border-top-left-radius: ${(props) => props.theme.borderRadius};
         border-top-right-radius: ${(props) => props.theme.borderRadius};
       }
-
       & > .MuiButtonBase-root {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
@@ -127,7 +142,6 @@ const AccordionGroupContainer = styled.div`
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
-
       & > .MuiButtonBase-root {
         border-bottom-left-radius: ${(props) => props.theme.borderRadius};
         border-bottom-right-radius: ${(props) => props.theme.borderRadius};
@@ -137,7 +151,5 @@ const AccordionGroupContainer = styled.div`
     }
   }
 `;
-
-DxcAccordionGroup.Accordion = Accordion;
 
 export default DxcAccordionGroup;
