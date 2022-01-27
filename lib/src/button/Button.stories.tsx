@@ -258,7 +258,7 @@ export const Chromatic = () => (
         <Title title="Medium size" theme="light" level={4}/>
         <DxcButton label="FitContent" size="fitContent" />
       </ExampleContainer>
-      <Title title="Margins" theme="light" level={4}/>
+      <Title title="Margins" theme="light" level={2}/>
       <ExampleContainer>
         <Title title="Xxsmall margin" theme="light" level={4}/>
         <DxcButton label="Xxsmall margin" margin="xxsmall" />
