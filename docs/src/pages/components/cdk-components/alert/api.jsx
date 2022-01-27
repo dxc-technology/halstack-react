@@ -72,11 +72,14 @@ const alertPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'fitContent'</code>
         </td>
-        <td>Size of the component ('small' | 'medium' | 'large' | 'fillParent' | 'fitContent').</td>
+        <td>
+          Size of the component ('small' | 'medium' | 'large' | 'fillParent' |
+          'fitContent').
+        </td>
       </tr>
       <tr>
         <td>tabIndex: number</td>
