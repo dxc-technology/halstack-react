@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useContext } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
@@ -330,32 +329,5 @@ const StyledTextInput = styled.div`
   }
   max-width: 70px;
 `;
-
-DxcSlider.propTypes = {
-  label: PropTypes.string,
-  helperText: PropTypes.string,
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  minValue: PropTypes.number,
-  maxValue: PropTypes.number,
-  step: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  showLimitsValues: PropTypes.bool,
-  showInput: PropTypes.bool,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-  onDragEnd: PropTypes.func,
-  disabled: PropTypes.bool,
-  marks: PropTypes.bool,
-  labelFormatCallback: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
 
 export default DxcSlider;
