@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 
 import DxcBox from "../box/Box";
+import CardPropsType from "./types";
 
 const DxcCard = ({
   imageSrc,
-  children,
-  margin,
-  contentPadding,
+  imageBgColor = "black",
+  imagePadding,
+  imagePosition = "before",
   linkHref,
   onClick,
-  imageBgColor,
-  imagePadding,
-  imagePosition,
-  outlined,
-  imageCover,
+  imageCover = false,
+  margin,
+  contentPadding,
   tabIndex = 0,
-}) => {
+  outlined = false,
+  children,
+}: CardPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   const [isHovered, changeIsHovered] = useState(false);
@@ -116,48 +116,5 @@ const CardContent = styled.div`
     contentPadding && typeof contentPadding === "object" && contentPadding.left ? spaces[contentPadding.left] : ""};
   overflow: hidden;
 `;
-
-DxcCard.propTypes = {
-  imageSrc: PropTypes.string,
-  imageBgColor: PropTypes.string,
-  imagePadding: PropTypes.oneOf([...Object.keys(spaces)]),
-  imagePosition: PropTypes.oneOf(["before", "after"]),
-  linkHref: PropTypes.string,
-  onClick: PropTypes.func,
-  outlined: PropTypes.bool,
-  imageCover: PropTypes.bool,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  contentPadding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
-
-DxcCard.defaultProps = {
-  imageSrc: null,
-  margin: null,
-  contentPadding: null,
-  outlined: false,
-  imagePadding: null,
-  imageCover: false,
-  linkHref: null,
-  onClick: null,
-  imageBgColor: "black",
-  imagePosition: "before",
-};
 
 export default DxcCard;
