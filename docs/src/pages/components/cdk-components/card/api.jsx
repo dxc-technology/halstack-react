@@ -47,7 +47,7 @@ const buttonPropsTable = () => {
         <td>linkHref: string</td>
         <td></td>
         <td>
-          If defined, the tag will be displayed as an anchor, using this prop as
+          If defined, the card will be displayed as an anchor, using this prop as
           "href". Component will show some visual feedback on hover.
         </td>
       </tr>
