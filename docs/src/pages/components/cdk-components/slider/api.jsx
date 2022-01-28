@@ -10,9 +10,22 @@ const sliderPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>value: number</td>
+        <td></td>
+        <td>
+          The selected value. If undefined, the component will be uncontrolled
+          and the value will be managed internally by the component.
+        </td>
+      </tr>
+      <tr>
         <td>label: string</td>
         <td></td>
         <td>Text to be placed above the slider.</td>
+      </tr>
+      <tr>
+        <td>name: string</td>
+        <td></td>
+        <td>Name attribute of the input element.</td>
       </tr>
       <tr>
         <td>helperText: string</td>
@@ -41,16 +54,6 @@ const sliderPropsTable = () => {
         <td>The step interval between values available for selection.</td>
       </tr>
       <tr>
-        <td>value: number</td>
-        <td>
-          <code>0</code>
-        </td>
-        <td>
-          The selected value. If undefined, the component will be uncontrolled
-          and the value will be managed internally by the component.
-        </td>
-      </tr>
-      <tr>
         <td>showLimitsValues: boolean</td>
         <td>
           <code>false</code>
@@ -61,26 +64,14 @@ const sliderPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>marks: boolean</td>
-        <td>
-          <code>false</code>
-        </td>
-        <td>Whether the marks between each step should be shown or not.</td>
-      </tr>
-      <tr>
         <td>showInput: boolean</td>
         <td>
           <code>false</code>
         </td>
         <td>
-          Whether the input number for displaying/controlling the slider value
+          Whether the input element for displaying/controlling the slider value
           should be displayed next to the slider.
         </td>
-      </tr>
-      <tr>
-        <td>name: string</td>
-        <td></td>
-        <td>Name attribute of the input element.</td>
       </tr>
       <tr>
         <td>disabled: boolean</td>
@@ -88,6 +79,13 @@ const sliderPropsTable = () => {
           <code>false</code>
         </td>
         <td>If true, the component will be disabled.</td>
+      </tr>
+      <tr>
+        <td>marks: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>Whether the marks between each step should be shown or not.</td>
       </tr>
       <tr>
         <td>onChange: function</td>
@@ -127,11 +125,11 @@ const sliderPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'fillParent'</code>
         </td>
-        <td>Size of the component ('medium' | 'large' | 'fillParent' ).</td>
+        <td>Size of the component ('medium' | 'large' | 'fillParent').</td>
       </tr>
     </DxcTable>
   );

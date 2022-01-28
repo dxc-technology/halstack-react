@@ -10,19 +10,19 @@ import BackgroundColorContext from "../BackgroundColorContext.js";
 import SliderPropsType from "./types";
 
 const DxcSlider = ({
-  label,
-  helperText,
+  label = "",
+  name = "",
+  value,
+  helperText = "",
   minValue = 0,
   maxValue = 100,
   step = 1,
-  value,
   showLimitsValues = false,
   showInput = false,
-  name,
-  onChange,
-  onDragEnd,
   disabled = false,
   marks = false,
+  onChange,
+  onDragEnd,
   labelFormatCallback,
   margin,
   size = "fillParent",
@@ -42,29 +42,32 @@ const DxcSlider = ({
 
   const handlerSliderChange = (event, newValue) => {
     if (value == null) {
-      const valueToCheck = value !== undefined ? value : innerValue;
-      if (valueToCheck !== newValue) {
-        setInnerValue(newValue);
-      }
+      const valueToCheck = value !== undefined ? value : innerValue; // ?? va a ser siempre innerValue, si no no entraria
+      valueToCheck !== newValue && setInnerValue(newValue);
     }
-    if (typeof onChange === "function") {
-      onChange(newValue);
-    }
+    /**
+     * PROPUESTA:
+     * const valueToCheck = value ?? innerValue; // ?? va a ser siempre innerValue, si no no entraria
+     * valueToCheck !== newValue && setInnerValue(newValue);
+     */
+    typeof onChange === "function" && onChange(newValue); // onChange?.(newValue); ??
+  };
+
+  const handleSliderOnChangeCommited = (event, selectedValue) => {
+    onDragEnd?.(selectedValue);
   };
 
   const handlerInputChange = (event) => {
     const intValue = parseInt(event.value, 10);
     if (value == null) {
-      if (!Number.isNaN(intValue))
-        setInnerValue(intValue > maxValue ? maxValue : intValue);
+      if (!Number.isNaN(intValue)) setInnerValue(intValue > maxValue ? maxValue : intValue);
       // } else {
       //   setInnerValue("");
       // }
     }
-
     if (!Number.isNaN(intValue)) {
       onChange?.(intValue > maxValue ? maxValue : intValue);
-    } 
+    }
     // else {
     //   onChange("");
     // }
@@ -86,7 +89,7 @@ const DxcSlider = ({
             min={minValue}
             max={maxValue}
             onChange={handlerSliderChange}
-            onChangeCommitted={onDragEnd && ((event, selectedValue) => onDragEnd(selectedValue))}
+            onChangeCommitted={handleSliderOnChangeCommited}
             step={step}
             marks={marks || []}
             disabled={disabled}
