@@ -7,6 +7,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import SliderPropsType from "./types";
 
 const DxcSlider = ({
   label,
@@ -25,7 +26,7 @@ const DxcSlider = ({
   labelFormatCallback,
   margin,
   size = "fillParent",
-}) => {
+}: SliderPropsType): JSX.Element => {
   const [innerValue, setInnerValue] = useState(0);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
@@ -54,19 +55,19 @@ const DxcSlider = ({
   const handlerInputChange = (event) => {
     const intValue = parseInt(event.value, 10);
     if (value == null) {
-      if (!Number.isNaN(intValue)) {
+      if (!Number.isNaN(intValue))
         setInnerValue(intValue > maxValue ? maxValue : intValue);
-      } else {
-        setInnerValue("");
-      }
+      // } else {
+      //   setInnerValue("");
+      // }
     }
-    if (typeof onChange === "function") {
-      if (!Number.isNaN(intValue)) {
-        onChange(intValue > maxValue ? maxValue : intValue);
-      } else {
-        onChange("");
-      }
-    }
+
+    if (!Number.isNaN(intValue)) {
+      onChange?.(intValue > maxValue ? maxValue : intValue);
+    } 
+    // else {
+    //   onChange("");
+    // }
   };
 
   return (
