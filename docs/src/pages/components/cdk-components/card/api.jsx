@@ -55,13 +55,15 @@ const buttonPropsTable = () => {
         <td>onClick: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the tag. Component
+          This function will be called when the user clicks the card. Component
           will show some visual feedback on hover.
         </td>
       </tr>
       <tr>
         <td>imageCover: boolean</td>
-        <td></td>
+        <td>
+          <code>false</code>
+        </td>
         <td>Whether the image must cover the whole image area of the card.</td>
       </tr>
       <tr>
@@ -88,6 +90,18 @@ const buttonPropsTable = () => {
         <td>tabIndex: number</td>
         <td>0</td>
         <td>Value of the tabindex given when there is an href.</td>
+      </tr>
+      <tr>
+        <td>outlined: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>Whether the card must be outlined.</td>
+      </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>Custom content that will be placed in the card component.</td>
       </tr>
     </DxcTable>
   );
