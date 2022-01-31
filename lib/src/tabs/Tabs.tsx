@@ -10,7 +10,7 @@ import TabsPropsType from "./types";
 
 const DxcTabs = ({
   activeTabIndex,
-  tabs = [],
+  tabs,
   onTabClick,
   onTabHover,
   margin,

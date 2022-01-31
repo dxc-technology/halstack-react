@@ -38,29 +38,29 @@ type Props = {
   /**
    * An array of objects representing the tabs.
    */
-  tabs: Tab[];
+  tabs: [Tab, ...Tab[]];
   /**
    * Whether the icon should appear above or to the left of the label.
    */
   iconPosition?: "top" | "left";
   /**
-   * The index of the active tab. If undefined, the component will be 
+   * The index of the active tab. If undefined, the component will be
    * uncontrolled and the active tab will be managed internally by the component.
    */
   activeTabIndex?: number;
   /**
-   * This function will be called when the user clicks on a tab. The index of the 
+   * This function will be called when the user clicks on a tab. The index of the
    * clicked tab will be passed as a parameter.
    */
   onTabClick?: (tabIndex: number) => void;
   /**
-   * This function will be called when the user hovers a tab.The index of the 
+   * This function will be called when the user hovers a tab.The index of the
    * hovered tab will be passed as a parameter.
    */
   onTabHover?: (tabIndex: number) => void;
   /**
-   * Size of the margin to be applied to the component. You can pass an object 
-   * with 'top', 'bottom', 'left' and 'right' properties in order to specify 
+   * Size of the margin to be applied to the component. You can pass an object
+   * with 'top', 'bottom', 'left' and 'right' properties in order to specify
    * different margin sizes.
    */
   margin?: Space | Margin;
