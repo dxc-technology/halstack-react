@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef, useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
-import PropTypes from "prop-types";
 import DxcDropdown from "../dropdown/Dropdown";
 import { hamburgerIcon, closeIcon, dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import HeaderPropsType from "./types";
 
 const Dropdown = (props) => {
   return (
@@ -35,11 +35,19 @@ const getLogoElement = (themeInput) => {
   return themeInput;
 };
 
-const DxcHeader = ({ underlined = false, onClick, content, responsiveContent, margin, padding, tabIndex = 0 }) => {
+const DxcHeader = ({
+  underlined = false,
+  content,
+  responsiveContent,
+  onClick,
+  margin,
+  padding,
+  tabIndex = 0,
+}: HeaderPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
-  const [isResponsive, setIsResponsive] = useState();
+  const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const handleResize = (refWidth) => {
@@ -52,7 +60,7 @@ const DxcHeader = ({ underlined = false, onClick, content, responsiveContent, ma
       }
     }
   };
-  const ContentContainerComponent = () => {
+  const ContentContainerComponent = (props: any) => {
     const backgroundType = useContext(BackgroundColorContext);
     return (
       (isResponsive && <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>) || (
@@ -324,31 +332,5 @@ const Overlay = styled.div`
   transition: opacity 0.2s 0.2s ease-in-out;
   z-index: ${(props) => props.theme.overlayZindex};
 `;
-
-DxcHeader.propTypes = {
-  underlined: PropTypes.bool,
-  onClick: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  content: PropTypes.object,
-  responsiveContent: PropTypes.func,
-  tabIndex: PropTypes.number,
-};
 
 export default DxcHeader;
