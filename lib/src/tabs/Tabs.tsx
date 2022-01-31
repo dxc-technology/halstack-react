@@ -25,9 +25,7 @@ const DxcTabs = ({
     if (activeTabIndex == null) {
       setInnerActiveTabIndex(newValue);
     }
-    if (typeof onTabClick === "function") {
-      onTabClick(newValue);
-    }
+    onTabClick(newValue);
   };
 
   const getLabelForTab = (tab) => {
