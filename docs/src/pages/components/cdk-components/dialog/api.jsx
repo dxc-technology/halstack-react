@@ -28,7 +28,7 @@ const checkboxPropsTable = () => {
         <td>onBackgroundClick: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks background of the modal button. The
+          This function will be called when the user clicks background of the dialog. The
           responsibility of hiding the modal lies with the user.
         </td>
       </tr>
