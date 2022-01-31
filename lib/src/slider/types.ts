@@ -76,6 +76,10 @@ type Props = {
    * Size of the component.
    */
   size?: Size;
+  /**
+   * Value of the tabindex attribute.
+   */
+  tabIndex?: number;
 };
 
 export default Props;

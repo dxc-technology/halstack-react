@@ -25,6 +25,7 @@ const DxcSlider = ({
   labelFormatCallback,
   margin,
   size = "fillParent",
+  tabIndex = 0,
 }: SliderPropsType): JSX.Element => {
   const [innerValue, setInnerValue] = useState(0);
   const colorsTheme = useTheme();
@@ -40,16 +41,9 @@ const DxcSlider = ({
   );
 
   const handlerSliderChange = (event, newValue) => {
-    if (value == null) {
-      const valueToCheck = value !== undefined ? value : innerValue; // ?? va a ser siempre innerValue, si no no entraria
-      valueToCheck !== newValue && setInnerValue(newValue);
-    }
-    /**
-     * PROPUESTA:
-     * const valueToCheck = value ?? innerValue; // ?? va a ser siempre innerValue, si no no entraria
-     * valueToCheck !== newValue && setInnerValue(newValue);
-     */
-    typeof onChange === "function" && onChange(newValue); // onChange?.(newValue); ??
+    const valueToCheck = value ?? innerValue;
+    valueToCheck !== newValue && setInnerValue(newValue);
+    onChange?.(newValue);
   };
 
   const handleSliderOnChangeCommited = (event, selectedValue) => {
@@ -60,16 +54,10 @@ const DxcSlider = ({
     const intValue = parseInt(event.value, 10);
     if (value == null) {
       if (!Number.isNaN(intValue)) setInnerValue(intValue > maxValue ? maxValue : intValue);
-      // } else {
-      //   setInnerValue("");
-      // }
     }
     if (!Number.isNaN(intValue)) {
       onChange?.(intValue > maxValue ? maxValue : intValue);
     }
-    // else {
-    //   onChange("");
-    // }
   };
 
   return (
@@ -84,7 +72,7 @@ const DxcSlider = ({
             </MinLabelContainer>
           )}
           <Slider
-            value={(value != null && value >= 0 && value) || innerValue}
+            value={(value != null && value >= 0 && value) || innerValue} // === value ?? innerValue
             min={minValue}
             max={maxValue}
             onChange={handlerSliderChange}
@@ -92,6 +80,7 @@ const DxcSlider = ({
             step={step}
             marks={marks || []}
             disabled={disabled}
+            tabIndex={tabIndex}
           />
           {showLimitsValues && (
             <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
@@ -106,6 +95,7 @@ const DxcSlider = ({
                 disabled={disabled}
                 onChange={handlerInputChange}
                 size="fillParent"
+                tabIndex={tabIndex}
               />
             </StyledTextInput>
           )}
