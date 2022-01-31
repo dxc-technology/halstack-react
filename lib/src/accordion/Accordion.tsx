@@ -8,7 +8,7 @@ import { getMargin } from "../common/utils.js";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
-import AccordionProps from "./types";
+import AccordionPropsType from "./types";
 
 const DxcAccordion = ({
   label = "",
@@ -22,7 +22,7 @@ const DxcAccordion = ({
   margin,
   padding,
   tabIndex = 0,
-}: AccordionProps): JSX.Element => {
+}: AccordionPropsType): JSX.Element => {
   const [innerIsExpanded, setInnerIsExpanded] = useState(false);
   const [isResponsive, setIsResponsive] = useState(false);
   const colorsTheme = useTheme();
