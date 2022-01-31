@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const alertPropsTable = () => {
+const accordionPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -43,18 +43,28 @@ const alertPropsTable = () => {
       </tr>
       <tr>
         <td>isExpanded: boolean</td>
+        <td></td>
         <td>
-          <code>false</code>
+          Represents the state of the panel. When true, the component will be
+          expanded. If undefined, the component will be uncontrolled and its
+          value will be managed internally by the component.
         </td>
-        <td>If true, the component will be expanded.</td>
       </tr>
       <tr>
         <td>onChange: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the icon to
-          open/close the panel. The state of the panel (opened/closed) should be
+          This function will be called when the user clicks the accordion to
+          expand or collapse the panel. The new state of the panel will be
           passed as a parameter.
+        </td>
+      </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          The expanded panel of the accordion. This area can be used to render
+          custom content.
         </td>
       </tr>
       <tr>
@@ -80,12 +90,10 @@ const alertPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex.
-        </td>
+        <td>Value of the tabindex.</td>
       </tr>
     </DxcTable>
   );
 };
 
-export default alertPropsTable;
+export default accordionPropsTable;
