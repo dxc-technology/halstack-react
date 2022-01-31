@@ -21,7 +21,7 @@ const radioPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>value: any</td>
+        <td>value: string</td>
         <td></td>
         <td>
           Will be passed to the value attribute of the html input element. When
