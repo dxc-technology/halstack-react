@@ -21,15 +21,15 @@ const checkboxPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user clicks the close 'x' button. The responsibility
-          of hiding the modal lies with the user.
+          of hiding the dialog lies with the user.
         </td>
       </tr>
       <tr>
         <td>onBackgroundClick: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks background of the dialog. The
-          responsibility of hiding the modal lies with the user.
+          This function will be called when the user clicks background. The
+          responsibility of hiding the dialog lies with the user.
         </td>
       </tr>
       <tr>
