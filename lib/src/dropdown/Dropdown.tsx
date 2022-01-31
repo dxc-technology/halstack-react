@@ -13,7 +13,7 @@ import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 
 const DxcDropdown = ({
-  options = [],
+  options,
   optionsIconPosition = "before",
   icon,
   iconSrc = "",

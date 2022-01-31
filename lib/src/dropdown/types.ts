@@ -11,7 +11,7 @@ type Option = {
   /**
    * Option display value.
    */
-  label: string;
+  label?: string;
   /**
    * Element used as the icon that will be placed next to the
    * option label.
@@ -31,7 +31,7 @@ type Props = {
   /**
    * An array of objects representing the options.
    */
-  options?: Option[];
+  options: [Option, ...Option[]];
   /**
    * In case options include icons, whether the icon should appear
    * after or before the label.
