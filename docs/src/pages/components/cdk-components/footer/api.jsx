@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const alertPropsTable = () => {
+const footerPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -65,11 +65,13 @@ const alertPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>margin: string</td>
+        <td>margin: string | object</td>
         <td></td>
         <td>
-          Size of the top margin to be applied to the footer ('xxsmall' |
-          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+          Size of the margin to be applied to the component ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different margin sizes.
         </td>
       </tr>
       <tr>
@@ -94,4 +96,4 @@ const alertPropsTable = () => {
   );
 };
 
-export default alertPropsTable;
+export default footerPropsTable;
