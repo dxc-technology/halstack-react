@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
-import PropTypes from "prop-types";
+import DialogPropsType from "./types";
 
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
@@ -15,20 +15,20 @@ const DxcDialog = ({
   onBackgroundClick,
   padding,
   tabIndex = 0,
-}) => {
-  const [isResponsive, setIsResponsive] = useState();
+}: DialogPropsType): JSX.Element => {
+  const [isResponsive, setIsResponsive] = useState(false);
   const colorsTheme = useTheme();
 
   const handleClose = () => {
-    typeof onCloseClick === "function" && onCloseClick();
+    onCloseClick();
   };
 
   const handleOverlayClick = () => {
-    typeof onBackgroundClick === "function" && onBackgroundClick();
+    onBackgroundClick();
   };
 
   const handleResize = (width) => {
-    (width && width <= responsiveSizes.tablet) ? setIsResponsive(true) : setIsResponsive(false);
+    setIsResponsive(width && width <= responsiveSizes.tablet);
   };
 
   const handleEventListener = () => {
@@ -132,24 +132,5 @@ const CloseIcon = styled.svg`
   border-style: ${(props) => props.theme.closeIconBorderStyle};
   border-color: ${(props) => props.theme.closeIconBorderColor};
 `;
-
-DxcDialog.propTypes = {
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  isVisible: PropTypes.bool,
-  isCloseVisible: PropTypes.bool,
-  onClose: PropTypes.func,
-  onCloseClick: PropTypes.func,
-  onBackgroundClick: PropTypes.func,
-  overlay: PropTypes.bool,
-  tabIndex: PropTypes.number,
-};
 
 export default DxcDialog;
