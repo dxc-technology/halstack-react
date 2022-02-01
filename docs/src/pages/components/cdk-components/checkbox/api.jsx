@@ -21,7 +21,7 @@ const checkboxPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>value: any</td>
+        <td>value: string</td>
         <td></td>
         <td>
           Will be passed to the value attribute of the html input element. When
@@ -82,7 +82,7 @@ const checkboxPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'fitContent'</code>
         </td>

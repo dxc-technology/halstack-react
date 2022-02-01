@@ -1,4 +1,3 @@
-type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -21,7 +20,7 @@ type Props = {
   /**
    * Text to be placed next to the checkbox.
    */
-  label?: string;
+  label: string;
   /**
    * Whether the label should appear after or before the checkbox.
    */
@@ -53,7 +52,7 @@ type Props = {
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent' | 'fitContent').
    */
-  size?: Size;
+  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   /**
    * Value of the tabindex.
    */
