@@ -68,7 +68,7 @@ const footerPropsTable = () => {
         <td>margin: string</td>
         <td></td>
         <td>
-          Size of the margin to be applied to the component ('xxsmall' |
+          Size of the top margin to be applied to the footer ('xxsmall' |
           'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
         </td>
       </tr>

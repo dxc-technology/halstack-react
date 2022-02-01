@@ -7,7 +7,7 @@ import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 import dxcLogo from "./Icons";
 import FooterPropsType from "./types";
 
-const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", children, padding, margin, tabIndex = 0 }: FooterPropsType): JSX.Element => {
+const DxcFooter = ({ socialLinks, bottomLinks, copyright = "", children, padding, margin, tabIndex = 0 }: FooterPropsType): JSX.Element => {
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
@@ -53,7 +53,7 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", childre
     };
   }, []);
 
-  const socialLink = socialLinks.map((link, index) => (
+  const socialLink = socialLinks?.map((link, index) => (
     <SocialAnchor
       tabIndex={tabIndex}
       key={`social${index}${link.href}`}
@@ -70,7 +70,7 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", childre
     </SocialAnchor>
   ));
 
-  const bottomLink = bottomLinks.map((link, index) => (
+  const bottomLink = bottomLinks?.map((link, index) => (
     <span key={`bottom${index}${link.text}`}>
       <BottomLink tabIndex={tabIndex} href={link && link.href ? link.href : ""}>
         {link && link.text ? link.text : ""}
