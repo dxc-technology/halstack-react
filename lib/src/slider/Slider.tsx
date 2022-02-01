@@ -72,7 +72,7 @@ const DxcSlider = ({
             </MinLabelContainer>
           )}
           <Slider
-            value={(value != null && value >= 0 && value) || innerValue} // === value ?? innerValue
+            value={(value != null && value >= 0 && value) || innerValue}
             min={minValue}
             max={maxValue}
             onChange={handlerSliderChange}
