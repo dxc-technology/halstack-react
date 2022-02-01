@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import ProgressBarPropsType from "./types";
 
-const DxcProgressBar = ({ label = "", helperText = "", overlay = true, value, showValue = false, margin }) => {
+const DxcProgressBar = ({
+  label = "",
+  helperText = "",
+  overlay = true,
+  value,
+  showValue = false,
+  margin,
+}: ProgressBarPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
@@ -20,13 +27,12 @@ const DxcProgressBar = ({ label = "", helperText = "", overlay = true, value, sh
               {label}
             </ProgressBarLabel>
             <ProgressBarProgress overlay={overlay} showValue={showValue} backgroundType={backgroundType}>
-              {value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100} %
+              {value === null ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100} %
             </ProgressBarProgress>
           </InfoProgressBar>
           <LinearProgress
             variant={showValue ? "determinate" : "indeterminate"}
-            value={value === "" ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}
-            helperText={helperText}
+            value={value === null ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}
           />
           {helperText && (
             <HelperText overlay={overlay} backgroundType={backgroundType}>
@@ -141,22 +147,5 @@ const HelperText = styled.span`
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: 1.5em;
 `;
-
-DxcProgressBar.propTypes = {
-  label: PropTypes.string,
-  helperText: PropTypes.string,
-  overlay: PropTypes.bool,
-  value: PropTypes.number,
-  showValue: PropTypes.bool,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
 
 export default DxcProgressBar;
