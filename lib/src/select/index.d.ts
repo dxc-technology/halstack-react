@@ -74,8 +74,8 @@ type Props = {
   disabled?: boolean;
   /**
    * If true, the select will be optional, showing '(Optional)'
-   * next to the label and adding a default first option with empty value, been
-   * the placeholder (if defined) its label. Otherwise, the field will be
+   * next to the label and adding a default first option with an empty string as value, 
+   * been the placeholder (if defined) its label. Otherwise, the field will be
    * considered required and an error will be passed as a parameter to the
    * OnBlur and onChange functions if an option wasn't selected.
    */
