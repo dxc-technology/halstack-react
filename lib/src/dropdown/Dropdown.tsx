@@ -1,32 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import { ClickAwayListener } from "@material-ui/core";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import MenuList from "@material-ui/core/MenuList";
+import DropdownPropsType from "./types";
 
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 
 const DxcDropdown = ({
-  options = [],
+  options,
   optionsIconPosition = "before",
   icon,
   iconSrc = "",
   iconPosition = "before",
   label = "",
-  disabled = false,
   caretHidden = false,
   onSelectOption,
+  expandOnHover = false,
   margin,
   size = "fitContent",
-  expandOnHover = false,
   tabIndex = 0,
-}) => {
+  disabled = false,
+}: DropdownPropsType): JSX.Element => {
   const [width, setWidth] = useState();
   const colorsTheme = useTheme();
 
@@ -54,9 +54,7 @@ const DxcDropdown = ({
 
   function handleMenuItemClick(option) {
     setAnchorEl(null);
-    if (typeof onSelectOption === "function") {
-      onSelectOption(option.value);
-    }
+    onSelectOption(option.value);
   }
 
   function handleClose() {
@@ -390,36 +388,5 @@ const CaretIconContainer = styled.div`
     height: ${(props) => props.theme.caretIconSize};
   }
 `;
-
-DxcDropdown.propTypes = {
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  optionsIconPosition: PropTypes.oneOf(["after", "before", ""]),
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  iconSrc: PropTypes.string,
-  iconPosition: PropTypes.oneOf(["after", "before", ""]),
-  label: PropTypes.string,
-  caretHidden: PropTypes.bool,
-  disabled: PropTypes.bool,
-  expandOnHover: PropTypes.bool,
-  onSelectOption: PropTypes.func,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.any.isRequired,
-      label: PropTypes.any.isRequired,
-      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-      iconSrc: PropTypes.string,
-    })
-  ),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcDropdown;
