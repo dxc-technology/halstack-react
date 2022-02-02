@@ -42,7 +42,6 @@ const headerPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user clicks the header logo.
-          <br></br>
         </td>
       </tr>
       <tr>
