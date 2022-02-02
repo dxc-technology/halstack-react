@@ -25,7 +25,7 @@ const DxcTabs = ({
     if (activeTabIndex == null) {
       setInnerActiveTabIndex(newValue);
     }
-    onTabClick(newValue);
+    onTabClick?.(newValue);
   };
 
   const getLabelForTab = (tab) => {
@@ -70,10 +70,10 @@ const DxcTabs = ({
               disabled={tab.isDisabled}
               disableRipple={true}
               onMouseEnter={() => {
-                onTabHover(i);
+                onTabHover?.(i);
               }}
               onMouseLeave={() => {
-                onTabHover(null);
+                onTabHover?.(null);
               }}
             />
           ))}
