@@ -6,7 +6,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = string | (HTMLElement & SVGElement);
+type SVG = string | React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 type Action = {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   icon: SVG;
