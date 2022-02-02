@@ -1,4 +1,3 @@
-type SVG = string | (HTMLElement & SVGElement);
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -6,6 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
+type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
 type Option = {
   /**
