@@ -18,7 +18,7 @@ const Checkbox = () => (
         <Title title="Default" theme="light" level={4} />
         <DxcCheckbox label="Checkbox" />
       </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
+      <ExampleContainer>
         <Title title="Focused" theme="light" level={4} />
         <DxcCheckbox label="Focused" />
       </ExampleContainer>
