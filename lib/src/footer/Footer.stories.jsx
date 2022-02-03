@@ -106,24 +106,12 @@ export const Chromatic = () => (
       <DxcFooter />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With copyright" theme="light" level={4} />
-      <DxcFooter copyright="Copyright" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With children" theme="light" level={4} />
-      <DxcFooter>
+      <Title title="With children, copyright, bottom links and social links" theme="light" level={4} />
+      <DxcFooter copyright="Copyright" socialLinks={social} bottomLinks={bottom}>
         <div>
           <a href="https://www.linkedin.com/company/dxctechnology">Linkedin</a>
         </div>
       </DxcFooter>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Social links" theme="light" level={4} />
-      <DxcFooter socialLinks={social} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Bottom links" theme="light" level={4} />
-      <DxcFooter bottomLinks={bottom} />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
