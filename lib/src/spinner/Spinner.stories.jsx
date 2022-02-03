@@ -11,8 +11,6 @@ export default {
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="Default" theme="light" level={4} />
-      <DxcSpinner></DxcSpinner>
       <Title title="With label" theme="light" level={4} />
       <DxcSpinner label="Label"></DxcSpinner>
       <Title title="With value" theme="light" level={4} />
