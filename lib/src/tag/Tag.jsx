@@ -100,7 +100,7 @@ const TagContent = styled.div`
 const StyledLink = styled.a`
   text-decoration: none;
   border-radius: 4px;
-
+  width: 100%;
   :focus {
     outline: 2px solid ${(props) => props.theme.focusColor};
     outline-offset: 0px;
@@ -114,7 +114,7 @@ const StyledButton = styled.button`
   padding: 0;
   cursor: pointer;
   font-family: inherit;
-
+  width: 100%;
   :focus {
     outline: 2px solid ${(props) => props.theme.focusColor};
   }
@@ -150,6 +150,7 @@ const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   color: ${(props) => props.theme.iconColor};
+  min-width: ${(props) => props.theme.iconSectionWidth};
 `;
 
 const TagLabel = styled.div`
