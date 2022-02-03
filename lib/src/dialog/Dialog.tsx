@@ -20,11 +20,11 @@ const DxcDialog = ({
   const colorsTheme = useTheme();
 
   const handleClose = () => {
-    onCloseClick();
+    onCloseClick?.();
   };
 
   const handleOverlayClick = () => {
-    onBackgroundClick();
+    onBackgroundClick?.();
   };
 
   const handleResize = (width) => {
