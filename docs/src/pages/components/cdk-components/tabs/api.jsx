@@ -11,9 +11,7 @@ const dropdownPropsTable = () => {
       </tr>
       <tr>
         <td>tabs: object[]</td>
-        <td>
-          <code>[]</code>
-        </td>
+        <td></td>
         <td>
           An array of objects representing the tabs. Each of them has the
           following properties:
@@ -72,8 +70,10 @@ const dropdownPropsTable = () => {
       <tr>
         <td>onTabHover: function</td>
         <td></td>
-        <td>This function will be called when the user hovers a tab.The index
-          of the hovered tab will be passed as a parameter.</td>
+        <td>
+          This function will be called when the user hovers a tab.The index of
+          the hovered tab will be passed as a parameter.
+        </td>
       </tr>
       <tr>
         <td>margin: string | object</td>
@@ -88,9 +88,7 @@ const dropdownPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex for each tab.
-        </td>
+        <td>Value of the tabindex for each tab.</td>
       </tr>
     </DxcTable>
   );
