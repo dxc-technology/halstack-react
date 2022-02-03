@@ -84,8 +84,7 @@ const SwitchContainer = styled.div`
   display: inline-flex;
   align-items: center;
   flex-direction: ${(props) => (props.labelPosition === "after" ? "row" : "row-reverse")};
-  overflow: hidden;
-  text-overflow: ellipsis;
+  
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
