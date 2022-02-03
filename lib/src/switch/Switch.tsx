@@ -84,6 +84,8 @@ const SwitchContainer = styled.div`
   display: inline-flex;
   align-items: center;
   flex-direction: ${(props) => (props.labelPosition === "after" ? "row" : "row-reverse")};
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -103,11 +105,11 @@ const SwitchContainer = styled.div`
     margin: 3px;
 
     .Mui-focusVisible {
-      border: ${(props) =>
+      outline: ${(props) =>
         `${
           props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
         } solid 2px`};
-      padding: 7px;
+      outline-offset: -3px;
     }
 
     .MuiSwitch-track {
@@ -189,6 +191,9 @@ const SwitchContainer = styled.div`
 `;
 
 const LabelContainer = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
