@@ -18,7 +18,7 @@ const Radio = () => (
         <Title title="Default" theme="light" level={4} />
         <DxcRadio label="Radio" />
       </ExampleContainer>
-      <ExampleContainer pseudoState="pseudo-focus">
+      <ExampleContainer>
         <Title title="Focused" theme="light" level={4} />
         <DxcRadio label="Focused" />
       </ExampleContainer>
