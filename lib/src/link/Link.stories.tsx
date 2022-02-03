@@ -29,6 +29,18 @@ export const Chromatic = () => (
       <Title title="Icon after" theme="light" level={4} />
       <DxcLink text="Test" icon={icon} iconPosition="after"></DxcLink>
     </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="With link hovered" theme="light" level={4} />
+      <DxcLink text="Test" href="https://www.dxc.com"></DxcLink>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="With link focused" theme="light" level={4} />
+      <DxcLink text="Test" href="https://www.dxc.com"></DxcLink>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="With link active" theme="light" level={4} />
+      <DxcLink text="Test" href="https://www.dxc.com"></DxcLink>
+    </ExampleContainer>
     <ExampleContainer>
       <Title title="Inherit color" theme="light" level={4} />
       This is a <DxcLink text="Test" inheritColor={true}></DxcLink>.
