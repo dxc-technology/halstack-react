@@ -1,8 +1,8 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import LinkPropsType from "./types";
 
 const DxcLink = ({
   inheritColor = false,
@@ -16,7 +16,7 @@ const DxcLink = ({
   text = "",
   margin,
   tabIndex = 0,
-}) => {
+}: LinkPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   const linkContent = (
@@ -176,27 +176,5 @@ const LinkIconContainer = styled.div`
     width: 100%;
   }
 `;
-
-DxcLink.propTypes = {
-  inheritColor: PropTypes.bool,
-  disabled: PropTypes.bool,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  iconSrc: PropTypes.string,
-  iconPosition: PropTypes.oneOf(["after", "before"]),
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  newWindow: PropTypes.bool,
-  text: PropTypes.string,
-  tabIndex: PropTypes.number,
-};
 
 export default DxcLink;
