@@ -1,4 +1,3 @@
-type SVG = string | (HTMLElement & SVGElement);
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -6,6 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
+type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
 type OptionGroup = {
   /**
@@ -24,7 +24,7 @@ type Option = {
    * is the chosen one, take into account that the component's 
    * color styling tokens will not be applied to the image.
    */
-  icon?: SVG;
+  icon?: string | SVG;
   /**
    * Label of the option to be shown in the select's listbox.
    */
