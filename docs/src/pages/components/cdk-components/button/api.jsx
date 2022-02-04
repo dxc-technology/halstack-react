@@ -29,7 +29,7 @@ const buttonPropsTable = () => {
         <td>Text to be placed next to the button.</td>
       </tr>
       <tr>
-        <td>icon: node</td>
+        <td>icon: SVG</td>
         <td></td>
         <td>
           Element used as the icon that will be placed next to the button label.
@@ -88,7 +88,7 @@ const buttonPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>Value of the tabindex.</td>
+        <td>Value of the tabindex attribute.</td>
       </tr>
     </DxcTable>
   );
