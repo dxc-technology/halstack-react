@@ -274,11 +274,3 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
-
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   height: 400px;
-//   width: 100%;
-//   margin-bottom: 50px;
-// `;
