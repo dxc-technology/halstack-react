@@ -3,7 +3,7 @@ import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DxcCard from "./Card";
 import imagePath from "./ice-cream.jpg";
-import { userEvent, within, fireEvent } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/testing-library";
 
 export default {
   title: "Card",
@@ -177,8 +177,6 @@ Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.tab();
   await userEvent.tab();
-  const linkCard = canvas.getAllByRole("link")[2];
-  await fireEvent.mouseOver(linkCard);
-  const actionCard = canvas.getAllByText("Hovered default with action")[1];
-  await fireEvent.mouseOver(actionCard);
+  await userEvent.hover(canvas.getAllByRole("link")[2]);
+  await userEvent.hover(canvas.getAllByText("Hovered default with action")[1]);
 };
