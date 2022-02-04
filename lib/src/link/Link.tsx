@@ -2,9 +2,9 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
-import LinkPropsType from "./types";
+import Overload, { LinkTextProps, LinkIconProps, LinkCommonProps } from "./types";
 
-const DxcLink = ({
+const DxcLink: Overload = ({
   inheritColor = false,
   disabled = false,
   iconSrc,
@@ -16,9 +16,8 @@ const DxcLink = ({
   text = "",
   margin,
   tabIndex = 0,
-}: LinkPropsType): JSX.Element => {
+}: LinkCommonProps & (LinkTextProps | LinkIconProps)): JSX.Element => {
   const colorsTheme = useTheme();
-
   const linkContent = (
     <LinkText iconPosition={iconPosition}>
       {text}
@@ -161,15 +160,15 @@ const LinkText = styled.div`
 const LinkIcon = styled.img`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  ${(props) => `${(props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${props.theme.iconSpacing}`};
+  ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
 `;
 
 const LinkIconContainer = styled.div`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  ${(props) => `${(props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${props.theme.iconSpacing}`};
+  ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
   overflow: hidden;
-  
+
   img,
   svg {
     height: 100%;
