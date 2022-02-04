@@ -6,6 +6,8 @@ type Margin = {
   right?: Space;
 };
 
+type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+
 type Props = {
   /**
    * If true, the color is inherited from parent.
@@ -22,7 +24,7 @@ type Props = {
   /**
    * Element used as the icon that will be placed next to the link text.
    */
-  icon?: any;
+  icon?: SVG;
   /**
    * Indicates the position of the icon in the component.
    */
@@ -43,7 +45,7 @@ type Props = {
   /**
    * Link text.
    */
-  text?: string;
+  text: string;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
