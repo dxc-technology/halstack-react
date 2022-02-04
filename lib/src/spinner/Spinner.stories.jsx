@@ -69,14 +69,21 @@ export const Chromatic = () => (
 export const SpinnerOverlay = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
-    <DxcSpinner mode="overlay"></DxcSpinner>
+    <DxcSpinner mode="overlay" value="25"></DxcSpinner>
+  </ExampleContainer>
+);
+
+export const SpinnerOverlayWith100 = () => (
+  <ExampleContainer>
+    <Title title="Mode overlay" theme="light" level={4} />
+    <DxcSpinner mode="overlay" value="100"></DxcSpinner>
   </ExampleContainer>
 );
 
 export const SpinnerOverlayWithLabel = () => (
   <ExampleContainer>
     <Title title="Mode overlay" theme="light" level={4} />
-    <DxcSpinner mode="overlay" label="Label"></DxcSpinner>
+    <DxcSpinner mode="overlay" value="50" label="Label"></DxcSpinner>
   </ExampleContainer>
 );
 
