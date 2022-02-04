@@ -73,7 +73,7 @@ const DxcHeader = ({
       }
     }
   };
-  const ContentContainerComponent = (props: any) => {
+  const ContentContainerComponent = () => {
     const backgroundType = useContext(BackgroundColorContext);
     return (
       (isResponsive && <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>) || (
@@ -138,7 +138,7 @@ const DxcHeader = ({
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                   <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
                   <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
-                    <ContentContainerComponent>{responsiveContent(handleMenu)}</ContentContainerComponent>
+                    <ContentContainerComponent />
                   </BackgroundColorProvider>
                   <CloseContainer tabIndex={tabIndex} onClick={handleMenu} className="closeIcon">
                     {closeIcon}
