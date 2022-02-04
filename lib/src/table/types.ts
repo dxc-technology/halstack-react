@@ -16,7 +16,7 @@ type Props = {
    * The center section of the table. Can be used to render custom
    * content in this area.
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
 };
 
 export default Props;
