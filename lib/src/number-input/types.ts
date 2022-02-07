@@ -112,4 +112,3 @@ type Props = {
  export type RefType = HTMLDivElement;
 
  export default Props;
- 
