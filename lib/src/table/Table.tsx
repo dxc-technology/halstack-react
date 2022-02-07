@@ -5,8 +5,9 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import TablePropsType from "./types";
 
-const DxcTable = ({ children, margin }) => {
+const DxcTable = ({ children, margin }: TablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (

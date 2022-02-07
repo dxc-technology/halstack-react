@@ -19,7 +19,7 @@ const headerPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>content: object</td>
+        <td>content: node</td>
         <td></td>
         <td>
           Content showed in the header. Take into account that the component
@@ -42,7 +42,6 @@ const headerPropsTable = () => {
         <td></td>
         <td>
           This function will be called when the user clicks the header logo.
-          <br></br>
         </td>
       </tr>
       <tr>

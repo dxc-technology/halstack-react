@@ -1,12 +1,25 @@
 import React, { useState, useEffect, useRef, useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import AppBar from "@material-ui/core/AppBar";
-import PropTypes from "prop-types";
 import DxcDropdown from "../dropdown/Dropdown";
-import { hamburgerIcon, closeIcon, dxcLogo } from "./Icons";
+import { dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import HeaderPropsType from "./types";
+
+const closeIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    <path d="M0 0h24v24H0z" fill="none" />
+  </svg>
+);
+
+const hamburgerIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
+  </svg>
+);
 
 const Dropdown = (props) => {
   return (
@@ -35,11 +48,19 @@ const getLogoElement = (themeInput) => {
   return themeInput;
 };
 
-const DxcHeader = ({ underlined = false, onClick, content, responsiveContent, margin, padding, tabIndex = 0 }) => {
+const DxcHeader = ({
+  underlined = false,
+  content,
+  responsiveContent,
+  onClick,
+  margin,
+  padding,
+  tabIndex = 0,
+}: HeaderPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
-  const [isResponsive, setIsResponsive] = useState();
+  const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const handleResize = (refWidth) => {
@@ -117,7 +138,7 @@ const DxcHeader = ({ underlined = false, onClick, content, responsiveContent, ma
                 <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
                   <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
                   <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
-                    <ContentContainerComponent>{responsiveContent(handleMenu)}</ContentContainerComponent>
+                    <ContentContainerComponent />
                   </BackgroundColorProvider>
                   <CloseContainer tabIndex={tabIndex} onClick={handleMenu} className="closeIcon">
                     {closeIcon}
@@ -324,31 +345,5 @@ const Overlay = styled.div`
   transition: opacity 0.2s 0.2s ease-in-out;
   z-index: ${(props) => props.theme.overlayZindex};
 `;
-
-DxcHeader.propTypes = {
-  underlined: PropTypes.bool,
-  onClick: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  content: PropTypes.object,
-  responsiveContent: PropTypes.func,
-  tabIndex: PropTypes.number,
-};
 
 export default DxcHeader;
