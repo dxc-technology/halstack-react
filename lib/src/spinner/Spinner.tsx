@@ -127,15 +127,32 @@ const DXCSpinner = styled.div`
   align-items: ${(props) => (props.mode === "overlay" ? "center" : "")};
   z-index: ${(props) => (props.mode === "overlay" ? 1300 : "")};
 
-  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin: ${(props) =>
+    props.mode != "overlay" ? (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px") : ""};
   margin-top: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+    props.mode != "overlay"
+      ? props.margin && typeof props.margin === "object" && props.margin.top
+        ? spaces[props.margin.top]
+        : ""
+      : ""};
   margin-right: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+    props.mode != "overlay"
+      ? props.margin && typeof props.margin === "object" && props.margin.right
+        ? spaces[props.margin.right]
+        : ""
+      : ""};
   margin-bottom: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+    props.mode != "overlay"
+      ? props.margin && typeof props.margin === "object" && props.margin.bottom
+        ? spaces[props.margin.bottom]
+        : ""
+      : ""};
   margin-left: ${(props) =>
-    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+    props.mode != "overlay"
+      ? props.margin && typeof props.margin === "object" && props.margin.left
+        ? spaces[props.margin.left]
+        : ""
+      : ""};
 `;
 
 const SpinnerContainer = styled.div`

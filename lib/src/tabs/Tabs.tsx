@@ -2,21 +2,21 @@ import React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
 import useTheme from "../useTheme.js";
+import TabsPropsType from "./types";
 
 const DxcTabs = ({
   activeTabIndex,
-  tabs = [],
+  tabs,
   onTabClick,
   onTabHover,
   margin,
-  iconPosition = "left",
+  iconPosition = "top",
   tabIndex = 0,
-}) => {
+}: TabsPropsType): JSX.Element => {
   const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
   const colorsTheme = useTheme();
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
@@ -25,13 +25,8 @@ const DxcTabs = ({
     if (activeTabIndex == null) {
       setInnerActiveTabIndex(newValue);
     }
-    if (typeof onTabClick === "function") {
-      onTabClick(newValue);
-    }
+    onTabClick?.(newValue);
   };
-
-  const getTabIndex = (index, disabled) =>
-    (activeTabIndex === index || innerActiveTabIndex === index) && !disabled ? tabIndex : -1;
 
   const getLabelForTab = (tab) => {
     return (
@@ -67,24 +62,21 @@ const DxcTabs = ({
           variant="scrollable"
           scrollButtons="auto"
         >
-          {tabs.map((tab, i) => {
-            const tabContent = React.forwardRef((props, ref) => <div role="button" {...props} ref={ref} />);
-            return (
-              <Tab
-                tabIndex={(activeTabIndex === i || innerActiveTabIndex === i) && !tab.isDisabled ? tabIndex : -1}
-                key={`tab${i}${tab.label}`}
-                label={getLabelForTab(tab)}
-                disabled={tab.isDisabled}
-                disableRipple={true}
-                onMouseEnter={() => {
-                  onTabHover(i);
-                }}
-                onMouseLeave={() => {
-                  onTabHover(null);
-                }}
-              />
-            );
-          })}
+          {tabs.map((tab, i) => (
+            <Tab
+              tabIndex={(activeTabIndex === i || innerActiveTabIndex === i) && !tab.isDisabled ? tabIndex : -1}
+              key={`tab${i}${tab.label}`}
+              label={getLabelForTab(tab)}
+              disabled={tab.isDisabled}
+              disableRipple={true}
+              onMouseEnter={() => {
+                onTabHover?.(i);
+              }}
+              onMouseLeave={() => {
+                onTabHover?.(null);
+              }}
+            />
+          ))}
         </Tabs>
       </DxCTabs>
     </ThemeProvider>
@@ -233,39 +225,5 @@ const TabIconContainer = styled.div`
     width: 100%;
   }
 `;
-
-DxcTabs.propTypes = {
-  activeTabIndex: PropTypes.number,
-  onTabClick: PropTypes.func,
-  onTabHover: PropTypes.func,
-  tabs: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-      iconSrc: PropTypes.string,
-      isDisabled: PropTypes.bool,
-      notificationNumber: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
-    })
-  ),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  iconPosition: PropTypes.oneOf(["top", "left"]),
-  tabIndex: PropTypes.number,
-};
-
-DxcTabs.defaultProps = {
-  activeTabIndex: null,
-  tabs: [],
-  onTabClick: () => {},
-  onTabHover: () => {},
-  iconPosition: "top",
-};
 
 export default DxcTabs;

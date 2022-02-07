@@ -11,9 +11,7 @@ const dropdownPropsTable = () => {
       </tr>
       <tr>
         <td>options: object[]</td>
-        <td>
-          <code>[]</code>
-        </td>
+        <td></td>
         <td>
           An array of objects representing the options. Each object has the
           following properties:
@@ -108,7 +106,7 @@ const dropdownPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'fitContent'</code>
         </td>

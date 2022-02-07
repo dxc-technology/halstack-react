@@ -1,31 +1,32 @@
 import React, { useState, useMemo, useContext } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import SliderPropsType from "./types";
 
 const DxcSlider = ({
-  label,
-  helperText,
+  label = "",
+  name = "",
+  value,
+  helperText = "",
   minValue = 0,
   maxValue = 100,
   step = 1,
-  value,
   showLimitsValues = false,
   showInput = false,
-  name,
-  onChange,
-  onDragEnd,
   disabled = false,
   marks = false,
+  onChange,
+  onDragEnd,
   labelFormatCallback,
   margin,
   size = "fillParent",
-}) => {
+  tabIndex = 0,
+}: SliderPropsType): JSX.Element => {
   const [innerValue, setInnerValue] = useState(0);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
@@ -40,32 +41,22 @@ const DxcSlider = ({
   );
 
   const handlerSliderChange = (event, newValue) => {
-    if (value == null) {
-      const valueToCheck = value !== undefined ? value : innerValue;
-      if (valueToCheck !== newValue) {
-        setInnerValue(newValue);
-      }
-    }
-    if (typeof onChange === "function") {
-      onChange(newValue);
-    }
+    const valueToCheck = value ?? innerValue;
+    valueToCheck !== newValue && setInnerValue(newValue);
+    onChange?.(newValue);
+  };
+
+  const handleSliderOnChangeCommited = (event, selectedValue) => {
+    onDragEnd?.(selectedValue);
   };
 
   const handlerInputChange = (event) => {
     const intValue = parseInt(event.value, 10);
     if (value == null) {
-      if (!Number.isNaN(intValue)) {
-        setInnerValue(intValue > maxValue ? maxValue : intValue);
-      } else {
-        setInnerValue("");
-      }
+      if (!Number.isNaN(intValue)) setInnerValue(intValue > maxValue ? maxValue : intValue);
     }
-    if (typeof onChange === "function") {
-      if (!Number.isNaN(intValue)) {
-        onChange(intValue > maxValue ? maxValue : intValue);
-      } else {
-        onChange("");
-      }
+    if (!Number.isNaN(intValue)) {
+      onChange?.(intValue > maxValue ? maxValue : intValue);
     }
   };
 
@@ -85,10 +76,11 @@ const DxcSlider = ({
             min={minValue}
             max={maxValue}
             onChange={handlerSliderChange}
-            onChangeCommitted={onDragEnd && ((event, selectedValue) => onDragEnd(selectedValue))}
+            onChangeCommitted={handleSliderOnChangeCommited}
             step={step}
             marks={marks || []}
             disabled={disabled}
+            tabIndex={tabIndex}
           />
           {showLimitsValues && (
             <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
@@ -103,6 +95,7 @@ const DxcSlider = ({
                 disabled={disabled}
                 onChange={handlerInputChange}
                 size="fillParent"
+                tabIndex={tabIndex}
               />
             </StyledTextInput>
           )}
@@ -326,32 +319,5 @@ const StyledTextInput = styled.div`
   }
   max-width: 70px;
 `;
-
-DxcSlider.propTypes = {
-  label: PropTypes.string,
-  helperText: PropTypes.string,
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  minValue: PropTypes.number,
-  maxValue: PropTypes.number,
-  step: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  showLimitsValues: PropTypes.bool,
-  showInput: PropTypes.bool,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-  onDragEnd: PropTypes.func,
-  disabled: PropTypes.bool,
-  marks: PropTypes.bool,
-  labelFormatCallback: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
 
 export default DxcSlider;

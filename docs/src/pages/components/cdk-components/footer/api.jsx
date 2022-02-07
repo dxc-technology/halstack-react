@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const alertPropsTable = () => {
+const footerPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -94,4 +94,4 @@ const alertPropsTable = () => {
   );
 };
 
-export default alertPropsTable;
+export default footerPropsTable;

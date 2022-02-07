@@ -11,7 +11,7 @@ type Padding = {
   left?: Space;
   right?: Space;
 };
-type SVG = HTMLElement & SVGElement;
+type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
 export type AccordionPropsType = {
   /**

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 import dxcLogo from "./Icons";
+import FooterPropsType from "./types";
 
-const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", children, padding, margin, tabIndex = 0 }) => {
+const DxcFooter = ({ socialLinks, bottomLinks, copyright = "", children, padding, margin, tabIndex = 0 }: FooterPropsType): JSX.Element => {
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
@@ -53,7 +53,7 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", childre
     };
   }, []);
 
-  const socialLink = socialLinks.map((link, index) => (
+  const socialLink = socialLinks?.map((link, index) => (
     <SocialAnchor
       tabIndex={tabIndex}
       key={`social${index}${link.href}`}
@@ -70,7 +70,7 @@ const DxcFooter = ({ socialLinks = [], bottomLinks = [], copyright = "", childre
     </SocialAnchor>
   ));
 
-  const bottomLink = bottomLinks.map((link, index) => (
+  const bottomLink = bottomLinks?.map((link, index) => (
     <span key={`bottom${index}${link.text}`}>
       <BottomLink tabIndex={tabIndex} href={link && link.href ? link.href : ""}>
         {link && link.text ? link.text : ""}
@@ -231,41 +231,5 @@ const BottomLink = styled.a`
   font-style: ${(props) => props.theme.bottomLinksFontStyle};
   font-weight: ${(props) => props.theme.bottomLinksFontWeight};
 `;
-
-DxcFooter.propTypes = {
-  socialLinks: PropTypes.arrayOf(
-    PropTypes.shape({
-      logo: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-      logoSrc: PropTypes.string.isRequired,
-      href: PropTypes.string,
-    })
-  ),
-  bottomLinks: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string.isRequired,
-      href: PropTypes.string,
-    })
-  ),
-  copyright: PropTypes.string,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcFooter;
