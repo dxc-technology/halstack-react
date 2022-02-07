@@ -7,7 +7,7 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DarkContainer from "../../.storybook/components/DarkSection";
 
 export default {
-  title: "Password input ",
+  title: "Password input",
   component: DxcPasswordInput,
 };
 

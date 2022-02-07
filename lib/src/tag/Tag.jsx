@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
-
+import { getMargin } from "../common/utils.js";
 import DxcBox from "../box/Box";
 
 const DxcTag = ({
@@ -27,7 +27,7 @@ const DxcTag = ({
 
   const tagContent = (
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
-      <TagContent labelPosition={labelPosition} size={size}>
+      <TagContent labelPosition={labelPosition}>
         <IconContainer iconBgColor={iconBgColor}>
           {icon ? (
             <TagIconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</TagIconContainer>
@@ -44,6 +44,7 @@ const DxcTag = ({
     <ThemeProvider theme={colorsTheme.tag}>
       <StyledDxcTag
         margin={margin}
+        size={size}
         onMouseEnter={() => changeIsHovered(true)}
         onMouseLeave={() => changeIsHovered(false)}
         onClick={clickHandler}
@@ -71,7 +72,10 @@ const sizes = {
   fitContent: "unset",
 };
 
-const calculateWidth = (size) => sizes[size];
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
 const StyledDxcTag = styled.div`
   display: inline-flex;
@@ -81,20 +85,22 @@ const StyledDxcTag = styled.div`
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
   margin-bottom: ${({ margin }) => (margin && margin.bottom ? spaces[margin.bottom] : "")};
   margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  height: ${(props) => props.theme.height};
 `;
 
 const TagContent = styled.div`
   display: inline-flex;
   align-items: center;
   flex-direction: ${({ labelPosition }) => (labelPosition === "before" && "row-reverse") || "row"};
-  width: ${(props) => calculateWidth(props.size)};
+  width: 100%;
   height: ${(props) => props.theme.height};
 `;
 
 const StyledLink = styled.a`
   text-decoration: none;
   border-radius: 4px;
-
+  width: 100%;
   :focus {
     outline: 2px solid ${(props) => props.theme.focusColor};
     outline-offset: 0px;
@@ -108,7 +114,7 @@ const StyledButton = styled.button`
   padding: 0;
   cursor: pointer;
   font-family: inherit;
-
+  width: 100%;
   :focus {
     outline: 2px solid ${(props) => props.theme.focusColor};
   }
@@ -144,6 +150,7 @@ const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   color: ${(props) => props.theme.iconColor};
+  min-width: ${(props) => props.theme.iconSectionWidth};
 `;
 
 const TagLabel = styled.div`
