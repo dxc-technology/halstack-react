@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import NumberInputContext from "./NumberInputContext";
-import { spaces } from "../common/variables.js";
+import NumberInputPropsType, { RefType } from "./types";
 
-const DxcNumberInput = React.forwardRef(
+const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
   (
     {
       label = "",
@@ -19,7 +18,7 @@ const DxcNumberInput = React.forwardRef(
       suffix = "",
       min,
       max,
-      step,
+      step = 1,
       onChange,
       onBlur,
       error = "",
@@ -58,13 +57,6 @@ const DxcNumberInput = React.forwardRef(
   }
 );
 
-const sizes = {
-  small: "240px",
-  medium: "360px",
-  large: "480px",
-  fillParent: "100%",
-};
-
 const NumberInputContainer = styled.div`
   // Chrome, Safari, Edge, Opera
   input::-webkit-outer-spin-button,
@@ -78,35 +70,5 @@ const NumberInputContainer = styled.div`
     -moz-appearance: textfield;
   }
 `;
-
-DxcNumberInput.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  helperText: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
-  disabled: PropTypes.bool,
-  optional: PropTypes.bool,
-  prefix: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ type: PropTypes.oneOf(["svg"]) })]),
-  suffix: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({ type: PropTypes.oneOf(["svg"]) })]),
-  min: PropTypes.number,
-  max: PropTypes.number,
-  step: PropTypes.number,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  autocomplete: PropTypes.string,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcNumberInput;
