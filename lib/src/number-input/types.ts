@@ -76,7 +76,7 @@ type Props = {
   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value
-   * entered is not valid) will be passed to this function. If there is no error, 
+   * entered is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
   onBlur?: (val: { value: string; error: string | null }) => void;
@@ -87,28 +87,28 @@ type Props = {
    */
   error?: string;
   /**
-   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value. 
+   * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
    */
   autocomplete?: string;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
    */
-   size?: "small" | "medium" | "large" | "fillParent";
-   /**
-    * Value of the tabindex attribute.
-    */
-   tabIndex?: number;
+  size?: "small" | "medium" | "large" | "fillParent";
+  /**
+   * Value of the tabindex attribute.
+   */
+  tabIndex?: number;
 };
 
 /**
  * Reference to the component.
  */
- export type RefType = HTMLDivElement;
+export type RefType = HTMLDivElement;
 
- export default Props;
+export default Props;
