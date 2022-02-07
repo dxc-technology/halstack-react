@@ -28,13 +28,13 @@ const Card = () => (
     <ExampleContainer>
       <DxcCard linkHref="https://www.dxc.com">Default with link</DxcCard>
     </ExampleContainer>
+    <Title title="Hovered default card" theme="light" level={4} />
     <ExampleContainer>
-      <Title title="Hovered card" theme="light" level={4} />
       <DxcCard linkHref="https://www.dxc.com">Hovered default with link</DxcCard>
     </ExampleContainer>
     <Title title="Default with action" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard onClick={() => {}}>Default with link</DxcCard>
+      <DxcCard onClick={() => {}}>Default with action</DxcCard>
     </ExampleContainer>
     <Title title="Hovered default with action" theme="light" level={4} />
     <ExampleContainer pseudoState="pseudo-hover">
@@ -175,8 +175,7 @@ const Card = () => (
 export const Chromatic = Card.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.tab();
-  await userEvent.tab();
+  await canvas.getAllByRole("link")[1].focus();
   await userEvent.hover(canvas.getAllByRole("link")[2]);
   await userEvent.hover(canvas.getAllByText("Hovered default with action")[1]);
 };
