@@ -30,7 +30,7 @@ type Props = {
    * be called when the user clicks the tag. Component will show some
    * visual feedback on hover.
    */
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: () => void;
   /**
    * Background color of the icon section of the tag.
    */
