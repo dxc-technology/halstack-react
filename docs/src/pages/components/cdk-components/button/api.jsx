@@ -29,7 +29,7 @@ const buttonPropsTable = () => {
         <td>Text to be placed next to the button.</td>
       </tr>
       <tr>
-        <td>icon: SVG</td>
+        <td>icon: node</td>
         <td></td>
         <td>
           Element used as the icon that will be placed next to the button label.
