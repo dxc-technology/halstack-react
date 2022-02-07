@@ -14,28 +14,12 @@ export default {
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="With label before" theme="light" level={4} />
-      <DxcSwitch label="Switch" />
-    </ExampleContainer>
-    <ExampleContainer>
       <Title title="With label after" theme="light" level={4} />
       <DxcSwitch label="Switch" labelPosition="after" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
       <DxcSwitch />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With large label" theme="light" level={4} />
-      <DxcSwitch label="Very long long long label or huge as you want to call it" size="medium" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="With long word" theme="light" level={4} />
-      <DxcSwitch
-        label="Large texttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-        labelPosition="after"
-        size="medium"
-      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Checked" theme="light" level={4} />
@@ -83,10 +67,6 @@ export const Chromatic = () => (
           <Title title="Disabled checked" theme="dark" level={4} />
           <DxcSwitch label="Switch" disabled checked labelPosition="after" />
         </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
-          <Title title="Focused" theme="light" level={4} />
-          <DxcSwitch label="Switch" />
-        </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>
     <Title title="Margins" theme="light" level={2} />
@@ -124,8 +104,16 @@ export const Chromatic = () => (
       <DxcSwitch label="Small" size="small" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Medium size" theme="light" level={4} />
-      <DxcSwitch label="Medium" size="medium" />
+      <Title title="Medium size (with large label)" theme="light" level={4} />
+      <DxcSwitch label="Very very very large label or even huge" size="medium" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium size (with long label)" theme="light" level={4} />
+      <DxcSwitch
+        label="Large texttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+        labelPosition="after"
+        size="medium"
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size" theme="light" level={4} />
@@ -143,12 +131,30 @@ export const Chromatic = () => (
 );
 
 const Switch = () => (
-  <ExampleContainer pseudoState="pseudo-focus">
+  <ExampleContainer>
     <Title title="Focused" theme="light" level={4} />
     <DxcSwitch label="Switch" />
   </ExampleContainer>
 );
 export const FocusedSwitch = Switch.bind({});
-FocusedSwitch.play = async () => {
-  await userEvent.tab();
+FocusedSwitch.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  canvas.getByRole("checkbox").focus();
+};
+
+const DarkSwitch = () => (
+  <BackgroundColorProvider color="#333333">
+    <DarkContainer>
+      <ExampleContainer>
+        <Title title="Focused" theme="dark" level={4} />
+        <DxcSwitch label="Switch" />
+      </ExampleContainer>
+    </DarkContainer>
+  </BackgroundColorProvider>
+);
+
+export const FocusedSwitchOnDark = DarkSwitch.bind({});
+FocusedSwitchOnDark.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  canvas.getByRole("checkbox").focus();
 };
