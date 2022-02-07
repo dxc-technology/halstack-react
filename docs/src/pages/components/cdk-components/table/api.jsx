@@ -10,6 +10,14 @@ const tablePropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          The center section of the table. Can be used to render custom content
+          in this area.
+        </td>
+      </tr>
+      <tr>
         <td>margin: string | object</td>
         <td></td>
         <td>
