@@ -12,6 +12,7 @@ export default {
   title: "Select",
   component: DxcSelect,
 };
+const one_option = [{ label: "Option 01", value: "1" }];
 
 const single_options = [
   { label: "Option 01", value: "1" },
@@ -220,21 +221,35 @@ const url_options = [
     ],
   },
 ];
-const optionsWithElipsisSmall = [
+const optionsWithEllipsisSmall = [
   { label: "Optiond1234567890123456789", value: "1" },
   { label: "Optiond12345678901234567890", value: "2" },
   { label: "Option 03", value: "3" },
   { label: "Option 041111112222222345", value: "4" },
 ];
-const optionsWithElipsisMedium = [
+const optionsWithEllipsisMedium = [
   { label: "Optiond1234567890123456789012345678901234", value: "1" },
   { label: "Optiond12345678901234567890123456789012345", value: "2" },
   { label: "Option 031111111111111111111111111111222", value: "3" },
   { label: "Option 03111111111111111111111111111122", value: "4" },
 ];
-const optionsWithElipsisLarge = [
+const optionsWithEllipsisLarge = [
   { label: "Optiond1234567890123456789012345678901234567890123456789", value: "1" },
   { label: "Optiond12345678901234567890123456789012345678901234567890", value: "2" },
+  { label: "Option 031111111111111111111111111111222345678901234567", value: "3" },
+  { label: "Option 04111111222222234", value: "4" },
+];
+const optionsWithEllipsisFillParent = [
+  {
+    label:
+      "Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890",
+    value: "1",
+  },
+  {
+    label:
+      "Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890",
+    value: "2",
+  },
   { label: "Option 031111111111111111111111111111222345678901234567", value: "3" },
   { label: "Option 04111111222222234", value: "4" },
 ];
@@ -250,7 +265,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcSelect label="Disabled" disabled options={single_options} />
+      <DxcSelect label="Disabled" placeholder="Placeholder" disabled options={single_options} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with value" theme="light" level={4} />
@@ -275,11 +290,15 @@ export const Chromatic = () => (
       <DxcSelect label="Simple selection" options={single_options} value="2" />
       <Title title="Multiple selection" theme="light" level={4} />
       <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
-      <Title title="OptionEllipsisSizeSmall" theme="light" level={4} />
+      <Title title="Multiple selection with ellipsis" theme="light" level={4} />
+      <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2", "3", "4"]} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Value with elipsis" theme="light" level={4} />
-      <DxcSelect label="Value with elipsis" options={optionsWithElipsisLarge} value="1" />
+      <Title title="Value with ellipsis" theme="light" level={4} />
+      <DxcSelect label="Small with ellipsis" options={optionsWithEllipsisSmall} value="1" size="small" />
+      <DxcSelect label="Medium with ellipsis" options={optionsWithEllipsisMedium} value="1" size="medium" />
+      <DxcSelect label="Large with ellipsis" options={optionsWithEllipsisLarge} value="2" size="large" />
+      <DxcSelect label="FillParent with ellipsis" options={optionsWithEllipsisFillParent} value="2" size="fillparent" />
     </ExampleContainer>
     <>
       <Title title="Sizes" theme="light" level={2} />
@@ -294,6 +313,10 @@ export const Chromatic = () => (
       <ExampleContainer>
         <Title title="Large size" theme="light" level={4} />
         <DxcSelect label="Large" options={single_options} size="large" />
+      </ExampleContainer>
+      <ExampleContainer>
+        <Title title="Fillparent size" theme="light" level={4} />
+        <DxcSelect label="Fillparent" options={single_options} size="fillParent" />
       </ExampleContainer>
     </>
     <>
@@ -330,70 +353,89 @@ export const Chromatic = () => (
   </>
 );
 
-const OptionsWithElipsisSizeSmall = () => (
-  <div>
-    <DxcSelect label="Small with elipsis" options={optionsWithElipsisSmall} size="small" />
-  </div>
+const OptionsWithEllipsisSizeSmall = () => (
+  <ExampleContainer>
+    <Title title="Small select, option with ellipsis" theme="light" level={4} />
+    <DxcSelect label="Select label" options={optionsWithEllipsisSmall} size="small" />
+  </ExampleContainer>
 );
-const OptionsWithElipsisSizeMedium = () => (
-  <div>
-    <DxcSelect label="Small with elipsis" options={optionsWithElipsisMedium} size="medium" />
-  </div>
+const OptionsWithEllipsisSizeMedium = () => (
+  <ExampleContainer>
+    <Title title="Medium select, option with ellipsis" theme="light" level={4} />
+    <DxcSelect label="Select label" options={optionsWithEllipsisMedium} size="medium" />
+  </ExampleContainer>
 );
-const OptionsWithElipsisSizeLarge = () => (
-  <div>
-    <DxcSelect label="Small with elipsis" options={optionsWithElipsisLarge} size="large" />
-  </div>
+const OptionsWithEllipsisSizeLarge = () => (
+  <ExampleContainer>
+    <Title title="Large select, option with ellipsis" theme="light" level={4} />
+    <DxcSelect label="Select label" options={optionsWithEllipsisLarge} size="large" />
+  </ExampleContainer>
+);
+const OptionsWithEllipsisSizeFillParent = () => (
+  <ExampleContainer>
+    <Title title="Large select, option with ellipsis" theme="light" level={4} />
+    <DxcSelect label="Select label" options={optionsWithEllipsisFillParent} size="fillParent" />
+  </ExampleContainer>
 );
 const DefaultSelect = () => (
-  <div>
-    <DxcSelect label="Label" options={single_options} placeholder="Choose an option" />
-  </div>
+  <ExampleContainer>
+    <Title title="Default select" theme="light" level={4} />
+    <DxcSelect label="Select label" options={single_options} placeholder="Choose an option" />
+  </ExampleContainer>
 );
 const DefaultSearchableSelect = () => (
-  <div>
-    <DxcSelect label="Label" searchable options={single_options} placeholder="Choose an option" />
-  </div>
+  <ExampleContainer>
+    <Title title="Searchable select" theme="light" level={4} />
+    <DxcSelect label="Select Label" searchable options={single_options} placeholder="Choose an option" />
+  </ExampleContainer>
 );
 const MultipleSelect = () => (
-  <div>
-    <DxcSelect label="Label" options={single_options} multiple placeholder="Choose an option" />
-  </div>
+  <ExampleContainer>
+    <Title title="Multiple select" theme="light" level={4} />
+    <DxcSelect label="Select label" options={single_options} multiple placeholder="Choose an option" />
+  </ExampleContainer>
 );
 const DefaultGroupedOptionsSelect = () => (
-  <div>
+  <ExampleContainer>
+    <Title title="Grouped options simple select" theme="light" level={4} />
     <DxcSelect label="Label" options={group_options} placeholder="Choose an option" />
-  </div>
+  </ExampleContainer>
 );
 const MultipleGroupedOptionsSelect = () => (
-  <div>
+  <ExampleContainer>
+    <Title title="Grouped options multiple select" theme="light" level={4} />
     <DxcSelect label="Label" options={group_options} multiple placeholder="Choose an option" />
-  </div>
+  </ExampleContainer>
 );
 const RescaledIcons = () => (
-  <div>
+  <ExampleContainer>
+    <Title title="Rescaled icons displayed" theme="light" level={4} />
     <DxcSelect label="Label" options={url_options} placeholder="Choose an option" />
-  </div>
+  </ExampleContainer>
 );
 const SelectWithIcons = () => (
-  <div>
+  <ExampleContainer>
+    <Title title="Normal icons displayed" theme="light" level={4} />
     <DxcSelect label="Label" options={icon_options} placeholder="Choose an option" />
-  </div>
+  </ExampleContainer>
 );
 const SelectMultipleWithIcons = () => (
-  <div>
+  <ExampleContainer>
+    <Title title="Multiple select with icons" theme="light" level={4} />
     <DxcSelect label="Label" options={icon_options} multiple placeholder="Choose an option" />
-  </div>
-);
-const DefaultGroupedOptionsSelectWithIcons = () => (
-  <div>
-    <DxcSelect label="Label" options={icon_options_grouped} placeholder="Choose an option" />
-  </div>
+  </ExampleContainer>
 );
 const MultipleGroupedOptionsSelectWithIcons = () => (
-  <div>
+  <ExampleContainer>
+    <Title title="Multiple grouped options with icons" theme="light" level={4} />
     <DxcSelect label="Label" options={icon_options_grouped} multiple placeholder="Choose an option" />
-  </div>
+  </ExampleContainer>
+);
+const OnlyOneOptionSelect = () => (
+  <ExampleContainer pseudoState="pseudo-focus">
+    <Title title="Hovered Option" theme="light" level={4} />
+    <DxcSelect label="Hovered" options={one_option} placeholder="Choose an option" />
+  </ExampleContainer>
 );
 
 export const OptionsDisplayed = DefaultSelect.bind({});
@@ -415,8 +457,27 @@ Searchable.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getByRole("combobox"));
 
   await waitFor(async () => {
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
     userEvent.type(canvas.getByRole("textbox"), "r");
+  });
+};
+
+export const ArrowDownPressed = DefaultSelect.bind({});
+ArrowDownPressed.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
+  await waitFor(async () => {
+    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+  });
+};
+
+export const ArrowUpPressed = DefaultSelect.bind({});
+ArrowUpPressed.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
+  await waitFor(async () => {
+    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
   });
 };
 
@@ -452,7 +513,7 @@ SelectMultipleGroupedOptionsDisplayed.play = async ({ canvasElement }) => {
   await waitFor(async () => {
     userEvent.click(canvas.getByRole("combobox"));
     userEvent.click(canvas.getAllByRole("option")[0]);
-    userEvent.click(canvas.getAllByRole("option")[1]);
+    userEvent.click(canvas.getAllByRole("option")[2]);
   });
 };
 export const SelectWithIconsDisplayed = SelectWithIcons.bind({});
@@ -501,18 +562,9 @@ SelectMultipleGroupedWithIconsDisplayed.play = async ({ canvasElement }) => {
     userEvent.click(canvas.getAllByRole("option")[1]);
   });
 };
-export const GroupOptionsWithIconsDisplayed = DefaultGroupedOptionsSelectWithIcons.bind({});
-GroupOptionsWithIconsDisplayed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    userEvent.click(select);
-  });
-};
-export const OptionsWithElipsisSmall = OptionsWithElipsisSizeSmall.bind({});
-OptionsWithElipsisSmall.play = async ({ canvasElement }) => {
+
+export const OptionsWithEllipsisSmall = OptionsWithEllipsisSizeSmall.bind({});
+OptionsWithEllipsisSmall.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
@@ -521,8 +573,8 @@ OptionsWithElipsisSmall.play = async ({ canvasElement }) => {
     userEvent.click(select);
   });
 };
-export const OptionsWithElipsisMedium = OptionsWithElipsisSizeMedium.bind({});
-OptionsWithElipsisMedium.play = async ({ canvasElement }) => {
+export const OptionsWithEllipsisMedium = OptionsWithEllipsisSizeMedium.bind({});
+OptionsWithEllipsisMedium.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
@@ -531,8 +583,8 @@ OptionsWithElipsisMedium.play = async ({ canvasElement }) => {
     userEvent.click(select);
   });
 };
-export const OptionsWithElipsisLarge = OptionsWithElipsisSizeLarge.bind({});
-OptionsWithElipsisLarge.play = async ({ canvasElement }) => {
+export const OptionsWithEllipsisLarge = OptionsWithEllipsisSizeLarge.bind({});
+OptionsWithEllipsisLarge.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
@@ -540,4 +592,21 @@ OptionsWithElipsisLarge.play = async ({ canvasElement }) => {
     userEvent.click(canvas.getAllByRole("option")[2]);
     userEvent.click(select);
   });
+};
+export const OptionsWithEllipsisFillParent = OptionsWithEllipsisSizeFillParent.bind({});
+OptionsWithEllipsisFillParent.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
+  await waitFor(async () => {
+    userEvent.click(canvas.getAllByRole("option")[1]);
+    userEvent.click(select);
+  });
+};
+
+export const OptionHovered = OnlyOneOptionSelect.bind({});
+OptionHovered.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
 };
