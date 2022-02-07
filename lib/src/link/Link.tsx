@@ -2,7 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
-import Overload, { LinkTextProps, LinkIconProps, LinkCommonProps } from "./types";
+import Overload, { LinkTextProps, LinkIconProps } from "./types";
 
 const DxcLink: Overload = ({
   inheritColor = false,
@@ -16,7 +16,7 @@ const DxcLink: Overload = ({
   text = "",
   margin,
   tabIndex = 0,
-}: LinkCommonProps & (LinkTextProps | LinkIconProps)): JSX.Element => {
+}: (LinkTextProps | LinkIconProps)): JSX.Element => {
   const colorsTheme = useTheme();
   const linkContent = (
     <LinkText iconPosition={iconPosition}>

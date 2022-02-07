@@ -6,7 +6,7 @@ type Margin = {
   right?: Space;
 };
 
-export type LinkCommonProps = {
+type LinkCommonProps = {
   /**
    * If true, the color is inherited from parent.
    */
@@ -46,7 +46,7 @@ export type LinkCommonProps = {
    */
   tabIndex?: number;
 };
-export type LinkTextProps = {
+export type LinkTextProps = LinkCommonProps & {
   /**
    * Link text.
    */
@@ -56,7 +56,7 @@ export type LinkTextProps = {
    */
   icon?: SVG;
 };
-export type LinkIconProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+export type LinkIconProps = LinkCommonProps & {
   /**
    * Link text.
    */
@@ -67,8 +67,8 @@ export type LinkIconProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   icon: SVG;
 };
 type Overload = {
-  (props: LinkCommonProps & LinkTextProps): JSX.Element;
-  (props: LinkCommonProps & LinkIconProps): JSX.Element;
+  (props: LinkTextProps): JSX.Element;
+  (props: LinkIconProps): JSX.Element;
 };
 type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
