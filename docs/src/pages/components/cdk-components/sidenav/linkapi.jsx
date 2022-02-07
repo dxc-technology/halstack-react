@@ -20,6 +20,11 @@ const sidenavLinkPropsTable = () => {
         <td></td>
         <td>This function will be called when the user clicks the link.</td>
       </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>The content will be showed content of the link.</td>
+      </tr>
     </DxcTable>
   );
 };

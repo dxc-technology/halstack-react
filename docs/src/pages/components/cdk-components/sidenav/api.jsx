@@ -20,6 +20,14 @@ const sidenavPropsTable = () => {
           in order to specify different padding sizes.
         </td>
       </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          The expanded panel of the accordion. This area can be used to render
+          custom content.
+        </td>
+      </tr>
     </DxcTable>
   );
 };
