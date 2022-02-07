@@ -62,6 +62,48 @@ export const Chromatic = () => (
         </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>
+    <Title title="Margins" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Xxsmall" theme="light" level={4} />
+      <DxcDateInput label="Xxsmall" margin="xxsmall" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xsmall" theme="light" level={4} />
+      <DxcDateInput label="Xsmall" margin="xsmall" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Small" theme="light" level={4} />
+      <DxcDateInput label="Small" margin="small" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium" theme="light" level={4} />
+      <DxcDateInput label="Medium" margin="medium" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large" theme="light" level={4} />
+      <DxcDateInput label="Large" margin="large" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xlarge" theme="light" level={4} />
+      <DxcDateInput label="Xlarge" margin="xlarge" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Xxlarge" theme="light" level={4} />
+      <DxcDateInput label="Xxlarge" margin="xxlarge" />
+    </ExampleContainer>
+    <Title title="Sizes" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Medium size" theme="light" level={4} />
+      <DxcDateInput label="Medium" size="medium" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large size" theme="light" level={4} />
+      <DxcDateInput label="Large" size="large" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="FillParent size" theme="light" level={4} />
+      <DxcDateInput label="FillParent" size="fillParent" />
+    </ExampleContainer>
   </>
 );
 
@@ -104,7 +146,5 @@ export const ShowYearPickerFocus = YearPickerFocus.bind({});
 ShowYearPickerFocus.play = async () => {
   await fireEvent.click(screen.getByRole("button"));
   await fireEvent.click(screen.getByText("2023"));
-  await userEvent.tab();
-  await userEvent.tab();
-  await userEvent.tab();
+  await screen.getByText("2021").focus();
 };
