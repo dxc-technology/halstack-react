@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import DxcTextInput from "../text-input/TextInput";
-import { spaces } from "../common/variables.js";
+import PasswordInputPropsType, { RefType } from "./types";
 
-const DxcPasswordInput = React.forwardRef(
+const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
   (
     {
       label = "",
@@ -110,42 +109,10 @@ const DxcPasswordInput = React.forwardRef(
   }
 );
 
-const sizes = {
-  small: "240px",
-  medium: "360px",
-  large: "480px",
-  fillParent: "100%",
-};
-
 const PasswordInput = styled.div`
   & ::-ms-reveal {
     display: none;
   }
 `;
-
-DxcPasswordInput.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  helperText: PropTypes.string,
-  error: PropTypes.string,
-  clearable: PropTypes.bool,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  autocomplete: PropTypes.string,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  pattern: PropTypes.string,
-  length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcPasswordInput;
