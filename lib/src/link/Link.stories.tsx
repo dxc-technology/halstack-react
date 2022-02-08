@@ -25,9 +25,9 @@ export const Chromatic = () => (
       <Title title="Disabled" theme="light" level={4} />
       <DxcLink text="Test" disabled></DxcLink>
       <Title title="Icon before" theme="light" level={4} />
-      <DxcLink text="Test" icon={icon} iconPosition="before"></DxcLink>
+      <DxcLink text="Test" href="https://www.google.com" icon={icon} iconPosition="before"></DxcLink>
       <Title title="Icon after" theme="light" level={4} />
-      <DxcLink text="Test" icon={icon} iconPosition="after"></DxcLink>
+      <DxcLink text="Test" href="https://www.youtube.com/" icon={icon} iconPosition="after"></DxcLink>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="With link hovered" theme="light" level={4} />
@@ -48,9 +48,9 @@ export const Chromatic = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcLink text="Test" margin="xxsmall"></DxcLink>
+      <DxcLink text="Test" margin="xxsmall" href="https://www.facebook.com/"></DxcLink>
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcLink text="Test" margin="xsmall"></DxcLink>
+      <DxcLink text="Test" margin="xsmall" href="https://www.linkedin.com/"></DxcLink>
       <Title title="Small margin" theme="light" level={4} />
       <DxcLink text="Test" margin="small"></DxcLink>
       <Title title="Medium margin" theme="light" level={4} />
