@@ -1,4 +1,3 @@
-/* eslint-disable no-else-return */
 import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import styled, { ThemeProvider } from "styled-components";
@@ -15,12 +14,12 @@ const DxcButton = ({
   disabled = false,
   iconPosition = "before",
   type = "button",
-  iconSrc = "",
   icon,
-  onClick = "",
+  iconSrc = "",
+  onClick,
   margin,
-  size,
-  tabIndex = 0,
+  size = "fitContent",
+  tabIndex = 0
 }: ButtonPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
@@ -37,16 +36,12 @@ const DxcButton = ({
         icon={icon}
       >
         <Button
-          disabled={disabled}
           type={type}
+          disabled={disabled}
           disableRipple
-          aria-disabled={disabled ? true : false}
+          aria-disabled={disabled}
           tabIndex={disabled ? -1 : tabIndex}
-          onClick={() => {
-            if (onClick) {
-              onClick();
-            }
-          }}
+          onClick={onClick}
         >
           {label && (
             <LabelContainer icon={icon} iconPosition={iconPosition}>

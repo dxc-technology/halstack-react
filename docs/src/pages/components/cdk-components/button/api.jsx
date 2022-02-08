@@ -76,7 +76,7 @@ const buttonPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string </td>
         <td>
           <code>'fitContent'</code>
         </td>
@@ -88,7 +88,7 @@ const buttonPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>Value of the tabindex.</td>
+        <td>Value of the tabindex attribute.</td>
       </tr>
     </DxcTable>
   );
