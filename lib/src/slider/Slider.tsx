@@ -316,6 +316,8 @@ const MinLabelContainer = styled.span`
   font-style: ${(props) => props.theme.limitValuesFontStyle};
   font-weight: ${(props) => props.theme.limitValuesFontWeight};
   letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
+  overflow: hidden;
+  white-space: nowrap;
   margin-right: ${(props) => props.theme.floorLabelMarginRight};
 `;
 
@@ -332,6 +334,8 @@ const MaxLabelContainer = styled.span`
   font-style: ${(props) => props.theme.limitValuesFontStyle};
   font-weight: ${(props) => props.theme.limitValuesFontWeight};
   letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
+  overflow: hidden;
+  white-space: nowrap;
   margin-left: ${(props) => (props.step === 1 ? props.theme.ceilLabelMarginLeft : "1.25rem")};
 `;
 

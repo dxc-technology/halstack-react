@@ -4,12 +4,13 @@ import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DarkContainer from "../../.storybook/components/DarkSection";
-import { userEvent, within } from "@storybook/testing-library";
 
 export default {
   title: "Slider",
   component: DxcSlider,
 };
+
+const labelFormat = (value) => `${value}*012345667890123456789012345678901234567890.01234567890`;
 
 export const Chromatic = () => (
   <>
@@ -167,6 +168,10 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="FillParent" theme="light" level={4} />
       <DxcSlider label="FillParent" size="fillParent" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large limit values labels" theme="light" level={4} />
+      <DxcSlider label="Slider" helperText="Help message" showLimitsValues labelFormatCallback={labelFormat} size="large" />
     </ExampleContainer>
   </>
 );
