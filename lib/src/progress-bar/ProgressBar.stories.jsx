@@ -11,45 +11,41 @@ export default {
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="With label" theme="light" level={4} />
-      <DxcProgressBar label="Loading..." overlay={false} />
-      <Title title="Without label" theme="light" level={4} />
-      <DxcProgressBar overlay={false} />
+      <Title title="Without labels" theme="light" level={4} />
+      <DxcProgressBar overlay={false} value={50} showValue/>
       <Title title="With helperText" theme="light" level={4} />
-      <DxcProgressBar helperText="Helper text" overlay={false} />
-      <Title title="With values" theme="light" level={4} />
+      <DxcProgressBar helperText="Helper text" value={50} overlay={false} showValue/>
+      <Title title="Without default value" theme="light" level={4} />
       <DxcProgressBar label="Loading..." overlay={false} showValue />
-      <Title title="With default value" theme="light" level={4} />
-      <DxcProgressBar label="Loading..." overlay={false} showValue value={50} />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcProgressBar label="Margin xxsmall" margin="xxsmall" overlay={false} />
+      <DxcProgressBar label="Margin xxsmall" margin="xxsmall" overlay={false} value={50} showValue/>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcProgressBar label="Margin xsmall" margin="xsmall" overlay={false} />
+      <DxcProgressBar label="Margin xsmall" margin="xsmall" overlay={false} value={50} showValue/>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
-      <DxcProgressBar label="Margin small" margin="small" overlay={false} />
+      <DxcProgressBar label="Margin small" margin="small" overlay={false} value={50} showValue/>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
-      <DxcProgressBar label="Margin medium" margin="medium" overlay={false} />
+      <DxcProgressBar label="Margin medium" margin="medium" overlay={false} value={50} showValue/>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large margin" theme="light" level={4} />
-      <DxcProgressBar label="Margin large" margin="large" overlay={false} />
+      <DxcProgressBar label="Margin large" margin="large" overlay={false} value={50} showValue/>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcProgressBar label="Margin xlarge" margin="xlarge" overlay={false} />
+      <DxcProgressBar label="Margin xlarge" margin="xlarge" overlay={false} value={50} showValue/>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="XxLarge margin" theme="light" level={4} />
-      <DxcProgressBar label="Margin xxlarge" margin="xxlarge" overlay={false} />
+      <DxcProgressBar label="Margin xxlarge" margin="xxlarge" overlay={false} value={50} showValue/>
     </ExampleContainer>
   </>
 );
