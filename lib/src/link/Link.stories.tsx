@@ -52,15 +52,15 @@ export const Chromatic = () => (
       <Title title="Xsmall margin" theme="light" level={4} />
       <DxcLink text="Test" margin="xsmall" href="https://www.linkedin.com/"></DxcLink>
       <Title title="Small margin" theme="light" level={4} />
-      <DxcLink text="Test" margin="small"></DxcLink>
+      <DxcLink text="Test" margin="small" href="https://www.linkedin.com/"></DxcLink>
       <Title title="Medium margin" theme="light" level={4} />
-      <DxcLink text="Test" margin="medium"></DxcLink>
+      <DxcLink text="Test" margin="medium" href="https://www.linkedin.com/"></DxcLink>
       <Title title="Large margin" theme="light" level={4} />
-      <DxcLink text="Test" margin="large"></DxcLink>
+      <DxcLink text="Test" margin="large" href="https://www.linkedin.com/"></DxcLink>
       <Title title="Xlarge margin" theme="light" level={4} />
-      <DxcLink text="Test" margin="xlarge"></DxcLink>
+      <DxcLink text="Test" margin="xlarge" href="https://www.linkedin.com/"></DxcLink>
       <Title title="Xxlarge margin" theme="light" level={4} />
-      <DxcLink text="Test" margin="xxlarge"></DxcLink>
+      <DxcLink text="Test" margin="xxlarge" href="https://www.linkedin.com/"></DxcLink>
     </ExampleContainer>
   </>
 );
