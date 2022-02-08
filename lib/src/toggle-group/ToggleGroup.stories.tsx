@@ -120,6 +120,16 @@ export const Chromatic = () => (
       <Title title="Hovered" theme="light" level={4} />
       <DxcToggleGroup label="Hovered" options={twoOptions} value={2} />
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Multiple toggleGroup" theme="light" level={4} />
+      <DxcToggleGroup
+        label="Toggle group"
+        helperText="Please select one or more"
+        options={options}
+        value={[1, 3]}
+        multiple
+      ></DxcToggleGroup>
+    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="xxSmall" theme="light" level={4} />
