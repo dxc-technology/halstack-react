@@ -19,13 +19,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcDateInput
-        label="Disabled date input"
-        helperText="Help message"
-        value="06-04-2027"
-        clearable
-        disabled
-      />
+      <DxcDateInput label="Disabled date input" helperText="Help message" value="06-04-2027" clearable disabled />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
@@ -44,13 +38,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
-          <DxcDateInput
-            label="Disabled Date input"
-            helperText="Help message"
-            value="06-04-2027"
-            clearable
-            disabled
-          />
+          <DxcDateInput label="Disabled Date input" helperText="Help message" value="06-04-2027" clearable disabled />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Invalid" theme="dark" level={4} />
@@ -108,7 +96,7 @@ export const Chromatic = () => (
 );
 
 const DatePicker = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Show date input" theme="light" level={4} />
     <DxcDateInput label="Date input" value="10-06-2023" />
   </ExampleContainer>
@@ -123,7 +111,7 @@ ShowDatePicker.play = async ({ canvasElement }) => {
 };
 
 const YearPicker = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Show date input" theme="light" level={4} />
     <DxcDateInput label="Date input" value="10-06-2023" />
   </ExampleContainer>
@@ -136,7 +124,7 @@ ShowYearPicker.play = async () => {
 };
 
 const YearPickerFocus = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Show date input" theme="light" level={4} />
     <DxcDateInput label="Date input" value="10-06-2023" />
   </ExampleContainer>
