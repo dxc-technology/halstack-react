@@ -24,8 +24,8 @@ const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SideNavMenu
 
 const Subtitle = ({ children }: SidenavSubtitlePropsType): JSX.Element => <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>;
 
-const Link = ({ href, onClick, children }: SidenavLinkPropsType): JSX.Element => (
-  <SideNavMenuLink href={href} onClick={onClick}>
+const Link = ({ tabIndex, href, onClick, children }: SidenavLinkPropsType): JSX.Element => (
+  <SideNavMenuLink tabIndex={tabIndex | 0} href={href} onClick={onClick}>
     {children}
   </SideNavMenuLink>
 );
@@ -93,18 +93,6 @@ const SideNavMenuLink = styled.a`
     outline-offset: 1px;
   }
 `;
-
-DxcSidenav.propTypes = {
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
 
 DxcSidenav.Title = Title;
 DxcSidenav.Subtitle = Subtitle;

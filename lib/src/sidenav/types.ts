@@ -15,11 +15,11 @@ export type SidenavLinkPropsType = {
   /**
    * Page to be opened when the user clicks on the link.
    */
-  href: string;
+  href?: string;
   /**
    * This function will be called when the user clicks the link.
    */
-  onClick: () => void;
+  onClick?: () => void;
   /**
    * The area inside the sidenav link. This area can be used to render custom content.
    */

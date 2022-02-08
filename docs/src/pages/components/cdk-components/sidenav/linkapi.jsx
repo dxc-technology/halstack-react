@@ -21,9 +21,14 @@ const sidenavLinkPropsTable = () => {
         <td>This function will be called when the user clicks the link.</td>
       </tr>
       <tr>
+        <td>tabIndex: number</td>
+        <td>0</td>
+        <td>Value of the tabindex attribute.</td>
+      </tr>
+      <tr>
         <td>children: node</td>
         <td></td>
-        <td>The content will be showed content of the link.</td>
+        <td>Custom content of the link.</td>
       </tr>
     </DxcTable>
   );
