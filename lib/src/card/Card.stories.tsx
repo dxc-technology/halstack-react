@@ -20,25 +20,22 @@ const Card = () => (
     <ExampleContainer>
       <DxcCard outlined>Outlined</DxcCard>
     </ExampleContainer>
+
     <Title title="Default with link" theme="light" level={4} />
     <ExampleContainer>
       <DxcCard linkHref="https://www.dxc.com">Default with link</DxcCard>
     </ExampleContainer>
     <Title title="Focused default with link" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard linkHref="https://www.dxc.com">Default with link</DxcCard>
+      <DxcCard linkHref="https://www.dxc.com">Focused default with link</DxcCard>
     </ExampleContainer>
-    <Title title="Hovered default card" theme="light" level={4} />
+    <Title title="Hovered default with link" theme="light" level={4} />
     <ExampleContainer>
       <DxcCard linkHref="https://www.dxc.com">Hovered default with link</DxcCard>
     </ExampleContainer>
     <Title title="Default with action" theme="light" level={4} />
     <ExampleContainer>
       <DxcCard onClick={() => {}}>Default with action</DxcCard>
-    </ExampleContainer>
-    <Title title="Hovered default with action" theme="light" level={4} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <DxcCard onClick={() => {}}>Hovered default with action</DxcCard>
     </ExampleContainer>
     <Title title="Default with image" theme="light" level={4} />
     <ExampleContainer>
@@ -172,10 +169,34 @@ const Card = () => (
   </>
 );
 
+const actionCard = () => (
+  <>
+    <ExampleContainer>
+      <Title title="Focused default with action" theme="light" level={4} />
+      <DxcCard onClick={() => {}}>Focused default with action</DxcCard>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Hovered default with action" theme="light" level={4} />
+      <DxcCard onClick={() => {}}>Hovered default with action</DxcCard>
+    </ExampleContainer>
+  </>
+);
+
+const linkStatuses = async (focusCard, hoverCard) => {
+  await focusCard.focus();
+  await userEvent.hover(hoverCard);
+};
+
+export const ActionCardStatuses = actionCard.bind({});
+ActionCardStatuses.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.tab();
+  await userEvent.hover(canvas.getAllByText("Hovered default with action")[1]);
+};
+
 export const Chromatic = Card.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await canvas.getAllByRole("link")[1].focus();
-  await userEvent.hover(canvas.getAllByRole("link")[2]);
-  await userEvent.hover(canvas.getAllByText("Hovered default with action")[1]);
+  const linkCards = canvas.getAllByRole("link");
+  await linkStatuses(linkCards[1], linkCards[2]);
 };
