@@ -182,13 +182,13 @@ const actionCard = () => (
   </>
 );
 
-const linkStatuses = async (focusCard, hoverCard) => {
+const linkStates = async (focusCard, hoverCard) => {
   await focusCard.focus();
   await userEvent.hover(hoverCard);
 };
 
-export const ActionCardStatuses = actionCard.bind({});
-ActionCardStatuses.play = async ({ canvasElement }) => {
+export const ActionCardStates = actionCard.bind({});
+ActionCardStates.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.tab();
   await userEvent.hover(canvas.getAllByText("Hovered default with action")[1]);
@@ -198,5 +198,5 @@ export const Chromatic = Card.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const linkCards = canvas.getAllByRole("link");
-  await linkStatuses(linkCards[1], linkCards[2]);
+  await linkStates(linkCards[1], linkCards[2]);
 };
