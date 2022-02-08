@@ -221,39 +221,13 @@ const url_options = [
     ],
   },
 ];
-const optionsWithEllipsisSmall = [
-  { label: "Optiond1234567890123456789", value: "1" },
-  { label: "Optiond12345678901234567890", value: "2" },
-  { label: "Option 03", value: "3" },
-  { label: "Option 041111112222222345", value: "4" },
-];
 const optionsWithEllipsisMedium = [
   { label: "Optiond1234567890123456789012345678901234", value: "1" },
   { label: "Optiond12345678901234567890123456789012345", value: "2" },
   { label: "Option 031111111111111111111111111111222", value: "3" },
   { label: "Option 03111111111111111111111111111122", value: "4" },
 ];
-const optionsWithEllipsisLarge = [
-  { label: "Optiond1234567890123456789012345678901234567890123456789", value: "1" },
-  { label: "Optiond12345678901234567890123456789012345678901234567890", value: "2" },
-  { label: "Option 031111111111111111111111111111222345678901234567", value: "3" },
-  { label: "Option 04111111222222234", value: "4" },
-];
-const optionsWithEllipsisFillParent = [
-  {
-    label:
-      "Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890",
-    value: "1",
-  },
-  {
-    label:
-      "Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890 Optiond12345678901234567890123456789012345678901234567890",
-    value: "2",
-  },
-  { label: "Option 031111111111111111111111111111222345678901234567", value: "3" },
-  { label: "Option 04111111222222234", value: "4" },
-];
-export const Chromatic = () => (
+const Select = () => (
   <>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
@@ -290,15 +264,16 @@ export const Chromatic = () => (
       <DxcSelect label="Simple selection" options={single_options} value="2" />
       <Title title="Multiple selection" theme="light" level={4} />
       <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
-      <Title title="Multiple selection with ellipsis" theme="light" level={4} />
-      <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2", "3", "4"]} />
     </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Value with ellipsis" theme="light" level={4} />
-      <DxcSelect label="Small with ellipsis" options={optionsWithEllipsisSmall} value="1" size="small" />
-      <DxcSelect label="Medium with ellipsis" options={optionsWithEllipsisMedium} value="1" size="medium" />
-      <DxcSelect label="Large with ellipsis" options={optionsWithEllipsisLarge} value="2" size="large" />
-      <DxcSelect label="FillParent with ellipsis" options={optionsWithEllipsisFillParent} value="2" size="fillparent" />
+
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Multiple clear hovered" theme="light" level={4} />
+      <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
+    </ExampleContainer>
+
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Multiple clear actived" theme="light" level={4} />
+      <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
     </ExampleContainer>
     <>
       <Title title="Sizes" theme="light" level={2} />
@@ -350,134 +325,132 @@ export const Chromatic = () => (
         <DxcSelect label="xxLarge" options={single_options} margin="xxlarge" />
       </ExampleContainer>
     </>
+    <ExampleContainer>
+      <Title title="Ellipsis" theme="light" level={4} />
+      <Title title="Multiple selection with ellipsis" theme="light" level={4} />
+      <DxcSelect label="Label" options={single_options} multiple value={["1", "2", "3", "4"]} />
+      <Title title="Value with ellipsis" theme="light" level={4} />
+      <DxcSelect label="Label" options={optionsWithEllipsisMedium} value="1" size="medium" />
+      <Title title="Option with ellipsis" theme="light" level={4} />
+      <DxcSelect label="Label" options={optionsWithEllipsisMedium} value="1" size="medium" />
+    </ExampleContainer>
   </>
 );
-
-const OptionsWithEllipsisSizeSmall = () => (
-  <ExampleContainer>
-    <Title title="Small select, option with ellipsis" theme="light" level={4} />
-    <DxcSelect label="Select label" options={optionsWithEllipsisSmall} size="small" />
-  </ExampleContainer>
-);
-const OptionsWithEllipsisSizeMedium = () => (
-  <ExampleContainer>
-    <Title title="Medium select, option with ellipsis" theme="light" level={4} />
-    <DxcSelect label="Select label" options={optionsWithEllipsisMedium} size="medium" />
-  </ExampleContainer>
-);
-const OptionsWithEllipsisSizeLarge = () => (
-  <ExampleContainer>
-    <Title title="Large select, option with ellipsis" theme="light" level={4} />
-    <DxcSelect label="Select label" options={optionsWithEllipsisLarge} size="large" />
-  </ExampleContainer>
-);
-const OptionsWithEllipsisSizeFillParent = () => (
-  <ExampleContainer>
-    <Title title="Large select, option with ellipsis" theme="light" level={4} />
-    <DxcSelect label="Select label" options={optionsWithEllipsisFillParent} size="fillParent" />
-  </ExampleContainer>
-);
+export const Chromatic = Select.bind({});
+Chromatic.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getAllByRole("combobox")[25]);
+};
 const DefaultSelect = () => (
   <ExampleContainer>
     <Title title="Default select" theme="light" level={4} />
-    <DxcSelect label="Select label" options={single_options} placeholder="Choose an option" />
+    <DxcSelect label="Select label" options={single_options} value="1" placeholder="Choose an option" />
   </ExampleContainer>
 );
-const DefaultSearchableSelect = () => (
+const SearchableSelect = () => (
   <ExampleContainer>
     <Title title="Searchable select" theme="light" level={4} />
     <DxcSelect label="Select Label" searchable options={single_options} placeholder="Choose an option" />
   </ExampleContainer>
 );
 const MultipleSelect = () => (
-  <ExampleContainer>
-    <Title title="Multiple select" theme="light" level={4} />
-    <DxcSelect label="Select label" options={single_options} multiple placeholder="Choose an option" />
-  </ExampleContainer>
+  <>
+    <ExampleContainer>
+      <Title title="Multiple select" theme="light" level={4} />
+      <DxcSelect
+        label="Select label"
+        options={single_options}
+        value={["1", "4"]}
+        multiple
+        placeholder="Choose an option"
+      />
+    </ExampleContainer>
+  </>
 );
 const DefaultGroupedOptionsSelect = () => (
   <ExampleContainer>
     <Title title="Grouped options simple select" theme="light" level={4} />
-    <DxcSelect label="Label" options={group_options} placeholder="Choose an option" />
+    <DxcSelect label="Label" options={group_options} value="9" placeholder="Choose an option" />
   </ExampleContainer>
 );
 const MultipleGroupedOptionsSelect = () => (
   <ExampleContainer>
     <Title title="Grouped options multiple select" theme="light" level={4} />
-    <DxcSelect label="Label" options={group_options} multiple placeholder="Choose an option" />
+    <DxcSelect label="Label" options={group_options} value={["0", "2"]} multiple placeholder="Choose an option" />
   </ExampleContainer>
 );
 const RescaledIcons = () => (
   <ExampleContainer>
     <Title title="Rescaled icons displayed" theme="light" level={4} />
-    <DxcSelect label="Label" options={url_options} placeholder="Choose an option" />
+    <DxcSelect label="Label" options={url_options} value="facebook" placeholder="Choose an option" />
   </ExampleContainer>
 );
 const SelectWithIcons = () => (
   <ExampleContainer>
     <Title title="Normal icons displayed" theme="light" level={4} />
-    <DxcSelect label="Label" options={icon_options} placeholder="Choose an option" />
+    <DxcSelect label="Label" options={icon_options} value="3" placeholder="Choose an option" />
   </ExampleContainer>
 );
 const SelectMultipleWithIcons = () => (
   <ExampleContainer>
     <Title title="Multiple select with icons" theme="light" level={4} />
-    <DxcSelect label="Label" options={icon_options} multiple placeholder="Choose an option" />
+    <DxcSelect label="Label" options={icon_options} multiple value={["1", "3"]} placeholder="Choose an option" />
   </ExampleContainer>
 );
 const MultipleGroupedOptionsSelectWithIcons = () => (
   <ExampleContainer>
     <Title title="Multiple grouped options with icons" theme="light" level={4} />
-    <DxcSelect label="Label" options={icon_options_grouped} multiple placeholder="Choose an option" />
+    <DxcSelect
+      label="Label"
+      options={icon_options_grouped}
+      multiple
+      value={["3", "2"]}
+      placeholder="Choose an option"
+    />
   </ExampleContainer>
 );
-const OnlyOneOptionSelect = () => (
-  <ExampleContainer pseudoState="pseudo-focus">
+const OnlyOneOptionHovered = () => (
+  <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Hovered Option" theme="light" level={4} />
     <DxcSelect label="Hovered" options={one_option} placeholder="Choose an option" />
   </ExampleContainer>
 );
-
+const OnlyOneOptionFocused = () => (
+  <ExampleContainer pseudoState="pseudo-focus">
+    <Title title="Focused Option" theme="light" level={4} />
+    <DxcSelect label="Focused" options={one_option} placeholder="Choose an option" />
+  </ExampleContainer>
+);
+const OnlyOneOptionActived = () => (
+  <ExampleContainer pseudoState="pseudo-active">
+    <Title title="Actived Option" theme="light" level={4} />
+    <DxcSelect label="Actived" options={one_option} placeholder="Choose an option" />
+  </ExampleContainer>
+);
+const SelectedOptionHovered = () => (
+  <ExampleContainer pseudoState="pseudo-hover">
+    <Title title="Hovered Selected Option" theme="light" level={4} />
+    <DxcSelect label="Hovered" value="1" options={one_option} placeholder="Choose an option" />
+  </ExampleContainer>
+);
+const SelectedOptionActived = () => (
+  <ExampleContainer pseudoState="pseudo-active">
+    <Title title="Actived Selected Option" theme="light" level={4} />
+    <DxcSelect label="Actived" value="1" options={one_option} placeholder="Choose an option" />
+  </ExampleContainer>
+);
 export const OptionsDisplayed = DefaultSelect.bind({});
 OptionsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.hover(canvas.getAllByRole("option")[1]);
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    userEvent.click(select);
-  });
 };
-export const Searchable = DefaultSearchableSelect.bind({});
+export const Searchable = SearchableSelect.bind({});
 Searchable.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-
   await userEvent.click(canvas.getByRole("combobox"));
-
   await waitFor(async () => {
-    userEvent.type(canvas.getByRole("textbox"), "r");
-  });
-};
-
-export const ArrowDownPressed = DefaultSelect.bind({});
-ArrowDownPressed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-  });
-};
-
-export const ArrowUpPressed = DefaultSelect.bind({});
-ArrowUpPressed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    fireEvent.keyDown(select, { key: "ArrowUp", code: "ArrowUp", keyCode: 38, charCode: 38 });
+    userEvent.type(canvas.getByRole("combobox"), "r");
   });
 };
 
@@ -486,23 +459,12 @@ GroupOptionsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.hover(canvas.getAllByRole("option")[1]);
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    userEvent.click(select);
-  });
 };
 
 export const SelectMultipleOptionsDisplayed = MultipleSelect.bind({});
 SelectMultipleOptionsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getByRole("combobox"));
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    userEvent.click(canvas.getAllByRole("option")[1]);
-  });
+  await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
 
 export const SelectMultipleGroupedOptionsDisplayed = MultipleGroupedOptionsSelect.bind({});
@@ -510,22 +472,12 @@ SelectMultipleGroupedOptionsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getByRole("combobox"));
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    userEvent.click(canvas.getAllByRole("option")[2]);
-  });
 };
 export const SelectWithIconsDisplayed = SelectWithIcons.bind({});
 SelectWithIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getByRole("combobox"));
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    await userEvent.click(select);
-  });
 };
 
 export const SelectWithRescaledIconsDisplayed = RescaledIcons.bind({});
@@ -533,22 +485,12 @@ SelectWithRescaledIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getByRole("combobox"));
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    await userEvent.click(select);
-  });
 };
 export const SelectMultipleWithIconsDisplayed = SelectMultipleWithIcons.bind({});
 SelectMultipleWithIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getByRole("combobox"));
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    userEvent.click(canvas.getAllByRole("option")[2]);
-  });
 };
 
 export const SelectMultipleGroupedWithIconsDisplayed = MultipleGroupedOptionsSelectWithIcons.bind({});
@@ -556,56 +498,38 @@ SelectMultipleGroupedWithIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getByRole("combobox"));
-    userEvent.click(canvas.getAllByRole("option")[0]);
-    userEvent.click(canvas.getAllByRole("option")[1]);
-  });
 };
 
-export const OptionsWithEllipsisSmall = OptionsWithEllipsisSizeSmall.bind({});
-OptionsWithEllipsisSmall.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getAllByRole("option")[3]);
-    userEvent.click(select);
-  });
-};
-export const OptionsWithEllipsisMedium = OptionsWithEllipsisSizeMedium.bind({});
-OptionsWithEllipsisMedium.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getAllByRole("option")[2]);
-    userEvent.click(select);
-  });
-};
-export const OptionsWithEllipsisLarge = OptionsWithEllipsisSizeLarge.bind({});
-OptionsWithEllipsisLarge.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getAllByRole("option")[2]);
-    userEvent.click(select);
-  });
-};
-export const OptionsWithEllipsisFillParent = OptionsWithEllipsisSizeFillParent.bind({});
-OptionsWithEllipsisFillParent.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    userEvent.click(canvas.getAllByRole("option")[1]);
-    userEvent.click(select);
-  });
-};
-
-export const OptionHovered = OnlyOneOptionSelect.bind({});
+export const OptionHovered = OnlyOneOptionHovered.bind({});
 OptionHovered.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
+};
+
+export const OptionFocused = OnlyOneOptionFocused.bind({});
+OptionFocused.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
+  await waitFor(async () => {
+    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
+  });
+};
+export const OptionActived = OnlyOneOptionActived.bind({});
+OptionActived.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
+};
+export const OptionSelectedHovered = SelectedOptionHovered.bind({});
+OptionSelectedHovered.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
+};
+export const OptionSelectedActived = SelectedOptionActived.bind({});
+OptionSelectedActived.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
