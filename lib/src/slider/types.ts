@@ -1,4 +1,3 @@
-type Size = "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -75,11 +74,7 @@ type Props = {
   /**
    * Size of the component.
    */
-  size?: Size;
-  /**
-   * Value of the tabindex attribute.
-   */
-  tabIndex?: number;
+  size?: "medium" | "large" | "fillParent";
 };
 
 export default Props;
