@@ -157,16 +157,16 @@ export const Chromatic = () => (
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
+      <Title title="Medium" theme="light" level={4} />
+      <DxcSlider label="Medium" size="medium" />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Large" theme="light" level={4} />
-      <DxcSlider label="Large" size="medium" />
+      <DxcSlider label="Large" size="large" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Xlarge" theme="light" level={4} />
-      <DxcSlider label="Xlarge" size="large" />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Xxlarge" theme="light" level={4} />
-      <DxcSlider label="Xxlarge" size="fillParent" />
+      <Title title="FillParent" theme="light" level={4} />
+      <DxcSlider label="FillParent" size="fillParent" />
     </ExampleContainer>
   </>
 );
