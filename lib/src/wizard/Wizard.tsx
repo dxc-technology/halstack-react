@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
-
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { validIcon, invalidIcon } from "./Icons";
+import WizardPropsType from "./types";
 
-const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margin, tabIndex = 0 }) => {
+const DxcWizard = ({
+  mode = "horizontal",
+  currentStep,
+  onStepClick,
+  steps,
+  margin,
+  tabIndex = 0,
+}: WizardPropsType): JSX.Element => {
   const [innerCurrent, setInnerCurrentStep] = useState(currentStep || 0);
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const colorsTheme = useTheme();
@@ -24,30 +30,22 @@ const DxcWizard = ({ mode = "horizontal", currentStep, onStepClick, steps, margi
   return (
     <ThemeProvider theme={colorsTheme.wizard}>
       <StepsContainer mode={mode} margin={margin}>
-        {steps.map((step, i) => {
+        {steps?.map((step, i) => {
           return (
-            <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps.length - 1}>
+            <StepContainer key={`step${i}`} mode={mode} lastStep={i === steps?.length - 1}>
               <Step
                 tabIndex={tabIndex}
                 onClick={() => handleStepClick(i)}
                 mode={mode}
                 disabled={step.disabled}
                 first={i === 0}
-                last={i === steps.length - 1}
+                last={i === steps?.length - 1}
               >
                 <StepHeader>
                   <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                     {step.icon ? (
                       <StepIconContainer disabled={step.disabled}>
-                        {typeof step.icon === "object" ? (
-                          step.icon.type === "img" ? (
-                            <ImgContainer current={i === renderedCurrent} img={step.icon.props.src} />
-                          ) : (
-                            step.icon
-                          )
-                        ) : (
-                          React.createElement(step.icon)
-                        )}
+                        {typeof step.icon === "object" ? step.icon : React.createElement(step.icon)}
                       </StepIconContainer>
                     ) : step.iconSrc ? (
                       <Icon src={step.iconSrc}></Icon>
@@ -225,15 +223,6 @@ const StepIconContainer = styled.div`
   }
 `;
 
-const ImgContainer = styled.div`
-  background-color: ${(props) =>
-    props.current ? props.theme.stepContainerSelectedFontColor : props.theme.stepContainerFontColor};
-  mask: url(${({ img }) => img}) no-repeat center;
-  mask-size: ${(props) => `${props.theme.stepContainerIconSize} ${props.theme.stepContainerIconSize}`};
-  height: ${(props) => props.theme.stepContainerIconSize};
-  width: ${(props) => props.theme.stepContainerIconSize};
-`;
-
 const Number = styled.p`
   font-size: ${(props) => props.theme.stepContainerFontSize};
   font-family: ${(props) => props.theme.stepContainerFontFamily};
@@ -295,31 +284,5 @@ const StepSeparator = styled.div`
   opacity: 1;
   flex-grow: 1;
 `;
-
-DxcWizard.propTypes = {
-  mode: PropTypes.oneOf(["horizontal", "vertical"]),
-  currentStep: PropTypes.number,
-  onStepClick: PropTypes.func,
-  steps: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      description: PropTypes.string,
-      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-      iconSrc: PropTypes.string,
-      disabled: PropTypes.bool,
-      valid: PropTypes.bool,
-    })
-  ),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcWizard;
