@@ -111,7 +111,7 @@ const DxcSlider = ({
 };
 
 const sizes = {
-  medium: "240px",
+  medium: "360px",
   large: "480px",
   fillParent: "100%",
 };
@@ -175,9 +175,8 @@ const SliderContainer = styled.div`
   height: 48px;
   align-items: center;
 
-  .MultiSlider-root {
-    display: flex;
-    align-items: center;
+  .MuiSlider-root {
+    min-width: 15rem;
   }
   .MuiSlider-container {
     padding: 30px 24px;
@@ -316,6 +315,7 @@ const MinLabelContainer = styled.span`
   font-style: ${(props) => props.theme.limitValuesFontStyle};
   font-weight: ${(props) => props.theme.limitValuesFontWeight};
   letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
+  white-space: nowrap;
   margin-right: ${(props) => props.theme.floorLabelMarginRight};
 `;
 
@@ -332,6 +332,7 @@ const MaxLabelContainer = styled.span`
   font-style: ${(props) => props.theme.limitValuesFontStyle};
   font-weight: ${(props) => props.theme.limitValuesFontWeight};
   letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
+  white-space: nowrap;
   margin-left: ${(props) => (props.step === 1 ? props.theme.ceilLabelMarginLeft : "1.25rem")};
 `;
 
