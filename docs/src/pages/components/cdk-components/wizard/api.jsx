@@ -47,7 +47,7 @@ const wizardPropsTable = () => {
               <b>label</b>: Step label.
             </li>
             <li>
-              <b>description</b>: Step description.
+              <b>description</b>: Description that will be placed next to the step.
             </li>
             <li>
               <b>icon</b>: Element used as the icon to be displayed in the step.
@@ -79,7 +79,7 @@ const wizardPropsTable = () => {
         <td>tabIndex: number</td>
         <td>0</td>
         <td>
-          Value of the tabindex that is given to all the steps.
+          Value of the tabindex attribute that is given to all the steps.
         </td>
       </tr>
     </DxcTable>

@@ -1,4 +1,3 @@
-type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -34,13 +33,13 @@ type Props = {
    * the error (if the value entered is not valid) will be passed to this
    * function. If there is no error, error will be null.
    * */
-  onChange?: (val: { value: string; error: string }) => void;
-  /**
+   onChange?: (val: { value: string; error: string | null }) => void;
+   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value entered is
    * not valid) will be passed to this function. If there is no error, error will be null.
    */
-  onBlur?: (val: { value: string; error: string }) => void;
+  onBlur?: (val: { value: string; error: string | null }) => void;
   /**
    * If it is defined, the component will change its appearance, showing
    * the error below the password input component. If it is not defined, the
@@ -80,15 +79,16 @@ type Props = {
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
    */
-  size?: Size;
+  size?: "small" | "medium" | "large" | "fillParent";
   /**
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-  /**
-   * Reference to the component.
-   */
-  ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcPasswordInput(props: Props): JSX.Element;
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
+
+export default Props;

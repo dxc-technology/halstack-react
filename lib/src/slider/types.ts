@@ -1,4 +1,3 @@
-type Size = "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -66,7 +65,7 @@ type Props = {
    * This function will be used to format the labels displayed next to the slider.
    * The value will be passed as parameter and the function must return the formatted value.
    */
-  labelFormatCallback?: (value: number) => void;
+  labelFormatCallback?: (value: number) => string;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
@@ -75,11 +74,7 @@ type Props = {
   /**
    * Size of the component.
    */
-  size?: Size;
-  /**
-   * Value of the tabindex attribute.
-   */
-  tabIndex?: number;
+  size?: "medium" | "large" | "fillParent";
 };
 
 export default Props;

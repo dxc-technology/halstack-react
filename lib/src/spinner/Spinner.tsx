@@ -1,12 +1,18 @@
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
+import SpinnerPropsType from "./types";
 
-const DxcSpinner = ({ label = "", value, showValue = false, mode = "large", margin }) => {
+const DxcSpinner = ({
+  label = "",
+  value,
+  showValue = false,
+  mode = "large",
+  margin,
+}: SpinnerPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
@@ -109,22 +115,6 @@ const determinatedValue = (props, strokeDashArray) => {
     val = strokeDashArray * (1 - props.value / 100);
   }
   return val;
-};
-
-DxcSpinner.propTypes = {
-  label: PropTypes.string,
-  value: PropTypes.number,
-  showValue: PropTypes.bool,
-  mode: PropTypes.oneOf(["large", "small", "overlay"]),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
 };
 const DXCSpinner = styled.div`
   height: ${(props) => (props.mode === "overlay" ? "100vh" : "")};
