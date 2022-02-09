@@ -11,7 +11,7 @@ export default {
 
 export const DefaultDialog = () => (
   <>
-    <ExampleContainer>
+    <ExampleContainer expanded={true}>
       <Title title="Default dialog" theme="light" level={4} />
       <DxcDialog>
         {" "}
@@ -32,7 +32,7 @@ export const DefaultDialog = () => (
 );
 
 export const DialogWithoutOverlay = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
     <DxcDialog overlay={false}>
       {" "}
@@ -52,7 +52,7 @@ export const DialogWithoutOverlay = () => (
 );
 
 export const DialogCloseVisibleFalse = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog Close Visible" theme="dark" level={4} />
     <DxcDialog isCloseVisible={false}>
       {" "}
@@ -72,7 +72,7 @@ export const DialogCloseVisibleFalse = () => (
 );
 
 export const WithoutOverlay = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog Without Overlay" theme="light" level={4} />
     <DxcDialog overlay={false}>
       {" "}
@@ -92,7 +92,7 @@ export const WithoutOverlay = () => (
 );
 
 export const DialogWithXxsmallPadding = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog With Xxsmall Padding" theme="light" level={4} />
     <DxcDialog padding={"xxsmall"}>
       {" "}
@@ -112,7 +112,7 @@ export const DialogWithXxsmallPadding = () => (
 );
 
 export const DialogWithXsmallPadding = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog With Xsmall Padding" theme="light" level={4} />
     <DxcDialog padding={"xsmall"}>
       {" "}
@@ -132,7 +132,7 @@ export const DialogWithXsmallPadding = () => (
 );
 
 export const DialogWithSmallPadding = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog With Small Padding" theme="light" level={4} />
     <DxcDialog padding={"small"}>
       {" "}
@@ -152,7 +152,7 @@ export const DialogWithSmallPadding = () => (
 );
 
 export const DialogWithMediumPadding = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog With Medium Padding" theme="light" level={4} />
     <DxcDialog padding={"medium"}>
       {" "}
@@ -172,7 +172,7 @@ export const DialogWithMediumPadding = () => (
 );
 
 export const DialogWithLargePadding = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog With Large Padding" theme="light" level={4} />
     <DxcDialog padding={"large"}>
       {" "}
@@ -192,7 +192,7 @@ export const DialogWithLargePadding = () => (
 );
 
 export const DialogWithXlargePadding = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog With Xlarge Padding" theme="light" level={4} />
     <DxcDialog padding={"xlarge"}>
       {" "}
@@ -212,7 +212,7 @@ export const DialogWithXlargePadding = () => (
 );
 
 export const DialogWithXxlargePadding = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded={true}>
     <Title title="Dialog With Xxlarge Padding" theme="light" level={4} />
     <DxcDialog padding={"xxlarge"}>
       {" "}
