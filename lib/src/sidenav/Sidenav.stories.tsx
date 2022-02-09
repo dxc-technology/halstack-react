@@ -13,7 +13,7 @@ const linkClick = () => {
   console.log("click");
 };
 
-const StyledContainer = styled.div`
+const StyledContainer = styled["div"]`
   display: flex;
   flex-direction: row;
   height: 500px;
@@ -147,6 +147,19 @@ export const Chromatic = () => (
           </p>
         </DxcSidenav>
       </StyledContainer>
+    </ExampleContainer>
+
+    <ExampleContainer pseudoState="pseudo-focus-visible">
+      <Title title="Focused" theme="light" level={4} />
+      <DxcSidenav>
+        <DxcSidenav.Title>My sidenav</DxcSidenav.Title>
+        <DxcSidenav.Subtitle>Components</DxcSidenav.Subtitle>
+        <DxcSidenav.Link href="#">Button</DxcSidenav.Link>
+        <DxcSidenav.Link href="#">Date</DxcSidenav.Link>
+        <DxcSidenav.Subtitle>Guidelines</DxcSidenav.Subtitle>
+        <DxcSidenav.Link onClick={linkClick}>Layout</DxcSidenav.Link>
+        <DxcSidenav.Link onClick={linkClick}>Footer</DxcSidenav.Link>
+      </DxcSidenav>
     </ExampleContainer>
   </>
 );
