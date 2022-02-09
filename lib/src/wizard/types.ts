@@ -7,11 +7,29 @@ type Margin = {
 };
 type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 type Step = {
+  /**
+   * Step label.
+   */
   label?: string;
+  /**
+   * Description that will be placed next to the step.
+   */
   description?: string;
+  /**
+   * Element used as the icon to be displayed in the step.
+   */
   icon?: SVG;
+  /**
+   * @deprecated URL of the icon to be displayed in the step.
+   */
   iconSrc?: string;
+  /**
+   * Whether the step is disabled or not.
+   */
   disabled?: boolean;
+  /**
+   * Whether the step is valid or not.
+   */
   valid?: boolean;
 };
 type Props = {
@@ -27,15 +45,9 @@ type Props = {
    * This function will be called when the user clicks a step. The step
    * number will be passed as a parameter.
    */
-  onStepClick?: (step: number) => void;
+  onStepClick?: (newCurrentStep: number) => void;
   /**
-   * An array of objects representing the steps. Each of them has the following properties:
-   * - label: Step label.
-   * - description: Description that will be placed next to the step.
-   * - icon: Element used as the icon to be displayed in the step.
-   * - @deprecated iconSrc: URL of the icon to be displayed in the step.
-   * - disabled: Whether the step is disabled or not.
-   * - valid: Whether the step is valid or not.
+   * An array of objects representing the steps.
    */
   steps: [Step, ...Step[]];
   /**
