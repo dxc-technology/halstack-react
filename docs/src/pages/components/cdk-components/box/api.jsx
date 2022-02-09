@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const buttonPropsTable = () => {
+const BoxPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -11,7 +11,7 @@ const buttonPropsTable = () => {
       </tr>
       <tr>
         <td>shadowDepth: 0 | 1 | 2</td>
-        <td></td>
+        <td>2</td>
         <td>The size of the shadow to be displayed around the box.</td>
       </tr>
       <tr>
@@ -19,7 +19,12 @@ const buttonPropsTable = () => {
         <td>
           <code>'inline-flex'</code>
         </td>
-        <td>Changes the display CSS property of the Box div.</td>
+        <td>Changes the display CSS property of the box div.</td>
+      </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>Custom content that will be placed in the box component.</td>
       </tr>
       <tr>
         <td>margin: string | object</td>
@@ -47,11 +52,19 @@ const buttonPropsTable = () => {
           <code>'fitContent'</code>
         </td>
         <td>
-          Size of the component ('small' | 'medium' | 'large' | 'fillParent'| 'fitContent').
+          Size of the component ('small' | 'medium' | 'large' | 'fillParent'|
+          'fitContent').
         </td>
+      </tr>
+      <tr>
+        <td>tabIndex: number</td>
+        <td>
+          <code>0</code>
+        </td>
+        <td>Value of the tabindex attribute.</td>
       </tr>
     </DxcTable>
   );
 };
 
-export default buttonPropsTable;
+export default BoxPropsTable;
