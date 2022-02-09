@@ -10,15 +10,6 @@ const linkPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
-        <td>underlined: boolean</td>
-        <td>
-          <code>true</code>
-        </td>
-        <td>
-          <b>Deprecated.</b> If true, the text is underlined.
-        </td>
-      </tr>
-      <tr>
         <td>disabled: boolean</td>
         <td>
           <code>false</code>

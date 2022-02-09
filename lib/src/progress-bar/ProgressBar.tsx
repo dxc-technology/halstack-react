@@ -141,7 +141,7 @@ const HelperText = styled.span`
       : props.overlay === true
       ? "#FFFFFF"
       : props.theme.helperTextFontColor};
-  font-family: ${(props) => props.theme.fontFamily};
+  font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
