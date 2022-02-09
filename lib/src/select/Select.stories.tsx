@@ -482,7 +482,6 @@ export const SelectSearchableWithValue = SearchableWithValue.bind({});
 SelectSearchableWithValue.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("combobox"));
-  await userEvent.click(canvas.getByRole("input"));
 };
 
 export const SelectMultipleSearchableWithValue = MultipleSearchable.bind({});
