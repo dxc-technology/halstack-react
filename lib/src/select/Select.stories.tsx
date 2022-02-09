@@ -260,9 +260,9 @@ const Select = () => (
         placeholder="Placeholder"
       />
       <Title title="Simple selection" theme="light" level={4} />
-      <DxcSelect label="Simple selection" options={single_options} value="2" />
+      <DxcSelect label="Simple selection" searchable options={single_options} value="2" />
       <Title title="Multiple selection" theme="light" level={4} />
-      <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
+      <DxcSelect label="Multiple select" searchable options={single_options} multiple value={["1", "2"]} />
     </ExampleContainer>
 
     <ExampleContainer pseudoState="pseudo-hover">
