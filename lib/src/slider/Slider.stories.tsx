@@ -10,7 +10,7 @@ export default {
   component: DxcSlider,
 };
 
-const labelFormat = (value) => `${value}*012345667890123456789012345678901234567890.01234567890`;
+const labelFormat = (value) => `${value}E100000000000000000000000`;
 
 export const Chromatic = () => (
   <>
