@@ -97,3 +97,25 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+const ChipPrefixFocused = () => (
+  <ExampleContainer>
+    <Title title="Chip with prefix" theme="light" level={4} />
+    <DxcChip label="Chip with prefix" prefixIcon={iconSVG} onClickPrefix={() => {}} />
+  </ExampleContainer>
+);
+const ChipSuffixFocused = () => (
+  <ExampleContainer>
+    <Title title="Chip with suffix" theme="light" level={4} />
+    <DxcChip label="Chip with suffix" suffixIcon={iconSVG} onClickSuffix={() => {}} />
+  </ExampleContainer>
+);
+
+export const PrefixFocused = ChipPrefixFocused.bind({});
+PrefixFocused.play = async ({ canvasElement }) => {
+  await userEvent.tab();
+};
+
+export const SuffixFocused = ChipSuffixFocused.bind({});
+SuffixFocused.play = async ({ canvasElement }) => {
+  await userEvent.tab();
+};
