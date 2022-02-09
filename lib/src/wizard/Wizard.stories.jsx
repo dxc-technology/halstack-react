@@ -18,6 +18,15 @@ const favoriteSVG = () => {
   );
 };
 
+const largeIcon = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </svg>
+  );
+};
+
 const stepWithLabel = [
   {
     label: "First step",
@@ -56,14 +65,17 @@ const stepWithLabelDescription = [
 
 const stepWithLongDescription = [
   {
+    label: "First step",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
   },
   {
+    label: "Second step",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
   },
   {
+    label: "Third step",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
   },
@@ -97,21 +109,37 @@ const stepDisabled = [
 
 const stepIcons = [
   {
+    label: "First step",
     icon: favoriteSVG,
   },
   {
+    label: "Second step",
     icon: favoriteSVG,
   },
   {
+    label: "Third step",
     icon: favoriteSVG,
+  },
+];
+
+const stepLargeIcons = [
+  {
+    label: "First step",
+    icon: largeIcon,
+  },
+  {
+    label: "Second step",
+    icon: largeIcon,
+  },
+  {
+    label: "Third step",
+    icon: largeIcon,
   },
 ];
 
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="Without labels" theme="light" level={4} />
-      <DxcWizard steps={[{}, {}, {}, {}]}></DxcWizard>
       <Title title="Current step in the third step, labels and description" theme="light" level={4} />
       <DxcWizard currentStep={2} steps={stepWithLabelDescription}></DxcWizard>
       <Title title="With long description in horizontal" theme="light" level={4} />
@@ -122,6 +150,8 @@ export const Chromatic = () => (
       <DxcWizard steps={stepDisabled}></DxcWizard>
       <Title title="With icons" theme="light" level={4} />
       <DxcWizard steps={stepIcons}></DxcWizard>
+      <Title title="With large icons" theme="light" level={4} />
+      <DxcWizard steps={stepLargeIcons}></DxcWizard>
     </ExampleContainer>
     <Title title="Margins horizontal" theme="light" level={2} />
     <ExampleContainer>
