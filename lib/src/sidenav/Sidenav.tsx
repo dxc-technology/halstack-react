@@ -1,14 +1,13 @@
 /* eslint-disable react/require-default-props */
-import React, { JSXElementConstructor } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
-import SidenavPropsType,  {SidenavTitlePropsType, SidenavSubtitlePropsType, SidenavLinkPropsType} from "./types.js"; "./types";
+import SidenavPropsType, { SidenavTitlePropsType, SidenavSubtitlePropsType, SidenavLinkPropsType } from "./types.js";
 
-const DxcSidenav = ({ padding, children }: SidenavPropsType) : JSX.Element => {
+const DxcSidenav = ({ padding, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
@@ -22,10 +21,12 @@ const DxcSidenav = ({ padding, children }: SidenavPropsType) : JSX.Element => {
 
 const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SideNavMenuTitle>{children}</SideNavMenuTitle>;
 
-const Subtitle = ({ children }: SidenavSubtitlePropsType): JSX.Element => <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>;
+const Subtitle = ({ children }: SidenavSubtitlePropsType): JSX.Element => (
+  <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>
+);
 
-const Link = ({ tabIndex, href, onClick, children }: SidenavLinkPropsType): JSX.Element => (
-  <SideNavMenuLink tabIndex={tabIndex | 0} href={href} onClick={onClick}>
+const Link = ({ tabIndex = 0, href, onClick, children }: SidenavLinkPropsType): JSX.Element => (
+  <SideNavMenuLink tabIndex={tabIndex} href={href} onClick={onClick}>
     {children}
   </SideNavMenuLink>
 );
