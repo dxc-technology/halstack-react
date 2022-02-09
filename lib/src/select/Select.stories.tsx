@@ -333,8 +333,8 @@ const Select = () => (
       <Title title="Option with ellipsis" theme="light" level={4} />
       <DxcSelect
         label="Label"
-        optional
         placeholder="Choose an option"
+        value="1"
         options={optionsWithEllipsisMedium}
         size="medium"
       />
@@ -349,7 +349,7 @@ Chromatic.play = async ({ canvasElement }) => {
 const DefaultSelect = () => (
   <ExampleContainer expanded>
     <Title title="Default select" theme="light" level={4} />
-    <DxcSelect label="Select label" options={single_options} value="1" placeholder="Choose an option" />
+    <DxcSelect label="Select label" options={single_options} optional placeholder="Choose an option" />
   </ExampleContainer>
 );
 const SearchableSelect = () => (
