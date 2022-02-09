@@ -10,7 +10,7 @@ type Step = {
   /**
    * Step label.
    */
-  label?: string;
+  label: string;
   /**
    * Description that will be placed next to the step.
    */
