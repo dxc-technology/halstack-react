@@ -99,8 +99,8 @@ const StyledLink = styled.a`
        cursor: pointer;`}
   }
   &:focus {
-    outline-color: ${(props) => props.theme.focusColor};
-    outline-width: 2px;
+    border-radius: 2px;
+    outline: 2px solid ${(props) => props.theme.focusColor};
     ${(props) => props.disabled && "outline: none"}
   }
   &:active {
@@ -133,9 +133,8 @@ const StyledButton = styled.button`
        cursor: pointer;`}
   }
   &:focus {
-    outline-color: ${(props) => props.theme.focusColor};
-    outline-width: 2px;
-    outline-offset: 1px;
+    border-radius: 2px;
+    outline: 2px solid ${(props) => props.theme.focusColor};
     ${(props) => props.disabled && "outline: none"}
   }
   &:active {
