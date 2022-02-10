@@ -245,32 +245,4 @@ const IconContainer = styled.div`
     width: 100%;
   }
 `;
-
-// DxcToggleGroup.propTypes = {
-//   label: PropTypes.string,
-//   helperText: PropTypes.string,
-//   value: PropTypes.any,
-//   onChange: PropTypes.func,
-//   disabled: PropTypes.bool,
-//   multiple: PropTypes.bool,
-//   options: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       value: PropTypes.any.isRequired,
-//       label: PropTypes.string,
-//       icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-//       iconSrc: PropTypes.string,
-//     })
-//   ),
-//   margin: PropTypes.oneOfType([
-//     PropTypes.shape({
-//       top: PropTypes.oneOf(Object.keys(spaces)),
-//       bottom: PropTypes.oneOf(Object.keys(spaces)),
-//       left: PropTypes.oneOf(Object.keys(spaces)),
-//       right: PropTypes.oneOf(Object.keys(spaces)),
-//     }),
-//     PropTypes.oneOf([...Object.keys(spaces)]),
-//   ]),
-//   tabIndex: PropTypes.number,
-// };
-
 export default DxcToggleGroup;
