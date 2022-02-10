@@ -6,6 +6,7 @@ import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import NumberInputContext from "../number-input/NumberInputContext.js";
+import TextInputPropsType, { RefType } from "./types";
 
 const textInputIcons = {
   error: (
@@ -69,7 +70,7 @@ const getLastOptionIndex = (filteredSuggestions) => {
   return last;
 };
 
-const DxcTextInput = React.forwardRef(
+const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
     {
       label = "",
