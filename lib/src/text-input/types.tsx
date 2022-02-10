@@ -1,4 +1,3 @@
-type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -67,14 +66,14 @@ type Props = {
    * the error (if the value entered is not valid) will be passed to this
    * function. If there is no error, error will be null.
    */
-  onChange?: (val: { value: string; error: string }) => void;
+  onChange?: (val: { value: string; error: string | null }) => void;
   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value
-   * entered is not valid) will be passed to this function. If there is no error, 
+   * entered is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (obj: { value: string; error: string }) => void;
+  onBlur?: (obj: { value: string; error: string | null }) => void;
   /**
    * If it is defined, the component will change its appearance, showing
    * the error below the input component. If it is not defined, the error
@@ -89,23 +88,23 @@ type Props = {
    */
   suggestions?: string[] | (() => void);
   /**
-    * Regular expression that defines the valid format allowed by the input.
-    * This will be checked both when the input element loses the focus and
-    * while typing within it. If the string entered does not match the
-    * pattern, the onBlur and onChange functions will be called with the
-    * current value and an internal error informing that this value does not
-    * match the pattern. If the pattern is met, the error parameter of both
-    * events will be null.
+   * Regular expression that defines the valid format allowed by the input.
+   * This will be checked both when the input element loses the focus and
+   * while typing within it. If the string entered does not match the
+   * pattern, the onBlur and onChange functions will be called with the
+   * current value and an internal error informing that this value does not
+   * match the pattern. If the pattern is met, the error parameter of both
+   * events will be null.
    */
   pattern?: string;
   /**
-    * Specifies the minimun and maximum length allowed by the input. 
-    * This will be checked both when the input element loses the
-    * focus and while typing within it. If the string entered does not
-    * comply the length, the onBlur and onChange functions will be called
-    * with the current value and an internal error informing that the value
-    * length does not comply the specified range. If a valid length is
-    * reached, the error parameter of both events will be null.
+   * Specifies the minimun and maximum length allowed by the input.
+   * This will be checked both when the input element loses the
+   * focus and while typing within it. If the string entered does not
+   * comply the length, the onBlur and onChange functions will be called
+   * with the current value and an internal error informing that the value
+   * length does not comply the specified range. If a valid length is
+   * reached, the error parameter of both events will be null.
    */
   length?: { min?: number; max?: number };
   /**
@@ -121,15 +120,16 @@ type Props = {
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
    */
-  size?: Size;
+  size?: "small" | "medium" | "large" | "fillParent";
   /**
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-  /**
-   * Reference to the component.
-   */
-  ref?: React.RefObject<HTMLDivElement>;
 };
 
-export default function DxcTextInput(props: Props): JSX.Element;
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
+
+export default Props;
