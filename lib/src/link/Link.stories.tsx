@@ -50,6 +50,26 @@ export const Chromatic = () => (
       <Title title="Inherit color" theme="light" level={4} />
       This is a <DxcLink text="Test" inheritColor={true}></DxcLink>.
     </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="With brackets and focus" theme="light" level={4} />
+      This is a (<DxcLink text="Test" inheritColor={true}></DxcLink>).
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Long text with hover" theme="light" level={4} />
+      Lorem <DxcLink text="Test" href="https://www.google.com"></DxcLink> ipsum dolor sit amet, consectetur adipiscing
+      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+      in culpa qui officia deserunt mollit anim id est laborum.
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Long text with focus" theme="light" level={4} />
+      Lorem <DxcLink text="Test" href="https://www.google.com"></DxcLink> ipsum dolor sit amet, consectetur adipiscing
+      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+      in culpa qui officia deserunt mollit anim id est laborum.
+    </ExampleContainer>
     <Title title="With button" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
@@ -84,6 +104,26 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Inherit color" theme="light" level={4} />
       This is a <DxcLink text="Test" onClick={() => {}} inheritColor={true}></DxcLink>.
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="With brackets and focus" theme="light" level={4} />
+      This is a (<DxcLink text="Test" onClick={() => {}} inheritColor={true}></DxcLink>).
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Long text with hover" theme="light" level={4} />
+      Lorem <DxcLink text="Test" onClick={() => {}} href="https://www.google.com"></DxcLink> ipsum dolor sit amet,
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Long text with focus" theme="light" level={4} />
+      Lorem <DxcLink text="Test" onClick={() => {}} href="https://www.google.com"></DxcLink> ipsum dolor sit amet,
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
