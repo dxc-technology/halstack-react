@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import ToogleGroupPropsType from "./types";
 
 const DxcToggleGroup = ({
   label,
@@ -11,11 +11,11 @@ const DxcToggleGroup = ({
   value,
   onChange,
   disabled = false,
-  options = [],
+  options,
   margin,
   multiple = false,
   tabIndex = 0,
-}) => {
+}: ToogleGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
@@ -246,31 +246,31 @@ const IconContainer = styled.div`
   }
 `;
 
-DxcToggleGroup.propTypes = {
-  label: PropTypes.string,
-  helperText: PropTypes.string,
-  value: PropTypes.any,
-  onChange: PropTypes.func,
-  disabled: PropTypes.bool,
-  multiple: PropTypes.bool,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.any.isRequired,
-      label: PropTypes.string,
-      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-      iconSrc: PropTypes.string,
-    })
-  ),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
+// DxcToggleGroup.propTypes = {
+//   label: PropTypes.string,
+//   helperText: PropTypes.string,
+//   value: PropTypes.any,
+//   onChange: PropTypes.func,
+//   disabled: PropTypes.bool,
+//   multiple: PropTypes.bool,
+//   options: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       value: PropTypes.any.isRequired,
+//       label: PropTypes.string,
+//       icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+//       iconSrc: PropTypes.string,
+//     })
+//   ),
+//   margin: PropTypes.oneOfType([
+//     PropTypes.shape({
+//       top: PropTypes.oneOf(Object.keys(spaces)),
+//       bottom: PropTypes.oneOf(Object.keys(spaces)),
+//       left: PropTypes.oneOf(Object.keys(spaces)),
+//       right: PropTypes.oneOf(Object.keys(spaces)),
+//     }),
+//     PropTypes.oneOf([...Object.keys(spaces)]),
+//   ]),
+//   tabIndex: PropTypes.number,
+// };
 
 export default DxcToggleGroup;
