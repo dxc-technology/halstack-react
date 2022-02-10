@@ -11,7 +11,7 @@ const fileInputPropsTable = () => {
           <th>Description</th>
         </tr>
         <tr>
-          <td>name</td>
+          <td>name: string</td>
           <td></td>
           <td>Name attribute.</td>
         </tr>

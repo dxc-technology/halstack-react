@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import DxcButton from "../button/Button";
 import FileItem from "./FileItem";
+import FileInputPropsType from "./types";
 
 const audioIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -42,8 +42,8 @@ const DxcFileInput = ({
   callbackFile,
   value,
   margin,
-  tabIndex,
-}) => {
+  tabIndex = 0,
+}: FileInputPropsType): JSX.Element => {
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState([]);
   const [fileInputId] = useState(`file-input-${uuidv4()}`);
@@ -360,30 +360,5 @@ const ErrorMessage = styled.div`
   font-weight: ${(props) => props.theme.errorMessageFontWeight};
   line-height: ${(props) => props.theme.errorMessageLineHeight};
 `;
-
-DxcFileInput.propTypes = {
-  name: PropTypes.string,
-  mode: PropTypes.oneOf(["file", "filedrop", "dropzone"]),
-  label: PropTypes.string,
-  helperText: PropTypes.string,
-  accept: PropTypes.array,
-  maxSize: PropTypes.number,
-  minSize: PropTypes.number,
-  multiple: PropTypes.bool,
-  showPreview: PropTypes.bool,
-  disabled: PropTypes.bool,
-  callbackFile: PropTypes.func,
-  value: PropTypes.array,
-  tabIndex: PropTypes.number,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
 
 export default DxcFileInput;

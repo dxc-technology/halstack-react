@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 
@@ -194,17 +193,5 @@ const ErrorMessage = styled.span`
   font-weight: ${(props) => props.theme.errorMessageFontWeight};
   line-height: ${(props) => props.theme.errorMessageLineHeight};
 `;
-
-FileItem.propTypes = {
-  mode: PropTypes.string,
-  multiple: PropTypes.bool,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  showPreview: PropTypes.boolean,
-  numFiles: PropTypes.number,
-  preview: PropTypes.string,
-  error: PropTypes.string,
-  onDelete: PropTypes.func,
-};
 
 export default FileItem;
