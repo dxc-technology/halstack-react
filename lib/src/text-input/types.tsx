@@ -96,7 +96,7 @@ type Props = {
    *    - Function: This function will be called when the user changes the value, we will send as a parameter the new value;
    *                apart from that this function should return one promise on which we should make 'then' to get the suggestions filtered.
    */
-  suggestions?: string[] | (() => void);
+  suggestions?: string[] | ((value: string) => void);
   /**
    * Regular expression that defines the valid format allowed by the input.
    * This will be checked both when the input element loses the focus and
