@@ -17,14 +17,14 @@ const DxcToggleGroup = ({
   tabIndex = 0,
 }: ToogleGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
+  const [selectedValue, setSelectedValue] = useState(multiple ? ([] as string[]) : "");
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
 
     if (value == null) {
-      if (multiple) {
+      if (multiple && Array.isArray(selectedValue)) {
         newSelectedOptions = selectedValue.map((value) => value);
         if (newSelectedOptions.includes(selectedOption)) {
           const index = newSelectedOptions.indexOf(selectedOption);
@@ -35,7 +35,7 @@ const DxcToggleGroup = ({
         setSelectedValue(newSelectedOptions);
       } else setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
     } else if (multiple) {
-      newSelectedOptions = value.map((v) => v);
+      newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : value;
       if (newSelectedOptions.includes(selectedOption)) {
         const index = newSelectedOptions.indexOf(selectedOption);
         newSelectedOptions.splice(index, 1);
