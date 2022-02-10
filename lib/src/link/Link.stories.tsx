@@ -21,6 +21,7 @@ const icon = (
 
 export const Chromatic = () => (
   <>
+    <Title title="With anchor" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <DxcLink text="Test" disabled></DxcLink>
@@ -48,6 +49,41 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Inherit color" theme="light" level={4} />
       This is a <DxcLink text="Test" inheritColor={true}></DxcLink>.
+    </ExampleContainer>
+    <Title title="With button" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <DxcLink text="Test" onClick={() => {}} disabled></DxcLink>
+      <Title title="Icon before" theme="light" level={4} />
+      <DxcLink text="Test" onClick={() => {}} href="https://www.google.com" icon={icon} iconPosition="before"></DxcLink>
+      <Title title="Icon after" theme="light" level={4} />
+      <DxcLink
+        text="Test"
+        onClick={() => {}}
+        href="https://www.youtube.com/"
+        icon={icon}
+        iconPosition="after"
+      ></DxcLink>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="With link hovered" theme="light" level={4} />
+      <DxcLink text="Test" onClick={() => {}} href="https://www.dxc.com"></DxcLink>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="With link focused" theme="light" level={4} />
+      <DxcLink text="Test" onClick={() => {}} href="https://www.dxc.com"></DxcLink>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="With link active" theme="light" level={4} />
+      <DxcLink text="Test" onClick={() => {}} href="https://www.dxc.com"></DxcLink>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-visited">
+      <Title title="With link visited" theme="light" level={4} />
+      <DxcLink text="Test" onClick={() => {}} href="https://www.amazon.com"></DxcLink>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Inherit color" theme="light" level={4} />
+      This is a <DxcLink text="Test" onClick={() => {}} inheritColor={true}></DxcLink>.
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
