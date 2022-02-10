@@ -1,10 +1,10 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import HeadingPropsType from "./types";
 
-const DxcHeading = ({ level = 1, text = "", as, weight = "", margin }) => {
+const DxcHeading = ({ level = 1, text = "", as, weight, margin }: HeadingPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   const checkValidAs = () => {
@@ -15,23 +15,23 @@ const DxcHeading = ({ level = 1, text = "", as, weight = "", margin }) => {
     <ThemeProvider theme={colorsTheme.heading}>
       <HeadingContainer margin={margin}>
         {level === 1 ? (
-          <HeadingLevel1 as={checkValidAs(as)} weight={weight}>
+          <HeadingLevel1 as={checkValidAs()} weight={weight}>
             {text}
           </HeadingLevel1>
         ) : level === 2 ? (
-          <HeadingLevel2 as={checkValidAs(as)} weight={weight}>
+          <HeadingLevel2 as={checkValidAs()} weight={weight}>
             {text}
           </HeadingLevel2>
         ) : level === 3 ? (
-          <HeadingLevel3 as={checkValidAs(as)} weight={weight}>
+          <HeadingLevel3 as={checkValidAs()} weight={weight}>
             {text}
           </HeadingLevel3>
         ) : level === 4 ? (
-          <HeadingLevel4 as={checkValidAs(as)} weight={weight}>
+          <HeadingLevel4 as={checkValidAs()} weight={weight}>
             {text}
           </HeadingLevel4>
         ) : (
-          <HeadingLevel5 as={checkValidAs(as)} weight={weight}>
+          <HeadingLevel5 as={checkValidAs()} weight={weight}>
             {text}
           </HeadingLevel5>
         )}
@@ -141,21 +141,5 @@ const HeadingLevel5 = styled.h5`
   color: ${(props) => props.theme.level5FontColor};
   margin: 0;
 `;
-
-DxcHeading.propTypes = {
-  level: PropTypes.number,
-  text: PropTypes.string,
-  as: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5"]),
-  weight: PropTypes.oneOf(["light", "normal", "bold", ""]),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
 
 export default DxcHeading;
