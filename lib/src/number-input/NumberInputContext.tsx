@@ -1,4 +1,3 @@
-/* eslint-disable prefer-template */
 import React from "react";
 
 interface INumberInputContext {

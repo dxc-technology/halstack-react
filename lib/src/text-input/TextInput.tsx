@@ -103,7 +103,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
-    const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
+    const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
 
     const suggestionsRef = useRef(null);
