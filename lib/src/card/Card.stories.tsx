@@ -16,11 +16,10 @@ const Card = () => (
     <ExampleContainer>
       <DxcCard>Default</DxcCard>
     </ExampleContainer>
-    <Title title="Outlined" theme="light" level={4} />
+    <Title title="Not outlined" theme="light" level={4} />
     <ExampleContainer>
-      <DxcCard outlined>Outlined</DxcCard>
+      <DxcCard outlined={false}>Not outlined</DxcCard>
     </ExampleContainer>
-
     <Title title="Default with link" theme="light" level={4} />
     <ExampleContainer>
       <DxcCard linkHref="https://www.dxc.com">Default with link</DxcCard>
