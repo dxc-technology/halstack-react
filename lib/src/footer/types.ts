@@ -38,7 +38,7 @@ type FooterPropsType = {
    * The center section of the footer. Can be used to render custom
    * content in this area.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * The text that will be displayed as copyright disclaimer.
    */
