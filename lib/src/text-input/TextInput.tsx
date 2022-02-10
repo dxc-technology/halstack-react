@@ -103,7 +103,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
-    const [filteredSuggestions, changeFilteredSuggestions] = useState<string[]>([]);
+    const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
     const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
 
     const suggestionsRef = useRef(null);
@@ -336,7 +336,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
         const cancelablePromise = makeCancelable(suggestions(value ?? innerValue));
         cancelablePromise.promise
-          .then((promiseResponse) => {
+          .then((promiseResponse: []) => {
             changeIsSearching(false);
             changeIsAutosuggestError(false);
             changeFilteredSuggestions(promiseResponse);
