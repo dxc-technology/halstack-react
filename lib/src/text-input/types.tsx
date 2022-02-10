@@ -7,8 +7,18 @@ type Margin = {
 };
 type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 type Action = {
+  /**
+   * This function will be called when the user clicks the action.
+   */
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * Icon to be shown in the action.
+   */
   icon: string | SVG;
+  /**
+   * Title of the action.
+   */
+  title?: string;
 };
 
 type Props = {

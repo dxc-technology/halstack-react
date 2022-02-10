@@ -5,7 +5,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
-import NumberInputContext from "../number-input/NumberInputContext.js";
+import NumberInputContext from "../number-input/NumberInputContext";
 import TextInputPropsType, { RefType } from "./types";
 
 const textInputIcons = {
