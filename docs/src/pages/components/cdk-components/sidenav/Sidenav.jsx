@@ -32,14 +32,14 @@ function Sidenav() {
         <DxcHeading text="DxcSidenav.Title" level={4} weight="bold" />
         <p>The content will be showed as the main title in the sidenav.</p>
         <DxcHeading text="DxcSidenav.Subtitle" level={4} weight="bold" />
-        <p>The content will be showed as a subtitle.</p>
+        <p>The content will be showed as a subtitle in the sidenav.</p>
         <DxcHeading text="DxcSidenav.Link" level={4} weight="bold" />
         <p>Customized link that allows the navigation.</p>
         <DxcHeading
           text="Props"
           level={5}
           weight="bold"
-          margin={{ bottom: "medium" }}
+          margin={{ bottom: "small" }}
         />{" "}
         <SidenavLinkPropsTable />
       </Section>

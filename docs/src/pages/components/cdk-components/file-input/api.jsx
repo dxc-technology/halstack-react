@@ -11,12 +11,12 @@ const fileInputPropsTable = () => {
           <th>Description</th>
         </tr>
         <tr>
-          <td>name</td>
+          <td>name: string</td>
           <td></td>
           <td>Name attribute.</td>
         </tr>
         <tr>
-          <td>mode: 'file', 'filedrop' and 'dropzone'</td>
+          <td>mode: 'file' | 'filedrop' | 'dropzone'</td>
           <td>'file'</td>
           <td>Available modes of the component.</td>
         </tr>
@@ -80,14 +80,14 @@ const fileInputPropsTable = () => {
             following properties:
             <ul>
               <li>
+                <b>file: File</b>: Selected file.
+              </li>
+              <li>
                 <b>error: string</b>: Error of the file. If it is defined, it
                 will be shown and the file item will be mark as invalid.
               </li>
               <li>
                 <b>preview: string</b>: Preview of the file.
-              </li>
-              <li>
-                <b>file: File</b>: Selected file.
               </li>
             </ul>
           </td>

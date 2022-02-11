@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const buttonPropsTable = () => {
+const TagPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -15,7 +15,7 @@ const buttonPropsTable = () => {
         <td>Text to be placed next inside the tag.</td>
       </tr>
       <tr>
-        <td>labelPosition: string</td>
+        <td>labelPosition: 'before' | 'after'</td>
         <td>
           <code>'after'</code>
         </td>
@@ -75,7 +75,7 @@ const buttonPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'fitContent'</code>
         </td>
@@ -95,4 +95,4 @@ const buttonPropsTable = () => {
   );
 };
 
-export default buttonPropsTable;
+export default TagPropsTable;

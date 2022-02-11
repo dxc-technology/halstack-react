@@ -1,4 +1,3 @@
-type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -6,8 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = string | (HTMLElement & SVGElement);
-
+type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
 type Props = {
   /**
@@ -30,30 +28,29 @@ type Props = {
    * This prop corresponds to the 'type' prop of the button in html.
    */
   type?: "button" | "reset" | "submit";
-
-  /**
-   * DEPRECATED. URL of the icon that will be placed next to the button label.
-   */
-  iconSrc?: string;
   /**
    * Element used as the icon that will be placed next to the button label.
    */
   icon?: SVG;
   /**
+   * @deprecated URL of the icon that will be placed next to the button label.
+   */
+  iconSrc?: string;
+  /**
    * This function will be called when the user clicks the button. The event object will be passed as a parameter.
    */
-  onClick?: any;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
   /**
-   * Size of the component ('small' | 'medium' | 'large' | 'fillParent' | 'fitContent').
+   * Size of the component.
    */
-  size?: Size;
+  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   /**
-   * Value of the tabindex.
+   * Value of the tabindex attribute.
    */
   tabIndex?: number;
 };
