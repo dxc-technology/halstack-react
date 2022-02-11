@@ -1,10 +1,10 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
+import Overload, { LinkTextProps, LinkIconProps } from "./types";
 
-const DxcLink = ({
+const DxcLink: Overload = ({
   inheritColor = false,
   disabled = false,
   iconSrc,
@@ -16,9 +16,8 @@ const DxcLink = ({
   text = "",
   margin,
   tabIndex = 0,
-}) => {
+}: (LinkTextProps | LinkIconProps)): JSX.Element => {
   const colorsTheme = useTheme();
-
   const linkContent = (
     <LinkText iconPosition={iconPosition}>
       {text}
@@ -100,8 +99,8 @@ const StyledLink = styled.a`
        cursor: pointer;`}
   }
   &:focus {
-    outline-color: ${(props) => props.theme.focusColor};
-    outline-width: 2px;
+    border-radius: 2px;
+    outline: 2px solid ${(props) => props.theme.focusColor};
     ${(props) => props.disabled && "outline: none"}
   }
   &:active {
@@ -134,9 +133,8 @@ const StyledButton = styled.button`
        cursor: pointer;`}
   }
   &:focus {
-    outline-color: ${(props) => props.theme.focusColor};
-    outline-width: 2px;
-    outline-offset: 1px;
+    border-radius: 2px;
+    outline: 2px solid ${(props) => props.theme.focusColor};
     ${(props) => props.disabled && "outline: none"}
   }
   &:active {
@@ -161,42 +159,20 @@ const LinkText = styled.div`
 const LinkIcon = styled.img`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  ${(props) => `${(props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${props.theme.iconSpacing}`};
+  ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
 `;
 
 const LinkIconContainer = styled.div`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
-  ${(props) => `${(props.iconPosition === "before" ? "margin-right" : "margin-left")}: ${props.theme.iconSpacing}`};
+  ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
   overflow: hidden;
-  
+
   img,
   svg {
     height: 100%;
     width: 100%;
   }
 `;
-
-DxcLink.propTypes = {
-  inheritColor: PropTypes.bool,
-  disabled: PropTypes.bool,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  iconSrc: PropTypes.string,
-  iconPosition: PropTypes.oneOf(["after", "before"]),
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  newWindow: PropTypes.bool,
-  text: PropTypes.string,
-  tabIndex: PropTypes.number,
-};
 
 export default DxcLink;

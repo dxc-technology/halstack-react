@@ -7,6 +7,7 @@ import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import SliderPropsType from "./types";
+import { v4 as uuidv4 } from "uuid";
 
 const DxcSlider = ({
   label = "",
@@ -25,11 +26,12 @@ const DxcSlider = ({
   labelFormatCallback,
   margin,
   size = "fillParent",
-  tabIndex = 0,
 }: SliderPropsType): JSX.Element => {
   const [innerValue, setInnerValue] = useState(0);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
+
+  const [labelId] = useState(`label-${uuidv4()}`);
 
   const minLabel = useMemo(
     () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
@@ -63,8 +65,12 @@ const DxcSlider = ({
   return (
     <ThemeProvider theme={colorsTheme.slider}>
       <Container margin={margin} size={size}>
-        <Label>{label}</Label>
-        <HelperText>{helperText}</HelperText>
+        <Label id={labelId} disabled={disabled} backgroundType={backgroundType}>
+          {label}
+        </Label>
+        <HelperText disabled={disabled} backgroundType={backgroundType}>
+          {helperText}
+        </HelperText>
         <SliderContainer backgroundType={backgroundType}>
           {showLimitsValues && (
             <MinLabelContainer backgroundType={backgroundType} disabled={disabled}>
@@ -80,7 +86,7 @@ const DxcSlider = ({
             step={step}
             marks={marks || []}
             disabled={disabled}
-            tabIndex={tabIndex}
+            aria-labelledby={labelId}
           />
           {showLimitsValues && (
             <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
@@ -95,7 +101,6 @@ const DxcSlider = ({
                 disabled={disabled}
                 onChange={handlerInputChange}
                 size="fillParent"
-                tabIndex={tabIndex}
               />
             </StyledTextInput>
           )}
@@ -106,7 +111,7 @@ const DxcSlider = ({
 };
 
 const sizes = {
-  medium: "240px",
+  medium: "360px",
   large: "480px",
   fillParent: "100%",
 };
@@ -132,8 +137,16 @@ const Container = styled.div`
 `;
 
 const Label = styled.label`
-  color: ${(props) => props.theme.labelFontColor};
-  font-family: ${(props) => props.theme.labelFontFamily};
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledLabelFontColorOnDark
+        : props.theme.disabledLabelFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.labelFontColorOnDark
+      : props.theme.labelFontColor};
+
+  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
@@ -141,10 +154,18 @@ const Label = styled.label`
 `;
 
 const HelperText = styled.span`
-  color: ${(props) => props.theme.helperTextFontColor};
-  font-family: ${(props) => props.theme.helperTextFontFamily};
+  color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledHelperTextFontColorOnDark
+        : props.theme.disabledHelperTextFontColor
+      : props.backgroundType === "dark"
+      ? props.theme.helperTextFontColorOnDark
+      : props.theme.helperTextFontColor};
+
+  font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
-  font-style: ${(props) => props.theme.helperTextFontstyle};
+  font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
@@ -154,9 +175,8 @@ const SliderContainer = styled.div`
   height: 48px;
   align-items: center;
 
-  .MultiSlider-root {
-    display: flex;
-    align-items: center;
+  .MuiSlider-root {
+    min-width: 15rem;
   }
   .MuiSlider-container {
     padding: 30px 24px;
@@ -283,32 +303,36 @@ const SliderContainer = styled.div`
 `;
 
 const MinLabelContainer = styled.span`
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
   color: ${(props) =>
     props.disabled
-      ? props.theme.disabledFontColor
+      ? props.theme.disabledLimitValuesFontColor
       : props.backgroundType === "dark"
-      ? props.theme.fontColorOnDark
-      : props.theme.fontColor};
-  letter-spacing: ${(props) => props.theme.fontLetterSpacing};
+      ? props.theme.limitValuesFontColorOnDark
+      : props.theme.limitValuesFontColor};
+
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.limitValuesFontSize};
+  font-style: ${(props) => props.theme.limitValuesFontStyle};
+  font-weight: ${(props) => props.theme.limitValuesFontWeight};
+  letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
+  white-space: nowrap;
   margin-right: ${(props) => props.theme.floorLabelMarginRight};
 `;
 
 const MaxLabelContainer = styled.span`
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
   color: ${(props) =>
     props.disabled
-      ? props.theme.disabledFontColor
+      ? props.theme.disabledLimitValuesFontColor
       : props.backgroundType === "dark"
-      ? props.theme.fontColorOnDark
-      : props.theme.fontColor};
-  letter-spacing: ${(props) => props.theme.fontLetterSpacing};
+      ? props.theme.limitValuesFontColorOnDark
+      : props.theme.limitValuesFontColor};
+
+  font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.limitValuesFontSize};
+  font-style: ${(props) => props.theme.limitValuesFontStyle};
+  font-weight: ${(props) => props.theme.limitValuesFontWeight};
+  letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
+  white-space: nowrap;
   margin-left: ${(props) => (props.step === 1 ? props.theme.ceilLabelMarginLeft : "1.25rem")};
 `;
 
