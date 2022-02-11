@@ -80,14 +80,14 @@ const fileInputPropsTable = () => {
             following properties:
             <ul>
               <li>
+                <b>file: File</b>: Selected file.
+              </li>
+              <li>
                 <b>error: string</b>: Error of the file. If it is defined, it
                 will be shown and the file item will be mark as invalid.
               </li>
               <li>
                 <b>preview: string</b>: Preview of the file.
-              </li>
-              <li>
-                <b>file: File</b>: Selected file.
               </li>
             </ul>
           </td>

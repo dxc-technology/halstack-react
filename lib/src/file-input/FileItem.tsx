@@ -1,3 +1,4 @@
+import { TabOutlined } from "@material-ui/icons";
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
@@ -15,7 +16,18 @@ const errorIcon = (
   </svg>
 );
 
-const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview, type, numFiles, onDelete }) => {
+const FileItem = ({
+  mode,
+  multiple,
+  name = "",
+  error = "",
+  showPreview,
+  preview,
+  type,
+  numFiles,
+  onDelete,
+  tabIndex,
+}) => {
   const colorsTheme = useTheme();
   const isImage = type.includes("image");
 
@@ -46,7 +58,7 @@ const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview,
               {name}
             </FileName>
             {error && <ErrorIcon aria-label="Error">{errorIcon}</ErrorIcon>}
-            <DeleteIcon error={error} onClick={() => onDelete(name)} aria-label={`Remove ${name}`}>
+            <DeleteIcon error={error} onClick={() => onDelete(name)} aria-label={`Remove ${name}`} tabIndex={tabIndex}>
               {deleteIcon}
             </DeleteIcon>
           </FileItemContainer>

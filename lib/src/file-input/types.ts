@@ -6,8 +6,17 @@ type Margin = {
   right?: Space;
 };
 type FileData = {
-  error?: string;
+  /**
+   * Selected file.
+   */
   file: File;
+  /**
+   * Error of the file. If it is defined, it will be shown and the file item will be mark as invalid.
+   */
+  error?: string;
+  /**
+   * Preview of the file.
+   */
   preview?: string;
 };
 
@@ -39,7 +48,7 @@ type Props = {
   /**
    * An array of files representing the selected files.
    */
-  value?: FileData[];
+  value: FileData[];
   /**
    * The minimum file size (in bytes) allowed. If the size of the file does not comply the minSize, the file will have an error.
    */
@@ -65,7 +74,7 @@ type Props = {
    * This function will be called when the user selects or drops a file. The list of files will be sent as a parameter.
    * In this function, the files can be updated or returned as they come. These files must be passed to the value in order to be shown.
    */
-  callbackFile?: (files: FileData[]) => void;
+  callbackFile: (files: FileData[]) => void;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.

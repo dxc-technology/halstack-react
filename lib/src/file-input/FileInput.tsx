@@ -168,7 +168,7 @@ const DxcFileInput = ({
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
-      <FileInputContainer margin={margin} name={name} tabIndex={tabIndex}>
+      <FileInputContainer margin={margin} name={name}>
         <Label htmlFor={fileInputId} disabled={disabled}>
           {label}
         </Label>
@@ -204,6 +204,7 @@ const DxcFileInput = ({
                       preview={file.preview}
                       type={file.file.type}
                       onDelete={onDelete}
+                      tabIndex={tabIndex}
                     />
                   </FileItemContainer>
                 </>
