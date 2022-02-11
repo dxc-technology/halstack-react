@@ -16,7 +16,7 @@ const fileInputPropsTable = () => {
           <td>Name attribute.</td>
         </tr>
         <tr>
-          <td>mode: 'file', 'filedrop' and 'dropzone'</td>
+          <td>mode: 'file' | 'filedrop' | 'dropzone'</td>
           <td>'file'</td>
           <td>Available modes of the component.</td>
         </tr>
