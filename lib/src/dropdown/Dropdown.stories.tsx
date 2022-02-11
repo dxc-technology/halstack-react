@@ -155,31 +155,40 @@ export const Chromatic = () => (
 );
 
 const DropdownWithOptions = () => (
-  <>
-    <ExampleContainer>
-      <Title title="Options" theme="light" level={4} />
-      <DxcDropdown label="Options" options={options} onSelectOption={(value) => {}} margin={{ right: "small" }} />
-      <DxcDropdown label="Options with icon" options={optionsIcon} onSelectOption={(value) => {}} />
-    </ExampleContainer>
-    <div style={{ height: "100px" }} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="Hovered options" theme="light" level={4} />
-      <DxcDropdown label="Hovered options" options={options} onSelectOption={(value) => {}} />
-    </ExampleContainer>
-    <div style={{ height: "100px" }} />
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived options" theme="light" level={4} />
-      <DxcDropdown label="Actived options" options={options} onSelectOption={(value) => {}} />
-    </ExampleContainer>
-  </>
+  <ExampleContainer expanded>
+    <Title title="Options" theme="light" level={4} />
+    <DxcDropdown label="Options with icon" options={optionsIcon} onSelectOption={(value) => {}} />
+  </ExampleContainer>
+);
+
+const DropdownHoverOptions = () => (
+  <ExampleContainer pseudoState="pseudo-hover" expanded>
+    <Title title="Hovered options" theme="light" level={4} />
+    <DxcDropdown label="Hovered options" options={options} onSelectOption={(value) => {}} />
+  </ExampleContainer>
+);
+
+const DropdownActiveOptions = () => (
+  <ExampleContainer pseudoState="pseudo-active" expanded>
+    <Title title="Actived options" theme="light" level={4} />
+    <DxcDropdown label="Actived options" options={options} onSelectOption={(value) => {}} />
+  </ExampleContainer>
 );
 
 export const DropdownOptions = DropdownWithOptions.bind({});
 DropdownOptions.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const dropdownBtns = canvas.getAllByRole("button");
-  await userEvent.click(dropdownBtns[1]);
-  await userEvent.click(dropdownBtns[2]);
-  await userEvent.click(dropdownBtns[3]);
-  await userEvent.click(dropdownBtns[0]);
+  await userEvent.click(canvas.getByRole("button"));
+};
+
+export const DropdownHoveredOptions = DropdownHoverOptions.bind({});
+DropdownHoveredOptions.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
+};
+
+export const DropdownActivedOptions = DropdownActiveOptions.bind({});
+DropdownActivedOptions.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
 };
