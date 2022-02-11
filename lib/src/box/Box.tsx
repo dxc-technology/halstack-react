@@ -13,7 +13,6 @@ const DxcBox = ({
   margin,
   padding,
   size = "fitContent",
-  tabIndex = 0,
 }: BoxPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
@@ -25,7 +24,6 @@ const DxcBox = ({
         margin={margin}
         padding={padding}
         size={size}
-        tabIndex={tabIndex}
       >
         <BackgroundColorProvider color={colorsTheme.box.backgroundColor}>{children}</BackgroundColorProvider>
       </StyledDxcBox>

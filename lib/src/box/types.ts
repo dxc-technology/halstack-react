@@ -39,10 +39,6 @@ type Props = {
    * Size of the component.
    */
   size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
-  /**
-   * Value of the tabindex attribute.
-   */
-  tabIndex?: number;
 };
 
 export default Props;
