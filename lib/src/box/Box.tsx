@@ -1,18 +1,30 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-
+import BoxPropsType from "./types";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
 
-const DxcBox = ({ shadowDepth, margin, padding, display = "inline-flex", children, size = "fitContent" }) => {
+const DxcBox = ({
+  shadowDepth = 2,
+  display = "inline-flex",
+  children,
+  margin,
+  padding,
+  size = "fitContent",
+}: BoxPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.box}>
-      <StyledDxcBox shadowDepth={shadowDepth} display={display} margin={margin} padding={padding} size={size}>
+      <StyledDxcBox
+        shadowDepth={shadowDepth}
+        display={display}
+        margin={margin}
+        padding={padding}
+        size={size}
+      >
         <BackgroundColorProvider color={colorsTheme.box.backgroundColor}>{children}</BackgroundColorProvider>
       </StyledDxcBox>
     </ThemeProvider>
@@ -64,36 +76,5 @@ const StyledDxcBox = styled.div`
   padding-bottom: ${({ padding }) => (padding && padding.bottom ? spaces[padding.bottom] : "")};
   padding-left: ${({ padding }) => (padding && padding.left ? spaces[padding.left] : "")};
 `;
-
-DxcBox.propTypes = {
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  display: PropTypes.string,
-  shadowDepth: PropTypes.oneOf([0, 1, 2]),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
-
-DxcBox.defaultProps = {
-  shadowDepth: 2,
-  display: "inline-flex",
-  margin: null,
-  padding: null,
-};
 
 export default DxcBox;

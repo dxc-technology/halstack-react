@@ -1,5 +1,5 @@
+import { TabOutlined } from "@material-ui/icons";
 import React from "react";
-import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
 
@@ -16,7 +16,18 @@ const errorIcon = (
   </svg>
 );
 
-const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview, type, numFiles, onDelete }) => {
+const FileItem = ({
+  mode,
+  multiple,
+  name = "",
+  error = "",
+  showPreview,
+  preview,
+  type,
+  numFiles,
+  onDelete,
+  tabIndex,
+}) => {
   const colorsTheme = useTheme();
   const isImage = type.includes("image");
 
@@ -47,7 +58,7 @@ const FileItem = ({ mode, multiple, name = "", error = "", showPreview, preview,
               {name}
             </FileName>
             {error && <ErrorIcon aria-label="Error">{errorIcon}</ErrorIcon>}
-            <DeleteIcon error={error} onClick={() => onDelete(name)} aria-label={`Remove ${name}`}>
+            <DeleteIcon error={error} onClick={() => onDelete(name)} aria-label={`Remove ${name}`} tabIndex={tabIndex}>
               {deleteIcon}
             </DeleteIcon>
           </FileItemContainer>
@@ -194,17 +205,5 @@ const ErrorMessage = styled.span`
   font-weight: ${(props) => props.theme.errorMessageFontWeight};
   line-height: ${(props) => props.theme.errorMessageLineHeight};
 `;
-
-FileItem.propTypes = {
-  mode: PropTypes.string,
-  multiple: PropTypes.bool,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  showPreview: PropTypes.boolean,
-  numFiles: PropTypes.number,
-  preview: PropTypes.string,
-  error: PropTypes.string,
-  onDelete: PropTypes.func,
-};
 
 export default FileItem;

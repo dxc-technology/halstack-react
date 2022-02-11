@@ -1,13 +1,13 @@
 /* eslint-disable react/require-default-props */
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import SidenavPropsType, { SidenavTitlePropsType, SidenavSubtitlePropsType, SidenavLinkPropsType } from "./types.js";
 
-const DxcSidenav = ({ padding, children }) => {
+const DxcSidenav = ({ padding, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
@@ -19,12 +19,14 @@ const DxcSidenav = ({ padding, children }) => {
   );
 };
 
-const Title = ({ children }) => <SideNavMenuTitle>{children}</SideNavMenuTitle>;
+const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SideNavMenuTitle>{children}</SideNavMenuTitle>;
 
-const Subtitle = ({ children }) => <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>;
+const Subtitle = ({ children }: SidenavSubtitlePropsType): JSX.Element => (
+  <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>
+);
 
-const Link = ({ href, onClick, children }) => (
-  <SideNavMenuLink href={href} onClick={onClick}>
+const Link = ({ tabIndex = 0, href, onClick, children }: SidenavLinkPropsType): JSX.Element => (
+  <SideNavMenuLink tabIndex={tabIndex} href={href} onClick={onClick}>
     {children}
   </SideNavMenuLink>
 );
@@ -92,18 +94,6 @@ const SideNavMenuLink = styled.a`
     outline-offset: 1px;
   }
 `;
-
-DxcSidenav.propTypes = {
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-};
 
 DxcSidenav.Title = Title;
 DxcSidenav.Subtitle = Subtitle;
