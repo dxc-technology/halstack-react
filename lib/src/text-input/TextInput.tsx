@@ -336,7 +336,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
         const cancelablePromise = makeCancelable(suggestions(value ?? innerValue));
         cancelablePromise.promise
-          .then((promiseResponse: []) => {
+          .then((promiseResponse) => {
             changeIsSearching(false);
             changeIsAutosuggestError(false);
             changeFilteredSuggestions(promiseResponse);
