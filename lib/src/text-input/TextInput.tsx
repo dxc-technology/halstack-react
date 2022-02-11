@@ -188,7 +188,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {
         case 40: // Arrow Down
-          if (numberInputContext) {
+          if (numberInputContext?.typeNumber === "number") {
             decrementNumber();
             event.preventDefault();
           } else {
@@ -203,7 +203,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           }
           break;
         case 38: // Arrow Up
-          if (numberInputContext) {
+          if (numberInputContext?.typeNumber === "number") {
             incrementNumber();
             event.preventDefault();
           } else {
@@ -358,7 +358,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         changeVisualFocusedSuggIndex(-1);
       }
 
-      numberInputContext &&
+      numberInputContext?.typeNumber === "number" &&
         setNumberProps(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
