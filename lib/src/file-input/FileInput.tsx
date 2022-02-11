@@ -247,6 +247,7 @@ const DxcFileInput = ({
                     preview={file.preview}
                     type={file.file.type}
                     onDelete={onDelete}
+                    tabIndex={tabIndex}
                   />
                 </FileItemContainer>
               );
