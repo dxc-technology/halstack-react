@@ -59,9 +59,8 @@ type Props = {
    */
   onTabHover?: (tabIndex: number) => void;
   /**
-   * Size of the margin to be applied to the component. You can pass an object
-   * with 'top', 'bottom', 'left' and 'right' properties in order to specify
-   * different margin sizes.
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
   /**
