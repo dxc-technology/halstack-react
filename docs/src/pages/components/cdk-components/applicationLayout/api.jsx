@@ -15,8 +15,8 @@ const SidenavApplicationLayoutPropsTable = () => {
           <code>'overlay'</code>
         </td>
         <td>
-          Default action over the content of the page, overlay the content or
-          push to the right.
+          Default action over the content of the page, overlay the content or push to the right
+          ('push' | 'overlay'). In lower resolutions the mode will always be overlay.
         </td>
       </tr>
       <tr>
@@ -24,7 +24,20 @@ const SidenavApplicationLayoutPropsTable = () => {
         <td>
           <code>true</code>
         </td>
-        <td>If false, the arrow button is hidden.</td>
+        <td>
+          If false, the arrow button is hidden. In lower resolutions the arrow will be always
+          displayed.
+        </td>
+      </tr>
+      <tr>
+        <td>padding: string | object </td>
+        <td></td>
+        <td>
+          Size of the padding to be applied to the custom area ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different padding sizes.
+        </td>
       </tr>
     </DxcTable>
   );
