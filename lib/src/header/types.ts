@@ -27,11 +27,13 @@ type Props = {
    */
   onClick?: () => void;
   /**
-   * Size of the bottom margin to be applied to the header.
+   * Size of the bottom margin to be applied to the header 
+   * ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    */
   margin?: Space;
   /**
-   * Size of the padding to be applied to the custom area of the component.
+   * Size of the padding to be applied to the custom area of the component 
+   * ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in
    * order to specify different padding sizes.
    */

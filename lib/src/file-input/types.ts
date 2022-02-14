@@ -1,4 +1,3 @@
-type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -7,57 +6,66 @@ type Margin = {
   right?: Space;
 };
 type FileData = {
+  /**
+   * Selected file.
+   */
+  file: File;
+  /**
+   * Error of the file. If it is defined, it will be shown and the file item will be mark as invalid.
+   */
   error?: string;
-  file?: File;
+  /**
+   * Preview of the file.
+   */
   preview?: string;
 };
 
 type Props = {
   /**
-   * Name attribute of the file input element.
+   * Name attribute.
    */
   name?: string;
   /**
-   * Text to be placed above the file input.
+   * Text to be placed above the component.
    */
   label?: string;
   /**
    * Uses one of the available file input modes:
    *    'file': Files are selected by clicking the button and selecting it through the file explorer.
    *    'filedrop': Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
-   *    'dropzone':  Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area. 
+   *    'dropzone':  Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
    *     The drag and drop area of this mode is bigger than the one of the filedrop mode.
    */
-   mode?: "file" | "filedrop" | "dropzone";
+  mode?: "file" | "filedrop" | "dropzone";
   /**
-   * Helper text to be placed above the file input.
+   * Helper text to be placed above the component.
    */
   helperText?: string;
   /**
-   * Defines the file types accepted by the component. It is not possible to select a file with a non valid type.
+   * The file types that the component accepts. Its value must be one of all the possible values of the HTML file input's accept attribute.
    */
   accept?: string;
   /**
-   * An array of FileData representing the selected files. 
+   * An array of files representing the selected files.
    */
-  value?: FileData[];
+  value: FileData[];
   /**
-   * Minimum file size allowed (in bytes). If the file size does not comply the minSize, an error will be passed to the FileData.
+   * The minimum file size (in bytes) allowed. If the size of the file does not comply the minSize, the file will have an error.
    */
-   minSize?: number;
+  minSize?: number;
   /**
-   * Maximum file size allowed (in bytes). If the file size does not comply the maxSize, an error will be passed to the FileData.
+   * The maximum file size (in bytes) allowed. If the size of the file does not comply the maxSize, the file will have an error.
    */
-   maxSize?: number;
+  maxSize?: number;
   /**
-   * If true and if the file is an image, a preview of it will be shown. If it is not an image, an icon refering to the file's type will be shown. 
-   * If mode is not multiple and there is one file already selected, the file will be replaced by the last selected one.
+   * If true, if the file is an image, a preview of it will be shown. If not, an icon refering to the file type will be shown.
    */
-   showPreview?: boolean;
+  showPreview?: boolean;
   /**
-   * If true, more than one file can be selected. If false, only one file can be selected.
+   * If true, the component allows multiple file items and will show all of them. If false, only one file will be shown, and if there is already one
+   *  file selected and a new one is chosen, it will be replaced by the new selected one.
    */
-   multiple?: boolean;
+  multiple?: boolean;
   /**
    * If true, the component will be disabled.
    */
@@ -66,7 +74,7 @@ type Props = {
    * This function will be called when the user selects or drops a file. The list of files will be sent as a parameter.
    * In this function, the files can be updated or returned as they come. These files must be passed to the value in order to be shown.
    */
-  callbackFile?: (files: FileData[]) => void;
+  callbackFile: (files: FileData[]) => void;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
@@ -78,4 +86,4 @@ type Props = {
   tabIndex?: number;
 };
 
-export default function DxcFileInput(props: Props): JSX.Element;
+export default Props;

@@ -5,20 +5,21 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme.js";
 import { getMargin } from "../common/utils.js";
 import DxcBox from "../box/Box";
+import TagPropsType from "./types";
 
 const DxcTag = ({
   icon,
   iconSrc,
-  label,
-  margin,
+  label = "",
   linkHref,
   onClick,
   iconBgColor = "#5f249f",
   labelPosition = "after",
   newWindow = false,
+  margin,
   size = "fitContent",
   tabIndex = 0,
-}) => {
+}: TagPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
@@ -169,27 +170,5 @@ const TagLabel = styled.div`
   overflow: hidden;
   white-space: nowrap;
 `;
-
-DxcTag.propTypes = {
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  iconSrc: PropTypes.string,
-  iconBgColor: PropTypes.string,
-  label: PropTypes.string,
-  labelPosition: PropTypes.oneOf(["before", "after"]),
-  linkHref: PropTypes.string,
-  onClick: PropTypes.func,
-  newWindow: PropTypes.bool,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcTag;

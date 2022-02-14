@@ -94,7 +94,7 @@ const buttonPropsTable = () => {
       <tr>
         <td>outlined: boolean</td>
         <td>
-          <code>false</code>
+          <code>true</code>
         </td>
         <td>Whether the card must be outlined.</td>
       </tr>
