@@ -35,15 +35,15 @@ const resultsetTablePropsTable = () => {
         </td>
         <td>
           An array of objects representing the rows of the table, you will have
-          to have as many objects as columns in the table. Each object has the
-          following properties:
+          as many objects as columns in the table. Each object has the following
+          properties:
           <ul>
             <li>
-              <b>displayValue</b>: Value to be displayed in the cell
+              <b>displayValue</b>: Value to be displayed in the cell.
             </li>
             <li>
               <b>sortValue</b>: Value to be used when sorting the table by that
-              column. If not indicated displayValue will be used for sorting
+              column. If not indicated displayValue will be used for sorting.
             </li>
           </ul>
         </td>
@@ -65,14 +65,14 @@ const resultsetTablePropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>Value of the tabindex given to the sortable icon.</td>
+        <td>Value of the tabindex attribute given to the sortable icon.</td>
       </tr>
       <tr>
         <td>itemsPerPageFunction: function</td>
         <td></td>
         <td>
           This function will be called when the user selects an item per page
-          option.
+          option. The value selected will be passed as a parameter.
         </td>
       </tr>
       <tr>
