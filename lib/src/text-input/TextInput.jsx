@@ -699,6 +699,9 @@ const Input = styled.input`
   border: none;
   outline: none;
   padding: 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   color: ${(props) =>
     props.disabled
@@ -910,6 +913,7 @@ const Suggestions = styled.ul`
 `;
 
 const Suggestion = styled.li`
+  display: flex;
   padding: 0 0.5rem;
   line-height: 1.715em;
   cursor: pointer;
@@ -925,7 +929,7 @@ const Suggestion = styled.li`
 `;
 
 const StyledSuggestion = styled.span`
-  display: flex;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
