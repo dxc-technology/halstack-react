@@ -175,21 +175,15 @@ const DxcFileInput = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         {mode === "file" ? (
           <FileContainer multiple={multiple} files={files}>
-            <ButtonErrorContainer>
-              <DxcButton
-                mode="secondary"
-                label="Select files"
-                onClick={handleClick}
-                disabled={disabled}
-                size="medium"
-                tabIndex={tabIndex}
-              />
-              <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
-              {files.length === 1 &&
-                files.map((file) => {
-                  return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
-                })}
-            </ButtonErrorContainer>
+            <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+            <DxcButton
+              mode="secondary"
+              label="Select files"
+              onClick={handleClick}
+              disabled={disabled}
+              size="medium"
+              tabIndex={tabIndex}
+            />
             {files.map((file) => {
               return (
                 <>
@@ -222,6 +216,13 @@ const DxcFileInput = ({
               onDragOver={handleDrag}
               onDragLeave={handleDragOut}
             >
+              <HiddenInputFile
+                id={fileInputId}
+                type="file"
+                accept={accept}
+                multiple={multiple}
+                onChange={selectFiles}
+              />
               <ButtonContainer mode={mode}>
                 <DxcButton
                   mode="secondary"
@@ -230,7 +231,6 @@ const DxcFileInput = ({
                   disabled={disabled}
                   size="fitContent"
                 />
-                <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
               </ButtonContainer>
               <DropLabel disabled={disabled}>or drop files</DropLabel>
             </DragDropArea>
@@ -254,6 +254,10 @@ const DxcFileInput = ({
             })}
           </Container>
         )}
+        {files.length === 1 &&
+          files.map((file) => {
+            return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
+          })}
       </FileInputContainer>
     </ThemeProvider>
   );
@@ -312,29 +316,18 @@ const DragDropArea = styled.div`
 const FileContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.multiple || props.files.length > 1 ? "column" : "row")};
+  margin-top: 0.25rem;
 `;
 
-const ButtonErrorContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.25rem;
-
-  input[type="file"] {
-    visibility: hidden;
-    position: absolute;
-    width: 0px;
-    height: 0px;
-  }
+const HiddenInputFile = styled.input`
+  visibility: hidden;
+  position: absolute;
+  width: 0px;
+  height: 0px;
 `;
 
 const ButtonContainer = styled.div`
   padding: ${(props) => (props.mode === "filedrop" ? "2px 12px 2px 2px" : "47px 122px 8px 122px")};
-  input[type="file"] {
-    visibility: hidden;
-    position: absolute;
-    width: 0px;
-    height: 0px;
-  }
 `;
 
 const DropLabel = styled.span`
@@ -361,6 +354,7 @@ const ErrorMessage = styled.div`
   font-size: ${(props) => props.theme.errorMessageFontSize};
   font-weight: ${(props) => props.theme.errorMessageFontWeight};
   line-height: ${(props) => props.theme.errorMessageLineHeight};
+  margin-top: 0.25rem;
 `;
 
 export default DxcFileInput;
