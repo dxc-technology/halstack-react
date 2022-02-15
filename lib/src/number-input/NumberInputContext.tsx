@@ -1,11 +1,11 @@
 import React from "react";
 
-import NumberInputContextPropTypes from "./numberInputContextTypes";
+import NumberInputContextPropsType from "./numberInputContextTypes";
 
 const defaultState = {
   stepNumber: 1,
 };
 
-const NumberInputContext = React.createContext<NumberInputContextPropTypes>(defaultState);
+const NumberInputContext = React.createContext<NumberInputContextPropsType>(defaultState);
 
 export default NumberInputContext;
