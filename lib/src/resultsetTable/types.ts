@@ -24,7 +24,7 @@ type Row = {
    * Value to be used when sorting the table by that
    * column. If not indicated displayValue will be used for sorting.
    */
-  sortValue?: boolean;
+  sortValue?: string;
 };
 
 type Props = {
