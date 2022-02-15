@@ -37,9 +37,10 @@ const DxcTableContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  overflow: hidden auto;
+  overflow: auto;
   &::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme.scrollBarThumbColor};
