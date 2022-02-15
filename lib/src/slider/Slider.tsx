@@ -97,7 +97,7 @@ const DxcSlider = ({
             <StyledTextInput>
               <DxcTextInput
                 name={name}
-                value={(value != null && value >= 0 && value) || innerValue}
+                value={(value != null && value >= 0 && value.toString()) || innerValue.toString()}
                 disabled={disabled}
                 onChange={handlerInputChange}
                 size="fillParent"
@@ -162,7 +162,6 @@ const HelperText = styled.span`
       : props.backgroundType === "dark"
       ? props.theme.helperTextFontColorOnDark
       : props.theme.helperTextFontColor};
-
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
