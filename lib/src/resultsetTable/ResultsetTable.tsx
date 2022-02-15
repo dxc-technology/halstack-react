@@ -57,6 +57,7 @@ const BothArrows = () => (
 const DxcResultsetTable = ({
   columns,
   rows,
+  showGoToPage = true,
   itemsPerPage = 5,
   itemsPerPageOptions,
   itemsPerPageFunction,
@@ -144,7 +145,7 @@ const DxcResultsetTable = ({
             itemsPerPageOptions={itemsPerPageOptions}
             itemsPerPageFunction={itemsPerPageFunction}
             currentPage={page}
-            showGoToPage={true}
+            showGoToPage={showGoToPage}
             onPageChange={goToPage}
             tabIndex={tabIndex}
           />
