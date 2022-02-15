@@ -5,8 +5,8 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type RequiredMin = { min: number; max?: number };
-type RequiredMax = { min?: number; max: number };
+type RequiredMinLength = { min: number; max?: number };
+type RequiredMaxLength = { min?: number; max: number };
 
 type Props = {
   /**
@@ -67,7 +67,7 @@ type Props = {
    * length does not comply the specified range. If a valid length is
    * reached, the error parameter of both events will be null.
    */
-  length?: RequiredMin | RequiredMax;
+  length?: RequiredMinLength | RequiredMaxLength;
   /**
    * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
