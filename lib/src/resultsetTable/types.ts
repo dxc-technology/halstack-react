@@ -38,6 +38,10 @@ type Props = {
    */
   rows: [Row, ...Row[]];
   /**
+   * Show page navigation select.
+   */
+  showGoToPage?: boolean;
+  /**
    * Number of items per page.
    */
   itemsPerPage?: number;

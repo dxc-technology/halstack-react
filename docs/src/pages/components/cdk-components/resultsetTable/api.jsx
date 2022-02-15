@@ -49,6 +49,13 @@ const resultsetTablePropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>showGoToPage: boolean</td>
+        <td>
+          <code>true</code>
+        </td>
+        <td>Show page navigation select.</td>
+      </tr>
+      <tr>
         <td>itemsPerPage: number</td>
         <td>
           <code>5</code>
