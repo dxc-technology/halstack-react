@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import styled, { ThemeProvider } from "styled-components";
-
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
@@ -19,7 +18,7 @@ const DxcButton = ({
   onClick,
   margin,
   size = "fitContent",
-  tabIndex = 0
+  tabIndex = 0,
 }: ButtonPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
@@ -41,7 +40,9 @@ const DxcButton = ({
           disableRipple
           aria-disabled={disabled}
           tabIndex={disabled ? -1 : tabIndex}
-          onClick={onClick}
+          onClick={() => {
+            onClick();
+          }}
         >
           {label && (
             <LabelContainer icon={icon} iconPosition={iconPosition}>
