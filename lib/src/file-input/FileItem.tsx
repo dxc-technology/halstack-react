@@ -1,4 +1,3 @@
-import { TabOutlined } from "@material-ui/icons";
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
@@ -170,9 +169,10 @@ const DeleteIcon = styled.button`
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-left: 4px;
   background-color: transparent;
+  box-shadow: 0 0 0 2px transparent;
   padding: 3px;
   cursor: pointer;
   svg {
@@ -185,10 +185,12 @@ const DeleteIcon = styled.button`
         : props.theme.hoverDeleteFileItemBackgroundColor};
   }
   &:focus {
-    background-color: ${(props) =>
-      props.error
-        ? props.theme.errorHoverDeleteFileItemBackgroundColor
-        : props.theme.hoverDeleteFileItemBackgroundColor};
+    outline: none;
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
   }
   &:active {
     background-color: ${(props) =>
