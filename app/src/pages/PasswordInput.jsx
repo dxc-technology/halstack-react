@@ -122,7 +122,8 @@ function App() {
           onChange={onChange}
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
         />
       </p>
       <p>
@@ -137,7 +138,8 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
         />
       </p>
       <p>
@@ -165,7 +167,8 @@ function App() {
           onChange={onChange}
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
           error={errorMessage}
         />
       </p>
@@ -181,7 +184,8 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
           error={errorMessage}
         />
       </p>

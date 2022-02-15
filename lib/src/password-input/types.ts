@@ -5,8 +5,6 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type RequiredMinLength = { min: number; max?: number };
-type RequiredMaxLength = { min?: number; max: number };
 
 type Props = {
   /**
@@ -59,15 +57,25 @@ type Props = {
    */
   pattern?: string;
   /**
-   * Specifies the minimun and maximum length allowed by the password input.
+   * Specifies the minimun length allowed by the password input.
    * This will be checked both when the input element loses the
    * focus and while typing within it. If the string entered does not
-   * comply the length, the onBlur and onChange functions will be called
+   * comply the minimum length, the onBlur and onChange functions will be called
    * with the current value and an internal error informing that the value
    * length does not comply the specified range. If a valid length is
    * reached, the error parameter of both events will be null.
    */
-  length?: RequiredMinLength | RequiredMaxLength;
+  minLength?: number;
+  /**
+   * Specifies the maximum length allowed by the password input.
+   * This will be checked both when the input element loses the
+   * focus and while typing within it. If the string entered does not
+   * comply the maximum length, the onBlur and onChange functions will be called
+   * with the current value and an internal error informing that the value
+   * length does not comply the specified range. If a valid length is
+   * reached, the error parameter of both events will be null.
+   */
+  maxLength?: number;
   /**
    * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...

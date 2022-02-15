@@ -52,8 +52,6 @@ const makeCancelable = (promise) => {
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 
-const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
-
 const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
@@ -89,7 +87,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       error = "",
       suggestions,
       pattern,
-      length,
+      minLength,
+      maxLength,
       autocomplete = "off",
       margin,
       size = "medium",
@@ -121,11 +120,16 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const lastOptionIndex = useMemo(() => getLastOptionIndex(filteredSuggestions), [filteredSuggestions]);
 
     const isNotOptional = (value) => value === "" && !optional;
+
     const isLengthIncorrect = (value) =>
-      value && length?.min && length?.max && (value.length < length.min || value.length > length.max);
+      value && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+
+    const getLengthErrorMessage = () => `Min length ${minLength}, max length ${maxLength}.`;
+
     const isNumberIncorrect = (value) =>
       (numberInputContext?.minNumber && parseInt(value) < numberInputContext?.minNumber) ||
       (numberInputContext?.maxNumber && parseInt(value) > numberInputContext?.maxNumber);
+
     const isTextInputType = () =>
       !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
 
@@ -152,7 +156,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
 
       if (isNotOptional(newValue)) onChange?.({ value: changedValue, error: getNotOptionalErrorMessage() });
-      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage(length) });
+      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage() });
       else if (newValue && pattern && !patternMatch(pattern, newValue))
         onChange?.({ value: changedValue, error: getPatternErrorMessage() });
       else if (newValue && isNumberIncorrect(newValue))
@@ -178,7 +182,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
       else if (isLengthIncorrect(event.target.value))
-        onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
+        onBlur?.({ value: event.target.value, error: getLengthErrorMessage() });
       else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
       else if (event.target.value && isNumberIncorrect(event.target.value))
@@ -437,8 +441,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               ref={inputRef}
               backgroundType={backgroundType}
               pattern={pattern}
-              minLength={length?.min}
-              maxLength={length?.max}
+              minLength={minLength}
+              maxLength={maxLength}
               autoComplete={autocomplete}
               tabIndex={tabIndex}
               role={isTextInputType() && hasSuggestions() ? "combobox" : "textbox"}
