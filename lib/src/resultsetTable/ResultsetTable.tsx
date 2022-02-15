@@ -4,7 +4,7 @@ import { spaces } from "../common/variables.js";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
 import useTheme from "../useTheme.js";
-import Overload, { Props, PropsSortable } from "./types";
+import ResultsetTablePropsType from "./types";
 
 function normalizeSortValue(sortValue) {
   return typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
@@ -54,7 +54,7 @@ const BothArrows = () => (
   </svg>
 );
 
-const DxcResultsetTable: Overload = ({
+const DxcResultsetTable = ({
   columns,
   rows,
   itemsPerPage = 5,
@@ -62,7 +62,7 @@ const DxcResultsetTable: Overload = ({
   itemsPerPageFunction,
   margin,
   tabIndex = 0,
-}: Props | PropsSortable): JSX.Element => {
+}: ResultsetTablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
