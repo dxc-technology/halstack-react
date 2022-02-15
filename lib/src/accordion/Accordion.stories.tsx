@@ -40,7 +40,7 @@ export const Chromatic = () => (
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With assistiveText" theme="light" level={4} />
+      <Title title="With assistive text" theme="light" level={4} />
       <DxcAccordion label="Accordion" assistiveText="Assistive text">
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
@@ -49,7 +49,7 @@ export const Chromatic = () => (
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With assistiveText" theme="light" level={4} />
+      <Title title="With icon" theme="light" level={4} />
       <DxcAccordion label="Accordion" assistiveText="Assistive text" icon={folderIcon}>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
