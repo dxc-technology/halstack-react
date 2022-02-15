@@ -83,7 +83,7 @@ type Props = {
    * entered is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (obj: { value: string; error: string | null }) => void;
+  onBlur?: (val: { value: string; error: string | null }) => void;
   /**
    * If it is defined, the component will change its appearance, showing
    * the error below the input component. If it is not defined, the error
