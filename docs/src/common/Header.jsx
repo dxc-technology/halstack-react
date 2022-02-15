@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import {
-  DxcHeader,
-  DxcDropdown,
-  V3DxcSelect,
-} from "@dxc-technology/halstack-react";
+import { DxcHeader, DxcSelect } from "@dxc-technology/halstack-react";
 import axios from "axios";
 import portal from "./portal.json";
 import githubLogo from "./github-logo-black.svg";
@@ -39,7 +35,7 @@ function App() {
     fetchVersions();
   }, []);
 
-  const selectVersion = (value) => {
+  const selectVersion = ({ value }) => {
     window.location.href = versions.find((v) => v.label === value).url;
   };
 
@@ -49,12 +45,14 @@ function App() {
       padding={{ left: "medium", right: "medium" }}
       content={
         <React.Fragment>
-          <DxcDropdown
-            options={versions}
-            onSelectOption={selectVersion}
-            label={selectedVersion}
-            value={selectedVersion}
-          ></DxcDropdown>
+          <HeaderSelect>
+            <DxcSelect
+              options={versions}
+              onChange={selectVersion}
+              value={selectedVersion}
+              size="fillParent"
+            ></DxcSelect>
+          </HeaderSelect>
           <HeaderLink
             isActive={
               location.pathname.startsWith("/overview") ||
@@ -107,13 +105,12 @@ function App() {
               Design Guidelines
             </a>
           </ResponsiveHeaderLink>
-          <V3DxcSelect
+          <DxcSelect
             options={versions}
             onChange={selectVersion}
-            size="small"
             value={selectedVersion}
-            margin={{ bottom: "small" }}
-          ></V3DxcSelect>
+            size="small"
+          ></DxcSelect>
           <ResponsiveHeaderLink>
             <a
               target="_blank"
@@ -129,11 +126,16 @@ function App() {
   );
 }
 
+const HeaderSelect = styled.div`
+  margin-bottom: -18px;
+  width: 100px;
+`;
+
 const HeaderLink = styled.div`
+  padding: 0 1.25rem;
   & a {
     color: ${({ isActive }) => (isActive && "#5f249f") || "black"};
     text-decoration: none;
-    margin-left: 100px;
     font-size: 14px;
     letter-spacing: 1px;
   }
