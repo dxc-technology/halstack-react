@@ -38,7 +38,7 @@ type Props = {
    */
   rows: [Row, ...Row[]];
   /**
-   * Show page navigation select.
+   * If true, a select component for navigation between pages will be displayed.
    */
   showGoToPage?: boolean;
   /**
