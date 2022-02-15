@@ -114,7 +114,8 @@ function App() {
           label="Length"
           helperText="The value should be 5 < value < 10"
           placeholder="Enter your text here..."
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
@@ -127,7 +128,8 @@ function App() {
           error={errorMessage}
           onChange={onChangeCustom}
           onBlur={onBlurCustom}
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
           margin={{ left: "medium", right: "medium" }}
         />
       </p>
