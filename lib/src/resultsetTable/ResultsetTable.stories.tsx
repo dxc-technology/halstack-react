@@ -73,6 +73,98 @@ const rowsSortable = [
   ],
 ];
 
+const longColumns = [
+  { displayValue: "Column1" },
+  { displayValue: "Column2" },
+  { displayValue: "Column3" },
+  { displayValue: "Column4" },
+  { displayValue: "Column5" },
+  { displayValue: "Column6" },
+  { displayValue: "Column7" },
+  { displayValue: "Column8" },
+  { displayValue: "Column9" },
+  { displayValue: "Column10" },
+  { displayValue: "Column11" },
+  { displayValue: "Column12" },
+  { displayValue: "Column13" },
+  { displayValue: "Column14" },
+  { displayValue: "Column15" },
+  { displayValue: "Column16" },
+  { displayValue: "Column17" },
+  { displayValue: "Column18" },
+  { displayValue: "Column19" },
+  { displayValue: "Column20" },
+];
+
+const longRows = [
+  [
+    { displayValue: "001", sortValue: "001" },
+    { displayValue: "Peter", sortValue: "Peter" },
+    { displayValue: "Miami", sortValue: "Miami" },
+    { displayValue: "001", sortValue: "001" },
+    { displayValue: "Peter", sortValue: "Peter" },
+    { displayValue: "Miami", sortValue: "Miami" },
+    { displayValue: "Miami", sortValue: "Miami" },
+    { displayValue: "001", sortValue: "001" },
+    { displayValue: "Peter", sortValue: "Peter" },
+    { displayValue: "Miami", sortValue: "Miami" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" },
+  ],
+  [
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" },
+  ],
+  [
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "002", sortValue: "002" },
+    { displayValue: "Louis", sortValue: "Louis" },
+    { displayValue: "London", sortValue: "London" },
+    { displayValue: "London", sortValue: "London" },
+  ],
+];
+
 export const Chromatic = () => (
   <>
     <ExampleContainer>
@@ -91,6 +183,10 @@ export const Chromatic = () => (
         itemsPerPage={2}
         itemsPerPageOptions={[2, 3]}
       ></DxcResultsetTable>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Scroll resultset table" theme="light" level={4} />
+      <DxcResultsetTable columns={longColumns} rows={longRows}></DxcResultsetTable>
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
