@@ -17,7 +17,7 @@ type Props = {
   /**
    * The panel label.
    */
-  label?: string;
+  label: string;
   /**
    * Represents the state of the panel. When true, the component will be
    * expanded. If undefined, the component will be uncontrolled and its
