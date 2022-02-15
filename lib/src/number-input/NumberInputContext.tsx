@@ -1,16 +1,11 @@
 import React from "react";
 
-interface INumberInputContext {
-  typeNumber?: string;
-  minNumber?: number;
-  maxNumber?: number;
-  stepNumber?: number;
-}
+import NumberInputContextPropTypes from "./numberInputContextTypes";
 
 const defaultState = {
   stepNumber: 1,
 };
 
-const NumberInputContext = React.createContext<INumberInputContext>(defaultState);
+const NumberInputContext = React.createContext<NumberInputContextPropTypes>(defaultState);
 
 export default NumberInputContext;
