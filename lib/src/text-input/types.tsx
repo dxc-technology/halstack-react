@@ -21,6 +21,10 @@ type Action = {
   title?: string;
 };
 
+type RequiredMinMax = { min: number; max: number };
+type RequiredMin = { min: number; max?: number };
+type RequiredMax = { min?: number; max: number };
+
 type Props = {
   /**
    * Text to be placed above the input. This label will be used as the aria-label attribute of the list of suggestions.
@@ -116,7 +120,7 @@ type Props = {
    * length does not comply the specified range. If a valid length is
    * reached, the error parameter of both events will be null.
    */
-  length?: { min?: number; max?: number };
+  length?: RequiredMinMax | RequiredMin | RequiredMax;
   /**
    * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
