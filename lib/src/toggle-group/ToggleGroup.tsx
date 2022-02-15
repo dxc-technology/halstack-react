@@ -15,9 +15,9 @@ const DxcToggleGroup = ({
   margin,
   multiple = false,
   tabIndex = 0,
-}: ToogleGroupPropsType): JSX.Element => {
+}: ToogleGroupPropsType) => {
   const colorsTheme = useTheme();
-  const [selectedValue, setSelectedValue] = useState(multiple ? ([] as string[]) : "");
+  const [selectedValue, setSelectedValue] = useState(multiple ? [] : "");
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
   const handleToggleChange = (selectedOption) => {
@@ -50,7 +50,6 @@ const DxcToggleGroup = ({
     if (!disabled && (event.nativeEvent.code === "Enter" || event.nativeEvent.code === "Space"))
       handleToggleChange(optionValue);
   };
-
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
       <ToggleGroup margin={margin} disabled={disabled}>

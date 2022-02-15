@@ -1,3 +1,4 @@
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -6,25 +7,37 @@ type Margin = {
   right?: Space;
 };
 type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-
-type Option={
-    /**
+type OptionCommons = {
+      /**
     * Number with the option inner value.
     */
-    value?: string;
+       value: string;
+    /**
+    * @deprecated URL of the icon that will be placed. IconSrc and label can't be used at same time.
+    */
+      iconSrc?: string;
+};
+type OptionIcon = OptionCommons & {
     /**
     * String with the option display value.
     */
-    label?: string;
+     label?: string;
+     /**
+     * Element used as the icon. Icon and label can't be used at same time.
+     */
+     icon: SVG;
+};
+type OptionLabel= OptionCommons & {
+    /**
+    * String with the option display value.
+    */
+    label: string;
     /**
     * Element used as the icon. Icon and label can't be used at same time.
     */
     icon?: SVG;
-    /**
-    * @deprecated URL of the icon that will be placed. IconSrc and label can't be used at same time.
-    */
-    iconSrc?: string;
 };
+type Option = OptionIcon | OptionLabel;
 
 type Props = {
   /**
@@ -69,5 +82,4 @@ type Props = {
    */
   tabIndex?: number;
 };
-
 export default Props;
