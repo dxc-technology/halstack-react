@@ -5,6 +5,9 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
+type RequiredMinMax = { min: number; max: number };
+type RequiredMin = { min: number; max?: number };
+type RequiredMax = { min?: number; max: number };
 
 type Props = {
   /**
@@ -33,8 +36,8 @@ type Props = {
    * the error (if the value entered is not valid) will be passed to this
    * function. If there is no error, error will be null.
    * */
-   onChange?: (val: { value: string; error: string | null }) => void;
-   /**
+  onChange?: (val: { value: string; error: string | null }) => void;
+  /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value entered is
    * not valid) will be passed to this function. If there is no error, error will be null.
@@ -65,7 +68,7 @@ type Props = {
    * length does not comply the specified range. If a valid length is
    * reached, the error parameter of both events will be null.
    */
-  length?: { min?: number; max?: number };
+  length?: RequiredMinMax | RequiredMin | RequiredMax;
   /**
    * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the input value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
