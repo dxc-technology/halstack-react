@@ -21,7 +21,8 @@ const code = `() => {
       onChange={onChange}
       onBlur={onBlur}
       error={error}
-      length={{ min: 5, max: 10 }}
+      minLength={5}
+      maxLength={10}
       margin="medium"
     />
   );
