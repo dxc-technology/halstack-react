@@ -791,6 +791,7 @@ const Error = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;
+  line-height: 1.5em;
 `;
 
 const CollapseIndicator = styled.span`
