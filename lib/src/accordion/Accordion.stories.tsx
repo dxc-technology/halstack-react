@@ -109,8 +109,11 @@ export const Chromatic = () => (
       <DxcAccordion label="Xxsmall padding" isExpanded padding="xxsmall">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
       </DxcAccordion>
     </ExampleContainer>
@@ -119,8 +122,11 @@ export const Chromatic = () => (
       <DxcAccordion label="Xsmall padding" isExpanded padding="xsmall">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
       </DxcAccordion>
     </ExampleContainer>
@@ -129,8 +135,11 @@ export const Chromatic = () => (
       <DxcAccordion label="Small padding" isExpanded padding="small">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
       </DxcAccordion>
     </ExampleContainer>
@@ -139,8 +148,11 @@ export const Chromatic = () => (
       <DxcAccordion label="Medium padding" isExpanded padding="medium">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
       </DxcAccordion>
     </ExampleContainer>
@@ -149,8 +161,11 @@ export const Chromatic = () => (
       <DxcAccordion label="Large padding" isExpanded padding="large">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
       </DxcAccordion>
     </ExampleContainer>
@@ -159,8 +174,11 @@ export const Chromatic = () => (
       <DxcAccordion label="Xlarge padding" isExpanded padding="xlarge">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
       </DxcAccordion>
     </ExampleContainer>
@@ -169,8 +187,11 @@ export const Chromatic = () => (
       <DxcAccordion label="Xxlarge padding" isExpanded padding="xxlarge">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </div>
       </DxcAccordion>
     </ExampleContainer>
