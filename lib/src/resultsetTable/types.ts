@@ -38,6 +38,10 @@ type Props = {
    */
   rows: [Row, ...Row[]];
   /**
+   * If true, a select component for navigation between pages will be displayed.
+   */
+  showGoToPage?: boolean;
+  /**
    * Number of items per page.
    */
   itemsPerPage?: number;

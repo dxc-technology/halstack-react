@@ -61,8 +61,7 @@ const buttonPropsTable = () => {
         <td>onClick: function</td>
         <td></td>
         <td>
-          This function will be called when the user clicks the button. The
-          event object will be passed as a parameter.
+          This function will be called when the user clicks the button.
         </td>
       </tr>
       <tr>

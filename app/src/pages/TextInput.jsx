@@ -181,7 +181,8 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           clearable
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
         />
       </p>
       <p>
@@ -196,7 +197,8 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
         />
       </p>
       <p>
@@ -224,7 +226,8 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           clearable
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
           error={errorMessage}
         />
       </p>
@@ -241,7 +244,8 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
           error={errorMessage}
         />
       </p>
@@ -272,7 +276,8 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           clearable
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
         />
       </p>
       <p>
@@ -288,7 +293,8 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
         />
       </p>
       <p>
@@ -319,7 +325,8 @@ function App() {
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
           clearable
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
           error={errorMessage}
         />
       </p>
@@ -337,7 +344,8 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
-          length={{ min: 5, max: 10 }}
+          minLength={5}
+          maxLength={10}
           error={errorMessage}
         />
       </p>
