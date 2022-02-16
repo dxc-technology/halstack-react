@@ -117,3 +117,47 @@ ApplicationLayoutWithResponsiveSidenav.parameters = {
     defaultViewport: 'pixel',
   },
 };
+
+export const ApplicationLayoutWithCustomHeader = () => (
+  <>
+    <DxcApplicationLayout>
+      <DxcApplicationLayout.Header> <p>Custom Header</p> </DxcApplicationLayout.Header>
+      <DxcApplicationLayout.SideNav>
+        <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+      </DxcApplicationLayout.SideNav>
+      <DxcApplicationLayout.Main>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+      </DxcApplicationLayout.Main>
+    </DxcApplicationLayout>
+  </>
+);
+
+export const ApplicationLayoutWithCustomFooter = () => (
+  <>
+    <DxcApplicationLayout>
+      <DxcApplicationLayout.SideNav>
+        <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+        <p>SideNav Content</p>
+      </DxcApplicationLayout.SideNav>
+      <DxcApplicationLayout.Main>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+        <p>Main Content</p>
+      </DxcApplicationLayout.Main>
+      <DxcApplicationLayout.Footer> <p>Custom Footer</p> </DxcApplicationLayout.Footer>
+    </DxcApplicationLayout>
+  </>
+);
