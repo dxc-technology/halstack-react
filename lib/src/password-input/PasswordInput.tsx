@@ -15,7 +15,8 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
       onBlur,
       error = "",
       pattern,
-      length,
+      minLength,
+      maxLength,
       autocomplete = "off",
       margin,
       size = "medium",
@@ -100,7 +101,8 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
           margin={margin}
           size={size}
           pattern={pattern}
-          length={length}
+          minLength={minLength}
+          maxLength={maxLength}
           autocomplete={autocomplete}
           tabIndex={tabIndex}
         />
