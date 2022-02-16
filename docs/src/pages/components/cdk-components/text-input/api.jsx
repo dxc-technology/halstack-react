@@ -49,7 +49,7 @@ const textInputPropsTable = () => {
           Action to be shown in the input. This is an object composed of an
           onClick function and an icon, being the latter either an inline svg or
           a URL to the image. An example of this object is: {"{ "}
-          <code>onClick: onClickFunction, icon: string | svgIcon</code>
+          <code>onClick: function, icon: string | svgIcon, title: string</code>
           {" }"}.
         </td>
       </tr>
@@ -200,7 +200,7 @@ const textInputPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'medium'</code>
         </td>

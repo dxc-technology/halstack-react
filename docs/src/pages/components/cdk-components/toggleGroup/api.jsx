@@ -20,7 +20,7 @@ const toggleGroupPropsTable = () => {
         <td>Helper text to be placed above the component.</td>
       </tr>
       <tr>
-        <td>value: any | any[]</td>
+        <td>value: string | string[]</td>
         <td></td>
         <td>
           The key(s) of the selected value(s). If the toggle group component
@@ -60,9 +60,7 @@ const toggleGroupPropsTable = () => {
       </tr>
       <tr>
         <td>options: object[]</td>
-        <td>
-          <code>[]</code>
-        </td>
+        <td></td>
         <td>
           An array of objects representing the selectable options. Each object
           has the following properties:

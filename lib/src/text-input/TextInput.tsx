@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
-import NumberInputContext from "../number-input/NumberInputContext.js";
+import NumberInputContext from "../number-input/NumberInputContext";
+import TextInputPropsType, { RefType } from "./types";
 
 const textInputIcons = {
   error: (
@@ -36,7 +36,7 @@ const textInputIcons = {
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
-  const wrappedPromise = new Promise((resolve, reject) => {
+  const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
       (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
       (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError))
@@ -70,7 +70,7 @@ const getLastOptionIndex = (filteredSuggestions) => {
   return last;
 };
 
-const DxcTextInput = React.forwardRef(
+const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
     {
       label = "",
@@ -188,7 +188,7 @@ const DxcTextInput = React.forwardRef(
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {
         case 40: // Arrow Down
-          if (numberInputContext) {
+          if (numberInputContext?.typeNumber === "number") {
             decrementNumber();
             event.preventDefault();
           } else {
@@ -203,7 +203,7 @@ const DxcTextInput = React.forwardRef(
           }
           break;
         case 38: // Arrow Up
-          if (numberInputContext) {
+          if (numberInputContext?.typeNumber === "number") {
             incrementNumber();
             event.preventDefault();
           } else {
@@ -358,7 +358,7 @@ const DxcTextInput = React.forwardRef(
         changeVisualFocusedSuggIndex(-1);
       }
 
-      numberInputContext &&
+      numberInputContext?.typeNumber === "number" &&
         setNumberProps(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
@@ -965,40 +965,5 @@ const SuggestionsError = styled.span`
   line-height: 1.715em;
   color: ${(props) => props.theme.errorListDialogFontColor};
 `;
-
-DxcTextInput.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  helperText: PropTypes.string,
-  placeholder: PropTypes.string,
-  action: PropTypes.shape({
-    onClick: PropTypes.func.isRequired,
-    icon: PropTypes.oneOfType([PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }), PropTypes.string]).isRequired,
-  }),
-  clearable: PropTypes.bool,
-  disabled: PropTypes.bool,
-  optional: PropTypes.bool,
-  prefix: PropTypes.string,
-  suffix: PropTypes.string,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  error: PropTypes.string,
-  autocomplete: PropTypes.string,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  suggestions: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
-  pattern: PropTypes.string,
-  length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcTextInput;

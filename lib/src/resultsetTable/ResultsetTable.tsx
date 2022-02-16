@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
 import useTheme from "../useTheme.js";
+import ResultsetTablePropsType from "./types";
 
 function normalizeSortValue(sortValue) {
   return typeof sortValue === "string" ? sortValue.toUpperCase() : sortValue;
@@ -57,12 +57,13 @@ const BothArrows = () => (
 const DxcResultsetTable = ({
   columns,
   rows,
+  showGoToPage = true,
   itemsPerPage = 5,
   itemsPerPageOptions,
   itemsPerPageFunction,
   margin,
   tabIndex = 0,
-}) => {
+}: ResultsetTablePropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const [page, changePage] = useState(1);
   const [sortColumnIndex, changeSortColumnIndex] = useState("");
@@ -144,7 +145,7 @@ const DxcResultsetTable = ({
             itemsPerPageOptions={itemsPerPageOptions}
             itemsPerPageFunction={itemsPerPageFunction}
             currentPage={page}
-            showGoToPage={true}
+            showGoToPage={showGoToPage}
             onPageChange={goToPage}
             tabIndex={tabIndex}
           />
@@ -212,30 +213,5 @@ const DxcResultsetTableContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
-
-DxcResultsetTable.propTypes = {
-  rows: PropTypes.array,
-  columns: PropTypes.array,
-  itemsPerPage: PropTypes.number,
-  itemsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
-  itemsPerPageFunction: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
-DxcResultsetTable.defaultProps = {
-  rows: [],
-  columns: [],
-  itemsPerPage: 5,
-  itemsPerPageOptions: null,
-  itemsPerPageFunction: null,
-};
 
 export default DxcResultsetTable;
