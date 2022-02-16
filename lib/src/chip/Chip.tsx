@@ -5,6 +5,7 @@ import { spaces } from "../common/variables.js";
 
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
+import ChipPropsType from "./types";
 
 const DxcChip = ({
   label,
@@ -17,7 +18,7 @@ const DxcChip = ({
   disabled,
   margin,
   tabIndex = 0,
-}) => {
+}: ChipPropsType): JSX.Element => {
   const colorsTheme = useTheme();
 
   return (
@@ -134,7 +135,8 @@ const ChipTextContainer = styled.span`
 const SuffixIconContainer = styled.img`
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
   ${(props) => getCursor(props.interactuable, props.disabled)}
-  margin-left: ${(props) => ((props.label || props.suffixIconSrc) && props.theme.iconSpacing) || (props.prefixIconSrc && "5px")};
+  margin-left: ${(props) =>
+    ((props.label || props.suffixIconSrc) && props.theme.iconSpacing) || (props.prefixIconSrc && "5px")};
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
 `;
@@ -142,7 +144,8 @@ const SuffixIconContainer = styled.img`
 const PrefixIconContainer = styled.img`
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
   ${(props) => getCursor(props.interactuable, props.disabled)}
-  margin-right: ${(props) => ((props.label || props.suffixIconSrc) && props.theme.iconSpacing) || (props.prefixIconSrc && "5px")};
+  margin-right: ${(props) =>
+    ((props.label || props.suffixIconSrc) && props.theme.iconSpacing) || (props.prefixIconSrc && "5px")};
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
 `;
@@ -175,27 +178,5 @@ const IconContainer = styled.div`
     ${(props) => props.disabled && "outline: none;"}
   }
 `;
-
-DxcChip.propTypes = {
-  label: PropTypes.string,
-  disabled: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "light"]),
-  suffixIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  prefixIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  suffixIconSrc: PropTypes.string,
-  prefixIconSrc: PropTypes.string,
-  onClickSuffix: PropTypes.func,
-  onClickPrefix: PropTypes.func,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcChip;
