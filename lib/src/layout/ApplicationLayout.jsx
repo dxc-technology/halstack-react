@@ -143,7 +143,7 @@ const DxcApplicationLayout = ({ children }) => {
               {sideNav}
               <ArrowContainer>
                 {sideNav && (displayArrow || isResponsive) && (
-                  <ArrowTrigger tabIndex={0} onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
+                  <ArrowTrigger role="button" tabIndex={0} onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
                     <ArrowIcon />
                   </ArrowTrigger>
                 )}

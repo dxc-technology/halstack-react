@@ -3,6 +3,7 @@ import DxcApplicationLayout from "./ApplicationLayout";
 import DxcSidenav from "../sidenav/Sidenav";
 import Title from "../../.storybook/components/Title";
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { userEvent, within, waitFor } from "@storybook/testing-library";
 
 export default {
   title: "Application Layout ",
@@ -73,7 +74,7 @@ export const ApplicationLayoutWithPushSidenav = () => (
 export const ApplicationLayoutWithArrowSidenav = () => (
   <>
     <DxcApplicationLayout>
-      <DxcApplicationLayout.SideNav displayArrow>
+      <DxcApplicationLayout.SideNav mode="overlay" displayArrow>
         <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
@@ -161,3 +162,10 @@ export const ApplicationLayoutWithCustomFooter = () => (
     </DxcApplicationLayout>
   </>
 );
+
+export const ApplicationLayoutWithClosingSidenav = ApplicationLayoutWithArrowSidenav.bind({});
+ApplicationLayoutWithClosingSidenav.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const arrow = canvas.getByRole("button");
+  await userEvent.click(arrow);
+};
