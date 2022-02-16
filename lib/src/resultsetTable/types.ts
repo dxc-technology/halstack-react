@@ -31,12 +31,12 @@ type Props = {
   /**
    * An array of objects representing the columns of the table.
    */
-  columns: [Column, ...Column[]];
+  columns: Column[];
   /**
    * An array of objects representing the rows of the table, you will have
    * as many objects as columns in the table.
    */
-  rows: [Row, ...Row[]];
+  rows: Row[][];
   /**
    * If true, a select component for navigation between pages will be displayed.
    */
