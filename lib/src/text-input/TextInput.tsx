@@ -465,7 +465,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             )}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
               <Action
-                onClick={handleClearActionOnClick}
+                onClick={() => {
+                  handleClearActionOnClick();
+                }}
                 onMouseDown={(event) => {
                   event.stopPropagation();
                 }}
@@ -481,7 +483,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={handleDecrementActionOnClick}
+                  onClick={() => {
+                    handleDecrementActionOnClick();
+                  }}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
@@ -494,7 +498,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={handleIncrementActionOnClick}
+                  onClick={() => {
+                    handleIncrementActionOnClick();
+                  }}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
@@ -510,7 +516,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={action.onClick}
+                  onClick={() => {
+                    action.onClick();
+                  }}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
