@@ -261,65 +261,65 @@ export const Chromatic = () => (
   </>
 );
 
-const ActionFocusedTextInput = () => (
+const FocusedActionTextInput = () => (
   <ExampleContainer>
     <Title title="Focused action" theme="light" level={4} />
-    <DxcTextInput label="Focused action" action={action} clearable />
+    <DxcTextInput label="Text input" action={action} clearable />
   </ExampleContainer>
 );
 
-const ActionActivedTextInput = () => (
+const ActivedActionTextInput = () => (
   <ExampleContainer pseudoState="pseudo-active">
-    <Title title="Focused action" theme="light" level={4} />
-    <DxcTextInput label="Focused action" action={action} clearable />
+    <Title title="Actived action" theme="light" level={4} />
+    <DxcTextInput label="Text input" action={action} clearable />
   </ExampleContainer>
 );
 
 const ShowOptionsAutosuggest = () => (
   <ExampleContainer expanded>
-    <Title title="Hovered option" theme="light" level={4} />
-    <DxcTextInput label="Hovered option" suggestions={countries} clearable />
+    <Title title="Show options" theme="light" level={4} />
+    <DxcTextInput label="Text input" suggestions={countries} clearable />
   </ExampleContainer>
 );
 
-const OptionHoveredAutosuggest = () => (
+const HoveredOptionAutosuggest = () => (
   <ExampleContainer expanded pseudoState="pseudo-hover">
     <Title title="Hovered option" theme="light" level={4} />
-    <DxcTextInput label="Hovered option" suggestions={country} clearable />
+    <DxcTextInput label="Text input" suggestions={country} clearable />
   </ExampleContainer>
 );
 
-const OptionFocusedAutosuggest = () => (
+const FocusedOptionAutosuggest = () => (
   <ExampleContainer expanded>
-    <Title title="Focused option" theme="dark" level={4} />
-    <DxcTextInput label="Focused option" suggestions={country} clearable />
+    <Title title="Focused option" theme="light" level={4} />
+    <DxcTextInput label="Text input" suggestions={country} clearable />
   </ExampleContainer>
 );
 
-const OptionActivedAutosuggest = () => (
+const ActivedOptionAutosuggest = () => (
   <ExampleContainer expanded pseudoState="pseudo-active">
-    <Title title="Hovered option" theme="light" level={4} />
-    <DxcTextInput label="Hovered option" suggestions={country} clearable />
+    <Title title="Actived option" theme="light" level={4} />
+    <DxcTextInput label="Text input" suggestions={country} clearable />
   </ExampleContainer>
 );
 
-const ActionFocusedTextInputOnDark = () => (
+const FocusedActionTextInputOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
       <ExampleContainer>
         <Title title="Focused action" theme="dark" level={4} />
-        <DxcTextInput label="Focused action" action={action} clearable />
+        <DxcTextInput label="Text input" action={action} clearable />
       </ExampleContainer>
     </DarkContainer>
   </BackgroundColorProvider>
 );
 
-const ActionActivedTextInputOnDark = () => (
+const ActivedActionTextInputOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
       <ExampleContainer pseudoState="pseudo-active">
-        <Title title="Focused action" theme="dark" level={4} />
-        <DxcTextInput label="Focused action" action={action} clearable />
+        <Title title="Actived action" theme="dark" level={4} />
+        <DxcTextInput label="Text input" action={action} clearable />
       </ExampleContainer>
     </DarkContainer>
   </BackgroundColorProvider>
@@ -329,55 +329,55 @@ const ShowOptionsAutosuggestOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
       <ExampleContainer expanded>
-        <Title title="Hovered option" theme="dark" level={4} />
-        <DxcTextInput label="Hovered option" suggestions={countries} clearable />
+        <Title title="Show options" theme="dark" level={4} />
+        <DxcTextInput label="Text input" suggestions={countries} clearable />
       </ExampleContainer>
     </DarkContainer>
   </BackgroundColorProvider>
 );
 
-const OptionHoveredAutosuggestOnDark = () => (
+const HoveredActionAutosuggestOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
       <ExampleContainer expanded pseudoState="pseudo-hover">
         <Title title="Hovered option" theme="dark" level={4} />
-        <DxcTextInput label="Hovered option" suggestions={country} clearable />
+        <DxcTextInput label="Text input" suggestions={country} clearable />
       </ExampleContainer>
     </DarkContainer>
   </BackgroundColorProvider>
 );
 
-const OptionFocusedAutosuggestOnDark = () => (
+const FocusedOptionAutosuggestOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
       <ExampleContainer expanded>
-        <Title title="Focused option" theme="light" level={4} />
-        <DxcTextInput label="Focused option" suggestions={country} clearable />
+        <Title title="Focused option" theme="dark" level={4} />
+        <DxcTextInput label="Text input" suggestions={country} clearable />
       </ExampleContainer>
     </DarkContainer>
   </BackgroundColorProvider>
 );
 
-const OptionActivedAutosuggestOnDark = () => (
+const ActivedOptionAutosuggestOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
       <ExampleContainer expanded pseudoState="pseudo-active">
-        <Title title="Hovered option" theme="dark" level={4} />
-        <DxcTextInput label="Hovered option" suggestions={country} clearable />
+        <Title title="Actived option" theme="dark" level={4} />
+        <DxcTextInput label="Text input" suggestions={country} clearable />
       </ExampleContainer>
     </DarkContainer>
   </BackgroundColorProvider>
 );
 
-export const ActionFocused = ActionFocusedTextInput.bind({});
-ActionFocused.play = async ({ canvasElement }) => {
+export const FocusedAction = FocusedActionTextInput.bind({});
+FocusedAction.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const action = canvas.getByRole("button");
   await action.focus();
 };
 
-export const ActionActived = ActionActivedTextInput.bind({});
-ActionActived.play = async ({ canvasElement }) => {
+export const ActivedAction = ActivedActionTextInput.bind({});
+ActivedAction.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const action = canvas.getByRole("button");
   await userEvent.click(action);
@@ -390,37 +390,37 @@ ShowOptions.play = async ({ canvasElement }) => {
   await userEvent.click(autosuggest);
 };
 
-export const OptionHovered = OptionHoveredAutosuggest.bind({});
-OptionHovered.play = async ({ canvasElement }) => {
+export const HoveredOption = HoveredOptionAutosuggest.bind({});
+HoveredOption.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const autosuggest = canvas.getByRole("combobox");
   await userEvent.click(autosuggest);
 };
 
-export const OptionFocused = OptionFocusedAutosuggest.bind({});
-OptionFocused.play = async ({ canvasElement }) => {
+export const FocusedOption = FocusedOptionAutosuggest.bind({});
+FocusedOption.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const autosuggest = canvas.getByRole("combobox");
   await userEvent.click(autosuggest);
   fireEvent.keyDown(autosuggest, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
 };
 
-export const OptionActived = OptionActivedAutosuggest.bind({});
-OptionActived.play = async ({ canvasElement }) => {
+export const ActivedOption = ActivedOptionAutosuggest.bind({});
+ActivedOption.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const autosuggest = canvas.getByRole("combobox");
   await userEvent.click(autosuggest);
 };
 
-export const ActionFocusedOnDark = ActionFocusedTextInputOnDark.bind({});
-ActionFocusedOnDark.play = async ({ canvasElement }) => {
+export const FocusedActionOnDark = FocusedActionTextInputOnDark.bind({});
+FocusedActionOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const action = canvas.getByRole("button");
   await action.focus();
 };
 
-export const ActionActivedOnDark = ActionActivedTextInputOnDark.bind({});
-ActionActivedOnDark.play = async ({ canvasElement }) => {
+export const ActivedActionOnDark = ActivedActionTextInputOnDark.bind({});
+ActivedActionOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const action = canvas.getByRole("button");
   await userEvent.click(action);
@@ -433,23 +433,23 @@ ShowOptionsOnDark.play = async ({ canvasElement }) => {
   await userEvent.click(autosuggest);
 };
 
-export const OptionHoveredOnDark = OptionHoveredAutosuggestOnDark.bind({});
-OptionHoveredOnDark.play = async ({ canvasElement }) => {
+export const HoveredActionOnDark = HoveredActionAutosuggestOnDark.bind({});
+HoveredActionOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const autosuggest = canvas.getByRole("combobox");
   await userEvent.click(autosuggest);
 };
 
-export const OptionFocusedOnDark = OptionFocusedAutosuggestOnDark.bind({});
-OptionFocusedOnDark.play = async ({ canvasElement }) => {
+export const FocusedOptionOnDark = FocusedOptionAutosuggestOnDark.bind({});
+FocusedOptionOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const autosuggest = canvas.getByRole("combobox");
   await userEvent.click(autosuggest);
   fireEvent.keyDown(autosuggest, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
 };
 
-export const OptionActivedOnDark = OptionActivedAutosuggestOnDark.bind({});
-OptionActivedOnDark.play = async ({ canvasElement }) => {
+export const ActivedOptionOnDark = ActivedOptionAutosuggestOnDark.bind({});
+ActivedOptionOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const autosuggest = canvas.getByRole("combobox");
   await userEvent.click(autosuggest);
