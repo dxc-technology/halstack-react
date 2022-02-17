@@ -46,7 +46,7 @@ const options = [
   },
   {
     value: 2,
-    label: "Twitter",
+    label: "Twitter2",
   },
   {
     value: 3,
