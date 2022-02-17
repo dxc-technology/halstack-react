@@ -7,6 +7,12 @@ type Padding = {
   right?: Space;
 };
 
+type ChildrenType =
+  | AppLayoutHeaderPropsType
+  | AppLayoutMainPropsType
+  | AppLayoutFooterPropsType
+  | AppLayoutSidenavPropsType;
+
 export type AppLayoutHeaderPropsType = {
   /**
    * Everything between this tags will be displayed as a header, at the top of the screen.
@@ -56,7 +62,7 @@ type AppLayoutPropsType = {
   /**
    * The area inside the sidenav. This area can be used to render custom content.
    */
-  children: React.ReactNode;
+  children: React.ReactElement<ChildrenType> | React.ReactElement<ChildrenType>[];
 };
 
 export default AppLayoutPropsType;
