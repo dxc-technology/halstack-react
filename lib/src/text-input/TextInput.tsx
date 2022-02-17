@@ -471,6 +471,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 }}
                 backgroundType={backgroundType}
                 tabIndex={tabIndex}
+                title="Clear"
                 aria-label="Clear"
               >
                 {textInputIcons.clear}
@@ -487,6 +488,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
+                  title="Decrement"
                   aria-label="Decrement"
                 >
                   {textInputIcons.decrement}
@@ -500,6 +502,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
+                  title="Increment"
                   aria-label="Increment"
                 >
                   {textInputIcons.increment}
@@ -515,6 +518,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     event.stopPropagation();
                   }}
                   title={action.title ?? action.title}
+                  aria-label={action.title ?? action.title}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                 >
