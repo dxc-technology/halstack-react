@@ -179,6 +179,10 @@ export const Chromatic = () => (
           />
         </ExampleContainer>
         <ExampleContainer>
+          <Title title="Prefix and suffix" theme="dark" level={4} />
+          <DxcTextInput label="With prefix and suffix" prefix="+34" suffix="USD" />
+        </ExampleContainer>
+        <ExampleContainer>
           <Title title="Disabled and placeholder" theme="dark" level={4} />
           <DxcTextInput label="Disabled text input" disabled placeholder="Placeholder" />
         </ExampleContainer>
@@ -189,6 +193,19 @@ export const Chromatic = () => (
             helperText="Help message"
             disabled
             optional
+            value="Text"
+            action={action}
+          />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Disabled with prefix and suffix" theme="dark" level={4} />
+          <DxcTextInput
+            label="Disabled text input"
+            helperText="Help message"
+            disabled
+            optional
+            prefix="+34"
+            suffix="USD"
             value="Text"
             action={action}
           />
