@@ -1,8 +1,11 @@
 import React from "react";
 import DxcAccordion from "./Accordion";
 import DxcHeading from "../heading/Heading";
+import DxcTextInput from "../text-input/TextInput";
+import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { ThemeProvider } from "../ThemeContext";
 
 export default {
   title: "Accordion",
@@ -26,6 +29,23 @@ const folderIcon = (
     </g>
   </svg>
 );
+
+const thumbIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
+  </svg>
+);
+
+const advancedTheme = {
+  accordion: {
+    backgroundColor: "#000000",
+    assistiveTextFontColor: "#ffffff",
+    titleLabelFontColor: "#ffffff",
+    arrowColor: "#5f249f",
+    iconColor: "#5f249f",
+  },
+};
 
 export const Chromatic = () => (
   <>
@@ -51,6 +71,15 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
       <DxcAccordion label="Accordion" assistiveText="Assistive text" icon={folderIcon}>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
+          lobortis eget.
+        </div>
+      </DxcAccordion>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="With bigger icon 48x48" theme="light" level={4} />
+      <DxcAccordion label="Accordion" assistiveText="Assistive text" icon={thumbIcon}>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -87,7 +116,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcAccordion label="Disabled" assistiveText="Assistive text" disabled>
+      <DxcAccordion label="Disabled" assistiveText="Assistive text" icon={folderIcon} disabled>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
           lobortis eget.
@@ -95,13 +124,21 @@ export const Chromatic = () => (
       </DxcAccordion>
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled with icon" theme="light" level={4} />
-      <DxcAccordion label="Disabled" assistiveText="Assistive text" icon={folderIcon} disabled>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
-          lobortis eget.
-        </div>
-      </DxcAccordion>
+      <Title title="Background color provider over accordion content" theme="light" level={4} />
+      <ThemeProvider advancedTheme={advancedTheme} theme={undefined}>
+        <DxcAccordion
+          label="Dark Accordion"
+          isExpanded
+          assistiveText="Assistive text"
+          icon={folderIcon}
+          padding="medium"
+        >
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <DxcTextInput label="Label" helperText="HelperText" placeholder="Placeholder" size="fillParent" />
+            <DxcButton label="Submit" size="medium" />
+          </div>
+        </DxcAccordion>
+      </ThemeProvider>
     </ExampleContainer>
     <Title title="Paddings" theme="light" level={2} />
     <ExampleContainer>
