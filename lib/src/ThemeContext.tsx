@@ -3,10 +3,9 @@ import React, { useMemo } from "react";
 import Color from "color";
 import rgbHex from "rgb-hex";
 import styled from "styled-components";
-
 import { componentTokens } from "./common/variables.js";
 
-const ThemeContext = React.createContext();
+const ThemeContext = React.createContext<object | null>(null);
 
 const addLightness = (hexColor, newLightness) => {
   try {
@@ -189,7 +188,8 @@ const parseTheme = (theme) => {
   radioTokens.disabledColor = setOpacity(theme?.radio?.baseColor, 0.34) ?? radioTokens.disabledColor;
 
   const v3SelectTokens = componentTokensCopy.V3Select;
-  v3SelectTokens.selectedOptionBackgroundColor = theme?.V3Select?.baseColor ?? v3SelectTokens.selectedOptionBackgroundColor;
+  v3SelectTokens.selectedOptionBackgroundColor =
+    theme?.V3Select?.baseColor ?? v3SelectTokens.selectedOptionBackgroundColor;
   v3SelectTokens.optionFontColor = theme?.V3Select?.fontColor ?? v3SelectTokens.optionFontColor;
   v3SelectTokens.valueFontColor = theme?.V3Select?.fontColor ?? v3SelectTokens.valueFontColor;
   v3SelectTokens.hoverOptionBackgroundColor =
@@ -274,14 +274,26 @@ const parseTheme = (theme) => {
   return componentTokensCopy;
 };
 
-const ThemeProvider = ({ theme, advancedTheme, children }) => {
+type ThemeProviderCommonProps = {
+  children: React.ReactNode;
+};
+type ThemeProviderDefaultTheme = ThemeProviderCommonProps & {
+  theme: object;
+};
+type ThemeProviderAdvancedTheme = ThemeProviderCommonProps & {
+  advancedTheme: object;
+};
+type ThemeProviderPropsType = ThemeProviderDefaultTheme | ThemeProviderAdvancedTheme;
+
+const ThemeProvider = (props: ThemeProviderPropsType): JSX.Element => {
   const parsedTheme = useMemo(
-    () => (theme && parseTheme(theme)) || (advancedTheme && parseAdvancedTheme(advancedTheme)),
-    [theme, advancedTheme]
+    () => ("theme" in props ? parseTheme(props.theme) : parseAdvancedTheme(props.advancedTheme)),
+    [props]
   );
+
   return (
     <Halstack>
-      <ThemeContext.Provider value={parsedTheme}>{children}</ThemeContext.Provider>
+      <ThemeContext.Provider value={parsedTheme}>{props.children}</ThemeContext.Provider>
     </Halstack>
   );
 };
