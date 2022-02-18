@@ -278,18 +278,20 @@ type ThemeProviderCommonProps = {
   children: React.ReactNode;
 };
 type ThemeProviderDefaultTheme = ThemeProviderCommonProps & {
-  theme: object;
+  theme?: object;
+  advancedTheme?: never;
 };
 type ThemeProviderAdvancedTheme = ThemeProviderCommonProps & {
-  advancedTheme: object;
+  theme?: never;
+  advancedTheme?: object;
 };
 type ThemeProviderPropsType = ThemeProviderDefaultTheme | ThemeProviderAdvancedTheme;
 
 const ThemeProvider = (props: ThemeProviderPropsType): JSX.Element => {
-  const parsedTheme = useMemo(
-    () => ("theme" in props ? parseTheme(props.theme) : parseAdvancedTheme(props.advancedTheme)),
-    [props]
-  );
+  const parsedTheme = useMemo(() => {
+    if ("theme" in props) return parseTheme(props.theme);
+    else if ("advancedTheme" in props) return parseAdvancedTheme(props.advancedTheme);
+  }, ["theme" in props ? props.theme : props.advancedTheme]);
 
   return (
     <Halstack>
