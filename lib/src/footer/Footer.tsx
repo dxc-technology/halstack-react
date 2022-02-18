@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import { spaces, responsiveSizes } from "../common/variables.js";
-import useTheme from "../useTheme.js";
-import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
 import dxcLogo from "./Icons";
 import FooterPropsType from "./types";
 

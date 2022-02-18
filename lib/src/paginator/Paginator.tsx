@@ -1,10 +1,10 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
 import { firstIcon, lastIcon, nextIcon, previousIcon } from "./Icons";
-import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
 import PaginatorPropsType from "./types";
 
 const DxcPaginator = ({

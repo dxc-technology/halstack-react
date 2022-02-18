@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import DxcAccordion from "../accordion/Accordion";
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import AccordionGroupPropsType, { AccordionPropsType } from "./types";
 
 type AccordionGroupAccordionContext = {

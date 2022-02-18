@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import BackgroundColorContext from "../BackgroundColorContext";
 import NumberInputContext from "../number-input/NumberInputContext";
 import TextInputPropsType, { RefType } from "./types";
 

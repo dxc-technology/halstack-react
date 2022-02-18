@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";

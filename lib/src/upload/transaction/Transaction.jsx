@@ -15,8 +15,8 @@ import {
   audioIconError,
 } from "./Icons";
 import Spinner from "../../spinner/Spinner";
-import useTheme from "../../useTheme.js";
-import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
+import useTheme from "../../useTheme";
+import { BackgroundColorProvider } from "../../BackgroundColorContext";
 
 const DxcTransaction = ({ name = "", type = "", status = "", message = "" }) => {
   const colorsTheme = useTheme();

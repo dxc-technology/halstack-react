@@ -5,7 +5,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo } from "./Icons";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 
 const year = new Date().getFullYear();
 

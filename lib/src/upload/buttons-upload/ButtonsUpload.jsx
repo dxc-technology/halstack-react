@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import Button from "../../button/Button";
 import { dragAndDropIcon, uploadIcon } from "./Icons";
-import useTheme from "../../useTheme.js";
-import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
+import useTheme from "../../useTheme";
+import { BackgroundColorProvider } from "../../BackgroundColorContext";
 
 const DxcButtonsUpload = ({ addFile, onUpload }) => {
   const colorsTheme = useTheme();
