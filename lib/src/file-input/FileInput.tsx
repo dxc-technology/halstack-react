@@ -32,6 +32,8 @@ const DxcFileInput = ({
   name = "",
   mode = "file",
   label = "",
+  buttonLabel,
+  dropAreaLabel,
   helperText = "",
   accept,
   minSize,
@@ -178,7 +180,7 @@ const DxcFileInput = ({
             <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
             <DxcButton
               mode="secondary"
-              label="Select files"
+              label={buttonLabel ?? (multiple ? "Select files" : "Select file")}
               onClick={handleClick}
               disabled={disabled}
               size="medium"
@@ -226,13 +228,15 @@ const DxcFileInput = ({
               <ButtonContainer mode={mode}>
                 <DxcButton
                   mode="secondary"
-                  label="Select"
+                  label={buttonLabel ?? "Select"}
                   onClick={handleClick}
                   disabled={disabled}
                   size="fitContent"
                 />
               </ButtonContainer>
-              <DropLabel disabled={disabled}>or drop files</DropLabel>
+              <DropLabel disabled={disabled} mode={mode}>
+                {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
+              </DropLabel>
             </DragDropArea>
             {files.map((file) => {
               return (
@@ -295,21 +299,27 @@ const HelperText = styled.span`
 `;
 
 const DragDropArea = styled.div`
-  height: ${(props) => (props.mode === "filedrop" ? "calc(48px - 2px)" : "calc(160px - 2px)")};
-  width: calc(320px - 2px);
   display: flex;
   flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
+  ${(props) => props.mode === "dropzone" && "justify-content: center"};
   align-items: center;
+  height: ${(props) => (props.mode === "filedrop" ? "calc(48px - 2px)" : "calc(160px - 2px)")};
+  width: calc(320px - 2px);
+
+  box-shadow: 0 0 0 2px transparent;
   border-radius: ${(props) => props.theme.dropBorderRadius};
-  border-width: ${(props) => (!props.isDragging ? props.theme.dropBorderThickness : "2px")};
-  border-style: ${(props) => (!props.isDragging ? props.theme.dropBorderStyle : "solid")};
-  background-color: ${(props) => props.isDragging && props.theme.dragoverDropBackgroundColor};
-  border-color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledDropBorderColor
-      : props.isDragging
-      ? props.theme.focusDropBorderColor
-      : props.theme.dropBorderColor};
+  border-width: ${(props) => props.theme.dropBorderThickness};
+  border-style: ${(props) => props.theme.dropBorderStyle};
+  border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
+
+  ${(props) =>
+    props.isDragging &&
+    `
+      background-color: ${props.theme.dragoverDropBackgroundColor};
+      border-color: transparent;
+      box-shadow: 0 0 0 2px ${props.theme.focusDropBorderColor};
+    `}
+
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;
 
@@ -327,7 +337,7 @@ const HiddenInputFile = styled.input`
 `;
 
 const ButtonContainer = styled.div`
-  padding: ${(props) => (props.mode === "filedrop" ? "2px 12px 2px 2px" : "47px 122px 8px 122px")};
+  ${(props) => props.mode === "filedrop" && "padding: 2px 12px 2px 3px"};
 `;
 
 const DropLabel = styled.span`
@@ -335,6 +345,7 @@ const DropLabel = styled.span`
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
+  ${(props) => props.mode === "dropzone" && "margin-top: 0.5rem"};
 `;
 
 const Container = styled.div`

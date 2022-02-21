@@ -30,6 +30,14 @@ type Props = {
    */
   label?: string;
   /**
+   * Text to be placed inside the button.
+   */
+  buttonLabel?: string;
+  /**
+   * Text to be placed inside the drag and drop zone alongside the button.
+   */
+  dropAreaLabel?: string;
+  /**
    * Uses one of the available file input modes:
    *    'file': Files are selected by clicking the button and selecting it through the file explorer.
    *    'filedrop': Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
