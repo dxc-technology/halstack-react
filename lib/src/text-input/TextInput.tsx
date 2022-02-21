@@ -71,7 +71,7 @@ const getLastOptionIndex = (filteredSuggestions) => {
 const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
       helperText,
@@ -405,9 +405,11 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
         <DxcInput margin={margin} ref={ref} size={size}>
-          <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
-            {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
-          </Label>
+          {label && (
+            <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
+              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+            </Label>
+          )}
           {helperText && (
             <HelperText disabled={disabled} backgroundType={backgroundType}>
               {helperText}

@@ -165,7 +165,7 @@ const getSelectedOption = (options, multiple, optional, optionalEmptyOption, val
 const DxcSelect = React.forwardRef(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
       options,
@@ -444,16 +444,18 @@ const DxcSelect = React.forwardRef(
     return (
       <ThemeProvider theme={colorsTheme.select}>
         <SelectContainer margin={margin} size={size} ref={ref}>
-          <Label
-            id={selectLabelId}
-            disabled={disabled}
-            onClick={() => {
-              selectContainerRef.current.focus();
-            }}
-            helperText={helperText}
-          >
-            {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
-          </Label>
+          {label && (
+            <Label
+              id={selectLabelId}
+              disabled={disabled}
+              onClick={() => {
+                selectContainerRef.current.focus();
+              }}
+              helperText={helperText}
+            >
+              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+            </Label>
+          )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <Select
             id={selectId}

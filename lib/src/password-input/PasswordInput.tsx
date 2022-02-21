@@ -6,7 +6,7 @@ import PasswordInputPropsType, { RefType } from "./types";
 const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
       helperText,
@@ -28,19 +28,23 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
     const inputRef = useRef(null);
 
     const setInputType = (type) => {
-      inputRef?.current?.children[helperText ? 2 : 1]?.children[0].setAttribute("type", type);
+      inputRef?.current?.children[label && helperText ? 2 : label || helperText ? 1 : 0]?.children[0].setAttribute(
+        "type",
+        type
+      );
     };
 
     const setAriaAttributes = (ariaExpanded, ariaLabel) => {
+      const inputIndex = label && helperText ? 2 : label || helperText ? 1 : 0;
       if (error && clearable && value) {
-        inputRef?.current?.children[helperText ? 2 : 1]?.children[3]?.setAttribute("aria-expanded", ariaExpanded);
-        inputRef?.current?.children[helperText ? 2 : 1]?.children[3]?.setAttribute("aria-label", ariaLabel);
+        inputRef?.current?.children[inputIndex]?.children[3]?.setAttribute("aria-expanded", ariaExpanded);
+        inputRef?.current?.children[inputIndex]?.children[3]?.setAttribute("aria-label", ariaLabel);
       } else if (error || (clearable && !value)) {
-        inputRef?.current?.children[helperText ? 2 : 1]?.children[2]?.setAttribute("aria-expanded", ariaExpanded);
-        inputRef?.current?.children[helperText ? 2 : 1]?.children[2]?.setAttribute("aria-label", ariaLabel);
+        inputRef?.current?.children[inputIndex]?.children[2]?.setAttribute("aria-expanded", ariaExpanded);
+        inputRef?.current?.children[inputIndex]?.children[2]?.setAttribute("aria-label", ariaLabel);
       } else {
-        inputRef?.current?.children[helperText ? 2 : 1]?.children[1]?.setAttribute("aria-expanded", ariaExpanded);
-        inputRef?.current?.children[helperText ? 2 : 1]?.children[1]?.setAttribute("aria-label", ariaLabel);
+        inputRef?.current?.children[inputIndex]?.children[1]?.setAttribute("aria-expanded", ariaExpanded);
+        inputRef?.current?.children[inputIndex]?.children[1]?.setAttribute("aria-label", ariaLabel);
       }
     };
 

@@ -14,7 +14,7 @@ import DateInputPropsType, { RefType } from "./types";
 const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
       format = "dd-MM-yyyy",

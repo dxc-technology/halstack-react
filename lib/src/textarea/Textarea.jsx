@@ -17,7 +17,7 @@ const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 const DxcTextarea = React.forwardRef(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
       helperText,
@@ -92,9 +92,11 @@ const DxcTextarea = React.forwardRef(
     return (
       <ThemeProvider theme={colorsTheme.textarea}>
         <TextareaContainer margin={margin} size={size} ref={ref}>
-          <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
-            {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
-          </Label>
+          {label && (
+            <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
+              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+            </Label>
+          )}
           {helperText && (
             <HelperText disabled={disabled} backgroundType={backgroundType}>
               {helperText}
