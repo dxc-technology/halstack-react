@@ -33,14 +33,14 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
 
     const setAriaAttributes = (ariaExpanded, ariaLabel) => {
       if (error && clearable && value) {
-        inputRef?.current?.children[2]?.children[3]?.setAttribute("aria-expanded", ariaExpanded);
-        inputRef?.current?.children[2]?.children[3]?.setAttribute("aria-label", ariaLabel);
+        inputRef?.current?.children[helperText ? 2 : 1]?.children[3]?.setAttribute("aria-expanded", ariaExpanded);
+        inputRef?.current?.children[helperText ? 2 : 1]?.children[3]?.setAttribute("aria-label", ariaLabel);
       } else if (error || (clearable && !value)) {
-        inputRef?.current?.children[2]?.children[2]?.setAttribute("aria-expanded", ariaExpanded);
-        inputRef?.current?.children[2]?.children[2]?.setAttribute("aria-label", ariaLabel);
+        inputRef?.current?.children[helperText ? 2 : 1]?.children[2]?.setAttribute("aria-expanded", ariaExpanded);
+        inputRef?.current?.children[helperText ? 2 : 1]?.children[2]?.setAttribute("aria-label", ariaLabel);
       } else {
-        inputRef?.current?.children[2]?.children[1]?.setAttribute("aria-expanded", ariaExpanded);
-        inputRef?.current?.children[2]?.children[1]?.setAttribute("aria-label", ariaLabel);
+        inputRef?.current?.children[helperText ? 2 : 1]?.children[1]?.setAttribute("aria-expanded", ariaExpanded);
+        inputRef?.current?.children[helperText ? 2 : 1]?.children[1]?.setAttribute("aria-label", ariaLabel);
       }
     };
 
