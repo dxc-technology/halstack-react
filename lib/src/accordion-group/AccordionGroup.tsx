@@ -77,6 +77,7 @@ DxcAccordionGroup.Accordion = AccordionGroupAccordion;
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const AccordionGroupContainer = styled.div`
+  display: inline-block;
   width: ${(props) => calculateWidth(props.margin)};
 
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
