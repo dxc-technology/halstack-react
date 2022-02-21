@@ -9,11 +9,11 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
       label = "",
       name = "",
       value,
-      helperText = "",
+      helperText,
       clearable = false,
       onChange,
       onBlur,
-      error = "",
+      error,
       pattern,
       minLength,
       maxLength,
@@ -28,7 +28,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
     const inputRef = useRef(null);
 
     const setInputType = (type) => {
-      inputRef?.current?.children[2]?.children[0].setAttribute("type", type);
+      inputRef?.current?.children[helperText ? 2 : 1]?.children[0].setAttribute("type", type);
     };
 
     const setAriaAttributes = (ariaExpanded, ariaLabel) => {

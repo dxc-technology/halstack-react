@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
-import { spaces } from "../common/variables.js";
+import { spaces, globalTokens } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import { useLayoutEffect } from "react";
@@ -20,7 +20,7 @@ const DxcTextarea = React.forwardRef(
       label = "",
       name = "",
       value,
-      helperText = "",
+      helperText,
       placeholder = "",
       disabled = false,
       optional = false,
@@ -28,7 +28,7 @@ const DxcTextarea = React.forwardRef(
       rows = 4,
       onChange,
       onBlur,
-      error = "",
+      error,
       pattern,
       minLength,
       maxLength,
@@ -92,12 +92,14 @@ const DxcTextarea = React.forwardRef(
     return (
       <ThemeProvider theme={colorsTheme.textarea}>
         <TextareaContainer margin={margin} size={size} ref={ref}>
-          <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType}>
+          <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
-          <HelperText disabled={disabled} backgroundType={backgroundType}>
-            {helperText}
-          </HelperText>
+          {helperText && (
+            <HelperText disabled={disabled} backgroundType={backgroundType}>
+              {helperText}
+            </HelperText>
+          )}
           <Textarea
             id={textareaId}
             name={name}
@@ -119,7 +121,7 @@ const DxcTextarea = React.forwardRef(
             aria-describedby={error ? errorId : undefined}
             aria-required={optional ? "false" : "true"}
           />
-          {!disabled && (
+          {!disabled && typeof error === "string" && (
             <Error id={errorId} backgroundType={backgroundType}>
               {error}
             </Error>
@@ -173,6 +175,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
+  ${(props) => !props.helperText && `margin-bottom: ${globalTokens.spacing_04}`}
 `;
 
 const OptionalLabel = styled.span`
@@ -194,6 +197,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
+  margin-bottom: ${globalTokens.spacing_04};
 `;
 
 const Textarea = styled.textarea`
@@ -211,7 +215,6 @@ const Textarea = styled.textarea`
     else return `background-color: transparent;`;
   }}
 
-  margin: ${(props) => `${props.theme.inputMarginTop} 0 ${props.theme.inputMarginBottom} 0`};
   padding: 0.5rem 1rem;
   box-shadow: 0 0 0 2px transparent;
   border-radius: 0.25rem;
@@ -304,6 +307,7 @@ const Error = styled.span`
   font-weight: 400;
   min-height: 1.5em;
   line-height: 1.5em;
+  margin-top: ${globalTokens.spacing_04};
 `;
 
 DxcTextarea.propTypes = {

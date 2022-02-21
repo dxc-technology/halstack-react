@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
-import { spaces } from "../common/variables.js";
+import { spaces, globalTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
@@ -74,7 +74,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       label = "",
       name = "",
       value,
-      helperText = "",
+      helperText,
       placeholder = "",
       action,
       clearable = false,
@@ -84,7 +84,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       suffix = "",
       onChange,
       onBlur,
-      error = "",
+      error,
       suggestions,
       pattern,
       minLength,
@@ -405,12 +405,14 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
         <DxcInput margin={margin} ref={ref} size={size}>
-          <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType}>
+          <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
             {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
           </Label>
-          <HelperText disabled={disabled} backgroundType={backgroundType}>
-            {helperText}
-          </HelperText>
+          {helperText && (
+            <HelperText disabled={disabled} backgroundType={backgroundType}>
+              {helperText}
+            </HelperText>
+          )}
           <InputContainer
             error={error}
             disabled={disabled}
@@ -554,7 +556,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               </Suggestions>
             )}
           </InputContainer>
-          {!disabled && (
+          {!disabled && typeof error === "string" && (
             <Error id={errorId} backgroundType={backgroundType}>
               {error}
             </Error>
@@ -609,6 +611,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
+  ${(props) => !props.helperText && `margin-bottom: ${globalTokens.spacing_04}`}
 `;
 
 const OptionalLabel = styled.span`
@@ -630,6 +633,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
+  margin-bottom: ${globalTokens.spacing_04};
 `;
 
 const InputContainer = styled.div`
@@ -637,7 +641,6 @@ const InputContainer = styled.div`
   position: relative;
   align-items: center;
   height: calc(2.5rem - 2px);
-  margin: ${(props) => `${props.theme.inputMarginTop} 0 ${props.theme.inputMarginBottom} 0`};
   padding: 0 0.5rem;
 
   ${(props) => {
@@ -890,6 +893,7 @@ const Error = styled.span`
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.5em;
+  margin-top: ${globalTokens.spacing_04};
 `;
 
 const Suggestions = styled.ul`
