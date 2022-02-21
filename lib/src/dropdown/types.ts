@@ -31,7 +31,7 @@ type Props = {
   /**
    * An array of objects representing the options.
    */
-  options: [Option, ...Option[]];
+  options: Option[];
   /**
    * In case options include icons, whether the icon should appear
    * after or before the label.
