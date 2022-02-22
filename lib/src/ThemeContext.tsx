@@ -278,12 +278,10 @@ type ThemeProviderCommonProps = {
   children: React.ReactNode;
 };
 type ThemeProviderDefaultTheme = ThemeProviderCommonProps & {
-  theme?: object;
-  advancedTheme?: never;
+  theme: object;
 };
 type ThemeProviderAdvancedTheme = ThemeProviderCommonProps & {
-  theme?: never;
-  advancedTheme?: object;
+  advancedTheme: object;
 };
 type ThemeProviderPropsType = ThemeProviderDefaultTheme | ThemeProviderAdvancedTheme;
 
