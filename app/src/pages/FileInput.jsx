@@ -183,6 +183,25 @@ function App() {
         value={files}
         callbackFile={callbackFile}
       />
+      <DxcFileInput
+        label="Custom label for the button"
+        helperText="Please select files"
+        mode="dropzone"
+        callbackFile={callbackFile}
+        value={preloadedFiles}
+        margin="medium"
+        buttonLabel="Choose files"
+      />
+      <DxcFileInput
+        label="Dropzone with custom labels"
+        helperText="Please select files"
+        mode="dropzone"
+        callbackFile={callbackFile}
+        value={preloadedFiles}
+        margin="medium"
+        buttonLabel="Choose"
+        dropAreaLabel="(or drop the files)"
+      />
     </>
   );
 }
