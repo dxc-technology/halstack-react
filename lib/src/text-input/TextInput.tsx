@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme.js";
-import { spaces, globalTokens } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
@@ -613,7 +613,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && `margin-bottom: ${globalTokens.spacing_04}`}
+  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
 `;
 
 const OptionalLabel = styled.span`
@@ -635,7 +635,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: ${globalTokens.spacing_04};
+  margin-bottom: 0.25rem;
 `;
 
 const InputContainer = styled.div`
@@ -895,7 +895,7 @@ const Error = styled.span`
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.5em;
-  margin-top: ${globalTokens.spacing_04};
+  margin-top: 0.25rem;
 `;
 
 const Suggestions = styled.ul`

@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
 import PropTypes from "prop-types";
-import { spaces, globalTokens } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import { useLayoutEffect } from "react";
@@ -177,7 +177,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && `margin-bottom: ${globalTokens.spacing_04}`}
+  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
 `;
 
 const OptionalLabel = styled.span`
@@ -199,7 +199,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: ${globalTokens.spacing_04};
+  margin-bottom: 0.25rem;
 `;
 
 const Textarea = styled.textarea`
@@ -309,7 +309,7 @@ const Error = styled.span`
   font-weight: 400;
   min-height: 1.5em;
   line-height: 1.5em;
-  margin-top: ${globalTokens.spacing_04};
+  margin-top: 0.25rem;
 `;
 
 DxcTextarea.propTypes = {
