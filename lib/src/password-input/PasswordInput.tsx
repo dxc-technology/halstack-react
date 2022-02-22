@@ -49,13 +49,13 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
     };
 
     useEffect(() => {
-      setAriaAttributes(false, "Show");
+      setAriaAttributes(false, "Show password");
       if (isPasswordVisible) {
         setInputType("text");
-        setAriaAttributes(true, "Hide");
+        setAriaAttributes(true, "Hide password");
       } else {
         setInputType("password");
-        setAriaAttributes(false, "Show");
+        setAriaAttributes(false, "Show password");
       }
     }, [isPasswordVisible]);
 
