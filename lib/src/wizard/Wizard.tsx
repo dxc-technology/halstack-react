@@ -175,7 +175,7 @@ const IconContainer = styled.div`
     ${
       !props.current && !props.disabled
         ? `border: ${props.theme.circleBorderThickness} ${props.theme.circleBorderStyle} ${props.theme.circleBorderColor};`
-        : props.current
+        : props.current && !props.disabled
         ? `border: ${props.theme.selectedCircleBorderThickness} ${props.theme.selectedCircleBorderStyle} ${props.theme.selectedCircleBorderColor};`
         : props.disabled
         ? `border: ${props.theme.disabledCircleBorderThickness} ${props.theme.disabledCircleBorderStyle} ${props.theme.disabledCircleBorderColor};`
