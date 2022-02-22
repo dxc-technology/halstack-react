@@ -144,17 +144,12 @@ const DxcFileInput = ({
   };
 
   const handleDragIn = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
-      setIsDragging(true);
-    }
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) setIsDragging(true);
   };
 
   const handleDragOut = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
+    // only if dragged items leave container (outside, not to childs)
+    if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
   };
 
   const handleDrop = (e) => {
@@ -234,9 +229,9 @@ const DxcFileInput = ({
                   size="fitContent"
                 />
               </ButtonContainer>
-              <DropLabel disabled={disabled} mode={mode}>
+              <DropAreaLabel disabled={disabled} mode={mode}>
                 {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
-              </DropLabel>
+              </DropAreaLabel>
             </DragDropArea>
             {files.map((file) => {
               return (
@@ -340,7 +335,7 @@ const ButtonContainer = styled.div`
   ${(props) => props.mode === "filedrop" && "padding: 2px 12px 2px 3px"};
 `;
 
-const DropLabel = styled.span`
+const DropAreaLabel = styled.span`
   color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
