@@ -4,8 +4,8 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { dropFileIcon, uploadFileIcon } from "./Icons";
 import Button from "../../button/Button";
-import useTheme from "../../useTheme.js";
-import { BackgroundColorProvider } from "../../BackgroundColorContext.js";
+import useTheme from "../../useTheme";
+import { BackgroundColorProvider } from "../../BackgroundColorContext";
 
 const DxcDragAndDropArea = ({ dashed = false, addFile, tabIndexValue }) => {
   const [dragging, setDragging] = React.useState(false);

@@ -40,8 +40,8 @@ import DxcTextarea from "./textarea/Textarea";
 import DxcSelect from "./select/Select";
 import DxcFileInput from "./file-input/FileInput";
 
-import ThemeContext, { ThemeProvider } from "./ThemeContext.js";
-import { BackgroundColorProvider } from "./BackgroundColorContext.js";
+import ThemeContext, { ThemeProvider } from "./ThemeContext";
+import { BackgroundColorProvider } from "./BackgroundColorContext";
 
 export {
   DxcAlert,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import DxcButton from "../button/Button";
 import FileItem from "./FileItem";
 import FileInputPropsType from "./types";

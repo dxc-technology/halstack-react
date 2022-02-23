@@ -1,11 +1,11 @@
 import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import BackgroundColorContext from "../BackgroundColorContext";
 import { useLayoutEffect } from "react";
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;

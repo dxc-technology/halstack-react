@@ -5,7 +5,7 @@ import styled, { ThemeProvider } from "styled-components";
 
 import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import TabsPropsType from "./types";
 
 const DxcTabs = ({

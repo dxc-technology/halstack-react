@@ -4,7 +4,7 @@ import { DxcHeader, DxcFooter, DxcSidenav } from "../main";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo } from "./Icons";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import AppLayoutPropsType, {
   AppLayoutSidenavPropsType,
   AppLayoutFooterPropsType,
