@@ -48,11 +48,6 @@ function ApplicationLayout() {
         </p>
         <DxcHeading text="Props" level={5} weight="bold" margin={{ bottom: "medium" }} />{" "}
         <SidenavApplicationLayoutPropsTable />
-        <p>
-          In addition to these props, DxcApplicationLayout will also have the{" "}
-          <DxcLink href={`#/components/sidenav`} underlined={false} text="DxcSidenav"></DxcLink>{" "}
-          props.{" "}
-        </p>
         <DxcHeading text="DxcApplicationLayout.Main" level={4} weight="bold" />
         <p>
           Everything between the tags will be displayed as the content of the main part of the

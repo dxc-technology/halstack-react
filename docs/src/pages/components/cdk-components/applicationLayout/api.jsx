@@ -33,11 +33,15 @@ const SidenavApplicationLayoutPropsTable = () => {
         <td>padding: string | object </td>
         <td></td>
         <td>
-          Size of the padding to be applied to the custom area ('xxsmall' |
-          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
-          can pass an object with 'top', 'bottom', 'left' and 'right' properties
-          in order to specify different padding sizes.
+          Size of the padding to be applied to the custom area ('xxsmall' | 'xsmall' | 'small' |
+          'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass an object with 'top', 'bottom',
+          'left' and 'right' properties in order to specify different padding sizes.
         </td>
+      </tr>
+      <tr>
+        <td>children: React.ReactNode </td>
+        <td></td>
+        <td>The area inside the sidenav. This area can be used to render custom content.</td>
       </tr>
     </DxcTable>
   );
