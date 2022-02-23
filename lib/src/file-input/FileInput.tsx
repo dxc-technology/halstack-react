@@ -223,9 +223,15 @@ const DxcFileInput = ({
                   size="fitContent"
                 />
               </ButtonContainer>
-              <DropAreaLabel disabled={disabled} mode={mode}>
-                {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
-              </DropAreaLabel>
+              {mode === "dropzone" ? (
+                <DropzoneLabel disabled={disabled}>
+                  {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
+                </DropzoneLabel>
+              ) : (
+                <FiledropLabel disabled={disabled}>
+                  {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
+                </FiledropLabel>
+              )}
             </DragDropArea>
             {files.map((file) => {
               return (
@@ -331,14 +337,29 @@ const ButtonContainer = styled.div`
   ${(props) => props.mode === "filedrop" && "padding: 2px 12px 2px 3px"};
 `;
 
-const DropAreaLabel = styled.span`
+const DropzoneLabel = styled.div`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  text-align: center;
+  margin-top: 0.5rem;
   color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
-  ${(props) => props.mode === "dropzone" && "margin-top: 0.5rem; text-align: center"};
-  ${(props) =>
-    props.mode === "filedrop" && "margin-right: 1rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"};
+`;
+
+const FiledropLabel = styled.span`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
+  font-family: ${(props) => props.theme.dropLabelFontFamily};
+  font-size: ${(props) => props.theme.dropLabelFontSize};
+  font-weight: ${(props) => props.theme.dropLabelFontWeight};
+  margin-right: 1rem;
 `;
 
 const Container = styled.div`
