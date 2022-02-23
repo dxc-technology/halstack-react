@@ -204,6 +204,7 @@ const DxcFileInput = ({
           </FileContainer>
         ) : (
           <Container>
+            <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
             <DragDropArea
               isDragging={isDragging}
               disabled={disabled}
@@ -213,13 +214,6 @@ const DxcFileInput = ({
               onDragOver={handleDrag}
               onDragLeave={handleDragOut}
             >
-              <HiddenInputFile
-                id={fileInputId}
-                type="file"
-                accept={accept}
-                multiple={multiple}
-                onChange={selectFiles}
-              />
               <ButtonContainer mode={mode}>
                 <DxcButton
                   mode="secondary"
@@ -295,11 +289,13 @@ const HelperText = styled.span`
 
 const DragDropArea = styled.div`
   display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
   flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
-  ${(props) => props.mode === "dropzone" && "justify-content: center"};
+  ${(props) => props.mode === "dropzone" && "justify-content: center; padding: 1rem;"};
   align-items: center;
-  height: ${(props) => (props.mode === "filedrop" ? "calc(48px - 2px)" : "calc(160px - 2px)")};
-  width: calc(320px - 2px);
+  height: ${(props) => (props.mode === "filedrop" ? "48px" : "160px")};
+  width: 320px;
 
   box-shadow: 0 0 0 2px transparent;
   border-radius: ${(props) => props.theme.dropBorderRadius};
@@ -340,7 +336,9 @@ const DropAreaLabel = styled.span`
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
-  ${(props) => props.mode === "dropzone" && "margin-top: 0.5rem"};
+  ${(props) => props.mode === "dropzone" && "margin-top: 0.5rem; text-align: center"};
+  ${(props) =>
+    props.mode === "filedrop" && "margin-right: 1rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"};
 `;
 
 const Container = styled.div`
