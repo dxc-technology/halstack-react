@@ -20,11 +20,7 @@ const footerPropsTable = () => {
           following properties:
           <ul>
             <li>
-              <b>logo</b>: Element used as the icon for the link.
-            </li>
-            <li>
-              <b>logoSrc</b>: The path of an icon for the link.{" "}
-              <b>Deprecated.</b>
+              <b>logo</b>: Element or path used as the icon for the link.
             </li>
             <li>
               <b>href</b>: URL of the page the link goes to.
