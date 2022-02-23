@@ -182,10 +182,7 @@ const DeleteIcon = styled.button`
     line-height: 18px;
   }
   &:hover {
-    background-color: ${(props) =>
-      props.error
-        ? props.theme.errorHoverDeleteFileItemBackgroundColor
-        : props.theme.hoverDeleteFileItemBackgroundColor};
+    background-color: ${(props) => props.theme.hoverDeleteFileItemBackgroundColor};
   }
   &:focus {
     outline: none;
@@ -196,10 +193,7 @@ const DeleteIcon = styled.button`
     box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
   }
   &:active {
-    background-color: ${(props) =>
-      props.error
-        ? props.theme.errorActiveDeleteFileItemBackgroundColor
-        : props.theme.activeDeleteFileItemBackgroundColor};
+    background-color: ${(props) => props.theme.activeDeleteFileItemBackgroundColor};
   }
 `;
 
