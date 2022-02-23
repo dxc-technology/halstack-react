@@ -2,41 +2,33 @@
 import React, { useState, useEffect, useRef } from "react";
 import { DxcHeader, DxcFooter, DxcSidenav } from "../main";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
-import { spaces, responsiveSizes } from "../common/variables.js";
+import { responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo } from "./Icons";
 import useTheme from "../useTheme.js";
+import AppLayoutPropsType, {
+  AppLayoutSidenavPropsType,
+  AppLayoutFooterPropsType,
+  AppLayoutMainPropsType,
+  AppLayoutHeaderPropsType,
+} from "./types";
 
 const year = new Date().getFullYear();
 
-const Header = ({ children }) => {
+const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => {
   return <React.Fragment>{children}</React.Fragment>;
 };
 
-const Main = ({ children }) => {
+const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => {
   return <React.Fragment>{children}</React.Fragment>;
 };
 
-const Footer = ({ children }) => {
+const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => {
   return <React.Fragment>{children}</React.Fragment>;
 };
 
-const SideNav = (props) => {
-  const { displayArrow, mode, ...childProps } = props;
+const SideNav = (props): JSX.Element => {
+  const { displayArrow=true, mode="overlay", ...childProps }: AppLayoutSidenavPropsType = props;
   return <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>;
-};
-
-SideNav.propTypes = {
-  mode: PropTypes.oneOf(["overlay", "push", ""]),
-  displayArrow: PropTypes.bool,
-  padding: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-  ]),
 };
 
 const defaultFooter = () => {
@@ -82,12 +74,12 @@ const childTypeExists = (children, childType) => {
   return children.find((child) => child && child.type && child.type === childType);
 };
 
-const DxcApplicationLayout = ({ children }) => {
+const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => {
   const ref = useRef(null);
 
   const colorsTheme = useTheme();
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
-  const [isResponsive, setIsResponsive] = useState();
+  const [isResponsive, setIsResponsive] = useState(false);
 
   const childrenArray = React.Children.toArray(children);
 
@@ -110,7 +102,7 @@ const DxcApplicationLayout = ({ children }) => {
 
   const handleResize = (width) => {
     if (width) {
-      if (width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false));
+      setIsResponsive(width <= responsiveSizes.tablet);
       setIsSideNavVisible(true);
     }
   };
