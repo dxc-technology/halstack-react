@@ -4,8 +4,8 @@ import AppBar from "@material-ui/core/AppBar";
 import DxcDropdown from "../dropdown/Dropdown";
 import { dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables.js";
-import useTheme from "../useTheme.js";
-import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext";
 import HeaderPropsType from "./types";
 
 const closeIcon = (

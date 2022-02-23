@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import FileToUpload from "../file-upload/FileToUpload";
 import ButtonsUpload from "../buttons-upload/ButtonsUpload";
-import useTheme from "../../useTheme.js";
+import useTheme from "../../useTheme";
 
 const DxcFilesToUpload = ({ filesToUpload, onUpload, addFile, tabIndexValue }) => {
   const colorsTheme = useTheme();

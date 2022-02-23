@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 import { defaultIcon, videoIcon, audioIcon, closeIcon } from "./Icons";
-import useTheme from "../../useTheme.js";
+import useTheme from "../../useTheme";
 
 const DxcFileToUpload = ({ name = "", type = "", image, onDelete, tabIndexValue }) => {
   const icon = (type.includes("video") && videoIcon) || (type.includes("audio") && audioIcon) || defaultIcon;

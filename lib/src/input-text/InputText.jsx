@@ -9,9 +9,9 @@ import Popper from "@material-ui/core/Popper";
 import DxcRequired from "../common/RequiredComponent";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import errorIcon from "./Icons";
-import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext";
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;

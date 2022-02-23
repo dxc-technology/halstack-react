@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import BackgroundColorContext from "../BackgroundColorContext";
 import NumberInputContext from "../number-input/NumberInputContext";
 import TextInputPropsType, { RefType } from "./types";
 
@@ -471,7 +471,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 }}
                 backgroundType={backgroundType}
                 tabIndex={tabIndex}
-                aria-label="Clear"
+                title="Clear field"
+                aria-label="Clear field"
               >
                 {textInputIcons.clear}
               </Action>
@@ -487,7 +488,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
-                  aria-label="Decrement"
+                  title="Decrement value"
+                  aria-label="Decrement value"
                 >
                   {textInputIcons.decrement}
                 </Action>
@@ -500,7 +502,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
-                  aria-label="Increment"
+                  title="Increment value"
+                  aria-label="Increment value"
                 >
                   {textInputIcons.increment}
                 </Action>
@@ -514,7 +517,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  title={action.title ?? action.title}
+                  title={action.title}
+                  aria-label={action.title}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                 >
@@ -703,6 +707,9 @@ const Input = styled.input`
   border: none;
   outline: none;
   padding: 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   color: ${(props) =>
     props.disabled
@@ -914,6 +921,7 @@ const Suggestions = styled.ul`
 `;
 
 const Suggestion = styled.li`
+  display: flex;
   padding: 0 0.5rem;
   line-height: 1.715em;
   cursor: pointer;
@@ -929,7 +937,7 @@ const Suggestion = styled.li`
 `;
 
 const StyledSuggestion = styled.span`
-  display: flex;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

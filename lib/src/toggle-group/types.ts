@@ -67,7 +67,7 @@ type Props = {
   /**
    * An array of objects representing the selectable options.
    */
-  options: [Option, ...Option[]];
+  options: Option[];
   /**
    * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
    */
