@@ -10,9 +10,9 @@ import DxcCheckbox from "../checkbox/Checkbox";
 
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import DxcRequired from "../common/RequiredComponent";
-import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext";
 
 
 const V3DxcSelect = ({

@@ -5,8 +5,8 @@ import DxcRequired from "../common/RequiredComponent";
 
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import BackgroundColorContext from "../BackgroundColorContext";
 
 import SwitchPropsType from "./types";
 

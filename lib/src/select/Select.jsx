@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
@@ -791,6 +791,7 @@ const Error = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;
+  line-height: 1.5em;
 `;
 
 const CollapseIndicator = styled.span`

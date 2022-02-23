@@ -4,8 +4,8 @@ import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import BackgroundColorContext from "../BackgroundColorContext";
 import SliderPropsType from "./types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -97,7 +97,7 @@ const DxcSlider = ({
             <StyledTextInput>
               <DxcTextInput
                 name={name}
-                value={(value != null && value >= 0 && value) || innerValue}
+                value={(value != null && value >= 0 && value.toString()) || innerValue.toString()}
                 disabled={disabled}
                 onChange={handlerInputChange}
                 size="fillParent"
@@ -162,7 +162,6 @@ const HelperText = styled.span`
       : props.backgroundType === "dark"
       ? props.theme.helperTextFontColorOnDark
       : props.theme.helperTextFontColor};
-
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};

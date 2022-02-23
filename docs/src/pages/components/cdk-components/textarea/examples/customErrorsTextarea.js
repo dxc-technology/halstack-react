@@ -26,7 +26,8 @@ const code = `() => {
         helperText="Using onChange event for handling errors"
         value={firstValue}
         onChange={onChangeFirst}
-        length={{ min: 5, max: 15 }}
+        minLength={5}
+        maxLength={10}
         error={customLengthError}
         margin="medium"
         optional

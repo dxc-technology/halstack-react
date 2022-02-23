@@ -7,7 +7,7 @@ import Popover from "@material-ui/core/Popover";
 import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
 
