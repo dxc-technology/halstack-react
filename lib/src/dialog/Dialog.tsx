@@ -13,7 +13,7 @@ const DxcDialog = ({
   children,
   overlay = true,
   onBackgroundClick,
-  padding,
+  padding = "small",
   tabIndex = 0,
 }: DialogPropsType): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);
