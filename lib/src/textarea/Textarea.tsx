@@ -2,11 +2,11 @@ import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme.js";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext.js";
 import { useLayoutEffect } from "react";
+import TextareaPropsType, { RefType } from "./types";
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 
@@ -14,7 +14,7 @@ const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
-const DxcTextarea = React.forwardRef(
+const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
   (
     {
       label = "",
@@ -305,35 +305,5 @@ const Error = styled.span`
   min-height: 1.5em;
   line-height: 1.5em;
 `;
-
-DxcTextarea.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  helperText: PropTypes.string,
-  placeholder: PropTypes.string,
-  verticalGrow: PropTypes.oneOf(["auto", "none", "manual"]),
-  rows: PropTypes.number,
-  minLength: PropTypes.number,
-  maxLength: PropTypes.number,
-  pattern: PropTypes.string,
-  disabled: PropTypes.bool,
-  optional: PropTypes.bool,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  error: PropTypes.string,
-  autocomplete: PropTypes.string,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcTextarea;

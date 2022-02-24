@@ -118,10 +118,10 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-  /**
-   * Reference to the component.
-   */
-  ref?: React.RefObject<HTMLDivElement>;
 };
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
 
-export default function DxcTextarea(props: Props): JSX.Element;
+export default Props;
