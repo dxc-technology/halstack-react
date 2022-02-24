@@ -39,6 +39,10 @@ import DxcNumberInput from "./number-input/NumberInput";
 import DxcTextarea from "./textarea/Textarea";
 import DxcSelect from "./select/Select";
 import DxcFileInput from "./file-input/FileInput";
+import DxcStack from "./stack/Stack";
+import DxcRow from "./row/Row";
+import DxcText from "./text/Text";
+import DxcList from "./list/List";
 
 import ThemeContext, { ThemeProvider } from "./ThemeContext.js";
 import { BackgroundColorProvider } from "./BackgroundColorContext.js";
@@ -88,4 +92,8 @@ export {
   DxcTextarea,
   DxcSelect,
   DxcFileInput,
+  DxcStack,
+  DxcRow,
+  DxcText,
+  DxcList,
 };
