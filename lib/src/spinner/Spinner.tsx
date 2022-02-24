@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import BackgroundColorContext from "../BackgroundColorContext";
 import SpinnerPropsType from "./types";
 
 const DxcSpinner = ({

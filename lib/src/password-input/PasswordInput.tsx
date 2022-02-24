@@ -15,7 +15,8 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
       onBlur,
       error = "",
       pattern,
-      length,
+      minLength,
+      maxLength,
       autocomplete = "off",
       margin,
       size = "medium",
@@ -48,13 +49,13 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
     };
 
     useEffect(() => {
-      setAriaAttributes(false, "Show");
+      setAriaAttributes(false, "Show password");
       if (isPasswordVisible) {
         setInputType("text");
-        setAriaAttributes(true, "Hide");
+        setAriaAttributes(true, "Hide password");
       } else {
         setInputType("password");
-        setAriaAttributes(false, "Show");
+        setAriaAttributes(false, "Show password");
       }
     }, [isPasswordVisible]);
 
@@ -100,7 +101,8 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
           margin={margin}
           size={size}
           pattern={pattern}
-          length={length}
+          minLength={minLength}
+          maxLength={maxLength}
           autocomplete={autocomplete}
           tabIndex={tabIndex}
         />

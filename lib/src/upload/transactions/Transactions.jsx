@@ -2,7 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import Transaction from "../transaction/Transaction";
-import useTheme from "../../useTheme.js";
+import useTheme from "../../useTheme";
 
 const DxcTransactions = ({ transactions }) => {
   const colorsTheme = useTheme();

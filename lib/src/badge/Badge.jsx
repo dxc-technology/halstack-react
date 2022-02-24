@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 
 const DxcBadge = ({ notificationText }) => {
   const colorsTheme = useTheme();

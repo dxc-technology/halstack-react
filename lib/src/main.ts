@@ -44,8 +44,8 @@ import DxcRow from "./row/Row";
 import DxcText from "./text/Text";
 import DxcList from "./list/List";
 
-import ThemeContext, { ThemeProvider } from "./ThemeContext.js";
-import { BackgroundColorProvider } from "./BackgroundColorContext.js";
+import ThemeContext, { ThemeProvider } from "./ThemeContext";
+import { BackgroundColorProvider } from "./BackgroundColorContext";
 
 export {
   DxcAlert,

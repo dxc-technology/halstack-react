@@ -1,16 +1,14 @@
 import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import BackgroundColorContext from "../BackgroundColorContext";
 import { useLayoutEffect } from "react";
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
-
-const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
 
 const getPatternErrorMessage = () => `Please match the format requested.`;
 
@@ -32,7 +30,8 @@ const DxcTextarea = React.forwardRef(
       onBlur,
       error = "",
       pattern,
-      length,
+      minLength,
+      maxLength,
       autocomplete = "off",
       margin,
       size = "medium",
@@ -49,16 +48,18 @@ const DxcTextarea = React.forwardRef(
     const textareaRef = useRef(null);
     const errorId = `error-message-${textareaId}`;
 
+    const getLengthErrorMessage = () => `Min length ${minLength}, max length ${maxLength}.`;
+
     const isNotOptional = (value) => value === "" && !optional;
 
     const isLengthIncorrect = (value) =>
-      value !== "" && length && length.min && length.max && (value.length < length.min || value.length > length.max);
+      value !== "" && minLength && maxLength && (value.length < minLength || value.length > maxLength);
 
     const changeValue = (newValue) => {
       value ?? setInnerValue(newValue);
 
       if (isNotOptional(newValue)) onChange?.({ value: newValue, error: getNotOptionalErrorMessage() });
-      else if (isLengthIncorrect(newValue)) onChange?.({ value: newValue, error: getLengthErrorMessage(length) });
+      else if (isLengthIncorrect(newValue)) onChange?.({ value: newValue, error: getLengthErrorMessage() });
       else if (newValue && pattern && !patternMatch(pattern, newValue))
         onChange?.({ value: newValue, error: getPatternErrorMessage() });
       else onChange?.({ value: newValue, error: null });
@@ -68,7 +69,7 @@ const DxcTextarea = React.forwardRef(
       if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
       else if (isLengthIncorrect(event.target.value))
-        onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
+        onBlur?.({ value: event.target.value, error: getLengthErrorMessage() });
       else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
       else onBlur?.({ value: event.target.value, error: null });
@@ -108,8 +109,8 @@ const DxcTextarea = React.forwardRef(
             onBlur={handleTOnBlur}
             disabled={disabled}
             error={error}
-            minLength={length?.min}
-            maxLength={length?.max}
+            minLength={minLength}
+            maxLength={maxLength}
             autoComplete={autocomplete}
             backgroundType={backgroundType}
             ref={textareaRef}
@@ -313,7 +314,8 @@ DxcTextarea.propTypes = {
   placeholder: PropTypes.string,
   verticalGrow: PropTypes.oneOf(["auto", "none", "manual"]),
   rows: PropTypes.number,
-  length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
+  minLength: PropTypes.number,
+  maxLength: PropTypes.number,
   pattern: PropTypes.string,
   disabled: PropTypes.bool,
   optional: PropTypes.bool,

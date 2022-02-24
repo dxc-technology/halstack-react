@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import DxcRequired from "../common/RequiredComponent";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import BackgroundColorContext from "../BackgroundColorContext";
 
 const V3DxcTextarea = ({
   label = " ",

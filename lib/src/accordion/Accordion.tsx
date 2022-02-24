@@ -6,8 +6,8 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getMargin } from "../common/utils.js";
 import { spaces, responsiveSizes } from "../common/variables.js";
-import useTheme from "../useTheme.js";
-import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
 import AccordionPropsType from "./types";
 
 const DxcAccordion = ({

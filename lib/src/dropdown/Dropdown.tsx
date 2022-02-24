@@ -10,7 +10,7 @@ import DropdownPropsType from "./types";
 
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 
 const DxcDropdown = ({
   options,

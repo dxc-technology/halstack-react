@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
-import PropTypes from "prop-types";
+import useTheme from "../useTheme";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
-import BackgroundColorContext from "../BackgroundColorContext.js";
-import NumberInputContext from "../number-input/NumberInputContext.js";
+import BackgroundColorContext from "../BackgroundColorContext";
+import NumberInputContext from "../number-input/NumberInputContext";
+import TextInputPropsType, { RefType } from "./types";
 
 const textInputIcons = {
   error: (
@@ -36,7 +36,7 @@ const textInputIcons = {
 
 const makeCancelable = (promise) => {
   let hasCanceled_ = false;
-  const wrappedPromise = new Promise((resolve, reject) => {
+  const wrappedPromise = new Promise<string[]>((resolve, reject) => {
     promise.then(
       (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
       (promiseError) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(promiseError))
@@ -51,8 +51,6 @@ const makeCancelable = (promise) => {
 };
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
-
-const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
 
 const getPatternErrorMessage = () => `Please match the format requested.`;
 
@@ -70,7 +68,7 @@ const getLastOptionIndex = (filteredSuggestions) => {
   return last;
 };
 
-const DxcTextInput = React.forwardRef(
+const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
     {
       label = "",
@@ -89,7 +87,8 @@ const DxcTextInput = React.forwardRef(
       error = "",
       suggestions,
       pattern,
-      length,
+      minLength,
+      maxLength,
       autocomplete = "off",
       margin,
       size = "medium",
@@ -121,11 +120,16 @@ const DxcTextInput = React.forwardRef(
     const lastOptionIndex = useMemo(() => getLastOptionIndex(filteredSuggestions), [filteredSuggestions]);
 
     const isNotOptional = (value) => value === "" && !optional;
+
     const isLengthIncorrect = (value) =>
-      value && length?.min && length?.max && (value.length < length.min || value.length > length.max);
+      value && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+
+    const getLengthErrorMessage = () => `Min length ${minLength}, max length ${maxLength}.`;
+
     const isNumberIncorrect = (value) =>
       (numberInputContext?.minNumber && parseInt(value) < numberInputContext?.minNumber) ||
       (numberInputContext?.maxNumber && parseInt(value) > numberInputContext?.maxNumber);
+
     const isTextInputType = () =>
       !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
 
@@ -152,7 +156,7 @@ const DxcTextInput = React.forwardRef(
       const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
 
       if (isNotOptional(newValue)) onChange?.({ value: changedValue, error: getNotOptionalErrorMessage() });
-      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage(length) });
+      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage() });
       else if (newValue && pattern && !patternMatch(pattern, newValue))
         onChange?.({ value: changedValue, error: getPatternErrorMessage() });
       else if (newValue && isNumberIncorrect(newValue))
@@ -178,7 +182,7 @@ const DxcTextInput = React.forwardRef(
       if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
       else if (isLengthIncorrect(event.target.value))
-        onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
+        onBlur?.({ value: event.target.value, error: getLengthErrorMessage() });
       else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
       else if (event.target.value && isNumberIncorrect(event.target.value))
@@ -188,7 +192,7 @@ const DxcTextInput = React.forwardRef(
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {
         case 40: // Arrow Down
-          if (numberInputContext) {
+          if (numberInputContext?.typeNumber === "number") {
             decrementNumber();
             event.preventDefault();
           } else {
@@ -203,7 +207,7 @@ const DxcTextInput = React.forwardRef(
           }
           break;
         case 38: // Arrow Up
-          if (numberInputContext) {
+          if (numberInputContext?.typeNumber === "number") {
             incrementNumber();
             event.preventDefault();
           } else {
@@ -358,7 +362,7 @@ const DxcTextInput = React.forwardRef(
         changeVisualFocusedSuggIndex(-1);
       }
 
-      numberInputContext &&
+      numberInputContext?.typeNumber === "number" &&
         setNumberProps(
           numberInputContext.typeNumber,
           numberInputContext.minNumber,
@@ -437,8 +441,8 @@ const DxcTextInput = React.forwardRef(
               ref={inputRef}
               backgroundType={backgroundType}
               pattern={pattern}
-              minLength={length?.min}
-              maxLength={length?.max}
+              minLength={minLength}
+              maxLength={maxLength}
               autoComplete={autocomplete}
               tabIndex={tabIndex}
               role={isTextInputType() && hasSuggestions() ? "combobox" : "textbox"}
@@ -467,7 +471,8 @@ const DxcTextInput = React.forwardRef(
                 }}
                 backgroundType={backgroundType}
                 tabIndex={tabIndex}
-                aria-label="Clear"
+                title="Clear field"
+                aria-label="Clear field"
               >
                 {textInputIcons.clear}
               </Action>
@@ -483,7 +488,8 @@ const DxcTextInput = React.forwardRef(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
-                  aria-label="Decrement"
+                  title="Decrement value"
+                  aria-label="Decrement value"
                 >
                   {textInputIcons.decrement}
                 </Action>
@@ -496,7 +502,8 @@ const DxcTextInput = React.forwardRef(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
-                  aria-label="Increment"
+                  title="Increment value"
+                  aria-label="Increment value"
                 >
                   {textInputIcons.increment}
                 </Action>
@@ -510,7 +517,8 @@ const DxcTextInput = React.forwardRef(
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  title={action.title ?? action.title}
+                  title={action.title}
+                  aria-label={action.title}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                 >
@@ -699,6 +707,9 @@ const Input = styled.input`
   border: none;
   outline: none;
   padding: 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   color: ${(props) =>
     props.disabled
@@ -910,6 +921,7 @@ const Suggestions = styled.ul`
 `;
 
 const Suggestion = styled.li`
+  display: flex;
   padding: 0 0.5rem;
   line-height: 1.715em;
   cursor: pointer;
@@ -925,7 +937,7 @@ const Suggestion = styled.li`
 `;
 
 const StyledSuggestion = styled.span`
-  display: flex;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -961,40 +973,5 @@ const SuggestionsError = styled.span`
   line-height: 1.715em;
   color: ${(props) => props.theme.errorListDialogFontColor};
 `;
-
-DxcTextInput.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  helperText: PropTypes.string,
-  placeholder: PropTypes.string,
-  action: PropTypes.shape({
-    onClick: PropTypes.func.isRequired,
-    icon: PropTypes.oneOfType([PropTypes.shape({ type: PropTypes.oneOf(["svg"]) }), PropTypes.string]).isRequired,
-  }),
-  clearable: PropTypes.bool,
-  disabled: PropTypes.bool,
-  optional: PropTypes.bool,
-  prefix: PropTypes.string,
-  suffix: PropTypes.string,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  error: PropTypes.string,
-  autocomplete: PropTypes.string,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  suggestions: PropTypes.oneOfType([PropTypes.func, PropTypes.array]),
-  pattern: PropTypes.string,
-  length: PropTypes.shape({ min: PropTypes.number, max: PropTypes.number }),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcTextInput;
