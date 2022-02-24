@@ -8,15 +8,15 @@ const code = `() => {
   const social = [
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logo: <img src={linkedinLogo} />
+      logo: linkedinLogo
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logo: <img src={twitterLogo} />
+      logo: twitterLogo
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logo: <img src={facebookLogo} />
+      logo: facebookLogo
     }
   ];
   const bottom = [
