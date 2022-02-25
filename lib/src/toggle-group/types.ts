@@ -5,17 +5,13 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
 type OptionCommons = {
   /**
    * Number with the option inner value.
    */
   value: number;
-  /**
-   * @deprecated URL of the icon that will be placed. IconSrc and label can't be used at same time.
-   */
-  iconSrc?: string;
 };
 type OptionIcon = OptionCommons & {
   /**
@@ -25,7 +21,7 @@ type OptionIcon = OptionCommons & {
   /**
    * Element used as the icon. Icon and label can't be used at same time.
    */
-  icon: SVG;
+  icon: string | SVG;
 };
 type OptionLabel = OptionCommons & {
   /**
@@ -35,7 +31,7 @@ type OptionLabel = OptionCommons & {
   /**
    * Element used as the icon. Icon and label can't be used at same time.
    */
-  icon?: SVG;
+  icon?: string | SVG;
 };
 type Option = OptionIcon | OptionLabel;
 
