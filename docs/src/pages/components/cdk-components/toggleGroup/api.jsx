@@ -20,7 +20,7 @@ const toggleGroupPropsTable = () => {
         <td>Helper text to be placed above the component.</td>
       </tr>
       <tr>
-        <td>value: string | string[]</td>
+        <td>value: number | number[]</td>
         <td></td>
         <td>
           The key(s) of the selected value(s). If the toggle group component
