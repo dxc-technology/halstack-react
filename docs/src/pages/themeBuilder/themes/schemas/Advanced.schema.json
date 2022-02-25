@@ -356,8 +356,6 @@
     "errorMessageFontColor": "color",
     "hoverDeleteFileItemBackgroundColor": "color",
     "activeDeleteFileItemBackgroundColor": "color",
-    "errorHoverDeleteFileItemBackgroundColor": "color",
-    "errorActiveDeleteFileItemBackgroundColor": "color",
     "labelFontFamily": "fFamily",
     "labelFontSize": "length",
     "labelFontWeight": "fWeight",
