@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import styled, { ThemeProvider } from "styled-components";
 
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 
 const DxcToggle = ({
   label = "",

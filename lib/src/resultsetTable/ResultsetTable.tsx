@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import DxcTable from "../table/Table";
 import DxcPaginator from "../paginator/Paginator";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import ResultsetTablePropsType from "./types";
 
 function normalizeSortValue(sortValue) {

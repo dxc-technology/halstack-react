@@ -4,8 +4,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import DxcRequired from "../common/RequiredComponent";
 import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import BackgroundColorContext from "../BackgroundColorContext";
 import CheckboxPropsType from "./types";
 
 const DxcCheckbox = ({

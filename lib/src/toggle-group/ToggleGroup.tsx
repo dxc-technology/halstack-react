@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import ToogleGroupPropsType from "./types";
 
 const DxcToggleGroup = ({
@@ -42,7 +42,7 @@ const DxcToggleGroup = ({
       } else newSelectedOptions.push(selectedOption);
     }
 
-    typeof onChange === "function" && onChange(multiple ? newSelectedOptions : selectedOption);
+    onChange?.(multiple ? newSelectedOptions : selectedOption);
   };
 
   const handleKeyPress = (event, optionValue) => {
@@ -224,6 +224,7 @@ const LabelContainer = styled.span`
 const OptionContent = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const Icon = styled.img`

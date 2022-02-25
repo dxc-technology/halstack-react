@@ -4,8 +4,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogPropsType from "./types";
 
 import { spaces, responsiveSizes } from "../common/variables.js";
-import useTheme from "../useTheme.js";
-import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
 
 const DxcDialog = ({
   isCloseVisible = true,

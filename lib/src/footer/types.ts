@@ -10,25 +10,21 @@ type SocialLink = {
   /**
    * Element used as the icon for the link.
    */
-  logo?: SVG;
-  /**
-   * @deprecated The path of an icon for the link.
-   */
-  logoSrc?: string;
+  logo: string | SVG;
   /**
    * URL of the page the link goes to.
    */
-  href?: string;
+  href: string;
 };
 type BottomLink = {
   /**
    * Text for the link.
    */
-  text?: string;
+  text: string;
   /**
    * URL of the page the link goes to.
    */
-  href?: string;
+  href: string;
 };
 
 type FooterPropsType = {

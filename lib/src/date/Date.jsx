@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import DxcInput from "../input-text/InputText";
 
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 
 const DxcDate = ({
   value,

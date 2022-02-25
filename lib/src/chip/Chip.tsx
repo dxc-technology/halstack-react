@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import ChipPropsType from "./types";
 
 const DxcChip = ({

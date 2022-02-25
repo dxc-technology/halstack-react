@@ -1,9 +1,9 @@
 /* eslint-disable prefer-template */
 import React, { useMemo } from "react";
 import Color from "color";
-import rgbHex from "rgb-hex";
 
-const BackgroundColorContext = React.createContext();
+type BackgroundColorContext = "dark" | "light";
+const BackgroundColorContext = React.createContext<BackgroundColorContext | null>(null);
 
 const getColorType = (hexColor) => {
   try {
@@ -17,7 +17,12 @@ const getColorType = (hexColor) => {
   }
 };
 
-const BackgroundColorProvider = ({ color, children }) => {
+type BackgroundColorProviderPropsType = {
+  color: string;
+  children: React.ReactNode;
+};
+
+const BackgroundColorProvider = ({ color, children }: BackgroundColorProviderPropsType): JSX.Element => {
   const colorType = useMemo(() => getColorType(color), [color]);
   return <BackgroundColorContext.Provider value={colorType}>{children}</BackgroundColorContext.Provider>;
 };
