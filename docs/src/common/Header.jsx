@@ -127,11 +127,11 @@ function App() {
 }
 
 const HeaderSelect = styled.div`
-  margin-bottom: -18px;
   width: 100px;
 `;
 
 const HeaderLink = styled.div`
+  display: flex;
   padding: 0 1.25rem;
   & a {
     color: ${({ isActive }) => (isActive && "#5f249f") || "black"};
