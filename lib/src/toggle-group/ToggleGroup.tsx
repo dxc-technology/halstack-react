@@ -15,9 +15,9 @@ const DxcToggleGroup = ({
   margin,
   multiple = false,
   tabIndex = 0,
-}: ToogleGroupPropsType) => {
+}: ToogleGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const [selectedValue, setSelectedValue] = useState(multiple ? [] : "");
+  const [selectedValue, setSelectedValue] = useState<typeof value>(multiple ? [] : -1);
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
   const handleToggleChange = (selectedOption) => {
@@ -61,20 +61,20 @@ const DxcToggleGroup = ({
           {options.map((option, i) => (
             <ToggleContainer
               selected={
-                multiple
+                multiple && Array.isArray(value)
                   ? value
                     ? value.includes(option.value)
-                    : selectedValue.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
                   ? option.value === value
                   : option.value === selectedValue
               }
               role={multiple ? "switch" : "radio"}
               aria-checked={
-                multiple
+                multiple && Array.isArray(value)
                   ? value
                     ? value.includes(option.value)
-                    : selectedValue.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
                   ? option.value === value
                   : option.value === selectedValue
