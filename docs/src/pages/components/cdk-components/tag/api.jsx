@@ -56,6 +56,13 @@ const TagPropsTable = () => {
         <td>If true, the page is opened in a new browser tab.</td>
       </tr>
       <tr>
+        <td>disabled: boolean</td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>If true, the component will be disabled.</td>
+      </tr>
+      <tr>
         <td>onClick: function</td>
         <td></td>
         <td>
