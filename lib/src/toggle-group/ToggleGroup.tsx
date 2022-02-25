@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
+import ToogleGroupPropsType from "./types";
 
 const DxcToggleGroup = ({
   label,
@@ -11,20 +11,20 @@ const DxcToggleGroup = ({
   value,
   onChange,
   disabled = false,
-  options = [],
+  options,
   margin,
   multiple = false,
   tabIndex = 0,
-}) => {
+}: ToogleGroupPropsType) => {
   const colorsTheme = useTheme();
-  const [selectedValue, setSelectedValue] = useState(multiple ? [] : null);
+  const [selectedValue, setSelectedValue] = useState(multiple ? [] : "");
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
   const handleToggleChange = (selectedOption) => {
     let newSelectedOptions;
 
     if (value == null) {
-      if (multiple) {
+      if (multiple && Array.isArray(selectedValue)) {
         newSelectedOptions = selectedValue.map((value) => value);
         if (newSelectedOptions.includes(selectedOption)) {
           const index = newSelectedOptions.indexOf(selectedOption);
@@ -35,14 +35,14 @@ const DxcToggleGroup = ({
         setSelectedValue(newSelectedOptions);
       } else setSelectedValue(selectedOption === selectedValue ? null : selectedOption);
     } else if (multiple) {
-      newSelectedOptions = value.map((v) => v);
+      newSelectedOptions = Array.isArray(value) ? value.map((v) => v) : value;
       if (newSelectedOptions.includes(selectedOption)) {
         const index = newSelectedOptions.indexOf(selectedOption);
         newSelectedOptions.splice(index, 1);
       } else newSelectedOptions.push(selectedOption);
     }
 
-    typeof onChange === "function" && onChange(multiple ? newSelectedOptions : selectedOption);
+    onChange?.(multiple ? newSelectedOptions : selectedOption);
   };
 
   const handleKeyPress = (event, optionValue) => {
@@ -50,7 +50,6 @@ const DxcToggleGroup = ({
     if (!disabled && (event.nativeEvent.code === "Enter" || event.nativeEvent.code === "Space"))
       handleToggleChange(optionValue);
   };
-
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
       <ToggleGroup margin={margin} disabled={disabled}>
@@ -225,6 +224,7 @@ const LabelContainer = styled.span`
 const OptionContent = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const Icon = styled.img`
@@ -245,32 +245,4 @@ const IconContainer = styled.div`
     width: 100%;
   }
 `;
-
-DxcToggleGroup.propTypes = {
-  label: PropTypes.string,
-  helperText: PropTypes.string,
-  value: PropTypes.any,
-  onChange: PropTypes.func,
-  disabled: PropTypes.bool,
-  multiple: PropTypes.bool,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.any.isRequired,
-      label: PropTypes.string,
-      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-      iconSrc: PropTypes.string,
-    })
-  ),
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  tabIndex: PropTypes.number,
-};
-
 export default DxcToggleGroup;

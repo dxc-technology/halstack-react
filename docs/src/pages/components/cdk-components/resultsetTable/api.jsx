@@ -49,6 +49,16 @@ const resultsetTablePropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>showGoToPage: boolean</td>
+        <td>
+          <code>true</code>
+        </td>
+        <td>
+          If true, a select component for navigation between pages will be
+          displayed.
+        </td>
+      </tr>
+      <tr>
         <td>itemsPerPage: number</td>
         <td>
           <code>5</code>

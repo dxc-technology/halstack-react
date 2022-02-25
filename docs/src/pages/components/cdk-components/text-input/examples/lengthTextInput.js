@@ -23,7 +23,8 @@ const code = `() => {
       error={error}
       margin="medium"
       clearable
-      length={{ min: 5, max: 10 }}
+      minLength={5}
+      maxLength={10}
     />
   );
 }`;

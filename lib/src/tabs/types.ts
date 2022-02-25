@@ -38,7 +38,7 @@ type Props = {
   /**
    * An array of objects representing the tabs.
    */
-  tabs: [Tab, ...Tab[]];
+  tabs: Tab[];
   /**
    * Whether the icon should appear above or to the left of the label.
    */

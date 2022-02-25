@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
@@ -165,11 +165,11 @@ const getSelectedOption = (options, multiple, optional, optionalEmptyOption, val
 const DxcSelect = React.forwardRef(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
       options,
-      helperText = "",
+      helperText,
       placeholder = "",
       disabled = false,
       optional = false,
@@ -177,7 +177,7 @@ const DxcSelect = React.forwardRef(
       multiple = false,
       onChange,
       onBlur,
-      error = "",
+      error,
       margin,
       size = "medium",
       tabIndex = 0,
@@ -444,16 +444,19 @@ const DxcSelect = React.forwardRef(
     return (
       <ThemeProvider theme={colorsTheme.select}>
         <SelectContainer margin={margin} size={size} ref={ref}>
-          <Label
-            id={selectLabelId}
-            disabled={disabled}
-            onClick={() => {
-              selectContainerRef.current.focus();
-            }}
-          >
-            {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
-          </Label>
-          <HelperText disabled={disabled}>{helperText}</HelperText>
+          {label && (
+            <Label
+              id={selectLabelId}
+              disabled={disabled}
+              onClick={() => {
+                selectContainerRef.current.focus();
+              }}
+              helperText={helperText}
+            >
+              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+            </Label>
+          )}
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <Select
             id={selectId}
             disabled={disabled}
@@ -567,7 +570,7 @@ const DxcSelect = React.forwardRef(
               </OptionsList>
             )}
           </Select>
-          {!disabled && <Error>{error}</Error>}
+          {!disabled && typeof error === "string" && <Error>{error}</Error>}
         </SelectContainer>
       </ThemeProvider>
     );
@@ -611,6 +614,7 @@ const Label = styled.span`
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
   cursor: default;
+  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
 `;
 
 const OptionalLabel = styled.span`
@@ -624,6 +628,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
+  margin-bottom: 0.25rem;
 `;
 
 const Select = styled.div`
@@ -631,7 +636,6 @@ const Select = styled.div`
   position: relative;
   align-items: center;
   height: calc(2.5rem - 2px);
-  margin: ${(props) => `${props.theme.inputMarginTop} 0 ${props.theme.inputMarginBottom} 0`};
   padding: 0 0.5rem;
   outline: none;
   ${(props) => props.disabled && `background-color: ${props.theme.disabledInputBackgroundColor}`};
@@ -791,6 +795,8 @@ const Error = styled.span`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 0.75rem;
   font-weight: 400;
+  line-height: 1.5em;
+  margin-top: 0.25rem;
 `;
 
 const CollapseIndicator = styled.span`

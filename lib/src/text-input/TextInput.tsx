@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import BackgroundColorContext from "../BackgroundColorContext";
 import NumberInputContext from "../number-input/NumberInputContext";
 import TextInputPropsType, { RefType } from "./types";
 
@@ -52,8 +52,6 @@ const makeCancelable = (promise) => {
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 
-const getLengthErrorMessage = (length) => `Min length ${length.min}, max length ${length.max}.`;
-
 const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
@@ -73,10 +71,10 @@ const getLastOptionIndex = (filteredSuggestions) => {
 const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
-      helperText = "",
+      helperText,
       placeholder = "",
       action,
       clearable = false,
@@ -86,10 +84,11 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       suffix = "",
       onChange,
       onBlur,
-      error = "",
+      error,
       suggestions,
       pattern,
-      length,
+      minLength,
+      maxLength,
       autocomplete = "off",
       margin,
       size = "medium",
@@ -121,11 +120,16 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const lastOptionIndex = useMemo(() => getLastOptionIndex(filteredSuggestions), [filteredSuggestions]);
 
     const isNotOptional = (value) => value === "" && !optional;
+
     const isLengthIncorrect = (value) =>
-      value && length?.min && length?.max && (value.length < length.min || value.length > length.max);
+      value && minLength && maxLength && (value.length < minLength || value.length > maxLength);
+
+    const getLengthErrorMessage = () => `Min length ${minLength}, max length ${maxLength}.`;
+
     const isNumberIncorrect = (value) =>
       (numberInputContext?.minNumber && parseInt(value) < numberInputContext?.minNumber) ||
       (numberInputContext?.maxNumber && parseInt(value) > numberInputContext?.maxNumber);
+
     const isTextInputType = () =>
       !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
 
@@ -152,7 +156,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
 
       if (isNotOptional(newValue)) onChange?.({ value: changedValue, error: getNotOptionalErrorMessage() });
-      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage(length) });
+      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage() });
       else if (newValue && pattern && !patternMatch(pattern, newValue))
         onChange?.({ value: changedValue, error: getPatternErrorMessage() });
       else if (newValue && isNumberIncorrect(newValue))
@@ -178,7 +182,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
       else if (isLengthIncorrect(event.target.value))
-        onBlur?.({ value: event.target.value, error: getLengthErrorMessage(length) });
+        onBlur?.({ value: event.target.value, error: getLengthErrorMessage() });
       else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
       else if (event.target.value && isNumberIncorrect(event.target.value))
@@ -401,12 +405,16 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
         <DxcInput margin={margin} ref={ref} size={size}>
-          <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType}>
-            {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
-          </Label>
-          <HelperText disabled={disabled} backgroundType={backgroundType}>
-            {helperText}
-          </HelperText>
+          {label && (
+            <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
+              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+            </Label>
+          )}
+          {helperText && (
+            <HelperText disabled={disabled} backgroundType={backgroundType}>
+              {helperText}
+            </HelperText>
+          )}
           <InputContainer
             error={error}
             disabled={disabled}
@@ -437,8 +445,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               ref={inputRef}
               backgroundType={backgroundType}
               pattern={pattern}
-              minLength={length?.min}
-              maxLength={length?.max}
+              minLength={minLength}
+              maxLength={maxLength}
               autoComplete={autocomplete}
               tabIndex={tabIndex}
               role={isTextInputType() && hasSuggestions() ? "combobox" : "textbox"}
@@ -467,7 +475,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 }}
                 backgroundType={backgroundType}
                 tabIndex={tabIndex}
-                aria-label="Clear"
+                title="Clear field"
+                aria-label="Clear field"
               >
                 {textInputIcons.clear}
               </Action>
@@ -483,7 +492,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
-                  aria-label="Decrement"
+                  title="Decrement value"
+                  aria-label="Decrement value"
                 >
                   {textInputIcons.decrement}
                 </Action>
@@ -496,7 +506,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
-                  aria-label="Increment"
+                  title="Increment value"
+                  aria-label="Increment value"
                 >
                   {textInputIcons.increment}
                 </Action>
@@ -510,7 +521,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  title={action.title ?? action.title}
+                  title={action.title}
+                  aria-label={action.title}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
                 >
@@ -550,7 +562,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               </Suggestions>
             )}
           </InputContainer>
-          {!disabled && (
+          {!disabled && typeof error === "string" && (
             <Error id={errorId} backgroundType={backgroundType}>
               {error}
             </Error>
@@ -605,6 +617,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
+  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
 `;
 
 const OptionalLabel = styled.span`
@@ -626,6 +639,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
+  margin-bottom: 0.25rem;
 `;
 
 const InputContainer = styled.div`
@@ -633,7 +647,6 @@ const InputContainer = styled.div`
   position: relative;
   align-items: center;
   height: calc(2.5rem - 2px);
-  margin: ${(props) => `${props.theme.inputMarginTop} 0 ${props.theme.inputMarginBottom} 0`};
   padding: 0 0.5rem;
 
   ${(props) => {
@@ -699,6 +712,9 @@ const Input = styled.input`
   border: none;
   outline: none;
   padding: 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   color: ${(props) =>
     props.disabled
@@ -883,6 +899,7 @@ const Error = styled.span`
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.5em;
+  margin-top: 0.25rem;
 `;
 
 const Suggestions = styled.ul`
@@ -910,6 +927,7 @@ const Suggestions = styled.ul`
 `;
 
 const Suggestion = styled.li`
+  display: flex;
   padding: 0 0.5rem;
   line-height: 1.715em;
   cursor: pointer;
@@ -925,7 +943,7 @@ const Suggestion = styled.li`
 `;
 
 const StyledSuggestion = styled.span`
-  display: flex;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

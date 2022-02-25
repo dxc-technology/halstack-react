@@ -3,8 +3,8 @@ import styled, { ThemeProvider } from "styled-components";
 
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
-import useTheme from "../useTheme.js";
-import { BackgroundColorProvider } from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
 import TablePropsType from "./types";
 
 const DxcTable = ({ children, margin }: TablePropsType): JSX.Element => {
@@ -37,9 +37,10 @@ const DxcTableContainer = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  overflow: hidden auto;
+  overflow: auto;
   &::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme.scrollBarThumbColor};

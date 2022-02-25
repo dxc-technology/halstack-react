@@ -91,18 +91,29 @@ const PasswordInputPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>length: object</td>
+        <td>minLength: number</td>
         <td></td>
         <td>
-          Specifies the minimun and maximum length allowed by the password
-          input. It follows this structure: {"{ "}
-          <code>min: minLength, max: maxLength</code>
-          {" }"}. This will be checked both when the input element loses the
-          focus and while typing within it. If the string entered does not
-          comply the length, the onBlur and onChange functions will be called
-          with the current value and an internal error informing that the value
-          length does not comply the specified range. If a valid length is
-          reached, the error parameter of both events will be null.
+          Specifies the minimun length allowed by the input. This will be
+          checked both when the input element loses the focus and while typing
+          within it. If the string entered does not comply the minimum length,
+          the onBlur and onChange functions will be called with the current
+          value and an internal error informing that the value length does not
+          comply the specified range. If a valid length is reached, the error
+          parameter of both events will be null.
+        </td>
+      </tr>
+      <tr>
+        <td>maxLength: number</td>
+        <td></td>
+        <td>
+          Specifies the maximum length allowed by the input. This will be
+          checked both when the input element loses the focus and while typing
+          within it. If the string entered does not comply the maximum length,
+          the onBlur and onChange functions will be called with the current
+          value and an internal error informing that the value length does not
+          comply the specified range. If a valid length is reached, the error
+          parameter of both events will be null.
         </td>
       </tr>
       <tr>

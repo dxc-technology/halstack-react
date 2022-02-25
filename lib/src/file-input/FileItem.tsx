@@ -1,7 +1,6 @@
-import { TabOutlined } from "@material-ui/icons";
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 
 const deleteIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -72,7 +71,10 @@ const FileItem = ({
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  padding: ${(props) => (props.showPreview ? "8px" : "8px 8px 8px 16px")};
+  padding: ${(props) =>
+    props.showPreview
+      ? `calc(8px - ${props.theme.fileItemBorderThickness}) 8px`
+      : `calc(8px - ${props.theme.fileItemBorderThickness}) 8px calc(8px - ${props.theme.fileItemBorderThickness}) 16px`};
   background-color: ${(props) => props.error && props.theme.errorFileItemBackgroundColor};
   border-radius: ${(props) => props.theme.fileItemBorderRadius};
   width: ${(props) =>
@@ -170,9 +172,10 @@ const DeleteIcon = styled.button`
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-left: 4px;
   background-color: transparent;
+  box-shadow: 0 0 0 2px transparent;
   padding: 3px;
   cursor: pointer;
   svg {
@@ -185,10 +188,12 @@ const DeleteIcon = styled.button`
         : props.theme.hoverDeleteFileItemBackgroundColor};
   }
   &:focus {
-    background-color: ${(props) =>
-      props.error
-        ? props.theme.errorHoverDeleteFileItemBackgroundColor
-        : props.theme.hoverDeleteFileItemBackgroundColor};
+    outline: none;
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
   }
   &:active {
     background-color: ${(props) =>
