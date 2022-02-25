@@ -44,6 +44,10 @@ type Props = {
    */
   newWindow?: boolean;
   /**
+   * If true, the component will be disabled.
+   */
+  disabled?: boolean;
+  /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */

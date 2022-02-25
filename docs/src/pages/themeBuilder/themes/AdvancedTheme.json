@@ -939,7 +939,8 @@
     "iconSectionWidth": "40px",
     "iconHeight": "24px",
     "iconWidth": "24px",
-    "focusColor": "#0095ff"
+    "focusColor": "#0095ff",
+    "disabledFontColor": "#999999"
   },
   "table": {
     "rowSeparatorThickness": "1px",

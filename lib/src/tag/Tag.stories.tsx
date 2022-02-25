@@ -56,6 +56,36 @@ export const Chromatic = () => (
       <Title title="Icon background color" theme="light" level={4} />
       <DxcTag label="Tag" icon={icon} iconBgColor="#fabada" />
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled" theme="light" level={4} />
+      <DxcTag label="Tag" icon={icon} iconBgColor="#fabada" disabled={true} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled with action" theme="light" level={4} />
+      <DxcTag
+        label="Tag"
+        icon={icon}
+        onClick={() => {
+          console.log("click");
+        }}
+        disabled={true}
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Disabled with link focused" theme="light" level={4} />
+      <DxcTag icon={icon} label="Tag" linkHref="https://www.dxc.com" disabled={true} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Disabled with action focused" theme="light" level={4} />
+      <DxcTag
+        icon={icon}
+        label="Tag"
+        onClick={() => {
+          console.log("click");
+        }}
+        disabled={true}
+      />
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="With link focused" theme="light" level={4} />
       <DxcTag icon={icon} label="Tag" linkHref="https://www.dxc.com" />

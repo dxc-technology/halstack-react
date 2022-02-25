@@ -16,6 +16,7 @@ const DxcTag = ({
   iconBgColor = "#5f249f",
   labelPosition = "after",
   newWindow = false,
+  disabled = false,
   margin,
   size = "fitContent",
   tabIndex = 0,
@@ -23,20 +24,20 @@ const DxcTag = ({
   const colorsTheme = useTheme();
   const [isHovered, changeIsHovered] = useState(false);
   const clickHandler = () => {
-    onClick && onClick();
+    !disabled && onClick && onClick();
   };
 
   const tagContent = (
-    <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
-      <TagContent labelPosition={labelPosition}>
-        <IconContainer iconBgColor={iconBgColor}>
+    <DxcBox size={size} shadowDepth={(isHovered && !disabled && (onClick || linkHref) && 2) || 1}>
+      <TagContent labelPosition={labelPosition} disabled={disabled}>
+        <IconContainer iconBgColor={iconBgColor} disabled={disabled}>
           {icon ? (
             <TagIconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</TagIconContainer>
           ) : (
             <TagIcon src={iconSrc}></TagIcon>
           )}
         </IconContainer>
-        {size !== "small" && <TagLabel>{label}</TagLabel>}
+        {size !== "small" && <TagLabel disabled={disabled}>{label}</TagLabel>}
       </TagContent>
     </DxcBox>
   );
@@ -44,6 +45,7 @@ const DxcTag = ({
   return (
     <ThemeProvider theme={colorsTheme.tag}>
       <StyledDxcTag
+        disabled={disabled}
         margin={margin}
         size={size}
         onMouseEnter={() => changeIsHovered(true)}
@@ -52,9 +54,11 @@ const DxcTag = ({
         hasAction={onClick || linkHref}
       >
         {onClick ? (
-          <StyledButton tabIndex={tabIndex}>{tagContent}</StyledButton>
+          <StyledButton tabIndex={tabIndex} disabled={disabled}>
+            {tagContent}
+          </StyledButton>
         ) : linkHref ? (
-          <StyledLink tabIndex={tabIndex} href={linkHref} target={newWindow ? "_blank" : "_self"}>
+          <StyledLink tabIndex={tabIndex} disabled={disabled} href={linkHref} target={newWindow ? "_blank" : "_self"}>
             {tagContent}
           </StyledLink>
         ) : (
@@ -80,7 +84,7 @@ const calculateWidth = (margin, size) =>
 
 const StyledDxcTag = styled.div`
   display: inline-flex;
-  cursor: ${({ hasAction }) => (hasAction && "pointer") || "unset"};
+  cursor: ${({ hasAction, disabled }) => (!hasAction ? "unset" : disabled ? "not-allowed" : "pointer")};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
@@ -102,9 +106,12 @@ const StyledLink = styled.a`
   text-decoration: none;
   border-radius: 4px;
   width: 100%;
+  cursor: ${({ disabled }) => (!disabled ? "pointer" : "not-allowed")};
   :focus {
-    outline: 2px solid ${(props) => props.theme.focusColor};
-    outline-offset: 0px;
+    ${({ disabled }) =>
+      !disabled &&
+      `outline: 2px solid ${(props) => props.theme.focusColor};
+      outline-offset: 0px;`}
   }
 `;
 
@@ -113,11 +120,11 @@ const StyledButton = styled.button`
   border-radius: 4px;
   border: none;
   padding: 0;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (!disabled ? "pointer" : "not-allowed")};
   font-family: inherit;
   width: 100%;
   :focus {
-    outline: 2px solid ${(props) => props.theme.focusColor};
+    ${({ disabled }) => !disabled && `outline: 2px solid ${(props) => props.theme.focusColor};`}
   }
 `;
 
@@ -135,7 +142,6 @@ const TagIconContainer = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
   img,
   svg {
     width: ${(props) => props.theme.iconWidth};
@@ -152,6 +158,7 @@ const IconContainer = styled.div`
   align-items: center;
   color: ${(props) => props.theme.iconColor};
   min-width: ${(props) => props.theme.iconSectionWidth};
+  opacity: ${({ disabled }) => (disabled ? "0.4" : "1")};
 `;
 
 const TagLabel = styled.div`
@@ -159,7 +166,7 @@ const TagLabel = styled.div`
   font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
   font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => props.theme.fontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledFontColor : props.theme.fontColor)};
   padding-top: ${(props) => props.theme.labelPaddingTop};
   padding-bottom: ${(props) => props.theme.labelPaddingBottom};
   padding-left: ${(props) => props.theme.labelPaddingLeft};

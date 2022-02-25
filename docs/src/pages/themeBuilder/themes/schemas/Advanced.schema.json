@@ -939,7 +939,8 @@
     "iconSectionWidth": "length",
     "iconHeight": "length",
     "iconWidth": "length",
-    "focusColor": "color"
+    "focusColor": "color",
+    "disabledFontColor": "color"
   },
   "table": {
     "rowSeparatorThickness": "length",
