@@ -368,7 +368,6 @@ function Overview() {
             { text: "Facebook", href: "http://www.google.com" },
             { text: "Instagram", href: "http://www.google.com" },
           ]}
-          copyright="© DXC Technology 2020. All rights reserved."
         ></DxcFooter>
       </DxcApplicationLayout.Footer>
     </DxcApplicationLayout>
