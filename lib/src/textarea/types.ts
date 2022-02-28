@@ -1,4 +1,3 @@
-type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -56,14 +55,14 @@ type Props = {
    * entered is not valid) will be passed to this function.
    * If there is no error, error will be null.
    */
-  onChange?: (val: { value: string; error: string }) => void;
+  onChange?: (val: { value: string; error: string | null}) => void;
   /**
    * This function will be called when the textarea loses the focus. An
    * object including the textarea value and the error (if the value entered
    * is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (val: { value: string; error: string }) => void;
+  onBlur?: (val: { value: string; error: string | null}) => void;
   /**
    * If it is defined, the component will change its appearance, showing
    * the error below the textarea. If it is not defined, the error
@@ -113,15 +112,15 @@ type Props = {
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
    */
-  size?: Size;
+  size?: "small" | "medium" | "large" | "fillParent";
   /**
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-  /**
-   * Reference to the component.
-   */
-  ref?: React.RefObject<HTMLDivElement>;
 };
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
 
-export default function DxcTextarea(props: Props): JSX.Element;
+export default Props;
