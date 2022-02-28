@@ -5,7 +5,8 @@ type Size = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
+
 type SocialLink = {
   /**
    * Element used as the icon for the link.
