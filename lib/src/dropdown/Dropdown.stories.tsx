@@ -18,10 +18,24 @@ const iconSVG = () => {
   );
 };
 
+const iconSVGLarge = () => {
+  return (
+    <svg enable-background="new 0 0 24 24" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
+      <g>
+        <path d="M0,0h24v24H0V0z" fill="none" />
+        <path d="M0,0h24v24H0V0z" fill="none" />
+      </g>
+      <g>
+        <path d="M12,17.27L18.18,21l-1.64-7.03L22,9.24l-7.19-0.61L12,2L9.19,8.63L2,9.24l5.46,4.73L5.82,21L12,17.27z" />
+      </g>
+    </svg>
+  );
+};
+
 const options: any = [
   {
     value: "1",
-    label: "Amazon",
+    label: "Amazon with a very long text",
   },
   {
     value: "2",
@@ -33,7 +47,14 @@ const options: any = [
   },
 ];
 
-const optionsIcon: any = options.map((i) => ({ ...i, icon: iconSVG }));
+const option: any = [
+  {
+    value: "1",
+    label: "Ebay",
+  },
+];
+
+const optionsIcon: any = options.map((op, i) => ({ ...op, icon: i === 1 ? iconSVGLarge : iconSVG }));
 
 export const Chromatic = () => (
   <>
@@ -80,6 +101,10 @@ export const Chromatic = () => (
       <DxcDropdown options={options} onSelectOption={(value) => {}} icon={iconSVG} />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Large icon" theme="light" level={4} />
+      <DxcDropdown label="Large icon" options={options} onSelectOption={(value) => {}} icon={iconSVGLarge} />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Disabled with icon" theme="light" level={4} />
       <DxcDropdown
         label="Disabled with icon"
@@ -87,6 +112,16 @@ export const Chromatic = () => (
         onSelectOption={(value) => {}}
         icon={iconSVG}
         disabled
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Ellipsis" theme="light" level={4} />
+      <DxcDropdown
+        label="Very long text in dropdown button"
+        options={options}
+        onSelectOption={(value) => {}}
+        icon={iconSVG}
+        size="medium"
       />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
@@ -161,17 +196,29 @@ const DropdownWithOptions = () => (
   </ExampleContainer>
 );
 
-const DropdownHoverOptions = () => (
+const DropdownHoverOption = () => (
   <ExampleContainer pseudoState="pseudo-hover" expanded>
-    <Title title="Hovered options" theme="light" level={4} />
-    <DxcDropdown label="Hovered options" options={options} onSelectOption={(value) => {}} />
+    <Title title="Hovered option" theme="light" level={4} />
+    <DxcDropdown label="Hovered options" options={option} onSelectOption={(value) => {}} />
   </ExampleContainer>
 );
 
-const DropdownActiveOptions = () => (
+const DropdownActiveOption = () => (
   <ExampleContainer pseudoState="pseudo-active" expanded>
-    <Title title="Actived options" theme="light" level={4} />
-    <DxcDropdown label="Actived options" options={options} onSelectOption={(value) => {}} />
+    <Title title="Actived option" theme="light" level={4} />
+    <DxcDropdown label="Actived options" options={option} onSelectOption={(value) => {}} />
+  </ExampleContainer>
+);
+
+const DropdownWithOptionsIconAfter = () => (
+  <ExampleContainer expanded>
+    <Title title="Icon after options" theme="light" level={4} />
+    <DxcDropdown
+      label="Icon after options"
+      options={optionsIcon}
+      onSelectOption={(value) => {}}
+      optionsIconPosition="after"
+    />
   </ExampleContainer>
 );
 
@@ -181,14 +228,20 @@ DropdownOptions.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getByRole("button"));
 };
 
-export const DropdownHoveredOptions = DropdownHoverOptions.bind({});
-DropdownHoveredOptions.play = async ({ canvasElement }) => {
+export const DropdownHoveredOption = DropdownHoverOption.bind({});
+DropdownHoveredOption.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("button"));
 };
 
-export const DropdownActivedOptions = DropdownActiveOptions.bind({});
-DropdownActivedOptions.play = async ({ canvasElement }) => {
+export const DropdownActivedOption = DropdownActiveOption.bind({});
+DropdownActivedOption.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
+};
+
+export const DropdownOptionsIconAfter = DropdownWithOptionsIconAfter.bind({});
+DropdownOptionsIconAfter.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("button"));
 };
