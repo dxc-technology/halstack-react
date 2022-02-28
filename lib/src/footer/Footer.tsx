@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
-import dxcLogo from "./Icons";
+import { dxcLogo } from "./Icons";
 import FooterPropsType from "./types";
 
 const DxcFooter = ({
