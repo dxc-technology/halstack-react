@@ -10,7 +10,7 @@ import FooterPropsType from "./types";
 const DxcFooter = ({
   socialLinks,
   bottomLinks,
-  copyright = "© DXC Technology 2022. All rights reserved.",
+  copyright = `© DXC Technology ${new Date().getFullYear()}. All rights reserved.`,
   children,
   padding,
   margin,

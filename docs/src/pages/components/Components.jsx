@@ -156,7 +156,6 @@ function Components() {
             { text: "Facebook", href: "http://www.google.com" },
             { text: "Instagram", href: "http://www.google.com" },
           ]}
-          copyright="© DXC Technology 2022. All rights reserved."
         ></DxcFooter>
       </DxcApplicationLayout.Footer>
     </DxcApplicationLayout>
