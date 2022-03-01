@@ -24,7 +24,7 @@ const code = `() => {
               },
               {
                   label: "Second step",
-                  icon: <img src={twitterLogoPath} />
+                  icon: twitterLogoPath
               },
               {
                   label: "Third step",
