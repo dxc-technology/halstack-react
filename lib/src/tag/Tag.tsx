@@ -54,11 +54,16 @@ const DxcTag = ({
         hasAction={onClick || linkHref}
       >
         {onClick ? (
-          <StyledButton tabIndex={tabIndex} disabled={disabled}>
+          <StyledButton tabIndex={!disabled ? tabIndex : -1} disabled={disabled}>
             {tagContent}
           </StyledButton>
         ) : linkHref ? (
-          <StyledLink tabIndex={tabIndex} disabled={disabled} href={linkHref} target={newWindow ? "_blank" : "_self"}>
+          <StyledLink
+            tabIndex={!disabled ? tabIndex : -1}
+            disabled={disabled}
+            href={linkHref}
+            target={newWindow ? "_blank" : "_self"}
+          >
             {tagContent}
           </StyledLink>
         ) : (
@@ -108,11 +113,10 @@ const StyledLink = styled.a`
   width: 100%;
   cursor: ${({ disabled }) => (!disabled ? "pointer" : "not-allowed")};
   :focus {
-    ${({ disabled }) =>
-      !disabled &&
-      `outline: 2px solid ${(props) => props.theme.focusColor};
-      outline-offset: 0px;`}
+    outline: ${(props) => !props.disabled && `2px solid ${props.theme.focusColor}`};
+    outline-offset: ${({ disabled }) => !disabled && "0px"};
   }
+  pointer-events: ${({ disabled }) => disabled && "none"};
 `;
 
 const StyledButton = styled.button`
@@ -124,7 +128,7 @@ const StyledButton = styled.button`
   font-family: inherit;
   width: 100%;
   :focus {
-    ${({ disabled }) => !disabled && `outline: 2px solid ${(props) => props.theme.focusColor};`}
+    outline: ${(props) => !props.disabled && `2px solid ${props.theme.focusColor}`};
   }
 `;
 
