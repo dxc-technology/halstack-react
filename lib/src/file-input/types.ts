@@ -20,7 +20,7 @@ type FileData = {
   preview?: string;
 };
 
-type Props = {
+type CommonProps = {
   /**
    * Name attribute.
    */
@@ -30,13 +30,9 @@ type Props = {
    */
   label?: string;
   /**
-   * Uses one of the available file input modes:
-   *    'file': Files are selected by clicking the button and selecting it through the file explorer.
-   *    'filedrop': Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
-   *    'dropzone':  Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
-   *     The drag and drop area of this mode is bigger than the one of the filedrop mode.
+   * Text to be placed inside the button.
    */
-  mode?: "file" | "filedrop" | "dropzone";
+  buttonLabel?: string;
   /**
    * Helper text to be placed above the component.
    */
@@ -85,5 +81,35 @@ type Props = {
    */
   tabIndex?: number;
 };
+type DropModeProps = CommonProps & {
+  /**
+   * Uses one of the available file input modes:
+   *    'file': Files are selected by clicking the button and selecting it through the file explorer.
+   *    'filedrop': Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
+   *    'dropzone':  Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
+   *     The drag and drop area of this mode is bigger than the one of the filedrop mode.
+   */
+  mode: "filedrop" | "dropzone";
+  /**
+   * Text to be placed inside the drag and drop zone alongside the button.
+   */
+  dropAreaLabel?: string;
+};
+type FileModeProps = CommonProps & {
+  /**
+   * Uses one of the available file input modes:
+   *    'file': Files are selected by clicking the button and selecting it through the file explorer.
+   *    'filedrop': Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
+   *    'dropzone':  Files can be selected by clicking the button and selecting it through the file explorer or by dropping them inside the drag and drop area.
+   *     The drag and drop area of this mode is bigger than the one of the filedrop mode.
+   */
+  mode?: "file";
+  /**
+   * Text to be placed inside the drag and drop zone alongside the button.
+   */
+  dropAreaLabel?: never;
+};
+
+type Props = DropModeProps | FileModeProps;
 
 export default Props;

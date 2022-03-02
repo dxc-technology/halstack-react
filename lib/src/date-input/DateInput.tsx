@@ -14,18 +14,18 @@ import DateInputPropsType, { RefType } from "./types";
 const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
       format = "dd-MM-yyyy",
-      helperText = "",
+      helperText,
       placeholder = false,
       clearable = false,
       disabled = false,
       optional = false,
       onChange,
       onBlur,
-      error = "",
+      error,
       autocomplete = "off",
       margin,
       size = "medium",

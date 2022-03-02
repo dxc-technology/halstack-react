@@ -40,12 +40,10 @@ const Footer = () => {
     <FooterContainer>
       <Mode text="Default">
         <DxcFooter
-          copyright="© DXC Technology 2020. All rights reserved."
           bottomLinks={bottom}
           socialLinks={social}
           margin="medium"
-        >
-        </DxcFooter>
+        ></DxcFooter>
       </Mode>
     </FooterContainer>
   );

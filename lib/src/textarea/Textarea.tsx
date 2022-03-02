@@ -2,11 +2,11 @@ import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext";
 import { useLayoutEffect } from "react";
+import TextareaPropsType, { RefType } from "./types";
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 
@@ -14,13 +14,13 @@ const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
-const DxcTextarea = React.forwardRef(
+const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
-      helperText = "",
+      helperText,
       placeholder = "",
       disabled = false,
       optional = false,
@@ -28,7 +28,7 @@ const DxcTextarea = React.forwardRef(
       rows = 4,
       onChange,
       onBlur,
-      error = "",
+      error,
       pattern,
       minLength,
       maxLength,
@@ -92,12 +92,16 @@ const DxcTextarea = React.forwardRef(
     return (
       <ThemeProvider theme={colorsTheme.textarea}>
         <TextareaContainer margin={margin} size={size} ref={ref}>
-          <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType}>
-            {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
-          </Label>
-          <HelperText disabled={disabled} backgroundType={backgroundType}>
-            {helperText}
-          </HelperText>
+          {label && (
+            <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
+              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+            </Label>
+          )}
+          {helperText && (
+            <HelperText disabled={disabled} backgroundType={backgroundType}>
+              {helperText}
+            </HelperText>
+          )}
           <Textarea
             id={textareaId}
             name={name}
@@ -119,7 +123,7 @@ const DxcTextarea = React.forwardRef(
             aria-describedby={error ? errorId : undefined}
             aria-required={optional ? "false" : "true"}
           />
-          {!disabled && (
+          {!disabled && typeof error === "string" && (
             <Error id={errorId} backgroundType={backgroundType}>
               {error}
             </Error>
@@ -173,6 +177,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
+  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
 `;
 
 const OptionalLabel = styled.span`
@@ -194,6 +199,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
+  margin-bottom: 0.25rem;
 `;
 
 const Textarea = styled.textarea`
@@ -211,7 +217,6 @@ const Textarea = styled.textarea`
     else return `background-color: transparent;`;
   }}
 
-  margin: ${(props) => `${props.theme.inputMarginTop} 0 ${props.theme.inputMarginBottom} 0`};
   padding: 0.5rem 1rem;
   box-shadow: 0 0 0 2px transparent;
   border-radius: 0.25rem;
@@ -304,36 +309,7 @@ const Error = styled.span`
   font-weight: 400;
   min-height: 1.5em;
   line-height: 1.5em;
+  margin-top: 0.25rem;
 `;
-
-DxcTextarea.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  value: PropTypes.string,
-  helperText: PropTypes.string,
-  placeholder: PropTypes.string,
-  verticalGrow: PropTypes.oneOf(["auto", "none", "manual"]),
-  rows: PropTypes.number,
-  minLength: PropTypes.number,
-  maxLength: PropTypes.number,
-  pattern: PropTypes.string,
-  disabled: PropTypes.bool,
-  optional: PropTypes.bool,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  error: PropTypes.string,
-  autocomplete: PropTypes.string,
-  margin: PropTypes.oneOfType([
-    PropTypes.shape({
-      top: PropTypes.oneOf(Object.keys(spaces)),
-      bottom: PropTypes.oneOf(Object.keys(spaces)),
-      left: PropTypes.oneOf(Object.keys(spaces)),
-      right: PropTypes.oneOf(Object.keys(spaces)),
-    }),
-    PropTypes.oneOf([...Object.keys(spaces)]),
-  ]),
-  size: PropTypes.oneOf([...Object.keys(sizes)]),
-  tabIndex: PropTypes.number,
-};
 
 export default DxcTextarea;
