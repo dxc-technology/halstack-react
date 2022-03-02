@@ -28,7 +28,7 @@ const DxcAccordion = ({
   const colorsTheme = useTheme();
 
   const handleResize = (width) => {
-    (width && width <= responsiveSizes.tablet) ? setIsResponsive(true) : setIsResponsive(false);
+    width && width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false);
   };
 
   const handleEventListener = () => {
@@ -68,7 +68,6 @@ const DxcAccordion = ({
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
             <AccordionInfo disabled={disabled}>
-              <AccordionLabel>{label}</AccordionLabel>
               {icon ? (
                 <IconContainer disabled={disabled}>
                   {typeof icon === "object" ? icon : React.createElement(icon)}
@@ -76,6 +75,7 @@ const DxcAccordion = ({
               ) : (
                 iconSrc && <AccordionIcon src={iconSrc} />
               )}
+              <AccordionLabel>{label}</AccordionLabel>
             </AccordionInfo>
             {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
           </ExpansionPanelSummary>
@@ -216,7 +216,6 @@ const DXCAccordion = styled.div`
 
 const AccordionInfo = styled.div`
   display: flex;
-  flex-direction: row-reverse;
   align-items: center;
   padding-left: ${(props) => props.theme.titlePaddingLeft};
   padding-right: ${(props) => props.theme.titlePaddingRight};

@@ -16,11 +16,11 @@ const DxcLink: Overload = ({
   text = "",
   margin,
   tabIndex = 0,
-}: (LinkTextProps | LinkIconProps)): JSX.Element => {
+}: LinkTextProps | LinkIconProps): JSX.Element => {
   const colorsTheme = useTheme();
   const linkContent = (
     <LinkText iconPosition={iconPosition}>
-      {text}
+      {iconPosition === "after" && text}
       {icon ? (
         <LinkIconContainer iconPosition={iconPosition}>
           {typeof icon === "object" ? icon : React.createElement(icon)}
@@ -28,6 +28,7 @@ const DxcLink: Overload = ({
       ) : (
         iconSrc && <LinkIcon src={iconSrc} iconPosition={iconPosition}></LinkIcon>
       )}
+      {iconPosition === "before" && text}
     </LinkText>
   );
 
@@ -149,10 +150,8 @@ const LinkText = styled.div`
   font-weight: ${(props) => props.theme.fontWeight};
   font-style: ${(props) => props.theme.fontStyle};
   font-family: ${(props) => props.theme.fontFamily};
-  display: inline-flex;
-  flex-direction: ${(props) => (props.iconPosition === "after" ? "row" : "row-reverse")};
-  justify-content: ${(props) => (props.iconPosition === "after" ? "flex-start" : "flex-end")};
-  align-items: center;
+  display: flex;
+  align-items: baseline; 
   max-width: 100%;
 `;
 
@@ -167,6 +166,7 @@ const LinkIconContainer = styled.div`
   height: ${(props) => props.theme.iconSize};
   ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
   overflow: hidden;
+  align-self: center;
 
   img,
   svg {

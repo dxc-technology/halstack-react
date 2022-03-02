@@ -29,6 +29,7 @@ const DxcTag = ({
   const tagContent = (
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
       <TagContent labelPosition={labelPosition}>
+        {labelPosition === "before" && size !== "small" && <TagLabel>{label}</TagLabel>}
         <IconContainer iconBgColor={iconBgColor}>
           {icon ? (
             <TagIconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</TagIconContainer>
@@ -36,7 +37,7 @@ const DxcTag = ({
             <TagIcon src={iconSrc}></TagIcon>
           )}
         </IconContainer>
-        {size !== "small" && <TagLabel>{label}</TagLabel>}
+        {labelPosition === "after" && size !== "small" && <TagLabel>{label}</TagLabel>}
       </TagContent>
     </DxcBox>
   );
@@ -93,7 +94,6 @@ const StyledDxcTag = styled.div`
 const TagContent = styled.div`
   display: inline-flex;
   align-items: center;
-  flex-direction: ${({ labelPosition }) => (labelPosition === "before" && "row-reverse") || "row"};
   width: 100%;
   height: ${(props) => props.theme.height};
 `;

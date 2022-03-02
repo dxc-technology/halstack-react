@@ -44,6 +44,19 @@ const DxcCheckbox = ({
     setIsLabelHovered(!isLabelHovered);
   };
 
+  const labelComponent = (
+    <LabelContainer
+      onClick={disabled === true ? (e) => {} : handlerCheckboxChange}
+      disabled={disabled}
+      className="labelContainer"
+      backgroundType={backgroundType}
+      onMouseOver={handleLabelHover}
+      onMouseOut={handleLabelHover}
+    >
+      {label}
+    </LabelContainer>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
       <CheckboxContainer
@@ -57,6 +70,8 @@ const DxcCheckbox = ({
         backgroundType={backgroundType}
         isLabelHovered={isLabelHovered}
       >
+        {label && labelPosition === "before" && labelComponent}
+        {required && labelPosition === "before" && <DxcRequired />}
         <Checkbox
           checked={checked != undefined ? checked : innerChecked}
           inputProps={{
@@ -78,20 +93,8 @@ const DxcCheckbox = ({
           checked={checked != undefined ? checked : innerChecked}
           backgroundType={backgroundType}
         />
-        {required && <DxcRequired />}
-        {label && (
-          <LabelContainer
-            labelPosition={labelPosition}
-            onClick={disabled === true ? (e) => {} : handlerCheckboxChange}
-            disabled={disabled}
-            className="labelContainer"
-            backgroundType={backgroundType}
-            onMouseOver={handleLabelHover}
-            onMouseOut={handleLabelHover}
-          >
-            {label}
-          </LabelContainer>
-        )}
+        {required && labelPosition === "after" && <DxcRequired />}
+        {label && labelPosition === "after" && labelComponent}
       </CheckboxContainer>
     </ThemeProvider>
   );
@@ -180,7 +183,7 @@ const CheckboxContainer = styled.span`
   align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   position: relative;
-  flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
+  vertical-align: top;
   .MuiCheckbox-colorSecondary {
     .MuiIconButton-label {
       & > .MuiSvgIcon-root {

@@ -35,6 +35,18 @@ const DxcSwitch = ({
     } else onChange?.(!checked);
   };
 
+  const labelComponent = (
+    <LabelContainer
+      labelPosition={labelPosition}
+      onClick={!disabled && handlerSwitchChange}
+      disabled={disabled}
+      backgroundType={backgroundType}
+    >
+      {required && <DxcRequired />}
+      {label}
+    </LabelContainer>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.switch}>
       <SwitchContainer
@@ -44,6 +56,7 @@ const DxcSwitch = ({
         size={size}
         backgroundType={backgroundType}
       >
+        {labelPosition === "before" && labelComponent}
         <Switch
           checked={checked ?? innerChecked}
           inputProps={{ name: name, tabIndex: tabIndex }}
@@ -52,15 +65,7 @@ const DxcSwitch = ({
           disabled={disabled}
           disableRipple
         />
-        <LabelContainer
-          labelPosition={labelPosition}
-          onClick={!disabled && handlerSwitchChange}
-          disabled={disabled}
-          backgroundType={backgroundType}
-        >
-          {required && <DxcRequired />}
-          {label}
-        </LabelContainer>
+        {labelPosition === "after" && labelComponent}
       </SwitchContainer>
     </ThemeProvider>
   );
@@ -83,8 +88,6 @@ const SwitchContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   display: inline-flex;
   align-items: center;
-  flex-direction: ${(props) => (props.labelPosition === "after" ? "row" : "row-reverse")};
-  
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -211,6 +214,8 @@ const LabelContainer = styled.span`
     props.labelPosition === "after"
       ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};`
       : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`}
+
+  ${(props) => props.labelPosition === "before" && "order: -1"}
 `;
 
 export default DxcSwitch;

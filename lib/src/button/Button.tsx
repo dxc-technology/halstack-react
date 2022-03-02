@@ -22,6 +22,13 @@ const DxcButton = ({
 }: ButtonPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
+
+  const labelComponent = (
+    <LabelContainer icon={icon} iconPosition={iconPosition}>
+      {label}
+    </LabelContainer>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.button}>
       <DxCButton
@@ -44,11 +51,7 @@ const DxcButton = ({
             onClick();
           }}
         >
-          {label && (
-            <LabelContainer icon={icon} iconPosition={iconPosition}>
-              {label}
-            </LabelContainer>
-          )}
+          {label && iconPosition === "after" && labelComponent}
           {icon ? (
             <IconContainer label={label} iconPosition={iconPosition}>
               {typeof icon === "object" ? icon : React.createElement(icon)}
@@ -56,6 +59,7 @@ const DxcButton = ({
           ) : (
             iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />
           )}
+          {label && iconPosition === "before" && labelComponent}
         </Button>
       </DxCButton>
     </ThemeProvider>
@@ -134,7 +138,6 @@ const DxCButton = styled.div`
 
     .MuiButton-label {
       display: flex;
-      flex-direction: ${(props) => (props.iconPosition === "after" && "row") || "row-reverse"};
       align-items: center;
     }
 
