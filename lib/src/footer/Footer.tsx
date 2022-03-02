@@ -4,13 +4,13 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
-import dxcLogo from "./Icons";
+import { dxcLogo } from "./Icons";
 import FooterPropsType from "./types";
 
 const DxcFooter = ({
   socialLinks,
   bottomLinks,
-  copyright = "",
+  copyright = `© DXC Technology ${new Date().getFullYear()}. All rights reserved.`,
   children,
   padding,
   margin,
@@ -68,11 +68,9 @@ const DxcFooter = ({
       index={index}
       href={link && link.href ? link.href : ""}
     >
-      {typeof link.logo === "string" ? (
-        <SocialIconImg src={link.logo} />
-      ) : (
-        <SocialIconContainer>{link.logo}</SocialIconContainer>
-      )}
+      <SocialIconContainer>
+        {typeof link.logo === "string" ? <SocialIconImg src={link.logo} /> : link.logo}
+      </SocialIconContainer>
     </SocialAnchor>
   ));
 
@@ -198,14 +196,7 @@ const SocialAnchor = styled.a`
   }
 `;
 
-const SocialIconImg = styled.img`
-  & {
-    display: inline-flex;
-    height: ${(props) => props.theme.socialLinksSize};
-    width: ${(props) => props.theme.socialLinksSize};
-    fill: ${(props) => props.theme.socialLinksColor};
-  }
-`;
+const SocialIconImg = styled.img``;
 
 const SocialIconContainer = styled.div`
   & {
@@ -216,7 +207,6 @@ const SocialIconContainer = styled.div`
   }
 
   overflow: hidden;
-
   img,
   svg {
     height: 100%;

@@ -16,13 +16,9 @@ type Step = {
    */
   description?: string;
   /**
-   * Element used as the icon to be displayed in the step.
+   * Element or path used as the icon displayed in the step.
    */
-  icon?: SVG;
-  /**
-   * @deprecated URL of the icon to be displayed in the step.
-   */
-  iconSrc?: string;
+  icon?: string | SVG;
   /**
    * Whether the step is disabled or not.
    */
