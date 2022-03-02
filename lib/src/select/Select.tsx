@@ -489,8 +489,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   }}
                   onClick={handleClearOptionsActionOnClick}
                   tabIndex={-1}
-                  title="Clear selected options"
-                  aria-label="Clear selected options"
+                  title="Clear selection"
+                  aria-label="Clear selection"
                 >
                   {selectIcons.clear}
                 </ClearOptionsAction>
@@ -538,8 +538,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 }}
                 onClick={handleClearSearchActionOnClick}
                 tabIndex={-1}
-                title="Clear search text"
-                aria-label="Clear search text"
+                title="Clear search"
+                aria-label="Clear search"
               >
                 {selectIcons.clear}
               </ClearSearchAction>

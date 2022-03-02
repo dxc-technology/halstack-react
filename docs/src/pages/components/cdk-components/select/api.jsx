@@ -53,7 +53,7 @@ const selectPropsTable = () => {
               by <i>optional</i> prop.
             </li>
             <li>
-              <b>Icon: string | (HTMLElement & SVGElement)</b>: Element used as
+              <b>Icon: string | SVGSVGElement</b>: Element used as
               the icon that will be placed before the option label. It can be a
               url of an image or an inline SVG. If the url option is the chosen
               one, take into account that the component's color styling tokens
