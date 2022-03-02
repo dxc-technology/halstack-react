@@ -15,9 +15,9 @@ const DxcToggleGroup = ({
   margin,
   multiple = false,
   tabIndex = 0,
-}: ToogleGroupPropsType) => {
+}: ToogleGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const [selectedValue, setSelectedValue] = useState(multiple ? [] : "");
+  const [selectedValue, setSelectedValue] = useState<typeof value>(multiple ? [] : -1);
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
   const handleToggleChange = (selectedOption) => {
@@ -61,20 +61,20 @@ const DxcToggleGroup = ({
           {options.map((option, i) => (
             <ToggleContainer
               selected={
-                multiple
+                multiple && Array.isArray(value)
                   ? value
                     ? value.includes(option.value)
-                    : selectedValue.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
                   ? option.value === value
                   : option.value === selectedValue
               }
               role={multiple ? "switch" : "radio"}
               aria-checked={
-                multiple
+                multiple && Array.isArray(value)
                   ? value
                     ? value.includes(option.value)
-                    : selectedValue.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
                   ? option.value === value
                   : option.value === selectedValue
@@ -83,7 +83,7 @@ const DxcToggleGroup = ({
               onClick={() => !disabled && handleToggleChange(option.value)}
               isFirst={i === 0}
               isLast={i === options.length - 1}
-              isIcon={option.iconSrc || option.icon}
+              isIcon={option.icon}
               optionLabel={option.label}
               disabled={disabled}
               onKeyPress={(event) => {
@@ -94,10 +94,9 @@ const DxcToggleGroup = ({
               <OptionContent>
                 {option.icon && (
                   <IconContainer optionLabel={option.label}>
-                    {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+                    {typeof option.icon === "string" ? <Icon src={option.icon} /> : option.icon}
                   </IconContainer>
                 )}
-                {option.iconSrc && <Icon src={option.iconSrc} optionLabel={option.label} />}
                 {option.label && <LabelContainer>{option.label}</LabelContainer>}
               </OptionContent>
             </ToggleContainer>
@@ -227,11 +226,7 @@ const OptionContent = styled.div`
   align-items: center;
 `;
 
-const Icon = styled.img`
-  height: 24px;
-  width: 24px;
-  margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
-`;
+const Icon = styled.img``;
 
 const IconContainer = styled.div`
   margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
