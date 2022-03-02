@@ -20,7 +20,7 @@ type Props = {
   /**
    * Text to be placed next to the checkbox.
    */
-  label: string;
+  label?: string;
   /**
    * Whether the label should appear after or before the checkbox.
    */
