@@ -16,6 +16,21 @@ export const Chromatic = () => (
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
+    <Title title="Number" theme="light" level={4} />
+    <DxcList type="number">
+      <DxcText>Text 1.</DxcText>
+      <DxcText>Text 2.</DxcText>
+    </DxcList>
+    <Title title="Square" theme="light" level={4} />
+    <DxcList type="square">
+      <DxcText>Text 1.</DxcText>
+      <DxcText>Text 2.</DxcText>
+    </DxcList>
+    <Title title="Circle" theme="light" level={4} />
+    <DxcList type="circle">
+      <DxcText>Text 1.</DxcText>
+      <DxcText>Text 2.</DxcText>
+    </DxcList>
     <Title title="Multiple lines" theme="light" level={4} />
     <Container>
       <DxcList>
