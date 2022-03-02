@@ -20,8 +20,8 @@ function App() {
       });
       setVersions(
         versionsResp.data.map((v) => ({
-          label: v.versionNumber,
-          value: v.versionNumber,
+          label: v.versionNumber.toString(),
+          value: v.versionNumber.toString(),
           url: v.versionURL,
         }))
       );
