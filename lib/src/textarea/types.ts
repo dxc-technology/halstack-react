@@ -1,4 +1,3 @@
-type Size = "small" | "medium" | "large" | "fillParent";
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -33,9 +32,9 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * If true, the textarea will be optional, showing '(Optional)' 
-   * next to the label. Otherwise, the field will be considered required 
-   * and an error will be passed as a parameter to the OnBlur and onChange functions 
+   * If true, the textarea will be optional, showing '(Optional)'
+   * next to the label. Otherwise, the field will be considered required
+   * and an error will be passed as a parameter to the OnBlur and onChange functions
    * when it has not been filled.
    */
   optional?: boolean;
@@ -53,17 +52,17 @@ type Props = {
   /**
    * This function will be called when the user types within the textarea.
    * An object including the current value and the error (if the value
-   * entered is not valid) will be passed to this function. 
+   * entered is not valid) will be passed to this function.
    * If there is no error, error will be null.
    */
-  onChange?: (val: { value: string; error: string }) => void;
+  onChange?: (val: { value: string; error: string | null}) => void;
   /**
    * This function will be called when the textarea loses the focus. An
    * object including the textarea value and the error (if the value entered
-   * is not valid) will be passed to this function. If there is no error, 
+   * is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (val: { value: string; error: string }) => void;
+  onBlur?: (val: { value: string; error: string | null}) => void;
   /**
    * If it is defined, the component will change its appearance, showing
    * the error below the textarea. If it is not defined, the error
@@ -81,15 +80,25 @@ type Props = {
    */
   pattern?: string;
   /**
-   * Specifies the minimun and maximum length allowed by the textarea.
+   * Specifies the minimun length allowed by the textarea.
    * This will be checked both when the textarea loses the
    * focus and while typing within it. If the string entered does not
-   * comply the length, the onBlur and onChange functions will be called
+   * comply the minimum length, the onBlur and onChange functions will be called
    * with the current value and an internal error informing that the value
    * length does not comply the specified range. If a valid length is
    * reached, the error parameter of both events will be null.
    */
-  length?: { min: number; max: number };
+  minLength?: number;
+  /**
+   * Specifies the maximum length allowed by the textarea.
+   * This will be checked both when the textarea loses the
+   * focus and while typing within it. If the string entered does not
+   * comply the maximum length, the onBlur and onChange functions will be called
+   * with the current value and an internal error informing that the value
+   * length does not comply the specified range. If a valid length is
+   * reached, the error parameter of both events will be null.
+   */
+  maxLength?: number;
   /**
    * HTML autocomplete attribute. Lets the user specify if any permission the user agent has to provide automated assistance in filling out the textarea value.
    * Its value must be one of all the possible values of the HTML autocomplete attribute: 'on', 'off', 'email', 'username', 'new-password', ...
@@ -103,15 +112,15 @@ type Props = {
   /**
    * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
    */
-  size?: Size;
+  size?: "small" | "medium" | "large" | "fillParent";
   /**
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
-  /**
-   * Reference to the component.
-   */
-  ref?: React.RefObject<HTMLDivElement>;
 };
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
 
-export default function DxcTextarea(props: Props): JSX.Element;
+export default Props;

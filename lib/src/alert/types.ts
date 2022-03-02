@@ -38,7 +38,7 @@ type Props = {
    */
   margin?: Space | Margin;
   /**
-   * Size of the component ('small' | 'medium' | 'large' | 'fillParent' | 'fitContent').
+   * Size of the component.
    */
   size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   /**

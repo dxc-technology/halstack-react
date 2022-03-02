@@ -5,35 +5,40 @@ type Size = {
   left?: Space;
   right?: Space;
 };
+type SVG = React.SVGProps<SVGSVGElement>;
+
 type SocialLink = {
-  logo?: ImgElement;
-  logoSrc?: string;
-  href?: string;
+  /**
+   * Element used as the icon for the link.
+   */
+  logo: string | SVG;
+  /**
+   * URL of the page the link goes to.
+   */
+  href: string;
 };
 type BottomLink = {
-  text?: string;
-  href?: string;
+  /**
+   * Text for the link.
+   */
+  text: string;
+  /**
+   * URL of the page the link goes to.
+   */
+  href: string;
 };
-type ImgElement = HTMLElement & (SVGElement | HTMLImageElement);
 
 type FooterPropsType = {
   /**
    * An array of objects representing the links that will be rendered as
-   * icons at the top-right side of the footer. Each object has the
-   * following properties:
-   * - logo: Element used as the icon for the link.
-   * - logoSrc: The path of an icon for the link. @deprecated
-   * - href: URL of the page the link goes to.
+   * icons at the top-right side of the footer.
    */
-  socialLinks?: [SocialLink, ...SocialLink[]];
+  socialLinks?: SocialLink[];
   /**
    * An array of objects representing the links that will be rendered at
-   * the bottom part of the footer. Each object has the following
-   * properties:
-   * - text: Text for the link.
-   * - href: URL of the page the link goes to.
+   * the bottom part of the footer.
    */
-  bottomLinks?: [BottomLink, ...BottomLink[]];
+  bottomLinks?: BottomLink[];
   /**
    * The center section of the footer. Can be used to render custom
    * content in this area.

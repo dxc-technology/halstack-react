@@ -7,25 +7,25 @@ import Popover from "@material-ui/core/Popover";
 import moment from "moment";
 import DateFnsUtils from "@date-io/date-fns";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
 
 const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
       format = "dd-MM-yyyy",
-      helperText = "",
+      helperText,
       placeholder = false,
       clearable = false,
       disabled = false,
       optional = false,
       onChange,
       onBlur,
-      error = "",
+      error,
       autocomplete = "off",
       margin,
       size = "medium",

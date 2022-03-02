@@ -3,8 +3,8 @@ import styled, { ThemeProvider } from "styled-components";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
-import BackgroundColorContext from "../BackgroundColorContext.js";
+import useTheme from "../useTheme";
+import BackgroundColorContext from "../BackgroundColorContext";
 import ProgressBarPropsType from "./types";
 
 const DxcProgressBar = ({

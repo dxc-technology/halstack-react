@@ -49,7 +49,7 @@ const textInputPropsTable = () => {
           Action to be shown in the input. This is an object composed of an
           onClick function and an icon, being the latter either an inline svg or
           a URL to the image. An example of this object is: {"{ "}
-          <code>onClick: onClickFunction, icon: string | svgIcon</code>
+          <code>onClick: function, icon: string | svgIcon, title: string</code>
           {" }"}.
         </td>
       </tr>
@@ -158,18 +158,29 @@ const textInputPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>length: object</td>
+        <td>minLength: number</td>
         <td></td>
         <td>
-          Specifies the minimun and maximum length allowed by the input. It
-          follows the structure: {"{ "}
-          <code>min: number, max: number</code>
-          {" }"}. This will be checked both when the input element loses the
-          focus and while typing within it. If the string entered does not
-          comply the length, the onBlur and onChange functions will be called
-          with the current value and an internal error informing that the value
-          length does not comply the specified range. If a valid length is
-          reached, the error parameter of both events will be null.
+          Specifies the minimun length allowed by the input. This will be
+          checked both when the input element loses the focus and while typing
+          within it. If the string entered does not comply the minimum length,
+          the onBlur and onChange functions will be called with the current
+          value and an internal error informing that the value length does not
+          comply the specified range. If a valid length is reached, the error
+          parameter of both events will be null.
+        </td>
+      </tr>
+      <tr>
+        <td>maxLength: number</td>
+        <td></td>
+        <td>
+          Specifies the maximum length allowed by the input. This will be
+          checked both when the input element loses the focus and while typing
+          within it. If the string entered does not comply the maximum length,
+          the onBlur and onChange functions will be called with the current
+          value and an internal error informing that the value length does not
+          comply the specified range. If a valid length is reached, the error
+          parameter of both events will be null.
         </td>
       </tr>
       <tr>
@@ -200,7 +211,7 @@ const textInputPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'medium'</code>
         </td>

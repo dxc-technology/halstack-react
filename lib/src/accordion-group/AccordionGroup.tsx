@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import DxcAccordion from "../accordion/Accordion";
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import AccordionGroupPropsType, { AccordionPropsType } from "./types";
 
 type AccordionGroupAccordionContext = {
@@ -77,6 +77,7 @@ DxcAccordionGroup.Accordion = AccordionGroupAccordion;
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const AccordionGroupContainer = styled.div`
+  display: inline-block;
   width: ${(props) => calculateWidth(props.margin)};
 
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};

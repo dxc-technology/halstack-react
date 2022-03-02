@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import DxcButton from "../button/Button";
 import FileItem from "./FileItem";
 import FileInputPropsType from "./types";
@@ -32,6 +32,8 @@ const DxcFileInput = ({
   name = "",
   mode = "file",
   label = "",
+  buttonLabel,
+  dropAreaLabel,
   helperText = "",
   accept,
   minSize,
@@ -142,17 +144,12 @@ const DxcFileInput = ({
   };
 
   const handleDragIn = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
-      setIsDragging(true);
-    }
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) setIsDragging(true);
   };
 
   const handleDragOut = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
+    // only if dragged items leave container (outside, not to childs)
+    if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
   };
 
   const handleDrop = (e) => {
@@ -175,21 +172,15 @@ const DxcFileInput = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         {mode === "file" ? (
           <FileContainer multiple={multiple} files={files}>
-            <ButtonErrorContainer>
-              <DxcButton
-                mode="secondary"
-                label="Select files"
-                onClick={handleClick}
-                disabled={disabled}
-                size="medium"
-                tabIndex={tabIndex}
-              />
-              <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
-              {files.length === 1 &&
-                files.map((file) => {
-                  return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
-                })}
-            </ButtonErrorContainer>
+            <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+            <DxcButton
+              mode="secondary"
+              label={buttonLabel ?? (multiple ? "Select files" : "Select file")}
+              onClick={handleClick}
+              disabled={disabled}
+              size="medium"
+              tabIndex={tabIndex}
+            />
             {files.map((file) => {
               return (
                 <>
@@ -213,6 +204,7 @@ const DxcFileInput = ({
           </FileContainer>
         ) : (
           <Container>
+            <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
             <DragDropArea
               isDragging={isDragging}
               disabled={disabled}
@@ -225,14 +217,21 @@ const DxcFileInput = ({
               <ButtonContainer mode={mode}>
                 <DxcButton
                   mode="secondary"
-                  label="Select"
+                  label={buttonLabel ?? "Select"}
                   onClick={handleClick}
                   disabled={disabled}
                   size="fitContent"
                 />
-                <input id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
               </ButtonContainer>
-              <DropLabel disabled={disabled}>or drop files</DropLabel>
+              {mode === "dropzone" ? (
+                <DropzoneLabel disabled={disabled}>
+                  {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
+                </DropzoneLabel>
+              ) : (
+                <FiledropLabel disabled={disabled}>
+                  {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
+                </FiledropLabel>
+              )}
             </DragDropArea>
             {files.map((file) => {
               return (
@@ -254,6 +253,10 @@ const DxcFileInput = ({
             })}
           </Container>
         )}
+        {files.length === 1 &&
+          files.map((file) => {
+            return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
+          })}
       </FileInputContainer>
     </ThemeProvider>
   );
@@ -291,57 +294,72 @@ const HelperText = styled.span`
 `;
 
 const DragDropArea = styled.div`
-  height: ${(props) => (props.mode === "filedrop" ? "calc(48px - 2px)" : "calc(160px - 2px)")};
-  width: calc(320px - 2px);
   display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
   flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
+  ${(props) => props.mode === "dropzone" && "justify-content: center; padding: 1rem;"};
   align-items: center;
+  height: ${(props) => (props.mode === "filedrop" ? "48px" : "160px")};
+  width: 320px;
+
+  box-shadow: 0 0 0 2px transparent;
   border-radius: ${(props) => props.theme.dropBorderRadius};
-  border-width: ${(props) => (!props.isDragging ? props.theme.dropBorderThickness : "2px")};
-  border-style: ${(props) => (!props.isDragging ? props.theme.dropBorderStyle : "solid")};
-  background-color: ${(props) => props.isDragging && props.theme.dragoverDropBackgroundColor};
-  border-color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledDropBorderColor
-      : props.isDragging
-      ? props.theme.focusDropBorderColor
-      : props.theme.dropBorderColor};
+  border-width: ${(props) => props.theme.dropBorderThickness};
+  border-style: ${(props) => props.theme.dropBorderStyle};
+  border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
+
+  ${(props) =>
+    props.isDragging &&
+    `
+      background-color: ${props.theme.dragoverDropBackgroundColor};
+      border-color: transparent;
+      box-shadow: 0 0 0 2px ${props.theme.focusDropBorderColor};
+    `}
+
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;
 
 const FileContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.multiple || props.files.length > 1 ? "column" : "row")};
+  margin-top: 0.25rem;
 `;
 
-const ButtonErrorContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.25rem;
-
-  input[type="file"] {
-    visibility: hidden;
-    position: absolute;
-    width: 0px;
-    height: 0px;
-  }
+const HiddenInputFile = styled.input`
+  visibility: hidden;
+  position: absolute;
+  width: 0px;
+  height: 0px;
 `;
 
 const ButtonContainer = styled.div`
-  padding: ${(props) => (props.mode === "filedrop" ? "2px 12px 2px 2px" : "47px 122px 8px 122px")};
-  input[type="file"] {
-    visibility: hidden;
-    position: absolute;
-    width: 0px;
-    height: 0px;
-  }
+  ${(props) => props.mode === "filedrop" && "padding: 2px 12px 2px 3px"};
 `;
 
-const DropLabel = styled.span`
+const DropzoneLabel = styled.div`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  text-align: center;
+  margin-top: 0.5rem;
   color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
+`;
+
+const FiledropLabel = styled.span`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
+  font-family: ${(props) => props.theme.dropLabelFontFamily};
+  font-size: ${(props) => props.theme.dropLabelFontSize};
+  font-weight: ${(props) => props.theme.dropLabelFontWeight};
+  margin-right: 1rem;
 `;
 
 const Container = styled.div`
@@ -361,6 +379,7 @@ const ErrorMessage = styled.div`
   font-size: ${(props) => props.theme.errorMessageFontSize};
   font-weight: ${(props) => props.theme.errorMessageFontWeight};
   line-height: ${(props) => props.theme.errorMessageLineHeight};
+  margin-top: 0.25rem;
 `;
 
 export default DxcFileInput;

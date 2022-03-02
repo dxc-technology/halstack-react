@@ -5,7 +5,7 @@ import styled, { ThemeProvider } from "styled-components";
 
 import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 import TabsPropsType from "./types";
 
 const DxcTabs = ({
@@ -177,6 +177,7 @@ const DxCTabs = styled.div`
         }
       }
       &.Mui-disabled {
+        background-color: ${(props) => props.theme.unselectedBackgroundColor} !important;
         cursor: not-allowed !important;
         pointer-events: all;
         color: ${(props) => props.theme.disabledFontColor};
@@ -184,6 +185,7 @@ const DxCTabs = styled.div`
         svg {
           color: ${(props) => props.theme.disabledIconColor};
         }
+        outline: none !important;
       }
       &:focus {
         outline: ${(props) => props.theme.focusOutline} auto 1px;

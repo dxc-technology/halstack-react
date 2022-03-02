@@ -17,7 +17,7 @@ export type AccordionPropsType = {
   /**
    * The panel label.
    */
-  label?: string;
+  label: string;
   /**
    * Element used as the icon that will be placed next to panel label.
    */

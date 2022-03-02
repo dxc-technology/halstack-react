@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme.js";
+import useTheme from "../useTheme";
 
 import DxcBox from "../box/Box";
 import CardPropsType from "./types";
@@ -17,7 +17,7 @@ const DxcCard = ({
   margin,
   contentPadding,
   tabIndex = 0,
-  outlined = false,
+  outlined = true,
   children,
 }: CardPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -25,9 +25,9 @@ const DxcCard = ({
   const [isHovered, changeIsHovered] = useState(false);
 
   const tagContent = (
-    <DxcBox shadowDepth={outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
+    <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
       <ThemeProvider theme={colorsTheme.card}>
-        <CardContainer hasAction={onClick || linkHref} outlined={outlined} imagePosition={imagePosition}>
+        <CardContainer hasAction={onClick || linkHref} imagePosition={imagePosition}>
           {imageSrc && (
             <ImageContainer imageBgColor={imageBgColor}>
               <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
@@ -67,6 +67,10 @@ const StyledDxcCard = styled.div`
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
   margin-bottom: ${({ margin }) => (margin && margin.bottom ? spaces[margin.bottom] : "")};
   margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
+
+  :focus {
+    outline: #0095ff auto 1px;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -82,6 +86,10 @@ const CardContainer = styled.div`
 const StyledLink = styled.a`
   cursor: pointer;
   text-decoration: none;
+
+  :focus {
+    outline-color: #0095ff;
+  }
 `;
 
 const TagImage = styled.img`

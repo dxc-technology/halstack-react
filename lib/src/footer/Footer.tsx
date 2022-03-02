@@ -2,12 +2,20 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
 import { spaces, responsiveSizes } from "../common/variables.js";
-import useTheme from "../useTheme.js";
-import { BackgroundColorProvider } from "../BackgroundColorContext.js";
-import dxcLogo from "./Icons";
+import useTheme from "../useTheme";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
+import { dxcLogo } from "./Icons";
 import FooterPropsType from "./types";
 
-const DxcFooter = ({ socialLinks, bottomLinks, copyright = "", children, padding, margin, tabIndex = 0 }: FooterPropsType): JSX.Element => {
+const DxcFooter = ({
+  socialLinks,
+  bottomLinks,
+  copyright = `© DXC Technology ${new Date().getFullYear()}. All rights reserved.`,
+  children,
+  padding,
+  margin,
+  tabIndex = 0,
+}: FooterPropsType): JSX.Element => {
   const ref = useRef(null);
   const [refSize, setRefSize] = useState();
   const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
@@ -60,13 +68,9 @@ const DxcFooter = ({ socialLinks, bottomLinks, copyright = "", children, padding
       index={index}
       href={link && link.href ? link.href : ""}
     >
-      {link.logo ? (
-        <SocialIconContainer>
-          {typeof link.logo === "object" ? link.logo : React.createElement(link.logo)}
-        </SocialIconContainer>
-      ) : (
-        link && link.logoSrc && <SocialIcon src={link.logoSrc} />
-      )}
+      <SocialIconContainer>
+        {typeof link.logo === "string" ? <SocialIconImg src={link.logo} /> : link.logo}
+      </SocialIconContainer>
     </SocialAnchor>
   ));
 
@@ -192,14 +196,7 @@ const SocialAnchor = styled.a`
   }
 `;
 
-const SocialIcon = styled.img`
-  & {
-    display: inline-flex;
-    height: ${(props) => props.theme.socialLinksSize};
-    width: ${(props) => props.theme.socialLinksSize};
-    fill: ${(props) => props.theme.socialLinksColor};
-  }
-`;
+const SocialIconImg = styled.img``;
 
 const SocialIconContainer = styled.div`
   & {
@@ -210,7 +207,6 @@ const SocialIconContainer = styled.div`
   }
 
   overflow: hidden;
-
   img,
   svg {
     height: 100%;
