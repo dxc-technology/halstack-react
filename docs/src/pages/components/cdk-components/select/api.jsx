@@ -143,7 +143,7 @@ const selectPropsTable = () => {
           selected is not valid) will be passed to this function. An example of
           this object is: {"{ "}
           <code>value: value, error: error</code>
-          {" }"} If there is no error, error will be null.
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
