@@ -20,7 +20,7 @@ const toggleGroupPropsTable = () => {
         <td>Helper text to be placed above the component.</td>
       </tr>
       <tr>
-        <td>value: string | string[]</td>
+        <td>value: number | number[]</td>
         <td></td>
         <td>
           The key(s) of the selected value(s). If the toggle group component
@@ -72,12 +72,7 @@ const toggleGroupPropsTable = () => {
               <b>label</b>: String with the option display value.
             </li>
             <li>
-              <b>icon</b>: Element used as the icon. Icon and label can't be
-              used at same time.
-            </li>
-            <li>
-              <b>iconSrc</b>: URL of the icon that will be placed. IconSrc and
-              label can't be used at same time. <b>Deprecated.</b>
+              <b>icon</b>: Element or path used as the icon of an option.
             </li>
           </ul>
         </td>
