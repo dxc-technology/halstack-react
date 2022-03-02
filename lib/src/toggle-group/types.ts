@@ -63,7 +63,7 @@ type CommonProps = {
   tabIndex?: number;
 };
 
-type MultipleSelectionToggle = CommonProps & {
+type SingleSelectionToggle = CommonProps & {
   /**
    * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
    */
@@ -79,7 +79,7 @@ type MultipleSelectionToggle = CommonProps & {
    */
   onChange?: (optionIndex: number) => void;
 };
-type SingleSelectionToggle = CommonProps & {
+type MultipleSelectionToggle = CommonProps & {
   /**
    * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
    */
@@ -95,6 +95,6 @@ type SingleSelectionToggle = CommonProps & {
    */
   onChange?: (optionIndex: number[]) => void;
 };
-type Props = MultipleSelectionToggle | SingleSelectionToggle;
+type Props = SingleSelectionToggle | MultipleSelectionToggle;
 
 export default Props;
