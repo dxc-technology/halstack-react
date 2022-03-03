@@ -53,11 +53,24 @@ const DxcFileInput = ({
   const colorsTheme = useTheme();
 
   useEffect(() => {
-    if (value) {
-      setFiles(value);
-    } else {
-      setFiles([]);
-    }
+    const getFiles = async () => {
+      if (value) {
+        const files = await Promise.all(
+          value.map(async (file) => {
+            if (file.preview) {
+              return file;
+            } else {
+              const preview = await getFilePreview(file.file);
+              return { ...file, preview };
+            }
+          })
+        );
+        setFiles(files);
+      } else {
+        setFiles([]);
+      }
+    };
+    getFiles();
   }, [value]);
 
   const handleClick = () => {
