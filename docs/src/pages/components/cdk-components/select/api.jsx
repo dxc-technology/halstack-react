@@ -53,7 +53,7 @@ const selectPropsTable = () => {
               by <i>optional</i> prop.
             </li>
             <li>
-              <b>Icon: string | (HTMLElement & SVGElement)</b>: Element used as
+              <b>Icon: string | SVGSVGElement</b>: Element used as
               the icon that will be placed before the option label. It can be a
               url of an image or an inline SVG. If the url option is the chosen
               one, take into account that the component's color styling tokens
@@ -143,7 +143,7 @@ const selectPropsTable = () => {
           selected is not valid) will be passed to this function. An example of
           this object is: {"{ "}
           <code>value: value, error: error</code>
-          {" }"} If there is no error, error will be null.
+          {" }"}. If there is no error, error will be null.
         </td>
       </tr>
       <tr>
@@ -166,7 +166,7 @@ const selectPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'medium'</code>
         </td>
