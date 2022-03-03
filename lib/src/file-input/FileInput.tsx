@@ -55,7 +55,7 @@ const DxcFileInput = ({
   useEffect(() => {
     const getFiles = async () => {
       if (value) {
-        const files = await Promise.all(
+        const valueFiles = await Promise.all(
           value.map(async (file) => {
             if (file.preview) {
               return file;
@@ -65,9 +65,7 @@ const DxcFileInput = ({
             }
           })
         );
-        setFiles(files);
-      } else {
-        setFiles([]);
+        setFiles(valueFiles);
       }
     };
     getFiles();
