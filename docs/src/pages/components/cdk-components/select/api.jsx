@@ -166,7 +166,7 @@ const selectPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>size: string | object</td>
+        <td>size: string</td>
         <td>
           <code>'medium'</code>
         </td>

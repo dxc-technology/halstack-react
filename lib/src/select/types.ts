@@ -91,7 +91,7 @@ type CommonProps = {
    */
   margin?: Space | Margin;
   /**
-   * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
+   * Size of the component.
    */
   size?: "small" | "medium" | "large" | "fillParent";
   /**
