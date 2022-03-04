@@ -43,7 +43,6 @@ const DxcPaginator = ({
                     }}
                     value={itemsPerPage.toString()}
                     size="fillParent"
-                    margin={{ top: "xsmall" }}
                     tabIndex={tabIndex}
                   />
                 </SelectContainer>
@@ -92,7 +91,6 @@ const DxcPaginator = ({
                     }}
                     value={currentPage.toString()}
                     size="fillParent"
-                    margin={{ top: "xsmall" }}
                     tabIndex={tabIndex}
                   />
                 </SelectContainer>

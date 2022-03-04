@@ -50,11 +50,7 @@ const wizardPropsTable = () => {
               <b>description</b>: Description that will be placed next to the step.
             </li>
             <li>
-              <b>icon</b>: Element used as the icon to be displayed in the step.
-            </li>
-            <li>
-              <b>iconSrc</b>: URL of the icon to be displayed in the step.{" "}
-              <b>Deprecated.</b>
+              <b>icon</b>: Element or path used as the icon displayed in the step.
             </li>
             <li>
               <b>disabled</b>: Whether the step is disabled or not.

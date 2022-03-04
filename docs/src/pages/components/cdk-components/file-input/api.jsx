@@ -26,6 +26,16 @@ const fileInputPropsTable = () => {
           <td>Text to be placed above the component.</td>
         </tr>
         <tr>
+          <td>buttonLabel: string</td>
+          <td></td>
+          <td>Text to be placed inside the button.</td>
+        </tr>
+        <tr>
+          <td>dropAreaLabel: string</td>
+          <td></td>
+          <td>Text to be placed inside the drag and drop zone alongside the button.</td>
+        </tr>
+        <tr>
           <td>helperText: string</td>
           <td></td>
           <td>Helper text to be placed above the component.</td>

@@ -8,15 +8,15 @@ const code = `() => {
   const social = [
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logo: <img src={linkedinLogo} />
+      logo: linkedinLogo
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logo: <img src={twitterLogo} />
+      logo: twitterLogo
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logo: <img src={facebookLogo} />
+      logo: facebookLogo
     }
   ];
   const bottom = [
@@ -36,7 +36,6 @@ const code = `() => {
 
   return (
     <DxcFooter
-      copyright="© DXC Technology 2020. All rights reserved."
       bottomLinks={bottom}
       socialLinks={social}
       margin="medium"
@@ -48,7 +47,7 @@ const scope = {
   DxcFooter,
   linkedinLogo,
   twitterLogo,
-  facebookLogo
+  facebookLogo,
 };
 
 export default { code, scope };

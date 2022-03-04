@@ -7,10 +7,10 @@ import NumberInputPropsType, { RefType } from "./types";
 const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
   (
     {
-      label = "",
+      label,
       name = "",
       value,
-      helperText = "",
+      helperText,
       placeholder = "",
       disabled = false,
       optional = false,
@@ -21,7 +21,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
       step = 1,
       onChange,
       onBlur,
-      error = "",
+      error,
       autocomplete = "off",
       margin,
       size = "medium",

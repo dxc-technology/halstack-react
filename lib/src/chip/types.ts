@@ -28,7 +28,8 @@ type Props = {
   /**
    * This function will be called when the suffix is clicked.
    */
-  onClickSuffix?: (label: string | undefined) => void;
+  onClickSuffix?: () => void;
+  
   /**
    * @deprecated Path of the icon to be placed before the chip label.
    */
@@ -36,7 +37,7 @@ type Props = {
   /**
    * This function will be called when the prefix is clicked.
    */
-  onClickPrefix?: (label: string | undefined) => void;
+  onClickPrefix?: () => void;
   /**
    * If true, the component will be disabled.
    */
