@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useMemo, useRef, useState, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -5,6 +6,7 @@ import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
 import DxcCheckbox from "../checkbox/Checkbox";
+import SelectPropsType, { RefType } from "./types";
 
 const selectIcons = {
   error: (
@@ -118,7 +120,7 @@ const getLastOptionIndex = (options, filteredOptions, searchable, optional, mult
 
 const getSelectedOption = (options, multiple, optional, optionalEmptyOption, value, innerValue) => {
   const val = value ?? innerValue;
-  let selectedOption = multiple ? [] : "";
+  let selectedOption = multiple ? [] : {};
   let singleSelectionIndex;
 
   if (multiple) {
@@ -162,7 +164,7 @@ const getSelectedOption = (options, multiple, optional, optionalEmptyOption, val
   };
 };
 
-const DxcSelect = React.forwardRef(
+const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   (
     {
       label,
@@ -183,7 +185,7 @@ const DxcSelect = React.forwardRef(
       tabIndex = 0,
     },
     ref
-  ) => {
+  ): JSX.Element => {
     const [selectId] = useState(`select-${uuidv4()}`);
     const selectLabelId = `label-${selectId}`;
     const optionsListId = `${selectId}-listbox`;
@@ -487,8 +489,8 @@ const DxcSelect = React.forwardRef(
                   }}
                   onClick={handleClearOptionsActionOnClick}
                   tabIndex={-1}
-                  title="Clear selected options"
-                  aria-label="Clear selected options"
+                  title="Clear selection"
+                  aria-label="Clear selection"
                 >
                   {selectIcons.clear}
                 </ClearOptionsAction>
@@ -536,8 +538,8 @@ const DxcSelect = React.forwardRef(
                 }}
                 onClick={handleClearSearchActionOnClick}
                 tabIndex={-1}
-                title="Clear search text"
-                aria-label="Clear search text"
+                title="Clear search"
+                aria-label="Clear search"
               >
                 {selectIcons.clear}
               </ClearSearchAction>
