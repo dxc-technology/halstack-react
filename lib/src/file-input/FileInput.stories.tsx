@@ -21,6 +21,9 @@ const file3 = new File(["file3"], "file3.png", {
 const file4 = new File(["file4"], "file4file4file4file4file4file4file4file4file4.mp4", {
   type: "video",
 });
+const file5 = new File(["file4"], "file5file5file5file5file5file5file5file5file5.mp4", {
+  type: "video",
+});
 
 const fileExample = [
   {
@@ -49,25 +52,14 @@ const filesExamples = [
   {
     file: file4,
   },
-];
-
-const filesExamplesError = [
   {
-    error: "Error message",
-    file: file1,
-  },
-  {
-    error: "Error message",
-    file: file2,
+    error: "Error message error message error message error message",
+    file: file5,
   },
   {
     error: "Error message",
     file: file3,
     preview: picPreview,
-  },
-  {
-    error: "Error message error message error message error message",
-    file: file4,
   },
 ];
 
@@ -123,30 +115,11 @@ export const Chromatic = () => (
       <DxcFileInput label="File input" helperText="Please select files" value={filesExamples} callbackFile={() => {}} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Invalid multiple files" theme="light" level={4} />
-      <DxcFileInput
-        label="File input"
-        helperText="Please select files"
-        value={filesExamplesError}
-        callbackFile={() => {}}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
       <Title title="Show preview" theme="light" level={4} />
       <DxcFileInput
         label="File input"
         helperText="Please select files"
         value={filesExamples}
-        callbackFile={() => {}}
-        showPreview
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Show preview invalid files" theme="light" level={4} />
-      <DxcFileInput
-        label="File input"
-        helperText="Please select files"
-        value={filesExamplesError}
         callbackFile={() => {}}
         showPreview
       />
@@ -236,10 +209,11 @@ export const Chromatic = () => (
       <DxcFileInput mode="filedrop" label="File input" value={[]} callbackFile={() => {}} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With label and helper text" theme="light" level={4} />
+      <Title title="With label, helper text and ellipsis" theme="light" level={4} />
       <DxcFileInput
         mode="filedrop"
         label="File input"
+        dropAreaLabel="or drop files or drop files or drop files or drop files or drop files"
         helperText="Please select files"
         value={[]}
         callbackFile={() => {}}
@@ -278,33 +252,12 @@ export const Chromatic = () => (
       />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Invalid multiple files" theme="light" level={4} />
-      <DxcFileInput
-        mode="filedrop"
-        label="File input"
-        helperText="Please select files"
-        value={filesExamplesError}
-        callbackFile={() => {}}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
       <Title title="Show preview" theme="light" level={4} />
       <DxcFileInput
         mode="filedrop"
         label="File input"
         helperText="Please select files"
         value={filesExamples}
-        callbackFile={() => {}}
-        showPreview
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Show preview invalid files" theme="light" level={4} />
-      <DxcFileInput
-        mode="filedrop"
-        label="File input"
-        helperText="Please select files"
-        value={filesExamplesError}
         callbackFile={() => {}}
         showPreview
       />
@@ -407,11 +360,12 @@ export const Chromatic = () => (
       <DxcFileInput label="File input" mode="dropzone" value={[]} callbackFile={() => {}} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With label and helper text" theme="light" level={4} />
+      <Title title="With label, helper text and ellipsis" theme="light" level={4} />
       <DxcFileInput
         label="File input"
         helperText="Please select files"
         mode="dropzone"
+        dropAreaLabel="or drop files or drop files or drop files or drop files or drop files or drop files or drop files or drop files or drop files or drop files or drop files or drop files or drop files or drop files"
         value={[]}
         callbackFile={() => {}}
       />
@@ -449,33 +403,12 @@ export const Chromatic = () => (
       />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Invalid multiple files" theme="light" level={4} />
-      <DxcFileInput
-        mode="dropzone"
-        label="File input"
-        helperText="Please select files"
-        value={filesExamplesError}
-        callbackFile={() => {}}
-      />
-    </ExampleContainer>
-    <ExampleContainer>
       <Title title="Show preview" theme="light" level={4} />
       <DxcFileInput
         mode="dropzone"
         label="File input"
         helperText="Please select files"
         value={filesExamples}
-        callbackFile={() => {}}
-        showPreview
-      />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Show preview invalid files" theme="light" level={4} />
-      <DxcFileInput
-        mode="dropzone"
-        label="File input"
-        helperText="Please select files"
-        value={filesExamplesError}
         callbackFile={() => {}}
         showPreview
       />
