@@ -5,10 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import DxcRadio from "./Radio";
 
-const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
-
-const notOptionalCheck = (value: string, optional: boolean) => value === "" && !optional;
-
 const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
   (
     {
@@ -16,12 +12,12 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       name,
       helperText,
       options,
-      disabled,
-      optional,
+      disabled = false,
+      optional = false,
       optionalOptionLabel = "None",
-      readonly,
+      readonly = false,
       stacking = "column",
-      defaultValue,
+      defaultValue = "",
       value,
       onChange,
       error,
@@ -31,7 +27,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const [radioGroupId] = useState(`select-${uuidv4()}`);
     const radioGroupLabelId = `label-${radioGroupId}`;
 
-    const [innerValue, setInnerValue] = useState("");
+    const [innerValue, setInnerValue] = useState(defaultValue);
 
     const colorsTheme = useTheme();
 
@@ -50,11 +46,11 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       <ThemeProvider theme={colorsTheme.radioGroup}>
         <RadioGroupContainer ref={ref}>
           {label && (
-            <Label id={radioGroupLabelId} helperText={helperText}>
+            <Label id={radioGroupLabelId} helperText={helperText} disabled={disabled}>
               {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
             </Label>
           )}
-          {helperText && <HelperText>{helperText}</HelperText>}
+          {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <RadioGroup stacking={stacking} role="radiogroup" aria-labelledby={radioGroupLabelId}>
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
             {optional && (
@@ -62,10 +58,18 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
                 option={{ label: optionalOptionLabel, value: "", disabled }}
                 value={value ?? innerValue}
                 onChange={handleOnChange}
+                disabled={disabled}
+                error={error}
               />
             )}
             {options.map((option) => (
-              <DxcRadio option={option} value={value ?? innerValue} onChange={handleOnChange} error={error} />
+              <DxcRadio
+                option={option}
+                value={value ?? innerValue}
+                onChange={handleOnChange}
+                disabled={disabled}
+                error={error}
+              />
             ))}
           </RadioGroup>
           {!disabled && typeof error === "string" && <Error>{error}</Error>}
@@ -83,9 +87,10 @@ const RadioGroupContainer = styled.div`
 
 type LabelProps = {
   helperText?: string;
+  disabled?: boolean;
 };
 const Label = styled.span<LabelProps>`
-  color: ${(props) => props.theme.labelFontColor};
+  color: ${(props) => props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
@@ -98,8 +103,11 @@ const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span`
-  color: ${(props) => props.theme.helperTextFontColor};
+type HelperTextProps = {
+  disabled?: boolean;
+};
+const HelperText = styled.span<HelperTextProps>`
+  color: ${(props) => (props.disabled ? props.theme.disabledHelperTextFontColor : props.theme.helperTextFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};

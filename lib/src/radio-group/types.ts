@@ -26,6 +26,7 @@ export type RadioProps = {
   option: Option;
   value: string;
   onChange: (optionValue: string) => void;
+  disabled: boolean;
   error?: string;
 };
 

@@ -4,11 +4,14 @@ import { RadioProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 
-const DxcRadio = ({ option, value, onChange, error }: RadioProps): JSX.Element => {
+const DxcRadio = ({ option, value, onChange, disabled, error }: RadioProps): JSX.Element => {
   const [radioId] = useState(`radio-${uuidv4()}`);
   const radioRef = useRef(document.createElement("div"));
   const colorsTheme = useTheme();
 
+  const handleRadioOnClick = () => {
+    onChange(option.value);
+  };
   const handleLabelOnClick = () => {
     onChange(option.value);
     radioRef?.current.focus();
@@ -19,11 +22,9 @@ const DxcRadio = ({ option, value, onChange, error }: RadioProps): JSX.Element =
       <RadioContainer>
         <Radio
           id={radioId}
-          disabled={option.disabled}
+          disabled={disabled ? disabled : option.disabled}
           error={error}
-          onClick={() => {
-            onChange(option.value);
-          }}
+          onClick={handleRadioOnClick}
           role="radio"
           aria-checked={option.value === value}
           tabIndex={0}
@@ -31,7 +32,7 @@ const DxcRadio = ({ option, value, onChange, error }: RadioProps): JSX.Element =
         >
           {option.value === value && <Point error={error} />}
         </Radio>
-        <Label onClick={handleLabelOnClick} htmlFor={radioId} disabled={option.disabled}>
+        <Label onClick={handleLabelOnClick} htmlFor={radioId} disabled={disabled ? disabled : option.disabled}>
           {option.label}
         </Label>
       </RadioContainer>
@@ -55,34 +56,52 @@ const Radio = styled.div<RadioElementProps>`
   box-sizing: border-box;
   width: 18px;
   height: 18px;
-  border: 2px solid ${(props) => (props.error ? props.theme.errorRadioInputColor : props.theme.radioInputColor)};
+  border: 2px solid
+    ${(props) =>
+      props.disabled
+        ? props.theme.disabledRadioInputColor
+        : props.error
+        ? props.theme.errorRadioInputColor
+        : props.theme.radioInputColor};
   border-radius: 50%;
   box-shadow: 0 0 0 2px transparent;
 
-  &:focus {
-    outline: 2px solid ${(props) => props.theme.focusBorderColor};
-    outline-offset: 1px;
-  }
-  &:focus-visible {
-    outline: 2px solid ${(props) => props.theme.focusBorderColor};
-    outline-offset: 1px;
-  }
-  &:hover {
-    cursor: pointer;
-    border-color: ${(props) => props.theme.hoverInputColor};
-
-    & > span {
-      background-color: ${(props) => props.theme.hoverInputColor};
-    }
-  }
-  &:active {
-    cursor: pointer;
-    border-color: ${(props) => props.theme.activeInputColor};
-
-    & > span {
-      background-color: ${(props) => props.theme.activeInputColor};
-    }
-  }
+  ${(props) =>
+    !props.disabled
+      ? `
+        &:focus {
+          outline: 2px solid ${props.theme.focusBorderColor};
+          outline-offset: 1px;
+        }
+        &:focus-visible {
+          outline: 2px solid ${props.theme.focusBorderColor};
+          outline-offset: 1px;
+        }
+        &:hover {
+          cursor: pointer;
+          border-color: ${props.error ? props.theme.hoverErrorRadioInputColor : props.theme.hoverInputColor};
+          & > span {
+            background-color: ${props.error ? props.theme.hoverErrorRadioInputColor : props.theme.hoverInputColor};
+          }
+        }
+        &:active {
+          cursor: pointer;
+          border-color: ${props.error ? props.theme.activeErrorInputColor : props.theme.activeInputColor};
+          & > span {
+            background-color: ${props.error ? props.theme.activeErrorInputColor : props.theme.activeInputColor};
+          }
+        }
+      `
+      : `
+        & > span {
+          background-color: ${props.theme.disabledRadioInputColor};
+        }
+        cursor: not-allowed;
+        pointer-events: none;
+        :focus-visible {
+          outline: none;
+        }
+      `}
 `;
 
 type PointProps = {
@@ -105,6 +124,7 @@ const Label = styled.label<LabelProps>`
   font-style: ${(props) => props.theme.radioInputLabelFontStyle};
   font-weight: ${(props) => props.theme.radioInputLabelFontWeight};
   line-height: ${(props) => props.theme.radioInputLabelLineHeight};
+  ${(props) => props.disabled && `color: ${props.theme.disabledRadioInputLabelFontColor}; pointer-events: none;`}
 `;
 
 export default React.memo(DxcRadio);
