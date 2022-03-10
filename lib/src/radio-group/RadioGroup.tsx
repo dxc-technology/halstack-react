@@ -14,10 +14,10 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       options,
       disabled = false,
       optional = false,
-      optionalOptionLabel = "None",
+      optionalItemLabel = "None",
       readonly = false,
       stacking = "column",
-      defaultValue = "",
+      defaultValue,
       value,
       onChange,
       error,
@@ -53,24 +53,25 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <RadioGroup stacking={stacking} role="radiogroup" aria-labelledby={radioGroupLabelId}>
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
+            {options.map((option, index) => (
+              <DxcRadio
+                option={option}
+                currentValue={value ?? innerValue}
+                onChange={handleOnChange}
+                disabledRadioGroup={disabled}
+                error={error}
+                first={!value && !innerValue && index === 0}
+              />
+            ))}
             {optional && (
               <DxcRadio
-                option={{ label: optionalOptionLabel, value: "", disabled }}
-                value={value ?? innerValue}
+                option={{ label: optionalItemLabel, value: "", disabled }}
+                currentValue={value ?? innerValue}
                 onChange={handleOnChange}
-                disabled={disabled}
+                disabledRadioGroup={disabled}
                 error={error}
               />
             )}
-            {options.map((option) => (
-              <DxcRadio
-                option={option}
-                value={value ?? innerValue}
-                onChange={handleOnChange}
-                disabled={disabled}
-                error={error}
-              />
-            ))}
           </RadioGroup>
           {!disabled && typeof error === "string" && <Error>{error}</Error>}
         </RadioGroupContainer>
@@ -90,7 +91,7 @@ type LabelProps = {
   disabled?: boolean;
 };
 const Label = styled.span<LabelProps>`
-  color: ${(props) => props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor};
+  color: ${(props) => (props.disabled ? props.theme.disabledLabelFontColor : props.theme.labelFontColor)};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
@@ -113,7 +114,7 @@ const HelperText = styled.span<HelperTextProps>`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 `;
 
 type RadioGroupProps = {
@@ -121,10 +122,11 @@ type RadioGroupProps = {
 };
 const RadioGroup = styled.div<RadioGroupProps>`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: ${(props) => props.stacking};
 
   div + div {
-    ${(props) => (props.stacking === "column" ? "margin-top: 0.5rem;" : "margin-left: 2rem;")};
+    ${(props) => (props.stacking === "column" ? "margin-top: 0.25rem;" : "margin-left: 2rem;")};
   }
 `;
 
@@ -139,7 +141,7 @@ const Error = styled.span`
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.5em;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 `;
 
 export default DxcRadioGroup;

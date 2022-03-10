@@ -4,35 +4,40 @@ import { RadioProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 
-const DxcRadio = ({ option, value, onChange, disabled, error }: RadioProps): JSX.Element => {
-  const [radioId] = useState(`radio-${uuidv4()}`);
-  const radioRef = useRef(document.createElement("div"));
+const DxcRadio = ({ option, currentValue, onChange, disabledRadioGroup, error, first = false }: RadioProps): JSX.Element => {
+  const [radioLabelId] = useState(`radio-${uuidv4()}`);
+  const radioRef = useRef<HTMLDivElement>(null);
   const colorsTheme = useTheme();
+
+  const checked = option.value === currentValue;
+  const disabled = disabledRadioGroup || option.disabled;
 
   const handleRadioOnClick = () => {
     onChange(option.value);
   };
   const handleLabelOnClick = () => {
     onChange(option.value);
-    radioRef?.current.focus();
+    radioRef?.current?.focus();
   };
 
   return (
     <ThemeProvider theme={colorsTheme.radioGroup}>
       <RadioContainer>
-        <Radio
-          id={radioId}
-          disabled={disabled ? disabled : option.disabled}
-          error={error}
-          onClick={handleRadioOnClick}
-          role="radio"
-          aria-checked={option.value === value}
-          tabIndex={0}
-          ref={radioRef}
-        >
-          {option.value === value && <Point error={error} />}
-        </Radio>
-        <Label onClick={handleLabelOnClick} htmlFor={radioId} disabled={disabled ? disabled : option.disabled}>
+        <RadioInputContainer>
+          <RadioInput
+            disabled={disabled}
+            error={error}
+            onClick={handleRadioOnClick}
+            role="radio"
+            aria-checked={checked}
+            aria-labelledby={radioLabelId}
+            tabIndex={(checked || first) && !disabled ? 0 : -1}
+            ref={radioRef}
+          >
+            {checked && <Dot error={error} />}
+          </RadioInput>
+        </RadioInputContainer>
+        <Label id={radioLabelId} onClick={handleLabelOnClick} disabled={disabled}>
           {option.label}
         </Label>
       </RadioContainer>
@@ -45,11 +50,19 @@ const RadioContainer = styled.div`
   align-items: center;
 `;
 
-type RadioElementProps = {
+const RadioInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+`;
+
+type RadioInputProps = {
   disabled?: boolean;
   error?: string;
 };
-const Radio = styled.div<RadioElementProps>`
+const RadioInput = styled.div<RadioInputProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,10 +117,10 @@ const Radio = styled.div<RadioElementProps>`
       `}
 `;
 
-type PointProps = {
+type DotProps = {
   error?: string;
 };
-const Point = styled.span<PointProps>`
+const Dot = styled.span<DotProps>`
   height: 10px;
   width: 10px;
   background-color: ${(props) => (props.error ? props.theme.errorRadioInputColor : props.theme.radioInputColor)};

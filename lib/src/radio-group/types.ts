@@ -11,7 +11,7 @@ type RadioGroupProps = {
   options: Option[];
   disabled?: boolean;
   optional?: boolean;
-  optionalOptionLabel?: string;
+  optionalItemLabel?: string;
   readonly?: boolean;
   stacking?: "row" | "column";
   defaultValue?: string;
@@ -24,10 +24,15 @@ export type RefType = HTMLDivElement;
 
 export type RadioProps = {
   option: Option;
-  value: string;
+  currentValue?: string;
   onChange: (optionValue: string) => void;
-  disabled: boolean;
+  disabledRadioGroup: boolean;
   error?: string;
+  /**
+   * True if it is the first radio/option and there isn't any other radio in the radio group checked. 
+   * False in any other case. When the radio group gains the focus, it should give it to the first radio/option.
+   */
+  first?: boolean;
 };
 
 export default RadioGroupProps;

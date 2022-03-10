@@ -35,7 +35,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Single disabled" theme="light" level={4} />
-      <DxcRadioGroup label="Disabled" helperText="Helper text" options={single_disabled_options} optional defaultValue="1" />
+      <DxcRadioGroup label="Disabled" helperText="Helper text" options={single_disabled_options} optional defaultValue="3" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Optional" theme="light" level={4} />
