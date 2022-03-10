@@ -1,6 +1,6 @@
+// @ts-nocheck
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";

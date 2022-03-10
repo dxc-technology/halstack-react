@@ -36,7 +36,7 @@ const StyledRow = styled.div`
       default:
         return "initial";
     }
-  }}};
+  }};
   justify-content: ${({ justify }: RowProps) => {
     switch (justify) {
       case "spaceBetween":

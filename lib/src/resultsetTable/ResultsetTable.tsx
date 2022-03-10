@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";

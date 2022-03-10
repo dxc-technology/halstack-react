@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";

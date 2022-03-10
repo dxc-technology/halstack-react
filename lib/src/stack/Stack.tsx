@@ -47,7 +47,7 @@ const StyledStack = styled.div`
       default:
         return "initial";
     }
-  }}};
+  }};
   gap: ${({ gutter, divider }: StackProps) => {
     switch (gutter) {
       case "none":
