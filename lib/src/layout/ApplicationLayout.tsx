@@ -1,4 +1,4 @@
-/* eslint-disable react/require-default-props */
+// @ts-nocheck
 import React, { useState, useEffect, useRef } from "react";
 import { DxcHeader, DxcFooter, DxcSidenav } from "../main";
 import styled, { ThemeProvider } from "styled-components";
