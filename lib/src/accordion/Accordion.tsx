@@ -29,7 +29,7 @@ const DxcAccordion = ({
   const colorsTheme = useTheme();
 
   const handleResize = (width) => {
-    (width && width <= responsiveSizes.tablet) ? setIsResponsive(true) : setIsResponsive(false);
+    width && width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false);
   };
 
   const handleEventListener = () => {
@@ -96,7 +96,7 @@ const DxcAccordion = ({
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DXCAccordion = styled.div`
-  display: flex;
+  display: inline-flex;
   min-width: 280px;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
