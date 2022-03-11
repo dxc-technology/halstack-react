@@ -80,6 +80,7 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
   const colorsTheme = useTheme();
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
+  const [previousWidth, setPreviousWidth] = useState(null);
 
   const childrenArray = React.Children.toArray(children);
 
@@ -102,13 +103,14 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
 
   const handleResize = (width) => {
     if (width) {
+      setPreviousWidth(width);
       setIsResponsive(width <= responsiveSizes.tablet);
       setIsSideNavVisible(true);
     }
   };
 
   const handleEventListener = () => {
-    handleResize(ref.current.offsetWidth);
+    if (previousWidth !== ref.current.offsetWidth) handleResize(ref.current.offsetWidth);
   };
 
   useEffect(() => {
@@ -119,7 +121,7 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
     return () => {
       window.removeEventListener("resize", handleEventListener);
     };
-  }, []);
+  }, [ref.current]);
 
   const handleSidenav = () => {
     setIsSideNavVisible(!isSideNavVisible);
