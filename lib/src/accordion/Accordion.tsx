@@ -138,11 +138,10 @@ const DXCAccordion = styled.div`
       height: 48px;
 
       :focus {
+        outline-color: ${(props) => props.theme.focusBorderColor};
+        outline-style: ${(props) => props.theme.focusBorderStyle};
+        outline-width: ${(props) => props.theme.focusBorderThickness};
         background-color: ${(props) => props.theme.backgroundColor};
-        border-color: ${(props) => props.theme.focusBorderColor};
-        border-radius: ${(props) => props.theme.borderRadius};
-        border-width: ${(props) => props.theme.focusBorderThickness};
-        border-style: ${(props) => props.theme.focusBorderStyle};
       }
       :hover {
         background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
