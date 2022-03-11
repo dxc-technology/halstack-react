@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 type RowProps = {
-  gutter?: "none" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
+  gutter?: "none" | "xxxsmall" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
   align?: "start" | "center" | "end" | "baseline" | "stretch";
   justify?: "start" | "center" | "end" | "spaceBetween" | "spaceAround" | "spaceEvenly";
   wrap?: boolean;
