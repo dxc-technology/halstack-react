@@ -301,6 +301,7 @@ export const Chromatic = () => (
           lobortis eget.
         </div>
       </DxcAccordion>
+      <hr />
     </ExampleContainer>
   </>
 );

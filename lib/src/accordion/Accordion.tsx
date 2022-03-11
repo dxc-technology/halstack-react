@@ -96,7 +96,7 @@ const DxcAccordion = ({
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
 const DXCAccordion = styled.div`
-  display: inline-flex;
+  display: flex;
   min-width: 280px;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
