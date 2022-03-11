@@ -48,6 +48,7 @@ export const Chromatic = () => (
       <DxcHeading text="Xlarge" margin="xlarge" />
       <Title title="Xxlarge" theme="light" level={4} />
       <DxcHeading text="Xxlarge" margin="xxlarge" />
+      <hr />
     </ExampleContainer>
   </>
 );
