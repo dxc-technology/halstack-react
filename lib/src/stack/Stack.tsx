@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 type StackProps = {
-  gutter?: "none" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
+  gutter?: "none" | "xxxsmall" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
   divider?: boolean;
   align?: "start" | "center" | "end" | "baseline" | "stretch";
   as?: React.ElementType;
