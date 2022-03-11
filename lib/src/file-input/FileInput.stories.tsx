@@ -65,18 +65,6 @@ const filesExamples = [
 
 export const Chromatic = () => (
   <>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="File item hovered" theme="light" level={4} />
-      <DxcFileInput value={fileExample} callbackFile={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="File item focused" theme="light" level={4} />
-      <DxcFileInput value={fileExample} callbackFile={() => {}} />
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="File item actived" theme="light" level={4} />
-      <DxcFileInput value={fileExample} callbackFile={() => {}} />
-    </ExampleContainer>
     <Title title="File" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
@@ -501,7 +489,18 @@ export const Chromatic = () => (
         mode="dropzone"
         margin="xxlarge"
       />
-      <hr />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="File item hovered" theme="light" level={4} />
+      <DxcFileInput value={fileExample} callbackFile={() => {}} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="File item focused" theme="light" level={4} />
+      <DxcFileInput value={fileExample} callbackFile={() => {}} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="File item actived" theme="light" level={4} />
+      <DxcFileInput value={fileExample} callbackFile={() => {}} />
     </ExampleContainer>
   </>
 );
