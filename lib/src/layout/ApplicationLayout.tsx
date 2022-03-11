@@ -27,7 +27,7 @@ const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => {
 };
 
 const SideNav = (props): JSX.Element => {
-  const { displayArrow=true, mode="overlay", ...childProps }: AppLayoutSidenavPropsType = props;
+  const { displayArrow = true, mode = "overlay", ...childProps }: AppLayoutSidenavPropsType = props;
   return <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>;
 };
 
@@ -258,6 +258,9 @@ const ArrowTrigger = styled.div`
   cursor: pointer;
   & > svg {
     fill: ${(props) => props.theme.arrowColor};
+  }
+  :focus {
+    outline: #0095ff auto 1px;
   }
 `;
 
