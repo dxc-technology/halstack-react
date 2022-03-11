@@ -52,22 +52,24 @@ const StyledStack = styled.div`
     switch (gutter) {
       case "none":
         return "0";
-      case "xxsmall":
+      case "xxxsmall":
         return `calc(0.125rem / ${divider ? 2 : 1})`;
-      case "xsmall":
+      case "xxsmall":
         return `calc(0.25rem / ${divider ? 2 : 1})`;
-      case "small":
+      case "xsmall":
         return `calc(0.5rem / ${divider ? 2 : 1})`;
-      case "medium":
+      case "small":
         return `calc(1rem / ${divider ? 2 : 1})`;
-      case "large":
+      case "medium":
         return `calc(1.5rem / ${divider ? 2 : 1})`;
-      case "xlarge":
+      case "large":
         return `calc(2rem / ${divider ? 2 : 1})`;
-      case "xxlarge":
+      case "xlarge":
         return `calc(3rem / ${divider ? 2 : 1})`;
-      case "xxxlarge":
+      case "xxlarge":
         return `calc(4rem / ${divider ? 2 : 1})`;
+      case "xxxlarge":
+        return `calc(5rem / ${divider ? 2 : 1})`;
       default:
         return "0";
     }
