@@ -58,6 +58,14 @@ export const Chromatic = () => (
         <Placeholder paddingLeft={60}></Placeholder>
       </DxcStack>
     </Container>
+    <Title title="gutter = xxxsmall" theme="light" level={4} />
+    <Container>
+      <DxcStack gutter="xxxsmall">
+        <Placeholder></Placeholder>
+        <Placeholder></Placeholder>
+        <Placeholder></Placeholder>
+      </DxcStack>
+    </Container>
     <Title title="gutter = xxsmall" theme="light" level={4} />
     <Container>
       <DxcStack gutter="xxsmall">
