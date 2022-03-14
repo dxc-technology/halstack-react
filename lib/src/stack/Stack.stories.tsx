@@ -122,6 +122,14 @@ export const Chromatic = () => (
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
+    <Title title="gutter = xxxlarge" theme="light" level={4} />
+    <Container>
+      <DxcStack gutter="xxxlarge">
+        <Placeholder></Placeholder>
+        <Placeholder></Placeholder>
+        <Placeholder></Placeholder>
+      </DxcStack>
+    </Container>
     <Title title="gutter = xxlarge && divider" theme="light" level={4} />
     <Container>
       <DxcStack gutter="xxlarge" divider>
