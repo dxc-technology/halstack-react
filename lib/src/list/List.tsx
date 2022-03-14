@@ -5,7 +5,7 @@ import DxcText from "../text/Text";
 
 type ListProps = {
   children: React.ReactNode;
-  gutter?: "none" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
+  gutter?: "none" | "xxxsmall" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
   type?: "disc" | "circle" | "square" | "number";
 };
 
