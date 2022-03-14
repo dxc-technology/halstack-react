@@ -1,9 +1,14 @@
 import React, { useCallback, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import RadioGroupPropsType, { RefType } from "./types";
+import RadioGroupPropsType, { RefType, Option } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import DxcRadio from "./Radio";
+
+const getInitialIndex = (innerOptions: Option[], value?: string) => {
+  const initialSelectedOptionIndex = innerOptions.findIndex((option) => option.value === value);
+  return initialSelectedOptionIndex !== -1 ? initialSelectedOptionIndex : 0;
+};
 
 const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
   (
@@ -14,7 +19,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       options,
       disabled = false,
       optional = false,
-      optionalItemLabel = "None",
+      optionalItemLabel = "N/A",
       readonly = false,
       stacking = "column",
       defaultValue,
@@ -28,18 +33,62 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const radioGroupLabelId = `label-${radioGroupId}`;
 
     const [innerValue, setInnerValue] = useState(defaultValue);
+    const [firstTimeFocus, setFirstTimeFocus] = useState(true);
+
+    const optionalItem = { label: optionalItemLabel, value: "", disabled };
+    const innerOptions = useMemo(() => (optional ? [...options, optionalItem] : options), [optional, options]);
+    const [currentFocusIndex, setCurrentFocusIndex] = useState(getInitialIndex(innerOptions, value ?? innerValue));
 
     const colorsTheme = useTheme();
 
     const handleOnChange = useCallback(
-      (optionValue: string) => {
-        const val = value ?? innerValue;
-        if (optionValue !== val) {
-          value ?? setInnerValue(optionValue);
-          onChange?.({ value: optionValue });
+      (newValue: string) => {
+        const currentValue = value ?? innerValue;
+        if (newValue !== currentValue) {
+          value ?? setInnerValue(newValue);
+          onChange?.(newValue);
         }
       },
       [value, innerValue, setInnerValue, onChange]
+    );
+    const handleOnBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+      // If the radio group loses the focus to an element not contained inside it...
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        setCurrentFocusIndex(getInitialIndex(innerOptions, value ?? innerValue));
+        !(value ?? innerValue) && setFirstTimeFocus(true);
+      }
+    };
+
+    const setPreviousRadioChecked = () => {
+      if (!disabled) {
+        setCurrentFocusIndex((currentFocusIndex) =>
+          currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1
+        );
+      }
+    };
+    const setNextRadioChecked = () => {
+      if (!disabled) {
+        setCurrentFocusIndex((currentFocusIndex) =>
+          currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1
+        );
+      }
+    };
+    const handleOnKeyDown = useCallback(
+      (event) => {
+        switch (event.keyCode) {
+          case 37: // arrow left
+          case 38: // arrow up
+            event.preventDefault();
+            setPreviousRadioChecked();
+            break;
+          case 39: // arrow right
+          case 40: // arrow down
+            event.preventDefault();
+            setNextRadioChecked();
+            break;
+        }
+      },
+      [options, setCurrentFocusIndex]
     );
 
     return (
@@ -51,27 +100,29 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <RadioGroup stacking={stacking} role="radiogroup" aria-labelledby={radioGroupLabelId}>
+          <RadioGroup
+            stacking={stacking}
+            role="radiogroup"
+            aria-labelledby={radioGroupLabelId}
+            onBlur={handleOnBlur}
+            onKeyDown={handleOnKeyDown}
+          >
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
-            {options.map((option, index) => (
+            {innerOptions.map((option, index) => (
               <DxcRadio
+                changeCurrentFocusIndex={() => {
+                  setCurrentFocusIndex(index);
+                }}
                 option={option}
                 currentValue={value ?? innerValue}
                 onChange={handleOnChange}
-                disabledRadioGroup={disabled}
                 error={error}
-                first={!value && !innerValue && index === 0}
+                disabled={option.disabled || disabled}
+                focused={currentFocusIndex === index}
+                firstTimeFocus={firstTimeFocus}
+                setFirstTimeFocus={setFirstTimeFocus}
               />
             ))}
-            {optional && (
-              <DxcRadio
-                option={{ label: optionalItemLabel, value: "", disabled }}
-                currentValue={value ?? innerValue}
-                onChange={handleOnChange}
-                disabledRadioGroup={disabled}
-                error={error}
-              />
-            )}
           </RadioGroup>
           {!disabled && typeof error === "string" && <Error>{error}</Error>}
         </RadioGroupContainer>

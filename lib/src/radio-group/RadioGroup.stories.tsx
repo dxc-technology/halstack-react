@@ -11,6 +11,7 @@ const options = [
   { label: "Option 1", value: "1" },
   { label: "Option 2", value: "2" },
   { label: "Option 3", value: "3" },
+  { label: "Option 4", value: "4" },
 ];
 
 const single_disabled_options = [
@@ -23,7 +24,7 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Default (column)" theme="light" level={4} />
-      <DxcRadioGroup label="Example" helperText="Helper text" options={options} />
+      <DxcRadioGroup label="Example" helperText="Helper text" options={options} defaultValue="3" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Row" theme="light" level={4} />
@@ -35,13 +36,13 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Single disabled" theme="light" level={4} />
-      <DxcRadioGroup label="Disabled" helperText="Helper text" options={single_disabled_options} optional defaultValue="3" />
+      <DxcRadioGroup label="Disabled" helperText="Helper text" options={single_disabled_options} defaultValue="3" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Optional" theme="light" level={4} />
       <DxcRadioGroup
         label="Example"
-        optionalOptionLabel="No selection"
+        optionalItemLabel="No selection"
         optional
         helperText="Helper text"
         options={options}
