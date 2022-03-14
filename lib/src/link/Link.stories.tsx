@@ -142,15 +142,6 @@ export const Chromatic = () => (
       <DxcLink text="Test" margin="xlarge" href="https://www.linkedin.com/"></DxcLink>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcLink text="Test" margin="xxlarge" href="https://www.linkedin.com/"></DxcLink>
-      <StyledDiv></StyledDiv>
     </ExampleContainer>
   </>
 );
-
-const StyledDiv = styled.div`
-  background: red;
-  border-radius: 2px;
-  outline: blue solid 2px;
-  width: 120px;
-  height: 120px;
-`;
