@@ -2,7 +2,6 @@ import React from "react";
 import DxcLink from "./Link";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import styled from "styled-components";
 
 export default {
   title: "Link",
