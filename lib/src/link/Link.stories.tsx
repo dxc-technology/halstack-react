@@ -151,6 +151,6 @@ const StyledDiv = styled.div`
   background: red;
   border-radius: 2px;
   outline: blue solid 2px;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
 `;
