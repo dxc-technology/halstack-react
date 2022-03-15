@@ -1,24 +1,33 @@
-import React, { useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { RadioProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 
-const DxcRadio = ({ option, currentValue, onChange, disabledRadioGroup, error, first = false }: RadioProps): JSX.Element => {
+const DxcRadio = ({
+  option,
+  currentValue,
+  onClick,
+  onFocus,
+  error,
+  disabled,
+  focused,
+}: RadioProps): JSX.Element => {
   const [radioLabelId] = useState(`radio-${uuidv4()}`);
-  const radioRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const colorsTheme = useTheme();
 
   const checked = option.value === currentValue;
-  const disabled = disabledRadioGroup || option.disabled;
 
-  const handleRadioOnClick = () => {
-    onChange(option.value);
-  };
-  const handleLabelOnClick = () => {
-    onChange(option.value);
-    radioRef?.current?.focus();
-  };
+  const [firstUpdate, setFirstUpdate] = useState(true);
+  useLayoutEffect(() => {
+    // Don't apply in the first render
+    if (firstUpdate) {
+      setFirstUpdate(false);
+      return;
+    }
+    focused && ref?.current?.focus();
+  }, [focused]);
 
   return (
     <ThemeProvider theme={colorsTheme.radioGroup}>
@@ -27,17 +36,25 @@ const DxcRadio = ({ option, currentValue, onChange, disabledRadioGroup, error, f
           <RadioInput
             disabled={disabled}
             error={error}
-            onClick={handleRadioOnClick}
+            onClick={onClick}
+            onFocus={onFocus}
             role="radio"
             aria-checked={checked}
             aria-labelledby={radioLabelId}
-            tabIndex={(checked || first) && !disabled ? 0 : -1}
-            ref={radioRef}
+            tabIndex={disabled ? -1 : focused || checked ? 0 : -1}
+            ref={ref}
           >
             {checked && <Dot error={error} />}
           </RadioInput>
         </RadioInputContainer>
-        <Label id={radioLabelId} onClick={handleLabelOnClick} disabled={disabled}>
+        <Label
+          id={radioLabelId}
+          onMouseDown={(event) => {
+            event.preventDefault();
+          }}
+          onClick={onClick}
+          disabled={disabled}
+        >
           {option.label}
         </Label>
       </RadioContainer>
@@ -130,14 +147,14 @@ const Dot = styled.span<DotProps>`
 type LabelProps = {
   disabled?: boolean;
 };
-const Label = styled.label<LabelProps>`
+const Label = styled.span<LabelProps>`
   margin-left: 0.5rem;
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.radioInputLabelFontSize};
   font-style: ${(props) => props.theme.radioInputLabelFontStyle};
   font-weight: ${(props) => props.theme.radioInputLabelFontWeight};
   line-height: ${(props) => props.theme.radioInputLabelLineHeight};
-  ${(props) => props.disabled && `color: ${props.theme.disabledRadioInputLabelFontColor}; pointer-events: none;`}
+  ${(props) => props.disabled ? `color: ${props.theme.disabledRadioInputLabelFontColor}; pointer-events: none;` : "cursor: pointer;"}
 `;
 
 export default React.memo(DxcRadio);
