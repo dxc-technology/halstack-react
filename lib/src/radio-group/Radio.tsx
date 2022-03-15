@@ -5,30 +5,19 @@ import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 
 const DxcRadio = ({
-  changeCurrentFocusIndex,
   option,
   currentValue,
-  onChange,
+  onClick,
+  onFocus,
   error,
   disabled,
   focused,
-  firstTimeFocus,
-  setFirstTimeFocus,
 }: RadioProps): JSX.Element => {
   const [radioLabelId] = useState(`radio-${uuidv4()}`);
   const ref = useRef<HTMLDivElement>(null);
   const colorsTheme = useTheme();
 
   const checked = option.value === currentValue;
-
-  const handleRadioOnClick = () => {
-    onChange(option.value);
-    changeCurrentFocusIndex();
-  };
-  const handleRadioOnFocus = () => {
-    if (!firstTimeFocus) onChange(option.value);
-    else setFirstTimeFocus(false);
-  }
 
   const [firstUpdate, setFirstUpdate] = useState(true);
   useLayoutEffect(() => {
@@ -47,8 +36,8 @@ const DxcRadio = ({
           <RadioInput
             disabled={disabled}
             error={error}
-            onClick={handleRadioOnClick}
-            onFocus={handleRadioOnFocus}
+            onClick={onClick}
+            onFocus={onFocus}
             role="radio"
             aria-checked={checked}
             aria-labelledby={radioLabelId}
@@ -63,7 +52,7 @@ const DxcRadio = ({
           onMouseDown={(event) => {
             event.preventDefault();
           }}
-          onClick={handleRadioOnClick}
+          onClick={onClick}
           disabled={disabled}
         >
           {option.label}

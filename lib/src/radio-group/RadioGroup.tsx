@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import DxcRadio from "./Radio";
 
-const getInitialIndex = (innerOptions: Option[], value?: string) => {
+const getInitialFocusIndex = (innerOptions: Option[], value?: string) => {
   const initialSelectedOptionIndex = innerOptions.findIndex((option) => option.value === value);
   return initialSelectedOptionIndex !== -1 ? initialSelectedOptionIndex : 0;
 };
@@ -37,7 +37,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
 
     const optionalItem = { label: optionalItemLabel, value: "", disabled };
     const innerOptions = useMemo(() => (optional ? [...options, optionalItem] : options), [optional, options]);
-    const [currentFocusIndex, setCurrentFocusIndex] = useState(getInitialIndex(innerOptions, value ?? innerValue));
+    const [currentFocusIndex, setCurrentFocusIndex] = useState(getInitialFocusIndex(innerOptions, value ?? innerValue));
 
     const colorsTheme = useTheme();
 
@@ -53,12 +53,11 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     );
     const handleOnBlur = (e: React.FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
-      if (!e.currentTarget.contains(e.relatedTarget)) {
-        setCurrentFocusIndex(getInitialIndex(innerOptions, value ?? innerValue));
+      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+        setCurrentFocusIndex(getInitialFocusIndex(innerOptions, value ?? innerValue));
         !(value ?? innerValue) && setFirstTimeFocus(true);
       }
     };
-
     const setPreviousRadioChecked = () => {
       if (!disabled) {
         setCurrentFocusIndex((currentFocusIndex) =>
@@ -88,7 +87,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             break;
         }
       },
-      [options, setCurrentFocusIndex]
+      [disabled, options, setCurrentFocusIndex]
     );
 
     return (
@@ -110,17 +109,18 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
             {innerOptions.map((option, index) => (
               <DxcRadio
-                changeCurrentFocusIndex={() => {
-                  setCurrentFocusIndex(index);
-                }}
                 option={option}
                 currentValue={value ?? innerValue}
-                onChange={handleOnChange}
+                onClick={() => {
+                  handleOnChange(option.value);
+                  setCurrentFocusIndex(index);
+                }}
+                onFocus={() => {
+                  !firstTimeFocus ? handleOnChange(option.value) : setFirstTimeFocus(false);
+                }}
                 error={error}
                 disabled={option.disabled || disabled}
                 focused={currentFocusIndex === index}
-                firstTimeFocus={firstTimeFocus}
-                setFirstTimeFocus={setFirstTimeFocus}
               />
             ))}
           </RadioGroup>

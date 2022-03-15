@@ -23,15 +23,13 @@ type RadioGroupProps = {
 export type RefType = HTMLDivElement;
 
 export type RadioProps = {
-  changeCurrentFocusIndex: () => void; // nombre ?
   option: Option;
   currentValue?: string;
-  onChange: (optionValue: string) => void;
+  onClick: () => void;
+  onFocus: () => void;
   error?: string;
   disabled: boolean;
   focused: boolean;
-  firstTimeFocus: boolean;
-  setFirstTimeFocus: (firstTimeFocus: boolean) => void;
 };
 
 export default RadioGroupProps;
