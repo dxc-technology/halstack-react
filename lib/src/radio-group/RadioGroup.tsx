@@ -53,10 +53,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     );
     const handleOnBlur = (e: React.FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
-      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-        setCurrentFocusIndex(getInitialFocusIndex(innerOptions, value ?? innerValue));
-        !(value ?? innerValue) && setFirstTimeFocus(true);
-      }
+      !e.currentTarget.contains(e.relatedTarget as Node) && setFirstTimeFocus(true);
     };
     const setPreviousRadioChecked = () => {
       if (!disabled) {
