@@ -57,16 +57,24 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     };
     const setPreviousRadioChecked = () => {
       if (!disabled) {
-        setCurrentFocusIndex((currentFocusIndex) =>
-          currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1
-        );
+        setCurrentFocusIndex((currentFocusIndex) => {
+          let index = currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1;
+          while (innerOptions[index].disabled) {
+            index = index === 0 ? innerOptions.length - 1 : index - 1;
+          }
+          return index;
+        });
       }
     };
     const setNextRadioChecked = () => {
       if (!disabled) {
-        setCurrentFocusIndex((currentFocusIndex) =>
-          currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1
-        );
+        setCurrentFocusIndex((currentFocusIndex) => {
+          let index = currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1;
+          while (innerOptions[index].disabled) {
+            index = index === innerOptions.length - 1 ? 0 : index + 1;
+          }
+          return index;
+        });
       }
     };
     const handleOnKeyDown = useCallback(

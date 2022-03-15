@@ -52,7 +52,10 @@ const DxcRadio = ({
           onMouseDown={(event) => {
             event.preventDefault();
           }}
-          onClick={onClick}
+          onClick={() => {
+            ref?.current?.focus();
+            onClick();
+          }}
           disabled={disabled}
         >
           {option.label}
@@ -154,7 +157,10 @@ const Label = styled.span<LabelProps>`
   font-style: ${(props) => props.theme.radioInputLabelFontStyle};
   font-weight: ${(props) => props.theme.radioInputLabelFontWeight};
   line-height: ${(props) => props.theme.radioInputLabelLineHeight};
-  ${(props) => props.disabled ? `color: ${props.theme.disabledRadioInputLabelFontColor}; pointer-events: none;` : "cursor: pointer;"}
+  ${(props) =>
+    props.disabled
+      ? `color: ${props.theme.disabledRadioInputLabelFontColor}; pointer-events: none;`
+      : "cursor: pointer;"}
 `;
 
 export default React.memo(DxcRadio);
