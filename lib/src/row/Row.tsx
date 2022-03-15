@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 type RowProps = {
-  gutter?: "none" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
+  gutter?: "none" | "xxxsmall" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
   align?: "start" | "center" | "end" | "baseline" | "stretch";
   justify?: "start" | "center" | "end" | "spaceBetween" | "spaceAround" | "spaceEvenly";
   wrap?: boolean;
@@ -59,22 +59,24 @@ const StyledRow = styled.div`
     switch (gutter) {
       case "none":
         return "0";
-      case "xxsmall":
+      case "xxxsmall":
         return "0.125rem";
-      case "xsmall":
+      case "xxsmall":
         return "0.25rem";
-      case "small":
+      case "xsmall":
         return "0.5rem";
-      case "medium":
+      case "small":
         return "1rem";
-      case "large":
+      case "medium":
         return "1.5rem";
-      case "xlarge":
+      case "large":
         return "2rem";
-      case "xxlarge":
+      case "xlarge":
         return "3rem";
-      case "xxxlarge":
+      case "xxlarge":
         return "4rem";
+      case "xxxlarge":
+        return "5rem";
       default:
         return "0";
     }
