@@ -72,7 +72,7 @@ export const Chromatic = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcSwitch label="Xxsmmall" margin="xxsmall" />
+      <DxcSwitch label="Xxsmall" margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />

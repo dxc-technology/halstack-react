@@ -62,6 +62,7 @@ export const Chromatic = () => (
       <DxcSpinner margin="xlarge" mode="small" value="75"></DxcSpinner>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcSpinner margin="xxlarge" mode="small" value="75"></DxcSpinner>
+      <hr />
     </ExampleContainer>
   </>
 );
