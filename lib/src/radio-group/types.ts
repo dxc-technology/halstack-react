@@ -5,7 +5,7 @@ export type Option = {
 };
 
 type RadioGroupProps = {
-  label?: string;
+  label: string;
   name?: string;
   helperText?: string;
   options: Option[];

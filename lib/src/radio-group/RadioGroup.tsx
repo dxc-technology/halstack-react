@@ -98,6 +98,11 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             event.preventDefault();
             setNextRadioChecked();
             break;
+          case 13: // enter
+          case 32: // space
+            event.preventDefault();
+            handleOnChange(innerOptions[currentFocusIndex].value);
+            break;
         }
       },
       [disabled, options, setCurrentFocusIndex]
