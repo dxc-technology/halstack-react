@@ -5,6 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import DxcRadio from "./Radio";
 
+const notOptionalCheck = (optional: boolean, value?: string) => !optional && !Boolean(value);
+const getNotOptionalErrorMessage = () => `This field is required. Please, choose an option.`;
+
 const getInitialFocusIndex = (innerOptions: Option[], value?: string) => {
   const initialSelectedOptionIndex = innerOptions.findIndex((option) => option.value === value);
   return initialSelectedOptionIndex !== -1 ? initialSelectedOptionIndex : 0;
@@ -25,6 +28,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       defaultValue,
       value,
       onChange,
+      onBlur,
       error,
     },
     ref
@@ -54,6 +58,10 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const handleOnBlur = (e: React.FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
       !e.currentTarget.contains(e.relatedTarget as Node) && setFirstTimeFocus(true);
+
+      notOptionalCheck(optional, value ?? innerValue)
+        ? onBlur?.({ value: value ?? innerValue, error: getNotOptionalErrorMessage() })
+        : onBlur?.({ value: value ?? innerValue });
     };
     const setPreviousRadioChecked = () => {
       if (!disabled) {

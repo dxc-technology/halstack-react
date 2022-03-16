@@ -17,6 +17,7 @@ type RadioGroupProps = {
   defaultValue?: string;
   value?: string;
   onChange?: (value: string) => void;
+  onBlur?: (val: { value?: string; error?: string }) => void;
   error?: string;
 };
 
