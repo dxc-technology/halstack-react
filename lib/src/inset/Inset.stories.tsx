@@ -219,6 +219,7 @@ export const Chromatic = () => (
 const Container = styled.div`
   background: #d0d0d0;
   border-radius: 10px;
+  margin: 2.5rem;
 `;
 
 const Placeholder = styled.div`
