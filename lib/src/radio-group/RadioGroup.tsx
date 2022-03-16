@@ -44,7 +44,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const handleOnChange = useCallback(
       (newValue: string) => {
         const currentValue = value ?? innerValue;
-        if (newValue !== currentValue) {
+        if (newValue !== currentValue && !readonly) {
           value ?? setInnerValue(newValue);
           onChange?.(newValue);
         }
@@ -126,6 +126,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
                 error={error}
                 disabled={option.disabled || disabled}
                 focused={currentFocusIndex === index}
+                readonly={readonly}
               />
             ))}
           </RadioGroup>
@@ -153,7 +154,7 @@ const Label = styled.span<LabelProps>`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && "margin-bottom: 0.25rem;"}
+  ${(props) => !props.helperText && `margin-bottom: ${props.theme.groupLabelMargin}`}
 `;
 
 const OptionalLabel = styled.span`
@@ -170,7 +171,7 @@ const HelperText = styled.span<HelperTextProps>`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: 0.5rem;
+  margin-bottom: ${(props) => props.theme.groupLabelMargin};
 `;
 
 type RadioGroupProps = {
@@ -182,7 +183,10 @@ const RadioGroup = styled.div<RadioGroupProps>`
   flex-direction: ${(props) => props.stacking};
 
   div + div {
-    ${(props) => (props.stacking === "column" ? "margin-top: 0.25rem;" : "margin-left: 2rem;")};
+    ${(props) =>
+      props.stacking === "column"
+        ? `margin-top: ${props.theme.groupVerticalGutter};`
+        : `margin-left: ${props.theme.groupHorizontalGutter};`};
   }
 `;
 

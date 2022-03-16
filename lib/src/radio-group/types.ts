@@ -30,6 +30,7 @@ export type RadioProps = {
   error?: string;
   disabled: boolean;
   focused: boolean;
+  readonly: boolean;
 };
 
 export default RadioGroupProps;
