@@ -125,7 +125,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Background color provider over accordion content" theme="light" level={4} />
-      <ThemeProvider advancedTheme={advancedTheme} theme={undefined}>
+      <ThemeProvider advancedTheme={advancedTheme}>
         <DxcAccordion
           label="Dark Accordion"
           isExpanded
@@ -134,7 +134,13 @@ export const Chromatic = () => (
           padding="medium"
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <DxcTextInput label="Label" helperText="HelperText" placeholder="Placeholder" size="fillParent" />
+            <DxcTextInput
+              label="Label"
+              helperText="HelperText"
+              placeholder="Placeholder"
+              size="fillParent"
+              margin={{ bottom: "medium" }}
+            />
             <DxcButton label="Submit" size="medium" />
           </div>
         </DxcAccordion>
@@ -295,6 +301,7 @@ export const Chromatic = () => (
           lobortis eget.
         </div>
       </DxcAccordion>
+      <hr />
     </ExampleContainer>
   </>
 );

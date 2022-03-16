@@ -271,6 +271,7 @@ export const Chromatic = () => (
           <td>Cell 9</td>
         </tr>
       </DxcTable>
+      <hr />
     </ExampleContainer>
   </>
 );

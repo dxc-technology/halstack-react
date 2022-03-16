@@ -28,9 +28,9 @@ export const Chromatic = () => (
       <Title title="'light' Weight" theme="light" level={4} />
       <DxcHeading text="Heading for sections within the page" level={2} weight="light" />
       <Title title="'normal' Weight" theme="light" level={4} />
-      <DxcHeading text="Heading for sections within the page" level={4} weight="normal" />
+      <DxcHeading text="Heading for sections within the page" level={2} weight="normal" />
       <Title title="'bold' Weight" theme="light" level={4} />
-      <DxcHeading text="Heading for sections within the page" weight="bold" />
+      <DxcHeading text="Heading for sections within the page" level={2} weight="bold" />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
@@ -48,6 +48,7 @@ export const Chromatic = () => (
       <DxcHeading text="Xlarge" margin="xlarge" />
       <Title title="Xxlarge" theme="light" level={4} />
       <DxcHeading text="Xxlarge" margin="xxlarge" />
+      <hr />
     </ExampleContainer>
   </>
 );

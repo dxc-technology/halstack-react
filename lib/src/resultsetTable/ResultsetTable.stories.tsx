@@ -216,6 +216,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxlarge" theme="light" level={4} />
       <DxcResultsetTable columns={columns} rows={rows} margin={"xxlarge"}></DxcResultsetTable>
+      <hr />
     </ExampleContainer>
   </>
 );

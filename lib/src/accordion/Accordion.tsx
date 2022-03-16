@@ -29,7 +29,7 @@ const DxcAccordion = ({
   const colorsTheme = useTheme();
 
   const handleResize = (width) => {
-    (width && width <= responsiveSizes.tablet) ? setIsResponsive(true) : setIsResponsive(false);
+    width && width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false);
   };
 
   const handleEventListener = () => {

@@ -501,6 +501,7 @@ export const Chromatic = () => (
         mode="dropzone"
         margin="xxlarge"
       />
+      <hr />
     </ExampleContainer>
   </>
 );
