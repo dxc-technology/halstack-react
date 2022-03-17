@@ -5,7 +5,7 @@ export type Option = {
 };
 
 type RadioGroupProps = {
-  label?: string;
+  label: string;
   name?: string;
   helperText?: string;
   options: Option[];
@@ -17,6 +17,7 @@ type RadioGroupProps = {
   defaultValue?: string;
   value?: string;
   onChange?: (value: string) => void;
+  onBlur?: (val: { value?: string; error?: string }) => void;
   error?: string;
 };
 
@@ -30,6 +31,7 @@ export type RadioProps = {
   error?: string;
   disabled: boolean;
   focused: boolean;
+  readonly: boolean;
 };
 
 export default RadioGroupProps;
