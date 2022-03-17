@@ -29,7 +29,7 @@ type Props = {
    */
   type?: "button" | "reset" | "submit";
   /**
-   * Element used as the icon that will be placed next to the button label.
+   * Element or path used as the icon that will be placed next to the button label.
    */
   icon?: string | SVG;
   /**
