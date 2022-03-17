@@ -1,30 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import InsetPropsType from "./types";
 
-type Spacing =
-  | "none"
-  | "xxxsmall"
-  | "xxsmall"
-  | "xsmall"
-  | "small"
-  | "medium"
-  | "large"
-  | "xlarge"
-  | "xxlarge"
-  | "xxxlarge";
-
-type InsetProps = {
-  space?: Spacing;
-  horizontal?: Spacing;
-  vertical?: Spacing;
-  top?: Spacing;
-  right?: Spacing;
-  bottom?: Spacing;
-  left?: Spacing;
-  children: React.ReactNode;
-};
-
-export default function Inset({ space, horizontal, vertical, top, right, bottom, left, children }: InsetProps) {
+export default function Inset({
+  space,
+  horizontal,
+  vertical,
+  top,
+  right,
+  bottom,
+  left,
+  children,
+}: InsetPropsType): JSX.Element {
   return (
     <StyledInset
       space={space}
@@ -67,8 +54,8 @@ function getSpacingValue(spacingName) {
   }
 }
 
-const StyledInset = styled.div<InsetProps>`
-  ${({ space, horizontal, vertical, top, right, bottom, left }: InsetProps) => `
+const StyledInset = styled.div<InsetPropsType>`
+  ${({ space, horizontal, vertical, top, right, bottom, left }: InsetPropsType) => `
   padding: ${getSpacingValue(top || vertical || space)} ${getSpacingValue(right || horizontal || space)}
     ${getSpacingValue(bottom || vertical || space)} ${getSpacingValue(left || horizontal || space)};
 `}
