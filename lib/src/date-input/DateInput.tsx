@@ -39,7 +39,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const [anchorEl, setAnchorEl] = useState(null);
 
     const colorsTheme = useTheme();
-    const refDate = useRef(ref);
+    const refDate = ref || useRef(null);
 
     const handleCalendarOnKeyDown = (event) => {
       switch (event.keyCode) {
