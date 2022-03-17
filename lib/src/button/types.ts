@@ -5,7 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
 type Props = {
   /**
@@ -31,11 +31,7 @@ type Props = {
   /**
    * Element used as the icon that will be placed next to the button label.
    */
-  icon?: SVG;
-  /**
-   * @deprecated URL of the icon that will be placed next to the button label.
-   */
-  iconSrc?: string;
+  icon?: string | SVG;
   /**
    * This function will be called when the user clicks the button.
    */
