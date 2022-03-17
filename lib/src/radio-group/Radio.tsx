@@ -42,6 +42,7 @@ const DxcRadio = ({
             onFocus={onFocus}
             role="radio"
             aria-checked={checked}
+            aria-disabled={option.disabled}
             aria-labelledby={radioLabelId}
             tabIndex={disabled ? -1 : focused ? 0 : -1}
             ref={ref}

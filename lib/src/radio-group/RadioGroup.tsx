@@ -85,28 +85,25 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
         });
       }
     };
-    const handleOnKeyDown = useCallback(
-      (event) => {
-        switch (event.keyCode) {
-          case 37: // arrow left
-          case 38: // arrow up
-            event.preventDefault();
-            setPreviousRadioChecked();
-            break;
-          case 39: // arrow right
-          case 40: // arrow down
-            event.preventDefault();
-            setNextRadioChecked();
-            break;
-          case 13: // enter
-          case 32: // space
-            event.preventDefault();
-            handleOnChange(innerOptions[currentFocusIndex].value);
-            break;
-        }
-      },
-      [disabled, options, setCurrentFocusIndex]
-    );
+    const handleOnKeyDown = (event) => {
+      switch (event.keyCode) {
+        case 37: // arrow left
+        case 38: // arrow up
+          event.preventDefault();
+          setPreviousRadioChecked();
+          break;
+        case 39: // arrow right
+        case 40: // arrow down
+          event.preventDefault();
+          setNextRadioChecked();
+          break;
+        case 13: // enter
+        case 32: // space
+          event.preventDefault();
+          handleOnChange(innerOptions[currentFocusIndex].value);
+          break;
+      }
+    };
 
     return (
       <ThemeProvider theme={colorsTheme.radioGroup}>
@@ -118,11 +115,14 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <RadioGroup
-            stacking={stacking}
-            role="radiogroup"
-            aria-labelledby={radioGroupLabelId}
             onBlur={handleOnBlur}
             onKeyDown={handleOnKeyDown}
+            stacking={stacking}
+            role="radiogroup"
+            aria-disabled={disabled}
+            aria-labelledby={radioGroupLabelId}
+            aria-invalid={error ? "true" : "false"}
+            aria-required={!optional}
           >
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
             {innerOptions.map((option, index) => (
