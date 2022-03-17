@@ -25,6 +25,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       defaultValue,
       value,
       onChange,
+      onBlur,
       error,
     },
     ref
@@ -44,7 +45,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const handleOnChange = useCallback(
       (newValue: string) => {
         const currentValue = value ?? innerValue;
-        if (newValue !== currentValue) {
+        if (newValue !== currentValue && !readonly) {
           value ?? setInnerValue(newValue);
           onChange?.(newValue);
         }
@@ -54,38 +55,53 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const handleOnBlur = (e: React.FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
       !e.currentTarget.contains(e.relatedTarget as Node) && setFirstTimeFocus(true);
+
+      const currentValue = value ?? innerValue;
+      !optional && !Boolean(currentValue)
+        ? onBlur?.({ value: currentValue, error: "This field is required. Please, choose an option." })
+        : onBlur?.({ value: currentValue });
     };
     const setPreviousRadioChecked = () => {
       if (!disabled) {
-        setCurrentFocusIndex((currentFocusIndex) =>
-          currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1
-        );
+        setCurrentFocusIndex((currentFocusIndex) => {
+          let index = currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1;
+          while (innerOptions[index].disabled) {
+            index = index === 0 ? innerOptions.length - 1 : index - 1;
+          }
+          return index;
+        });
       }
     };
     const setNextRadioChecked = () => {
       if (!disabled) {
-        setCurrentFocusIndex((currentFocusIndex) =>
-          currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1
-        );
+        setCurrentFocusIndex((currentFocusIndex) => {
+          let index = currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1;
+          while (innerOptions[index].disabled) {
+            index = index === innerOptions.length - 1 ? 0 : index + 1;
+          }
+          return index;
+        });
       }
     };
-    const handleOnKeyDown = useCallback(
-      (event) => {
-        switch (event.keyCode) {
-          case 37: // arrow left
-          case 38: // arrow up
-            event.preventDefault();
-            setPreviousRadioChecked();
-            break;
-          case 39: // arrow right
-          case 40: // arrow down
-            event.preventDefault();
-            setNextRadioChecked();
-            break;
-        }
-      },
-      [disabled, options, setCurrentFocusIndex]
-    );
+    const handleOnKeyDown = (event) => {
+      switch (event.keyCode) {
+        case 37: // arrow left
+        case 38: // arrow up
+          event.preventDefault();
+          setPreviousRadioChecked();
+          break;
+        case 39: // arrow right
+        case 40: // arrow down
+          event.preventDefault();
+          setNextRadioChecked();
+          break;
+        case 13: // enter
+        case 32: // space
+          event.preventDefault();
+          handleOnChange(innerOptions[currentFocusIndex].value);
+          break;
+      }
+    };
 
     return (
       <ThemeProvider theme={colorsTheme.radioGroup}>
@@ -97,11 +113,14 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <RadioGroup
-            stacking={stacking}
-            role="radiogroup"
-            aria-labelledby={radioGroupLabelId}
             onBlur={handleOnBlur}
             onKeyDown={handleOnKeyDown}
+            stacking={stacking}
+            role="radiogroup"
+            aria-disabled={disabled}
+            aria-labelledby={radioGroupLabelId}
+            aria-invalid={error ? "true" : "false"}
+            aria-required={!optional}
           >
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
             {innerOptions.map((option, index) => (
@@ -118,6 +137,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
                 error={error}
                 disabled={option.disabled || disabled}
                 focused={currentFocusIndex === index}
+                readonly={readonly}
               />
             ))}
           </RadioGroup>
@@ -145,7 +165,7 @@ const Label = styled.span<LabelProps>`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && "margin-bottom: 0.25rem;"}
+  ${(props) => !props.helperText && `margin-bottom: ${props.theme.groupLabelMargin}`}
 `;
 
 const OptionalLabel = styled.span`
@@ -162,7 +182,7 @@ const HelperText = styled.span<HelperTextProps>`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: 0.5rem;
+  margin-bottom: ${(props) => props.theme.groupLabelMargin};
 `;
 
 type RadioGroupProps = {
@@ -173,9 +193,8 @@ const RadioGroup = styled.div<RadioGroupProps>`
   flex-wrap: wrap;
   flex-direction: ${(props) => props.stacking};
 
-  div + div {
-    ${(props) => (props.stacking === "column" ? "margin-top: 0.25rem;" : "margin-left: 2rem;")};
-  }
+  row-gap: ${(props) => props.theme.groupVerticalGutter};
+  column-gap: ${(props) => props.theme.groupHorizontalGutter};
 `;
 
 const ValueInput = styled.input`
