@@ -1,16 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import RowPropsType from "./types";
 
-type RowProps = {
-  gutter?: "none" | "xxxsmall" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
-  align?: "start" | "center" | "end" | "baseline" | "stretch";
-  justify?: "start" | "center" | "end" | "spaceBetween" | "spaceAround" | "spaceEvenly";
-  wrap?: boolean;
-  reverse?: boolean;
-  children: React.ReactNode;
-};
-
-export default function Row({ gutter = "none", align, justify, wrap = true, reverse = false, children }: RowProps) {
+export default function Row({
+  gutter = "none",
+  align,
+  justify,
+  wrap = true,
+  reverse = false,
+  children,
+}: RowPropsType): JSX.Element {
   return (
     <StyledRow gutter={gutter} align={align} justify={justify} wrap={wrap} reverse={reverse}>
       {children}
@@ -19,9 +18,9 @@ export default function Row({ gutter = "none", align, justify, wrap = true, reve
 }
 const StyledRow = styled.div`
   display: flex;
-  flex-direction: ${({ reverse }: RowProps) => (reverse ? "row-reverse" : "row")};
-  flex-wrap: ${({ wrap }: RowProps) => (wrap ? "wrap" : "nowrap")};
-  align-items: ${({ align }: RowProps) => {
+  flex-direction: ${({ reverse }: RowPropsType) => (reverse ? "row-reverse" : "row")};
+  flex-wrap: ${({ wrap }: RowPropsType) => (wrap ? "wrap" : "nowrap")};
+  align-items: ${({ align }: RowPropsType) => {
     switch (align) {
       case "start":
         return "flex-start";
@@ -37,7 +36,7 @@ const StyledRow = styled.div`
         return "initial";
     }
   }};
-  justify-content: ${({ justify }: RowProps) => {
+  justify-content: ${({ justify }: RowPropsType) => {
     switch (justify) {
       case "spaceBetween":
         return "space-between";
@@ -55,7 +54,7 @@ const StyledRow = styled.div`
         return "initial";
     }
   }};
-  gap: ${({ gutter }: RowProps) => {
+  gap: ${({ gutter }: RowPropsType) => {
     switch (gutter) {
       case "none":
         return "0";
