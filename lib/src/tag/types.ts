@@ -5,17 +5,13 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
 type Props = {
   /**
-   * Element used as the icon that will be placed next to the label.
+   * Element or path used as the icon that will be placed next to the label.
    */
-  icon?: SVG;
-  /**
-   * @deprecated URL of the icon.
-   */
-  iconSrc?: string;
+  icon?: string | SVG;
   /**
    * Text to be placed next inside the tag.
    */
