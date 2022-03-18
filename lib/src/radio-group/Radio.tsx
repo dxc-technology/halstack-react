@@ -32,50 +32,56 @@ const DxcRadio = ({
 
   return (
     <ThemeProvider theme={colorsTheme.radioGroup}>
-      <RadioContainer
-        error={error}
-        disabled={disabled}
-        readonly={readonly}
-        onMouseDown={(event) => {
-          // Prevents div's onclick from stealing the radio button's focus
-          event.preventDefault();
-        }}
-        onClick={() => {
-          ref?.current?.focus();
-          onClick();
-        }}
-      >
-        <RadioInputContainer>
-          <RadioInput
-            error={error}
-            disabled={disabled}
-            readonly={readonly}
-            onFocus={onFocus}
-            role="radio"
-            aria-checked={checked}
-            aria-disabled={option.disabled}
-            aria-labelledby={radioLabelId}
-            tabIndex={disabled ? -1 : focused ? 0 : -1}
-            ref={ref}
-          >
-            {checked && <Dot disabled={disabled} readonly={readonly} error={error} />}
-          </RadioInput>
-        </RadioInputContainer>
-        <Label id={radioLabelId} disabled={disabled}>
-          {option.label}
-        </Label>
-      </RadioContainer>
+      <RadioMainContainer>
+        <RadioContainer
+          error={error}
+          disabled={disabled}
+          readonly={readonly}
+          onMouseDown={(event) => {
+            // Prevents div's onclick from stealing the radio button's focus
+            event.preventDefault();
+          }}
+          onClick={() => {
+            ref?.current?.focus();
+            onClick();
+          }}
+        >
+          <RadioInputContainer>
+            <RadioInput
+              error={error}
+              disabled={disabled}
+              readonly={readonly}
+              onFocus={onFocus}
+              role="radio"
+              aria-checked={checked}
+              aria-disabled={option.disabled}
+              aria-labelledby={radioLabelId}
+              tabIndex={disabled ? -1 : focused ? 0 : -1}
+              ref={ref}
+            >
+              {checked && <Dot disabled={disabled} readonly={readonly} error={error} />}
+            </RadioInput>
+          </RadioInputContainer>
+          <Label id={radioLabelId} disabled={disabled}>
+            {option.label}
+          </Label>
+        </RadioContainer>
+      </RadioMainContainer>
     </ThemeProvider>
   );
 };
+
+const RadioMainContainer = styled.div`
+  display: flex;
+`;
 
 type RadioContainerProps = {
   error?: string;
   disabled?: boolean;
   readonly: boolean;
 };
-const RadioContainer = styled.div<RadioContainerProps>`
-  display: flex;
+const RadioContainer = styled.span<RadioContainerProps>`
+  display: inline-flex;
   align-items: center;
   ${(props) => (!props.disabled ? "cursor: pointer;" : "cursor: not-allowed;")};
   ${(props) =>

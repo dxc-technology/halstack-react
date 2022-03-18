@@ -155,7 +155,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
 );
 
 const RadioGroupContainer = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   box-sizing: border-box;
 `;
