@@ -53,7 +53,7 @@ export const Chromatic = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcPasswordInput label="Xxsmmall" margin="xxsmall" />
+      <DxcPasswordInput label="Xxsmall" margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
@@ -100,7 +100,7 @@ export const Chromatic = () => (
 );
 
 const Password = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Show password" theme="light" level={4} />
     <DxcPasswordInput label="Password input" value="Password" />
   </ExampleContainer>
@@ -108,7 +108,7 @@ const Password = () => (
 const PasswordDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
-      <ExampleContainer>
+      <ExampleContainer expanded>
         <Title title="Show password" theme="dark" level={4} />
         <DxcPasswordInput label="Password input" value="Password" />
       </ExampleContainer>

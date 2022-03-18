@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useMemo, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
@@ -197,6 +198,9 @@ const HeaderContainer = styled.div`
       ? "flex-end"
       : "flex-start"};
   width: 100%;
+  :focus {
+    outline: #0095ff auto 1px;
+  }
 `;
 const HeaderRow = styled.thead`
   height: 60px;

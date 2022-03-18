@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Radio from "@material-ui/core/Radio";

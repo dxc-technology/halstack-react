@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useMemo, useContext } from "react";
 import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";

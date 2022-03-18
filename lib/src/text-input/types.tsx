@@ -10,7 +10,7 @@ type Action = {
   /**
    * This function will be called when the user clicks the action.
    */
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: () => void;
   /**
    * Icon to be shown in the action.
    */
