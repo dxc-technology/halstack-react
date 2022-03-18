@@ -5,7 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
 type Tab = {
   /**
@@ -13,13 +13,9 @@ type Tab = {
    */
   label?: string;
   /**
-   * Element used as the icon that will be displayed in the tab.
+   * Element or path used as the icon that will be displayed in the tab.
    */
-  icon?: SVG;
-  /**
-   * @deprecated URL of the icon to be displayed in the tab.
-   */
-  iconSrc?: string;
+  icon?: string | SVG;
   /**
    * Whether the tab is disabled or not.
    */
@@ -59,7 +55,7 @@ type Props = {
    */
   onTabHover?: (tabIndex: number) => void;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;
