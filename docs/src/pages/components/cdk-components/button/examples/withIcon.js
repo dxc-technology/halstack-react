@@ -34,7 +34,7 @@ const code = `() => {
       <DxcButton
         label="Primary Button"
         onClick={onClick}
-        icon={<img src={twitterIcon}/>}
+        icon={twitterIcon}
         iconPosition="after"
         margin="medium"
       />
