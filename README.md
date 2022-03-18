@@ -63,6 +63,20 @@ npm start # runs create-react-app dev server
 
 Now, anytime you make a change to the library or the app, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
 
+## Storybook
+
+Contained in the `lib` folder.
+
+```bash
+cd lib
+```
+
+Run storybook.
+
+```bash
+npm run storybook
+```
+
 ## Thanks
 
 <a href="https://www.chromatic.com/"><img src="https://user-images.githubusercontent.com/321738/84662277-e3db4f80-af1b-11ea-88f5-91d67a5e59f6.png" width="153" height="30" alt="Chromatic" /></a>

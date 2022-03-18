@@ -105,15 +105,15 @@ export const Chromatic = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcTextarea label="Xxsmmall" margin="xxsmall" />
+      <DxcTextarea label="Xxsmall" margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcTextarea label="xsmmall" margin="xsmall" />
+      <DxcTextarea label="xsmall" margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
-      <DxcTextarea label="smmall" margin="small" />
+      <DxcTextarea label="small" margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
@@ -130,6 +130,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcTextarea label="Xxlarge" margin="xxlarge" />
+      <hr />
     </ExampleContainer>
   </>
 );

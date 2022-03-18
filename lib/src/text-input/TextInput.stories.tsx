@@ -262,14 +262,14 @@ export const Chromatic = () => (
 );
 
 const FocusedActionTextInput = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Focused action" theme="light" level={4} />
     <DxcTextInput label="Text input" action={action} clearable />
   </ExampleContainer>
 );
 
 const ActivedActionTextInput = () => (
-  <ExampleContainer pseudoState="pseudo-active">
+  <ExampleContainer pseudoState="pseudo-active" expanded>
     <Title title="Actived action" theme="light" level={4} />
     <DxcTextInput label="Text input" action={action} clearable />
   </ExampleContainer>
@@ -306,7 +306,7 @@ const ActivedOptionAutosuggest = () => (
 const FocusedActionTextInputOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
-      <ExampleContainer>
+      <ExampleContainer expanded>
         <Title title="Focused action" theme="dark" level={4} />
         <DxcTextInput label="Text input" action={action} clearable />
       </ExampleContainer>
@@ -317,7 +317,7 @@ const FocusedActionTextInputOnDark = () => (
 const ActivedActionTextInputOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
-      <ExampleContainer pseudoState="pseudo-active">
+      <ExampleContainer pseudoState="pseudo-active" expanded>
         <Title title="Actived action" theme="dark" level={4} />
         <DxcTextInput label="Text input" action={action} clearable />
       </ExampleContainer>

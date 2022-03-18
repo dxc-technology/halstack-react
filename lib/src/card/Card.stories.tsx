@@ -174,7 +174,7 @@ const actionCard = () => (
       <Title title="Focused default with action" theme="light" level={4} />
       <DxcCard onClick={() => {}}>Focused default with action</DxcCard>
     </ExampleContainer>
-    <ExampleContainer>
+    <ExampleContainer expanded>
       <Title title="Hovered default with action" theme="light" level={4} />
       <DxcCard onClick={() => {}}>Hovered default with action</DxcCard>
     </ExampleContainer>

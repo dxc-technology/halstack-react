@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
