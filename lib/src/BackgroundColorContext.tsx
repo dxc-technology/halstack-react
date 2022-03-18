@@ -1,4 +1,3 @@
-/* eslint-disable prefer-template */
 import React, { useMemo } from "react";
 import Color from "color";
 

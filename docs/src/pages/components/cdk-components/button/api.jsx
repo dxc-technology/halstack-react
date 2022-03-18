@@ -29,17 +29,10 @@ const buttonPropsTable = () => {
         <td>Text to be placed next to the button.</td>
       </tr>
       <tr>
-        <td>icon: node</td>
+        <td>icon: node | string</td>
         <td></td>
         <td>
-          Element used as the icon that will be placed next to the button label.
-        </td>
-      </tr>
-      <tr>
-        <td>iconSrc: string</td>
-        <td></td>
-        <td>
-          <b>Deprecated.</b> URL of the icon that will be placed next to the
+          Element or path used as the icon that will be placed next to the
           button label.
         </td>
       </tr>
@@ -60,9 +53,7 @@ const buttonPropsTable = () => {
       <tr>
         <td>onClick: function</td>
         <td></td>
-        <td>
-          This function will be called when the user clicks the button.
-        </td>
+        <td>This function will be called when the user clicks the button.</td>
       </tr>
       <tr>
         <td>margin: string | object</td>

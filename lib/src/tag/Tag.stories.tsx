@@ -132,7 +132,7 @@ export const Chromatic = () => (
 );
 
 const LinkTag = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Hover link tag" theme="light" level={4} />
     <DxcTag label="Tag" icon={icon} linkHref="https://www.dxc.com" />
   </ExampleContainer>

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import LinearProgress from "@material-ui/core/LinearProgress";
