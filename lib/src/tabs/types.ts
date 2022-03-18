@@ -7,15 +7,7 @@ type Margin = {
 };
 type SVG = React.SVGProps<SVGSVGElement>;
 
-type Tab = {
-  /**
-   * Tab label.
-   */
-  label?: string;
-  /**
-   * Element or path used as the icon that will be displayed in the tab.
-   */
-  icon?: string | SVG;
+type TabCommonProps = {
   /**
    * Whether the tab is disabled or not.
    */
@@ -30,11 +22,33 @@ type Tab = {
   notificationNumber?: boolean | number;
 };
 
+type TabLabelProps = TabCommonProps & {
+  /**
+   * Tab label.
+   */
+  label: string;
+  /**
+   * Element or path used as the icon that will be displayed in the tab.
+   */
+  icon?: string | SVG;
+};
+
+type TabIconProps = TabCommonProps & {
+  /**
+   * Tab label.
+   */
+  label?: string;
+  /**
+   * Element or path used as the icon that will be displayed in the tab.
+   */
+  icon: string | SVG;
+};
+
 type Props = {
   /**
    * An array of objects representing the tabs.
    */
-  tabs: Tab[];
+  tabs: (TabLabelProps | TabIconProps)[];
   /**
    * Whether the icon should appear above or to the left of the label.
    */
