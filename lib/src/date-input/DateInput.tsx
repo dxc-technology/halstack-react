@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider, Paper } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -39,6 +39,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const [anchorEl, setAnchorEl] = useState(null);
 
     const colorsTheme = useTheme();
+    const refDate = ref || useRef(null);
 
     const handleCalendarOnKeyDown = (event) => {
       switch (event.keyCode) {
@@ -85,11 +86,10 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     const getValueForPicker = () => moment(value ?? innerValue, format.toUpperCase(), true).format();
 
-    const openCalendar = (event) => {
-      if (event) {
-        setIsOpen(!isOpen);
-        setAnchorEl(event.currentTarget);
-      }
+    const openCalendar = () => {
+      const dateBtn = refDate.current.getElementsByTagName("button")[0];
+      setIsOpen(!isOpen);
+      setAnchorEl(dateBtn);
     };
 
     const closeCalendar = () => {
@@ -268,7 +268,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 margin={margin}
                 size={size}
                 tabIndex={tabIndex}
-                ref={ref}
+                ref={refDate}
               />
               <Popover
                 onKeyDown={handleCalendarOnKeyDown}

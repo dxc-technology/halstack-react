@@ -23,7 +23,11 @@ const single_disabled_options = [
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="Default (column)" theme="light" level={4} />
+      <Title title="Label only" theme="light" level={4} />
+      <DxcRadioGroup label="Example of label" options={options}/>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Column" theme="light" level={4} />
       <DxcRadioGroup label="Example" helperText="Helper text" options={options} defaultValue="3" />
     </ExampleContainer>
     <ExampleContainer>
@@ -32,7 +36,15 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcRadioGroup label="Disabled" error="Error message" helperText="Helper text" options={options} disabled optional defaultValue="2" />
+      <DxcRadioGroup
+        label="Disabled"
+        error="Error message"
+        helperText="Helper text"
+        options={options}
+        disabled
+        optional
+        defaultValue="2"
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Single disabled" theme="light" level={4} />
@@ -51,7 +63,17 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" theme="light" level={4} />
-      <DxcRadioGroup label="Example" error="Error message" helperText="Helper text" options={options} defaultValue="2" />
+      <DxcRadioGroup
+        label="Example"
+        error="Error message"
+        helperText="Helper text"
+        options={options}
+        defaultValue="2"
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Readonly" theme="light" level={4} />
+      <DxcRadioGroup label="Example" readonly helperText="Helper text" options={options} defaultValue="2" />
     </ExampleContainer>
   </>
 );
