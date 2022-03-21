@@ -1,15 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import StackPropsType from "./types";
 
-type StackProps = {
-  gutter?: "none" | "xxxsmall" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
-  divider?: boolean;
-  align?: "start" | "center" | "end" | "baseline" | "stretch";
-  as?: React.ElementType;
-  children: React.ReactNode;
-};
-
-export default function Stack({ gutter, divider, align, as = "div", children }: StackProps) {
+export default function Stack({ gutter, divider, align, as = "div", children }: StackPropsType): JSX.Element {
   return (
     <StyledStack gutter={gutter} divider={divider} align={align} as={as}>
       {React.Children.map(children, (child, index) => {
@@ -29,10 +22,10 @@ const Divider = styled.div`
   background-color: #999999;
 `;
 
-const StyledStack = styled.div`
+const StyledStack = styled.div<StackPropsType>`
   display: flex;
   flex-direction: column;
-  align-items: ${({ align }: StackProps) => {
+  align-items: ${({ align }) => {
     switch (align) {
       case "start":
         return "flex-start";
@@ -48,7 +41,7 @@ const StyledStack = styled.div`
         return "initial";
     }
   }};
-  gap: ${({ gutter, divider }: StackProps) => {
+  gap: ${({ gutter, divider }) => {
     switch (gutter) {
       case "none":
         return "0";
