@@ -13,6 +13,7 @@ function Text({ as = "span", children }: TextProps) {
 const StyledText = styled.span`
   margin: 0px;
   font-family: Open Sans, sans-serif;
+  line-height: 1.5em;
 `;
 
 export default Text;
