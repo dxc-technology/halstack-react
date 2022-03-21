@@ -16,11 +16,11 @@ export default function Row({
     </StyledRow>
   );
 }
-const StyledRow = styled.div`
+const StyledRow = styled.div<RowPropsType>`
   display: flex;
-  flex-direction: ${({ reverse }: RowPropsType) => (reverse ? "row-reverse" : "row")};
-  flex-wrap: ${({ wrap }: RowPropsType) => (wrap ? "wrap" : "nowrap")};
-  align-items: ${({ align }: RowPropsType) => {
+  flex-direction: ${({ reverse }) => (reverse ? "row-reverse" : "row")};
+  flex-wrap: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
+  align-items: ${({ align }) => {
     switch (align) {
       case "start":
         return "flex-start";
@@ -36,7 +36,7 @@ const StyledRow = styled.div`
         return "initial";
     }
   }};
-  justify-content: ${({ justify }: RowPropsType) => {
+  justify-content: ${({ justify }) => {
     switch (justify) {
       case "spaceBetween":
         return "space-between";
@@ -54,7 +54,7 @@ const StyledRow = styled.div`
         return "initial";
     }
   }};
-  gap: ${({ gutter }: RowPropsType) => {
+  gap: ${({ gutter }) => {
     switch (gutter) {
       case "none":
         return "0";

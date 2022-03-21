@@ -22,10 +22,10 @@ const Divider = styled.div`
   background-color: #999999;
 `;
 
-const StyledStack = styled.div`
+const StyledStack = styled.div<StackPropsType>`
   display: flex;
   flex-direction: column;
-  align-items: ${({ align }: StackPropsType) => {
+  align-items: ${({ align }) => {
     switch (align) {
       case "start":
         return "flex-start";
@@ -41,7 +41,7 @@ const StyledStack = styled.div`
         return "initial";
     }
   }};
-  gap: ${({ gutter, divider }: StackPropsType) => {
+  gap: ${({ gutter, divider }) => {
     switch (gutter) {
       case "none":
         return "0";
