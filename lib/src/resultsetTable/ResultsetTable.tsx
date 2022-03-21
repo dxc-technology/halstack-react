@@ -197,9 +197,10 @@ const HeaderContainer = styled.div`
       : props.theme.headerTextAlign === "right"
       ? "flex-end"
       : "flex-start"};
-  width: 100%;
+  width: fit-content;
   :focus {
     outline: #0095ff auto 1px;
+    outline-offset: 4px;
   }
 `;
 const HeaderRow = styled.thead`
