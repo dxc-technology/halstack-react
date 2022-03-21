@@ -83,7 +83,8 @@ type RadioContainerProps = {
 const RadioContainer = styled.span<RadioContainerProps>`
   display: inline-flex;
   align-items: center;
-  ${(props) => (!props.disabled ? "cursor: pointer;" : "cursor: not-allowed;")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : props.readonly ? "default" : "pointer")};
+  
   ${(props) =>
     !props.disabled &&
     `
