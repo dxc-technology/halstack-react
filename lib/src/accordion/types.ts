@@ -11,7 +11,7 @@ type Padding = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
 type Props = {
   /**
@@ -25,13 +25,9 @@ type Props = {
    */
   isExpanded?: boolean;
   /**
-   * Element used as the icon that will be placed next to panel label.
+   * Element or path used as the icon that will be placed next to panel label.
    */
-  icon?: SVG;
-  /**
-   * @deprecated URL of the icon that will be placed next to panel label.
-   */
-  iconSrc?: string;
+  icon?: string | SVG;
   /**
    * Assistive text to be placed on the right side of the panel.
    */
