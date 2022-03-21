@@ -26,10 +26,6 @@ const largeIcon = (
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="Without label" theme="light" level={4} />
-      <DxcTag />
-    </ExampleContainer>
-    <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
       <DxcTag icon={icon} />
     </ExampleContainer>

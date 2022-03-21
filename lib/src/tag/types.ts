@@ -7,15 +7,7 @@ type Margin = {
 };
 type SVG = React.SVGProps<SVGSVGElement>;
 
-type Props = {
-  /**
-   * Element or path used as the icon that will be placed next to the label.
-   */
-  icon?: string | SVG;
-  /**
-   * Text to be placed next inside the tag.
-   */
-  label?: string;
+type TagCommonProps = {
   /**
    * If defined, the tag will be displayed as an anchor, using this prop as "href".
    * Component will show some visual feedback on hover.
@@ -53,5 +45,29 @@ type Props = {
    */
   tabIndex?: number;
 };
+
+type TagLabelProps = TagCommonProps & {
+  /**
+   * Element or path used as the icon that will be placed next to the label.
+   */
+  icon?: string | SVG;
+  /**
+   * Text to be placed next inside the tag.
+   */
+  label: string;
+};
+
+type TagIconProps = TagCommonProps & {
+  /**
+   * Element or path used as the icon that will be placed next to the label.
+   */
+  icon: string | SVG;
+  /**
+   * Text to be placed next inside the tag.
+   */
+  label?: string;
+};
+
+type Props = TagLabelProps | TagIconProps;
 
 export default Props;
