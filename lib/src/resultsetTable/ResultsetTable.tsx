@@ -120,6 +120,7 @@ const DxcResultsetTable = ({
                       key={`headerContainer_${index}`}
                       onClick={() => column.isSortable && changeSorting(index)}
                       tabIndex={column.isSortable ? tabIndex : -1}
+                      isSortable={column.isSortable}
                     >
                       <TitleDiv isSortable={column.isSortable}>{column.displayValue}</TitleDiv>
                       {column.isSortable && <SortIcon>{getIconForSortableColumn(index)}</SortIcon>}
@@ -199,7 +200,7 @@ const HeaderContainer = styled.div`
       : "flex-start"};
   width: fit-content;
   :focus {
-    outline: #0095ff auto 1px;
+    outline: ${(props) => (props.isSortable ? "#0095ff solid 1px" : "")};
     outline-offset: 4px;
   }
 `;
