@@ -34,12 +34,10 @@ const DxcTabs = ({
       <ParentLabelSpan>
         <MainLabelContainer hasBadge={tab.notificationNumber}>
           <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            {tab.icon ? (
+            {tab.icon && (
               <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-                {typeof tab.icon === "object" ? tab.icon : React.createElement(tab.icon)}
+                {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
               </TabIconContainer>
-            ) : (
-              tab.iconSrc && <TabIcon src={tab.iconSrc} />
             )}
             <LabelTextContainer>{tab.label}</LabelTextContainer>
           </TabLabelContainer>
@@ -209,10 +207,7 @@ const DxCTabs = styled.div`
   }
 `;
 
-const TabIcon = styled.img`
-  max-height: 22px;
-  max-width: 22px;
-`;
+const TabIcon = styled.img``;
 
 const TabIconContainer = styled.div`
   max-height: 22px;
