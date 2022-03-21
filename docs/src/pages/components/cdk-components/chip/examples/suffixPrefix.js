@@ -24,10 +24,10 @@ const code = `() => {
         margin="small"
         onClickPrefix={onClick}
       />
-      <DxcChip label="Chip with suffix" suffixIcon={<img src={avatarIcon}></img>} />
+      <DxcChip label="Chip with suffix" suffixIcon={avatarIcon} />
       <DxcChip
         label="Chip with both"
-        suffixIcon={<img src={avatarIcon}></img>}
+        suffixIcon={avatarIcon}
         prefixIcon={
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,11 +43,7 @@ const code = `() => {
         onClickSuffix={onClick}
         onClickPrefix={onClick}
       />
-      <DxcChip
-        suffixIcon={<img src={avatarIcon}></img>}
-        margin="small"
-        onClickSuffix={onClick}
-      />
+      <DxcChip suffixIcon={avatarIcon} margin="small" onClickSuffix={onClick} />
     </div>
   );
 }`;
