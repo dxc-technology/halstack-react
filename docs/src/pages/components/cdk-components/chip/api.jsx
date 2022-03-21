@@ -15,12 +15,12 @@ const chipPropsTable = () => {
         <td>Text to be placed on the chip.</td>
       </tr>
       <tr>
-        <td>prefixIcon: node</td>
+        <td>prefixIcon: node | string</td>
         <td></td>
         <td>Element used as icon to be placed before the chip label.</td>
       </tr>
       <tr>
-        <td>suffixIcon: node</td>
+        <td>suffixIcon: node | string</td>
         <td></td>
         <td>Element used as icon to be placed after the chip label.</td>
       </tr>
