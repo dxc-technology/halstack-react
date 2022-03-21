@@ -14,7 +14,6 @@ import AccordionPropsType from "./types";
 const DxcAccordion = ({
   label = "",
   isExpanded,
-  iconSrc,
   icon,
   assistiveText = "",
   disabled = false,
@@ -55,13 +54,7 @@ const DxcAccordion = ({
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
-      <DXCAccordion
-        padding={padding}
-        margin={margin}
-        disabled={disabled}
-        icon={icon || iconSrc}
-        isResponsive={isResponsive}
-      >
+      <DXCAccordion padding={padding} margin={margin} disabled={disabled} icon={icon} isResponsive={isResponsive}>
         <ExpansionPanel
           disabled={disabled}
           onChange={handlerAccordion}
@@ -70,12 +63,10 @@ const DxcAccordion = ({
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
             <AccordionInfo disabled={disabled}>
               <AccordionLabel>{label}</AccordionLabel>
-              {icon ? (
+              {icon && (
                 <IconContainer disabled={disabled}>
-                  {typeof icon === "object" ? icon : React.createElement(icon)}
+                  {typeof icon === "string" ? <AccordionIcon src={icon} /> : icon}
                 </IconContainer>
-              ) : (
-                iconSrc && <AccordionIcon src={iconSrc} />
               )}
             </AccordionInfo>
             {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
@@ -267,13 +258,6 @@ const IconContainer = styled.div`
   }
 `;
 
-const AccordionIcon = styled.img`
-  height: ${(props) => props.theme.iconSize};
-  width: ${(props) => props.theme.iconSize};
-  margin-left: ${(props) => props.theme.iconMarginLeft};
-  margin-right: ${(props) => props.theme.iconMarginRigth};
-  overflow: hidden;
-  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-`;
+const AccordionIcon = styled.img``;
 
 export default DxcAccordion;
