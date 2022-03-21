@@ -16,10 +16,6 @@ type LinkCommonProps = {
    */
   disabled?: boolean;
   /**
-   * @Deprecated Source of the icon.
-   */
-  iconSrc?: string;
-  /**
    * Indicates the position of the icon in the component.
    */
   iconPosition?: "before" | "after";
@@ -52,9 +48,9 @@ export type LinkTextProps = LinkCommonProps & {
    */
   text: string;
   /**
-   * Element used as the icon that will be placed next to the link text.
+   * Element or path used as the icon that will be placed next to the link text.
    */
-  icon?: SVG;
+  icon?: string | SVG;
 };
 export type LinkIconProps = LinkCommonProps & {
   /**
@@ -62,9 +58,9 @@ export type LinkIconProps = LinkCommonProps & {
    */
   text?: string;
   /**
-   * Element used as the icon that will be placed next to the link text.
+   * Element or path used as the icon that will be placed next to the link text.
    */
-  icon: SVG;
+  icon: string | SVG;
 };
 type Overload = {
   (props: LinkTextProps): JSX.Element;
