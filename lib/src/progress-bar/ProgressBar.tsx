@@ -28,12 +28,12 @@ const DxcProgressBar = ({
               {label}
             </ProgressBarLabel>
             <ProgressBarProgress overlay={overlay} showValue={showValue} backgroundType={backgroundType}>
-              {value === null ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100} %
+              {value === null || value === undefined ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100} %
             </ProgressBarProgress>
           </InfoProgressBar>
           <LinearProgress
             variant={showValue ? "determinate" : "indeterminate"}
-            value={value === null ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}
+            value={value === null || value === undefined ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}
           />
           {helperText && (
             <HelperText overlay={overlay} backgroundType={backgroundType}>
