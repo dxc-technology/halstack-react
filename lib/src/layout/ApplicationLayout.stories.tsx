@@ -20,7 +20,7 @@ export const DefaultApplicationLayout = () => (
     <DxcApplicationLayout>
       <DxcApplicationLayout.Main>
         <Title title="Default application layout" theme="light" level={4} />
-        <p>Main Content2</p>
+        <p>Main Content</p>
         <p>Main Content</p>
         <p>Main Content</p>
         <p>Main Content</p>
@@ -34,7 +34,7 @@ export const ApplicationLayoutWithDefaultSidenav = () => (
     <DxcApplicationLayout>
       <DxcApplicationLayout.SideNav>
         <DxcSidenav.Title>Application layout with sidenav</DxcSidenav.Title>
-        <p>SideNav Content2</p>
+        <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
@@ -55,7 +55,7 @@ export const ApplicationLayoutWithPushSidenav = () => (
     <DxcApplicationLayout>
       <DxcApplicationLayout.SideNav mode="push">
         <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
-        <p>SideNav Content2</p>
+        <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
@@ -76,7 +76,7 @@ export const ApplicationLayoutWithArrowSidenav = () => (
     <DxcApplicationLayout>
       <DxcApplicationLayout.SideNav mode="overlay" displayArrow>
         <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
-        <p>SideNav Content2</p>
+        <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
@@ -97,7 +97,7 @@ const Responsive = () => (
     <DxcApplicationLayout>
       <DxcApplicationLayout.SideNav>
         <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
-        <p>SideNav Content2</p>
+        <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
@@ -124,7 +124,7 @@ export const ApplicationLayoutWithCustomHeader = () => (
   <>
     <DxcApplicationLayout>
       <DxcApplicationLayout.Header>
-        <p>Custom Header2</p>
+        <p>Custom Header</p>
       </DxcApplicationLayout.Header>
       <DxcApplicationLayout.SideNav>
         <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
@@ -151,7 +151,7 @@ export const ApplicationLayoutWithCustomFooter = () => (
         <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
-        <p>SideNav Content2</p>
+        <p>SideNav Content</p>
         <p>SideNav Content</p>
         <p>SideNav Content</p>
       </DxcApplicationLayout.SideNav>
