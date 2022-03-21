@@ -114,8 +114,7 @@ const DXCAccordion = styled.div`
     min-width: 0;
     display: flex;
     left: 85px;
-    background-color: ${(props) =>
-      props.disabled ? props.theme.disabledBackgroundColor : props.theme.backgroundColor} !important;
+    background-color: ${(props) => props.theme.backgroundColor} !important;
     box-shadow: ${(props) =>
       `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
     position: static;
