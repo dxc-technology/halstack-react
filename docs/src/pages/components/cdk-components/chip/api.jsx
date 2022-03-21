@@ -25,21 +25,6 @@ const chipPropsTable = () => {
         <td>Element used as icon to be placed after the chip label.</td>
       </tr>
       <tr>
-        <td>prefixIconSrc: string</td>
-        <td></td>
-        <td>
-          <b>Deprecated.</b> Path of the icon to be placed before the chip
-          label.
-        </td>
-      </tr>
-      <tr>
-        <td>suffixIconSrc: string</td>
-        <td></td>
-        <td>
-          <b>Deprecated.</b> Path of the icon to be placed after the chip label.
-        </td>
-      </tr>
-      <tr>
         <td>onClickPrefix: function</td>
         <td></td>
         <td>This function will be called when the prefix is clicked.</td>
@@ -70,7 +55,8 @@ const chipPropsTable = () => {
         <td>tabIndex: number</td>
         <td>0</td>
         <td>
-          Value of the tabindex, it also applies to prefix and suffix icons when a function is given.
+          Value of the tabindex, it also applies to prefix and suffix icons when
+          a function is given.
         </td>
       </tr>
     </DxcTable>
