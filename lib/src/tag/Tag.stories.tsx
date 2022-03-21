@@ -39,7 +39,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label and icon" theme="light" level={4} />
-      <DxcTag label="Tag" icon={icon} />
+      <DxcTag label="Tag" icon="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With right icon" theme="light" level={4} />
