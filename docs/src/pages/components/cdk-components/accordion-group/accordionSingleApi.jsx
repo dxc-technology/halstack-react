@@ -15,7 +15,7 @@ const AccordionGroupSinglePropsTable = () => {
         <td>The panel label.</td>
       </tr>
       <tr>
-        <td>icon: node</td>
+        <td>icon: node | string</td>
         <td></td>
         <td>
           Element or path used as the icon that will be placed next to panel
