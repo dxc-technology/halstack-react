@@ -106,7 +106,7 @@ export const Chromatic = () => (
         <Placeholder paddingTop={60}></Placeholder>
       </DxcRow>
     </Container>
-     <Title title="gutter = xxxsmall" theme="light" level={4} />
+    <Title title="gutter = xxxsmall" theme="light" level={4} />
     <Container>
       <DxcRow gutter="xxxsmall">
         <Placeholder></Placeholder>
@@ -222,18 +222,16 @@ export const Chromatic = () => (
 );
 
 const Container = styled.div`
-  background: #d0d0d0;
+  background: #f2eafa;
   padding: 10px;
-  border-radius: 10px;
   width: ${({ width }) => (width ? `${width}px` : "unset")};
 `;
 
 const Placeholder = styled.div`
-  min-height: 80px;
+  min-height: 40px;
   min-width: 120px;
-  border: 1px solid #fabada;
-  background-color: #fff7fb;
-  border-radius: 5px;
+  border: 1px solid #a46ede;
+  background-color: #e5d5f6;
   padding-top: ${({ paddingTop }) => `${paddingTop ?? 0}px`};
   padding-bottom: ${({ paddingBottom }) => `${paddingBottom ?? 0}px`};
 `;

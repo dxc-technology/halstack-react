@@ -2,14 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import DxcStack from "../stack/Stack";
 import DxcText from "../text/Text";
+import ListPropsType from "./types";
 
-type ListProps = {
-  children: React.ReactNode;
-  gutter?: "none" | "xxxsmall" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
-  type?: "disc" | "circle" | "square" | "number";
-};
-
-function List({ children, type = "disc", gutter = "xxsmall" }: ListProps) {
+function List({ children, type = "disc", gutter = "xxsmall" }: ListPropsType): JSX.Element {
   return (
     <DxcStack as={type === "number" ? "ol" : "ul"} gutter={gutter}>
       {React.Children.map(children, (child, index) => {
