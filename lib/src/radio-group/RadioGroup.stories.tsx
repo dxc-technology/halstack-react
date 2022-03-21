@@ -24,7 +24,7 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Label only" theme="light" level={4} />
-      <DxcRadioGroup label="Example of label" options={options}/>
+      <DxcRadioGroup label="Example of a label only" options={options} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Column" theme="light" level={4} />

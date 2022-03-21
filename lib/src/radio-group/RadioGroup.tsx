@@ -30,8 +30,9 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     },
     ref
   ): JSX.Element => {
-    const [radioGroupId] = useState(`select-${uuidv4()}`);
+    const [radioGroupId] = useState(`radio-group-${uuidv4()}`);
     const radioGroupLabelId = `label-${radioGroupId}`;
+    const errorId = `error-${radioGroupId}`;
 
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [firstTimeFocus, setFirstTimeFocus] = useState(true);
@@ -83,7 +84,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
         });
       }
     };
-    const handleOnKeyDown = (event) => {
+    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
       switch (event.keyCode) {
         case 37: // arrow left
         case 38: // arrow up
@@ -120,6 +121,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-disabled={disabled}
             aria-labelledby={radioGroupLabelId}
             aria-invalid={error ? "true" : "false"}
+            aria-errormessage={error ? errorId : undefined}
             aria-required={!optional}
           >
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
@@ -141,7 +143,11 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
               />
             ))}
           </RadioGroup>
-          {!disabled && typeof error === "string" && <Error>{error}</Error>}
+          {!disabled && typeof error === "string" && (
+            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
+              {error}
+            </Error>
+          )}
         </RadioGroupContainer>
       </ThemeProvider>
     );
@@ -149,7 +155,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
 );
 
 const RadioGroupContainer = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   box-sizing: border-box;
 `;
