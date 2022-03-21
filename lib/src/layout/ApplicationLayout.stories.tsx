@@ -92,7 +92,7 @@ export const ApplicationLayoutWithArrowSidenav = () => (
   </>
 );
 
-const Jairo = () => (
+const Responsive = () => (
   <>
     <DxcApplicationLayout>
       <DxcApplicationLayout.SideNav>
@@ -113,7 +113,7 @@ const Jairo = () => (
   </>
 );
 
-export const ApplicationLayoutResponsive = Jairo.bind({});
+export const ApplicationLayoutResponsive = Responsive.bind({});
 ApplicationLayoutResponsive.args = {
   with: "props",
 };
