@@ -2,7 +2,7 @@ import React from "react";
 import DxcApplicationLayout from "./ApplicationLayout";
 import DxcSidenav from "../sidenav/Sidenav";
 import Title from "../../.storybook/components/Title";
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { userEvent, within, waitFor } from "@storybook/testing-library";
 
 export default {
@@ -11,8 +11,8 @@ export default {
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
-    }
-  }
+    },
+  },
 };
 
 export const DefaultApplicationLayout = () => (
@@ -92,7 +92,7 @@ export const ApplicationLayoutWithArrowSidenav = () => (
   </>
 );
 
-export const ApplicationLayoutWithResponsiveSidenav = () => (
+const Jairo = () => (
   <>
     <DxcApplicationLayout>
       <DxcApplicationLayout.SideNav>
@@ -113,16 +113,19 @@ export const ApplicationLayoutWithResponsiveSidenav = () => (
   </>
 );
 
-ApplicationLayoutWithResponsiveSidenav.parameters = {
-  viewport: {
-    defaultViewport: 'pixel',
-  },
+export const ApplicationLayoutResponsive = Jairo.bind({});
+ApplicationLayoutResponsive.args = {
+  with: "props",
 };
-
+ApplicationLayoutResponsive.parameters = {
+  chromatic: { viewports: [320, 1200] },
+};
 export const ApplicationLayoutWithCustomHeader = () => (
   <>
     <DxcApplicationLayout>
-      <DxcApplicationLayout.Header> <p>Custom Header</p> </DxcApplicationLayout.Header>
+      <DxcApplicationLayout.Header>
+        <p>Custom Header</p>
+      </DxcApplicationLayout.Header>
       <DxcApplicationLayout.SideNav>
         <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
         <p>SideNav Content</p>
@@ -158,7 +161,10 @@ export const ApplicationLayoutWithCustomFooter = () => (
         <p>Main Content</p>
         <p>Main Content</p>
       </DxcApplicationLayout.Main>
-      <DxcApplicationLayout.Footer> <p>Custom Footer</p> </DxcApplicationLayout.Footer>
+      <DxcApplicationLayout.Footer>
+        {" "}
+        <p>Custom Footer</p>{" "}
+      </DxcApplicationLayout.Footer>
     </DxcApplicationLayout>
   </>
 );
