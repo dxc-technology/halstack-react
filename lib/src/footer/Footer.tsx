@@ -147,6 +147,7 @@ const BottomLinks = styled.div`
 `;
 
 const ChildComponents = styled.div`
+  min-height: 16px;
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
