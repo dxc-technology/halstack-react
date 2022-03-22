@@ -231,6 +231,7 @@ DropdownOptions.play = async ({ canvasElement }) => {
 };
 
 export const DropdownHoveredOption = DropdownHoverOption.bind({});
+DropdownHoveredOption.parameters = { chromatic: { delay: 1000 } };
 DropdownHoveredOption.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("button"));
