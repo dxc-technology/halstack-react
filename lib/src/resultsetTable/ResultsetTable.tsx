@@ -120,6 +120,7 @@ const DxcResultsetTable = ({
                       key={`headerContainer_${index}`}
                       onClick={() => column.isSortable && changeSorting(index)}
                       tabIndex={column.isSortable ? tabIndex : -1}
+                      isSortable={column.isSortable}
                     >
                       <TitleDiv isSortable={column.isSortable}>{column.displayValue}</TitleDiv>
                       {column.isSortable && <SortIcon>{getIconForSortableColumn(index)}</SortIcon>}
@@ -197,9 +198,12 @@ const HeaderContainer = styled.div`
       : props.theme.headerTextAlign === "right"
       ? "flex-end"
       : "flex-start"};
-  width: 100%;
+  width: fit-content;
   :focus {
-    outline: #0095ff auto 1px;
+    ${(props) =>
+      props.isSortable &&
+      `outline: #0095ff solid 2px; 
+        outline-offset: 4px;`}
   }
 `;
 const HeaderRow = styled.thead`
