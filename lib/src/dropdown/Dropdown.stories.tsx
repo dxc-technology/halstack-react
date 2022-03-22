@@ -206,7 +206,7 @@ const DropdownHoverOption = () => (
 );
 
 const DropdownActiveOption = () => (
-  <ExampleContainer pseudoState="pseudo-active" expanded>
+  <ExampleContainer expanded>
     <Title title="Actived option" theme="light" level={4} />
     <DxcDropdown label="Actived options" options={option} onSelectOption={(value) => {}} />
   </ExampleContainer>
