@@ -200,8 +200,10 @@ const HeaderContainer = styled.div`
       : "flex-start"};
   width: fit-content;
   :focus {
-    ${(props) => props.isSortable && "outline: #0095ff solid 2px;"}
-    ${(props) => props.isSortable && "outline-offset: 4px;"}
+    ${(props) =>
+      props.isSortable &&
+      `outline: #0095ff solid 2px; 
+        outline-offset: 4px;`}
   }
 `;
 const HeaderRow = styled.thead`
