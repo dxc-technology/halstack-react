@@ -2,21 +2,17 @@ import Button from "./pages/Button";
 import Checkbox from "./pages/Checkbox";
 import Alert from "./pages/Alert";
 import Switch from "./pages/Switch";
-import Upload from "./pages/Upload";
-import InputText from "./pages/InputText";
 import Table from "./pages/Table";
 import Tabs from "./pages/Tabs";
 import Accordion from "./pages/Accordion";
 import Slider from "./pages/Slider";
 import Radio from "./pages/Radio";
-import V3Select from "./pages/V3Select";
 import Dropdown from "./pages/Dropdown";
 import ProgressBar from "./pages/ProgressBar";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import Spinner from "./pages/Spinner";
 import Dialog from "./pages/Dialog";
-import Date from "./pages/Date";
 import Box from "./pages/Box";
 import Tag from "./pages/Tag";
 import Card from "./pages/Card";
@@ -25,7 +21,6 @@ import Sidenav from "./pages/Sidenav";
 import Wizard from "./pages/Wizard";
 import Link from "./pages/Link";
 import Heading from "./pages/Heading";
-import V3Textarea from "./pages/V3Textarea";
 import ResultsetTable from "./pages/ResultsetTable";
 import Chip from "./pages/Chip";
 import ApplicationLayout from "./pages/ApplicationLayout";
@@ -92,11 +87,6 @@ export default [
     component: Chip,
   },
   {
-    path: "date",
-    name: "Date",
-    component: Date,
-  },
-  {
     path: "dateInput",
     name: "Date Input",
     component: DateInput,
@@ -132,11 +122,6 @@ export default [
     component: Heading,
   },
   {
-    path: "inputText",
-    name: "Input Text",
-    component: InputText,
-  },
-  {
     path: "link",
     name: "Link",
     component: Link,
@@ -170,11 +155,6 @@ export default [
     path: "resultsetTable",
     name: "ResultsetTable",
     component: ResultsetTable,
-  },
-  {
-    path: "V3Select",
-    name: "Select",
-    component: V3Select,
   },
   {
     path: "select",
@@ -217,11 +197,6 @@ export default [
     component: Tabs,
   },
   {
-    path: "V3Textarea",
-    name: "Textarea",
-    component: V3Textarea,
-  },
-  {
     path: "textarea",
     name: "Textarea",
     component: Textarea,
@@ -235,11 +210,6 @@ export default [
     path: "toggle-group",
     name: "Toggle group",
     component: ToggleGroup,
-  },
-  {
-    path: "upload",
-    name: "Upload",
-    component: Upload,
   },
   {
     path: "wizard",
