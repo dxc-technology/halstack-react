@@ -8,7 +8,6 @@ import Overload, { LinkTextProps, LinkIconProps } from "./types";
 const DxcLink: Overload = ({
   inheritColor = false,
   disabled = false,
-  iconSrc,
   icon,
   iconPosition = "before",
   href = "",
@@ -17,17 +16,15 @@ const DxcLink: Overload = ({
   text = "",
   margin,
   tabIndex = 0,
-}: (LinkTextProps | LinkIconProps)): JSX.Element => {
+}: LinkTextProps | LinkIconProps): JSX.Element => {
   const colorsTheme = useTheme();
   const linkContent = (
     <LinkText iconPosition={iconPosition}>
       {text}
-      {icon ? (
+      {icon && (
         <LinkIconContainer iconPosition={iconPosition}>
-          {typeof icon === "object" ? icon : React.createElement(icon)}
+          {typeof icon === "string" ? <LinkIcon src={icon} /> : icon}
         </LinkIconContainer>
-      ) : (
-        iconSrc && <LinkIcon src={iconSrc} iconPosition={iconPosition}></LinkIcon>
       )}
     </LinkText>
   );
@@ -157,11 +154,7 @@ const LinkText = styled.div`
   max-width: 100%;
 `;
 
-const LinkIcon = styled.img`
-  width: ${(props) => props.theme.iconSize};
-  height: ${(props) => props.theme.iconSize};
-  ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
-`;
+const LinkIcon = styled.img``;
 
 const LinkIconContainer = styled.div`
   width: ${(props) => props.theme.iconSize};
