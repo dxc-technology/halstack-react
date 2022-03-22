@@ -5,7 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
 type Option = {
   /**
@@ -13,14 +13,10 @@ type Option = {
    */
   label?: string;
   /**
-   * Element used as the icon that will be placed next to the
+   * Element or path used as the icon that will be placed next to the
    * option label.
    */
-  icon?: SVG;
-  /**
-   * @deprecated URL of the icon that will be placed next to the option label.
-   */
-  iconSrc?: string;
+  icon?: string | SVG;
   /**
    * Option inner value.
    */
@@ -38,15 +34,10 @@ type Props = {
    */
   optionsIconPosition?: "before" | "after";
   /**
-   * Element used as the icon that will be placed next to the
+   * Element or path used as the icon that will be placed next to the
    * dropdown label.
    */
-  icon?: SVG;
-  /**
-   * @deprecated URL of the icon that will be placed next to the
-   * dropdown label.
-   */
-  iconSrc?: string;
+  icon?: string | SVG;
   /**
    * Whether the icon should appear after or before the label.
    */
