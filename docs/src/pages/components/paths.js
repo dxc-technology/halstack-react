@@ -38,6 +38,7 @@ import NumberInput from "./cdk-components/number-input/NumberInput";
 import Textarea from "./cdk-components/textarea/Textarea";
 import FileInput from "./cdk-components/file-input/FileInput";
 import Select from "./cdk-components/select/Select";
+import RadioGroup from "./cdk-components/radio-group/RadioGroup";
 
 export const types = {
   FORMS: "Forms",
@@ -214,6 +215,13 @@ export default [
     component: Radio,
     type: types.FORMS,
     status: "ready",
+  },
+  {
+    path: "radioGroup",
+    name: "Radio Group",
+    component: RadioGroup,
+    type: types.FORMS,
+    status: "experimental",
   },
   {
     path: "resultsetTable",
