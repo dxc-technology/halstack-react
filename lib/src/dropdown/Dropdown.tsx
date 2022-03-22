@@ -17,7 +17,6 @@ const DxcDropdown = ({
   options,
   optionsIconPosition = "before",
   icon,
-  iconSrc = "",
   iconPosition = "before",
   label = "",
   caretHidden = false,
@@ -99,12 +98,10 @@ const DxcDropdown = ({
             tabIndex={tabIndex}
           >
             <DropdownTriggerContainer iconPosition={iconPosition} caretHidden={caretHidden}>
-              {icon ? (
+              {icon && (
                 <ButtonIconContainer label={label} iconPosition={iconPosition} disabled={disabled}>
-                  {typeof icon === "object" ? icon : React.createElement(icon)}
+                  {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
                 </ButtonIconContainer>
-              ) : (
-                iconSrc && <ButtonIcon label={label} src={iconSrc} iconPosition={iconPosition} />
               )}
               <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
                 {label}
@@ -141,14 +138,10 @@ const DxcDropdown = ({
                           disableRipple={true}
                           onClick={(event) => handleMenuItemClick(option)}
                         >
-                          {option.icon ? (
+                          {option.icon && (
                             <ListIconContainer label={option.label} iconPosition={optionsIconPosition}>
-                              {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+                              {typeof option.icon === "string" ? <ListIcon src={option.icon} /> : option.icon}
                             </ListIconContainer>
-                          ) : (
-                            option.iconSrc && (
-                              <ListIcon label={option.label} src={option.iconSrc} iconPosition={optionsIconPosition} />
-                            )
                           )}
                           <span className="optionLabel">{option.label}</span>
                         </MenuItem>
@@ -327,14 +320,7 @@ const DropdownTriggerContainer = styled.span`
   white-space: nowrap;
 `;
 
-const ButtonIcon = styled.img`
-  width: ${(props) => props.theme.buttonIconSize};
-  height: ${(props) => props.theme.buttonIconSize};
-  margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.buttonIconSpacing) || "0px"};
-  margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.buttonIconSpacing) || "0px"};
-`;
+const ButtonIcon = styled.img``;
 
 const ButtonIconContainer = styled.div`
   overflow: hidden;
@@ -353,14 +339,7 @@ const ButtonIconContainer = styled.div`
   }
 `;
 
-const ListIcon = styled.img`
-  width: ${(props) => props.theme.optionIconSize};
-  height: ${(props) => props.theme.optionIconSize};
-  margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
-  margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
-`;
+const ListIcon = styled.img``;
 
 const ListIconContainer = styled.div`
   overflow: hidden;

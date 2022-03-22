@@ -58,6 +58,14 @@ export const Chromatic = () => (
         <Placeholder paddingLeft={60}></Placeholder>
       </DxcStack>
     </Container>
+    <Title title="gutter = xxxsmall" theme="light" level={4} />
+    <Container>
+      <DxcStack gutter="xxxsmall">
+        <Placeholder></Placeholder>
+        <Placeholder></Placeholder>
+        <Placeholder></Placeholder>
+      </DxcStack>
+    </Container>
     <Title title="gutter = xxsmall" theme="light" level={4} />
     <Container>
       <DxcStack gutter="xxsmall">
@@ -114,6 +122,14 @@ export const Chromatic = () => (
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
+    <Title title="gutter = xxxlarge" theme="light" level={4} />
+    <Container>
+      <DxcStack gutter="xxxlarge">
+        <Placeholder></Placeholder>
+        <Placeholder></Placeholder>
+        <Placeholder></Placeholder>
+      </DxcStack>
+    </Container>
     <Title title="gutter = xxlarge && divider" theme="light" level={4} />
     <Container>
       <DxcStack gutter="xxlarge" divider>
@@ -134,17 +150,15 @@ export const Chromatic = () => (
 );
 
 const Container = styled.div`
-  background: #d0d0d0;
+  background: #f2eafa;
   padding: 10px;
-  border-radius: 10px;
 `;
 
 const Placeholder = styled.div`
-  min-height: 80px;
+  min-height: 40px;
   min-width: 120px;
-  border: 1px solid #fabada;
-  background-color: #fff7fb;
-  border-radius: 5px;
+  border: 1px solid #a46ede;
+  background-color: #e5d5f6;
   padding-left: ${({ paddingLeft }) => `${paddingLeft ?? 0}px`};
   padding-right: ${({ paddingRight }) => `${paddingRight ?? 0}px`};
 `;

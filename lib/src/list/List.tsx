@@ -2,14 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import DxcStack from "../stack/Stack";
 import DxcText from "../text/Text";
+import ListPropsType from "./types";
 
-type ListProps = {
-  children: React.ReactNode;
-  gutter?: "none" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
-  type?: "disc" | "circle" | "square" | "number";
-};
-
-function List({ children, type = "disc", gutter = "xsmall" }: ListProps) {
+function List({ children, type = "disc", gutter = "xxsmall" }: ListPropsType): JSX.Element {
   return (
     <DxcStack as={type === "number" ? "ol" : "ul"} gutter={gutter}>
       {React.Children.map(children, (child, index) => {
@@ -45,7 +40,7 @@ const Square = styled.div`
   width: 5px;
   height: 5px;
   flex-shrink: 0;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-right: 10px;
 `;
 
@@ -55,7 +50,7 @@ const Circle = styled.div`
   border-radius: 50%;
   border: 1px solid black;
   flex-shrink: 0;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-right: 10px;
   box-sizing: border-box;
 `;
@@ -66,7 +61,7 @@ const Disc = styled.div`
   height: 5px;
   border-radius: 50%;
   flex-shrink: 0;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-right: 10px;
 `;
 
