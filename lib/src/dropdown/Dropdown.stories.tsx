@@ -31,7 +31,7 @@ const iconSVGLarge = (
 const options: any = [
   {
     value: "1",
-    label: "Amazon with a very long text",
+    label: "Amazon",
   },
   {
     value: "2",
