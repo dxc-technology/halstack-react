@@ -28,7 +28,12 @@ export const Chromatic = () => (
       <Title title="Icon before" theme="light" level={4} />
       <DxcLink text="Test" href="https://www.google.com" icon={icon} iconPosition="before"></DxcLink>
       <Title title="Icon after" theme="light" level={4} />
-      <DxcLink text="Test" href="https://www.youtube.com/" icon={icon} iconPosition="after"></DxcLink>
+      <DxcLink
+        text="Test"
+        href="https://www.youtube.com/"
+        icon="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png"
+        iconPosition="after"
+      ></DxcLink>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="With link hovered" theme="light" level={4} />

@@ -43,6 +43,7 @@ import DxcStack from "./stack/Stack";
 import DxcRow from "./row/Row";
 import DxcText from "./text/Text";
 import DxcList from "./list/List";
+import DxcRadioGroup from "./radio-group/RadioGroup";
 
 import ThemeContext, { ThemeProvider } from "./ThemeContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
@@ -96,4 +97,5 @@ export {
   DxcRow,
   DxcText,
   DxcList,
+  DxcRadioGroup,
 };

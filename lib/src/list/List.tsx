@@ -40,7 +40,7 @@ const Square = styled.div`
   width: 5px;
   height: 5px;
   flex-shrink: 0;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-right: 10px;
 `;
 
@@ -50,7 +50,7 @@ const Circle = styled.div`
   border-radius: 50%;
   border: 1px solid black;
   flex-shrink: 0;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-right: 10px;
   box-sizing: border-box;
 `;
@@ -61,7 +61,7 @@ const Disc = styled.div`
   height: 5px;
   border-radius: 50%;
   flex-shrink: 0;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-right: 10px;
 `;
 
