@@ -22,15 +22,11 @@ const TagPropsTable = () => {
         <td>Whether the label should appear after or before the icon.</td>
       </tr>
       <tr>
-        <td>icon: node</td>
-        <td></td>
-        <td>Element used as the icon that will be placed next to the label.</td>
-      </tr>
-      <tr>
-        <td>iconSrc: string</td>
+        <td>icon: node | string</td>
         <td></td>
         <td>
-          <b>Deprecated.</b> URL of the icon.
+          Element or path used as the icon that will be placed next to the
+          label.
         </td>
       </tr>
       <tr>
