@@ -66,6 +66,6 @@ type Overload = {
   (props: LinkTextProps): JSX.Element;
   (props: LinkIconProps): JSX.Element;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
 export default Overload;
