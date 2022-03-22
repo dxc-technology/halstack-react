@@ -54,7 +54,7 @@ const DxcRadio = ({
               onFocus={onFocus}
               role="radio"
               aria-checked={checked}
-              aria-disabled={option.disabled}
+              aria-disabled={option.disabled ?? false}
               aria-labelledby={radioLabelId}
               tabIndex={disabled ? -1 : focused ? 0 : -1}
               ref={ref}
@@ -86,7 +86,7 @@ const RadioContainer = styled.span<RadioContainerProps>`
   cursor: ${(props) => (props.disabled ? "not-allowed" : props.readonly ? "default" : "pointer")};
   
   ${(props) =>
-    !props.disabled &&
+    !props.disabled ?
     `
       &:hover {
         & > div > div { 
@@ -128,7 +128,7 @@ const RadioContainer = styled.span<RadioContainerProps>`
           }
         }
       }
-    `}
+    ` : "pointer-events: none;"}
 `;
 
 const RadioInputContainer = styled.div`
@@ -173,7 +173,6 @@ const RadioInput = styled.div<RadioInputProps>`
         }
       `
       : `
-        pointer-events: none;
         :focus-visible {
           outline: none;
         }
