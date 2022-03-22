@@ -164,10 +164,6 @@ const parseTheme = (theme) => {
   headerTokens.contentColor = theme?.header?.contentColor ?? headerTokens.contentColor;
   headerTokens.contentColorOnDark = theme?.header?.contentColorOnDark ?? headerTokens.contentColorOnDark;
 
-  const inputTextTokens = componentTokensCopy.inputText;
-  inputTextTokens.selectedOptionBackgroundColor =
-    setOpacity(theme?.inputText?.selectedBaseColor, 0.34) ?? inputTextTokens.selectedOptionBackgroundColor;
-
   const textInputTokens = componentTokensCopy.textInput;
   textInputTokens.hoverListOptionBackgroundColor =
     theme?.textInput?.baseColor ?? textInputTokens.hoverListOptionBackgroundColor;
@@ -185,16 +181,6 @@ const parseTheme = (theme) => {
   const radioTokens = componentTokensCopy.radio;
   radioTokens.color = theme?.radio?.baseColor ?? radioTokens.color;
   radioTokens.disabledColor = setOpacity(theme?.radio?.baseColor, 0.34) ?? radioTokens.disabledColor;
-
-  const v3SelectTokens = componentTokensCopy.V3Select;
-  v3SelectTokens.selectedOptionBackgroundColor =
-    theme?.V3Select?.baseColor ?? v3SelectTokens.selectedOptionBackgroundColor;
-  v3SelectTokens.optionFontColor = theme?.V3Select?.fontColor ?? v3SelectTokens.optionFontColor;
-  v3SelectTokens.valueFontColor = theme?.V3Select?.fontColor ?? v3SelectTokens.valueFontColor;
-  v3SelectTokens.hoverOptionBackgroundColor =
-    addLightness(theme?.V3Select?.baseColor, 10) ?? v3SelectTokens.hoverOptionBackgroundColor;
-  v3SelectTokens.activeOptionBackgroundColor =
-    subLightness(theme?.V3Select?.baseColor, 15) ?? v3SelectTokens.activeOptionBackgroundColor;
 
   const sideNavTokens = componentTokensCopy.sidenav;
   sideNavTokens.backgroundColor = theme?.sidenav?.baseColor ?? sideNavTokens.backgroundColor;
