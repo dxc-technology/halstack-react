@@ -1,7 +1,6 @@
 {
   "accordion": {
     "backgroundColor": "color",
-    "disabledBackgroundColor": "color",
     "arrowColor": "color",
     "disabledArrowColor": "color",
     "hoverBackgroundColor": "color",

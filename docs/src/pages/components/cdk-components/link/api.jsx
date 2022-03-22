@@ -29,17 +29,11 @@ const linkPropsTable = () => {
         <td>Link text.</td>
       </tr>
       <tr>
-        <td>icon: node</td>
+        <td>icon: node | string</td>
         <td></td>
         <td>
-          Element used as the icon that will be placed next to the link text.
-        </td>
-      </tr>
-      <tr>
-        <td>iconSrc: string</td>
-        <td></td>
-        <td>
-          <b>Deprecated.</b> Source of the icon.
+          Element or path used as the icon that will be placed next to the link
+          text.
         </td>
       </tr>
       <tr>

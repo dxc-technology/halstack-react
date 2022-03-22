@@ -6,7 +6,7 @@ type Margin = {
   right?: Space;
 };
 
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
 type Props = {
   /**
@@ -14,26 +14,17 @@ type Props = {
    */
   label?: string;
   /**
-   * Element used as icon to be placed after the chip label.
+   * Element or path used as icon to be placed after the chip label.
    */
-  suffixIcon?: SVG;
+  suffixIcon?: string | SVG;
   /**
-   * Element used as icon to be placed before the chip label.
+   * Element or path used as icon to be placed before the chip label.
    */
-  prefixIcon?: SVG;
-  /**
-   * @deprecated Path of the icon to be placed after the chip label.
-   */
-  suffixIconSrc?: string;
+  prefixIcon?: string | SVG;
   /**
    * This function will be called when the suffix is clicked.
    */
   onClickSuffix?: () => void;
-  
-  /**
-   * @deprecated Path of the icon to be placed before the chip label.
-   */
-  prefixIconSrc?: string;
   /**
    * This function will be called when the prefix is clicked.
    */
@@ -43,7 +34,7 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;

@@ -9,7 +9,6 @@ import TagPropsType from "./types";
 
 const DxcTag = ({
   icon,
-  iconSrc,
   label = "",
   linkHref,
   onClick,
@@ -30,10 +29,8 @@ const DxcTag = ({
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
       <TagContent labelPosition={labelPosition}>
         <IconContainer iconBgColor={iconBgColor}>
-          {icon ? (
-            <TagIconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</TagIconContainer>
-          ) : (
-            <TagIcon src={iconSrc}></TagIcon>
+          {icon && (
+            <TagIconContainer>{typeof icon === "string" ? <TagIcon src={icon}></TagIcon> : icon}</TagIconContainer>
           )}
         </IconContainer>
         {size !== "small" && <TagLabel>{label}</TagLabel>}
@@ -121,14 +118,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const TagIcon = styled.img`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: ${(props) => props.theme.iconWidth};
-  height: ${(props) => props.theme.iconHeight};
-`;
+const TagIcon = styled.img``;
 
 const TagIconContainer = styled.div`
   display: inline-flex;
