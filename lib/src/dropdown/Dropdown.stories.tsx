@@ -7,6 +7,10 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 export default {
   title: "Dropdown",
   component: DxcDropdown,
+  parameters: {
+    // Sets a delay for the component's stories
+    chromatic: { delay: 300 },
+  },
 };
 
 const iconSVG = (
