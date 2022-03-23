@@ -235,7 +235,7 @@ DropdownHoveredOption.parameters = { chromatic: { delay: 5000 } };
 DropdownHoveredOption.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("button"));
-  sleep(2000);
+  await sleep(3000);
 };
 
 export const DropdownActivedOption = DropdownActiveOption.bind({});
@@ -243,7 +243,7 @@ DropdownActivedOption.parameters = { chromatic: { delay: 5000 } };
 DropdownActivedOption.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("button"));
-  sleep(2000);
+  await sleep(3000);
 };
 
 export const DropdownOptionsIconAfter = DropdownWithOptionsIconAfter.bind({});
@@ -252,10 +252,6 @@ DropdownOptionsIconAfter.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getByRole("button"));
 };
 
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
