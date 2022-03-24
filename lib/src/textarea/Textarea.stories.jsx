@@ -127,10 +127,9 @@ export const Chromatic = () => (
       <Title title="Xlarge margin" theme="light" level={4} />
       <DxcTextarea label="Xlarge" margin="xlarge" />
     </ExampleContainer>
-    <ExampleContainer>
+    <ExampleContainer expanded>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcTextarea label="Xxlarge" margin="xxlarge" />
-      <hr />
     </ExampleContainer>
   </>
 );
