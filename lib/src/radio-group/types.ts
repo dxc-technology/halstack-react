@@ -27,7 +27,6 @@ export type RadioProps = {
   option: Option;
   currentValue?: string;
   onClick: () => void;
-  onFocus: () => void;
   error?: string;
   disabled: boolean;
   focused: boolean;

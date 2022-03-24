@@ -8,7 +8,6 @@ const DxcRadio = ({
   option,
   currentValue,
   onClick,
-  onFocus,
   error,
   disabled,
   focused,
@@ -51,7 +50,6 @@ const DxcRadio = ({
               error={error}
               disabled={disabled}
               readonly={readonly}
-              onFocus={onFocus}
               role="radio"
               aria-checked={option.value === currentValue}
               aria-disabled={option.disabled ?? false}
