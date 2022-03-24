@@ -39,6 +39,8 @@ import DxcRow from "./row/Row";
 import DxcText from "./text/Text";
 import DxcList from "./list/List";
 import DxcRadioGroup from "./radio-group/RadioGroup";
+import DxcBleed from "./bleed/Bleed";
+import DxcInset from "./inset/Inset";
 
 import ThemeContext, { ThemeProvider } from "./ThemeContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
@@ -88,4 +90,6 @@ export {
   DxcText,
   DxcList,
   DxcRadioGroup,
+  DxcBleed,
+  DxcInset
 };

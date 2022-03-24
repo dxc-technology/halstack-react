@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  DxcResultsetTable,
-  DxcButton,
-} from "@dxc-technology/halstack-react";
+import { DxcResultsetTable, DxcButton } from "@dxc-technology/halstack-react";
 import deleteIcon from "../images/delete-24px.svg";
 
 const columns = [
@@ -40,11 +37,7 @@ const rows = [
     },
     {
       displayValue: (
-        <DxcButton
-          mode="flat"
-          iconSrc={deleteIcon}
-          onClick={() => console.log("Clicked")}
-        />
+        <DxcButton icon={deleteIcon} onClick={() => console.log("Clicked")} />
       ),
     },
   ],
@@ -79,7 +72,7 @@ const rows = [
       sortValue: "Albacete",
     },
     {
-      displayValue: <DxcButton mode="flat" iconSrc={deleteIcon} />,
+      displayValue: <DxcButton icon={deleteIcon} />,
     },
   ],
   [
@@ -96,7 +89,7 @@ const rows = [
       sortValue: "Albacete",
     },
     {
-      displayValue: <DxcButton mode="flat" iconSrc={deleteIcon} />,
+      displayValue: <DxcButton icon={deleteIcon} />,
     },
   ],
   [
@@ -113,7 +106,7 @@ const rows = [
       sortValue: "Madrid",
     },
     {
-      displayValue: <DxcButton mode="flat" iconSrc={deleteIcon} />,
+      displayValue: <DxcButton icon={deleteIcon} />,
     },
   ],
   [
@@ -147,7 +140,7 @@ const rows = [
       sortValue: "Madrid",
     },
     {
-      displayValue: <DxcButton mode="flat" iconSrc={deleteIcon} />,
+      displayValue: <DxcButton icon={deleteIcon} />,
     },
   ],
   [
@@ -164,7 +157,7 @@ const rows = [
       sortValue: "Barcelona",
     },
     {
-      displayValue: <DxcButton mode="flat" iconSrc={deleteIcon} />,
+      displayValue: <DxcButton icon={deleteIcon} />,
     },
   ],
   [

@@ -20,7 +20,7 @@ const code = `() => {
       { displayValue: "001", sortValue: "001" },
       { displayValue: "Peter", sortValue: "Peter" },
       { displayValue: "Miami", sortValue: "Miami" },
-      { displayValue: (<DxcButton mode="flat" iconSrc={deleteIcon}/>)},
+      { displayValue: (<DxcButton icon={deleteIcon}/>)},
     ],
     [
       { displayValue: "002", sortValue: "002" },
@@ -32,19 +32,19 @@ const code = `() => {
       { displayValue: "003", sortValue: "003" },
       { displayValue: "Lana", sortValue: "Lana" },
       { displayValue: "Amsterdam", sortValue: "Amsterdam" },
-      { displayValue: <DxcButton mode="flat" iconSrc={deleteIcon} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "004", sortValue: "004" },
       { displayValue: "Rick", sortValue: "Rick" },
       { displayValue: "London", sortValue: "London" },
-      { displayValue: <DxcButton mode="flat" iconSrc={deleteIcon} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "005", sortValue: "005" },
       { displayValue: "Mark", sortValue: "Mark" },
       { displayValue: "Miami", sortValue: "Miami" },
-      { displayValue: <DxcButton mode="flat" iconSrc={deleteIcon} /> },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "006", sortValue: "006" },
