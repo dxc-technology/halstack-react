@@ -1,5 +1,5 @@
 type Props = {
-  notificationText?: boolean | number;
+  notificationText: boolean | number | string;
 };
 
 export default Props;
