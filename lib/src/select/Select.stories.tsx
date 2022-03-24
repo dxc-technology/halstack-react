@@ -12,8 +12,8 @@ export default {
   title: "Select",
   component: DxcSelect,
 };
-const one_option = [{ label: "Option 01", value: "1" }];
 
+const one_option = [{ label: "Option 01", value: "1" }];
 const single_options = [
   { label: "Option 01", value: "1" },
   { label: "Option 02", value: "2" },
@@ -226,8 +226,10 @@ const optionsWithEllipsisMedium = [
   { label: "Option 031111111111111111111111111111222", value: "3" },
   { label: "Option 03111111111111111111111111111122", value: "4" },
 ];
+
 const Select = () => (
   <>
+    <Title title="States" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcSelect label="Hovered" options={single_options} />
@@ -245,85 +247,93 @@ const Select = () => (
       <DxcSelect label="Disabled with value" disabled options={single_options} value="1" />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="With label" theme="light" level={4} />
-      <DxcSelect label="Label" options={single_options} />
-      <Title title="Label and placeholder" theme="light" level={4} />
-      <DxcSelect label="Label" options={single_options} placeholder="Placeholder" />
-      <Title title="Label, placeholder and helper text" theme="light" level={4} />
-      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" />
       <Title title="Error" theme="light" level={4} />
       <DxcSelect
         label="Label"
         options={single_options}
-        error="Error message"
+        error="Error message."
         helperText="Helper text"
         placeholder="Placeholder"
       />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered error" theme="light" level={4} />
+      <DxcSelect
+        label="Label"
+        options={single_options}
+        error="Error message."
+        helperText="Helper text"
+        placeholder="Placeholder"
+      />
+    </ExampleContainer>
+    <Title title="Anatomy" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Label, placeholder and helper text" theme="light" level={4} />
+      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" />
+    </ExampleContainer>
+    <Title title="Variants" theme="light" level={2} />
+    <ExampleContainer>
       <Title title="Simple selection" theme="light" level={4} />
       <DxcSelect label="Simple selection" searchable options={single_options} value="2" />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Multiple selection" theme="light" level={4} />
       <DxcSelect label="Multiple select" searchable options={single_options} multiple value={["1", "2"]} />
     </ExampleContainer>
-
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Multiple clear hovered" theme="light" level={4} />
       <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
     </ExampleContainer>
-
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Multiple clear actived" theme="light" level={4} />
       <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
     </ExampleContainer>
-    <>
-      <Title title="Sizes" theme="light" level={2} />
-      <ExampleContainer>
-        <Title title="Small size" theme="light" level={4} />
-        <DxcSelect label="Small" options={single_options} size="small" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Medium size" theme="light" level={4} />
-        <DxcSelect label="Medium" options={single_options} size="medium" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Large size" theme="light" level={4} />
-        <DxcSelect label="Large" options={single_options} size="large" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="Fillparent size" theme="light" level={4} />
-        <DxcSelect label="Fillparent" options={single_options} size="fillParent" />
-      </ExampleContainer>
-    </>
-    <>
-      <Title title="Margins" theme="light" level={2} />
-      <ExampleContainer>
-        <Title title="xxsmall margin" theme="light" level={4} />
-        <DxcSelect label="xxSmall" options={single_options} margin="xxsmall" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="xsmall margin" theme="light" level={4} />
-        <DxcSelect label="xSmall" options={single_options} margin="xsmall" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="small margin" theme="light" level={4} />
-        <DxcSelect label="Small" options={single_options} margin="small" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="medium margin" theme="light" level={4} />
-        <DxcSelect label="Medium" options={single_options} margin="medium" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="large margin" theme="light" level={4} />
-        <DxcSelect label="Large" options={single_options} margin="large" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="xlarge margin" theme="light" level={4} />
-        <DxcSelect label="xLarge" options={single_options} margin="xlarge" />
-      </ExampleContainer>
-      <ExampleContainer>
-        <Title title="xxlarge margin" theme="light" level={4} />
-        <DxcSelect label="xxLarge" options={single_options} margin="xxlarge" />
-      </ExampleContainer>
-    </>
+    <Title title="Sizes" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="Small size" theme="light" level={4} />
+      <DxcSelect label="Small" options={single_options} size="small" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Medium size" theme="light" level={4} />
+      <DxcSelect label="Medium" options={single_options} size="medium" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Large size" theme="light" level={4} />
+      <DxcSelect label="Large" options={single_options} size="large" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Fillparent size" theme="light" level={4} />
+      <DxcSelect label="Fillparent" options={single_options} size="fillParent" />
+    </ExampleContainer>
+    <Title title="Margins" theme="light" level={2} />
+    <ExampleContainer>
+      <Title title="xxsmall margin" theme="light" level={4} />
+      <DxcSelect label="xxSmall" options={single_options} margin="xxsmall" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="xsmall margin" theme="light" level={4} />
+      <DxcSelect label="xSmall" options={single_options} margin="xsmall" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="small margin" theme="light" level={4} />
+      <DxcSelect label="Small" options={single_options} margin="small" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="medium margin" theme="light" level={4} />
+      <DxcSelect label="Medium" options={single_options} margin="medium" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="large margin" theme="light" level={4} />
+      <DxcSelect label="Large" options={single_options} margin="large" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="xlarge margin" theme="light" level={4} />
+      <DxcSelect label="xLarge" options={single_options} margin="xlarge" />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="xxlarge margin" theme="light" level={4} />
+      <DxcSelect label="xxLarge" options={single_options} margin="xxlarge" />
+    </ExampleContainer>
     <ExampleContainer expanded>
       <Title title="Ellipsis" theme="light" level={2} />
       <Title title="Multiple selection with ellipsis" theme="light" level={4} />

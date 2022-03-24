@@ -41,7 +41,16 @@ export const Chromatic = () => (
           label="Textarea with error"
           helperText="Helper text"
           placeholder="Enter your text here..."
-          error="Error message"
+          error="Error message."
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Hovered with error" theme="light" level={4} />
+        <DxcTextarea
+          label="Hovered textarea with error"
+          helperText="Helper text"
+          placeholder="Enter your text here..."
+          error="Error message."
         />
       </ExampleContainer>
       <ExampleContainer>
@@ -63,30 +72,42 @@ export const Chromatic = () => (
     </>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
-        <>
+        <ExampleContainer>
           <Title title="Helper text and optional with value" theme="dark" level={4} />
-          <DxcTextarea label="Helper & optional" value="Some text" margin="medium" helperText="Sample text" optional />
-
+          <DxcTextarea label="Helper & optional" value="Some text" helperText="Sample text" optional />
+        </ExampleContainer>
+        <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
           <DxcTextarea
             label="Disabled"
-            margin="medium"
             optional
             helperText="Sample text"
             placeholder="Enter your text here..."
             disabled
           />
+        </ExampleContainer>
+        <ExampleContainer>
           <Title title="Disabled with value" theme="dark" level={4} />
-          <DxcTextarea label="Disabled" margin="medium" value="Example text" disabled />
+          <DxcTextarea label="Disabled" value="Example text" disabled />
+        </ExampleContainer>
+        <ExampleContainer>
           <Title title="With error" theme="dark" level={4} />
           <DxcTextarea
             label="Textarea with error"
-            margin="medium"
             helperText="Helper text"
             placeholder="Enter your text here..."
-            error="Error message"
+            error="Error message."
           />
-        </>
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-hover">
+          <Title title="Hovered with error" theme="dark" level={4} />
+          <DxcTextarea
+            label="Hovered textarea with error"
+            helperText="Helper text"
+            placeholder="Enter your text here..."
+            error="Error message."
+          />
+        </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>
     <Title title="Sizes" theme="light" level={2} />
