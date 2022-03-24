@@ -27,6 +27,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       onChange,
       onBlur,
       error,
+      tabIndex = 0,
     },
     ref
   ): JSX.Element => {
@@ -142,6 +143,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
                 disabled={option.disabled || disabled}
                 focused={currentFocusIndex === index}
                 readonly={readonly}
+                tabIndex={tabIndex}
               />
             ))}
           </RadioGroup>

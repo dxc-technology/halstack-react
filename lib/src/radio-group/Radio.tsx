@@ -12,6 +12,7 @@ const DxcRadio = ({
   disabled,
   focused,
   readonly,
+  tabIndex,
 }: RadioProps): JSX.Element => {
   const [radioLabelId] = useState(`radio-${uuidv4()}`);
   const ref = useRef<HTMLDivElement>(null);
@@ -54,7 +55,7 @@ const DxcRadio = ({
               aria-checked={option.value === currentValue}
               aria-disabled={option.disabled ?? false}
               aria-labelledby={radioLabelId}
-              tabIndex={disabled ? -1 : focused ? 0 : -1}
+              tabIndex={disabled ? -1 : focused ? tabIndex : -1}
               ref={ref}
             >
               {option.value === currentValue && <Dot disabled={disabled} readonly={readonly} error={error} />}

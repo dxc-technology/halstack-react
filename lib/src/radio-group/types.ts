@@ -19,6 +19,7 @@ type RadioGroupProps = {
   onChange?: (value: string) => void;
   onBlur?: (val: { value?: string; error?: string }) => void;
   error?: string;
+  tabIndex?: number;
 };
 
 export type RefType = HTMLDivElement;
@@ -31,6 +32,7 @@ export type RadioProps = {
   disabled: boolean;
   focused: boolean;
   readonly: boolean;
+  tabIndex: number;
 };
 
 export default RadioGroupProps;
