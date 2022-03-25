@@ -188,6 +188,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   ): JSX.Element => {
     const [selectId] = useState(`select-${uuidv4()}`);
     const selectLabelId = `label-${selectId}`;
+    const errorId = `error-${selectId}`;
     const optionsListId = `${selectId}-listbox`;
     const [innerValue, setInnerValue] = useState(multiple ? [] : "");
     const [searchValue, setSearchValue] = useState("");
@@ -471,11 +472,13 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             tabIndex={tabIndex}
             role="combobox"
             aria-controls={optionsListId}
+            aria-disabled={disabled}
             aria-expanded={isOpen}
             aria-haspopup="listbox"
             aria-labelledby={selectLabelId}
             aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
             aria-invalid={error ? "true" : "false"}
+            aria-errormessage={error ? errorId : undefined}
             aria-required={!optional}
           >
             {multiple && selectedOption.length > 0 && (
@@ -572,7 +575,11 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               </OptionsList>
             )}
           </Select>
-          {!disabled && typeof error === "string" && <Error>{error}</Error>}
+          {!disabled && typeof error === "string" && (
+            <Error id={errorId} aria-live={error ? "assertive" : "off"}>
+              {error}
+            </Error>
+          )}
         </SelectContainer>
       </ThemeProvider>
     );
