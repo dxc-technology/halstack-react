@@ -224,7 +224,7 @@ const optionsWithEllipsisMedium = [
   { label: "Optiond1234567890123456789012345678901234", value: "1" },
   { label: "Optiond12345678901234567890123456789012345", value: "2" },
   { label: "Option 031111111111111111111111111111222", value: "3" },
-  { label: "Option 03111111111111111111111111111122", value: "4" },
+  { label: "Option 03111111111111111111111111111222", value: "4" },
 ];
 
 const Select = () => (
