@@ -354,7 +354,7 @@ const Select = () => (
 export const Chromatic = Select.bind({});
 Chromatic.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("combobox")[25]);
+  await userEvent.click(canvas.getAllByRole("combobox")[24]);
 };
 const DefaultSelect = () => (
   <ExampleContainer expanded>
