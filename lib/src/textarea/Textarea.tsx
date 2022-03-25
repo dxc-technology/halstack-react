@@ -47,7 +47,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     const backgroundType = useContext(BackgroundColorContext);
 
     const textareaRef = useRef(null);
-    const errorId = `error-message-${textareaId}`;
+    const errorId = `error-${textareaId}`;
 
     const getLengthErrorMessage = () => `Min length ${minLength}, max length ${maxLength}.`;
 
@@ -120,12 +120,13 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             backgroundType={backgroundType}
             ref={textareaRef}
             tabIndex={tabIndex}
+            aria-disabled={disabled}
             aria-invalid={error ? "true" : "false"}
-            aria-describedby={error ? errorId : undefined}
+            aria-errormessage={error ? errorId : undefined}
             aria-required={optional ? "false" : "true"}
           />
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} backgroundType={backgroundType}>
+            <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}

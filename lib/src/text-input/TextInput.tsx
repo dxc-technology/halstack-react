@@ -114,7 +114,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const backgroundType = useContext(BackgroundColorContext);
 
     const autosuggestId = `${inputId}-listBox`;
-    const errorId = `error-message-${inputId}`;
+    const errorId = `error-${inputId}`;
 
     const numberInputContext = useContext(NumberInputContext);
 
@@ -453,6 +453,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               role={isTextInputType() && hasSuggestions() ? "combobox" : "textbox"}
               aria-autocomplete={isTextInputType() && hasSuggestions() ? "list" : undefined}
               aria-controls={isTextInputType() && hasSuggestions() ? autosuggestId : undefined}
+              aria-disabled={disabled}
               aria-expanded={isTextInputType() && hasSuggestions() ? (isOpen ? "true" : "false") : undefined}
               aria-activedescendant={
                 isTextInputType() && hasSuggestions() && isOpen && visualFocusedSuggIndex !== -1
@@ -460,7 +461,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   : undefined
               }
               aria-invalid={error ? "true" : "false"}
-              aria-describedby={error ? errorId : undefined}
+              aria-errormessage={error ? errorId : undefined}
               aria-required={optional ? "false" : "true"}
             />
             {!disabled && error && (
@@ -564,7 +565,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             )}
           </InputContainer>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} backgroundType={backgroundType}>
+            <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}
