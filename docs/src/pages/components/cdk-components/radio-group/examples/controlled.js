@@ -24,7 +24,7 @@ const code = `() => {
         label="Controlled"
         options={options}
         value={value}
-        error={error}
+        error={error == null ? "" : error}
         onChange={onChange}
         onBlur={onBlur}
       />
