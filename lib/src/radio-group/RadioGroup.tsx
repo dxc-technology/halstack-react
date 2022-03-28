@@ -130,6 +130,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !readonly && !optional}
             aria-readonly={readonly}
+            aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
             {innerOptions.map((option, index) => (
