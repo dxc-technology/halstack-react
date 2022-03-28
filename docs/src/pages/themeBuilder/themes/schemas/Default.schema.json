@@ -16,7 +16,7 @@
     "baseColor": "color",
     "fontColor": "color"
   },
-  "date": {
+  "dateInput": {
     "baseColor": "color",
     "accentColor": "color"
   },
@@ -44,9 +44,6 @@
     "contentColor": "color",
     "contentColorOnDark": "color"
   },
-  "inputText": {
-    "selectedBaseColor": "color"
-  },
   "textInput": {
     "baseColor": "color"
   },
@@ -60,10 +57,6 @@
   },
   "radio": {
     "baseColor": "color"
-  },
-  "V3Select": {
-    "baseColor": "color",
-    "fontColor": "color"
   },
   "sidenav": {
     "baseColor": "color",
