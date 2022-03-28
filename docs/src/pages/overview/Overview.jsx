@@ -261,7 +261,7 @@ function Support() {
         <DxcTag
           margin={{ top: "medium", bottom: "medium", right: "medium" }}
           linkHref="https://github.com/dxc-technology/halstack-react"
-          iconSrc={githubLogo}
+          icon={githubLogo}
           label="GitHub Issues"
         ></DxcTag>
 
@@ -320,13 +320,13 @@ function Overview() {
             <DxcTag
               margin={{ top: "medium", bottom: "medium", right: "medium" }}
               linkHref="https://developer.dxc.com/design/guidelines/principles/overview"
-              iconSrc={dxcLogo}
+              icon={dxcLogo}
               label="Design Guidelines"
             ></DxcTag>
             <DxcTag
               margin={{ top: "medium", bottom: "medium", right: "medium" }}
               linkHref="https://github.com/dxc-technology/halstack-react"
-              iconSrc={githubLogo}
+              icon={githubLogo}
               label="GitHub"
             ></DxcTag>
           </LinksSection>

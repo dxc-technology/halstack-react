@@ -10,19 +10,17 @@ const colors = {
   },
 };
 
-const deleteSVG = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-    >
-      <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-      <path d="M0 0h24v24H0z" fill="none" />
-    </svg>
-  );
-};
+const deleteSVG = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24"
+    viewBox="0 0 24 24"
+    width="24"
+  >
+    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+    <path d="M0 0h24v24H0z" fill="none" />
+  </svg>
+);
 
 function App() {
   const [isExpanded, changeIsExpanded] = useState(true);
@@ -51,7 +49,7 @@ function App() {
         />
       </div>
       <div className="test-case" id="with-suffix-icon-disabled">
-        <h4>Disabled chip6 with suffixIconSrc</h4>
+        <h4>Disabled chip6 with suffixIcon</h4>
         <DxcChip
           label="Chip 6"
           disabled
@@ -60,7 +58,7 @@ function App() {
         />
       </div>
       <div className="test-case" id="with-suffix-icon">
-        <h4>Chip6 with suffixIconSrc</h4>
+        <h4>Chip6 with suffixIcon</h4>
         <DxcChip
           label="Chip 6"
           suffixIcon={deleteSVG}
@@ -74,22 +72,19 @@ function App() {
           suffixIcon={deleteSVG}
           onClickSuffix={onClickSuffix}
           onClickPrefix={onClickPrefix}
-          prefixIcon={<img src={avatar}></img>}
+          prefixIcon={avatar}
         />
       </div>
       <div className="test-case" id="only-icon">
         <h4>Chip8 only icon</h4>
-        <DxcChip
-          suffixIcon={<img src={avatar}></img>}
-          onClickSuffix={onClickSuffix}
-        />
+        <DxcChip suffixIcon={avatar} onClickSuffix={onClickSuffix} />
       </div>
       <div className="test-case" id="icons-and-disabled">
         <h4>Chip9 with icons and disabled</h4>
         <DxcChip
           label="Chip 9"
           disabled={true}
-          prefixIcon={<img src={avatar}></img>}
+          prefixIcon={avatar}
           onClickPrefix={onClickPrefix}
         />
       </div>
