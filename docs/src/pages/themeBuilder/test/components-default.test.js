@@ -135,28 +135,6 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render date component", async () => {
-    const { getByText, getAllByText, findByText } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
-    act(() => {
-      fireEvent.click(getByText("Date"));
-    });
-    expect(getByText("Date component")).toBeTruthy();
-    expect(getByText("Light Mode")).toBeTruthy();
-    // expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(1);
-    expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(defaultTheme["date"]).forEach((themeInputs) =>
-      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
-    );
-  });
-
   it("Should render dropdown component", async () => {
     const { getByText, findByText } = render(
       <Router history={history}>
@@ -279,30 +257,6 @@ describe("Successful component tests for default theme", () => {
     expect(getAllByText("Disabled").length).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["radio"]).forEach((themeInputs) =>
-      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
-    );
-  });
-
-  it("Should render select component", async () => {
-    const { getByText, getAllByText, findByText } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
-    act(() => {
-      fireEvent.click(getByText("V3 Select"));
-    });
-    expect(getByText("V3Select component")).toBeTruthy();
-    expect(getByText("Light Mode")).toBeTruthy();
-    // expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(1);
-    expect(getAllByText("Disabled").length).toBe(1);
-    expect(getAllByText("Multiple").length).toBe(1);
-    expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(defaultTheme["V3Select"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
     );
   });
@@ -441,32 +395,6 @@ describe("Successful component tests for default theme", () => {
     expect(getByText("With scroll buttons")).toBeTruthy();
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(defaultTheme["tabs"]).forEach((themeInputs) =>
-      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
-    );
-  });
-
-  it("Should render input text component", async () => {
-    const { getByText, getAllByText, findByText } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
-    act(() => {
-      fireEvent.click(getByText("Input Text"));
-    });
-    expect(getByText("InputText component")).toBeTruthy();
-    expect(getByText("Light Mode")).toBeTruthy();
-    // expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(1);
-    expect(getAllByText("Disabled").length).toBe(1);
-    expect(getAllByText("Required").length).toBe(1);
-    expect(getAllByText("Invalid").length).toBe(1);
-    expect(getAllByText("Autocomplete").length).toBe(2);
-    expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(defaultTheme["inputText"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()
     );
   });

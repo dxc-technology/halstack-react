@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   DxcButton,
   DxcDialog,
-  V3DxcTextarea,
+  DxcTextarea,
   DxcHeading,
   DxcAlert,
 } from "@dxc-technology/halstack-react";
@@ -48,8 +48,8 @@ const ImportDialog = ({
   const [value, setValue] = useState("");
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
 
-  const onChange = (newValue) => {
-    setValue(newValue);
+  const onChange = ({ value }) => {
+    setValue(value);
     if (validationErrorMessage !== "") setValidationErrorMessage("");
   };
   const closeDialog = () => {
@@ -82,14 +82,14 @@ const ImportDialog = ({
           margin={{ bottom: "small" }}
           weight="normal"
         />
-        <V3DxcTextarea
+        <DxcTextarea
           label="Paste here your theme"
           value={value}
           onChange={onChange}
           size="fillParent"
-          numRows={14}
+          rows={14}
           margin={{ bottom: "small" }}
-          invalid={validationErrorMessage !== ""}
+          error={validationErrorMessage !== ""}
         />
         {validationErrorMessage !== "" && (
           <DxcAlert
