@@ -195,7 +195,7 @@ export default [
     name: "Radio Button",
     component: Radio,
     type: types.FORMS,
-    status: "ready",
+    status: "deprecated",
   },
   {
     path: "radioGroup",
