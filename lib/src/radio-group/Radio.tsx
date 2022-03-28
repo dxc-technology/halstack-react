@@ -8,17 +8,20 @@ const DxcRadio = ({
   option,
   currentValue,
   onClick,
-  onFocus,
   error,
   disabled,
   focused,
   readonly,
+  tabIndex,
 }: RadioProps): JSX.Element => {
   const [radioLabelId] = useState(`radio-${uuidv4()}`);
   const ref = useRef<HTMLDivElement>(null);
   const colorsTheme = useTheme();
 
-  const checked = option.value === currentValue;
+  const handleOnClick = () => {
+    onClick();
+    focused && document.activeElement !== ref?.current && ref?.current?.focus();
+  };
 
   const [firstUpdate, setFirstUpdate] = useState(true);
   useLayoutEffect(() => {
@@ -38,28 +41,24 @@ const DxcRadio = ({
           disabled={disabled}
           readonly={readonly}
           onMouseDown={(event) => {
-            // Prevents div's onclick from stealing the radio button's focus
+            // Prevents div's onClick from stealing the radio input's focus
             event.preventDefault();
           }}
-          onClick={() => {
-            ref?.current?.focus();
-            onClick();
-          }}
+          onClick={handleOnClick}
         >
           <RadioInputContainer>
             <RadioInput
               error={error}
               disabled={disabled}
               readonly={readonly}
-              onFocus={onFocus}
               role="radio"
-              aria-checked={checked}
-              aria-disabled={option.disabled}
+              aria-checked={option.value === currentValue}
+              aria-disabled={option.disabled ?? false}
               aria-labelledby={radioLabelId}
-              tabIndex={disabled ? -1 : focused ? 0 : -1}
+              tabIndex={disabled ? -1 : focused ? tabIndex : -1}
               ref={ref}
             >
-              {checked && <Dot disabled={disabled} readonly={readonly} error={error} />}
+              {option.value === currentValue && <Dot disabled={disabled} readonly={readonly} error={error} />}
             </RadioInput>
           </RadioInputContainer>
           <Label id={radioLabelId} disabled={disabled}>
@@ -84,10 +83,10 @@ const RadioContainer = styled.span<RadioContainerProps>`
   display: inline-flex;
   align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : props.readonly ? "default" : "pointer")};
-  
+
   ${(props) =>
-    !props.disabled &&
-    `
+    !props.disabled
+      ? `
       &:hover {
         & > div > div { 
           border-color: ${
@@ -128,7 +127,8 @@ const RadioContainer = styled.span<RadioContainerProps>`
           }
         }
       }
-    `}
+    `
+      : "pointer-events: none;"}
 `;
 
 const RadioInputContainer = styled.div`
@@ -159,7 +159,6 @@ const RadioInput = styled.div<RadioInputProps>`
       else return props.theme.radioInputColor;
     }};
   border-radius: 50%;
-  box-shadow: 0 0 0 2px transparent;
 
   ${(props) =>
     !props.disabled
@@ -173,7 +172,6 @@ const RadioInput = styled.div<RadioInputProps>`
         }
       `
       : `
-        pointer-events: none;
         :focus-visible {
           outline: none;
         }
