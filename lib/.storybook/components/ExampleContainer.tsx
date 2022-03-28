@@ -15,7 +15,6 @@ const ExampleContainer = ({ children, pseudoState, expanded = false }: Props): J
 
 const DivContainer = styled.div`
   margin: 15px;
-  overflow: visible !important;
   ${(props) => props.expanded && "height: 100vh;"}
 `;
 

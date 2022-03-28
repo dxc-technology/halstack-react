@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import DxcTextarea from "./Textarea";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -63,11 +64,13 @@ export const Chromatic = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Grow manual" theme="light" level={4} />
-        <DxcTextarea
-          label="Manual vertical grow"
-          verticalGrow="manual"
-          value="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-        />
+        <OverflowArea>
+          <DxcTextarea
+            label="Manual vertical grow"
+            verticalGrow="manual"
+            value="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+          />
+        </OverflowArea>
       </ExampleContainer>
     </>
     <BackgroundColorProvider color="#333333">
@@ -155,3 +158,7 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+const OverflowArea = styled.div`
+  overflow: visible !important;
+`;
