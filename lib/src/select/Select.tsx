@@ -398,7 +398,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
             aria-invalid={error ? "true" : "false"}
             aria-errormessage={error ? errorId : undefined}
-            aria-required={!optional}
+            aria-required={!disabled && !optional}
           >
             {multiple && selectedOption.length > 0 && (
               <SelectionIndicator>
@@ -431,8 +431,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   disabled={disabled}
                   onChange={handleSearchIOnChange}
                   ref={selectSearchInputRef}
-                  autoComplete="off"
-                  autoCorrect="off"
+                  autoComplete="nope"
+                  autoCorrect="nope"
                   size="1"
                 ></SearchInput>
               )}
@@ -481,6 +481,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 ref={selectOptionsListRef}
                 role="listbox"
                 aria-multiselectable={multiple}
+                aria-orientation="vertical"
               >
                 {searchable && (filteredOptions.length === 0 || !filteredGroupsHaveOptions()) ? (
                   <OptionsSystemMessage>
