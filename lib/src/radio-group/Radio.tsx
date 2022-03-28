@@ -159,7 +159,6 @@ const RadioInput = styled.div<RadioInputProps>`
       else return props.theme.radioInputColor;
     }};
   border-radius: 50%;
-  box-shadow: 0 0 0 2px transparent;
 
   ${(props) =>
     !props.disabled

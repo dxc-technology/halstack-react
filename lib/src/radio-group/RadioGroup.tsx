@@ -128,7 +128,8 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-labelledby={radioGroupLabelId}
             aria-invalid={error ? "true" : "false"}
             aria-errormessage={error ? errorId : undefined}
-            aria-required={!optional}
+            aria-required={!disabled && !readonly && !optional}
+            aria-readonly={readonly}
           >
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
             {innerOptions.map((option, index) => (
