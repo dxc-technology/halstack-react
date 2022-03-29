@@ -16,9 +16,10 @@ type RadioGroupProps = {
   stacking?: "row" | "column";
   defaultValue?: string;
   value?: string;
-  onChange?: (value?: string) => void;
+  onChange?: (value: string) => void;
   onBlur?: (val: { value?: string; error?: string }) => void;
   error?: string;
+  tabIndex?: number;
 };
 
 export type RefType = HTMLDivElement;
@@ -27,11 +28,11 @@ export type RadioProps = {
   option: Option;
   currentValue?: string;
   onClick: () => void;
-  onFocus: () => void;
   error?: string;
   disabled: boolean;
   focused: boolean;
   readonly: boolean;
+  tabIndex: number;
 };
 
 export default RadioGroupProps;
