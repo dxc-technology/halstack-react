@@ -14,6 +14,13 @@ export default {
       </Decorator>
     ),
   ],
+  parameters: {
+    //👇 The viewports object from the Essentials addon
+    viewport: {
+      //👇 Your own default viewport
+      defaultViewport: 'iphone6',
+    },
+  },
 };
 
 export const Chromatic = () => (
