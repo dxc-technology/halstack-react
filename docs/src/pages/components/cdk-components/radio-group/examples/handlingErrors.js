@@ -17,6 +17,7 @@ const code = `() => {
     <div style={{ display: "flex", flexWrap: "wrap", margin: "36px" }}>
       <DxcRadioGroup
         label="Error handling"
+        helperText="Controlling the error state of a radio group"
         options={options}
         error={error == null ? "" : error}
         onBlur={onBlur}
