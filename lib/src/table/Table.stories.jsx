@@ -312,5 +312,5 @@ Chromatic.args = {
 };
 Chromatic.parameters = {
   // Set the viewports in Chromatic at a story level.
-  chromatic: { viewports: [320, 1200] },
+  chromatic: { viewports: [320, 1200], delay: 3000 },
 };
