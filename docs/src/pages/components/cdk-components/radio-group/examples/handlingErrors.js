@@ -2,12 +2,9 @@ import { DxcRadioGroup } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const [value, setValue] = useState("");
-  const onChange = (value) => {
-    setValue(value);
-  };
-  const onBlur = ({ value }) => {
-    setValue(value);
+  const [error, setError] = useState("");
+  const onBlur = ({ error }) => {
+    setError(error);
   };
 
   const options = [
@@ -19,10 +16,9 @@ const code = `() => {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", margin: "36px" }}>
       <DxcRadioGroup
-        label="Controlled"
+        label="Error handling"
         options={options}
-        value={value}
-        onChange={onChange}
+        error={error == null ? "" : error}
         onBlur={onBlur}
       />
     </div>
