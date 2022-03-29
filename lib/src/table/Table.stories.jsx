@@ -7,23 +7,9 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 export default {
   title: "Table",
   component: DxcTable,
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
-  parameters: {
-    //👇 The viewports object from the Essentials addon
-    viewport: {
-      //👇 Your own default viewport
-      defaultViewport: 'iphone6',
-    },
-  },
 };
 
-export const Chromatic = () => (
+const Table = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
@@ -291,27 +277,11 @@ export const Chromatic = () => (
   </>
 );
 
-const Decorator = styled.div`
-  * {
-    overflow: auto !important;
-    /* width */
-    ::-webkit-scrollbar {
-      width: 10px !important;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1 !important;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: #888 !important;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: #555 !important;
-    }
-  }
-`;
+export const Chromatic = Table.bind({});
+Chromatic.args = {
+  with: 'props',
+};
+Chromatic.parameters = {
+  // Set the viewports in Chromatic at a story level.
+  chromatic: { viewports: [320, 1200] },
+};
