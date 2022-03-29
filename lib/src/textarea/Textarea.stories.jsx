@@ -166,7 +166,7 @@ export const Chromatic = () => (
 
 const Decorator = styled.div`
   * {
-    
+    overflow: visible;
     /* width */
     ::-webkit-scrollbar {
       width: 10px !important;
