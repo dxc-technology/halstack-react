@@ -17,6 +17,7 @@ const DivContainer = styled.div`
   margin: 15px;
   ${(props) => props.expanded && "height: 100vh;"}
   * {
+    overflow: auto;
     /* width */
     ::-webkit-scrollbar {
       width: 10px !important;
