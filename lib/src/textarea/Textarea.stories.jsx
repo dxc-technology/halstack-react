@@ -165,8 +165,8 @@ export const Chromatic = () => (
 );
 
 const Decorator = styled.div`
-  * {
-    overflow: visible;
+  textarea {
+    overflow: auto;
     /* width */
     ::-webkit-scrollbar {
       width: 10px !important;
