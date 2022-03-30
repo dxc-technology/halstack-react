@@ -109,8 +109,8 @@ function CustomThemes() {
         customize, using the next structure:
         <SyntaxHighlighter language="javascript" style={docco}>
           {`componentName: {
-            themeInput: "value", 
-          }`}
+  themeInput: "value", 
+}`}
         </SyntaxHighlighter>
         The theme inputs for each component are documented in the themes
         guidelines.
@@ -125,123 +125,121 @@ function CustomThemes() {
 
       <SyntaxHighlighter language="javascript" style={docco}>
         {`
-          import { DxcButton, ThemeProvider } from "@dxc-technology/halstack-react";
+  import { DxcButton, ThemeProvider } from "@dxc-technology/halstack-react";
 
-          const colors = {
-              accordion: {
-                accentColor: "#6f2c91", // accordion's accent color theme input
-                fontColor: "#666666" // accordion's font color theme input
-              },
-              button: {
-                baseColor: "#5f249f", // button's base color theme input
-                primaryFontColor: "#ffffff",  // button's primary font color theme input
-                secondaryHoverFontColor: "#ffffff", // button's secondary hover font color theme input
-              },
-              checkbox: {
-                baseColor: "#0067b3", // checkbox's base color theme input
-                checkColor: "#ffffff", // checkbox's check color theme input
-              },
-              chip: {
-                baseColor: "#e6e6e6", // chip's base color theme input
-                fontColor: "#000000", // chip's font color theme input
-              },
-              dateInput: {
-                baseColor: "#6f2c91", // date's base color theme input
-                accentColor: "#ffffff", // date's accent color theme input
-              },
-              dropdown: {
-                baseColor: "#ffffff", // dropdown's base color theme input
-                fontColor: "#000000", // dropdown's font color theme input
-              },
-              fileInput: {
-                fontColor: "#000000", // file input's font color theme input
-              },
-              footer: {
-                baseColor: "#000000", // footer's base color theme input
-                fontColor: "#ffffff", // footer's font color theme input
-                accentColor: "#0095ff", // footer's accent color theme input
-                logo: "yahooLogo", // footer's logo theme input
-              },
-              header: {
-                baseColor: "#ffffff", // header's base color theme input
-                accentColor: "#000000", // header's accent color theme input
-                fontColor: "#000000", // header's font color theme input
-                menuBaseColor: "#ffffff", // header's menu base color theme input
-                hamburguerColor: "#000000", // header's hamburguer color theme input
-                logo: "yahooLogo",// header's logo theme input
-                logoResponsive: "yahooLogo", // header's logo responsive theme input
-                contentColor: "#000000", // header's content color theme input
-              },
-              paginator: {
-                baseColor: "#eeeeee", // paginator's base color theme input
-                fontColor: "#000000", // paginator's font color theme input
-              },
-              progressBar: {
-                accentColor: "#5f249f", // progress bar's accent color theme input
-                baseColor: "#cecece", // progress bar's base color theme input
-              },
-              radio: {
-                baseColor: "#000000", // radio's base color theme input
-              },
-              select: {
-                baseColor: "#d9d9d9", // select's base color theme input
-                fontColor: "#000000", // select's font color theme input
-              },
-              sidenav: {
-                baseColor: "#f8f8f8", // sidenav's base color theme input
-                arrowBaseColor: "#f8f8f8", // sidenav's arrow base color theme input
-                arrowAccentColor: "#000000", // sidenav's arrow accent color theme input
-              },
-              slider: {
-                baseColor: "#0067b3", // slider's base color theme input
-              },
-              spinner: {
-                accentColor: "#5f249f", // spinner's accent color theme input
-                baseColor: "#ffffff", // spinner's base color theme input
-              },
-              switch: {
-                checkedBaseColor: "#5f249f", // switch's checked base color theme input
-              },
-              table: {
-                baseColor: "#5f249f", // table's base color theme input
-                fontColor: "#ffffff", // table's font color theme input
-              },
-              tabs: {
-                baseColor: "#5f249f", // tabs' base color theme input
-              },
-              textInput: {
-                baseColor: "#f2f2f2", // text input's base color theme input
-              },
-              toggleGroup: {
-                selectedBaseColor: "#5f249f", // toggle group's selected base color theme input        
-                selectedFontColor: "#ffffff", // toggle group's selected font color theme input
-                unselectedBaseColor: "#e6e6e6", // toggle group's unselected base color theme input
-                unselectedFontColor: "#000000", // toggle group's unselected font color theme input
-              },
-              wizard: {
-                baseColor: "#5f249f", // wizard's base color theme input
-                fontColor: "#ffffff", // wizard's font color theme input
-              },
-            
-          };
+  const colors = {
+    accordion: {
+      accentColor: "#6f2c91", // accordion's accent color theme input
+      fontColor: "#666666" // accordion's font color theme input
+    },
+    button: {
+      baseColor: "#5f249f", // button's base color theme input
+      primaryFontColor: "#ffffff",  // button's primary font color theme input
+      secondaryHoverFontColor: "#ffffff", // button's secondary hover font color theme input
+    },
+    checkbox: {
+      baseColor: "#0067b3", // checkbox's base color theme input
+      checkColor: "#ffffff", // checkbox's check color theme input
+    },
+    chip: {
+      baseColor: "#e6e6e6", // chip's base color theme input
+      fontColor: "#000000", // chip's font color theme input
+    },
+    dateInput: {
+      baseColor: "#6f2c91", // date's base color theme input
+      accentColor: "#ffffff", // date's accent color theme input
+    },
+    dropdown: {
+      baseColor: "#ffffff", // dropdown's base color theme input
+      fontColor: "#000000", // dropdown's font color theme input
+    },
+    fileInput: {
+      fontColor: "#000000", // file input's font color theme input
+    },
+    footer: {
+      baseColor: "#000000", // footer's base color theme input
+      fontColor: "#ffffff", // footer's font color theme input
+      accentColor: "#0095ff", // footer's accent color theme input
+      logo: "yahooLogo", // footer's logo theme input
+    },
+    header: {
+      baseColor: "#ffffff", // header's base color theme input
+      accentColor: "#000000", // header's accent color theme input
+      fontColor: "#000000", // header's font color theme input
+      menuBaseColor: "#ffffff", // header's menu base color theme input
+      hamburguerColor: "#000000", // header's hamburguer color theme input
+      logo: "yahooLogo",// header's logo theme input
+      logoResponsive: "yahooLogo", // header's logo responsive theme input
+      contentColor: "#000000", // header's content color theme input
+    },
+    paginator: {
+      baseColor: "#eeeeee", // paginator's base color theme input
+      fontColor: "#000000", // paginator's font color theme input
+    },
+    progressBar: {
+      accentColor: "#5f249f", // progress bar's accent color theme input
+      baseColor: "#cecece", // progress bar's base color theme input
+    },
+    radio: {
+      baseColor: "#000000", // radio's base color theme input
+    },
+    select: {
+      baseColor: "#d9d9d9", // select's base color theme input
+      fontColor: "#000000", // select's font color theme input
+    },
+    sidenav: {
+      baseColor: "#f8f8f8", // sidenav's base color theme input
+      arrowBaseColor: "#f8f8f8", // sidenav's arrow base color theme input
+      arrowAccentColor: "#000000", // sidenav's arrow accent color theme input
+    },
+    slider: {
+      baseColor: "#0067b3", // slider's base color theme input
+    },
+    spinner: {
+      accentColor: "#5f249f", // spinner's accent color theme input
+      baseColor: "#ffffff", // spinner's base color theme input
+    },
+    switch: {
+      checkedBaseColor: "#5f249f", // switch's checked base color theme input
+    },
+    table: {
+      baseColor: "#5f249f", // table's base color theme input
+      fontColor: "#ffffff", // table's font color theme input
+    },
+    tabs: {
+      baseColor: "#5f249f", // tabs' base color theme input
+    },
+    textInput: {
+      baseColor: "#f2f2f2", // text input's base color theme input
+    },
+    toggleGroup: {
+      selectedBaseColor: "#5f249f", // toggle group's selected base color theme input        
+      selectedFontColor: "#ffffff", // toggle group's selected font color theme input
+      unselectedBaseColor: "#e6e6e6", // toggle group's unselected base color theme input
+      unselectedFontColor: "#000000", // toggle group's unselected font color theme input
+    },
+    wizard: {
+      baseColor: "#5f249f", // wizard's base color theme input
+      fontColor: "#ffffff", // wizard's font color theme input
+    },
+};
 
-          const MyComponent = () => {
-            return (
-              <ThemeProvider theme={colors}>
-                <DxcButton
-                  mode="primary"
-                  label="Button"
-                  onClick={onClick}
-                  size="large"
-                  margin="small"
-                />
-              </ThemeProvider>
-            );
-          };
+  const MyComponent = () => {
+    return (
+      <ThemeProvider theme={colors}>
+        <DxcButton
+          mode="primary"
+          label="Button"
+          onClick={onClick}
+          size="large"
+          margin="small"
+        />
+      </ThemeProvider>
+    );
+  };
 
-          export default MyComponent;
-
-        `}
+  export default MyComponent;
+`}
       </SyntaxHighlighter>
     </Section>
   );
@@ -269,7 +267,7 @@ function Support() {
         </p>
         <ul>
           <li>
-            Somebody else migh have already created an issue regarding your
+            Somebody else might have already created an issue regarding your
             question or feature request. Please use the search functionality and{" "}
             <b>avoid the creation of duplicated issues</b>. In case you want to
             provide your input or express your interest in a feature request,
