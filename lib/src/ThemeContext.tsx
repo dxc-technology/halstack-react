@@ -268,26 +268,20 @@ const parseTheme = (theme) => {
   return componentTokensCopy;
 };
 
-type ThemeProviderCommonProps = {
+type ThemeProviderPropsType = {
+  theme?: object;
+  advancedTheme?: object;
   children: React.ReactNode;
 };
-type ThemeProviderDefaultTheme = ThemeProviderCommonProps & {
-  theme: object;
-};
-type ThemeProviderAdvancedTheme = ThemeProviderCommonProps & {
-  advancedTheme: object;
-};
-type ThemeProviderPropsType = ThemeProviderDefaultTheme | ThemeProviderAdvancedTheme;
-
-const ThemeProvider = (props: ThemeProviderPropsType): JSX.Element => {
-  const parsedTheme = useMemo(() => {
-    if ("theme" in props) return parseTheme(props.theme);
-    else if ("advancedTheme" in props) return parseAdvancedTheme(props.advancedTheme);
-  }, ["theme" in props ? props.theme : props.advancedTheme]);
+const ThemeProvider = ({ theme, advancedTheme, children }: ThemeProviderPropsType): JSX.Element => {
+  const parsedTheme = useMemo(
+    () => (theme && parseTheme(theme)) || (advancedTheme && parseAdvancedTheme(advancedTheme)),
+    [theme, advancedTheme]
+  );
 
   return (
     <Halstack>
-      <ThemeContext.Provider value={parsedTheme}>{props.children}</ThemeContext.Provider>
+      <ThemeContext.Provider value={parsedTheme}>{children}</ThemeContext.Provider>
     </Halstack>
   );
 };
