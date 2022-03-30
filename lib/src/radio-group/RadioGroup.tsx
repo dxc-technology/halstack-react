@@ -27,6 +27,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       onChange,
       onBlur,
       error,
+      tabIndex = 0,
     },
     ref
   ): JSX.Element => {
@@ -55,34 +56,38 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     );
     const handleOnBlur = (e: React.FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
-      !e.currentTarget.contains(e.relatedTarget as Node) && setFirstTimeFocus(true);
+      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+        setFirstTimeFocus(true);
 
-      const currentValue = value ?? innerValue;
-      !optional && !Boolean(currentValue)
-        ? onBlur?.({ value: currentValue, error: "This field is required. Please, choose an option." })
-        : onBlur?.({ value: currentValue });
-    };
-    const setPreviousRadioChecked = () => {
-      if (!disabled) {
-        setCurrentFocusIndex((currentFocusIndex) => {
-          let index = currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1;
-          while (innerOptions[index].disabled) {
-            index = index === 0 ? innerOptions.length - 1 : index - 1;
-          }
-          return index;
-        });
+        const currentValue = value ?? innerValue;
+        !optional && !Boolean(currentValue)
+          ? onBlur?.({ value: currentValue, error: "This field is required. Please, choose an option." })
+          : onBlur?.({ value: currentValue });
       }
+    };
+    const handleOnFocus = () => {
+      firstTimeFocus && setFirstTimeFocus(false);
+    };
+
+    const setPreviousRadioChecked = () => {
+      setCurrentFocusIndex((currentFocusIndex) => {
+        let index = currentFocusIndex === 0 ? innerOptions.length - 1 : currentFocusIndex - 1;
+        while (innerOptions[index].disabled) {
+          index = index === 0 ? innerOptions.length - 1 : index - 1;
+        }
+        handleOnChange(innerOptions[index].value);
+        return index;
+      });
     };
     const setNextRadioChecked = () => {
-      if (!disabled) {
-        setCurrentFocusIndex((currentFocusIndex) => {
-          let index = currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1;
-          while (innerOptions[index].disabled) {
-            index = index === innerOptions.length - 1 ? 0 : index + 1;
-          }
-          return index;
-        });
-      }
+      setCurrentFocusIndex((currentFocusIndex) => {
+        let index = currentFocusIndex === innerOptions.length - 1 ? 0 : currentFocusIndex + 1;
+        while (innerOptions[index].disabled) {
+          index = index === innerOptions.length - 1 ? 0 : index + 1;
+        }
+        handleOnChange(innerOptions[index].value);
+        return index;
+      });
     };
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
       switch (event.keyCode) {
@@ -115,6 +120,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <RadioGroup
             onBlur={handleOnBlur}
+            onFocus={handleOnFocus}
             onKeyDown={handleOnKeyDown}
             stacking={stacking}
             role="radiogroup"
@@ -122,7 +128,8 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-labelledby={radioGroupLabelId}
             aria-invalid={error ? "true" : "false"}
             aria-errormessage={error ? errorId : undefined}
-            aria-required={!optional}
+            aria-required={!disabled && !readonly && !optional}
+            aria-readonly={readonly}
           >
             <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
             {innerOptions.map((option, index) => (
@@ -133,13 +140,11 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
                   handleOnChange(option.value);
                   setCurrentFocusIndex(index);
                 }}
-                onFocus={() => {
-                  !firstTimeFocus ? handleOnChange(option.value) : setFirstTimeFocus(false);
-                }}
                 error={error}
                 disabled={option.disabled || disabled}
                 focused={currentFocusIndex === index}
                 readonly={readonly}
+                tabIndex={tabIndex}
               />
             ))}
           </RadioGroup>
