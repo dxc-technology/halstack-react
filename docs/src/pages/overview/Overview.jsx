@@ -222,7 +222,7 @@ function CustomThemes() {
         baseColor: "#5f249f", // wizard's base color theme input
         fontColor: "#ffffff", // wizard's font color theme input
       },
-};
+  };
 
   const MyComponent = () => {
     return (
