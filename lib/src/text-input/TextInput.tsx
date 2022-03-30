@@ -74,6 +74,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     {
       label,
       name = "",
+      defaultValue = "",
       value,
       helperText,
       placeholder = "",
@@ -98,7 +99,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     ref
   ) => {
     const [inputId] = useState(`input-${uuidv4()}`);
-    const [innerValue, setInnerValue] = useState("");
+    const [innerValue, setInnerValue] = useState(defaultValue);
 
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
