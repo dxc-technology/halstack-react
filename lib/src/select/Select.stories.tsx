@@ -244,7 +244,7 @@ const Select = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled with value" theme="light" level={4} />
-      <DxcSelect label="Disabled with value" disabled options={single_options} value="1" />
+      <DxcSelect label="Disabled with value" disabled options={single_options} defaultValue="1" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Error" theme="light" level={4} />
@@ -274,19 +274,19 @@ const Select = () => (
     <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Simple selection" theme="light" level={4} />
-      <DxcSelect label="Simple selection" searchable options={single_options} value="2" />
+      <DxcSelect label="Simple selection" searchable options={single_options} defaultValue="2" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Multiple selection" theme="light" level={4} />
-      <DxcSelect label="Multiple select" searchable options={single_options} multiple value={["1", "2"]} />
+      <DxcSelect label="Multiple select" searchable options={single_options} multiple defaultValue={["1", "2"]} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Multiple clear hovered" theme="light" level={4} />
-      <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
+      <DxcSelect label="Multiple select" options={single_options} multiple defaultValue={["1", "2"]} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Multiple clear actived" theme="light" level={4} />
-      <DxcSelect label="Multiple select" options={single_options} multiple value={["1", "2"]} />
+      <DxcSelect label="Multiple select" options={single_options} multiple defaultValue={["1", "2"]} />
     </ExampleContainer>
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
@@ -337,14 +337,14 @@ const Select = () => (
     <ExampleContainer expanded>
       <Title title="Ellipsis" theme="light" level={2} />
       <Title title="Multiple selection with ellipsis" theme="light" level={4} />
-      <DxcSelect label="Label" options={single_options} multiple value={["1", "2", "3", "4"]} />
+      <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
       <Title title="Value with ellipsis" theme="light" level={4} />
-      <DxcSelect label="Label" options={optionsWithEllipsisMedium} value="1" size="medium" />
+      <DxcSelect label="Label" options={optionsWithEllipsisMedium} defaultValue="1" size="medium" />
       <Title title="Option with ellipsis" theme="light" level={4} />
       <DxcSelect
         label="Label"
         placeholder="Choose an option"
-        value="1"
+        defaultValue="1"
         options={optionsWithEllipsisMedium}
         size="medium"
       />
@@ -371,7 +371,7 @@ const SearchableSelect = () => (
 const SearchableWithValue = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select with value" theme="light" level={4} />
-    <DxcSelect label="Select Label" searchable value="1" options={single_options} placeholder="Choose an option" />
+    <DxcSelect label="Select Label" searchable defaultValue="1" options={single_options} placeholder="Choose an option" />
   </ExampleContainer>
 );
 
@@ -382,7 +382,7 @@ const MultipleSelect = () => (
       <DxcSelect
         label="Select label"
         options={single_options}
-        value={["1", "4"]}
+        defaultValue={["1", "4"]}
         multiple
         placeholder="Choose an option"
       />
@@ -392,31 +392,31 @@ const MultipleSelect = () => (
 const DefaultGroupedOptionsSelect = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options simple select" theme="light" level={4} />
-    <DxcSelect label="Label" options={group_options} value="9" placeholder="Choose an option" />
+    <DxcSelect label="Label" options={group_options} defaultValue="9" placeholder="Choose an option" />
   </ExampleContainer>
 );
 const MultipleGroupedOptionsSelect = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options multiple select" theme="light" level={4} />
-    <DxcSelect label="Label" options={group_options} value={["0", "2"]} multiple placeholder="Choose an option" />
+    <DxcSelect label="Label" options={group_options} defaultValue={["0", "2"]} multiple placeholder="Choose an option" />
   </ExampleContainer>
 );
 const RescaledIcons = () => (
   <ExampleContainer expanded>
     <Title title="Rescaled icons displayed" theme="light" level={4} />
-    <DxcSelect label="Label" options={url_options} value="facebook" placeholder="Choose an option" />
+    <DxcSelect label="Label" options={url_options} defaultValue="facebook" placeholder="Choose an option" />
   </ExampleContainer>
 );
 const SelectWithIcons = () => (
   <ExampleContainer expanded>
     <Title title="Normal icons displayed" theme="light" level={4} />
-    <DxcSelect label="Label" options={icon_options} value="3" placeholder="Choose an option" />
+    <DxcSelect label="Label" options={icon_options} defaultValue="3" placeholder="Choose an option" />
   </ExampleContainer>
 );
 const SelectMultipleWithIcons = () => (
   <ExampleContainer expanded>
     <Title title="Multiple select with icons" theme="light" level={4} />
-    <DxcSelect label="Label" options={icon_options} multiple value={["1", "3"]} placeholder="Choose an option" />
+    <DxcSelect label="Label" options={icon_options} multiple defaultValue={["1", "3"]} placeholder="Choose an option" />
   </ExampleContainer>
 );
 const MultipleGroupedOptionsSelectWithIcons = () => (
@@ -426,7 +426,7 @@ const MultipleGroupedOptionsSelectWithIcons = () => (
       label="Label"
       options={icon_options_grouped}
       multiple
-      value={["3", "2"]}
+      defaultValue={["3", "2"]}
       placeholder="Choose an option"
     />
   </ExampleContainer>
@@ -452,13 +452,13 @@ const OnlyOneOptionActived = () => (
 const SelectedOptionHovered = () => (
   <ExampleContainer pseudoState="pseudo-hover" expanded>
     <Title title="Hovered Selected Option" theme="light" level={4} />
-    <DxcSelect label="Hovered" value="1" options={one_option} placeholder="Choose an option" />
+    <DxcSelect label="Hovered" defaultValue="1" options={one_option} placeholder="Choose an option" />
   </ExampleContainer>
 );
 const SelectedOptionActived = () => (
   <ExampleContainer pseudoState="pseudo-active" expanded>
     <Title title="Actived Selected Option" theme="light" level={4} />
-    <DxcSelect label="Actived" value="1" options={one_option} placeholder="Choose an option" />
+    <DxcSelect label="Actived" defaultValue="1" options={one_option} placeholder="Choose an option" />
   </ExampleContainer>
 );
 const MultipleSearchable = () => (
@@ -468,7 +468,7 @@ const MultipleSearchable = () => (
       label="Select Label"
       searchable
       multiple
-      value={["1", "4"]}
+      defaultValue={["1", "4"]}
       options={single_options}
       placeholder="Choose an option"
     />

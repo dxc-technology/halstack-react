@@ -90,6 +90,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     {
       label,
       name = "",
+      defaultValue,
       value,
       options,
       helperText,
@@ -111,7 +112,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const selectLabelId = `label-${selectId}`;
     const errorId = `error-${selectId}`;
     const optionsListId = `${selectId}-listbox`;
-    const [innerValue, setInnerValue] = useState(multiple ? [] : "");
+    const [innerValue, setInnerValue] = useState(defaultValue ?? (multiple ? [] : ""));
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
     const [isOpen, changeIsOpen] = useState(false);
@@ -281,11 +282,14 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       setSearchValue("");
     };
 
-    const handleOptionOnClick = useCallback((option) => {
-      handleSelectChangeValue(option);
-      !multiple && closeOptions();
-      setSearchValue("");
-    }, [handleSelectChangeValue, closeOptions, multiple]);
+    const handleOptionOnClick = useCallback(
+      (option) => {
+        handleSelectChangeValue(option);
+        !multiple && closeOptions();
+        setSearchValue("");
+      },
+      [handleSelectChangeValue, closeOptions, multiple]
+    );
 
     useLayoutEffect(() => {
       if (isOpen && singleSelectionIndex) {
@@ -413,7 +417,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             <SearchableValueContainer>
               <ValueInput
                 name={name}
-                value={multiple ? (value ?? innerValue).join(", ") : value ?? innerValue}
+                value={multiple ? (value ?? innerValue).join(",") : value ?? innerValue}
                 readOnly
                 aria-hidden="true"
               />
