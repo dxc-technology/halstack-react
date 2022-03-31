@@ -12,7 +12,7 @@ const RadioGroupPropsTable = () => {
       <tr>
         <td>defaultValue: string</td>
         <td></td>
-        <td>Default value of the radio group, only when it is uncontrolled.</td>
+        <td>Initial value of the radio group, only when it is uncontrolled.</td>
       </tr>
       <tr>
         <td>value: string</td>
