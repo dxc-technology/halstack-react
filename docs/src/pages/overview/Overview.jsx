@@ -108,9 +108,12 @@ function CustomThemes() {
         object, you will have as much objects as components you want to
         customize, using the next structure:
         <SyntaxHighlighter language="javascript" style={docco}>
-          {`componentName: {
-  themeInput: "value", 
-}`}
+          {`
+  componentName: {
+    themeInput: "value", 
+  }
+  
+`}
         </SyntaxHighlighter>
         The theme inputs for each component are documented in the themes
         guidelines.
@@ -239,6 +242,7 @@ function CustomThemes() {
   };
 
   export default MyComponent;
+
 `}
       </SyntaxHighlighter>
     </Section>
