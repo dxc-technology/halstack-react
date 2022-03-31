@@ -11,30 +11,32 @@ import useTheme from "../useTheme";
 import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
 
+const getValueForPicker = (value, format) => moment(value, format.toUpperCase(), true).format();
+
 const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
     {
       label,
-      name = "",
+      name,
+      defaultValue,
       value,
       format = "dd-MM-yyyy",
       helperText,
       placeholder = false,
-      clearable = false,
-      disabled = false,
-      optional = false,
+      clearable,
+      disabled,
+      optional,
       onChange,
       onBlur,
       error,
-      autocomplete = "off",
+      autocomplete,
       margin,
-      size = "medium",
-      tabIndex = 0,
+      size,
+      tabIndex,
     },
     ref
   ) => {
     const [innerValue, setInnerValue] = useState("");
-
     const [isOpen, setIsOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -60,7 +62,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         date: newDate?.toJSON() ? newDate : null,
       });
     };
-
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
       const momentDate = moment(newValue, format.toUpperCase(), true);
@@ -72,7 +73,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         date: momentDate.isValid() ? momentDate.toDate() : null,
       });
     };
-
     const handleIOnBlur = ({ value, error: inputError }) => {
       const momentDate = moment(value, format.toUpperCase(), true);
       const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : null;
@@ -84,14 +84,11 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       });
     };
 
-    const getValueForPicker = () => moment(value ?? innerValue, format.toUpperCase(), true).format();
-
     const openCalendar = () => {
       const dateBtn = refDate.current.getElementsByTagName("button")[0];
       setIsOpen(!isOpen);
       setAnchorEl(dateBtn);
     };
-
     const closeCalendar = () => {
       setIsOpen(false);
     };
@@ -254,6 +251,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
               <DxcTextInput
                 label={label}
                 name={name}
+                defaultValue={defaultValue}
                 value={value ?? innerValue}
                 helperText={helperText}
                 placeholder={placeholder ? format.toUpperCase() : null}
@@ -292,7 +290,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                   <Paper role="dialog" aria-modal="true">
                     <DatePicker
                       variant="static"
-                      value={getValueForPicker()}
+                      value={getValueForPicker(value ?? innerValue, format)}
                       onChange={(date) => handleCalendarOnClick(date)}
                       format={format}
                       disabled={disabled}
