@@ -281,8 +281,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       setSearchValue("");
     };
 
-    const handleOptionOnClick = useCallback(() => {
-      handleSelectChangeValue(optionalEmptyOption);
+    const handleOptionOnClick = useCallback((option) => {
+      handleSelectChangeValue(option);
       !multiple && closeOptions();
       setSearchValue("");
     }, [handleSelectChangeValue, closeOptions, multiple]);
@@ -318,11 +318,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     <Option
                       id={`option-${globalIndex}`}
                       option={singleOption}
-                      onClick={() => {
-                        handleSelectChangeValue(singleOption);
-                        !multiple && closeOptions();
-                        setSearchValue("");
-                      }}
+                      onClick={handleOptionOnClick}
                       multiple={multiple}
                       visualFocused={visualFocusIndex === globalIndex}
                       isGroupedOption={true}
@@ -346,11 +342,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             key={`option-${option.value}`}
             id={`option-${globalIndex}`}
             option={option}
-            onClick={() => {
-              handleSelectChangeValue(option);
-              !multiple && closeOptions();
-              setSearchValue("");
-            }}
+            onClick={handleOptionOnClick}
             multiple={multiple}
             visualFocused={visualFocusIndex === globalIndex}
             isGroupedOption={false}

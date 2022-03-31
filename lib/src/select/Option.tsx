@@ -21,7 +21,9 @@ const Option = ({
     <ThemeProvider theme={colorsTheme.radioGroup}>
       <OptionItem
         id={id}
-        onClick={onClick}
+        onClick={() => {
+          onClick(option);
+        }}
         visualFocused={visualFocused}
         selected={isSelected}
         role="option"

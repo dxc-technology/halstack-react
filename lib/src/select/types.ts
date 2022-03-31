@@ -160,7 +160,7 @@ type Props = SingleSelect | MultipleSelect;
 export type OptionProps = {
   id: string;
   option: Option;
-  onClick: () => void;
+  onClick: (option: Option) => void;
   multiple: boolean;
   visualFocused: boolean;
   isGroupedOption: boolean;
