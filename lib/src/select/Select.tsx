@@ -1,92 +1,13 @@
 // @ts-nocheck
-import React, { useMemo, useRef, useState, useLayoutEffect } from "react";
+import React, { useMemo, useRef, useState, useLayoutEffect, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
-import DxcCheckbox from "../checkbox/Checkbox";
+import Option from "../select/Option";
 import SelectPropsType, { RefType } from "./types";
-
-const selectIcons = {
-  error: (
-    <svg
-      role="img"
-      xmlns="http://www.w3.org/2000/svg"
-      height="24px"
-      viewBox="0 0 24 24"
-      width="24px"
-      fill="currentColor"
-    >
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-    </svg>
-  ),
-  arrowUp: (
-    <svg
-      role="img"
-      xmlns="http://www.w3.org/2000/svg"
-      height="24px"
-      viewBox="0 0 24 24"
-      width="24px"
-      fill="currentColor"
-    >
-      <path d="M0 0h24v24H0V0z" fill="none" />
-      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z" />
-    </svg>
-  ),
-  arrowDown: (
-    <svg
-      role="img"
-      xmlns="http://www.w3.org/2000/svg"
-      height="24px"
-      viewBox="0 0 24 24"
-      width="24px"
-      fill="currentColor"
-    >
-      <path d="M0 0h24v24H0V0z" fill="none" />
-      <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
-    </svg>
-  ),
-  clear: (
-    <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M0 0h24v24H0V0z" fill="none" />
-      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-    </svg>
-  ),
-  selected: (
-    <svg
-      role="img"
-      xmlns="http://www.w3.org/2000/svg"
-      height="24px"
-      viewBox="0 0 24 24"
-      width="24px"
-      fill="currentColor"
-    >
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
-    </svg>
-  ),
-  searchOff: (
-    <svg
-      role="img"
-      xmlns="http://www.w3.org/2000/svg"
-      height="24px"
-      viewBox="0 0 24 24"
-      width="24px"
-      fill="currentColor"
-    >
-      <g>
-        <rect fill="none" height="24" width="24" />
-      </g>
-      <g>
-        <g>
-          <path d="M15.5,14h-0.79l-0.28-0.27C15.41,12.59,16,11.11,16,9.5C16,5.91,13.09,3,9.5,3C6.08,3,3.28,5.64,3.03,9h2.02 C5.3,6.75,7.18,5,9.5,5C11.99,5,14,7.01,14,9.5S11.99,14,9.5,14c-0.17,0-0.33-0.03-0.5-0.05v2.02C9.17,15.99,9.33,16,9.5,16 c1.61,0,3.09-0.59,4.23-1.57L14,14.71v0.79l5,4.99L20.49,19L15.5,14z" />
-          <polygon points="6.47,10.82 4,13.29 1.53,10.82 0.82,11.53 3.29,14 0.82,16.47 1.53,17.18 4,14.71 6.47,17.18 7.18,16.47 4.71,14 7.18,11.53" />
-        </g>
-      </g>
-    </svg>
-  ),
-};
+import selectIcons from "./Icons";
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 
@@ -360,6 +281,12 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       setSearchValue("");
     };
 
+    const handleOptionOnClick = useCallback((option) => {
+      handleSelectChangeValue(option);
+      !multiple && closeOptions();
+      setSearchValue("");
+    }, [handleSelectChangeValue, closeOptions, multiple]);
+
     useLayoutEffect(() => {
       if (isOpen && singleSelectionIndex) {
         const listEl = selectOptionsListRef?.current;
@@ -374,51 +301,6 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
     }, [visualFocusIndex]);
 
-    const Option = ({ option, index, isGroupedOption = false }) => {
-      const isSelected = multiple
-        ? (value ?? innerValue).includes(option.value)
-        : (value ?? innerValue) === option.value;
-      const isLastOption = index === lastOptionIndex;
-
-      return (
-        <OptionItem
-          id={`option-${index}`}
-          onClick={() => {
-            handleSelectChangeValue(option);
-            !multiple && closeOptions();
-            setSearchValue("");
-          }}
-          visualFocused={visualFocusIndex === index}
-          selected={isSelected}
-          role="option"
-          aria-selected={isSelected}
-        >
-          <StyledOption
-            visualFocused={visualFocusIndex === index}
-            selected={isSelected}
-            last={isLastOption}
-            grouped={isGroupedOption}
-            multiple={multiple}
-          >
-            {multiple && <DxcCheckbox tabIndex={-1} checked={isSelected} />}
-            {option.icon && (
-              <OptionIcon
-                grouped={isGroupedOption}
-                multiple={multiple}
-                role={!(typeof option.icon === "string") && "img"}
-              >
-                {typeof option.icon === "string" ? <OptionIconImg src={option.icon}></OptionIconImg> : option.icon}
-              </OptionIcon>
-            )}
-            <OptionContent grouped={isGroupedOption} hasIcon={option.icon} multiple={multiple}>
-              <OptionLabel>{option.label}</OptionLabel>
-              {!multiple && isSelected && <OptionSelectedIndicator>{selectIcons.selected}</OptionSelectedIndicator>}
-            </OptionContent>
-          </StyledOption>
-        </OptionItem>
-      );
-    };
-
     let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
     const mapOptionFunc = (option, mapIndex) => {
       if (option.options) {
@@ -432,7 +314,22 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 </GroupLabel>
                 {option.options.map((singleOption) => {
                   globalIndex++;
-                  return <Option option={singleOption} index={globalIndex} isGroupedOption={true} />;
+                  return (
+                    <Option
+                      id={`option-${globalIndex}`}
+                      option={singleOption}
+                      onClick={handleOptionOnClick}
+                      multiple={multiple}
+                      visualFocused={visualFocusIndex === globalIndex}
+                      isGroupedOption={true}
+                      isLastOption={lastOptionIndex === globalIndex}
+                      isSelected={
+                        multiple
+                          ? (value ?? innerValue).includes(singleOption.value)
+                          : (value ?? innerValue) === singleOption.value
+                      }
+                    />
+                  );
                 })}
               </GroupList>
             </li>
@@ -440,7 +337,21 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         );
       } else {
         globalIndex++;
-        return <Option key={`option-${option.value}`} option={option} index={globalIndex} />;
+        return (
+          <Option
+            key={`option-${option.value}`}
+            id={`option-${globalIndex}`}
+            option={option}
+            onClick={handleOptionOnClick}
+            multiple={multiple}
+            visualFocused={visualFocusIndex === globalIndex}
+            isGroupedOption={false}
+            isLastOption={lastOptionIndex === globalIndex}
+            isSelected={
+              multiple ? (value ?? innerValue).includes(option.value) : (value ?? innerValue) === option.value
+            }
+          />
+        );
       }
     };
 
@@ -479,7 +390,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
             aria-invalid={error ? "true" : "false"}
             aria-errormessage={error ? errorId : undefined}
-            aria-required={!optional}
+            aria-required={!disabled && !optional}
           >
             {multiple && selectedOption.length > 0 && (
               <SelectionIndicator>
@@ -512,8 +423,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   disabled={disabled}
                   onChange={handleSearchIOnChange}
                   ref={selectSearchInputRef}
-                  autoComplete="off"
-                  autoCorrect="off"
+                  autoComplete="nope"
+                  autoCorrect="nope"
                   size="1"
                 ></SearchInput>
               )}
@@ -562,6 +473,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 ref={selectOptionsListRef}
                 role="listbox"
                 aria-multiselectable={multiple}
+                aria-orientation="vertical"
               >
                 {searchable && (filteredOptions.length === 0 || !filteredGroupsHaveOptions()) ? (
                   <OptionsSystemMessage>
@@ -569,7 +481,23 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                     No matches found
                   </OptionsSystemMessage>
                 ) : (
-                  optional && !multiple && <Option option={optionalEmptyOption} index={0} />
+                  optional &&
+                  !multiple && (
+                    <Option
+                      id={`option-${0}`}
+                      option={optionalEmptyOption}
+                      onClick={handleOptionOnClick}
+                      multiple={multiple}
+                      visualFocused={visualFocusIndex === 0}
+                      isGroupedOption={false}
+                      isLastOption={lastOptionIndex === 0}
+                      isSelected={
+                        multiple
+                          ? (value ?? innerValue).includes(optionalEmptyOption.value)
+                          : (value ?? innerValue) === optionalEmptyOption.value
+                      }
+                    />
+                  )
                 )}
                 {searchable ? filteredOptions.map(mapOptionFunc) : options.map(mapOptionFunc)}
               </OptionsList>
@@ -898,74 +826,10 @@ const GroupLabel = styled.li`
   line-height: 1.715em;
 `;
 
-const OptionItem = styled.li`
-  padding: 0 0.5rem;
-  box-shadow: inset 0 0 0 2px transparent;
-  ${(props) => props.visualFocused && `box-shadow: inset 0 0 0 2px ${props.theme.focusListOptionBorderColor};`}
-  ${(props) => props.selected && `background-color: ${props.theme.selectedListOptionBackgroundColor}`};
-  line-height: 1.715em;
-  cursor: pointer;
-
-  &:hover {
-    ${(props) =>
-      props.selected
-        ? `background-color: ${props.theme.selectedHoverListOptionBackgroundColor};`
-        : `background-color: ${props.theme.unselectedHoverListOptionBackgroundColor};`};
-  }
-  &:active {
-    ${(props) =>
-      props.selected
-        ? `background-color: ${props.theme.selectedActiveListOptionBackgroundColor};`
-        : `background-color: ${props.theme.unselectedActiveListOptionBackgroundColor};`};
-  }
-`;
-
-const StyledOption = styled.span`
-  display: flex;
-  padding: 0.25rem 0.5rem 0.188rem 0;
-  min-height: 24px;
-  ${(props) => props.grouped && props.multiple && `padding-left: 16px;`}
-  ${(props) =>
-    props.last || props.visualFocused || props.selected
-      ? `border-bottom: 1px solid transparent`
-      : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
-`;
-
-const OptionContent = styled.span`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  overflow: hidden;
-  ${(props) => (props.grouped && !props.multiple && !props.hasIcon ? "padding-left: 16px;" : "padding-left: 8px;")}
-`;
-
-const OptionIcon = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  height: 24px;
-  width: 24px;
-  ${(props) => (props.grouped && !props.multiple ? "padding-left: 16px;" : "padding-left: 8px;")}
-  color: ${(props) => props.theme.listOptionIconColor};
-`;
-
-const OptionIconImg = styled.img`
-  width: 16px;
-  height: 16px;
-`;
-
 const OptionLabel = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
-
-const OptionSelectedIndicator = styled.span`
-  display: flex;
-  height: 16px;
-  width: 16px;
-  margin-left: 4px;
-  color: ${(props) => props.theme.selectedListOptionIconColor};
 `;
 
 export default DxcSelect;
