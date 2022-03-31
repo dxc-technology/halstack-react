@@ -16,6 +16,10 @@
     "baseColor": "#e6e6e6",
     "fontColor": "#000000"
   },
+  "dateInput": {
+    "baseColor": "#6f2c91",
+    "accentColor": "#ffffff"
+  },
   "dropdown": {
     "baseColor": "#ffffff",
     "fontColor": "#000000"
@@ -37,8 +41,7 @@
     "hamburguerColor": "#000000",
     "logo": "/static/media/dxc_logo_blk_rgb.46e4aef2.svg",
     "logoResponsive": "/static/media/dxc_logo_blk_rgb.46e4aef2.svg",
-    "contentColor": "#000000",
-    "contentColorOnDark": "#ffffff"
+    "contentColor": "#000000"
   },
   "paginator": {
     "baseColor": "#eeeeee",
@@ -50,6 +53,10 @@
   },
   "radio": {
     "baseColor": "#000000"
+  },
+  "select": {
+    "baseColor": "#d9d9d9",
+    "fontColor": "#000000"
   },
   "sidenav": {
     "baseColor": "#F8F8F8",
