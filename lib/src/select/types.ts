@@ -155,6 +155,20 @@ type MultipleSelect = CommonProps & {
 type Props = SingleSelect | MultipleSelect;
 
 /**
+ * Single option of the select component.
+ */
+export type OptionProps = {
+  id: string;
+  option: Option;
+  onClick: (option: Option) => void;
+  multiple: boolean;
+  visualFocused: boolean;
+  isGroupedOption: boolean;
+  isLastOption: boolean;
+  isSelected: boolean;
+};
+
+/**
  * Reference to the component.
  */
 export type RefType = HTMLDivElement;
