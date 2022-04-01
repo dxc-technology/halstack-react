@@ -14,7 +14,7 @@ const code = `() => {
   ];
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", margin: "36px" }}>
+    <div style={{ margin: "36px" }}>
       <DxcRadioGroup
         label="Error handling"
         helperText="Controlling the error state of a radio group"

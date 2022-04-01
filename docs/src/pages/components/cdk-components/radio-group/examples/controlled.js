@@ -17,7 +17,7 @@ const code = `() => {
   ];
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", margin: "36px" }}>
+    <div style={{ margin: "36px" }}>
       <DxcRadioGroup
         label="Controlled"
         options={options}
