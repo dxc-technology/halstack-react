@@ -124,6 +124,7 @@ export const Chromatic = () => (
       <Title title="FitContent size" theme="light" level={4} />
       <DxcTag label="FitContent" size="fitContent" icon={icon} />
     </ExampleContainer>
+    <hr />
   </>
 );
 
