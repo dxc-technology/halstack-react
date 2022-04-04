@@ -18,7 +18,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     {
       label,
       name,
-      defaultValue,
+      defaultValue = "",
       value,
       format = "dd-MM-yyyy",
       helperText,
@@ -36,7 +36,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     },
     ref
   ) => {
-    const [innerValue, setInnerValue] = useState("");
+    const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 
