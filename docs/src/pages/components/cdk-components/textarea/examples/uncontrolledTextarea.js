@@ -11,10 +11,16 @@ const code = `() => {
 
   return (
     <>
-      <DxcTextarea label="Uncontrolled" ref={inputRef} margin="medium" />
+      <DxcTextarea 
+        label="Uncontrolled"         
+        helperText="The 'defaultValue' prop only works with uncontrolled text inputs"
+        defaultValue="Example text"
+        margin="medium" 
+        ref={inputRef}
+      />
       <DxcButton
-        onClick={handleSubmit}
         label="Submit"
+        onClick={handleSubmit}
         margin={{ left: "medium", right: "medium", bottom: "medium" }}
       ></DxcButton>
     </>
