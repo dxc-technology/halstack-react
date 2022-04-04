@@ -28,12 +28,12 @@ const DxcTag = ({
   const tagContent = (
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
       <TagContent labelPosition={labelPosition}>
-        <IconContainer iconBgColor={iconBgColor}>
-          {icon && (
-            <TagIconContainer>{typeof icon === "string" ? <TagIcon src={icon}></TagIcon> : icon}</TagIconContainer>
-          )}
-        </IconContainer>
-        {size !== "small" && <TagLabel>{label}</TagLabel>}
+        {icon && (
+          <IconContainer iconBgColor={iconBgColor}>
+            {typeof icon === "string" ? <TagIcon src={icon}></TagIcon> : icon}
+          </IconContainer>
+        )}
+        {size !== "small" && label && <TagLabel>{label}</TagLabel>}
       </TagContent>
     </DxcBox>
   );
@@ -118,21 +118,6 @@ const StyledButton = styled.button`
   }
 `;
 
-const TagIcon = styled.img``;
-
-const TagIconContainer = styled.div`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-
-  img,
-  svg {
-    width: ${(props) => props.theme.iconWidth};
-    height: ${(props) => props.theme.iconHeight};
-  }
-`;
-
 const IconContainer = styled.div`
   display: inline-flex;
   background: ${({ iconBgColor }) => iconBgColor};
@@ -142,7 +127,15 @@ const IconContainer = styled.div`
   align-items: center;
   color: ${(props) => props.theme.iconColor};
   min-width: ${(props) => props.theme.iconSectionWidth};
+  overflow: hidden;
+  img,
+  svg {
+    width: ${(props) => props.theme.iconWidth};
+    height: ${(props) => props.theme.iconHeight};
+  }
 `;
+
+const TagIcon = styled.img``;
 
 const TagLabel = styled.div`
   font-family: ${(props) => props.theme.fontFamily};
