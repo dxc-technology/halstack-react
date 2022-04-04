@@ -51,11 +51,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
           break;
       }
     };
-
     const handleCalendarOnClick = (newDate) => {
       const newValue = moment(newDate).format(format.toUpperCase());
       value ?? setInnerValue(newValue);
-
       onChange?.({
         value: newValue,
         error: null,
@@ -66,7 +64,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       value ?? setInnerValue(newValue);
       const momentDate = moment(newValue, format.toUpperCase(), true);
       const invalidDateMessage = newValue !== "" && !momentDate.isValid() ? "Invalid date." : null;
-
       onChange?.({
         value: newValue,
         error: inputError || invalidDateMessage,
@@ -76,7 +73,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const handleIOnBlur = ({ value, error: inputError }) => {
       const momentDate = moment(value, format.toUpperCase(), true);
       const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : null;
-
       onBlur?.({
         value,
         error: inputError || invalidDateMessage,
