@@ -3,13 +3,13 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-
+  const [error, setError] = useState("");
   const onChange = ({ value }) => {
     setValue(value);
   };
-
-  const onBlur = ({ value }) => {
+  const onBlur = ({ value, error }) => {
     setValue(value);
+    setError(error);
   };
 
   return (
@@ -19,6 +19,7 @@ const code = `() => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
+      error={error}
       margin="medium"
     />
   );

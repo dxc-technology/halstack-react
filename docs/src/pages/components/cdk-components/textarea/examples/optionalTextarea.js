@@ -1,4 +1,5 @@
 import { DxcTextarea } from "@dxc-technology/halstack-react";
+import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
@@ -24,6 +25,7 @@ const code = `() => {
 
 const scope = {
   DxcTextarea,
+  useState,
 };
 
 export default { code, scope };
