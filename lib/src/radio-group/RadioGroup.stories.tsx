@@ -89,6 +89,10 @@ export const Chromatic = () => (
       <DxcRadioGroup label="Example" readonly helperText="Helper text" options={options} />
     </ExampleContainer>
     <ExampleContainer>
+      <Title title="Error space reserved" theme="light" level={4} />
+      <DxcRadioGroup label="Example" error="" helperText="Helper text" options={options} />
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Error" theme="light" level={4} />
       <DxcRadioGroup label="Example" error="Error message" helperText="Helper text" options={options} />
     </ExampleContainer>
