@@ -108,9 +108,12 @@ function CustomThemes() {
         object, you will have as much objects as components you want to
         customize, using the next structure:
         <SyntaxHighlighter language="javascript" style={docco}>
-          {`componentName: {
-  themeInput: "value", 
-}`}
+          {`
+  componentName: {
+    themeInput: "value", 
+  }
+  
+`}
         </SyntaxHighlighter>
         The theme inputs for each component are documented in the themes
         guidelines.
@@ -145,7 +148,7 @@ function CustomThemes() {
         baseColor: "#e6e6e6", // chip's base color theme input
         fontColor: "#000000", // chip's font color theme input
       },
-      date: {
+      dateInput: {
         baseColor: "#6f2c91", // date's base color theme input
         accentColor: "#ffffff", // date's accent color theme input
       },
@@ -170,9 +173,7 @@ function CustomThemes() {
         hamburguerColor: "#000000", // header's hamburguer color theme input
         logo: "yahooLogo",// header's logo theme input
         logoResponsive: "yahooLogo", // header's logo responsive theme input
-      },
-      inputText: {
-        selectedBaseColor: "#d9d9d9", // input text's selected base color theme input
+        contentColor: "#000000", // header's content color theme input
       },
       paginator: {
         baseColor: "#eeeeee", // paginator's base color theme input
@@ -224,7 +225,6 @@ function CustomThemes() {
         baseColor: "#5f249f", // wizard's base color theme input
         fontColor: "#ffffff", // wizard's font color theme input
       },
-    
   };
 
   const MyComponent = () => {
@@ -271,7 +271,7 @@ function Support() {
         </p>
         <ul>
           <li>
-            Somebody else migh have already created an issue regarding your
+            Somebody else might have already created an issue regarding your
             question or feature request. Please use the search functionality and{" "}
             <b>avoid the creation of duplicated issues</b>. In case you want to
             provide your input or express your interest in a feature request,

@@ -41,11 +41,7 @@
     "hamburguerColor": "color",
     "logo": "image",
     "logoResponsive": "image",
-    "contentColor": "color",
-    "contentColorOnDark": "color"
-  },
-  "textInput": {
-    "baseColor": "color"
+    "contentColor": "color"
   },
   "paginator": {
     "baseColor": "color",
@@ -57,6 +53,10 @@
   },
   "radio": {
     "baseColor": "color"
+  },
+  "select": {
+    "baseColor": "color",
+    "fontColor": "color"
   },
   "sidenav": {
     "baseColor": "color",
@@ -78,6 +78,9 @@
     "fontColor": "color"
   },
   "tabs": {
+    "baseColor": "color"
+  },
+  "textInput": {
     "baseColor": "color"
   },
   "toggleGroup": {

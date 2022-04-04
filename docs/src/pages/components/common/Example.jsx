@@ -5,7 +5,7 @@ import theme from "./liveEditorTheme";
 import hideIcon from "./hide-icon.svg";
 import editIcon from "./edit-icon.svg";
 
-function Example({ title, example }) {
+function Example({ title, example, children }) {
   const [isCodeVisible, changeIsCodeVisble] = useState(false);
 
   const codeFildRef = useRef(null);
@@ -32,6 +32,7 @@ function Example({ title, example }) {
           {(isCodeVisible && "Hide") || "Edit"} Code
         </CodeButton>
       </Title>
+      <Text>{children}</Text>
       <LiveProvider scope={example.scope} theme={theme} code={example.code}>
         <StyledPreviewError>
           <LivePreview />
@@ -59,7 +60,6 @@ const Title = styled.div`
   display: flex;
   border-bottom: 1px solid #c1c1c1;
   align-items: baseline;
-  margin-bottom: 30px;
 `;
 
 const TitleText = styled.h3`
@@ -68,6 +68,10 @@ const TitleText = styled.h3`
   font-weight: normal;
   flex-grow: 1;
   margin: 5px 0px;
+`;
+
+const Text = styled.div`
+  margin: 24px 0px 16px 0px;
 `;
 
 const CodeButton = styled.div`

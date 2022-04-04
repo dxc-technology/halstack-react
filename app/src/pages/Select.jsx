@@ -494,7 +494,6 @@ function App() {
           multiple
           margin="medium"
           optional
-          multiple
         />
       </p>
       <p>
@@ -644,7 +643,7 @@ function App() {
             select.focus();
           }}
           label="Focus!"
-          margin={{ left: "medium" }}
+          margin="medium"
         ></DxcButton>
       </p>
     </>
