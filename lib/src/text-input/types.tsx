@@ -31,6 +31,10 @@ type Props = {
    */
   name?: string;
   /**
+   * Initial value of the input, only when it is uncontrolled.
+   */
+  defaultValue?: string;
+  /**
    * Value of the input. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
    */
   value?: string;
