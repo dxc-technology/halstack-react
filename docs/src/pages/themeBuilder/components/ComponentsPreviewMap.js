@@ -28,6 +28,7 @@ import TextInputPreview from "./previews/TextInput";
 import FileInputPreview from "./previews/FileInput";
 import TextareaPreview from "./previews/Textarea";
 import SelectPreview from "./previews/Select";
+import RadioGroupPreview from "./previews/RadioGroup";
 
 const SampleComponents = [
   {
@@ -105,6 +106,10 @@ const SampleComponents = [
   {
     name: "radio",
     preview: RadioButtonPreview,
+  },  
+  {
+    name: "radioGroup",
+    preview: RadioGroupPreview,
   },
   {
     name: "select",

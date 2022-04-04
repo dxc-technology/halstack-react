@@ -163,13 +163,6 @@ const parseTheme = (theme) => {
   headerTokens.logo = theme?.header?.logo ?? headerTokens.logo;
   headerTokens.logoResponsive = theme?.header?.logoResponsive ?? headerTokens.logoResponsive;
   headerTokens.contentColor = theme?.header?.contentColor ?? headerTokens.contentColor;
-  headerTokens.contentColorOnDark = theme?.header?.contentColorOnDark ?? headerTokens.contentColorOnDark;
-
-  const textInputTokens = componentTokensCopy.textInput;
-  textInputTokens.hoverListOptionBackgroundColor =
-    theme?.textInput?.baseColor ?? textInputTokens.hoverListOptionBackgroundColor;
-  textInputTokens.activeListOptionBackgroundColor =
-    subLightness(theme?.textInput?.baseColor, 15) ?? textInputTokens.activeListOptionBackgroundColor;
 
   const paginatorTokens = componentTokensCopy.paginator;
   paginatorTokens.backgroundColor = theme?.paginator?.baseColor ?? paginatorTokens.backgroundColor;
@@ -182,6 +175,15 @@ const parseTheme = (theme) => {
   const radioTokens = componentTokensCopy.radio;
   radioTokens.color = theme?.radio?.baseColor ?? radioTokens.color;
   radioTokens.disabledColor = setOpacity(theme?.radio?.baseColor, 0.34) ?? radioTokens.disabledColor;
+
+  const selectTokens = componentTokensCopy.select;
+  selectTokens.selectedOptionBackgroundColor = theme?.select?.baseColor ?? selectTokens.selectedOptionBackgroundColor;
+  selectTokens.optionFontColor = theme?.select?.fontColor ?? selectTokens.optionFontColor;
+  selectTokens.valueFontColor = theme?.select?.fontColor ?? selectTokens.valueFontColor;
+  selectTokens.hoverOptionBackgroundColor =
+    addLightness(theme?.select?.baseColor, 10) ?? selectTokens.hoverOptionBackgroundColor;
+  selectTokens.activeOptionBackgroundColor =
+    subLightness(theme?.select?.baseColor, 15) ?? selectTokens.activeOptionBackgroundColor;
 
   const sideNavTokens = componentTokensCopy.sidenav;
   sideNavTokens.backgroundColor = theme?.sidenav?.baseColor ?? sideNavTokens.backgroundColor;
@@ -227,6 +229,12 @@ const parseTheme = (theme) => {
   tabsTokens.hoverBackgroundColor = addLightness(theme?.tabs?.baseColor, 58) ?? tabsTokens.hoverBackgroundColor;
   tabsTokens.pressedBackgroundColor = addLightness(theme?.tabs?.baseColor, 53) ?? tabsTokens.pressedBackgroundColor;
 
+  const textInputTokens = componentTokensCopy.textInput;
+  textInputTokens.hoverListOptionBackgroundColor =
+    theme?.textInput?.baseColor ?? textInputTokens.hoverListOptionBackgroundColor;
+  textInputTokens.activeListOptionBackgroundColor =
+    subLightness(theme?.textInput?.baseColor, 15) ?? textInputTokens.activeListOptionBackgroundColor;
+
   const toggleGroupTokens = componentTokensCopy.toggleGroup;
   toggleGroupTokens.selectedBackgroundColor =
     theme?.toggleGroup?.selectedBaseColor ?? buttonTokens.selectedBackgroundColor;
@@ -244,7 +252,7 @@ const parseTheme = (theme) => {
   toggleGroupTokens.selectedDisabledBackgroundColor =
     addLightness(theme?.toggleGroup?.selectedBaseColor, 57) ?? toggleGroupTokens.selectedDisabledBackgroundColor;
   toggleGroupTokens.selectedDisabledFontColor =
-    addLightness(theme?.toggleGroup?.selectedBaseColor, 42) ?? toggleGroupTokens.selectedDisabledFontColor;
+    addLightness(theme?.toggleGroup?.selectedFontColor, 42) ?? toggleGroupTokens.selectedDisabledFontColor;
   toggleGroupTokens.unselectedHoverBackgroundColor =
     subLightness(theme?.toggleGroup?.unselectedBaseColor, 8) ?? toggleGroupTokens.unselectedHoverBackgroundColor;
   toggleGroupTokens.unselectedDisabledBackgroundColor =

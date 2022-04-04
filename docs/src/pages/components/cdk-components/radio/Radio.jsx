@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import Section from "../../common/Section";
@@ -14,7 +14,20 @@ import sized from "././examples/sizedRadio";
 function Radio() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Radio Button" status="ready"></ComponentHeader>
+      <ComponentHeader
+        title="Radio Button"
+        status="deprecated"
+      ></ComponentHeader>
+      <DxcAlert type="warning" margin={{ bottom: "small" }} size="fillParent">
+        The component status has been changed to deprecated. Use the new{" "}
+        <DxcLink
+          href="#/components/radioGroup"
+          underlined={false}
+          inheritedColor={true}
+          text="Radio Group"
+        ></DxcLink>{" "}
+        component instead.
+      </DxcAlert>
       <Section>
         <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
         <RadioPropsTable />
