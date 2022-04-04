@@ -4,11 +4,10 @@ import { useState } from "react";
 const code = `() => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
-
+  
   const onChange = ({ value }) => {
     setValue(value);
   };
-
   const onBlur = ({ value, error }) => {
     setValue(value);
     setError(error);
@@ -20,11 +19,12 @@ const code = `() => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      margin="medium"
+      error={error}
       min={5}
       max={20}
       step={5}
-      error={error}
+      suffix="USD"
+      margin="medium"
     />
   );
 }`;

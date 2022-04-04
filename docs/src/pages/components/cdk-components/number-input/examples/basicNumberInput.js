@@ -1,20 +1,20 @@
-import { DxcTextInput } from "@dxc-technology/halstack-react";
+import { DxcNumberInput } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <div style={{ display: "flex" }}>
-      <DxcTextInput
-        label="Default"
+      <DxcNumberInput
+        label="Basic"
         placeholder="Placeholder"
         margin="medium"
       />
-      <DxcTextInput
-        label="Error"
+      <DxcNumberInput
+        label="Disabled"
         placeholder="Placeholder"
-        error="Error message"
+        error="Error message."
         margin="medium"
       />
-      <DxcTextInput
+      <DxcNumberInput
         label="Disabled"
         placeholder="Placeholder"
         disabled
@@ -25,7 +25,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcTextInput,
+  DxcNumberInput,
 };
 
 export default { code, scope };

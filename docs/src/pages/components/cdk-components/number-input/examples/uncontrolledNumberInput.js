@@ -11,7 +11,13 @@ const code = `() => {
 
   return (
     <>
-      <DxcNumberInput label="Number input" ref={inputRef} margin="medium" />
+      <DxcNumberInput 
+        label="Uncontrolled"
+        helperText="The 'defaultValue' prop only works with uncontrolled number inputs"
+        defaultValue="1" 
+        ref={inputRef} 
+        margin="medium" 
+      />
       <DxcButton
         onClick={handleSubmit}
         label="Submit"
