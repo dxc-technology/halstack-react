@@ -70,7 +70,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered action" theme="light" level={4} />
-      <DxcTextInput label="Text input" value="Text" clearable />
+      <DxcTextInput label="Text input" defaultValue="Text" clearable />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
@@ -82,13 +82,13 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Helper text, optional, and clearable" theme="light" level={4} />
-      <DxcTextInput label="Text input" clearable value="Text" helperText="Help message" optional />
+      <DxcTextInput label="Text input" clearable defaultValue="Text" helperText="Help message" optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Clearable and large icon action" theme="light" level={4} />
       <DxcTextInput
         label="Text input"
-        value="Text text text text text text text text text text"
+        defaultValue="Text text text text text text text text text text"
         clearable
         action={actionLargeIcon}
       />
@@ -107,7 +107,7 @@ export const Chromatic = () => (
         label="Error text input"
         helperText="Help message"
         error="Error message."
-        value="Text"
+        defaultValue="Text"
         clearable
         optional
         action={action}
@@ -133,7 +133,7 @@ export const Chromatic = () => (
         helperText="Help message"
         disabled
         optional
-        value="Text"
+        defaultValue="Text"
         action={action}
       />
     </ExampleContainer>
@@ -146,7 +146,7 @@ export const Chromatic = () => (
         optional
         prefix="+34"
         suffix="USD"
-        value="Text"
+        defaultValue="Text"
         action={action}
       />
     </ExampleContainer>
@@ -163,7 +163,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered action" theme="dark" level={4} />
-          <DxcTextInput label="Text input" value="Text" clearable />
+          <DxcTextInput label="Text input" defaultValue="Text" clearable />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Helper text, placeholder, optional and action" theme="dark" level={4} />
@@ -182,7 +182,7 @@ export const Chromatic = () => (
             label="Error text input"
             helperText="Help message"
             error="Error message."
-            value="Text"
+            defaultValue="Text"
             clearable
             action={action}
           />
@@ -211,7 +211,7 @@ export const Chromatic = () => (
             helperText="Help message"
             disabled
             optional
-            value="Text"
+            defaultValue="Text"
             action={action}
           />
         </ExampleContainer>
@@ -224,7 +224,7 @@ export const Chromatic = () => (
             optional
             prefix="+34"
             suffix="USD"
-            value="Text"
+            defaultValue="Text"
             action={action}
           />
         </ExampleContainer>

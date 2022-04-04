@@ -13,13 +13,15 @@ const code = `() => {
     <>
       <DxcTextInput
         label="Uncontrolled"
+        helperText="The 'defaultValue' prop only works with uncontrolled text inputs"
+        defaultValue="Example text"
+        clearable
         margin="medium"
         ref={inputRef}
-        clearable
       />
       <DxcButton
-        onClick={handleSubmit}
         label="Submit"
+        onClick={handleSubmit}
         margin={{ left: "medium", right: "medium", bottom: "medium" }}
       ></DxcButton>
     </>
