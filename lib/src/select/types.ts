@@ -54,7 +54,7 @@ type CommonProps = {
   /**
    * An array of objects representing the selectable options.
    */
-  options?: Option[] | OptionGroup[];
+  options: Option[] | OptionGroup[];
   /**
    * Helper text to be placed above the select.
    */
