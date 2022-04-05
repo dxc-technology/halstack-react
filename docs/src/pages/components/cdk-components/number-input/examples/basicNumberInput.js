@@ -4,12 +4,12 @@ const code = `() => {
   return (
     <div style={{ display: "flex" }}>
       <DxcNumberInput
-        label="Basic"
+        label="Default"
         placeholder="Placeholder"
         margin="medium"
       />
       <DxcNumberInput
-        label="Disabled"
+        label="Error"
         placeholder="Placeholder"
         error="Error message."
         margin="medium"
