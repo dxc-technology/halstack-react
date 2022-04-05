@@ -39,7 +39,10 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label and icon" theme="light" level={4} />
-      <DxcTag label="Tag" icon="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png" />
+      <DxcTag
+        label="Tag"
+        icon="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png"
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With right icon" theme="light" level={4} />
@@ -95,32 +98,33 @@ export const Chromatic = () => (
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Small size" theme="light" level={4} />
-      <DxcTag label="Small" size="small" />
+      <DxcTag label="Small" size="small" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size" theme="light" level={4} />
-      <DxcTag label="Medium size medium s" size="medium" />
+      <DxcTag label="Medium size medium s" size="medium" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size with ellipsis" theme="light" level={4} />
-      <DxcTag label="Medium size medium si medium" size="medium" />
+      <DxcTag label="Medium size medium si medium" size="medium" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size" theme="light" level={4} />
-      <DxcTag label="Large size large size large size large size large size" size="large" />
+      <DxcTag label="Large size large size large size large size large size" size="large" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size with ellipsis" theme="light" level={4} />
-      <DxcTag label="Large size large size large size large size large size large size" size="large" />
+      <DxcTag label="Large size large size large size large size large size large size" size="large" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FillParent size" theme="light" level={4} />
-      <DxcTag label="FillParent" size="fillParent" />
+      <DxcTag label="FillParent" size="fillParent" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FitContent size" theme="light" level={4} />
-      <DxcTag label="FitContent" size="fitContent" />
+      <DxcTag label="FitContent" size="fitContent" icon={icon} />
     </ExampleContainer>
+    <hr />
   </>
 );
 
