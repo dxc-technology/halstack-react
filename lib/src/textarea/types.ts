@@ -16,6 +16,10 @@ type Props = {
    */
   name?: string;
   /**
+   * Initial value of the textarea, only when it is uncontrolled.
+   */
+  defaultValue?: string;
+  /**
    * Value of the textarea. If undefined, the component will be uncontrolled and the value will be managed internally.
    */
   value?: string;
@@ -55,14 +59,14 @@ type Props = {
    * entered is not valid) will be passed to this function.
    * If there is no error, error will be null.
    */
-  onChange?: (val: { value: string; error: string | null}) => void;
+  onChange?: (val: { value: string; error: string | null }) => void;
   /**
    * This function will be called when the textarea loses the focus. An
    * object including the textarea value and the error (if the value entered
    * is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (val: { value: string; error: string | null}) => void;
+  onBlur?: (val: { value: string; error: string | null }) => void;
   /**
    * If it is defined, the component will change its appearance, showing
    * the error below the textarea. If it is not defined, the error

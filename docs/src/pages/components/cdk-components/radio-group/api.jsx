@@ -12,7 +12,7 @@ const RadioGroupPropsTable = () => {
       <tr>
         <td>defaultValue: string</td>
         <td></td>
-        <td>Default value of the radio group, only when it is uncontrolled.</td>
+        <td>Initial value of the radio group, only when it is uncontrolled.</td>
       </tr>
       <tr>
         <td>value: string</td>
@@ -88,7 +88,7 @@ const RadioGroupPropsTable = () => {
         <td>
           <code>"N/A"</code>
         </td>
-        <td>Label of the optional item.</td>
+        <td>Label of the optional radio input.</td>
       </tr>
       <tr>
         <td>readonly: boolean</td>
@@ -127,10 +127,12 @@ const RadioGroupPropsTable = () => {
         <td>error: string</td>
         <td></td>
         <td>
-          If it is defined, the component will change its appearance, showing
-          the error below the radio group component. If it is not defined, the
-          error messages will be managed internally, but never displayed on its
-          own.
+          If it is a defined value and also a truthy string, the component will
+          change its appearance, showing the error below the radio group. If the
+          defined value is an empty string, it will reserve a space below the
+          component for a future error, but it would not change its look. In
+          case of being undefined or null, both the appearance and the space for
+          the error message would not be modified.
         </td>
       </tr>
       <tr>

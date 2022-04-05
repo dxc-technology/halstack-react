@@ -110,12 +110,19 @@ function App() {
   return (
     <>
       <p>
-        <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
+        <h4 style={{ "margin-left": "36px" }}>Controlled & Uncontrolled</h4>
         <DxcTextInput
+          label="Controlled"
           value={value}
           onChange={onChange}
           onBlur={onBlur}
           margin={{ left: "medium", right: "medium" }}
+          clearable
+        />
+        <DxcTextInput
+          label="Uncontrolled with default value"
+          defaultValue="Example text"
+          margin="medium"
           clearable
         />
       </p>
@@ -144,10 +151,6 @@ function App() {
           size="fillParent"
           clearable
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Uncontrolled</h4>
-        <DxcTextInput margin={{ left: "medium", right: "medium" }} clearable />
       </p>
       <p>
         <h4 style={{ "margin-left": "36px" }}>Clearable</h4>
@@ -500,6 +503,22 @@ function App() {
       </p>
       <p>
         <DxcTextInput
+          label="Uncontrolled suggestions filtered by default"
+          helperText="Example of helper text"
+          placeholder="Placeholder"
+          margin="medium"
+          defaultValue="Suggestion 2"
+          suggestions={[
+            "Suggestion 11",
+            "Suggestion 12",
+            "Suggestion 23",
+            "Suggestion 24",
+          ]}
+          clearable
+        />
+      </p>
+      <p>
+        <DxcTextInput
           label="Text input with suggestions function"
           helperText="Example of helper text"
           placeholder="Placeholder"
@@ -525,7 +544,7 @@ function App() {
           label="Text input with ref"
           helperText="Example of helper text"
           placeholder="Placeholder"
-          margin={{ left: "medium", right: "medium" }}
+          margin="medium"
           ref={ref}
           clearable
         />

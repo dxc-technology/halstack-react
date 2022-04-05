@@ -33,7 +33,7 @@ export const Chromatic = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Disabled with value" theme="light" level={4} />
-        <DxcTextarea label="Disabled" value="Example text" disabled />
+        <DxcTextarea label="Disabled" defaultValue="Example text" disabled />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="With error" theme="light" level={4} />
@@ -55,7 +55,7 @@ export const Chromatic = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Helper text and optional with value" theme="light" level={4} />
-        <DxcTextarea label="Helper & optional" value="Some text" helperText="Sample text" optional />
+        <DxcTextarea label="Helper & optional" defaultValue="Some text" helperText="Sample text" optional />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Resizable" theme="light" level={4} />
@@ -66,7 +66,7 @@ export const Chromatic = () => (
         <DxcTextarea
           label="Manual vertical grow"
           verticalGrow="manual"
-          value="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+          defaultValue="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
         />
       </ExampleContainer>
     </>
@@ -74,7 +74,7 @@ export const Chromatic = () => (
       <DarkContainer>
         <ExampleContainer>
           <Title title="Helper text and optional with value" theme="dark" level={4} />
-          <DxcTextarea label="Helper & optional" value="Some text" helperText="Sample text" optional />
+          <DxcTextarea label="Helper & optional" defaultValue="Some text" helperText="Sample text" optional />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
@@ -88,7 +88,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled with value" theme="dark" level={4} />
-          <DxcTextarea label="Disabled" value="Example text" disabled />
+          <DxcTextarea label="Disabled" defaultValue="Example text" disabled />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="With error" theme="dark" level={4} />
