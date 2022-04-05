@@ -14,7 +14,7 @@ type Props = {
     | "xxlarge"
     | "xxxlarge";
   /**
-   * If true a divider is shown between children.
+   * If true, a divider is shown between children.
    */
   divider?: boolean;
   /**
@@ -22,7 +22,7 @@ type Props = {
    */
   align?: "start" | "center" | "end" | "baseline" | "stretch";
   /**
-   * Component type or primitive that is rendered as the type of the root element.
+   * Specifies the HTML tag or component that is rendered as the wrapper element.
    */
   as?: React.ElementType;
   /**

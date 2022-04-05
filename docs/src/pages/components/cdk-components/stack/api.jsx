@@ -19,7 +19,10 @@ const stackPropsTable = () => {
         <td>
           <code>"div"</code>
         </td>
-        <td>Component type or primitive that is rendered as the type of the root element.</td>
+        <td>
+          Specifies the HTML tag or component that is rendered as the wrapper
+          element.
+        </td>
       </tr>
       <tr>
         <td>children: node</td>
@@ -31,7 +34,7 @@ const stackPropsTable = () => {
         <td>
           <code>false</code>
         </td>
-        <td>If true a divider is shown between children.</td>
+        <td>If true, a divider is shown between children.</td>
       </tr>
       <tr>
         <td>
