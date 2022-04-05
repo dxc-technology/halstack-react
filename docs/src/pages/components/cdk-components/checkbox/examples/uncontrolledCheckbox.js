@@ -6,12 +6,19 @@ const code = `() => {
     console.log(newValue);
   };
 
-  return <DxcCheckbox label="Checkbox" onChange={onChange} margin="medium" />;
+  return (
+    <DxcCheckbox 
+      label="Checkbox"
+      defaultChecked
+      onChange={onChange}
+      margin="medium"
+    />
+  );
 }`;
 
 const scope = {
   DxcCheckbox,
-  useState
+  useState,
 };
 
 export default { code, scope };
