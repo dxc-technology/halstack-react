@@ -171,7 +171,7 @@ const CheckboxContainer = styled.span`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   display: inline-flex;
-  align-items: center;  
+  align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   position: relative;
   flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
@@ -240,8 +240,10 @@ const CheckboxContainer = styled.span`
 
     &.Mui-focusVisible {
       .MuiIconButton-label {
-        box-shadow: 0 0 0 2px
+        border-radius: 2px;
+        outline: 2px solid
           ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
+        outline-offset: -1px;
       }
     }
     z-index: 1;
