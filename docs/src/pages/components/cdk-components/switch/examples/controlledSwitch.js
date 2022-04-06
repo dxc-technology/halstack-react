@@ -9,8 +9,8 @@ const code = `() => {
 
   return (
     <DxcSwitch
+      label="Controlled"
       checked={checked}
-      label="Switch"
       onChange={onChange}
       margin="medium"
     />

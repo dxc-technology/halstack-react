@@ -3,15 +3,15 @@ import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { Switch } from "@material-ui/core";
 import DxcRequired from "../common/RequiredComponent";
-
+import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
-
 import SwitchPropsType from "./types";
 
 const DxcSwitch = ({
+  defaultChecked = false,
   checked,
   value,
   label = "",
@@ -24,7 +24,9 @@ const DxcSwitch = ({
   size = "fitContent",
   tabIndex = 0,
 }: SwitchPropsType): JSX.Element => {
-  const [innerChecked, setInnerChecked] = useState(false);
+  const [switchId] = useState(`switch-${uuidv4()}`);
+  const labelId = `label-${switchId}`;
+  const [innerChecked, setInnerChecked] = useState(defaultChecked);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
@@ -47,13 +49,20 @@ const DxcSwitch = ({
       >
         <Switch
           checked={checked ?? innerChecked}
-          inputProps={{ name: name, tabIndex: tabIndex }}
+          inputProps={{
+            name: name,
+            "aria-labelledby": labelId,
+            role: "switch",
+            "aria-checked": checked != undefined ? checked : innerChecked,
+            tabIndex: tabIndex,
+          }}
           onChange={handlerSwitchChange}
           value={value}
           disabled={disabled}
           disableRipple
         />
         <LabelContainer
+          id={labelId}
           labelPosition={labelPosition}
           onClick={!disabled && handlerSwitchChange}
           disabled={disabled}
@@ -85,7 +94,6 @@ const SwitchContainer = styled.div`
   display: inline-flex;
   align-items: center;
   flex-direction: ${(props) => (props.labelPosition === "after" ? "row" : "row-reverse")};
-  
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
