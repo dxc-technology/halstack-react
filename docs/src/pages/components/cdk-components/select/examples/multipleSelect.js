@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <DxcSelect
-      label="Label"
+      label="Multiple"
       placeholder="Choose options"
       options={options}
       multiple
