@@ -35,6 +35,7 @@ import FileInput from "./cdk-components/file-input/FileInput";
 import Select from "./cdk-components/select/Select";
 import RadioGroup from "./cdk-components/radio-group/RadioGroup";
 import Stack from "./cdk-components/stack/Stack";
+import Row from "./cdk-components/row/Row";
 
 export const types = {
   FORMS: "Forms",
@@ -211,6 +212,13 @@ export default [
     component: ResultsetTable,
     type: types.UTILS,
     status: "ready",
+  },
+  {
+    path: "row",
+    name: "Row",
+    component: Row,
+    type: types.LAYOUT,
+    status: "experimental",
   },
   {
     path: "select",
