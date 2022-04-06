@@ -139,7 +139,7 @@ const Switch = () => (
 export const FocusedSwitch = Switch.bind({});
 FocusedSwitch.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  canvas.getByRole("checkbox").focus();
+  canvas.getByRole("switch").focus();
 };
 
 const DarkSwitch = () => (
@@ -156,5 +156,5 @@ const DarkSwitch = () => (
 export const FocusedSwitchOnDark = DarkSwitch.bind({});
 FocusedSwitchOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  canvas.getByRole("checkbox").focus();
+  canvas.getByRole("switch").focus();
 };
