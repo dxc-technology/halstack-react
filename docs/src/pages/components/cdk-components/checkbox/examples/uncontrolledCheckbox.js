@@ -8,7 +8,7 @@ const code = `() => {
 
   return (
     <DxcCheckbox 
-      label="Checkbox"
+      label="Uncontrolled"
       defaultChecked
       onChange={onChange}
       margin="medium"
