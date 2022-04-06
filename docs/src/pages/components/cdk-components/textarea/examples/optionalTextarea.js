@@ -13,7 +13,7 @@ const code = `() => {
   return (
     <DxcTextarea
       label="Optional"
-      helperText="When a textarea is optional, it will not be required to fill it in, so it won't display the required error."
+      helperText="When a textarea is optional, it is not required to fill it in, so it won't pass the required error."
       value={value}
       onChange={onChange}
       onBlur={onBlur}

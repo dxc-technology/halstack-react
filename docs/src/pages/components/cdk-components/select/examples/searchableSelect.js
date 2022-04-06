@@ -32,7 +32,7 @@ const code = `() => {
 
   return (
     <DxcSelect
-      label="Label"
+      label="Searchable"
       placeholder="Choose an option"
       helperText="Type to search among the available options"
       options={options}
