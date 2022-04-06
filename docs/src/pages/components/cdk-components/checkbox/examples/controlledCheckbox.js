@@ -9,8 +9,8 @@ const code = `() => {
 
   return (
     <DxcCheckbox
-      checked={checked}
       label="Controlled"
+      checked={checked}
       onChange={onChange}
       margin="medium"
     />
@@ -19,7 +19,7 @@ const code = `() => {
 
 const scope = {
   DxcCheckbox,
-  useState
+  useState,
 };
 
 export default { code, scope };

@@ -1,5 +1,4 @@
 import { DxcCheckbox } from "@dxc-technology/halstack-react";
-import { useState } from "react";
 
 const code = `() => {
   const onChange = newValue => {
@@ -18,7 +17,6 @@ const code = `() => {
 
 const scope = {
   DxcCheckbox,
-  useState,
 };
 
 export default { code, scope };
