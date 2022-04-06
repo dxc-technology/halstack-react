@@ -4,7 +4,7 @@ const code = `() => {
   return (
     <div style={{ display: "flex" }}>
       <DxcPasswordInput
-        label="Invalid"
+        label="Default"
         clearable
         margin="medium"
       />
