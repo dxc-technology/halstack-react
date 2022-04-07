@@ -11,15 +11,17 @@ const code = `() => {
 
   return (
     <>
-      <DxcDateInput label="Uncontrolled" ref={inputRef} margin="medium" clearable/>
+      <DxcDateInput label="Uncontrolled" 
+        helperText="The 'defaultValue' prop only works with uncontrolled date inputs"
+        defaultValue="10-08-1998" 
+        clearable 
+        margin="medium" 
+        ref={inputRef} 
+      />
       <DxcButton
-        onClick={handleSubmit}
         label="Submit"
-        margin={{
-          left: "medium",
-          right: "medium",
-          bottom: "medium",
-        }}
+        onClick={handleSubmit}
+        margin={{ left: "medium", right: "medium", bottom: "medium" }}
       ></DxcButton>
     </>
   );

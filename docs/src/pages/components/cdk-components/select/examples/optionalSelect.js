@@ -12,6 +12,7 @@ const code = `() => {
   return (
     <DxcSelect
       label="Label"
+      helperText="When a select is optional, it is not required to fill it in, so it won't pass the required error."
       placeholder="Choose an option"
       options={options}
       optional

@@ -34,7 +34,7 @@ const code = `() => {
 
   return (
     <DxcSelect
-      label="Label"
+      label="Grouped options"
       placeholder="Choose options"
       options={options}
       multiple
