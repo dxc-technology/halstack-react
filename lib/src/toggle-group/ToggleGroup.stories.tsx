@@ -97,7 +97,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Selected" theme="light" level={4} />
-      <DxcToggleGroup label="Selected" helperText="HelperText" value={2} options={options} />
+      <DxcToggleGroup label="Selected" helperText="HelperText" defaultValue={2} options={options} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Icons toggle group" theme="light" level={4} />
@@ -109,11 +109,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcToggleGroup label="Disabled" value={2} options={options} disabled />
+      <DxcToggleGroup label="Disabled" defaultValue={2} options={options} disabled />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
-      <DxcToggleGroup label="Hovered" options={twoOptions} value={2} />
+      <DxcToggleGroup label="Hovered" options={twoOptions} defaultValue={2} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Multiple toggleGroup" theme="light" level={4} />
@@ -121,7 +121,7 @@ export const Chromatic = () => (
         label="Toggle group"
         helperText="Please select one or more"
         options={options}
-        value={[1, 3]}
+        defaultValue={[1, 3]}
         multiple
       ></DxcToggleGroup>
     </ExampleContainer>

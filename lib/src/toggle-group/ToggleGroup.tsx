@@ -9,6 +9,7 @@ import ToogleGroupPropsType from "./types";
 const DxcToggleGroup = ({
   label,
   helperText,
+  defaultValue,
   value,
   onChange,
   disabled = false,
@@ -18,7 +19,7 @@ const DxcToggleGroup = ({
   tabIndex = 0,
 }: ToogleGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const [selectedValue, setSelectedValue] = useState<typeof value>(multiple ? [] : -1);
+  const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
   const handleToggleChange = (selectedOption) => {
@@ -62,20 +63,20 @@ const DxcToggleGroup = ({
           {options.map((option, i) => (
             <ToggleContainer
               selected={
-                multiple && Array.isArray(value)
+                multiple
                   ? value
-                    ? value.includes(option.value)
-                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
+                    ? (Array.isArray(value) && value.includes(option.value))
+                    : (Array.isArray(selectedValue) && selectedValue.includes(option.value))
                   : value
                   ? option.value === value
                   : option.value === selectedValue
               }
               role={multiple ? "switch" : "radio"}
               aria-checked={
-                multiple && Array.isArray(value)
+                multiple
                   ? value
-                    ? value.includes(option.value)
-                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
+                    ? (Array.isArray(value) && value.includes(option.value))
+                    : (Array.isArray(selectedValue) && selectedValue.includes(option.value))
                   : value
                   ? option.value === value
                   : option.value === selectedValue
