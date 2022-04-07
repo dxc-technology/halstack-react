@@ -57,14 +57,14 @@ type Props = {
    * This function will be called when the user types within the textarea.
    * An object including the current value and the error (if the value
    * entered is not valid) will be passed to this function.
-   * If there is no error, error will be null.
+   * If there is no error, error will not be defined.
    */
   onChange?: (val: { value: string; error?: string}) => void;
   /**
    * This function will be called when the textarea loses the focus. An
    * object including the textarea value and the error (if the value entered
    * is not valid) will be passed to this function. If there is no error,
-   * error will be null.
+   * error will not be defined.
    */
   onBlur?: (val: { value: string; error?: string }) => void;
   /**
