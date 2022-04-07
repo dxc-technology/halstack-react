@@ -49,13 +49,14 @@ const icons = {
 
 const DxcWizard = ({
   mode = "horizontal",
+  defaultCurrentStep,
   currentStep,
   onStepClick,
   steps,
   margin,
   tabIndex = 0,
 }: WizardPropsType): JSX.Element => {
-  const [innerCurrent, setInnerCurrentStep] = useState(currentStep || 0);
+  const [innerCurrent, setInnerCurrentStep] = useState(currentStep ?? defaultCurrentStep ?? 0);
   const renderedCurrent = currentStep == null ? innerCurrent : currentStep;
   const colorsTheme = useTheme();
 

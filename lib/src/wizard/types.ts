@@ -34,7 +34,11 @@ type Props = {
    */
   mode?: "horizontal" | "vertical";
   /**
-   * Defines which step is marked as the current. The numeration starts in 0.
+   * Initially selected step, only when it is uncontrolled.
+   */
+  defaultCurrentStep?: number;
+  /**
+   * Defines which step is marked as the current. The numeration starts at 0.
    */
   currentStep?: number;
   /**
