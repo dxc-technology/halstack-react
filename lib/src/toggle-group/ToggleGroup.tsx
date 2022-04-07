@@ -65,8 +65,8 @@ const DxcToggleGroup = ({
               selected={
                 multiple
                   ? value
-                    ? (Array.isArray(value) && value.includes(option.value))
-                    : (Array.isArray(selectedValue) && selectedValue.includes(option.value))
+                    ? Array.isArray(value) && value.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
                   ? option.value === value
                   : option.value === selectedValue
@@ -75,8 +75,8 @@ const DxcToggleGroup = ({
               aria-checked={
                 multiple
                   ? value
-                    ? (Array.isArray(value) && value.includes(option.value))
-                    : (Array.isArray(selectedValue) && selectedValue.includes(option.value))
+                    ? Array.isArray(value) && value.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
                   ? option.value === value
                   : option.value === selectedValue
@@ -144,6 +144,7 @@ const ToggleGroup = styled.div`
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  width: max-content;
   opacity: 1;
   height: calc(48px - 4px - 4px);
   border-width: ${(props) => props.theme.containerBorderThickness};
