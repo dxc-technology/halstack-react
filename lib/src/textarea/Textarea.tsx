@@ -64,7 +64,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       else if (isLengthIncorrect(newValue)) onChange?.({ value: newValue, error: getLengthErrorMessage() });
       else if (newValue && pattern && !patternMatch(pattern, newValue))
         onChange?.({ value: newValue, error: getPatternErrorMessage() });
-      else onChange?.({ value: newValue, error: null });
+      else onChange?.({ value: newValue });
     };
 
     const handleTOnBlur = (event) => {
@@ -74,7 +74,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
         onBlur?.({ value: event.target.value, error: getLengthErrorMessage() });
       else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
-      else onBlur?.({ value: event.target.value, error: null });
+      else onBlur?.({ value: event.target.value });
     };
 
     const handleTOnChange = (event) => {
