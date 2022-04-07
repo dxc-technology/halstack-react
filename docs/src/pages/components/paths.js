@@ -35,6 +35,7 @@ import FileInput from "./cdk-components/file-input/FileInput";
 import Select from "./cdk-components/select/Select";
 import RadioGroup from "./cdk-components/radio-group/RadioGroup";
 import Stack from "./cdk-components/stack/Stack";
+import Bleed from "./cdk-components/bleed/Bleed";
 
 export const types = {
   FORMS: "Forms",
@@ -78,6 +79,13 @@ export default [
     component: Box,
     type: types.LAYOUT,
     status: "ready",
+  },
+  {
+    path: "bleed",
+    name: "Bleed",
+    component: Bleed,
+    type: types.LAYOUT,
+    status: "experimental",
   },
   {
     path: "button",
