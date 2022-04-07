@@ -5,7 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 type Step = {
   /**
    * Step label.
@@ -28,6 +28,7 @@ type Step = {
    */
   valid?: boolean;
 };
+
 type Props = {
   /**
    * The wizard can be showed in horizontal or vertical.

@@ -87,51 +87,38 @@ const DxcWizard = ({
                 <StepHeader>
                   <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                     {step.icon ? (
-                      typeof step.icon === "string" ? (
-                        <Icon src={step.icon}></Icon>
-                      ) : (
-                        <StepIconContainer disabled={step.disabled}>
-                          {typeof step.icon === "object" ? step.icon : React.createElement(step.icon)}
-                        </StepIconContainer>
-                      )
+                      <StepIconContainer disabled={step.disabled}>
+                        {typeof step.icon === "string" ? <Icon src={step.icon}></Icon> : step.icon}
+                      </StepIconContainer>
                     ) : (
                       <Number disabled={step.disabled} current={i === renderedCurrent}>
                         {i + 1}
                       </Number>
                     )}
                   </IconContainer>
-                  {step.valid !== undefined ? (
-                    step.valid ? (
+                  {step.valid !== undefined &&
+                    (step.valid ? (
                       <ValidityIconContainer>{icons.validIcon}</ValidityIconContainer>
                     ) : (
                       <ValidityIconContainer>{icons.invalidIcon}</ValidityIconContainer>
-                    )
-                  ) : (
-                    ""
-                  )}
+                    ))}
                 </StepHeader>
-                {step.label || step.description ? (
+                {(step.label || step.description) && (
                   <InfoContainer>
-                    {step.label ? (
+                    {step.label && (
                       <Label disabled={step.disabled} visited={i <= innerCurrent}>
                         {step.label}
                       </Label>
-                    ) : (
-                      ""
                     )}
-                    {step.description ? (
+                    {step.description && (
                       <Description disabled={step.disabled} visited={i <= innerCurrent}>
                         {step.description}
                       </Description>
-                    ) : (
-                      ""
                     )}
                   </InfoContainer>
-                ) : (
-                  ""
                 )}
               </Step>
-              {i === steps.length - 1 ? "" : <StepSeparator mode={mode}></StepSeparator>}
+              {i === steps.length - 1 ? "" : <StepSeparator mode={mode} />}
             </StepContainer>
           );
         })}
