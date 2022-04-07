@@ -49,7 +49,11 @@ const rowPropsTable = () => {
         <td>
           <code>true</code>
         </td>
-        <td>If true, children will wrap onto multiple rows.</td>
+        <td>
+          If true, children will wrap onto multiple rows. Otherwise, all the
+          children will be in one row and will overflow when they reach the
+          container limits.
+        </td>
       </tr>
     </DxcTable>
   );
