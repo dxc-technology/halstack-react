@@ -20,6 +20,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     {
       label,
       name = "",
+      defaultValue = "",
       value,
       helperText,
       placeholder = "",
@@ -40,7 +41,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     },
     ref
   ) => {
-    const [innerValue, setInnerValue] = useState("");
+    const [innerValue, setInnerValue] = useState(defaultValue);
     const [textareaId] = useState(`textarea-${uuidv4()}`);
 
     const colorsTheme = useTheme();

@@ -16,8 +16,9 @@ const code = `() => {
 
   return <>
     <DxcSelect
-      label="Label"
-      placeholder="Choose an option"
+      label="Uncontrolled"
+      helperText="The 'defaultValue' prop only works with uncontrolled text inputs"
+      defaultValue="4"
       options={options}
       margin="medium"
       ref={selectRef}
