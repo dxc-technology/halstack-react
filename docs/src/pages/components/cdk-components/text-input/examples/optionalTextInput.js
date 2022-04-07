@@ -14,7 +14,8 @@ const code = `() => {
 
   return (
     <DxcTextInput
-      label="Optional"
+      label="Label"
+      helperText="When a text input is optional, it is not required to fill it in, so it won't pass the required error."
       value={value}
       onChange={onChange}
       onBlur={onBlur}

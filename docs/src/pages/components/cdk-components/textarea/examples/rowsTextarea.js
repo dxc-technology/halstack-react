@@ -5,6 +5,7 @@ const code = `() => {
   return (
     <DxcTextarea
       label="Rows"
+      helperText="Lets you modify the default size of the textarea"
       rows={10}
       margin="medium"
     />

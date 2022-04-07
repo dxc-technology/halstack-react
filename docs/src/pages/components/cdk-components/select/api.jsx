@@ -10,6 +10,13 @@ const selectPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>defaultValue: string | string[]</td>
+        <td>
+          <code></code>
+        </td>
+        <td>Initial value of the select, only when it is uncontrolled.</td>
+      </tr>
+      <tr>
         <td>value: string | string[]</td>
         <td></td>
         <td>
@@ -53,11 +60,11 @@ const selectPropsTable = () => {
               by <i>optional</i> prop.
             </li>
             <li>
-              <b>Icon: string | SVGSVGElement</b>: Element used as
-              the icon that will be placed before the option label. It can be a
-              url of an image or an inline SVG. If the url option is the chosen
-              one, take into account that the component's color styling tokens
-              will not be applied to the image.
+              <b>Icon: string | SVGSVGElement</b>: Element used as the icon that
+              will be placed before the option label. It can be a url of an
+              image or an inline SVG. If the url option is the chosen one, take
+              into account that the component's color styling tokens will not be
+              applied to the image.
             </li>
           </ul>
           OptionGroup:

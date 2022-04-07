@@ -54,7 +54,7 @@ type CommonProps = {
   /**
    * An array of objects representing the selectable options.
    */
-  options?: Option[] | OptionGroup[];
+  options: Option[] | OptionGroup[];
   /**
    * Helper text to be placed above the select.
    */
@@ -107,6 +107,10 @@ type SingleSelect = CommonProps & {
    */
   multiple?: false;
   /**
+   * Initial value of the select, only when it is uncontrolled.
+   */
+  defaultValue?: string;
+  /**
    * Value of the select. If undefined, the component will be uncontrolled
    * and the value will be managed internally by the component.
    */
@@ -132,6 +136,10 @@ type MultipleSelect = CommonProps & {
    * option value.
    */
   multiple: true;
+  /**
+   * Initial value of the select, only when it is uncontrolled.
+   */
+  defaultValue?: string[];
   /**
    * Value of the select. If undefined, the component will be uncontrolled
    * and the value will be managed internally by the component.
