@@ -21,9 +21,7 @@ const toggleGroupPropsTable = () => {
       </tr>
       <tr>
         <td>defaultValue: number | number[]</td>
-        <td>
-          <code></code>
-        </td>
+        <td></td>
         <td>The key(s) of the initially selected value(s), only when it is uncontrolled.</td>
       </tr>
       <tr>
