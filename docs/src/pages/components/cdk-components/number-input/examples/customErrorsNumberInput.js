@@ -9,7 +9,6 @@ const code = `() => {
     error ? setErrorMessage("Invalid number.") : setErrorMessage("");
   };
 
-
   const [secondValue, setSecondValue] = useState("");
   const [customErrorOnChange, setCustomErrorOnChange] = useState("");
   const onChangeSecond = ({ value }) => {
@@ -23,7 +22,7 @@ const code = `() => {
   return (
     <div style={{ display: "flex" }}>
       <DxcNumberInput
-        label="Min 5, max 20, step 5"
+        label="Custom range error"
         helperText="Using onChange event for handling errors"
         value={value}
         onChange={onChange}
@@ -35,7 +34,7 @@ const code = `() => {
         optional
       />
       <DxcNumberInput
-        label="Min 5, max 20, step 5"
+        label="Custom range error"
         helperText="Using onBlur event for handling errors"
         value={secondValue}
         onChange={onChangeSecond}
