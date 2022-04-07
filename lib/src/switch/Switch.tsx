@@ -53,7 +53,7 @@ const DxcSwitch = ({
             name: name,
             "aria-labelledby": labelId,
             role: "switch",
-            "aria-checked": checked != undefined ? checked : innerChecked,
+            "aria-checked": checked ?? innerChecked,
             tabIndex: tabIndex,
           }}
           onChange={handlerSwitchChange}
