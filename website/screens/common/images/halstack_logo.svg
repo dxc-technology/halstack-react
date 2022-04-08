@@ -1,0 +1,35 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="139.667"
+    height="139.686"
+    viewBox="0 0 139.667 139.686"
+  >
+    <defs>
+      <linearGradient
+        id="a"
+        x1="0.5"
+        x2="0.489"
+        y2="0.961"
+        gradientUnits="objectBoundingBox"
+      >
+        <stop offset="0" stop-color="#4d008f" />
+        <stop offset="1" stop-color="#ad4eff" />
+      </linearGradient>
+    </defs>
+    <g transform="translate(-157.198 -243.269)">
+      <g transform="translate(296.865 313.749) rotate(135)">
+        <path
+          d="M4,0H8.3a28,28,0,0,1,28,28V99.673H36a36,36,0,0,1-36-36V4A4,4,0,0,1,4,0Z"
+          transform="translate(0 0)"
+          fill="#80f"
+        />
+      </g>
+      <g transform="translate(157.198 312.544) rotate(-45)">
+        <path
+          d="M3.931,0H8.844A27.516,27.516,0,0,1,36.36,27.516V99.576A36.36,36.36,0,0,1,0,63.216V3.931A3.931,3.931,0,0,1,3.931,0Z"
+          transform="translate(0 0)"
+          fill="url(#a)"
+        />
+      </g>
+    </g>
+</svg>
