@@ -5,9 +5,8 @@ import Example from "../../common/Example";
 import AccordionPropsTable from "./api.jsx";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
-import defaultAccordion from "./examples/default";
+import uncontrolledAccordion from "./examples/uncontrolledAccordion";
 import disabled from "./examples/disabled";
-import assistiveText from "./examples/assistiveText";
 import icon from "./examples/icon";
 import controlledAccordion from "./examples/controlledAccordion";
 
@@ -21,16 +20,15 @@ function Accordion() {
       </Section>
       <Section>
         <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
-        <Example title="Default Accordion" example={defaultAccordion}></Example>
         <Example
           title="Controlled Accordion"
           example={controlledAccordion}
         ></Example>
-        <Example title="Disabled Accordion" example={disabled}></Example>
         <Example
-          title="Accordion with assistive text"
-          example={assistiveText}
+          title="Uncontrolled Accordion"
+          example={uncontrolledAccordion}
         ></Example>
+        <Example title="Disabled Accordion" example={disabled}></Example>
         <Example title="Accordion with icon" example={icon}></Example>
       </Section>
     </ComponentDoc>
