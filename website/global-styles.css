@@ -1,0 +1,23 @@
+:root {
+  --content-margin-left: auto;
+  --content-margin-right: auto;
+  --content-margin-top: 5rem;
+  --content-margin-bottom: 3rem;
+  --content-mobile-margin-left: 2rem;
+  --content-mobile-margin-right: 2rem;
+  --content-mobile-margin-top: 5rem;
+  --content-mobile-margin-bottom: 3rem;
+  --content-width: 800px;
+}
+
+body {
+  margin: 0;
+  font-family: Open Sans, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
