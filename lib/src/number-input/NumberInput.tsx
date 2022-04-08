@@ -8,24 +8,25 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
   (
     {
       label,
-      name = "",
+      name,
+      defaultValue,
       value,
       helperText,
-      placeholder = "",
-      disabled = false,
-      optional = false,
-      prefix = "",
-      suffix = "",
+      placeholder,
+      disabled,
+      optional,
+      prefix,
+      suffix,
       min,
       max,
       step = 1,
       onChange,
       onBlur,
       error,
-      autocomplete = "off",
+      autocomplete,
       margin,
-      size = "medium",
-      tabIndex = 0,
+      size,
+      tabIndex,
     },
     ref
   ) => {
@@ -35,6 +36,7 @@ const DxcNumberInput = React.forwardRef<RefType, NumberInputPropsType>(
           <DxcTextInput
             label={label}
             name={name}
+            defaultValue={defaultValue}
             value={value}
             helperText={helperText}
             placeholder={placeholder}

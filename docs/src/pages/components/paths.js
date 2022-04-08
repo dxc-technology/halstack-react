@@ -34,6 +34,9 @@ import Textarea from "./cdk-components/textarea/Textarea";
 import FileInput from "./cdk-components/file-input/FileInput";
 import Select from "./cdk-components/select/Select";
 import RadioGroup from "./cdk-components/radio-group/RadioGroup";
+import Stack from "./cdk-components/stack/Stack";
+import Row from "./cdk-components/row/Row";
+import Bleed from "./cdk-components/bleed/Bleed";
 
 export const types = {
   FORMS: "Forms",
@@ -77,6 +80,13 @@ export default [
     component: Box,
     type: types.LAYOUT,
     status: "ready",
+  },
+  {
+    path: "bleed",
+    name: "Bleed",
+    component: Bleed,
+    type: types.LAYOUT,
+    status: "experimental",
   },
   {
     path: "button",
@@ -212,6 +222,13 @@ export default [
     status: "ready",
   },
   {
+    path: "row",
+    name: "Row",
+    component: Row,
+    type: types.LAYOUT,
+    status: "experimental",
+  },
+  {
     path: "select",
     name: "Select",
     component: Select,
@@ -238,6 +255,13 @@ export default [
     component: Spinner,
     type: types.UTILS,
     status: "ready",
+  },
+  {
+    path: "stack",
+    name: "Stack",
+    component: Stack,
+    type: types.LAYOUT,
+    status: "experimental",
   },
   {
     path: "switch",

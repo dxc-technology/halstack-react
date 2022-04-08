@@ -22,7 +22,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Helper text, optional and value" theme="light" level={4} />
-      <DxcNumberInput label="Number input" value="12" helperText="Help message" optional />
+      <DxcNumberInput label="Number input" defaultValue="12" helperText="Help message" optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled and placeholder" theme="light" level={4} />
@@ -30,7 +30,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled, helper text, optional and value" theme="light" level={4} />
-      <DxcNumberInput label="Disabled number input" helperText="Help message" disabled optional value="10" />
+      <DxcNumberInput label="Disabled number input" helperText="Help message" disabled optional defaultValue="10" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Prefix" theme="light" level={4} />
@@ -42,7 +42,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
-      <DxcNumberInput label="Error number input" helperText="Help message" error="Error message." value="23" optional />
+      <DxcNumberInput label="Error number input" helperText="Help message" error="Error message." defaultValue="23" optional />
     </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
@@ -53,7 +53,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Helper text, value and error" theme="dark" level={4} />
-          <DxcNumberInput label="Number input" helperText="Help message" error="Error message." value="199" />
+          <DxcNumberInput label="Number input" helperText="Help message" error="Error message." defaultValue="199" />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled and placeholder" theme="dark" level={4} />
@@ -61,7 +61,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled, helper text, optional and value" theme="dark" level={4} />
-          <DxcNumberInput label="Disabled number input" helperText="Help message" disabled optional value="1232454" />
+          <DxcNumberInput label="Disabled number input" helperText="Help message" disabled optional defaultValue="1232454" />
         </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>

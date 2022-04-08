@@ -10,6 +10,13 @@ const NumberInputPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>defaultValue: string</td>
+        <td>
+          <code></code>
+        </td>
+        <td>Initial value of the input element, only when it is uncontrolled.</td>
+      </tr>
+      <tr>
         <td>value: string</td>
         <td></td>
         <td>
