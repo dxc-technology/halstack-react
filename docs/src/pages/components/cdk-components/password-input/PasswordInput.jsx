@@ -5,13 +5,12 @@ import Example from "../../common/Example";
 import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 import PasswordInputPropsTable from "./api.jsx";
+import basic from "./examples/basicPasswordInput";
 import controlled from "./examples/controlledPasswordInput";
 import uncontrolled from "./examples/uncontrolledPasswordInput";
 import pattern from "./examples/patternPasswordInput";
 import length from "./examples/lengthPasswordInput";
-import invalid from "./examples/invalidPasswordInput";
 import customErrors from "./examples/customErrorsPasswordInput";
-import fillParent from "./examples/fillParentPasswordInput";
 
 function PasswordInput() {
   return (
@@ -23,6 +22,7 @@ function PasswordInput() {
       </Section>
       <Section>
         <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
+        <Example title="Basic usage" example={basic}></Example>
         <Example
           title="Controlled password input"
           example={controlled}
@@ -39,14 +39,9 @@ function PasswordInput() {
           title="Password input with length constraint"
           example={length}
         ></Example>
-        <Example title="Invalid password input" example={invalid}></Example>
         <Example
           title="Password input with custom error messages"
           example={customErrors}
-        ></Example>
-        <Example
-          title="Fill parent size password input"
-          example={fillParent}
         ></Example>
       </Section>
     </ComponentDoc>
