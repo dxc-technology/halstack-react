@@ -24,7 +24,7 @@ const Checkbox = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Checked" theme="light" level={4} />
-        <DxcCheckbox label="Checkbox" checked />
+        <DxcCheckbox label="Checkbox" defaultChecked />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Required" theme="light" level={4} />
@@ -32,7 +32,7 @@ const Checkbox = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Disabled and checked" theme="light" level={4} />
-        <DxcCheckbox label="Checkbox" disabled checked />
+        <DxcCheckbox label="Checkbox" disabled defaultChecked />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Disabled and required" theme="light" level={4} />
@@ -40,7 +40,7 @@ const Checkbox = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Disabled, required and checked" theme="light" level={4} />
-        <DxcCheckbox label="Checkbox" disabled required checked />
+        <DxcCheckbox label="Checkbox" disabled required defaultChecked />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Label after" theme="light" level={4} />
@@ -48,7 +48,7 @@ const Checkbox = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Checked with label after" theme="light" level={4} />
-        <DxcCheckbox label="Checkbox" checked labelPosition="after" />
+        <DxcCheckbox label="Checkbox" defaultChecked labelPosition="after" />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Required with label after" theme="light" level={4} />
@@ -56,7 +56,7 @@ const Checkbox = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Disabled and checked with label after" theme="light" level={4} />
-        <DxcCheckbox label="Checkbox" disabled checked labelPosition="after" />
+        <DxcCheckbox label="Checkbox" disabled defaultChecked labelPosition="after" />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Disabled and required with label after" theme="light" level={4} />
@@ -64,7 +64,7 @@ const Checkbox = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Disabled, required and checked with label after" theme="light" level={4} />
-        <DxcCheckbox label="Checkbox" disabled required checked labelPosition="after" />
+        <DxcCheckbox label="Checkbox" disabled required defaultChecked labelPosition="after" />
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-hover">
         <Title title="Hovered" theme="light" level={4} />
@@ -72,7 +72,7 @@ const Checkbox = () => (
       </ExampleContainer>
       <ExampleContainer pseudoState="pseudo-hover">
         <Title title="Hovered and checked" theme="light" level={4} />
-        <DxcCheckbox label="Hovered" checked />
+        <DxcCheckbox label="Hovered" defaultChecked />
       </ExampleContainer>
     </>
     <BackgroundColorProvider color="#333333">
@@ -84,7 +84,7 @@ const Checkbox = () => (
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Checked" theme="dark" level={4} />
-            <DxcCheckbox label="Checkbox" checked />
+            <DxcCheckbox label="Checkbox" defaultChecked />
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Required" theme="dark" level={4} />
@@ -92,7 +92,7 @@ const Checkbox = () => (
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Disabled and checked" theme="dark" level={4} />
-            <DxcCheckbox label="Checkbox" disabled checked />
+            <DxcCheckbox label="Checkbox" disabled defaultChecked />
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Disabled and required" theme="dark" level={4} />
@@ -100,7 +100,7 @@ const Checkbox = () => (
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Disabled, required and checked" theme="dark" level={4} />
-            <DxcCheckbox label="Checkbox" disabled required checked />
+            <DxcCheckbox label="Checkbox" disabled required defaultChecked />
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Label after" theme="dark" level={4} />
@@ -108,7 +108,7 @@ const Checkbox = () => (
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Checked with label after" theme="dark" level={4} />
-            <DxcCheckbox label="Checkbox" checked labelPosition="after" />
+            <DxcCheckbox label="Checkbox" defaultChecked labelPosition="after" />
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Required with label after" theme="dark" level={4} />
@@ -116,7 +116,7 @@ const Checkbox = () => (
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Disabled and checked with label after" theme="dark" level={4} />
-            <DxcCheckbox label="Checkbox" disabled checked labelPosition="after" />
+            <DxcCheckbox label="Checkbox" disabled defaultChecked labelPosition="after" />
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Disabled and required with label after" theme="dark" level={4} />
@@ -124,7 +124,7 @@ const Checkbox = () => (
           </ExampleContainer>
           <ExampleContainer>
             <Title title="Disabled, required and checked with label after" theme="dark" level={4} />
-            <DxcCheckbox label="Checkbox" disabled required checked labelPosition="after" />
+            <DxcCheckbox label="Checkbox" disabled required defaultChecked labelPosition="after" />
           </ExampleContainer>
           <ExampleContainer pseudoState="pseudo-hover">
             <Title title="Hovered" theme="dark" level={4} />
@@ -132,7 +132,7 @@ const Checkbox = () => (
           </ExampleContainer>
           <ExampleContainer pseudoState="pseudo-hover">
             <Title title="Hovered and checked" theme="dark" level={4} />
-            <DxcCheckbox label="Hovered" checked />
+            <DxcCheckbox label="Hovered" defaultChecked />
           </ExampleContainer>
         </>
       </DarkContainer>

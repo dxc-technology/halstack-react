@@ -13,7 +13,7 @@ const code = `() => {
     <>
       <DxcTextarea 
         label="Uncontrolled"         
-        helperText="The 'defaultValue' prop only works with uncontrolled text inputs"
+        helperText="The 'defaultValue' prop only works with uncontrolled textareas"
         defaultValue="Example text"
         margin="medium" 
         ref={inputRef}
