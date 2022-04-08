@@ -2,7 +2,10 @@ name: Publish Next Version
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+    paths:
+      - 'lib/**'
 
 jobs:
   build:
