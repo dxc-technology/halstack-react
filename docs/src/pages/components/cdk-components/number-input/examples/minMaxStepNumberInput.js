@@ -10,7 +10,7 @@ const code = `() => {
   };
   const onBlur = ({ value, error }) => {
     setValue(value);
-    setError(error);
+    setError(error || "");
   };
 
   return (

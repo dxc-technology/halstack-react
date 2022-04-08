@@ -6,7 +6,7 @@ const code = `() => {
   const [errorMessage, setErrorMessage] = useState("");
   const onChange = ({ value, error }) => {
     setValue(value);
-    error ? setErrorMessage("Invalid number.") : setErrorMessage("");
+    setErrorMessage(error ? "Invalid number." : "");
   };
 
   const [secondValue, setSecondValue] = useState("");
@@ -16,7 +16,7 @@ const code = `() => {
   };
   const onBlur = ({ value, error }) => {
     setSecondValue(value);
-    error ? setCustomErrorOnChange("The typed number is not valid. Please, check it.") : setCustomErrorOnChange("");
+    setCustomErrorOnChange(error ? "The typed number is not valid. Please, check it." : "");
   };
 
   return (
