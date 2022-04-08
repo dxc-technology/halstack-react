@@ -6,7 +6,7 @@ const code = `() => {
   const [customLengthError, setCustomLengthError] = useState("");
   const onChangeFirst = ({ value, error }) => {
     setFirstValue(value);
-    error ? setCustomLengthError("The input value does not have the right length.") : setCustomLengthError(null);
+    setCustomLengthError(error ? "The input value does not have the right length." : "");
   };
 
   const [secondValue, setSecondValue] = useState("");
@@ -16,7 +16,7 @@ const code = `() => {
   };
   const onBlur = ({ value, error }) => {
     setSecondValue(value);
-    error ? setCustomPatternError("The input value does not comply the allowed format.") : setCustomPatternError(null);
+    setCustomPatternError(error ? "The input value does not comply the allowed format." : "");
   };
 
   return (
