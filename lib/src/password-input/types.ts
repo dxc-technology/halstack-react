@@ -33,13 +33,13 @@ type Props = {
    * the error (if the value entered is not valid) will be passed to this
    * function. If there is no error, error will be null.
    * */
-  onChange?: (val: { value: string; error: string | null }) => void;
+  onChange?: (val: { value: string; error?: string }) => void;
   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value entered is
    * not valid) will be passed to this function. If there is no error, error will be null.
    */
-  onBlur?: (val: { value: string; error: string | null }) => void;
+  onBlur?: (val: { value: string; error?: string }) => void;
   /**
    * If it is defined, the component will change its appearance, showing
    * the error below the password input component. If it is not defined, the
