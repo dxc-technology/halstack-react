@@ -11,7 +11,7 @@ const code = `() => {
 
   const onBlur = ({ value, error }) => {
     setValue(value);
-    setError(error || "");
+    setError(error);
   };
 
   return (
@@ -21,7 +21,7 @@ const code = `() => {
       clearable
       onChange={onChange}
       onBlur={onBlur}
-      error={error}
+      error={error == undefined ? "" : error}
       minLength={5}
       maxLength={10}
       margin="medium"

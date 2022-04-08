@@ -6,7 +6,7 @@ const code = `() => {
   const [customLengthError, setCustomLengthError] = useState("");
   const onChangeFirst = ({ value, error }) => {
     setFirstValue(value);
-    setCustomLengthError(error ? "The password does not have the right length." : "");
+    setCustomLengthError(error);
   };
 
   const [secondValue, setSecondValue] = useState("");
@@ -16,7 +16,7 @@ const code = `() => {
   };
   const onBlur = ({ value, error }) => {
     setSecondValue(value);
-    setCustomPatternError(error ? "The password does not comply the allowed format." : "");
+    setCustomPatternError(error);
   };
 
   return (
@@ -28,7 +28,7 @@ const code = `() => {
         onChange={onChangeFirst}
         minLength={5}
         maxLength={10}
-        error={customLengthError}
+        error={customLengthError == undefined ? "" : "The password does not have the right length."}
         margin="medium"
         clearable
       />
@@ -39,7 +39,7 @@ const code = `() => {
         onChange={onChangeSecond}
         onBlur={onBlur}
         pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
-        error={customPatternError}
+        error={customPatternError == undefined ? "" : "The password does not comply the allowed format."}
         margin="medium"
         clearable
       />

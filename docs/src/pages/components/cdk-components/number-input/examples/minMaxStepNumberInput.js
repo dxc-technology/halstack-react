@@ -10,7 +10,7 @@ const code = `() => {
   };
   const onBlur = ({ value, error }) => {
     setValue(value);
-    setError(error || "");
+    setError(error);
   };
 
   return (
@@ -19,7 +19,7 @@ const code = `() => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      error={error}
+      error={error == undefined ? "" : error}
       min={5}
       max={20}
       step={5}
