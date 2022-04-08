@@ -11,7 +11,7 @@ import BackgroundColorContext from "../BackgroundColorContext";
 import SwitchPropsType from "./types";
 
 const DxcSwitch = ({
-  defaultChecked = false,
+  defaultChecked,
   checked,
   value,
   label = "",
@@ -26,7 +26,7 @@ const DxcSwitch = ({
 }: SwitchPropsType): JSX.Element => {
   const [switchId] = useState(`switch-${uuidv4()}`);
   const labelId = `label-${switchId}`;
-  const [innerChecked, setInnerChecked] = useState(defaultChecked);
+  const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
