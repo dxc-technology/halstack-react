@@ -4,12 +4,17 @@ const code = `() => {
   return (
     <div style={{ display: "flex" }}>
       <DxcSwitch
-        label="Label before (default)"
+        label="Default"
         margin="medium"
       />
       <DxcSwitch
-        label="Label after"
-        labelPosition="after"
+        label="Required"
+        required
+        margin="medium"
+      />
+      <DxcSwitch
+        label="Disabled"
+        disabled
         margin="medium"
       />
     </div>
