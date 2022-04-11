@@ -10,23 +10,18 @@ import {
 const links = [
   {
     label: "Overview",
-    id: "overview",
   },
   {
     label: "Principles",
-    id: "principles",
     links: [
-      { label: "Color", id: "color" },
-      { label: "Spacing", id: "spacing" },
-      { label: "Typography", id: "typography" },
-      { label: "Layout", id: "layout" },
+      { label: "Color" },
+      { label: "Spacing" },
+      { label: "Typography" },
+      { label: "Layout" },
       {
         label: "Themes",
         id: "themes",
-        links: [
-          { label: "Light", id: "light" },
-          { label: "Dark", id: "dark" },
-        ],
+        links: [{ label: "Light" }, { label: "Dark" }],
       },
     ],
   },
@@ -36,8 +31,9 @@ function App() {
   return (
     <Container>
       <ContentContainer>
+        <DxcHeading level={1} text="QuickNav" margin={{ bottom: "small" }} />
         <Content id="overview">
-          <DxcHeading level={1} text="Overview" margin={{ bottom: "small" }} />
+          <DxcHeading level={2} text="Overview" margin={{ bottom: "small" }} />
           <DxcText>
             Halstack is the DXC Technology's open source design system for
             insurance products and digital experiences. Our system provides all
@@ -47,13 +43,13 @@ function App() {
         </Content>
         <Content id="principles">
           <DxcHeading
-            level={1}
+            level={2}
             text="Principles"
             margin={{ top: "small", bottom: "xsmall" }}
           />
           <Content id="color">
             <DxcHeading
-              level={2}
+              level={3}
               text="Color"
               margin={{ top: "xsmall", bottom: "xsmall" }}
             />
@@ -73,7 +69,7 @@ function App() {
           </Content>
           <Content id="spacing">
             <DxcHeading
-              level={2}
+              level={3}
               text="Spacing"
               margin={{ top: "xsmall", bottom: "xsmall" }}
             />
@@ -86,7 +82,7 @@ function App() {
           </Content>
           <Content id="typography">
             <DxcHeading
-              level={2}
+              level={3}
               text="Typography"
               margin={{ top: "xsmall", bottom: "xsmall" }}
             />
@@ -106,7 +102,7 @@ function App() {
           </Content>
           <Content id="layout">
             <DxcHeading
-              level={2}
+              level={3}
               text="Layout"
               margin={{ top: "xsmall", bottom: "xsmall" }}
             />
@@ -144,7 +140,7 @@ function App() {
           </Content>
           <Content id="themes">
             <DxcHeading
-              level={2}
+              level={3}
               text="Themes"
               margin={{ top: "xsmall", bottom: "xsmall" }}
             />
