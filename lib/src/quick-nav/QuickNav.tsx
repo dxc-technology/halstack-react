@@ -15,7 +15,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
           {links.map((link) => (
             <DxcInset space="xxsmall">
               <DxcStack gutter="xsmall">
-                <Link href={`#${slugify(link.label, { lower: true })}`}>{link?.label}</Link>
+                <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
                 {link.links?.map((sublink) => (
                   <DxcInset horizontal="xsmall">
                     <DxcStack gutter="xsmall">
