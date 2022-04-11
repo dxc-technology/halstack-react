@@ -56,14 +56,13 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       value ?? setInnerValue(newValue);
       onChange?.({
         value: newValue,
-        error: null,
         date: newDate?.toJSON() ? newDate : null,
       });
     };
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
       const momentDate = moment(newValue, format.toUpperCase(), true);
-      const invalidDateMessage = newValue !== "" && !momentDate.isValid() ? "Invalid date." : null;
+      const invalidDateMessage = newValue !== "" && !momentDate.isValid() ? "Invalid date." : undefined;
       onChange?.({
         value: newValue,
         error: inputError || invalidDateMessage,
@@ -72,7 +71,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     };
     const handleIOnBlur = ({ value, error: inputError }) => {
       const momentDate = moment(value, format.toUpperCase(), true);
-      const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : null;
+      const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : undefined;
       onBlur?.({
         value,
         error: inputError || invalidDateMessage,

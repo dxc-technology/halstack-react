@@ -14,7 +14,9 @@ const DateInputPropsTable = () => {
         <td>
           <code></code>
         </td>
-        <td>Initial value of the input element, only when it is uncontrolled.</td>
+        <td>
+          Initial value of the input element, only when it is uncontrolled.
+        </td>
       </tr>
       <tr>
         <td>value: string</td>
@@ -98,7 +100,7 @@ const DateInputPropsTable = () => {
           of this object is: {"{ "}
           <code>value: value, error: error, date: date</code>
           {" }"}. If the string value is a valid date, <code>error</code> will
-          be null. Also, if the string value is not a valid date,{" "}
+          be undefined. Also, if the string value is not a valid date,{" "}
           <code>date</code> will be null.
         </td>
       </tr>
@@ -111,7 +113,7 @@ const DateInputPropsTable = () => {
           will be passed to this function. An example of this object is: {"{ "}
           <code>value: value, error: error, date: date</code>
           {" }"}. If the string value is a valid date, <code>error</code> will
-          be null. Also, if the string value is not a valid date,{" "}
+          be undefined. Also, if the string value is not a valid date,{" "}
           <code>date</code> will be null.
         </td>
       </tr>
@@ -119,10 +121,12 @@ const DateInputPropsTable = () => {
         <td>error: string</td>
         <td></td>
         <td>
-          If it is defined, the component will change its appearance, showing
-          the error below the date input component. If it is not defined, the
-          error messages will be managed internally, but never displayed on its
-          own.
+          If it is a defined value and also a truthy string, the component will
+          change its appearance, showing the error below the date input
+          component. If the defined value is an empty string, it will reserve a
+          space below the component for a future error, but it would not change
+          its look. In case of being undefined or null, both the appearance and
+          the space for the error message would not be modified.
         </td>
       </tr>
       <tr>

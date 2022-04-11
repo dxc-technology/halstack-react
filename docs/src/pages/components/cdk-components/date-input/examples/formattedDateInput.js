@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
   const onChange = ({ value }) => {
     setValue(value);
   };
@@ -20,7 +20,7 @@ const code = `() => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      error={error}
+      error={error == undefined ? "" : error}
       clearable
       placeholder
       margin="medium"
