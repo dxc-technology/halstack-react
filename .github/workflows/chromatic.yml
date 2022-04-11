@@ -4,7 +4,11 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'lib/**'
   pull_request:
+    paths:
+      - 'lib/**'
 
 jobs:
   chromatic-deployment:

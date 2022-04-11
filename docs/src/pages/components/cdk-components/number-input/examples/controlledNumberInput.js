@@ -3,18 +3,17 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-
+  
   const onChange = ({ value }) => {
     setValue(value);
   };
-
   const onBlur = ({ value }) => {
     setValue(value);
   };
 
   return (
     <DxcNumberInput
-      label="Number input" 
+      label="Controlled" 
       helperText="Helper text"
       value={value}
       onChange={onChange}
