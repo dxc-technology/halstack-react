@@ -4,7 +4,6 @@ import {
   DxcQuickNav,
   DxcHeading,
   DxcText,
-  DxcStack,
 } from "@dxc-technology/halstack-react";
 
 const links = [
@@ -20,7 +19,6 @@ const links = [
       { label: "Layout" },
       {
         label: "Themes",
-        id: "themes",
         links: [{ label: "Light" }, { label: "Dark" }],
       },
     ],
