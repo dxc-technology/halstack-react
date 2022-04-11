@@ -3,14 +3,14 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState();
   const onChange = ({ value, error }) => {
     setValue(value);
     setErrorMessage(error);
   };
 
   const [secondValue, setSecondValue] = useState("");
-  const [customErrorOnChange, setCustomErrorOnChange] = useState("");
+  const [customErrorOnChange, setCustomErrorOnChange] = useState();
   const onChangeSecond = ({ value }) => {
     setSecondValue(value);
   };

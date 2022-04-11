@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
 
   const onChange = ({ value }) => {
     setValue(value);
