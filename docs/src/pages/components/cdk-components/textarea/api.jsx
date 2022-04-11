@@ -102,7 +102,7 @@ const TextareaPropsTable = () => {
           entered is not valid) will be passed to this function. An example of
           this object is: {"{ "}
           <code>value: value, error: error</code>
-          {" }"}. If there is no error, error will be null.
+          {" }"}. If there is no error, error will not be defined.
         </td>
       </tr>
       <tr>
@@ -114,16 +114,19 @@ const TextareaPropsTable = () => {
           entered is not valid) will be passed to this function. An example of
           this object is: {"{ "}
           <code>value: value, error: error</code>
-          {" }"}. If there is no error, error will be null.
+          {" }"}. If there is no error, error will not be defined.
         </td>
       </tr>
       <tr>
         <td>error: string</td>
         <td></td>
         <td>
-          If it is defined, the component will change its appearance, showing
-          the error below the textarea. If it is not defined, the error messages
-          will be managed internally, but never displayed on its own.
+          If it is a defined value and also a truthy string, the component will
+          change its appearance, showing the error below the textarea. If the
+          defined value is an empty string, it will reserve a space below the
+          component for a future error, but it would not change its look. In
+          case of being undefined or null, both the appearance and the space for
+          the error message would not be modified.
         </td>
       </tr>
       <tr>

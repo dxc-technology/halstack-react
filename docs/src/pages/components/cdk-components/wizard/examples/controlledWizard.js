@@ -2,7 +2,7 @@ import { DxcWizard } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-    const [myCurrentStep, setMyCurrentStep] = useState(1);
+    const [myCurrentStep, setMyCurrentStep] = useState(2);
     const onStepClick = i => {
         setMyCurrentStep(i);
     };
