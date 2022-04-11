@@ -349,7 +349,7 @@ const FileInputSpecsPage = () => {
               <td>
                 <Code>errorFilePreviewIconColor</Code>
               </td>
-              <td>File item icon:error</td>
+              <td>File item preview icon:error</td>
               <td>
                 <Code>color-red-700</Code>
               </td>
