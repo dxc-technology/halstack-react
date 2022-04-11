@@ -1,13 +1,12 @@
 import { DxcAccordion } from "@dxc-technology/halstack-react";
 
 const code = `() => {
-  const onChange = () => {};
-
   return (
     <div>
       <DxcAccordion
-        label="Default Accordion Uncontrolled"
-        onChange={onChange}
+        label="Uncontrolled Accordion"
+        assistiveText="Assistive text"
+        defaultIsExpanded
         margin="medium"
         padding="medium"
       >
