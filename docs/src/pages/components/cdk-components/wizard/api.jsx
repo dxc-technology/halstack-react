@@ -17,13 +17,19 @@ const wizardPropsTable = () => {
         <td>The wizard can be showed in horizontal or vertical.</td>
       </tr>
       <tr>
+        <td>defaultCurrentStep: number</td>
+        <td></td>
+        <td>Initially selected step, only when it is uncontrolled.</td>
+      </tr>
+      <tr>
         <td>currentStep: number</td>
         <td>
           <code>0</code>
         </td>
         <td>
-          Defines which step is marked as the current. The numeration starts in
-          0.
+          Defines which step is marked as the current. The numeration starts at
+          0. If undefined, the component will be uncontrolled and the step will
+          be managed internally by the component.
         </td>
       </tr>
       <tr>
@@ -47,10 +53,12 @@ const wizardPropsTable = () => {
               <b>label</b>: Step label.
             </li>
             <li>
-              <b>description</b>: Description that will be placed next to the step.
+              <b>description</b>: Description that will be placed next to the
+              step.
             </li>
             <li>
-              <b>icon</b>: Element or path used as the icon displayed in the step.
+              <b>icon</b>: Element or path used as the icon displayed in the
+              step.
             </li>
             <li>
               <b>disabled</b>: Whether the step is disabled or not.
@@ -74,9 +82,7 @@ const wizardPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex attribute that is given to all the steps.
-        </td>
+        <td>Value of the tabindex attribute that is given to all the steps.</td>
       </tr>
     </DxcTable>
   );
