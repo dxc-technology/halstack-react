@@ -14,15 +14,14 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
           {links.map((link) => (
             <DxcInset space="xxsmall">
               <DxcStack gutter="xsmall">
-                <Link href={`#${link.id}`}>{link.label}</Link>
-                {link.links &&
-                  link.links.map((sublink) => (
-                    <DxcInset horizontal="xsmall">
-                      <DxcStack gutter="xsmall">
-                        <Link href={`#${sublink.id}`}>{sublink.label}</Link>
-                      </DxcStack>
-                    </DxcInset>
-                  ))}
+                <Link href={`#${link?.id}`}>{link?.label}</Link>
+                {link.links?.map((sublink) => (
+                  <DxcInset horizontal="xsmall">
+                    <DxcStack gutter="xsmall">
+                      <Link href={`#${sublink?.id}`}>{sublink?.label}</Link>
+                    </DxcStack>
+                  </DxcInset>
+                ))}
               </DxcStack>
             </DxcInset>
           ))}
