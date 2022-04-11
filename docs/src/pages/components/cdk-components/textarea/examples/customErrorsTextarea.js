@@ -3,14 +3,14 @@ import { useState } from "react";
 
 const code = `() => {
   const [firstValue, setFirstValue] = useState("");
-  const [customLengthError, setCustomLengthError] = useState("");
+  const [customLengthError, setCustomLengthError] = useState();
   const onChangeFirst = ({ value, error }) => {
     setFirstValue(value);
     setCustomLengthError(error);
   };
 
   const [secondValue, setSecondValue] = useState("");
-  const [customPatternError, setCustomPatternError] = useState("");
+  const [customPatternError, setCustomPatternError] = useState();
   const onChangeSecond = ({ value }) => {
     setSecondValue(value);
   };
