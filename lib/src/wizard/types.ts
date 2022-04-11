@@ -5,7 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 type Step = {
   /**
    * Step label.
@@ -28,13 +28,18 @@ type Step = {
    */
   valid?: boolean;
 };
+
 type Props = {
   /**
    * The wizard can be showed in horizontal or vertical.
    */
   mode?: "horizontal" | "vertical";
   /**
-   * Defines which step is marked as the current. The numeration starts in 0.
+   * Initially selected step, only when it is uncontrolled.
+   */
+  defaultCurrentStep?: number;
+  /**
+   * Defines which step is marked as the current. The numeration starts at 0.
    */
   currentStep?: number;
   /**
