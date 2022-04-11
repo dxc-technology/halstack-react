@@ -4,18 +4,13 @@ import {
   DxcQuickNav,
   DxcHeading,
   DxcText,
+  DxcStack,
 } from "@dxc-technology/halstack-react";
 
 const links = [
   {
     label: "Overview",
     id: "overview",
-    links: [
-      {
-        label: "Introduction",
-        id: "introduction",
-      },
-    ],
   },
   {
     label: "Principles",
@@ -49,31 +44,6 @@ function App() {
             the tools and resources needed to create superior, beautiful but
             above all, functional user experiences.
           </DxcText>
-          <Content id="introduction">
-            <DxcHeading
-              level={2}
-              text="Introduction"
-              margin={{ top: "xsmall", bottom: "xsmall" }}
-            />
-            <DxcText>
-              Design principles Halstack design principles are the fundamental
-              part of DXC Technology's approach to provide guidance for
-              development teams in order to deliver delightful and consistent
-              user experiences to our customers: Balance Consistency Visual
-              hierarchy All our components, design tokens, accessibility
-              guidelines, responsive design techniques, and layout proposals
-              have been carefully curated by DXC design and engineering teams
-              with the objective of creating a unique visual language and
-              ecosystem for our applications. This is the DXC way of creating
-              User Experiences. Open Source Halstack is an open source design
-              system, this means that we work towards DXC Technology bussines
-              needs, but it is open for anyone to use and contribute back to. We
-              are charmed to receive external contributions to help us find
-              bugs, design new features, or help us improve the project
-              documentation. If you're interested, definitely check out our
-              contribution guidelines.
-            </DxcText>
-          </Content>
         </Content>
         <Content id="principles">
           <DxcHeading
