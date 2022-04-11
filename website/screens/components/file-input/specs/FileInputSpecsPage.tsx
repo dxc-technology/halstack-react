@@ -347,6 +347,16 @@ const FileInputSpecsPage = () => {
             </tr>
             <tr>
               <td>
+                <Code>errorFilePreviewIconColor</Code>
+              </td>
+              <td>File item icon:error</td>
+              <td>
+                <Code>color-red-700</Code>
+              </td>
+              <td>#d0011b</td>
+            </tr>
+            <tr>
+              <td>
                 <Code>errorMessageFontColor</Code>
               </td>
               <td>File item:error</td>
