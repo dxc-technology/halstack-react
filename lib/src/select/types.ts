@@ -120,14 +120,14 @@ type SingleSelect = CommonProps & {
    * An object including the current value and the error (if the value entered is not valid)
    * will be passed to this function. If there is no error, error will be null.
    */
-  onChange?: (val: { value: string; error: string }) => void;
+  onChange?: (val: { value: string; error?: string }) => void;
   /**
    * This function will be called when the select loses the focus. An
    * object including the value and the error (if the value
    * selected is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (val: { value: string; error: string }) => void;
+  onBlur?: (val: { value: string; error?: string }) => void;
 };
 type MultipleSelect = CommonProps & {
   /**
@@ -150,14 +150,14 @@ type MultipleSelect = CommonProps & {
    * An object including the current selected values and the error (if the value entered is not valid)
    * will be passed to this function. If there is no error, error will be null.
    */
-  onChange?: (val: { value: string[]; error: string }) => void;
+  onChange?: (val: { value: string[]; error?: string }) => void;
   /**
    * This function will be called when the select loses the focus. An
    * object including the selected values and the error (if the value
    * selected is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (val: { value: string[]; error: string }) => void;
+  onBlur?: (val: { value: string[]; error?: string }) => void;
 };
 
 type Props = SingleSelect | MultipleSelect;

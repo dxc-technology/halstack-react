@@ -169,13 +169,13 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
         if (notOptionalMultipleCheck(newOption.value))
           onChange?.({ value: res ?? innerValue, error: getNotOptionalErrorMessage() });
-        else onChange?.({ value: res ?? innerValue, error: null });
+        else onChange?.({ value: res ?? innerValue });
       } else {
         value ?? setInnerValue(newOption.value);
 
         if (notOptionalCheck(newOption.value))
           onChange?.({ value: newOption.value, error: getNotOptionalErrorMessage() });
-        else onChange?.({ value: newOption.value, error: null });
+        else onChange?.({ value: newOption.value });
       }
     };
     const handleSelectOnClick = () => {
@@ -196,7 +196,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
         if (notOptionalCheck(value ?? innerValue))
           onBlur?.({ value: value ?? innerValue, error: getNotOptionalErrorMessage() });
-        else onBlur?.({ value: value ?? innerValue, error: null });
+        else onBlur?.({ value: value ?? innerValue });
       }
     };
     const handleSelectOnKeyDown = (event) => {
