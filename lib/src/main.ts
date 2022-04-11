@@ -41,6 +41,7 @@ import DxcList from "./list/List";
 import DxcRadioGroup from "./radio-group/RadioGroup";
 import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
+import DxcQuickNav from "./quick-nav/QuickNav";
 
 import ThemeContext, { ThemeProvider } from "./ThemeContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
@@ -91,5 +92,6 @@ export {
   DxcList,
   DxcRadioGroup,
   DxcBleed,
-  DxcInset
+  DxcInset,
+  DxcQuickNav,
 };
