@@ -13,6 +13,7 @@ const code = `() => {
     <DxcSlider
       label="Select a value"
       helperText="Helper text"
+      defaultValue={25}
       minValue={0}
       maxValue={100}
       showLimitsValues={true}
