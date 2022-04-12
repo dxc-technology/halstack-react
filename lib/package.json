@@ -31,7 +31,6 @@
     "moment": "2.24.0",
     "prop-types": "^15.7.2",
     "rgb-hex": "^3.0.0",
-    "slugify": "^1.6.5",
     "uuid": "^8.3.2"
   },
   "scripts": {
@@ -75,6 +74,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-test-renderer": "^16.8.6",
+    "slugify": "^1.6.5",
     "storybook-addon-pseudo-states": "^1.0.0",
     "styled-components": "^5.0.1",
     "typescript": "^4.5.4"
