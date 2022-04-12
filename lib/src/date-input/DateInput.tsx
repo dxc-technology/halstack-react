@@ -54,29 +54,41 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const handleCalendarOnClick = (newDate) => {
       const newValue = moment(newDate).format(format.toUpperCase());
       value ?? setInnerValue(newValue);
-      onChange?.({
-        value: newValue,
-        date: newDate?.toJSON() ? newDate : null,
-      });
+      newDate?.toJSON()
+        ? onChange?.({
+            value: newValue,
+            date: newDate,
+          })
+        : onChange?.({
+            value: newValue,
+          });
     };
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
       const momentDate = moment(newValue, format.toUpperCase(), true);
-      const invalidDateMessage = newValue !== "" && !momentDate.isValid() ? "Invalid date." : undefined;
-      onChange?.({
-        value: newValue,
-        error: inputError || invalidDateMessage,
-        date: momentDate.isValid() ? momentDate.toDate() : null,
-      });
+      const invalidDateMessage = newValue !== "" && !momentDate.isValid() && "Invalid date.";
+      const callbackParams =
+        inputError || invalidDateMessage
+          ? { value: newValue, error: inputError || invalidDateMessage }
+          : { value: newValue };
+      momentDate.isValid()
+        ? onChange?.({
+            ...callbackParams,
+            date: momentDate.toDate(),
+          })
+        : onChange?.(callbackParams);
     };
     const handleIOnBlur = ({ value, error: inputError }) => {
       const momentDate = moment(value, format.toUpperCase(), true);
-      const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : undefined;
-      onBlur?.({
-        value,
-        error: inputError || invalidDateMessage,
-        date: momentDate.isValid() ? momentDate.toDate() : null,
-      });
+      const invalidDateMessage = value !== "" && !momentDate.isValid() && "Invalid date.";
+      const callbackParams =
+        inputError || invalidDateMessage ? { value, error: inputError || invalidDateMessage } : { value };
+      momentDate.isValid()
+        ? onBlur?.({
+            ...callbackParams,
+            date: momentDate.toDate(),
+          })
+        : onBlur?.(callbackParams);
     };
 
     const openCalendar = () => {
