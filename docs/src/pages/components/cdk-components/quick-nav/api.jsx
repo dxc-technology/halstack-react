@@ -25,11 +25,6 @@ const quickNavPropsTable = () => {
               <b>Label: string</b>: Label to be shown in the link.
             </li>
             <li>
-              <b>Id: string</b>: Id used to navigate to the section that the
-              link refers. This id must be passed to the wrapper that contains
-              the section to make possible the navigation.
-            </li>
-            <li>
               <b>links: Link[]</b>: Sublinks of the link.
             </li>
           </ul>
