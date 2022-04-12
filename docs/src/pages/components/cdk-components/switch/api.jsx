@@ -10,6 +10,11 @@ const switchPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>defaultChecked: boolean</td>
+        <td></td>
+        <td>Initial state of the switch, only when it is uncontrolled.</td>
+      </tr>
+      <tr>
         <td>checked: boolean</td>
         <td>
           <code>false</code>
