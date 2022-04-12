@@ -35,6 +35,11 @@ const accordionPropsTable = () => {
         <td>If true, the component will be disabled.</td>
       </tr>
       <tr>
+        <td>defaultIsExpanded: boolean</td>
+        <td></td>
+        <td>Initial state of the panel, only when it is uncontrolled.</td>
+      </tr>
+      <tr>
         <td>isExpanded: boolean</td>
         <td></td>
         <td>

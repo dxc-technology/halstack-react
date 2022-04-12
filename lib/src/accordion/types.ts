@@ -19,6 +19,10 @@ type Props = {
    */
   label: string;
   /**
+   * Initial state of the panel, only when it is uncontrolled.
+   */
+  defaultIsExpanded?: boolean;
+  /**
    * Represents the state of the panel. When true, the component will be
    * expanded. If undefined, the component will be uncontrolled and its
    * value will be managed internally by the component.

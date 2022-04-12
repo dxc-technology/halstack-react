@@ -13,6 +13,7 @@ import AccordionPropsType from "./types";
 
 const DxcAccordion = ({
   label = "",
+  defaultIsExpanded,
   isExpanded,
   icon,
   assistiveText = "",
@@ -23,7 +24,7 @@ const DxcAccordion = ({
   padding,
   tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
-  const [innerIsExpanded, setInnerIsExpanded] = useState(false);
+  const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
   const [isResponsive, setIsResponsive] = useState(false);
   const colorsTheme = useTheme();
 
