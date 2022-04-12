@@ -8,6 +8,7 @@ const code = `() => {
 
   return (
     <DxcTabs
+      defaultActiveTabIndex={1}
       onTabClick={onTabClick}
       tabs={[
         {

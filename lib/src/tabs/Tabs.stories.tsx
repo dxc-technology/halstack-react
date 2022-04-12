@@ -1,5 +1,4 @@
 import React from "react";
-import { userEvent, within } from "@storybook/testing-library";
 import DxcTabs from "./Tabs";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -82,10 +81,9 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Scrollable" theme="light" level={4} />
       <div style={{ width: "400px" }}>
-        <DxcTabs tabs={tabsNotificationIcon} iconPosition="left" activeTabIndex={1} />
+        <DxcTabs tabs={tabsNotificationIcon} iconPosition="left" defaultActiveTabIndex={1} />
       </div>
     </ExampleContainer>
-
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
