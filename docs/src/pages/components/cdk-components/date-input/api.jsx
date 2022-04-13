@@ -101,7 +101,7 @@ const DateInputPropsTable = () => {
           <code>value: value, error: error, date: date</code>
           {" }"}. If the string value is a valid date, <code>error</code> will
           be undefined. Also, if the string value is not a valid date,{" "}
-          <code>date</code> will be null.
+          <code>date</code> will be undefined.
         </td>
       </tr>
       <tr>
@@ -114,7 +114,7 @@ const DateInputPropsTable = () => {
           <code>value: value, error: error, date: date</code>
           {" }"}. If the string value is a valid date, <code>error</code> will
           be undefined. Also, if the string value is not a valid date,{" "}
-          <code>date</code> will be null.
+          <code>date</code> will be undefined.
         </td>
       </tr>
       <tr>
