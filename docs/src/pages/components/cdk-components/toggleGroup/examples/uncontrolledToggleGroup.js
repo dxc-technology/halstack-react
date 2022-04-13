@@ -22,7 +22,8 @@ const code = `() => {
   return (
     <DxcToggleGroup
       label="Toggle group"
-      helperText="Please select one"
+      helperText="The 'defaultValue' prop only works with uncontrolled toggle groups"
+      defaultValue={1}
       options={options}
       onChange={onChange}
       margin="medium"
