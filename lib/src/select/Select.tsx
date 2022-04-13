@@ -143,8 +143,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       [value, innerValue, options, multiple, optional, optionalItem]
     );
 
-    const notOptionalCheck = (value) => value === "" && !optional;
-    const notOptionalMultipleCheck = () => (value ?? innerValue).length === 0 && !optional;
+    const notOptionalCheck = (value) => !optional && value === "";
+    const notOptionalMultipleCheck = (value) => !optional && value.length === 0;
 
     const canBeOpenOptions = () => !disabled && options?.length > 0 && groupsHaveOptions(options);
 
@@ -160,22 +160,20 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
     const handleSelectChangeValue = (newOption) => {
       if (multiple) {
-        let res;
-        if ((value ?? innerValue).includes(newOption.value))
-          value
-            ? (res = value.filter((optionVal) => optionVal !== newOption.value))
-            : setInnerValue((previous) => previous.filter((optionVal) => optionVal !== newOption.value));
-        else value ? (res = [...value, newOption.value]) : setInnerValue((previous) => [...previous, newOption.value]);
+        let res = [];
 
-        if (notOptionalMultipleCheck(newOption.value))
-          onChange?.({ value: res ?? innerValue, error: getNotOptionalErrorMessage() });
-        else onChange?.({ value: res ?? innerValue, error: null });
+        if ((value ?? innerValue).includes(newOption.value))
+          res = (value ?? innerValue).filter((optionVal) => optionVal !== newOption.value);
+        else res = [...(value ?? innerValue), newOption.value];
+
+        value ?? setInnerValue(res);
+        if (notOptionalMultipleCheck(res)) onChange?.({ value: res, error: getNotOptionalErrorMessage() });
+        else onChange?.({ value: res });
       } else {
         value ?? setInnerValue(newOption.value);
-
         if (notOptionalCheck(newOption.value))
           onChange?.({ value: newOption.value, error: getNotOptionalErrorMessage() });
-        else onChange?.({ value: newOption.value, error: null });
+        else onChange?.({ value: newOption.value });
       }
     };
     const handleSelectOnClick = () => {
@@ -196,7 +194,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
         if (notOptionalCheck(value ?? innerValue))
           onBlur?.({ value: value ?? innerValue, error: getNotOptionalErrorMessage() });
-        else onBlur?.({ value: value ?? innerValue, error: null });
+        else onBlur?.({ value: value ?? innerValue });
       }
     };
     const handleSelectOnKeyDown = (event) => {
@@ -275,7 +273,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const handleClearOptionsActionOnClick = (event) => {
       event.stopPropagation();
       value ?? setInnerValue([]);
-      onChange?.({ value: [], error: getNotOptionalErrorMessage() });
+      !optional ? onChange?.({ value: [], error: getNotOptionalErrorMessage() }) : onChange?.({ value: [] });
     };
 
     const handleClearSearchActionOnClick = (event) => {

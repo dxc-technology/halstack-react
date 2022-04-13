@@ -5,6 +5,7 @@ function App() {
   const ref = useRef(null);
   const [value, setValue] = useState("");
   const [valueMultiple, setValueMultiple] = useState([]);
+  const [errorMultiple, setErrorMultiple] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorOptional, setErrorOptional] = useState("");
   const onBlur = ({ value, error }) => {
@@ -18,7 +19,7 @@ function App() {
   };
   const onChangeMultiple = ({ value, error }) => {
     setValueMultiple(value);
-    console.log("multiple change!");
+    setErrorMultiple(error);
   };
 
   const single_options = [
@@ -318,10 +319,8 @@ function App() {
           label="Label"
           helperText="Helper text"
           value={valueMultiple}
+          error={errorMultiple}
           onChange={onChangeMultiple}
-          onBlur={() => {
-            console.log("blur!");
-          }}
           options={single_options_long}
           placeholder="Choose options"
           multiple
