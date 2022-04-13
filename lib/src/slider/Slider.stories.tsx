@@ -37,7 +37,7 @@ export const Chromatic = () => (
         label="Slider"
         helperText="Help message"
         disabled
-        value={40}
+        defaultValue={40}
         minValue={0}
         maxValue={50}
         showLimitsValues
@@ -49,16 +49,16 @@ export const Chromatic = () => (
     <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Continuous slider" theme="light" level={4} />
-      <DxcSlider value={65} label="Slider" helperText="Help message" showLimitsValues />
+      <DxcSlider defaultValue={65} label="Slider" helperText="Help message" showLimitsValues />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Discrete slider" theme="light" level={4} />
-      <DxcSlider value={20} label="Slider" helperText="Help message" showLimitsValues marks step={5} />
+      <DxcSlider defaultValue={20} label="Slider" helperText="Help message" showLimitsValues marks step={5} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Discrete slider with input" theme="light" level={4} />
       <DxcSlider
-        value={20}
+        defaultValue={20}
         minValue={0}
         maxValue={50}
         label="Slider"
@@ -94,7 +94,7 @@ export const Chromatic = () => (
             label="Slider"
             helperText="Help message"
             disabled
-            value={40}
+            defaultValue={40}
             minValue={0}
             maxValue={50}
             showLimitsValues
@@ -105,16 +105,16 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Continuous slider" theme="dark" level={4} />
-          <DxcSlider value={65} label="Slider" helperText="Help message" showLimitsValues />
+          <DxcSlider defaultValue={65} label="Slider" helperText="Help message" showLimitsValues />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Discrete slider" theme="dark" level={4} />
-          <DxcSlider value={20} label="Slider" helperText="Help message" showLimitsValues marks step={5} />
+          <DxcSlider defaultValue={20} label="Slider" helperText="Help message" showLimitsValues marks step={5} />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Discrete slider with input" theme="dark" level={4} />
           <DxcSlider
-            value={20}
+            defaultValue={20}
             minValue={0}
             maxValue={50}
             label="Slider"

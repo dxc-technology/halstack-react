@@ -4,29 +4,29 @@ import { useState } from "react";
 const code = `() => {
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const onChange = ({ value }) => {
+  const onChange = ({ value, error }) => {
     setValue(value);
-  };
-  const onBlur = ({ value, error }) => {
-    setValue(value);
-    error ? setErrorMessage("Invalid number.") : setErrorMessage(null);
+    error ? setErrorMessage("Invalid number.") : setErrorMessage("");
   };
 
   const [secondValue, setSecondValue] = useState("");
   const [customErrorOnChange, setCustomErrorOnChange] = useState("");
-  const onChangeSecond = ({ value, error }) => {
+  const onChangeSecond = ({ value }) => {
     setSecondValue(value);
-    error ? setCustomErrorOnChange("Invalid number.") : setCustomErrorOnChange(null);
+  };
+  const onBlur = ({ value, error }) => {
+    setSecondValue(value);
+    error ? setCustomErrorOnChange("The typed number is not valid. Please, check it.") : setCustomErrorOnChange("");
   };
 
   return (
     <div style={{ display: "flex" }}>
       <DxcNumberInput
-        label="Min 5, max 20, step 5"
+        label="Custom range error"
         helperText="Using onChange event for handling errors"
-        value={secondValue}
-        onChange={onChangeSecond}
-        error={customErrorOnChange}
+        value={value}
+        onChange={onChange}
+        error={errorMessage}
         min={5}
         max={20}
         step={5}
@@ -34,12 +34,12 @@ const code = `() => {
         optional
       />
       <DxcNumberInput
-        label="Min 5, max 20, step 5"
-        helperText="Using onChange event for handling errors"
-        value={value}
-        onChange={onChange}
+        label="Custom range error"
+        helperText="Using onBlur event for handling errors"
+        value={secondValue}
+        onChange={onChangeSecond}
         onBlur={onBlur}
-        error={errorMessage}
+        error={customErrorOnChange}
         min={5}
         max={20}
         step={5}

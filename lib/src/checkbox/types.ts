@@ -8,6 +8,10 @@ type Margin = {
 
 type Props = {
   /**
+   * Initial state of the checkbox, only when it is uncontrolled.
+   */
+  defaultChecked?: boolean;
+  /**
    * If true, the component is checked. If undefined the component will be
    * uncontrolled and the value will be managed internally by the component.
    */
