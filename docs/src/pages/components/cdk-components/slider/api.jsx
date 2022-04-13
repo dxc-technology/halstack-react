@@ -10,6 +10,11 @@ const sliderPropsTable = () => {
         <th>Description</th>
       </tr>
       <tr>
+        <td>defaultValue: number</td>
+        <td></td>
+        <td>Initial value of the slider, only when it is uncontrolled.</td>
+      </tr>
+      <tr>
         <td>value: number</td>
         <td></td>
         <td>

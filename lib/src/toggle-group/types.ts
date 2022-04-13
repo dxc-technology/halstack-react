@@ -69,6 +69,10 @@ type SingleSelectionToggle = CommonProps & {
    */
   multiple?: false;
   /**
+   * The key of the initially selected value.
+   */
+  defaultValue?: number;
+  /**
    * The key of the selected value. If the component allows multiple selection, value must be an array.
    * If undefined, the component will be uncontrolled and the value will be managed internally by the component.
    */
@@ -84,6 +88,10 @@ type MultipleSelectionToggle = CommonProps & {
    * If true, the toggle group will support multiple selection. In that case, value must be an array of numbers with the keys of the selected values.
    */
   multiple: true;
+  /**
+   * The array of keys with the initially selected values.
+   */
+  defaultValue?: number[];
   /**
    * An array with the keys of the selected values.
    * If undefined, the component will be uncontrolled and the value will be managed internally by the component.
