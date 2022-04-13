@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 const DxcSlider = ({
   label = "",
   name = "",
+  defaultValue,
   value,
   helperText = "",
   minValue = 0,
@@ -28,7 +29,7 @@ const DxcSlider = ({
   margin,
   size = "fillParent",
 }: SliderPropsType): JSX.Element => {
-  const [innerValue, setInnerValue] = useState(0);
+  const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 

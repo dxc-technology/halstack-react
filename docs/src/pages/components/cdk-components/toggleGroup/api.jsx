@@ -20,6 +20,11 @@ const toggleGroupPropsTable = () => {
         <td>Helper text to be placed above the component.</td>
       </tr>
       <tr>
+        <td>defaultValue: number | number[]</td>
+        <td></td>
+        <td>The key(s) of the initially selected value(s), only when it is uncontrolled.</td>
+      </tr>
+      <tr>
         <td>value: number | number[]</td>
         <td></td>
         <td>

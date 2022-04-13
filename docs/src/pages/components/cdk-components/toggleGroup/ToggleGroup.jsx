@@ -5,7 +5,7 @@ import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
 import ToggleGroupPropsTable from "./api.jsx";
-import defaultToggleGroup from "./examples/default";
+import defaultToggleGroup from "./examples/uncontrolledToggleGroup";
 import controlled from "./examples/controlledToggleGroup";
 import multiple from "./examples/multipleToggleGroup";
 import withIcons from "./examples/withIcons";
