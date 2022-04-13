@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import slugify from "slugify";
 import QuickNavTypes from "./types";
 import DxcHeading from "../heading/Heading";
 import DxcStack from "../stack/Stack";
@@ -14,11 +15,11 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
           {links.map((link) => (
             <DxcInset space="xxsmall">
               <DxcStack gutter="xsmall">
-                <Link href={`#${link?.id}`}>{link?.label}</Link>
+                <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
                 {link.links?.map((sublink) => (
                   <DxcInset horizontal="xsmall">
                     <DxcStack gutter="xsmall">
-                      <Link href={`#${sublink?.id}`}>{sublink?.label}</Link>
+                      <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
                     </DxcStack>
                   </DxcInset>
                 ))}
