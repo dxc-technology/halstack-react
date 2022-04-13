@@ -15,10 +15,6 @@ type Link = {
    */
   label: string;
   /**
-   *  Id used to navigate to the section that the link refers. This id must be passed to the wrapper that contains the section to make possible the navigation.
-   */
-  id: string;
-  /**
    * Sublinks of the link.
    */
   links?: Link[];
