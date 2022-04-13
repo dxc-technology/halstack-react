@@ -55,20 +55,23 @@ type Props = {
    * element of the component. An object including the string value, the
    * error and the date value will be passed to this function.
    * If the string value is a valid date, error will
-   * be null. Also, if the string value is not a valid date, date will be null.
+   * be undefined. Also, if the string value is not a valid date, date will be undefined.
    */
-  onChange?: (val: { value: string; error: string | null; date: Date | null }) => void;
+  onChange?: (val: { value: string; error?: string; date?: Date }) => void;
   /**
    * This function will be called when the input element loses the focus.
    * An object including the string value, the error and the date value
    * will be passed to this function. If the string value is a valid date, error will
-   * be null. Also, if the string value is not a valid date, date will be null.
+   * be undefined. Also, if the string value is not a valid date, date will be undefined.
    */
-  onBlur?: (val: { value: string; error: string | null; date: Date | null }) => void;
+  onBlur?: (val: { value: string; error?: string; date?: Date }) => void;
   /**
-   * If it is defined, the component will change its appearance, showing
-   * the error below the date input component. If it is not defined, the error
-   * messages will be managed internally, but never displayed on its own.
+   * If it is a defined value and also a truthy string, the component will
+   * change its appearance, showing the error below the date input
+   * component. If the defined value is an empty string, it will reserve a
+   * space below the component for a future error, but it would not change
+   * its look. In case of being undefined or null, both the appearance and
+   * the space for the error message would not be modified.
    */
   error?: string;
   /**
