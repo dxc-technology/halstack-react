@@ -54,6 +54,10 @@ type Props = {
    */
   iconPosition?: "top" | "left";
   /**
+   * Initially active tab, only when it is uncontrolled.
+   */
+  defaultActiveTabIndex?: number;
+  /**
    * The index of the active tab. If undefined, the component will be
    * uncontrolled and the active tab will be managed internally by the component.
    */
