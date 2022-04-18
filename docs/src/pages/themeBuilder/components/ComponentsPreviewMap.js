@@ -1,11 +1,9 @@
 import ButtonPreview from "./previews/Button";
 import CheckboxPreview from "./previews/Checkbox";
 import ChipPreview from "./previews/Chip";
-import V3SelectPreview from "./previews/V3Select";
 import TablePreview from "./previews/Table";
 import SwitchPreview from "./previews/Switch";
 import SliderPreview from "./previews/Slider";
-import DatePreview from "./previews/Date";
 import PaginatorPreview from "./previews/Paginator";
 import DropdownPreview from "./previews/Dropdown";
 import AccordionPreview from "./previews/Accordion";
@@ -15,10 +13,8 @@ import RadioButtonPreview from "./previews/RadioButton";
 import FooterPreview from "./previews/Footer";
 import WizardPreview from "./previews/Wizard";
 import HeaderPreview from "./previews/Header";
-import InputTextPreview from "./previews/InputText";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
-import V3TextareaPreview from "./previews/V3Textarea";
 import ToggleGroupPreview from "./previews/ToggleGroup";
 import AlertPreview from "./previews/Alert";
 import LinkPreview from "./previews/Link";
@@ -26,13 +22,13 @@ import HeadingPreview from "./previews/Heading";
 import DialogPreview from "./previews/Dialog";
 import BoxPreview from "./previews/Box";
 import TagPreview from "./previews/Tag";
-import UploadPreview from "./previews/Upload";
 import CardPreview from "./previews/Card";
 import DateInputPreview from "./previews/DateInput";
 import TextInputPreview from "./previews/TextInput";
 import FileInputPreview from "./previews/FileInput";
 import TextareaPreview from "./previews/Textarea";
 import SelectPreview from "./previews/Select";
+import RadioGroupPreview from "./previews/RadioGroup";
 
 const SampleComponents = [
   {
@@ -64,10 +60,6 @@ const SampleComponents = [
     preview: ChipPreview,
   },
   {
-    name: "date",
-    preview: DatePreview,
-  },
-  {
     name: "dateInput",
     preview: DateInputPreview,
   },
@@ -96,10 +88,6 @@ const SampleComponents = [
     preview: HeadingPreview,
   },
   {
-    name: "inputText",
-    preview: InputTextPreview,
-  },
-  {
     name: "link",
     preview: LinkPreview,
   },
@@ -118,14 +106,14 @@ const SampleComponents = [
   {
     name: "radio",
     preview: RadioButtonPreview,
+  },  
+  {
+    name: "radioGroup",
+    preview: RadioGroupPreview,
   },
   {
     name: "select",
     preview: SelectPreview,
-  },
-  {
-    name: "V3Select",
-    preview: V3SelectPreview,
   },
   {
     name: "sidenav",
@@ -156,20 +144,12 @@ const SampleComponents = [
     preview: TagPreview,
   },
   {
-    name: "V3Textarea",
-    preview: V3TextareaPreview,
-  },
-  {
     name: "textInput",
     preview: TextInputPreview,
   },
   {
     name: "toggleGroup",
     preview: ToggleGroupPreview,
-  },
-  {
-    name: "upload",
-    preview: UploadPreview,
   },
   {
     name: "wizard",

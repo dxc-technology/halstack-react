@@ -20,7 +20,7 @@ const code = `() => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      error={error}
+      error={error == undefined ? "" : error}
       minLength={5}
       maxLength={10}
       margin="medium"

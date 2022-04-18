@@ -3,12 +3,10 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
-
+  const [error, setError] = useState();
   const onChange = ({ value }) => {
     setValue(value);
   };
-
   const onBlur = ({ value, error }) => {
     setValue(value);
     setError(error);
@@ -16,14 +14,17 @@ const code = `() => {
 
   return (
     <DxcDateInput
-      label="Controlled"
+      label="Formatted"
+      helperText="If the typed date doesn't match the defined format, an error will be displayed"
       format="MM/dd/yyyy"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      error={error}
-      margin="medium"
+      error={error == undefined ? "" : error}
       clearable
+      placeholder
+      margin="medium"
+      size="large"
     />
   );
 }`;

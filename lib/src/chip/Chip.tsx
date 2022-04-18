@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
@@ -10,9 +11,7 @@ const DxcChip = ({
   label,
   suffixIcon,
   prefixIcon,
-  suffixIconSrc,
   onClickSuffix,
-  prefixIconSrc,
   onClickPrefix,
   disabled,
   margin,
@@ -23,7 +22,7 @@ const DxcChip = ({
   return (
     <ThemeProvider theme={colorsTheme.chip}>
       <StyledDxcChip disabled={disabled} margin={margin}>
-        {prefixIcon ? (
+        {prefixIcon && (
           <IconContainer
             disabled={disabled}
             prefixIcon
@@ -33,26 +32,11 @@ const DxcChip = ({
             onClick={() => onClickPrefix && !disabled && onClickPrefix()}
             interactuable={typeof onClickPrefix === "function" && !disabled}
           >
-            {typeof prefixIcon === "object" ? prefixIcon : React.createElement(prefixIcon)}
+            {typeof prefixIcon === "string" ? <PrefixIconContainer src={prefixIcon} /> : prefixIcon}
           </IconContainer>
-        ) : (
-          prefixIconSrc && (
-            <PrefixIconContainer
-              disabled={disabled}
-              src={prefixIconSrc}
-              label={label}
-              tabIndex={typeof onClickPrefix === "function" && !disabled ? tabIndex : -1}
-              onClick={() => onClickPrefix && !disabled && onClickPrefix()}
-              interactuable={typeof onClickPrefix === "function" && !disabled}
-            />
-          )
         )}
-        {label && (
-          <ChipTextContainer disabled={disabled} prefixIconSrc={prefixIconSrc} suffixIconSrc={suffixIconSrc}>
-            {label}
-          </ChipTextContainer>
-        )}
-        {suffixIcon ? (
+        {label && <ChipTextContainer disabled={disabled}>{label}</ChipTextContainer>}
+        {suffixIcon && (
           <IconContainer
             disabled={disabled}
             suffixIcon
@@ -62,19 +46,8 @@ const DxcChip = ({
             onClick={() => onClickSuffix && !disabled && onClickSuffix()}
             interactuable={typeof onClickSuffix === "function" && !disabled}
           >
-            {typeof suffixIcon === "object" ? suffixIcon : React.createElement(suffixIcon)}
+            {typeof suffixIcon === "string" ? <SuffixIconContainer src={suffixIcon} /> : suffixIcon}
           </IconContainer>
-        ) : (
-          suffixIconSrc && (
-            <SuffixIconContainer
-              disabled={disabled}
-              src={suffixIconSrc}
-              label={label}
-              tabIndex={typeof onClickSuffix === "function" && !disabled ? tabIndex : -1}
-              onClick={() => onClickSuffix && !disabled && onClickSuffix()}
-              interactuable={typeof onClickSuffix === "function" && !disabled}
-            />
-          )
         )}
       </StyledDxcChip>
     </ThemeProvider>
@@ -131,36 +104,16 @@ const ChipTextContainer = styled.span`
   overflow: hidden;
 `;
 
-const SuffixIconContainer = styled.img`
-  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-  ${(props) => getCursor(props.interactuable, props.disabled)}
-  margin-left: ${(props) =>
-    ((props.label || props.suffixIconSrc) && props.theme.iconSpacing) || (props.prefixIconSrc && "5px")};
-  width: ${(props) => props.theme.iconSize};
-  height: ${(props) => props.theme.iconSize};
-`;
+const SuffixIconContainer = styled.img``;
 
-const PrefixIconContainer = styled.img`
-  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-  ${(props) => getCursor(props.interactuable, props.disabled)}
-  margin-right: ${(props) =>
-    ((props.label || props.suffixIconSrc) && props.theme.iconSpacing) || (props.prefixIconSrc && "5px")};
-  width: ${(props) => props.theme.iconSize};
-  height: ${(props) => props.theme.iconSize};
-`;
+const PrefixIconContainer = styled.img``;
 
 const IconContainer = styled.div`
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
   ${(props) =>
     props.prefixIcon
-      ? `margin-right: ${
-          ((props.label || props.suffixIcon || props.suffixIconSrc) && props.theme.iconSpacing) ||
-          ((props.prefixIcon || props.prefixIconSrc) && "0")
-        };`
-      : `margin-left: ${
-          ((props.label || props.prefixIcon || props.prefixIconSrc) && props.theme.iconSpacing) ||
-          ((props.prefixIcon || props.prefixIconSrc) && "0")
-        };`}
+      ? `margin-right: ${((props.label || props.suffixIcon) && props.theme.iconSpacing) || (props.prefixIcon && "0")};`
+      : `margin-left: ${((props.label || props.prefixIcon) && props.theme.iconSpacing) || (props.prefixIcon && "0")};`}
   ${(props) => getCursor(props.interactuable, props.disabled)}
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};

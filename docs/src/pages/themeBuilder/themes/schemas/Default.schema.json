@@ -16,7 +16,7 @@
     "baseColor": "color",
     "fontColor": "color"
   },
-  "date": {
+  "dateInput": {
     "baseColor": "color",
     "accentColor": "color"
   },
@@ -41,14 +41,7 @@
     "hamburguerColor": "color",
     "logo": "image",
     "logoResponsive": "image",
-    "contentColor": "color",
-    "contentColorOnDark": "color"
-  },
-  "inputText": {
-    "selectedBaseColor": "color"
-  },
-  "textInput": {
-    "baseColor": "color"
+    "contentColor": "color"
   },
   "paginator": {
     "baseColor": "color",
@@ -61,7 +54,7 @@
   "radio": {
     "baseColor": "color"
   },
-  "V3Select": {
+  "select": {
     "baseColor": "color",
     "fontColor": "color"
   },
@@ -85,6 +78,9 @@
     "fontColor": "color"
   },
   "tabs": {
+    "baseColor": "color"
+  },
+  "textInput": {
     "baseColor": "color"
   },
   "toggleGroup": {

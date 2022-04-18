@@ -20,12 +20,8 @@ const dropdownPropsTable = () => {
               <b>label</b>: Tab label.
             </li>
             <li>
-              <b>icon</b>: Element used as the icon that will be displayed in
-              the tab.
-            </li>
-            <li>
-              <b>iconSrc</b>: URL of the icon to be displayed in the tab.{" "}
-              <b>Deprecated.</b>
+              <b>icon</b>: Element or path used as the icon that will be
+              displayed in the tab.
             </li>
             <li>
               <b>isDisabled</b>: Whether the tab is disabled or not.
@@ -49,6 +45,11 @@ const dropdownPropsTable = () => {
         <td>
           Whether the icon should appear above or to the left of the label.
         </td>
+      </tr>
+      <tr>
+        <td>defaultActiveTabIndex: number</td>
+        <td></td>
+        <td>Initially active tab, only when it is uncontrolled.</td>
       </tr>
       <tr>
         <td>activeTabIndex: number</td>

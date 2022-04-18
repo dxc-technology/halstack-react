@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
@@ -13,7 +14,7 @@ const DxcDialog = ({
   children,
   overlay = true,
   onBackgroundClick,
-  padding,
+  padding = "small",
   tabIndex = 0,
 }: DialogPropsType): JSX.Element => {
   const [isResponsive, setIsResponsive] = useState(false);

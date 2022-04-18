@@ -23,7 +23,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Checked" theme="light" level={4} />
-      <DxcSwitch label="Switch" checked />
+      <DxcSwitch label="Switch" defaultChecked />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Required" theme="light" level={4} />
@@ -39,7 +39,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled checked" theme="light" level={4} />
-      <DxcSwitch label="Switch" disabled checked labelPosition="after" />
+      <DxcSwitch label="Switch" disabled defaultChecked labelPosition="after" />
     </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
@@ -49,7 +49,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Checked" theme="dark" level={4} />
-          <DxcSwitch label="Switch" checked />
+          <DxcSwitch label="Switch" defaultChecked />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Required" theme="dark" level={4} />
@@ -65,14 +65,14 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled checked" theme="dark" level={4} />
-          <DxcSwitch label="Switch" disabled checked labelPosition="after" />
+          <DxcSwitch label="Switch" disabled defaultChecked labelPosition="after" />
         </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcSwitch label="Xxsmmall" margin="xxsmall" />
+      <DxcSwitch label="Xxsmall" margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
@@ -139,7 +139,7 @@ const Switch = () => (
 export const FocusedSwitch = Switch.bind({});
 FocusedSwitch.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  canvas.getByRole("checkbox").focus();
+  canvas.getByRole("switch").focus();
 };
 
 const DarkSwitch = () => (
@@ -156,5 +156,5 @@ const DarkSwitch = () => (
 export const FocusedSwitchOnDark = DarkSwitch.bind({});
 FocusedSwitchOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  canvas.getByRole("checkbox").focus();
+  canvas.getByRole("switch").focus();
 };

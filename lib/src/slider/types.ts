@@ -16,6 +16,10 @@ type Props = {
    */
   name?: string;
   /**
+   * Initial value of the slider, only when it is uncontrolled.
+   */
+  defaultValue?: number;
+  /**
    * The selected value. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
    */
   value?: number;

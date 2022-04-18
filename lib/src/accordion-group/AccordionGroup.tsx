@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcAccordion from "../accordion/Accordion";

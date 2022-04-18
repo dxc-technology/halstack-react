@@ -125,16 +125,22 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Background color provider over accordion content" theme="light" level={4} />
-      <ThemeProvider advancedTheme={advancedTheme} theme={undefined}>
+      <ThemeProvider advancedTheme={advancedTheme}>
         <DxcAccordion
           label="Dark Accordion"
-          isExpanded
+          defaultIsExpanded
           assistiveText="Assistive text"
           icon={folderIcon}
           padding="medium"
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <DxcTextInput label="Label" helperText="HelperText" placeholder="Placeholder" size="fillParent" />
+            <DxcTextInput
+              label="Label"
+              helperText="HelperText"
+              placeholder="Placeholder"
+              size="fillParent"
+              margin={{ bottom: "medium" }}
+            />
             <DxcButton label="Submit" size="medium" />
           </div>
         </DxcAccordion>
@@ -143,7 +149,7 @@ export const Chromatic = () => (
     <Title title="Paddings" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall padding" theme="light" level={4} />
-      <DxcAccordion label="Xxsmall padding" isExpanded padding="xxsmall">
+      <DxcAccordion label="Xxsmall padding" defaultIsExpanded padding="xxsmall">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -156,7 +162,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall padding" theme="light" level={4} />
-      <DxcAccordion label="Xsmall padding" isExpanded padding="xsmall">
+      <DxcAccordion label="Xsmall padding" defaultIsExpanded padding="xsmall">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -169,7 +175,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small padding" theme="light" level={4} />
-      <DxcAccordion label="Small padding" isExpanded padding="small">
+      <DxcAccordion label="Small padding" defaultIsExpanded padding="small">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -182,7 +188,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium padding" theme="light" level={4} />
-      <DxcAccordion label="Medium padding" isExpanded padding="medium">
+      <DxcAccordion label="Medium padding" defaultIsExpanded padding="medium">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -195,7 +201,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large padding" theme="light" level={4} />
-      <DxcAccordion label="Large padding" isExpanded padding="large">
+      <DxcAccordion label="Large padding" defaultIsExpanded padding="large">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -208,7 +214,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xlarge padding" theme="light" level={4} />
-      <DxcAccordion label="Xlarge padding" isExpanded padding="xlarge">
+      <DxcAccordion label="Xlarge padding" defaultIsExpanded padding="xlarge">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -221,7 +227,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xxlarge padding" theme="light" level={4} />
-      <DxcAccordion label="Xxlarge padding" isExpanded padding="xxlarge">
+      <DxcAccordion label="Xxlarge padding" defaultIsExpanded padding="xxlarge">
         <div>
           <DxcHeading level={5} text="Content header" margin={{ bottom: "xxsmall" }} />
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -295,6 +301,7 @@ export const Chromatic = () => (
           lobortis eget.
         </div>
       </DxcAccordion>
+      <hr />
     </ExampleContainer>
   </>
 );

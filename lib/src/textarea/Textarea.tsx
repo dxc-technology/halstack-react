@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
@@ -19,6 +20,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     {
       label,
       name = "",
+      defaultValue = "",
       value,
       helperText,
       placeholder = "",
@@ -39,14 +41,14 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     },
     ref
   ) => {
-    const [innerValue, setInnerValue] = useState("");
+    const [innerValue, setInnerValue] = useState(defaultValue);
     const [textareaId] = useState(`textarea-${uuidv4()}`);
 
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
 
     const textareaRef = useRef(null);
-    const errorId = `error-message-${textareaId}`;
+    const errorId = `error-${textareaId}`;
 
     const getLengthErrorMessage = () => `Min length ${minLength}, max length ${maxLength}.`;
 
@@ -62,7 +64,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
       else if (isLengthIncorrect(newValue)) onChange?.({ value: newValue, error: getLengthErrorMessage() });
       else if (newValue && pattern && !patternMatch(pattern, newValue))
         onChange?.({ value: newValue, error: getPatternErrorMessage() });
-      else onChange?.({ value: newValue, error: null });
+      else onChange?.({ value: newValue });
     };
 
     const handleTOnBlur = (event) => {
@@ -72,7 +74,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
         onBlur?.({ value: event.target.value, error: getLengthErrorMessage() });
       else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
-      else onBlur?.({ value: event.target.value, error: null });
+      else onBlur?.({ value: event.target.value });
     };
 
     const handleTOnChange = (event) => {
@@ -119,12 +121,13 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
             backgroundType={backgroundType}
             ref={textareaRef}
             tabIndex={tabIndex}
+            aria-disabled={disabled}
             aria-invalid={error ? "true" : "false"}
-            aria-describedby={error ? errorId : undefined}
+            aria-errormessage={error ? errorId : undefined}
             aria-required={optional ? "false" : "true"}
           />
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} backgroundType={backgroundType}>
+            <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}

@@ -12,7 +12,6 @@ import continuous from "./examples/continuous";
 import withoutLimits from "./examples/without-limits";
 import input from "./examples/input";
 import disabled from "./examples/disabled";
-import sized from "./examples/sized";
 
 function Slider() {
   return (
@@ -26,6 +25,7 @@ function Slider() {
         <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
         <Example title="Controlled Slider" example={controlled}></Example>
         <Example title="Uncontrolled Slider" example={uncontrolled}></Example>
+        <Example title="Disabled Slider" example={disabled}></Example>
         <Example title="Discrete Slider" example={discrete}></Example>
         <Example title="Continuous Slider" example={continuous}></Example>
         <Example
@@ -33,8 +33,6 @@ function Slider() {
           example={withoutLimits}
         ></Example>
         <Example title="Slider with input" example={input}></Example>
-        <Example title="Sized Slider" example={sized}></Example>
-        <Example title="Disabled Slider" example={disabled}></Example>
       </Section>
     </ComponentDoc>
   );

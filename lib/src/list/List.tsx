@@ -1,19 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import DxcStack from "../stack/Stack";
+import DxcText from "../text/Text";
+import ListPropsType from "./types";
 
-type ListProps = {
-  children: React.ReactNode;
-  gutter?: "none" | "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "xxxlarge";
-};
-
-function List({ children, gutter = "xsmall" }: ListProps) {
+function List({ children, type = "disc", gutter = "xxsmall" }: ListPropsType): JSX.Element {
   return (
-    <DxcStack as="ul" gutter={gutter}>
-      {React.Children.map(children, (child) => {
+    <DxcStack as={type === "number" ? "ol" : "ul"} gutter={gutter}>
+      {React.Children.map(children, (child, index) => {
         return (
           <ListItem>
-            <Bullet></Bullet>
+            {type === "number" ? (
+              <Number>
+                <DxcText>{index + 1}.</DxcText>
+              </Number>
+            ) : type === "square" ? (
+              <Square></Square>
+            ) : type === "circle" ? (
+              <Circle></Circle>
+            ) : (
+              <Disc></Disc>
+            )}
             {child}
           </ListItem>
         );
@@ -22,13 +29,39 @@ function List({ children, gutter = "xsmall" }: ListProps) {
   );
 }
 
-const Bullet = styled.div`
+const Number = styled.div`
+  user-select: none;
+  margin-right: 10px;
+  flex-shrink: 0;
+`;
+
+const Square = styled.div`
   background-color: black;
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  margin-top: 10px;
+  margin-right: 10px;
+`;
+
+const Circle = styled.div`
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid black;
+  flex-shrink: 0;
+  margin-top: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+`;
+
+const Disc = styled.div`
+  background-color: black;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   flex-shrink: 0;
-  margin-top: 9px;
+  margin-top: 10px;
   margin-right: 10px;
 `;
 

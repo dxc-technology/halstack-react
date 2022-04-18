@@ -33,7 +33,7 @@ export const Chromatic = () => (
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Disabled with value" theme="light" level={4} />
-        <DxcTextarea label="Disabled" value="Example text" disabled />
+        <DxcTextarea label="Disabled" defaultValue="Example text" disabled />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="With error" theme="light" level={4} />
@@ -41,12 +41,21 @@ export const Chromatic = () => (
           label="Textarea with error"
           helperText="Helper text"
           placeholder="Enter your text here..."
-          error="Error message"
+          error="Error message."
+        />
+      </ExampleContainer>
+      <ExampleContainer pseudoState="pseudo-hover">
+        <Title title="Hovered with error" theme="light" level={4} />
+        <DxcTextarea
+          label="Hovered textarea with error"
+          helperText="Helper text"
+          placeholder="Enter your text here..."
+          error="Error message."
         />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Helper text and optional with value" theme="light" level={4} />
-        <DxcTextarea label="Helper & optional" value="Some text" helperText="Sample text" optional />
+        <DxcTextarea label="Helper & optional" defaultValue="Some text" helperText="Sample text" optional />
       </ExampleContainer>
       <ExampleContainer>
         <Title title="Resizable" theme="light" level={4} />
@@ -57,36 +66,48 @@ export const Chromatic = () => (
         <DxcTextarea
           label="Manual vertical grow"
           verticalGrow="manual"
-          value="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+          defaultValue="Long textttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
         />
       </ExampleContainer>
     </>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
-        <>
+        <ExampleContainer>
           <Title title="Helper text and optional with value" theme="dark" level={4} />
-          <DxcTextarea label="Helper & optional" value="Some text" margin="medium" helperText="Sample text" optional />
-
+          <DxcTextarea label="Helper & optional" defaultValue="Some text" helperText="Sample text" optional />
+        </ExampleContainer>
+        <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
           <DxcTextarea
             label="Disabled"
-            margin="medium"
             optional
             helperText="Sample text"
             placeholder="Enter your text here..."
             disabled
           />
+        </ExampleContainer>
+        <ExampleContainer>
           <Title title="Disabled with value" theme="dark" level={4} />
-          <DxcTextarea label="Disabled" margin="medium" value="Example text" disabled />
+          <DxcTextarea label="Disabled" defaultValue="Example text" disabled />
+        </ExampleContainer>
+        <ExampleContainer>
           <Title title="With error" theme="dark" level={4} />
           <DxcTextarea
             label="Textarea with error"
-            margin="medium"
             helperText="Helper text"
             placeholder="Enter your text here..."
-            error="Error message"
+            error="Error message."
           />
-        </>
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-hover">
+          <Title title="Hovered with error" theme="dark" level={4} />
+          <DxcTextarea
+            label="Hovered textarea with error"
+            helperText="Helper text"
+            placeholder="Enter your text here..."
+            error="Error message."
+          />
+        </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>
     <Title title="Sizes" theme="light" level={2} />
@@ -105,15 +126,15 @@ export const Chromatic = () => (
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
-      <DxcTextarea label="Xxsmmall" margin="xxsmall" />
+      <DxcTextarea label="Xxsmall" margin="xxsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Xsmall margin" theme="light" level={4} />
-      <DxcTextarea label="xsmmall" margin="xsmall" />
+      <DxcTextarea label="xsmall" margin="xsmall" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Small margin" theme="light" level={4} />
-      <DxcTextarea label="smmall" margin="small" />
+      <DxcTextarea label="small" margin="small" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium margin" theme="light" level={4} />
@@ -130,6 +151,7 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcTextarea label="Xxlarge" margin="xxlarge" />
+      <hr />
     </ExampleContainer>
   </>
 );

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import styled, { ThemeProvider } from "styled-components";
@@ -14,7 +15,6 @@ const DxcButton = ({
   iconPosition = "before",
   type = "button",
   icon,
-  iconSrc = "",
   onClick,
   margin,
   size = "fitContent",
@@ -52,12 +52,10 @@ const DxcButton = ({
           }}
         >
           {label && iconPosition === "after" && labelComponent}
-          {icon ? (
+          {icon && (
             <IconContainer label={label} iconPosition={iconPosition}>
-              {typeof icon === "object" ? icon : React.createElement(icon)}
+              {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
             </IconContainer>
-          ) : (
-            iconSrc && <ButtonIcon label={label} iconPosition={iconPosition} src={iconSrc} />
           )}
           {label && iconPosition === "before" && labelComponent}
         </Button>
@@ -108,12 +106,7 @@ const IconContainer = styled.div`
   }
 `;
 
-const ButtonIcon = styled.img`
-  max-height: 24px;
-  max-width: 24px;
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label !== "" && "10px") || "0px"};
-  margin-right: ${(props) => (props.iconPosition === "before" && props.label !== "" && "10px") || "0px"};
-`;
+const ButtonIcon = styled.img``;
 
 const DxCButton = styled.div`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};

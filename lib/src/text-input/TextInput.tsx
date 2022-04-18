@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -73,6 +74,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     {
       label,
       name = "",
+      defaultValue = "",
       value,
       helperText,
       placeholder = "",
@@ -97,7 +99,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     ref
   ) => {
     const [inputId] = useState(`input-${uuidv4()}`);
-    const [innerValue, setInnerValue] = useState("");
+    const [innerValue, setInnerValue] = useState(defaultValue);
 
     const [isOpen, changeIsOpen] = useState(false);
     const [isSearching, changeIsSearching] = useState(false);
@@ -113,7 +115,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const backgroundType = useContext(BackgroundColorContext);
 
     const autosuggestId = `${inputId}-listBox`;
-    const errorId = `error-message-${inputId}`;
+    const errorId = `error-${inputId}`;
 
     const numberInputContext = useContext(NumberInputContext);
 
@@ -452,6 +454,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               role={isTextInputType() && hasSuggestions() ? "combobox" : "textbox"}
               aria-autocomplete={isTextInputType() && hasSuggestions() ? "list" : undefined}
               aria-controls={isTextInputType() && hasSuggestions() ? autosuggestId : undefined}
+              aria-disabled={disabled}
               aria-expanded={isTextInputType() && hasSuggestions() ? (isOpen ? "true" : "false") : undefined}
               aria-activedescendant={
                 isTextInputType() && hasSuggestions() && isOpen && visualFocusedSuggIndex !== -1
@@ -459,7 +462,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   : undefined
               }
               aria-invalid={error ? "true" : "false"}
-              aria-describedby={error ? errorId : undefined}
+              aria-errormessage={error ? errorId : undefined}
               aria-required={optional ? "false" : "true"}
             />
             {!disabled && error && (
@@ -469,7 +472,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             )}
             {!disabled && clearable && (value ?? innerValue).length > 0 && (
               <Action
-                onClick={handleClearActionOnClick}
+                onClick={() => handleClearActionOnClick()}
                 onMouseDown={(event) => {
                   event.stopPropagation();
                 }}
@@ -486,7 +489,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={handleDecrementActionOnClick}
+                  onClick={() => handleDecrementActionOnClick()}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
@@ -500,7 +503,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={handleIncrementActionOnClick}
+                  onClick={() => handleIncrementActionOnClick()}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
@@ -517,7 +520,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={action.onClick}
+                  onClick={() => action.onClick()}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
@@ -563,7 +566,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             )}
           </InputContainer>
           {!disabled && typeof error === "string" && (
-            <Error id={errorId} backgroundType={backgroundType}>
+            <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
               {error}
             </Error>
           )}

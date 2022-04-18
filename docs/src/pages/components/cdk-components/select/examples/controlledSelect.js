@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
 
   const options = [
     { label: "Option 01", value: "1" },
@@ -23,13 +23,13 @@ const code = `() => {
 
   return (
     <DxcSelect
-      label="Label"
+      label="Controlled"
       placeholder="Choose an option"
       options={options}
       value={value}
       onBlur={onBlur}
       onChange={onChange}
-      error={error}
+      error={error == undefined ? "" : error}
       margin="medium"
     />
   );

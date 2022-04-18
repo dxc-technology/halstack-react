@@ -1,6 +1,6 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import PropTypes from "prop-types";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { getMargin } from "../common/utils.js";
@@ -9,7 +9,6 @@ import TagPropsType from "./types";
 
 const DxcTag = ({
   icon,
-  iconSrc,
   label = "",
   linkHref,
   onClick,
@@ -29,15 +28,13 @@ const DxcTag = ({
   const tagContent = (
     <DxcBox size={size} shadowDepth={(isHovered && (onClick || linkHref) && 2) || 1}>
       <TagContent labelPosition={labelPosition}>
-        {labelPosition === "before" && size !== "small" && <TagLabel>{label}</TagLabel>}
-        <IconContainer iconBgColor={iconBgColor}>
-          {icon ? (
-            <TagIconContainer>{typeof icon === "object" ? icon : React.createElement(icon)}</TagIconContainer>
-          ) : (
-            <TagIcon src={iconSrc}></TagIcon>
-          )}
-        </IconContainer>
-        {labelPosition === "after" && size !== "small" && <TagLabel>{label}</TagLabel>}
+        {labelPosition === "before" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
+        {icon && (
+          <IconContainer iconBgColor={iconBgColor}>
+            {typeof icon === "string" ? <TagIcon src={icon}></TagIcon> : icon}
+          </IconContainer>
+        )}
+        {labelPosition === "after" && size !== "small" && label && <TagLabel>{label}</TagLabel>}
       </TagContent>
     </DxcBox>
   );
@@ -121,28 +118,6 @@ const StyledButton = styled.button`
   }
 `;
 
-const TagIcon = styled.img`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: ${(props) => props.theme.iconWidth};
-  height: ${(props) => props.theme.iconHeight};
-`;
-
-const TagIconContainer = styled.div`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-
-  img,
-  svg {
-    width: ${(props) => props.theme.iconWidth};
-    height: ${(props) => props.theme.iconHeight};
-  }
-`;
-
 const IconContainer = styled.div`
   display: inline-flex;
   background: ${({ iconBgColor }) => iconBgColor};
@@ -152,7 +127,15 @@ const IconContainer = styled.div`
   align-items: center;
   color: ${(props) => props.theme.iconColor};
   min-width: ${(props) => props.theme.iconSectionWidth};
+  overflow: hidden;
+  img,
+  svg {
+    width: ${(props) => props.theme.iconWidth};
+    height: ${(props) => props.theme.iconHeight};
+  }
 `;
+
+const TagIcon = styled.img``;
 
 const TagLabel = styled.div`
   font-family: ${(props) => props.theme.fontFamily};

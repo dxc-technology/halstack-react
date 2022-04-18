@@ -5,10 +5,7 @@ import Alert from "./cdk-components/alert/Alert";
 import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
 import Tabs from "./cdk-components/tabs/Tabs";
-import Upload from "./cdk-components/upload/Upload";
-import InputText from "./cdk-components/input-text/InputText";
 import Accordion from "./cdk-components/accordion/Accordion";
-import V3Select from "./cdk-components/V3Select/V3Select";
 import Slider from "./cdk-components/slider/Slider";
 import Card from "./cdk-components/card/Card";
 import Dialog from "./cdk-components/dialog/Dialog";
@@ -19,12 +16,10 @@ import Table from "./cdk-components/table/Table";
 import Spinner from "./cdk-components/spinner/Spinner";
 import Box from "./cdk-components/box/Box";
 import Tag from "./cdk-components/tag/Tag";
-import Date from "./cdk-components/date/Date";
 import Paginator from "./cdk-components/paginator/Paginator";
 import Sidenav from "./cdk-components/sidenav/Sidenav";
 import Link from "./cdk-components/link/Link";
 import Wizard from "./cdk-components/wizard/Wizard";
-import V3Textarea from "./cdk-components/V3Textarea/V3Textarea";
 import Heading from "./cdk-components/heading/Heading";
 import ResultsetTable from "./cdk-components/resultsetTable/resultsetTable";
 import Chip from "./cdk-components/chip/Chip";
@@ -38,6 +33,12 @@ import NumberInput from "./cdk-components/number-input/NumberInput";
 import Textarea from "./cdk-components/textarea/Textarea";
 import FileInput from "./cdk-components/file-input/FileInput";
 import Select from "./cdk-components/select/Select";
+import RadioGroup from "./cdk-components/radio-group/RadioGroup";
+import Stack from "./cdk-components/stack/Stack";
+import Inset from "./cdk-components/inset/Inset";
+import Row from "./cdk-components/row/Row";
+import Bleed from "./cdk-components/bleed/Bleed";
+import QuickNav from "./cdk-components/quick-nav/QuickNav";
 
 export const types = {
   FORMS: "Forms",
@@ -83,6 +84,13 @@ export default [
     status: "ready",
   },
   {
+    path: "bleed",
+    name: "Bleed",
+    component: Bleed,
+    type: types.LAYOUT,
+    status: "experimental",
+  },
+  {
     path: "button",
     name: "Button",
     component: Button,
@@ -109,13 +117,6 @@ export default [
     component: Chip,
     type: types.UTILS,
     status: "ready",
-  },
-  {
-    path: "date",
-    name: "Date",
-    component: Date,
-    type: types.FORMS,
-    status: "deprecated",
   },
   {
     path: "dateInput",
@@ -166,11 +167,11 @@ export default [
     status: "ready",
   },
   {
-    path: "inputText",
-    name: "Input Text",
-    component: InputText,
-    type: types.FORMS,
-    status: "deprecated",
+    path: "inset",
+    name: "Inset",
+    component: Inset,
+    type: types.LAYOUT,
+    status: "experimental",
   },
   {
     path: "link",
@@ -209,11 +210,25 @@ export default [
     status: "ready",
   },
   {
+    path: "quickNav",
+    name: "Quick Nav",
+    component: QuickNav,
+    type: types.NAVIGATION,
+    status: "experimental",
+  },
+  {
     path: "radio",
     name: "Radio Button",
     component: Radio,
     type: types.FORMS,
-    status: "ready",
+    status: "deprecated",
+  },
+  {
+    path: "radioGroup",
+    name: "Radio Group",
+    component: RadioGroup,
+    type: types.FORMS,
+    status: "experimental",
   },
   {
     path: "resultsetTable",
@@ -223,11 +238,11 @@ export default [
     status: "ready",
   },
   {
-    path: "V3Select",
-    name: "Select",
-    component: V3Select,
-    type: types.FORMS,
-    status: "deprecated",
+    path: "row",
+    name: "Row",
+    component: Row,
+    type: types.LAYOUT,
+    status: "experimental",
   },
   {
     path: "select",
@@ -258,6 +273,13 @@ export default [
     status: "ready",
   },
   {
+    path: "stack",
+    name: "Stack",
+    component: Stack,
+    type: types.LAYOUT,
+    status: "experimental",
+  },
+  {
     path: "switch",
     name: "Switch",
     component: Switch,
@@ -286,13 +308,6 @@ export default [
     status: "ready",
   },
   {
-    path: "V3Textarea",
-    name: "Textarea",
-    component: V3Textarea,
-    type: types.FORMS,
-    status: "deprecated",
-  },
-  {
     path: "textarea",
     name: "Textarea",
     component: Textarea,
@@ -312,13 +327,6 @@ export default [
     component: ToggleGroup,
     type: types.FORMS,
     status: "ready",
-  },
-  {
-    path: "upload",
-    name: "Upload",
-    component: Upload,
-    type: types.UTILS,
-    status: "deprecated",
   },
   {
     path: "wizard",

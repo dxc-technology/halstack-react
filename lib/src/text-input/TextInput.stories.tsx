@@ -70,7 +70,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered action" theme="light" level={4} />
-      <DxcTextInput label="Text input" value="Text" clearable />
+      <DxcTextInput label="Text input" defaultValue="Text" clearable />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
@@ -82,13 +82,13 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Helper text, optional, and clearable" theme="light" level={4} />
-      <DxcTextInput label="Text input" clearable value="Text" helperText="Help message" optional />
+      <DxcTextInput label="Text input" clearable defaultValue="Text" helperText="Help message" optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Clearable and large icon action" theme="light" level={4} />
       <DxcTextInput
         label="Text input"
-        value="Text text text text text text text text text text"
+        defaultValue="Text text text text text text text text text text"
         clearable
         action={actionLargeIcon}
       />
@@ -107,10 +107,19 @@ export const Chromatic = () => (
         label="Error text input"
         helperText="Help message"
         error="Error message."
-        value="Text"
+        defaultValue="Text"
         clearable
         optional
         action={action}
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Invalid and hovered" theme="light" level={4} />
+      <DxcTextInput
+        label="Error text input"
+        helperText="Help message"
+        placeholder="Placeholder"
+        error="Error message."
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -124,7 +133,7 @@ export const Chromatic = () => (
         helperText="Help message"
         disabled
         optional
-        value="Text"
+        defaultValue="Text"
         action={action}
       />
     </ExampleContainer>
@@ -137,7 +146,7 @@ export const Chromatic = () => (
         optional
         prefix="+34"
         suffix="USD"
-        value="Text"
+        defaultValue="Text"
         action={action}
       />
     </ExampleContainer>
@@ -154,7 +163,7 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered action" theme="dark" level={4} />
-          <DxcTextInput label="Text input" value="Text" clearable />
+          <DxcTextInput label="Text input" defaultValue="Text" clearable />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Helper text, placeholder, optional and action" theme="dark" level={4} />
@@ -168,14 +177,23 @@ export const Chromatic = () => (
           />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Helper text, clearable value, error and action" theme="dark" level={4} />
+          <Title title="Invalid" theme="dark" level={4} />
           <DxcTextInput
-            label="Text input"
+            label="Error text input"
             helperText="Help message"
             error="Error message."
-            value="Text"
+            defaultValue="Text"
             clearable
             action={action}
+          />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-hover">
+          <Title title="Invalid and hovered" theme="dark" level={4} />
+          <DxcTextInput
+            label="Error text input"
+            helperText="Help message"
+            placeholder="Placeholder"
+            error="Error message."
           />
         </ExampleContainer>
         <ExampleContainer>
@@ -193,7 +211,7 @@ export const Chromatic = () => (
             helperText="Help message"
             disabled
             optional
-            value="Text"
+            defaultValue="Text"
             action={action}
           />
         </ExampleContainer>
@@ -206,7 +224,7 @@ export const Chromatic = () => (
             optional
             prefix="+34"
             suffix="USD"
-            value="Text"
+            defaultValue="Text"
             action={action}
           />
         </ExampleContainer>
@@ -262,14 +280,14 @@ export const Chromatic = () => (
 );
 
 const FocusedActionTextInput = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Focused action" theme="light" level={4} />
     <DxcTextInput label="Text input" action={action} clearable />
   </ExampleContainer>
 );
 
 const ActivedActionTextInput = () => (
-  <ExampleContainer pseudoState="pseudo-active">
+  <ExampleContainer pseudoState="pseudo-active" expanded>
     <Title title="Actived action" theme="light" level={4} />
     <DxcTextInput label="Text input" action={action} clearable />
   </ExampleContainer>
@@ -306,7 +324,7 @@ const ActivedOptionAutosuggest = () => (
 const FocusedActionTextInputOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
-      <ExampleContainer>
+      <ExampleContainer expanded>
         <Title title="Focused action" theme="dark" level={4} />
         <DxcTextInput label="Text input" action={action} clearable />
       </ExampleContainer>
@@ -317,7 +335,7 @@ const FocusedActionTextInputOnDark = () => (
 const ActivedActionTextInputOnDark = () => (
   <BackgroundColorProvider color="#333333">
     <DarkContainer>
-      <ExampleContainer pseudoState="pseudo-active">
+      <ExampleContainer pseudoState="pseudo-active" expanded>
         <Title title="Actived action" theme="dark" level={4} />
         <DxcTextInput label="Text input" action={action} clearable />
       </ExampleContainer>

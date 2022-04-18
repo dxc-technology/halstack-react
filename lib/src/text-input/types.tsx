@@ -10,7 +10,7 @@ type Action = {
   /**
    * This function will be called when the user clicks the action.
    */
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: () => void;
   /**
    * Icon to be shown in the action.
    */
@@ -30,6 +30,10 @@ type Props = {
    * Name attribute of the input element.
    */
   name?: string;
+  /**
+   * Initial value of the input, only when it is uncontrolled.
+   */
+  defaultValue?: string;
   /**
    * Value of the input. If undefined, the component will be uncontrolled and the value will be managed internally by the component.
    */

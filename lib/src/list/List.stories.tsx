@@ -16,6 +16,21 @@ export const Chromatic = () => (
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
+    <Title title="Number" theme="light" level={4} />
+    <DxcList type="number">
+      <DxcText>Text 1.</DxcText>
+      <DxcText>Text 2.</DxcText>
+    </DxcList>
+    <Title title="Square" theme="light" level={4} />
+    <DxcList type="square">
+      <DxcText>Text 1.</DxcText>
+      <DxcText>Text 2.</DxcText>
+    </DxcList>
+    <Title title="Circle" theme="light" level={4} />
+    <DxcList type="circle">
+      <DxcText>Text 1.</DxcText>
+      <DxcText>Text 2.</DxcText>
+    </DxcList>
     <Title title="Multiple lines" theme="light" level={4} />
     <Container>
       <DxcList>
@@ -26,6 +41,11 @@ export const Chromatic = () => (
         <DxcText>Text 2.</DxcText>
       </DxcList>
     </Container>
+    <Title title="gutter = xxxsmall" theme="light" level={4} />
+    <DxcList gutter="xxsmall">
+      <DxcText>Text 1.</DxcText>
+      <DxcText>Text 2.</DxcText>
+    </DxcList>
     <Title title="gutter = xxsmall" theme="light" level={4} />
     <DxcList gutter="xxsmall">
       <DxcText>Text 1.</DxcText>
@@ -58,6 +78,11 @@ export const Chromatic = () => (
     </DxcList>
     <Title title="gutter = xxlarge" theme="light" level={4} />
     <DxcList gutter="xxlarge">
+      <DxcText>Text 1.</DxcText>
+      <DxcText>Text 2.</DxcText>
+    </DxcList>
+    <Title title="gutter = xxxlarge" theme="light" level={4} />
+    <DxcList gutter="xxxlarge">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>

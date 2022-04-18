@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -12,8 +13,8 @@ import AccordionPropsType from "./types";
 
 const DxcAccordion = ({
   label = "",
+  defaultIsExpanded,
   isExpanded,
-  iconSrc,
   icon,
   assistiveText = "",
   disabled = false,
@@ -23,7 +24,7 @@ const DxcAccordion = ({
   padding,
   tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
-  const [innerIsExpanded, setInnerIsExpanded] = useState(false);
+  const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
   const [isResponsive, setIsResponsive] = useState(false);
   const colorsTheme = useTheme();
 
@@ -54,13 +55,7 @@ const DxcAccordion = ({
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
-      <DXCAccordion
-        padding={padding}
-        margin={margin}
-        disabled={disabled}
-        icon={icon || iconSrc}
-        isResponsive={isResponsive}
-      >
+      <DXCAccordion padding={padding} margin={margin} disabled={disabled} icon={icon} isResponsive={isResponsive}>
         <ExpansionPanel
           disabled={disabled}
           onChange={handlerAccordion}
@@ -68,12 +63,10 @@ const DxcAccordion = ({
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
             <AccordionInfo disabled={disabled}>
-              {icon ? (
+              {icon && (
                 <IconContainer disabled={disabled}>
-                  {typeof icon === "object" ? icon : React.createElement(icon)}
+                  {typeof icon === "string" ? <AccordionIcon src={icon} /> : icon}
                 </IconContainer>
-              ) : (
-                iconSrc && <AccordionIcon src={iconSrc} />
               )}
               <AccordionLabel>{label}</AccordionLabel>
             </AccordionInfo>
@@ -113,8 +106,7 @@ const DXCAccordion = styled.div`
     min-width: 0;
     display: flex;
     left: 85px;
-    background-color: ${(props) =>
-      props.disabled ? props.theme.disabledBackgroundColor : props.theme.backgroundColor} !important;
+    background-color: ${(props) => props.theme.backgroundColor} !important;
     box-shadow: ${(props) =>
       `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
     position: static;
@@ -265,13 +257,6 @@ const IconContainer = styled.div`
   }
 `;
 
-const AccordionIcon = styled.img`
-  height: ${(props) => props.theme.iconSize};
-  width: ${(props) => props.theme.iconSize};
-  margin-left: ${(props) => props.theme.iconMarginLeft};
-  margin-right: ${(props) => props.theme.iconMarginRigth};
-  overflow: hidden;
-  color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-`;
+const AccordionIcon = styled.img``;
 
 export default DxcAccordion;

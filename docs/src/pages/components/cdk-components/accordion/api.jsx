@@ -15,17 +15,10 @@ const accordionPropsTable = () => {
         <td>The panel label.</td>
       </tr>
       <tr>
-        <td>icon: node</td>
+        <td>icon: node | string</td>
         <td></td>
         <td>
-          Element used as the icon that will be placed next to panel label.
-        </td>
-      </tr>
-      <tr>
-        <td>iconSrc: string</td>
-        <td></td>
-        <td>
-          <b>Deprecated.</b> URL of the icon that will be placed next to panel
+          Element or path used as the icon that will be placed next to panel
           label.
         </td>
       </tr>
@@ -40,6 +33,11 @@ const accordionPropsTable = () => {
           <code>false</code>
         </td>
         <td>If true, the component will be disabled.</td>
+      </tr>
+      <tr>
+        <td>defaultIsExpanded: boolean</td>
+        <td></td>
+        <td>Initial state of the panel, only when it is uncontrolled.</td>
       </tr>
       <tr>
         <td>isExpanded: boolean</td>

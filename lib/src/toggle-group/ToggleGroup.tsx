@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -8,6 +9,7 @@ import ToogleGroupPropsType from "./types";
 const DxcToggleGroup = ({
   label,
   helperText,
+  defaultValue,
   value,
   onChange,
   disabled = false,
@@ -15,9 +17,9 @@ const DxcToggleGroup = ({
   margin,
   multiple = false,
   tabIndex = 0,
-}: ToogleGroupPropsType) => {
+}: ToogleGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const [selectedValue, setSelectedValue] = useState(multiple ? [] : "");
+  const [selectedValue, setSelectedValue] = useState(defaultValue ?? (multiple ? [] : -1));
   const [toggleGroupId] = useState(`toggle-group-${uuidv4()}`);
 
   const handleToggleChange = (selectedOption) => {
@@ -63,8 +65,8 @@ const DxcToggleGroup = ({
               selected={
                 multiple
                   ? value
-                    ? value.includes(option.value)
-                    : selectedValue.includes(option.value)
+                    ? Array.isArray(value) && value.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
                   ? option.value === value
                   : option.value === selectedValue
@@ -73,8 +75,8 @@ const DxcToggleGroup = ({
               aria-checked={
                 multiple
                   ? value
-                    ? value.includes(option.value)
-                    : selectedValue.includes(option.value)
+                    ? Array.isArray(value) && value.includes(option.value)
+                    : Array.isArray(selectedValue) && selectedValue.includes(option.value)
                   : value
                   ? option.value === value
                   : option.value === selectedValue
@@ -83,7 +85,7 @@ const DxcToggleGroup = ({
               onClick={() => !disabled && handleToggleChange(option.value)}
               isFirst={i === 0}
               isLast={i === options.length - 1}
-              isIcon={option.iconSrc || option.icon}
+              isIcon={option.icon}
               optionLabel={option.label}
               disabled={disabled}
               onKeyPress={(event) => {
@@ -94,10 +96,9 @@ const DxcToggleGroup = ({
               <OptionContent>
                 {option.icon && (
                   <IconContainer optionLabel={option.label}>
-                    {typeof option.icon === "object" ? option.icon : React.createElement(option.icon)}
+                    {typeof option.icon === "string" ? <Icon src={option.icon} /> : option.icon}
                   </IconContainer>
                 )}
-                {option.iconSrc && <Icon src={option.iconSrc} optionLabel={option.label} />}
                 {option.label && <LabelContainer>{option.label}</LabelContainer>}
               </OptionContent>
             </ToggleContainer>
@@ -143,6 +144,7 @@ const ToggleGroup = styled.div`
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  width: max-content;
   opacity: 1;
   height: calc(48px - 4px - 4px);
   border-width: ${(props) => props.theme.containerBorderThickness};
@@ -227,11 +229,7 @@ const OptionContent = styled.div`
   align-items: center;
 `;
 
-const Icon = styled.img`
-  height: 24px;
-  width: 24px;
-  margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};
-`;
+const Icon = styled.img``;
 
 const IconContainer = styled.div`
   margin-right: ${(props) => props.optionLabel && props.theme.iconMarginRight};

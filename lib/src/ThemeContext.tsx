@@ -1,4 +1,3 @@
-/* eslint-disable prefer-template */
 import React, { useMemo } from "react";
 import Color from "color";
 import rgbHex from "rgb-hex";
@@ -114,11 +113,12 @@ const parseTheme = (theme) => {
   chipTokens.fontColor = theme?.chip?.fontColor ?? chipTokens.fontColor;
   chipTokens.disabledFontColor = setOpacity(theme?.chip?.fontColor, 0.34) ?? chipTokens.disabledFontColor;
 
-  const dateTokens = componentTokensCopy.date;
-  dateTokens.pickerSelectedDateBackgroundColor = theme?.date?.baseColor ?? dateTokens.pickerSelectedDateBackgroundColor;
-  dateTokens.pickerSelectedDateColor = theme?.date?.accentColor ?? dateTokens.pickerSelectedDateColor;
+  const dateTokens = componentTokensCopy.dateInput;
+  dateTokens.pickerSelectedDateBackgroundColor =
+    theme?.dateInput?.baseColor ?? dateTokens.pickerSelectedDateBackgroundColor;
+  dateTokens.pickerSelectedDateColor = theme?.dateInput?.accentColor ?? dateTokens.pickerSelectedDateColor;
   dateTokens.pickerHoverDateBackgroundColor =
-    setOpacity(theme?.date?.baseColor, 0.34) ?? dateTokens.pickerHoverDateBackgroundColor;
+    setOpacity(theme?.dateInput?.baseColor, 0.34) ?? dateTokens.pickerHoverDateBackgroundColor;
 
   const dropdownTokens = componentTokensCopy.dropdown;
   dropdownTokens.buttonBackgroundColor = theme?.dropdown?.baseColor ?? dropdownTokens.buttonBackgroundColor;
@@ -163,17 +163,6 @@ const parseTheme = (theme) => {
   headerTokens.logo = theme?.header?.logo ?? headerTokens.logo;
   headerTokens.logoResponsive = theme?.header?.logoResponsive ?? headerTokens.logoResponsive;
   headerTokens.contentColor = theme?.header?.contentColor ?? headerTokens.contentColor;
-  headerTokens.contentColorOnDark = theme?.header?.contentColorOnDark ?? headerTokens.contentColorOnDark;
-
-  const inputTextTokens = componentTokensCopy.inputText;
-  inputTextTokens.selectedOptionBackgroundColor =
-    setOpacity(theme?.inputText?.selectedBaseColor, 0.34) ?? inputTextTokens.selectedOptionBackgroundColor;
-
-  const textInputTokens = componentTokensCopy.textInput;
-  textInputTokens.hoverListOptionBackgroundColor =
-    theme?.textInput?.baseColor ?? textInputTokens.hoverListOptionBackgroundColor;
-  textInputTokens.activeListOptionBackgroundColor =
-    subLightness(theme?.textInput?.baseColor, 15) ?? textInputTokens.activeListOptionBackgroundColor;
 
   const paginatorTokens = componentTokensCopy.paginator;
   paginatorTokens.backgroundColor = theme?.paginator?.baseColor ?? paginatorTokens.backgroundColor;
@@ -187,15 +176,14 @@ const parseTheme = (theme) => {
   radioTokens.color = theme?.radio?.baseColor ?? radioTokens.color;
   radioTokens.disabledColor = setOpacity(theme?.radio?.baseColor, 0.34) ?? radioTokens.disabledColor;
 
-  const v3SelectTokens = componentTokensCopy.V3Select;
-  v3SelectTokens.selectedOptionBackgroundColor =
-    theme?.V3Select?.baseColor ?? v3SelectTokens.selectedOptionBackgroundColor;
-  v3SelectTokens.optionFontColor = theme?.V3Select?.fontColor ?? v3SelectTokens.optionFontColor;
-  v3SelectTokens.valueFontColor = theme?.V3Select?.fontColor ?? v3SelectTokens.valueFontColor;
-  v3SelectTokens.hoverOptionBackgroundColor =
-    addLightness(theme?.V3Select?.baseColor, 10) ?? v3SelectTokens.hoverOptionBackgroundColor;
-  v3SelectTokens.activeOptionBackgroundColor =
-    subLightness(theme?.V3Select?.baseColor, 15) ?? v3SelectTokens.activeOptionBackgroundColor;
+  const selectTokens = componentTokensCopy.select;
+  selectTokens.selectedOptionBackgroundColor = theme?.select?.baseColor ?? selectTokens.selectedOptionBackgroundColor;
+  selectTokens.optionFontColor = theme?.select?.fontColor ?? selectTokens.optionFontColor;
+  selectTokens.valueFontColor = theme?.select?.fontColor ?? selectTokens.valueFontColor;
+  selectTokens.hoverOptionBackgroundColor =
+    addLightness(theme?.select?.baseColor, 10) ?? selectTokens.hoverOptionBackgroundColor;
+  selectTokens.activeOptionBackgroundColor =
+    subLightness(theme?.select?.baseColor, 15) ?? selectTokens.activeOptionBackgroundColor;
 
   const sideNavTokens = componentTokensCopy.sidenav;
   sideNavTokens.backgroundColor = theme?.sidenav?.baseColor ?? sideNavTokens.backgroundColor;
@@ -241,6 +229,12 @@ const parseTheme = (theme) => {
   tabsTokens.hoverBackgroundColor = addLightness(theme?.tabs?.baseColor, 58) ?? tabsTokens.hoverBackgroundColor;
   tabsTokens.pressedBackgroundColor = addLightness(theme?.tabs?.baseColor, 53) ?? tabsTokens.pressedBackgroundColor;
 
+  const textInputTokens = componentTokensCopy.textInput;
+  textInputTokens.hoverListOptionBackgroundColor =
+    theme?.textInput?.baseColor ?? textInputTokens.hoverListOptionBackgroundColor;
+  textInputTokens.activeListOptionBackgroundColor =
+    subLightness(theme?.textInput?.baseColor, 15) ?? textInputTokens.activeListOptionBackgroundColor;
+
   const toggleGroupTokens = componentTokensCopy.toggleGroup;
   toggleGroupTokens.selectedBackgroundColor =
     theme?.toggleGroup?.selectedBaseColor ?? buttonTokens.selectedBackgroundColor;
@@ -258,7 +252,7 @@ const parseTheme = (theme) => {
   toggleGroupTokens.selectedDisabledBackgroundColor =
     addLightness(theme?.toggleGroup?.selectedBaseColor, 57) ?? toggleGroupTokens.selectedDisabledBackgroundColor;
   toggleGroupTokens.selectedDisabledFontColor =
-    addLightness(theme?.toggleGroup?.selectedBaseColor, 42) ?? toggleGroupTokens.selectedDisabledFontColor;
+    addLightness(theme?.toggleGroup?.selectedFontColor, 42) ?? toggleGroupTokens.selectedDisabledFontColor;
   toggleGroupTokens.unselectedHoverBackgroundColor =
     subLightness(theme?.toggleGroup?.unselectedBaseColor, 8) ?? toggleGroupTokens.unselectedHoverBackgroundColor;
   toggleGroupTokens.unselectedDisabledBackgroundColor =
@@ -274,26 +268,20 @@ const parseTheme = (theme) => {
   return componentTokensCopy;
 };
 
-type ThemeProviderCommonProps = {
+type ThemeProviderPropsType = {
+  theme?: object;
+  advancedTheme?: object;
   children: React.ReactNode;
 };
-type ThemeProviderDefaultTheme = ThemeProviderCommonProps & {
-  theme: object;
-};
-type ThemeProviderAdvancedTheme = ThemeProviderCommonProps & {
-  advancedTheme: object;
-};
-type ThemeProviderPropsType = ThemeProviderDefaultTheme | ThemeProviderAdvancedTheme;
-
-const ThemeProvider = (props: ThemeProviderPropsType): JSX.Element => {
-  const parsedTheme = useMemo(() => {
-    if ("theme" in props) return parseTheme(props.theme);
-    else if ("advancedTheme" in props) return parseAdvancedTheme(props.advancedTheme);
-  }, ["theme" in props ? props.theme : props.advancedTheme]);
+const ThemeProvider = ({ theme, advancedTheme, children }: ThemeProviderPropsType): JSX.Element => {
+  const parsedTheme = useMemo(
+    () => (theme && parseTheme(theme)) || (advancedTheme && parseAdvancedTheme(advancedTheme)),
+    [theme, advancedTheme]
+  );
 
   return (
     <Halstack>
-      <ThemeContext.Provider value={parsedTheme}>{props.children}</ThemeContext.Provider>
+      <ThemeContext.Provider value={parsedTheme}>{children}</ThemeContext.Provider>
     </Halstack>
   );
 };

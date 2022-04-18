@@ -44,7 +44,7 @@ const checkboxPropsTable = () => {
       </tr>
       <tr>
         <td>padding: string | object</td>
-        <td></td>
+        <td>'small'</td>
         <td>
           Size of the padding to be applied to the component ('xxsmall' | 'xsmall' | 'small' |
           'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass an object with 'top', 'bottom',

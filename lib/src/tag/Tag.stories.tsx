@@ -9,29 +9,22 @@ export default {
   component: DxcTag,
 };
 
-const icon = () => {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    </svg>
-  );
-};
-const largeIcon = () => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
-      <path d="M0 0h24v24H0V0z" fill="none" />
-      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
-    </svg>
-  );
-};
+const icon = (
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+  </svg>
+);
+
+const largeIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+  </svg>
+);
 
 export const Chromatic = () => (
   <>
-    <ExampleContainer>
-      <Title title="Without label" theme="light" level={4} />
-      <DxcTag />
-    </ExampleContainer>
     <ExampleContainer>
       <Title title="With icon" theme="light" level={4} />
       <DxcTag icon={icon} />
@@ -46,7 +39,10 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With label and icon" theme="light" level={4} />
-      <DxcTag label="Tag" icon={icon} />
+      <DxcTag
+        label="Tag"
+        icon="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png"
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="With right icon" theme="light" level={4} />
@@ -102,37 +98,38 @@ export const Chromatic = () => (
     <Title title="Sizes" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Small size" theme="light" level={4} />
-      <DxcTag label="Small" size="small" />
+      <DxcTag label="Small" size="small" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size" theme="light" level={4} />
-      <DxcTag label="Medium size medium s" size="medium" />
+      <DxcTag label="Medium size medium s" size="medium" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Medium size with ellipsis" theme="light" level={4} />
-      <DxcTag label="Medium size medium si medium" size="medium" />
+      <DxcTag label="Medium size medium si medium" size="medium" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size" theme="light" level={4} />
-      <DxcTag label="Large size large size large size large size large size" size="large" />
+      <DxcTag label="Large size large size large size large size large size" size="large" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large size with ellipsis" theme="light" level={4} />
-      <DxcTag label="Large size large size large size large size large size large size" size="large" />
+      <DxcTag label="Large size large size large size large size large size large size" size="large" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FillParent size" theme="light" level={4} />
-      <DxcTag label="FillParent" size="fillParent" />
+      <DxcTag label="FillParent" size="fillParent" icon={icon} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="FitContent size" theme="light" level={4} />
-      <DxcTag label="FitContent" size="fitContent" />
+      <DxcTag label="FitContent" size="fitContent" icon={icon} />
     </ExampleContainer>
+    <hr />
   </>
 );
 
 const LinkTag = () => (
-  <ExampleContainer>
+  <ExampleContainer expanded>
     <Title title="Hover link tag" theme="light" level={4} />
     <DxcTag label="Tag" icon={icon} linkHref="https://www.dxc.com" />
   </ExampleContainer>

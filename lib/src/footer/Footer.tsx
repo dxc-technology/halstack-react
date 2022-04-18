@@ -1,6 +1,6 @@
+// @ts-nocheck
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
@@ -86,29 +86,19 @@ const DxcFooter = ({
   return (
     <ThemeProvider theme={colorsTheme.footer}>
       <FooterContainer margin={margin} refSize={refSize} ref={ref}>
-        <FooterHeader>
+        <FooterHeader refSize={refSize}>
           <LogoContainer>{footerLogo}</LogoContainer>
-          <div>{socialLink}</div>
+          <SocialLinkContainer refSize={refSize}>{socialLink}</SocialLinkContainer>
         </FooterHeader>
-        {isResponsivePhone && (
-          <div>
-            <FooterFooter className="footerFooter" refSize={refSize}>
-              <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
-              <Copyright refSize={refSize}>{copyright}</Copyright>
-            </FooterFooter>
-          </div>
-        )}
-        {((!isResponsiveTablet && !isResponsivePhone) || isResponsiveTablet) && (
-          <div>
-            <ChildComponents padding={padding}>
-              <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
-            </ChildComponents>
-            <FooterFooter className="footerFooter">
-              <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
-              <Copyright refSize={refSize}>{copyright}</Copyright>
-            </FooterFooter>
-          </div>
-        )}
+        <div>
+          <ChildComponents padding={padding}>
+            <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
+          </ChildComponents>
+          <FooterFooter className="footerFooter" refSize={refSize}>
+            <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
+            <Copyright refSize={refSize}>{copyright}</Copyright>
+          </FooterFooter>
+        </div>
       </FooterContainer>
     </ThemeProvider>
   );
@@ -129,6 +119,8 @@ const FooterContainer = styled.footer`
 const FooterHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 24px;
 `;
 
 const FooterFooter = styled.div`
@@ -139,6 +131,7 @@ const FooterFooter = styled.div`
   align-items: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "")};
   border-top: ${(props) =>
     `${props.theme.bottomLinksDividerThickness} ${props.theme.bottomLinksDividerStyle} ${props.theme.bottomLinksDividerColor}`};
+  margin-top: 16px;
 `;
 
 const BottomLinks = styled.div`
@@ -150,11 +143,11 @@ const BottomLinks = styled.div`
   & > span:last-child span {
     display: none;
   }
-  margin: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "40px 0 40px 0" : "")};
+  align-self: center;
 `;
 
 const ChildComponents = styled.div`
-  min-height: 15px;
+  min-height: 16px;
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -175,7 +168,7 @@ const Copyright = styled.div`
   color: ${(props) => props.theme.copyrightFontColor};
   max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
   width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
-  text-align: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "right")};
+  text-align: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "left" : "right")};
   padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
 `;
 
@@ -187,6 +180,11 @@ const LogoContainer = styled.div`
 const LogoImg = styled.img`
   max-height: ${(props) => props.theme.logoHeight};
   width: ${(props) => props.theme.logoWidth};
+`;
+
+const SocialLinkContainer = styled.div`
+  display: flex;
+  align-self: center;
 `;
 
 const SocialAnchor = styled.a`

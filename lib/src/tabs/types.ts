@@ -5,21 +5,9 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
 
-type Tab = {
-  /**
-   * Tab label.
-   */
-  label?: string;
-  /**
-   * Element used as the icon that will be displayed in the tab.
-   */
-  icon?: SVG;
-  /**
-   * @deprecated URL of the icon to be displayed in the tab.
-   */
-  iconSrc?: string;
+type TabCommonProps = {
   /**
    * Whether the tab is disabled or not.
    */
@@ -34,15 +22,41 @@ type Tab = {
   notificationNumber?: boolean | number;
 };
 
+type TabLabelProps = TabCommonProps & {
+  /**
+   * Tab label.
+   */
+  label: string;
+  /**
+   * Element or path used as the icon that will be displayed in the tab.
+   */
+  icon?: string | SVG;
+};
+
+type TabIconProps = TabCommonProps & {
+  /**
+   * Tab label.
+   */
+  label?: string;
+  /**
+   * Element or path used as the icon that will be displayed in the tab.
+   */
+  icon: string | SVG;
+};
+
 type Props = {
   /**
    * An array of objects representing the tabs.
    */
-  tabs: Tab[];
+  tabs: (TabLabelProps | TabIconProps)[];
   /**
    * Whether the icon should appear above or to the left of the label.
    */
   iconPosition?: "top" | "left";
+  /**
+   * Initially active tab, only when it is uncontrolled.
+   */
+  defaultActiveTabIndex?: number;
   /**
    * The index of the active tab. If undefined, the component will be
    * uncontrolled and the active tab will be managed internally by the component.
@@ -59,7 +73,7 @@ type Props = {
    */
   onTabHover?: (tabIndex: number) => void;
   /**
-   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). 
+   * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
   margin?: Space | Margin;

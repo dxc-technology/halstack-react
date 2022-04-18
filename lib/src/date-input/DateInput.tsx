@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider, Paper } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
@@ -11,34 +11,37 @@ import useTheme from "../useTheme";
 import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
 
+const getValueForPicker = (value, format) => moment(value, format.toUpperCase(), true).format();
+
 const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
     {
       label,
-      name = "",
+      name,
+      defaultValue = "",
       value,
       format = "dd-MM-yyyy",
       helperText,
       placeholder = false,
-      clearable = false,
-      disabled = false,
-      optional = false,
+      clearable,
+      disabled,
+      optional,
       onChange,
       onBlur,
       error,
-      autocomplete = "off",
+      autocomplete,
       margin,
-      size = "medium",
-      tabIndex = 0,
+      size,
+      tabIndex,
     },
     ref
   ) => {
-    const [innerValue, setInnerValue] = useState("");
-
+    const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const colorsTheme = useTheme();
+    const refDate = ref || useRef(null);
 
     const handleCalendarOnKeyDown = (event) => {
       switch (event.keyCode) {
@@ -48,50 +51,51 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
           break;
       }
     };
-
     const handleCalendarOnClick = (newDate) => {
       const newValue = moment(newDate).format(format.toUpperCase());
       value ?? setInnerValue(newValue);
-
-      onChange?.({
-        value: newValue,
-        error: null,
-        date: newDate?.toJSON() ? newDate : null,
-      });
+      newDate?.toJSON()
+        ? onChange?.({
+            value: newValue,
+            date: newDate,
+          })
+        : onChange?.({
+            value: newValue,
+          });
     };
-
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
       const momentDate = moment(newValue, format.toUpperCase(), true);
-      const invalidDateMessage = newValue !== "" && !momentDate.isValid() ? "Invalid date." : null;
-
-      onChange?.({
-        value: newValue,
-        error: inputError || invalidDateMessage,
-        date: momentDate.isValid() ? momentDate.toDate() : null,
-      });
+      const invalidDateMessage = newValue !== "" && !momentDate.isValid() && "Invalid date.";
+      const callbackParams =
+        inputError || invalidDateMessage
+          ? { value: newValue, error: inputError || invalidDateMessage }
+          : { value: newValue };
+      momentDate.isValid()
+        ? onChange?.({
+            ...callbackParams,
+            date: momentDate.toDate(),
+          })
+        : onChange?.(callbackParams);
     };
-
     const handleIOnBlur = ({ value, error: inputError }) => {
       const momentDate = moment(value, format.toUpperCase(), true);
-      const invalidDateMessage = value !== "" && !momentDate.isValid() ? "Invalid date." : null;
-
-      onBlur?.({
-        value,
-        error: inputError || invalidDateMessage,
-        date: momentDate.isValid() ? momentDate.toDate() : null,
-      });
+      const invalidDateMessage = value !== "" && !momentDate.isValid() && "Invalid date.";
+      const callbackParams =
+        inputError || invalidDateMessage ? { value, error: inputError || invalidDateMessage } : { value };
+      momentDate.isValid()
+        ? onBlur?.({
+            ...callbackParams,
+            date: momentDate.toDate(),
+          })
+        : onBlur?.(callbackParams);
     };
 
-    const getValueForPicker = () => moment(value ?? innerValue, format.toUpperCase(), true).format();
-
-    const openCalendar = (event) => {
-      if (event) {
-        setIsOpen(!isOpen);
-        setAnchorEl(event.currentTarget);
-      }
+    const openCalendar = () => {
+      const dateBtn = refDate.current.getElementsByTagName("button")[0];
+      setIsOpen(!isOpen);
+      setAnchorEl(dateBtn);
     };
-
     const closeCalendar = () => {
       setIsOpen(false);
     };
@@ -254,6 +258,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
               <DxcTextInput
                 label={label}
                 name={name}
+                defaultValue={defaultValue}
                 value={value ?? innerValue}
                 helperText={helperText}
                 placeholder={placeholder ? format.toUpperCase() : null}
@@ -268,7 +273,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                 margin={margin}
                 size={size}
                 tabIndex={tabIndex}
-                ref={ref}
+                ref={refDate}
               />
               <Popover
                 onKeyDown={handleCalendarOnKeyDown}
@@ -292,7 +297,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
                   <Paper role="dialog" aria-modal="true">
                     <DatePicker
                       variant="static"
-                      value={getValueForPicker()}
+                      value={getValueForPicker(value ?? innerValue, format)}
                       onChange={(date) => handleCalendarOnClick(date)}
                       format={format}
                       disabled={disabled}

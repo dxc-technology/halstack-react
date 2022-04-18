@@ -3,13 +3,13 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState();
   const onChange = ({ value, error, date }) => {
     setValue(value);
   };
   const onBlur = ({ value, error, date }) => {
     setValue(value);
-    error ? setErrorMessage("The typed date is invalid.") : setErrorMessage(null);
+    setError(error);
   };
 
   return (
@@ -19,7 +19,8 @@ const code = `() => {
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      error={errorMessage}
+      error={error}
+      error={error == undefined ? "" : "The typed date is invalid."}
       margin="medium"
       optional
     />

@@ -1,4 +1,4 @@
-/* eslint-disable react/require-default-props */
+// @ts-nocheck
 import React, { useState, useEffect, useRef } from "react";
 import { DxcHeader, DxcFooter, DxcSidenav } from "../main";
 import styled, { ThemeProvider } from "styled-components";
@@ -27,7 +27,7 @@ const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => {
 };
 
 const SideNav = (props): JSX.Element => {
-  const { displayArrow=true, mode="overlay", ...childProps }: AppLayoutSidenavPropsType = props;
+  const { displayArrow = true, mode = "overlay", ...childProps }: AppLayoutSidenavPropsType = props;
   return <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>;
 };
 
@@ -80,6 +80,7 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
   const colorsTheme = useTheme();
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
+  const [previousWidth, setPreviousWidth] = useState(null);
 
   const childrenArray = React.Children.toArray(children);
 
@@ -102,13 +103,14 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
 
   const handleResize = (width) => {
     if (width) {
+      setPreviousWidth(width);
       setIsResponsive(width <= responsiveSizes.tablet);
       setIsSideNavVisible(true);
     }
   };
 
   const handleEventListener = () => {
-    handleResize(ref.current.offsetWidth);
+    if (previousWidth !== ref.current.offsetWidth) handleResize(ref.current.offsetWidth);
   };
 
   useEffect(() => {
@@ -119,7 +121,7 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
     return () => {
       window.removeEventListener("resize", handleEventListener);
     };
-  }, []);
+  }, [ref.current]);
 
   const handleSidenav = () => {
     setIsSideNavVisible(!isSideNavVisible);
@@ -258,6 +260,9 @@ const ArrowTrigger = styled.div`
   cursor: pointer;
   & > svg {
     fill: ${(props) => props.theme.arrowColor};
+  }
+  :focus {
+    outline: #0095ff auto 1px;
   }
 `;
 
