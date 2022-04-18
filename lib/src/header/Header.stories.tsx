@@ -26,15 +26,6 @@ export const Chromatic = () => (
       <Title title="Underlined with text" theme="light" level={4} />
       <DxcHeader underlined content={<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis.</p>} />
     </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Responsive" theme="light" level={4} />
-      <div style={{ width: "400px" }}>
-        <DxcHeader
-          responsiveContent={(closeHandler) => <DxcHeader.Dropdown options={options} label="Default Dropdown" />}
-          underlined
-        />
-      </div>
-    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />
@@ -107,71 +98,60 @@ export const Chromatic = () => (
 const RespHeader = () => (
   <ExampleContainer>
     <Title title="Responsive" theme="light" level={4} />
-    <div style={{ maxWidth: "400px" }}>
-      <DxcHeader
-        responsiveContent={(closeHandler) => <DxcHeader.Dropdown options={options} label="Default Dropdown" />}
-        underlined
-      />
-    </div>
+    <DxcHeader
+      responsiveContent={(closeHandler) => <DxcHeader.Dropdown options={options} label="Default Dropdown" />}
+      underlined
+    />
   </ExampleContainer>
 );
 
 const RespHeaderFocus = () => (
   <ExampleContainer pseudoState="pseudo-focus">
     <Title title="Responsive" theme="light" level={4} />
-    <div style={{ maxWidth: "400px" }}>
-      <DxcHeader
-        responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>}
-        underlined
-      />
-    </div>
+    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
   </ExampleContainer>
 );
 
 const RespHeaderHover = () => (
   <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Responsive" theme="light" level={4} />
-    <div style={{ maxWidth: "400px" }}>
-      <DxcHeader
-        responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>}
-        underlined
-      />
-    </div>
+    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
   </ExampleContainer>
 );
 
 export const ResponsiveHeader = RespHeader.bind({});
+ResponsiveHeader.parameters = {
+  viewport: {
+    defaultViewport: "iphonex",
+  },
+};
 ResponsiveHeader.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
 };
-ResponsiveHeader.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
-  },
-};
 
 export const ResponsiveHeaderFocus = RespHeaderFocus.bind({});
+ResponsiveHeaderFocus.parameters = {
+  viewport: {
+    defaultViewport: "iphonex",
+  },
+};
 ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
 };
-ResponsiveHeaderFocus.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
-  },
-};
+
 
 export const ResponsiveHeaderHover = RespHeaderHover.bind({});
+ResponsiveHeaderHover.parameters = {
+  viewport: {
+    defaultViewport: "iphonex",
+  },
+};
 ResponsiveHeaderHover.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
-};
-ResponsiveHeaderHover.parameters = {
-  viewport: {
-    defaultViewport: 'iphonex',
-  },
 };
