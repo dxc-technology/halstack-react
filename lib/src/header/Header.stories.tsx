@@ -124,6 +124,7 @@ ResponsiveHeader.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
+  chromatic: { viewports: [720] },
 };
 ResponsiveHeader.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -136,6 +137,7 @@ ResponsiveHeaderFocus.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
+  chromatic: { viewports: [720] },
 };
 ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -143,12 +145,12 @@ ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getByText("Menu"));
 };
 
-
 export const ResponsiveHeaderHover = RespHeaderHover.bind({});
 ResponsiveHeaderHover.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
+  chromatic: { viewports: [720] },
 };
 ResponsiveHeaderHover.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
