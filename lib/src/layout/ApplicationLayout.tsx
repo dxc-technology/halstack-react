@@ -108,7 +108,6 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
   useEffect(() => {
     if (ref.current) {
       window.addEventListener("resize", handleResize);
-      handleResize();
     }
     return () => {
       window.removeEventListener("resize", handleResize);
