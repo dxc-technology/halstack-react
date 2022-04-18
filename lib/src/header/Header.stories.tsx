@@ -146,6 +146,11 @@ ResponsiveHeader.play = async ({ canvasElement }) => {
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
 };
+ResponsiveHeader.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+};
 
 export const ResponsiveHeaderFocus = RespHeaderFocus.bind({});
 ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
@@ -153,10 +158,20 @@ ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
 };
+ResponsiveHeaderFocus.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
+};
 
 export const ResponsiveHeaderHover = RespHeaderHover.bind({});
 ResponsiveHeaderHover.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
+};
+ResponsiveHeaderHover.parameters = {
+  viewport: {
+    defaultViewport: 'iphonex',
+  },
 };
