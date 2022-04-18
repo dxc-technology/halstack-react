@@ -60,19 +60,11 @@ const DxcHeader = ({
 }: HeaderPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   const ref = useRef(null);
-  const [refSize, setRefSize] = useState();
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  const handleResize = (refWidth) => {
-    if (refWidth) {
-      setRefSize(refWidth);
-      if (refWidth <= responsiveSizes.tablet && !isResponsive) {
-        setIsResponsive(true);
-      } else {
-        setIsResponsive(false);
-      }
-    }
+  const handleResize = () => {
+    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches && !isResponsive);
   };
   const ContentContainerComponent = () => {
     const backgroundType = useContext(BackgroundColorContext);
@@ -101,18 +93,14 @@ const DxcHeader = ({
     return getLogoElement(colorsTheme.header.logoResponsive);
   }, [colorsTheme.header.logoResponsive]);
 
-  const handleEventListener = () => {
-    handleResize(ref.current.offsetWidth);
-  };
-
   useEffect(() => {
     if (ref.current) {
-      window.addEventListener("resize", handleEventListener);
-      handleResize(ref.current.offsetWidth);
+      window.addEventListener("resize", handleResize);
+      handleResize();
     }
 
     return () => {
-      window.removeEventListener("resize", handleEventListener);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -136,7 +124,7 @@ const DxcHeader = ({
             </ChildContainer>
             {
               <div>
-                <ResponsiveMenu hasVisibility={isMenuVisible} refSize={refSize}>
+                <ResponsiveMenu hasVisibility={isMenuVisible}>
                   <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
                   <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
                     <ContentContainerComponent />
@@ -145,7 +133,7 @@ const DxcHeader = ({
                     {closeIcon}
                   </CloseContainer>
                 </ResponsiveMenu>
-                <Overlay onClick={handleMenu} hasVisibility={isMenuVisible} refSize={refSize}></Overlay>
+                <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
               </div>
             }
           </MainContainer>
@@ -288,10 +276,17 @@ const ResponsiveMenu = styled.div`
   top: 0;
   right: 0;
   z-index: ${(props) => props.theme.menuZindex};
-  width: ${(props) =>
-    props.refSize <= responsiveSizes.laptop && props.refSize > responsiveSizes.mobileLarge
-      ? `${(props) => props.theme.menuTabletWidth}`
-      : `${(props) => props.theme.menuMobileWidth}`};
+
+  @media (max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem) {
+    //tablet
+    width: ${(props) => props.theme.menuTabletWidth};
+  }
+
+  @media not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem)) {
+    //mobile phones
+    width: ${(props) => props.theme.menuMobileWidth};
+  }
+
   height: 100vh;
   padding: 20px;
   transform: ${(props) => (props.hasVisibility ? "translateX(0)" : "translateX(100vw)")};
@@ -342,7 +337,12 @@ const Overlay = styled.div`
   opacity: ${(props) => props.theme.overlayOpacity} !important;
   visibility: ${(props) => (props.hasVisibility ? "visible" : "hidden")};
   opacity: ${(props) => (props.hasVisibility ? "1" : "0")};
-  display: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "none" : "")};
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    //mobile phones
+    display: none;
+  }
+
   transition: opacity 0.2s 0.2s ease-in-out;
   z-index: ${(props) => props.theme.overlayZindex};
 `;

@@ -1,12 +1,12 @@
 // @ts-nocheck
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getMargin } from "../common/utils.js";
-import { spaces, responsiveSizes } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import AccordionPropsType from "./types";
@@ -25,24 +25,7 @@ const DxcAccordion = ({
   tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
   const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
-  const [isResponsive, setIsResponsive] = useState(false);
   const colorsTheme = useTheme();
-
-  const handleResize = (width) => {
-    width && width <= responsiveSizes.tablet ? setIsResponsive(true) : setIsResponsive(false);
-  };
-
-  const handleEventListener = () => {
-    handleResize(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleEventListener);
-    handleResize(window.innerWidth);
-    return () => {
-      window.removeEventListener("resize", handleEventListener);
-    };
-  }, []);
 
   const handlerAccordion = () => {
     if (isExpanded == null) {
@@ -55,7 +38,7 @@ const DxcAccordion = ({
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
-      <DXCAccordion padding={padding} margin={margin} disabled={disabled} icon={icon} isResponsive={isResponsive}>
+      <DXCAccordion padding={padding} margin={margin} disabled={disabled} icon={icon}>
         <ExpansionPanel
           disabled={disabled}
           onChange={handlerAccordion}
