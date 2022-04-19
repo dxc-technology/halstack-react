@@ -14,7 +14,6 @@ function AccordionGroup() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Accordion Group" status="ready"></ComponentHeader>
-
       <Section>
         <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
         <AccordionGroupPropsTable />
@@ -48,12 +47,12 @@ function AccordionGroup() {
       <Section>
         <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
         <Example
-          title="Uncontrolled Accordion Group"
-          example={uncontrolledAccordionGroup}
-        ></Example>
-        <Example
           title="Controlled Accordion Group"
           example={controlledAccordionGroup}
+        ></Example>
+        <Example
+          title="Uncontrolled Accordion Group"
+          example={uncontrolledAccordionGroup}
         ></Example>
         <Example title="Disabled Accordion Group" example={disabled}></Example>
       </Section>
