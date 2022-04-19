@@ -80,9 +80,12 @@ type CommonProps = {
    */
   searchable?: boolean;
   /**
-   * If it is defined, the component will change its appearance, showing
-   * the error below the select component. If it is not defined, the error
-   * messages will be managed internally, but never displayed on its own.
+   * If it is a defined value and also a truthy string, the component will
+   * change its appearance, showing the error below the select component.
+   * If the defined value is an empty string, it will reserve a space below
+   * the component for a future error, but it would not change its look. In
+   * case of being undefined or null, both the appearance and the space for
+   * the error message would not be modified.
    */
   error?: string;
   /**
@@ -118,16 +121,16 @@ type SingleSelect = CommonProps & {
   /**
    * This function will be called when the user selects an option.
    * An object including the current value and the error (if the value entered is not valid)
-   * will be passed to this function. If there is no error, error will be null.
+   * will be passed to this function. If there is no error, error will not be defined.
    */
-  onChange?: (val: { value: string; error: string }) => void;
+  onChange?: (val: { value: string; error?: string }) => void;
   /**
    * This function will be called when the select loses the focus. An
    * object including the value and the error (if the value
    * selected is not valid) will be passed to this function. If there is no error,
-   * error will be null.
+   * error will not be defined.
    */
-  onBlur?: (val: { value: string; error: string }) => void;
+  onBlur?: (val: { value: string; error?: string }) => void;
 };
 type MultipleSelect = CommonProps & {
   /**
@@ -150,14 +153,14 @@ type MultipleSelect = CommonProps & {
    * An object including the current selected values and the error (if the value entered is not valid)
    * will be passed to this function. If there is no error, error will be null.
    */
-  onChange?: (val: { value: string[]; error: string }) => void;
+  onChange?: (val: { value: string[]; error?: string }) => void;
   /**
    * This function will be called when the select loses the focus. An
    * object including the selected values and the error (if the value
    * selected is not valid) will be passed to this function. If there is no error,
    * error will be null.
    */
-  onBlur?: (val: { value: string[]; error: string }) => void;
+  onBlur?: (val: { value: string[]; error?: string }) => void;
 };
 
 type Props = SingleSelect | MultipleSelect;

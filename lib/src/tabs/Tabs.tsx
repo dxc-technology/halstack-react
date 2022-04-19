@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from "react";
+import React, { useState } from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import styled, { ThemeProvider } from "styled-components";
@@ -10,6 +10,7 @@ import useTheme from "../useTheme";
 import TabsPropsType from "./types";
 
 const DxcTabs = ({
+  defaultActiveTabIndex,
   activeTabIndex,
   tabs,
   onTabClick,
@@ -18,45 +19,41 @@ const DxcTabs = ({
   iconPosition = "top",
   tabIndex = 0,
 }: TabsPropsType): JSX.Element => {
-  const [innerActiveTabIndex, setInnerActiveTabIndex] = React.useState(0);
+  const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(defaultActiveTabIndex ?? 0);
   const colorsTheme = useTheme();
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
 
   const handleChange = (event, newValue) => {
-    if (activeTabIndex == null) {
-      setInnerActiveTabIndex(newValue);
-    }
+    activeTabIndex ?? setInnerActiveTabIndex(newValue);
     onTabClick?.(newValue);
   };
 
-  const getLabelForTab = (tab) => {
-    return (
-      <ParentLabelSpan>
-        <MainLabelContainer hasBadge={tab.notificationNumber}>
-          <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            {tab.icon && (
-              <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-                {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
-              </TabIconContainer>
-            )}
-            <LabelTextContainer>{tab.label}</LabelTextContainer>
-          </TabLabelContainer>
-        </MainLabelContainer>
-        {tab.notificationNumber && tab.notificationNumber !== false && (
-          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
-          </BadgeContainer>
-        )}
-      </ParentLabelSpan>
-    );
-  };
+  const getLabelForTab = (tab) => (
+    <ParentLabelSpan>
+      <MainLabelContainer hasBadge={tab.notificationNumber}>
+        <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+          {tab.icon && (
+            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+              {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
+            </TabIconContainer>
+          )}
+          <LabelTextContainer>{tab.label}</LabelTextContainer>
+        </TabLabelContainer>
+      </MainLabelContainer>
+      {tab.notificationNumber && tab.notificationNumber !== false && (
+        <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+          <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
+        </BadgeContainer>
+      )}
+    </ParentLabelSpan>
+  );
 
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
       <DxCTabs margin={margin} hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
         <Underline />
         <Tabs
-          value={activeTabIndex != null ? activeTabIndex : innerActiveTabIndex}
+          value={activeTabIndex ?? innerActiveTabIndex}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="auto"
@@ -84,12 +81,15 @@ const DxcTabs = ({
 const ParentLabelSpan = styled.div`
   position: relative;
 `;
+
 const TabLabelContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
   align-items: center;
 `;
+
 const LabelTextContainer = styled.div``;
+
 const BadgeContainer = styled.div`
   position: absolute;
   right: 0;
@@ -97,6 +97,7 @@ const BadgeContainer = styled.div`
   width: 23px;
   height: 17px;
 `;
+
 const MainLabelContainer = styled.div`
   display: flex;
   flex-direction: row;
