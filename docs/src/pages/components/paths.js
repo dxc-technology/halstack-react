@@ -35,6 +35,7 @@ import FileInput from "./cdk-components/file-input/FileInput";
 import Select from "./cdk-components/select/Select";
 import RadioGroup from "./cdk-components/radio-group/RadioGroup";
 import Stack from "./cdk-components/stack/Stack";
+import Inset from "./cdk-components/inset/Inset";
 import Row from "./cdk-components/row/Row";
 import Bleed from "./cdk-components/bleed/Bleed";
 import QuickNav from "./cdk-components/quick-nav/QuickNav";
@@ -164,6 +165,13 @@ export default [
     component: Heading,
     type: types.UTILS,
     status: "ready",
+  },
+  {
+    path: "inset",
+    name: "Inset",
+    component: Inset,
+    type: types.LAYOUT,
+    status: "experimental",
   },
   {
     path: "link",

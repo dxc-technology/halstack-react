@@ -47,6 +47,11 @@ const dropdownPropsTable = () => {
         </td>
       </tr>
       <tr>
+        <td>defaultActiveTabIndex: number</td>
+        <td></td>
+        <td>Initially active tab, only when it is uncontrolled.</td>
+      </tr>
+      <tr>
         <td>activeTabIndex: number</td>
         <td></td>
         <td>
