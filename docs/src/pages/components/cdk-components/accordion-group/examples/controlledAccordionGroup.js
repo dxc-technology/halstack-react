@@ -4,8 +4,8 @@ import { useState } from "react";
 const code = `() => {
   const [indexAccordion, setIndexAccordion] = useState(0);
 
-  const onActiveChange = (i) => {
-    setIndexAccordion((prevValue) => prevValue === i ? null : i);
+  const onActiveChange = (index) => {
+    setIndexAccordion((currentIndex) => currentIndex === index ? -1 : index);
   };
 
   return (
