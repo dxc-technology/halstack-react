@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
 import SelectPropsType, { RefType } from "./types";
 import selectIcons from "./Icons";
-import Listbox from "./listbox/Listbox";
+import Listbox from "./Listbox";
 
 const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
 

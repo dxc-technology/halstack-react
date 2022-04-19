@@ -1,9 +1,9 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../../useTheme";
-import { ListboxProps, ListboxRefType } from "../types";
-import Option from "../Option";
-import selectIcons from "../Icons";
+import useTheme from "../useTheme";
+import { ListboxProps, ListboxRefType } from "./types";
+import Option from "./Option";
+import selectIcons from "./Icons";
 
 const groupsHaveOptions = (options) =>
   options?.[0].options ? options.some((groupOption) => groupOption.options?.length > 0) : true;
