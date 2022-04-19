@@ -174,13 +174,34 @@ export type OptionProps = {
   onClick: (option: Option) => void;
   multiple: boolean;
   visualFocused: boolean;
-  isGroupedOption: boolean;
+  isGroupedOption?: boolean;
   isLastOption: boolean;
   isSelected: boolean;
 };
 
 /**
- * Reference to the component.
+ * Listbox from the select component.
+ */
+export type ListboxProps = {
+  id: string;
+  currentValue: string | string[];
+  options: Option[] | OptionGroup[];
+  visualFocusIndex: number;
+  lastOptionIndex: number;
+  multiple: boolean;
+  optional: boolean;
+  optionalItem: Option;
+  searchable: boolean;
+  handleOptionOnClick: (option: Option) => void;
+};
+
+/**
+ * Reference to the listbox component.
+ */
+export type ListboxRefType = HTMLUListElement;
+
+/**
+ * Reference to the select component.
  */
 export type RefType = HTMLDivElement;
 

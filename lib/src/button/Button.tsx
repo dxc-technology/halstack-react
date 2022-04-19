@@ -196,10 +196,7 @@ const DxCButton = styled.div`
             backgroundType === "dark"
               ? props.theme.primaryDisabledFontColorOnDark
               : props.theme.primaryDisabledFontColor
-          }!important; 
-        }
-        .MuiButton-label {
-          z-index: 5;
+          } !important; 
         }
       `;
       } else if (mode === "secondary") {
@@ -261,9 +258,6 @@ const DxCButton = styled.div`
               ? props.theme.secondaryDisabledBorderColorOnDark
               : props.theme.secondaryDisabledBorderColor
           };
-          }
-          .MuiButton-label {
-            z-index: 5;
           }
         `;
       } else if (mode === "text") {
