@@ -444,7 +444,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 event.stopPropagation();
               }}
               onWheel={(event) => {
-                event.target.blur()
+                event.target.blur();
               }}
               disabled={disabled}
               ref={inputRef}
