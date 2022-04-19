@@ -44,6 +44,10 @@ export type AccordionPropsType = {
 
 type Props = {
   /**
+   * Initially active accordion, only when it is uncontrolled.
+   */
+  defaultIndexActive?: number;
+  /**
    * The index of the active accordion. If undefined, the component will be uncontrolled and the active accordion will be managed internally by the component.
    * If null, the component will be controlled and all accordions will be closed.
    */

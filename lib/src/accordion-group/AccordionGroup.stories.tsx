@@ -36,7 +36,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Expanded" theme="light" level={4} />
-      <DxcAccordionGroup indexActive={1}>
+      <DxcAccordionGroup defaultIndexActive={1}>
         <DxcAccordionGroup.Accordion label="Accordion1" padding="medium">
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcAccordion from "../accordion/Accordion";
 import { getMargin } from "../common/utils.js";
@@ -8,7 +8,7 @@ import useTheme from "../useTheme";
 import AccordionGroupPropsType, { AccordionPropsType } from "./types";
 
 type AccordionGroupAccordionContext = {
-  innerIsExpanded: number;
+  activeIndex: number;
   handlerActiveChange: (index: number) => void;
   disabled: boolean;
   index: number;
@@ -16,11 +16,11 @@ type AccordionGroupAccordionContext = {
 const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContext | null>(null);
 
 const AccordionGroupAccordion = ({ ...childProps }: AccordionPropsType): JSX.Element => {
-  const { innerIsExpanded, handlerActiveChange, disabled, index } = useContext(AccordionGroupAccordionContext);
+  const { activeIndex, handlerActiveChange, disabled, index } = useContext(AccordionGroupAccordionContext);
 
   return (
     <DxcAccordion
-      isExpanded={innerIsExpanded === index}
+      isExpanded={activeIndex === index}
       onChange={() => {
         handlerActiveChange(index);
       }}
@@ -33,6 +33,7 @@ const AccordionGroupAccordion = ({ ...childProps }: AccordionPropsType): JSX.Ele
 };
 
 const DxcAccordionGroup = ({
+  defaultIndexActive,
   indexActive,
   disabled = false,
   onActiveChange,
@@ -40,23 +41,18 @@ const DxcAccordionGroup = ({
   children,
 }: AccordionGroupPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-
-  const [innerIsExpanded, setInnerIsExpanded] = useState(0);
+  const [innerIndexActive, setInnerIndexActive] = useState(defaultIndexActive ?? -1);
   const handlerActiveChange = useCallback(
     (index) => {
-      indexActive === undefined
-        ? setInnerIsExpanded((prev) => (index === prev ? -1 : index))
-        : setInnerIsExpanded(indexActive);
-
+      indexActive ?? setInnerIndexActive((prev) => (index === prev ? -1 : index));
       !disabled && onActiveChange?.(index);
     },
     [disabled, indexActive, onActiveChange]
   );
-  const value = useMemo(() => ({ innerIsExpanded, handlerActiveChange, disabled }), [innerIsExpanded, disabled]);
-
-  useEffect(() => {
-    setInnerIsExpanded(indexActive);
-  }, [indexActive]);
+  const contextValue = useMemo(
+    () => ({ activeIndex: indexActive ?? innerIndexActive, handlerActiveChange, disabled }),
+    [indexActive, innerIndexActive, handlerActiveChange, disabled]
+  );
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
@@ -64,7 +60,7 @@ const DxcAccordionGroup = ({
         {(Array.isArray(children) ? children : [children])
           .filter((child) => child.type === AccordionGroupAccordion)
           .map((accordion, index) => (
-            <AccordionGroupAccordionContext.Provider value={{ index, ...value }}>
+            <AccordionGroupAccordionContext.Provider value={{ index, ...contextValue }}>
               {accordion}
             </AccordionGroupAccordionContext.Provider>
           ))}
