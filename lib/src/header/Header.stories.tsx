@@ -95,64 +95,67 @@ export const Chromatic = () => (
   </>
 );
 
-const RespHeader = () => (
+export const ResponsiveHeader = () => (
   <ExampleContainer>
     <Title title="Responsive" theme="light" level={4} />
     <DxcHeader
+      content={<DxcHeader.Dropdown options={options} label="Default Dropdown" />}
       responsiveContent={(closeHandler) => <DxcHeader.Dropdown options={options} label="Default Dropdown" />}
       underlined
     />
   </ExampleContainer>
 );
 
-const RespHeaderFocus = () => (
+export const ResponsiveHeaderFocus = () => (
   <ExampleContainer pseudoState="pseudo-focus">
-    <Title title="Responsive" theme="light" level={4} />
+    <Title title="Responsive focus" theme="light" level={4} />
     <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
   </ExampleContainer>
 );
 
-const RespHeaderHover = () => (
+export const ResponsiveHeaderHover = () => (
   <ExampleContainer pseudoState="pseudo-hover">
-    <Title title="Responsive" theme="light" level={4} />
+    <Title title="Responsive hover" theme="light" level={4} />
     <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
   </ExampleContainer>
 );
 
-export const ResponsiveHeader = RespHeader.bind({});
+const RespHeaderMenu = () => (
+  <ExampleContainer pseudoState="pseudo-hover">
+    <Title title="Responsive menu" theme="light" level={4} />
+    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+  </ExampleContainer>
+);
+
 ResponsiveHeader.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
   chromatic: { viewports: [720] },
 };
-ResponsiveHeader.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await waitFor(() => canvas.findByText("Menu"));
-  await userEvent.click(canvas.getByText("Menu"));
-};
 
-export const ResponsiveHeaderFocus = RespHeaderFocus.bind({});
 ResponsiveHeaderFocus.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
   chromatic: { viewports: [720] },
 };
-ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await waitFor(() => canvas.findByText("Menu"));
-  await userEvent.click(canvas.getByText("Menu"));
-};
 
-export const ResponsiveHeaderHover = RespHeaderHover.bind({});
 ResponsiveHeaderHover.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
   chromatic: { viewports: [720] },
 };
-ResponsiveHeaderHover.play = async ({ canvasElement }) => {
+
+export const ResponsiveHeaderMenu = RespHeaderMenu.bind({});
+ResponsiveHeaderMenu.parameters = {
+  viewport: {
+    defaultViewport: "iphonex",
+  },
+  chromatic: { viewports: [720] },
+};
+ResponsiveHeaderMenu.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
   await userEvent.click(canvas.getByText("Menu"));
