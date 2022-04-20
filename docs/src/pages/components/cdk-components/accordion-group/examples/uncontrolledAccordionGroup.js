@@ -3,7 +3,7 @@ import { DxcAccordionGroup } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <div>
-      <DxcAccordionGroup margin="medium">
+      <DxcAccordionGroup margin="medium" defaultIndexActive={0}>
         <DxcAccordionGroup.Accordion label="Accordion1" padding="medium">
           <div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -24,7 +24,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcAccordionGroup
+  DxcAccordionGroup,
 };
 
 export default { code, scope };
