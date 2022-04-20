@@ -84,7 +84,7 @@ const NumberInputPropsTable = () => {
           user is lower than min, the onBlur and onChange functions will be
           called with the current value and an internal error informing that the
           current value is not correct. If a valid state is reached, the error
-          parameter will be null in both events.
+          parameter will not be defined in both events.
         </td>
       </tr>
       <tr>
@@ -95,7 +95,7 @@ const NumberInputPropsTable = () => {
           user surpasses max, the onBlur and onChange functions will be called
           with the current value and an internal error informing that the
           current value is not correct. If a valid state is reached, the error
-          parameter will be null in both events.
+          parameter will not be defined in both events.
         </td>
       </tr>
       <tr>

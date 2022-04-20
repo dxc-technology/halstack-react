@@ -164,7 +164,7 @@ const textInputPropsTable = () => {
           pattern, the onBlur and onChange functions will be called with the
           current value and an internal error informing that this value does not
           match the pattern. If the pattern is met, the error parameter of both
-          events will be null.
+          events will not be defined.
         </td>
       </tr>
       <tr>
@@ -177,7 +177,7 @@ const textInputPropsTable = () => {
           the onBlur and onChange functions will be called with the current
           value and an internal error informing that the value length does not
           comply the specified range. If a valid length is reached, the error
-          parameter of both events will be null.
+          parameter of both events will not be defined.
         </td>
       </tr>
       <tr>
@@ -190,7 +190,7 @@ const textInputPropsTable = () => {
           the onBlur and onChange functions will be called with the current
           value and an internal error informing that the value length does not
           comply the specified range. If a valid length is reached, the error
-          parameter of both events will be null.
+          parameter of both events will not be defined.
         </td>
       </tr>
       <tr>

@@ -56,7 +56,7 @@ type Props = {
    * the pattern, the onBlur and onChange functions will be called with the
    * current value and an internal error informing that this value does not
    * match the pattern. If the pattern is met, the error parameter of both
-   * events will be null.
+   * events will not be defined.
    */
   pattern?: string;
   /**
@@ -66,7 +66,7 @@ type Props = {
    * comply the minimum length, the onBlur and onChange functions will be called
    * with the current value and an internal error informing that the value
    * length does not comply the specified range. If a valid length is
-   * reached, the error parameter of both events will be null.
+   * reached, the error parameter of both events will not be defined.
    */
   minLength?: number;
   /**
@@ -76,7 +76,7 @@ type Props = {
    * comply the maximum length, the onBlur and onChange functions will be called
    * with the current value and an internal error informing that the value
    * length does not comply the specified range. If a valid length is
-   * reached, the error parameter of both events will be null.
+   * reached, the error parameter of both events will not be defined.
    */
   maxLength?: number;
   /**
