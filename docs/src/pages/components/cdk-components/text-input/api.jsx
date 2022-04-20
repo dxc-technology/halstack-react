@@ -107,7 +107,7 @@ const textInputPropsTable = () => {
           the error (if the value entered is not valid) will be passed to this
           function. An example of this object is: {"{ "}
           <code>value: value, error: error</code>
-          {" }"}. If there is no error, error will be null.
+          {" }"}. If there is no error, error will not be defined.
         </td>
       </tr>
       <tr>
@@ -119,16 +119,19 @@ const textInputPropsTable = () => {
           entered is not valid) will be passed to this function. An example of
           this object is: {"{ "}
           <code>value: value, error: error</code>
-          {" }"}. If there is no error, error will be null.
+          {" }"}. If there is no error, error will not be defined.
         </td>
       </tr>
       <tr>
         <td>error: string</td>
         <td></td>
         <td>
-          If it is defined, the component will change its appearance, showing
-          the error below the input component. If it is not defined, the error
-          messages will be managed internally, but never displayed on its own.
+          If it is a defined value and also a truthy string, the component will
+          change its appearance, showing the error below the input component. If
+          the defined value is an empty string, it will reserve a space below
+          the component for a future error, but it would not change its look. In
+          case of being undefined or null, both the appearance and the space for
+          the error message would not be modified.
         </td>
       </tr>
       <tr>
@@ -161,7 +164,7 @@ const textInputPropsTable = () => {
           pattern, the onBlur and onChange functions will be called with the
           current value and an internal error informing that this value does not
           match the pattern. If the pattern is met, the error parameter of both
-          events will be null.
+          events will not be defined.
         </td>
       </tr>
       <tr>
@@ -174,7 +177,7 @@ const textInputPropsTable = () => {
           the onBlur and onChange functions will be called with the current
           value and an internal error informing that the value length does not
           comply the specified range. If a valid length is reached, the error
-          parameter of both events will be null.
+          parameter of both events will not be defined.
         </td>
       </tr>
       <tr>
@@ -187,7 +190,7 @@ const textInputPropsTable = () => {
           the onBlur and onChange functions will be called with the current
           value and an internal error informing that the value length does not
           comply the specified range. If a valid length is reached, the error
-          parameter of both events will be null.
+          parameter of both events will not be defined.
         </td>
       </tr>
       <tr>
