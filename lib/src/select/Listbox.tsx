@@ -25,7 +25,56 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
     ref
   ): JSX.Element => {
     const colorsTheme = useTheme();
+
     let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
+    const mapOptionFunc = (option, mapIndex) => {
+      if (option.options) {
+        const groupId = `group-${mapIndex}`;
+        return (
+          option.options.length > 0 && (
+            <li key={`group-${mapIndex}`}>
+              <GroupList role="group" aria-labelledby={groupId}>
+                <GroupLabel role="presentation" id={groupId}>
+                  {option.label}
+                </GroupLabel>
+                {option.options.map((singleOption) => {
+                  globalIndex++;
+                  return (
+                    <Option
+                      key={`option-${singleOption.value}`}
+                      id={`option-${globalIndex}`}
+                      option={singleOption}
+                      onClick={handleOptionOnClick}
+                      multiple={multiple}
+                      visualFocused={visualFocusIndex === globalIndex}
+                      isGroupedOption={true}
+                      isLastOption={lastOptionIndex === globalIndex}
+                      isSelected={
+                        multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
+                      }
+                    />
+                  );
+                })}
+              </GroupList>
+            </li>
+          )
+        );
+      } else {
+        globalIndex++;
+        return (
+          <Option
+            key={`option-${option.value}`}
+            id={`option-${globalIndex}`}
+            option={option}
+            onClick={handleOptionOnClick}
+            multiple={multiple}
+            visualFocused={visualFocusIndex === globalIndex}
+            isLastOption={lastOptionIndex === globalIndex}
+            isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
+          />
+        );
+      }
+    };
 
     return (
       <ThemeProvider theme={colorsTheme.select}>
@@ -62,54 +111,7 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
               />
             )
           )}
-          {options.map((option, mapIndex) => {
-            if (option.options) {
-              const groupId = `group-${mapIndex}`;
-              return (
-                option.options.length > 0 && (
-                  <li key={`group-${mapIndex}`}>
-                    <GroupList role="group" aria-labelledby={groupId}>
-                      <GroupLabel role="presentation" id={groupId}>
-                        {option.label}
-                      </GroupLabel>
-                      {option.options.map((singleOption) => {
-                        globalIndex++;
-                        return (
-                          <Option
-                            key={`option-${option.value}`}
-                            id={`option-${globalIndex}`}
-                            option={singleOption}
-                            onClick={handleOptionOnClick}
-                            multiple={multiple}
-                            visualFocused={visualFocusIndex === globalIndex}
-                            isGroupedOption={true}
-                            isLastOption={lastOptionIndex === globalIndex}
-                            isSelected={
-                              multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
-                            }
-                          />
-                        );
-                      })}
-                    </GroupList>
-                  </li>
-                )
-              );
-            } else {
-              globalIndex++;
-              return (
-                <Option
-                  key={`option-${option.value}`}
-                  id={`option-${globalIndex}`}
-                  option={option}
-                  onClick={handleOptionOnClick}
-                  multiple={multiple}
-                  visualFocused={visualFocusIndex === globalIndex}
-                  isLastOption={lastOptionIndex === globalIndex}
-                  isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
-                />
-              );
-            }
-          })}
+          {options.map(mapOptionFunc)}
         </ListboxContainer>
       </ThemeProvider>
     );
