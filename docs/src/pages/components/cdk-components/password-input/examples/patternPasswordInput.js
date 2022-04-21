@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
 
   const onChange = ({ value }) => {
     setValue(value);
@@ -21,7 +21,7 @@ const code = `() => {
       clearable
       onChange={onChange}
       onBlur={onBlur}
-      error={error}
+      error={error == undefined ? "" : error}
       pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
       margin="medium"
     />

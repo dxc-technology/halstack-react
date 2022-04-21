@@ -68,9 +68,12 @@ type Props = {
    */
   onBlur?: (val: { value: string; error?: string }) => void;
   /**
-   * If it is defined, the component will change its appearance, showing
-   * the error below the textarea. If it is not defined, the error
-   * messages will be managed internally, but never displayed on its own.
+   * If it is a defined value and also a truthy string, the component will 
+   * change its appearance, showing the error below the textarea. If the 
+   * defined value is an empty string, it will reserve a space below the
+   * component for a future error, but it would not change its look. In 
+   * case of being undefined or null, both the appearance and the space for 
+   * the error message would not be modified.
    */
   error?: string;
   /**
@@ -80,7 +83,7 @@ type Props = {
    * pattern, the onBlur and onChange functions will be called with the
    * current value and an internal error informing that this value does not
    * match the pattern. If the pattern is met, the error parameter of both
-   * events will be null.
+   * events will not be defined.
    */
   pattern?: string;
   /**
@@ -90,7 +93,7 @@ type Props = {
    * comply the minimum length, the onBlur and onChange functions will be called
    * with the current value and an internal error informing that the value
    * length does not comply the specified range. If a valid length is
-   * reached, the error parameter of both events will be null.
+   * reached, the error parameter of both events will not be defined.
    */
   minLength?: number;
   /**
@@ -100,7 +103,7 @@ type Props = {
    * comply the maximum length, the onBlur and onChange functions will be called
    * with the current value and an internal error informing that the value
    * length does not comply the specified range. If a valid length is
-   * reached, the error parameter of both events will be null.
+   * reached, the error parameter of both events will not be defined.
    */
   maxLength?: number;
   /**
