@@ -106,22 +106,18 @@ export const ResponsiveHeader = () => (
   </ExampleContainer>
 );
 
-export const ResponsiveHeaderFocus = () => (
-  <>
+const RespHeaderFocus = () => (
+  <ExampleContainer pseudoState="pseudo-focus">
     <Title title="Responsive focus" theme="light" level={4} />
-    <ExampleContainer pseudoState="pseudo-focus">
-      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
-    </ExampleContainer>
-  </>
+    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+  </ExampleContainer>
 );
 
 export const ResponsiveHeaderHover = () => (
-  <>
+  <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Responsive hover" theme="light" level={4} />
-    <ExampleContainer pseudoState="pseudo-hover">
-      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
-    </ExampleContainer>
-  </>
+    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+  </ExampleContainer>
 );
 
 const RespHeaderMenu = () => (
@@ -138,18 +134,24 @@ ResponsiveHeader.parameters = {
   chromatic: { viewports: [720] },
 };
 
+export const ResponsiveHeaderFocus = RespHeaderFocus.bind({});
 ResponsiveHeaderFocus.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
   chromatic: { viewports: [720] },
 };
+ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await waitFor(() => canvas.findByText("Menu"));
+  await userEvent.tab();
+};
 
 ResponsiveHeaderHover.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
-  chromatic: { viewports: [720] },
+  chromatic: { viewports: [375] },
 };
 
 export const ResponsiveHeaderMenu = RespHeaderMenu.bind({});
