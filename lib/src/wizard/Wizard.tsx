@@ -129,10 +129,10 @@ const DxcWizard = ({
 };
 
 const StepsContainer = styled.div`
-  display: inline-flex;
+  display: flex;
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: "center";
-  ${(props) => (props.mode === "vertical" ? "height: 500px" : "width: 100%")};
+  ${(props) => (props.mode === "vertical" ? "height: 500px" : "width: auto")};
   font-family: ${(props) => props.theme.fontFamily};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
