@@ -3,20 +3,20 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState();
   const onChange = ({ value, error }) => {
     setValue(value);
-    error ? setErrorMessage("Invalid number.") : setErrorMessage("");
+    setErrorMessage(error);
   };
 
   const [secondValue, setSecondValue] = useState("");
-  const [customErrorOnChange, setCustomErrorOnChange] = useState("");
+  const [customErrorOnChange, setCustomErrorOnChange] = useState();
   const onChangeSecond = ({ value }) => {
     setSecondValue(value);
   };
   const onBlur = ({ value, error }) => {
     setSecondValue(value);
-    error ? setCustomErrorOnChange("The typed number is not valid. Please, check it.") : setCustomErrorOnChange("");
+    setCustomErrorOnChange(error);
   };
 
   return (
@@ -26,7 +26,7 @@ const code = `() => {
         helperText="Using onChange event for handling errors"
         value={value}
         onChange={onChange}
-        error={errorMessage}
+        error={errorMessage == undefined ? "" : "Invalid number."}
         min={5}
         max={20}
         step={5}
@@ -39,7 +39,7 @@ const code = `() => {
         value={secondValue}
         onChange={onChangeSecond}
         onBlur={onBlur}
-        error={customErrorOnChange}
+        error={customErrorOnChange == undefined ? "" : "The typed number is not valid. Please, check it."}
         min={5}
         max={20}
         step={5}

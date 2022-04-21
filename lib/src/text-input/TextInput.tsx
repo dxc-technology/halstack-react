@@ -163,7 +163,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         onChange?.({ value: changedValue, error: getPatternErrorMessage() });
       else if (newValue && isNumberIncorrect(newValue))
         onChange?.({ value: changedValue, error: getNumberErrorMessage(newValue) });
-      else onChange?.({ value: changedValue, error: null });
+      else onChange?.({ value: changedValue });
     };
 
     const handleInputContainerOnClick = () => {
@@ -189,7 +189,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
       else if (event.target.value && isNumberIncorrect(event.target.value))
         onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
-      else onBlur?.({ value: event.target.value, error: null });
+      else onBlur?.({ value: event.target.value });
     };
     const handleIOnKeyDown = (event) => {
       switch (event.keyCode) {

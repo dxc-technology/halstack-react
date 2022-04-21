@@ -80,7 +80,6 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
   const colorsTheme = useTheme();
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
   const [isResponsive, setIsResponsive] = useState(false);
-  const [previousWidth, setPreviousWidth] = useState(null);
 
   const childrenArray = React.Children.toArray(children);
 
@@ -101,25 +100,17 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
     </svg>
   );
 
-  const handleResize = (width) => {
-    if (width) {
-      setPreviousWidth(width);
-      setIsResponsive(width <= responsiveSizes.tablet);
+  const handleResize = () => {
+      setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
       setIsSideNavVisible(true);
-    }
-  };
-
-  const handleEventListener = () => {
-    if (previousWidth !== ref.current.offsetWidth) handleResize(ref.current.offsetWidth);
   };
 
   useEffect(() => {
     if (ref.current) {
-      window.addEventListener("resize", handleEventListener);
-      handleResize(ref.current.offsetWidth);
+      window.addEventListener("resize", handleResize);
     }
     return () => {
-      window.removeEventListener("resize", handleEventListener);
+      window.removeEventListener("resize", handleResize);
     };
   }, [ref.current]);
 
