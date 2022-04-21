@@ -3,20 +3,20 @@ import { useState } from "react";
 
 const code = `() => {
   const [firstValue, setFirstValue] = useState("");
-  const [customLengthError, setCustomLengthError] = useState("");
+  const [customLengthError, setCustomLengthError] = useState();
   const onChangeFirst = ({ value, error }) => {
     setFirstValue(value);
-    error ? setCustomLengthError("The text input value does not have the right length.") : setCustomLengthError(null);
+    setCustomLengthError(error);
   };
 
   const [secondValue, setSecondValue] = useState("");
-  const [customPatternError, setCustomPatternError] = useState("");
+  const [customPatternError, setCustomPatternError] = useState();
   const onChangeSecond = ({ value }) => {
     setSecondValue(value);
   };
   const onBlur = ({ value, error }) => {
     setSecondValue(value);
-    error ? setCustomPatternError("The text input value does not comply the allowed format.") : setCustomPatternError(null);
+    setCustomPatternError(error);
   };
 
   return (
@@ -28,7 +28,7 @@ const code = `() => {
         onChange={onChangeFirst}
         minLength={5}
         maxLength={10}
-        error={customLengthError}
+        error={customLengthError == undefined ? "" : "The text input value does not have the right length."}
         margin="medium"
         clearable
         optional
@@ -40,7 +40,7 @@ const code = `() => {
         onChange={onChangeSecond}
         onBlur={onBlur}
         pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
-        error={customPatternError}
+        error={customPatternError == undefined ? "" : "The text input value does not comply the allowed format."}
         margin="medium"
         clearable
         optional

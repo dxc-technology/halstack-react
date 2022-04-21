@@ -78,20 +78,23 @@ type Props = {
    * This function will be called when the user types within the input
    * element of the component. An object including the current value and
    * the error (if the value entered is not valid) will be passed to this
-   * function. If there is no error, error will be null.
+   * function. If there is no error, error will not be defined.
    */
-  onChange?: (val: { value: string; error: string | null }) => void;
+  onChange?: (val: { value: string; error?: string }) => void;
   /**
    * This function will be called when the input element loses the focus.
    * An object including the input value and the error (if the value
    * entered is not valid) will be passed to this function. If there is no error,
-   * error will be null.
+   * error will not be defined.
    */
-  onBlur?: (val: { value: string; error: string | null }) => void;
+  onBlur?: (val: { value: string; error?: string }) => void;
   /**
-   * If it is defined, the component will change its appearance, showing
-   * the error below the input component. If it is not defined, the error
-   * messages will be managed internally, but never displayed on its own.
+   * If it is a defined value and also a truthy string, the component will
+   * change its appearance, showing the error below the input component. If
+   * the defined value is an empty string, it will reserve a space below
+   * the component for a future error, but it would not change its look. In
+   * case of being undefined or null, both the appearance and the space for
+   * the error message would not be modified.
    */
   error?: string;
   /**
@@ -108,7 +111,7 @@ type Props = {
    * pattern, the onBlur and onChange functions will be called with the
    * current value and an internal error informing that this value does not
    * match the pattern. If the pattern is met, the error parameter of both
-   * events will be null.
+   * events will not be defined.
    */
   pattern?: string;
   /**
@@ -118,7 +121,7 @@ type Props = {
    * comply the minimum length, the onBlur and onChange functions will be called
    * with the current value and an internal error informing that the value
    * length does not comply the specified range. If a valid length is
-   * reached, the error parameter of both events will be null.
+   * reached, the error parameter of both events will not be defined.
    */
   minLength?: number;
   /**
@@ -128,7 +131,7 @@ type Props = {
    * comply the maximum length, the onBlur and onChange functions will be called
    * with the current value and an internal error informing that the value
    * length does not comply the specified range. If a valid length is
-   * reached, the error parameter of both events will be null.
+   * reached, the error parameter of both events will not be defined.
    */
   maxLength?: number;
   /**

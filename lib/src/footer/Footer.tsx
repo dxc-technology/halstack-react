@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
@@ -16,10 +16,6 @@ const DxcFooter = ({
   margin,
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
-  const ref = useRef(null);
-  const [refSize, setRefSize] = useState();
-  const [isResponsiveTablet, setIsResponsiveTablet] = useState(false);
-  const [isResponsivePhone, setIsResponsivePhone] = useState(false);
   const colorsTheme = useTheme();
 
   const footerLogo = useMemo(() => {
@@ -31,35 +27,6 @@ const DxcFooter = ({
     }
     return colorsTheme.footer.logo;
   }, [colorsTheme.footer.logo]);
-
-  const handleResize = (refWidth) => {
-    if (ref.current) {
-      setRefSize(refWidth);
-      if (refWidth <= responsiveSizes.tablet && refWidth > responsiveSizes.mobileLarge) {
-        setIsResponsiveTablet(true);
-        setIsResponsivePhone(false);
-      } else if (refWidth <= responsiveSizes.tablet && refWidth <= responsiveSizes.mobileLarge) {
-        setIsResponsivePhone(true);
-        setIsResponsiveTablet(false);
-      } else {
-        setIsResponsiveTablet(false);
-        setIsResponsivePhone(false);
-      }
-    }
-  };
-
-  const handleEventListener = () => {
-    handleResize(ref.current.offsetWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleEventListener);
-    handleResize(ref.current.offsetWidth);
-
-    return () => {
-      window.removeEventListener("resize", handleEventListener);
-    };
-  }, []);
 
   const socialLink = socialLinks?.map((link, index) => (
     <SocialAnchor
@@ -85,18 +52,18 @@ const DxcFooter = ({
 
   return (
     <ThemeProvider theme={colorsTheme.footer}>
-      <FooterContainer margin={margin} refSize={refSize} ref={ref}>
-        <FooterHeader refSize={refSize}>
+      <FooterContainer margin={margin}>
+        <FooterHeader>
           <LogoContainer>{footerLogo}</LogoContainer>
-          <SocialLinkContainer refSize={refSize}>{socialLink}</SocialLinkContainer>
+          <SocialLinkContainer>{socialLink}</SocialLinkContainer>
         </FooterHeader>
         <div>
           <ChildComponents padding={padding}>
             <BackgroundColorProvider color={colorsTheme.footer.backgroundColor}>{children}</BackgroundColorProvider>
           </ChildComponents>
-          <FooterFooter className="footerFooter" refSize={refSize}>
-            <BottomLinks refSize={refSize}>{bottomLink}</BottomLinks>
-            <Copyright refSize={refSize}>{copyright}</Copyright>
+          <FooterFooter className="footerFooter">
+            <BottomLinks>{bottomLink}</BottomLinks>
+            <Copyright>{copyright}</Copyright>
           </FooterFooter>
         </div>
       </FooterContainer>
@@ -105,7 +72,15 @@ const DxcFooter = ({
 };
 
 const FooterContainer = styled.footer`
-  padding: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "20px 20px 20px 20px" : "24px 36px 24px 36px")};
+  @media (min-width: ${responsiveSizes.small}rem) {
+    padding: 24px 36px 24px 36px;
+  }
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    //mobile phones
+    padding: 20px;
+  }
+
   background-color: ${(props) => props.theme.backgroundColor};
   margin-top: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   width: 100%;
@@ -127,8 +102,17 @@ const FooterFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  flex-direction: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "column" : "row")};
-  align-items: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "center" : "")};
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    flex-direction: row;
+  }
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    //mobile phones
+    flex-direction: column;
+    align-items: center;
+  }
+
   border-top: ${(props) =>
     `${props.theme.bottomLinksDividerThickness} ${props.theme.bottomLinksDividerStyle} ${props.theme.bottomLinksDividerColor}`};
   margin-top: 16px;
@@ -138,8 +122,17 @@ const BottomLinks = styled.div`
   padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
   display: inline-flex;
   flex-wrap: wrap;
-  max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "60%")};
-  width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    max-width: 60%;
+  }
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    //mobile phones
+    max-width: 100%;
+    width: 100%;
+  }
+
   & > span:last-child span {
     display: none;
   }
@@ -166,9 +159,19 @@ const Copyright = styled.div`
   font-style: ${(props) => props.theme.copyrightFontStyle};
   font-weight: ${(props) => props.theme.copyrightFontWeight};
   color: ${(props) => props.theme.copyrightFontColor};
-  max-width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "40%")};
-  width: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "100%" : "")};
-  text-align: ${(props) => (props.refSize <= responsiveSizes.mobileLarge ? "left" : "right")};
+
+  @media (min-width: ${responsiveSizes.small}rem) {
+    max-width: 40%;
+    text-align: right;
+  }
+
+  @media (max-width: ${responsiveSizes.small}rem) {
+    //mobile phones
+    max-width: 100%;
+    width: 100%;
+    text-align: left;
+  }
+  
   padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
 `;
 
