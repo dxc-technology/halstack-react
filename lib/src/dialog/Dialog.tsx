@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import DialogPropsType from "./types";
@@ -17,7 +17,6 @@ const DxcDialog = ({
   padding = "small",
   tabIndex = 0,
 }: DialogPropsType): JSX.Element => {
-  const [isResponsive, setIsResponsive] = useState(false);
   const colorsTheme = useTheme();
 
   const handleClose = () => {
@@ -28,22 +27,6 @@ const DxcDialog = ({
     onBackgroundClick?.();
   };
 
-  const handleResize = (width) => {
-    setIsResponsive(width && width <= responsiveSizes.tablet);
-  };
-
-  const handleEventListener = () => {
-    handleResize(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleEventListener);
-    handleResize(window.innerWidth);
-    return () => {
-      window.removeEventListener("resize", handleEventListener);
-    };
-  }, []);
-
   return (
     <ThemeProvider theme={colorsTheme.dialog}>
       <DialogContainer
@@ -52,7 +35,6 @@ const DxcDialog = ({
         onClose={handleOverlayClick}
         overlay={overlay}
         padding={padding}
-        isResponsive={isResponsive}
       >
         {isCloseVisible && (
           <CloseIconContainer onClick={handleClose} tabIndex={tabIndex}>
@@ -86,8 +68,17 @@ const DialogContainer = styled(Dialog)`
   }
   .MuiDialog-paperWidthSm {
     background-color: ${(props) => props.theme.backgroundColor};
-    max-width: ${(props) => (props.isResponsive ? "92%" : "80%")};
-    min-width: ${(props) => (props.isResponsive ? "92%" : "800px")};
+    @media (min-width: ${responsiveSizes.medium}rem) {
+      max-width: 80%;
+      min-width: 800px;
+    }
+
+    @media (max-width: ${responsiveSizes.medium}rem) {
+      //mobile phones
+      max-width: 92%;
+      min-width: 92%;
+    }
+
     box-sizing: border-box;
     min-height: ${(props) => (props.isCloseVisible ? "72px" : "")};
     box-shadow: ${(props) =>
