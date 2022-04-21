@@ -18,7 +18,7 @@ const Option = ({
   const colorsTheme = useTheme();
 
   return (
-    <ThemeProvider theme={colorsTheme.radioGroup}>
+    <ThemeProvider theme={colorsTheme.select}>
       <OptionItem
         id={id}
         onClick={() => {
