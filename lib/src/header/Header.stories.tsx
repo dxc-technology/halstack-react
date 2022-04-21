@@ -144,7 +144,6 @@ ResponsiveHeaderFocus.parameters = {
 ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await waitFor(() => canvas.findByText("Menu"));
-  await userEvent.tab();
 };
 
 export const ResponsiveHeaderHover = RespHeaderHover.bind({});
