@@ -113,10 +113,6 @@ const Text = styled.div`
 `;
 
 const StyledPreview = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   background-color: #ffffff;
   background-image: linear-gradient(45deg, #f9f9fa 25%, transparent 25%),
     linear-gradient(135deg, #f9f9fa 25%, transparent 25%),
@@ -134,7 +130,6 @@ const StyledError = styled.div`
   border-radius: 8px;
   color: red;
   display: flex;
-  width: 100%;
   padding: 0px 10px;
 `;
 
