@@ -3,6 +3,7 @@ import DxcHeader from "./Header";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
+import DxcButton from '../button/Button';
 
 export default {
   title: "Header",
@@ -116,7 +117,11 @@ const RespHeaderFocus = () => (
 export const ResponsiveHeaderHover = () => (
   <ExampleContainer pseudoState="pseudo-hover">
     <Title title="Responsive hover" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    <DxcHeader
+      content={<DxcButton label="Test" />}
+      responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>}
+      underlined
+    />
   </ExampleContainer>
 );
 
@@ -147,12 +152,12 @@ ResponsiveHeaderFocus.play = async ({ canvasElement }) => {
   await userEvent.tab();
 };
 
-ResponsiveHeaderHover.parameters = {
-  viewport: {
-    defaultViewport: "iphonex",
-  },
-  chromatic: { viewports: [375] },
-};
+// ResponsiveHeaderHover.parameters = {
+//   viewport: {
+//     defaultViewport: "iphonex",
+//   },
+//   chromatic: { viewports: [375] },
+// };
 
 export const ResponsiveHeaderMenu = RespHeaderMenu.bind({});
 ResponsiveHeaderMenu.parameters = {
