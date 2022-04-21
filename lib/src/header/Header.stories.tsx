@@ -107,21 +107,25 @@ export const ResponsiveHeader = () => (
 );
 
 export const ResponsiveHeaderFocus = () => (
-  <ExampleContainer pseudoState="pseudo-focus">
+  <>
     <Title title="Responsive focus" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
-  </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    </ExampleContainer>
+  </>
 );
 
 export const ResponsiveHeaderHover = () => (
-  <ExampleContainer pseudoState="pseudo-hover">
+  <>
     <Title title="Responsive hover" theme="light" level={4} />
-    <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
-  </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
+    </ExampleContainer>
+  </>
 );
 
 const RespHeaderMenu = () => (
-  <ExampleContainer pseudoState="pseudo-hover">
+  <ExampleContainer>
     <Title title="Responsive menu" theme="light" level={4} />
     <DxcHeader responsiveContent={(closeHandler) => <p>Lorem ipsum dolor sit amet.</p>} underlined />
   </ExampleContainer>
