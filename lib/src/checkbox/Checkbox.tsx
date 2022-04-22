@@ -177,7 +177,6 @@ const CheckboxContainer = styled.span`
   align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   position: relative;
-  vertical-align: top;
   .MuiCheckbox-colorSecondary {
     .MuiIconButton-label {
       & > .MuiSvgIcon-root {
