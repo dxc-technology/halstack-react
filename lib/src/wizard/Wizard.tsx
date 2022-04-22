@@ -86,7 +86,7 @@ const DxcWizard = ({
               aria-current={renderedCurrent === i ? "step" : "false"}
               tabIndex={tabIndex}
             >
-              <StepHeader>
+              <StepHeader validityIcon={step.valid !== undefined}>
                 <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                   {step.icon ? (
                     <StepIconContainer disabled={step.disabled}>
@@ -187,7 +187,7 @@ const Step = styled.button`
 const StepHeader = styled.div`
   position: relative;
   display: inline-flex;
-  padding-bottom: 4px;
+  ${(props) => props.validityIcon && "padding-bottom: 4px;"}
 `;
 
 const IconContainer = styled.div`
