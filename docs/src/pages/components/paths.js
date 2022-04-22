@@ -304,7 +304,7 @@ export default [
     path: "tag",
     name: "Tag",
     component: Tag,
-    type: types.LAYOUT,
+    type: types.UTILS,
     status: "ready",
   },
   {
