@@ -5,28 +5,30 @@ import QuickNavTypes from "./types";
 import DxcHeading from "../heading/Heading";
 import DxcStack from "../stack/Stack";
 import DxcInset from "../inset/Inset";
+import DxcList from "../list/List";
+import DxcText from "../text/Text";
 
 const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
   return (
     <QuickNavContainer>
       <DxcStack gutter="small">
         <DxcHeading level={4} text={title} />
-        <DxcStack gutter="xsmall">
+        <DxcList>
           {links.map((link) => (
             <DxcInset space="xxsmall">
-              <DxcStack gutter="xsmall">
+              <DxcText>
                 <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
                 {link.links?.map((sublink) => (
                   <DxcInset horizontal="xsmall">
-                    <DxcStack gutter="xsmall">
+                    <DxcText>
                       <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
-                    </DxcStack>
+                    </DxcText>
                   </DxcInset>
                 ))}
-              </DxcStack>
+              </DxcText>
             </DxcInset>
           ))}
-        </DxcStack>
+        </DxcList>
       </DxcStack>
     </QuickNavContainer>
   );
@@ -35,6 +37,11 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
 const QuickNavContainer = styled.div`
   padding: 5px 15px;
   border-left: 2px solid #bfbfbf;
+  li {
+    div:first-child {
+      display: none;
+    }
+  }
 `;
 
 const Link = styled.a`
