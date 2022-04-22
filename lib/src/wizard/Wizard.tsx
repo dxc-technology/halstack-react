@@ -132,7 +132,7 @@ const StepsContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: "center";
-  ${(props) => (props.mode === "vertical" ? "height: 500px" : "width: auto")};
+  ${(props) => props.mode === "vertical" && "height: 500px"};
   font-family: ${(props) => props.theme.fontFamily};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
