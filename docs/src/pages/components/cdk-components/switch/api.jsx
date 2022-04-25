@@ -21,8 +21,8 @@ const switchPropsTable = () => {
         </td>
         <td>
           If true, the component is checked. If undefined, the component will be
-          uncontrolled and the checked attribute will be managed internally by the
-          component.
+          uncontrolled and the checked attribute will be managed internally by
+          the component.
         </td>
       </tr>
       <tr>
@@ -59,13 +59,14 @@ const switchPropsTable = () => {
         <td>If true, the component will be disabled.</td>
       </tr>
       <tr>
-        <td>required: boolean</td>
+        <td>optional: boolean</td>
         <td>
           <code>false</code>
         </td>
         <td>
-          If true, the switch will change its appearence, showing that the value
-          is required.
+          If true, the component will be optional, showing{" "}
+          <code>(Optional)</code> next to the label. Otherwise, it should be
+          considered required and display an error if it is convenient.
         </td>
       </tr>
       <tr>
@@ -99,9 +100,7 @@ const switchPropsTable = () => {
       <tr>
         <td>tabIndex: number</td>
         <td>0</td>
-        <td>
-          Value of the tabindex.
-        </td>
+        <td>Value of the tabindex.</td>
       </tr>
     </DxcTable>
   );

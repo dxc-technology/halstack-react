@@ -18,8 +18,8 @@ const DxcSwitch = ({
   labelPosition = "before",
   name = "",
   disabled = false,
+  optional = false,
   onChange,
-  required = false,
   margin,
   size = "fitContent",
   tabIndex = 0,
@@ -68,8 +68,15 @@ const DxcSwitch = ({
           disabled={disabled}
           backgroundType={backgroundType}
         >
-          {required && <DxcRequired />}
-          {label}
+          {labelPosition === "before" ? (
+            <>
+              {label} {optional && <span>(Optional)</span>}
+            </>
+          ) : (
+            <>
+              {optional && <span>(Optional)</span>} {label}
+            </>
+          )}
         </LabelContainer>
       </SwitchContainer>
     </ThemeProvider>
