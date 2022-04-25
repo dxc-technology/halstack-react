@@ -4,7 +4,7 @@ const code = `() => {
   return (
     <div style={{ display: "flex" }}>
       <DxcCheckbox
-        label="Label before (default)"
+        label="Label before"
         margin="medium"
       />
       <DxcCheckbox

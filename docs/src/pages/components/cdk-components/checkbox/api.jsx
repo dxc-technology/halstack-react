@@ -59,13 +59,14 @@ const checkboxPropsTable = () => {
         <td>If true, the component will be disabled.</td>
       </tr>
       <tr>
-        <td>required: boolean</td>
+        <td>optional: boolean</td>
         <td>
           <code>false</code>
         </td>
         <td>
-          If true, the checkbox will change its appearence, showing that the
-          value is required.
+          If true, the component will be optional, showing <code>(Optional)</code>{" "}
+          next to the label. Otherwise, it should be considered required
+          and display an error if it is convenient.
         </td>
       </tr>
       <tr>
