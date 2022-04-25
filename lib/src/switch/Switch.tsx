@@ -2,7 +2,6 @@
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { Switch } from "@material-ui/core";
-import DxcRequired from "../common/RequiredComponent";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
