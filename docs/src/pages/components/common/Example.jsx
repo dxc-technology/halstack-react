@@ -62,31 +62,31 @@ const Example = ({ title, example, children }) => {
             <LiveError />
           </StyledError>
         </StyledPreview>
+        <CodeActionsContainer isCodeVisible={isCodeVisible}>
+          {isCodeVisible && (
+            <DxcButton
+              label={"Copy code"}
+              icon={icons.copy}
+              mode="text"
+              onClick={copyCode}
+            />
+          )}
+          <DxcButton
+            label={isCodeVisible ? "Hide code" : "View code"}
+            icon={icons.code}
+            mode="text"
+            onClick={toggleCodeClick}
+          />
+        </CodeActionsContainer>
         {isCodeVisible && (
           <LiveEditorContainer ref={liveEditorRef}>
             <LiveEditor />
           </LiveEditorContainer>
         )}
       </LiveProvider>
-      <CodeActionsContainer>
-        {isCodeVisible && (
-          <DxcButton
-            label={"Copy code"}
-            icon={icons.copy}
-            mode="text"
-            onClick={copyCode}
-          />
-        )}
-        <DxcButton
-          label={isCodeVisible ? "Hide code" : "View code"}
-          icon={icons.code}
-          mode="text"
-          onClick={toggleCodeClick}
-        />
-      </CodeActionsContainer>
     </ExampleContainer>
   );
-}
+};
 
 const ExampleContainer = styled.div`
   display: flex;
@@ -141,6 +141,7 @@ const CodeActionsContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   column-gap: 8px;
+  ${({ isCodeVisible }) => isCodeVisible && "margin-bottom: 8px;"};
 `;
 
 export default Example;
