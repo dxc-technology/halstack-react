@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
+import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
 import CheckboxPropsType from "./types";
@@ -22,6 +23,8 @@ const DxcCheckbox = ({
   size = "fitContent",
   tabIndex = 0,
 }: CheckboxPropsType): JSX.Element => {
+  const [switchId] = useState(`checkbox-${uuidv4()}`);
+  const labelId = `label-${switchId}`;
   const [innerChecked, setInnerChecked] = useState(defaultChecked);
   const [isLabelHovered, setIsLabelHovered] = useState(false);
 
@@ -62,7 +65,7 @@ const DxcCheckbox = ({
           checked={checked ?? innerChecked}
           inputProps={{
             name: name,
-            "aria-label": label,
+            "aria-labelledby": labelId,
             role: "checkbox",
             "aria-checked": checked ?? innerChecked,
           }}
@@ -81,6 +84,7 @@ const DxcCheckbox = ({
         />
         {label && (
           <LabelContainer
+            id={labelId}
             labelPosition={labelPosition}
             onClick={disabled === true ? () => {} : handlerCheckboxChange}
             disabled={disabled}
