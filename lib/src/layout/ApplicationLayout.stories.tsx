@@ -118,7 +118,7 @@ ApplicationLayoutResponsive.args = {
   with: "props",
 };
 ApplicationLayoutResponsive.parameters = {
-  chromatic: { viewports: [540] },
+  chromatic: { viewports: [720] },
 };
 export const ApplicationLayoutWithCustomHeader = () => (
   <>
