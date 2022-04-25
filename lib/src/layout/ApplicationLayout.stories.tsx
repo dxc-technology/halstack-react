@@ -2,19 +2,17 @@ import React from "react";
 import DxcApplicationLayout from "./ApplicationLayout";
 import DxcSidenav from "../sidenav/Sidenav";
 import Title from "../../.storybook/components/Title";
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { userEvent, within, waitFor } from "@storybook/testing-library";
-
 export default {
   title: "Application Layout ",
   component: DxcApplicationLayout,
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
-    }
-  }
+    },
+  },
 };
-
 export const DefaultApplicationLayout = () => (
   <>
     <DxcApplicationLayout>
@@ -28,7 +26,6 @@ export const DefaultApplicationLayout = () => (
     </DxcApplicationLayout>
   </>
 );
-
 export const ApplicationLayoutWithDefaultSidenav = () => (
   <>
     <DxcApplicationLayout>
@@ -49,7 +46,6 @@ export const ApplicationLayoutWithDefaultSidenav = () => (
     </DxcApplicationLayout>
   </>
 );
-
 export const ApplicationLayoutWithPushSidenav = () => (
   <>
     <DxcApplicationLayout>
@@ -70,7 +66,6 @@ export const ApplicationLayoutWithPushSidenav = () => (
     </DxcApplicationLayout>
   </>
 );
-
 export const ApplicationLayoutWithArrowSidenav = () => (
   <>
     <DxcApplicationLayout>
@@ -91,8 +86,7 @@ export const ApplicationLayoutWithArrowSidenav = () => (
     </DxcApplicationLayout>
   </>
 );
-
-export const ApplicationLayoutWithResponsiveSidenav = () => (
+const Responsive = () => (
   <>
     <DxcApplicationLayout>
       <DxcApplicationLayout.SideNav>
@@ -112,17 +106,19 @@ export const ApplicationLayoutWithResponsiveSidenav = () => (
     </DxcApplicationLayout>
   </>
 );
-
-ApplicationLayoutWithResponsiveSidenav.parameters = {
-  viewport: {
-    defaultViewport: 'pixel',
-  },
+export const ApplicationLayoutResponsive = Responsive.bind({});
+ApplicationLayoutResponsive.args = {
+  with: "props",
 };
-
+ApplicationLayoutResponsive.parameters = {
+  chromatic: { viewports: [720] },
+};
 export const ApplicationLayoutWithCustomHeader = () => (
   <>
     <DxcApplicationLayout>
-      <DxcApplicationLayout.Header> <p>Custom Header</p> </DxcApplicationLayout.Header>
+      <DxcApplicationLayout.Header>
+        <p>Custom Header</p>
+      </DxcApplicationLayout.Header>
       <DxcApplicationLayout.SideNav>
         <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
         <p>SideNav Content</p>
@@ -140,7 +136,6 @@ export const ApplicationLayoutWithCustomHeader = () => (
     </DxcApplicationLayout>
   </>
 );
-
 export const ApplicationLayoutWithCustomFooter = () => (
   <>
     <DxcApplicationLayout>
@@ -158,11 +153,13 @@ export const ApplicationLayoutWithCustomFooter = () => (
         <p>Main Content</p>
         <p>Main Content</p>
       </DxcApplicationLayout.Main>
-      <DxcApplicationLayout.Footer> <p>Custom Footer</p> </DxcApplicationLayout.Footer>
+      <DxcApplicationLayout.Footer>
+        {" "}
+        <p>Custom Footer</p>{" "}
+      </DxcApplicationLayout.Footer>
     </DxcApplicationLayout>
   </>
 );
-
 export const ApplicationLayoutWithClosingSidenav = ApplicationLayoutWithArrowSidenav.bind({});
 ApplicationLayoutWithClosingSidenav.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
