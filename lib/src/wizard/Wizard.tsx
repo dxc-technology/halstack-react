@@ -86,7 +86,7 @@ const DxcWizard = ({
               aria-current={renderedCurrent === i ? "step" : "false"}
               tabIndex={tabIndex}
             >
-              <StepHeader>
+              <StepHeader validityIcon={step.valid !== undefined}>
                 <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                   {step.icon ? (
                     <StepIconContainer disabled={step.disabled}>
@@ -129,10 +129,10 @@ const DxcWizard = ({
 };
 
 const StepsContainer = styled.div`
-  display: inline-flex;
+  display: flex;
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: "center";
-  ${(props) => (props.mode === "vertical" ? "height: 500px" : "width: 100%")};
+  ${(props) => props.mode === "vertical" && "height: 500px"};
   font-family: ${(props) => props.theme.fontFamily};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -187,7 +187,7 @@ const Step = styled.button`
 const StepHeader = styled.div`
   position: relative;
   display: inline-flex;
-  padding-bottom: 4px;
+  ${(props) => props.validityIcon && "padding-bottom: 4px;"}
 `;
 
 const IconContainer = styled.div`
