@@ -146,7 +146,6 @@ const DXCAccordion = styled.div`
         padding-right: ${(props) => props.theme.titleLabelPaddingRight};
         padding-left: ${(props) => props.theme.titleLabelPaddingLeft};
         min-width: 0;
-        align-items: baseline;
         &.Mui-expanded {
           div:nth-child(2) {
             opacity: 1;
