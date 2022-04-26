@@ -2,9 +2,9 @@
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
-import DxcRequired from "../common/RequiredComponent";
 import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
+import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
 import CheckboxPropsType from "./types";
@@ -17,17 +17,20 @@ const DxcCheckbox = ({
   labelPosition = "before",
   name = "",
   disabled = false,
+  optional = false,
   onChange,
-  required = false,
   margin,
   size = "fitContent",
   tabIndex = 0,
 }: CheckboxPropsType): JSX.Element => {
+  const [switchId] = useState(`checkbox-${uuidv4()}`);
+  const labelId = `label-${switchId}`;
   const [innerChecked, setInnerChecked] = useState(defaultChecked);
   const [isLabelHovered, setIsLabelHovered] = useState(false);
 
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
+
   const handlerCheckboxChange = (checkboxValue) => {
     if (checked === undefined) {
       const isChecked = checkboxValue.target.checked === undefined ? !innerChecked : checkboxValue.target.checked;
@@ -41,21 +44,30 @@ const DxcCheckbox = ({
       }
     }
   };
-
   const handleLabelHover = () => {
     setIsLabelHovered(!isLabelHovered);
   };
 
   const labelComponent = (
     <LabelContainer
-      onClick={disabled === true ? (e) => {} : handlerCheckboxChange}
+      id={labelId}
+      labelPosition={labelPosition}
+      onClick={disabled === true ? () => {} : handlerCheckboxChange}
       disabled={disabled}
       className="labelContainer"
       backgroundType={backgroundType}
       onMouseOver={handleLabelHover}
       onMouseOut={handleLabelHover}
     >
-      {label}
+      {labelPosition === "before" ? (
+        <>
+          {label} {optional && <span>(Optional)</span>}
+        </>
+      ) : (
+        <>
+          {optional && <span>(Optional)</span>} {label}
+        </>
+      )}
     </LabelContainer>
   );
 
@@ -73,12 +85,11 @@ const DxcCheckbox = ({
         isLabelHovered={isLabelHovered}
       >
         {label && labelPosition === "before" && labelComponent}
-        {required && labelPosition === "before" && <DxcRequired />}
         <Checkbox
           checked={checked ?? innerChecked}
           inputProps={{
             name: name,
-            "aria-label": label,
+            "aria-labelledby": labelId,
             role: "checkbox",
             "aria-checked": checked ?? innerChecked,
           }}
@@ -95,12 +106,12 @@ const DxcCheckbox = ({
           checked={checked ?? innerChecked}
           backgroundType={backgroundType}
         />
-        {required && labelPosition === "after" && <DxcRequired />}
         {label && labelPosition === "after" && labelComponent}
       </CheckboxContainer>
     </ThemeProvider>
   );
 };
+
 const sizes = {
   small: "120px",
   medium: "240px",
@@ -108,12 +119,14 @@ const sizes = {
   fillParent: "100%",
   fitContent: "unset",
 };
+
 const calculateWidth = (margin, size) => {
   if (size === "fillParent") {
     return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
   }
   return sizes[size];
 };
+
 const getDisabledColor = (props, element) => {
   switch (element) {
     case "check":
@@ -155,13 +168,15 @@ const getNotDisabledColor = (props, element) => {
         : props.theme.fontColor;
   }
 };
+
 const LabelContainer = styled.span`
   color: ${(props) => (props.disabled ? getDisabledColor(props, "label") : getNotDisabledColor(props, "label"))};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 `;
+
 const CheckboxContainer = styled.span`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -256,6 +271,7 @@ const CheckboxContainer = styled.span`
     right: ${(props) => (props.labelPosition === "before" ? "1px" : "unset")};
   }
 `;
+
 const CheckboxBlackBack = styled.span`
   background-color: ${(props) =>
     !props.checked

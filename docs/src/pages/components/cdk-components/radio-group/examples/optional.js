@@ -9,13 +9,13 @@ const code = `() => {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", columnGap: "100px", margin: "36px" }}>
       <DxcRadioGroup
-        label="Optional"
+        label="Label"
         helperText="Adds a predefined option whose value is the empty string"
         options={options}
         optional
       />
       <DxcRadioGroup
-        label="Custom optional"
+        label="Label"
         helperText="You can customize the label of the optional item to suit bettter your context"
         options={options}
         optional
