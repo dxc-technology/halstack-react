@@ -48,6 +48,29 @@ const DxcCheckbox = ({
     setIsLabelHovered(!isLabelHovered);
   };
 
+  const labelComponent = (
+    <LabelContainer
+      id={labelId}
+      labelPosition={labelPosition}
+      onClick={disabled === true ? () => {} : handlerCheckboxChange}
+      disabled={disabled}
+      className="labelContainer"
+      backgroundType={backgroundType}
+      onMouseOver={handleLabelHover}
+      onMouseOut={handleLabelHover}
+    >
+      {labelPosition === "before" ? (
+        <>
+          {label} {optional && <span>(Optional)</span>}
+        </>
+      ) : (
+        <>
+          {optional && <span>(Optional)</span>} {label}
+        </>
+      )}
+    </LabelContainer>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
       <CheckboxContainer
@@ -61,6 +84,7 @@ const DxcCheckbox = ({
         backgroundType={backgroundType}
         isLabelHovered={isLabelHovered}
       >
+        {label && labelPosition === "before" && labelComponent}
         <Checkbox
           checked={checked ?? innerChecked}
           inputProps={{
@@ -82,28 +106,7 @@ const DxcCheckbox = ({
           checked={checked ?? innerChecked}
           backgroundType={backgroundType}
         />
-        {label && (
-          <LabelContainer
-            id={labelId}
-            labelPosition={labelPosition}
-            onClick={disabled === true ? () => {} : handlerCheckboxChange}
-            disabled={disabled}
-            className="labelContainer"
-            backgroundType={backgroundType}
-            onMouseOver={handleLabelHover}
-            onMouseOut={handleLabelHover}
-          >
-            {labelPosition === "before" ? (
-              <>
-                {label} {optional && <span>(Optional)</span>}
-              </>
-            ) : (
-              <>
-                {optional && <span>(Optional)</span>} {label}
-              </>
-            )}
-          </LabelContainer>
-        )}
+        {label && labelPosition === "after" && labelComponent}
       </CheckboxContainer>
     </ThemeProvider>
   );
@@ -189,7 +192,6 @@ const CheckboxContainer = styled.span`
   align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   position: relative;
-  flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
   .MuiCheckbox-colorSecondary {
     .MuiIconButton-label {
       & > .MuiSvgIcon-root {

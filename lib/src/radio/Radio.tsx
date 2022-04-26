@@ -35,6 +35,18 @@ const DxcRadio = ({
     }
   };
 
+  const labelComponent = (
+    <LabelContainer
+      checked={checked || innerChecked}
+      disabled={disabled}
+      onClick={(!disabled && handlerRadioChange) || null}
+      backgroundType={backgroundType}
+    >
+      {required && <DxcRequired />}
+      {label}
+    </LabelContainer>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.radio}>
       <RadioContainer
@@ -45,6 +57,7 @@ const DxcRadio = ({
         size={size}
         backgroundType={backgroundType}
       >
+        {labelPosition === "before" && labelComponent}
         <Radio
           checked={(checked != null && checked) || innerChecked}
           name={name}
@@ -53,16 +66,7 @@ const DxcRadio = ({
           disabled={disabled}
           disableRipple
         />
-        <LabelContainer
-          checked={checked || innerChecked}
-          labelPosition={labelPosition}
-          disabled={disabled}
-          onClick={(!disabled && handlerRadioChange) || null}
-          backgroundType={backgroundType}
-        >
-          {required && <DxcRequired />}
-          {label}
-        </LabelContainer>
+        {labelPosition === "after" && labelComponent}
       </RadioContainer>
     </ThemeProvider>
   );
@@ -90,7 +94,7 @@ const RadioContainer = styled.span`
   align-items: center;
   max-height: 42px;
   position: relative;
-  flex-direction: ${(props) => (props.labelPosition === "before" ? "row-reverse" : "row")};
+  vertical-align: top;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
