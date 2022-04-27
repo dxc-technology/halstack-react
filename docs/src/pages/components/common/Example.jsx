@@ -123,6 +123,7 @@ const StyledPreview = styled.div`
   border: 1px solid #707070;
   border-radius: 8px;
   margin-bottom: 8px;
+  padding: 32px;
 `;
 
 const StyledError = styled.div`
@@ -135,6 +136,10 @@ const StyledError = styled.div`
 
 const LiveEditorContainer = styled.div`
   margin-bottom: 8px;
+
+  textarea, pre {
+    padding: 32px !important;
+  }
 `;
 
 const CodeActionsContainer = styled.div`
