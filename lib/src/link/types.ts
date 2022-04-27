@@ -28,11 +28,6 @@ type LinkCommonProps = {
    */
   newWindow?: boolean;
   /**
-   * If defined, the link will be displayed as a button. This
-   * function will be called when the user clicks the link.
-   */
-  onClick?: () => void;
-  /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.
    */
@@ -41,6 +36,10 @@ type LinkCommonProps = {
    * Value of the tabindex.
    */
   tabIndex?: number;
+  /**
+   * 
+   */
+  as?: string | React.ReactNode;
 };
 export type LinkTextProps = LinkCommonProps & {
   /**

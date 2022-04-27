@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
@@ -12,10 +11,11 @@ const DxcLink: Overload = ({
   iconPosition = "before",
   href = "",
   newWindow = false,
-  onClick,
   text = "",
   margin,
   tabIndex = 0,
+  as,
+  ...otherProps
 }: LinkTextProps | LinkIconProps): JSX.Element => {
   const colorsTheme = useTheme();
   const linkContent = (
@@ -33,28 +33,18 @@ const DxcLink: Overload = ({
   return (
     <ThemeProvider theme={colorsTheme.link}>
       <DxcLinkContainer margin={margin}>
-        {onClick ? (
-          <StyledButton
-            type="button"
-            onClick={!disabled && onClick}
-            margin={margin}
-            disabled={disabled}
-            inheritColor={inheritColor}
-          >
-            {linkContent}
-          </StyledButton>
-        ) : (
-          <StyledLink
-            tabIndex={tabIndex}
-            href={!disabled && href}
-            target={newWindow ? "_blank" : "_self"}
-            margin={margin}
-            disabled={disabled}
-            inheritColor={inheritColor}
-          >
-            {linkContent}
-          </StyledLink>
-        )}
+        <StyledLink
+          tabIndex={tabIndex}
+          href={!as && !disabled && href}
+          target={!as && (newWindow ? "_blank" : "_self")}
+          margin={margin}
+          disabled={disabled}
+          inheritColor={inheritColor}
+          as={as || "a"}
+          {...otherProps}
+        >
+          {linkContent}
+        </StyledLink>
       </DxcLinkContainer>
     </ThemeProvider>
   );
@@ -74,42 +64,6 @@ const DxcLinkContainer = styled.div`
 `;
 
 const StyledLink = styled.a`
-  color: ${(props) =>
-    props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
-  ${(props) => (props.disabled ? "pointer-events: none;" : "")}
-
-  text-decoration-color: transparent;
-  ${(props) =>
-    `padding-bottom: ${props.theme.underlineSpacing};
-     border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
-
-  &:visited {
-    color: ${(props) => (!props.inheritColor ? props.theme.visitedFontColor : "")};
-    &:hover {
-      ${(props) =>
-        `color: ${props.theme.visitedFontColor};
-         border-bottom-color: ${props.theme.visitedUnderlineColor};`}
-    }
-  }
-  &:hover {
-    ${(props) =>
-      `color: ${props.theme.hoverFontColor};
-       border-bottom-color: ${props.theme.hoverUnderlineColor};
-       cursor: pointer;`}
-  }
-  &:focus {
-    border-radius: 2px;
-    outline: 2px solid ${(props) => props.theme.focusColor};
-    ${(props) => props.disabled && "outline: none"}
-  }
-  &:active {
-    ${(props) =>
-      `color: ${props.theme.activeFontColor} !important;
-       border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
-  }
-`;
-
-const StyledButton = styled.button`
   background: none;
   border: none;
   padding: 0;
@@ -125,6 +79,14 @@ const StyledButton = styled.button`
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
 
+  &:visited {
+    color: ${(props) => (!props.inheritColor ? props.theme.visitedFontColor : "")};
+    &:hover {
+      ${(props) =>
+        `color: ${props.theme.visitedFontColor};
+         border-bottom-color: ${props.theme.visitedUnderlineColor};`}
+    }
+  }
   &:hover {
     ${(props) =>
       `color: ${props.theme.hoverFontColor};

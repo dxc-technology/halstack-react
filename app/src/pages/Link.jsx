@@ -1,15 +1,14 @@
 import React from "react";
 import { DxcLink } from "@dxc-technology/halstack-react";
 import homeLogo from "../images/home.svg";
+import { Link as RouterLink } from "@reach/router";
 
-const iconSVG = () => {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    </svg>
-  );
-};
+const iconSVG = (
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+  </svg>
+);
 
 function App() {
   return (
@@ -176,6 +175,125 @@ function App() {
             disabled={true}
             underlined={true}
             text="Disabled link"
+          ></DxcLink>{" "}
+        </div>
+      </div>
+
+      <div>
+        <h4>Custom Link</h4>
+        <div className="test-case" id="custom-link">
+          <p>
+            This is a text with a{" "}
+            <DxcLink text="custom button link" as="button"></DxcLink> to another
+            page.
+          </p>
+        </div>
+        <div className="test-case" id="custom-inherit-link">
+          <p>
+            This is a text with a{" "}
+            <DxcLink
+              text="custom button link"
+              as="button"
+              inheritColor
+            ></DxcLink>{" "}
+            to another page.
+          </p>
+        </div>
+        <div className="test-case" id="custom-router-link">
+          <p>
+            This is a text with a{" "}
+            <DxcLink
+              text="custom router link"
+              as={RouterLink}
+              to="/test"
+            ></DxcLink>{" "}
+            to another page.
+          </p>
+        </div>
+        <div className="test-case" id="custom-inherit-router-link">
+          <p>
+            This is a text with a{" "}
+            <DxcLink
+              text="custom router link"
+              as={RouterLink}
+              to="/test"
+              inheritColor
+            ></DxcLink>{" "}
+            to another page.
+          </p>
+        </div>
+      </div>
+      <div>
+        <h4>Custom Link with onClick</h4>
+        <div className="test-case" id="default-link-onClick">
+          <p>
+            This is a text with a{" "}
+            <DxcLink
+              text="custom button link"
+              as="button"
+              underlined={false}
+              onClick={() => console.log("Hello")}
+            ></DxcLink>{" "}
+            to another page.
+          </p>
+        </div>
+      </div>
+      <div>
+        <h4>Custom Link with margin</h4>
+        <div className="test-case" id="margin-medium">
+          <DxcLink
+            text="Button with margin medium"
+            as="button"
+            margin="medium"
+          ></DxcLink>
+        </div>
+        <div className="test-case" id="margin-large">
+          <DxcLink
+            text="Router link with margin large"
+            as={RouterLink}
+            to="/test"
+            margin="large"
+          ></DxcLink>
+        </div>
+      </div>
+      <div>
+        <h4>Custom Link with icons</h4>
+        <div className="test-case" id="icon-button">
+          <p>
+            This is a text with an{" "}
+            <DxcLink text="icon before" as="button" icon={iconSVG}></DxcLink>{" "}
+            the button.
+          </p>
+        </div>
+        <div className="test-case" id="icon-router-link">
+          <p>
+            This is a text with an{" "}
+            <DxcLink
+              text="icon after"
+              as={RouterLink}
+              to="/test"
+              icon={iconSVG}
+              iconPosition="after"
+            ></DxcLink>{" "}
+            the router link.
+          </p>
+        </div>
+      </div>
+      <div>
+        <h4>Disabled custom Link</h4>
+        <div className="test-case" id="disabled-button-link">
+          <DxcLink
+            text="Disabled custom button link"
+            as="button"
+            disabled
+          ></DxcLink>
+        </div>
+        <div className="test-case" id="disabled-router-link">
+          <DxcLink
+            text="Disabled custom router link"
+            as={RouterLink}
+            to="/test"
+            disabled
           ></DxcLink>{" "}
         </div>
       </div>
