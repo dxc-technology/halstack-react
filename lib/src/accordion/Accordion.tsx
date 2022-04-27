@@ -46,12 +46,12 @@ const DxcAccordion = ({
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
             <AccordionInfo disabled={disabled}>
-              <AccordionLabel>{label}</AccordionLabel>
               {icon && (
                 <IconContainer disabled={disabled}>
                   {typeof icon === "string" ? <AccordionIcon src={icon} /> : icon}
                 </IconContainer>
               )}
+              <AccordionLabel>{label}</AccordionLabel>
             </AccordionInfo>
             {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
           </ExpansionPanelSummary>
@@ -146,7 +146,6 @@ const DXCAccordion = styled.div`
         padding-right: ${(props) => props.theme.titleLabelPaddingRight};
         padding-left: ${(props) => props.theme.titleLabelPaddingLeft};
         min-width: 0;
-        align-items: baseline;
         &.Mui-expanded {
           div:nth-child(2) {
             opacity: 1;
@@ -191,7 +190,6 @@ const DXCAccordion = styled.div`
 
 const AccordionInfo = styled.div`
   display: flex;
-  flex-direction: row-reverse;
   align-items: center;
   padding-left: ${(props) => props.theme.titlePaddingLeft};
   padding-right: ${(props) => props.theme.titlePaddingRight};

@@ -25,16 +25,19 @@ const DxcCard = ({
 
   const [isHovered, changeIsHovered] = useState(false);
 
+  const imageComponent = (
+    <ImageContainer imageBgColor={imageBgColor}>
+      <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
+    </ImageContainer>
+  );
+
   const tagContent = (
     <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
       <ThemeProvider theme={colorsTheme.card}>
         <CardContainer hasAction={onClick || linkHref} imagePosition={imagePosition}>
-          {imageSrc && (
-            <ImageContainer imageBgColor={imageBgColor}>
-              <TagImage imagePadding={imagePadding} cover={imageCover} src={imageSrc}></TagImage>
-            </ImageContainer>
-          )}
+          {imageSrc && imagePosition === "before" && imageComponent}
           <CardContent contentPadding={contentPadding}>{children}</CardContent>
+          {imageSrc && imagePosition === "after" && imageComponent}
         </CardContainer>
       </ThemeProvider>
     </DxcBox>
@@ -76,7 +79,6 @@ const StyledDxcCard = styled.div`
 
 const CardContainer = styled.div`
   display: inline-flex;
-  flex-direction: ${({ imagePosition }) => (imagePosition === "before" && "row") || "row-reverse"};
   height: ${(props) => props.theme.height};
   width: ${(props) => props.theme.width};
   &:hover {
