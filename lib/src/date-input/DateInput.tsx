@@ -66,7 +66,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     };
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
-      console.log(newValue);
       const dayjsDate = dayjs(newValue, format.toUpperCase(), true);
       const invalidDateMessage = newValue !== "" && !dayjsDate.isValid() && "Invalid date.";
       const callbackParams =
