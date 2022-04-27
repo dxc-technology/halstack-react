@@ -64,9 +64,8 @@ const switchPropsTable = () => {
           <code>false</code>
         </td>
         <td>
-          If true, the component will be optional, showing{" "}
-          <code>(Optional)</code> next to the label. Otherwise, it should be
-          considered required and display an error if it is convenient.
+          If true, the component will display <code>(Optional)</code> next to
+          the label.
         </td>
       </tr>
       <tr>

@@ -43,9 +43,7 @@ type Props = {
    */
   onChange?: (checked: boolean) => void;
   /**
-   * If true, the component will be optional, showing '(Optional)'
-   * next to the label. Otherwise, it should be considered required
-   * and display an error if it is convenient.
+   * If true, the component will display '(Optional)' next to the label.
    */
   optional?: boolean;
   /**
