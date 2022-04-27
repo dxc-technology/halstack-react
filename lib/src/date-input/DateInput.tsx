@@ -53,9 +53,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       }
     };
     const handleCalendarOnClick = (newDate) => {
-      console.log(newDate);
       const newValue = dayjs(newDate).format(format.toUpperCase());
-      console.log("newValue:"+newValue);
       value ?? setInnerValue(newValue);
       newDate?.toJSON()
         ? onChange?.({
