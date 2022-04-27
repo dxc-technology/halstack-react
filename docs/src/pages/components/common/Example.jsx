@@ -121,14 +121,13 @@ const StyledPreview = styled.div`
   background-size: 20px 20px;
   background-position: 0px 0px, 10px 0px, 10px -10px, 0px 10px;
   border: 1px solid #707070;
-  border-radius: 8px;
+  border-radius: 4px;
   margin-bottom: 8px;
   padding: 32px;
 `;
 
 const StyledError = styled.div`
   background: #ffeded;
-  border-radius: 8px;
   color: red;
   display: flex;
   padding: 0px 10px;
@@ -144,8 +143,8 @@ const LiveEditorContainer = styled.div`
 
 const CodeActionsContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
   column-gap: 8px;
+  justify-content: flex-end;
   ${({ isCodeVisible }) => isCodeVisible && "margin-bottom: 8px;"};
 `;
 

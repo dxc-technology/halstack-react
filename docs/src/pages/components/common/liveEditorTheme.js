@@ -2,8 +2,7 @@ export default {
   plain: {
     color: "#9CDCFE",
     backgroundColor: "#333333",
-    borderRadius: "8px",
-    padding: "0px",
+    borderRadius: "4px",
   },
   styles: [
     {
