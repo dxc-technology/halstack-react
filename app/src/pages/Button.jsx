@@ -1,7 +1,7 @@
 import React from "react";
 import {
   DxcButton,
-  ThemeProvider,
+  HalstackProvider,
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
@@ -504,7 +504,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Buttons</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <div>
             <DxcButton
               mode="primary"
@@ -554,7 +554,7 @@ function App() {
               margin="small"
             />
           </div>
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark" text="Default">

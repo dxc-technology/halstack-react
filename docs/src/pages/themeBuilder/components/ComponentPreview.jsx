@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   DxcHeading,
   DxcAlert,
-  ThemeProvider,
+  HalstackProvider,
 } from "@dxc-technology/halstack-react";
 import componentsPreview from "./ComponentsPreviewMap";
 import { capitalizeText } from "../utils";
@@ -39,7 +39,7 @@ const ComponentPreview = ({ customTheme, componentId }) => {
           )}
           resetKeys={[customTheme]}
         >
-          <ThemeProvider
+          <HalstackProvider
             theme={
               type === "defaultTheme" || type === undefined
                 ? customTheme
@@ -48,7 +48,7 @@ const ComponentPreview = ({ customTheme, componentId }) => {
             advancedTheme={type === "advancedTheme" ? customTheme : undefined}
           >
             <preview.preview />
-          </ThemeProvider>
+          </HalstackProvider>
         </ErrorBoundary>
       </PreviewContainer>
     </ComponentPreviewContainer>

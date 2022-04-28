@@ -4,7 +4,7 @@ import rgbHex from "rgb-hex";
 import styled from "styled-components";
 import { componentTokens } from "./common/variables.js";
 
-const ThemeContext = React.createContext<object | null>(null);
+const HalstackContext = React.createContext<object | null>(null);
 
 const addLightness = (hexColor, newLightness) => {
   try {
@@ -268,12 +268,12 @@ const parseTheme = (theme) => {
   return componentTokensCopy;
 };
 
-type ThemeProviderPropsType = {
+type HalstackProviderPropsType = {
   theme?: object;
   advancedTheme?: object;
   children: React.ReactNode;
 };
-const ThemeProvider = ({ theme, advancedTheme, children }: ThemeProviderPropsType): JSX.Element => {
+const HalstackProvider = ({ theme, advancedTheme, children }: HalstackProviderPropsType): JSX.Element => {
   const parsedTheme = useMemo(
     () => (theme && parseTheme(theme)) || (advancedTheme && parseAdvancedTheme(advancedTheme)),
     [theme, advancedTheme]
@@ -281,7 +281,7 @@ const ThemeProvider = ({ theme, advancedTheme, children }: ThemeProviderPropsTyp
 
   return (
     <Halstack>
-      <ThemeContext.Provider value={parsedTheme}>{children}</ThemeContext.Provider>
+      <HalstackContext.Provider value={parsedTheme}>{children}</HalstackContext.Provider>
     </Halstack>
   );
 };
@@ -290,5 +290,5 @@ const Halstack = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
 `;
 
-export default ThemeContext;
-export { ThemeProvider };
+export default HalstackContext;
+export { HalstackProvider };

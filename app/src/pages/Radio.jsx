@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcRadio, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcRadio, HalstackProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   radio: {
@@ -278,7 +278,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Radio</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcRadio label="Radio" checked={checked} onClick={onClick} />
           <DxcRadio
             label="Radio"
@@ -286,7 +286,7 @@ function App() {
             onClick={onClick}
             disabled
           />
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );

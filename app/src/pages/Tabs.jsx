@@ -3,7 +3,7 @@ import {
   DxcTabs,
   DxcButton,
   DxcSwitch,
-  ThemeProvider,
+  HalstackProvider,
   ThemeContext,
 } from "@dxc-technology/halstack-react";
 import twitterIcon from "../images/twitter-black.svg";
@@ -810,7 +810,7 @@ function Tabs() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Tabs</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcTabs
             activeTabIndex={activeTab}
             onTabClick={onTabClick}
@@ -889,7 +889,7 @@ function Tabs() {
               },
             ]}
           />
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );

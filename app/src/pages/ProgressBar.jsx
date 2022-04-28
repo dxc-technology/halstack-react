@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {
   DxcProgressBar,
-  ThemeProvider,
+  HalstackProvider,
   BackgroundColorProvider,
 } from "@dxc-technology/halstack-react";
 
@@ -117,14 +117,14 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Progress Bar</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcProgressBar
             label="Loading..."
             overlay={false}
             showValue
             value={50}
           />
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
       <h4>Dark mode</h4>
       <BackgroundColorProvider color="#000000">
