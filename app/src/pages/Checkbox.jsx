@@ -77,14 +77,14 @@ function App() {
           disabled
         />
       </div>
-      <div className="test-case" id="required-checkbox">
-        <h4>Required checkbox</h4>
+      <div className="test-case" id="optional-checkbox">
+        <h4>Optional checkbox</h4>
         <DxcCheckbox
           checked={checked}
           label="Checkbox"
           onChange={onChange}
           labelPosition="after"
-          required={true}
+          optional
         />
       </div>
       <div>

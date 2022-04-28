@@ -8,8 +8,8 @@ const code = `() => {
         margin="medium"
       />
       <DxcCheckbox
-        label="Required"
-        required
+        label="Label"
+        optional
         margin="medium"
       />
       <DxcCheckbox

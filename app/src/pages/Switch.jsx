@@ -75,10 +75,10 @@ function App() {
         />
       </div>
 
-      <div className="test-case" id="required-switch">
-        <h4>Required switch</h4>
+      <div className="test-case" id="optional-switch">
+        <h4>Optional switch</h4>
         <DxcSwitch
-          required={true}
+          optional
           checked={checked}
           labelPosition="after"
           label="Switch"

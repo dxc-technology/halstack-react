@@ -38,14 +38,14 @@ type Props = {
    */
   disabled?: boolean;
   /**
-   * If true, the checkbox will change its appearence, showing that the value is required.
+   * If true, the component will display '(Optional)' next to the label.
    */
-  required?: boolean;
+  optional?: boolean;
   /**
    * This function will be called when the user clicks the checkbox.
    * The new value will be passed as a parameter.
    */
-  onChange?: (val: boolean) => void;
+  onChange?: (value: boolean) => void;
   /**
    * Size of the margin to be applied to the component
    * ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').

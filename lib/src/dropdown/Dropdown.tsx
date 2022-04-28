@@ -77,6 +77,12 @@ const DxcDropdown = ({
     </svg>
   );
 
+  const labelComponent = (
+    <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
+      {label}
+    </DropdownTriggerLabel>
+  );
+
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
       <DXCDropdownContainer margin={margin} size={size} disabled={disabled}>
@@ -97,15 +103,14 @@ const DxcDropdown = ({
             ref={ref}
             tabIndex={tabIndex}
           >
-            <DropdownTriggerContainer iconPosition={iconPosition} caretHidden={caretHidden}>
+            <DropdownTriggerContainer caretHidden={caretHidden}>
+              {iconPosition === "after" && labelComponent}
               {icon && (
                 <ButtonIconContainer label={label} iconPosition={iconPosition} disabled={disabled}>
                   {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
                 </ButtonIconContainer>
               )}
-              <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
-                {label}
-              </DropdownTriggerLabel>
+              {iconPosition === "before" && labelComponent}
             </DropdownTriggerContainer>
             <CaretIconContainer caretHidden={caretHidden} disabled={disabled}>
               {!caretHidden && (anchorEl === null ? <DownArrowIcon /> : <UpArrowIcon />)}
@@ -118,7 +123,6 @@ const DxcDropdown = ({
             getContentAnchorEl={null}
             anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
             transformOrigin={{ vertical: "top", horizontal: "left" }}
-            optionsIconPosition={optionsIconPosition}
             size={size}
             width={width}
             role={undefined}
@@ -138,12 +142,13 @@ const DxcDropdown = ({
                           disableRipple={true}
                           onClick={(event) => handleMenuItemClick(option)}
                         >
+                          {optionsIconPosition === "after" && <span className="optionLabel">{option.label}</span>}
                           {option.icon && (
                             <ListIconContainer label={option.label} iconPosition={optionsIconPosition}>
                               {typeof option.icon === "string" ? <ListIcon src={option.icon} /> : option.icon}
                             </ListIconContainer>
                           )}
-                          <span className="optionLabel">{option.label}</span>
+                          {optionsIconPosition === "before" && <span className="optionLabel">{option.label}</span>}
                         </MenuItem>
                       ))}
                     </MenuList>
@@ -233,8 +238,6 @@ const DXCMenu = styled(Popper)`
     }
     .MuiListItem-button {
       display: flex;
-      flex-direction: ${(props) => (props.optionsIconPosition === "after" && "row-reverse") || "row"};
-      justify-content: ${(props) => (props.optionsIconPosition === "after" && "flex-end") || ""};
       background-color: ${(props) => props.theme.optionBackgroundColor};
       font-family: ${(props) => props.theme.optionFontFamily};
       font-size: ${(props) => props.theme.optionFontSize};
@@ -313,7 +316,6 @@ const DropdownTriggerLabel = styled.span`
 const DropdownTriggerContainer = styled.span`
   display: flex;
   align-items: center;
-  flex-direction: ${(props) => (props.iconPosition === "after" && "row-reverse") || "row"};
   margin-left: 0px;
   margin-right: 0px;
   width: ${(props) => (props.caretHidden ? "100%" : "calc(100% - 36px)")};
