@@ -33,14 +33,18 @@ const icons = {
 
 const Example = ({ title, example, children }) => {
   const [isCodeVisible, changeIsCodeVisible] = useState(false);
+  const [copied, changeCopied] = useState(false);
+
   const liveEditorRef = useRef(null);
-  const toggleCodeClick = () => {
+
+  const showCode = () => {
     changeIsCodeVisible(!isCodeVisible);
   };
   const copyCode = () => {
     // Accessing DOM manually to the textarea value (current code) inside the LiveEditor of react-live
     const currentCode = liveEditorRef.current.children[0].children[0].value;
     navigator.clipboard.writeText(currentCode);
+    changeCopied(true);
   };
 
   useLayoutEffect(() => {
@@ -48,6 +52,14 @@ const Example = ({ title, example, children }) => {
     if (liveEditorRef.current && isCodeVisible)
       liveEditorRef.current.children[0].children[0].focus();
   }, [isCodeVisible]);
+
+  useLayoutEffect(() => {
+    if (copied) {
+      setTimeout(() => {
+        changeCopied(false);
+      }, 1000);
+    }
+  }, [copied]);
 
   return (
     <ExampleContainer>
@@ -75,11 +87,21 @@ const Example = ({ title, example, children }) => {
             label={isCodeVisible ? "Hide code" : "View code"}
             icon={icons.code}
             mode="text"
-            onClick={toggleCodeClick}
+            onClick={showCode}
           />
         </CodeActionsContainer>
         {isCodeVisible && (
           <LiveEditorContainer ref={liveEditorRef}>
+            {copied && (
+              <BackgroundOverlay>
+                <span>
+                  Copied!{" "}
+                  <span role="img" aria-label="emoji">
+                    🎉
+                  </span>
+                </span>
+              </BackgroundOverlay>
+            )}
             <LiveEditor />
           </LiveEditorContainer>
         )}
@@ -96,20 +118,20 @@ const ExampleContainer = styled.div`
 
 const Title = styled.div`
   display: flex;
-  border-bottom: 1px solid #c1c1c1;
   align-items: baseline;
+  border-bottom: 1px solid #c1c1c1;
 `;
 
 const TitleText = styled.h3`
-  font-size: 20px;
   color: gray;
+  font-size: 20px;
   font-weight: normal;
   flex-grow: 1;
   margin: 5px 0px;
 `;
 
 const Text = styled.div`
-  margin: 24px 0px 16px 0px;
+  margin: 1.5rem 0px 1rem 0px;
 `;
 
 const StyledPreview = styled.div`
@@ -121,31 +143,51 @@ const StyledPreview = styled.div`
   background-size: 20px 20px;
   background-position: 0px 0px, 10px 0px, 10px -10px, 0px 10px;
   border: 1px solid #707070;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  padding: 32px;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  overflow: auto;
 `;
 
 const StyledError = styled.div`
   background: #ffeded;
   color: red;
   display: flex;
-  padding: 0px 10px;
+  padding: 0px 0.5rem;
 `;
 
 const LiveEditorContainer = styled.div`
-  margin-bottom: 8px;
-
-  textarea, pre {
-    padding: 32px !important;
+  display: flex;
+  position: relative;
+  margin-bottom: 0.5rem;
+  textarea,
+  pre {
+    padding: 2rem !important;
+  }
+  > div {
+    width: 100% !important;
   }
 `;
 
 const CodeActionsContainer = styled.div`
   display: flex;
-  column-gap: 8px;
+  column-gap: 0.5rem;
   justify-content: flex-end;
-  ${({ isCodeVisible }) => isCodeVisible && "margin-bottom: 8px;"};
+  ${({ isCodeVisible }) => isCodeVisible && "margin-bottom: 0.5rem;"};
+`;
+
+const BackgroundOverlay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 1.5rem;
+  background-color: #000000b3;
+  transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  z-index: 1;
+  user-select: none;
 `;
 
 export default Example;
