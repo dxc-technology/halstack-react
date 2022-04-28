@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   DxcAccordionGroup,
   DxcAccordion,
-  ThemeContext,
+  HalstackContext,
 } from "@dxc-technology/halstack-react";
 
 function App() {

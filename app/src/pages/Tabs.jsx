@@ -4,7 +4,7 @@ import {
   DxcButton,
   DxcSwitch,
   HalstackProvider,
-  ThemeContext,
+  HalstackContext,
 } from "@dxc-technology/halstack-react";
 import twitterIcon from "../images/twitter-black.svg";
 
@@ -369,14 +369,14 @@ function Tabs() {
             <div
               style={{ height: "250px", background: "#D9D9D9", margin: "15px" }}
             >
-              <ThemeContext.Provider value={colors}>
+              <HalstackContext.Provider value={colors}>
                 <DxcButton
                   mode="primary"
                   label="Button"
                   onClick={onClick}
                   margin="medium"
                 />
-              </ThemeContext.Provider>
+              </HalstackContext.Provider>
               <DxcSwitch
                 label="Switch"
                 margin="medium"
