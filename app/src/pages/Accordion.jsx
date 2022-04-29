@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcAccordion, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcAccordion, HalstackProvider } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
 
 const colors = {
@@ -452,7 +452,7 @@ function App() {
 
       <div className="test-case" id="custom-colors">
         <h4>Custom Accordion</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcAccordion label="Accordion" onChange={onChange} padding="medium">
             <div>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -460,7 +460,7 @@ function App() {
               eget.
             </div>
           </DxcAccordion>
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );

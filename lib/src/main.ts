@@ -43,7 +43,7 @@ import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
 import DxcQuickNav from "./quick-nav/QuickNav";
 
-import ThemeContext, { ThemeProvider } from "./ThemeContext";
+import HalstackContext, { HalstackProvider } from "./HalstackContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
 
 export {
@@ -75,8 +75,8 @@ export {
   DxcResultsetTable,
   DxcChip,
   DxcApplicationLayout,
-  ThemeContext,
-  ThemeProvider,
+  HalstackContext,
+  HalstackProvider,
   BackgroundColorProvider,
   DxcAccordionGroup,
   DxcBadge,

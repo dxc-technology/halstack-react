@@ -1,5 +1,8 @@
 import React from "react";
-import { DxcToggleGroup, ThemeProvider } from "@dxc-technology/halstack-react";
+import {
+  DxcToggleGroup,
+  HalstackProvider,
+} from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import twitterPath from "../images/twitter-black.svg";
 
@@ -283,7 +286,7 @@ function App() {
       <div>
         <h4>Custom toggle group</h4>
         <div className="test-case" id="custom-toggle-group">
-          <ThemeProvider theme={colors}>
+          <HalstackProvider theme={colors}>
             <DxcToggleGroup
               label="Toggle group"
               helperText="Please select one"
@@ -299,7 +302,7 @@ function App() {
               disabled
               value={3}
             />
-          </ThemeProvider>
+          </HalstackProvider>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcWizard, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcWizard, HalstackProvider } from "@dxc-technology/halstack-react";
 import homeIcon from "../images/home.svg";
 
 const homeSVG = () => {
@@ -133,7 +133,7 @@ function Wizard() {
       </div>
       <div className="test-case" id="custom-wizard">
         <h4>Custom wizard</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcWizard
             steps={[
               {
@@ -147,7 +147,7 @@ function Wizard() {
               },
             ]}
           ></DxcWizard>
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );
