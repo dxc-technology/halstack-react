@@ -209,13 +209,13 @@ export default [
     type: types.UTILS,
     status: "ready",
   },
-  {
-    path: "quickNav",
-    name: "Quick Nav",
-    component: QuickNav,
-    type: types.NAVIGATION,
-    status: "experimental",
-  },
+  // {
+  //   path: "quickNav",
+  //   name: "Quick Nav",
+  //   component: QuickNav,
+  //   type: types.NAVIGATION,
+  //   status: "experimental",
+  // },
   {
     path: "radio",
     name: "Radio Button",
