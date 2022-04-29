@@ -4,14 +4,15 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { createMuiTheme, MuiThemeProvider, Paper } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Popover from "@material-ui/core/Popover";
-import moment from "moment";
-import DateFnsUtils from "@date-io/date-fns";
+import dayjs from "dayjs";
+import DayjsUtils from "@date-io/dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
 
-const getValueForPicker = (value, format) => moment(value, format.toUpperCase(), true).format();
+
+const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true).format();
 
 const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
   (
@@ -52,7 +53,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       }
     };
     const handleCalendarOnClick = (newDate) => {
-      const newValue = moment(newDate).format(format.toUpperCase());
+      const newValue = dayjs(newDate).format(format.toUpperCase());
       value ?? setInnerValue(newValue);
       newDate?.toJSON()
         ? onChange?.({
@@ -65,28 +66,28 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     };
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
-      const momentDate = moment(newValue, format.toUpperCase(), true);
-      const invalidDateMessage = newValue !== "" && !momentDate.isValid() && "Invalid date.";
+      const dayjsDate = dayjs(newValue, format.toUpperCase(), true);
+      const invalidDateMessage = newValue !== "" && !dayjsDate.isValid() && "Invalid date.";
       const callbackParams =
         inputError || invalidDateMessage
           ? { value: newValue, error: inputError || invalidDateMessage }
           : { value: newValue };
-      momentDate.isValid()
+      dayjsDate.isValid()
         ? onChange?.({
             ...callbackParams,
-            date: momentDate.toDate(),
+            date: dayjsDate.toDate(),
           })
         : onChange?.(callbackParams);
     };
     const handleIOnBlur = ({ value, error: inputError }) => {
-      const momentDate = moment(value, format.toUpperCase(), true);
-      const invalidDateMessage = value !== "" && !momentDate.isValid() && "Invalid date.";
+      const dayjsDate = dayjs(value, format.toUpperCase(), true);
+      const invalidDateMessage = value !== "" && !dayjsDate.isValid() && "Invalid date.";
       const callbackParams =
         inputError || invalidDateMessage ? { value, error: inputError || invalidDateMessage } : { value };
-      momentDate.isValid()
+      dayjsDate.isValid()
         ? onBlur?.({
             ...callbackParams,
-            date: momentDate.toDate(),
+            date: dayjsDate.toDate(),
           })
         : onBlur?.(callbackParams);
     };
@@ -253,7 +254,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     return (
       <ThemeProvider theme={colorsTheme}>
         <MuiThemeProvider theme={dateTheme}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <MuiPickersUtilsProvider utils={DayjsUtils}>
             <StyledDPicker>
               <DxcTextInput
                 label={label}

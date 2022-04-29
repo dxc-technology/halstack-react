@@ -5,11 +5,11 @@ import ScrollToTop from "./common/ScrollToTop";
 import Components from "./pages/components/Components";
 import Overview from "./pages/overview/Overview";
 import ThemeBuilder from "./pages/themeBuilder/ThemeBuilder";
-import { ThemeProvider } from "@dxc-technology/halstack-react";
+import { HalstackProvider } from "@dxc-technology/halstack-react";
 
 function App() {
   return (
-    <ThemeProvider>
+    <HalstackProvider>
       <MainContainer>
         <HashRouter>
           <ScrollToTop />
@@ -29,7 +29,7 @@ function App() {
           </Route>
         </HashRouter>
       </MainContainer>
-    </ThemeProvider>
+    </HalstackProvider>
   );
 }
 

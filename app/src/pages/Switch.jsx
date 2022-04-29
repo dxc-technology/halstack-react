@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcSwitch, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcSwitch, HalstackProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   switch: {
@@ -274,7 +274,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Switch</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcSwitch
             disabled
             checked={true}
@@ -282,7 +282,7 @@ function App() {
             label="Switch"
             onChange={onChange}
           />
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );

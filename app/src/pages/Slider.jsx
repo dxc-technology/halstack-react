@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcSlider, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcSlider, HalstackProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   slider: {
@@ -293,7 +293,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Slider</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcSlider
             label="Select a value"
             helperText="Helper text"
@@ -327,7 +327,7 @@ function App() {
             onChangeInput={onChangeInput}
             margin="medium"
           />
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcTable, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcTable, HalstackProvider } from "@dxc-technology/halstack-react";
 
 const colors = {
   table: {
@@ -875,7 +875,7 @@ function Table() {
 
       <div className="test-case" id="custom-colors">
         <h5>Custom Table</h5>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcTable margin="xxsmall">
             <tbody>
               <tr>
@@ -984,7 +984,7 @@ function Table() {
               </tr>
             </tbody>
           </DxcTable>
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );
