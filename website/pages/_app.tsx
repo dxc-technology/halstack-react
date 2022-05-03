@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import {
   DxcApplicationLayout,
-  ThemeProvider,
+  HalstackProvider,
 } from "@dxc-technology/halstack-react";
 import SidenavContent from "../screens/common/sidenav/Sidenav";
 import "../global-styles.css";
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
-      <ThemeProvider advancedTheme={{}}>
+      <HalstackProvider advancedTheme={{}}>
         <DxcApplicationLayout>
           <DxcApplicationLayout.SideNav mode="push">
             <SidenavContent></SidenavContent>
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             {componentWithLayout}
           </DxcApplicationLayout.Main>
         </DxcApplicationLayout>
-      </ThemeProvider>
+      </HalstackProvider>
     </>
   );
 }
