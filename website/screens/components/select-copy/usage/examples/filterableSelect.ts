@@ -31,8 +31,8 @@ const code = `() => {
   ];
 
   return (
-    <DxcStack>
-      <DxcInset top="large" right="large" left="large">
+    <DxcInset space="large">
+      <DxcStack gutter="large">
         <DxcSelect
           label="Single searchable"
           placeholder="Choose an option"
@@ -41,8 +41,6 @@ const code = `() => {
           searchable
           size="fillParent"
         />
-      </DxcInset>
-      <DxcInset space="large">
         <DxcSelect
           label="Multiple searchable"
           helperText="Select one or more options"
@@ -52,8 +50,8 @@ const code = `() => {
           searchable
           size="fillParent"
         />
-      </DxcInset>
-    </DxcStack>
+      </DxcStack>
+    </DxcInset>
   );
 }`;
 

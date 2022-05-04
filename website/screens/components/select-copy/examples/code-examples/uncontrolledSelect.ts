@@ -1,4 +1,9 @@
-import { DxcSelect, DxcButton, DxcStack, DxcInset } from "@dxc-technology/halstack-react";
+import {
+  DxcSelect,
+  DxcButton,
+  DxcStack,
+  DxcInset,
+} from "@dxc-technology/halstack-react";
 import { useState, useRef } from "react";
 
 const code = `() => {
@@ -15,8 +20,8 @@ const code = `() => {
   };
 
   return (
-    <DxcStack>
-      <DxcInset top="large" right="large" left="large">
+    <DxcInset space="large">
+      <DxcStack gutter="large">
         <DxcSelect
           label="Uncontrolled"
           helperText="The 'defaultValue' prop only works with uncontrolled text inputs"
@@ -25,14 +30,13 @@ const code = `() => {
           size="fillParent"
           ref={selectRef}
         />
-      </DxcInset>
-      <DxcInset space="large">
         <DxcButton
           onClick={handleSubmit}
           label="Submit"
+          size="medium"
         />
-      </DxcInset>
-    </DxcStack>
+      </DxcStack>
+    </DxcInset>
   );
 }`;
 

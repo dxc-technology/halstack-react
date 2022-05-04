@@ -10,16 +10,14 @@ const code = `() => {
   ];
 
   return (
-    <DxcStack>
-      <DxcInset top="large" right="large" left="large">
+    <DxcInset space="large">
+      <DxcStack gutter="large">
         <DxcSelect
           label="Default"
           placeholder="Choose an option"
           options={options}
           size="fillParent"
         />
-      </DxcInset>
-      <DxcInset top="large" right="large" left="large">
         <DxcSelect
           label="Error"
           placeholder="Choose an option"
@@ -27,8 +25,6 @@ const code = `() => {
           error="Error message"
           size="fillParent"
         />
-      </DxcInset>
-      <DxcInset space="large">
         <DxcSelect
           label="Disabled"
           placeholder="Choose an option"
@@ -36,8 +32,8 @@ const code = `() => {
           disabled
           size="fillParent"
         />
-      </DxcInset>
-    </DxcStack>
+      </DxcStack>
+    </DxcInset>
   );
 }`;
 

@@ -123,8 +123,8 @@ const code = `() => {
   ];
 
   return (
-    <DxcStack>
-      <DxcInset top="large" right="large" left="large">
+    <DxcInset space="large">
+      <DxcStack gutter="large">
         <DxcSelect
           label="Svg icons"
           placeholder="Choose options"
@@ -133,8 +133,6 @@ const code = `() => {
           multiple
           size="fillParent"
         />
-      </DxcInset>
-      <DxcInset space="large">
         <DxcSelect
           label="Url icons"
           placeholder="Choose an option"
@@ -142,8 +140,8 @@ const code = `() => {
           options={url_options}
           size="fillParent"
         />
-      </DxcInset>
-    </DxcStack>
+      </DxcStack>
+    </DxcInset>
   );
 }`;
 

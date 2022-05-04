@@ -10,8 +10,8 @@ const code = `() => {
   ];
 
   return (
-    <DxcStack>
-      <DxcInset top="large" right="large" left="large">
+    <DxcInset space="large">
+      <DxcStack gutter="large">
         <DxcSelect
           label="Required"
           helperText="By default, the select is required"
@@ -20,8 +20,6 @@ const code = `() => {
           error="This field is required. Please, enter a value."
           size="fillParent"
         />
-      </DxcInset>
-      <DxcInset space="large">
         <DxcSelect
           label="Label"
           helperText="When a select is optional, it is not required to fill it in, so it won't pass the required error"
@@ -30,8 +28,8 @@ const code = `() => {
           optional
           size="fillParent"
         />
-      </DxcInset>
-    </DxcStack>
+      </DxcStack>
+    </DxcInset>
   );
 }`;
 

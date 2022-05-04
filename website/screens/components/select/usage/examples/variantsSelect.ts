@@ -10,8 +10,8 @@ const code = `() => {
   ];
 
   return (
-    <DxcStack>
-      <DxcInset top="large" right="large" left="large">
+    <DxcInset space="large">
+      <DxcStack gutter="large">
         <DxcSelect
           label="Single selection"
           helperText="Select an option"
@@ -19,8 +19,6 @@ const code = `() => {
           options={options}
           size="fillParent"
         />
-      </DxcInset>
-      <DxcInset space="large">
         <DxcSelect
           label="Multiple selection"
           helperText="Select one or more options"
@@ -29,8 +27,8 @@ const code = `() => {
           multiple
           size="fillParent"
         />
-      </DxcInset>
-    </DxcStack>
+      </DxcStack>
+    </DxcInset>
   );
 }`;
 

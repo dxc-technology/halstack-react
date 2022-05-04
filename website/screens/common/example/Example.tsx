@@ -50,7 +50,7 @@ const Example = ({
 
   const liveEditorRef = useRef<HTMLDivElement>(null);
 
-  const showCode = () => {
+  const handleCodeOnClick = () => {
     changeIsCodeVisible(!isCodeVisible);
   };
   const copyCode = () => {
@@ -62,13 +62,18 @@ const Example = ({
     changeCopied(true);
   };
 
+  const [firstUpdate, setFirstUpdate] = useState(true);
   useEffect(() => {
+    // Don't apply in the first render
+    if (firstUpdate) {
+      setFirstUpdate(false);
+      return;
+    }
     // Accessing DOM manually to add focus to the textarea inside the LiveEditor of react-live
-    if (isCodeVisible) {
+    isCodeVisible &&
       (
         liveEditorRef?.current?.children[0].children[0] as HTMLTextAreaElement
       ).focus();
-    }
   }, [isCodeVisible]);
 
   useEffect(() => {
@@ -101,7 +106,7 @@ const Example = ({
             label={isCodeVisible ? "Hide code" : "View code"}
             icon={icons.code}
             mode="text"
-            onClick={showCode}
+            onClick={handleCodeOnClick}
           />
         </CodeActionsContainer>
         {isCodeVisible && (
