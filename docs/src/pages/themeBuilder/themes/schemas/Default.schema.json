@@ -54,6 +54,9 @@
   "radio": {
     "baseColor": "color"
   },
+  "radioGroup": {
+    "baseColor": "color"
+  },
   "select": {
     "baseColor": "color",
     "fontColor": "color"

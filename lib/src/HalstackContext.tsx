@@ -176,6 +176,9 @@ const parseTheme = (theme) => {
   radioTokens.color = theme?.radio?.baseColor ?? radioTokens.color;
   radioTokens.disabledColor = setOpacity(theme?.radio?.baseColor, 0.34) ?? radioTokens.disabledColor;
 
+  const radioGroupTokens = componentTokensCopy.radioGroup;
+  radioGroupTokens.radioInputColor = theme?.radioGroup?.baseColor ?? radioGroupTokens.radioInputColor;
+
   const selectTokens = componentTokensCopy.select;
   selectTokens.selectedOptionBackgroundColor = theme?.select?.baseColor ?? selectTokens.selectedOptionBackgroundColor;
   selectTokens.optionFontColor = theme?.select?.fontColor ?? selectTokens.optionFontColor;
@@ -228,6 +231,8 @@ const parseTheme = (theme) => {
   tabsTokens.focusOutline = theme?.tabs?.baseColor ?? tabsTokens.focusOutline;
   tabsTokens.hoverBackgroundColor = addLightness(theme?.tabs?.baseColor, 58) ?? tabsTokens.hoverBackgroundColor;
   tabsTokens.pressedBackgroundColor = addLightness(theme?.tabs?.baseColor, 53) ?? tabsTokens.pressedBackgroundColor;
+
+  // const textareaTokens = componentTokensCopy.textarea;
 
   const textInputTokens = componentTokensCopy.textInput;
   textInputTokens.hoverListOptionBackgroundColor =
