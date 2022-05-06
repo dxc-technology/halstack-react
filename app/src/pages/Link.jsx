@@ -17,8 +17,8 @@ function App() {
         <h4>Default Link</h4>
         <div className="test-case" id="default-link">
           <p>
-            This is a text with a <DxcLink href="#" text="Link"></DxcLink> to
-            another page.
+            This is a text with a <DxcLink href="#">Link</DxcLink> to another
+            page.
           </p>
         </div>
       </div>
@@ -27,8 +27,8 @@ function App() {
         <div className="test-case" id="default-link-onClick">
           <p>
             This is a text with a{" "}
-            <DxcLink onClick={() => console.log("Hello")} text="Link"></DxcLink>{" "}
-            to another page.
+            <DxcLink onClick={() => console.log("Hello")}>Link</DxcLink> to
+            another page.
           </p>
         </div>
       </div>
@@ -36,13 +36,10 @@ function App() {
         <h4>Not Underlined Link</h4>
         <div className="test-case" id="not-underlined-link">
           <p>
-            This is a text with a
-            <DxcLink
-              href="#"
-              margin="xxsmall"
-              underlined={false}
-              text="Link"
-            ></DxcLink>
+            This is a text with a{" "}
+            <DxcLink href="#" margin="xxsmall" underlined={false}>
+              Link
+            </DxcLink>{" "}
             to another page.
           </p>
         </div>
@@ -50,47 +47,55 @@ function App() {
       <div>
         <h4>Default inherited color Link with NewWindow</h4>
         <div className="test-case" id="inherited-color-link">
-          <DxcLink
-            href="#"
-            inheritColor={true}
-            newWindow={true}
-            text="Link"
-          ></DxcLink>
+          <DxcLink href="#" inheritColor newWindow>
+            Link
+          </DxcLink>
         </div>
       </div>
       <div>
         <h4>Not Underline colored Link</h4>
         <div className="test-case" id="not-underlined-colored-link">
-          <DxcLink
-            href="#"
-            underlined={false}
-            inheritedColor={true}
-            text="Link"
-          ></DxcLink>
+          <DxcLink href="#" underlined={false} inheritedColor>
+            Link
+          </DxcLink>
         </div>
       </div>
       <div>
         <h4>Margin</h4>
         <div className="test-case" id="margin-xxsmall">
-          <DxcLink href="#" margin="xxsmall" text="Margin xxsmall"></DxcLink>
+          <DxcLink href="#" margin="xxsmall">
+            Margin xxsmall
+          </DxcLink>
         </div>
         <div className="test-case" id="margin-xsmall">
-          <DxcLink href="#" margin="xsmall" text="Margin xsmall"></DxcLink>
+          <DxcLink href="#" margin="xsmall">
+            Margin xsmall
+          </DxcLink>
         </div>
         <div className="test-case" id="margin-small">
-          <DxcLink href="#" margin="small" text="Margin small"></DxcLink>
+          <DxcLink href="#" margin="small">
+            Margin small
+          </DxcLink>
         </div>
         <div className="test-case" id="margin-medium">
-          <DxcLink href="#" margin="medium" text="Margin medium"></DxcLink>
+          <DxcLink href="#" margin="medium">
+            Margin medium
+          </DxcLink>
         </div>
         <div className="test-case" id="margin-large">
-          <DxcLink href="#" margin="large" text="Margin large"></DxcLink>
+          <DxcLink href="#" margin="large">
+            Margin large
+          </DxcLink>
         </div>
         <div className="test-case" id="margin-xlarge">
-          <DxcLink href="#" margin="xlarge" text="Margin xlarge"></DxcLink>
+          <DxcLink href="#" margin="xlarge">
+            Margin xlarge
+          </DxcLink>
         </div>
         <div className="test-case" id="margin-xxlarge">
-          <DxcLink href="#" margin="xxlarge" text="Margin xxlarge"></DxcLink>
+          <DxcLink href="#" margin="xxlarge">
+            Margin xxlarge
+          </DxcLink>
         </div>
       </div>
       <div>
@@ -115,8 +120,9 @@ function App() {
                   </g>
                 </svg>
               }
-              text="Icon after"
-            ></DxcLink>{" "}
+            >
+              Icon after
+            </DxcLink>{" "}
             the link.
           </p>
           <p>
@@ -125,8 +131,9 @@ function App() {
               href="#"
               iconPosition="after"
               icon={<p>This is a test.</p>}
-              text="Icon after"
-            ></DxcLink>{" "}
+            >
+              Icon after
+            </DxcLink>{" "}
             the link.
           </p>
         </div>
@@ -137,10 +144,11 @@ function App() {
               href="#"
               iconPosition="before"
               icon={iconSVG}
-              inheritColor={true}
+              inheritColor
               underlined={false}
-              text="Icon before"
-            ></DxcLink>{" "}
+            >
+              Icon before
+            </DxcLink>{" "}
             the link.
           </p>
         </div>
@@ -151,10 +159,11 @@ function App() {
               href="#"
               iconPosition="before"
               icon={<img src={homeLogo} />}
-              inheritColor={true}
+              inheritColor
               underlined={false}
-              text="Icon before"
-            ></DxcLink>{" "}
+            >
+              Icon before
+            </DxcLink>{" "}
             the link.
           </p>
         </div>
@@ -162,63 +171,34 @@ function App() {
       <div>
         <h4>Disabled</h4>
         <div className="test-case" id="disabled-light-link">
-          <DxcLink
-            href="#"
-            disabled={true}
-            underlined={true}
-            text="Disabled link"
-          ></DxcLink>{" "}
+          <DxcLink href="#" disabled underlined>
+            Disabled link
+          </DxcLink>{" "}
         </div>
         <div className="test-case" id="disabled-light-link">
-          <DxcLink
-            onClick={() => console.log("Hello")}
-            disabled={true}
-            underlined={true}
-            text="Disabled link"
-          ></DxcLink>{" "}
+          <DxcLink onClick={() => console.log("Hello")} disabled underlined>
+            Disabled link
+          </DxcLink>{" "}
         </div>
       </div>
 
       <div>
         <h4>Custom Link</h4>
-        <div className="test-case" id="custom-link">
-          <p>
-            This is a text with a{" "}
-            <DxcLink text="custom button link" as="button"></DxcLink> to another
-            page.
-          </p>
-        </div>
-        <div className="test-case" id="custom-inherit-link">
-          <p>
-            This is a text with a{" "}
-            <DxcLink
-              text="custom button link"
-              as="button"
-              inheritColor
-            ></DxcLink>{" "}
-            to another page.
-          </p>
-        </div>
         <div className="test-case" id="custom-router-link">
           <p>
             This is a text with a{" "}
-            <DxcLink
-              text="custom router link"
-              as={RouterLink}
-              to="/test"
-            ></DxcLink>{" "}
+            <DxcLink>
+              <RouterLink to="/test">custom router link</RouterLink>
+            </DxcLink>{" "}
             to another page.
           </p>
         </div>
         <div className="test-case" id="custom-inherit-router-link">
           <p>
             This is a text with a{" "}
-            <DxcLink
-              text="custom router link"
-              as={RouterLink}
-              to="/test"
-              inheritColor
-            ></DxcLink>{" "}
+            <DxcLink inheritColor>
+              <RouterLink to="/test">custom router link</RouterLink>
+            </DxcLink>{" "}
             to another page.
           </p>
         </div>
@@ -228,12 +208,9 @@ function App() {
         <div className="test-case" id="default-link-onClick">
           <p>
             This is a text with a{" "}
-            <DxcLink
-              text="custom button link"
-              as="button"
-              underlined={false}
-              onClick={() => console.log("Hello")}
-            ></DxcLink>{" "}
+            <DxcLink underlined={false} onClick={() => console.log("Hello")}>
+              custom button link
+            </DxcLink>{" "}
             to another page.
           </p>
         </div>
@@ -241,19 +218,14 @@ function App() {
       <div>
         <h4>Custom Link with margin</h4>
         <div className="test-case" id="margin-medium">
-          <DxcLink
-            text="Button with margin medium"
-            as="button"
-            margin="medium"
-          ></DxcLink>
+          <DxcLink margin="medium">
+            <RouterLink to="/test">Router link with margin medium</RouterLink>
+          </DxcLink>
         </div>
         <div className="test-case" id="margin-large">
-          <DxcLink
-            text="Router link with margin large"
-            as={RouterLink}
-            to="/test"
-            margin="large"
-          ></DxcLink>
+          <DxcLink margin="large">
+            <RouterLink to="/test">Router link with margin large</RouterLink>
+          </DxcLink>
         </div>
       </div>
       <div>
@@ -261,20 +233,18 @@ function App() {
         <div className="test-case" id="icon-button">
           <p>
             This is a text with an{" "}
-            <DxcLink text="icon before" as="button" icon={iconSVG}></DxcLink>{" "}
+            <DxcLink icon={iconSVG}>
+              <RouterLink to="/test">icon before</RouterLink>
+            </DxcLink>{" "}
             the button.
           </p>
         </div>
         <div className="test-case" id="icon-router-link">
           <p>
             This is a text with an{" "}
-            <DxcLink
-              text="icon after"
-              as={RouterLink}
-              to="/test"
-              icon={iconSVG}
-              iconPosition="after"
-            ></DxcLink>{" "}
+            <DxcLink icon={iconSVG} iconPosition="after">
+              <RouterLink to="/test">icon after</RouterLink>
+            </DxcLink>{" "}
             the router link.
           </p>
         </div>
@@ -282,19 +252,9 @@ function App() {
       <div>
         <h4>Disabled custom Link</h4>
         <div className="test-case" id="disabled-button-link">
-          <DxcLink
-            text="Disabled custom button link"
-            as="button"
-            disabled
-          ></DxcLink>
-        </div>
-        <div className="test-case" id="disabled-router-link">
-          <DxcLink
-            text="Disabled custom router link"
-            as={RouterLink}
-            to="/test"
-            disabled
-          ></DxcLink>{" "}
+          <DxcLink disabled>
+            <RouterLink to="/test">Disabled custom router link</RouterLink>
+          </DxcLink>
         </div>
       </div>
     </div>
