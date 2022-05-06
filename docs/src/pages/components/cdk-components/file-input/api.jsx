@@ -33,7 +33,10 @@ const fileInputPropsTable = () => {
         <tr>
           <td>dropAreaLabel: string</td>
           <td></td>
-          <td>Text to be placed inside the drag and drop zone alongside the button.</td>
+          <td>
+            Text to be placed inside the drag and drop zone alongside the
+            button.
+          </td>
         </tr>
         <tr>
           <td>helperText: string</td>
@@ -47,10 +50,9 @@ const fileInputPropsTable = () => {
             The file types that the component accepts. Its value must be one of
             all the possible values of the HTML file input's accept attribute.
             Please check the documentation{" "}
-            <DxcLink
-              href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept"
-              text="here"
-            ></DxcLink>
+            <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept">
+              here
+            </DxcLink>
             .
           </td>
         </tr>

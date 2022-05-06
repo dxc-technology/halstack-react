@@ -27,12 +27,9 @@ function Install() {
 
       <p>
         If you are creating a React application from scratch, we recommend using{" "}
-        <DxcLink
-          href="https://create-react-app.dev/"
-          inheritColor
-          newWindow
-          text="create-react-app"
-        ></DxcLink>{" "}
+        <DxcLink href="https://create-react-app.dev/" inheritColor newWindow>
+          create-react-app
+        </DxcLink>{" "}
         to set it up with minimum configuration.
       </p>
       <p>
@@ -62,8 +59,9 @@ function UseComponents() {
           href="https://developer.dxc.com/design/components"
           inheritColor
           newWindow
-          text="components screen"
-        ></DxcLink>{" "}
+        >
+          components screen
+        </DxcLink>
         . The API documentation of every component is available in that screen,
         as well as a set of examples with a live code editor.
       </p>
@@ -335,12 +333,9 @@ function Overview() {
               DXC React Components is a library of reusable elements, made with
               the purpose of helping React developers with the task of
               implementing User Interfaces that follow the{" "}
-              <DxcLink
-                href="https://developer.dxc.com"
-                inheritColor
-                newWindow
-                text="DXC Design Guidelines"
-              ></DxcLink>{" "}
+              <DxcLink href="https://developer.dxc.com" inheritColor newWindow>
+                DXC Design Guidelines
+              </DxcLink>{" "}
               right out of the box.
             </p>
             <ul>
