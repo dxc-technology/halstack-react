@@ -43,9 +43,9 @@ type Props = {
    */
   onChange?: (checked: boolean) => void;
   /**
-   * If true, the switch will change its appearence, showing that the value is required.
+   * If true, the component will display '(Optional)' next to the label.
    */
-  required?: boolean;
+  optional?: boolean;
   /**
    * Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different margin sizes.

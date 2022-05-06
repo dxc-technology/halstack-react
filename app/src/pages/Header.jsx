@@ -3,7 +3,7 @@ import {
   DxcHeader,
   DxcButton,
   DxcDropdown,
-  ThemeProvider,
+  HalstackProvider,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 import invisionLogo from "../images/invision.png";
@@ -264,7 +264,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Header</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcHeader
             underlined={true}
             content={
@@ -300,7 +300,7 @@ function App() {
               </React.Fragment>
             )}
           />
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );

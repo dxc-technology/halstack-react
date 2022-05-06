@@ -118,7 +118,7 @@ function CustomThemes() {
       </p>
 
       <p>
-        You will also need to import ThemeProvider, and use it to wrap the
+        You will also need to import HalstackProvider, and use it to wrap the
         component and pass your colors object as the theme property.
       </p>
 
@@ -126,7 +126,7 @@ function CustomThemes() {
 
       <SyntaxHighlighter language="javascript" style={docco}>
         {`
-  import { DxcButton, ThemeProvider } from "@dxc-technology/halstack-react";
+  import { DxcButton, HalstackProvider } from "@dxc-technology/halstack-react";
 
   const colors = {
       accordion: {
@@ -227,7 +227,7 @@ function CustomThemes() {
 
   const MyComponent = () => {
     return (
-      <ThemeProvider theme={colors}>
+      <HalstackProvider theme={colors}>
         <DxcButton
           mode="primary"
           label="Button"
@@ -235,7 +235,7 @@ function CustomThemes() {
           size="large"
           margin="small"
         />
-      </ThemeProvider>
+      </HalstackProvider>
     );
   };
 

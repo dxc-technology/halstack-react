@@ -2,7 +2,6 @@
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { Switch } from "@material-ui/core";
-import DxcRequired from "../common/RequiredComponent";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
@@ -18,8 +17,8 @@ const DxcSwitch = ({
   labelPosition = "before",
   name = "",
   disabled = false,
+  optional = false,
   onChange,
-  required = false,
   margin,
   size = "fitContent",
   tabIndex = 0,
@@ -46,8 +45,15 @@ const DxcSwitch = ({
       disabled={disabled}
       backgroundType={backgroundType}
     >
-      {required && <DxcRequired />}
-      {label}
+      {labelPosition === "before" ? (
+        <>
+          {label} {optional && <span>(Optional)</span>}
+        </>
+      ) : (
+        <>
+          {optional && <span>(Optional)</span>} {label}
+        </>
+      )}
     </LabelContainer>
   );
 

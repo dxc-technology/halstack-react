@@ -38,7 +38,7 @@ import Stack from "./cdk-components/stack/Stack";
 import Inset from "./cdk-components/inset/Inset";
 import Row from "./cdk-components/row/Row";
 import Bleed from "./cdk-components/bleed/Bleed";
-import QuickNav from "./cdk-components/quick-nav/QuickNav";
+// import QuickNav from "./cdk-components/quick-nav/QuickNav";
 
 export const types = {
   FORMS: "Forms",
@@ -209,13 +209,13 @@ export default [
     type: types.UTILS,
     status: "ready",
   },
-  {
-    path: "quickNav",
-    name: "Quick Nav",
-    component: QuickNav,
-    type: types.NAVIGATION,
-    status: "experimental",
-  },
+  // {
+  //   path: "quickNav",
+  //   name: "Quick Nav",
+  //   component: QuickNav,
+  //   type: types.NAVIGATION,
+  //   status: "experimental",
+  // },
   {
     path: "radio",
     name: "Radio Button",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DxcChip, ThemeProvider } from "@dxc-technology/halstack-react";
+import { DxcChip, HalstackProvider } from "@dxc-technology/halstack-react";
 import avatar from "../images/avatar.svg";
 
 const colors = {
@@ -133,7 +133,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-colors">
         <h4>Custom Chip</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcChip label="Custom chip" margin="xxlarge" />
           <DxcChip disabled label="Disabled chip" margin="xxlarge" />
           <DxcChip
@@ -142,7 +142,7 @@ function App() {
             margin="xxlarge"
             suffixIcon={deleteSVG}
           />
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
     </div>
   );

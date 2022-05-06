@@ -4,7 +4,7 @@ const code = `() => {
   return (
     <div style={{ display: "flex" }}>
       <DxcSwitch
-        label="Label before (default)"
+        label="Label before"
         margin="medium"
       />
       <DxcSwitch

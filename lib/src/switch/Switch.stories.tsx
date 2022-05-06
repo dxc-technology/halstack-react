@@ -26,16 +26,16 @@ export const Chromatic = () => (
       <DxcSwitch label="Switch" defaultChecked />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Required" theme="light" level={4} />
-      <DxcSwitch label="Switch" required />
+      <Title title="Optional" theme="light" level={4} />
+      <DxcSwitch label="Switch" optional />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
       <DxcSwitch label="Switch" disabled />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled required" theme="light" level={4} />
-      <DxcSwitch label="Switch" disabled required labelPosition="after" />
+      <Title title="Disabled optional" theme="light" level={4} />
+      <DxcSwitch label="Switch" disabled optional labelPosition="after" />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled checked" theme="light" level={4} />
@@ -52,16 +52,16 @@ export const Chromatic = () => (
           <DxcSwitch label="Switch" defaultChecked />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Required" theme="dark" level={4} />
-          <DxcSwitch label="Switch" required />
+          <Title title="Optional" theme="dark" level={4} />
+          <DxcSwitch label="Switch" optional />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
           <DxcSwitch label="Switch" disabled />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Disabled required" theme="dark" level={4} />
-          <DxcSwitch label="Switch" disabled required labelPosition="after" />
+          <Title title="Disabled optional" theme="dark" level={4} />
+          <DxcSwitch label="Switch" disabled optional labelPosition="after" />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled checked" theme="dark" level={4} />

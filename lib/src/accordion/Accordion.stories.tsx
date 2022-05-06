@@ -5,7 +5,7 @@ import DxcTextInput from "../text-input/TextInput";
 import DxcButton from "../button/Button";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import { ThemeProvider } from "../ThemeContext";
+import { HalstackProvider } from "../HalstackContext";
 
 export default {
   title: "Accordion",
@@ -125,7 +125,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Background color provider over accordion content" theme="light" level={4} />
-      <ThemeProvider advancedTheme={advancedTheme}>
+      <HalstackProvider advancedTheme={advancedTheme}>
         <DxcAccordion
           label="Dark Accordion"
           defaultIsExpanded
@@ -144,7 +144,7 @@ export const Chromatic = () => (
             <DxcButton label="Submit" size="medium" />
           </div>
         </DxcAccordion>
-      </ThemeProvider>
+      </HalstackProvider>
     </ExampleContainer>
     <Title title="Paddings" theme="light" level={2} />
     <ExampleContainer>

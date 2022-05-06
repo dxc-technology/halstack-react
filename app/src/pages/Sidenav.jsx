@@ -2,7 +2,7 @@ import React from "react";
 import {
   DxcSidenav,
   DxcFooter,
-  ThemeProvider,
+  HalstackProvider,
 } from "@dxc-technology/halstack-react";
 
 const colors = {
@@ -30,14 +30,14 @@ function App() {
 
       <div className="test-case" id="custom-colors">
         <h4>Custom Sidenav</h4>
-        <ThemeProvider theme={colors}>
+        <HalstackProvider theme={colors}>
           <DxcSidenav padding="medium">
             <p>Lorem ipsum</p>
             <p>Lorem ipsum</p>
             <p>Lorem ipsum</p>
           </DxcSidenav>
           <DxcFooter />
-        </ThemeProvider>
+        </HalstackProvider>
       </div>
 
       <div className="test-case" id="sidenav-menu">

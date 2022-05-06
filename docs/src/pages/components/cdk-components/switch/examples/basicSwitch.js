@@ -8,8 +8,8 @@ const code = `() => {
         margin="medium"
       />
       <DxcSwitch
-        label="Required"
-        required
+        label="Label"
+        optional
         margin="medium"
       />
       <DxcSwitch

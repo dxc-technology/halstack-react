@@ -4,7 +4,6 @@ import {
   DxcLink,
   DxcStack,
   DxcRow,
-  ThemeProvider,
 } from "@dxc-technology/halstack-react";
 import { getNavigationLinks } from "./pagesList";
 
