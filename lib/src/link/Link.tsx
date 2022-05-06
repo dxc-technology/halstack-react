@@ -92,7 +92,7 @@ const StyledLink = styled.div<StyledLinkProps>`
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
 
-  a:visited {
+  &:visited {
     color: ${(props) => (!props.inheritColor && !props.disabled ? props.theme.visitedFontColor : "")};
     &:hover {
       ${(props) =>
