@@ -89,37 +89,29 @@ export const Chromatic = () => (
         Test
       </DxcLink>
       <Title title="Icon before" theme="light" level={4} />
-      <DxcLink onClick={() => {}} href="https://www.google.com" icon={icon} iconPosition="before">
+      <DxcLink onClick={() => {}} icon={icon} iconPosition="before">
         Test
       </DxcLink>
       <Title title="Icon after" theme="light" level={4} />
-      <DxcLink onClick={() => {}} href="https://www.youtube.com/" icon={icon} iconPosition="after">
+      <DxcLink onClick={() => {}} icon={icon} iconPosition="after">
         Test
       </DxcLink>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="With link hovered" theme="light" level={4} />
-      <DxcLink onClick={() => {}} href="https://www.dxc.com">
-        Test
-      </DxcLink>
+      <DxcLink onClick={() => {}}>Test</DxcLink>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="With link focused" theme="light" level={4} />
-      <DxcLink onClick={() => {}} href="https://www.dxc.com">
-        Test
-      </DxcLink>
+      <DxcLink onClick={() => {}}>Test</DxcLink>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="With link active" theme="light" level={4} />
-      <DxcLink onClick={() => {}} href="https://www.dxc.com">
-        Test
-      </DxcLink>
+      <DxcLink onClick={() => {}}>Test</DxcLink>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-visited">
       <Title title="With link visited" theme="light" level={4} />
-      <DxcLink onClick={() => {}} href="https://www.amazon.com">
-        Test
-      </DxcLink>
+      <DxcLink onClick={() => {}}>Test</DxcLink>
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Inherit color" theme="light" level={4} />
