@@ -60,7 +60,11 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="With brackets and focus" theme="light" level={4} />
-      This is a (<DxcLink inheritColor>Test</DxcLink>).
+      This is a (
+      <DxcLink inheritColor href="https://www.google.com">
+        Test
+      </DxcLink>
+      ).
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Long text with hover" theme="light" level={4} />
