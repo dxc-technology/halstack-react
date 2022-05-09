@@ -47,7 +47,9 @@ const DxcButton = ({
           disableRipple
           aria-disabled={disabled}
           tabIndex={disabled ? -1 : tabIndex}
-          onClick={onClick}
+          onClick={() => {
+            onClick();
+          }}
         >
           {label && iconPosition === "after" && labelComponent}
           {icon && (

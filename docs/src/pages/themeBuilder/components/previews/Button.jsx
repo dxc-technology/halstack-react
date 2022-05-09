@@ -22,6 +22,7 @@ const Button = () => {
           mode="primary"
           label="button"
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
         <DxcButton
           mode="primary"
