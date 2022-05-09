@@ -62,9 +62,7 @@
     "fontColor": "color"
   },
   "sidenav": {
-    "baseColor": "color",
-    "arrowBaseColor": "color",
-    "arrowAccentColor": "color"
+    "baseColor": "color"
   },
   "slider": {
     "baseColor": "color"

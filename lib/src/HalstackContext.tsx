@@ -190,9 +190,6 @@ const parseTheme = (theme) => {
 
   const sideNavTokens = componentTokensCopy.sidenav;
   sideNavTokens.backgroundColor = theme?.sidenav?.baseColor ?? sideNavTokens.backgroundColor;
-  sideNavTokens.arrowContainerColor =
-    setOpacity(theme?.sidenav?.arrowBaseColor, 0.8) ?? sideNavTokens.arrowContainerColor;
-  sideNavTokens.arrowColor = theme?.sidenav?.arrowAccentColor ?? sideNavTokens.arrowColor;
 
   const sliderTokens = componentTokensCopy.slider;
   sliderTokens.thumbBackgroundColor = theme?.slider?.baseColor ?? sliderTokens.thumbBackgroundColor;

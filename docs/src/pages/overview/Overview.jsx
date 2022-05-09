@@ -192,8 +192,6 @@ function CustomThemes() {
       },
       sidenav: {
         baseColor: "#f8f8f8", // sidenav's base color theme input
-        arrowBaseColor: "#f8f8f8", // sidenav's arrow base color theme input
-        arrowAccentColor: "#000000", // sidenav's arrow accent color theme input
       },
       slider: {
         baseColor: "#0067b3", // slider's base color theme input

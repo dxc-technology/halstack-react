@@ -21,6 +21,18 @@ const DateInput = () => {
           clearable
         />
       </Mode>
+
+      <Mode text="Disabled">
+        <DxcDateInput
+          label="Format"
+          helperText="Example of helper text"
+          format="MM/dd/yyyy"
+          placeholder
+          margin={{ top: "xsmall" }}
+          clearable
+          disabled
+        />
+      </Mode>
       {/* <DxcHeading
         text="Dark Mode"
         level={5}

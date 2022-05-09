@@ -31,7 +31,7 @@
     "baseColor": "#000000",
     "fontColor": "#ffffff",
     "accentColor": "#0095ff",
-    "logo": "/static/media/dxc_logo_wht.3803423d.png"
+    "logo": "/images/dxc_logo.svg"
   },
   "header": {
     "baseColor": "#ffffff",
@@ -39,8 +39,8 @@
     "fontColor": "#000000",
     "menuBaseColor": "#ffffff",
     "hamburguerColor": "#000000",
-    "logo": "/static/media/dxc_logo_blk_rgb.46e4aef2.svg",
-    "logoResponsive": "/static/media/dxc_logo_blk_rgb.46e4aef2.svg",
+    "logo": "/images/dxc_logo_black.svg",
+    "logoResponsive": "/images/dxc_logo_black.svg",
     "contentColor": "#000000"
   },
   "paginator": {
@@ -62,9 +62,7 @@
     "fontColor": "#000000"
   },
   "sidenav": {
-    "baseColor": "#F8F8F8",
-    "arrowBaseColor": "#F8F8F8",
-    "arrowAccentColor": "#000000"
+    "baseColor": "#F8F8F8"
   },
   "slider": {
     "baseColor": "#0067b3"

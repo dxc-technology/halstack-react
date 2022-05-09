@@ -8,8 +8,6 @@ import {
 const colors = {
   sidenav: {
     baseColor: "#FABADA",
-    arrowBaseColor: "#D0011B",
-    arrowAccentColor: "pink",
   },
 };
 
