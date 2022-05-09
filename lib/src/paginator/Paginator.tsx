@@ -2,6 +2,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
 import { firstIcon, lastIcon, nextIcon, previousIcon } from "./Icons";
@@ -28,6 +29,8 @@ const DxcPaginator = ({
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
   const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
+
   return (
     <ThemeProvider theme={colorsTheme.paginator}>
       <BackgroundColorProvider color={colorsTheme.paginator.backgroundColor}>
@@ -35,7 +38,7 @@ const DxcPaginator = ({
           <LabelsContainer>
             {itemsPerPageOptions && (
               <ItemsPageContainer>
-                <ItemsLabel>Items per page </ItemsLabel>
+                <ItemsLabel> {translatedLabels.paginator.itemsPerPage} </ItemsLabel>
                 <SelectContainer>
                   <DxcSelect
                     options={itemsPerPageOptions.map((num) => ({ label: num.toString(), value: num.toString() }))}
@@ -80,7 +83,7 @@ const DxcPaginator = ({
             )}
             {(showGoToPage && (
               <PageToSelectContainer>
-                <GoToLabel>Go to page: </GoToLabel>
+                <GoToLabel>{translatedLabels.paginator.goToPageText} </GoToLabel>
                 <SelectContainer>
                   <DxcSelect
                     options={Array.from(Array(totalPages), (e, num) => ({
@@ -97,9 +100,7 @@ const DxcPaginator = ({
                 </SelectContainer>
               </PageToSelectContainer>
             )) || (
-              <TextContainer>
-                Page: {currentPageInternal} of {totalPages}
-              </TextContainer>
+              <TextContainer>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</TextContainer>
             )}
             {onPageChange && (
               <DxcButton

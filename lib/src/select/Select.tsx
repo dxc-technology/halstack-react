@@ -2,6 +2,7 @@
 import React, { useMemo, useRef, useState, useLayoutEffect, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import { getMargin } from "../common/utils.js";
@@ -131,6 +132,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const selectOptionsListRef = useRef(null);
 
     const colorsTheme = useTheme();
+    const translatedLabels = useTranslatedLabels();
 
     const optionalItem = { label: placeholder, value: "" };
     const filteredOptions = useMemo(() => filterOptionsBySearchValue(options, searchValue), [options, searchValue]);
@@ -167,12 +169,12 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         else res = [...(value ?? innerValue), newOption.value];
 
         value ?? setInnerValue(res);
-        if (notOptionalMultipleCheck(res)) onChange?.({ value: res, error: getNotOptionalErrorMessage() });
+        if (notOptionalMultipleCheck(res)) onChange?.({ value: res, error: translatedLabels.select.required });
         else onChange?.({ value: res });
       } else {
         value ?? setInnerValue(newOption.value);
         if (notOptionalCheck(newOption.value))
-          onChange?.({ value: newOption.value, error: getNotOptionalErrorMessage() });
+          onChange?.({ value: newOption.value, error: translatedLabels.select.required });
         else onChange?.({ value: newOption.value });
       }
     };
@@ -193,7 +195,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         setSearchValue("");
 
         if (notOptionalCheck(value ?? innerValue))
-          onBlur?.({ value: value ?? innerValue, error: getNotOptionalErrorMessage() });
+          onBlur?.({ value: value ?? innerValue, error: translatedLabels.select.required });
         else onBlur?.({ value: value ?? innerValue });
       }
     };
@@ -273,7 +275,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const handleClearOptionsActionOnClick = (event) => {
       event.stopPropagation();
       value ?? setInnerValue([]);
-      !optional ? onChange?.({ value: [], error: getNotOptionalErrorMessage() }) : onChange?.({ value: [] });
+      !optional ? onChange?.({ value: [], error: translatedLabels.select.required }) : onChange?.({ value: [] });
     };
 
     const handleClearSearchActionOnClick = (event) => {
@@ -316,7 +318,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               }}
               helperText={helperText}
             >
-              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}

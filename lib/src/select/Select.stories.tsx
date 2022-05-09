@@ -229,7 +229,7 @@ const optionsWithEllipsisMedium = [
 
 const Select = () => (
   <>
-    <Title title="States" theme="light" level={2} />
+    {/* <Title title="States" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcSelect label="Hovered" options={single_options} />
@@ -265,13 +265,13 @@ const Select = () => (
         helperText="Helper text"
         placeholder="Placeholder"
       />
-    </ExampleContainer>
+    </ExampleContainer> */}
     <Title title="Anatomy" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Label, placeholder and helper text" theme="light" level={4} />
-      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" />
+      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" optional />
     </ExampleContainer>
-    <Title title="Variants" theme="light" level={2} />
+    {/* <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Simple selection" theme="light" level={4} />
       <DxcSelect label="Simple selection" searchable options={single_options} defaultValue="2" />
@@ -347,8 +347,8 @@ const Select = () => (
         defaultValue="1"
         options={optionsWithEllipsisMedium}
         size="medium"
-      />
-    </ExampleContainer>
+      /> 
+    </ExampleContainer>*/}
   </>
 );
 export const Chromatic = Select.bind({});
@@ -371,7 +371,13 @@ const SearchableSelect = () => (
 const SearchableWithValue = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select with value" theme="light" level={4} />
-    <DxcSelect label="Select Label" searchable defaultValue="1" options={single_options} placeholder="Choose an option" />
+    <DxcSelect
+      label="Select Label"
+      searchable
+      defaultValue="1"
+      options={single_options}
+      placeholder="Choose an option"
+    />
   </ExampleContainer>
 );
 
@@ -398,7 +404,13 @@ const DefaultGroupedOptionsSelect = () => (
 const MultipleGroupedOptionsSelect = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options multiple select" theme="light" level={4} />
-    <DxcSelect label="Label" options={group_options} defaultValue={["0", "2"]} multiple placeholder="Choose an option" />
+    <DxcSelect
+      label="Label"
+      options={group_options}
+      defaultValue={["0", "2"]}
+      multiple
+      placeholder="Choose an option"
+    />
   </ExampleContainer>
 );
 const RescaledIcons = () => (
