@@ -35,9 +35,10 @@ const Color = () => {
             in the{" "}
             <DxcLink
               href="https://en.wikipedia.org/wiki/HSL_and_HSV#:~:text=The%20HSL%20representation%20models%20the,paint%20corresponds%20to%20a%20high%20%22"
-              text="HSL model"
               newWindow
-            />
+            >
+              HSL model
+            </DxcLink>
             . All our color families are calculated using the lightness value of
             the standard DXC palette colors.
           </DxcText>

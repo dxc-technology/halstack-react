@@ -465,16 +465,18 @@ const DialogSpecsPage = () => {
             <DxcLink
               newWindow
               href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html"
-              text="2.1.2 No Keyboard Trap"
-            />
+            >
+              2.1.2 No Keyboard Trap
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               newWindow
               href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html"
-              text="2.4.3 Focus Order"
-            />
+            >
+              2.4.3 Focus Order
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA</HeadingLink>
@@ -484,16 +486,18 @@ const DialogSpecsPage = () => {
             <DxcLink
               newWindow
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#dialog_modal"
-              text="3.9 Dialog (Modal)"
-            />
+            >
+              3.9 Dialog (Modal)
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA Authoring practices 1.2 -{" "}
             <DxcLink
               newWindow
               href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/dialog-modal/dialog.html"
-              text="Modal Dialog Example"
-            />
+            >
+              Modal Dialog Example
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

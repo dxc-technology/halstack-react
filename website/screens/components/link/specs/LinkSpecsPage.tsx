@@ -30,11 +30,13 @@ const LinkSpecsPage = () => {
         <DxcText as="p">
           States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>active</strong>,{" "}
-          <strong>visited</strong> and{" "}
-          <strong>disabled</strong>.
+          <strong>visited</strong> and <strong>disabled</strong>.
         </DxcText>
         <Figure caption="Example of the link component states">
-          <Image src={linkStatesNoIcon} alt="Example of the link component states" />
+          <Image
+            src={linkStatesNoIcon}
+            alt="Example of the link component states"
+          />
         </Figure>
       </DxcStack>
       <DxcStack gutter="large">
@@ -289,17 +291,19 @@ const LinkSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-link-only.html"
-              text="2.4.9: Link Purpose (Link Only)"
               newWindow
-            />
+            >
+              2.4.9: Link Purpose (Link Only)
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html"
-              text="2.4.4: Link Purpose (In Context)"
               newWindow
-            />
+            >
+              2.4.4: Link Purpose (In Context)
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA 1.2</HeadingLink>
@@ -308,9 +312,10 @@ const LinkSpecsPage = () => {
             WAI-ARIA authoring practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#link"
-              text="3.13 Link"
               newWindow
-            />
+            >
+              3.13 Link
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

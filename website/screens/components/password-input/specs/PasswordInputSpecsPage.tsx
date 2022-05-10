@@ -10,6 +10,7 @@ import {
   DxcLink,
   DxcList,
 } from "@dxc-technology/halstack-react";
+import Link from "next/link";
 import Figure from "../../../common/Figure";
 import Code from "../../../common/Code";
 import DocFooter from "../../../common/DocFooter";
@@ -30,10 +31,11 @@ const PasswordInputSpecsPage = () => {
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
           for reference{" "}
-          <DxcLink
-            href="/components/text-input/specifications"
-            text="check the text input component documentation"
-          />
+          <DxcLink>
+            <Link href="/components/text-input/specifications">
+              <a>check the text input component documentation</a>
+            </Link>
+          </DxcLink>
           .
         </DxcText>
         <DxcText as="p">
@@ -110,25 +112,28 @@ const PasswordInputSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html"
-              text="SC 1.3.5 Identify Input Purpose"
               newWindow
-            ></DxcLink>
+            >
+              SC 1.3.5 Identify Input Purpose
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion"
-              text="SC 3.3.3 Error Suggestion"
               newWindow
-            ></DxcLink>
+            >
+              SC 3.3.3 Error Suggestion
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication"
-              text="SC 3.3.7 Accessible Authentication"
               newWindow
-            ></DxcLink>
+            >
+              SC 3.3.7 Accessible Authentication
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI Web Accessibility Tutorials</HeadingLink>
@@ -137,9 +142,10 @@ const PasswordInputSpecsPage = () => {
             Forms -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/tutorials/forms/examples/password/"
-              text="Full Password Example"
               newWindow
-            ></DxcLink>
+            >
+              Full Password Example
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>
