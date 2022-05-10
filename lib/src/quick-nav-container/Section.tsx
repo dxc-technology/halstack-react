@@ -5,7 +5,7 @@ import HeadingLink from "./HeadingLink";
 
 type SectionType = {
   title: string;
-  level: 1 | 2 | 3 | 4 | 5;
+  level?: 1 | 2 | 3 | 4 | 5;
   subSections?: SectionType[];
   children?: React.ReactNode;
 };

@@ -8,11 +8,9 @@ import {
 const sections = [
   {
     title: "Spacing methods",
-    level: 2,
     subSections: [
       {
         title: "Fixed spacing",
-        level: 3,
         content: (
           <>
             <DxcText as="p">
@@ -25,7 +23,6 @@ const sections = [
       },
       {
         title: "Fluid spacing",
-        level: 3,
         content: (
           <>
             <DxcText as="p">
@@ -41,7 +38,6 @@ const sections = [
   },
   {
     title: "Core spacing tokens",
-    level: 2,
     content: (
       <>
         <DxcText as="p">
@@ -139,7 +135,6 @@ const sections = [
   },
   {
     title: "Component spacing tokens",
-    level: 2,
     content: (
       <>
         <DxcText as="p">
@@ -202,6 +197,7 @@ function App() {
   return (
     <DxcQuickNavContainer
       title="Spacing"
+      startHeadingLevel={2}
       sections={sections}
     ></DxcQuickNavContainer>
   );

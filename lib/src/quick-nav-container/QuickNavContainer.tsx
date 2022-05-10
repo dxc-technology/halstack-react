@@ -5,7 +5,7 @@ import DxcStack from "../stack/Stack";
 import Section from "./Section";
 import QuickNavContainerTypes from "./types";
 
-const DxcQuickNavContainer = ({ title, sections }: QuickNavContainerTypes): JSX.Element => {
+const DxcQuickNavContainer = ({ title, sections, startHeadingLevel = 1 }: QuickNavContainerTypes): JSX.Element => {
   const getSubSectionsLinks = (sections) => {
     const linksList = [];
     sections.map((section) => {
@@ -26,7 +26,7 @@ const DxcQuickNavContainer = ({ title, sections }: QuickNavContainerTypes): JSX.
             <Section
               title={section.title}
               subSections={section.subSections}
-              level={section.level}
+              level={startHeadingLevel}
               key={`section-${section.title}`}
             >
               {section.content}
