@@ -7,6 +7,10 @@ type Props = {
    * Sections to be shown as the content of the quick nav container.
    */
   sections: SectionType[];
+  /**
+   * The level of the first heading of the content.
+   */
+  startHeadingLevel?: 1 | 2 | 3 | 4 | 5;
 };
 
 type SectionType = {
@@ -17,7 +21,7 @@ type SectionType = {
   /**
    * Level of each section.
    */
-  level: 1 | 2 | 3 | 4 | 5;
+  level?: 1 | 2 | 3 | 4 | 5;
   /**
    * Content of each section.
    */
