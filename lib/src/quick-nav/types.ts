@@ -6,10 +6,10 @@ type Props = {
   /**
    * Links to be shown inside the quick nav component.
    */
-  links: Link[];
+  links: LinkType[];
 };
 
-type Link = {
+type LinkType = {
   /**
    * Label to be shown in the link.
    */
@@ -17,7 +17,7 @@ type Link = {
   /**
    * Sublinks of the link.
    */
-  links?: Link[];
+  links?: LinkType[];
 };
 
 export default Props;
