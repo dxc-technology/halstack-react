@@ -10,39 +10,27 @@ const Link = () => {
       <Mode text="Default">
         <p>
           This is a text with a{" "}
-          <DxcLink
-            href="#"
-            newWindow={true}
-            text="Link"
-            margin={{ top: "xxsmall" }}
-          ></DxcLink>{" "}
+          <DxcLink href="#" newWindow margin={{ top: "xxsmall" }}>
+            Link
+          </DxcLink>{" "}
           to another page.
         </p>
       </Mode>
       <Mode text="Undecorated">
         <p>
           This is a text with a{" "}
-          <DxcLink
-            href="#"
-            newWindow={true}
-            underlined={false}
-            inheritColor={true}
-            text="Link"
-            margin={{ top: "xxsmall" }}
-          ></DxcLink>{" "}
+          <DxcLink href="#" newWindow inheritColor margin={{ top: "xxsmall" }}>
+            Link
+          </DxcLink>{" "}
           to another page.
         </p>
       </Mode>
       <Mode text="Disabled">
         <p>
           This is a text with a{" "}
-          <DxcLink
-            href="#"
-            newWindow={true}
-            disabled={true}
-            text="disabled Link"
-            margin={{ top: "xxsmall" }}
-          ></DxcLink>
+          <DxcLink href="#" newWindow disabled margin={{ top: "xxsmall" }}>
+            disabled Link
+          </DxcLink>
           .
         </p>
       </Mode>
@@ -53,9 +41,10 @@ const Link = () => {
             onClick={() => {
               console.log("click");
             }}
-            text="link with action"
             margin={{ top: "xxsmall" }}
-          ></DxcLink>
+          >
+            link with action
+          </DxcLink>
           .
         </p>
       </Mode>
@@ -79,10 +68,11 @@ const Link = () => {
               </svg>
             }
             href="#"
-            newWindow={true}
-            text="Icon after"
+            newWindow
             margin={{ top: "xxsmall" }}
-          ></DxcLink>{" "}
+          >
+            Icon after
+          </DxcLink>{" "}
           the link.
         </p>
       </Mode>

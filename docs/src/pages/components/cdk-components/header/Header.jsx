@@ -1,5 +1,6 @@
 import React from "react";
 import { DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
+import { Link } from "react-router-dom";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -23,11 +24,9 @@ function Input() {
         <p>
           Everything between this tags will be displayed as a dropdown. If you
           want to show a{" "}
-          <DxcLink
-            href={`#/components/dropdown`}
-            underlined={false}
-            text="DxcDropdown"
-          ></DxcLink>
+          <DxcLink>
+            <Link to={`/components/dropdown`}>DxcDropdown</Link>
+          </DxcLink>
           , as a shortcut, you can also use it as a direct child of the
           DxcHeader without the tags, but we recommend to use it with the tags
           since some styles will be applied for a better fit in the header.

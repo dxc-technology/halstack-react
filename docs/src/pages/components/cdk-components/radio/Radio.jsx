@@ -1,5 +1,6 @@
 import React from "react";
 import { DxcHeading, DxcAlert, DxcLink } from "@dxc-technology/halstack-react";
+import { Link } from "react-router-dom";
 import ComponentDoc from "../../common/ComponentDoc";
 import Example from "../../common/Example";
 import Section from "../../common/Section";
@@ -20,12 +21,9 @@ function Radio() {
       ></ComponentHeader>
       <DxcAlert type="warning" margin={{ bottom: "small" }} size="fillParent">
         The component status has been changed to deprecated. Use the new{" "}
-        <DxcLink
-          href="#/components/radioGroup"
-          underlined={false}
-          inheritedColor={true}
-          text="Radio Group"
-        ></DxcLink>{" "}
+        <DxcLink inheritColor>
+          <Link to="/components/radioGroup">Radio Group</Link>
+        </DxcLink>{" "}
         component instead.
       </DxcAlert>
       <Section>

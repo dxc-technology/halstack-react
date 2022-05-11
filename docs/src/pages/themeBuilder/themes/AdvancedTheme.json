@@ -462,7 +462,7 @@
   "link": {
     "fontColor": "#0067b3",
     "fontFamily": "Open Sans, sans-serif",
-    "fontSize": "16px",
+    "fontSize": "inherit",
     "fontStyle": "normal",
     "fontWeight": "400",
     "iconSize": "16px",

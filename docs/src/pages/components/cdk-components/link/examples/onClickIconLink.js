@@ -3,7 +3,8 @@ import { DxcLink } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <p>
-        This is a text with an <DxcLink
+        This is a 
+        <DxcLink
             iconPosition="after"
             icon={
               <svg
@@ -19,16 +20,18 @@ const code = `() => {
                 </g>
               </svg>
             }
-            href="#"
-            text="Icon after"
+            onClick={() => {
+              console.log("click");
+            }}
         >
-        </DxcLink> the link.
+          link with action
+        </DxcLink> and icon.
     </p>
   );
 }`;
 
 const scope = {
-  DxcLink
+  DxcLink,
 };
 
 export default { code, scope };
