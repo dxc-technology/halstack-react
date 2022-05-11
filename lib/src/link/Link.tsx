@@ -77,8 +77,10 @@ const LinkContainer = styled.div<LinkContainerProps>`
     border: none;
     padding: 0;
     cursor: pointer;
-    font-family: inherit;
-    font-size: inherit;
+    font-size: ${(props) => props.theme.fontSize};
+    font-weight: ${(props) => props.theme.fontWeight};
+    font-style: ${(props) => props.theme.fontStyle};
+    font-family: ${(props) => props.theme.fontFamily};
     text-decoration-color: transparent;
   }
 `;
@@ -159,10 +161,6 @@ const CustomLinkContainer = styled.div<StyledLinkProps>`
 `;
 
 const LinkText = styled.div`
-  font-size: ${(props) => props.theme.fontSize};
-  font-weight: ${(props) => props.theme.fontWeight};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-family: ${(props) => props.theme.fontFamily};
   display: flex;
   align-items: baseline;
   max-width: 100%;
