@@ -78,6 +78,7 @@ const LinkContainer = styled.div<LinkContainerProps>`
     padding: 0;
     cursor: pointer;
     font-family: inherit;
+    font-size: inherit;
     text-decoration-color: transparent;
   }
 `;
