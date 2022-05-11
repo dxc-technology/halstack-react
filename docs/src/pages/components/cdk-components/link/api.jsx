@@ -62,10 +62,9 @@ const linkPropsTable = () => {
         <td>children: string | node</td>
         <td></td>
         <td>
-          Content to display in the link. To use the link with other libraries
-          (such as React Router or Next.js Link) pass the custom link as a child
-          of the DxcLink component. The component will apply the styles to the
-          custom link.
+          Content of the link. To use the component with other libraries
+          (such as React Router or Next.js Link) pass the custom link as a child. 
+          The component will apply the styles to the custom link.
         </td>
       </tr>
       <tr>

@@ -9,6 +9,7 @@ import {
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { Link } from "react-router-dom";
 
 import Section from "../components/common/Section";
 import githubLogo from "./github-logo.png";
@@ -60,7 +61,7 @@ function UseComponents() {
           inheritColor
           newWindow
         >
-          components screen
+          <Link to="/components">components screen</Link>
         </DxcLink>
         . The API documentation of every component is available in that screen,
         as well as a set of examples with a live code editor.
