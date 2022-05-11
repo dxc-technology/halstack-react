@@ -6,6 +6,10 @@ import Mode from "../Mode";
 import linkedinIcon from "../../images/LinkedinIcon";
 
 const Button = () => {
+  const onClick = () => {
+    console.log("click");
+  };
+
   return (
     <ButtonContainer>
       <DxcHeading
@@ -24,12 +28,14 @@ const Button = () => {
           label="Button"
           icon={linkedinIcon}
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
         <DxcButton
           mode="primary"
           label="button"
           disabled
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
       </Mode>
       <Mode text="Secondary">
@@ -37,6 +43,7 @@ const Button = () => {
           mode="secondary"
           label="button"
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
         <DxcButton
           label="Button"
@@ -44,12 +51,14 @@ const Button = () => {
           icon={linkedinIcon}
           iconPosition="after"
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
         <DxcButton
           mode="secondary"
           label="button"
           disabled={true}
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
       </Mode>
       <Mode text="Text">
@@ -57,18 +66,21 @@ const Button = () => {
           mode="text"
           label="button"
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
         <DxcButton
           label="Button"
           mode="text"
           icon={linkedinIcon}
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
         <DxcButton
           mode="text"
           label="button"
           disabled
           margin={{ top: "xsmall", right: "small" }}
+          onClick={onClick}
         />
       </Mode>
       {/*<DxcHeading

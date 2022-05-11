@@ -34,7 +34,7 @@ import NumberInput from "./pages/NumberInput";
 import Textarea from "./pages/Textarea";
 import Select from "./pages/Select";
 import FileInput from "./pages/FileInput";
-import QuickNav from "./pages/QuickNav";
+import QuickNavContainer from "./pages/QuickNavContainer";
 
 export default [
   {
@@ -148,9 +148,9 @@ export default [
     component: ProgressBar,
   },
   {
-    path: "quickNav",
-    name: "Quick nav",
-    component: QuickNav,
+    path: "quickNavContainer",
+    name: "Quick nav container",
+    component: QuickNavContainer,
   },
   {
     path: "radio",
