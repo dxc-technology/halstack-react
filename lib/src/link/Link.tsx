@@ -4,6 +4,20 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { Margin, LinkProps, Space } from "./types";
 
+const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JSX.Element => {
+  return (
+    <LinkText>
+      {iconPosition === "after" && children}
+      {icon && (
+        <LinkIconContainer iconPosition={iconPosition}>
+          {typeof icon === "string" ? <LinkIcon src={icon} /> : icon}
+        </LinkIconContainer>
+      )}
+      {iconPosition === "before" && children}
+    </LinkText>
+  );
+});
+
 const DxcLink = ({
   inheritColor = false,
   disabled = false,
@@ -17,17 +31,6 @@ const DxcLink = ({
   children,
 }: LinkProps): JSX.Element => {
   const colorsTheme = useTheme();
-  const linkContent = (
-    <LinkText>
-      {iconPosition === "after" && children}
-      {icon && (
-        <LinkIconContainer iconPosition={iconPosition}>
-          {typeof icon === "string" ? <LinkIcon src={icon} /> : icon}
-        </LinkIconContainer>
-      )}
-      {iconPosition === "before" && children}
-    </LinkText>
-  );
 
   return (
     <ThemeProvider theme={colorsTheme.link}>
@@ -42,11 +45,11 @@ const DxcLink = ({
             disabled={disabled}
             inheritColor={inheritColor}
           >
-            {linkContent}
+            <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
           </StyledLink>
         ) : (
           <CustomLinkContainer disabled={disabled} inheritColor={inheritColor}>
-            {linkContent}
+            <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
           </CustomLinkContainer>
         )}
       </LinkContainer>
