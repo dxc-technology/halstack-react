@@ -1,11 +1,24 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
-import Overload, { LinkTextProps, LinkIconProps } from "./types";
+import { Margin, LinkProps, Space } from "./types";
 
-const DxcLink: Overload = ({
+const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JSX.Element => {
+  return (
+    <LinkText>
+      {iconPosition === "after" && children}
+      {icon && (
+        <LinkIconContainer iconPosition={iconPosition}>
+          {typeof icon === "string" ? <LinkIcon src={icon} /> : icon}
+        </LinkIconContainer>
+      )}
+      {iconPosition === "before" && children}
+    </LinkText>
+  );
+});
+
+const DxcLink = ({
   inheritColor = false,
   disabled = false,
   icon,
@@ -13,54 +26,41 @@ const DxcLink: Overload = ({
   href = "",
   newWindow = false,
   onClick,
-  text = "",
   margin,
   tabIndex = 0,
-}: LinkTextProps | LinkIconProps): JSX.Element => {
+  children,
+}: LinkProps): JSX.Element => {
   const colorsTheme = useTheme();
-  const linkContent = (
-    <LinkText iconPosition={iconPosition}>
-      {iconPosition === "after" && text}
-      {icon && (
-        <LinkIconContainer iconPosition={iconPosition}>
-          {typeof icon === "string" ? <LinkIcon src={icon} /> : icon}
-        </LinkIconContainer>
-      )}
-      {iconPosition === "before" && text}
-    </LinkText>
-  );
 
   return (
     <ThemeProvider theme={colorsTheme.link}>
-      <DxcLinkContainer margin={margin}>
-        {onClick ? (
-          <StyledButton
-            type="button"
-            onClick={!disabled && onClick}
-            margin={margin}
-            disabled={disabled}
-            inheritColor={inheritColor}
-          >
-            {linkContent}
-          </StyledButton>
-        ) : (
+      <LinkContainer margin={margin}>
+        {typeof children === "string" && (href || onClick) ? (
           <StyledLink
+            as={href ? "a" : "button"}
             tabIndex={tabIndex}
-            href={!disabled && href}
-            target={newWindow ? "_blank" : "_self"}
-            margin={margin}
+            onClick={!disabled && onClick}
+            href={!disabled && href ? href : undefined}
+            target={href ? (newWindow ? "_blank" : "_self") : undefined}
             disabled={disabled}
             inheritColor={inheritColor}
           >
-            {linkContent}
+            <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
           </StyledLink>
+        ) : (
+          <CustomLinkContainer disabled={disabled} inheritColor={inheritColor}>
+            <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
+          </CustomLinkContainer>
         )}
-      </DxcLinkContainer>
+      </LinkContainer>
     </ThemeProvider>
   );
 };
 
-const DxcLinkContainer = styled.div`
+type LinkContainerProps = {
+  margin?: Space | Margin;
+};
+const LinkContainer = styled.div<LinkContainerProps>`
   display: inline-flex;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -71,20 +71,35 @@ const DxcLinkContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
+
+  * {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: ${(props) => props.theme.fontSize};
+    font-weight: ${(props) => props.theme.fontWeight};
+    font-style: ${(props) => props.theme.fontStyle};
+    font-family: ${(props) => props.theme.fontFamily};
+    text-decoration-color: transparent;
+  }
 `;
 
-const StyledLink = styled.a`
+type StyledLinkProps = {
+  disabled?: boolean;
+  inheritColor?: boolean;
+};
+const StyledLink = styled.div<StyledLinkProps>`
+  ${(props) =>
+    `padding-bottom: ${props.theme.underlineSpacing};
+     border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
+  ${(props) => props.disabled && "cursor: default;"}
   color: ${(props) =>
     props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
 
-  text-decoration-color: transparent;
-  ${(props) =>
-    `padding-bottom: ${props.theme.underlineSpacing};
-     border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
-
   &:visited {
-    color: ${(props) => (!props.inheritColor ? props.theme.visitedFontColor : "")};
+    color: ${(props) => (!props.inheritColor && !props.disabled ? props.theme.visitedFontColor : "")};
     &:hover {
       ${(props) =>
         `color: ${props.theme.visitedFontColor};
@@ -109,45 +124,43 @@ const StyledLink = styled.a`
   }
 `;
 
-const StyledButton = styled.button`
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
-  text-decoration-color: transparent;
-
+const CustomLinkContainer = styled.div<StyledLinkProps>`
   ${(props) =>
     `padding-bottom: ${props.theme.underlineSpacing};
      border-bottom: ${props.theme.underlineThickness} ${props.theme.underlineStyle} transparent;`}
   ${(props) => props.disabled && "cursor: default;"}
-  color: ${(props) =>
-    props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
   ${(props) => (props.disabled ? "pointer-events: none;" : "")}
 
+  * {
+    color: ${(props) =>
+      props.inheritColor ? "inherit" : !props.disabled ? props.theme.fontColor : props.theme.disabledColor};
+  }
+
   &:hover {
+    * {
+      color: ${(props) => props.theme.hoverFontColor};
+    }
     ${(props) =>
-      `color: ${props.theme.hoverFontColor};
-       border-bottom-color: ${props.theme.hoverUnderlineColor};
+      `border-bottom-color: ${props.theme.hoverUnderlineColor};
        cursor: pointer;`}
   }
-  &:focus {
+  &:focus-within {
+    * {
+      outline: none;
+    }
     border-radius: 2px;
     outline: 2px solid ${(props) => props.theme.focusColor};
     ${(props) => props.disabled && "outline: none"}
   }
   &:active {
-    ${(props) =>
-      `color: ${props.theme.activeFontColor} !important;
-       border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
+    * {
+      color: ${(props) => props.theme.activeFontColor} !important;
+    }
+    ${(props) => `border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
   }
 `;
 
 const LinkText = styled.div`
-  font-size: ${(props) => props.theme.fontSize};
-  font-weight: ${(props) => props.theme.fontWeight};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-family: ${(props) => props.theme.fontFamily};
   display: flex;
   align-items: baseline;
   max-width: 100%;
@@ -155,7 +168,10 @@ const LinkText = styled.div`
 
 const LinkIcon = styled.img``;
 
-const LinkIconContainer = styled.div`
+type LinkIconContainerProps = {
+  iconPosition?: "before" | "after";
+};
+const LinkIconContainer = styled.div<LinkIconContainerProps>`
   width: ${(props) => props.theme.iconSize};
   height: ${(props) => props.theme.iconSize};
   ${(props) => `${props.iconPosition === "before" ? "margin-right" : "margin-left"}: ${props.theme.iconSpacing}`};
