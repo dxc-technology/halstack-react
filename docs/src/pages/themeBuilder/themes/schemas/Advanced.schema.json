@@ -334,7 +334,7 @@
     "errorFileItemIconColor": "color",
     "fileItemIconBackgroundColor": "color",
     "deleteFileItemColor": "color",
-    "focusDeleteFileItemBackgroundColor": "color",
+    "focusDeleteFileItemBorderColor": "color",
     "errorMessageFontColor": "color",
     "hoverDeleteFileItemBackgroundColor": "color",
     "activeDeleteFileItemBackgroundColor": "color",

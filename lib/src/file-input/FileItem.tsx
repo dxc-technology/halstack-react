@@ -188,11 +188,11 @@ const DeleteIcon = styled.button`
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBackgroundColor};
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
   }
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBackgroundColor};
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
   }
   &:active {
     background-color: ${(props) => props.theme.activeDeleteFileItemBackgroundColor};
