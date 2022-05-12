@@ -54,9 +54,23 @@ const ContentContainer = styled.div`
 `;
 
 const QuickNavContainer = styled.div`
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 200px);
   position: sticky;
+  top: 200px;
   width: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #d9d9d9;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #666666;
+    border-radius: 3px;
+  }
 `;
 
 export default DxcQuickNavContainer;
