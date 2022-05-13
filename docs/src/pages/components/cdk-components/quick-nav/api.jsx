@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcTable } from "@dxc-technology/halstack-react";
 
-const quickNavContainerPropsTable = () => {
+const quickNavPropsTable = () => {
   return (
     <DxcTable>
       <tr>
@@ -39,4 +39,4 @@ const quickNavContainerPropsTable = () => {
   );
 };
 
-export default quickNavContainerPropsTable;
+export default quickNavPropsTable;

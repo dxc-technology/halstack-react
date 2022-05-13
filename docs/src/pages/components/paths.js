@@ -38,7 +38,6 @@ import Stack from "./cdk-components/stack/Stack";
 import Inset from "./cdk-components/inset/Inset";
 import Row from "./cdk-components/row/Row";
 import Bleed from "./cdk-components/bleed/Bleed";
-import QuickNavContainer from "./cdk-components/quick-nav-container/QuickNavContainer";
 
 export const types = {
   FORMS: "Forms",
@@ -208,13 +207,6 @@ export default [
     component: ProgressBar,
     type: types.UTILS,
     status: "ready",
-  },
-  {
-    path: "quickNavContainer",
-    name: "Quick Nav Container",
-    component: QuickNavContainer,
-    type: types.NAVIGATION,
-    status: "experimental",
   },
   {
     path: "radio",
