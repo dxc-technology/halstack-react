@@ -13,8 +13,6 @@ import layoutGrid from "./images/layout_grid.png";
 import Code from "../../common/Code";
 import layoutBreakpoints from "./images/layout_breakpoints.png";
 import layoutColumns from "./images/layout_medium_small.png";
-import pairedLayout from "./images/paired_layout.png";
-import symmetricalLayout from "./images/symmetrical_layout.png";
 import Link from "next/link";
 
 const Layout = () => {
@@ -32,26 +30,43 @@ const Layout = () => {
           <HeadingLink level={2}>Layout components</HeadingLink>
           <DxcText as="p">
             The{" "}
-            <DxcLink
-              href="/components/application-layout/"
-              text="application layout"
-            />{" "}
+            <DxcLink>
+              <Link href="/components/application-layout/">
+                <a>application layout</a>
+              </Link>
+            </DxcLink>{" "}
             is the base component that wraps any application built with
             halstack. In addition, all of the components listed below can be
             used within each other to create a wide variety of standard layouts:
           </DxcText>
           <DxcList>
             <DxcText>
-              <DxcLink href="/components/stack/" text="Stack" />{" "}
+              <DxcLink>
+                <Link href="/components/stack/">
+                  <a>Stack</a>
+                </Link>
+              </DxcLink>{" "}
             </DxcText>
             <DxcText>
-              <DxcLink href="/components/row/" text="Row" />{" "}
+              <DxcLink>
+                <Link href="/components/row/">
+                  <a>Row</a>
+                </Link>
+              </DxcLink>{" "}
             </DxcText>
             <DxcText>
-              <DxcLink href="/components/bleed/" text="Bleed" />{" "}
+              <DxcLink>
+                <Link href="/components/bleed/">
+                  <a>Bleed</a>
+                </Link>
+              </DxcLink>{" "}
             </DxcText>
             <DxcText>
-              <DxcLink href="/components/inset/" text="Inset" />{" "}
+              <DxcLink>
+                <Link href="/components/inset/">
+                  <a>Inset</a>
+                </Link>
+              </DxcLink>{" "}
             </DxcText>
           </DxcList>
         </DxcStack>
@@ -234,10 +249,11 @@ const Layout = () => {
             <DxcText>
               The margin value provided are the minimun recommended, any value
               from our{" "}
-              <DxcLink
-                href="/principles/spacing/#core-spacing-tokens"
-                text="spacing scale"
-              />{" "}
+              <DxcLink>
+                <Link href="/principles/spacing/#core-spacing-tokens">
+                  <a>spacing scale</a>
+                </Link>
+              </DxcLink>{" "}
               can be used or even an <Code>auto</Code> value.
             </DxcText>
           </DxcList>

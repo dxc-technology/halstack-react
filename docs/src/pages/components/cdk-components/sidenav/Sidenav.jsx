@@ -22,11 +22,9 @@ function Sidenav() {
         <p>
           This component includes different compound components that are
           customized following the{" "}
-          <DxcLink
-            href="https://developer.dxc.com/design/guidelines/components/sidenav"
-            underlined={false}
-            text="design guidelines"
-          ></DxcLink>
+          <DxcLink href="https://developer.dxc.com/design/guidelines/components/sidenav">
+            design guidelines
+          </DxcLink>
           .
         </p>
         <DxcHeading text="DxcSidenav.Title" level={4} weight="bold" />

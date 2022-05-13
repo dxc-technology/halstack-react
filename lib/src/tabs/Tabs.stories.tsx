@@ -78,12 +78,6 @@ export const Chromatic = () => (
       <Title title="With icon on the left and notification number" theme="light" level={4} />
       <DxcTabs tabs={tabsNotificationIcon} iconPosition="left" />
     </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Scrollable" theme="light" level={4} />
-      <div style={{ width: "400px" }}>
-        <DxcTabs tabs={tabsNotificationIcon} iconPosition="left" defaultActiveTabIndex={1} />
-      </div>
-    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall margin" theme="light" level={4} />

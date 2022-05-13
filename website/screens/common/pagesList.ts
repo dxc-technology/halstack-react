@@ -72,9 +72,7 @@ export const LinksSections: LinksSectionDetails[] = [
 
 export const getNavigationLinks = (currentPath: string): NavigationLinks => {
   const links = LinksSections.flatMap((section) => section.links);
-  const currentLinkIndex = links.findIndex((link) =>
-    currentPath.startsWith(link.path)
-  );
+  const currentLinkIndex = links.findIndex((link) => currentPath === link.path);
   if (currentLinkIndex === -1) {
     return { previousLink: null, nextLink: null };
   }

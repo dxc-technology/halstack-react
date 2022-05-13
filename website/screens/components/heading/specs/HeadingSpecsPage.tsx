@@ -370,17 +370,19 @@ const HeaderSpecsPage = () => {
             SC 1.3.1 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-              text="Info and relationships"
               newWindow
-            />
+            >
+              Info and relationships
+            </DxcLink>
           </DxcText>
           <DxcText>
             SC 2.4.6 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html"
-              text="Headings and labels"
               newWindow
-            />
+            >
+              Headings and labels
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>
