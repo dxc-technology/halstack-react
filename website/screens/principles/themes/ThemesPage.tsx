@@ -62,9 +62,10 @@ const Themes = () => {
               level. You can generate the theme object using our{" "}
               <DxcLink
                 href="https://developer.dxc.com/tools/react/next/#/themeBuilder"
-                text="opinionated theme generator"
                 newWindow
-              ></DxcLink>
+              >
+                opinionated theme generator
+              </DxcLink>
               .
             </DxcText>
             <DxcText>
@@ -78,9 +79,10 @@ const Themes = () => {
               level. You can generate the theme object using our{" "}
               <DxcLink
                 href="https://developer.dxc.com/tools/react/next/#/themeBuilder/advancedTheme"
-                text="advanced theme generator"
                 newWindow
-              ></DxcLink>
+              >
+                advanced theme generator
+              </DxcLink>
               .
             </DxcText>
           </DxcList>

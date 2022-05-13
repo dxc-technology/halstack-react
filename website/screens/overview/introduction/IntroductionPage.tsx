@@ -60,10 +60,9 @@ const Introduction = () => {
             We are charmed to receive external contributions to help us find
             bugs, design new features, or help us improve the project
             documentation. If you&#39;re interested, definitely check out our{" "}
-            <DxcLink
-              href="https://github.com/dxc-technology/halstack-style-guide/blob/master/contributing/overview.md"
-              text="contribution guidelines"
-            />
+            <DxcLink href="https://github.com/dxc-technology/halstack-style-guide/blob/master/contributing/overview.md">
+              contribution guidelines
+            </DxcLink>
             .
           </DxcText>
         </DxcStack>
@@ -73,10 +72,9 @@ const Introduction = () => {
 
           <DxcText as="p">
             In addition to our design guidelines, we mantain an{" "}
-            <DxcLink
-              href="https://shared-assets.adobe.com/link/732533f4-d925-487e-4761-9a760574cfac"
-              text="Adobe XD public library"
-            />{" "}
+            <DxcLink href="https://shared-assets.adobe.com/link/732533f4-d925-487e-4761-9a760574cfac">
+              Adobe XD public library
+            </DxcLink>{" "}
             in order to provide designers all the building blocks needed to
             quickly create solutions four our clients. Helping them focusing on
             innovation and user experience.
@@ -89,16 +87,14 @@ const Introduction = () => {
           </DxcText>
           <DxcList>
             <DxcText>
-              <DxcLink
-                href="https://developer.dxc.com/tools/react/next/#/"
-                text="React documentation"
-              />
+              <DxcLink href="https://developer.dxc.com/tools/react/next/#/">
+                React documentation
+              </DxcLink>
             </DxcText>
             <DxcText>
-              <DxcLink
-                href="https://developer.dxc.com/tools/angular/next/#/"
-                text="Angular documentation"
-              />
+              <DxcLink href="https://developer.dxc.com/tools/angular/next/#/">
+                Angular documentation
+              </DxcLink>
             </DxcText>
           </DxcList>
           <DxcText as="p">
@@ -113,24 +109,21 @@ const Introduction = () => {
           </DxcText>
           <DxcList>
             <DxcText>
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-style-guide"
-                text="halstack-style-guide"
-              />
+              <DxcLink href="https://github.com/dxc-technology/halstack-style-guide">
+                halstack-style-guide
+              </DxcLink>
               : Design guidelines
             </DxcText>
             <DxcText>
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-react"
-                text="halstack-react"
-              />
+              <DxcLink href="https://github.com/dxc-technology/halstack-react">
+                halstack-react
+              </DxcLink>
               : React CDK
             </DxcText>
             <DxcText>
-              <DxcLink
-                href="https://github.com/dxc-technology/halstack-angular"
-                text="halstack-angular"
-              />
+              <DxcLink href="https://github.com/dxc-technology/halstack-angular">
+                halstack-angular
+              </DxcLink>
               : Angular CDK
             </DxcText>
           </DxcList>

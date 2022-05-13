@@ -6,6 +6,7 @@ import {
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
+import Link from "next/link";
 import HeadingLink from "../../../common/HeadingLink";
 import Figure from "../../../common/Figure";
 import DocFooter from "../../../common/DocFooter";
@@ -865,10 +866,11 @@ const SelectSpecsPage = () => {
         <HeadingLink level={4}>Spacing</HeadingLink>
         <DxcText as="p">
           The select component <strong>input</strong> share the{" "}
-          <DxcLink
-            href="/components/text-input/specifications"
-            text=" same spacing tokens of the text input"
-          />
+          <DxcLink>
+            <Link href="/components/text-input/specifications">
+              <a>same spacing tokens of the text input</a>
+            </Link>
+          </DxcLink>
           .
         </DxcText>
         <DxcTable>
@@ -1052,9 +1054,10 @@ const SelectSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/on-input.html"
-              text="SC 3.2.2: On Input"
               newWindow
-            />
+            >
+              SC 3.2.2: On Input
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA 1.2</HeadingLink>
@@ -1063,25 +1066,28 @@ const SelectSpecsPage = () => {
             WAI-ARIA practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#combobox"
-              text="3.8 Combobox"
               newWindow
-            />
+            >
+              3.8 Combobox
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#Listbox"
-              text="3.14 Listbox"
               newWindow
-            />
+            >
+              3.14 Listbox
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA examples 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/combobox/combobox-autocomplete-none.html"
-              text="Editable Combobox without Autocomplete Example"
               newWindow
-            />
+            >
+              Editable Combobox without Autocomplete Example
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

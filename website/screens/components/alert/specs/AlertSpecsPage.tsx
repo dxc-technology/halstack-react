@@ -504,9 +504,10 @@ const AlertSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               newWindow
-              text="SC 4.1.3 Status Messages"
               href="https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html"
-            />
+            >
+              SC 4.1.3 Status Messages
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA</HeadingLink>
@@ -515,33 +516,37 @@ const AlertSpecsPage = () => {
             WAI-ARIA Authoring practices 1.2 -{" "}
             <DxcLink
               newWindow
-              text="3.2 Alert"
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#alert"
-            />
+            >
+              3.2 Alert
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA Authoring practices 1.2 -{" "}
             <DxcLink
               newWindow
-              text="3.3 Alert and Message dialogs"
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#alertdialog"
-            />
+            >
+              3.3 Alert and Message dialogs
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA Authoring practices 1.2 -{" "}
             <DxcLink
               newWindow
-              text="Alert design pattern"
               href="https://www.w3.org/TR/wai-aria-practices/examples/alert/alert.html"
-            />
+            >
+              Alert design pattern
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA Authoring practices 1.2 -{" "}
             <DxcLink
               newWindow
-              text="Alert Dialog design pattern"
               href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/dialog-modal/alertdialog.html"
-            />
+            >
+              Alert Dialog design pattern
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

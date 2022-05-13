@@ -6,6 +6,7 @@ import {
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
+import Link from "next/link";
 import HeadingLink from "../../../common/HeadingLink";
 import anatomyImage from "./images/table_anatomy.png";
 import specsImage from "./images/table_specs.png";
@@ -27,11 +28,25 @@ const ResultsetTableSpecsPage = () => {
         <DxcText as="p">
           Some other components defined in the design system are used in the
           table component as the{" "}
-          <DxcLink href="/components/checkbox" text="checkbox" />,{" "}
-          <DxcLink href="/components/button" text="button" /> or{" "}
-          <DxcLink href="/components/select" text="select" />. For concrete
-          specifications about states, please, consider to see the documentation
-          of each component.
+          <DxcLink>
+            <Link href="/components/checkbox">
+              <a>checkbox</a>
+            </Link>
+          </DxcLink>
+          ,{" "}
+          <DxcLink>
+            <Link href="/components/button">
+              <a>button</a>
+            </Link>
+          </DxcLink>{" "}
+          or{" "}
+          <DxcLink>
+            <Link href="/components/select">
+              <a>select</a>
+            </Link>
+          </DxcLink>
+          . For concrete specifications about states, please, consider to see
+          the documentation of each component.
         </DxcText>
       </DxcStack>
       <DxcStack gutter="large">
@@ -447,57 +462,64 @@ const ResultsetTableSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
-              text="Success Criterion 1.3.1: Info and Relationships"
               newWindow
-            />
+            >
+              Success Criterion 1.3.1: Info and Relationships
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence"
-              text="Success Criterion 1.3.2: Meaningful Sequence"
               newWindow
-            />
+            >
+              Success Criterion 1.3.2: Meaningful Sequence
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
-              text="Success Criterion 2.1.1: Keyboard"
               newWindow
-            />
+            >
+              Success Criterion 2.1.1: Keyboard
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order"
-              text="Success Criterion 2.4.3: Focus Order"
               newWindow
-            />
+            >
+              Success Criterion 2.4.3: Focus Order
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels"
-              text="Success Criterion 2.4.6: Headings and Labels"
               newWindow
-            />
+            >
+              Success Criterion 2.4.6: Headings and Labels
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible"
-              text="Success Criterion 2.4.7: Focus Visible"
               newWindow
-            />
+            >
+              Success Criterion 2.4.7: Focus Visible
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
-              text="Success Criterion 4.1.2: Name, Role, Value"
               newWindow
-            />
+            >
+              Success Criterion 4.1.2: Name, Role, Value
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA</HeadingLink>
@@ -506,17 +528,19 @@ const ResultsetTableSpecsPage = () => {
             WAI-ARIA Authoring Practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#table"
-              text="3.23 Table"
               newWindow
-            />
+            >
+              3.23 Table
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA Authoring Practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/table/sortable-table.html"
-              text="Sortable Table Example"
               newWindow
-            />
+            >
+              Sortable Table Example
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

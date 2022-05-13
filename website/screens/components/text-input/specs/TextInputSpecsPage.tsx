@@ -942,41 +942,46 @@ const TextInputSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
-              text="1.3.1: Information and Relationships"
               newWindow
-            />
+            >
+              1.3.1: Information and Relationships
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification"
-              text="3.3.1: Error Identification"
               newWindow
-            />
+            >
+              3.3.1: Error Identification
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions"
-              text="3.3.2: Labels and Instructions"
               newWindow
-            />
+            >
+              3.3.2: Labels and Instructions
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion"
-              text="3.3.3: Error Suggestion"
               newWindow
-            />
+            >
+              3.3.3: Error Suggestion
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
-              text="4.1.2: Name, Role, Value"
               newWindow
-            />
+            >
+              4.1.2: Name, Role, Value
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>
