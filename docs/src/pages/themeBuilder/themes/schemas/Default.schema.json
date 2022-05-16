@@ -58,8 +58,9 @@
     "baseColor": "color"
   },
   "select": {
-    "baseColor": "color",
-    "fontColor": "color"
+    "selectedOptionBackgroundColor": "color",
+    "fontColor": "color",
+    "optionFontColor": "color"
   },
   "sidenav": {
     "baseColor": "color"
@@ -76,7 +77,9 @@
   },
   "table": {
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "headerFontColor": "color",
+    "cellFontColor": "color"
   },
   "tabs": {
     "baseColor": "color"

@@ -58,11 +58,12 @@
     "baseColor": "#0086e6"
   },
   "select": {
-    "baseColor": "#d9d9d9",
-    "fontColor": "#000000"
+    "selectedOptionBackgroundColor": "#d9d9d9",
+    "fontColor": "#000000",
+    "optionFontColor": "#000000"
   },
   "sidenav": {
-    "baseColor": "#F8F8F8"
+    "baseColor": "#F2F2F2"
   },
   "slider": {
     "baseColor": "#0067b3"
@@ -76,7 +77,8 @@
   },
   "table": {
     "baseColor": "#5f249f",
-    "fontColor": "#ffffff"
+    "headerFontColor": "#ffffff",
+    "cellFontColor": "#000000"
   },
   "tabs": {
     "baseColor": "#5f249f"

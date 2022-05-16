@@ -68,14 +68,6 @@ const parseTheme = (theme) => {
   accordionTokens.focusBorderColor = theme?.accordion?.accentColor ?? accordionTokens.focusBorderColor;
   accordionTokens.hoverBackgroundColor =
     setOpacity(theme?.accordion?.accentColor, 0.16) ?? accordionTokens.hoverBackgroundColor;
-  accordionTokens.disabledAssistiveTextFontColor =
-    setOpacity(theme?.accordion?.fontColor, 0.34) ?? accordionTokens.disabledAssistiveTextFontColor;
-  accordionTokens.disabledTitleLabelFontColor =
-    setOpacity(theme?.accordion?.fontColor, 0.34) ?? accordionTokens.disabledTitleLabelFontColor;
-  accordionTokens.disabledArrowColor =
-    setOpacity(theme?.accordion?.accentColor, 0.34) ?? accordionTokens.disabledArrowColor;
-  accordionTokens.disabledIconColor =
-    setOpacity(theme?.accordion?.accentColor, 0.34) ?? accordionTokens.disabledIconColor;
 
   const buttonTokens = componentTokensCopy.button;
   buttonTokens.primaryFontColor = theme?.button?.primaryFontColor ?? buttonTokens.primaryFontColor;
@@ -100,18 +92,14 @@ const parseTheme = (theme) => {
   checkboxTokens.backgroundColorChecked = theme?.checkbox?.baseColor ?? checkboxTokens.backgroundColorChecked;
   checkboxTokens.borderColor = theme?.checkbox?.baseColor ?? checkboxTokens.borderColor;
   checkboxTokens.checkColor = theme?.checkbox?.checkColor ?? checkboxTokens.checkColor;
-  checkboxTokens.disabledBackgroundColorChecked =
-    setOpacity(theme?.checkbox?.baseColor, 0.34) ?? checkboxTokens.disabledBackgroundColorChecked;
-  checkboxTokens.disabledBorderColor =
-    setOpacity(theme?.checkbox?.baseColor, 0.34) ?? checkboxTokens.disabledBorderColor;
-  checkboxTokens.disabledCheckColor =
-    setOpacity(theme?.checkbox?.checkColor, 0.34) ?? checkboxTokens.disabledCheckColor;
+  checkboxTokens.hoverBackgroundColorChecked =
+    subLightness(theme?.checkbox?.baseColor, 15) ?? checkboxTokens.hoverBackgroundColorChecked;
+  checkboxTokens.hoverBorderColor = subLightness(theme?.checkbox?.baseColor, 15) ?? checkboxTokens.hoverBorderColor;
 
   const chipTokens = componentTokensCopy.chip;
   chipTokens.backgroundColor = theme?.chip?.baseColor ?? chipTokens.backgroundColor;
-  chipTokens.disabledBackgroundColor = setOpacity(theme?.chip?.baseColor, 0.34) ?? chipTokens.disabledBackgroundColor;
   chipTokens.fontColor = theme?.chip?.fontColor ?? chipTokens.fontColor;
-  chipTokens.disabledFontColor = setOpacity(theme?.chip?.fontColor, 0.34) ?? chipTokens.disabledFontColor;
+  chipTokens.iconColor = theme?.chip?.fontColor ?? chipTokens.iconColor;
 
   const dateTokens = componentTokensCopy.dateInput;
   dateTokens.pickerSelectedDateBackgroundColor =
@@ -131,6 +119,8 @@ const parseTheme = (theme) => {
     setOpacity(theme?.dropdown?.baseColor, 0.34) ?? dropdownTokens.hoverOptionBackgroundColor;
   dropdownTokens.activeOptionBackgroundColor =
     setOpacity(theme?.dropdown?.baseColor, 0.7) ?? dropdownTokens.activeOptionBackgroundColor;
+  dropdownTokens.caretIconColor = theme?.dropdown?.fontColor ?? dropdownTokens.caretIconColor;
+  dropdownTokens.buttonIconColor = theme?.dropdown?.fontColor ?? dropdownTokens.caretIconColor;
 
   const fileInputTokens = componentTokensCopy.fileInput;
   fileInputTokens.labelFontColor = theme?.fileInput?.fontColor ?? fileInputTokens.labelFontColor;
@@ -180,22 +170,27 @@ const parseTheme = (theme) => {
   radioGroupTokens.radioInputColor = theme?.radioGroup?.baseColor ?? radioGroupTokens.radioInputColor;
 
   const selectTokens = componentTokensCopy.select;
-
   selectTokens.selectedListOptionBackgroundColor =
-    theme?.select?.baseColor ?? selectTokens.selectedListOptionBackgroundColor;
-
-  selectTokens.optionFontColor = theme?.select?.fontColor ?? selectTokens.optionFontColor;
+    theme?.select?.selectedOptionBackgroundColor ?? selectTokens.selectedListOptionBackgroundColor;
   selectTokens.valueFontColor = theme?.select?.fontColor ?? selectTokens.valueFontColor;
-  selectTokens.hoverOptionBackgroundColor =
-    addLightness(theme?.select?.baseColor, 10) ?? selectTokens.hoverOptionBackgroundColor;
-  selectTokens.activeOptionBackgroundColor =
-    subLightness(theme?.select?.baseColor, 15) ?? selectTokens.activeOptionBackgroundColor;
+  selectTokens.labelFontColor = theme?.select?.fontColor ?? selectTokens.labelFontColor;
+  selectTokens.helperTextFontColor = theme?.select?.fontColor ?? selectTokens.helperTextFontColor;
+  selectTokens.listOptionFontColor = theme?.select?.optionFontColor ?? selectTokens.optionFontColor;
+  selectTokens.placeholderFontColor = setOpacity(theme?.select?.fontColor, 0.5) ?? selectTokens.placeholderFontColor;
+  selectTokens.collapseIndicatorColor = theme?.select?.fontColor ?? selectTokens.collapseIndicatorColor;
+  selectTokens.selectedHoverListOptionBackgroundColor =
+    subLightness(theme?.select?.selectedOptionBackgroundColor, 5) ??
+    selectTokens.selectedHoverListOptionBackgroundColor;
+  selectTokens.selectedActiveListOptionBackgroundColor =
+    subLightness(theme?.select?.selectedOptionBackgroundColor, 10) ??
+    selectTokens.selectedActiveListOptionBackgroundColor;
 
   const sideNavTokens = componentTokensCopy.sidenav;
   sideNavTokens.backgroundColor = theme?.sidenav?.baseColor ?? sideNavTokens.backgroundColor;
 
   const sliderTokens = componentTokensCopy.slider;
   sliderTokens.thumbBackgroundColor = theme?.slider?.baseColor ?? sliderTokens.thumbBackgroundColor;
+  sliderTokens.focusThumbBackgroundColor = theme?.slider?.baseColor ?? sliderTokens.focusThumbBackgroundColor;
   sliderTokens.tickBackgroundColor = theme?.slider?.baseColor ?? sliderTokens.tickBackgroundColor;
   sliderTokens.trackLineColor = theme?.slider?.baseColor ?? sliderTokens.trackLineColor;
   sliderTokens.hoverThumbBackgroundColor =
@@ -203,12 +198,6 @@ const parseTheme = (theme) => {
   sliderTokens.activeThumbBackgroundColor =
     subLightness(theme?.slider?.baseColor, 15) ?? sliderTokens.thumbBackgroundColor;
   sliderTokens.totalLineColor = setOpacity(theme?.slider?.baseColor, 0.34) ?? sliderTokens.totalLineColor;
-  sliderTokens.disabledThumbBackgroundColor =
-    setOpacity(theme?.slider?.baseColor, 0.34) ?? sliderTokens.disabledThumbBackgroundColor;
-  sliderTokens.disabledTickBackgroundColor =
-    setOpacity(theme?.slider?.baseColor, 0.34) ?? sliderTokens.disabledTickBackgroundColor;
-  sliderTokens.disabledTrackLineColor =
-    setOpacity(theme?.slider?.baseColor, 0.34) ?? sliderTokens.disabledTrackLineColor;
 
   const spinnerTokens = componentTokensCopy.spinner;
   spinnerTokens.trackCircleColor = theme?.spinner?.accentColor ?? spinnerTokens.trackCircleColor;
@@ -222,8 +211,9 @@ const parseTheme = (theme) => {
 
   const tableTokens = componentTokensCopy.table;
   tableTokens.headerBackgroundColor = theme?.table?.baseColor ?? tableTokens.headerBackgroundColor;
-  tableTokens.headerFontColor = theme?.table?.fontColor ?? tableTokens.headerFontColor;
-  tableTokens.sortIconColor = theme?.table?.fontColor ?? tableTokens.sortIconColor;
+  tableTokens.headerFontColor = theme?.table?.headerFontColor ?? tableTokens.headerFontColor;
+  tableTokens.dataFontColor = theme?.table?.cellFontColor ?? tableTokens.dataFontColor;
+  tableTokens.sortIconColor = theme?.table?.headerFontColor ?? tableTokens.sortIconColor;
 
   const tabsTokens = componentTokensCopy.tabs;
   tabsTokens.selectedFontColor = theme?.tabs?.baseColor ?? tabsTokens.selectedFontColor;
@@ -232,8 +222,6 @@ const parseTheme = (theme) => {
   tabsTokens.focusOutline = theme?.tabs?.baseColor ?? tabsTokens.focusOutline;
   tabsTokens.hoverBackgroundColor = addLightness(theme?.tabs?.baseColor, 58) ?? tabsTokens.hoverBackgroundColor;
   tabsTokens.pressedBackgroundColor = addLightness(theme?.tabs?.baseColor, 53) ?? tabsTokens.pressedBackgroundColor;
-
-  // const textareaTokens = componentTokensCopy.textarea;
 
   const textInputTokens = componentTokensCopy.textInput;
   textInputTokens.hoverListOptionBackgroundColor =
