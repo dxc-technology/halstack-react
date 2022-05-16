@@ -1,16 +1,31 @@
+import React from "react";
+import { DxcQuickNav } from "@dxc-technology/halstack-react";
+
 const code = `() => {
-  return (
-    <iframe src="https://codesandbox.io/embed/inspiring-nobel-d47yp7?fontsize=14&hidenavigation=1&theme=dark"
-     style={{width:"100%",
-     height:"500px",
-     border:"0",
-     borderRadius: "4px",
-     overflow:"hidden"}}
-     title="inspiring-nobel-d47yp7"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
-  );
+  const links = [
+    {
+      label: "Overview",
+    },
+    {
+      label: "Principles",
+      links: [
+        { label: "Color" },
+        { label: "Spacing" },
+        { label: "Typography" },
+        { label: "Layout" },
+        {
+          label: "Themes",
+          links: [{ label: "Light" }, { label: "Dark" }],
+        },
+      ],
+    },
+  ];
+
+  return <div style={{ margin: "20px"}}><DxcQuickNav title="Sections" links={links}></DxcQuickNav></div>;
 }`;
 
-export default { code };
+const scope = {
+  DxcQuickNav,
+};
+
+export default { code, scope };
