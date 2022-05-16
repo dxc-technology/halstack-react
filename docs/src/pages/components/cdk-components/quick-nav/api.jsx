@@ -15,22 +15,20 @@ const quickNavPropsTable = () => {
         <td>Title of the quick nav component.</td>
       </tr>
       <tr>
-        <td>sections: Section[]</td>
+        <td>links: Link[]</td>
         <td></td>
         <td>
-          Sections to be shown as the content of the quick nav container.
+          Links of the quick nav component. Each link has the following
+          properties:
           <ul>
             <li>
-              <b>title: string</b>: Title of each section.
+              <b>label: string</b>: Text to be shown in the link. The content
+              must be wrapped with an id equals to the slugified label (in lower
+              case and the white spaces replaced by '-') in order to be able to
+              navigate to the section that the label references.
             </li>
             <li>
-              <b>level: 1 | 2 | 3 | 4 | 5</b>: Level of each section.
-            </li>
-            <li>
-              <b>content: React.ReactNode</b>: Content of each section.
-            </li>
-            <li>
-              <b>subSections: Section[]</b>: Subsections of each section.
+              <b>links: Link[]</b>: Sublinks of the link.
             </li>
           </ul>
         </td>
