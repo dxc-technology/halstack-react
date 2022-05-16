@@ -1,4 +1,3 @@
-import React from "react";
 import { DxcQuickNav } from "@dxc-technology/halstack-react";
 
 const code = `() => {
