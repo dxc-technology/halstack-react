@@ -364,7 +364,7 @@
     "fileItemBorderStyle": "solid",
     "fileItemBorderRadius": "0.25rem",
     "filePreviewBackgroundColor": "#f2f2f2",
-    "filePreviewIconColor": "#000000",
+    "filePreviewIconColor": "#808080",
     "errorFilePreviewIconColor": "#d0011b"
   },
   "footer": {
