@@ -155,6 +155,7 @@ const DxcPaginatorContainer = styled.div`
 `;
 
 const SelectContainer = styled.div`
+  min-width: 82px;
   max-width: 100px;
 `;
 
