@@ -760,7 +760,7 @@
   },
   "spinner": {
     "trackCircleColor": "#5f249f",
-    "trackCircleColorOnDark": "#a46ede",
+    "trackCircleColorOverlay": "#a46ede",
     "totalCircleColor": "#ffffff",
     "labelFontFamily": "Open Sans, sans-serif",
     "labelFontSize": "0.875rem",

@@ -271,7 +271,7 @@ const CircleSpinner = styled.circle`
       ? "1.4s ease-in-out infinite both svg-circle-large"
       : "1.4s ease-in-out infinite both svg-circle-small"};
   stroke: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.trackCircleColorOnDark : props.theme.trackCircleColor};
+    props.backgroundType === "dark" ? props.theme.trackCircleColorOverlay : props.theme.trackCircleColor};
   transform-origin: ${(props) => (!props.isDeterminated ? "50% 50%" : "")};
   stroke-dasharray: ${(props) => (props.mode !== "small" ? "409" : "38")};
   stroke-width: ${(props) => (props.mode !== "small" ? "8.5px" : "2px")};

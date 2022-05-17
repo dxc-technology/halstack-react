@@ -10,19 +10,21 @@
   },
   "checkbox": {
     "baseColor": "color",
-    "checkColor": "color"
+    "checkColor": "color",
+    "fontColor": "color"
   },
   "chip": {
     "baseColor": "color",
     "fontColor": "color"
   },
   "dateInput": {
-    "baseColor": "color",
-    "accentColor": "color"
+    "selectedDateBackgroundColor": "color",
+    "selectedDateFontColor": "color"
   },
   "dropdown": {
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "optionFontColor": "color"
   },
   "fileInput": {
     "fontColor": "color"
@@ -49,13 +51,16 @@
   },
   "progressBar": {
     "accentColor": "color",
-    "baseColor": "color"
+    "baseColor": "color",
+    "fontColor": "color"
   },
   "radio": {
-    "baseColor": "color"
+    "baseColor": "color",
+    "fontColor": "color"
   },
   "radioGroup": {
-    "baseColor": "color"
+    "baseColor": "color",
+    "fontColor": "color"
   },
   "select": {
     "selectedOptionBackgroundColor": "color",
@@ -66,14 +71,17 @@
     "baseColor": "color"
   },
   "slider": {
-    "baseColor": "color"
+    "baseColor": "color",
+    "fontColor": "color"
   },
   "spinner": {
     "accentColor": "color",
-    "baseColor": "color"
+    "baseColor": "color",
+    "fontColor": "color"
   },
   "switch": {
-    "checkedBaseColor": "color"
+    "checkedBaseColor": "color",
+    "fontColor": "color"
   },
   "table": {
     "baseColor": "color",
@@ -85,7 +93,7 @@
     "baseColor": "color"
   },
   "textInput": {
-    "baseColor": "color"
+    "fontColor": "color"
   },
   "toggleGroup": {
     "selectedBaseColor": "color",
@@ -95,6 +103,7 @@
   },
   "wizard": {
     "baseColor": "color",
-    "fontColor": "color"
+    "fontColor": "color",
+    "selectedFontColor": "color"
   }
 }
