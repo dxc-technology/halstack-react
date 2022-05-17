@@ -21,7 +21,7 @@ const Suggestion = ({
       onClick={onClick}
       visuallyFocused={visuallyFocused}
       role="option"
-      aria-selected={visuallyFocused ? "true" : "false"}
+      aria-selected={visuallyFocused ? "true" : undefined}
     >
       <StyledSuggestion last={isLast} visuallyFocused={visuallyFocused}>
         {highlighted ? (
