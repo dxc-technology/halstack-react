@@ -528,7 +528,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   filteredSuggestions.length > 0 &&
                   filteredSuggestions.map((suggestion, index) => (
                     <Suggestion
-                      key={`suggestion-${value}`}
+                      key={`suggestion-${index}`}
                       id={`suggestion-${index}`}
                       value={value ?? innerValue}
                       onClick={() => {
