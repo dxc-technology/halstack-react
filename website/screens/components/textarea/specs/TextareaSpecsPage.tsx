@@ -10,6 +10,7 @@ import HeadingLink from "@/common/HeadingLink";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
+import Link from "next/link";
 import specsImage from "./images/textarea_specs.png";
 import statesImage from "./images/textarea_states.png";
 import anatomyImage from "./images/textarea_anatomy.png";
@@ -26,10 +27,11 @@ const TextareaSpecsPage = () => {
           The textarea <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>width</Code> and <Code>margin</Code>{" "}
           specifications are inherited from the text input, for reference{" "}
-          <DxcLink
-            text="check the text input component documentation"
-            href="/components/text-input"
-          />
+          <DxcLink>
+            <Link href="/components/text-input">
+              <a>check the text input component documentation</a>
+            </Link>
+          </DxcLink>
           .
         </DxcText>
         <DxcText as="p">
@@ -131,41 +133,46 @@ const TextareaSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               newWindow
-              text="1.3.1: Information and Relationships"
               href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
-            />
+            >
+              1.3.1: Information and Relationships
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               newWindow
-              text="3.3.1: Error Identification"
               href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification"
-            />
+            >
+              3.3.1: Error Identification
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               newWindow
-              text="3.3.2: Labels and Instructions"
               href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions"
-            />
+            >
+              3.3.2: Labels and Instructions
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               newWindow
-              text="3.3.3: Error Suggestion"
               href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion"
-            />
+            >
+              3.3.3: Error Suggestion
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               newWindow
-              text="4.1.2: Name, Role, Value"
               href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
-            />
+            >
+              4.1.2: Name, Role, Value
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA</HeadingLink>
@@ -174,9 +181,10 @@ const TextareaSpecsPage = () => {
             WAI-ARIA Accessible Rich Internet Applications 1.2 -{" "}
             <DxcLink
               newWindow
-              text="textbox role"
               href="https://www.w3.org/TR/wai-aria-1.2/#textbox"
-            />
+            >
+              textbox role
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

@@ -503,16 +503,14 @@ const AccordionSpecsPage = () => {
               </td>
               <td>Custom content</td>
               <td>
-                <DxcLink
-                  href="https://github.com/dxc-technology/halstack-style-guide/tree/master/guidelines/principles/spacing#component-spacing-tokens"
-                  text="Component spacing"
-                />
+                <DxcLink href="https://github.com/dxc-technology/halstack-style-guide/tree/master/guidelines/principles/spacing#component-spacing-tokens">
+                  Component spacing
+                </DxcLink>
               </td>
               <td>
-                <DxcLink
-                  href="https://developer.dxc.com/tools/react/next/#/components/accordion"
-                  text="[Prop] padding"
-                />
+                <DxcLink href="https://developer.dxc.com/tools/react/next/#/components/accordion">
+                  [Prop] padding
+                </DxcLink>
               </td>
             </tr>
             <tr>
@@ -521,16 +519,14 @@ const AccordionSpecsPage = () => {
               </td>
               <td>Accordion container</td>
               <td>
-                <DxcLink
-                  href="https://github.com/dxc-technology/halstack-style-guide/tree/master/guidelines/principles/spacing#component-spacing-tokens"
-                  text="Component spacing"
-                />
+                <DxcLink href="https://github.com/dxc-technology/halstack-style-guide/tree/master/guidelines/principles/spacing#component-spacing-tokens">
+                  Component spacing
+                </DxcLink>
               </td>
               <td>
-                <DxcLink
-                  href="https://developer.dxc.com/tools/react/next/#/components/accordion"
-                  text="[Prop] margin"
-                />
+                <DxcLink href="https://developer.dxc.com/tools/react/next/#/components/accordion">
+                  [Prop] margin
+                </DxcLink>
               </td>
             </tr>
           </tbody>
@@ -544,17 +540,19 @@ const AccordionSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
-              text="SC 2.1.1 Keyboard"
               newWindow
-            />
+            >
+              SC 2.1.1 Keyboard
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
-              text="SC 4.1.2 Name, Role, Value"
               newWindow
-            />
+            >
+              SC 4.1.2 Name, Role, Value
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA 1.2</HeadingLink>
@@ -563,17 +561,19 @@ const AccordionSpecsPage = () => {
             WAI-ARIA Authoring Practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#accordion"
-              text="3.1 Accordion (Sections With Show/Hide Functionality)"
               newWindow
-            />
+            >
+              3.1 Accordion (Sections With Show/Hide Functionality)
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA Authoring Practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/accordion/accordion.html"
-              text="Accordion Design Pattern"
               newWindow
-            />
+            >
+              Accordion Design Pattern
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>Usability known issues</HeadingLink>

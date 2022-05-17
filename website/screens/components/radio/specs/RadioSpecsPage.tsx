@@ -450,25 +450,28 @@ const RadioSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
-              text="SC 1.3.1: Info and Relationships"
               newWindow
-            />
+            >
+              SC 1.3.1: Info and Relationships
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
-              text="SC 3.3.2: Labels or Instructions"
               newWindow
-            />
+            >
+              SC 3.3.2: Labels or Instructions
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html"
-              text="SC 2.4.6: Headings and Labels"
               newWindow
-            />
+            >
+              SC 2.4.6: Headings and Labels
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA 1.2</HeadingLink>
@@ -477,9 +480,10 @@ const RadioSpecsPage = () => {
             WAI-ARIA Authoring Practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#radiobutton"
-              text="3.12 Radio group"
               newWindow
-            />
+            >
+              3.12 Radio group
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>
