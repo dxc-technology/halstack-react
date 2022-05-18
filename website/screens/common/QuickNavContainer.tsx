@@ -95,7 +95,7 @@ const QuickNavContainer = styled.div`
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #666666;
+    background-color: #66666626;
     border-radius: 3px;
   }
 `;
