@@ -70,9 +70,21 @@ export const LinksSections: LinksSectionDetails[] = [
   { label: "Components", links: componentsLinks },
 ];
 
+const getCurrentLinkIndex = (links: LinkDetails[], currentPath: string) => {
+  let currentLinkIndex = -1;
+  let matchedWords = 0;
+  links.forEach((link, index) => {
+    if (currentPath.startsWith(link.path) && link.path.length > matchedWords) {
+      currentLinkIndex = index;
+      matchedWords = link.path.length;
+    }
+  })
+  return currentLinkIndex;
+};
+
 export const getNavigationLinks = (currentPath: string): NavigationLinks => {
   const links = LinksSections.flatMap((section) => section.links);
-  const currentLinkIndex = links.findIndex((link) => currentPath === link.path);
+  const currentLinkIndex = getCurrentLinkIndex(links, currentPath);
   if (currentLinkIndex === -1) {
     return { previousLink: null, nextLink: null };
   }
