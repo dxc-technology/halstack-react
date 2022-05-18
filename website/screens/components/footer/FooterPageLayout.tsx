@@ -1,4 +1,6 @@
-import PageHeading from "../../common/TabsPageLayout";
+import TabsPageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
 
 const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -7,18 +9,24 @@ const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Footer"
-      description="Footers are a secondary element in a web page because they usually appear at
-      the bottom and it is the last thing that the user interacts with. But the
-      presence of the footer must be designed in every application and be part of it
-      (consumer or back-office) as it is a key layout element to the overall
-      experience. Is a choice of the designer to either leave the footer visible by
-      default or push it down, depending on the use case."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xxxlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Footer" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            Footers are a secondary element in a web page because they usually
+            appear at the bottom and it is the last thing that the user
+            interacts with. But the presence of the footer must be designed in
+            every application and be part of it (consumer or back-office) as it
+            is a key layout element to the overall experience. Is a choice of
+            the designer to either leave the footer visible by default or push
+            it down, depending on the use case.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 

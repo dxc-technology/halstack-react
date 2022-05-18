@@ -1,4 +1,6 @@
-import PageHeading from "../../common/TabsPageLayout";
+import TabsPageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
 
 const CheckboxPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -7,13 +9,19 @@ const CheckboxPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Checkbox"
-      description="Checkboxes are inputs that offer to the user the possibility to select one or more options from a range of attributes."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xxxlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Checkbox" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            Checkboxes are inputs that offer to the user the possibility to
+            select one or more options from a range of attributes.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 

@@ -5,27 +5,17 @@ import {
   DxcStack,
   DxcText,
 } from "@dxc-technology/halstack-react";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import DocFooter from "@/common/DocFooter";
 import Link from "next/link";
-import DocFooter from "../../../common/DocFooter";
-import HeadingLink from "../../../common/HeadingLink";
 import ApplicationLayoutAnatomy from "./images/application_layout_anatomy.png";
 
-const ApplicationLayoutSpecsPage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Anatomy</HeadingLink>
-        <Image src={ApplicationLayoutAnatomy} alt="Alert anatomy" />
-        <DxcList type="number">
-          <DxcText>Header</DxcText>
-          <DxcText>Main content</DxcText>
-          <DxcText>Footer</DxcText>
-          <DxcText>Sidenav</DxcText>
-        </DxcList>
-      </DxcStack>
-
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Specifications</HeadingLink>
+const sections = [
+  {
+    title: "Specifications",
+    content: (
+      <>
         <DxcText>
           The specifications of each of the compound component children are
           defined separately:
@@ -53,22 +43,58 @@ const ApplicationLayoutSpecsPage = () => {
             </DxcLink>
           </DxcText>
         </DxcList>
-      </DxcStack>
+      </>
+    ),
+    subSections: [
+      {
+        title: "Anatomy",
+        content: (
+          <>
+            <Image src={ApplicationLayoutAnatomy} alt="Alert anatomy" />
+            <DxcList type="number">
+              <DxcText>Header</DxcText>
+              <DxcText>Main content</DxcText>
+              <DxcText>Footer</DxcText>
+              <DxcText>Sidenav</DxcText>
+            </DxcList>
+          </>
+        ),
+      },
+      {
+        title: "Accessibility",
+        subSections: [
+          {
+            title: "WAI-ARIA",
+            content: (
+              <DxcList>
+                <DxcText>
+                  WAI-ARIA Authoring practices 1.2 -{" "}
+                  <DxcLink
+                    newWindow
+                    href="https://www.w3.org/WAI/perspective-videos/layout/"
+                  >
+                    Clear Layout and Design
+                  </DxcLink>
+                </DxcText>
+              </DxcList>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+];
 
-      <DxcStack>
-        <HeadingLink level={4}>WAI-ARIA</HeadingLink>
-        <DxcList>
-          <DxcText>
-            WAI-ARIA Authoring practices 1.2 -{" "}
-            <DxcLink
-              newWindow
-              href="https://www.w3.org/WAI/perspective-videos/layout/"
-            >
-              Clear Layout and Design
-            </DxcLink>
-          </DxcText>
-        </DxcList>
-      </DxcStack>
+const ApplicationLayoutSpecsPage = () => {
+  return (
+    <DxcStack gutter="xxxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Specifications"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/alert/specs/ApplicationLayoutSpecsPage.tsx" />
     </DxcStack>
   );

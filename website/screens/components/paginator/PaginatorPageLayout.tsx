@@ -1,4 +1,6 @@
-import PageHeading from "../../common/TabsPageLayout";
+import TabsPageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
 
 const PaginatorPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -7,13 +9,19 @@ const PaginatorPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Paginator"
-      description="The paginator component allows dividing large amounts of content into multiple pages."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xxxlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Paginator" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            The paginator component allows dividing large amounts of content
+            into multiple pages.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 

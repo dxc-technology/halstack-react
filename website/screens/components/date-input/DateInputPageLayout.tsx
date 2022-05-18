@@ -1,5 +1,6 @@
-import React from "react";
-import PageHeading from "../../common/TabsPageLayout";
+import TabsPageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
 
 const DateInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -8,13 +9,19 @@ const DateInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Date Input"
-      description="A date input is a user interface element where the user can type or select a date in a predefined format."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xxxlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Date Input" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            A date input is a user interface element where the user can type or
+            select a date in a predefined format.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 

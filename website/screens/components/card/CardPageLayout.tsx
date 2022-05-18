@@ -1,4 +1,6 @@
-import PageHeading from "../../common/TabsPageLayout";
+import TabsPageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
 
 const CardPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -7,13 +9,24 @@ const CardPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Card"
-      description="Cards are a container of information, actions and data with a hierarchy to make easy scanning the content. A card can be defined as a unit, so it has all the information within it, making the component useful to show images, text, and interactive elements. The structure of the card can be seen as blocks, each block is optional to be displayed but the overall element should make a cohesive design, even if it includes text, images or other elements."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xxxlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Accordion" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            Cards are a container of information, actions and data with a
+            hierarchy to make easy scanning the content. A card can be defined
+            as a unit, so it has all the information within it, making the
+            component useful to show images, text, and interactive elements. The
+            structure of the card can be seen as blocks, each block is optional
+            to be displayed but the overall element should make a cohesive
+            design, even if it includes text, images or other elements.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 
