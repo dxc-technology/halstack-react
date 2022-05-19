@@ -674,34 +674,37 @@ const WizardSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
-              text="
-              SC 1.3.1: Info and Relationships"
               newWindow
-            />
+            >
+              SC 1.3.1: Info and Relationships
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html"
-              text="SC 2.2.1: Timing Adjustable"
               newWindow
-            />
+            >
+              SC 2.2.1: Timing Adjustable
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html"
-              text="SC 2.2.2: Pause, Stop, Hide"
               newWindow
-            />
+            >
+              SC 2.2.2: Pause, Stop, Hide
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
-              text="SC 3.3.2: Labels or Instructions"
               newWindow
-            />
+            >
+              SC 3.3.2: Labels or Instructions
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA</HeadingLink>
@@ -710,10 +713,10 @@ const WizardSpecsPage = () => {
             Web accessibility tutorials -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/tutorials/forms/multi-page/"
-              text="
-              Multi-page forms"
               newWindow
-            />
+            >
+              Multi-page forms
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

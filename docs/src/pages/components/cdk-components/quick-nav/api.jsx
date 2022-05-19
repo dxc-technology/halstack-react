@@ -18,11 +18,14 @@ const quickNavPropsTable = () => {
         <td>links: Link[]</td>
         <td></td>
         <td>
-          Links to be shown inside the quick nav component. Each link is
-          composed by:
+          Links of the quick nav component. Each link has the following
+          properties:
           <ul>
             <li>
-              <b>Label: string</b>: Label to be shown in the link.
+              <b>label: string</b>: Text to be shown in the link. The content
+              must be wrapped with an id equals to the slugified label (in lower
+              case and the white spaces replaced by '-') in order to be able to
+              navigate to the section that the label references.
             </li>
             <li>
               <b>links: Link[]</b>: Sublinks of the link.

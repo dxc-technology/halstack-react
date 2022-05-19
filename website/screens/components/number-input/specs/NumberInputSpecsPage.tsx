@@ -10,6 +10,7 @@ import {
   DxcLink,
   DxcList,
 } from "@dxc-technology/halstack-react";
+import Link from "next/link";
 import Figure from "../../../common/Figure";
 import Code from "../../../common/Code";
 import DocFooter from "../../../common/DocFooter";
@@ -30,10 +31,11 @@ const NumberInputSpecsPage = () => {
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
           for reference{" "}
-          <DxcLink
-            href="/components/text-input/specifications"
-            text="check the text input component documentation"
-          />
+          <DxcLink>
+            <Link href="/components/text-input/specifications">
+              <a>check the text input component documentation</a>
+            </Link>
+          </DxcLink>
           .
         </DxcText>
       </DxcStack>
@@ -88,17 +90,19 @@ const NumberInputSpecsPage = () => {
             WAI-ARIA Authoring practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#spinbutton"
-              text="3.21 Spinbutton"
               newWindow
-            />
+            >
+              3.21 Spinbutton
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA Authoring practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/spinbutton/datepicker-spinbuttons.html"
-              text='"Date Picker Spin Button" design pattern'
               newWindow
-            />
+            >
+              "Date Picker Spin Button" design pattern
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

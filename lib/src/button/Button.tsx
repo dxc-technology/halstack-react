@@ -15,7 +15,7 @@ const DxcButton = ({
   iconPosition = "before",
   type = "button",
   icon,
-  onClick,
+  onClick = () => {},
   margin,
   size = "fitContent",
   tabIndex = 0,

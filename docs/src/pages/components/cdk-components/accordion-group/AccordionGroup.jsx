@@ -23,11 +23,9 @@ function AccordionGroup() {
         <p>
           This component includes different compound components that are
           customized following the{" "}
-          <DxcLink
-            href="https://developer.dxc.com/design/guidelines/components/accordion"
-            underlined={false}
-            text="design guidelines"
-          ></DxcLink>
+          <DxcLink href="https://developer.dxc.com/design/guidelines/components/accordion">
+            design guidelines
+          </DxcLink>
           .
         </p>
         <DxcHeading

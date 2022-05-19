@@ -500,17 +500,19 @@ const CheckboxSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
-              text="SC 1.3.1: Info and Relationships"
               newWindow
-            />
+            >
+              SC 1.3.1: Info and Relationships
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
-              text="SC 4.1.2: Name, Role, Value"
               newWindow
-            />
+            >
+              SC 4.1.2: Name, Role, Value
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA 1.2</HeadingLink>
@@ -519,9 +521,10 @@ const CheckboxSpecsPage = () => {
             WAI-ARIA Authoring Practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#checkbox"
-              text="3.7 Checkbox"
               newWindow
-            />
+            >
+              3.7 Checkbox
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

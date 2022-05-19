@@ -1,4 +1,4 @@
-# Halstack React CDK 
+# Halstack React CDK
 
 Halstack React CDK is a npm library of reusable React components, made with the purpose of helping React developers with the task of implementing User Interfaces following the DXC Design Guidelines.
 
@@ -16,8 +16,7 @@ Before opening new issues or pull requests, please refer to [CONTRIBUTING.MD](ht
 
 ## Development Setup
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
-
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 The project is divided in two main folders. One is for the actual library, and the other one is a React application using the library.
 
@@ -35,7 +34,7 @@ Install the library dependencies.
 npm install
 ```
 
-Run the build process into `dist` folder, detecting and automatically building changes in src. 
+Run the build process into `dist` folder, detecting and automatically building changes in src.
 
 ```bash
 npm run build:watch #'npm run build' if there is no need to watch for changes

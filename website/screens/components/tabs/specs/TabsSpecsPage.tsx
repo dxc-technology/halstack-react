@@ -249,9 +249,10 @@ const TabsSpecsPage = () => {
         <DxcText as="p">
           <DxcLink
             href="https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel"
-            text="W3C WAI-ARIA Tab Design Pattern"
             newWindow
-          />{" "}
+          >
+            W3C WAI-ARIA Tab Design Pattern
+          </DxcLink>{" "}
           covers the usage of ARIA names.
         </DxcText>
         <HeadingLink level={3}>Keyboard interactions</HeadingLink>

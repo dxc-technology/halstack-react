@@ -886,25 +886,28 @@ const ButtonSpecsPage = () => {
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible"
-              text="2.4.7: Focus Visible"
               newWindow
-            />
+            >
+              2.4.7: Focus Visible
+            </DxcLink>
           </DxcText>
           <DxcText>
             Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/on-input"
-              text="3.2.2: On Input"
               newWindow
-            />
+            >
+              3.2.2: On Input
+            </DxcLink>
           </DxcText>
           <DxcText>
             WAI-ARIA Authoring Practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#button"
-              text="Button Design Pattern"
               newWindow
-            />
+            >
+              Button Design Pattern
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

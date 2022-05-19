@@ -6,6 +6,7 @@ import {
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
+import Link from "next/link";
 import HeadingLink from "../../../common/HeadingLink";
 import DocFooter from "../../../common/DocFooter";
 import Figure from "../../../common/Figure";
@@ -30,10 +31,11 @@ const DateInputSpecsPage = () => {
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
           for reference{" "}
-          <DxcLink
-            href="/components/text-input/specifications"
-            text="check the text input component documentation"
-          />
+          <DxcLink>
+            <Link href="/components/text-input/specifications">
+              <a>check the text input component documentation</a>
+            </Link>
+          </DxcLink>
           .
         </DxcText>
         <DxcText as="p">
@@ -406,55 +408,61 @@ const DateInputSpecsPage = () => {
         <HeadingLink level={4}>WCAG 2.2</HeadingLink>
         <DxcList>
           <DxcText>
-            Understanding WCAG 2.2 -
+            Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
-              text="SC 2.1.1: Keyboard"
               newWindow
-            />
+            >
+              SC 2.1.1: Keyboard
+            </DxcLink>
           </DxcText>
           <DxcText>
-            Understanding WCAG 2.2 -
+            Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap"
-              text="SC 2.1.2: No keyboard trap"
               newWindow
-            />
+            >
+              SC 2.1.2: No keyboard trap
+            </DxcLink>
           </DxcText>
           <DxcText>
-            Understanding WCAG 2.2 -
+            Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels"
-              text="SC 2.4.6: Headings and labels"
               newWindow
-            />
+            >
+              SC 2.4.6: Headings and labels
+            </DxcLink>
           </DxcText>
           <DxcText>
-            Understanding WCAG 2.2 -
+            Understanding WCAG 2.2 -{" "}
             <DxcLink
               href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible"
-              text="SC 2.4.7: Focus Visible"
               newWindow
-            />
+            >
+              SC 2.4.7: Focus Visible
+            </DxcLink>
           </DxcText>
         </DxcList>
         <HeadingLink level={4}>WAI-ARIA 1.2</HeadingLink>
         <DxcList>
           <DxcText>
-            WAI-ARIA authoring practices 1.2 -
+            WAI-ARIA authoring practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices-1.2/#dialog_modal"
-              text=" 3.9 Dialog modal"
               newWindow
-            />
+            >
+              3.9 Dialog modal
+            </DxcLink>
           </DxcText>
           <DxcText>
-            WAI-ARIA authoring practices 1.2 -
+            WAI-ARIA authoring practices 1.2 -{" "}
             <DxcLink
               href="https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html"
-              text=" Date picker design pattern"
               newWindow
-            />
+            >
+              Date picker design pattern
+            </DxcLink>
           </DxcText>
         </DxcList>
       </DxcStack>

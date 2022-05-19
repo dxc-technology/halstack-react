@@ -122,11 +122,11 @@ const IconPreviewContainer = styled.div`
   justify-content: center;
   margin-right: 12px;
   background-color: ${(props) =>
-    props.error ? props.theme.errorFileItemIconBackgroundColor : props.theme.fileItemIconBackgroundColor};
+    props.error ? props.theme.errorFilePreviewBackgroundColor : props.theme.filePreviewBackgroundColor};
   width: 48px;
   height: 48px;
   border-radius: 2px;
-  color: ${(props) => (props.error ? props.theme.errorFileItemIconColor : props.theme.fileItemIconColor)};
+  color: ${(props) => (props.error ? props.theme.errorFilePreviewIconColor : props.theme.filePreviewIconColor)};
 `;
 
 const IconPreview = styled.div``;
@@ -179,6 +179,7 @@ const DeleteIcon = styled.button`
   box-shadow: 0 0 0 2px transparent;
   padding: 3px;
   cursor: pointer;
+  color: ${(props) => props.theme.deleteFileItemColor};
   svg {
     line-height: 18px;
   }
@@ -187,11 +188,11 @@ const DeleteIcon = styled.button`
   }
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
   }
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusActionBorderColor};
+    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
   }
   &:active {
     background-color: ${(props) => props.theme.activeDeleteFileItemBackgroundColor};

@@ -51,9 +51,10 @@ const Typography = () => {
             the{" "}
             <DxcLink
               href="https://www.apache.org/licenses/LICENSE-2.0.html"
-              text="Apache License, Version 2.0."
               newWindow
-            />
+            >
+              Apache License, Version 2.0.
+            </DxcLink>
           </DxcText>
           <DxcTable>
             <thead>
@@ -69,9 +70,7 @@ const Typography = () => {
                 <td>
                   <Code>font-family-sans</Code>
                 </td>
-                <td>
-                  Default font family sans-serif
-                </td>
+                <td>Default font family sans-serif</td>
                 <td>
                   <Code>font-family</Code>
                 </td>
@@ -81,9 +80,7 @@ const Typography = () => {
                 <td>
                   <Code>font-family-mono</Code>
                 </td>
-                <td>
-                  Default font family monospaced
-                </td>
+                <td>Default font family monospaced</td>
                 <td>
                   <Code>font-family</Code>
                 </td>
@@ -113,9 +110,7 @@ const Typography = () => {
                 <td>
                   <Code>font-weight-light</Code>
                 </td>
-                <td>
-                  Set font weight as light (300)
-                </td>
+                <td>Set font weight as light (300)</td>
                 <td>
                   <Code>font-weight</Code>
                 </td>
@@ -125,9 +120,7 @@ const Typography = () => {
                 <td>
                   <Code>font-weight-regular</Code>
                 </td>
-                <td>
-                  Set font weight as regular (400)
-                </td>
+                <td>Set font weight as regular (400)</td>
                 <td>
                   <Code>font-weight</Code>
                 </td>
@@ -137,9 +130,7 @@ const Typography = () => {
                 <td>
                   <Code>font-weight-semibold</Code>
                 </td>
-                <td>
-                  Set font weight as semibold (600)
-                </td>
+                <td>Set font weight as semibold (600)</td>
                 <td>
                   <Code>font-weight</Code>
                 </td>
@@ -149,9 +140,7 @@ const Typography = () => {
                 <td>
                   <Code>font-weight-bold</Code>
                 </td>
-                <td>
-                  Set font weight as bold (700)
-                </td>
+                <td>Set font weight as bold (700)</td>
                 <td>
                   <Code>font-weight</Code>
                 </td>
@@ -183,9 +172,7 @@ const Typography = () => {
                 <td>
                   <Code>font-scale-01</Code>
                 </td>
-                <td>
-                  Set the font size as 12px
-                </td>
+                <td>Set the font size as 12px</td>
                 <td>
                   <Code>font-size</Code>
                 </td>
@@ -195,9 +182,7 @@ const Typography = () => {
                 <td>
                   <Code>font-scale-02</Code>
                 </td>
-                <td>
-                  Set the font size as 14px
-                </td>
+                <td>Set the font size as 14px</td>
                 <td>
                   <Code>font-size</Code>
                 </td>
@@ -207,9 +192,7 @@ const Typography = () => {
                 <td>
                   <Code>font-scale-03</Code>
                 </td>
-                <td>
-                  Set the font size as 16px
-                </td>
+                <td>Set the font size as 16px</td>
                 <td>
                   <Code>font-size</Code>
                 </td>
@@ -219,9 +202,7 @@ const Typography = () => {
                 <td>
                   <Code>font-scale-04</Code>
                 </td>
-                <td>
-                  Set the font size as 20px
-                </td>
+                <td>Set the font size as 20px</td>
                 <td>
                   <Code>font-size</Code>
                 </td>
@@ -231,9 +212,7 @@ const Typography = () => {
                 <td>
                   <Code>font-scale-05</Code>
                 </td>
-                <td>
-                  Set the font size as 24px
-                </td>
+                <td>Set the font size as 24px</td>
                 <td>
                   <Code>font-size</Code>
                 </td>
@@ -243,9 +222,7 @@ const Typography = () => {
                 <td>
                   <Code>font-scale-06</Code>
                 </td>
-                <td>
-                  Set the font size as 32px
-                </td>
+                <td>Set the font size as 32px</td>
                 <td>
                   <Code>font-size</Code>
                 </td>
@@ -255,9 +232,7 @@ const Typography = () => {
                 <td>
                   <Code>font-scale-07</Code>
                 </td>
-                <td>
-                  Set the font size as 48px
-                </td>
+                <td>Set the font size as 48px</td>
                 <td>
                   <Code>font-size</Code>
                 </td>
@@ -267,9 +242,7 @@ const Typography = () => {
                 <td>
                   <Code>font-scale-08</Code>
                 </td>
-                <td>
-                  Set the font size as 60px
-                </td>
+                <td>Set the font size as 60px</td>
                 <td>
                   <Code>font-size</Code>
                 </td>
@@ -295,9 +268,7 @@ const Typography = () => {
                 <td>
                   <Code>font-style-italic</Code>
                 </td>
-                <td>
-                  Set font style as italic
-                </td>
+                <td>Set font style as italic</td>
                 <td>
                   <Code>font-style</Code>
                 </td>
@@ -307,9 +278,7 @@ const Typography = () => {
                 <td>
                   <Code>font-style-normal</Code>
                 </td>
-                <td>
-                  Set font style as normal
-                </td>
+                <td>Set font style as normal</td>
                 <td>
                   <Code>font-style</Code>
                 </td>
@@ -336,9 +305,7 @@ const Typography = () => {
                 <td>
                   <Code>font-tracking-tight-02</Code>
                 </td>
-                <td>
-                  Set letter spacing as -0.025em
-                </td>
+                <td>Set letter spacing as -0.025em</td>
                 <td>
                   <Code>letter-spacing</Code>
                 </td>
@@ -348,9 +315,7 @@ const Typography = () => {
                 <td>
                   <Code>font-tracking-tight-01</Code>
                 </td>
-                <td>
-                  Set letter spacing as -0.0125em
-                </td>
+                <td>Set letter spacing as -0.0125em</td>
                 <td>
                   <Code>letter-spacing</Code>
                 </td>
@@ -360,9 +325,7 @@ const Typography = () => {
                 <td>
                   <Code>font-tracking-normal</Code>
                 </td>
-                <td>
-                  Set letter spacing as 0em
-                </td>
+                <td>Set letter spacing as 0em</td>
                 <td>
                   <Code>letter-spacing</Code>
                 </td>
@@ -372,9 +335,7 @@ const Typography = () => {
                 <td>
                   <Code>font-tracking-wide-01</Code>
                 </td>
-                <td>
-                  Set letter spacing as 0.025em
-                </td>
+                <td>Set letter spacing as 0.025em</td>
                 <td>
                   <Code>letter-spacing</Code>
                 </td>
@@ -384,9 +345,7 @@ const Typography = () => {
                 <td>
                   <Code>font-tracking-wide-02</Code>
                 </td>
-                <td>
-                  Set letter spacing as 0.05em
-                </td>
+                <td>Set letter spacing as 0.05em</td>
                 <td>
                   <Code>letter-spacing</Code>
                 </td>
@@ -396,9 +355,7 @@ const Typography = () => {
                 <td>
                   <Code>font-tracking-wide-03</Code>
                 </td>
-                <td>
-                  Set letter spacing as 0.1em
-                </td>
+                <td>Set letter spacing as 0.1em</td>
                 <td>
                   <Code>letter-spacing</Code>
                 </td>
@@ -427,9 +384,7 @@ const Typography = () => {
                 <td>
                   <Code>font-leading-compact-03</Code>
                 </td>
-                <td>
-                  Set line height as 1em
-                </td>
+                <td>Set line height as 1em</td>
                 <td>
                   <Code>line-height</Code>
                 </td>
@@ -439,9 +394,7 @@ const Typography = () => {
                 <td>
                   <Code>font-leading-compact-02</Code>
                 </td>
-                <td>
-                  Set line height as 1.25em
-                </td>
+                <td>Set line height as 1.25em</td>
                 <td>
                   <Code>line-height</Code>
                 </td>
@@ -451,9 +404,7 @@ const Typography = () => {
                 <td>
                   <Code>font-leading-compact-01</Code>
                 </td>
-                <td>
-                  Set line height as 1.365em
-                </td>
+                <td>Set line height as 1.365em</td>
                 <td>
                   <Code>line-height</Code>
                 </td>
@@ -463,9 +414,7 @@ const Typography = () => {
                 <td>
                   <Code>font-leading-normal</Code>
                 </td>
-                <td>
-                  Set line height as 1.5em
-                </td>
+                <td>Set line height as 1.5em</td>
                 <td>
                   <Code>line-height</Code>
                 </td>
@@ -475,9 +424,7 @@ const Typography = () => {
                 <td>
                   <Code>font-leading-loose-01</Code>
                 </td>
-                <td>
-                  Set line height as 1.715em
-                </td>
+                <td>Set line height as 1.715em</td>
                 <td>
                   <Code>line-height</Code>
                 </td>
@@ -487,9 +434,7 @@ const Typography = () => {
                 <td>
                   <Code>font-leading-loose-02</Code>
                 </td>
-                <td>
-                  Set line height as 2em
-                </td>
+                <td>Set line height as 2em</td>
                 <td>
                   <Code>line-height</Code>
                 </td>
@@ -512,9 +457,7 @@ const Typography = () => {
                 <td>
                   <Code>font-transform-initial</Code>
                 </td>
-                <td>
-                  Preserve default value
-                </td>
+                <td>Preserve default value</td>
                 <td>
                   <Code>text-transform</Code>
                 </td>
@@ -524,9 +467,7 @@ const Typography = () => {
                 <td>
                   <Code>font-transform-lowercase</Code>
                 </td>
-                <td>
-                  Transform text to lowercase
-                </td>
+                <td>Transform text to lowercase</td>
                 <td>
                   <Code>text-transform</Code>
                 </td>
@@ -536,9 +477,7 @@ const Typography = () => {
                 <td>
                   <Code>font-transform-uppercase</Code>
                 </td>
-                <td>
-                  Transform text to uppercase
-                </td>
+                <td>Transform text to uppercase</td>
                 <td>
                   <Code>text-transform</Code>
                 </td>
@@ -561,9 +500,7 @@ const Typography = () => {
                 <td>
                   <Code>font-decoration-no-line</Code>
                 </td>
-                <td>
-                  Unset all present decorations
-                </td>
+                <td>Unset all present decorations</td>
                 <td>
                   <Code>text-decoration</Code>
                 </td>
@@ -573,9 +510,7 @@ const Typography = () => {
                 <td>
                   <Code>font-decoration-underline</Code>
                 </td>
-                <td>
-                  Underline the text
-                </td>
+                <td>Underline the text</td>
                 <td>
                   <Code>text-decoration</Code>
                 </td>
@@ -585,9 +520,7 @@ const Typography = () => {
                 <td>
                   <Code>font-decoration-line-through</Code>
                 </td>
-                <td>
-                  Put a strikethrough the text
-                </td>
+                <td>Put a strikethrough the text</td>
                 <td>
                   <Code>text-decoration</Code>
                 </td>
@@ -1081,17 +1014,19 @@ const Typography = () => {
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced.html"
-                text="SC 1.4.6: Contrast (Enhanced)"
                 newWindow
-              />
+              >
+                SC 1.4.6: Contrast (Enhanced)
+              </DxcLink>
             </DxcText>
             <DxcText>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/text-spacing"
-                text="SC 1.4.12: Text Spacing"
                 newWindow
-              />
+              >
+                SC 1.4.12: Text Spacing
+              </DxcLink>
             </DxcText>
           </DxcList>
         </DxcStack>

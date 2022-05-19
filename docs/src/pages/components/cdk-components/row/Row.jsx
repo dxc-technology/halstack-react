@@ -18,13 +18,9 @@ function Row() {
       <DxcAlert type="warning" margin={{ bottom: "small" }} size="fillParent">
         Some older browsers may not support <Code>gutter</Code> prop. Please
         check{" "}
-        <DxcLink
-          href="https://caniuse.com/flexbox-gap"
-          underlined={false}
-          inheritedColor={true}
-          newWindow
-          text="here"
-        ></DxcLink>{" "}
+        <DxcLink href="https://caniuse.com/flexbox-gap" newWindow>
+          here
+        </DxcLink>{" "}
         that it works in your target browsers.
       </DxcAlert>
       <Section>
