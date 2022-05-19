@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div>
-      {/* <div className="test-case" id="normal-status">
+      <div className="test-case" id="normal-status">
         <h4>Normal Status</h4>
         <DxcPaginator
           currentPage={page}
@@ -46,20 +46,10 @@ function App() {
           showGoToPage={true}
           onPageChange={goToPageFunc}
         ></DxcPaginator>
-      </div> */}
+      </div>
       <div className="test-case" id="custom-paginator">
         <h4>Custom paginator</h4>
-        {/* <HalstackProvider theme={colors}>
-          <DxcPaginator
-            currentPage={page}
-            itemsPerPage={itemsPerPage}
-            itemsPerPageOptions={[10, 15]}
-            itemsPerPageFunction={setItemsPerPage}
-            totalItems={27}
-            onPageChange={goToPageFunc}
-          ></DxcPaginator>
-        </HalstackProvider> */}
-        <HalstackProvider labels={labels}>
+        <HalstackProvider theme={colors} labels={labels}>
           <DxcPaginator
             currentPage={page}
             itemsPerPage={itemsPerPage}
