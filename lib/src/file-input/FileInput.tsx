@@ -226,15 +226,13 @@ const DxcFileInput = ({
               onDragOver={handleDrag}
               onDragLeave={handleDragOut}
             >
-              <ButtonContainer mode={mode}>
-                <DxcButton
-                  mode="secondary"
-                  label={buttonLabel ?? "Select"}
-                  onClick={handleClick}
-                  disabled={disabled}
-                  size="fitContent"
-                />
-              </ButtonContainer>
+              <DxcButton
+                mode="secondary"
+                label={buttonLabel ?? "Select"}
+                onClick={handleClick}
+                disabled={disabled}
+                size="fitContent"
+              />
               {mode === "dropzone" ? (
                 <DropzoneLabel disabled={disabled}>
                   {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
@@ -305,16 +303,22 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+`;
+
 const DragDropArea = styled.div`
   display: flex;
   overflow: hidden;
   box-sizing: border-box;
   flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
-  ${(props) => props.mode === "dropzone" && "justify-content: center; padding: 1rem;"};
+  ${(props) => (props.mode === "filedrop" ? "column-gap: 0.875rem;" : "row-gap: 0.875rem;")}
+  ${(props) => props.mode === "dropzone" && "justify-content: center; padding: 1rem; min-height: 160px;"};
   align-items: center;
-  height: ${(props) => (props.mode === "filedrop" ? "48px" : "160px")};
   width: 320px;
-
+  padding: 0.375rem;
   box-shadow: 0 0 0 2px transparent;
   border-radius: ${(props) => props.theme.dropBorderRadius};
   border-width: ${(props) => props.theme.dropBorderThickness};
@@ -335,7 +339,7 @@ const DragDropArea = styled.div`
 const FileContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.multiple || props.files.length > 1 ? "column" : "row")};
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 `;
 
 const HiddenInputFile = styled.input`
@@ -345,10 +349,6 @@ const HiddenInputFile = styled.input`
   height: 0px;
 `;
 
-const ButtonContainer = styled.div`
-  ${(props) => props.mode === "filedrop" && "padding: 2px 12px 2px 3px"};
-`;
-
 const DropzoneLabel = styled.div`
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -356,7 +356,6 @@ const DropzoneLabel = styled.div`
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   text-align: center;
-  margin-top: 0.5rem;
   color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
@@ -371,13 +370,6 @@ const FiledropLabel = styled.span`
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
-  margin-right: 1rem;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.25rem;
 `;
 
 const FileItemContainer = styled.div`

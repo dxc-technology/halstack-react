@@ -134,7 +134,6 @@ const DxCButton = styled.div`
       align-items: center;
     }
 
-    box-shadow: 0 0 0 2px transparent;
     font-family: ${(props) => props.theme.fontFamily};
     font-size: ${(props) => props.theme.fontSize};
     font-weight: ${(props) => props.theme.fontWeight};
@@ -144,11 +143,11 @@ const DxCButton = styled.div`
     height: 40px;
     transition: none !important;
 
-    &:focus {
-      border-color: transparent;
-      box-shadow: 0 0 0 2px
+    &:focus-visible {
+      outline: 2px solid
         ${(props) =>
           props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor};
+      outline-offset: 2px;
     }
 
     ${(props) => {
@@ -183,10 +182,6 @@ const DxCButton = styled.div`
               ? props.theme.primaryActiveBackgroundColorOnDark
               : props.theme.primaryActiveBackgroundColor
           } !important;
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-          };
         }
         &:disabled { 
           cursor: not-allowed;
@@ -239,10 +234,6 @@ const DxCButton = styled.div`
           color: ${
             backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
           } !important;
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-          };
         }
         &:disabled {
           cursor: not-allowed;
@@ -289,10 +280,6 @@ const DxCButton = styled.div`
               ? props.theme.textActiveBackgroundColorOnDark
               : props.theme.textActiveBackgroundColor
           } !important;
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-          };
         }
         &:disabled {
           cursor:not-allowed;

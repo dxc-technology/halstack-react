@@ -52,6 +52,7 @@ const DxcToggleGroup = ({
     if (!disabled && (event.nativeEvent.code === "Enter" || event.nativeEvent.code === "Space"))
       handleToggleChange(optionValue);
   };
+
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
       <ToggleGroup margin={margin} disabled={disabled}>
@@ -83,8 +84,6 @@ const DxcToggleGroup = ({
               }
               tabIndex={!disabled ? tabIndex : -1}
               onClick={() => !disabled && handleToggleChange(option.value)}
-              isFirst={i === 0}
-              isLast={i === options.length - 1}
               isIcon={option.icon}
               optionLabel={option.label}
               disabled={disabled}
@@ -144,6 +143,7 @@ const ToggleGroup = styled.div`
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  column-gap: 6px;
   width: max-content;
   opacity: 1;
   height: calc(48px - 4px - 4px);
@@ -152,7 +152,7 @@ const OptionsContainer = styled.div`
   border-radius: ${(props) => props.theme.containerBorderRadius};
   border-color: ${(props) => props.theme.containerBorderColor};
   background-color: ${(props) => props.theme.containerBackgroundColor};
-  padding: 4px;
+  padding: 6px;
   margin-top: ${(props) => props.theme.containerMarginTop};
 `;
 
@@ -160,7 +160,6 @@ const ToggleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: ${(props) => !props.isLast && "4px"};
 
   ${(props) => `
     background-color: ${
@@ -197,19 +196,16 @@ const ToggleContainer = styled.div`
             props.selected ? props.theme.selectedActiveBackgroundColor : props.theme.unselectedActiveBackgroundColor
           };
           color: #ffffff;
-        }        
-        :focus {
-          border-color: transparent;
-          box-shadow: 0 0 0 ${props.theme.optionFocusBorderThickness} ${
+        }       
+        :focus-visible {
+          outline: ${props.theme.optionFocusBorderThickness} solid ${
             props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor
           };
-        }
-        &:focus-visible {
-          outline: none;
+          outline-offset: 2px;
         }
         cursor: pointer;
         color: ${props.selected ? props.theme.selectedFontColor : props.theme.unselectedFontColor};
-`
+        `
         : `color: ${props.selected ? props.theme.selectedDisabledFontColor : props.theme.unselectedDisabledFontColor};
         cursor: not-allowed;`
     }
