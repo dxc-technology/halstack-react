@@ -5,6 +5,7 @@ import {
   DxcStack,
   DxcRow,
 } from "@dxc-technology/halstack-react";
+import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 
 const DocFooter = ({ githubLink }: { githubLink: string }) => {
@@ -13,22 +14,19 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
 
   return (
     <DxcStack divider gutter="xxlarge">
-      <DxcLink
-        icon={githubIcon}
-        href={githubLink}
-        text="Edit this page on GitHub"
-        newWindow
-      ></DxcLink>
+      <DxcLink icon={githubIcon} href={githubLink} newWindow>
+        Edit this page on GitHub
+      </DxcLink>
       <DxcRow justify="spaceBetween">
         <DxcStack gutter="small">
           {previousLink && (
             <>
               <DxcText>Previous</DxcText>
-              <DxcLink
-                icon={arrowBack}
-                href={previousLink.path}
-                text={previousLink.label}
-              ></DxcLink>
+              <DxcLink icon={arrowBack}>
+                <Link href={previousLink.path}>
+                  <a>{previousLink.label}</a>
+                </Link>
+              </DxcLink>
             </>
           )}
         </DxcStack>
@@ -36,12 +34,11 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
           {nextLink && (
             <>
               <DxcText>Next</DxcText>
-              <DxcLink
-                icon={arrowForward}
-                iconPosition="after"
-                href={nextLink.path}
-                text={nextLink.label}
-              ></DxcLink>
+              <DxcLink icon={arrowForward} iconPosition="after">
+                <Link href={nextLink.path}>
+                  <a>{nextLink.label}</a>
+                </Link>
+              </DxcLink>
             </>
           )}
         </DxcStack>

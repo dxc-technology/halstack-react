@@ -297,7 +297,7 @@ const FileInputSpecsPage = () => {
             </tr>
             <tr>
               <td>
-                <Code>focusDeleteFileItemBackgroundColor</Code>
+                <Code>focusDeleteFileItemBorderColor</Code>
               </td>
               <td>File item icon:focus</td>
               <td>

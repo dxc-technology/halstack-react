@@ -24,11 +24,6 @@ const linkPropsTable = () => {
         <td>If true, the color is inherited from parent.</td>
       </tr>
       <tr>
-        <td>text: string</td>
-        <td></td>
-        <td>Link text.</td>
-      </tr>
-      <tr>
         <td>icon: node | string</td>
         <td></td>
         <td>
@@ -61,6 +56,15 @@ const linkPropsTable = () => {
         <td>
           If defined, the link will be displayed as a button. This function will
           be called when the user clicks the link.
+        </td>
+      </tr>
+      <tr>
+        <td>children: string | node</td>
+        <td></td>
+        <td>
+          Content of the link. To use the component with other libraries
+          (such as React Router or Next.js Link) pass the custom link as a child. 
+          The component will apply the styles to the custom link.
         </td>
       </tr>
       <tr>

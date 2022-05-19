@@ -31,12 +31,9 @@ const getComponentsLinks = (type) => {
           <LastLinksColumn key={`sublist-${type}-${position}`}>
             {sublist.map((path, i) => (
               <li key={path.name}>
-                <DxcLink
-                  text={path.name}
-                  underlined={false}
-                  margin={{ top: "xxsmall" }}
-                  href={`#/components/${path.path}`}
-                />
+                <DxcLink margin={{ top: "xxsmall" }}>
+                  <Link to={`/components/${path.path}`}>{path.name}</Link>
+                </DxcLink>
               </li>
             ))}
           </LastLinksColumn>
@@ -44,12 +41,9 @@ const getComponentsLinks = (type) => {
           <LinksColumn key={`sublist-${type}-${position}`}>
             {sublist.map((path, i) => (
               <li key={path.name}>
-                <DxcLink
-                  text={path.name}
-                  underlined={false}
-                  margin={{ top: "xxsmall" }}
-                  href={`#/components/${path.path}`}
-                />
+                <DxcLink margin={{ top: "xxsmall" }}>
+                  <Link to={`/components/${path.path}`}>{path.name}</Link>
+                </DxcLink>
               </li>
             ))}
           </LinksColumn>

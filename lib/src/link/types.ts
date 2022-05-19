@@ -1,12 +1,13 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
+export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
   right?: Space;
 };
+type SVG = React.SVGProps<SVGSVGElement>;
 
-type LinkCommonProps = {
+export type LinkProps = {
   /**
    * If true, the color is inherited from parent.
    */
@@ -41,31 +42,13 @@ type LinkCommonProps = {
    * Value of the tabindex.
    */
   tabIndex?: number;
-};
-export type LinkTextProps = LinkCommonProps & {
   /**
-   * Link text.
+   * Content of the link. To use the component with other libraries (such as React Router or Next.js Link) pass the custom link as a child. 
+   * The component will apply the styles to the custom link.
    */
-  text: string;
+  children?: React.ReactNode;
   /**
    * Element or path used as the icon that will be placed next to the link text.
    */
   icon?: string | SVG;
 };
-export type LinkIconProps = LinkCommonProps & {
-  /**
-   * Link text.
-   */
-  text?: string;
-  /**
-   * Element or path used as the icon that will be placed next to the link text.
-   */
-  icon: string | SVG;
-};
-type Overload = {
-  (props: LinkTextProps): JSX.Element;
-  (props: LinkIconProps): JSX.Element;
-};
-type SVG = React.SVGProps<SVGSVGElement>;
-
-export default Overload;

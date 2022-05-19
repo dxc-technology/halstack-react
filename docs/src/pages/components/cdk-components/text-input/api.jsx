@@ -203,10 +203,9 @@ const textInputPropsTable = () => {
           the user agent has to provide automated assistance in filling out the
           input value. Its value must be one of all the possible values of the
           HTML autocomplete attribute. Please check the documentation{" "}
-          <DxcLink
-            text="here"
-            href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete"
-          />
+          <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete">
+            here
+          </DxcLink>
           .
         </td>
       </tr>

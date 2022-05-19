@@ -1,38 +1,30 @@
 import { DxcQuickNav } from "@dxc-technology/halstack-react";
-import { useState } from "react";
 
 const code = `() => {
   const links = [
     {
       label: "Overview",
-      links: [
-        {
-          label: "Introduction",
-          href: "introduction",
-        },
-      ],
     },
     {
       label: "Principles",
-      href: "principles",
       links: [
-        { label: "Color", href: "color" },
-        { label: "Spacing", href: "spacing" },
-        { label: "Typography", href: "typography" },
+        { label: "Color" },
+        { label: "Spacing" },
+        { label: "Typography" },
+        { label: "Layout" },
+        {
+          label: "Themes",
+          links: [{ label: "Light" }, { label: "Dark" }],
+        },
       ],
     },
   ];
 
-  return (
-    <div style={{ margin: "30px" }}>
-      <DxcQuickNav title="Sections" links={links}></DxcQuickNav>
-    </div>
-  );
+  return <div style={{ margin: "20px"}}><DxcQuickNav title="Sections" links={links}></DxcQuickNav></div>;
 }`;
 
 const scope = {
   DxcQuickNav,
-  useState,
 };
 
 export default { code, scope };
