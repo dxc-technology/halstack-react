@@ -143,7 +143,7 @@ const ToggleGroup = styled.div`
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  column-gap: 6px;
+  column-gap: 0.375rem;
   width: max-content;
   opacity: 1;
   height: calc(48px - 4px - 4px);
@@ -152,7 +152,7 @@ const OptionsContainer = styled.div`
   border-radius: ${(props) => props.theme.containerBorderRadius};
   border-color: ${(props) => props.theme.containerBorderColor};
   background-color: ${(props) => props.theme.containerBackgroundColor};
-  padding: 6px;
+  padding: 0.375rem;
   margin-top: ${(props) => props.theme.containerMarginTop};
 `;
 
