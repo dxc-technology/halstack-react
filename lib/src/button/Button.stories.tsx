@@ -27,7 +27,7 @@ export const Chromatic = () => (
       <Title title="Hovered" theme="light" level={4} />
       <DxcButton label="Primary hovered" />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
+    <ExampleContainer pseudoState="pseudo-focus-visible">
       <Title title="Focused" theme="light" level={4} />
       <DxcButton label="Primary focused" />
     </ExampleContainer>
@@ -60,7 +60,7 @@ export const Chromatic = () => (
       <Title title="Hovered" theme="light" level={4} />
       <DxcButton mode="secondary" label="Secondary hovered" />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
+    <ExampleContainer pseudoState="pseudo-focus-visible">
       <Title title="Focused" theme="light" level={4} />
       <DxcButton mode="secondary" label="Secondary focused" />
     </ExampleContainer>
@@ -85,7 +85,7 @@ export const Chromatic = () => (
       <Title title="Hovered" theme="light" level={4} />
       <DxcButton mode="text" label="Text hovered" />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
+    <ExampleContainer pseudoState="pseudo-focus-visible">
       <Title title="Focused" theme="light" level={4} />
       <DxcButton mode="text" label="Text focused" />
     </ExampleContainer>
@@ -112,7 +112,7 @@ export const Chromatic = () => (
           <Title title="Hovered" theme="dark" level={4} />
           <DxcButton label="Primary hovered" />
         </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
+        <ExampleContainer pseudoState="pseudo-focus-visible">
           <Title title="Focused" theme="dark" level={4} />
           <DxcButton label="Primary focused" />
         </ExampleContainer>
@@ -137,7 +137,7 @@ export const Chromatic = () => (
           <Title title="Hovered" theme="dark" level={4} />
           <DxcButton mode="secondary" label="Secondary hovered" />
         </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
+        <ExampleContainer pseudoState="pseudo-focus-visible">
           <Title title="Focused" theme="dark" level={4} />
           <DxcButton mode="secondary" label="Secondary focused" />
         </ExampleContainer>
@@ -162,7 +162,7 @@ export const Chromatic = () => (
           <Title title="Hovered" theme="dark" level={4} />
           <DxcButton mode="text" label="Text hovered" />
         </ExampleContainer>
-        <ExampleContainer pseudoState="pseudo-focus">
+        <ExampleContainer pseudoState="pseudo-focus-visible">
           <Title title="Focused" theme="dark" level={4} />
           <DxcButton mode="text" label="Text focused" />
         </ExampleContainer>
