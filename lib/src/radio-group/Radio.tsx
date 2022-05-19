@@ -162,17 +162,13 @@ const RadioInput = styled.div<RadioInputProps>`
 
   ${(props) =>
     !props.disabled
-      ? `&:focus {
+      ? `:focus, :focus-visible {
           outline: 2px solid ${props.theme.focusBorderColor};
-          outline-offset: 1px;
-        }
-        &:focus-visible {
-          outline: 2px solid ${props.theme.focusBorderColor};
-          outline-offset: 1px;
+          outline-offset: 0.125rem;
         }
       `
       : `
-        :focus-visible {
+        :focus, :focus-visible {
           outline: none;
         }
     `}

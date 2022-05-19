@@ -257,7 +257,7 @@ const CheckboxContainer = styled.span`
 
     &.Mui-focusVisible {
       .MuiIconButton-label {
-        border-radius: 2px;
+        border-radius: 0.25rem;
         outline: 2px solid
           ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
         outline-offset: -1px;

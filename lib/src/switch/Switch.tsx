@@ -124,10 +124,10 @@ const SwitchContainer = styled.div`
 
     .Mui-focusVisible {
       outline: ${(props) =>
-        `${
+        `2px solid ${
           props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
-        } solid 2px`};
-      outline-offset: -3px;
+        }`};
+      outline-offset: -0.25rem;
     }
 
     .MuiSwitch-track {
