@@ -108,12 +108,12 @@ const DxcWizard = ({
               {(step.label || step.description) && (
                 <InfoContainer>
                   {step.label && (
-                    <Label disabled={step.disabled} visited={i <= innerCurrent}>
+                    <Label current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
                       {step.label}
                     </Label>
                   )}
                   {step.description && (
-                    <Description disabled={step.disabled} visited={i <= innerCurrent}>
+                    <Description current={i === renderedCurrent} disabled={step.disabled} visited={i <= innerCurrent}>
                       {step.description}
                     </Description>
                   )}
@@ -193,61 +193,70 @@ const StepHeader = styled.div`
 const IconContainer = styled.div`
   width: ${(props) =>
     props.disabled
-      ? props.theme.disabledCircleWidth
+      ? props.theme.disabledStepperWidth
       : props.current
-      ? props.theme.selectedCircleWidth
-      : props.theme.circleWidth};
+      ? props.theme.selectedStepperWidth
+      : props.theme.stepperWidth};
   height: ${(props) =>
     props.disabled
-      ? props.theme.disabledCircleHeight
+      ? props.theme.disabledStepperHeight
       : props.current
-      ? props.theme.selectedCircleHeight
-      : props.theme.circleHeight};
+      ? props.theme.selectedStepperHeight
+      : props.theme.stepperHeight};
 
   ${(props) => `
     ${
-      !props.current && !props.disabled
-        ? `border: ${props.theme.circleBorderThickness} ${props.theme.circleBorderStyle} ${props.theme.circleBorderColor};`
-        : props.current && !props.disabled
-        ? `border: ${props.theme.selectedCircleBorderThickness} ${props.theme.selectedCircleBorderStyle} ${props.theme.selectedCircleBorderColor};`
-        : props.disabled
-        ? `border: ${props.theme.disabledCircleBorderThickness} ${props.theme.disabledCircleBorderStyle} ${props.theme.disabledCircleBorderColor};`
-        : ""
+      props.disabled
+        ? `border: ${props.theme.disabledStepperBorderThickness} ${props.theme.disabledStepperBorderStyle} ${props.theme.disabledStepperBorderColor};`
+        : props.current
+        ? `border: ${props.theme.selectedStepperBorderThickness} ${props.theme.selectedStepperBorderStyle} ${props.theme.selectedStepperBorderColor};`
+        : props.visited
+        ? `border: ${props.theme.stepperBorderThickness} ${props.theme.stepperBorderStyle} ${props.theme.stepperBorderColor};`
+        : `border: ${props.theme.stepperBorderThickness} ${props.theme.stepperBorderStyle} ${props.theme.unvisitedStepperBorderColor};`
     }
     background: ${
       props.disabled
-        ? `${props.theme.disabledBackgroundColor}`
+        ? `${props.theme.disabledStepperBackgroundColor}`
         : props.current
-        ? `${props.theme.stepContainerSelectedBackgroundColor}`
-        : `${props.theme.stepContainerBackgroundColor}`
+        ? `${props.theme.selectedStepperBackgroundColor}`
+        : !props.visited
+        ? `${props.theme.unvisitedStepperBackgroundColor}`
+        : `${props.theme.stepperBackgroundColor}`
     };
   `}
   ${(props) =>
     props.disabled
-      ? `color: ${props.theme.disabledFontColor};`
-      : `color: ${props.current ? props.theme.stepContainerSelectedFontColor : props.theme.stepContainerFontColor};`};
+      ? `color: ${props.theme.disabledStepperFontColor};`
+      : `color: ${
+          props.current
+            ? props.theme.selectedStepperFontColor
+            : !props.visited
+            ? props.theme.unvisitedStepperFontColor
+            : props.theme.stepperFontColor
+        };`};
 
   border-radius: ${(props) =>
     !props.current && !props.disabled
-      ? props.theme.circleBorderRadius
+      ? props.theme.stepperBorderRadius
       : props.current
-      ? props.theme.selectedCircleBorderRadius
+      ? props.theme.selectedStepperBorderRadius
       : props.disabled
-      ? props.theme.disabledCircleBorderRadius
+      ? props.theme.disabledStepperBorderRadius
       : ""};
+
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const Icon = styled.img`
-  width: ${(props) => props.theme.stepContainerIconSize};
-  height: ${(props) => props.theme.stepContainerIconSize};
+  width: ${(props) => props.theme.stepperIconSize};
+  height: ${(props) => props.theme.stepperIconSize};
 `;
 
 const StepIconContainer = styled.div`
-  width: ${(props) => props.theme.stepContainerIconSize};
-  height: ${(props) => props.theme.stepContainerIconSize};
+  width: ${(props) => props.theme.stepperIconSize};
+  height: ${(props) => props.theme.stepperIconSize};
   overflow: hidden;
   img,
   svg {
@@ -257,11 +266,11 @@ const StepIconContainer = styled.div`
 `;
 
 const Number = styled.p`
-  font-size: ${(props) => props.theme.stepContainerFontSize};
-  font-family: ${(props) => props.theme.stepContainerFontFamily};
-  font-style: ${(props) => props.theme.stepContainerFontStyle};
-  font-weight: ${(props) => props.theme.stepContainerFontWeight};
-  letter-spacing: ${(props) => props.theme.stepContainerLetterSpacing};
+  font-size: ${(props) => props.theme.stepperFontSize};
+  font-family: ${(props) => props.theme.stepperFontFamily};
+  font-style: ${(props) => props.theme.stepperFontStyle};
+  font-weight: ${(props) => props.theme.stepperFontWeight};
+  letter-spacing: ${(props) => props.theme.stepperFontTracking};
   opacity: 1;
   margin: 0px 0px 0px 1px;
 `;
@@ -284,27 +293,39 @@ const Label = styled.p`
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
-  letter-spacing: ${(props) => props.theme.labelLetterSpacing};
+  letter-spacing: ${(props) => props.theme.labelFontTracking};
   ${(props) =>
     props.disabled
-      ? `color: ${props.theme.disabledFontColor};`
-      : `color: ${props.visited ? props.theme.visitedLabelFontColor : props.theme.labelFontColor};`};
+      ? `color: ${props.theme.disabledLabelFontColor};`
+      : `color: ${
+          !props.visited
+            ? props.theme.unvisitedLabelFontColor
+            : props.current
+            ? props.theme.activeLabelFontColor
+            : props.theme.labelFontColor
+        };`};
   text-transform: ${(props) => props.theme.labelFontTextTransform};
   margin: 0;
 `;
 
 const Description = styled.p`
-  text-align: ${(props) => props.theme.descriptionTextAlign};
-  font-family: ${(props) => props.theme.descriptionFontFamily};
-  font-size: ${(props) => props.theme.descriptionFontSize};
-  font-style: ${(props) => props.theme.descriptionFontStyle};
-  font-weight: ${(props) => props.theme.descriptionFontWeight};
-  letter-spacing: ${(props) => props.theme.descriptionLetterSpacing};
-  text-transform: ${(props) => props.theme.descriptionFontTextTransform};
+  text-align: ${(props) => props.theme.helperTextTextAlign};
+  font-family: ${(props) => props.theme.helperTextFontFamily};
+  font-size: ${(props) => props.theme.helperTextFontSize};
+  font-style: ${(props) => props.theme.helperTextFontStyle};
+  font-weight: ${(props) => props.theme.helperTextFontWeight};
+  letter-spacing: ${(props) => props.theme.helperTextFontTracking};
+  text-transform: ${(props) => props.theme.helperTextFontTextTransform};
   ${(props) =>
     props.disabled
-      ? `color: ${props.theme.disabledFontColor};`
-      : `color: ${props.visited ? props.theme.visitedDescriptionFontColor : props.theme.descriptionFontColor};`};
+      ? `color: ${props.theme.disabledHelperTextFontColor};`
+      : `color: ${
+          !props.visited
+            ? props.theme.unvisitedHelperTextFontColor
+            : props.current
+            ? props.theme.activeHelperTextFontColor
+            : props.theme.helperTextFontColor
+        };`};
   margin: 0;
 `;
 

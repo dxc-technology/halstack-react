@@ -137,9 +137,9 @@ const WizardSpecsPage = () => {
               </td>
               <td>Stepper:unvisited background</td>
               <td>
-                <Code>color-grey-700</Code>
+                <Code>transparent</Code>
               </td>
-              <td>#666666</td>
+              <td>transparent</td>
             </tr>
             <tr>
               <td>
