@@ -4,50 +4,62 @@ import {
   DxcList,
   DxcTable,
 } from "@dxc-technology/halstack-react";
-import HeadingLink from "../../../common/HeadingLink";
-import DocFooter from "../../../common/DocFooter";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
-import Figure from "../../../common/Figure";
+import Figure from "@/common/Figure";
 import fileInputVariants from "./images/input_file_variants.png";
 
-const FileInputUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
-        <DxcText as="p">
-          Considerations for the file input component use:
-        </DxcText>
-        <HeadingLink level={3}>Do&#39;s</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Provide a meaningful label and helper text to help the user
-            understand the files expected.
-          </DxcText>
-          <DxcText>
-            When displaying errors, provide feedback about the type of error
-            using the error message.
-          </DxcText>
-          <DxcText>
-            When the file input process fails, provide useful information
-            instead of showing an error message using technical or undetermined
-            information (e.g. &#39;0x94 ERROR_PATH_BUSY&#39;).
-          </DxcText>
-        </DxcList>
-        <HeadingLink level={3}>Don&#39;ts</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Use the file input component to upload multiple files inside a modal
-            dialog.
-          </DxcText>
-          <DxcText>
-            Use a variant with drag and drop functionality when designing for
-            mobile devices.
-          </DxcText>
-        </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Variants</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <DxcText as="p">Considerations for the file input component use:</DxcText>
+    ),
+    subSections: [
+      {
+        title: "Do's",
+        content: (
+          <DxcList>
+            <DxcText>
+              Provide a meaningful label and helper text to help the user
+              understand the files expected.
+            </DxcText>
+            <DxcText>
+              When displaying errors, provide feedback about the type of error
+              using the error message.
+            </DxcText>
+            <DxcText>
+              When the file input process fails, provide useful information
+              instead of showing an error message using technical or
+              undetermined information (e.g. &#39;0x94 ERROR_PATH_BUSY&#39;).
+            </DxcText>
+          </DxcList>
+        ),
+      },
+
+      {
+        title: "Don'ts",
+        content: (
+          <DxcList>
+            <DxcText>
+              Use the file input component to upload multiple files inside a
+              modal dialog.
+            </DxcText>
+            <DxcText>
+              Use a variant with drag and drop functionality when designing for
+              mobile devices.
+            </DxcText>
+          </DxcList>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Variants",
+    content: (
+      <>
         <Figure caption="File input component variants">
           <Image src={fileInputVariants} alt="File input component variants" />
         </Figure>
@@ -84,8 +96,22 @@ const FileInputUsagePage = () => {
             </tr>
           </tbody>
         </DxcTable>
-      </DxcStack>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/file-input/usage/FileInputUsagePage.tsx" />
+      </>
+    ),
+  },
+];
+
+const FileInputUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Usage"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/accordion/usage/AccordionUsagePage.tsx" />
     </DxcStack>
   );
 };

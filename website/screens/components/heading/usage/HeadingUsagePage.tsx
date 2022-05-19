@@ -1,15 +1,16 @@
-import Image from "@/common/Image";
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
-import DocFooter from "../../../common/DocFooter";
-import HeadingLink from "../../../common/HeadingLink";
+import DocFooter from "@/common/DocFooter";
+import Image from "@/common/Image";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Code from "@/common/Code";
 import headingScale from "./images/heading_scale.png";
-import Code from "../../../common/Code";
 
-const HeadingUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <>
         <DxcText as="p">
           Navigating through the <Code>Headings-H1</Code> and
           <Code>Headings-H3</Code> give a user an overview of a page and how its
@@ -30,31 +31,58 @@ const HeadingUsagePage = () => {
           a definition of the elements that will appear below the title or an
           introduction for a paragraph.
         </DxcText>
-        <HeadingLink level={3}>Do&#39;s</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Use <Code>Heading</Code> componments from <Code>H1</Code> to{" "}
-            <Code>H5</Code> when creating content hierarchy in the page.
-          </DxcText>
-          <DxcText>
-            Use headings for page headings and for specific sections of content.
-          </DxcText>
-          <DxcText>
-            Use purposeful words to summarize the content that follows.
-          </DxcText>
-        </DxcList>
-        <HeadingLink level={3}>Don&#39;ts</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Do not style text to give the visual appearance of headings.
-          </DxcText>
-          <DxcText>
-            Avoid &quot;stacking&quot; headings without any body content in
-            between.
-          </DxcText>
-        </DxcList>
-      </DxcStack>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/heading/usage/HeadingUsagePage.tsx" />
+      </>
+    ),
+    subSections: [
+      {
+        title: "Do's",
+        content: (
+          <>
+            <DxcList>
+              <DxcText>
+                Use <Code>Heading</Code> componments from <Code>H1</Code> to{" "}
+                <Code>H5</Code> when creating content hierarchy in the page.
+              </DxcText>
+              <DxcText>
+                Use headings for page headings and for specific sections of
+                content.
+              </DxcText>
+              <DxcText>
+                Use purposeful words to summarize the content that follows.
+              </DxcText>
+            </DxcList>
+          </>
+        ),
+      },
+      {
+        title: "Don'ts",
+        content: (
+          <DxcList>
+            <DxcText>
+              Do not style text to give the visual appearance of headings.
+            </DxcText>
+            <DxcText>
+              Avoid &quot;stacking&quot; headings without any body content in
+              between.
+            </DxcText>
+          </DxcList>
+        ),
+      },
+    ],
+  },
+];
+
+const HeadingUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Usage"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/accordion/usage/AccordionUsagePage.tsx" />
     </DxcStack>
   );
 };

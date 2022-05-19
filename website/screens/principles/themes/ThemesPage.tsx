@@ -936,7 +936,7 @@ const sections = [
 
 const Themes = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xxlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Themes" weight="bold"></DxcHeading>

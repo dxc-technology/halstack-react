@@ -798,7 +798,7 @@ const sections = [
 
 const Color = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xxlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Color" weight="bold"></DxcHeading>

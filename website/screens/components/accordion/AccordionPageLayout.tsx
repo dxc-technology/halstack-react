@@ -1,5 +1,5 @@
-import TabsPageHeading from "../../common/TabsPageLayout";
 import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import TabsPageHeading from "@/common/TabsPageLayout";
 import PageHeading from "@/common/PageHeading";
 
 const AccordionPageHeading = ({ children }: { children: React.ReactNode }) => {

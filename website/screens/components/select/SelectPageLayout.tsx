@@ -1,10 +1,11 @@
-import TabsPageHeading from "../../common/TabsPageLayout";
 import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
+import TabsPageHeading from "@/common/TabsPageLayout";
 
 const SelectPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/select" },
+    { label: "Code", path: "/components/select" },
+    { label: "Usage", path: "/components/select/usage" },
     { label: "Specifications", path: "/components/select/specifications" },
   ];
 

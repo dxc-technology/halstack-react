@@ -292,7 +292,7 @@ const sections = [
 
 const Layout = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xxlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Layout" weight="bold"></DxcHeading>

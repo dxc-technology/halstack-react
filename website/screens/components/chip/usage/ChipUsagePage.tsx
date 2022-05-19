@@ -21,7 +21,7 @@ const sections = [
 
 const ChipUsagePage = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
           title="Usage"

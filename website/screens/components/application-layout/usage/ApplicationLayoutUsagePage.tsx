@@ -1,6 +1,6 @@
-import Image from "@/common/Image";
 import { DxcText, DxcStack, DxcList } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
+import Image from "@/common/Image";
 import Figure from "@/common/Figure";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -28,45 +28,43 @@ const sections = [
         </DxcList>
       </>
     ),
+  },
+  {
+    title: "Sidenav: overlay and push",
+    content: (
+      <>
+        <Figure caption="Overlay and push behavior of the sidenav component">
+          <Image
+            src={SidenavBehavior}
+            alt="Overlay and push behavior of the sidenav component"
+          />
+        </Figure>
+        <DxcText>
+          Overlay and push interactions by the sidenav component can alter the
+          way the layout is displayed. For overlay, the sidenav simply slides
+          over the content with no changes to position. The push interaction
+          moves the main container to the side depending on the width of the
+          sidenav.
+        </DxcText>
+      </>
+    ),
     subSections: [
       {
-        title: "Sidenav: overlay and push",
+        title: "Mobile behavior",
         content: (
           <>
-            <Figure caption="Overlay and push behavior of the sidenav component">
+            <Figure caption="Default sidenav behavior on mobile devices">
               <Image
-                src={SidenavBehavior}
-                alt="Overlay and push behavior of the sidenav component"
+                src={SidenavBehaviorMobile}
+                alt="Default sidenav behavior on mobile devices"
               />
             </Figure>
-            <DxcText>
-              Overlay and push interactions by the sidenav component can alter
-              the way the layout is displayed. For overlay, the sidenav simply
-              slides over the content with no changes to position. The push
-              interaction moves the main container to the side depending on the
-              width of the sidenav.
+            <DxcText as="p">
+              The default behavior for mobile device is overlay since the
+              available space doesn&#39;t allow to push the main content.
             </DxcText>
           </>
         ),
-        subSections: [
-          {
-            title: "Mobile behavior",
-            content: (
-              <>
-                <Figure caption="Default sidenav behavior on mobile devices">
-                  <Image
-                    src={SidenavBehaviorMobile}
-                    alt="Default sidenav behavior on mobile devices"
-                  />
-                </Figure>
-                <DxcText as="p">
-                  The default behavior for mobile device is overlay since the
-                  available space doesn&#39;t allow to push the main content.
-                </DxcText>
-              </>
-            ),
-          },
-        ],
       },
     ],
   },
@@ -74,7 +72,7 @@ const sections = [
 
 const ApplicationLayoutUsagePage = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
           title="Usage"

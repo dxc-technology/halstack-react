@@ -1,6 +1,6 @@
-import TabsPageHeading from "../../common/TabsPageLayout";
 import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
+import TabsPageHeading from "@/common/TabsPageLayout";
 
 const HeadingPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [

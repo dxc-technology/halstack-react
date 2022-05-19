@@ -1,6 +1,6 @@
-import TabsPageHeading from "../../common/TabsPageLayout";
 import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
+import TabsPageHeading from "@/common/TabsPageLayout";
 
 const CardPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -12,7 +12,7 @@ const CardPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xxxlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Accordion" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Card" weight="bold"></DxcHeading>
           <DxcText as="p">
             Cards are a container of information, actions and data with a
             hierarchy to make easy scanning the content. A card can be defined

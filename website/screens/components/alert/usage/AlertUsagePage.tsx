@@ -1,4 +1,3 @@
-import Image from "@/common/Image";
 import {
   DxcText,
   DxcStack,
@@ -9,6 +8,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
+import Image from "@/common/Image";
 import AlertTypesImage from "./images/alert_types.png";
 import AlertContent from "./images/alert_content.png";
 
@@ -44,115 +44,110 @@ const sections = [
         </DxcText>
       </DxcList>
     ),
-    subSections: [
-      {
-        title: "Types",
-        content: (
-          <>
-            <Figure caption="Context-based alert types">
-              <Image src={AlertTypesImage} alt="Context-based alert types" />
-            </Figure>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <strong>Information</strong>
-                  </td>
-                  <td>
-                    Informational messages are used exclusively to assist the
-                    user with directional or explanatory text about a complex or
-                    seldom used process
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Warning</strong>
-                  </td>
-                  <td>
-                    Alert or warning messages should be displayed when there is
-                    a potential obstacle in completing a process as intended
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Error</strong>
-                  </td>
-                  <td>
-                    Error messages convey a critical system problem that
-                    requires user and/or technical intervention to correct
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Success</strong>
-                  </td>
-                  <td>
-                    Success messages should be used to assure user that a system
-                    calculation or data submission was completed correctly
-                  </td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
-        ),
-      },
-      {
-        title: "Variants",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <strong>Inline</strong>
-                </td>
-                <td>
-                  The notification appears in the up right corner of the screen
-                  staying visible for 10 seconds
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <strong>Modal</strong>
-                </td>
-                <td>
-                  The notification appears centered in the screen using an
-                  overlay that obscures the content below
-                </td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Content",
-        content: (
-          <>
-            <Figure caption="Custom content as alert children">
-              <Image
-                src={AlertContent}
-                alt="Custom content as alert children"
-              />
-            </Figure>
-            <DxcText as="p">
-              Depending on the content that need to be displayed, more detailed
-              descriptions can be added to the alert component as children.
-            </DxcText>
-          </>
-        ),
-      },
-    ],
+  },
+  {
+    title: "Types",
+    content: (
+      <>
+        <Figure caption="Context-based alert types">
+          <Image src={AlertTypesImage} alt="Context-based alert types" />
+        </Figure>
+        <DxcTable>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Information</strong>
+              </td>
+              <td>
+                Informational messages are used exclusively to assist the user
+                with directional or explanatory text about a complex or seldom
+                used process
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Warning</strong>
+              </td>
+              <td>
+                Alert or warning messages should be displayed when there is a
+                potential obstacle in completing a process as intended
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Error</strong>
+              </td>
+              <td>
+                Error messages convey a critical system problem that requires
+                user and/or technical intervention to correct
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Success</strong>
+              </td>
+              <td>
+                Success messages should be used to assure user that a system
+                calculation or data submission was completed correctly
+              </td>
+            </tr>
+          </tbody>
+        </DxcTable>
+      </>
+    ),
+  },
+  {
+    title: "Variants",
+    content: (
+      <DxcTable>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Inline</strong>
+            </td>
+            <td>
+              The notification appears in the up right corner of the screen
+              staying visible for 10 seconds
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Modal</strong>
+            </td>
+            <td>
+              The notification appears centered in the screen using an overlay
+              that obscures the content below
+            </td>
+          </tr>
+        </tbody>
+      </DxcTable>
+    ),
+  },
+  {
+    title: "Content",
+    content: (
+      <>
+        <Figure caption="Custom content as alert children">
+          <Image src={AlertContent} alt="Custom content as alert children" />
+        </Figure>
+        <DxcText as="p">
+          Depending on the content that need to be displayed, more detailed
+          descriptions can be added to the alert component as children.
+        </DxcText>
+      </>
+    ),
   },
 ];
 

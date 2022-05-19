@@ -138,7 +138,7 @@ const sections = [
 
 const Introduction = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xxlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading

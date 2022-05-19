@@ -24,7 +24,7 @@ const sections = [
 
 const CardUsagePage = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
           title="Usage"

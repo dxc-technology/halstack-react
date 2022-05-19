@@ -1,6 +1,7 @@
-import TabsPageHeading from "../../common/TabsPageLayout";
 import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
+import TabsPageHeading from "@/common/TabsPageLayout";
+
 const RadioGroupPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
     { label: "Usage", path: "/components/radio-group" },

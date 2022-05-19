@@ -1,4 +1,3 @@
-import Image from "@/common/Image";
 import {
   DxcLink,
   DxcList,
@@ -8,6 +7,7 @@ import {
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
+import Image from "@/common/Image";
 import Link from "next/link";
 import ApplicationLayoutAnatomy from "./images/application_layout_anatomy.png";
 
@@ -45,41 +45,39 @@ const sections = [
         </DxcList>
       </>
     ),
+  },
+  {
+    title: "Anatomy",
+    content: (
+      <>
+        <Image src={ApplicationLayoutAnatomy} alt="Alert anatomy" />
+        <DxcList type="number">
+          <DxcText>Header</DxcText>
+          <DxcText>Main content</DxcText>
+          <DxcText>Footer</DxcText>
+          <DxcText>Sidenav</DxcText>
+        </DxcList>
+      </>
+    ),
+  },
+  {
+    title: "Accessibility",
     subSections: [
       {
-        title: "Anatomy",
+        title: "WAI-ARIA",
         content: (
-          <>
-            <Image src={ApplicationLayoutAnatomy} alt="Alert anatomy" />
-            <DxcList type="number">
-              <DxcText>Header</DxcText>
-              <DxcText>Main content</DxcText>
-              <DxcText>Footer</DxcText>
-              <DxcText>Sidenav</DxcText>
-            </DxcList>
-          </>
+          <DxcList>
+            <DxcText>
+              WAI-ARIA Authoring practices 1.2 -{" "}
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/WAI/perspective-videos/layout/"
+              >
+                Clear Layout and Design
+              </DxcLink>
+            </DxcText>
+          </DxcList>
         ),
-      },
-      {
-        title: "Accessibility",
-        subSections: [
-          {
-            title: "WAI-ARIA",
-            content: (
-              <DxcList>
-                <DxcText>
-                  WAI-ARIA Authoring practices 1.2 -{" "}
-                  <DxcLink
-                    newWindow
-                    href="https://www.w3.org/WAI/perspective-videos/layout/"
-                  >
-                    Clear Layout and Design
-                  </DxcLink>
-                </DxcText>
-              </DxcList>
-            ),
-          },
-        ],
       },
     ],
   },
@@ -87,7 +85,7 @@ const sections = [
 
 const ApplicationLayoutSpecsPage = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
           title="Specifications"
