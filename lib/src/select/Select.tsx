@@ -169,12 +169,13 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         else res = [...(value ?? innerValue), newOption.value];
 
         value ?? setInnerValue(res);
-        if (notOptionalMultipleCheck(res)) onChange?.({ value: res, error: translatedLabels.select.required });
+        if (notOptionalMultipleCheck(res))
+          onChange?.({ value: res, error: translatedLabels.formFields.requiredValueErrorMessage });
         else onChange?.({ value: res });
       } else {
         value ?? setInnerValue(newOption.value);
         if (notOptionalCheck(newOption.value))
-          onChange?.({ value: newOption.value, error: translatedLabels.select.required });
+          onChange?.({ value: newOption.value, error: translatedLabels.formFields.requiredValueErrorMessage });
         else onChange?.({ value: newOption.value });
       }
     };
@@ -195,7 +196,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         setSearchValue("");
 
         if (notOptionalCheck(value ?? innerValue))
-          onBlur?.({ value: value ?? innerValue, error: translatedLabels.select.required });
+          onBlur?.({ value: value ?? innerValue, error: translatedLabels.formFields.requiredValueErrorMessage });
         else onBlur?.({ value: value ?? innerValue });
       }
     };
@@ -275,7 +276,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const handleClearOptionsActionOnClick = (event) => {
       event.stopPropagation();
       value ?? setInnerValue([]);
-      !optional ? onChange?.({ value: [], error: translatedLabels.select.required }) : onChange?.({ value: [] });
+      !optional
+        ? onChange?.({ value: [], error: translatedLabels.formFields.requiredValueErrorMessage })
+        : onChange?.({ value: [] });
     };
 
     const handleClearSearchActionOnClick = (event) => {
@@ -318,7 +321,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               }}
               helperText={helperText}
             >
-              {label} {optional && <OptionalLabel>{translatedLabels.optionalLabel}</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -354,8 +357,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   }}
                   onClick={handleClearOptionsActionOnClick}
                   tabIndex={-1}
-                  title="Clear selection"
-                  aria-label="Clear selection"
+                  title={translatedLabels.select.actionClearSelectionTitle}
+                  aria-label={translatedLabels.select.actionClearSelectionTitle}
                 >
                   {selectIcons.clear}
                 </ClearOptionsAction>
@@ -403,8 +406,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 }}
                 onClick={handleClearSearchActionOnClick}
                 tabIndex={-1}
-                title="Clear search"
-                aria-label="Clear search"
+                title={translatedLabels.select.actionClearSearchTitle}
+                aria-label={translatedLabels.select.actionClearSearchTitle}
               >
                 {selectIcons.clear}
               </ClearSearchAction>

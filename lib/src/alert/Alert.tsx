@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import AlertPropsType from "./types";
 
@@ -54,9 +55,16 @@ const DxcAlert = ({
   tabIndex,
 }: AlertPropsType): JSX.Element => {
   const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
 
   const getTypeText = () =>
-    type === "info" ? "information" : type === "confirm" ? "success" : type === "warning" ? "warning" : "error";
+    type === "info"
+      ? translatedLabels.alert.infoTitleText
+      : type === "confirm"
+      ? translatedLabels.alert.successTitleText
+      : type === "warning"
+      ? translatedLabels.alert.warningTitleText
+      : translatedLabels.alert.errorTitleText;
 
   return (
     <ThemeProvider theme={colorsTheme.alert}>

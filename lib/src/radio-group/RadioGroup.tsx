@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import RadioGroupPropsType, { RefType, Option } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import DxcRadio from "./Radio";
 
 const getInitialFocusIndex = (innerOptions: Option[], value?: string) => {
@@ -19,7 +20,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       options,
       disabled = false,
       optional = false,
-      optionalItemLabel = "N/A",
+      optionalItemLabel,
       readonly = false,
       stacking = "column",
       defaultValue,
@@ -38,11 +39,16 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [firstTimeFocus, setFirstTimeFocus] = useState(true);
 
-    const optionalItem = { label: optionalItemLabel, value: "", disabled };
+    const colorsTheme = useTheme();
+    const translatedLabels = useTranslatedLabels();
+
+    const optionalItem = {
+      label: optionalItemLabel || translatedLabels.radioGroup.optionalItemLabelDefault,
+      value: "",
+      disabled,
+    };
     const innerOptions = useMemo(() => (optional ? [...options, optionalItem] : options), [optional, options]);
     const [currentFocusIndex, setCurrentFocusIndex] = useState(getInitialFocusIndex(innerOptions, value ?? innerValue));
-
-    const colorsTheme = useTheme();
 
     const handleOnChange = useCallback(
       (newValue: string) => {
@@ -61,7 +67,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
 
         const currentValue = value ?? innerValue;
         !optional && !Boolean(currentValue)
-          ? onBlur?.({ value: currentValue, error: "This field is required. Please, choose an option." })
+          ? onBlur?.({ value: currentValue, error: translatedLabels.formFields.requiredSelectionErrorMessage })
           : onBlur?.({ value: currentValue });
       }
     };
@@ -114,7 +120,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
         <RadioGroupContainer ref={ref}>
           {label && (
             <Label id={radioGroupLabelId} helperText={helperText} disabled={disabled}>
-              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}

@@ -8,9 +8,9 @@ import dayjs from "dayjs";
 import DayjsUtils from "@date-io/dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
-
 
 const getValueForPicker = (value, format) => dayjs(value, format.toUpperCase(), true).format();
 
@@ -42,6 +42,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const [anchorEl, setAnchorEl] = useState(null);
 
     const colorsTheme = useTheme();
+    const translatedLabels = useTranslatedLabels();
     const refDate = ref || useRef(null);
 
     const handleCalendarOnKeyDown = (event) => {
@@ -67,7 +68,8 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const handleIOnChange = ({ value: newValue, error: inputError }) => {
       value ?? setInnerValue(newValue);
       const dayjsDate = dayjs(newValue, format.toUpperCase(), true);
-      const invalidDateMessage = newValue !== "" && !dayjsDate.isValid() && "Invalid date.";
+      const invalidDateMessage =
+        newValue !== "" && !dayjsDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage
           ? { value: newValue, error: inputError || invalidDateMessage }
@@ -81,7 +83,8 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     };
     const handleIOnBlur = ({ value, error: inputError }) => {
       const dayjsDate = dayjs(value, format.toUpperCase(), true);
-      const invalidDateMessage = value !== "" && !dayjsDate.isValid() && "Invalid date.";
+      const invalidDateMessage =
+        value !== "" && !dayjsDate.isValid() && translatedLabels.dateInput.invalidDateErrorMessage;
       const callbackParams =
         inputError || invalidDateMessage ? { value, error: inputError || invalidDateMessage } : { value };
       dayjsDate.isValid()

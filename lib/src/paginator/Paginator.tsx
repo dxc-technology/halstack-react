@@ -38,7 +38,7 @@ const DxcPaginator = ({
           <LabelsContainer>
             {itemsPerPageOptions && (
               <ItemsPageContainer>
-                <ItemsLabel> {translatedLabels.paginator.itemsPerPage} </ItemsLabel>
+                <ItemsLabel> {translatedLabels.paginator.itemsPerPageText} </ItemsLabel>
                 <SelectContainer>
                   <DxcSelect
                     options={itemsPerPageOptions.map((num) => ({ label: num.toString(), value: num.toString() }))}
@@ -53,7 +53,7 @@ const DxcPaginator = ({
               </ItemsPageContainer>
             )}
             <TotalItemsContainer>
-              {minItemsPerPage} to {maxItemsPerPage} of {totalItems}
+              {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
             </TotalItemsContainer>
             {onPageChange && (
               <DxcButton

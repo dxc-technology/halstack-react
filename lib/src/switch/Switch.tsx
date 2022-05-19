@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
 import SwitchPropsType from "./types";
 
@@ -27,6 +28,7 @@ const DxcSwitch = ({
   const labelId = `label-${switchId}`;
   const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
   const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
   const backgroundType = useContext(BackgroundColorContext);
 
   const handlerSwitchChange = (event) => {
@@ -47,11 +49,11 @@ const DxcSwitch = ({
     >
       {labelPosition === "before" ? (
         <>
-          {label} {optional && <span>(Optional)</span>}
+          {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
         </>
       ) : (
         <>
-          {optional && <span>(Optional)</span>} {label}
+          {optional && <span>{translatedLabels.formFields.optionalLabel}</span>} {label}
         </>
       )}
     </LabelContainer>

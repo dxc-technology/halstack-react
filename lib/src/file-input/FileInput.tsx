@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
 import FileItem from "./FileItem";
 import FileInputPropsType from "./types";
@@ -52,6 +53,7 @@ const DxcFileInput = ({
   const [fileInputId] = useState(`file-input-${uuidv4()}`);
 
   const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
 
   useEffect(() => {
     const getFiles = async () => {
@@ -78,10 +80,12 @@ const DxcFileInput = ({
 
   const checkFileSize = (file) => {
     if (file.size < minSize) {
-      return "File size must be greater than min size.";
+      return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
+      // return "File size must be greater than min size.";
     }
     if (file.size > maxSize) {
-      return "File size must be less than max size.";
+      return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
+      // return "File size must be less than max size.";
     }
   };
 
@@ -187,7 +191,12 @@ const DxcFileInput = ({
             <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
             <DxcButton
               mode="secondary"
-              label={buttonLabel ?? (multiple ? "Select files" : "Select file")}
+              label={
+                buttonLabel ??
+                (multiple
+                  ? translatedLabels.fileInput.multipleButtonLabelDefault
+                  : translatedLabels.fileInput.singleButtonLabelDefault)
+              }
               onClick={handleClick}
               disabled={disabled}
               size="medium"
@@ -229,7 +238,7 @@ const DxcFileInput = ({
               <ButtonContainer mode={mode}>
                 <DxcButton
                   mode="secondary"
-                  label={buttonLabel ?? "Select"}
+                  label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
                   onClick={handleClick}
                   disabled={disabled}
                   size="fitContent"
@@ -237,11 +246,17 @@ const DxcFileInput = ({
               </ButtonContainer>
               {mode === "dropzone" ? (
                 <DropzoneLabel disabled={disabled}>
-                  {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
+                  {dropAreaLabel ??
+                    (multiple
+                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
                 </DropzoneLabel>
               ) : (
                 <FiledropLabel disabled={disabled}>
-                  {dropAreaLabel ?? (multiple ? "or drop files" : "or drop a file")}
+                  {dropAreaLabel ??
+                    (multiple
+                      ? translatedLabels.fileInput.multipleDropAreaLabelDefault
+                      : translatedLabels.fileInput.singleDropAreaLabelDefault)}
                 </FiledropLabel>
               )}
             </DragDropArea>

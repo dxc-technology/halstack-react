@@ -6,6 +6,7 @@ import DxcDropdown from "../dropdown/Dropdown";
 import { dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext";
 import HeaderPropsType from "./types";
 
@@ -39,12 +40,12 @@ const HeaderDropdown = styled.div`
   }
 `;
 
-const getLogoElement = (themeInput) => {
+const getLogoElement = (themeInput, logoLabel) => {
   if (!themeInput) {
     return dxcLogo;
   }
   if (typeof themeInput === "string") {
-    return <LogoImg alt="Logo" src={themeInput}></LogoImg>;
+    return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
   }
   return themeInput;
 };
@@ -59,6 +60,8 @@ const DxcHeader = ({
   tabIndex = 0,
 }: HeaderPropsType): JSX.Element => {
   const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
+
   const ref = useRef(null);
   const [isResponsive, setIsResponsive] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -86,11 +89,11 @@ const DxcHeader = ({
   };
 
   const headerLogo = useMemo(() => {
-    return getLogoElement(colorsTheme.header.logo);
+    return getLogoElement(colorsTheme.header.logo, translatedLabels.formFields.logoAlternativeText);
   }, [colorsTheme.header.logo]);
 
   const headerResponsiveLogo = useMemo(() => {
-    return getLogoElement(colorsTheme.header.logoResponsive);
+    return getLogoElement(colorsTheme.header.logoResponsive, translatedLabels.formFields.logoAlternativeText);
   }, [colorsTheme.header.logoResponsive]);
 
   useEffect(() => {

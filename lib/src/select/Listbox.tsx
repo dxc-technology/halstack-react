@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import { ListboxProps, ListboxRefType } from "./types";
 import Option from "./Option";
 import selectIcons from "./Icons";
@@ -25,7 +26,7 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
     ref
   ): JSX.Element => {
     const colorsTheme = useTheme();
-
+    const translatedLabels = useTranslatedLabels();
     let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
     const mapOptionFunc = (option, mapIndex) => {
       if (option.options) {
@@ -94,7 +95,7 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
           {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
             <OptionsSystemMessage>
               <NoMatchesFoundIcon>{selectIcons.searchOff}</NoMatchesFoundIcon>
-              No matches found
+              {translatedLabels.select.noMatchesErrorMessage}
             </OptionsSystemMessage>
           ) : (
             optional &&

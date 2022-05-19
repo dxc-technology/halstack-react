@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import Color from "color";
 import rgbHex from "rgb-hex";
 import styled from "styled-components";
-import { componentTokens, componentLabels } from "./common/variables.js";
+import { componentTokens, defaultTranslatedComponentLabels } from "./common/variables.js";
 
 const HalstackContext = React.createContext<object | null>(null);
 const HalstackLanguageContext = React.createContext<object | null>(null);
@@ -268,8 +268,19 @@ const parseTheme = (theme) => {
 
   return componentTokensCopy;
 };
+
 const parseLabels = (labels) => {
-  return componentLabels;
+  const parsedLabels = defaultTranslatedComponentLabels;
+  Object.keys(labels).map((component) => {
+    if (parsedLabels[component]) {
+      Object.keys(parsedLabels[component]).map((label) => {
+        if (labels[component][label]) {
+          parsedLabels[component][label] = labels[component][label];
+        }
+      });
+    }
+  });
+  return parsedLabels;
 };
 type HalstackProviderPropsType = {
   theme?: object;
@@ -282,14 +293,12 @@ const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackPr
     () => (theme && parseTheme(theme)) || (advancedTheme && parseAdvancedTheme(advancedTheme)),
     [theme, advancedTheme]
   );
-  const parsedLabels = useMemo(() => (labels && parseLabels(labels)) || parseLabels(componentLabels), [labels]);
+  const parsedLabels = useMemo(() => (labels && parseLabels(labels)) || defaultTranslatedComponentLabels, [labels]);
 
   return (
     <Halstack>
       <HalstackContext.Provider value={parsedTheme}>
-        <HalstackLanguageContext.Provider value={labels || componentLabels}>
-          {children}
-        </HalstackLanguageContext.Provider>
+        <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
       </HalstackContext.Provider>
     </Halstack>
   );

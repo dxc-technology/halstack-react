@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
@@ -112,6 +113,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const actionRef = useRef(null);
 
     const colorsTheme = useTheme();
+    const translatedLabels = useTranslatedLabels();
     const backgroundType = useContext(BackgroundColorContext);
 
     const autosuggestId = `${inputId}-listBox`;
@@ -126,8 +128,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const isLengthIncorrect = (value) =>
       value && minLength && maxLength && (value.length < minLength || value.length > maxLength);
 
-    const getLengthErrorMessage = () => `Min length ${minLength}, max length ${maxLength}.`;
-
     const isNumberIncorrect = (value) =>
       (numberInputContext?.minNumber && parseInt(value) < numberInputContext?.minNumber) ||
       (numberInputContext?.maxNumber && parseInt(value) > numberInputContext?.maxNumber);
@@ -137,9 +137,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
 
     const getNumberErrorMessage = (value) => {
       if (numberInputContext?.minNumber && parseInt(value) < numberInputContext?.minNumber)
-        return `Value must be greater than or equal to ${numberInputContext?.minNumber}.`;
+        return translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber);
       else if (numberInputContext?.maxNumber && parseInt(value) > numberInputContext?.maxNumber)
-        return `Value must be less than or equal to ${numberInputContext?.maxNumber}.`;
+        return translatedLabels.numberInput.valueLessThanOrEqualToErrorMessage(numberInputContext.maxNumber);
     };
 
     const hasSuggestions = () => typeof suggestions === "function" || suggestions?.length > 0;
@@ -157,10 +157,15 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       value ?? setInnerValue(newValue);
       const changedValue = typeof newValue === "number" ? newValue.toString() : newValue;
 
-      if (isNotOptional(newValue)) onChange?.({ value: changedValue, error: getNotOptionalErrorMessage() });
-      else if (isLengthIncorrect(newValue)) onChange?.({ value: changedValue, error: getLengthErrorMessage() });
+      if (isNotOptional(newValue))
+        onChange?.({ value: changedValue, error: translatedLabels.formFields.requiredValueErrorMessage });
+      else if (isLengthIncorrect(newValue))
+        onChange?.({
+          value: changedValue,
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+        });
       else if (newValue && pattern && !patternMatch(pattern, newValue))
-        onChange?.({ value: changedValue, error: getPatternErrorMessage() });
+        onChange?.({ value: changedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
       else if (newValue && isNumberIncorrect(newValue))
         onChange?.({ value: changedValue, error: getNumberErrorMessage(newValue) });
       else onChange?.({ value: changedValue });
@@ -182,11 +187,14 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       suggestions && closeSuggestions();
 
       if (isNotOptional(event.target.value))
-        onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
+        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
       else if (isLengthIncorrect(event.target.value))
-        onBlur?.({ value: event.target.value, error: getLengthErrorMessage() });
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+        });
       else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
-        onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
+        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
       else if (event.target.value && isNumberIncorrect(event.target.value))
         onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
       else onBlur?.({ value: event.target.value });
@@ -409,7 +417,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         <DxcInput margin={margin} ref={ref} size={size}>
           {label && (
             <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
-              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && (
@@ -478,8 +486,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 }}
                 backgroundType={backgroundType}
                 tabIndex={tabIndex}
-                title="Clear field"
-                aria-label="Clear field"
+                title={translatedLabels.textInput.clearFieldActionTitle}
+                aria-label={translatedLabels.textInput.clearFieldActionTitle}
               >
                 {textInputIcons.clear}
               </Action>
@@ -495,8 +503,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
-                  title="Decrement value"
-                  aria-label="Decrement value"
+                  title={translatedLabels.numberInput.decrementValueTitle}
+                  aria-label={translatedLabels.numberInput.decrementValueTitle}
                 >
                   {textInputIcons.decrement}
                 </Action>
@@ -509,8 +517,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   }}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
-                  title="Increment value"
-                  aria-label="Increment value"
+                  title={translatedLabels.numberInput.incrementValueTitle}
+                  aria-label={translatedLabels.numberInput.incrementValueTitle}
                 >
                   {textInputIcons.increment}
                 </Action>
@@ -555,11 +563,13 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   filteredSuggestions.map((suggestion, index) => (
                     <HighlightedSuggestion key={`suggestion-${uuidv4()}`} suggestion={suggestion} index={index} />
                   ))}
-                {isSearching && <SuggestionsSystemMessage>Searching...</SuggestionsSystemMessage>}
+                {isSearching && (
+                  <SuggestionsSystemMessage>{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
+                )}
                 {isAutosuggestError && (
                   <SuggestionsError>
                     <SuggestionsErrorIcon backgroundType={backgroundType}>{textInputIcons.error}</SuggestionsErrorIcon>
-                    Error fetching data
+                    {translatedLabels.textInput.fetchingDataErrorMessage}
                   </SuggestionsError>
                 )}
               </Suggestions>
