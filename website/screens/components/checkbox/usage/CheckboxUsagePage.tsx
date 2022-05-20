@@ -4,26 +4,31 @@ import {
   DxcList,
   DxcTable,
 } from "@dxc-technology/halstack-react";
-import HeadingLink from "../../../common/HeadingLink";
-import DocFooter from "../../../common/DocFooter";
-import Figure from "../../../common/Figure";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import DocFooter from "@/common/DocFooter";
+import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import checkboxStack from "./images/checkbox_stack.png";
 
-const CheckboxInputUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <>
         <DxcText as="p">Use the checkbox when:</DxcText>
         <DxcList>
           <DxcText>Multiple choices offered.</DxcText>
           <DxcText>Binary response are requested (yes/no).</DxcText>
           <DxcText>Accepting conditions and additional features.</DxcText>
         </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Stacking</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "Stacking",
+    content: (
+      <>
         <DxcText as="p">
           Checkbox may be either vertically or horizontally stacked.
         </DxcText>
@@ -60,7 +65,21 @@ const CheckboxInputUsagePage = () => {
             </tr>
           </tbody>
         </DxcTable>
-      </DxcStack>
+      </>
+    ),
+  },
+];
+
+const CheckboxInputUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Usage"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/checkbox/usage/CheckboxUsagePage.tsx" />
     </DxcStack>
   );
