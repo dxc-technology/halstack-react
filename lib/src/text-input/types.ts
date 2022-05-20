@@ -5,7 +5,8 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement> | React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+type SVG = React.SVGProps<SVGSVGElement>;
+
 type Action = {
   /**
    * This function will be called when the user clicks the action.
@@ -145,7 +146,7 @@ type Props = {
    */
   margin?: Space | Margin;
   /**
-   * Size of the component ('small' | 'medium' | 'large' | 'fillParent').
+   * Size of the component.
    */
   size?: "small" | "medium" | "large" | "fillParent";
   /**
@@ -158,5 +159,18 @@ type Props = {
  * Reference to the component.
  */
 export type RefType = HTMLDivElement;
+
+/**
+ * Single suggestion of the Autosuggest Text Input component.
+ */
+export type SuggestionProps = {
+  id: string;
+  value: string;
+  onClick: () => void;
+  suggestion: string;
+  isLast: boolean;
+  visuallyFocused: boolean;
+  highlighted: boolean;
+};
 
 export default Props;
