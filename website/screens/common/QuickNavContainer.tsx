@@ -84,7 +84,7 @@ const QuickNavContainer = styled.div`
   margin-left: 100px;
   width: 300px;
   top: calc(64px + 24px);
-  height: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
   ::-webkit-scrollbar {
     width: 2px;
   }
