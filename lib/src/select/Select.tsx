@@ -474,7 +474,7 @@ const Label = styled.span`
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
   cursor: default;
-  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
+  ${(props) => !props.helperText && `margin-bottom: 0.5rem;`}
 `;
 
 const OptionalLabel = styled.span`
@@ -488,7 +488,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Select = styled.div`
@@ -662,7 +662,7 @@ const Error = styled.span`
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.5em;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 `;
 
 const CollapseIndicator = styled.span`

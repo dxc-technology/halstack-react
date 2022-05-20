@@ -180,7 +180,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
+  ${(props) => !props.helperText && `margin-bottom: 0.5rem;`}
 `;
 
 const OptionalLabel = styled.span`
@@ -202,7 +202,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Textarea = styled.textarea`
@@ -312,7 +312,7 @@ const Error = styled.span`
   font-weight: 400;
   min-height: 1.5em;
   line-height: 1.5em;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 `;
 
 export default DxcTextarea;

@@ -177,7 +177,7 @@ const Label = styled.span<LabelProps>`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && `margin-bottom: ${props.theme.groupLabelMargin}`}
+  ${(props) => !props.helperText && `margin-bottom: ${props.theme.groupLabelMargin};`}
 `;
 
 const OptionalLabel = styled.span`

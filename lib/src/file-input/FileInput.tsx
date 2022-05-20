@@ -178,10 +178,12 @@ const DxcFileInput = ({
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <FileInputContainer margin={margin} name={name}>
-        <Label htmlFor={fileInputId} disabled={disabled}>
-          {label}
-        </Label>
-        <HelperText disabled={disabled}>{helperText}</HelperText>
+        {label && (
+          <Label htmlFor={fileInputId} disabled={disabled} helperText={helperText}>
+            {label}
+          </Label>
+        )}
+        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
         {mode === "file" ? (
           <FileContainer multiple={multiple} files={files}>
             <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
@@ -293,6 +295,7 @@ const Label = styled.label`
   font-size: ${(props) => props.theme.labelFontSize};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
+  ${(props) => !props.helperText && `margin-bottom: 0.5rem;`}
 `;
 
 const HelperText = styled.span`
@@ -301,12 +304,12 @@ const HelperText = styled.span`
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
+  margin-bottom: 0.5rem;
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
 `;
 
 const DragDropArea = styled.div`
@@ -339,7 +342,6 @@ const DragDropArea = styled.div`
 const FileContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.multiple || props.files.length > 1 ? "column" : "row")};
-  margin-top: 0.5rem;
 `;
 
 const HiddenInputFile = styled.input`
@@ -383,7 +385,7 @@ const ErrorMessage = styled.div`
   font-size: ${(props) => props.theme.errorMessageFontSize};
   font-weight: ${(props) => props.theme.errorMessageFontWeight};
   line-height: ${(props) => props.theme.errorMessageLineHeight};
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 `;
 
 export default DxcFileInput;

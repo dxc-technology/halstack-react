@@ -56,10 +56,12 @@ const DxcToggleGroup = ({
   return (
     <ThemeProvider theme={colorsTheme.toggleGroup}>
       <ToggleGroup margin={margin} disabled={disabled}>
-        <Label htmlFor={toggleGroupId} disabled={disabled}>
-          {label}
-        </Label>
-        <HelperText disabled={disabled}>{helperText}</HelperText>
+        {label && (
+          <Label htmlFor={toggleGroupId} disabled={disabled} helperText={helperText}>
+            {label}
+          </Label>
+        )}
+        {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
         <OptionsContainer id={toggleGroupId} role={multiple ? "group" : "radiogroup"}>
           {options.map((option, i) => (
             <ToggleContainer
@@ -115,6 +117,7 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
+  margin-bottom: ${(props) => !props.helperText && props.theme.containerMarginTop};
 `;
 
 const HelperText = styled.span`
@@ -124,6 +127,7 @@ const HelperText = styled.span`
   font-style: ${(props) => props.theme.helperTextFontStyle};
   font-weight: ${(props) => props.theme.helperTextFontWeight};
   line-height: ${(props) => props.theme.helperTextLineHeight};
+  margin-bottom: ${(props) => props.theme.containerMarginTop};
 `;
 
 const ToggleGroup = styled.div`
@@ -153,7 +157,6 @@ const OptionsContainer = styled.div`
   border-color: ${(props) => props.theme.containerBorderColor};
   background-color: ${(props) => props.theme.containerBackgroundColor};
   padding: 0.375rem;
-  margin-top: ${(props) => props.theme.containerMarginTop};
 `;
 
 const ToggleContainer = styled.div`
