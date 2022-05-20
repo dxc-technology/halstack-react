@@ -16,7 +16,7 @@ const ResultsetTablePageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading

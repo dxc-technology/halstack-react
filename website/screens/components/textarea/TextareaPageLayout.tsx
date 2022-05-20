@@ -9,7 +9,7 @@ const TextareaPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Textarea" weight="bold"></DxcHeading>

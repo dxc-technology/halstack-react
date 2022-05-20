@@ -16,7 +16,7 @@ const NumberInputPageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Number Input" weight="bold"></DxcHeading>

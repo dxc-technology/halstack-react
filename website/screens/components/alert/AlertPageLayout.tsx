@@ -9,7 +9,7 @@ const AlertPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Alert" weight="bold"></DxcHeading>

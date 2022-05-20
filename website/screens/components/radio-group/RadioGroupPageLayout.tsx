@@ -9,7 +9,7 @@ const RadioGroupPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Radio Group" weight="bold"></DxcHeading>

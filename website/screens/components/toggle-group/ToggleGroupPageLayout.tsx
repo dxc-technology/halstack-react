@@ -16,7 +16,7 @@ const ToggleGroupPageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Toggle Group" weight="bold"></DxcHeading>

@@ -16,7 +16,7 @@ const ProgressBarPageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Progress Bar" weight="bold"></DxcHeading>
