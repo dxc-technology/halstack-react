@@ -18,6 +18,26 @@ import spacingPadding from "./images/spacing_padding.png";
 
 const sections = [
   {
+    title: "Introduction",
+    content: (
+      <>
+        <DxcText as="p">
+          In the search of consistent alignment between the elements we provide
+          a spacing scale based on a root values of 8px and 4px. The numbers 4
+          and 8 are easily multiplied, they provide flexible and consistent, yet
+          distinct enough, steps between them.
+        </DxcText>
+        <Image src={spacingOverview} alt="Spacing overview" />
+        <DxcText as="p">
+          The spacing scale can be applied to <Code>margin</Code> or{" "}
+          <Code>padding</Code> properties, as well as to both vertical and
+          horizontal edges. The token takes the place of the values normally
+          assigned to this properties.
+        </DxcText>
+      </>
+    ),
+  },
+  {
     title: "Spacing methods",
     subSections: [
       {
@@ -296,19 +316,6 @@ const Spacing = () => {
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Spacing" weight="bold"></DxcHeading>
-          <DxcText as="p">
-            In the search of consistent alignment between the elements we
-            provide a spacing scale based on a root values of 8px and 4px. The
-            numbers 4 and 8 are easily multiplied, they provide flexible and
-            consistent, yet distinct enough, steps between them.
-          </DxcText>
-          <Image src={spacingOverview} alt="Spacing overview" />
-          <DxcText as="p">
-            The spacing scale can be applied to <Code>margin</Code> or{" "}
-            <Code>padding</Code> properties, as well as to both vertical and
-            horizontal edges. The token takes the place of the values normally
-            assigned to this properties.
-          </DxcText>
         </DxcStack>
       </PageHeading>
       <QuickNavContainerLayout>

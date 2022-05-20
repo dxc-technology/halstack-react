@@ -18,6 +18,35 @@ import colorFamilies from "./images/color_families.png";
 
 const sections = [
   {
+    title: "Introduction",
+    content: (
+      <>
+        <Figure caption="Base Halstack core colors">
+          <Image src={colorOverview} alt="DXC Colors" />
+        </Figure>
+        <DxcText as="p">
+          <strong>
+            The color palette is an essential asset as a communication resource
+            of our design system.
+          </strong>
+        </DxcText>
+        <DxcText as="p">
+          Halstack color palette brings a unified consistency and helps in
+          guiding the user&#39;s perception order. Our color palette is based in
+          the{" "}
+          <DxcLink
+            href="https://en.wikipedia.org/wiki/HSL_and_HSV#:~:text=The%20HSL%20representation%20models%20the,paint%20corresponds%20to%20a%20high%20%22"
+            newWindow
+          >
+            HSL model
+          </DxcLink>
+          . All our color families are calculated using the lightness value of
+          the standard DXC palette colors.
+        </DxcText>
+      </>
+    ),
+  },
+  {
     title: "Color Tokens",
     content: (
       <DxcText as="p">
@@ -802,28 +831,6 @@ const Color = () => {
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Color" weight="bold"></DxcHeading>
-          <Figure caption="Base Halstack core colors">
-            <Image src={colorOverview} alt="DXC Colors" />
-          </Figure>
-          <DxcText as="p">
-            <strong>
-              The color palette is an essential asset as a communication
-              resource of our design system.
-            </strong>
-          </DxcText>
-          <DxcText as="p">
-            Halstack color palette brings a unified consistency and helps in
-            guiding the user&#39;s perception order. Our color palette is based
-            in the{" "}
-            <DxcLink
-              href="https://en.wikipedia.org/wiki/HSL_and_HSV#:~:text=The%20HSL%20representation%20models%20the,paint%20corresponds%20to%20a%20high%20%22"
-              newWindow
-            >
-              HSL model
-            </DxcLink>
-            . All our color families are calculated using the lightness value of
-            the standard DXC palette colors.
-          </DxcText>
         </DxcStack>
       </PageHeading>
       <QuickNavContainerLayout>

@@ -80,13 +80,11 @@ const ContentContainer = styled.div`
 `;
 
 const QuickNavContainer = styled.div`
-  max-height: calc(100vh - 200px);
   position: sticky;
-  top: 200px;
   margin-left: 100px;
   width: 300px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  top: calc(64px + 24px);
+  height: calc(100vh - 64px);
   ::-webkit-scrollbar {
     width: 2px;
   }

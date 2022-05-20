@@ -12,6 +12,17 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
 const sections = [
   {
+    title: "Introduction",
+    content: (
+      <DxcText as="p">
+        Halstack is the DXC Technology&#39;s open source design system for
+        insurance products and digital experiences. Our system provides all the
+        tools and resources needed to create superior, beautiful but above all,
+        functional user experiences.
+      </DxcText>
+    ),
+  },
+  {
     title: "Design principles",
     content: (
       <>
@@ -146,12 +157,6 @@ const Introduction = () => {
             text="Halstack Design System"
             weight="bold"
           ></DxcHeading>
-          <DxcText as="p">
-            Halstack is the DXC Technology&#39;s open source design system for
-            insurance products and digital experiences. Our system provides all
-            the tools and resources needed to create superior, beautiful but
-            above all, functional user experiences.
-          </DxcText>
         </DxcStack>
       </PageHeading>
       <QuickNavContainerLayout>

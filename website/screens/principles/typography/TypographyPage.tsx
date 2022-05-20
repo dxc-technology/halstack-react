@@ -20,9 +20,10 @@ import additionalTypes from "./images/type_set_additional.png";
 
 const sections = [
   {
-    title: "Typography hierarchy",
+    title: "Introduction",
     content: (
       <>
+        <Image src={typesOpenSans} alt="Typography overview" />
         <DxcText as="p">
           Our selected typography helps in structuring our user&#39;s experience
           based on the visual impact that it has on the user interface content.
@@ -1127,7 +1128,6 @@ const Typography = () => {
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Typography" weight="bold"></DxcHeading>
-          <Image src={typesOpenSans} alt="Typography overview" />
         </DxcStack>
       </PageHeading>
       <QuickNavContainerLayout>

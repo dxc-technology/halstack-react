@@ -19,11 +19,12 @@ import Link from "next/link";
 
 const sections = [
   {
-    title: "Layout components",
+    title: "Introduction",
     content: (
       <>
         <DxcText as="p">
-          The{" "}
+          Halstack provide multiple components in order to achieve layout
+          consistency and an easy way to arrange elements in the UI. The{" "}
           <DxcLink>
             <Link href="/components/application-layout/">
               <a>application layout</a>
@@ -34,34 +35,10 @@ const sections = [
           each other to create a wide variety of standard layouts:
         </DxcText>
         <DxcList>
-          <DxcText>
-            <DxcLink>
-              <Link href="/components/stack/">
-                <a>Stack</a>
-              </Link>
-            </DxcLink>{" "}
-          </DxcText>
-          <DxcText>
-            <DxcLink>
-              <Link href="/components/row/">
-                <a>Row</a>
-              </Link>
-            </DxcLink>{" "}
-          </DxcText>
-          <DxcText>
-            <DxcLink>
-              <Link href="/components/bleed/">
-                <a>Bleed</a>
-              </Link>
-            </DxcLink>{" "}
-          </DxcText>
-          <DxcText>
-            <DxcLink>
-              <Link href="/components/inset/">
-                <a>Inset</a>
-              </Link>
-            </DxcLink>{" "}
-          </DxcText>
+          <DxcText>Stack</DxcText>
+          <DxcText>Row</DxcText>
+          <DxcText>Bleed</DxcText>
+          <DxcText>Inset</DxcText>
         </DxcList>
       </>
     ),
@@ -296,10 +273,6 @@ const Layout = () => {
       <PageHeading>
         <DxcStack gutter="large">
           <DxcHeading level={1} text="Layout" weight="bold"></DxcHeading>
-          <DxcText as="p">
-            Halstack provide multiple components in order to achieve layout
-            consistency and an easy way to arrange elements in the UI.
-          </DxcText>
         </DxcStack>
       </PageHeading>
       <QuickNavContainerLayout>
