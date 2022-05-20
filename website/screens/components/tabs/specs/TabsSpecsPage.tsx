@@ -69,7 +69,7 @@ const sections = [
   },
   {
     title: "Anatomy",
-    conttent: (
+    content: (
       <>
         <Image src={specsAnatomy} alt="image" />
         <DxcList type="number">

@@ -325,7 +325,7 @@ const TagSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/accordion/specs/AccordionSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/tag/specs/TagSpecsPage.tsx" />
     </DxcStack>
   );
 };

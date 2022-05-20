@@ -332,53 +332,6 @@ const sections = [
         ),
       },
       {
-        title: "Border",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Component token</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>focusBorderStyle</Code>
-                </td>
-                <td>Header:focus border</td>
-                <td>
-                  <Code>border-style-solid</Code>
-                </td>
-                <td>solid</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusBorderThickness</Code>
-                </td>
-                <td>Header:focus border</td>
-                <td>
-                  <Code>border-width-2</Code>
-                </td>
-                <td>2px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>borderRadius</Code>
-                </td>
-                <td>Accordion container</td>
-                <td>
-                  <Code>border-radius-medium</Code>
-                </td>
-                <td>0.25rem / 4px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
         title: "Spacing",
         content: (
           <DxcTable>
@@ -586,20 +539,6 @@ const sections = [
             </DxcText>
           </DxcList>
         ),
-      },
-      {
-        title: "Usability known issues",
-        subSections: [
-          {
-            title: "Printing",
-            content: (
-              <DxcText as="p">
-                Accordions are often not well suited for printing documents and
-                require people to print snippets of content at a time.
-              </DxcText>
-            ),
-          },
-        ],
       },
     ],
   },

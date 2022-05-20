@@ -601,39 +601,6 @@ const sections = [
         ),
       },
       {
-        title: "Size",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>height</Code>
-                </td>
-                <td>Header</td>
-                <td>-</td>
-                <td>48px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>min-width</Code>
-                </td>
-                <td>Accordion container</td>
-                <td>-</td>
-                <td>280px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
         title: "Border",
         content: (
           <DxcTable>

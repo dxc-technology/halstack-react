@@ -50,7 +50,10 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image src={ApplicationLayoutAnatomy} alt="Alert anatomy" />
+        <Image
+          src={ApplicationLayoutAnatomy}
+          alt="Application layout anatomy"
+        />
         <DxcList type="number">
           <DxcText>Header</DxcText>
           <DxcText>Main content</DxcText>
@@ -93,7 +96,7 @@ const ApplicationLayoutSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/alert/specs/ApplicationLayoutSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/application-layout/specs/ApplicationLayoutSpecsPage.tsx" />
     </DxcStack>
   );
 };

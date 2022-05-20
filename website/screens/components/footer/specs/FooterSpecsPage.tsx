@@ -330,6 +330,45 @@ const sections = [
         ),
       },
       {
+        title: "Padding",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>padding-top</Code>
+                </td>
+                <td>24px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>padding-right</Code>
+                </td>
+                <td>32px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>padding-bottom</Code>
+                </td>
+                <td>22px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>padding-left</Code>
+                </td>
+                <td>36px</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "Iconography",
         content: (
           <DxcTable>

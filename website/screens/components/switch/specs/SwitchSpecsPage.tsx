@@ -283,53 +283,6 @@ const sections = [
           <DxcTable>
             <thead>
               <tr>
-                <th>Component token</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>focusBorderStyle</Code>
-                </td>
-                <td>Header:focus border</td>
-                <td>
-                  <Code>border-style-solid</Code>
-                </td>
-                <td>solid</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusBorderThickness</Code>
-                </td>
-                <td>Header:focus border</td>
-                <td>
-                  <Code>border-width-2</Code>
-                </td>
-                <td>2px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>borderRadius</Code>
-                </td>
-                <td>Accordion container</td>
-                <td>
-                  <Code>border-radius-medium</Code>
-                </td>
-                <td>0.25rem / 4px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Border",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
                 <th>Property</th>
                 <th>Element</th>
                 <th>Core token</th>
@@ -429,6 +382,71 @@ const sections = [
               </tr>
             </tbody>
           </DxcTable>
+        ),
+      },
+      {
+        title: "Margin",
+        content: (
+          <>
+            {" "}
+            <DxcTable>
+              <thead>
+                <tr>
+                  <th>margin</th>
+                  <th>value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <Code>xxsmall</Code>
+                  </td>
+                  <td>6px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>xsmall</Code>
+                  </td>
+                  <td>16px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>small</Code>
+                  </td>
+                  <td>24px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>medium</Code> default
+                  </td>
+                  <td>36px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>large</Code>
+                  </td>
+                  <td>48px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>xlarge</Code>
+                  </td>
+                  <td>64px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>xxlarge</Code>
+                  </td>
+                  <td>100px</td>
+                </tr>
+              </tbody>
+            </DxcTable>
+            <DxcText as="p">
+              And also apply different values to each side of the component:{" "}
+              <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code> and{" "}
+              <Code>right</Code>.
+            </DxcText>
+          </>
         ),
       },
       {

@@ -163,7 +163,7 @@ const sections = [
           standardization in mind, the typographic scale is one of the most
           important elements to create hierarchy. Our type scale provides eight
           relative values based on a root font size of 16px, making it scalable
-          and accesible.{" "}
+          and accessible.
         </DxcText>
         <DxcTable>
           <thead>

@@ -64,55 +64,33 @@ const sections = [
         title: "Actions",
         subSections: [
           {
-            title: "Actions",
-            subSections: [
-              {
-                title: "Clearing content",
-                content: (
-                  <>
-                    <DxcText as="p">
-                      Clear actions allow user to remove the content of the text
-                      input.
-                    </DxcText>
-                    <Figure caption="Example of text input with a clear content action button">
-                      <Image
-                        src={inputActionsClearImage}
-                        alt="Example of text input with a clear content action button"
-                      />
-                    </Figure>
-                  </>
-                ),
-              },
-              {
-                title: "Custom actions",
-                content: (
-                  <>
-                    <DxcText as="p">
-                      Text inputs can have an additional custom action.
-                    </DxcText>
-                    <Figure caption="Example of text input with an additional action">
-                      <Image
-                        src={inputActionsCustom}
-                        alt="Example of text input with an additional action"
-                      />
-                    </Figure>
-                  </>
-                ),
-              },
-            ],
-          },
-          {
-            title: "Prefixes and suffixes",
+            title: "Clearing content",
             content: (
               <>
                 <DxcText as="p">
-                  Prefixes and suffixes help the user to understand the purpose
-                  of the text input.
+                  Clear actions allow user to remove the content of the text
+                  input.
                 </DxcText>
-                <Figure caption="Icon or text prefixes and suffixes usage">
+                <Figure caption="Example of text input with a clear content action button">
                   <Image
-                    src={inputPrefixSuffix}
-                    alt="Icon or text prefixes and suffixes usage"
+                    src={inputActionsClearImage}
+                    alt="Example of text input with a clear content action button"
+                  />
+                </Figure>
+              </>
+            ),
+          },
+          {
+            title: "Custom actions",
+            content: (
+              <>
+                <DxcText as="p">
+                  Text inputs can have an additional custom action.
+                </DxcText>
+                <Figure caption="Example of text input with an additional action">
+                  <Image
+                    src={inputActionsCustom}
+                    alt="Example of text input with an additional action"
                   />
                 </Figure>
               </>
@@ -121,50 +99,64 @@ const sections = [
         ],
       },
       {
-        title: "Helper text",
+        title: "Prefixes and suffixes",
         content: (
           <>
             <DxcText as="p">
-              Helper text can be used as additional instructions to the user
-              when filling in the form. It should be always visible even in a
-              focus state.
+              Prefixes and suffixes help the user to understand the purpose of
+              the text input.
             </DxcText>
-            <Figure caption="Text input helper text example">
+            <Figure caption="Icon or text prefixes and suffixes usage">
               <Image
-                src={inputHelperText}
-                alt="Text input helper text example"
+                src={inputPrefixSuffix}
+                alt="Icon or text prefixes and suffixes usage"
               />
             </Figure>
           </>
         ),
-        subSections: [
-          {
-            title: "Usage",
-            content: (
-              <>
-                <DxcText as="p">Do:</DxcText>
-                <DxcList>
-                  <DxcText>
-                    Keep helper text as short and specific as possible.
-                  </DxcText>
-                  <DxcText>
-                    Only use helper text when truly necessary to avoid
-                    overloading the user.
-                  </DxcText>
-                  <DxcText>
-                    Should give an example or an explanation of the field
-                  </DxcText>
-                </DxcList>
-                <DxcText as="p">Don&#39;t:</DxcText>
-                <DxcList>
-                  <DxcText>
-                    Helper text should not run longer than the input area.
-                  </DxcText>
-                </DxcList>
-              </>
-            ),
-          },
-        ],
+      },
+    ],
+  },
+  {
+    title: "Helper text",
+    content: (
+      <>
+        <DxcText as="p">
+          Helper text can be used as additional instructions to the user when
+          filling in the form. It should be always visible even in a focus
+          state.
+        </DxcText>
+        <Figure caption="Text input helper text example">
+          <Image src={inputHelperText} alt="Text input helper text example" />
+        </Figure>
+      </>
+    ),
+    subSections: [
+      {
+        title: "Usage",
+        content: (
+          <>
+            <DxcText as="p">Do:</DxcText>
+            <DxcList>
+              <DxcText>
+                Keep helper text as short and specific as possible.
+              </DxcText>
+              <DxcText>
+                Only use helper text when truly necessary to avoid overloading
+                the user.
+              </DxcText>
+              <DxcText>
+                Should give an example or an explanation of the field
+              </DxcText>
+            </DxcList>
+            <DxcText as="p">Don&#39;t:</DxcText>
+            <DxcList>
+              <DxcText>
+                Helper text should not run longer than the input area.
+              </DxcText>
+            </DxcList>
+          </>
+        ),
       },
     ],
   },

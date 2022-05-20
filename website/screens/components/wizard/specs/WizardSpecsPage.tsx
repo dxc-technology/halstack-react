@@ -525,239 +525,6 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>focusBorderStyle</Code>
-                </td>
-                <td>Header:focus border</td>
-                <td>
-                  <Code>border-style-solid</Code>
-                </td>
-                <td>solid</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>focusBorderThickness</Code>
-                </td>
-                <td>Header:focus border</td>
-                <td>
-                  <Code>border-width-2</Code>
-                </td>
-                <td>2px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>borderRadius</Code>
-                </td>
-                <td>Accordion container</td>
-                <td>
-                  <Code>border-radius-medium</Code>
-                </td>
-                <td>0.25rem / 4px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Size",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>height</Code>
-                </td>
-                <td>Header</td>
-                <td>-</td>
-                <td>48px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>min-width</Code>
-                </td>
-                <td>Accordion container</td>
-                <td>-</td>
-                <td>280px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Spacing",
-        content: (
-          <>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Component token</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>titleLabelPaddingRight</Code>
-                  </td>
-                  <td>Title</td>
-                  <td>
-                    <Code>spacing-16</Code>
-                  </td>
-                  <td>1rem / 16px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>titleLabelPaddingLeft</Code>
-                  </td>
-                  <td>Title</td>
-                  <td>
-                    <Code>spacing-0 </Code>
-                  </td>
-                  <td>0rem / 0px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>titleLabelPaddingTop</Code>
-                  </td>
-                  <td>Title</td>
-                  <td>
-                    <Code>spacing-0 </Code>
-                  </td>
-                  <td>0rem / 0px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>titleLabelPaddingBottom</Code>
-                  </td>
-                  <td>Title</td>
-                  <td>
-                    <Code>spacing-0 </Code>
-                  </td>
-                  <td>0rem / 0px</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>padding-left</Code>
-                  </td>
-                  <td>Header</td>
-                  <td>
-                    <Code>spacing-16</Code>
-                  </td>
-                  <td>16px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>padding-right</Code>
-                  </td>
-                  <td>Header</td>
-                  <td>
-                    <Code>spacing-16</Code>
-                  </td>
-                  <td>16px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>padding-right</Code>
-                  </td>
-                  <td>Helper text</td>
-                  <td>
-                    <Code>spacing-24</Code>
-                  </td>
-                  <td>24px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>padding</Code>
-                  </td>
-                  <td>Caret icon</td>
-                  <td>
-                    <Code>spacing-12</Code>
-                  </td>
-                  <td>12px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>margin-right</Code>
-                  </td>
-                  <td>Custom icon</td>
-                  <td>
-                    <Code>spacing-12</Code>
-                  </td>
-                  <td>12px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>padding</Code>
-                  </td>
-                  <td>Custom content</td>
-                  <td>
-                    <DxcLink href="https://github.com/dxc-technology/halstack-style-guide/tree/master/guidelines/principles/spacing#component-spacing-tokens">
-                      Component spacing
-                    </DxcLink>
-                  </td>
-                  <td>
-                    <DxcLink href="https://developer.dxc.com/tools/react/next/#/components/accordion">
-                      [Prop] padding
-                    </DxcLink>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>margin</Code>
-                  </td>
-                  <td>Accordion container</td>
-                  <td>
-                    <DxcLink href="https://github.com/dxc-technology/halstack-style-guide/tree/master/guidelines/principles/spacing#component-spacing-tokens">
-                      Component spacing
-                    </DxcLink>
-                  </td>
-                  <td>
-                    <DxcLink href="https://developer.dxc.com/tools/react/next/#/components/accordion">
-                      [Prop] margin
-                    </DxcLink>
-                  </td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
-        ),
-      },
-      {
-        title: "Border",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Component token</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
                   <Code>stepperBorderStyle</Code>
                 </td>
                 <td>Stepper border</td>
@@ -831,6 +598,39 @@ const sections = [
         ),
       },
       {
+        title: "Size",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Element</th>
+                <th>Core token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>width</Code>
+                </td>
+                <td>Stepper</td>
+                <td>-</td>
+                <td>32px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>height</Code>
+                </td>
+                <td>Stepper</td>
+                <td>-</td>
+                <td>32px</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "Spacing",
         content: (
           <DxcTable>
@@ -872,39 +672,6 @@ const sections = [
                   <Code>spacing-24</Code>
                 </td>
                 <td>1.5rem / 24px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Size",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>width</Code>
-                </td>
-                <td>Stepper</td>
-                <td>-</td>
-                <td>32px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>height</Code>
-                </td>
-                <td>Stepper</td>
-                <td>-</td>
-                <td>32px</td>
               </tr>
             </tbody>
           </DxcTable>

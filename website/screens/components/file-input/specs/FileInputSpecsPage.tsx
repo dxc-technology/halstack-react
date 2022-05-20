@@ -643,134 +643,6 @@ const sections = [
       {
         title: "Border",
         content: (
-          <>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Component token</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>closeIconBorderThickness</Code>
-                  </td>
-                  <td>Icon close</td>
-                  <td>
-                    <Code>border-width-0</Code>
-                  </td>
-                  <td>0px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>closeIconBorderStyle</Code>
-                  </td>
-                  <td>Icon close</td>
-                  <td>
-                    <Code>border-style-solid</Code>
-                  </td>
-                  <td>solid</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>closeIconBorderRadius</Code>
-                  </td>
-                  <td>Icon close</td>
-                  <td>
-                    <Code>border-radius-none</Code>
-                  </td>
-                  <td>0</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Element</th>
-                  <th>Core token</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>border-width</Code>
-                  </td>
-                  <td>Container</td>
-                  <td>
-                    <Code>border-width-0</Code>
-                  </td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>border-style</Code>
-                  </td>
-                  <td>Container</td>
-                  <td>
-                    <Code>border-style-none</Code>
-                  </td>
-                  <td>none</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>border-radius</Code>
-                  </td>
-                  <td>Container</td>
-                  <td>
-                    <Code>border-radius-medium</Code>
-                  </td>
-                  <td>0.25rem / 4px</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
-        ),
-      },
-      {
-        title: "Spacing",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Element</th>
-                <th>Core token</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Code>margin-right</Code>
-                </td>
-                <td>Title icon</td>
-                <td>
-                  <Code>spacing-12</Code>
-                </td>
-                <td>0.75rem / 12px</td>
-              </tr>
-              <tr>
-                <td>
-                  <Code>margin-bottom</Code>
-                </td>
-                <td>Title</td>
-                <td>
-                  <Code>spacing-24</Code>
-                </td>
-                <td>1.5rem / 24px</td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
-        title: "Border",
-        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -879,7 +751,7 @@ const FileInputSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/dialog/specs/DialogSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/file-input/specs/FileInputSpecsPage.tsx" />
     </DxcStack>
   );
 };
