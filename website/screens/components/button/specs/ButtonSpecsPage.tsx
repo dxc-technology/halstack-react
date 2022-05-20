@@ -7,6 +7,7 @@ import {
 } from "@dxc-technology/halstack-react";
 import buttonSpecsImage from "./images/button_specs.png";
 import buttonStatesImage from "./images/button_states.png";
+import buttonAnatomyImage from "./images/button_anatomy.png";
 import DocFooter from "../../../common/DocFooter";
 import HeadingLink from "../../../common/HeadingLink";
 import Code from "../../../common/Code";
@@ -40,6 +41,15 @@ const ButtonSpecsPage = () => {
         <Figure caption="Button component states">
           <Image src={buttonStatesImage} alt="Button component states" />
         </Figure>
+      </DxcStack>
+      <DxcStack gutter="large">
+        <HeadingLink level={3}>Anatomy</HeadingLink>
+        <Image src={buttonAnatomyImage} alt="Button anatomy" />
+        <DxcList type="number">
+          <DxcText>Container</DxcText>
+          <DxcText>Icon</DxcText>
+          <DxcText>Label</DxcText>
+        </DxcList>
       </DxcStack>
       <DxcStack gutter="large">
         <HeadingLink level={3}>Design tokens</HeadingLink>
