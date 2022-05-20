@@ -50,6 +50,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Radio Group", path: "/components/radio-group" },
   { label: "Resultset Table", path: "/components/resultset-table" },
   { label: "Select", path: "/components/select" },
+  { label: "Select Copy", path: "/components/select-copy" },
   { label: "Sidenav", path: "/components/sidenav" },
   { label: "Slider", path: "/components/slider" },
   { label: "Spinner", path: "/components/spinner" },
