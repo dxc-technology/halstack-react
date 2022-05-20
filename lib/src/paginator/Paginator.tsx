@@ -57,7 +57,6 @@ const DxcPaginator = ({
                 size="small"
                 mode="secondary"
                 disabled={currentPageInternal === 1 || currentPageInternal === 0}
-                margin={{ left: "xxsmall", right: "xxsmall" }}
                 icon={firstIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
@@ -70,7 +69,6 @@ const DxcPaginator = ({
                 size="small"
                 mode="secondary"
                 disabled={currentPageInternal === 1 || currentPageInternal === 0}
-                margin={{ left: "xxsmall", right: "xxsmall" }}
                 icon={previousIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
@@ -106,7 +104,6 @@ const DxcPaginator = ({
                 size="small"
                 mode="secondary"
                 disabled={currentPageInternal === totalPages}
-                margin={{ left: "xxsmall", right: "xxsmall" }}
                 icon={nextIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
@@ -119,7 +116,6 @@ const DxcPaginator = ({
                 size="small"
                 mode="secondary"
                 disabled={currentPageInternal === totalPages}
-                margin={{ left: "xxsmall", right: "xxsmall" }}
                 icon={lastIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
@@ -136,8 +132,6 @@ const DxcPaginator = ({
 
 const DxcPaginatorContainer = styled.div`
   display: flex;
-  height: ${(props) => props.theme.height};
-  width: ${(props) => props.theme.width};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
@@ -145,6 +139,7 @@ const DxcPaginatorContainer = styled.div`
   text-transform: ${(props) => props.theme.fontTextTransform};
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
+  padding: 0.75rem 2rem;
 
   button {
     &:disabled {
@@ -173,12 +168,12 @@ const ItemsPageContainer = styled.span`
 `;
 
 const ItemsLabel = styled.span`
-  margin-right: 15px;
+  margin-right: 0.5rem;
 `;
 
 const GoToLabel = styled.span`
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
 `;
 
 const TotalItemsContainer = styled.span`
@@ -188,17 +183,15 @@ const TotalItemsContainer = styled.span`
 
 const LabelsContainer = styled.div`
   display: flex;
+  gap: 0.5rem;
   width: 100%;
   justify-content: flex-end;
   align-items: center;
-  margin: 0 ${(props) => props.theme.marginRight} 0 ${(props) => props.theme.marginLeft};
 `;
 
 const PageToSelectContainer = styled.span`
   display: flex;
   align-items: center;
-  margin-right: ${(props) => props.theme.pageSelectorMarginRight};
-  margin-left: ${(props) => props.theme.pageSelectorMarginLeft};
 
   label {
     height: 0px;
