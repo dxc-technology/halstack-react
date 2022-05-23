@@ -39,10 +39,8 @@ const DxcQuickNav = ({ title = "Contents", links }: QuickNavTypes): JSX.Element 
 const QuickNavContainer = styled.div`
   padding: 5px 15px;
   border-left: 2px solid #bfbfbf;
-  li {
-    div:first-child {
-      display: none;
-    }
+  li > div:first-child {
+    display: none;
   }
 `;
 
