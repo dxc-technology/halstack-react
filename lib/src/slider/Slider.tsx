@@ -246,7 +246,7 @@ const SliderContainer = styled.div`
     :focus {
       outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
         auto 1px;
-      outline-offset: 2px;
+      outline-offset: 3px;
       background-color: ${(props) =>
         props.backgroundType === "dark"
           ? props.theme.focusThumbBackgroundColorOnDark

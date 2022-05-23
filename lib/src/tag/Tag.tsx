@@ -101,7 +101,7 @@ const StyledLink = styled.a`
   width: 100%;
   :focus {
     outline: 2px solid ${(props) => props.theme.focusColor};
-    outline-offset: 0px;
+    outline-offset: 2px;
   }
 `;
 
@@ -115,6 +115,7 @@ const StyledButton = styled.button`
   width: 100%;
   :focus {
     outline: 2px solid ${(props) => props.theme.focusColor};
+    outline-offset: 2px;
   }
 `;
 

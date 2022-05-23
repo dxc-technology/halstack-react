@@ -129,6 +129,28 @@ const stepLargeIcons = [
 
 export const Chromatic = () => (
   <>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Horizontal Focused step" theme="light" level={4} />
+      <DxcWizard defaultCurrentStep={0} steps={[{ label: "First step" }]}></DxcWizard>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Vertical Focused step" theme="light" level={4} />
+      <DxcWizard
+        defaultCurrentStep={0}
+        steps={[
+          {
+            label: "First step",
+          },
+          {
+            label: "Second step",
+          },
+          {
+            label: "Third step",
+          },
+        ]}
+        mode="vertical"
+      ></DxcWizard>
+    </ExampleContainer>
     <ExampleContainer>
       <Title title="Current step in the third step, labels and description" theme="light" level={4} />
       <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription}></DxcWizard>
@@ -203,12 +225,3 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
-
-const WizardSelected = () => <DxcWizard steps={stepWithLabel}></DxcWizard>;
-
-export const WizardStepActived = WizardSelected.bind({});
-WizardStepActived.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const option = canvas.getByText("Third step");
-  await userEvent.click(option);
-};

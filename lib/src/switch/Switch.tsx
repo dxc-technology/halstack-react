@@ -127,7 +127,7 @@ const SwitchContainer = styled.div`
         `2px solid ${
           props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
         }`};
-      outline-offset: -4px;
+      outline-offset: -6px;
     }
 
     .MuiSwitch-track {

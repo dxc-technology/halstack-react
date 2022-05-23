@@ -132,7 +132,7 @@ const StepsContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
   justify-content: "center";
-  ${(props) => props.mode === "vertical" && "height: 500px"};
+  ${(props) => props.mode === "vertical" && "min-height: 500px;"}
   font-family: ${(props) => props.theme.fontFamily};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -148,18 +148,19 @@ const StepsContainer = styled.div`
 
 const StepContainer = styled.div`
   display: inline-flex;
-  ${(props) => (props.mode === "vertical" ? "" : "align-items: center;")}
+  ${(props) => props.mode !== "vertical" && "align-items: center;"}
   flex-grow: ${(props) => (props.lastStep ? "0" : "1")};
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
-  ${(props) => (props.mode === "vertical" ? "width: 100%;" : "")}
+  ${(props) => props.mode === "vertical" && "width: fit-content;"}
 `;
 
 const Step = styled.button`
-  border: none;
-  background: inherit;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  border: none;
+  border-radius: 0.25rem;
+  background: inherit;
   margin: ${(props) =>
     props.first
       ? props.mode === "vertical"
@@ -180,7 +181,8 @@ const Step = styled.button`
     ${(props) => (props.disabled ? "" : "cursor: pointer")};
   }
   &:focus {
-    outline: ${(props) => props.theme.focusColor} auto 1px;
+    outline: 2px solid ${(props) => props.theme.focusColor};
+    outline-offset: 2px;
   }
 `;
 
