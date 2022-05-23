@@ -193,55 +193,55 @@ const StepHeader = styled.div`
 const IconContainer = styled.div`
   width: ${(props) =>
     props.disabled
-      ? props.theme.disabledStepperWidth
+      ? props.theme.disabledStepWidth
       : props.current
-      ? props.theme.selectedStepperWidth
-      : props.theme.stepperWidth};
+      ? props.theme.selectedStepWidth
+      : props.theme.stepWidth};
   height: ${(props) =>
     props.disabled
-      ? props.theme.disabledStepperHeight
+      ? props.theme.disabledStepHeight
       : props.current
-      ? props.theme.selectedStepperHeight
-      : props.theme.stepperHeight};
+      ? props.theme.selectedStepHeight
+      : props.theme.stepHeight};
 
   ${(props) => `
     ${
       props.disabled
-        ? `border: ${props.theme.disabledStepperBorderThickness} ${props.theme.disabledStepperBorderStyle} ${props.theme.disabledStepperBorderColor};`
+        ? `border: ${props.theme.disabledStepBorderThickness} ${props.theme.disabledStepBorderStyle} ${props.theme.disabledStepBorderColor};`
         : props.current
-        ? `border: ${props.theme.selectedStepperBorderThickness} ${props.theme.selectedStepperBorderStyle} ${props.theme.selectedStepperBorderColor};`
+        ? `border: ${props.theme.selectedStepBorderThickness} ${props.theme.selectedStepBorderStyle} ${props.theme.selectedStepBorderColor};`
         : props.visited
-        ? `border: ${props.theme.stepperBorderThickness} ${props.theme.stepperBorderStyle} ${props.theme.stepperBorderColor};`
-        : `border: ${props.theme.stepperBorderThickness} ${props.theme.stepperBorderStyle} ${props.theme.unvisitedStepperBorderColor};`
+        ? `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.stepBorderColor};`
+        : `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.unvisitedStepBorderColor};`
     }
     background: ${
       props.disabled
-        ? `${props.theme.disabledStepperBackgroundColor}`
+        ? `${props.theme.disabledStepBackgroundColor}`
         : props.current
-        ? `${props.theme.selectedStepperBackgroundColor}`
+        ? `${props.theme.selectedStepBackgroundColor}`
         : !props.visited
-        ? `${props.theme.unvisitedStepperBackgroundColor}`
-        : `${props.theme.stepperBackgroundColor}`
+        ? `${props.theme.unvisitedStepBackgroundColor}`
+        : `${props.theme.stepBackgroundColor}`
     };
   `}
   ${(props) =>
     props.disabled
-      ? `color: ${props.theme.disabledStepperFontColor};`
+      ? `color: ${props.theme.disabledStepFontColor};`
       : `color: ${
           props.current
-            ? props.theme.selectedStepperFontColor
+            ? props.theme.selectedStepFontColor
             : !props.visited
-            ? props.theme.unvisitedStepperFontColor
-            : props.theme.stepperFontColor
+            ? props.theme.unvisitedStepFontColor
+            : props.theme.stepFontColor
         };`};
 
   border-radius: ${(props) =>
     !props.current && !props.disabled
-      ? props.theme.stepperBorderRadius
+      ? props.theme.stepBorderRadius
       : props.current
-      ? props.theme.selectedStepperBorderRadius
+      ? props.theme.selectedStepBorderRadius
       : props.disabled
-      ? props.theme.disabledStepperBorderRadius
+      ? props.theme.disabledStepBorderRadius
       : ""};
 
   display: flex;
@@ -250,13 +250,13 @@ const IconContainer = styled.div`
 `;
 
 const Icon = styled.img`
-  width: ${(props) => props.theme.stepperIconSize};
-  height: ${(props) => props.theme.stepperIconSize};
+  width: ${(props) => props.theme.stepIconSize};
+  height: ${(props) => props.theme.stepIconSize};
 `;
 
 const StepIconContainer = styled.div`
-  width: ${(props) => props.theme.stepperIconSize};
-  height: ${(props) => props.theme.stepperIconSize};
+  width: ${(props) => props.theme.stepIconSize};
+  height: ${(props) => props.theme.stepIconSize};
   overflow: hidden;
   img,
   svg {
@@ -266,11 +266,11 @@ const StepIconContainer = styled.div`
 `;
 
 const Number = styled.p`
-  font-size: ${(props) => props.theme.stepperFontSize};
-  font-family: ${(props) => props.theme.stepperFontFamily};
-  font-style: ${(props) => props.theme.stepperFontStyle};
-  font-weight: ${(props) => props.theme.stepperFontWeight};
-  letter-spacing: ${(props) => props.theme.stepperFontTracking};
+  font-size: ${(props) => props.theme.stepFontSize};
+  font-family: ${(props) => props.theme.stepFontFamily};
+  font-style: ${(props) => props.theme.stepFontStyle};
+  font-weight: ${(props) => props.theme.stepFontWeight};
+  letter-spacing: ${(props) => props.theme.stepFontTracking};
   opacity: 1;
   margin: 0px 0px 0px 1px;
 `;

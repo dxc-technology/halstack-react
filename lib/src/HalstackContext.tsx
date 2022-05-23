@@ -261,8 +261,8 @@ const parseTheme = (theme) => {
     setOpacity(theme?.toggleGroup?.unselectedFontColor, 0.34) ?? toggleGroupTokens.unselectedDisabledFontColor;
 
   const wizardTokens = componentTokensCopy.wizard;
-  wizardTokens.selectedStepperBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepperBackgroundColor;
-  wizardTokens.selectedStepperFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedStepperFontColor;
+  wizardTokens.selectedStepBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBackgroundColor;
+  wizardTokens.selectedStepFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedStepFontColor;
 
   return componentTokensCopy;
 };

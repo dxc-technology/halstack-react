@@ -820,13 +820,13 @@ const Themes = () => {
               <tr>
                 <td>Base color</td>
                 <td>
-                  <Code>selectedStepperBackgroundColor</Code>
+                  <Code>selectedStepBackgroundColor</Code>
                 </td>
               </tr>
               <tr>
                 <td>Font color</td>
                 <td>
-                  <Code>selectedStepperFontColor</Code>
+                  <Code>selectedStepFontColor</Code>
                 </td>
               </tr>
             </tbody>

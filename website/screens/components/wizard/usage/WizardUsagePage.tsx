@@ -59,12 +59,12 @@ const WizardUsagePage = () => {
       <DxcStack gutter="large">
         <HeadingLink level={3}>Content</HeadingLink>
         <DxcText as="p">
-          Different variations of the content can be performed in the stepper:
+          Different variations of the content can be performed in the step:
         </DxcText>
         <DxcList>
           <DxcText>Only numbers</DxcText>
           <DxcText>Only icons</DxcText>
-          <DxcText>Numbers/icons with stepper label</DxcText>
+          <DxcText>Numbers/icons with step label</DxcText>
         </DxcList>
         <Figure caption="Examples of wizard content with an icon">
           <Image
@@ -76,7 +76,7 @@ const WizardUsagePage = () => {
       <DxcStack gutter="large">
         <HeadingLink level={3}>Helper text</HeadingLink>
         <DxcText as="p">
-          Helper text can be added to the wizard component stepper:
+          Helper text can be added to the wizard component step:
         </DxcText>
         <Figure caption="Example of wizard helper text">
           <Image src={helperTextImage} alt="Example of wizard helper text" />
