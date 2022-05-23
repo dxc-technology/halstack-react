@@ -1,104 +1,117 @@
-import PageLayout from "../../common/PageLayout";
 import {
   DxcText,
   DxcTable,
   DxcList,
   DxcStack,
   DxcLink,
+  DxcHeading,
 } from "@dxc-technology/halstack-react";
-import HeadingLink from "../../common/HeadingLink";
-import DocFooter from "../../common/DocFooter";
-import Code from "../../common/Code";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import PageHeading from "@/common/PageHeading";
+import DocFooter from "@/common/DocFooter";
+import Code from "@/common/Code";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
-const Themes = () => {
-  return (
-    <PageLayout>
-      <DxcStack gutter="xxxlarge">
-        <DxcStack gutter="large">
-          <HeadingLink level={1}>Themes</HeadingLink>
-          <HeadingLink level={2}>What is a theme?</HeadingLink>
-          <DxcText as="p">
-            In order to understand what a theme is, we need to understand first
-            that the definition of colors, sizes, shapes... is an intrinsic part
-            of a design system. Since these parameters are essential for
-            guaranteeing accessibility and a good user experience, having the
-            ability of changing them, might go frontally against the intentions
-            of the design system.
+const sections = [
+  {
+    title: "What is a theme?",
+    content: (
+      <>
+        <DxcText as="p">
+          In order to understand what a theme is, we need to understand first
+          that the definition of colors, sizes, shapes... is an intrinsic part
+          of a design system. Since these parameters are essential for
+          guaranteeing accessibility and a good user experience, having the
+          ability of changing them, might go frontally against the intentions of
+          the design system.
+        </DxcText>
+        <DxcText as="p">
+          This is precisely what themes are, just custom defined objects that
+          allow users to{" "}
+          <strong>
+            override fundamental decisions of Halstack Design System
+          </strong>
+          . They are a way of escaping the restrictions imposed by the Design
+          System, and using themes could result in applications not being
+          compliant with the Halstack guidelines, or even introducing many
+          different types of accessibility issues if not used carefully.
+        </DxcText>
+        <DxcText as="p">
+          Typically, you would create a Halstack Design System application, and
+          after that,{" "}
+          <strong>only if there is a white-labeling requirement</strong>, we
+          would apply a theme on top of the base application. This, and only
+          this, is the whole purpose of using themes.
+        </DxcText>
+      </>
+    ),
+  },
+  {
+    title: "Different theming strategies",
+    content: (
+      <>
+        <DxcText as="p">
+          As explained in the previous section, themes are basically a list of
+          properties that allow you to override fundamental decisions of the
+          design system. Based on the amount of decisions that can be
+          overridden, Halstack Design System has two different theming
+          strategies:
+        </DxcText>
+        <DxcList>
+          <DxcText>
+            <strong>Opinionated theme.</strong> This theming strategy lets you
+            change some decisions of the design system, but is still opinionated
+            about the ones we consider fundamental. The list of configurable
+            properties is small, but it applies at the component level. You can
+            generate the theme object using our{" "}
+            <DxcLink
+              href="https://developer.dxc.com/tools/react/next/#/themeBuilder"
+              newWindow
+            >
+              opinionated theme generator
+            </DxcLink>
+            .
           </DxcText>
-          <DxcText as="p">
-            This is precisely what themes are, just custom defined objects that
-            allow users to{" "}
-            <strong>
-              override fundamental decisions of Halstack Design System
-            </strong>
-            . They are a way of escaping the restrictions imposed by the Design
-            System, and using themes could result in applications not being
-            compliant with the Halstack guidelines, or even introducing many
-            different types of accessibility issues if not used carefully.
+          <DxcText>
+            <strong>Advanced theme.</strong> This theming strategy lets you
+            change most of the design decisions of the design system (all the
+            design tokens), trying to be as little opinionated as possible. Have
+            in mind that it is impossible to make the components 100%
+            configurable without writing actual code, since some design
+            decisions are structural to the component. The list of configurable
+            properties is large, and it applies at the component level. You can
+            generate the theme object using our{" "}
+            <DxcLink
+              href="https://developer.dxc.com/tools/react/next/#/themeBuilder/advancedTheme"
+              newWindow
+            >
+              advanced theme generator
+            </DxcLink>
+            .
           </DxcText>
-          <DxcText as="p">
-            Typically, you would create a Halstack Design System application,
-            and after that,{" "}
-            <strong>only if there is a white-labeling requirement</strong>, we
-            would apply a theme on top of the base application. This, and only
-            this, is the whole purpose of using themes.
-          </DxcText>
-        </DxcStack>
-        <DxcStack gutter="large">
-          <HeadingLink level={2}>Different theming strategies</HeadingLink>
-          <DxcText as="p">
-            As explained in the previous section, themes are basically a list of
-            properties that allow you to override fundamental decisions of the
-            design system. Based on the amount of decisions that can be
-            overridden, Halstack Design System has two different theming
-            strategies:
-          </DxcText>
-          <DxcList>
-            <DxcText>
-              <strong>Opinionated theme.</strong> This theming strategy lets you
-              change some decisions of the design system, but is still
-              opinionated about the ones we consider fundamental. The list of
-              configurable properties is small, but it applies at the component
-              level. You can generate the theme object using our{" "}
-              <DxcLink
-                href="https://developer.dxc.com/tools/react/next/#/themeBuilder"
-                newWindow
-              >
-                opinionated theme generator
-              </DxcLink>
-              .
-            </DxcText>
-            <DxcText>
-              <strong>Advanced theme.</strong> This theming strategy lets you
-              change most of the design decisions of the design system (all the
-              design tokens), trying to be as little opinionated as possible.
-              Have in mind that it is impossible to make the components 100%
-              configurable without writing actual code, since some design
-              decisions are structural to the component. The list of
-              configurable properties is large, and it applies at the component
-              level. You can generate the theme object using our{" "}
-              <DxcLink
-                href="https://developer.dxc.com/tools/react/next/#/themeBuilder/advancedTheme"
-                newWindow
-              >
-                advanced theme generator
-              </DxcLink>
-              .
-            </DxcText>
-          </DxcList>
-        </DxcStack>
-        <DxcStack gutter="large">
-          <HeadingLink level={2}>Opinionated theme inputs list</HeadingLink>
-          <DxcText as="p">
-            Tokens in the second column, which names are in bold, will have the
-            value that results from applying the transformation indicated in
-            brackets to the &#39;Theme input&#39;. (If nothing, they will have
-            the same value as the &#39;Theme input&#39;).
-          </DxcText>
-          <DxcText as="p">
-            Theme inputs value must be hexadecimal without alpha channel.
-          </DxcText>
-          <HeadingLink level={3}>Accordion</HeadingLink>
+        </DxcList>
+      </>
+    ),
+  },
+  {
+    title: "Opinionated theme inputs list",
+    content: (
+      <>
+        <DxcText as="p">
+          Tokens in the second column, which names are in bold, will have the
+          value that results from applying the transformation indicated in
+          brackets to the &#39;Theme input&#39;. (If nothing, they will have the
+          same value as the &#39;Theme input&#39;).
+        </DxcText>
+        <DxcText as="p">
+          Theme inputs value must be hexadecimal without alpha channel.
+        </DxcText>
+      </>
+    ),
+    subSections: [
+      {
+        title: "Accordion",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -133,7 +146,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Button</HeadingLink>
+        ),
+      },
+      {
+        title: "Button",
+        content: (
           <DxcTable>
             <thead>
               <th>Theme Input</th>
@@ -188,7 +205,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Checkbox</HeadingLink>
+        ),
+      },
+      {
+        title: "Checkbox",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -226,7 +247,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Chip</HeadingLink>
+        ),
+      },
+      {
+        title: "Chip",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -252,7 +277,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Date Input</HeadingLink>
+        ),
+      },
+      {
+        title: "Date Input",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -278,7 +307,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Dropdown</HeadingLink>
+        ),
+      },
+      {
+        title: "Dropdown",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -328,7 +361,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>File input</HeadingLink>
+        ),
+      },
+      {
+        title: "File input",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -354,7 +391,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Footer</HeadingLink>
+        ),
+      },
+      {
+        title: "Footer",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -395,7 +436,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Header</HeadingLink>
+        ),
+      },
+      {
+        title: "Header",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -457,7 +502,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Paginator</HeadingLink>
+        ),
+      },
+      {
+        title: "Paginator",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -480,7 +529,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Progress bar</HeadingLink>
+        ),
+      },
+      {
+        title: "Progress bar",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -515,7 +568,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Radio</HeadingLink>
+        ),
+      },
+      {
+        title: "Radio",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -567,7 +624,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Select</HeadingLink>
+        ),
+      },
+      {
+        title: "Select",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -613,7 +674,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Sidenav</HeadingLink>
+        ),
+      },
+      {
+        title: "Sidenav",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -630,7 +695,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Slider</HeadingLink>
+        ),
+      },
+      {
+        title: "Slider",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -674,7 +743,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Spinner</HeadingLink>
+        ),
+      },
+      {
+        title: "Spinner",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -706,7 +779,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Switch</HeadingLink>
+        ),
+      },
+      {
+        title: "Switch",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -727,7 +804,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Table</HeadingLink>
+        ),
+      },
+      {
+        title: "Table",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -759,7 +840,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Tabs</HeadingLink>
+        ),
+      },
+      {
+        title: "Tabs",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -791,7 +876,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Text Input</HeadingLink>
+        ),
+      },
+      {
+        title: "Text input",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -835,7 +924,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Toggle group</HeadingLink>
+        ),
+      },
+      {
+        title: "Toggle group",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -889,7 +982,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Wizard</HeadingLink>
+        ),
+      },
+      {
+        title: "Wizard",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -945,10 +1042,29 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
+        ),
+      },
+    ],
+  },
+];
+
+const Themes = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Themes" weight="bold"></DxcHeading>
         </DxcStack>
-        <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/themes/ThemesPage.tsx" />
-      </DxcStack>
-    </PageLayout>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Themes"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/themes/ThemesPage.tsx" />
+    </DxcStack>
   );
 };
 

@@ -1,12 +1,13 @@
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
-import DocFooter from "../../../common/DocFooter";
-import HeadingLink from "../../../common/HeadingLink";
+import DocFooter from "@/common/DocFooter";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
-const PaginatorUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <>
         <DxcText as="p">
           Usage considerations about the paginator component:
         </DxcText>
@@ -24,7 +25,21 @@ const PaginatorUsagePage = () => {
             displayed.
           </DxcText>
         </DxcList>
-      </DxcStack>
+      </>
+    ),
+  },
+];
+
+const PaginatorUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Usage"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/paginator/usage/PaginatorUsagePage.tsx" />
     </DxcStack>
   );

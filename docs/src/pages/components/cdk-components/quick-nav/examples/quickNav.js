@@ -20,7 +20,7 @@ const code = `() => {
     },
   ];
 
-  return <div style={{ margin: "20px"}}><DxcQuickNav title="Sections" links={links}></DxcQuickNav></div>;
+  return <div style={{ margin: "20px"}}><DxcQuickNav links={links}></DxcQuickNav></div>;
 }`;
 
 const scope = {
