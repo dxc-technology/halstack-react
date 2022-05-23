@@ -35,6 +35,7 @@ import Textarea from "./pages/Textarea";
 import Select from "./pages/Select";
 import FileInput from "./pages/FileInput";
 import QuickNavContainer from "./pages/QuickNavContainer";
+import NavTabs from "./pages/NavTabs";
 
 export default [
   {
@@ -126,6 +127,11 @@ export default [
     path: "link",
     name: "Link",
     component: Link,
+  },
+  {
+    path: "navTabs",
+    name: "Nav Tabs",
+    component: NavTabs,
   },
   {
     path: "numberInput",

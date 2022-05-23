@@ -1,3 +1,4 @@
+import React from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import {
@@ -5,8 +6,10 @@ import {
   DxcStack,
   DxcText,
   DxcHeading,
+  DxcNavTabs,
 } from "@dxc-technology/halstack-react";
 import { responsiveSizes } from "../common/variables";
+import Link from "next/link";
 
 type PageHeadingProps = {
   title: string;
@@ -15,6 +18,14 @@ type PageHeadingProps = {
   children: React.ReactNode;
 };
 
+const MyLink = React.forwardRef(({ path, children }, ref) => {
+  return (
+    <Link href={path} passHref>
+      <a ref={ref}>{children}</a>
+    </Link>
+  );
+});
+
 const PageHeading = ({
   title,
   tabs,
@@ -22,12 +33,6 @@ const PageHeading = ({
   children,
 }: PageHeadingProps) => {
   const router = useRouter();
-  const tabsList = tabs ? tabs.map((tab) => ({ label: tab.label })) : [];
-  const activeTabIndex = tabs.findIndex((tab) => tab.path === router.pathname);
-
-  const handleTabChange = (index: number) => {
-    router.push(tabs[index].path);
-  };
 
   return (
     <>
@@ -37,11 +42,15 @@ const PageHeading = ({
             <DxcHeading text={title} level={1}></DxcHeading>
             <DxcText>{description}</DxcText>
           </DxcStack>
-          <DxcTabs
-            activeTabIndex={activeTabIndex}
-            tabs={tabsList}
-            onTabClick={handleTabChange}
-          ></DxcTabs>
+
+          <DxcNavTabs>
+            {tabs.map((tab, index) => (
+              <DxcNavTabs.Tab active={tab.path === router.pathname}>
+                <MyLink path={tab.path}>{tab.label}</MyLink>
+              </DxcNavTabs.Tab>
+            ))}
+          </DxcNavTabs>
+
           <div>{children}</div>
         </DxcStack>
       </LayoutContainer>
