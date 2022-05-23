@@ -1,16 +1,17 @@
-import Figure from "@/common/Figure";
-import HeadingLink from "@/common/HeadingLink";
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import footerExample from "./images/footer_example.png";
 import footerCustomContent from "./images/footer_custom_content.png";
 import Image from "@/common/Image";
 import DocFooter from "@/common/DocFooter";
+import Figure from "@/common/Figure";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
-const FooterUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <>
         <Figure caption="Footer component example">
           <Image src={footerExample} alt="Footer component example" />
         </Figure>
@@ -35,9 +36,13 @@ const FooterUsagePage = () => {
             version of the main brand image can be used.
           </DxcText>
         </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Content</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "Content",
+    content: (
+      <>
         <Figure caption="Footer custom content examples">
           <Image
             src={footerCustomContent}
@@ -80,7 +85,21 @@ const FooterUsagePage = () => {
             </DxcList>
           </DxcStack>
         </DxcList>
-      </DxcStack>
+      </>
+    ),
+  },
+];
+
+const FooterUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Usage"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/footer/usage/FooterUsagePage.tsx" />
     </DxcStack>
   );
