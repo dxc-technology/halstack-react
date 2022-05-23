@@ -122,14 +122,6 @@ const SwitchContainer = styled.div`
     height: 45px;
     margin: 3px;
 
-    .Mui-focusVisible {
-      outline: ${(props) =>
-        `2px solid ${
-          props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
-        }`};
-      outline-offset: -6px;
-    }
-
     .MuiSwitch-track {
       /*Enabled and unchecked bar*/
       background-color: ${(props) =>
@@ -157,6 +149,13 @@ const SwitchContainer = styled.div`
           : props.theme.uncheckedThumbBackgroundColor};
       &:hover {
         background-color: transparent;
+      }
+      &:focus-within {
+        outline: ${(props) =>
+          `2px solid ${
+            props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
+          }`};
+        outline-offset: -6px;
       }
       &.Mui-disabled {
         /*Disabled and unchecked*/

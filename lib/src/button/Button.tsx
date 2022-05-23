@@ -143,7 +143,7 @@ const DxCButton = styled.div`
     height: 40px;
     transition: none !important;
 
-    &:focus-visible {
+    &:focus {
       outline: 2px solid
         ${(props) =>
           props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor};

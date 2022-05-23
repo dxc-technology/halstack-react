@@ -200,7 +200,7 @@ const ToggleContainer = styled.div`
           };
           color: #ffffff;
         }       
-        :focus-visible {
+        :focus {
           outline: ${props.theme.optionFocusBorderThickness} solid ${
             props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor
           };

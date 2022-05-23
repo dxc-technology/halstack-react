@@ -192,6 +192,7 @@ const CheckboxContainer = styled.span`
   align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   position: relative;
+
   .MuiCheckbox-colorSecondary {
     .MuiIconButton-label {
       & > .MuiSvgIcon-root {
@@ -218,7 +219,6 @@ const CheckboxContainer = styled.span`
             props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
         }
       }
-
       &:hover {
         background-color: transparent;
         .MuiIconButton-label {
@@ -254,21 +254,19 @@ const CheckboxContainer = styled.span`
         }
       }
     }
-
-    &.Mui-focusVisible {
-      .MuiIconButton-label {
-        border-radius: 0.25rem;
-        outline: 2px solid
-          ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
-        outline-offset: -1px;
-      }
+    &:focus-within {
+      outline: 2px solid
+        ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
+      outline-offset: -1px;
     }
-    z-index: 1;
+
+    border-radius: 0.25rem;
     margin-left: ${(props) => (props.labelPosition === "before" && props.label ? props.theme.checkLabelSpacing : "0")};
     margin-right: ${(props) => (props.labelPosition === "after" && props.label ? props.theme.checkLabelSpacing : "0")};
     padding: 0px;
     left: ${(props) => (props.labelPosition === "before" ? "unset" : "1px")};
     right: ${(props) => (props.labelPosition === "before" ? "1px" : "unset")};
+    z-index: 1;
   }
 `;
 
