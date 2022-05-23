@@ -277,7 +277,6 @@ const Layout = () => {
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Layout"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>
