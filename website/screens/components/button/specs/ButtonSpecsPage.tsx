@@ -26,7 +26,6 @@ const sections = [
       </Figure>
     ),
   },
-
   {
     title: "States",
     content: (
@@ -44,6 +43,19 @@ const sections = [
         <Figure caption="Button component states">
           <Image src={buttonStatesImage} alt="Button component states" />
         </Figure>
+      </>
+    ),
+  },
+  {
+    title: "Anatomy",
+    content: (
+      <>
+        <Image src={buttonAnatomyImage} alt="Button anatomy" />
+         <DxcList type="number">
+           <DxcText>Container</DxcText>
+           <DxcText>Icon</DxcText>
+           <DxcText>Label</DxcText>
+         </DxcList>
       </>
     ),
   },
