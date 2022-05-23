@@ -211,7 +211,7 @@ function App() {
         </Content>
       </ContentContainer>
       <QuickNavContainer>
-        <DxcQuickNav title="Sections" links={links}></DxcQuickNav>
+        <DxcQuickNav links={links}></DxcQuickNav>
       </QuickNavContainer>
     </Container>
   );
