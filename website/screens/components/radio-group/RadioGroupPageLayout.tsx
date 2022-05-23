@@ -1,4 +1,6 @@
-import PageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
+import TabsPageHeading from "@/common/TabsPageLayout";
 
 const RadioGroupPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -7,13 +9,19 @@ const RadioGroupPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Radio Group"
-      description="A radio group let the user make a mutually exclusive selection from a group of options."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Radio Group" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            A radio group let the user make a mutually exclusive selection from
+            a group of options.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 

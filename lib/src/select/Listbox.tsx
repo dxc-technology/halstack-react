@@ -100,6 +100,7 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
             optional &&
             !multiple && (
               <Option
+                key={`option-${optionalItem.value}`}
                 id={`option-${0}`}
                 option={optionalItem}
                 onClick={handleOptionOnClick}

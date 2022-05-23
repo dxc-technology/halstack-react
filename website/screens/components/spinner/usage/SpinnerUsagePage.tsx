@@ -1,37 +1,40 @@
 import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
-import HeadingLink from "../../../common/HeadingLink";
-import Figure from "../../../common/Figure";
-import Code from "../../../common/Code";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Figure from "@/common/Figure";
+import Code from "@/common/Code";
+import DocFooter from "@/common/DocFooter";
 import determinateImage from "./images/spinner_determinate_indeterminate.png";
 import variantsImage from "./images/spinner_variants.png";
-import DocFooter from "../../../common/DocFooter";
 
-const SpinnerUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
-        <DxcList>
-          <DxcText>
-            There should only be a single spinner on a page at one time.
-          </DxcText>
-          <DxcText>
-            Only use the spinner component in a process that takes more than one
-            second.
-          </DxcText>
-          <DxcText>
-            The text of the action it is not mandatory but recommendable.
-          </DxcText>
-          <DxcText>
-            If only a portion of a page is displaying new content or being
-            updated, use a <Code>medium</Code> or <Code>small</Code> spinner
-            place the spinner in that part of the page.
-          </DxcText>
-        </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Variants</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <DxcList>
+        <DxcText>
+          There should only be a single spinner on a page at one time.
+        </DxcText>
+        <DxcText>
+          Only use the spinner component in a process that takes more than one
+          second.
+        </DxcText>
+        <DxcText>
+          The text of the action it is not mandatory but recommendable.
+        </DxcText>
+        <DxcText>
+          If only a portion of a page is displaying new content or being
+          updated, use a <Code>medium</Code> or <Code>small</Code> spinner place
+          the spinner in that part of the page.
+        </DxcText>
+      </DxcList>
+    ),
+  },
+  {
+    title: "Variants",
+    content: (
+      <>
         <DxcText as="p">
           There are three different variants for the spinner component due to
           the size or the position: <strong>large</strong>,{" "}
@@ -40,9 +43,13 @@ const SpinnerUsagePage = () => {
         <Figure caption="Spinner component variants">
           <Image src={variantsImage} alt="Spinner component variants" />
         </Figure>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Determinate or indeterminate</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "Determinate or indeterminate",
+    content: (
+      <>
         <Figure caption="Determinate and indeterminate spinners">
           <Image
             src={determinateImage}
@@ -68,7 +75,21 @@ const SpinnerUsagePage = () => {
             </DxcList>
           </DxcStack>
         </DxcList>
-      </DxcStack>
+      </>
+    ),
+  },
+];
+
+const SpinnerUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Usage"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/spinner/usage/SpinnerUsagePage.tsx" />
     </DxcStack>
   );

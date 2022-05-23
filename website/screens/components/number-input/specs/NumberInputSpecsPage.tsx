@@ -1,9 +1,3 @@
-import Image from "@/common/Image";
-import numberSpecs from "./images/number_specs.png";
-import numberInputSpecs from "./images/number_input_states.png";
-import numberInputStates from "./images/number_action_states.png";
-import numberAnatomy from "./images/number_anatomy.png";
-import HeadingLink from "../../../common/HeadingLink";
 import {
   DxcStack,
   DxcText,
@@ -11,15 +5,22 @@ import {
   DxcList,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
-import Figure from "../../../common/Figure";
-import Code from "../../../common/Code";
-import DocFooter from "../../../common/DocFooter";
+import Figure from "@/common/Figure";
+import Code from "@/common/Code";
+import DocFooter from "@/common/DocFooter";
+import Image from "@/common/Image";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import numberSpecs from "./images/number_specs.png";
+import numberInputSpecs from "./images/number_input_states.png";
+import numberInputStates from "./images/number_action_states.png";
+import numberAnatomy from "./images/number_anatomy.png";
 
-const NumberInputSpecsPage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Specifications</HeadingLink>
+const sections = [
+  {
+    title: "Specifications",
+    content: (
+      <>
         <Figure caption="Design specifications of the number input component">
           <Image
             src={numberSpecs}
@@ -38,30 +39,48 @@ const NumberInputSpecsPage = () => {
           </DxcLink>
           .
         </DxcText>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>States</HeadingLink>
-        <HeadingLink level={4}>Input</HeadingLink>
-        <DxcText as="p">
-          States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
-          <strong>focus</strong>, <strong>error</strong> and{" "}
-          <strong>disabled</strong>.
-        </DxcText>
-        <Figure caption="Input states example">
-          <Image src={numberInputSpecs} alt="Input states example" />
-        </Figure>
-        <HeadingLink level={4}>Spin button</HeadingLink>
-        <DxcText as="p">
-          States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
-          <strong>focus</strong>, <strong>active</strong> and{" "}
-          <strong>disabled</strong>.
-        </DxcText>
-        <Figure caption="Spin button states example">
-          <Image src={numberInputStates} alt="Spin button states example" />
-        </Figure>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Anatomy</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "States",
+    subSections: [
+      {
+        title: "Input",
+        content: (
+          <>
+            <DxcText as="p">
+              States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
+              <strong>focus</strong>, <strong>error</strong> and{" "}
+              <strong>disabled</strong>.
+            </DxcText>
+            <Figure caption="Input states example">
+              <Image src={numberInputSpecs} alt="Input states example" />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        title: "Spin button",
+        content: (
+          <>
+            <DxcText as="p">
+              States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
+              <strong>focus</strong>, <strong>active</strong> and{" "}
+              <strong>disabled</strong>.
+            </DxcText>
+            <Figure caption="Spin button states example">
+              <Image src={numberInputStates} alt="Spin button states example" />
+            </Figure>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Anatomy",
+    content: (
+      <>
         <Image
           src={numberAnatomy}
           alt="Anatomy of the number input component"
@@ -81,31 +100,51 @@ const NumberInputSpecsPage = () => {
           <DxcText>Error message</DxcText>
           <DxcText>Value</DxcText>
         </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Accessibility</HeadingLink>
-        <HeadingLink level={4}>WAI-ARIA</HeadingLink>
-        <DxcList>
-          <DxcText>
-            WAI-ARIA Authoring practices 1.2 -{" "}
-            <DxcLink
-              href="https://www.w3.org/TR/wai-aria-practices-1.2/#spinbutton"
-              newWindow
-            >
-              3.21 Spinbutton
-            </DxcLink>
-          </DxcText>
-          <DxcText>
-            WAI-ARIA Authoring practices 1.2 -{" "}
-            <DxcLink
-              href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/spinbutton/datepicker-spinbuttons.html"
-              newWindow
-            >
-              "Date Picker Spin Button" design pattern
-            </DxcLink>
-          </DxcText>
-        </DxcList>
-      </DxcStack>
+      </>
+    ),
+  },
+  {
+    title: "Accessibility",
+    subSections: [
+      {
+        title: "WAI-ARIA",
+        content: (
+          <DxcList>
+            <DxcText>
+              WAI-ARIA Authoring practices 1.2 -{" "}
+              <DxcLink
+                href="https://www.w3.org/TR/wai-aria-practices-1.2/#spinbutton"
+                newWindow
+              >
+                3.21 Spinbutton
+              </DxcLink>
+            </DxcText>
+            <DxcText>
+              WAI-ARIA Authoring practices 1.2 -{" "}
+              <DxcLink
+                href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/spinbutton/datepicker-spinbuttons.html"
+                newWindow
+              >
+                "Date Picker Spin Button" design pattern
+              </DxcLink>
+            </DxcText>
+          </DxcList>
+        ),
+      },
+    ],
+  },
+];
+
+const NumberInputSpecsPage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Specifications"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/number-input/specs/NumberInputSpecsPage.tsx" />
     </DxcStack>
   );
