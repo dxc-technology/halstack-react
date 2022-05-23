@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -9,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext";
 import NumberInputContext from "../number-input/NumberInputContext";
 import TextInputPropsType, { RefType } from "./types";
+import Suggestion from "./Suggestion";
 
 const textInputIcons = {
   error: (
@@ -381,42 +381,16 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         );
     }, [value, innerValue, suggestions, numberInputContext]);
 
-    const HighlightedSuggestion = ({ suggestion, index }) => {
-      const regEx = new RegExp(value ?? innerValue, "i");
-      const matchedWords = suggestion.match(regEx);
-      const noMatchedWords = suggestion.replace(regEx, "");
-      const isLastOption = index === lastOptionIndex;
-
-      return (
-        <Suggestion
-          id={`suggestion-${index}`}
-          onClick={() => {
-            changeValue(suggestion);
-            closeSuggestions();
-          }}
-          visualFocused={visualFocusedSuggIndex === index}
-          role="option"
-          aria-selected={visualFocusedSuggIndex === index && "true"}
-        >
-          <StyledSuggestion last={isLastOption} visualFocused={visualFocusedSuggIndex === index}>
-            {typeof suggestions === "function" ? (
-              suggestion
-            ) : (
-              <>
-                <strong>{matchedWords}</strong>
-                {noMatchedWords}
-              </>
-            )}
-          </StyledSuggestion>
-        </Suggestion>
-      );
-    };
-
     return (
       <ThemeProvider theme={colorsTheme.textInput}>
-        <DxcInput margin={margin} ref={ref} size={size}>
+        <TextInputContainer margin={margin} size={size} ref={ref}>
           {label && (
-            <Label htmlFor={inputId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
+            <Label
+              htmlFor={inputId}
+              disabled={disabled}
+              backgroundType={backgroundType}
+              hasHelperText={helperText ? true : false}
+            >
               {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
@@ -426,7 +400,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             </HelperText>
           )}
           <InputContainer
-            error={error}
+            error={error ? true : false}
             disabled={disabled}
             backgroundType={backgroundType}
             onClick={handleInputContainerOnClick}
@@ -549,7 +523,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             {isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError) && (
               <Suggestions
                 id={autosuggestId}
-                isError={isAutosuggestError}
+                error={isAutosuggestError ? true : false}
                 onMouseDown={(event) => {
                   event.preventDefault();
                 }}
@@ -561,7 +535,19 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   !isAutosuggestError &&
                   filteredSuggestions.length > 0 &&
                   filteredSuggestions.map((suggestion, index) => (
-                    <HighlightedSuggestion key={`suggestion-${uuidv4()}`} suggestion={suggestion} index={index} />
+                    <Suggestion
+                      key={`suggestion-${index}`}
+                      id={`suggestion-${index}`}
+                      value={value ?? innerValue}
+                      onClick={() => {
+                        changeValue(suggestion);
+                        closeSuggestions();
+                      }}
+                      suggestion={suggestion}
+                      isLast={index === lastOptionIndex}
+                      visuallyFocused={visualFocusedSuggIndex === index}
+                      highlighted={typeof suggestions === "function"}
+                    />
                   ))}
                 {isSearching && (
                   <SuggestionsSystemMessage>{translatedLabels.textInput.searchingMessage}</SuggestionsSystemMessage>
@@ -580,7 +566,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               {error}
             </Error>
           )}
-        </DxcInput>
+        </TextInputContainer>
       </ThemeProvider>
     );
   }
@@ -598,7 +584,14 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const DxcInput = styled.div`
+type CommonBackgroundTypeProps = {
+  backgroundType: BackgroundColorContext;
+};
+type CommonDisabledBackgroundTypeProps = CommonBackgroundTypeProps & {
+  disabled: boolean;
+};
+
+const TextInputContainer = styled.div<TextInputPropsType>`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -615,7 +608,7 @@ const DxcInput = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Label = styled.label`
+const Label = styled.label<CommonDisabledBackgroundTypeProps & { hasHelperText: boolean }>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -630,14 +623,14 @@ const Label = styled.label`
   font-style: ${(props) => props.theme.labelFontStyle};
   font-weight: ${(props) => props.theme.labelFontWeight};
   line-height: ${(props) => props.theme.labelLineHeight};
-  ${(props) => !props.helperText && `margin-bottom: 0.25rem`}
+  ${(props) => !props.hasHelperText && `margin-bottom: 0.25rem`}
 `;
 
 const OptionalLabel = styled.span`
   font-weight: ${(props) => props.theme.optionalLabelFontWeight};
 `;
 
-const HelperText = styled.span`
+const HelperText = styled.span<CommonDisabledBackgroundTypeProps>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -655,7 +648,7 @@ const HelperText = styled.span`
   margin-bottom: 0.25rem;
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.div<CommonDisabledBackgroundTypeProps & { error: boolean }>`
   display: flex;
   position: relative;
   align-items: center;
@@ -718,7 +711,7 @@ const InputContainer = styled.div`
     `};
 `;
 
-const Input = styled.input`
+const Input = styled.input<CommonBackgroundTypeProps>`
   height: calc(2.5rem - 2px);
   width: 100%;
   background: none;
@@ -762,7 +755,7 @@ const ActionIcon = styled.img`
   height: 16px;
 `;
 
-const Action = styled.button`
+const Action = styled.button<CommonBackgroundTypeProps>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -847,7 +840,7 @@ const Action = styled.button`
   }
 `;
 
-const Prefix = styled.span`
+const Prefix = styled.span<CommonDisabledBackgroundTypeProps>`
   height: 1.5rem;
   line-height: 1.5rem;
   margin-left: 0.25rem;
@@ -867,7 +860,7 @@ const Prefix = styled.span`
   pointer-events: none;
 `;
 
-const Suffix = styled.span`
+const Suffix = styled.span<CommonDisabledBackgroundTypeProps>`
   height: 1.5rem;
   line-height: 1.5rem;
   margin: 0 0.25rem;
@@ -887,7 +880,7 @@ const Suffix = styled.span`
   pointer-events: none;
 `;
 
-const ErrorIcon = styled.span`
+const ErrorIcon = styled.span<CommonBackgroundTypeProps>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -904,7 +897,7 @@ const ErrorIcon = styled.span`
   }
 `;
 
-const Error = styled.span`
+const Error = styled.span<CommonBackgroundTypeProps>`
   min-height: 1.5em;
   color: ${(props) =>
     props.backgroundType === "dark" ? props.theme.errorMessageColorOnDark : props.theme.errorMessageColor};
@@ -915,7 +908,7 @@ const Error = styled.span`
   margin-top: 0.25rem;
 `;
 
-const Suggestions = styled.ul`
+const Suggestions = styled.ul<{ error: boolean }>`
   position: absolute;
   z-index: 1;
   max-height: 304px;
@@ -926,9 +919,9 @@ const Suggestions = styled.ul`
   padding: 0.25rem 0;
   width: 100%;
   background-color: ${(props) =>
-    props.isError ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
+    props.error ? props.theme.errorListDialogBackgroundColor : props.theme.listDialogBackgroundColor};
   border: 1px solid
-    ${(props) => (props.isError ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
+    ${(props) => (props.error ? props.theme.errorListDialogBorderColor : props.theme.listDialogBorderColor)};
   border-radius: 0.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   cursor: default;
@@ -939,34 +932,6 @@ const Suggestions = styled.ul`
   font-weight: ${(props) => props.theme.listOptionFontWeight};
 `;
 
-const Suggestion = styled.li`
-  display: flex;
-  padding: 0 0.5rem;
-  line-height: 1.715em;
-  cursor: pointer;
-
-  box-shadow: inset 0 0 0 2px
-    ${(props) => (props.visualFocused ? props.theme.focusListOptionBorderColor : "transparent")};
-  &:hover {
-    background-color: ${(props) => props.theme.hoverListOptionBackgroundColor};
-  }
-  &:active {
-    background-color: ${(props) => props.theme.activeListOptionBackgroundColor};
-  }
-`;
-
-const StyledSuggestion = styled.span`
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 0.25rem 0.5rem 0.188rem 0.5rem;
-  ${(props) =>
-    props.last || props.visualFocused
-      ? `border-bottom: 1px solid transparent`
-      : `border-bottom: 1px solid ${props.theme.listOptionDividerColor}`};
-`;
-
 const SuggestionsSystemMessage = styled.span`
   display: flex;
   padding: 0.25rem 1rem;
@@ -974,7 +939,7 @@ const SuggestionsSystemMessage = styled.span`
   line-height: 1.715em;
 `;
 
-const SuggestionsErrorIcon = styled.span`
+const SuggestionsErrorIcon = styled.span<CommonBackgroundTypeProps>`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

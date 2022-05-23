@@ -5,36 +5,39 @@ import {
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
-import HeadingLink from "../../../common/HeadingLink";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Figure from "@/common/Figure";
+import DocFooter from "@/common/DocFooter";
+import Code from "@/common/Code";
 import sidenavVariants from "./images/sidenav_variants.png";
 import sidenavResponsive from "./images/sidenav_responsive.png";
-import Figure from "../../../common/Figure";
-import DocFooter from "../../../common/DocFooter";
-import Code from "../../../common/Code";
 
-const SidenavUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Use the sidenav element to improve the discoverability of the
-            application, making the navigation links accessible to the users.
-          </DxcText>
-          <DxcText>
-            Keep in mind the type of the devices that you are developing for,
-            and handle the behavior in a way that doesn&#39;t block or reduce
-            the available space of the main area in the application.
-          </DxcText>
-          <DxcText>
-            Try to follow and order for the sidenav content and make use of
-            hierarchy to differentiate between a title and a link.
-          </DxcText>
-        </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Variants</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <DxcList>
+        <DxcText>
+          Use the sidenav element to improve the discoverability of the
+          application, making the navigation links accessible to the users.
+        </DxcText>
+        <DxcText>
+          Keep in mind the type of the devices that you are developing for, and
+          handle the behavior in a way that doesn&#39;t block or reduce the
+          available space of the main area in the application.
+        </DxcText>
+        <DxcText>
+          Try to follow and order for the sidenav content and make use of
+          hierarchy to differentiate between a title and a link.
+        </DxcText>
+      </DxcList>
+    ),
+  },
+  {
+    title: "Variants",
+    content: (
+      <>
         <Figure
           caption={
             <DxcText as="p">
@@ -77,11 +80,13 @@ const SidenavUsagePage = () => {
             </tr>
           </tbody>
         </DxcTable>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>
-          Responsive version for mobile and tablet
-        </HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "Responsive version for mobile and tablet",
+    content: (
+      <>
         <Figure caption="Sidenav component example in mobile devices">
           <Image
             src={sidenavResponsive}
@@ -102,7 +107,21 @@ const SidenavUsagePage = () => {
           with responsive is the overlay, due to lack of space in the screen if
           the sidenav pushed the content of the main container.
         </DxcText>
-      </DxcStack>
+      </>
+    ),
+  },
+];
+
+const SidenavUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Usage"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/sidenav/usage/SidenavUsagePage.tsx" />
     </DxcStack>
   );

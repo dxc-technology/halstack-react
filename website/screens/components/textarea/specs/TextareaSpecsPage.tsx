@@ -6,7 +6,8 @@ import {
   DxcText,
 } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
-import HeadingLink from "@/common/HeadingLink";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
@@ -15,11 +16,11 @@ import specsImage from "./images/textarea_specs.png";
 import statesImage from "./images/textarea_states.png";
 import anatomyImage from "./images/textarea_anatomy.png";
 
-const TextareaSpecsPage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Specifications</HeadingLink>
+const sections = [
+  {
+    title: "Specifications",
+    content: (
+      <>
         <Figure caption="Component design specifications">
           <Image src={specsImage} alt="Component design specifications" />
         </Figure>
@@ -43,9 +44,13 @@ const TextareaSpecsPage = () => {
           <DxcText>Prefix / Suffix</DxcText>
           <DxcText>Error indicator</DxcText>
         </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>States</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "States",
+    content: (
+      <>
         <DxcText as="p">
           States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>error</strong> and{" "}
@@ -54,9 +59,13 @@ const TextareaSpecsPage = () => {
         <Figure caption="Textarea component states example">
           <Image src={statesImage} alt="Textarea component states example" />
         </Figure>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Anatomy</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "Anatomy",
+    content: (
+      <>
         <Image src={anatomyImage} alt="Anatomy image" />
         <DxcList type="number">
           <DxcText>Label</DxcText>
@@ -68,126 +77,156 @@ const TextareaSpecsPage = () => {
           <DxcText>Resizer</DxcText>
           <DxcText>Error message</DxcText>
         </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Design Tokens</HeadingLink>
-        <HeadingLink level={4}>Spacing</HeadingLink>
-        <DxcTable>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Element</th>
-              <th>Token</th>
-              <th>Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Code>padding-left</Code>
-              </td>
-              <td>Texarea container</td>
-              <td>
-                <Code>spacing-8</Code>
-              </td>
-              <td>1rem / 16px</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>padding-right</Code>
-              </td>
-              <td>Texarea container</td>
-              <td>
-                <Code>spacing-8</Code>
-              </td>
-              <td>1rem / 16px</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>margin-top</Code>
-              </td>
-              <td>Texarea container</td>
-              <td>
-                <Code>spacing-4</Code>
-              </td>
-              <td>0.5rem / 8px</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>margin-bottom</Code>
-              </td>
-              <td>Texarea container</td>
-              <td>
-                <Code>spacing-4</Code>
-              </td>
-              <td>0.5rem / 8px</td>
-            </tr>
-          </tbody>
-        </DxcTable>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Accesibility</HeadingLink>
-        <HeadingLink level={4}>WCAG</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Understanding WCAG 2.2 -{" "}
-            <DxcLink
-              newWindow
-              href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
-            >
-              1.3.1: Information and Relationships
-            </DxcLink>
-          </DxcText>
-          <DxcText>
-            Understanding WCAG 2.2 -{" "}
-            <DxcLink
-              newWindow
-              href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification"
-            >
-              3.3.1: Error Identification
-            </DxcLink>
-          </DxcText>
-          <DxcText>
-            Understanding WCAG 2.2 -{" "}
-            <DxcLink
-              newWindow
-              href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions"
-            >
-              3.3.2: Labels and Instructions
-            </DxcLink>
-          </DxcText>
-          <DxcText>
-            Understanding WCAG 2.2 -{" "}
-            <DxcLink
-              newWindow
-              href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion"
-            >
-              3.3.3: Error Suggestion
-            </DxcLink>
-          </DxcText>
-          <DxcText>
-            Understanding WCAG 2.2 -{" "}
-            <DxcLink
-              newWindow
-              href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
-            >
-              4.1.2: Name, Role, Value
-            </DxcLink>
-          </DxcText>
-        </DxcList>
-        <HeadingLink level={4}>WAI-ARIA</HeadingLink>
-        <DxcList>
-          <DxcText>
-            WAI-ARIA Accessible Rich Internet Applications 1.2 -{" "}
-            <DxcLink
-              newWindow
-              href="https://www.w3.org/TR/wai-aria-1.2/#textbox"
-            >
-              textbox role
-            </DxcLink>
-          </DxcText>
-        </DxcList>
-      </DxcStack>
+      </>
+    ),
+  },
+  {
+    title: "Design tokens",
+    subSections: [
+      {
+        title: "Spacing",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Element</th>
+                <th>Token</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>padding-left</Code>
+                </td>
+                <td>Texarea container</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>1rem / 16px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>padding-right</Code>
+                </td>
+                <td>Texarea container</td>
+                <td>
+                  <Code>spacing-8</Code>
+                </td>
+                <td>1rem / 16px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>margin-top</Code>
+                </td>
+                <td>Texarea container</td>
+                <td>
+                  <Code>spacing-4</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>margin-bottom</Code>
+                </td>
+                <td>Texarea container</td>
+                <td>
+                  <Code>spacing-4</Code>
+                </td>
+                <td>0.5rem / 8px</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Accessibility",
+    subSections: [
+      {
+        title: "WCAG",
+        content: (
+          <DxcList>
+            <DxcText>
+              Understanding WCAG 2.2 -{" "}
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+              >
+                1.3.1: Information and Relationships
+              </DxcLink>
+            </DxcText>
+            <DxcText>
+              Understanding WCAG 2.2 -{" "}
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification"
+              >
+                3.3.1: Error Identification
+              </DxcLink>
+            </DxcText>
+            <DxcText>
+              Understanding WCAG 2.2 -{" "}
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions"
+              >
+                3.3.2: Labels and Instructions
+              </DxcLink>
+            </DxcText>
+            <DxcText>
+              Understanding WCAG 2.2 -{" "}
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion"
+              >
+                3.3.3: Error Suggestion
+              </DxcLink>
+            </DxcText>
+            <DxcText>
+              Understanding WCAG 2.2 -{" "}
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
+              >
+                4.1.2: Name, Role, Value
+              </DxcLink>
+            </DxcText>
+          </DxcList>
+        ),
+      },
+      {
+        title: "WAI-ARIA",
+        content: (
+          <DxcList>
+            <DxcText>
+              WAI-ARIA Accessible Rich Internet Applications 1.2 -{" "}
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/TR/wai-aria-1.2/#textbox"
+              >
+                textbox role
+              </DxcLink>
+            </DxcText>
+          </DxcList>
+        ),
+      },
+    ],
+  },
+];
+
+const TextareaSpecsPage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          title="Specifications"
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/textarea/specs/TextareaSpecsPage.tsx" />
     </DxcStack>
   );

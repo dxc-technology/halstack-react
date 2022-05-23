@@ -7,43 +7,46 @@ import {
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
+import styled from "styled-components";
 
 const DocFooter = ({ githubLink }: { githubLink: string }) => {
   const { pathname } = useRouter();
   const { previousLink, nextLink } = getNavigationLinks(pathname);
 
   return (
-    <DxcStack divider gutter="xxlarge">
-      <DxcLink icon={githubIcon} href={githubLink} newWindow>
-        Edit this page on GitHub
-      </DxcLink>
-      <DxcRow justify="spaceBetween">
-        <DxcStack gutter="small">
-          {previousLink && (
-            <>
-              <DxcText>Previous</DxcText>
-              <DxcLink icon={arrowBack}>
-                <Link href={previousLink.path}>
-                  <a>{previousLink.label}</a>
-                </Link>
-              </DxcLink>
-            </>
-          )}
-        </DxcStack>
-        <DxcStack align="end" gutter="small">
-          {nextLink && (
-            <>
-              <DxcText>Next</DxcText>
-              <DxcLink icon={arrowForward} iconPosition="after">
-                <Link href={nextLink.path}>
-                  <a>{nextLink.label}</a>
-                </Link>
-              </DxcLink>
-            </>
-          )}
-        </DxcStack>
-      </DxcRow>
-    </DxcStack>
+    <DocFooterContainer>
+      <DxcStack divider gutter="xxlarge">
+        <DxcLink icon={githubIcon} href={githubLink} newWindow>
+          Edit this page on GitHub
+        </DxcLink>
+        <DxcRow justify="spaceBetween">
+          <DxcStack gutter="small">
+            {previousLink && (
+              <>
+                <DxcText>Previous</DxcText>
+                <DxcLink icon={arrowBack}>
+                  <Link href={previousLink.path}>
+                    <a>{previousLink.label}</a>
+                  </Link>
+                </DxcLink>
+              </>
+            )}
+          </DxcStack>
+          <DxcStack align="end" gutter="small">
+            {nextLink && (
+              <>
+                <DxcText>Next</DxcText>
+                <DxcLink icon={arrowForward} iconPosition="after">
+                  <Link href={nextLink.path}>
+                    <a>{nextLink.label}</a>
+                  </Link>
+                </DxcLink>
+              </>
+            )}
+          </DxcStack>
+        </DxcRow>
+      </DxcStack>
+    </DocFooterContainer>
   );
 };
 
@@ -122,5 +125,11 @@ const githubIcon = (
     </g>
   </svg>
 );
+
+const DocFooterContainer = styled.div`
+  max-width: 960px;
+  margin-left: 200px;
+  margin-bottom: 48px;
+`;
 
 export default DocFooter;
