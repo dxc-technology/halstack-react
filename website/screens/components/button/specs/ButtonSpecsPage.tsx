@@ -13,6 +13,7 @@ import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import buttonSpecsImage from "./images/button_specs.png";
 import buttonStatesImage from "./images/button_states.png";
+import buttonAnatomyImage from "./images/button_anatomy.png";
 
 const sections = [
   {
@@ -51,11 +52,11 @@ const sections = [
     content: (
       <>
         <Image src={buttonAnatomyImage} alt="Button anatomy" />
-         <DxcList type="number">
-           <DxcText>Container</DxcText>
-           <DxcText>Icon</DxcText>
-           <DxcText>Label</DxcText>
-         </DxcList>
+        <DxcList type="number">
+          <DxcText>Container</DxcText>
+          <DxcText>Icon</DxcText>
+          <DxcText>Label</DxcText>
+        </DxcList>
       </>
     ),
   },
