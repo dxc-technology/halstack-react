@@ -5,7 +5,7 @@ const Color = () => {
   return (
     <>
       <Head>
-        <title>Color2 — Halstack Design System</title>
+        <title>Color — Halstack Design System</title>
       </Head>
       <ColorPage></ColorPage>
     </>
