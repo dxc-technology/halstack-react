@@ -320,7 +320,6 @@ const Spacing = () => {
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Spacing"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>

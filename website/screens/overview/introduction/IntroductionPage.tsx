@@ -161,7 +161,6 @@ const Introduction = () => {
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Halstack Design System"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>

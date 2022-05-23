@@ -1132,7 +1132,6 @@ const Typography = () => {
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Typography"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>
