@@ -1,5 +1,4 @@
 import React from "react";
-import { userEvent, within } from "@storybook/testing-library";
 import DxcSwitch from "./Switch";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
@@ -20,6 +19,10 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
       <DxcSwitch />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus-within">
+      <Title title="Focused" theme="light" level={4} />
+      <DxcSwitch label="Switch" defaultChecked />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Checked" theme="light" level={4} />
@@ -46,6 +49,10 @@ export const Chromatic = () => (
         <ExampleContainer>
           <Title title="With label" theme="dark" level={4} />
           <DxcSwitch label="Switch" />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-focus-within">
+          <Title title="Focused" theme="dark" level={4} />
+          <DxcSwitch label="Switch" defaultChecked />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Checked" theme="dark" level={4} />
@@ -129,32 +136,3 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
-
-const Switch = () => (
-  <ExampleContainer>
-    <Title title="Focused" theme="light" level={4} />
-    <DxcSwitch label="Switch" />
-  </ExampleContainer>
-);
-export const FocusedSwitch = Switch.bind({});
-FocusedSwitch.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  canvas.getByRole("switch").focus();
-};
-
-const DarkSwitch = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer>
-        <Title title="Focused" theme="dark" level={4} />
-        <DxcSwitch label="Switch" />
-      </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
-export const FocusedSwitchOnDark = DarkSwitch.bind({});
-FocusedSwitchOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  canvas.getByRole("switch").focus();
-};

@@ -4,20 +4,19 @@ import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DarkContainer from "../../.storybook/components/DarkSection";
-import { userEvent } from "@storybook/testing-library";
 
 export default {
   title: "Checkbox",
   component: DxcCheckbox,
 };
 
-const Checkbox = () => (
+export const Checkbox = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
       <DxcCheckbox label="Checkbox" />
     </ExampleContainer>
-    <ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus-within">
       <Title title="Focused" theme="light" level={4} />
       <DxcCheckbox label="Focused" />
     </ExampleContainer>
@@ -78,6 +77,10 @@ const Checkbox = () => (
         <ExampleContainer>
           <Title title="Default" theme="dark" level={4} />
           <DxcCheckbox label="Checkbox" />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-focus-within">
+          <Title title="Focused" theme="dark" level={4} />
+          <DxcCheckbox label="Focused" />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Checked" theme="dark" level={4} />
@@ -180,9 +183,3 @@ const Checkbox = () => (
     </ExampleContainer>
   </>
 );
-
-export const Chromatic = Checkbox.bind({});
-Chromatic.play = async () => {
-  await userEvent.tab();
-  await userEvent.tab();
-};
