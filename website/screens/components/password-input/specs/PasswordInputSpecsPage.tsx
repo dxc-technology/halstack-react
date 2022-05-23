@@ -1,24 +1,26 @@
-import Image from "@/common/Image";
-import passwordInputActions from "./images/password_actions.png";
-import passwordInputAnatomy from "./images/password_anatomy.png";
-import passwordInputSpecs from "./images/password_specs.png";
-import passworsInputStates from "./images/password_states.png";
-import HeadingLink from "../../../common/HeadingLink";
 import {
   DxcStack,
   DxcText,
   DxcLink,
   DxcList,
 } from "@dxc-technology/halstack-react";
-import Figure from "../../../common/Figure";
-import Code from "../../../common/Code";
-import DocFooter from "../../../common/DocFooter";
+import Link from "next/link";
+import Figure from "@/common/Figure";
+import Code from "@/common/Code";
+import DocFooter from "@/common/DocFooter";
+import Image from "@/common/Image";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import passwordInputActions from "./images/password_actions.png";
+import passwordInputAnatomy from "./images/password_anatomy.png";
+import passwordInputSpecs from "./images/password_specs.png";
+import passworsInputStates from "./images/password_states.png";
 
-const PasswordInputSpecsPage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Specifications</HeadingLink>
+const sections = [
+  {
+    title: "Specifications",
+    content: (
+      <>
         <Figure caption="Password input component specifications">
           <Image
             src={passwordInputSpecs}
@@ -30,10 +32,11 @@ const PasswordInputSpecsPage = () => {
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
           for reference{" "}
-          <DxcLink
-            href="/components/text-input/specifications"
-            text="check the text input component documentation"
-          />
+          <DxcLink>
+            <Link href="/components/text-input/specifications">
+              <a>check the text input component documentation</a>
+            </Link>
+          </DxcLink>
           .
         </DxcText>
         <DxcText as="p">
@@ -44,9 +47,13 @@ const PasswordInputSpecsPage = () => {
           <DxcText>Placeholder</DxcText>
           <DxcText>Prefix / Suffix</DxcText>
         </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>States</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "States",
+    content: (
+      <>
         <DxcText as="p">
           The component password has the following states:
         </DxcText>
@@ -61,9 +68,14 @@ const PasswordInputSpecsPage = () => {
             alt="Password input component states"
           />
         </Figure>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Anatomy</HeadingLink>
+      </>
+    ),
+  },
+
+  {
+    title: "Anatomy",
+    content: (
+      <>
         <Image src={passwordInputAnatomy} alt="Component anatomy example" />
         <DxcList type="number">
           <DxcText>Label</DxcText>
@@ -77,9 +89,13 @@ const PasswordInputSpecsPage = () => {
           <DxcText>Error message</DxcText>
           <DxcText>Input value</DxcText>
         </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Actions</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "Actions",
+    content: (
+      <>
         <Figure caption="Show and hide action to toggle the value visibility">
           <Image
             src={passwordInputActions}
@@ -101,48 +117,75 @@ const PasswordInputSpecsPage = () => {
             resulting action.
           </DxcText>
         </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Accessibility</HeadingLink>
-        <HeadingLink level={4}>WCAG</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Understanding WCAG 2.2 -{" "}
-            <DxcLink
-              href="https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html"
-              text="SC 1.3.5 Identify Input Purpose"
-              newWindow
-            ></DxcLink>
-          </DxcText>
-          <DxcText>
-            Understanding WCAG 2.2 -{" "}
-            <DxcLink
-              href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion"
-              text="SC 3.3.3 Error Suggestion"
-              newWindow
-            ></DxcLink>
-          </DxcText>
-          <DxcText>
-            Understanding WCAG 2.2 -{" "}
-            <DxcLink
-              href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication"
-              text="SC 3.3.7 Accessible Authentication"
-              newWindow
-            ></DxcLink>
-          </DxcText>
-        </DxcList>
-        <HeadingLink level={4}>WAI Web Accessibility Tutorials</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Forms -{" "}
-            <DxcLink
-              href="https://www.w3.org/WAI/tutorials/forms/examples/password/"
-              text="Full Password Example"
-              newWindow
-            ></DxcLink>
-          </DxcText>
-        </DxcList>
-      </DxcStack>
+      </>
+    ),
+  },
+  {
+    title: "Accessibility",
+    subSections: [
+      {
+        title: "WCAG",
+        content: (
+          <DxcList>
+            <DxcText>
+              Understanding WCAG 2.2 -{" "}
+              <DxcLink
+                href="https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html"
+                newWindow
+              >
+                SC 1.3.5 Identify Input Purpose
+              </DxcLink>
+            </DxcText>
+            <DxcText>
+              Understanding WCAG 2.2 -{" "}
+              <DxcLink
+                href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion"
+                newWindow
+              >
+                SC 3.3.3 Error Suggestion
+              </DxcLink>
+            </DxcText>
+            <DxcText>
+              Understanding WCAG 2.2 -{" "}
+              <DxcLink
+                href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication"
+                newWindow
+              >
+                SC 3.3.7 Accessible Authentication
+              </DxcLink>
+            </DxcText>
+          </DxcList>
+        ),
+      },
+      {
+        title: "WAI Web Accessibility Tutorials",
+        content: (
+          <DxcList>
+            <DxcText>
+              Forms -{" "}
+              <DxcLink
+                href="https://www.w3.org/WAI/tutorials/forms/examples/password/"
+                newWindow
+              >
+                Full Password Example
+              </DxcLink>
+            </DxcText>
+          </DxcList>
+        ),
+      },
+    ],
+  },
+];
+
+const PasswordInputSpecsPage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/password-input/specs/PasswordInputSpecsPage.tsx" />
     </DxcStack>
   );

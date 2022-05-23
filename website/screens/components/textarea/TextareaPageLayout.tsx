@@ -1,4 +1,6 @@
-import PageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
+import TabsPageHeading from "@/common/TabsPageLayout";
 
 const TextareaPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -7,13 +9,18 @@ const TextareaPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Textarea"
-      description="A textarea allows the users enter a multi-line, free-form text."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Textarea" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            A textarea allows the users enter a multi-line, free-form text.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 

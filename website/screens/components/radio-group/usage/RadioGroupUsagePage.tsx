@@ -1,5 +1,3 @@
-import Figure from "@/common/Figure";
-import HeadingLink from "@/common/HeadingLink";
 import {
   DxcList,
   DxcStack,
@@ -7,32 +5,37 @@ import {
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
-import radioGroupStacking from "./images/radio_group_stacking.png";
+import Figure from "@/common/Figure";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
+import radioGroupStacking from "./images/radio_group_stacking.png";
 
-const RadioGroupUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
-        <DxcList>
-          <DxcText>
-            Labelling should be concise and clearly differentiated with respect
-            to other options.
-          </DxcText>
-          <DxcText>
-            One option of the radio group can be pre-selected. Try to select the
-            safest or convenient option.
-          </DxcText>
-          <DxcText>Single radio buttons should not be used.</DxcText>
-          <DxcText>
-            If the question that the user needs to responde is as easier as
-            yes/no, it is recommended to use a checkbox instead of radio group.
-          </DxcText>
-        </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Stacking</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <DxcList>
+        <DxcText>
+          Labelling should be concise and clearly differentiated with respect to
+          other options.
+        </DxcText>
+        <DxcText>
+          One option of the radio group can be pre-selected. Try to select the
+          safest or convenient option.
+        </DxcText>
+        <DxcText>Single radio buttons should not be used.</DxcText>
+        <DxcText>
+          If the question that the user needs to responde is as easier as
+          yes/no, it is recommended to use a checkbox instead of radio group.
+        </DxcText>
+      </DxcList>
+    ),
+  },
+  {
+    title: "Stacking",
+    content: (
+      <>
         <Figure caption="Radio button stacking options">
           <Image src={radioGroupStacking} alt="Radio button stacking options" />
         </Figure>
@@ -69,7 +72,20 @@ const RadioGroupUsagePage = () => {
           between component with label in the same horizontal edge to avoid the
           problem of pairing and scannability.
         </DxcText>
-      </DxcStack>
+      </>
+    ),
+  },
+];
+
+const RadioGroupUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/radio-group/usage/RadioGroupUsagePage.tsx" />
     </DxcStack>
   );

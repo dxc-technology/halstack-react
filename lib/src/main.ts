@@ -41,7 +41,7 @@ import DxcList from "./list/List";
 import DxcRadioGroup from "./radio-group/RadioGroup";
 import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
-import DxcQuickNavContainer from "./quick-nav-container/QuickNavContainer";
+import DxcQuickNav from "./quick-nav/QuickNav";
 import DxcNavTabs from "./tabs-nav/NavTabs";
 
 import HalstackContext, { HalstackProvider } from "./HalstackContext";
@@ -94,6 +94,6 @@ export {
   DxcRadioGroup,
   DxcBleed,
   DxcInset,
-  DxcQuickNavContainer,
+  DxcQuickNav,
   DxcNavTabs,
 };

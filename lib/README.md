@@ -16,8 +16,7 @@ Before opening new issues or pull requests, please refer to [CONTRIBUTING.MD](ht
 
 ## Development Setup
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
-
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 The project is divided in two main folders. One is for the actual library, and the other one is a React application using the library.
 
@@ -35,7 +34,7 @@ Install the library dependencies.
 npm install
 ```
 
-Run the build process into `dist` folder, detecting and automatically building changes in src. 
+Run the build process into `dist` folder, detecting and automatically building changes in src.
 
 ```bash
 npm run build:watch #'npm run build' if there is no need to watch for changes
@@ -63,4 +62,4 @@ npm start # runs create-react-app dev server
 
 Now, anytime you make a change to the library or the app, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
 
-## Running the tests
+## Running tests

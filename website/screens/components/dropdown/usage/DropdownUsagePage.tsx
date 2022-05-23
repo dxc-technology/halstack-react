@@ -1,15 +1,16 @@
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
-import DocFooter from "../../../common/DocFooter";
-import HeadingLink from "../../../common/HeadingLink";
+import DocFooter from "@/common/DocFooter";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
-import Figure from "../../../common/Figure";
+import Figure from "@/common/Figure";
 import dropdownIconUsage from "./images/dropdown_icon_usage.png";
 
-const DropdownUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <>
         <DxcText as="p">
           Dropdowns have a similar look and behaviour to select components, the
           difference is that while select is only to collect user's data into a
@@ -39,9 +40,13 @@ const DropdownUsagePage = () => {
           other options to display the information or customize the position of
           the pop up to fitting the necessities of the application.
         </DxcText>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Icon usage</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "Icon usage",
+    content: (
+      <>
         <DxcText as="p">
           It is allowed the use of icons within the dropdown component. There
           are several options of configuration, the icon can be placed before or
@@ -53,27 +58,40 @@ const DropdownUsagePage = () => {
         <Figure caption="Examples of icon usage">
           <Image src={dropdownIconUsage} alt="Examples of icon usage" />
         </Figure>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>
-          User Interface Design Considerations
-        </HeadingLink>
-        <DxcList>
-          <DxcText>
-            Consider the number of options (binary decisions or a few items) to
-            decide to implement one component that represent in a better way the
-            data, i.e. radio button or switch toggle.
-          </DxcText>
-          <DxcText>
-            For a large number of well specified options, consider to use an
-            autocomplete field to filter the amount of options while typing.
-          </DxcText>
-          <DxcText>
-            Consider the input, might be that a text input would fit better than
-            a dropdown.
-          </DxcText>
-        </DxcList>
-      </DxcStack>
+      </>
+    ),
+  },
+  {
+    title: "User Interface Design Considerations",
+    content: (
+      <DxcList>
+        <DxcText>
+          Consider the number of options (binary decisions or a few items) to
+          decide to implement one component that represent in a better way the
+          data, i.e. radio button or switch toggle.
+        </DxcText>
+        <DxcText>
+          For a large number of well specified options, consider to use an
+          autocomplete field to filter the amount of options while typing.
+        </DxcText>
+        <DxcText>
+          Consider the input, might be that a text input would fit better than a
+          dropdown.
+        </DxcText>
+      </DxcList>
+    ),
+  },
+];
+
+const DropdownUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/dropdown/usage/DropdownUsagePage.tsx" />
     </DxcStack>
   );

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from "react";
-import DxcStack from "../stack/Stack";
+import { DxcStack } from "@dxc-technology/halstack-react";
 import HeadingLink from "./HeadingLink";
 
 type SectionType = {
@@ -10,9 +10,16 @@ type SectionType = {
   children?: React.ReactNode;
 };
 
-const Section = ({ title, subSections, level, children }: SectionType): JSX.Element => {
+const Section = ({
+  title,
+  subSections,
+  level,
+  children,
+}: SectionType): JSX.Element => {
   return (
-    <DxcStack gutter={level === 1 ? "xlarge" : level === 2 ? "large" : "medium"}>
+    <DxcStack
+      gutter={level === 1 ? "xlarge" : level === 2 ? "large" : "medium"}
+    >
       <HeadingLink level={level}>{title}</HeadingLink>
       {children}
       {subSections?.map((subSection) => {

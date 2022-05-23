@@ -4,37 +4,41 @@ import {
   DxcTable,
   DxcText,
 } from "@dxc-technology/halstack-react";
-import HeadingLink from "../../../common/HeadingLink";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import DocFooter from "@/common/DocFooter";
+import Figure from "@/common/Figure";
+import Image from "@/common/Image";
 import buttonIconImage from "./images/button_icon.png";
 import buttonVariantsImage from "./images/button_variants.png";
-import DocFooter from "../../../common/DocFooter";
-import Figure from "../../../common/Figure";
-import Image from "@/common/Image";
 
-const ButtonUsagePage = () => {
-  return (
-    <DxcStack gutter="xxxlarge">
-      <DxcStack gutter="large">
-        <HeadingLink level={2}>Usage</HeadingLink>
-        <DxcList>
-          <DxcText>
-            In instances where buttons are vertically stacked, buttons should be
-            the same length.
-          </DxcText>
-          <DxcText>
-            Horizontally displayed buttons are dependent on the amount of text,
-            so button lengths may vary, always considering the minimum and
-            maximum established sizes.
-          </DxcText>
-          <DxcText>Text or icon on a button should always be centered.</DxcText>
-          <DxcText>
-            There must be 8 pixels of space between horizontally displayed
-            buttons.
-          </DxcText>
-        </DxcList>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Variants</HeadingLink>
+const sections = [
+  {
+    title: "Usage",
+    content: (
+      <DxcList>
+        <DxcText>
+          In instances where buttons are vertically stacked, buttons should be
+          the same length.
+        </DxcText>
+        <DxcText>
+          Horizontally displayed buttons are dependent on the amount of text, so
+          button lengths may vary, always considering the minimum and maximum
+          established sizes.
+        </DxcText>
+        <DxcText>Text or icon on a button should always be centered.</DxcText>
+        <DxcText>
+          There must be 8 pixels of space between horizontally displayed
+          buttons.
+        </DxcText>
+      </DxcList>
+    ),
+  },
+
+  {
+    title: "Variants",
+    content: (
+      <>
         <DxcText as="p">
           We can identify three different variants that imply some visual
           changes according to color and border attributes.
@@ -82,9 +86,13 @@ const ButtonUsagePage = () => {
             </tr>
           </tbody>
         </DxcTable>
-      </DxcStack>
-      <DxcStack gutter="large">
-        <HeadingLink level={3}>Icon usage</HeadingLink>
+      </>
+    ),
+  },
+  {
+    title: "Icon usage",
+    content: (
+      <>
         <DxcText as="p">
           Any icon can be used in Halstack Design System, so it is apt to the
           user to choose between one of the multiple options that are offered
@@ -109,7 +117,20 @@ const ButtonUsagePage = () => {
         <Figure caption="Icon usage examples">
           <Image src={buttonIconImage} alt="Icon usage examples" />
         </Figure>
-      </DxcStack>
+      </>
+    ),
+  },
+];
+
+const ButtonUsagePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/button/usage/ButtonUsagePage.tsx" />
     </DxcStack>
   );
