@@ -944,7 +944,6 @@ const Themes = () => {
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Themes"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>

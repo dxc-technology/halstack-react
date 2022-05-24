@@ -95,7 +95,6 @@ const FooterUsagePage = () => {
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Usage"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>

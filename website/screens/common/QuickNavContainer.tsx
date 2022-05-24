@@ -4,7 +4,7 @@ import { DxcQuickNav, DxcStack } from "@dxc-technology/halstack-react";
 import Section from "./Section";
 
 type QuickNavContainerTypes = {
-  title: string;
+  title?: string;
   sections: SectionType[];
   startHeadingLevel?: 1 | 2 | 3 | 4 | 5;
 };
