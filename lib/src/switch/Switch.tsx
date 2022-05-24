@@ -1,5 +1,4 @@
-// @ts-nocheck
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { Switch } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
@@ -8,6 +7,38 @@ import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
 import SwitchPropsType from "./types";
+
+type LabelPropsType = {
+  id?: string;
+  label?: string;
+  labelPosition?: "before" | "after";
+  disabled?: boolean;
+  optional?: boolean;
+  onClick?: () => void;
+};
+const Label = React.memo(({ id, label, labelPosition, disabled, optional, onClick }: LabelPropsType): JSX.Element => {
+  const backgroundType = useContext(BackgroundColorContext);
+
+  return (
+    <LabelContainer
+      id={id}
+      labelPosition={labelPosition}
+      onClick={!disabled && onClick}
+      disabled={disabled}
+      backgroundType={backgroundType}
+    >
+      {labelPosition === "before" ? (
+        <>
+          {label} {optional && <span>(Optional)</span>}
+        </>
+      ) : (
+        <>
+          {optional && <span>(Optional)</span>} {label}
+        </>
+      )}
+    </LabelContainer>
+  );
+});
 
 const DxcSwitch = ({
   defaultChecked,
@@ -28,34 +59,22 @@ const DxcSwitch = ({
   const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
+  const switchRef = useRef(null);
 
-  const handlerSwitchChange = (event) => {
+  const handleLabelOnClick = () => {
+    const isChecked = checked ?? innerChecked;
+    setInnerChecked(!isChecked);
+    onChange?.(!isChecked);
+    document.activeElement !== switchRef?.current && switchRef?.current?.focus();
+  };
+
+  const handleSwitchChange = (event) => {
     if (checked === undefined) {
       const isChecked = event.target.checked ?? !innerChecked;
       setInnerChecked(isChecked);
       onChange?.(isChecked);
     } else onChange?.(!checked);
   };
-
-  const labelComponent = (
-    <LabelContainer
-      id={labelId}
-      labelPosition={labelPosition}
-      onClick={!disabled && handlerSwitchChange}
-      disabled={disabled}
-      backgroundType={backgroundType}
-    >
-      {labelPosition === "before" ? (
-        <>
-          {label} {optional && <span>(Optional)</span>}
-        </>
-      ) : (
-        <>
-          {optional && <span>(Optional)</span>} {label}
-        </>
-      )}
-    </LabelContainer>
-  );
 
   return (
     <ThemeProvider theme={colorsTheme.switch}>
@@ -66,7 +85,16 @@ const DxcSwitch = ({
         size={size}
         backgroundType={backgroundType}
       >
-        {labelPosition === "before" && labelComponent}
+        {labelPosition === "before" && (
+          <Label
+            id={labelId}
+            label={label}
+            labelPosition={labelPosition}
+            disabled={disabled}
+            optional={optional}
+            onClick={handleLabelOnClick}
+          />
+        )}
         <Switch
           checked={checked ?? innerChecked}
           inputProps={{
@@ -76,12 +104,22 @@ const DxcSwitch = ({
             "aria-checked": checked ?? innerChecked,
             tabIndex: tabIndex,
           }}
-          onChange={handlerSwitchChange}
+          onChange={handleSwitchChange}
           value={value}
           disabled={disabled}
           disableRipple
+          inputRef={switchRef}
         />
-        {labelPosition === "after" && labelComponent}
+        {labelPosition === "after" && (
+          <Label
+            id={labelId}
+            label={label}
+            labelPosition={labelPosition}
+            disabled={disabled}
+            optional={optional}
+            onClick={handleLabelOnClick}
+          />
+        )}
       </SwitchContainer>
     </ThemeProvider>
   );
@@ -100,7 +138,11 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const SwitchContainer = styled.div`
+type CommonContainerProps = SwitchPropsType & {
+  backgroundType: string;
+};
+
+const SwitchContainer = styled.div<CommonContainerProps>`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   display: inline-flex;
   align-items: center;
@@ -207,7 +249,7 @@ const SwitchContainer = styled.div`
   }
 `;
 
-const LabelContainer = styled.span`
+const LabelContainer = styled.span<CommonContainerProps>`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
