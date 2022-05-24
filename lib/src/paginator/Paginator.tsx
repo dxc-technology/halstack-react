@@ -139,7 +139,7 @@ const DxcPaginatorContainer = styled.div`
   text-transform: ${(props) => props.theme.fontTextTransform};
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
-  padding: 0.75rem 2rem;
+  padding: ${(props) => props.theme.verticalPadding} ${(props) => props.theme.horizontalPadding};
 
   button {
     &:disabled {
