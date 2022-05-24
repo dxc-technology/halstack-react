@@ -77,7 +77,7 @@ const getCurrentLinkIndex = (links: LinkDetails[], currentPath: string) => {
       currentLinkIndex = index;
       matchedWords = link.path.length;
     }
-  })
+  });
   return currentLinkIndex;
 };
 

@@ -1,4 +1,6 @@
-import PageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
+import TabsPageHeading from "@/common/TabsPageLayout";
 
 const AlertPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -7,13 +9,19 @@ const AlertPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Alert"
-      description="Alert messages are meant to provide contextual feedback about important changes in the interface."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Alert" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            Alert messages are meant to provide contextual feedback about
+            important changes in the interface.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 

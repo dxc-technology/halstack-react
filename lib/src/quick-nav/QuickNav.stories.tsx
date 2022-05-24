@@ -38,13 +38,13 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Default" level={4} />
       <QuickNavContainer>
-        <DxcQuickNav title="Sections" links={links}></DxcQuickNav>
+        <DxcQuickNav links={links}></DxcQuickNav>
       </QuickNavContainer>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Link hovered" level={4} />
       <QuickNavContainer>
-        <DxcQuickNav title="Sections" links={links}></DxcQuickNav>
+        <DxcQuickNav links={links}></DxcQuickNav>
       </QuickNavContainer>
     </ExampleContainer>
     <ExampleContainer>

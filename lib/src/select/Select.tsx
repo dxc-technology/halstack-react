@@ -375,7 +375,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                   autoComplete="nope"
                   autoCorrect="nope"
                   size={1}
-                ></SearchInput>
+                />
               )}
               {(!searchable || searchValue === "") &&
                 (multiple ? (

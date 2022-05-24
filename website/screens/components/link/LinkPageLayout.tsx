@@ -1,4 +1,6 @@
-import PageHeading from "../../common/TabsPageLayout";
+import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import PageHeading from "@/common/PageHeading";
+import TabsPageHeading from "@/common/TabsPageLayout";
 
 const LinkPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -7,14 +9,19 @@ const LinkPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <PageHeading
-      title="Link"
-      description="Links are used as navigational elements. They may appear isolated, inside a
-    sentence or paragraph or following the content."
-      tabs={tabs}
-    >
+    <DxcStack gutter="xlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Link" weight="bold"></DxcHeading>
+          <DxcText as="p">
+            Links are used as navigational elements. They may appear isolated,
+            inside a sentence or paragraph or following the content.
+          </DxcText>
+          <TabsPageHeading tabs={tabs}></TabsPageHeading>
+        </DxcStack>
+      </PageHeading>
       {children}
-    </PageHeading>
+    </DxcStack>
   );
 };
 
