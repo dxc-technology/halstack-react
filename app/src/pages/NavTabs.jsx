@@ -57,19 +57,19 @@ function NavTabs() {
       <div className="test-case" id="default">
         <h4>Default</h4>
         <DxcNavTabs>
-          <DxcNavTabs.Tab href="#" active>
+          <DxcNavTabs.Tab href="/test1" active>
             Tab 1
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" disabled>
+          <DxcNavTabs.Tab href="/test2" disabled>
             Tab 2
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" notificationNumber>
+          <DxcNavTabs.Tab href="/test3" notificationNumber>
             Tab 3
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" notificationNumber={100} icon={twitterIcon}>
+          <DxcNavTabs.Tab href="/test5" notificationNumber={100} icon={twitterIcon}>
             Tab 4
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" icon={linkedinSVG}>
+          <DxcNavTabs.Tab href="/test6" icon={linkedinSVG}>
             Tab 5
           </DxcNavTabs.Tab>
         </DxcNavTabs>
