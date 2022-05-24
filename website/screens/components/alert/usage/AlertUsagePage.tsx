@@ -156,7 +156,6 @@ const AlertUsagePage = () => {
     <DxcStack gutter="xxxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Usage"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>

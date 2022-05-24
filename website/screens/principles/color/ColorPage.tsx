@@ -835,7 +835,6 @@ const Color = () => {
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Color"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>
