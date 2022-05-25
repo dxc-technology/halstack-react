@@ -10,8 +10,6 @@ import SelectPropsType, { RefType } from "./types";
 import selectIcons from "./Icons";
 import Listbox from "./Listbox";
 
-const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
-
 const groupsHaveOptions = (innerOptions) =>
   innerOptions[0].hasOwnProperty("options")
     ? innerOptions[0].options

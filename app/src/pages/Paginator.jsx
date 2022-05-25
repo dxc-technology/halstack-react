@@ -15,7 +15,7 @@ function App() {
 
   const labels = {
     paginator: {
-      itemsPerPage: " Num. items",
+      itemsPerPageText: " Num. items",
       pageOfText: (a, b) => `Pagina: ${a} de ${b}`,
     },
   };

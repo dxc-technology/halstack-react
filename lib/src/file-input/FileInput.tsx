@@ -81,11 +81,9 @@ const DxcFileInput = ({
   const checkFileSize = (file) => {
     if (file.size < minSize) {
       return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-      // return "File size must be greater than min size.";
     }
     if (file.size > maxSize) {
       return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
-      // return "File size must be less than max size.";
     }
   };
 
