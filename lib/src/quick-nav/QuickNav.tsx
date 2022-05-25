@@ -14,7 +14,7 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
   return (
     <QuickNavContainer>
       <DxcStack gutter="xsmall">
-        <DxcHeading level={4} text={title || translatedLabels.formFields.quickNavContentTitle} />
+        <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
         <DxcList>
           <DxcStack gutter="xsmall">
             {links.map((link) => (

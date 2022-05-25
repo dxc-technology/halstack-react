@@ -27,8 +27,8 @@ const links = [
 ];
 
 const labels = {
-  formFields: {
-    quickNavContentTitle: "Contenido",
+  quickNav: {
+    contentTitle: "Contenido",
   },
 };
 function App() {
