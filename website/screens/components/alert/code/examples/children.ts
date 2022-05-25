@@ -5,13 +5,13 @@ const code = `() => {
         <DxcInset space="large">
             <DxcStack gutter="large">
                 <DxcAlert
-                    type="warning"
+                    type="confirm"
                     mode="inline"
-                    inlineText="Lorem ipsum dolor sit amet."
+                    size="medium"
+                    inlineText="Inline text."
                 >
                     <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    Custom content.
                     </div>
                 </DxcAlert>
             </DxcStack>

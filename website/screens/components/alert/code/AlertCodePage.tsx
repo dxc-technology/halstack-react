@@ -2,10 +2,11 @@ import { DxcText, DxcStack, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import basic from "./code-examples/basic";
-import modal from "./code-examples/modal";
-import children from "./code-examples/children";
+import basic from "./examples/basic";
+import modal from "./examples/modal";
+import children from "./examples/children";
 import Example from "@/common/example/Example";
+import Code from "@/common/Code";
 
 const sections = [
   {
@@ -20,14 +21,14 @@ const sections = [
         <tr>
           <td>type: 'info' | 'confirm' | 'warning' | 'error'</td>
           <td>
-            <code>'info'</code>
+            <Code>'info'</Code>
           </td>
           <td>Uses on of the available alert types.</td>
         </tr>
         <tr>
           <td>mode: 'inline' | 'modal'</td>
           <td>
-            <code>'inline'</code>
+            <Code>'inline'</Code>
           </td>
           <td>
             Uses on of the available alert modes:
@@ -82,7 +83,7 @@ const sections = [
         <tr>
           <td>size: string</td>
           <td>
-            <code>'fitContent'</code>
+            <Code>'fitContent'</Code>
           </td>
           <td>
             Size of the component ('small' | 'medium' | 'large' | 'fillParent' |
@@ -92,7 +93,7 @@ const sections = [
         <tr>
           <td>tabIndex: number</td>
           <td>
-            <code>0</code>
+            <Code>0</Code>
           </td>
           <td>Tabindex value given to the close button.</td>
         </tr>
@@ -106,7 +107,6 @@ const sections = [
         title: "Basic usage",
         content: (
           <>
-            <DxcText as="p">Some examples with different alert types</DxcText>
             <Example example={basic} defaultIsVisible />
           </>
         ),
@@ -115,11 +115,7 @@ const sections = [
         title: "Modal",
         content: (
           <>
-            <DxcText as="p">
-              Example of a modal alert that is displayed when the button is
-              clicked.{" "}
-            </DxcText>
-            <Example example={modal} />
+            <Example example={modal} defaultIsVisible />
           </>
         ),
       },
@@ -127,8 +123,7 @@ const sections = [
         title: "Children",
         content: (
           <>
-            <DxcText as="p">Example of a alert with children content.</DxcText>
-            <Example example={children} />
+            <Example example={children} defaultIsVisible />
           </>
         ),
       },
@@ -145,7 +140,7 @@ const AlertCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/alert/examples/AlertCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/alert/code/AlertCodePage.tsx" />
     </DxcStack>
   );
 };
