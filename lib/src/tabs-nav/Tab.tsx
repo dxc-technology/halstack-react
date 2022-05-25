@@ -1,9 +1,15 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, createRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcBadge from "../badge/Badge";
 import useTheme from "../useTheme";
 import { TabProps } from "./types";
 import { render } from "react-dom";
+
+const convertAttrToProps = (attributesMap: NamedNodeMap) => {
+  const props = {};
+  Object.values(attributesMap).forEach((attr: Attr) => (props[attr.name] = attr.value));
+  return props;
+};
 
 const DxcTab = ({
   href,
@@ -17,13 +23,14 @@ const DxcTab = ({
   hasIcons = false,
   focused = false,
 }: TabProps): JSX.Element => {
-  const customTabRef = React.createRef<HTMLAnchorElement>();
+  const customTabRef: React.MutableRefObject<HTMLAnchorElement> = createRef();
   const tabRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     if (customTabRef.current) {
+      convertAttrToProps(customTabRef.current.attributes);
       render(
-        <AnchorTab href={customTabRef.current.href} {...customTabRef.current.attributes}>
+        <AnchorTab href={customTabRef.current.href} {...convertAttrToProps(customTabRef.current.attributes)}>
           {customTabRef.current.innerHTML}
         </AnchorTab>,
         customTabRef.current.parentNode
@@ -48,33 +55,31 @@ const DxcTab = ({
     }
   };
 
-  const AnchorTab = ({ href, children, ...otherProps }) => {
-    return (
-      <StyledTab
-        href={!disabled && href ? href : undefined}
-        disabled={disabled}
-        iconPosition={iconPosition}
-        hasIcon={hasIcons}
-        ref={tabRef}
-        onKeyDown={handleOnKeyDown}
-        {...otherProps}
-      >
-        {icon && (
-          <TabIconContainer iconPosition={iconPosition}>
-            {typeof icon === "string" ? <TabIcon src={icon} /> : icon}
-          </TabIconContainer>
+  const AnchorTab = ({ href, children, ...otherProps }) => (
+    <StyledTab
+      href={!disabled && href ? href : undefined}
+      disabled={disabled}
+      iconPosition={iconPosition}
+      hasIcon={hasIcons}
+      ref={tabRef}
+      onKeyDown={handleOnKeyDown}
+      {...otherProps}
+    >
+      {icon && (
+        <TabIconContainer iconPosition={iconPosition}>
+          {typeof icon === "string" ? <TabIcon src={icon} /> : icon}
+        </TabIconContainer>
+      )}
+      <LabelContainer>
+        {children}
+        {notificationNumber && (
+          <BadgeContainer>
+            <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
+          </BadgeContainer>
         )}
-        <LabelContainer>
-          {children}
-          {notificationNumber && (
-            <BadgeContainer>
-              <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
-            </BadgeContainer>
-          )}
-        </LabelContainer>
-      </StyledTab>
-    );
-  };
+      </LabelContainer>
+    </StyledTab>
+  );
 
   return (
     <TabContainer active={active} role="tab" aria-selected={active} tabIndex={active ? tabIndex : -1}>
@@ -82,7 +87,9 @@ const DxcTab = ({
         <AnchorTab href={href}>{children}</AnchorTab>
       ) : (
         React.Children.only(children) &&
-        React.cloneElement(React.Children.only(children), { ref: (ref) => (customTabRef.current = ref) })
+        React.cloneElement(React.Children.only(children) as JSX.Element, {
+          ref: (ref: HTMLAnchorElement) => (customTabRef.current = ref),
+        })
       )}
     </TabContainer>
   );

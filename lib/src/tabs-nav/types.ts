@@ -29,7 +29,7 @@ export type TabProps = {
    * Content of the tab. To use the component with other libraries (such as React Router or Next.js Link) pass the custom link as a child.
    * The component will apply the styles to the custom link.
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /**
    * Whether the icon should appear above or to the left of the label.
    */
