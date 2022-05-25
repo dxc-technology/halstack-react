@@ -30,13 +30,7 @@ export type TabProps = {
    * The component will apply the styles to the custom link.
    */
   children: React.ReactNode;
-  /**
-   * Whether the icon should appear above or to the left of the label.
-   */
   iconPosition?: "top" | "left";
-  /**
-   * Value of the tabindex for each tab.
-   */
   tabIndex?: number;
   hasIcons?: boolean;
   focused?: boolean;
