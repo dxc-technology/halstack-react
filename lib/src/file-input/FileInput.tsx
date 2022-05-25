@@ -195,10 +195,10 @@ const DxcFileInput = ({
               size="medium"
               tabIndex={tabIndex}
             />
-            {files.map((file) => {
-              return (
-                <>
-                  <FileItemContainer mode={mode} multiple={multiple} files={files}>
+            {files.length > 0 && (
+              <FileItemListContainer>
+                {files.map((file) => {
+                  return (
                     <FileItem
                       mode={mode}
                       multiple={multiple}
@@ -211,10 +211,10 @@ const DxcFileInput = ({
                       onDelete={onDelete}
                       tabIndex={tabIndex}
                     />
-                  </FileItemContainer>
-                </>
-              );
-            })}
+                  );
+                })}
+              </FileItemListContainer>
+            )}
           </FileContainer>
         ) : (
           <Container>
@@ -245,24 +245,26 @@ const DxcFileInput = ({
                 </FiledropLabel>
               )}
             </DragDropArea>
-            {files.map((file) => {
-              return (
-                <FileItemContainer mode={mode} multiple={multiple} files={files}>
-                  <FileItem
-                    mode={mode}
-                    multiple={multiple}
-                    name={file.file.name}
-                    error={file.error}
-                    showPreview={showPreview}
-                    numFiles={files.length}
-                    preview={file.preview}
-                    type={file.file.type}
-                    onDelete={onDelete}
-                    tabIndex={tabIndex}
-                  />
-                </FileItemContainer>
-              );
-            })}
+            {files.length > 0 && (
+              <FileItemListContainer>
+                {files.map((file) => {
+                  return (
+                    <FileItem
+                      mode={mode}
+                      multiple={multiple}
+                      name={file.file.name}
+                      error={file.error}
+                      showPreview={showPreview}
+                      numFiles={files.length}
+                      preview={file.preview}
+                      type={file.file.type}
+                      onDelete={onDelete}
+                      tabIndex={tabIndex}
+                    />
+                  );
+                })}
+              </FileItemListContainer>
+            )}
           </Container>
         )}
         {files.length === 1 &&
@@ -310,6 +312,7 @@ const HelperText = styled.span`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  row-gap: 0.5rem;
 `;
 
 const DragDropArea = styled.div`
@@ -327,6 +330,7 @@ const DragDropArea = styled.div`
   border-width: ${(props) => props.theme.dropBorderThickness};
   border-style: ${(props) => props.theme.dropBorderStyle};
   border-color: ${(props) => (props.disabled ? props.theme.disabledDropBorderColor : props.theme.dropBorderColor)};
+  cursor: ${(props) => props.disabled && "not-allowed"};
 
   ${(props) =>
     props.isDragging &&
@@ -335,13 +339,20 @@ const DragDropArea = styled.div`
       border-color: transparent;
       box-shadow: 0 0 0 2px ${props.theme.focusDropBorderColor};
     `}
+`;
 
-  cursor: ${(props) => props.disabled && "not-allowed"};
+const FileItemListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
 `;
 
 const FileContainer = styled.div`
   display: flex;
-  flex-direction: ${(props) => (props.multiple || props.files.length > 1 ? "column" : "row")};
+  ${(props) =>
+    props.multiple || props.files.length > 1
+      ? "flex-direction: column; row-gap: 0.5rem"
+      : "flex-direction: row; column-gap: 0.5rem"};
 `;
 
 const HiddenInputFile = styled.input`
@@ -372,11 +383,6 @@ const FiledropLabel = styled.span`
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
-`;
-
-const FileItemContainer = styled.div`
-  margin-top: ${(props) => (props.multiple || props.files.length > 1 || props.mode !== "file") && "4px"};
-  margin-left: ${(props) => props.mode === "file" && props.files.length === 1 && !props.multiple && "4px"};
 `;
 
 const ErrorMessage = styled.div`

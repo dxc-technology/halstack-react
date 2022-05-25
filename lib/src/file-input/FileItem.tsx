@@ -72,6 +72,7 @@ const FileItem = ({
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   padding: ${(props) =>
     props.showPreview
       ? `calc(8px - ${props.theme.fileItemBorderThickness}) 8px`
@@ -93,8 +94,6 @@ const Container = styled.div`
   border-color: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)};
   border-width: ${(props) => props.theme.fileItemBorderThickness};
   border-style: ${(props) => props.theme.fileItemBorderStyle};
-  display: flex;
-  justify-content: center;
 `;
 
 const FileItemContent = styled.div`
