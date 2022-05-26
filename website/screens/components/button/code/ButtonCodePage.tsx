@@ -5,7 +5,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import modes from "./examples/modes";
-import icons from "./examples/icons";
+import disabled from "./examples/disabled";
 
 const sections = [
   {
@@ -105,10 +105,10 @@ const sections = [
         ),
       },
       {
-        title: "Icons",
+        title: "Disabled buttons",
         content: (
           <>
-            <Example example={icons} defaultIsVisible />
+            <Example example={disabled} defaultIsVisible />
           </>
         ),
       },

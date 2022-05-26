@@ -1,30 +1,33 @@
 import { DxcButton, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
 
-const code = `() =>{
+const code = `() => {
     return (
         <DxcInset space="large">
             <DxcRow gutter="large" align="center">
                 <DxcButton
                     mode="primary"
-                    label="Primary"
+                    label="Primary Disabled"
+                    disabled
                 />
                 <DxcButton
                     mode="secondary"
-                    label="Secondary"
+                    label="Secondary Disabled"
+                    disabled
                 />
                 <DxcButton
                     mode="text"
-                    label="Text"
+                    label="Text Disabled"
+                    disabled
                 />
             </DxcRow>
         </DxcInset>
-      );
-}`;
+    );
+  }`;
 
-const scope = {
+  const scope = {
     DxcButton,
     DxcRow,
     DxcInset,
-};
-
-export default {code, scope}
+  };
+  
+  export default { code, scope };
