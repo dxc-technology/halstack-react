@@ -38,7 +38,7 @@ const DxcPaginator = ({
           <LabelsContainer>
             {itemsPerPageOptions && (
               <ItemsPageContainer>
-                <ItemsLabel>{translatedLabels.paginator.itemsPerPageText}</ItemsLabel>
+                <ItemsLabel>Items per page </ItemsLabel>
                 <SelectContainer>
                   <DxcSelect
                     options={itemsPerPageOptions.map((num) => ({ label: num.toString(), value: num.toString() }))}
