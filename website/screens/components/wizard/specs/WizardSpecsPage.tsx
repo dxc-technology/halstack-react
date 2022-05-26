@@ -87,9 +87,9 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>stepFontColor</Code>
+                  <Code>visitedStepFontColor</Code>
                 </td>
-                <td>Step text</td>
+                <td>Step:visited text</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -127,10 +127,10 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepBackgroundColor</Code>
+                  <Code>visitedStepBackgroundColor</Code>
                 </td>
-                <td>Step background</td>
                 <td>
+                  Step:visited
                   <Code>color-white</Code>
                 </td>
                 <td>#ffffff</td>
@@ -167,9 +167,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepBorderColor</Code>
+                  <Code>visitedStepBorderColor</Code>
                 </td>
-                <td>Step border</td>
+                <td>Step:visited border</td>
                 <td>
                   <Code>coor-black</Code>
                 </td>
@@ -207,9 +207,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>labelFontColor</Code>
+                  <Code>visitedLabelFontColor</Code>
                 </td>
-                <td>Label</td>
+                <td>Label:visited</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -217,9 +217,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>activeLabelFontColor</Code>
+                  <Code>selectedLabelFontColor</Code>
                 </td>
-                <td>Label:active</td>
+                <td>Label:selected</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -237,9 +237,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>helperTextFontColor</Code>
+                  <Code>visitedHelperTextFontColor</Code>
                 </td>
-                <td>Helper text</td>
+                <td>Helper text:visited</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -247,9 +247,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>helperTextActiveFontColor</Code>
+                  <Code>selectedHelperTextFontColor</Code>
                 </td>
-                <td>Helper text: active</td>
+                <td>Helper text:selected</td>
                 <td>
                   <Code>color-black</Code>
                 </td>

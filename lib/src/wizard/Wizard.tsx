@@ -211,7 +211,7 @@ const IconContainer = styled.div`
         : props.current
         ? `border: ${props.theme.selectedStepBorderThickness} ${props.theme.selectedStepBorderStyle} ${props.theme.selectedStepBorderColor};`
         : props.visited
-        ? `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.stepBorderColor};`
+        ? `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.visitedStepBorderColor};`
         : `border: ${props.theme.stepBorderThickness} ${props.theme.stepBorderStyle} ${props.theme.unvisitedStepBorderColor};`
     }
     background: ${
@@ -221,7 +221,7 @@ const IconContainer = styled.div`
         ? `${props.theme.selectedStepBackgroundColor}`
         : !props.visited
         ? `${props.theme.unvisitedStepBackgroundColor}`
-        : `${props.theme.stepBackgroundColor}`
+        : `${props.theme.visitedStepBackgroundColor}`
     };
   `}
   ${(props) =>
@@ -232,7 +232,7 @@ const IconContainer = styled.div`
             ? props.theme.selectedStepFontColor
             : !props.visited
             ? props.theme.unvisitedStepFontColor
-            : props.theme.stepFontColor
+            : props.theme.visitedStepFontColor
         };`};
 
   border-radius: ${(props) =>
@@ -301,8 +301,8 @@ const Label = styled.p`
           !props.visited
             ? props.theme.unvisitedLabelFontColor
             : props.current
-            ? props.theme.activeLabelFontColor
-            : props.theme.labelFontColor
+            ? props.theme.selectedLabelFontColor
+            : props.theme.visitedLabelFontColor
         };`};
   text-transform: ${(props) => props.theme.labelFontTextTransform};
   margin: 0;
@@ -323,8 +323,8 @@ const Description = styled.p`
           !props.visited
             ? props.theme.unvisitedHelperTextFontColor
             : props.current
-            ? props.theme.activeHelperTextFontColor
-            : props.theme.helperTextFontColor
+            ? props.theme.selectedHelperTextFontColor
+            : props.theme.visitedHelperTextFontColor
         };`};
   margin: 0;
 `;
