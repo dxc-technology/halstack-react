@@ -44,7 +44,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>trackCircleColorOnDark</Code>
+                  <Code>trackCircleColorOverlay</Code>
                 </td>
                 <td>Spinner circle (track)</td>
                 <td>
@@ -270,7 +270,6 @@ const SpinnerSpecsPage = () => {
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Specifications"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>

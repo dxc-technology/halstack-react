@@ -33,7 +33,7 @@ const Tabs = () => {
           tabs={[{ label: "Tab 1" }, { label: "Tab 2" }, { label: "Tab 3" }]}
           margin={{ top: "xsmall", bottom: "xsmall" }}
         ></DxcTabs>
-        
+
         {activeTab === 0 && (
           <div
             style={{
@@ -115,6 +115,12 @@ const Tabs = () => {
               label: "Tab 4",
               icon: twitterIcon,
               notificationNumber: false,
+            },
+            {
+              label: "Tab 5",
+              icon: twitterIcon,
+              isDisabled: "true",
+              notificationNumber: true,
             },
           ]}
           margin={{ top: "xsmall", bottom: "xsmall" }}
