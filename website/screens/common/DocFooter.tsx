@@ -127,9 +127,7 @@ const githubIcon = (
 );
 
 const DocFooterContainer = styled.div`
-  max-width: 960px;
-  margin-left: 200px;
-  margin-bottom: 48px;
+  max-width: 800px;
 `;
 
 export default DocFooter;
