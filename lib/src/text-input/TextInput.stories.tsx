@@ -68,8 +68,16 @@ export const Chromatic = () => (
       <Title title="Focused input" theme="light" level={4} />
       <DxcTextInput label="Text input" />
     </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused action" theme="light" level={4} />
+      <DxcTextInput label="Text input" action={action} />
+    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered action" theme="light" level={4} />
+      <DxcTextInput label="Text input" defaultValue="Text" clearable />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus pseudo-active">
+      <Title title="Active action" theme="light" level={4} />
       <DxcTextInput label="Text input" defaultValue="Text" clearable />
     </ExampleContainer>
     <ExampleContainer>
@@ -161,8 +169,16 @@ export const Chromatic = () => (
           <Title title="Focused" theme="dark" level={4} />
           <DxcTextInput label="Text input" />
         </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-focus">
+          <Title title="Focused action" theme="dark" level={4} />
+          <DxcTextInput label="Text input" action={action} />
+        </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered action" theme="dark" level={4} />
+          <DxcTextInput label="Text input" defaultValue="Text" clearable />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-focus pseudo-active">
+          <Title title="Active action" theme="dark" level={4} />
           <DxcTextInput label="Text input" defaultValue="Text" clearable />
         </ExampleContainer>
         <ExampleContainer>
@@ -279,20 +295,6 @@ export const Chromatic = () => (
   </>
 );
 
-const FocusedActionTextInput = () => (
-  <ExampleContainer expanded>
-    <Title title="Focused action" theme="light" level={4} />
-    <DxcTextInput label="Text input" action={action} clearable />
-  </ExampleContainer>
-);
-
-const ActivedActionTextInput = () => (
-  <ExampleContainer pseudoState="pseudo-active" expanded>
-    <Title title="Actived action" theme="light" level={4} />
-    <DxcTextInput label="Text input" action={action} clearable />
-  </ExampleContainer>
-);
-
 const ShowOptionsAutosuggest = () => (
   <ExampleContainer expanded>
     <Title title="Show options" theme="light" level={4} />
@@ -319,28 +321,6 @@ const ActivedOptionAutosuggest = () => (
     <Title title="Actived option" theme="light" level={4} />
     <DxcTextInput label="Text input" suggestions={country} clearable />
   </ExampleContainer>
-);
-
-const FocusedActionTextInputOnDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer expanded>
-        <Title title="Focused action" theme="dark" level={4} />
-        <DxcTextInput label="Text input" action={action} clearable />
-      </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
-const ActivedActionTextInputOnDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer pseudoState="pseudo-active" expanded>
-        <Title title="Actived action" theme="dark" level={4} />
-        <DxcTextInput label="Text input" action={action} clearable />
-      </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
 );
 
 const ShowOptionsAutosuggestOnDark = () => (
@@ -387,20 +367,6 @@ const ActivedOptionAutosuggestOnDark = () => (
   </BackgroundColorProvider>
 );
 
-export const FocusedAction = FocusedActionTextInput.bind({});
-FocusedAction.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const action = canvas.getByRole("button");
-  await action.focus();
-};
-
-export const ActivedAction = ActivedActionTextInput.bind({});
-ActivedAction.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const action = canvas.getByRole("button");
-  await userEvent.click(action);
-};
-
 export const ShowOptions = ShowOptionsAutosuggest.bind({});
 ShowOptions.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -428,20 +394,6 @@ ActivedOption.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const autosuggest = canvas.getByRole("combobox");
   await userEvent.click(autosuggest);
-};
-
-export const FocusedActionOnDark = FocusedActionTextInputOnDark.bind({});
-FocusedActionOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const action = canvas.getByRole("button");
-  await action.focus();
-};
-
-export const ActivedActionOnDark = ActivedActionTextInputOnDark.bind({});
-ActivedActionOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const action = canvas.getByRole("button");
-  await userEvent.click(action);
 };
 
 export const ShowOptionsOnDark = ShowOptionsAutosuggestOnDark.bind({});

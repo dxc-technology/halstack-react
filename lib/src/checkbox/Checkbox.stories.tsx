@@ -10,7 +10,7 @@ export default {
   component: DxcCheckbox,
 };
 
-export const Checkbox = () => (
+export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Default" theme="light" level={4} />
