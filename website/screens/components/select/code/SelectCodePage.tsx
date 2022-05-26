@@ -336,7 +336,6 @@ const SelectCodePage = () => {
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Code"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>

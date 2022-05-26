@@ -362,7 +362,6 @@ const LinkSpecsPage = () => {
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
         <QuickNavContainer
-          title="Specifications"
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>
