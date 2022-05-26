@@ -8,8 +8,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basic from "../code/examples/basic";
-import children from "../code/examples/children";
+import basicUsage from "../usage/examples/basicUsage";
+import childrenUsage from "../usage/examples/childrenUsage";
 
 const sections = [
   {
@@ -48,7 +48,7 @@ const sections = [
     title: "Types",
     content: (
       <>
-        <Example example={basic} />
+        <Example example={basicUsage} />
         <DxcTable>
           <thead>
             <tr>
@@ -136,10 +136,7 @@ const sections = [
     title: "Content",
     content: (
       <>
-        {/* <Figure caption="Custom content as alert children">
-          <Image src={AlertContent} alt="Custom content as alert children" />
-        </Figure> */}
-        <Example example={children} />
+        <Example example={childrenUsage} />
 
         <DxcText as="p">
           Depending on the content that need to be displayed, more detailed

@@ -9,7 +9,7 @@ const code = `() => {
 
     return (
         <DxcInset space="large">
-            <DxcStack gutter="large">
+            <DxcStack gutter="large" align="center">
                 <DxcButton
                     label="Overlay Alert"
                     onClick={handleVisibility}
