@@ -269,7 +269,7 @@ const Select = () => (
     <Title title="Anatomy" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Label, placeholder and helper text" theme="light" level={4} />
-      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" optional />
+      <DxcSelect label="Label" options={single_options} helperText="Helper text" placeholder="Placeholder" />
     </ExampleContainer>
     <Title title="Variants" theme="light" level={2} />
     <ExampleContainer>
