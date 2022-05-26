@@ -205,7 +205,10 @@ const Label = styled.span<LabelProps>`
   font-style: ${(props) => props.theme.radioInputLabelFontStyle};
   font-weight: ${(props) => props.theme.radioInputLabelFontWeight};
   line-height: ${(props) => props.theme.radioInputLabelLineHeight};
-  ${(props) => props.disabled && `color: ${props.theme.disabledRadioInputLabelFontColor}; pointer-events: none;`}
+  ${(props) =>
+    props.disabled
+      ? `color: ${props.theme.disabledRadioInputLabelFontColor}; pointer-events: none;`
+      : `color: ${props.theme.radioInputLabelFontColor}`}
 `;
 
 export default React.memo(DxcRadio);
