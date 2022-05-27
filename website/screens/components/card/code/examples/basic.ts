@@ -5,7 +5,7 @@ const code = `() => {
         onClick={() => {
           console.log("click");
         }}
-        imageSrc="https://picsum.photos/id/1025/200/300" 
+        imageSrc="https://picsum.photos/id/1022/200/300" 
         margin="small"
       >
         Lorem Ipsum
