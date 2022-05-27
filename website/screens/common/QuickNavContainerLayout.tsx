@@ -7,12 +7,7 @@ type QuickNavContainerLayoutProps = {
 const QuickNavContainerLayout = ({
   children,
 }: QuickNavContainerLayoutProps) => {
-  return <QuickNavContainer>{children}</QuickNavContainer>;
+  return <>{children}</>;
 };
-
-const QuickNavContainer = styled.div`
-  margin-left: 200px;
-  margin-right: 200px;
-`;
 
 export default QuickNavContainerLayout;

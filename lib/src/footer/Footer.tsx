@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import { dxcLogo } from "./Icons";
 import FooterPropsType from "./types";
@@ -10,20 +11,21 @@ import FooterPropsType from "./types";
 const DxcFooter = ({
   socialLinks,
   bottomLinks,
-  copyright = `© DXC Technology ${new Date().getFullYear()}. All rights reserved.`,
+  copyright,
   children,
   padding,
   margin,
   tabIndex = 0,
 }: FooterPropsType): JSX.Element => {
   const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
 
   const footerLogo = useMemo(() => {
     if (!colorsTheme.footer.logo) {
       return dxcLogo;
     }
     if (typeof colorsTheme.footer.logo === "string") {
-      return <LogoImg alt="Logo" src={colorsTheme.footer.logo}></LogoImg>;
+      return <LogoImg alt={translatedLabels.formFields.logoAlternativeText} src={colorsTheme.footer.logo}></LogoImg>;
     }
     return colorsTheme.footer.logo;
   }, [colorsTheme.footer.logo]);
@@ -63,7 +65,7 @@ const DxcFooter = ({
           </ChildComponents>
           <FooterFooter className="footerFooter">
             <BottomLinks>{bottomLink}</BottomLinks>
-            <Copyright>{copyright}</Copyright>
+            <Copyright>{copyright || translatedLabels.footer.copyrightText(new Date().getFullYear())}</Copyright>
           </FooterFooter>
         </div>
       </FooterContainer>
@@ -171,7 +173,7 @@ const Copyright = styled.div`
     width: 100%;
     text-align: left;
   }
-  
+
   padding-top: ${(props) => props.theme.bottomLinksDividerSpacing};
 `;
 

@@ -7,12 +7,14 @@ import DxcStack from "../stack/Stack";
 import DxcInset from "../inset/Inset";
 import DxcList from "../list/List";
 import DxcText from "../text/Text";
+import useTranslatedLabels from "../useTranslatedLabels";
 
-const DxcQuickNav = ({ title = "Contents", links }: QuickNavTypes): JSX.Element => {
+const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
+  const translatedLabels = useTranslatedLabels();
   return (
     <QuickNavContainer>
       <DxcStack gutter="xsmall">
-        <DxcHeading level={4} text={title} />
+        <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
         <DxcList>
           <DxcStack gutter="xsmall">
             {links.map((link) => (

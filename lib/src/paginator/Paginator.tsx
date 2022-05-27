@@ -2,6 +2,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
 import DxcSelect from "../select/Select";
 import { firstIcon, lastIcon, nextIcon, previousIcon } from "./Icons";
@@ -28,6 +29,8 @@ const DxcPaginator = ({
     minItemsPerPage - 1 + itemsPerPage > totalItems ? totalItems : minItemsPerPage - 1 + itemsPerPage;
 
   const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
+
   return (
     <ThemeProvider theme={colorsTheme.paginator}>
       <BackgroundColorProvider color={colorsTheme.paginator.backgroundColor}>
@@ -35,7 +38,7 @@ const DxcPaginator = ({
           <LabelsContainer>
             {itemsPerPageOptions && (
               <ItemsPageContainer>
-                <ItemsLabel>Items per page </ItemsLabel>
+                <ItemsLabel>{translatedLabels.paginator.itemsPerPageText}</ItemsLabel>
                 <SelectContainer>
                   <DxcSelect
                     options={itemsPerPageOptions.map((num) => ({ label: num.toString(), value: num.toString() }))}
@@ -50,14 +53,13 @@ const DxcPaginator = ({
               </ItemsPageContainer>
             )}
             <TotalItemsContainer>
-              {minItemsPerPage} to {maxItemsPerPage} of {totalItems}
+              {translatedLabels.paginator.minToMaxOfText(minItemsPerPage, maxItemsPerPage, totalItems)}
             </TotalItemsContainer>
             {onPageChange && (
               <DxcButton
                 size="small"
                 mode="secondary"
                 disabled={currentPageInternal === 1 || currentPageInternal === 0}
-                margin={{ left: "xxsmall", right: "xxsmall" }}
                 icon={firstIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
@@ -70,7 +72,6 @@ const DxcPaginator = ({
                 size="small"
                 mode="secondary"
                 disabled={currentPageInternal === 1 || currentPageInternal === 0}
-                margin={{ left: "xxsmall", right: "xxsmall" }}
                 icon={previousIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
@@ -80,7 +81,7 @@ const DxcPaginator = ({
             )}
             {(showGoToPage && (
               <PageToSelectContainer>
-                <GoToLabel>Go to page: </GoToLabel>
+                <GoToLabel>{translatedLabels.paginator.goToPageText} </GoToLabel>
                 <SelectContainer>
                   <DxcSelect
                     options={Array.from(Array(totalPages), (e, num) => ({
@@ -97,16 +98,13 @@ const DxcPaginator = ({
                 </SelectContainer>
               </PageToSelectContainer>
             )) || (
-              <TextContainer>
-                Page: {currentPageInternal} of {totalPages}
-              </TextContainer>
+              <TextContainer>{translatedLabels.paginator.pageOfText(currentPageInternal, totalPages)}</TextContainer>
             )}
             {onPageChange && (
               <DxcButton
                 size="small"
                 mode="secondary"
                 disabled={currentPageInternal === totalPages}
-                margin={{ left: "xxsmall", right: "xxsmall" }}
                 icon={nextIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
@@ -119,7 +117,6 @@ const DxcPaginator = ({
                 size="small"
                 mode="secondary"
                 disabled={currentPageInternal === totalPages}
-                margin={{ left: "xxsmall", right: "xxsmall" }}
                 icon={lastIcon}
                 tabIndex={tabIndex}
                 onClick={() => {
@@ -136,8 +133,6 @@ const DxcPaginator = ({
 
 const DxcPaginatorContainer = styled.div`
   display: flex;
-  height: ${(props) => props.theme.height};
-  width: ${(props) => props.theme.width};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
@@ -145,6 +140,7 @@ const DxcPaginatorContainer = styled.div`
   text-transform: ${(props) => props.theme.fontTextTransform};
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
+  padding: ${(props) => props.theme.verticalPadding} ${(props) => props.theme.horizontalPadding};
 
   button {
     &:disabled {
@@ -155,7 +151,7 @@ const DxcPaginatorContainer = styled.div`
 `;
 
 const SelectContainer = styled.div`
-  max-width: 100px;
+  min-width: 5.25rem;
 `;
 
 const ItemsPageContainer = styled.span`
@@ -173,12 +169,12 @@ const ItemsPageContainer = styled.span`
 `;
 
 const ItemsLabel = styled.span`
-  margin-right: 15px;
+  margin-right: 0.5rem;
 `;
 
 const GoToLabel = styled.span`
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
 `;
 
 const TotalItemsContainer = styled.span`
@@ -188,17 +184,15 @@ const TotalItemsContainer = styled.span`
 
 const LabelsContainer = styled.div`
   display: flex;
+  gap: 0.5rem;
   width: 100%;
   justify-content: flex-end;
   align-items: center;
-  margin: 0 ${(props) => props.theme.marginRight} 0 ${(props) => props.theme.marginLeft};
 `;
 
 const PageToSelectContainer = styled.span`
   display: flex;
   align-items: center;
-  margin-right: ${(props) => props.theme.pageSelectorMarginRight};
-  margin-left: ${(props) => props.theme.pageSelectorMarginLeft};
 
   label {
     height: 0px;

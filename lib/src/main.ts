@@ -44,7 +44,7 @@ import DxcInset from "./inset/Inset";
 import DxcQuickNav from "./quick-nav/QuickNav";
 import DxcNavTabs from "./tabs-nav/NavTabs";
 
-import HalstackContext, { HalstackProvider } from "./HalstackContext";
+import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
 
 export {
@@ -77,6 +77,7 @@ export {
   DxcChip,
   DxcApplicationLayout,
   HalstackContext,
+  HalstackLanguageContext,
   HalstackProvider,
   BackgroundColorProvider,
   DxcAccordionGroup,
