@@ -13,6 +13,13 @@ function App() {
     },
   };
 
+  const labels = {
+    paginator: {
+      itemsPerPageText: " Num. items",
+      pageOfText: (a, b) => `Pagina: ${a} de ${b}`,
+    },
+  };
+
   const goToPageFunc = (newPage) => {
     changePage(newPage);
   };
@@ -42,7 +49,7 @@ function App() {
       </div>
       <div className="test-case" id="custom-paginator">
         <h4>Custom paginator</h4>
-        <HalstackProvider theme={colors}>
+        <HalstackProvider theme={colors} labels={labels}>
           <DxcPaginator
             currentPage={page}
             itemsPerPage={itemsPerPage}

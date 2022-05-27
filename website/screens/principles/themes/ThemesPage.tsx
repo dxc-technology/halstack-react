@@ -1,104 +1,117 @@
-import PageLayout from "../../common/PageLayout";
 import {
   DxcText,
   DxcTable,
   DxcList,
   DxcStack,
   DxcLink,
+  DxcHeading,
 } from "@dxc-technology/halstack-react";
-import HeadingLink from "../../common/HeadingLink";
-import DocFooter from "../../common/DocFooter";
-import Code from "../../common/Code";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import PageHeading from "@/common/PageHeading";
+import DocFooter from "@/common/DocFooter";
+import Code from "@/common/Code";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
-const Themes = () => {
-  return (
-    <PageLayout>
-      <DxcStack gutter="xxxlarge">
-        <DxcStack gutter="large">
-          <HeadingLink level={1}>Themes</HeadingLink>
-          <HeadingLink level={2}>What is a theme?</HeadingLink>
-          <DxcText as="p">
-            In order to understand what a theme is, we need to understand first
-            that the definition of colors, sizes, shapes... is an intrinsic part
-            of a design system. Since these parameters are essential for
-            guaranteeing accessibility and a good user experience, having the
-            ability of changing them, might go frontally against the intentions
-            of the design system.
+const sections = [
+  {
+    title: "What is a theme?",
+    content: (
+      <>
+        <DxcText as="p">
+          In order to understand what a theme is, we need to understand first
+          that the definition of colors, sizes, shapes... is an intrinsic part
+          of a design system. Since these parameters are essential for
+          guaranteeing accessibility and a good user experience, having the
+          ability of changing them, might go frontally against the intentions of
+          the design system.
+        </DxcText>
+        <DxcText as="p">
+          This is precisely what themes are, just custom defined objects that
+          allow users to{" "}
+          <strong>
+            override fundamental decisions of Halstack Design System
+          </strong>
+          . They are a way of escaping the restrictions imposed by the Design
+          System, and using themes could result in applications not being
+          compliant with the Halstack guidelines, or even introducing many
+          different types of accessibility issues if not used carefully.
+        </DxcText>
+        <DxcText as="p">
+          Typically, you would create a Halstack Design System application, and
+          after that,{" "}
+          <strong>only if there is a white-labeling requirement</strong>, we
+          would apply a theme on top of the base application. This, and only
+          this, is the whole purpose of using themes.
+        </DxcText>
+      </>
+    ),
+  },
+  {
+    title: "Different theming strategies",
+    content: (
+      <>
+        <DxcText as="p">
+          As explained in the previous section, themes are basically a list of
+          properties that allow you to override fundamental decisions of the
+          design system. Based on the amount of decisions that can be
+          overridden, Halstack Design System has two different theming
+          strategies:
+        </DxcText>
+        <DxcList>
+          <DxcText>
+            <strong>Opinionated theme.</strong> This theming strategy lets you
+            change some decisions of the design system, but is still opinionated
+            about the ones we consider fundamental. The list of configurable
+            properties is small, but it applies at the component level. You can
+            generate the theme object using our{" "}
+            <DxcLink
+              href="https://developer.dxc.com/tools/react/next/#/themeBuilder"
+              newWindow
+            >
+              opinionated theme generator
+            </DxcLink>
+            .
           </DxcText>
-          <DxcText as="p">
-            This is precisely what themes are, just custom defined objects that
-            allow users to{" "}
-            <strong>
-              override fundamental decisions of Halstack Design System
-            </strong>
-            . They are a way of escaping the restrictions imposed by the Design
-            System, and using themes could result in applications not being
-            compliant with the Halstack guidelines, or even introducing many
-            different types of accessibility issues if not used carefully.
+          <DxcText>
+            <strong>Advanced theme.</strong> This theming strategy lets you
+            change most of the design decisions of the design system (all the
+            design tokens), trying to be as little opinionated as possible. Have
+            in mind that it is impossible to make the components 100%
+            configurable without writing actual code, since some design
+            decisions are structural to the component. The list of configurable
+            properties is large, and it applies at the component level. You can
+            generate the theme object using our{" "}
+            <DxcLink
+              href="https://developer.dxc.com/tools/react/next/#/themeBuilder/advancedTheme"
+              newWindow
+            >
+              advanced theme generator
+            </DxcLink>
+            .
           </DxcText>
-          <DxcText as="p">
-            Typically, you would create a Halstack Design System application,
-            and after that,{" "}
-            <strong>only if there is a white-labeling requirement</strong>, we
-            would apply a theme on top of the base application. This, and only
-            this, is the whole purpose of using themes.
-          </DxcText>
-        </DxcStack>
-        <DxcStack gutter="large">
-          <HeadingLink level={2}>Different theming strategies</HeadingLink>
-          <DxcText as="p">
-            As explained in the previous section, themes are basically a list of
-            properties that allow you to override fundamental decisions of the
-            design system. Based on the amount of decisions that can be
-            overridden, Halstack Design System has two different theming
-            strategies:
-          </DxcText>
-          <DxcList>
-            <DxcText>
-              <strong>Opinionated theme.</strong> This theming strategy lets you
-              change some decisions of the design system, but is still
-              opinionated about the ones we consider fundamental. The list of
-              configurable properties is small, but it applies at the component
-              level. You can generate the theme object using our{" "}
-              <DxcLink
-                href="https://developer.dxc.com/tools/react/next/#/themeBuilder"
-                newWindow
-              >
-                opinionated theme generator
-              </DxcLink>
-              .
-            </DxcText>
-            <DxcText>
-              <strong>Advanced theme.</strong> This theming strategy lets you
-              change most of the design decisions of the design system (all the
-              design tokens), trying to be as little opinionated as possible.
-              Have in mind that it is impossible to make the components 100%
-              configurable without writing actual code, since some design
-              decisions are structural to the component. The list of
-              configurable properties is large, and it applies at the component
-              level. You can generate the theme object using our{" "}
-              <DxcLink
-                href="https://developer.dxc.com/tools/react/next/#/themeBuilder/advancedTheme"
-                newWindow
-              >
-                advanced theme generator
-              </DxcLink>
-              .
-            </DxcText>
-          </DxcList>
-        </DxcStack>
-        <DxcStack gutter="large">
-          <HeadingLink level={2}>Opinionated theme inputs list</HeadingLink>
-          <DxcText as="p">
-            Tokens in the second column, which names are in bold, will have the
-            value that results from applying the transformation indicated in
-            brackets to the &#39;Theme input&#39;. (If nothing, they will have
-            the same value as the &#39;Theme input&#39;).
-          </DxcText>
-          <DxcText as="p">
-            Theme inputs value must be hexadecimal without alpha channel.
-          </DxcText>
-          <HeadingLink level={3}>Accordion</HeadingLink>
+        </DxcList>
+      </>
+    ),
+  },
+  {
+    title: "Opinionated theme inputs list",
+    content: (
+      <>
+        <DxcText as="p">
+          Tokens in the second column, which names are in bold, will have the
+          value that results from applying the transformation indicated in
+          brackets to the &#39;Theme input&#39;. (If nothing, they will have the
+          same value as the &#39;Theme input&#39;).
+        </DxcText>
+        <DxcText as="p">
+          Theme inputs value must be hexadecimal without alpha channel.
+        </DxcText>
+      </>
+    ),
+    subSections: [
+      {
+        title: "Accordion",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -120,12 +133,6 @@ const Themes = () => {
                   <br />
                   <br />
                   <Code>hoverBackgroundColor</Code> (16% of opacity)
-                  <br />
-                  <br />
-                  <Code>disabledArrowColor</Code> (34% of opacity)
-                  <br />
-                  <br />
-                  <Code>disabledIconColor</Code> (34% of opacity)
                 </td>
               </tr>
               <tr>
@@ -135,17 +142,15 @@ const Themes = () => {
                   <br />
                   <br />
                   <Code>titleLabelFontColor</Code>
-                  <br />
-                  <br />
-                  <Code>disabledAssistiveTextFontColor</Code> (34% of opacity)
-                  <br />
-                  <br />
-                  <Code>disabledTitleLabelFontColor</Code> (34% of opacity)
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Button</HeadingLink>
+        ),
+      },
+      {
+        title: "Button",
+        content: (
           <DxcTable>
             <thead>
               <th>Theme Input</th>
@@ -200,7 +205,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Checkbox</HeadingLink>
+        ),
+      },
+      {
+        title: "Checkbox",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -218,24 +227,31 @@ const Themes = () => {
                   <Code>borderColor</Code>
                   <br />
                   <br />
-                  <Code>disabledBackgroundColorChecked</Code> (34% of opacity)
+                  <Code>hoverBackgroundColorChecked</Code> (-15% of lightness)
                   <br />
                   <br />
-                  <Code>disabledBorderColor</Code> (34% of opacity)
+                  <Code>hoverBorderColor</Code> (-15% of lightness)
                 </td>
               </tr>
               <tr>
                 <td>Check color</td>
                 <td>
                   <Code>checkColor</Code>
-                  <br />
-                  <br />
-                  <Code>disabledCheckColor</Code> (34% of opacity)
+                </td>
+              </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>fontColor</Code>
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Chip</HeadingLink>
+        ),
+      },
+      {
+        title: "Chip",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -248,9 +264,6 @@ const Themes = () => {
                 <td>Base color</td>
                 <td>
                   <Code>backgroundColor</Code>
-                  <br />
-                  <br />
-                  <Code>disabledBackgroundColor</Code> (34% of opacity)
                 </td>
               </tr>
               <tr>
@@ -259,12 +272,16 @@ const Themes = () => {
                   <Code>fontColor</Code>
                   <br />
                   <br />
-                  <Code>disabledFontColor</Code> (34% of opacity)
+                  <Code>iconColor</Code>
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Date Input</HeadingLink>
+        ),
+      },
+      {
+        title: "Date Input",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -274,7 +291,7 @@ const Themes = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Base color</td>
+                <td>Selected date background color</td>
                 <td>
                   <Code>pickerSelectedDateBackgroundColor</Code>
                   <br />
@@ -283,14 +300,18 @@ const Themes = () => {
                 </td>
               </tr>
               <tr>
-                <td>Accent color</td>
+                <td>Selected date font color</td>
                 <td>
                   <Code>pickerSelectedDateColor</Code>
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Dropdown</HeadingLink>
+        ),
+      },
+      {
+        title: "Dropdown",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -307,8 +328,8 @@ const Themes = () => {
                   <br />
                   <Code>hoverButtonBackgroundColor</Code> (34% of opacity)
                   <br />
-                  <br /> <Code>activeButtonBackgroundColor</Code> (70% of
-                  opacity)
+                  <br />
+                  <Code>activeButtonBackgroundColor</Code> (70% of opacity)
                   <br />
                   <br />
                   <Code>hoverOptionBackgroundColor</Code> (34% of opacity)
@@ -321,11 +342,30 @@ const Themes = () => {
                 <td>Font color</td>
                 <td>
                   <Code>buttonFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>caretIconColor</Code>
+                  <br />
+                  <br />
+                  <Code>buttonIconColor</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Option font color</td>
+                <td>
+                  <Code>optionFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>optionIconColor</Code>
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>File input</HeadingLink>
+        ),
+      },
+      {
+        title: "File input",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -347,20 +387,15 @@ const Themes = () => {
                   <br />
                   <br />
                   <Code>fileNameFontColor</Code>
-                  <br />
-                  <br />
-                  <Code>disabledLabelFontColor</Code> (34% of opacity)
-                  <br />
-                  <br />
-                  <Code>disabledHelperTextFontcolor</Code> (34% of opacity)
-                  <br />
-                  <br />
-                  <Code>disabledDropLabelFontColor</Code> (34% of opacity)
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Footer</HeadingLink>
+        ),
+      },
+      {
+        title: "Footer",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -401,7 +436,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Header</HeadingLink>
+        ),
+      },
+      {
+        title: "Header",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -463,7 +502,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Paginator</HeadingLink>
+        ),
+      },
+      {
+        title: "Paginator",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -486,7 +529,11 @@ const Themes = () => {
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Progress bar</HeadingLink>
+        ),
+      },
+      {
+        title: "Progress bar",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -507,9 +554,25 @@ const Themes = () => {
                   <Code>trackLineColor</Code>
                 </td>
               </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>labelFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>valueFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>helperTextFontColor</Code>
+                </td>
+              </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Radio</HeadingLink>
+        ),
+      },
+      {
+        title: "Radio",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -522,14 +585,21 @@ const Themes = () => {
                 <td>Base color</td>
                 <td>
                   <Code>color</Code>
-                  <br />
-                  <br />
-                  <Code>disabledColor</Code> (34% of opacity)
+                </td>
+              </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>fontColor</Code>
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Select</HeadingLink>
+        ),
+      },
+      {
+        title: "Radio Group",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -541,27 +611,78 @@ const Themes = () => {
               <tr>
                 <td>Base color</td>
                 <td>
-                  <Code>selectedOptionBackgroundColor</Code>
-                  <br />
-                  <br />
-                  <Code>hoverOptionBackgroundColor</Code> (+10% of lightness)
-                  <br />
-                  <br />
-                  <Code>activeOptionBackgroundColor</Code> (-15% of lightness)
+                  <Code>radioInputColor</Code>
                 </td>
               </tr>
               <tr>
                 <td>Font color</td>
                 <td>
-                  <Code>optionFontColor</Code>
+                  <Code>labelFontColor</Code>
                   <br />
                   <br />
-                  <Code>valueFontColor</Code>
+                  <Code>helperTextFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>radioInputLabelFontColor</Code>
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Sidenav</HeadingLink>
+        ),
+      },
+      {
+        title: "Select",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Theme Input</th>
+                <th>Tokens (calculation)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Selected option background color</td>
+                <td>
+                  <Code>selectedListOptionBackgroundColor</Code>
+                  <br />
+                  <br />
+                  <Code>selectedHoverListOptionBackgroundColor</Code> (-5% of
+                  lightness)
+                  <br />
+                  <br />
+                  <Code>selectedActiveListOptionBackgroundColor</Code> (-10% of
+                  lightness)
+                </td>
+              </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>listOptionFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>valueFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>labelFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>helperTextFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>placeholderFontColor</Code> (50% of opacity)
+                  <br />
+                  <br />
+                  <Code>collapseIndicatorColor</Code>
+                </td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Sidenav",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -576,21 +697,13 @@ const Themes = () => {
                   <Code>backgroundColor</Code>
                 </td>
               </tr>
-              <tr>
-                <td>Arrow base color</td>
-                <td>
-                  <Code>arrowContainerColor</Code> (80% of opacity)
-                </td>
-              </tr>
-              <tr>
-                <td>Arrow accent color</td>
-                <td>
-                  <Code>arrowColor</Code>
-                </td>
-              </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Slider</HeadingLink>
+        ),
+      },
+      {
+        title: "Slider",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -611,27 +724,34 @@ const Themes = () => {
                   <Code>trackLineColor</Code>
                   <br />
                   <br />
-                  <Code>hoverThumbBackgroundColor</Code> (-15% lightness)
+                  <Code>hoverThumbBackgroundColor</Code> (-15% of lightness)
                   <br />
                   <br />
-                  <Code>activeThumbBackgroundColor</Code> (-15% lightness)
+                  <Code>activeThumbBackgroundColor</Code> (-15% of lightness)
                   <br />
                   <br />
-                  <Code>totalLineColor</Code> (34% opacity)
+                  <Code>totalLineColor</Code> (34% of opacity)
+                </td>
+              </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>labelFontColor</Code>
                   <br />
                   <br />
-                  <Code>disabledThumbBackgroundColor</Code> (34% opacity)
+                  <Code>helperTextFontColor</Code>
                   <br />
                   <br />
-                  <Code>disabledTickBackgroundColor</Code> (34% opacity)
-                  <br />
-                  <br />
-                  <Code>disabledTrackLineColor</Code> (34% opacity)
+                  <Code>limitValuesFontColor</Code>
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Spinner</HeadingLink>
+        ),
+      },
+      {
+        title: "Spinner",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -652,9 +772,22 @@ const Themes = () => {
                   <Code>trackCircleColor</Code>
                 </td>
               </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>labelFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>progressValueFontColor</Code>
+                </td>
+              </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Switch</HeadingLink>
+        ),
+      },
+      {
+        title: "Switch",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -669,12 +802,17 @@ const Themes = () => {
                   <Code>checkedTrackBackgroundColor</Code>
                   <br />
                   <br />
-                  <Code>disabledCheckedTrackBackgroundColor</Code> (34% opacity)
+                  <Code>disabledCheckedTrackBackgroundColor</Code> (34% of
+                  opacity)
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Table</HeadingLink>
+        ),
+      },
+      {
+        title: "Table",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -690,14 +828,27 @@ const Themes = () => {
                 </td>
               </tr>
               <tr>
-                <td>Font color</td>
+                <td>Header font color</td>
                 <td>
                   <Code>headerFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>sortIconColor</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Cell font color</td>
+                <td>
+                  <Code>dataFontColor</Code>
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Tabs</HeadingLink>
+        ),
+      },
+      {
+        title: "Tabs",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -721,15 +872,19 @@ const Themes = () => {
                   <Code>focusOutline</Code>
                   <br />
                   <br />
-                  <Code>hoverBackgroundColor</Code> (+58% lightness)
+                  <Code>hoverBackgroundColor</Code> (+58% of lightness)
                   <br />
                   <br />
-                  <Code>pressedBackgroundColor</Code> (+53% lightness)
+                  <Code>pressedBackgroundColor</Code> (+53% of lightness)
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Text Input</HeadingLink>
+        ),
+      },
+      {
+        title: "Text input",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -739,17 +894,45 @@ const Themes = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Base color</td>
+                <td>Font color</td>
                 <td>
-                  <Code>hoverListOptionBackgroundColor</Code>
+                  <Code>labelFontColor</Code>
                   <br />
                   <br />
-                  <Code>activeListOptionBackgroundColor</Code> (-15% lightness)
+                  <Code>helperTextFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>valueFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>actionIconColor</Code>
+                  <br />
+                  <br />
+                  <Code>hoverActionIconColor</Code>
+                  <br />
+                  <br />
+                  <Code>focusActionIconColor</Code>
+                  <br />
+                  <br />
+                  <Code>activeActionIconColor</Code>
+                  <br />
+                  <br />
+                  <Code>suffixColor</Code> (50% of opacity)
+                  <br />
+                  <br />
+                  <Code>prefixColor</Code> (50% of opacity)
+                  <br />
+                  <br />
+                  <Code>placeholderFontColor</Code> (50% of opacity)
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Toggle group</HeadingLink>
+        ),
+      },
+      {
+        title: "Toggle group",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -767,13 +950,14 @@ const Themes = () => {
                   <Code>unselectedActiveBackgroundColor</Code>
                   <br />
                   <br />
-                  <Code>selectedHoverBackgroundColor</Code> (-8% lightness)
+                  <Code>selectedHoverBackgroundColor</Code> (-8% of lightness)
                   <br />
                   <br />
-                  <Code>selectedActiveBackgroundColor</Code> (-18% lightness)
+                  <Code>selectedActiveBackgroundColor</Code> (-18% of lightness)
                   <br />
                   <br />
-                  <Code>selectedDisabledBackgroundColor</Code> (+57% lightness)
+                  <Code>selectedDisabledBackgroundColor</Code> (+57% of
+                  lightness)
                 </td>
               </tr>
               <tr>
@@ -782,7 +966,7 @@ const Themes = () => {
                   <Code>selectedFontColor</Code>
                   <br />
                   <br />
-                  <Code>selectedDisabledFontColor</Code> (+42% lightness)
+                  <Code>selectedDisabledFontColor</Code> (+42% of lightness)
                 </td>
               </tr>
               <tr>
@@ -792,23 +976,21 @@ const Themes = () => {
                   <br />
                   <br />
                   <Code>unselectedHoverBackgroundColor</Code> (-8% of lightness)
-                  <br />
-                  <br />
-                  <Code>unselectedDisabledBackgroundColor</Code> (+5% lightness)
                 </td>
               </tr>
               <tr>
                 <td>Unselected font color</td>
                 <td>
                   <Code>unselectedFontColor</Code>
-                  <br />
-                  <br />
-                  <Code>unselectedDisabledFontColor</Code> (34% opacity)
                 </td>
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Wizard</HeadingLink>
+        ),
+      },
+      {
+        title: "Wizard",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -820,21 +1002,72 @@ const Themes = () => {
               <tr>
                 <td>Base color</td>
                 <td>
-                  <Code>stepContainerSelectedBackgroundColor</Code>
+                  <Code>selectedStepBackgroundColor</Code>
                 </td>
               </tr>
               <tr>
                 <td>Font color</td>
                 <td>
-                  <Code>stepContainerSelectedFontColor</Code>
+                  <Code>selectedStepBorderColor</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Selected font color</td>
+                <td>
+                  <Code>selectedStepFontColor</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>visitedLabelFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>selectedLabelFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>visitedHelperTextFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>selectedHelperTextFontColor</Code>
+                  <br />
+                  <br />
+                  <Code>unvisitedStepBorderColor</Code> (60% of opacity)
+                  <br />
+                  <br />
+                  <Code>unvisitedStepFontColor</Code> (60% of opacity)
+                  <br />
+                  <br />
+                  <Code>unvisitedLabelFontColor</Code> (60% of opacity)
+                  <br />
+                  <br />
+                  <Code>unvisitedHelperTextFontColor</Code> (60% of opacity)
                 </td>
               </tr>
             </tbody>
           </DxcTable>
+        ),
+      },
+    ],
+  },
+];
+
+const Themes = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Themes" weight="bold"></DxcHeading>
         </DxcStack>
-        <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/themes/ThemesPage.tsx" />
-      </DxcStack>
-    </PageLayout>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/themes/ThemesPage.tsx" />
+    </DxcStack>
   );
 };
 

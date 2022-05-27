@@ -7,27 +7,31 @@ import DxcStack from "../stack/Stack";
 import DxcInset from "../inset/Inset";
 import DxcList from "../list/List";
 import DxcText from "../text/Text";
+import useTranslatedLabels from "../useTranslatedLabels";
 
 const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
+  const translatedLabels = useTranslatedLabels();
   return (
     <QuickNavContainer>
-      <DxcStack gutter="small">
-        <DxcHeading level={4} text={title} />
+      <DxcStack gutter="xsmall">
+        <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
         <DxcList>
-          {links.map((link) => (
-            <DxcInset space="xxsmall">
-              <DxcText>
-                <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
-                {link.links?.map((sublink) => (
-                  <DxcInset horizontal="xsmall">
-                    <DxcText>
-                      <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
-                    </DxcText>
-                  </DxcInset>
-                ))}
-              </DxcText>
-            </DxcInset>
-          ))}
+          <DxcStack gutter="xsmall">
+            {links.map((link) => (
+              <DxcInset space="xxsmall">
+                <DxcText>
+                  <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
+                  {link.links?.map((sublink) => (
+                    <DxcInset horizontal="xsmall">
+                      <DxcText>
+                        <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
+                      </DxcText>
+                    </DxcInset>
+                  ))}
+                </DxcText>
+              </DxcInset>
+            ))}
+          </DxcStack>
         </DxcList>
       </DxcStack>
     </QuickNavContainer>
@@ -37,10 +41,8 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
 const QuickNavContainer = styled.div`
   padding: 5px 15px;
   border-left: 2px solid #bfbfbf;
-  li {
-    div:first-child {
-      display: none;
-    }
+  li > div:first-child {
+    display: none;
   }
 `;
 

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import SelectPageLayout from "../../../screens/components/select/SelectPageLayout";
-import SelectUsagePage from "../../../screens/components/select/usage/SelectUsagePage";
+import SelectCodePage from "../../../screens/components/select/code/SelectCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Select — Halstack Design System</title>
       </Head>
-      <SelectUsagePage></SelectUsagePage>
+      <SelectCodePage></SelectCodePage>
     </>
   );
 };

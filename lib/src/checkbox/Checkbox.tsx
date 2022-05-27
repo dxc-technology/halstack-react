@@ -5,6 +5,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
 import CheckboxPropsType from "./types";
 
@@ -21,6 +22,7 @@ type LabelPropsType = {
 const Label = React.memo(
   ({ id, label, labelPosition, disabled, optional, onClick, onMouseOver, onMouseOut }: LabelPropsType): JSX.Element => {
     const backgroundType = useContext(BackgroundColorContext);
+    const translatedLabels = useTranslatedLabels();
 
     return (
       <LabelContainer
@@ -34,11 +36,11 @@ const Label = React.memo(
       >
         {labelPosition === "before" ? (
           <>
-            {label} {optional && <span>(Optional)</span>}
+            {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
           </>
         ) : (
           <>
-            {optional && <span>(Optional)</span>} {label}
+            {optional && <span>{translatedLabels.formFields.optionalLabel}</span>} {label}
           </>
         )}
       </LabelContainer>

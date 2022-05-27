@@ -3,15 +3,12 @@ import React, { useContext, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import { spaces } from "../common/variables.js";
 import { v4 as uuidv4 } from "uuid";
 import BackgroundColorContext from "../BackgroundColorContext";
 import { useLayoutEffect } from "react";
 import TextareaPropsType, { RefType } from "./types";
-
-const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
-
-const getPatternErrorMessage = () => `Please match the format requested.`;
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
@@ -46,11 +43,10 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
 
     const colorsTheme = useTheme();
     const backgroundType = useContext(BackgroundColorContext);
+    const translatedLabels = useTranslatedLabels();
 
     const textareaRef = useRef(null);
     const errorId = `error-${textareaId}`;
-
-    const getLengthErrorMessage = () => `Min length ${minLength}, max length ${maxLength}.`;
 
     const isNotOptional = (value) => value === "" && !optional;
 
@@ -60,20 +56,25 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
     const changeValue = (newValue) => {
       value ?? setInnerValue(newValue);
 
-      if (isNotOptional(newValue)) onChange?.({ value: newValue, error: getNotOptionalErrorMessage() });
-      else if (isLengthIncorrect(newValue)) onChange?.({ value: newValue, error: getLengthErrorMessage() });
+      if (isNotOptional(newValue))
+        onChange?.({ value: newValue, error: translatedLabels.formFields.requiredValueErrorMessage });
+      else if (isLengthIncorrect(newValue))
+        onChange?.({ value: newValue, error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength) });
       else if (newValue && pattern && !patternMatch(pattern, newValue))
-        onChange?.({ value: newValue, error: getPatternErrorMessage() });
+        onChange?.({ value: newValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
       else onChange?.({ value: newValue });
     };
 
     const handleTOnBlur = (event) => {
       if (isNotOptional(event.target.value))
-        onBlur?.({ value: event.target.value, error: getNotOptionalErrorMessage() });
+        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
       else if (isLengthIncorrect(event.target.value))
-        onBlur?.({ value: event.target.value, error: getLengthErrorMessage() });
+        onBlur?.({
+          value: event.target.value,
+          error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
+        });
       else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
-        onBlur?.({ value: event.target.value, error: getPatternErrorMessage() });
+        onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
       else onBlur?.({ value: event.target.value });
     };
 
@@ -96,7 +97,7 @@ const DxcTextarea = React.forwardRef<RefType, TextareaPropsType>(
         <TextareaContainer margin={margin} size={size} ref={ref}>
           {label && (
             <Label htmlFor={textareaId} disabled={disabled} backgroundType={backgroundType} helperText={helperText}>
-              {label} {optional && <OptionalLabel>(Optional)</OptionalLabel>}
+              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
             </Label>
           )}
           {helperText && (

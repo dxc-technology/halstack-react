@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
+import useTranslatedLabels from "../useTranslatedLabels";
 import PasswordInputPropsType, { RefType } from "./types";
 
 const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
@@ -26,7 +27,7 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
   ) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const inputRef = useRef(null);
-
+    const translatedLabels = useTranslatedLabels();
     const setInputType = (type) => {
       inputRef?.current?.children[label && helperText ? 2 : label || helperText ? 1 : 0]?.children[0].setAttribute(
         "type",
@@ -49,17 +50,19 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
     };
 
     const getIconTitle = () => {
-      return isPasswordVisible ? "Hide password" : "Show password";
+      return isPasswordVisible
+        ? translatedLabels.passwordInput.inputHidePasswordTitle
+        : translatedLabels.passwordInput.inputShowPasswordTitle;
     };
 
     useEffect(() => {
-      setAriaAttributes(false, "Show password");
+      setAriaAttributes(false, translatedLabels.passwordInput.inputShowPasswordTitle);
       if (isPasswordVisible) {
         setInputType("text");
-        setAriaAttributes(true, "Hide password");
+        setAriaAttributes(true, translatedLabels.passwordInput.inputHidePasswordTitle);
       } else {
         setInputType("password");
-        setAriaAttributes(false, "Show password");
+        setAriaAttributes(false, translatedLabels.passwordInput.inputShowPasswordTitle);
       }
     }, [isPasswordVisible]);
 
