@@ -3,7 +3,7 @@ import { DxcButton, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
 const code = `() => {
     return (
         <DxcInset space="large">
-            <DxcRow gutter="large" align="center">
+            <DxcRow gutter="large" justify="center">
                 <DxcButton
                     mode="primary"
                     label="Primary Disabled"
