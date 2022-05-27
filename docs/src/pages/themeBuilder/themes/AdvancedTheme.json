@@ -530,6 +530,21 @@
     "overlayColor": "#000000",
     "overlayOpacity": "0.8"
   },
+  "quickNav": {
+    "fontColor": "#666666",
+    "hoverFontColor": "#9A6BB2",
+    "selectedFontColor": "#5f249f",
+    "dividerBorderColor": "#bfbfbf",
+    "focusBorderColor": "#0095ff",
+    "paddingTop": "0.5rem",
+    "paddingBottom": "0.5rem",
+    "paddingLeft": "1rem",
+    "paddingRight": "1rem",
+    "fontFamily": "Open Sans, sans-serif",
+    "fontSize": "0.875rem",
+    "fontStyle": "normal",
+    "fontWeight": "400"
+  },
   "radio": {
     "fontColor": "#000000",
     "fontColorOnDark": "#FFFFFF",
