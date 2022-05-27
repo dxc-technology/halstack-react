@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { DxcQuickNav } from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
