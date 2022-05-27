@@ -2,9 +2,10 @@ import React, { useMemo } from "react";
 import Color from "color";
 import rgbHex from "rgb-hex";
 import styled from "styled-components";
-import { componentTokens } from "./common/variables.js";
+import { componentTokens, defaultTranslatedComponentLabels } from "./common/variables.js";
 
 const HalstackContext = React.createContext<object | null>(null);
+const HalstackLanguageContext = React.createContext<object | null>(null);
 
 const addLightness = (hexColor, newLightness) => {
   try {
@@ -267,17 +268,17 @@ const parseTheme = (theme) => {
     subLightness(theme?.toggleGroup?.unselectedBaseColor, 8) ?? toggleGroupTokens.unselectedHoverBackgroundColor;
 
   const wizardTokens = componentTokensCopy.wizard;
-  wizardTokens.selectedStepperBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepperBackgroundColor;
-  wizardTokens.selectedStepperBorderColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepperBorderColor;
-  wizardTokens.selectedStepperFontColor = theme?.wizard?.selectedFontColor ?? wizardTokens.selectedStepperFontColor;
-  wizardTokens.labelFontColor = theme?.wizard?.fontColor ?? wizardTokens.labelFontColor;
-  wizardTokens.activeLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.activeLabelFontColor;
-  wizardTokens.helperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.helperTextFontColor;
-  wizardTokens.activeHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.activeHelperTextFontColor;
-  wizardTokens.unvisitedStepperBorderColor =
-    setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedStepperBorderColor;
-  wizardTokens.unvisitedStepperFontColor =
-    setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedStepperFontColor;
+  wizardTokens.selectedStepBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBackgroundColor;
+  wizardTokens.selectedStepFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedStepFontColor;
+  wizardTokens.selectedStepBorderColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBorderColor;
+  wizardTokens.visitedLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.visitedLabelFontColor;
+  wizardTokens.selectedLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedLabelFontColor;
+  wizardTokens.visitedHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.visitedHelperTextFontColor;
+  wizardTokens.selectedHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedHelperTextFontColor;
+  wizardTokens.unvisitedStepBorderColor =
+    setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedStepBorderColor;
+  wizardTokens.unvisitedStepFontColor =
+    setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedStepFontColor;
   wizardTokens.unvisitedLabelFontColor =
     setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedLabelFontColor;
   wizardTokens.unvisitedHelperTextFontColor =
@@ -286,20 +287,37 @@ const parseTheme = (theme) => {
   return componentTokensCopy;
 };
 
+const parseLabels = (labels) => {
+  const parsedLabels = defaultTranslatedComponentLabels;
+  Object.keys(labels).map((component) => {
+    if (parsedLabels[component]) {
+      Object.keys(parsedLabels[component]).map((label) => {
+        if (labels[component][label]) {
+          parsedLabels[component][label] = labels[component][label];
+        }
+      });
+    }
+  });
+  return parsedLabels;
+};
 type HalstackProviderPropsType = {
   theme?: object;
   advancedTheme?: object;
+  labels?: object;
   children: React.ReactNode;
 };
-const HalstackProvider = ({ theme, advancedTheme, children }: HalstackProviderPropsType): JSX.Element => {
+const HalstackProvider = ({ theme, advancedTheme, labels, children }: HalstackProviderPropsType): JSX.Element => {
   const parsedTheme = useMemo(
     () => (theme && parseTheme(theme)) || (advancedTheme && parseAdvancedTheme(advancedTheme)),
     [theme, advancedTheme]
   );
+  const parsedLabels = useMemo(() => (labels && parseLabels(labels)) || defaultTranslatedComponentLabels, [labels]);
 
   return (
     <Halstack>
-      <HalstackContext.Provider value={parsedTheme}>{children}</HalstackContext.Provider>
+      <HalstackContext.Provider value={parsedTheme}>
+        <HalstackLanguageContext.Provider value={parsedLabels}>{children}</HalstackLanguageContext.Provider>
+      </HalstackContext.Provider>
     </Halstack>
   );
 };
@@ -309,4 +327,4 @@ const Halstack = styled.div`
 `;
 
 export default HalstackContext;
-export { HalstackProvider };
+export { HalstackProvider, HalstackLanguageContext };

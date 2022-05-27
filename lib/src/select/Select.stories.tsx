@@ -371,7 +371,13 @@ const SearchableSelect = () => (
 const SearchableWithValue = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select with value" theme="light" level={4} />
-    <DxcSelect label="Select Label" searchable defaultValue="1" options={single_options} placeholder="Choose an option" />
+    <DxcSelect
+      label="Select Label"
+      searchable
+      defaultValue="1"
+      options={single_options}
+      placeholder="Choose an option"
+    />
   </ExampleContainer>
 );
 
@@ -398,7 +404,13 @@ const DefaultGroupedOptionsSelect = () => (
 const MultipleGroupedOptionsSelect = () => (
   <ExampleContainer expanded>
     <Title title="Grouped options multiple select" theme="light" level={4} />
-    <DxcSelect label="Label" options={group_options} defaultValue={["0", "2"]} multiple placeholder="Choose an option" />
+    <DxcSelect
+      label="Label"
+      options={group_options}
+      defaultValue={["0", "2"]}
+      multiple
+      placeholder="Choose an option"
+    />
   </ExampleContainer>
 );
 const RescaledIcons = () => (

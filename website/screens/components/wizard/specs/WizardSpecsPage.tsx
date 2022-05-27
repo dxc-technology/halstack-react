@@ -21,8 +21,8 @@ const sections = [
     title: "Specifications",
     content: (
       <>
-        <Figure caption="Wizard stepper specifications">
-          <Image src={stepperImage} alt="Wizard stepper specifications" />
+        <Figure caption="Wizard step specifications">
+          <Image src={stepperImage} alt="Wizard step specifications" />
         </Figure>
         <Figure caption="Wizard variants spacing specifications">
           <Image
@@ -42,8 +42,8 @@ const sections = [
           <strong>selected</strong>, <strong>unvisited</strong> and{" "}
           <strong>disabled</strong>.
         </DxcText>
-        <Figure caption="Example of the wizard stepper states">
-          <Image src={statesImage} alt="Example of the wizard stepper states" />
+        <Figure caption="Example of the wizard step states">
+          <Image src={statesImage} alt="Example of the wizard step states" />
         </Figure>
       </>
     ),
@@ -56,7 +56,7 @@ const sections = [
           <Image src={anatomyImage} alt="Wizard component anatomy" />
         </Figure>
         <DxcList type="number">
-          <DxcText>Stepper</DxcText>
+          <DxcText>Step</DxcText>
           <DxcText>Label</DxcText>
           <DxcText>Separator</DxcText>
           <DxcText>
@@ -87,9 +87,9 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>stepperFontColor</Code>
+                  <Code>visitedStepFontColor</Code>
                 </td>
-                <td>Stepper text</td>
+                <td>Step:visited text</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -97,9 +97,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>selectedStepperFontColor</Code>
+                  <Code>selectedStepFontColor</Code>
                 </td>
-                <td>Stepper:selected text</td>
+                <td>Step:selected text</td>
                 <td>
                   <Code>color-white</Code>
                 </td>
@@ -107,9 +107,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>unvisitedStepperFontColor</Code>
+                  <Code>unvisitedStepFontColor</Code>
                 </td>
-                <td>Stepper:unvisited text</td>
+                <td>Step:unvisited text</td>
                 <td>
                   <Code>color-grey-700</Code>
                 </td>
@@ -117,9 +117,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>disabledStepperFontColor</Code>
+                  <Code>disabledStepFontColor</Code>
                 </td>
-                <td>Stepper:disabled text</td>
+                <td>Step:disabled text</td>
                 <td>
                   <Code>color-grey-500</Code>
                 </td>
@@ -127,19 +127,19 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepperBackgroundColor</Code>
+                  <Code>visitedStepBackgroundColor</Code>
                 </td>
-                <td>Stepper background</td>
                 <td>
+                  Step:visited
                   <Code>color-white</Code>
                 </td>
                 <td>#ffffff</td>
               </tr>
               <tr>
                 <td>
-                  <Code>selectedStepperBackgroundColor</Code>
+                  <Code>selectedStepBackgroundColor</Code>
                 </td>
-                <td>Stepper:selected background</td>
+                <td>Step:selected background</td>
                 <td>
                   <Code>color-purple-700</Code>
                 </td>
@@ -147,9 +147,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>unvisitedStepperBackgroundColor</Code>
+                  <Code>unvisitedStepBackgroundColor</Code>
                 </td>
-                <td>Stepper:unvisited background</td>
+                <td>Step:unvisited background</td>
                 <td>
                   <Code>color-grey-700</Code>
                 </td>
@@ -157,9 +157,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>disabledStepperBackgroundColor</Code>
+                  <Code>disabledStepBackgroundColor</Code>
                 </td>
-                <td>Stepper:disabled background</td>
+                <td>Step:disabled background</td>
                 <td>
                   <Code>color-grey-100</Code>
                 </td>
@@ -167,9 +167,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepperBorderColor</Code>
+                  <Code>visitedStepBorderColor</Code>
                 </td>
-                <td>Stepper border</td>
+                <td>Step:visited border</td>
                 <td>
                   <Code>coor-black</Code>
                 </td>
@@ -177,9 +177,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>selectedStepperBorderColor</Code>
+                  <Code>selectedStepBorderColor</Code>
                 </td>
-                <td>Stepper:selected border</td>
+                <td>Step:selected border</td>
                 <td>
                   <Code>color-purple-700</Code>
                 </td>
@@ -187,9 +187,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>unvisitedStepperBorderColor</Code>
+                  <Code>unvisitedStepBorderColor</Code>
                 </td>
-                <td>Stepper:unvisited border</td>
+                <td>Step:unvisited border</td>
                 <td>
                   <Code>color-grey-700</Code>
                 </td>
@@ -197,9 +197,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>disabledStepperBorderColor</Code>
+                  <Code>disabledStepBorderColor</Code>
                 </td>
-                <td>Stepper:disabled border</td>
+                <td>Step:disabled border</td>
                 <td>
                   <Code>color-grey-100</Code>
                 </td>
@@ -207,9 +207,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>labelFontColor</Code>
+                  <Code>visitedLabelFontColor</Code>
                 </td>
-                <td>Label</td>
+                <td>Label:visited</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -217,9 +217,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>activeLabelFontColor</Code>
+                  <Code>selectedLabelFontColor</Code>
                 </td>
-                <td>Label:active</td>
+                <td>Label:selected</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -237,9 +237,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>helperTextFontColor</Code>
+                  <Code>visitedHelperTextFontColor</Code>
                 </td>
-                <td>Helper text</td>
+                <td>Helper text:visited</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -247,9 +247,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>helperTextActiveFontColor</Code>
+                  <Code>selectedHelperTextFontColor</Code>
                 </td>
-                <td>Helper text: active</td>
+                <td>Helper text:selected</td>
                 <td>
                   <Code>color-black</Code>
                 </td>
@@ -358,9 +358,9 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>stepperFontSize</Code>
+                  <Code>stepFontSize</Code>
                 </td>
-                <td>Stepper text</td>
+                <td>Step text</td>
                 <td>
                   <Code>font-scale-03</Code>
                 </td>
@@ -368,9 +368,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepperFontFamily</Code>
+                  <Code>stepFontFamily</Code>
                 </td>
-                <td>Stepper text</td>
+                <td>Step text</td>
                 <td>
                   <Code>font-family-sans</Code>
                 </td>
@@ -378,9 +378,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepperFontStyle</Code>
+                  <Code>stepFontStyle</Code>
                 </td>
-                <td>Stepper text</td>
+                <td>Step text</td>
                 <td>
                   <Code>font-style-normal</Code>
                 </td>
@@ -388,9 +388,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepperFontWeight</Code>
+                  <Code>stepFontWeight</Code>
                 </td>
-                <td>Stepper text</td>
+                <td>Step text</td>
                 <td>
                   <Code>font-style-regular</Code>
                 </td>
@@ -398,9 +398,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepperFontTracking</Code>
+                  <Code>stepFontTracking</Code>
                 </td>
-                <td>Stepper text</td>
+                <td>Step text</td>
                 <td>
                   <Code>font-tracking-wide-02</Code>
                 </td>
@@ -525,9 +525,9 @@ const sections = [
             <tbody>
               <tr>
                 <td>
-                  <Code>stepperBorderStyle</Code>
+                  <Code>stepBorderStyle</Code>
                 </td>
-                <td>Stepper border</td>
+                <td>Step border</td>
                 <td>
                   <Code>border-style-solid</Code>
                 </td>
@@ -535,9 +535,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepperBorderWidth</Code>
+                  <Code>stepBorderWidth</Code>
                 </td>
-                <td>Stepper border</td>
+                <td>Step border</td>
                 <td>
                   <Code>border-width-2</Code>
                 </td>
@@ -545,9 +545,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>selectedStepperBorderWidth</Code>
+                  <Code>selectedStepBorderWidth</Code>
                 </td>
-                <td>Stepper border:selected</td>
+                <td>Step border:selected</td>
                 <td>
                   <Code>border-width-2</Code>
                 </td>
@@ -555,9 +555,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>disabledStepperBorderWidth</Code>
+                  <Code>disabledStepBorderWidth</Code>
                 </td>
-                <td>Stepper border:disabled</td>
+                <td>Step border:disabled</td>
                 <td>
                   <Code>border-width-2</Code>
                 </td>
@@ -565,9 +565,9 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>stepperBorderWidth</Code>
+                  <Code>stepBorderWidth</Code>
                 </td>
-                <td>Stepper border-radius</td>
+                <td>Step border-radius</td>
                 <td>
                   <Code>border-radius-full</Code>
                 </td>
@@ -614,7 +614,7 @@ const sections = [
                 <td>
                   <Code>width</Code>
                 </td>
-                <td>Stepper</td>
+                <td>Step</td>
                 <td>-</td>
                 <td>32px</td>
               </tr>
@@ -622,7 +622,7 @@ const sections = [
                 <td>
                   <Code>height</Code>
                 </td>
-                <td>Stepper</td>
+                <td>Step</td>
                 <td>-</td>
                 <td>32px</td>
               </tr>

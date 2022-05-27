@@ -7,9 +7,8 @@ import {
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
-import Image from "@/common/Image";
-import checkboxStack from "./images/checkbox_stack.png";
+import Example from "@/common/example/Example";
+import stacking from "./examples/StackingCheckbox";
 
 const sections = [
   {
@@ -32,9 +31,7 @@ const sections = [
         <DxcText as="p">
           Checkbox may be either vertically or horizontally stacked.
         </DxcText>
-        <Figure caption="Checkbox group stacking types">
-          <Image src={checkboxStack} alt="Checkbox group stacking types" />
-        </Figure>
+        <Example example={stacking} />
         <DxcTable>
           <thead>
             <tr>
