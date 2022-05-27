@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, createRef } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
-import useTheme from "../useTheme";
 import { TabProps } from "./types";
 import { render } from "react-dom";
 
@@ -63,6 +62,7 @@ const DxcTab = ({
       hasIcon={hasIcons}
       ref={tabRef}
       onKeyDown={handleOnKeyDown}
+      tabIndex={active ? tabIndex : -1}
       {...otherProps}
     >
       {icon && (
@@ -82,7 +82,7 @@ const DxcTab = ({
   );
 
   return (
-    <TabContainer active={active} role="tab" aria-selected={active} tabIndex={active ? tabIndex : -1}>
+    <TabContainer active={active} role="tab" aria-selected={active}>
       {typeof children === "string" ? (
         <AnchorTab href={href}>{children}</AnchorTab>
       ) : (

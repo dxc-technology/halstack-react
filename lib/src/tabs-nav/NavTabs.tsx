@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactElement } from "react";
+import React, { useState, ReactElement } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { NavTabsProps } from "./types";
@@ -26,21 +26,20 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
   const [innerFocus, setInnerFocus] = useState(null);
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const activeTab = React.Children.toArray(children).findIndex((child: ReactElement) => child.props.active);
     switch (event.keyCode) {
       case 37: // arrow left
         event.preventDefault();
-        setInnerFocus(getPreviousTabIndex(React.Children.toArray(children), innerFocus));
+        setInnerFocus(
+          getPreviousTabIndex(React.Children.toArray(children), innerFocus === null ? activeTab : innerFocus)
+        );
         break;
       case 39: // arrow right
         event.preventDefault();
-        setInnerFocus(getNextTabIndex(React.Children.toArray(children), innerFocus));
+        setInnerFocus(getNextTabIndex(React.Children.toArray(children), innerFocus === null ? activeTab : innerFocus));
         break;
     }
   };
-
-  useEffect(() => {
-    setInnerFocus(React.Children.toArray(children).findIndex((child: ReactElement) => child.props.active));
-  }, [children]);
 
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
