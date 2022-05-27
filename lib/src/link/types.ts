@@ -43,10 +43,9 @@ export type LinkProps = {
    */
   tabIndex?: number;
   /**
-   * Content of the link. To use the component with other libraries (such as React Router or Next.js Link) pass the custom link as a child. 
-   * The component will apply the styles to the custom link.
+   * Content of the link.
    */
-  children?: React.ReactNode;
+  children: string;
   /**
    * Element or path used as the icon that will be placed next to the link text.
    */
