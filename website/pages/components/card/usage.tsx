@@ -1,15 +1,15 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import CardCodePage from "../../../screens/components/card/code/CardCodePage";
+import CardUsagePage from "../../../screens/components/card/usage/CardUsagePage";
 import CardPageLayout from "../../../screens/components/card/CardPageLayout";
 
 const Usage = () => {
   return (
     <>
       <Head>
-        <title>Card — Halstack Design System</title>
+        <title>Card Usage — Halstack Design System</title>
       </Head>
-      <CardCodePage></CardCodePage>
+      <CardUsagePage></CardUsagePage>
     </>
   );
 };
