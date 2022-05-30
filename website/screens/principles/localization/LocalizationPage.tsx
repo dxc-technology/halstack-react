@@ -110,7 +110,7 @@ const sections = [
         ),
       },
       {
-        title: "Alert component",
+        title: "Alert",
         content: (
           <DxcTable>
             <thead>
