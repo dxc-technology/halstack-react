@@ -23,6 +23,7 @@ const principlesLinks: LinkDetails[] = [
   { label: "Typography", path: "/principles/typography" },
   { label: "Layout", path: "/principles/layout" },
   { label: "Themes", path: "/principles/themes" },
+  { label: "Localizations", path: "/principles/localizations" },
 ];
 
 const componentsLinks: LinkDetails[] = [
