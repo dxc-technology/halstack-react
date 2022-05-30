@@ -77,8 +77,10 @@ const Link = styled.a`
     color: ${(props) => props.theme.hoverFontColor};
   }
   &:focus {
-    border-radius: 2px;
-    border-color: ${(props) => props.theme.focusBorderColor};
+    outline-color: ${(props) => props.theme.focusBorderColor};
+    outline-style: ${(props) => props.theme.focusBorderStyle};
+    outline-width: ${(props) => props.theme.focusBorderThickness};
+    border-radius: ${(props) => props.theme.focusBorderRadius};
   }
 `;
 
