@@ -39,13 +39,13 @@ const sections = [
     title: "Default labels",
     content: (
       <DxcText as="p">
-        This is the list of the labels and their default values that can be
-        translated using the Halstack Provider.
+        The following lists define the structure of the JSON object containing
+        the different components and the associated labels.
       </DxcText>
     ),
     subSections: [
       {
-        title: "Form Fields",
+        title: "formFields",
         content: (
           <>
             <DxcText as="p">
@@ -110,7 +110,7 @@ const sections = [
         ),
       },
       {
-        title: "Alert",
+        title: "alert",
         content: (
           <DxcTable>
             <thead>
@@ -150,7 +150,7 @@ const sections = [
         ),
       },
       {
-        title: "Date Input",
+        title: "dateInput",
         content: (
           <DxcTable>
             <thead>
@@ -172,7 +172,7 @@ const sections = [
         ),
       },
       {
-        title: "File Input",
+        title: "fileInput",
         content: (
           <DxcTable>
             <thead>
@@ -230,7 +230,7 @@ const sections = [
         ),
       },
       {
-        title: "Footer",
+        title: "footer",
         content: (
           <DxcTable>
             <thead>
@@ -258,7 +258,7 @@ const sections = [
         ),
       },
       {
-        title: "Number input",
+        title: "numberInput",
         content: (
           <DxcTable>
             <thead>
@@ -310,7 +310,7 @@ const sections = [
         ),
       },
       {
-        title: "Paginator",
+        title: "paginator",
         content: (
           <DxcTable>
             <thead>
@@ -364,7 +364,7 @@ const sections = [
         ),
       },
       {
-        title: "Password Input",
+        title: "passwordInput",
         content: (
           <DxcTable>
             <thead>
@@ -392,7 +392,7 @@ const sections = [
         ),
       },
       {
-        title: "Quick Nav",
+        title: "quickNav",
         content: (
           <DxcTable>
             <thead>
@@ -414,7 +414,7 @@ const sections = [
         ),
       },
       {
-        title: "Radio group",
+        title: "radioGroup",
         content: (
           <DxcTable>
             <thead>
@@ -436,7 +436,7 @@ const sections = [
         ),
       },
       {
-        title: "Select",
+        title: "select",
         content: (
           <DxcTable>
             <thead>
@@ -470,7 +470,7 @@ const sections = [
         ),
       },
       {
-        title: "Text input",
+        title: "textInput",
         content: (
           <DxcTable>
             <thead>
