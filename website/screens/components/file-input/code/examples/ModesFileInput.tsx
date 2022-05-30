@@ -9,19 +9,9 @@ const code = `() => {
     <DxcInset space="large">
       <DxcStack gutter="large">
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <DxcFileInput label="File" helperText="Helper Text" margin="small" />
-          <DxcFileInput
-            label="Filedrop"
-            mode="filedrop"
-            helperText="Helper Text"
-            margin="small"
-          />
-          <DxcFileInput
-            label="Dropzone"
-            mode="dropzone"
-            helperText="Helper Text"
-            margin="small"
-          />
+          <DxcFileInput label="File" />
+          <DxcFileInput label="Filedrop" mode="filedrop" />
+          <DxcFileInput label="Dropzone" mode="dropzone" />
         </div>
       </DxcStack>
     </DxcInset>
