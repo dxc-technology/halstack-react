@@ -174,7 +174,7 @@ const sections = [
   },
 ];
 
-const CheckboxCodePage = () => {
+const FileInputCodePage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
@@ -188,4 +188,4 @@ const CheckboxCodePage = () => {
   );
 };
 
-export default CheckboxCodePage;
+export default FileInputCodePage;
