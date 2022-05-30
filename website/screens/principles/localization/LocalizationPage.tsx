@@ -1,0 +1,529 @@
+import Code from "@/common/Code";
+import DocFooter from "@/common/DocFooter";
+import Example from "@/common/example/Example";
+import PageHeading from "@/common/PageHeading";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import {
+  DxcHeading,
+  DxcStack,
+  DxcTable,
+  DxcText,
+} from "@dxc-technology/halstack-react";
+import translations from "./examples/translations";
+
+const sections = [
+  {
+    title: "Translation",
+    content: (
+      <>
+        <DxcText as="p">
+          Halstack Design System provides the possibility to translate all the
+          labels, that cannot be changed by the component properties, through
+          the Halstack Provider and its property <Code>labels</Code>.
+        </DxcText>
+        <DxcText as="p">
+          You will need to create an object with your translations. In this
+          object, you will have as much objects as components you want to
+          translate, using the label from the list we will show below, following
+          the structure you can see in the example.
+        </DxcText>
+      </>
+    ),
+  },
+  {
+    title: "Translation example",
+    content: <Example example={translations} defaultIsVisible />,
+  },
+  {
+    title: "Default labels",
+    content: (
+      <DxcText as="p">
+        This is the list of the labels and their default values that can be
+        translated using the Halstack Provider.
+      </DxcText>
+    ),
+    subSections: [
+      {
+        title: "Form Fields",
+        content: (
+          <>
+            <DxcText as="p">
+              FormFields labels are common to several components of the design
+              system.
+            </DxcText>
+            <DxcTable>
+              <thead>
+                <tr>
+                  <th>Label Name</th>
+                  <th>Default value</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <Code>optionalLabel</Code>
+                  </td>
+                  <td>(Optional)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>requiredSelectionErrorMessage</Code>
+                  </td>
+                  <td>This field is required. Please, choose an option.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>requiredValueErrorMessage</Code>
+                  </td>
+                  <td>This field is required. Please, enter a value.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>formatRequestedErrorMessage</Code>
+                  </td>
+                  <td>Please match the format requested.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>lengthErrorMessage</Code>
+                  </td>
+                  <td>
+                    Min length <Code>minLength</Code>, max length{" "}
+                    <Code>maxLength</Code>.
+                  </td>
+                  <td>
+                    It is a function that receives two parameters (minlength and
+                    maxlength) and returns the text with those parameters.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>logoAlternativeText</Code>
+                  </td>
+                  <td>Logo</td>
+                </tr>
+              </tbody>
+            </DxcTable>
+          </>
+        ),
+      },
+      {
+        title: "Alert",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>infoTitleText</Code>
+                </td>
+                <td>information</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>successTitleText</Code>
+                </td>
+                <td>success</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>warningTitleText</Code>
+                </td>
+                <td>warning</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>errorTitleText</Code>
+                </td>
+                <td>error</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Date Input",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>invalidDateErrorMessage</Code>
+                </td>
+                <td>Invalid date.</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "File Input",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>fileSizeGreaterThanErrorMessage</Code>
+                </td>
+                <td>File size must be greater than min size.</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fileSizeLessThanErrorMessage</Code>
+                </td>
+                <td>File size must be less than max size.</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>multipleButtonLabelDefault</Code>
+                </td>
+                <td>Select files</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>singleButtonLabelDefault</Code>
+                </td>
+                <td>Select file</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>dropAreaButtonLabelDefault</Code>
+                </td>
+                <td>Select</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>multipleDropAreaLabelDefault</Code>
+                </td>
+                <td>or drop files</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>singleDropAreaLabelDefault</Code>
+                </td>
+                <td>or drop file</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Footer",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>copyrightText</Code>
+                </td>
+                <td>
+                  © DXC Technology <Code>year</Code>. All rights reserved.
+                </td>
+                <td>
+                  It is a function that receives one parameter (year) and
+                  returns the text with that parameter.
+                </td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Number input",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>valueGreaterThanOrEqualToErrorMessage</Code>
+                </td>
+                <td>
+                  Value must be greater than or equal to <Code>value</Code>.
+                </td>
+                <td>
+                  It is a function that receives one parameter (value) and
+                  returns the text with that parameter.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>valueLessThanOrEqualToErrorMessage</Code>
+                </td>
+                <td>
+                  Value must be less than or equal to <Code>value</Code>.
+                </td>
+                <td>
+                  It is a function that receives one parameter (value) and
+                  returns the text with that parameter.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>decrementValueTitle</Code>
+                </td>
+                <td>Decrement value</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>incrementValueTitle</Code>
+                </td>
+                <td>Increment value</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Paginator",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>itemsPerPageText</Code>
+                </td>
+                <td>Items per page</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>minToMaxOfText</Code>
+                </td>
+                <td>
+                  <Code>minNumberOfItems</Code> to <Code>maxNumberOfItems</Code>{" "}
+                  of <Code>totalItems</Code>
+                </td>
+                <td>
+                  It is a function that receives three parameters
+                  (minNumberOfItems, maxNumberOfItems and totalItems) and
+                  returns the text with those parameters.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>goToPageText</Code>
+                </td>
+                <td>Go to page:</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>pageOfText</Code>
+                </td>
+                <td>
+                  Page: <Code>pageNumber</Code> of <Code>totalPagesNumber</Code>
+                </td>
+                <td>
+                  It is a function that receives two parameters (pageNumber and
+                  totalPagesNumber) and returns the text with those parameters.
+                </td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Password Input",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>inputShowPasswordTitle</Code>
+                </td>
+                <td>Show password</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>inputHidePasswordTitle</Code>
+                </td>
+                <td>Hide password</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Quick Nav",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>contentTitle</Code>
+                </td>
+                <td>Contents</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Radio group",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>optionalItemLabelDefault</Code>
+                </td>
+                <td>N/A</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Select",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>noMatchesErrorMessage</Code>
+                </td>
+                <td>No matches found</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>actionClearSelectionTitle</Code>
+                </td>
+                <td>Clear selection</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>actionClearSearchTitle</Code>
+                </td>
+                <td>Clear search</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "Text input",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>clearFieldActionTitle</Code>
+                </td>
+                <td>Clear field</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>searchingMessage</Code>
+                </td>
+                <td>Searching...</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fetchingDataErrorMessage</Code>
+                </td>
+                <td>Error fetching data</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+    ],
+  },
+];
+
+const Localization = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <PageHeading>
+        <DxcStack gutter="large">
+          <DxcHeading level={1} text="Localization" weight="bold"></DxcHeading>
+        </DxcStack>
+      </PageHeading>
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/localization/LocalizationPage.tsx" />
+    </DxcStack>
+  );
+};
+
+export default Localization;
