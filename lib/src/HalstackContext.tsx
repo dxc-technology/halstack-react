@@ -163,6 +163,11 @@ const parseTheme = (theme) => {
   progressBarTokens.valueFontColor = theme?.progressBar?.fontColor ?? progressBarTokens.valueFontColor;
   progressBarTokens.helperTextFontColor = theme?.progressBar?.fontColor ?? progressBarTokens.helperTextFontColor;
 
+  const quickNavTokens = componentTokensCopy.quickNav;
+  quickNavTokens.fontColor = theme?.quickNav?.fontColor ?? quickNavTokens.fontColor;
+  quickNavTokens.selectedFontColor = theme?.quickNav?.accentColor ?? quickNavTokens.selectedFontColor;
+  quickNavTokens.hoverFontColor = setOpacity(theme?.quickNav?.accentColor, 0.7) ?? quickNavTokens.hoverFontColor;
+
   const radioTokens = componentTokensCopy.radio;
   radioTokens.color = theme?.radio?.baseColor ?? radioTokens.color;
   radioTokens.fontColor = theme?.radio?.fontColor ?? radioTokens.color;
