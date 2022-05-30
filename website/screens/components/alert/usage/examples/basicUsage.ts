@@ -3,22 +3,26 @@ import { DxcAlert, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
 const code = `() => {
     return (
         <DxcInset space="large">
-          <DxcStack gutter="large" align="center">
+          <DxcStack gutter="large">
             <DxcAlert
               type="info"
-              inlineText=" Lorem ipsum dolor sit amet. "
+              size="fillParent"
+              inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
             />
             <DxcAlert
               type="confirm"
-              inlineText=" Lorem ipsum dolor sit amet. "
+              size="fillParent"
+              inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
             />
             <DxcAlert
               type="warning"
-              inlineText=" Lorem ipsum dolor sit amet. "
+              size="fillParent"
+              inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
             />
             <DxcAlert
               type="error"
-              inlineText=" Lorem ipsum dolor sit amet. "
+              size="fillParent"
+              inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
             />
           </DxcStack>
         </DxcInset>
