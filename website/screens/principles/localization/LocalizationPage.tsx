@@ -14,7 +14,7 @@ import translations from "./examples/translations";
 
 const sections = [
   {
-    title: "Internationalization",
+    title: "Translation",
     content: (
       <>
         <DxcText as="p">
@@ -45,7 +45,7 @@ const sections = [
     ),
     subSections: [
       {
-        title: "Formfields",
+        title: "Form Fields",
         content: (
           <>
             <DxcText as="p">
@@ -246,7 +246,7 @@ const sections = [
                   <Code>copyrightText</Code>
                 </td>
                 <td>
-                  © DXC Technology <Code>year</Code>. All rights reserved..
+                  © DXC Technology <Code>year</Code>. All rights reserved.
                 </td>
                 <td>
                   It is a function that receives one parameter (year) and
@@ -392,7 +392,7 @@ const sections = [
         ),
       },
       {
-        title: "QuickNav",
+        title: "Quick Nav",
         content: (
           <DxcTable>
             <thead>
@@ -507,12 +507,12 @@ const sections = [
   },
 ];
 
-const Localizations = () => {
+const Localization = () => {
   return (
     <DxcStack gutter="xxlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Localizations" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Localization" weight="bold"></DxcHeading>
         </DxcStack>
       </PageHeading>
       <QuickNavContainerLayout>
@@ -521,9 +521,9 @@ const Localizations = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/localizations/LocalizationsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/localization/LocalizationPage.tsx" />
     </DxcStack>
   );
 };
 
-export default Localizations;
+export default Localization;

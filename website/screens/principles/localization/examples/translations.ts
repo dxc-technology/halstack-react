@@ -19,41 +19,29 @@ const code = `()=>{
     };
       
     return (
-
-        <HalstackProvider labels={labels}>
+      <HalstackProvider labels={labels}>
         <DxcInset space="large">
-
-        <DxcSelect
-          label="Label"
-          helperText="Helper text"
-          options={[
-            { label: "Option 01", value: "1" },
-            { label: "Option 02", value: "2" },
-            { label: "Option 03", value: "3" },
-            { label: "Option 04", value: "4" },
-          ]}
-          placeholder="Choose an option"
-          multiple
-          optional
-        />
+          <DxcSelect
+            label="Label"
+            helperText="Helper text"
+            options={[
+              { label: "Option 01", value: "1" },
+              { label: "Option 02", value: "2" },
+              { label: "Option 03", value: "3" },
+              { label: "Option 04", value: "4" },
+            ]}
+            placeholder="Choose an option"
+            multiple
+            optional
+          />
         </DxcInset>
         <DxcInset space="large">
-          <DxcTextInput
-          label="Input text"
-          defaultValue="Example text"
-          clearable
-          optional
-        />
+          <DxcTextInput label="Input text" defaultValue="Example text" clearable optional />
         </DxcInset>
         <DxcInset space="large">
-
-        <DxcPaginator
-            itemsPerPageOptions={[10, 15]}
-            totalItems={27}
-          ></DxcPaginator>
-          </DxcInset>
-
-        </HalstackProvider>
+          <DxcPaginator itemsPerPageOptions={[10, 15]} totalItems={27}></DxcPaginator>
+        </DxcInset>
+      </HalstackProvider>
     );
 }`;
 
