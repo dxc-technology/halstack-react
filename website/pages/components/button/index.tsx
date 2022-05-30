@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import ButtonPageLayout from "../../../screens/components/button/ButtonPageLayout";
-import ButtonUsagePage from "../../../screens/components/button/usage/ButtonUsagePage";
+import ButtonCodePage from "../../../screens/components/button/code/ButtonCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Button — Halstack Design System</title>
       </Head>
-      <ButtonUsagePage></ButtonUsagePage>
+      <ButtonCodePage></ButtonCodePage>
     </>
   );
 };
