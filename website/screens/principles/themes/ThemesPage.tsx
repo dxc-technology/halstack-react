@@ -595,7 +595,11 @@ const sections = [
               </tr>
             </tbody>
           </DxcTable>
-          <HeadingLink level={3}>Radio Group</HeadingLink>
+        ),
+      },
+      {
+        title: "Radio Group",
+        content: (
           <DxcTable>
             <thead>
               <tr>
@@ -998,40 +1002,40 @@ const sections = [
               <tr>
                 <td>Base color</td>
                 <td>
-                  <Code>selectedStepperBackgroundColor</Code>
+                  <Code>selectedStepBackgroundColor</Code>
                 </td>
               </tr>
               <tr>
                 <td>Font color</td>
                 <td>
-                  <Code>selectedStepperBorderColor</Code>
+                  <Code>selectedStepBorderColor</Code>
                 </td>
               </tr>
               <tr>
                 <td>Selected font color</td>
                 <td>
-                  <Code>selectedStepperFontColor</Code>
+                  <Code>selectedStepFontColor</Code>
                 </td>
               </tr>
               <tr>
                 <td>Font color</td>
                 <td>
-                  <Code>labelFontColor</Code>
+                  <Code>visitedLabelFontColor</Code>
                   <br />
                   <br />
-                  <Code>activeLabelFontColor</Code>
+                  <Code>selectedLabelFontColor</Code>
                   <br />
                   <br />
-                  <Code>helperTextFontColor</Code>
+                  <Code>visitedHelperTextFontColor</Code>
                   <br />
                   <br />
-                  <Code>activeHelperTextFontColor</Code>
+                  <Code>selectedHelperTextFontColor</Code>
                   <br />
                   <br />
-                  <Code>unvisitedStepperBorderColor</Code> (60% of opacity)
+                  <Code>unvisitedStepBorderColor</Code> (60% of opacity)
                   <br />
                   <br />
-                  <Code>unvisitedStepperFontColor</Code> (60% of opacity)
+                  <Code>unvisitedStepFontColor</Code> (60% of opacity)
                   <br />
                   <br />
                   <Code>unvisitedLabelFontColor</Code> (60% of opacity)

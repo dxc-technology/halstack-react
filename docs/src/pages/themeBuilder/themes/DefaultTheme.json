@@ -62,6 +62,10 @@
     "baseColor": "#0086e6",
     "fontColor": "#000000"
   },
+  "quickNav": {
+    "fontColor": "#666666",
+    "accentColor": "#5f249f"
+  },
   "select": {
     "selectedOptionBackgroundColor": "#d9d9d9",
     "fontColor": "#000000",
