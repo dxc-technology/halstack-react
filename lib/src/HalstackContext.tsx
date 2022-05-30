@@ -165,7 +165,7 @@ const parseTheme = (theme) => {
 
   const quickNavTokens = componentTokensCopy.quickNav;
   quickNavTokens.fontColor = theme?.quickNav?.fontColor ?? quickNavTokens.fontColor;
-  quickNavTokens.hoverFontColor = theme?.quickNav?.accentColor ?? quickNavTokens.hoverFontColor;
+  quickNavTokens.hoverFontColor = setOpacity(theme?.quickNav?.accentColor, 0.7) ?? quickNavTokens.hoverFontColor;
 
   const radioTokens = componentTokensCopy.radio;
   radioTokens.color = theme?.radio?.baseColor ?? radioTokens.color;
