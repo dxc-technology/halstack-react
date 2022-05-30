@@ -6,15 +6,16 @@ import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Example from "@/common/example/Example";
+import usage from "./examples/UsageFooter";
+import content from "./examples/ContentFooter";
 
 const sections = [
   {
     title: "Usage",
     content: (
       <>
-        <Figure caption="Footer component example">
-          <Image src={footerExample} alt="Footer component example" />
-        </Figure>
+        <Example example={usage} />
         <DxcList>
           <DxcText>
             The footer frame should be docked at the bottom of the page and
@@ -43,12 +44,7 @@ const sections = [
     title: "Content",
     content: (
       <>
-        <Figure caption="Footer custom content examples">
-          <Image
-            src={footerCustomContent}
-            alt="Footer custom content examples"
-          />
-        </Figure>
+        <Example example={content} />
         <DxcText as="p">
           The footer component has a custom area where many kinds of content can
           be placed, some of them are contemplated in the following list:
