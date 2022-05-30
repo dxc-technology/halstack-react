@@ -7,9 +7,8 @@ import {
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Image from "@/common/Image";
-import Figure from "@/common/Figure";
-import fileInputVariants from "./images/input_file_variants.png";
+import variants from "./examples/VariantsFileInput";
+import Example from "@/common/example/Example";
 
 const sections = [
   {
@@ -60,9 +59,7 @@ const sections = [
     title: "Variants",
     content: (
       <>
-        <Figure caption="File input component variants">
-          <Image src={fileInputVariants} alt="File input component variants" />
-        </Figure>
+        <Example example={variants} />
         <DxcTable>
           <thead>
             <tr>
