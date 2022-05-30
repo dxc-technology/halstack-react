@@ -23,7 +23,9 @@ const sections = [
         </tr>
         <tr>
           <td>mode: 'file' | 'filedrop' | 'dropzone'</td>
-          <td>'file'</td>
+          <td>
+            <Code>'file'</Code>
+          </td>
           <td>Available modes of the component.</td>
         </tr>
         <tr>
@@ -81,7 +83,7 @@ const sections = [
         <tr>
           <td>multiple: boolean</td>
           <td>
-            <code>true</code>
+            <Code>true</Code>
           </td>
           <td>
             If true, the component allows multiple file items and will show all
@@ -113,7 +115,7 @@ const sections = [
         <tr>
           <td>showPreview: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>
             If true, if the file is an image, a preview of it will be shown. If
@@ -123,7 +125,7 @@ const sections = [
         <tr>
           <td>disabled: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>If true, the component will be disabled.</td>
         </tr>
@@ -149,7 +151,9 @@ const sections = [
         </tr>
         <tr>
           <td>tabIndex: number</td>
-          <td>0</td>
+          <td>
+            <Code>0</Code>
+          </td>
           <td>Value of the tabindex.</td>
         </tr>
       </DxcTable>
