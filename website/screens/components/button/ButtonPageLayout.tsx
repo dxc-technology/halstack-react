@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const ButtonPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/button" },
+    { label: "Code", path: "/components/button" },
+    { label: "Usage", path: "/components/button/usage" },
     { label: "Specifications", path: "/components/button/specifications" },
   ];
 

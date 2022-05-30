@@ -7,11 +7,9 @@ import {
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
-import Image from "@/common/Image";
-import buttonIconImage from "./images/button_icon.png";
-import buttonVariantsImage from "./images/button_variants.png";
-
+import Example from "@/common/example/Example";
+import variants from "./examples/variants";
+import icons from "./examples/icons";
 const sections = [
   {
     title: "Usage",
@@ -47,12 +45,7 @@ const sections = [
           Variants: <strong>primary</strong>, <strong>secondary</strong> and{" "}
           <strong>text</strong>.
         </DxcText>
-        <Figure caption="Example of the button component variants">
-          <Image
-            src={buttonVariantsImage}
-            alt="Example of the button component variants"
-          />
-        </Figure>
+        <Example example={variants} />
         <DxcTable>
           <thead>
             <tr>
@@ -114,9 +107,7 @@ const sections = [
             system.
           </DxcText>
         </DxcList>
-        <Figure caption="Icon usage examples">
-          <Image src={buttonIconImage} alt="Icon usage examples" />
-        </Figure>
+        <Example example={icons} />
       </>
     ),
   },

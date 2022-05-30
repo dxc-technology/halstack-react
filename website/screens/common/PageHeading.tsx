@@ -6,9 +6,7 @@ const PageHeading = ({ children }: { children: React.ReactNode }) => {
 };
 
 const PageHeadingContainer = styled.div`
-  max-width: 960px;
-  margin-left: 200px;
-  margin-top: 80px;
+  max-width: 800px;
 `;
 
 export default PageHeading;

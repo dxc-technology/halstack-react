@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const CheckboxPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/checkbox" },
+    { label: "Code", path: "/components/checkbox" },
+    { label: "Usage", path: "/components/checkbox/usage" },
     { label: "Specifications", path: "/components/checkbox/specifications" },
   ];
 

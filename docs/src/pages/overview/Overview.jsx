@@ -182,6 +182,10 @@ function CustomThemes() {
         accentColor: "#5f249f", // progress bar's accent color theme input
         baseColor: "#cecece", // progress bar's base color theme input
       },
+      quickNav: {
+        fontColor: "#666666", // quick nav's font color theme input
+        accentColor: "#5f249f", // quick nav's accent color theme input
+      },
       radio: {
         baseColor: "#000000", // radio's base color theme input
       },
@@ -191,8 +195,6 @@ function CustomThemes() {
       },
       sidenav: {
         baseColor: "#f8f8f8", // sidenav's base color theme input
-        arrowBaseColor: "#f8f8f8", // sidenav's arrow base color theme input
-        arrowAccentColor: "#000000", // sidenav's arrow accent color theme input
       },
       slider: {
         baseColor: "#0067b3", // slider's base color theme input
