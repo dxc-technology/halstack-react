@@ -4,7 +4,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import basic from "./examples/basic";
 import modal from "./examples/modal";
-import children from "./examples/children";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 
@@ -116,14 +115,6 @@ const sections = [
         content: (
           <>
             <Example example={modal} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Children",
-        content: (
-          <>
-            <Example example={children} defaultIsVisible />
           </>
         ),
       },
