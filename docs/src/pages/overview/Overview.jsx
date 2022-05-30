@@ -182,6 +182,10 @@ function CustomThemes() {
         accentColor: "#5f249f", // progress bar's accent color theme input
         baseColor: "#cecece", // progress bar's base color theme input
       },
+      quickNav: {
+        fontColor: "#666666", // quick nav's font color theme input
+        accentColor: "#5f249f", // quick nav's accent color theme input
+      },
       radio: {
         baseColor: "#000000", // radio's base color theme input
       },

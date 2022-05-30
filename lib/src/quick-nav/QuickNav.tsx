@@ -1,6 +1,8 @@
+// @ts-nocheck
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import slugify from "slugify";
+import useTheme from "../useTheme";
 import QuickNavTypes from "./types";
 import DxcHeading from "../heading/Heading";
 import DxcStack from "../stack/Stack";
@@ -11,36 +13,53 @@ import useTranslatedLabels from "../useTranslatedLabels";
 
 const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
   const translatedLabels = useTranslatedLabels();
+  const colorsTheme = useTheme();
+
   return (
-    <QuickNavContainer>
-      <DxcStack gutter="xsmall">
-        <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
-        <DxcList>
-          <DxcStack gutter="xsmall">
-            {links.map((link) => (
-              <DxcInset space="xxsmall">
-                <DxcText>
-                  <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
-                  {link.links?.map((sublink) => (
-                    <DxcInset horizontal="xsmall">
-                      <DxcText>
-                        <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
-                      </DxcText>
-                    </DxcInset>
-                  ))}
-                </DxcText>
-              </DxcInset>
-            ))}
-          </DxcStack>
-        </DxcList>
-      </DxcStack>
-    </QuickNavContainer>
+    <ThemeProvider theme={colorsTheme.quickNav}>
+      <QuickNavContainer>
+        <DxcStack gutter="xsmall">
+          <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
+          <DxcList>
+            <DxcStack gutter="xsmall">
+              {links.map((link) => (
+                <DxcInset space="xxsmall">
+                  <DxcText>
+                    <Link
+                      href={`#${slugify(link?.label, { lower: true })}`}
+                      isSelected={location.href.includes(`#${slugify(link?.label, { lower: true })}`)}
+                    >
+                      {link?.label}
+                    </Link>
+                    {link.links?.map((sublink) => (
+                      <DxcInset horizontal="xsmall">
+                        <DxcText>
+                          <Link
+                            href={`#${slugify(sublink?.label, { lower: true })}`}
+                            isSelected={location.href.includes(`#${slugify(sublink?.label, { lower: true })}`)}
+                          >
+                            {sublink?.label}
+                          </Link>
+                        </DxcText>
+                      </DxcInset>
+                    ))}
+                  </DxcText>
+                </DxcInset>
+              ))}
+            </DxcStack>
+          </DxcList>
+        </DxcStack>
+      </QuickNavContainer>
+    </ThemeProvider>
   );
 };
 
 const QuickNavContainer = styled.div`
-  padding: 5px 15px;
-  border-left: 2px solid #bfbfbf;
+  padding-top: ${(props) => props.theme.paddingTop};
+  padding-bottom: ${(props) => props.theme.paddingBottom};
+  padding-left: ${(props) => props.theme.paddingLeft};
+  padding-right: ${(props) => props.theme.paddingRight};
+  border-left: 2px solid ${(props) => props.theme.dividerBorderColor};
   li > div:first-child {
     display: none;
   }
@@ -48,14 +67,20 @@ const QuickNavContainer = styled.div`
 
 const Link = styled.a`
   text-decoration: none;
-  font-size: 14px;
-  color: #666666;
+  font-size: ${(props) => props.theme.fontSize};
+  font-family: ${(props) => props.theme.fontFamily};
+  font-style: ${(props) => props.theme.fontStyle};
+  font-weight: ${(props) => props.theme.fontWeight};
+  color: ${(props) => (props.isSelected && props.theme.selectedFontColor) || props.theme.fontColor};
+
   &:hover {
-    color: #ab63cf;
+    color: ${(props) => props.theme.hoverFontColor};
   }
   &:focus {
-    border-radius: 2px;
-    border-color: #0095ff;
+    outline-color: ${(props) => props.theme.focusBorderColor};
+    outline-style: ${(props) => props.theme.focusBorderStyle};
+    outline-width: ${(props) => props.theme.focusBorderThickness};
+    border-radius: ${(props) => props.theme.focusBorderRadius};
   }
 `;
 
