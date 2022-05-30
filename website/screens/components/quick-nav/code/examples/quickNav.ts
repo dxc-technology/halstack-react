@@ -1,4 +1,4 @@
-import { DxcQuickNav } from "@dxc-technology/halstack-react";
+import { DxcInset, DxcQuickNav } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const links = [
@@ -20,10 +20,15 @@ const code = `() => {
     },
   ];
 
-  return <div style={{ margin: "20px"}}><DxcQuickNav links={links}></DxcQuickNav></div>;
+  return (
+    <DxcInset space="large">
+      <DxcQuickNav links={links}></DxcQuickNav>
+    </DxcInset>
+  );
 }`;
 
 const scope = {
+  DxcInset,
   DxcQuickNav,
 };
 
