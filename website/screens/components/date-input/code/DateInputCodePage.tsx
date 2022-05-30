@@ -6,7 +6,9 @@ import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import basic from "./examples/basic";
 import optional from "./examples/optional";
-import errorManagement from "./examples/errorManagement";
+import errorHandling from "./examples/errorHandling";
+import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
 
 const sections = [
   {
@@ -196,13 +198,27 @@ const sections = [
         ),
       },
       {
-        title: "Error management",
+        title: "Error handling",
         content: (
           <>
-            <DxcText as="p">
-              Example of error management when it does not match the format.
-            </DxcText>
-            <Example example={errorManagement} defaultIsVisible />
+            <DxcText as="p">Example of error handling when it does not match the format.</DxcText>
+            <Example example={errorHandling} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Controlled",
+        content: (
+          <>
+            <Example example={controlled} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Uncontrolled",
+        content: (
+          <>
+            <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
       },
