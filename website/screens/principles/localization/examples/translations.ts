@@ -4,7 +4,7 @@ const code = `()=>{
 
     const labels = {
         formFields:{ 
-            optionalLabel: "**Opcional**",
+            optionalLabel: "(Opcional)",
         },
         select:{ 
             actionClearSelectionTitle: "Eliminar selección",
@@ -13,7 +13,7 @@ const code = `()=>{
             clearFieldActionTitle: "Limpiar",
         },
         paginator: {
-            itemsPerPageText: " Num. items",
+            itemsPerPageText: " Número de elementos",
             pageOfText: (a, b) => \`Pagina: \${a} de \${b}\`,
           },
     };
