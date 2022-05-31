@@ -31,6 +31,7 @@ const labels = {
     contentTitle: "Contenido",
   },
 };
+
 function App() {
   return (
     <HalstackProvider labels={labels}>

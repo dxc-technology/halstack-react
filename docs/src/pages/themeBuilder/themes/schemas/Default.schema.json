@@ -54,6 +54,10 @@
     "baseColor": "color",
     "fontColor": "color"
   },
+  "quickNav": {
+    "fontColor": "color",
+    "accentColor": "color"
+  },
   "radio": {
     "baseColor": "color",
     "fontColor": "color"
