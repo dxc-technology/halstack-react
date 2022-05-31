@@ -4,14 +4,11 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basic from "./code-examples/basicSelect";
-import controlled from "./code-examples/controlledSelect";
-import uncontrolled from "./code-examples/uncontrolledSelect";
-import multiple from "./code-examples/multipleSelect";
-import searchable from "./code-examples/searchableSelect";
-import groups from "./code-examples/groupedSelect";
-import icons from "./code-examples/iconsSelect";
-import optional from "./code-examples/optionalSelect";
+import basic from "./examples/basicSelect";
+import controlled from "./examples/controlledSelect";
+import uncontrolled from "./examples/uncontrolledSelect";
+import groups from "./examples/groupedSelect";
+import icons from "./examples/iconsSelect";
 
 const sections = [
   {
@@ -139,7 +136,7 @@ const sections = [
             <td>
               If true, the select will be optional, showing '(Optional)' next to
               the label and adding a default first option with an empty string
-              as value, been the placeholder (if defined) its label. Otherwise,
+              as value and the placeholder (if defined) as its label. Otherwise,
               the field will be considered required and an error will be passed
               as a parameter to the OnBlur and onChange functions if an option
               wasn't selected.
@@ -227,14 +224,7 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <DxcText as="p">
-              Some examples with the different states of the Select component.
-            </DxcText>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basic} defaultIsVisible />,
       },
       {
         title: "Controlled",
@@ -253,58 +243,21 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              The state of the component is managed internally by the select.
-              Here is an example of how to use an uncontrolled select the submit
-              event.
+              Alternatively you can let the component manage its state
+              internally. The example below shows how to handle the value of an
+              uncontrolled select in the submit event.
+            </DxcText>
+            <DxcText as="p">
+              The Select's value is empty by default, but an initial,
+              uncontrolled, value can be provided using the{" "}
+              <Code>defaultValue</Code> prop.
             </DxcText>
             <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
       },
       {
-        title: "Searchable",
-        content: (
-          <>
-            <DxcText as="p">
-              The <Code>searchable</Code> prop enables the search functionality
-              for filtering the select options.
-            </DxcText>
-            <Example example={searchable} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Multiple",
-        content: (
-          <>
-            <DxcText as="p">
-              The <Code>multiple</Code> prop enables the user to select more
-              than one option. If the component is also optional, it will only
-              add "(Optional)" next to the label and not another option to the
-              listbox.
-            </DxcText>
-            <Example example={multiple} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Optional",
-        content: (
-          <>
-            <DxcText as="p">
-              You can mark a select as optional by setting to <Code>true</Code>{" "}
-              the <Code>optional</Code> prop. In this particular case, the
-              component will automatically add an extra selectable option which
-              will have the empty string as value and the placeholder as a
-              label. This only affects the single selection mode, otherwise this
-              option will not be included.
-            </DxcText>
-            <Example example={optional} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Groups",
+        title: "Grouped options",
         content: (
           <>
             <DxcText as="p">
@@ -320,8 +273,8 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              You can add icons to the options of the listbox either using a URL
-              or an inline SVG.
+              You can optionally add icons to the options of the listbox either
+              using a URL or an inline SVG.
             </DxcText>
             <Example example={icons} defaultIsVisible />
           </>

@@ -23,7 +23,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcSelect
-        label="Controlled"
+        label="Label"
         placeholder="Choose an option"
         options={options}
         value={value}
