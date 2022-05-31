@@ -27,7 +27,7 @@ const sections = [
         <tr>
           <td>checked: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>
             If true, the component is checked. If undefined the component will
@@ -52,7 +52,7 @@ const sections = [
         <tr>
           <td>labelPosition: 'before' | 'after'</td>
           <td>
-            <code>'before'</code>
+            <Code>'before'</Code>
           </td>
           <td>Whether the label should appear after or before the checkbox.</td>
         </tr>
@@ -64,17 +64,17 @@ const sections = [
         <tr>
           <td>disabled: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>If true, the component will be disabled.</td>
         </tr>
         <tr>
           <td>optional: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>
-            If true, the component will display <code>(Optional)</code> next to
+            If true, the component will display <Code>(Optional)</Code> next to
             the label.
           </td>
         </tr>
@@ -99,7 +99,7 @@ const sections = [
         <tr>
           <td>size: string</td>
           <td>
-            <code>'fitContent'</code>
+            <Code>'fitContent'</Code>
           </td>
           <td>
             Size of the component ('small' | 'medium' | 'large' | 'fillParent' |
@@ -108,7 +108,9 @@ const sections = [
         </tr>
         <tr>
           <td>tabIndex: number</td>
-          <td>0</td>
+          <td>
+            <Code>0</Code>
+          </td>
           <td>Value of the tabindex.</td>
         </tr>
       </DxcTable>
