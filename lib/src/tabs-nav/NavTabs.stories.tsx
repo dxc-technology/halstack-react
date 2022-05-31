@@ -166,19 +166,5 @@ export const Chromatic = () => (
         </DxcNavTabs.Tab>
       </DxcNavTabs>
     </ExampleContainer>
-    <ExampleContainer>
-      <Title title="Custom tabs" theme="light" level={4} />
-      <DxcNavTabs>
-        <DxcNavTabs.Tab href="#" active>
-          <a href="/test" target="_blank">Custom tab 1</a>
-        </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG} disabled notificationNumber={3}>
-          <a href="/test2">Custom tab 2</a>
-        </DxcNavTabs.Tab>
-        <DxcNavTabs.Tab href="#" icon={iconSVG}>
-          <a href="/test3">Custom tab 3</a>
-        </DxcNavTabs.Tab>
-      </DxcNavTabs>
-    </ExampleContainer>
   </>
 );
