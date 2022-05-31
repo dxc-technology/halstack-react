@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import AlertPageLayout from "../../../screens/components/alert/AlertPageLayout";
-import AlertUsagePage from "../../../screens/components/alert/usage/AlertUsagePage";
+import AlertCodePage from "../../../screens/components/alert/code/AlertCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Alert — Halstack Design System</title>
       </Head>
-      <AlertUsagePage></AlertUsagePage>
+      <AlertCodePage></AlertCodePage>
     </>
   );
 };

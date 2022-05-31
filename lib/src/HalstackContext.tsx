@@ -163,6 +163,11 @@ const parseTheme = (theme) => {
   progressBarTokens.valueFontColor = theme?.progressBar?.fontColor ?? progressBarTokens.valueFontColor;
   progressBarTokens.helperTextFontColor = theme?.progressBar?.fontColor ?? progressBarTokens.helperTextFontColor;
 
+  const quickNavTokens = componentTokensCopy.quickNav;
+  quickNavTokens.fontColor = theme?.quickNav?.fontColor ?? quickNavTokens.fontColor;
+  quickNavTokens.selectedFontColor = theme?.quickNav?.accentColor ?? quickNavTokens.selectedFontColor;
+  quickNavTokens.hoverFontColor = setOpacity(theme?.quickNav?.accentColor, 0.7) ?? quickNavTokens.hoverFontColor;
+
   const radioTokens = componentTokensCopy.radio;
   radioTokens.color = theme?.radio?.baseColor ?? radioTokens.color;
   radioTokens.fontColor = theme?.radio?.fontColor ?? radioTokens.color;
@@ -268,17 +273,17 @@ const parseTheme = (theme) => {
     subLightness(theme?.toggleGroup?.unselectedBaseColor, 8) ?? toggleGroupTokens.unselectedHoverBackgroundColor;
 
   const wizardTokens = componentTokensCopy.wizard;
-  wizardTokens.selectedStepperBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepperBackgroundColor;
-  wizardTokens.selectedStepperBorderColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepperBorderColor;
-  wizardTokens.selectedStepperFontColor = theme?.wizard?.selectedFontColor ?? wizardTokens.selectedStepperFontColor;
-  wizardTokens.labelFontColor = theme?.wizard?.fontColor ?? wizardTokens.labelFontColor;
-  wizardTokens.activeLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.activeLabelFontColor;
-  wizardTokens.helperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.helperTextFontColor;
-  wizardTokens.activeHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.activeHelperTextFontColor;
-  wizardTokens.unvisitedStepperBorderColor =
-    setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedStepperBorderColor;
-  wizardTokens.unvisitedStepperFontColor =
-    setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedStepperFontColor;
+  wizardTokens.selectedStepBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBackgroundColor;
+  wizardTokens.selectedStepFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedStepFontColor;
+  wizardTokens.selectedStepBorderColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBorderColor;
+  wizardTokens.visitedLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.visitedLabelFontColor;
+  wizardTokens.selectedLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedLabelFontColor;
+  wizardTokens.visitedHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.visitedHelperTextFontColor;
+  wizardTokens.selectedHelperTextFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedHelperTextFontColor;
+  wizardTokens.unvisitedStepBorderColor =
+    setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedStepBorderColor;
+  wizardTokens.unvisitedStepFontColor =
+    setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedStepFontColor;
   wizardTokens.unvisitedLabelFontColor =
     setOpacity(theme?.wizard?.fontColor, 0.6) ?? wizardTokens.unvisitedLabelFontColor;
   wizardTokens.unvisitedHelperTextFontColor =
