@@ -3,7 +3,7 @@ import { DxcFileInput, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <DxcInset space="large">
-      <DxcRow gutter="medium">
+      <DxcRow gutter="medium" justify="center">
         <DxcFileInput label="File" />
         <DxcFileInput label="Filedrop" mode="filedrop" />
         <DxcFileInput label="Dropzone" mode="dropzone" />

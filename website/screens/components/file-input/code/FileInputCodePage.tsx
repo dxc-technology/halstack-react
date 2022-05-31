@@ -5,6 +5,7 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import modesFileInput from "./examples/ModesFileInput";
+import errorFileInput from "./examples/ErrorFileInput";
 
 const sections = [
   {
@@ -167,6 +168,14 @@ const sections = [
         content: (
           <>
             <Example example={modesFileInput} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Error",
+        content: (
+          <>
+            <Example example={errorFileInput} />
           </>
         ),
       },
