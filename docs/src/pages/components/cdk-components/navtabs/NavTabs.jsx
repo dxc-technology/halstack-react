@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
@@ -10,6 +10,7 @@ import defaultNavTabs from "./examples/defaultNavTabs";
 import iconsNavTabs from "./examples/iconsNavTabs";
 import notificationNavTabs from "./examples/notificationNavTabs";
 import customNavTabs from "./examples/customNavTabs";
+import Code from "../../common/Code";
 
 function Tabs() {
   return (
@@ -46,7 +47,27 @@ function Tabs() {
         <Example
           title="Custom Nav Tabs with React Router"
           example={customNavTabs}
-        ></Example>
+        >
+          Our DxcNavTabs component can be used with different routers (like{" "}
+          <DxcLink
+            href="https://v5.reactrouter.com/web/api/Link/component-reactcomponent"
+            newWindow
+          >
+            React Router
+          </DxcLink>{" "}
+          or{" "}
+          <DxcLink
+            href="https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-functional-component"
+            newWindow
+          >
+            NextJS Link
+          </DxcLink>
+          ). We only provide styles to the anchor, so follow the instructions
+          for each type of router to combine it with our component. We forward
+          the ref to the anchor element if needed. In this example we use{" "}
+          <Code>component</Code> prop from React Router that can be used to
+          allow the use of custom links.
+        </Example>
       </Section>
     </ComponentDoc>
   );

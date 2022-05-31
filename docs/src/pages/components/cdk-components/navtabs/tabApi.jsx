@@ -48,12 +48,10 @@ const tabPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>children: string | node</td>
+        <td>children: string</td>
         <td></td>
         <td>
-          Content of the tab. To use the component with other libraries (such as
-          React Router or Next.js Link) pass the custom link wrapped in{" "}
-          <code>React.forwardRef</code>. Check last example to see how it works.
+          Content of the tab.
         </td>
       </tr>
     </DxcTable>

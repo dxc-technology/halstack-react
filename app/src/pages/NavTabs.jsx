@@ -5,7 +5,7 @@ import {
   HalstackContext,
 } from "@dxc-technology/halstack-react";
 import twitterIcon from "../images/twitter-black.svg";
-import { Link as RouterLink } from "@reach/router";
+import { Link as RouterLink } from "react-router-dom";
 
 const linkedinSVG = (
   <svg
@@ -43,14 +43,6 @@ const colors = {
   },
 };
 
-const MyRouterLink = React.forwardRef((props, ref) => {
-  return (
-    <RouterLink to={props.to} ref={ref}>
-      {props.children}
-    </RouterLink>
-  );
-});
-
 function NavTabs() {
   return (
     <div>
@@ -66,7 +58,11 @@ function NavTabs() {
           <DxcNavTabs.Tab href="/test3" notificationNumber>
             Tab 3
           </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="/test5" notificationNumber={100} icon={twitterIcon}>
+          <DxcNavTabs.Tab
+            href="/test5"
+            notificationNumber={100}
+            icon={twitterIcon}
+          >
             Tab 4
           </DxcNavTabs.Tab>
           <DxcNavTabs.Tab href="/test6" icon={linkedinSVG}>
@@ -119,38 +115,48 @@ function NavTabs() {
       <div className="test-case" id="react-router">
         <h4>React router tabs</h4>
         <DxcNavTabs>
-          <DxcNavTabs.Tab href="#" active>
-            <MyRouterLink to="/test">Tab 1</MyRouterLink>
-          </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" disabled>
-            <MyRouterLink to="/test">Tab 2</MyRouterLink>
-          </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" notificationNumber>
-            <MyRouterLink to="/test">Tab 3</MyRouterLink>
-          </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" notificationNumber={100} icon={twitterIcon}>
-            <MyRouterLink to="/test">Tab 4</MyRouterLink>
-          </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" icon={linkedinSVG}>
-            <MyRouterLink to="/test">Tab 5</MyRouterLink>
-          </DxcNavTabs.Tab>
+          <RouterLink to="/test" component={DxcNavTabs.Tab} active>
+            Tab 1
+          </RouterLink>
+          <RouterLink to="/test" component={DxcNavTabs.Tab} disabled>
+            Tab 2
+          </RouterLink>
+          <RouterLink to="/test" component={DxcNavTabs.Tab} notificationNumber>
+            Tab 3
+          </RouterLink>
+          <RouterLink
+            to="/test"
+            component={DxcNavTabs.Tab}
+            notificationNumber={100}
+            icon={twitterIcon}
+          >
+            Tab 4
+          </RouterLink>
+          <RouterLink to="/test" component={DxcNavTabs.Tab} icon={linkedinSVG}>
+            Tab 5
+          </RouterLink>
         </DxcNavTabs>
         <DxcNavTabs iconPosition="left">
-          <DxcNavTabs.Tab href="#" active>
-            <MyRouterLink to="/test">Tab 1</MyRouterLink>
-          </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" disabled>
-            <MyRouterLink to="/test">Tab 2</MyRouterLink>
-          </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" notificationNumber>
-            <MyRouterLink to="/test">Tab 3</MyRouterLink>
-          </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab href="#" notificationNumber={100} icon={twitterIcon}>
-            <MyRouterLink to="/test">Tab 4</MyRouterLink>
-          </DxcNavTabs.Tab>
-          <DxcNavTabs.Tab>
-            <MyRouterLink to="/test">Tab 5</MyRouterLink>
-          </DxcNavTabs.Tab>
+          <RouterLink to="/test" component={DxcNavTabs.Tab} active>
+            Tab 1
+          </RouterLink>
+          <RouterLink to="/test" component={DxcNavTabs.Tab} disabled>
+            Tab 2
+          </RouterLink>
+          <RouterLink to="/test" component={DxcNavTabs.Tab} notificationNumber>
+            Tab 3
+          </RouterLink>
+          <RouterLink
+            to="/test"
+            component={DxcNavTabs.Tab}
+            notificationNumber={100}
+            icon={twitterIcon}
+          >
+            Tab 4
+          </RouterLink>
+          <RouterLink to="/test" component={DxcNavTabs.Tab} icon={linkedinSVG}>
+            Tab 5
+          </RouterLink>
         </DxcNavTabs>
       </div>
     </div>

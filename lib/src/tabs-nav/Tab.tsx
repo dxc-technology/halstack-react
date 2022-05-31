@@ -1,99 +1,72 @@
-import React, { useEffect, useLayoutEffect, useRef, createRef } from "react";
+import React, { useLayoutEffect, createRef, forwardRef, Ref } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
 import { TabProps } from "./types";
-import { render } from "react-dom";
 
-const convertAttrToProps = (attributesMap: NamedNodeMap) => {
-  const props = {};
-  Object.values(attributesMap).forEach((attr: Attr) => (props[attr.name] = attr.value));
-  return props;
-};
+const DxcTab = forwardRef(
+  (
+    {
+      href,
+      active = false,
+      icon,
+      disabled = false,
+      notificationNumber = false,
+      children,
+      iconPosition,
+      tabIndex,
+      hasIcons = false,
+      focused = false,
+    }: TabProps,
+    ref: Ref<HTMLAnchorElement>
+  ): JSX.Element => {
+    const tabRef: React.MutableRefObject<HTMLAnchorElement> = createRef();
 
-const DxcTab = ({
-  href,
-  active = false,
-  icon,
-  disabled = false,
-  notificationNumber = false,
-  children,
-  iconPosition,
-  tabIndex,
-  hasIcons = false,
-  focused = false,
-}: TabProps): JSX.Element => {
-  const customTabRef: React.MutableRefObject<HTMLAnchorElement> = createRef();
-  const tabRef = useRef<HTMLAnchorElement>(null);
+    useLayoutEffect(() => {
+      focused && tabRef?.current?.focus();
+    }, [focused]);
 
-  useEffect(() => {
-    if (customTabRef.current) {
-      convertAttrToProps(customTabRef.current.attributes);
-      render(
-        <AnchorTab href={customTabRef.current.href} {...convertAttrToProps(customTabRef.current.attributes)}>
-          {customTabRef.current.innerHTML}
-        </AnchorTab>,
-        customTabRef.current.parentNode
-      );
-    }
-  }, []);
+    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
+      switch (event.keyCode) {
+        case 13: // enter
+        case 32: // space
+          tabRef?.current?.click();
+          event.preventDefault();
+          break;
+      }
+    };
 
-  useLayoutEffect(() => {
-    focused && tabRef?.current?.focus();
-  }, [focused]);
-
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
-    switch (event.keyCode) {
-      case 13: // enter
-        tabRef?.current?.click();
-        event.preventDefault();
-        break;
-      case 32: // space
-        tabRef?.current?.click();
-        event.preventDefault();
-        break;
-    }
-  };
-
-  const AnchorTab = ({ href, children, ...otherProps }) => (
-    <StyledTab
-      href={!disabled && href ? href : undefined}
-      disabled={disabled}
-      iconPosition={iconPosition}
-      hasIcon={hasIcons}
-      ref={tabRef}
-      onKeyDown={handleOnKeyDown}
-      tabIndex={active ? tabIndex : -1}
-      {...otherProps}
-    >
-      {icon && (
-        <TabIconContainer iconPosition={iconPosition}>
-          {typeof icon === "string" ? <TabIcon src={icon} /> : icon}
-        </TabIconContainer>
-      )}
-      <LabelContainer>
-        {children}
-        {notificationNumber && (
-          <BadgeContainer>
-            <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
-          </BadgeContainer>
-        )}
-      </LabelContainer>
-    </StyledTab>
-  );
-
-  return (
-    <TabContainer active={active} role="tab" aria-selected={active}>
-      {typeof children === "string" ? (
-        <AnchorTab href={href}>{children}</AnchorTab>
-      ) : (
-        React.Children.only(children) &&
-        React.cloneElement(React.Children.only(children) as JSX.Element, {
-          ref: (ref: HTMLAnchorElement) => (customTabRef.current = ref),
-        })
-      )}
-    </TabContainer>
-  );
-};
+    return (
+      <TabContainer active={active} role="tab" aria-selected={active}>
+        <Tab
+          href={!disabled && href ? href : undefined}
+          disabled={disabled}
+          iconPosition={iconPosition}
+          hasIcon={hasIcons}
+          ref={(anchorRef) => {
+            tabRef.current = anchorRef;
+            return ref;
+          }}
+          onKeyDown={handleOnKeyDown}
+          tabIndex={active ? tabIndex : -1}
+        >
+          {icon && (
+            <TabIconContainer iconPosition={iconPosition}>
+              {typeof icon === "string" ? <TabIcon src={icon} /> : icon}
+            </TabIconContainer>
+          )}
+          <LabelContainer>
+            {children}
+            {notificationNumber && (
+              <BadgeContainer>
+                <DxcBadge notificationText={notificationNumber > 99 ? "+99" : notificationNumber} disabled={disabled} />
+              </BadgeContainer>
+            )}
+          </LabelContainer>
+        </Tab>
+      </TabContainer>
+    );
+  }
+);
 
 type TabContainerProps = {
   active?: boolean;
@@ -102,12 +75,12 @@ const TabContainer = styled.div<TabContainerProps>`
   border-bottom: 2px solid ${(props) => (props.active ? "#6f2c91" : "#0000001a")};
 `;
 
-type StyledTabProps = {
+type TabStyleProps = {
   disabled: boolean;
   hasIcon: boolean;
   iconPosition: "top" | "left";
 };
-const StyledTab = styled.a<StyledTabProps>`
+const Tab = styled.a<TabStyleProps>`
   display: flex;
   flex-direction: ${(props) => (props.hasIcon && props.iconPosition === "top" ? "column" : "row")};
   justify-content: center;

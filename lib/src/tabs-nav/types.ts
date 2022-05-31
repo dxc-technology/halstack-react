@@ -26,10 +26,9 @@ export type TabProps = {
    */
   notificationNumber?: boolean | number;
   /**
-   * Content of the tab. To use the component with other libraries (such as React Router or Next.js Link) pass the custom link as a child.
-   * The component will apply the styles to the custom link.
+   * Content of the tab.
    */
-  children: React.ReactNode;
+  children: string;
   iconPosition?: "top" | "left";
   tabIndex?: number;
   hasIcons?: boolean;
