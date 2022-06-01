@@ -4,12 +4,12 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basic from "./examples/basicSelect";
-import controlled from "./examples/controlledSelect";
-import uncontrolled from "./examples/uncontrolledSelect";
+import basic from "./examples/basic";
+import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
-import groups from "./examples/groupedSelect";
-import icons from "./examples/iconsSelect";
+import groups from "./examples/groups";
+import icons from "./examples/icons";
 
 const sections = [
   {
