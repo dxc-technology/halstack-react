@@ -226,7 +226,7 @@ const sections = [
         ),
       },
       {
-        title: "Error",
+        title: "Error Handling",
         content: (
           <>
             <Example example={errorUsage} defaultIsVisible />
