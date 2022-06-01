@@ -4,10 +4,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basicCheckbox from "./examples/BasicCheckbox";
-import controlledCheckbox from "./examples/ControlledCheckbox";
-import labelPositionCheckbox from "./examples/LabelPositionCheckbox";
-import uncontrolledCheckbox from "./examples/UncontrolledCheckbox";
+import basic from "./examples/basicUsage";
+import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
 
 const sections = [
   {
@@ -120,10 +119,10 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic",
+        title: "Basic Usage",
         content: (
           <>
-            <Example example={basicCheckbox} defaultIsVisible />
+            <Example example={basic} defaultIsVisible />
           </>
         ),
       },
@@ -131,7 +130,7 @@ const sections = [
         title: "Controlled",
         content: (
           <>
-            <Example example={controlledCheckbox} />
+            <Example example={controlled} defaultIsVisible />
           </>
         ),
       },
@@ -139,15 +138,7 @@ const sections = [
         title: "Uncontrolled",
         content: (
           <>
-            <Example example={uncontrolledCheckbox} />
-          </>
-        ),
-      },
-      {
-        title: "Label position",
-        content: (
-          <>
-            <Example example={labelPositionCheckbox} />
+            <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
       },
