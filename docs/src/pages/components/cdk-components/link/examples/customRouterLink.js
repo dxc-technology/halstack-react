@@ -5,7 +5,7 @@ const code = `() => {
   return (
     <p>
         This is a text with a 
-        <RouterLink to="/components/button" component={DxcLink}>React Router</RouterLink>
+        <RouterLink to="/components/button" component={DxcLink}>React Router v5</RouterLink>
         {" "}link.
     </p>
   );
