@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import basic from "./examples/basicSelect";
 import controlled from "./examples/controlledSelect";
 import uncontrolled from "./examples/uncontrolledSelect";
+import errorHandling from "./examples/errorHandling";
 import groups from "./examples/groupedSelect";
 import icons from "./examples/iconsSelect";
 
@@ -257,12 +258,32 @@ const sections = [
         ),
       },
       {
+        title: "Error handling",
+        content: (
+          <>
+            <DxcText as="p">
+              When handling errors, we recommend initializing the{" "}
+              <Code>error</Code> prop with an empty string. This will reserve
+              space for a possible future error message and prevent unintended
+              layout changes. Also, the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> events will send <Code>undefined</Code> when
+              there is no error, so you may need to check this too to avoid the
+              same problem.
+            </DxcText>
+            <DxcText>
+              Below is an example of how to treat errors using the <Code>onBlur</Code> event.
+            </DxcText>
+            <Example example={errorHandling} defaultIsVisible />
+          </>
+        ),
+      },
+      {
         title: "Grouped options",
         content: (
           <>
             <DxcText as="p">
               The <Code>options</Code> prop allows you to group the options by
-              slightly varying the structure of its object.
+              slightly varying the structure of the object.
             </DxcText>
             <Example example={groups} defaultIsVisible />
           </>

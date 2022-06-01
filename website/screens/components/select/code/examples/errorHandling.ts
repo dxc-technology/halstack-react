@@ -3,12 +3,14 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
+  const [error, setError] = useState();
 
   const onChange = ({ value }) => {
     setValue(value);
   };
   const onBlur = ({ value, error }) => {
     setValue(value);
+    setError(error);
   };
 
   const options = [
@@ -27,6 +29,7 @@ const code = `() => {
         value={value}
         onBlur={onBlur}
         onChange={onChange}
+        error={error == undefined ? "" : error}
         size="fillParent"
       />
     </DxcInset>
