@@ -25,21 +25,11 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
               {links.map((link) => (
                 <DxcInset space="xxsmall">
                   <DxcText>
-                    <Link
-                      href={`#${slugify(link?.label, { lower: true })}`}
-                      isSelected={location.href.includes(`#${slugify(link?.label, { lower: true })}`)}
-                    >
-                      {link?.label}
-                    </Link>
+                    <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
                     {link.links?.map((sublink) => (
                       <DxcInset horizontal="xsmall">
                         <DxcText>
-                          <Link
-                            href={`#${slugify(sublink?.label, { lower: true })}`}
-                            isSelected={location.href.includes(`#${slugify(sublink?.label, { lower: true })}`)}
-                          >
-                            {sublink?.label}
-                          </Link>
+                          <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
                         </DxcText>
                       </DxcInset>
                     ))}
@@ -71,7 +61,7 @@ const Link = styled.a`
   font-family: ${(props) => props.theme.fontFamily};
   font-style: ${(props) => props.theme.fontStyle};
   font-weight: ${(props) => props.theme.fontWeight};
-  color: ${(props) => (props.isSelected && props.theme.selectedFontColor) || props.theme.fontColor};
+  color: ${(props) => props.theme.fontColor};
 
   &:hover {
     color: ${(props) => props.theme.hoverFontColor};

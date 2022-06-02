@@ -7,10 +7,9 @@ import {
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
-import Image from "@/common/Image";
-import AlertTypesImage from "./images/alert_types.png";
-import AlertContent from "./images/alert_content.png";
+import Example from "@/common/example/Example";
+import basicUsage from "../usage/examples/basicUsage";
+import childrenUsage from "../usage/examples/childrenUsage";
 
 const sections = [
   {
@@ -49,9 +48,7 @@ const sections = [
     title: "Types",
     content: (
       <>
-        <Figure caption="Context-based alert types">
-          <Image src={AlertTypesImage} alt="Context-based alert types" />
-        </Figure>
+        <Example example={basicUsage} />
         <DxcTable>
           <thead>
             <tr>
@@ -139,9 +136,8 @@ const sections = [
     title: "Content",
     content: (
       <>
-        <Figure caption="Custom content as alert children">
-          <Image src={AlertContent} alt="Custom content as alert children" />
-        </Figure>
+        <Example example={childrenUsage} />
+
         <DxcText as="p">
           Depending on the content that need to be displayed, more detailed
           descriptions can be added to the alert component as children.
