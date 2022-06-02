@@ -4,36 +4,51 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
-import LinkPropsTable from "./api.jsx";
-import defaultLink from "./examples/default";
-import disabledLink from "./examples/disabledLink";
-import onClickIconLink from "./examples/onClickIconLink";
-import inheritColorLink from "./examples/inheritColorLink";
-import customLink from "./examples/customLink";
+import NavTabsPropsTable from "./api.jsx";
+import TabPropsTable from "./tabApi.jsx";
+import defaultNavTabs from "./examples/defaultNavTabs";
+import iconsNavTabs from "./examples/iconsNavTabs";
+import notificationNavTabs from "./examples/notificationNavTabs";
+import customNavTabs from "./examples/customNavTabs";
 import Code from "../../common/Code";
 
-function Link() {
+function Tabs() {
   return (
     <ComponentDoc>
-      <ComponentHeader title="Link" status="ready"></ComponentHeader>
+      <ComponentHeader title="Nav Tabs" status="experimental"></ComponentHeader>
       <Section>
         <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
-        <LinkPropsTable />
+        <NavTabsPropsTable />
+      </Section>
+      <Section>
+        <DxcHeading level={3} text="Children" margin={{ bottom: "small" }} />
+        <p>
+          This component includes different compound components that are
+          customized following the design guidelines.
+        </p>
+        <DxcHeading text="DxcNavTabs.Tab" level={4} weight="bold" />
+        <p>Customized tab that allows this Nav Tabs component.</p>
+        <DxcHeading
+          text="Props"
+          level={5}
+          weight="bold"
+          margin={{ bottom: "medium" }}
+        />{" "}
+        <TabPropsTable />
       </Section>
       <Section>
         <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
-        <Example title="Default Link" example={defaultLink}></Example>
+        <Example title="Default Nav Tabs" example={defaultNavTabs}></Example>
+        <Example title="Nav Tabs with icons" example={iconsNavTabs}></Example>
         <Example
-          title="Inherited color with new window"
-          example={inheritColorLink}
+          title="Notification tabs"
+          example={notificationNavTabs}
         ></Example>
-        <Example title="Disabled Link" example={disabledLink}></Example>
         <Example
-          title="Link with onClick and icon"
-          example={onClickIconLink}
-        ></Example>
-        <Example title="Custom Link with React Router" example={customLink}>
-          Our DxcLink component can be used with different routers (like{" "}
+          title="Custom Nav Tabs with React Router"
+          example={customNavTabs}
+        >
+          Our DxcNavTabs component can be used with different routers (like{" "}
           <DxcLink
             href="https://v5.reactrouter.com/web/api/Link/component-reactcomponent"
             newWindow
@@ -58,4 +73,4 @@ function Link() {
   );
 }
 
-export default Link;
+export default Tabs;
