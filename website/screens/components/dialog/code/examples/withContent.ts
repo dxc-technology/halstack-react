@@ -14,31 +14,24 @@ const code = `() => {
   };
   return (
     <DxcInset space="large">
-      <DxcRow justify="center">
-        <DxcButton label="Open Dialog" onClick={handleClick}></DxcButton>
-        {isDialogVisible && (
-          <DxcDialog onCloseClick={handleClick}>
-            <DxcRow>
-              <DxcTextInput
-                label="Name"
-                margin={{ bottom: "medium", right: "small" }}
-              />
-              <DxcTextInput label="Last name" margin={{ bottom: "medium" }} />
+      <DxcButton label="Open Dialog" onClick={handleClick}></DxcButton>
+      {isDialogVisible && (
+        <DxcDialog onCloseClick={handleClick}>
+          <DxcInset top="medium" bottom="medium">
+            <DxcRow gutter="large">
+              <DxcTextInput label="Name" />
+              <DxcTextInput label="Last name" />
             </DxcRow>
-            <DxcRow>
-              <DxcTextInput
-                label="Address"
-                margin={{ bottom: "medium" }}
-                size="fillParent"
-              />
-            </DxcRow>
-            <DxcRow justify="center">
-              <DxcButton label="Add client" onClick={handleClick} />
-              <DxcButton label="Cancel" onClick={handleClick} mode="text" />
-            </DxcRow>
-          </DxcDialog>
-        )}
-      </DxcRow>
+          </DxcInset>
+          <DxcInset bottom="xxlarge">
+              <DxcTextInput label="Address" size="fillParent" />
+          </DxcInset>
+          <DxcRow justify="center">
+            <DxcButton label="Add client" onClick={handleClick} />
+            <DxcButton label="Cancel" onClick={handleClick} mode="text" />
+          </DxcRow>
+        </DxcDialog>
+      )}
     </DxcInset>
   );
 }`;

@@ -13,7 +13,6 @@ const code = `() => {
   };
   return (
     <DxcInset space="large">
-      <DxcRow justify="center">
         <DxcButton label="Open Dialog" onClick={handleClick}></DxcButton>
         {isDialogVisible && (
           <DxcDialog onCloseClick={handleClick}>
@@ -21,7 +20,6 @@ const code = `() => {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </DxcDialog>
         )}
-      </DxcRow>
     </DxcInset>
   );
 }`;
