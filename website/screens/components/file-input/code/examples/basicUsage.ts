@@ -1,13 +1,16 @@
 import { DxcFileInput, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
+import { useState } from "react";
 
 const code = `() => {
+  const [files, setFiles] = useState([]);
+
+  const callbackFile = (files) => {
+    setFiles(files);
+  };
+
   return (
     <DxcInset space="large">
-      <DxcRow gutter="medium">
-        <DxcFileInput label="File" />
-        <DxcFileInput label="Filedrop" mode="filedrop" />
-        <DxcFileInput label="Dropzone" mode="dropzone" />
-      </DxcRow>
+      <DxcFileInput label="File" value={files} callbackFile={callbackFile} />
     </DxcInset>
   );
 }`;
@@ -16,6 +19,7 @@ const scope = {
   DxcFileInput,
   DxcInset,
   DxcRow,
+  useState,
 };
 
 export default { code, scope };

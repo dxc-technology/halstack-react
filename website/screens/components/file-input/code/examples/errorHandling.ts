@@ -14,15 +14,13 @@ const code = `() => {
   };
   return (
     <DxcInset space="large">
-      <DxcRow gutter="medium">
-        <DxcFileInput
-          label="File"
-          value={files}
-          callbackFile={callbackFile}
-          minSize={100000}
-          maxSize={200000}
-        />
-      </DxcRow>
+      <DxcFileInput
+        label="File"
+        value={files}
+        callbackFile={callbackFile}
+        minSize={100000}
+        maxSize={200000}
+      />
     </DxcInset>
   );
 }`;

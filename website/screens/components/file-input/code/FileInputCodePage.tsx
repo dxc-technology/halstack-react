@@ -4,8 +4,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import modesFileInput from "./examples/ModesFileInput";
-import errorFileInput from "./examples/ErrorFileInput";
+import errorHandling from "./examples/errorHandling";
+import basic from "./examples/basicUsage";
 
 const sections = [
   {
@@ -164,18 +164,18 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Modes",
+        title: "Basic usage",
         content: (
           <>
-            <Example example={modesFileInput} defaultIsVisible />
+            <Example example={basic} defaultIsVisible />
           </>
         ),
       },
       {
-        title: "Error",
+        title: "Error handling",
         content: (
           <>
-            <Example example={errorFileInput} />
+            <Example example={errorHandling} defaultIsVisible />
           </>
         ),
       },

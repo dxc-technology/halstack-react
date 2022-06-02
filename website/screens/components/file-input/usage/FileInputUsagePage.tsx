@@ -7,7 +7,7 @@ import {
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import variants from "./examples/VariantsFileInput";
+import variants from "./examples/variants";
 import Example from "@/common/example/Example";
 
 const sections = [
