@@ -3,7 +3,7 @@ import { DxcDateInput, DxcStack, DxcInset } from "@dxc-technology/halstack-react
 const code = `() => {
   return (
     <DxcInset space="large">
-        <DxcDateInput label="Default" placeholder="Placeholder" />
+      <DxcDateInput label="Default" placeholder size="fillParent" />
     </DxcInset>
   );
 }`;

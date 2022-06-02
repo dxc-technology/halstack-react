@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
   const onChange = ({ value }) => {
     setValue(value);
   };
@@ -15,8 +15,8 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcDateInput
+        size="fillParent"
         label="Formatted"
-        helperText="If the typed date doesn't match the defined format, an error will be displayed"
         format="MM/dd/yyyy"
         value={value}
         onChange={onChange}
@@ -24,7 +24,6 @@ const code = `() => {
         error={error == undefined ? "" : error}
         clearable
         placeholder
-        size="large"
       />
     </DxcInset>
   );

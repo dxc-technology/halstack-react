@@ -187,21 +187,17 @@ const sections = [
         ),
       },
       {
-        title: "Optional",
-        content: (
-          <>
-            <DxcText as="p">
-              To indicate that the date is optional, you can use the <Code>optional</Code> prop.
-            </DxcText>
-            <Example example={optional} defaultIsVisible />
-          </>
-        ),
-      },
-      {
         title: "Error handling",
         content: (
           <>
-            <DxcText as="p">Example of error handling when it does not match the format.</DxcText>
+            <DxcText as="p">
+              Example of error handling when it does not match the format. If the typed date does
+              not match the defined format, an error will be displayed
+            </DxcText>
+            <DxcText as="p">
+              Take into account that it behaves differently based on the value of error (check the
+              prop above for more information).
+            </DxcText>
             <Example example={errorHandling} defaultIsVisible />
           </>
         ),
@@ -218,6 +214,9 @@ const sections = [
         title: "Uncontrolled",
         content: (
           <>
+            <DxcText as="p">
+              The 'defaultValue' prop only works with uncontrolled date inputs.
+            </DxcText>
             <Example example={uncontrolled} defaultIsVisible />
           </>
         ),

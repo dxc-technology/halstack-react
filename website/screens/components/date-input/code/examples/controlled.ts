@@ -13,6 +13,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcDateInput
+        size="fillParent"
         label="Controlled"
         helperText="Helper Text"
         value={value}
@@ -27,7 +28,7 @@ const code = `() => {
 const scope = {
   DxcDateInput,
   DxcInset,
-  useState
+  useState,
 };
 
 export default { code, scope };

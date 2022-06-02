@@ -4,8 +4,9 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcDateInput
+        size="fillParent"
         label="Uncontrolled"
-        helperText="The 'defaultValue' prop only works with uncontrolled date inputs"
+        helperText="Uncontrolled date input"
         defaultValue="10-08-1998"
         clearable
       />
