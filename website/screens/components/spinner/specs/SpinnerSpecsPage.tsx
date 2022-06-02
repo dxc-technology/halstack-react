@@ -44,7 +44,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>trackCircleColorOnDark</Code>
+                  <Code>trackCircleColorOverlay</Code>
                 </td>
                 <td>Spinner circle (track)</td>
                 <td>

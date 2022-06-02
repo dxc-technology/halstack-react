@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import CheckboxUsagePage from "../../../screens/components/checkbox/usage/CheckboxUsagePage";
+import CheckboxCodePage from "../../../screens/components/checkbox/code/CheckboxCodePage";
 import CheckboxPageLayout from "../../../screens/components/checkbox/CheckboxPageLayout";
 
 const Usage = () => {
@@ -9,7 +9,7 @@ const Usage = () => {
       <Head>
         <title>Checkbox — Halstack Design System</title>
       </Head>
-      <CheckboxUsagePage></CheckboxUsagePage>
+      <CheckboxCodePage></CheckboxCodePage>
     </>
   );
 };

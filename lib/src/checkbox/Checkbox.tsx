@@ -6,6 +6,7 @@ import { spaces, componentTokens } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
 import CheckboxPropsType from "./types";
 
@@ -30,6 +31,7 @@ const DxcCheckbox = ({
 
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
+  const translatedLabels = useTranslatedLabels();
 
   const handlerCheckboxChange = (checkboxValue) => {
     if (checked === undefined) {
@@ -61,7 +63,7 @@ const DxcCheckbox = ({
     >
       {labelPosition === "before" ? (
         <>
-          {label} {optional && <span>(Optional)</span>}
+          {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
         </>
       ) : (
         <>

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { DxcQuickNav, DxcStack } from "@dxc-technology/halstack-react";
 import Section from "./Section";
+import { responsiveSizes } from "../common/variables.js";
 
 type QuickNavContainerTypes = {
   title?: string;
@@ -76,13 +77,13 @@ const Container = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 800px;
 `;
 
 const QuickNavContainer = styled.div`
   position: sticky;
-  margin-left: 100px;
-  width: 300px;
+  margin-left: 24px;
+  max-width: 300px;
   top: calc(64px + 24px);
   max-height: calc(100vh - 64px);
   ::-webkit-scrollbar {
@@ -95,6 +96,10 @@ const QuickNavContainer = styled.div`
   ::-webkit-scrollbar-thumb {
     background-color: #66666626;
     border-radius: 3px;
+  }
+
+  @media (max-width: ${responsiveSizes.laptop}px) {
+    display: none;
   }
 `;
 
