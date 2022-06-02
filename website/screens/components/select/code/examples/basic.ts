@@ -11,14 +11,12 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcStack gutter="large">
-        <DxcSelect
-          label="Select your favorite city"
-          placeholder="Choose a city"
-          options={options}
-          size="fillParent"
-        />
-      </DxcStack>
+      <DxcSelect
+        label="Select your favorite city"
+        placeholder="Choose a city"
+        options={options}
+        size="fillParent"
+      />
     </DxcInset>
   );
 }`;
