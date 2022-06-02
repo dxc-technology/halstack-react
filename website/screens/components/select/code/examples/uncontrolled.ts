@@ -22,7 +22,7 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcStack gutter="large">
+      <DxcStack gutter="large" align="start">
         <DxcSelect
           label="Label"
           defaultValue="4"
@@ -33,7 +33,6 @@ const code = `() => {
         <DxcButton
           onClick={handleSubmit}
           label="Submit"
-          size="medium"
         />
       </DxcStack>
     </DxcInset>
