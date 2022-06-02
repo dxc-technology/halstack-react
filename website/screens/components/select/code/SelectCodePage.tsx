@@ -232,7 +232,7 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              This is an example of how to manage the state of the Select
+              This is an example of how to manage the state of the select
               component using React stateful variables.
             </DxcText>
             <Example example={controlled} defaultIsVisible />
@@ -249,7 +249,7 @@ const sections = [
               uncontrolled select in the submit event.
             </DxcText>
             <DxcText as="p">
-              The Select's value is empty by default, but an initial,
+              The select's value is empty by default, but an initial,
               uncontrolled, value can be provided using the{" "}
               <Code>defaultValue</Code> prop.
             </DxcText>
@@ -271,7 +271,8 @@ const sections = [
               same problem.
             </DxcText>
             <DxcText>
-              Below is an example of how to treat errors using the <Code>onBlur</Code> event.
+              Below is an example of how to treat errors using the{" "}
+              <Code>onBlur</Code> event.
             </DxcText>
             <Example example={errorHandling} defaultIsVisible />
           </>
@@ -279,27 +280,11 @@ const sections = [
       },
       {
         title: "Grouped options",
-        content: (
-          <>
-            <DxcText as="p">
-              The <Code>options</Code> prop allows you to group the options by
-              slightly varying the structure of the object.
-            </DxcText>
-            <Example example={groups} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={groups} defaultIsVisible />,
       },
       {
         title: "Icons",
-        content: (
-          <>
-            <DxcText as="p">
-              You can optionally add icons to the options of the listbox either
-              using a URL or an inline SVG.
-            </DxcText>
-            <Example example={icons} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={icons} defaultIsVisible />,
       },
     ],
   },
