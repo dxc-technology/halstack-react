@@ -1,9 +1,5 @@
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
-import footerExample from "./images/footer_example.png";
-import footerCustomContent from "./images/footer_custom_content.png";
-import Image from "@/common/Image";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
