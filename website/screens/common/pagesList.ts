@@ -23,6 +23,7 @@ const principlesLinks: LinkDetails[] = [
   { label: "Typography", path: "/principles/typography" },
   { label: "Layout", path: "/principles/layout" },
   { label: "Themes", path: "/principles/themes" },
+  { label: "Localization", path: "/principles/localization" },
 ];
 
 const componentsLinks: LinkDetails[] = [
@@ -46,6 +47,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Paginator", path: "/components/paginator" },
   { label: "Password Input", path: "/components/password-input" },
   { label: "Progress Bar", path: "/components/progress-bar" },
+  { label: "Quick Nav", path: "/components/quick-nav" },
   { label: "Radio", path: "/components/radio" },
   { label: "Radio Group", path: "/components/radio-group" },
   { label: "Resultset Table", path: "/components/resultset-table" },

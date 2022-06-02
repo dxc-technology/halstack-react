@@ -29,6 +29,7 @@ import FileInputPreview from "./previews/FileInput";
 import TextareaPreview from "./previews/Textarea";
 import SelectPreview from "./previews/Select";
 import RadioGroupPreview from "./previews/RadioGroup";
+import QuickNavPreview from "./previews/QuickNav";
 
 const SampleComponents = [
   {
@@ -104,9 +105,13 @@ const SampleComponents = [
     preview: ProgressBarPreview,
   },
   {
+    name: "quickNav",
+    preview: QuickNavPreview,
+  },
+  {
     name: "radio",
     preview: RadioButtonPreview,
-  },  
+  },
   {
     name: "radioGroup",
     preview: RadioGroupPreview,

@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const AlertPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/alert" },
+    { label: "Code", path: "/components/alert" },
+    { label: "Usage", path: "/components/alert/usage" },
     { label: "Specifications", path: "/components/alert/specifications" },
   ];
 
