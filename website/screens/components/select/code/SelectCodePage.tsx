@@ -4,11 +4,11 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basic from "./examples/basic";
+import basic from "./examples/basicUsage";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
-import groups from "./examples/groups";
+import groups from "./examples/groupedOptions";
 import icons from "./examples/icons";
 
 const sections = [
