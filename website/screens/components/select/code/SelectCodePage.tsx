@@ -271,7 +271,7 @@ const sections = [
               same problem.
             </DxcText>
             <DxcText>
-              Below is an example of how to treat errors using the{" "}
+              Below there is an example of how to treat errors using the{" "}
               <Code>onBlur</Code> event.
             </DxcText>
             <Example example={errorHandling} defaultIsVisible />
