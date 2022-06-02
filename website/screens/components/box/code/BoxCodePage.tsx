@@ -4,7 +4,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basic from "./examples/Basic"
+import basic from "./examples/Basic";
 
 const sections = [
   {
@@ -21,13 +21,15 @@ const sections = [
         <tbody>
           <tr>
             <td>shadowDepth: 0 | 1 | 2</td>
-            <td><Code>2</Code></td>
+            <td>
+              <Code>2</Code>
+            </td>
             <td>The size of the shadow to be displayed around the box.</td>
           </tr>
           <tr>
             <td>display: string</td>
             <td>
-              <Code>inline-flex</Code>
+              <Code>'inline-flex'</Code>
             </td>
             <td>Changes the display CSS property of the box div.</td>
           </tr>
@@ -40,27 +42,27 @@ const sections = [
             <td>margin: string | object</td>
             <td></td>
             <td>
-              Size of the margin to be applied to the component (`xxsmall` | `xsmall` | `small` |
-              `medium` | `large` | `xlarge` | `xxlarge`). You can pass an object with `top`,
-              `bottom`, `left` and `right` properties in order to specify different margin sizes.
+              Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' |
+              'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass an object with 'top',
+              'bottom', 'left' and 'right' properties in order to specify different margin sizes.
             </td>
           </tr>
           <tr>
             <td>padding: string | object</td>
             <td></td>
             <td>
-              Size of the padding to be applied to the component (`xxsmall` | `xsmall` | `small` |
-              `medium` | `large` | `xlarge` | `xxlarge`). You can pass an object with `top`,
-              `bottom`, `left` and `right` properties in order to specify different padding sizes.
+              Size of the padding to be applied to the component ('xxsmall' | 'xsmall' | 'small' |
+              'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass an object with 'top',
+              'bottom', 'left' and 'right' properties in order to specify different padding sizes.
             </td>
           </tr>
           <tr>
             <td>size: string</td>
             <td>
-              <Code>fitContent</Code>
+              <Code>'fitContent'</Code>
             </td>
             <td>
-              Size of the component (`small` | `medium` | `large` | `fillParent`| `fitContent`).
+              Size of the component ('small' | 'medium' | 'large' | 'fillParent'| 'fitContent').
             </td>
           </tr>
         </tbody>
@@ -70,15 +72,15 @@ const sections = [
   {
     title: "Examples",
     subSections: [
-        {
-            title: "Basic example",
-            content: (
-              <>
-                <Example example={basic} defaultIsVisible />
-              </>
-            ),
-        }
-    ] 
+      {
+        title: "Basic usage",
+        content: (
+          <>
+            <Example example={basic} defaultIsVisible />
+          </>
+        ),
+      },
+    ],
   },
 ];
 
