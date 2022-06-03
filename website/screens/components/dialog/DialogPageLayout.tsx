@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const DialogPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/dialog" },
+    { label: "Code", path: "/components/dialog" },
+    { label: "Usage", path: "/components/dialog/usage" },
     { label: "Specifications", path: "/components/dialog/specifications" },
   ];
 
