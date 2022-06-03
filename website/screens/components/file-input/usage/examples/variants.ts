@@ -1,7 +1,6 @@
 import {
   DxcFileInput,
   DxcInset,
-  DxcRow,
   DxcStack,
 } from "@dxc-technology/halstack-react";
 
@@ -20,7 +19,6 @@ const code = `() => {
 const scope = {
   DxcFileInput,
   DxcInset,
-  DxcRow,
   DxcStack,
 };
 
