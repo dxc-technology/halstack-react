@@ -36,10 +36,10 @@ const code = `() => {
         <CustomTab active to="/components/">
           Tab 1
         </CustomTab>
-        <CustomTab active to="/components/">
+        <CustomTab to="/components/">
           Tab 2
         </CustomTab>
-        <CustomTab active to="/components/">
+        <CustomTab to="/components/">
           Tab 3
         </CustomTab>
       </DxcNavTabs>

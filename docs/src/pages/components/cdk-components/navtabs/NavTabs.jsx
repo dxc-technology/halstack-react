@@ -53,16 +53,33 @@ function Tabs() {
           >
             NextJS Link
           </DxcLink>
-          ). We only provide styles to the anchor, so follow the instructions for each type of
-          router to combine it with our component. We forward the ref to the anchor element if
-          needed. In this example we use <Code>component</Code> prop from React Router that can be
-          used to allow the use of custom links.
+          ). We only provide styles to the tab which is a container with a styled anchor, so follow
+          the instructions for each type of router to combine it with our component. We forward the
+          ref to the anchor element if needed. In this example we use <Code>component</Code> prop
+          from React Router that can be used to allow the use of custom links.
         </Example>
-        <Example
-          title="Custom Nav Tabs with React router v6"
-          example={reactRouterv6NavTabs}
-        ></Example>
-        <Example title="Custom Nav Tabs with NextJS link" example={nextLinkNavTabs}></Example>
+        <Example title="Custom Nav Tabs with React router v6" example={reactRouterv6NavTabs}>
+          {" "}
+          The prop component it is removed in v6. Here it is an example using some hooks from react
+          router. For more information click{" "}
+          <DxcLink
+            href="https://github.com/remix-run/react-router/blob/main/docs/upgrading/v5.md#remove-link-component-prop"
+            newWindow
+          >
+            here
+          </DxcLink>
+          .
+        </Example>
+        <Example title="Custom Nav Tabs with NextJS link" example={nextLinkNavTabs}>
+          This is another example using{" "}
+          <DxcLink
+            href="https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-functional-component"
+            newWindow
+          >
+            NextJS Link
+          </DxcLink>
+          .
+        </Example>
       </Section>
     </ComponentDoc>
   );
