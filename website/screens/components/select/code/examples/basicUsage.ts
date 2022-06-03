@@ -1,4 +1,4 @@
-import { DxcSelect, DxcStack, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcSelect, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -23,7 +23,6 @@ const code = `() => {
 
 const scope = {
   DxcSelect,
-  DxcStack,
   DxcInset,
   useState,
 };
