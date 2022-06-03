@@ -5,7 +5,6 @@ import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import basic from "./examples/basic";
-import optional from "./examples/optional";
 import errorHandling from "./examples/errorHandling";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
@@ -191,8 +190,8 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              Example of error handling when it does not match the format. If the typed date does
-              not match the defined format, an error will be displayed
+              Example of error handling, an error will be displayed whenever an error is sent as a
+              parameter.
             </DxcText>
             <DxcText as="p">
               Take into account that it behaves differently based on the value of error (check the

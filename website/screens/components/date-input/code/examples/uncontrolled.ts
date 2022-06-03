@@ -6,7 +6,7 @@ const code = `() => {
       <DxcDateInput
         size="fillParent"
         label="Uncontrolled"
-        helperText="Uncontrolled date input"
+        helperText="Helper text"
         defaultValue="10-08-1998"
         clearable
       />
