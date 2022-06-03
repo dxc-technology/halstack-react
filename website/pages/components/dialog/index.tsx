@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import DialogPageLayout from "../../../screens/components/dialog/DialogPageLayout";
-import DialogUsagePage from "../../../screens/components/dialog/usage/DialogUsagePage";
+import DialogCodePage from "../../../screens/components/dialog/code/DialogCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Dialog — Halstack Design System</title>
       </Head>
-      <DialogUsagePage></DialogUsagePage>
+      <DialogCodePage></DialogCodePage>
     </>
   );
 };

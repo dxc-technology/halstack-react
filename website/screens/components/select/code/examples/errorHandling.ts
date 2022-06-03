@@ -2,6 +2,17 @@ import { DxcSelect, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
+  const [value, setValue] = useState("");
+  const [error, setError] = useState();
+
+  const onChange = ({ value }) => {
+    setValue(value);
+  };
+  const onBlur = ({ value, error }) => {
+    setValue(value);
+    setError(error);
+  };
+
   const options = [
     { label: "Option 01", value: "1" },
     { label: "Option 02", value: "2" },
@@ -13,10 +24,12 @@ const code = `() => {
     <DxcInset space="large">
       <DxcSelect
         label="Label"
-        helperText="When a select is optional, it is not required to fill it in, so it won't pass the required error."
         placeholder="Choose an option"
         options={options}
-        optional
+        value={value}
+        onBlur={onBlur}
+        onChange={onChange}
+        error={error == undefined ? "" : error}
         size="fillParent"
       />
     </DxcInset>
