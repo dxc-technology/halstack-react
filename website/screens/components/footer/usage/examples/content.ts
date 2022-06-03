@@ -4,7 +4,7 @@ import {
   DxcStack,
   DxcInset,
 } from "@dxc-technology/halstack-react";
-import { linkedinLogo, twitterLogo, facebookLogo } from "./icons";
+import { linkedinLogo, twitterLogo, facebookLogo } from "./Icons";
 
 const code = `() => {
   const social = [
@@ -42,7 +42,7 @@ const code = `() => {
         socialLinks={social}
         copyright="© DXC Technology Company"
       >
-        <div style={{ marginTop: "16px" }}>
+        <DxcInset top="medium">
           <DxcRow gutter="medium">
             <DxcStack gutter="xxxsmall">
               <div
@@ -60,7 +60,6 @@ const code = `() => {
                   color: "#ffffff",
                   marginBottom: "0.25rem",
                   fontSize: "0.875rem",
-                  lineHeight: "1.5rem",
                 }}
               >
                 DXC Technology
@@ -70,7 +69,6 @@ const code = `() => {
                   color: "#ffffff",
                   marginBottom: "0.25rem",
                   fontSize: "0.875rem",
-                  lineHeight: "1.5rem",
                 }}
               >
                 Application Services
@@ -80,7 +78,6 @@ const code = `() => {
                   color: "#ffffff",
                   marginBottom: "0.25rem",
                   fontSize: "0.875rem",
-                  lineHeight: "1.5rem",
                 }}
               >
                 Business Process Services
@@ -102,7 +99,6 @@ const code = `() => {
                   color: "#ffffff",
                   marginBottom: "0.25rem",
                   fontSize: "0.875rem",
-                  lineHeight: "1.5rem",
                 }}
               >
                 Company Overview
@@ -112,7 +108,6 @@ const code = `() => {
                   color: "#ffffff",
                   marginBottom: "0.25rem",
                   fontSize: "0.875rem",
-                  lineHeight: "1.5rem",
                 }}
               >
                 Our Mission & Values
@@ -122,7 +117,6 @@ const code = `() => {
                   color: "#ffffff",
                   marginBottom: "0.25rem",
                   fontSize: "0.875rem",
-                  lineHeight: "1.5rem",
                 }}
               >
                 Our History
@@ -144,7 +138,6 @@ const code = `() => {
                   color: "#ffffff",
                   marginBottom: "0.25rem",
                   fontSize: "0.875rem",
-                  lineHeight: "1.5rem",
                 }}
               >
                 Healthcare
@@ -154,14 +147,13 @@ const code = `() => {
                   color: "#ffffff",
                   marginBottom: "0.25rem",
                   fontSize: "0.875rem",
-                  lineHeight: "1.5rem",
                 }}
               >
                 Life science
               </div>
             </DxcStack>
           </DxcRow>
-        </div>
+        </DxcInset>
       </DxcFooter>
     </DxcInset>
   );

@@ -1,5 +1,5 @@
 import { DxcFooter, DxcInset } from "@dxc-technology/halstack-react";
-import { linkedinLogo, twitterLogo, facebookLogo } from "./icons";
+import { linkedinLogo, twitterLogo, facebookLogo } from "./Icons";
 
 const code = `() => {
   const social = [
