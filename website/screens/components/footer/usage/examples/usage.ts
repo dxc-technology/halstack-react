@@ -1,5 +1,5 @@
-import { DxcFooter } from "@dxc-technology/halstack-react";
-import { linkedinLogo, twitterLogo, facebookLogo } from "./Icons";
+import { DxcFooter, DxcInset } from "@dxc-technology/halstack-react";
+import { linkedinLogo, twitterLogo, facebookLogo } from "./icons";
 
 const code = `() => {
   const social = [
@@ -18,24 +18,26 @@ const code = `() => {
   ];
   const bottom = [
     {
-      href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin",
+      href: "#",
+      text: "Legal",
     },
     {
-      href: "https://twitter.com/dxctechnology",
-      text: "Twitter",
+      href: "#",
+      text: "Privacy",
     },
     {
-      href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook",
+      href: "#",
+      text: "Feedback",
     },
   ];
   return (
-    <DxcFooter
-      bottomLinks={bottom}
-      socialLinks={social}
-    >
-    </DxcFooter>
+    <DxcInset space="large">
+      <DxcFooter
+        bottomLinks={bottom}
+        socialLinks={social}
+        copyright="© DXC Technology Company"
+      ></DxcFooter>
+    </DxcInset>
   );
 }`;
 
@@ -44,6 +46,7 @@ const scope = {
   linkedinLogo,
   twitterLogo,
   facebookLogo,
+  DxcInset,
 };
 
 export default { code, scope };
