@@ -1,15 +1,16 @@
-import { DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcInset } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
-    <div>
+    <DxcInset space="large">
       <DxcHeading text="Title for main section" />
       <DxcHeading level={2} text="Heading for sections" />
-    </div>
+    </DxcInset>
   );
 }`;
 
 const scope = {
   DxcHeading,
+  DxcInset,
 };
 
 export default { code, scope };
