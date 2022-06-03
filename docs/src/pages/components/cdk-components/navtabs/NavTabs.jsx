@@ -11,6 +11,8 @@ import iconsNavTabs from "./examples/iconsNavTabs";
 import notificationNavTabs from "./examples/notificationNavTabs";
 import customNavTabs from "./examples/customNavTabs";
 import Code from "../../common/Code";
+import nextLinkNavTabs from "./examples/nextLinkNavTabs";
+import reactRouterv6NavTabs from "./examples/reactRouterv6NavTabs";
 
 function Tabs() {
   return (
@@ -23,31 +25,20 @@ function Tabs() {
       <Section>
         <DxcHeading level={3} text="Children" margin={{ bottom: "small" }} />
         <p>
-          This component includes different compound components that are
-          customized following the design guidelines.
+          This component includes different compound components that are customized following the
+          design guidelines.
         </p>
         <DxcHeading text="DxcNavTabs.Tab" level={4} weight="bold" />
         <p>Customized tab that allows this Nav Tabs component.</p>
-        <DxcHeading
-          text="Props"
-          level={5}
-          weight="bold"
-          margin={{ bottom: "medium" }}
-        />{" "}
+        <DxcHeading text="Props" level={5} weight="bold" margin={{ bottom: "medium" }} />{" "}
         <TabPropsTable />
       </Section>
       <Section>
         <DxcHeading level={3} text="Examples" margin={{ bottom: "small" }} />
         <Example title="Default Nav Tabs" example={defaultNavTabs}></Example>
         <Example title="Nav Tabs with icons" example={iconsNavTabs}></Example>
-        <Example
-          title="Notification tabs"
-          example={notificationNavTabs}
-        ></Example>
-        <Example
-          title="Custom Nav Tabs with React Router"
-          example={customNavTabs}
-        >
+        <Example title="Notification tabs" example={notificationNavTabs}></Example>
+        <Example title="Custom Nav Tabs with React Router" example={customNavTabs}>
           Our DxcNavTabs component can be used with different routers (like{" "}
           <DxcLink
             href="https://v5.reactrouter.com/web/api/Link/component-reactcomponent"
@@ -62,12 +53,16 @@ function Tabs() {
           >
             NextJS Link
           </DxcLink>
-          ). We only provide styles to the anchor, so follow the instructions
-          for each type of router to combine it with our component. We forward
-          the ref to the anchor element if needed. In this example we use{" "}
-          <Code>component</Code> prop from React Router that can be used to
-          allow the use of custom links.
+          ). We only provide styles to the anchor, so follow the instructions for each type of
+          router to combine it with our component. We forward the ref to the anchor element if
+          needed. In this example we use <Code>component</Code> prop from React Router that can be
+          used to allow the use of custom links.
         </Example>
+        <Example
+          title="Custom Nav Tabs with React router v6"
+          example={reactRouterv6NavTabs}
+        ></Example>
+        <Example title="Custom Nav Tabs with NextJS link" example={nextLinkNavTabs}></Example>
       </Section>
     </ComponentDoc>
   );
