@@ -4,10 +4,10 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basic from "./examples/basic";
+import basic from "./examples/basicUsage";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import errorUsage from "./examples/error";
+import errorUsage from "./examples/errorHandling";
 
 const sections = [
   {
@@ -202,7 +202,7 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic Usage",
+        title: "Basic usage",
         content: (
           <>
             <Example example={basic} defaultIsVisible />
@@ -226,7 +226,7 @@ const sections = [
         ),
       },
       {
-        title: "Error Handling",
+        title: "Error handling",
         content: (
           <>
             <Example example={errorUsage} defaultIsVisible />

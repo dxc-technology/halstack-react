@@ -19,7 +19,6 @@ const code = `() => {
       <DxcStack gutter="large" align="start">
         <DxcNumberInput
           label="Uncontrolled"
-          defaultValue="1"
           ref={inputRef}
         />
         <DxcButton onClick={handleSubmit} label="Submit"></DxcButton>

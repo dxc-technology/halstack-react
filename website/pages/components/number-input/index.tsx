@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import NumberInputCodePage from "../../../screens/components/number-input/code/NumberInputCodePage";
 import NumberInputPageLayout from "../../../screens/components/number-input/NumberInputPageLayout";
 
-const Code = () => {
+const Index = () => {
   return (
     <>
       <Head>
@@ -14,8 +14,8 @@ const Code = () => {
   );
 };
 
-Code.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = function getLayout(page: ReactElement) {
   return <NumberInputPageLayout>{page}</NumberInputPageLayout>;
 };
 
-export default Code;
+export default Index;
