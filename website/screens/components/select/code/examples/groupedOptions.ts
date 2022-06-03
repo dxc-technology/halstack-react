@@ -35,8 +35,8 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcSelect
-        label="Grouped options"
-        placeholder="Choose options"
+        label="Select your coworkers"
+        placeholder="Choose a colleague"
         options={options}
         multiple
         size="fillParent"
