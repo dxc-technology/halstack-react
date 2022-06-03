@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import AccordionPageLayout from "../../../screens/components/accordion/AccordionPageLayout";
-import AccordionUsagePage from "../../../screens/components/accordion/usage/AccordionUsagePage";
+import AccordionCodePage from "../../../screens/components/accordion/code/AccordionCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Accordion — Halstack Design System</title>
       </Head>
-      <AccordionUsagePage></AccordionUsagePage>
+      <AccordionCodePage></AccordionCodePage>
     </>
   );
 };
