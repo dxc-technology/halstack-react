@@ -1,4 +1,4 @@
-import { DxcDateInput, DxcStack, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcDateInput, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
@@ -10,7 +10,6 @@ const code = `() => {
 
 const scope = {
   DxcDateInput,
-  DxcStack,
   DxcInset,
 };
 

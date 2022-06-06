@@ -213,9 +213,6 @@ const sections = [
         title: "Uncontrolled",
         content: (
           <>
-            <DxcText as="p">
-              The 'defaultValue' prop only works with uncontrolled date inputs.
-            </DxcText>
             <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
