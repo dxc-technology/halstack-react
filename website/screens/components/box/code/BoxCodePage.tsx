@@ -4,7 +4,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basic from "./examples/Basic";
+import basicUsage from "./examples/BasicUsage";
 
 const sections = [
   {
@@ -76,7 +76,7 @@ const sections = [
         title: "Basic usage",
         content: (
           <>
-            <Example example={basic} defaultIsVisible />
+            <Example example={basicUsage} defaultIsVisible />
           </>
         ),
       },
