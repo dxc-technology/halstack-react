@@ -4,14 +4,12 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basic from "./code-examples/basicSelect";
-import controlled from "./code-examples/controlledSelect";
-import uncontrolled from "./code-examples/uncontrolledSelect";
-import multiple from "./code-examples/multipleSelect";
-import searchable from "./code-examples/searchableSelect";
-import groups from "./code-examples/groupedSelect";
-import icons from "./code-examples/iconsSelect";
-import optional from "./code-examples/optionalSelect";
+import basic from "./examples/basicUsage";
+import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
+import errorHandling from "./examples/errorHandling";
+import groups from "./examples/groupedOptions";
+import icons from "./examples/icons";
 
 const sections = [
   {
@@ -139,7 +137,7 @@ const sections = [
             <td>
               If true, the select will be optional, showing '(Optional)' next to
               the label and adding a default first option with an empty string
-              as value, been the placeholder (if defined) its label. Otherwise,
+              as value and the placeholder (if defined) as its label. Otherwise,
               the field will be considered required and an error will be passed
               as a parameter to the OnBlur and onChange functions if an option
               wasn't selected.
@@ -227,21 +225,14 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <DxcText as="p">
-              Some examples with the different states of the Select component.
-            </DxcText>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basic} defaultIsVisible />,
       },
       {
         title: "Controlled",
         content: (
           <>
             <DxcText as="p">
-              This is an example of how to manage the state of the Select
+              This is an example of how to manage the state of the select
               component using React stateful variables.
             </DxcText>
             <Example example={controlled} defaultIsVisible />
@@ -253,79 +244,47 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              The state of the component is managed internally by the select.
-              Here is an example of how to use an uncontrolled select the submit
-              event.
+              Alternatively you can let the component manage its state
+              internally. The example below shows how to handle the value of an
+              uncontrolled select in the submit event.
+            </DxcText>
+            <DxcText as="p">
+              The select's value is empty by default, but an initial,
+              uncontrolled, value can be provided using the{" "}
+              <Code>defaultValue</Code> prop.
             </DxcText>
             <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
       },
       {
-        title: "Searchable",
+        title: "Error handling",
         content: (
           <>
             <DxcText as="p">
-              The <Code>searchable</Code> prop enables the search functionality
-              for filtering the select options.
+              When handling errors, we recommend initializing the{" "}
+              <Code>error</Code> prop with an empty string. This will reserve
+              space for a possible future error message and prevent unintended
+              layout changes. Also, the <Code>onBlur</Code> and{" "}
+              <Code>onChange</Code> events will send <Code>undefined</Code> when
+              there is no error, so you may need to check this too to avoid the
+              same problem.
             </DxcText>
-            <Example example={searchable} defaultIsVisible />
+            <DxcText>
+              Below there is an example of how to treat errors using the{" "}
+              <Code>onBlur</Code> event.
+            </DxcText>
+            <Example example={errorHandling} defaultIsVisible />
           </>
         ),
       },
       {
-        title: "Multiple",
-        content: (
-          <>
-            <DxcText as="p">
-              The <Code>multiple</Code> prop enables the user to select more
-              than one option. If the component is also optional, it will only
-              add "(Optional)" next to the label and not another option to the
-              listbox.
-            </DxcText>
-            <Example example={multiple} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Optional",
-        content: (
-          <>
-            <DxcText as="p">
-              You can mark a select as optional by setting to <Code>true</Code>{" "}
-              the <Code>optional</Code> prop. In this particular case, the
-              component will automatically add an extra selectable option which
-              will have the empty string as value and the placeholder as a
-              label. This only affects the single selection mode, otherwise this
-              option will not be included.
-            </DxcText>
-            <Example example={optional} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Groups",
-        content: (
-          <>
-            <DxcText as="p">
-              The <Code>options</Code> prop allows you to group the options by
-              slightly varying the structure of its object.
-            </DxcText>
-            <Example example={groups} defaultIsVisible />
-          </>
-        ),
+        title: "Grouped options",
+        content: <Example example={groups} defaultIsVisible />,
       },
       {
         title: "Icons",
-        content: (
-          <>
-            <DxcText as="p">
-              You can add icons to the options of the listbox either using a URL
-              or an inline SVG.
-            </DxcText>
-            <Example example={icons} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={icons} defaultIsVisible />,
       },
     ],
   },
