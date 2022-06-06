@@ -7,10 +7,12 @@ type TabsPageLayoutProps = {
   tabs: { label: string; path: string }[];
 };
 
-const MyLink = React.forwardRef(({ path, children }, ref) => {
+const CustomTabLink = React.forwardRef(({ path, children, active }, ref) => {
   return (
     <Link href={path} passHref>
-      <a ref={ref}>{children}</a>
+      <DxcNavTabs.Tab active={active} ref={ref}>
+        {children}
+      </DxcNavTabs.Tab>
     </Link>
   );
 });
@@ -21,9 +23,9 @@ const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
   return (
     <DxcNavTabs>
       {tabs.map((tab, index) => (
-        <DxcNavTabs.Tab active={tab.path === router.pathname}>
-          <MyLink path={tab.path}>{tab.label}</MyLink>
-        </DxcNavTabs.Tab>
+        <CustomTabLink active={tab.path === router.pathname} path={tab.path}>
+          {tab.label}
+        </CustomTabLink>
       ))}
     </DxcNavTabs>
   );
