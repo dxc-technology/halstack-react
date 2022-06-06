@@ -2,7 +2,7 @@ import { DxcText, DxcStack, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import basic from "./examples/basic";
+import basicUsage from "./examples/basicUsage";
 import modal from "./examples/modal";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
@@ -106,7 +106,7 @@ const sections = [
         title: "Basic usage",
         content: (
           <>
-            <Example example={basic} defaultIsVisible />
+            <Example example={basicUsage} defaultIsVisible />
           </>
         ),
       },
