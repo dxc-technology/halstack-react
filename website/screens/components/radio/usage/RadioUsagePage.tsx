@@ -7,9 +7,8 @@ import {
 import DocFooter from "../../../common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Image from "@/common/Image";
-import Figure from "@/common/Figure";
-import radioStacking from "./images/radio_stacking.png";
+import Example from "@/common/example/Example";
+import stacking from "./examples/stacking";
 
 const sections = [
   {
@@ -36,9 +35,7 @@ const sections = [
     title: "Stacking",
     content: (
       <>
-        <Figure caption="Radio button stacking options">
-          <Image src={radioStacking} alt="Radio button stacking options" />
-        </Figure>
+        <Example example={stacking} />
         <DxcTable>
           <thead>
             <tr>
