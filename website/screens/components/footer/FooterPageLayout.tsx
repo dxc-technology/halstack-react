@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/footer" },
+    { label: "Code", path: "/components/footer" },
+    { label: "Usage", path: "/components/footer/usage" },
     { label: "Specifications", path: "/components/footer/specifications" },
   ];
 
