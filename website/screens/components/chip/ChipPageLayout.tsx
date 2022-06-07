@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const ChipPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/chip" },
+    { label: "Code", path: "/components/chip" },
+    { label: "Usage", path: "/components/chip/usage" },
     { label: "Specifications", path: "/components/chip/specifications" },
   ];
 

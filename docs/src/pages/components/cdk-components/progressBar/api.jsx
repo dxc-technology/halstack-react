@@ -22,7 +22,7 @@ const progressBarPropsTable = () => {
       <tr>
         <td>overlay: boolean</td>
         <td>
-          <code>true</code>
+          <code>false</code>
         </td>
         <td>If true, the progress bar will be displayed as a modal.</td>
       </tr>
