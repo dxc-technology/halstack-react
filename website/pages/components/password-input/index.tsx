@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import PasswordInputCodePage from "../../../screens/components/password-input/code/PasswordInputCodePage";
 import PasswordInputPageLayout from "../../../screens/components/password-input/PasswordInputPageLayout";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
@@ -14,8 +14,8 @@ const Usage = () => {
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = function getLayout(page: ReactElement) {
   return <PasswordInputPageLayout>{page}</PasswordInputPageLayout>;
 };
 
-export default Usage;
+export default Index;
