@@ -25,10 +25,10 @@ const code = `() => {
           onChange={onChangeCollapsed}
           padding="medium"
         >
-          <div>
+          <DxcInset space="xxxsmall">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
+          </DxcInset>
         </DxcAccordion>
         <DxcAccordion
           label="Expanded"
@@ -38,11 +38,11 @@ const code = `() => {
         >
           <DxcStack gutter="small">
             <DxcHeading level={3} text="Content header" />
-            <div>
+            <DxcInset space="xxxsmall">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
-            </div>
+            </DxcInset>
           </DxcStack>
         </DxcAccordion>
       </DxcStack>

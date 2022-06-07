@@ -3,6 +3,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
+import Code from "@/common/Code";
 import controlledAccordion from "./examples/controlled";
 import uncontrolledAccordion from "./examples/uncontrolled";
 
@@ -37,7 +38,7 @@ const sections = [
         <tr>
           <td>disabled: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>If true, the component will be disabled.</td>
         </tr>

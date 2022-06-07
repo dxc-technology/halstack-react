@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const code = `() => {
   const [isExpanded, changeIsExpanded] = useState(true);
-  const onChange = newValue => {
+  const onChange = (newValue) => {
     changeIsExpanded(newValue);
   };
 
@@ -16,10 +16,10 @@ const code = `() => {
         onChange={onChange}
         padding="medium"
       >
-        <div>
+        <DxcInset space="xxxsmall">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           malesuada lacus ex, sit amet blandit leo lobortis eget.
-        </div>
+        </DxcInset>
       </DxcAccordion>
     </DxcInset>
   );
