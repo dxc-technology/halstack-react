@@ -53,11 +53,6 @@ const QuickNavContainer = styled.div`
   padding-left: ${(props) => props.theme.paddingLeft};
   padding-right: ${(props) => props.theme.paddingRight};
   border-left: 2px solid ${(props) => props.theme.dividerBorderColor};
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
 `;
 
 const ListColumn = styled.ul`
