@@ -4,7 +4,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basic from "./examples/basic";
+import basic from "./examples/basicUsage";
 import errorHandling from "./examples/errorHandling";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
@@ -190,12 +190,9 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              Example of error handling, an error will be displayed whenever an error is sent as a
-              parameter.
-            </DxcText>
-            <DxcText as="p">
-              Take into account that it behaves differently based on the value of error (check the
-              prop above for more information).
+              The component behaviour varies depending on the value of the error prop. We recommend
+              reading the description of the prop carefully to fully understand the following
+              example.
             </DxcText>
             <Example example={errorHandling} defaultIsVisible />
           </>

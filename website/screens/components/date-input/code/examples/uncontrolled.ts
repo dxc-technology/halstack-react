@@ -12,7 +12,7 @@ const code = `() => {
   return (
     <>
       <DxcInset space="large">
-        <DxcStack gutter="medium">
+        <DxcStack  gutter="large" align="start">
           <DxcDateInput
             label="Uncontrolled"
             helperText="The 'defaultValue' prop only works with uncontrolled date inputs"
@@ -23,7 +23,6 @@ const code = `() => {
           <DxcButton
             label="Submit"
             onClick={handleSubmit}
-            size="medium"
           ></DxcButton>
         </DxcStack>
       </DxcInset>
