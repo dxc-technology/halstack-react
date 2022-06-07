@@ -3,7 +3,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
-import basicUsage from "./examples/BasicUsage";
+import variants from "./examples/variants";
 import Example from "@/common/example/Example";
 
 const sections = [
@@ -29,7 +29,7 @@ const sections = [
     title: "Variants",
     content: (
       <>
-        <Example example={basicUsage} />
+        <Example example={variants} />
         <DxcText as="p">
           The <Code>shadow-default</Code> and <Code>shadow-high</Code> variants can be used to
           create clear distictions between sections of content without the use of borders or
