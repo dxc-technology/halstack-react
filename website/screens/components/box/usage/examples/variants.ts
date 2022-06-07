@@ -5,13 +5,13 @@ const code = `() => {
         <DxcInset space="large">
           <DxcRow gutter="xxxlarge">
             <DxcBox shadowDepth={0} padding="medium">
-                Box Content
+              No shadow
             </DxcBox>
             <DxcBox shadowDepth={1} padding="medium">
-                Box Content
+              Shadow default
             </DxcBox>
             <DxcBox shadowDepth={2} padding="medium">
-                Box Content
+              Shadow high
             </DxcBox>
           </DxcRow>
         </DxcInset>
