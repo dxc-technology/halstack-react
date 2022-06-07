@@ -7,7 +7,6 @@ import QuickNavTypes from "./types";
 import DxcHeading from "../heading/Heading";
 import DxcStack from "../stack/Stack";
 import DxcInset from "../inset/Inset";
-import DxcList from "../list/List";
 import DxcText from "../text/Text";
 import useTranslatedLabels from "../useTranslatedLabels";
 
@@ -20,24 +19,28 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
       <QuickNavContainer>
         <DxcStack gutter="xsmall">
           <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
-          <DxcList>
+          <ListColumn>
             <DxcStack gutter="xsmall">
               {links.map((link) => (
-                <DxcInset space="xxsmall">
-                  <DxcText>
-                    <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
-                    {link.links?.map((sublink) => (
-                      <DxcInset horizontal="xsmall">
-                        <DxcText>
-                          <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
-                        </DxcText>
-                      </DxcInset>
-                    ))}
-                  </DxcText>
-                </DxcInset>
+                <ListRow>
+                  <DxcInset space="xxsmall">
+                    <DxcText>
+                      <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
+                      {link.links?.map((sublink) => (
+                        <ListRow>
+                          <DxcInset horizontal="xsmall">
+                            <DxcText>
+                              <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
+                            </DxcText>
+                          </DxcInset>
+                        </ListRow>
+                      ))}
+                    </DxcText>
+                  </DxcInset>
+                </ListRow>
               ))}
             </DxcStack>
-          </DxcList>
+          </ListColumn>
         </DxcStack>
       </QuickNavContainer>
     </ThemeProvider>
@@ -50,10 +53,15 @@ const QuickNavContainer = styled.div`
   padding-left: ${(props) => props.theme.paddingLeft};
   padding-right: ${(props) => props.theme.paddingRight};
   border-left: 2px solid ${(props) => props.theme.dividerBorderColor};
-  li > div:first-child {
-    display: none;
-  }
 `;
+
+const ListColumn = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const ListRow = styled.li``;
 
 const Link = styled.a`
   text-decoration: none;
