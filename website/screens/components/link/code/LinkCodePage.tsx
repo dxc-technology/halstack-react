@@ -1,13 +1,11 @@
 import { DxcTable, DxcStack, DxcText, DxcLink } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Code from "@/common/Code";
-import linkStatesIcon from "./images/link_states_icon.png";
 import Example from "@/common/example/Example";
 import nextLink from "./examples/nextLink";
-import basic from "./examples/basic";
+import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLink6 from "./examples/routerLink6";
 
@@ -86,7 +84,9 @@ const sections = [
           </tr>
           <tr>
             <td>tabIndex: number</td>
-            <td>0</td>
+            <td>
+              <Code>0</Code>
+            </td>
             <td>Value of the tabindex.</td>
           </tr>
         </tbody>
@@ -100,7 +100,7 @@ const sections = [
         title: "Basic usage",
         content: (
           <>
-            <Example example={basic} defaultIsVisible />
+            <Example example={basicUsage} defaultIsVisible />
           </>
         ),
       },
