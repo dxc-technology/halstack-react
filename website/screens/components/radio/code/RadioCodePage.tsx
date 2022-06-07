@@ -5,8 +5,6 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basic from "./examples/basicUsage";
-import controlled from "./examples/controlled";
-import uncontrolled from "./examples/uncontrolled";
 import radioGroup from "./examples/radiogroup";
 
 const sections = [
@@ -112,22 +110,6 @@ const sections = [
         content: (
           <>
             <Example example={basic} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Controlled",
-        content: (
-          <>
-            <Example example={controlled} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Uncontrolled",
-        content: (
-          <>
-            <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
       },
