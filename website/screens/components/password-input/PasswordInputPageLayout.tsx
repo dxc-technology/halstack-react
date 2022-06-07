@@ -8,7 +8,8 @@ const PasswordInputPageHeading = ({
   children: React.ReactNode;
 }) => {
   const tabs = [
-    { label: "Usage", path: "/components/password-input" },
+    { label: "Code", path: "/components/password-input" },
+    { label: "Usage", path: "/components/password-input/usage" },
     {
       label: "Specifications",
       path: "/components/password-input/specifications",
