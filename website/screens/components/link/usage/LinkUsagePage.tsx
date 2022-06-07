@@ -1,10 +1,7 @@
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Image from "@/common/Image";
-import linkStatesIcon from "./images/link_states_icon.png";
 import linksWithIcon from "./examples/linksWithIcon";
 import Example from "@/common/example/Example";
 
