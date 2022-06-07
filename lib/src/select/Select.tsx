@@ -20,6 +20,8 @@ const groupsHaveOptions = (innerOptions) =>
 const filteredGroupsHaveOptions = (filteredOptions) =>
   filteredOptions?.[0].options ? filteredOptions.some((groupOption) => groupOption.options?.length > 0) : true;
 
+const canOpenOptions = (options, disabled) => !disabled && options?.length > 0 && groupsHaveOptions(options);
+
 const filterOptionsBySearchValue = (options, searchValue) => {
   if (options?.length > 0) {
     if (options[0].options)
@@ -93,6 +95,8 @@ const getSelectedOption = (value, options, multiple, optional, optionalItem) => 
   };
 };
 
+const notOptionalCheck = (value, multiple, optional) => !optional && (multiple ? value.length === 0 : value === "");
+
 const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
   (
     {
@@ -143,13 +147,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       [value, innerValue, options, multiple, optional, optionalItem]
     );
 
-    const notOptionalCheck = (value) => !optional && value === "";
-    const notOptionalMultipleCheck = (value) => !optional && value.length === 0;
-
-    const canBeOpenOptions = () => !disabled && options?.length > 0 && groupsHaveOptions(options);
-
     const openOptions = () => {
-      if (!isOpen && canBeOpenOptions()) changeIsOpen(true);
+      if (!isOpen && canOpenOptions(options, disabled)) changeIsOpen(true);
     };
     const closeOptions = () => {
       if (isOpen) {
@@ -159,23 +158,18 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     };
 
     const handleSelectChangeValue = (newOption) => {
+      let newValue;
+
       if (multiple) {
-        let res = [];
-
         if ((value ?? innerValue).includes(newOption.value))
-          res = (value ?? innerValue).filter((optionVal) => optionVal !== newOption.value);
-        else res = [...(value ?? innerValue), newOption.value];
+          newValue = (value ?? innerValue).filter((optionVal) => optionVal !== newOption.value);
+        else newValue = [...(value ?? innerValue), newOption.value];
+      } else newValue = newOption.value;
 
-        value ?? setInnerValue(res);
-        if (notOptionalMultipleCheck(res))
-          onChange?.({ value: res, error: translatedLabels.formFields.requiredValueErrorMessage });
-        else onChange?.({ value: res });
-      } else {
-        value ?? setInnerValue(newOption.value);
-        if (notOptionalCheck(newOption.value))
-          onChange?.({ value: newOption.value, error: translatedLabels.formFields.requiredValueErrorMessage });
-        else onChange?.({ value: newOption.value });
-      }
+      value ?? setInnerValue(newValue);
+      notOptionalCheck(newValue, multiple, optional)
+        ? onChange?.({ value: newValue, error: translatedLabels.formFields.requiredValueErrorMessage })
+        : onChange?.({ value: newValue });
     };
     const handleSelectOnClick = () => {
       searchable && selectSearchInputRef.current.focus();
@@ -193,9 +187,10 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
         closeOptions();
         setSearchValue("");
 
-        if (notOptionalCheck(value ?? innerValue))
-          onBlur?.({ value: value ?? innerValue, error: translatedLabels.formFields.requiredValueErrorMessage });
-        else onBlur?.({ value: value ?? innerValue });
+        const currentValue = value ?? innerValue;
+        notOptionalCheck(currentValue, multiple, optional)
+          ? onBlur?.({ value: currentValue, error: translatedLabels.formFields.requiredValueErrorMessage })
+          : onBlur?.({ value: currentValue });
       }
     };
     const handleSelectOnKeyDown = (event) => {
