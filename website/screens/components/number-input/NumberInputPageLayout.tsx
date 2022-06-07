@@ -8,7 +8,8 @@ const NumberInputPageHeading = ({
   children: React.ReactNode;
 }) => {
   const tabs = [
-    { label: "Usage", path: "/components/number-input" },
+    { label: "Code", path: "/components/number-input" },
+    { label: "Usage", path: "/components/number-input/usage" },
     {
       label: "Specifications",
       path: "/components/number-input/specifications",

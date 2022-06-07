@@ -1,21 +1,21 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import NumberInputUsagePage from "../../../screens/components/number-input/usage/NumberInputUsagePage";
+import NumberInputCodePage from "../../../screens/components/number-input/code/NumberInputCodePage";
 import NumberInputPageLayout from "../../../screens/components/number-input/NumberInputPageLayout";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
         <title>Number Input — Halstack Design System</title>
       </Head>
-      <NumberInputUsagePage></NumberInputUsagePage>
+      <NumberInputCodePage></NumberInputCodePage>
     </>
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = function getLayout(page: ReactElement) {
   return <NumberInputPageLayout>{page}</NumberInputPageLayout>;
 };
 
-export default Usage;
+export default Index;
