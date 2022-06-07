@@ -6,6 +6,7 @@ import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
+import formatLabel from "./examples/formatLabel";
 
 const sections = [
   {
@@ -169,6 +170,10 @@ const sections = [
       {
         title: "Uncontrolled",
         content: <Example example={uncontrolled} defaultIsVisible />,
+      },
+      {
+        title: "Format label",
+        content: <Example example={formatLabel} defaultIsVisible />,
       },
     ],
   },
