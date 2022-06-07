@@ -15,7 +15,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="small">
+    <DxcInset space="large">
       <DxcPasswordInput
         label="Custom length error"
         helperText="Using onChange/onBlur event for handling errors"
