@@ -16,8 +16,8 @@ const sections = [
     content: (
       <DxcList>
         <DxcText>
-          Labelling should be concise and clearly differentiated with respect to
-          other options.
+          Labelling should be concise and clearly differentiated from other
+          options.
         </DxcText>
         <DxcText>
           By default, one option of the radio group must be pre-selected. Select
@@ -25,8 +25,8 @@ const sections = [
         </DxcText>
         <DxcText>Single radio buttons should not be used.</DxcText>
         <DxcText>
-          If the question that the user needs to responde is as easier as
-          yes/no, it is recommended to use checkbox instead of radio button.
+          If the question that the user needs to answer is as easier as yes/no,
+          it is recommended to use checkbox instead of radio button.
         </DxcText>
       </DxcList>
     ),
