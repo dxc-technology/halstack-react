@@ -8,7 +8,8 @@ const ProgressBarPageHeading = ({
   children: React.ReactNode;
 }) => {
   const tabs = [
-    { label: "Usage", path: "/components/progress-bar" },
+    { label: "Code", path: "/components/progress-bar" },
+    { label: "Usage", path: "/components/progress-bar/usage" },
     {
       label: "Specifications",
       path: "/components/progress-bar/specifications",

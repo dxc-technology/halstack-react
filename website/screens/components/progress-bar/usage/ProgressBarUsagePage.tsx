@@ -4,8 +4,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
-import determinateImage from "./images/progress_determinate_undeterminate.png";
+import determinate_indeterminate from "./examples/determinate_undeterminate";
 import variantsImage from "./images/progress_variants.png";
+import Example from "@/common/example/Example";
 
 const sections = [
   {
@@ -65,12 +66,7 @@ const sections = [
     title: "Determinate or indeterminate",
     content: (
       <>
-        <Figure caption="Determinate vs undeterminate progress bar">
-          <Image
-            src={determinateImage}
-            alt="Determinate vs undeterminate progress bar"
-          />
-        </Figure>
+        <Example example={determinate_indeterminate} />
         <DxcList>
           <DxcText>
             Determinate indicators display how long a process will take. They
