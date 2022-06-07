@@ -4,10 +4,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basicCheckbox from "./examples/BasicCheckbox";
-import controlledCheckbox from "./examples/ControlledCheckbox";
-import labelPositionCheckbox from "./examples/LabelPositionCheckbox";
-import uncontrolledCheckbox from "./examples/UncontrolledCheckbox";
+import basic from "./examples/basicUsage";
+import controlled from "./examples/controlled";
+import uncontrolled from "./examples/uncontrolled";
 
 const sections = [
   {
@@ -27,7 +26,7 @@ const sections = [
         <tr>
           <td>checked: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>
             If true, the component is checked. If undefined the component will
@@ -52,7 +51,7 @@ const sections = [
         <tr>
           <td>labelPosition: 'before' | 'after'</td>
           <td>
-            <code>'before'</code>
+            <Code>'before'</Code>
           </td>
           <td>Whether the label should appear after or before the checkbox.</td>
         </tr>
@@ -64,17 +63,17 @@ const sections = [
         <tr>
           <td>disabled: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>If true, the component will be disabled.</td>
         </tr>
         <tr>
           <td>optional: boolean</td>
           <td>
-            <code>false</code>
+            <Code>false</Code>
           </td>
           <td>
-            If true, the component will display <code>(Optional)</code> next to
+            If true, the component will display <Code>(Optional)</Code> next to
             the label.
           </td>
         </tr>
@@ -99,7 +98,7 @@ const sections = [
         <tr>
           <td>size: string</td>
           <td>
-            <code>'fitContent'</code>
+            <Code>'fitContent'</Code>
           </td>
           <td>
             Size of the component ('small' | 'medium' | 'large' | 'fillParent' |
@@ -108,7 +107,9 @@ const sections = [
         </tr>
         <tr>
           <td>tabIndex: number</td>
-          <td>0</td>
+          <td>
+            <Code>0</Code>
+          </td>
           <td>Value of the tabindex.</td>
         </tr>
       </DxcTable>
@@ -118,10 +119,10 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic",
+        title: "Basic usage",
         content: (
           <>
-            <Example example={basicCheckbox} defaultIsVisible />
+            <Example example={basic} defaultIsVisible />
           </>
         ),
       },
@@ -129,7 +130,7 @@ const sections = [
         title: "Controlled",
         content: (
           <>
-            <Example example={controlledCheckbox} />
+            <Example example={controlled} defaultIsVisible />
           </>
         ),
       },
@@ -137,15 +138,7 @@ const sections = [
         title: "Uncontrolled",
         content: (
           <>
-            <Example example={uncontrolledCheckbox} />
-          </>
-        ),
-      },
-      {
-        title: "Label position",
-        content: (
-          <>
-            <Example example={labelPositionCheckbox} />
+            <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
       },
