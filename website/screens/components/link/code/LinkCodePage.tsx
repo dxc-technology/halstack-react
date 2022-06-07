@@ -125,7 +125,8 @@ const sections = [
               >
                 NextJS Link
               </DxcLink>
-              .
+              . Some of these examples are just representations of how they should be implemented
+              but might not work correctly in this scenario.
             </DxcText>
           </>
         ),

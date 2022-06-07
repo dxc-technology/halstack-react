@@ -13,7 +13,7 @@ const code = `() => {
   return (
     <p>
       This is a text with a
-      <Link href="/about" passHref>
+      <Link href="/components/link" passHref>
         <CustomLink> next link</CustomLink>
       </Link>{" "}
       link.

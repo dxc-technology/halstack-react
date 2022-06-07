@@ -34,7 +34,7 @@ const code = `() => {
   return (
     <p>
       This is a text with a
-      <CustomLink to="/components/button" component={DxcLink}>
+      <CustomLink to="/components/link" component={DxcLink}>
         React Router v6
       </CustomLink>{" "}
       link.
