@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const DateInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/date-input" },
+    { label: "Code", path: "/components/date-input" },
+    { label: "Usage", path: "/components/date-input/usage" },
     { label: "Specifications", path: "/components/date-input/specifications" },
   ];
 
