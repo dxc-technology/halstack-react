@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import BoxPageLayout from "../../../screens/components/box/BoxPageLayout";
-import BoxUsagePage from "../../../screens/components/box/usage/BoxUsagePage";
+import BoxCodePage from "../../../screens/components/box/code/BoxCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Box — Halstack Design System</title>
       </Head>
-      <BoxUsagePage></BoxUsagePage>
+      <BoxCodePage></BoxCodePage>
     </>
   );
 };
