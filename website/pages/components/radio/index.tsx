@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import RadioPageLayout from "../../../screens/components/radio/RadioPageLayout";
-import RadioUsagePage from "../../../screens/components/radio/usage/RadioUsagePage";
+import RadioCodePage from "../../../screens/components/radio/code/RadioCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Radio — Halstack Design System</title>
       </Head>
-      <RadioUsagePage></RadioUsagePage>
+      <RadioCodePage></RadioCodePage>
     </>
   );
 };
