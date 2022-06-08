@@ -1,9 +1,8 @@
-// @ts-nocheck
-import React, { useState, useEffect, useRef } from "react";
-import { DxcHeader, DxcFooter, DxcSidenav } from "../main";
+import React, { createContext, useState, useLayoutEffect, useRef } from "react";
+import { DxcHeader, DxcFooter } from "../main";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
-import { facebookLogo, linkedinLogo, twitterLogo } from "./Icons";
+import { facebookLogo, linkedinLogo, twitterLogo, hamburguerIcon } from "./Icons";
 import useTheme from "../useTheme";
 import AppLayoutPropsType, {
   AppLayoutSidenavPropsType,
@@ -11,108 +10,86 @@ import AppLayoutPropsType, {
   AppLayoutMainPropsType,
   AppLayoutHeaderPropsType,
 } from "./types";
+import DxcSidenav from "./Sidenav";
+
+type SidenavContextType = {
+  isResponsive: boolean;
+};
+export const SidenavContext = createContext<SidenavContextType | null>(null);
 
 const year = new Date().getFullYear();
+const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
+const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
+const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => <>{children}</>;
+const SideNav = ({ mode = "overlay", ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
+  <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>
+);
+const defaultFooter = () => (
+  <DxcFooter
+    copyright={`© DXC Technology ${year}​​​​. All rights reserved.`}
+    bottomLinks={[
+      {
+        href: "https://www.linkedin.com/company/dxctechnology",
+        text: "Linkedin",
+      },
+      {
+        href: "https://twitter.com/dxctechnology",
+        text: "Twitter",
+      },
+      {
+        href: "https://www.facebook.com/DXCTechnology/",
+        text: "Facebook",
+      },
+    ]}
+    socialLinks={[
+      {
+        href: "https://www.linkedin.com/company/dxctechnology",
+        logo: linkedinLogo,
+      },
+      {
+        href: "https://twitter.com/dxctechnology",
+        logo: twitterLogo,
+      },
+      {
+        href: "https://www.facebook.com/DXCTechnology/",
+        logo: facebookLogo,
+      },
+    ]}
+  />
+);
+const defaultHeader = () => <DxcHeader underlined />;
 
-const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => {
-  return <React.Fragment>{children}</React.Fragment>;
-};
-
-const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => {
-  return <React.Fragment>{children}</React.Fragment>;
-};
-
-const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => {
-  return <React.Fragment>{children}</React.Fragment>;
-};
-
-const SideNav = (props): JSX.Element => {
-  const { displayArrow = true, mode = "overlay", ...childProps }: AppLayoutSidenavPropsType = props;
-  return <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>;
-};
-
-const defaultFooter = () => {
-  return (
-    <DxcFooter
-      copyright={`© DXC Technology ${year}​​​​. All rights reserved.`}
-      bottomLinks={[
-        {
-          href: "https://www.linkedin.com/company/dxctechnology",
-          text: "Linkedin",
-        },
-        {
-          href: "https://twitter.com/dxctechnology",
-          text: "Twitter",
-        },
-        {
-          href: "https://www.facebook.com/DXCTechnology/",
-          text: "Facebook",
-        },
-      ]}
-      socialLinks={[
-        {
-          href: "https://www.linkedin.com/company/dxctechnology",
-          logo: linkedinLogo,
-        },
-        {
-          href: "https://twitter.com/dxctechnology",
-          logo: twitterLogo,
-        },
-        {
-          href: "https://www.facebook.com/DXCTechnology/",
-          logo: facebookLogo,
-        },
-      ]}
-    />
-  );
-};
-
-const defaultHeader = () => {
-  return <DxcHeader underlined />;
-};
-const childTypeExists = (children, childType) => {
-  return children.find((child) => child && child.type && child.type === childType);
-};
+const childTypeExists = (children, childType) =>
+  children.find((child) => child && child.type && child.type === childType);
 
 const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => {
   const ref = useRef(null);
-
   const colorsTheme = useTheme();
   const [isSideNavVisible, setIsSideNavVisible] = useState(true);
-  const [isResponsive, setIsResponsive] = useState(false);
+  const [isResponsive, setIsResponsive] = useState(
+    window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
+  );
 
   const childrenArray = React.Children.toArray(children);
-
   const header = childTypeExists(childrenArray, DxcHeader) || childTypeExists(childrenArray, Header) || defaultHeader();
   const footer = childTypeExists(childrenArray, DxcFooter) || childTypeExists(childrenArray, Footer) || defaultFooter();
   const sideNav = childTypeExists(childrenArray, SideNav);
   const main = childTypeExists(childrenArray, Main);
-  const displayArrow = sideNav && sideNav.props && sideNav.props.displayArrow;
-  const sideNavMode = sideNav && sideNav.props && sideNav.props.mode;
-
-  const ArrowIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="15.995" height="10.01" viewBox="0 0 15.995 10.01">
-      <path
-        data-testid="arrow-to-right"
-        d="M17.71,11.29l-4-4a1,1,0,0,0-1.42,1.42L14.59,11H3a1,1,0,0,0,0,2H14.59l-2.3,2.29a1,1,0,1,0,1.42,1.42l4-4a1.034,1.034,0,0,0,0-1.42Z"
-        transform="translate(-2 -6.996)"
-      />
-    </svg>
-  );
 
   const handleResize = () => {
-      setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
-      setIsSideNavVisible(true);
+    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
   };
 
-  useEffect(() => {
-    if (ref.current) {
-      window.addEventListener("resize", handleResize);
-    }
+  useLayoutEffect(() => {
+    ref.current && window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [ref.current]);
+  }, []);
+
+  useLayoutEffect(() => {
+    setIsSideNavVisible(isResponsive ? false : true);
+  }, [isResponsive]);
 
   const handleSidenav = () => {
     setIsSideNavVisible(!isSideNavVisible);
@@ -120,35 +97,24 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
 
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
-      <ApplicationLayoutContainer ref={ref}>
+      <ApplicationLayoutContainer ref={ref} isResponsive={isResponsive}>
         <HeaderContainer>{header}</HeaderContainer>
+        {isResponsive && (
+          <HamburguerTrigger role="button" tabIndex={0} onClick={handleSidenav}>
+            <HamburguerIcon>{hamburguerIcon}</HamburguerIcon>
+            <span>Menu</span>
+          </HamburguerTrigger>
+        )}
         <BodyContainer>
-          <ContentContainer>
-            <SideNavArrowContainer isSideNavVisible={isSideNavVisible}>
-              {sideNav}
-              <ArrowContainer>
-                {sideNav && (displayArrow || isResponsive) && (
-                  <ArrowTrigger role="button" tabIndex={0} onClick={handleSidenav} isSideNavVisible={isSideNavVisible}>
-                    <ArrowIcon />
-                  </ArrowTrigger>
-                )}
-              </ArrowContainer>
-            </SideNavArrowContainer>
+          <ContentContainer isResponsive={isResponsive}>
+            {isSideNavVisible && (
+              <SidenavContainer isResponsive={isResponsive}>
+                <SidenavContext.Provider value={{ isResponsive }}>{sideNav}</SidenavContext.Provider>
+              </SidenavContainer>
+            )}
             <MainBodyContainer>
-              <MainContent
-                sideNav={sideNav}
-                mode={isResponsive ? "overlay" : sideNavMode}
-                isSideNavVisible={isSideNavVisible}
-              >
-                {main}
-              </MainContent>
-              <FooterContainer
-                sideNav={sideNav}
-                mode={isResponsive ? "overlay" : sideNavMode}
-                isSideNavVisible={isSideNavVisible}
-              >
-                {footer}
-              </FooterContainer>
+              {main}
+              {footer}
             </MainBodyContainer>
           </ContentContainer>
         </BodyContainer>
@@ -162,99 +128,100 @@ DxcApplicationLayout.Main = Main;
 DxcApplicationLayout.Footer = Footer;
 DxcApplicationLayout.SideNav = SideNav;
 
-const ApplicationLayoutContainer = styled.div`
+type ApplicationLayoutContainerProps = {
+  isResponsive: boolean;
+};
+const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 64px;
+  top: ${(props) => (props.isResponsive ? "112px" : "64px")};
   bottom: 0;
   left: 0;
   right: 0;
 `;
 
 const HeaderContainer = styled.div`
-  z-index: 1250;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 3;
+`;
+
+const HamburguerTrigger = styled.div`
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 12px 16px;
+  gap: 10px;
+  width: 100%;
+  background-color: #f2f2f2;
+  border: none;
+  user-select: none;
+  z-index: 3;
+
+  :hover {
+    background-color: #e6e6e6;
+  }
+  :active {
+    background-color: #cccccc;
+  }
+  :focus-visible {
+    outline: 2px solid #0095ff;
+    outline-offset: -2px;
+  }
+`;
+
+const HamburguerIcon = styled.span`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 3px;
+
+  & > svg {
+    fill: ${(props) => props.theme.arrowColor};
+    height: 18px;
+    width: 18px;
+  }
 `;
 
 const BodyContainer = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
-const ContentContainer = styled.div`
+type ContentContainerProps = {
+  isResponsive?: boolean;
+};
+const ContentContainer = styled.div<ContentContainerProps>`
+  ${(props) => props.isResponsive && "position: relative;"}
   display: flex;
-  flex: 1 1 auto;
-  align-items: flex-start;
+  flex-direction: row;
+`;
+
+type SidenavArrowContainerProps = {
+  isSideNavVisible?: boolean;
+  isResponsive?: boolean;
+};
+const SidenavContainer = styled.div<SidenavArrowContainerProps>`
+  ${(props) => (props.isResponsive ? "position: fixed;" : "position: sticky; top: 64px;")}
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 64px);
+  z-index: 1;
 `;
 
 const MainBodyContainer = styled.div`
-  width: 100%;
-  min-width: 0;
   display: flex;
   flex-direction: column;
-`;
-
-const FooterContainer = styled.div`
-  margin-left: ${(props) =>
-    props.sideNav
-      ? (props.mode === "push" && !props.isSideNavVisible) || props.mode === "overlay"
-        ? "-300px"
-        : ""
-      : ""};
-  transition: margin 0.4s ease-in-out;
-`;
-
-const MainContent = styled.div`
-  flex-grow: 1;
-  position: relative;
-  min-height: calc(100vh - 184px);
-  margin-left: ${(props) => (props.sideNav ? (props.mode === "push" && props.isSideNavVisible ? "" : "-297px") : "")};
-  transition: margin 0.4s ease-in-out;
-`;
-
-const SideNavArrowContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  z-index: 1200;
-  transform: ${(props) =>
-    props.isSideNavVisible ? "translateX(0)" : !props.isSideNavVisible ? "translateX(-100%)" : ""};
-  transition: transform 0.4s ease-in-out;
-  height: calc(100vh - 64px);
-  position: sticky;
-  top: 64px;
-`;
-
-const ArrowContainer = styled.div`
-  position: absolute;
-  height: calc(100vh - 64px);
-  left: 279px;
-`;
-
-const ArrowTrigger = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  top: 45vh;
-  width: 42px;
-  min-height: 42px;
-  background-color: ${(props) => `${props.theme.arrowContainerColor}`};
-  border-radius: 50%;
-  transform: ${(props) => (props.isSideNavVisible ? "rotate(-180deg)" : "rotate(0deg)")};
-  transition: transform 0.4s ease-in-out;
-  z-index: 1250;
-  cursor: pointer;
-  & > svg {
-    fill: ${(props) => props.theme.arrowColor};
-  }
-  :focus {
-    outline: #0095ff auto 1px;
-  }
+  width: 100%;
 `;
 
 export default DxcApplicationLayout;
