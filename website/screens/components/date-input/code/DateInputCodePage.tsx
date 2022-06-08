@@ -190,9 +190,9 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              The component behaviour varies depending on the value of the error prop. We recommend
-              reading the description of the prop carefully to fully understand the following
-              example.
+              The component behaviour varies depending on the value of the <Code>error</Code>. We
+              recommend reading the description of the prop carefully to fully understand the
+              following example.
             </DxcText>
             <Example example={errorHandling} defaultIsVisible />
           </>
