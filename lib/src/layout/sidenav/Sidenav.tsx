@@ -1,11 +1,10 @@
-// @ts-nocheck
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../common/variables.js";
-import useTheme from "../useTheme";
-import { BackgroundColorProvider } from "../BackgroundColorContext";
-import SidenavPropsType, { SidenavTitlePropsType, SidenavSubtitlePropsType, SidenavLinkPropsType } from "./types.js.js";
-import { SidenavContext } from "./ApplicationLayout";
+import { spaces } from "../../common/variables.js";
+import useTheme from "../../useTheme";
+import { BackgroundColorProvider } from "../../BackgroundColorContext";
+import SidenavPropsType, { SidenavTitlePropsType, SidenavSubtitlePropsType, SidenavLinkPropsType } from "./types";
+import { SidenavContext } from "../ApplicationLayout";
 
 const DxcSidenav = ({ padding, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -26,13 +25,21 @@ const Subtitle = ({ children }: SidenavSubtitlePropsType): JSX.Element => (
   <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>
 );
 
-const Link = ({ tabIndex = 0, href, onClick, children }: SidenavLinkPropsType): JSX.Element => (
-  <SideNavMenuLink tabIndex={tabIndex} href={href} onClick={onClick}>
-    {children}
-  </SideNavMenuLink>
-);
+const Link = ({ tabIndex = 0, href, onClick, children }: SidenavLinkPropsType): JSX.Element => {
+  const { setIsSidenavVisible } = useContext(SidenavContext);
+  const handleClick = () => {
+    onClick?.();
+    setIsSidenavVisible?.(false);
+  };
 
-const SidenavContainer = styled.div`
+  return (
+    <SideNavMenuLink tabIndex={tabIndex} href={href} onClick={handleClick}>
+      {children}
+    </SideNavMenuLink>
+  );
+};
+
+const SidenavContainer = styled.div<SidenavPropsType & { isResponsive: boolean }>`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};

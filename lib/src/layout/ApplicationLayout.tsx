@@ -1,19 +1,19 @@
 import React, { createContext, useState, useLayoutEffect, useRef } from "react";
 import { DxcHeader, DxcFooter } from "../main";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo, hamburguerIcon } from "./Icons";
-import useTheme from "../useTheme";
 import AppLayoutPropsType, {
   AppLayoutSidenavPropsType,
   AppLayoutFooterPropsType,
   AppLayoutMainPropsType,
   AppLayoutHeaderPropsType,
 } from "./types";
-import DxcSidenav from "./Sidenav";
+import DxcSidenav from "./sidenav/Sidenav";
 
 type SidenavContextType = {
   isResponsive: boolean;
+  setIsSidenavVisible: (isSidenavVisible: boolean) => void;
 };
 export const SidenavContext = createContext<SidenavContextType | null>(null);
 
@@ -21,9 +21,10 @@ const year = new Date().getFullYear();
 const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
 const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => <>{children}</>;
-const SideNav = ({ mode = "overlay", ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
+const Sidenav = ({ mode = "overlay", ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
   <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>
 );
+
 const defaultFooter = () => (
   <DxcFooter
     copyright={`© DXC Technology ${year}​​​​. All rights reserved.`}
@@ -64,8 +65,7 @@ const childTypeExists = (children, childType) =>
 
 const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => {
   const ref = useRef(null);
-  const colorsTheme = useTheme();
-  const [isSideNavVisible, setIsSideNavVisible] = useState(true);
+  const [isSidenavVisible, setIsSidenavVisible] = useState(true);
   const [isResponsive, setIsResponsive] = useState(
     window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
   );
@@ -73,11 +73,14 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
   const childrenArray = React.Children.toArray(children);
   const header = childTypeExists(childrenArray, DxcHeader) || childTypeExists(childrenArray, Header) || defaultHeader();
   const footer = childTypeExists(childrenArray, DxcFooter) || childTypeExists(childrenArray, Footer) || defaultFooter();
-  const sideNav = childTypeExists(childrenArray, SideNav);
+  const sidenav = childTypeExists(childrenArray, Sidenav);
   const main = childTypeExists(childrenArray, Main);
 
   const handleResize = () => {
     setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
+  };
+  const handleSidenavVisibility = () => {
+    setIsSidenavVisible(!isSidenavVisible);
   };
 
   useLayoutEffect(() => {
@@ -88,48 +91,43 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
   }, []);
 
   useLayoutEffect(() => {
-    setIsSideNavVisible(isResponsive ? false : true);
+    setIsSidenavVisible(!isResponsive);
   }, [isResponsive]);
 
-  const handleSidenav = () => {
-    setIsSideNavVisible(!isSideNavVisible);
-  };
-
   return (
-    <ThemeProvider theme={colorsTheme.sidenav}>
-      <ApplicationLayoutContainer ref={ref} isResponsive={isResponsive}>
-        <HeaderContainer>{header}</HeaderContainer>
-        {isResponsive && (
-          <HamburguerTrigger role="button" tabIndex={0} onClick={handleSidenav}>
-            <HamburguerIcon>{hamburguerIcon}</HamburguerIcon>
-            <span>Menu</span>
-          </HamburguerTrigger>
-        )}
-        <BodyContainer>
-          <ContentContainer isResponsive={isResponsive}>
-            {isSideNavVisible && (
-              <SidenavContainer isResponsive={isResponsive}>
-                <SidenavContext.Provider value={{ isResponsive }}>{sideNav}</SidenavContext.Provider>
-              </SidenavContainer>
-            )}
-            <MainBodyContainer>
-              {main}
-              {footer}
-            </MainBodyContainer>
-          </ContentContainer>
-        </BodyContainer>
-      </ApplicationLayoutContainer>
-    </ThemeProvider>
+    <ApplicationLayoutContainer ref={ref} isResponsive={isResponsive} isSidenavVisible={isSidenavVisible}>
+      <HeaderContainer>{header}</HeaderContainer>
+      {sidenav && isResponsive && (
+        <HamburguerTrigger role="button" tabIndex={0} onClick={handleSidenavVisibility}>
+          <HamburguerIcon>{hamburguerIcon}</HamburguerIcon>
+          <HamburguerText>Menu</HamburguerText>
+        </HamburguerTrigger>
+      )}
+      <BodyContainer>
+        <ContentContainer isResponsive={isResponsive}>
+          {isSidenavVisible && (
+            <SidenavContainer isResponsive={isResponsive}>
+              <SidenavContext.Provider value={{ isResponsive, setIsSidenavVisible }}>{sidenav}</SidenavContext.Provider>
+            </SidenavContainer>
+          )}
+          <MainBodyContainer>
+            {main}
+            {footer}
+          </MainBodyContainer>
+        </ContentContainer>
+      </BodyContainer>
+    </ApplicationLayoutContainer>
   );
 };
 
 DxcApplicationLayout.Header = Header;
 DxcApplicationLayout.Main = Main;
 DxcApplicationLayout.Footer = Footer;
-DxcApplicationLayout.SideNav = SideNav;
+DxcApplicationLayout.SideNav = Sidenav;
 
 type ApplicationLayoutContainerProps = {
   isResponsive: boolean;
+  isSidenavVisible: boolean;
 };
 const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   display: flex;
@@ -139,6 +137,7 @@ const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   bottom: 0;
   left: 0;
   right: 0;
+  ${(props) => props.isResponsive && props.isSidenavVisible && "overflow: hidden;"}
 `;
 
 const HeaderContainer = styled.div`
@@ -156,25 +155,19 @@ const HamburguerTrigger = styled.div`
   right: 0;
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  align-items: center;
   padding: 12px 16px;
   gap: 10px;
   width: 100%;
   background-color: #f2f2f2;
-  border: none;
   user-select: none;
-  z-index: 3;
+  z-index: 2;
 
   :hover {
     background-color: #e6e6e6;
   }
   :active {
     background-color: #cccccc;
-  }
-  :focus-visible {
-    outline: 2px solid #0095ff;
-    outline-offset: -2px;
   }
 `;
 
@@ -185,10 +178,16 @@ const HamburguerIcon = styled.span`
   padding: 3px;
 
   & > svg {
-    fill: ${(props) => props.theme.arrowColor};
     height: 18px;
     width: 18px;
   }
+`;
+
+const HamburguerText = styled.span`
+  font-family: Open Sans, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
 `;
 
 const BodyContainer = styled.div`
@@ -213,7 +212,6 @@ type SidenavArrowContainerProps = {
 const SidenavContainer = styled.div<SidenavArrowContainerProps>`
   ${(props) => (props.isResponsive ? "position: fixed;" : "position: sticky; top: 64px;")}
   display: flex;
-  flex-direction: row;
   height: calc(100vh - 64px);
   z-index: 1;
 `;
@@ -222,6 +220,7 @@ const MainBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow: hidden;
 `;
 
 export default DxcApplicationLayout;
