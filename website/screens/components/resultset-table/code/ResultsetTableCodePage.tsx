@@ -5,6 +5,7 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
+import sortable from "./examples/sortable";
 
 const sections = [
   {
@@ -116,6 +117,14 @@ const sections = [
         content: (
           <>
             <Example example={basicUsage} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Sortable",
+        content: (
+          <>
+            <Example example={sortable} defaultIsVisible />
           </>
         ),
       },

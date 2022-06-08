@@ -7,47 +7,47 @@ import { deleteIcon } from "./Icons";
 
 const code = `() => {
   const columns = [
-    { displayValue: "Id", isSortable: false },
-    { displayValue: "Name", isSortable: true },
-    { displayValue: "City", isSortable: false },
-    { displayValue: "Actions", isSortable: true },
+    { displayValue: "Id"},
+    { displayValue: "Name"},
+    { displayValue: "City"},
+    { displayValue: "Actions"},
   ];
 
   const rows = [
     [
-      { displayValue: "001", sortValue: "001" },
-      { displayValue: "Peter", sortValue: "Peter" },
-      { displayValue: "Miami", sortValue: "Miami" },
+      { displayValue: "001"},
+      { displayValue: "Peter"},
+      { displayValue: "Miami"},
       { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
-      { displayValue: "002", sortValue: "002" },
-      { displayValue: "Louis", sortValue: "Louis" },
-      { displayValue: "London", sortValue: "London" },
+      { displayValue: "002"},
+      { displayValue: "Louis"},
+      { displayValue: "London"},
       { displayValue: "" },
     ],
     [
-      { displayValue: "003", sortValue: "003" },
-      { displayValue: "Lana", sortValue: "Lana" },
-      { displayValue: "Amsterdam", sortValue: "Amsterdam" },
+      { displayValue: "003"},
+      { displayValue: "Lana"},
+      { displayValue: "Amsterdam"},
       { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
-      { displayValue: "004", sortValue: "004" },
-      { displayValue: "Rick", sortValue: "Rick" },
-      { displayValue: "London", sortValue: "London" },
+      { displayValue: "004"},
+      { displayValue: "Rick"},
+      { displayValue: "London"},
       { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
-      { displayValue: "005", sortValue: "005" },
-      { displayValue: "Mark", sortValue: "Mark" },
-      { displayValue: "Miami", sortValue: "Miami" },
+      { displayValue: "005"},
+      { displayValue: "Mark"},
+      { displayValue: "Miami"},
       { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
-      { displayValue: "006", sortValue: "006" },
-      { displayValue: "Cris", sortValue: "Cris" },
-      { displayValue: "Paris", sortValue: "Paris" },
+      { displayValue: "006"},
+      { displayValue: "Cris"},
+      { displayValue: "Paris"},
       { displayValue: "" },
     ],
   ];
