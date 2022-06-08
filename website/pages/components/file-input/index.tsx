@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import FileInputUsagePage from "../../../screens/components/file-input/usage/FileInputUsagePage";
+import FileInputCodePage from "../../../screens/components/file-input/code/FileInputCodePage";
 import FileInputPageLayout from "../../../screens/components/file-input/FileInputPageLayout";
 
 const Usage = () => {
@@ -9,7 +9,7 @@ const Usage = () => {
       <Head>
         <title>File Input — Halstack Design System</title>
       </Head>
-      <FileInputUsagePage></FileInputUsagePage>
+      <FileInputCodePage></FileInputCodePage>
     </>
   );
 };

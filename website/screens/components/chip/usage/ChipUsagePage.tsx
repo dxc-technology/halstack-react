@@ -9,10 +9,10 @@ const sections = [
     content: (
       <DxcList>
         <DxcText>
-          Do not use chips instead of buttons they have a total different aim in
-          the UI.
+          Do not use chips instead of buttons since they have a total different
+          aim in the UI.
         </DxcText>
-        <DxcText>Make clear and simple the content of the label.</DxcText>
+        <DxcText>Make the content of the label clear and simple.</DxcText>
         <DxcText>Use chips to make tasks easier for the user.</DxcText>
       </DxcList>
     ),

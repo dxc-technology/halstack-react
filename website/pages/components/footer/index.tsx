@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import FooterPageLayout from "../../../screens/components/footer/FooterPageLayout";
-import FooterUsagePage from "../../../screens/components/footer/usage/FooterUsagePage";
+import FooterCodePage from "../../../screens/components/footer/code/FooterCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Footer — Halstack Design System</title>
       </Head>
-      <FooterUsagePage></FooterUsagePage>
+      <FooterCodePage></FooterCodePage>
     </>
   );
 };

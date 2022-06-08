@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const FileInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/file-input" },
+    { label: "Code", path: "/components/file-input" },
+    { label: "Usage", path: "/components/file-input/usage" },
     {
       label: "Specifications",
       path: "/components/file-input/specifications",

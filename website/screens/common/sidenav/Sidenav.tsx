@@ -70,7 +70,8 @@ function LinksList({ currentPath, title, links, filter }: LinksListProps) {
               <SidenavLink
                 selected={
                   currentPath.slice(0, -1) === path ||
-                  currentPath.slice(0, -1) === path + "/specifications"
+                  currentPath.slice(0, -1) === path + "/specifications" ||
+                  currentPath.slice(0, -1) === path + "/usage"
                 }
               >
                 {label}
