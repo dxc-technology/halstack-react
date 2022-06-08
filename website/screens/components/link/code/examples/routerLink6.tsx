@@ -1,10 +1,16 @@
 import { DxcLink } from "@dxc-technology/halstack-react";
 
-const useHref = (to) => {
+const useHref = (to: string) => {
   console.log(to);
 };
 
-const useLinkClickHandler = (to, { replace, state, target }) => {};
+type routerProps = {
+  replace: string;
+  state: string;
+  target: string;
+};
+
+const useLinkClickHandler = (to: string, { replace, state, target }: routerProps) => {};
 
 const code = `() => {
   const CustomLink = React.forwardRef(
