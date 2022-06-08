@@ -1,4 +1,9 @@
-import { DxcDateInput, DxcInset, DxcButton, DxcStack } from "@dxc-technology/halstack-react";
+import {
+  DxcDateInput,
+  DxcInset,
+  DxcButton,
+  DxcStack,
+} from "@dxc-technology/halstack-react";
 import { useRef } from "react";
 
 const code = `() => {
@@ -10,23 +15,18 @@ const code = `() => {
   };
 
   return (
-    <>
-      <DxcInset space="large">
-        <DxcStack  gutter="large" align="start">
-          <DxcDateInput
-            label="Uncontrolled"
-            helperText="The 'defaultValue' prop only works with uncontrolled date inputs"
-            defaultValue="10-08-1998"
-            clearable
-            ref={inputRef}
-          />
-          <DxcButton
-            label="Submit"
-            onClick={handleSubmit}
-          ></DxcButton>
-        </DxcStack>
-      </DxcInset>
-    </>
+    <DxcInset space="large">
+      <DxcStack gutter="large" align="start">
+        <DxcDateInput
+          label="Uncontrolled"
+          helperText="The 'defaultValue' prop only works with uncontrolled date inputs"
+          defaultValue="10-08-1998"
+          clearable
+          ref={inputRef}
+        />
+        <DxcButton label="Submit" onClick={handleSubmit}></DxcButton>
+      </DxcStack>
+    </DxcInset>
   );
 }`;
 
