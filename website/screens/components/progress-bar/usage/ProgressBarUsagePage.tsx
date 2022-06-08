@@ -15,16 +15,16 @@ const sections = [
         content: (
           <DxcList>
             <DxcText>
-              Use a progress bar when it will give people feedback in a
+              Use a progress bar when it needs to give feedback in a
               long-running process with continuous values.
             </DxcText>
             <DxcText>
-              Add additional information to clarify to the user the action for
-              which is waiting (&quot;Sending documents...&quot;).
+              Add additional information to clarify the user about the action it
+              is waiting (&quot;Sending documents...&quot;).
             </DxcText>
             <DxcText>
-              Use the determinate type if it is possible, the user can have an
-              estimation on how long it is gonna take.
+              Use the determinate type whenever possible, the user can have an
+              estimation on how long it is going take.
             </DxcText>
           </DxcList>
         ),
@@ -39,7 +39,7 @@ const sections = [
             </DxcText>
             <DxcText>
               Do not use this type of component in actions that will take less
-              than 1 minute to the system.
+              than 1 minute of processing.
             </DxcText>
           </DxcList>
         ),
