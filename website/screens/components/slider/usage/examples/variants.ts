@@ -2,7 +2,7 @@ import { DxcSlider, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
-  const [discreteValue, changeDiscreteValue] = useState(45);
+  const [discreteValue, changeDiscreteValue] = useState(40);
   const onChangeDiscrete = (newValue) => {
     changeDiscreteValue(newValue);
   };
