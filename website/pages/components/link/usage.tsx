@@ -1,15 +1,15 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import LinkPageLayout from "../../../screens/components/link/LinkPageLayout";
-import LinkCodePage from "../../../screens/components/link/code/LinkCodePage";
+import LinkUsagePage from "../../../screens/components/link/usage/LinkUsagePage";
 
 const Index = () => {
   return (
     <>
       <Head>
-        <title>Link — Halstack Design System</title>
+        <title>Link usage — Halstack Design System</title>
       </Head>
-      <LinkCodePage></LinkCodePage>
+      <LinkUsagePage></LinkUsagePage>
     </>
   );
 };
