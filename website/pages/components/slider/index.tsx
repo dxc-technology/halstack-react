@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import SliderPageLayout from "../../../screens/components/slider/SliderPageLayout";
-import SliderUsagePage from "../../../screens/components/slider/usage/SliderUsagePage";
+import SliderCodePage from "../../../screens/components/slider/code/SliderCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Slider — Halstack Design System</title>
       </Head>
-      <SliderUsagePage></SliderUsagePage>
+      <SliderCodePage></SliderCodePage>
     </>
   );
 };
