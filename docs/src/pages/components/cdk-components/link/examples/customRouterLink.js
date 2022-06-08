@@ -5,16 +5,15 @@ const code = `() => {
   return (
     <p>
         This is a text with a 
-        <DxcLink>
-          <RouterLink to="/components/button">React Router</RouterLink>
-        </DxcLink> link.
+        <RouterLink to="/components/button" component={DxcLink}>React Router v5</RouterLink>
+        {" "}link.
     </p>
   );
 }`;
 
 const scope = {
   DxcLink,
-  RouterLink
+  RouterLink,
 };
 
 export default { code, scope };
