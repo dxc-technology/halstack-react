@@ -12,7 +12,7 @@ const sections = [
     content: (
       <DxcList>
         <DxcText>
-          Use the tag component for highlight properties of a section that want
+          Use the tag component to highlight properties of a section that want
           to remark.
         </DxcText>
         <DxcText>
@@ -22,7 +22,7 @@ const sections = [
           Be responsible of the use of background color and icons.
         </DxcText>
         <DxcText>
-          If there are multiple tags, the space between the should be at least
+          If there are multiple tags, the space between them should be at least
           16px.
         </DxcText>
       </DxcList>
