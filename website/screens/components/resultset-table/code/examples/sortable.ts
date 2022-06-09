@@ -38,24 +38,6 @@ const code = `() => {
         { displayValue: "Amsterdam", sortValue: "Amsterdam" },
         { displayValue: <DxcButton icon={deleteIcon} /> },
       ],
-      [
-        { displayValue: "004", sortValue: "004" },
-        { displayValue: "Rick", sortValue: "Rick" },
-        { displayValue: "London", sortValue: "London" },
-        { displayValue: <DxcButton icon={deleteIcon} /> },
-      ],
-      [
-        { displayValue: "005", sortValue: "005" },
-        { displayValue: "Mark", sortValue: "Mark" },
-        { displayValue: "Miami", sortValue: "Miami" },
-        { displayValue: <DxcButton icon={deleteIcon} /> },
-      ],
-      [
-        { displayValue: "006", sortValue: "006" },
-        { displayValue: "Cris", sortValue: "Cris" },
-        { displayValue: "Paris", sortValue: "Paris" },
-        { displayValue: "" },
-      ],
     ];
   
     return (
