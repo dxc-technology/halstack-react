@@ -60,6 +60,10 @@ export type AppLayoutSidenavPropsType = {
 
 type AppLayoutPropsType = {
   /**
+   * Label of the hamburguer button, which appears next to it in responsive mode.
+   */
+  visibilityToggleLabel: string;
+  /**
    * The area inside the sidenav. This area can be used to render custom content.
    */
   children: React.ReactElement<ChildrenType> | React.ReactElement<ChildrenType>[];

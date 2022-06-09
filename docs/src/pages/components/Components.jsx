@@ -57,7 +57,7 @@ function Components() {
   const location = useLocation();
 
   return (
-    <DxcApplicationLayout>
+    <DxcApplicationLayout visibilityToggleLabel="Components">
       <DxcApplicationLayout.Header>
         <Header />
       </DxcApplicationLayout.Header>

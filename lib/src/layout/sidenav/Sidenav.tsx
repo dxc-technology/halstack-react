@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces } from "../../common/variables.js";
+import { spaces, responsiveSizes } from "../../common/variables.js";
+
 import useTheme from "../../useTheme";
 import { BackgroundColorProvider } from "../../BackgroundColorContext";
 import SidenavPropsType, { SidenavTitlePropsType, SidenavSubtitlePropsType, SidenavLinkPropsType } from "./types";
@@ -8,11 +9,10 @@ import { SidenavContext } from "../ApplicationLayout";
 
 const DxcSidenav = ({ padding, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const { isResponsive } = useContext(SidenavContext);
 
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
-      <SidenavContainer padding={padding} isResponsive={isResponsive}>
+      <SidenavContainer padding={padding}>
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>{children}</BackgroundColorProvider>
       </SidenavContainer>
     </ThemeProvider>
@@ -26,10 +26,10 @@ const Subtitle = ({ children }: SidenavSubtitlePropsType): JSX.Element => (
 );
 
 const Link = ({ tabIndex = 0, href, onClick, children }: SidenavLinkPropsType): JSX.Element => {
-  const { setIsSidenavVisible } = useContext(SidenavContext);
+  const { setIsSidenavVisibleResponsive } = useContext(SidenavContext);
   const handleClick = () => {
     onClick?.();
-    setIsSidenavVisible?.(false);
+    setIsSidenavVisibleResponsive?.(false);
   };
 
   return (
@@ -39,16 +39,17 @@ const Link = ({ tabIndex = 0, href, onClick, children }: SidenavLinkPropsType): 
   );
 };
 
-const SidenavContainer = styled.div<SidenavPropsType & { isResponsive: boolean }>`
+const SidenavContainer = styled.div<SidenavPropsType>`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
 
-  ${(props) =>
-    props.isResponsive
-      ? `width: ${props.padding ? `calc(100vw - ${spaces[props.padding]} - ${spaces[props.padding]})` : "100vw"}`
-      : `width: ${props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px"}`};
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    width: ${(props) =>
+      props.padding ? `calc(100vw - ${spaces[props.padding]} - ${spaces[props.padding]})` : "100vw"};
+  }
 
+  width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
   padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
 
   overflow-y: auto;

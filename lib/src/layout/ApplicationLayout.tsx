@@ -10,10 +10,10 @@ import AppLayoutPropsType, {
   AppLayoutHeaderPropsType,
 } from "./types";
 import DxcSidenav from "./sidenav/Sidenav";
+import { v4 as uuidv4 } from "uuid";
 
 type SidenavContextType = {
-  isResponsive: boolean;
-  setIsSidenavVisible: (isSidenavVisible: boolean) => void;
+  setIsSidenavVisibleResponsive: (isSidenavVisible: boolean) => void;
 };
 export const SidenavContext = createContext<SidenavContextType | null>(null);
 
@@ -21,7 +21,7 @@ const year = new Date().getFullYear();
 const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
 const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => <>{children}</>;
-const Sidenav = ({ mode = "overlay", ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
+const Sidenav = ({ ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
   <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>
 );
 
@@ -63,9 +63,12 @@ const defaultHeader = () => <DxcHeader underlined />;
 const childTypeExists = (children, childType) =>
   children.find((child) => child && child.type && child.type === childType);
 
-const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => {
+const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayoutPropsType): JSX.Element => {
+  const [appLayoutId] = useState(`appLayout-${uuidv4()}`);
+  const visibilityToggleLabelId = `label-${appLayoutId}`;
+
   const ref = useRef(null);
-  const [isSidenavVisible, setIsSidenavVisible] = useState(true);
+  const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const [isResponsive, setIsResponsive] = useState(
     window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
   );
@@ -80,7 +83,7 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
     setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
   };
   const handleSidenavVisibility = () => {
-    setIsSidenavVisible(!isSidenavVisible);
+    setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
   };
 
   useLayoutEffect(() => {
@@ -90,24 +93,26 @@ const DxcApplicationLayout = ({ children }: AppLayoutPropsType): JSX.Element => 
     };
   }, []);
 
-  useLayoutEffect(() => {
-    setIsSidenavVisible(!isResponsive);
-  }, [isResponsive]);
-
   return (
-    <ApplicationLayoutContainer ref={ref} isResponsive={isResponsive} isSidenavVisible={isSidenavVisible}>
+    <ApplicationLayoutContainer ref={ref} isSidenavVisible={isSidenavVisibleResponsive}>
       <HeaderContainer>{header}</HeaderContainer>
       {sidenav && isResponsive && (
-        <HamburguerTrigger role="button" tabIndex={0} onClick={handleSidenavVisibility}>
-          <HamburguerIcon>{hamburguerIcon}</HamburguerIcon>
-          <HamburguerText>Menu</HamburguerText>
-        </HamburguerTrigger>
+        <VisibilityToggle>
+          <HamburguerTrigger
+            onClick={handleSidenavVisibility}
+            aria-labelledBy={visibilityToggleLabelId}
+            title="Toggle visibility sidenav"
+          >
+            {hamburguerIcon}
+          </HamburguerTrigger>
+          <VisibilityToggleLabel id={visibilityToggleLabelId}>{visibilityToggleLabel}</VisibilityToggleLabel>
+        </VisibilityToggle>
       )}
       <BodyContainer>
-        <ContentContainer isResponsive={isResponsive}>
-          {isSidenavVisible && (
-            <SidenavContainer isResponsive={isResponsive}>
-              <SidenavContext.Provider value={{ isResponsive, setIsSidenavVisible }}>{sidenav}</SidenavContext.Provider>
+        <ContentContainer>
+          {(!isResponsive || (isResponsive && isSidenavVisibleResponsive)) && (
+            <SidenavContainer>
+              <SidenavContext.Provider value={{ setIsSidenavVisibleResponsive }}>{sidenav}</SidenavContext.Provider>
             </SidenavContainer>
           )}
           <MainBodyContainer>
@@ -126,18 +131,21 @@ DxcApplicationLayout.Footer = Footer;
 DxcApplicationLayout.SideNav = Sidenav;
 
 type ApplicationLayoutContainerProps = {
-  isResponsive: boolean;
   isSidenavVisible: boolean;
 };
 const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
-  display: flex;
-  flex-direction: column;
   position: absolute;
-  top: ${(props) => (props.isResponsive ? "112px" : "64px")};
+  top: 64px;
   bottom: 0;
   left: 0;
   right: 0;
-  ${(props) => props.isResponsive && props.isSidenavVisible && "overflow: hidden;"}
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    top: 112px;
+    ${(props) => props.isSidenavVisible && "overflow: hidden;"}
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -148,7 +156,7 @@ const HeaderContainer = styled.div`
   z-index: 3;
 `;
 
-const HamburguerTrigger = styled.div`
+const VisibilityToggle = styled.div`
   position: fixed;
   top: 64px;
   left: 0;
@@ -162,6 +170,18 @@ const HamburguerTrigger = styled.div`
   background-color: #f2f2f2;
   user-select: none;
   z-index: 2;
+`;
+
+const HamburguerTrigger = styled.button`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 3px;
+  background-color: transparent;
+  box-shadow: 0 0 0 2px transparent;
+  cursor: pointer;
 
   :hover {
     background-color: #e6e6e6;
@@ -169,21 +189,18 @@ const HamburguerTrigger = styled.div`
   :active {
     background-color: #cccccc;
   }
-`;
-
-const HamburguerIcon = styled.span`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  padding: 3px;
-
+  :focus,
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #0095ff;
+  }
   & > svg {
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
   }
 `;
 
-const HamburguerText = styled.span`
+const VisibilityToggleLabel = styled.span`
   font-family: Open Sans, sans-serif;
   font-weight: 600;
   font-size: 14px;
@@ -196,24 +213,25 @@ const BodyContainer = styled.div`
   width: 100%;
 `;
 
-type ContentContainerProps = {
-  isResponsive?: boolean;
-};
-const ContentContainer = styled.div<ContentContainerProps>`
-  ${(props) => props.isResponsive && "position: relative;"}
+const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    position: relative;
+  }
 `;
 
-type SidenavArrowContainerProps = {
-  isSideNavVisible?: boolean;
-  isResponsive?: boolean;
-};
-const SidenavContainer = styled.div<SidenavArrowContainerProps>`
-  ${(props) => (props.isResponsive ? "position: fixed;" : "position: sticky; top: 64px;")}
+const SidenavContainer = styled.div`
+  position: sticky;
+  top: 64px;
   display: flex;
   height: calc(100vh - 64px);
   z-index: 1;
+
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    position: fixed;
+  }
 `;
 
 const MainBodyContainer = styled.div`
