@@ -1,4 +1,4 @@
-import { DxcLink } from "@dxc-technology/halstack-react";
+import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
 
 const useHref = (to: string) => {
   console.log(to);
@@ -10,7 +10,10 @@ type routerProps = {
   target: string;
 };
 
-const useLinkClickHandler = (to: string, { replace, state, target }: routerProps) => {};
+const useLinkClickHandler = (
+  to: string,
+  { replace, state, target }: routerProps
+) => {};
 
 const code = `() => {
   const CustomLink = React.forwardRef(
@@ -38,13 +41,13 @@ const code = `() => {
     }
   );
   return (
-    <p>
+    <DxcInset space="large">
       This is a text with a
       <CustomLink to="/components/link" component={DxcLink}>
         React Router v6
       </CustomLink>{" "}
       link.
-    </p>
+    </DxcInset>
   );
 }`;
 
@@ -52,6 +55,7 @@ const scope = {
   DxcLink,
   useHref,
   useLinkClickHandler,
+  DxcInset,
 };
 
 export default { code, scope };

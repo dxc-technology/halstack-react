@@ -1,15 +1,16 @@
-import { DxcLink } from "@dxc-technology/halstack-react";
+import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <p>
+    <DxcInset space="large">
       This is a text with a <DxcLink href="#">Link</DxcLink> to another page.
-    </p>
+    </DxcInset>
   );
 }`;
 
 const scope = {
   DxcLink,
+  DxcInset,
 };
 
 export default { code, scope };

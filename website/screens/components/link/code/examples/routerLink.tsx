@@ -1,4 +1,4 @@
-import { DxcLink } from "@dxc-technology/halstack-react";
+import { DxcLink, DxcInset } from "@dxc-technology/halstack-react";
 import React from "react";
 
 type routerProps = {
@@ -13,17 +13,18 @@ const RouterLink = ({ to, component, children }: routerProps) => {
 
 const code = `() => {
   return (
-    <p>
-        This is a text with a 
-        <RouterLink to="/components/link" component={DxcLink}>React Router v5</RouterLink>
-        {" "}link.
-    </p>
+    <DxcInset space="large">
+      This is a text with a 
+      <RouterLink to="/components/link" component={DxcLink}>React Router v5</RouterLink>
+      {" "}link.
+    </DxcInset>
   );
 }`;
 
 const scope = {
   DxcLink,
   RouterLink,
+  DxcInset,
 };
 
 export default { code, scope };
