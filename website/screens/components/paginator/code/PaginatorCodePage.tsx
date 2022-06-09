@@ -3,8 +3,9 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcStack, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
+import itemsPerPage from "./examples/itemsPerPage";
 
 const sections = [
   {
@@ -77,7 +78,9 @@ const sections = [
         </tr>
         <tr>
           <td>tabIndex: number</td>
-          <td>0</td>
+          <td>
+            <Code>0</Code>
+          </td>
           <td>Value of the tabindex.</td>
         </tr>
       </DxcTable>
@@ -91,6 +94,18 @@ const sections = [
         content: (
           <>
             <Example example={basicUsage} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Items per page",
+        content: (
+          <>
+            <DxcText as="p">
+              This is an example of how to display 'Items per Page' select and
+              how to handle it through the itemsPerPageFunction.
+            </DxcText>
+            <Example example={itemsPerPage} defaultIsVisible />
           </>
         ),
       },

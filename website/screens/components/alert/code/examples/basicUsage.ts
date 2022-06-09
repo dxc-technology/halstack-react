@@ -1,4 +1,4 @@
-import { DxcAlert, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcAlert, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
@@ -14,7 +14,6 @@ const code = `() => {
 const scope = {
   DxcAlert,
   DxcInset,
-  DxcStack,
 };
 
 export default { code, scope };
