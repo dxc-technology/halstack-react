@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const SliderPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/slider" },
+    { label: "Code", path: "/components/slider" },
+    { label: "Usage", path: "/components/slider/usage" },
     { label: "Specifications", path: "/components/slider/specifications" },
   ];
 

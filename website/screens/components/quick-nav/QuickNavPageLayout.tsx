@@ -3,7 +3,7 @@ import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 
 const QuickNavPageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/quickNav" }];
+  const tabs = [{ label: "Code", path: "/components/quick-nav" }];
 
   return (
     <DxcStack gutter="xlarge">
