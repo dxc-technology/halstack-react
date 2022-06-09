@@ -1,10 +1,4 @@
-import {
-  DxcTable,
-  DxcStack,
-  DxcText,
-  DxcList,
-  DxcLink,
-} from "@dxc-technology/halstack-react";
+import { DxcTable, DxcStack, DxcText, DxcList, DxcLink } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import Link from "next/link";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -29,27 +23,20 @@ const sections = [
     content: (
       <>
         <DxcText as="p">
-          Some other components defined in the design system are used in the
-          table component as the{" "}
-          <DxcLink>
-            <Link href="/components/checkbox">
-              <a>checkbox</a>
-            </Link>
-          </DxcLink>
+          Some other components defined in the design system are used in the table component as the{" "}
+          <Link href="/components/checkbox" passHref>
+            <DxcLink>checkbox</DxcLink>
+          </Link>
           ,{" "}
-          <DxcLink>
-            <Link href="/components/button">
-              <a>button</a>
-            </Link>
-          </DxcLink>{" "}
+          <Link href="/components/button" passHref>
+            <DxcLink>button</DxcLink>
+          </Link>{" "}
           or{" "}
-          <DxcLink>
-            <Link href="/components/select">
-              <a>select</a>
-            </Link>
-          </DxcLink>
-          . For concrete specifications about states, please, consider to see
-          the documentation of each component.
+          <Link href="/components/select" passHref>
+            <DxcLink>select</DxcLink>
+          </Link>
+          . For concrete specifications about states, please, consider to see the documentation of
+          each component.
         </DxcText>
       </>
     ),
@@ -512,19 +499,13 @@ const sections = [
             </DxcText>
             <DxcText>
               Understanding WCAG 2.2 -{" "}
-              <DxcLink
-                href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
-                newWindow
-              >
+              <DxcLink href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard" newWindow>
                 Success Criterion 2.1.1: Keyboard
               </DxcLink>
             </DxcText>
             <DxcText>
               Understanding WCAG 2.2 -{" "}
-              <DxcLink
-                href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order"
-                newWindow
-              >
+              <DxcLink href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order" newWindow>
                 Success Criterion 2.4.3: Focus Order
               </DxcLink>
             </DxcText>
@@ -539,19 +520,13 @@ const sections = [
             </DxcText>
             <DxcText>
               Understanding WCAG 2.2 -{" "}
-              <DxcLink
-                href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible"
-                newWindow
-              >
+              <DxcLink href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible" newWindow>
                 Success Criterion 2.4.7: Focus Visible
               </DxcLink>
             </DxcText>
             <DxcText>
               Understanding WCAG 2.2 -{" "}
-              <DxcLink
-                href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
-                newWindow
-              >
+              <DxcLink href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value" newWindow>
                 Success Criterion 4.1.2: Name, Role, Value
               </DxcLink>
             </DxcText>
@@ -564,10 +539,7 @@ const sections = [
           <DxcList>
             <DxcText>
               WAI-ARIA Authoring Practices 1.2 -{" "}
-              <DxcLink
-                href="https://www.w3.org/TR/wai-aria-practices-1.2/#table"
-                newWindow
-              >
+              <DxcLink href="https://www.w3.org/TR/wai-aria-practices-1.2/#table" newWindow>
                 3.23 Table
               </DxcLink>
             </DxcText>
@@ -591,10 +563,7 @@ const TableSpecsPage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer
-          sections={sections}
-          startHeadingLevel={2}
-        ></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/table/specs/TableSpecsPage.tsx" />
     </DxcStack>
