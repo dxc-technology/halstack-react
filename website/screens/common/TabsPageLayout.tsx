@@ -1,31 +1,25 @@
-import React from "react";
 import { useRouter } from "next/router";
-import { DxcNavTabs } from "@dxc-technology/halstack-react";
-import Link from "next/link";
+import { DxcTabs } from "@dxc-technology/halstack-react";
 
 type TabsPageLayoutProps = {
   tabs: { label: string; path: string }[];
 };
 
-const MyLink = React.forwardRef(({ path, children }, ref) => {
-  return (
-    <Link href={path} passHref>
-      <a ref={ref}>{children}</a>
-    </Link>
-  );
-});
-
 const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
   const router = useRouter();
+  const tabsList = tabs ? tabs.map((tab) => ({ label: tab.label })) : [];
+  const activeTabIndex = tabs.findIndex((tab) => tab.path === router.pathname);
+
+  const handleTabChange = (index: number) => {
+    router.push(tabs[index].path);
+  };
 
   return (
-    <DxcNavTabs>
-      {tabs.map((tab, index) => (
-        <DxcNavTabs.Tab active={tab.path === router.pathname}>
-          <MyLink path={tab.path}>{tab.label}</MyLink>
-        </DxcNavTabs.Tab>
-      ))}
-    </DxcNavTabs>
+    <DxcTabs
+      activeTabIndex={activeTabIndex}
+      tabs={tabsList}
+      onTabClick={handleTabChange}
+    ></DxcTabs>
   );
 };
 
