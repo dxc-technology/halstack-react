@@ -1,11 +1,10 @@
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Image from "@/common/Image";
-import iconsUsageImage from "./images/tag_icon.png";
+import Example from "@/common/example/Example";
+import iconUsage from "./examples/iconUsage";
 
 const sections = [
   {
@@ -33,9 +32,7 @@ const sections = [
     title: "Icon usage",
     content: (
       <>
-        <Figure caption="Icon usage examples">
-          <Image src={iconsUsageImage} alt="Icon usage examples" />
-        </Figure>
+        <Example example={iconUsage} />
         <DxcList>
           <DxcText>
             The tag can be displayed with icon and label or only icon.
