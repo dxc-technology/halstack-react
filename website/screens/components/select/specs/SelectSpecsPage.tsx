@@ -1,10 +1,4 @@
-import {
-  DxcText,
-  DxcList,
-  DxcTable,
-  DxcStack,
-  DxcLink,
-} from "@dxc-technology/halstack-react";
+import { DxcText, DxcList, DxcTable, DxcStack, DxcLink } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -36,11 +30,10 @@ const sections = [
             content: (
               <>
                 <DxcText as="p">
-                  States are defined for select component based on the
-                  interactions that the user can reproduce. The states are:{" "}
-                  <strong>enabled</strong>, <strong>hover</strong>,{" "}
-                  <strong>focus</strong>, <strong>active</strong>,{" "}
-                  <strong>error</strong> and <strong>disabled</strong>:
+                  States are defined for select component based on the interactions that the user
+                  can reproduce. The states are: <strong>enabled</strong>, <strong>hover</strong>,{" "}
+                  <strong>focus</strong>, <strong>active</strong>, <strong>error</strong> and{" "}
+                  <strong>disabled</strong>:
                 </DxcText>
                 <Image src={selectSingleSpecsStates} alt="Select states" />
               </>
@@ -53,10 +46,7 @@ const sections = [
                 <DxcText as="p">
                   Allows the user to select more than one option from the list.
                 </DxcText>
-                <Image
-                  src={selectMultipleSpecsStates}
-                  alt="Select multiple option"
-                />
+                <Image src={selectMultipleSpecsStates} alt="Select multiple option" />
               </>
             ),
           },
@@ -64,9 +54,8 @@ const sections = [
             title: "List options",
             content: (
               <DxcText as="p">
-                To indicate which items are selected and which not, the
-                select-multiple variant integrates a checkbox pairing with each
-                option from the dropdown.
+                To indicate which items are selected and which not, the select-multiple variant
+                integrates a checkbox pairing with each option from the dropdown.
               </DxcText>
             ),
             subSections: [
@@ -481,9 +470,7 @@ const sections = [
                       </tr>
                       <tr>
                         <td>
-                          <Code>
-                            enabledSelectionIndicatorActionBackgroundColor
-                          </Code>
+                          <Code>enabledSelectionIndicatorActionBackgroundColor</Code>
                         </td>
                         <td>Selection indicator</td>
                         <td>
@@ -493,9 +480,7 @@ const sections = [
                       </tr>
                       <tr>
                         <td>
-                          <Code>
-                            hoverSelectionIndicatorActionBackgroundColor
-                          </Code>
+                          <Code>hoverSelectionIndicatorActionBackgroundColor</Code>
                         </td>
                         <td>Selection indicator:hover</td>
                         <td>
@@ -505,9 +490,7 @@ const sections = [
                       </tr>
                       <tr>
                         <td>
-                          <Code>
-                            activeSelectionIndicatorActionBackgroundColor
-                          </Code>
+                          <Code>activeSelectionIndicatorActionBackgroundColor</Code>
                         </td>
                         <td>Selection indicator:active</td>
                         <td>
@@ -938,11 +921,9 @@ const sections = [
               <>
                 <DxcText as="p">
                   The select component <strong>input</strong> share the{" "}
-                  <DxcLink>
-                    <Link href="/components/text-input/specifications">
-                      <a>same spacing tokens of the text input</a>
-                    </Link>
-                  </DxcLink>
+                  <Link href="/components/text-input/specifications" passHref>
+                    <DxcLink>same spacing tokens of the text input</DxcLink>
+                  </Link>
                   .
                 </DxcText>
                 <DxcTable>
@@ -1025,8 +1006,7 @@ const sections = [
             content: (
               <>
                 <DxcText as="p">
-                  The component <Code>width</Code> can adopt the following
-                  values:
+                  The component <Code>width</Code> can adopt the following values:
                 </DxcText>
                 <DxcTable>
                   <thead>
@@ -1125,9 +1105,8 @@ const sections = [
                   </tbody>
                 </DxcTable>
                 <DxcText as="p">
-                  These values can be applied independently to each side of the
-                  component: <Code>top</Code>, <Code>bottom</Code>,{" "}
-                  <Code>left</Code> and
+                  These values can be applied independently to each side of the component:{" "}
+                  <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code> and
                   <Code>right</Code>.
                 </DxcText>
               </>
@@ -1160,19 +1139,13 @@ const sections = [
               <DxcList>
                 <DxcText>
                   WAI-ARIA practices 1.2 -{" "}
-                  <DxcLink
-                    href="https://www.w3.org/TR/wai-aria-practices-1.2/#combobox"
-                    newWindow
-                  >
+                  <DxcLink href="https://www.w3.org/TR/wai-aria-practices-1.2/#combobox" newWindow>
                     3.8 Combobox
                   </DxcLink>
                 </DxcText>
                 <DxcText>
                   WAI-ARIA practices 1.2 -{" "}
-                  <DxcLink
-                    href="https://www.w3.org/TR/wai-aria-practices-1.2/#Listbox"
-                    newWindow
-                  >
+                  <DxcLink href="https://www.w3.org/TR/wai-aria-practices-1.2/#Listbox" newWindow>
                     3.14 Listbox
                   </DxcLink>
                 </DxcText>
@@ -1198,10 +1171,7 @@ const SelectSpecsPage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer
-          sections={sections}
-          startHeadingLevel={2}
-        ></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/select/specs/SelectSpecsPage.tsx" />
     </DxcStack>
