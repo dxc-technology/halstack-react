@@ -1,10 +1,5 @@
 import { useRouter } from "next/router";
-import {
-  DxcText,
-  DxcLink,
-  DxcStack,
-  DxcRow,
-} from "@dxc-technology/halstack-react";
+import { DxcText, DxcLink, DxcStack, DxcRow } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 import styled from "styled-components";
@@ -24,11 +19,9 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
             {previousLink && (
               <>
                 <DxcText>Previous</DxcText>
-                <DxcLink icon={arrowBack}>
-                  <Link href={previousLink.path}>
-                    <a>{previousLink.label}</a>
-                  </Link>
-                </DxcLink>
+                <Link href={previousLink.path} passHref>
+                  <DxcLink icon={arrowBack}>{previousLink.label}</DxcLink>
+                </Link>
               </>
             )}
           </DxcStack>
@@ -36,11 +29,11 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
             {nextLink && (
               <>
                 <DxcText>Next</DxcText>
-                <DxcLink icon={arrowForward} iconPosition="after">
-                  <Link href={nextLink.path}>
-                    <a>{nextLink.label}</a>
-                  </Link>
-                </DxcLink>
+                <Link href={nextLink.path} passHref>
+                  <DxcLink icon={arrowForward} iconPosition="after">
+                    {nextLink.label}
+                  </DxcLink>
+                </Link>
               </>
             )}
           </DxcStack>
@@ -78,12 +71,7 @@ const arrowBack = (
     fill="currentColor"
   >
     <g id="arrow_forward_black_24dp" transform="translate(16 16) rotate(180)">
-      <path
-        id="Path_2989"
-        data-name="Path 2989"
-        d="M0,0H16V16H0Z"
-        fill="none"
-      />
+      <path id="Path_2989" data-name="Path 2989" d="M0,0H16V16H0Z" fill="none" />
       <path
         id="Path_2990"
         data-name="Path 2990"
@@ -102,11 +90,7 @@ const githubIcon = (
     viewBox="0 0 24 24"
     fill="currentColor"
   >
-    <g
-      id="Group_4275"
-      data-name="Group 4275"
-      transform="translate(-670.003 -820.294)"
-    >
+    <g id="Group_4275" data-name="Group 4275" transform="translate(-670.003 -820.294)">
       <g id="Group_4276" data-name="Group 4276">
         <rect
           id="Rectangle_2690"
