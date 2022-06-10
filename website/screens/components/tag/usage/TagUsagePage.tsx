@@ -1,11 +1,10 @@
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Image from "@/common/Image";
-import iconsUsageImage from "./images/tag_icon.png";
+import Example from "@/common/example/Example";
+import iconUsage from "./examples/iconUsage";
 
 const sections = [
   {
@@ -13,7 +12,7 @@ const sections = [
     content: (
       <DxcList>
         <DxcText>
-          Use the tag component for highlight properties of a section that want
+          Use the tag component to highlight properties of a section that want
           to remark.
         </DxcText>
         <DxcText>
@@ -23,7 +22,7 @@ const sections = [
           Be responsible of the use of background color and icons.
         </DxcText>
         <DxcText>
-          If there are multiple tags, the space between the should be at least
+          If there are multiple tags, the space between them should be at least
           16px.
         </DxcText>
       </DxcList>
@@ -33,9 +32,7 @@ const sections = [
     title: "Icon usage",
     content: (
       <>
-        <Figure caption="Icon usage examples">
-          <Image src={iconsUsageImage} alt="Icon usage examples" />
-        </Figure>
+        <Example example={iconUsage} />
         <DxcList>
           <DxcText>
             The tag can be displayed with icon and label or only icon.

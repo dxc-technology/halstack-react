@@ -1,21 +1,21 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import PasswordInputUsagePage from "../../../screens/components/password-input/usage/PasswordInputUsagePage";
+import PasswordInputCodePage from "../../../screens/components/password-input/code/PasswordInputCodePage";
 import PasswordInputPageLayout from "../../../screens/components/password-input/PasswordInputPageLayout";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
         <title>Password Input — Halstack Design System</title>
       </Head>
-      <PasswordInputUsagePage></PasswordInputUsagePage>
+      <PasswordInputCodePage></PasswordInputCodePage>
     </>
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = function getLayout(page: ReactElement) {
   return <PasswordInputPageLayout>{page}</PasswordInputPageLayout>;
 };
 
-export default Usage;
+export default Index;
