@@ -8,10 +8,10 @@ import {
 const code = `() => {
   return (
     <DxcInset space="large">
-      <DxcRow justify="spaceEvenly">
+      <DxcRow justify="center" gutter="xlarge">
         <DxcStack>
           <label style={{ fontWeight: 600 }}>Before</label>
-          <DxcSwitch label="Show notifications" />
+          <DxcSwitch label="Show all" />
         </DxcStack>
         <DxcStack>
           <label style={{ fontWeight: 600 }}>After</label>
