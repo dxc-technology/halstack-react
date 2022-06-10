@@ -1,4 +1,9 @@
-import { DxcTable, DxcStack, DxcText, DxcLink } from "@dxc-technology/halstack-react";
+import {
+  DxcTable,
+  DxcStack,
+  DxcText,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -39,7 +44,10 @@ const sections = [
           <tr>
             <td>icon: node | string</td>
             <td></td>
-            <td>Element or path used as the icon that will be placed next to the link text.</td>
+            <td>
+              Element or path used as the icon that will be placed next to the
+              link text.
+            </td>
           </tr>
           <tr>
             <td>iconPosition: 'before' | 'after'</td>
@@ -64,8 +72,8 @@ const sections = [
             <td>onClick: function</td>
             <td></td>
             <td>
-              If defined, the link will be displayed as a button. This function will be called when
-              the user clicks the link.
+              If defined, the link will be displayed as a button. This function
+              will be called when the user clicks the link.
             </td>
           </tr>
           <tr>
@@ -77,9 +85,10 @@ const sections = [
             <td>margin: string | object</td>
             <td></td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' |
-              'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass an object with 'top',
-              'bottom', 'left' and 'right' properties in order to specify different margin sizes.
+              Size of the margin to be applied to the component ('xxsmall' |
+              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+              You can pass an object with 'top', 'bottom', 'left' and 'right'
+              properties in order to specify different margin sizes.
             </td>
           </tr>
           <tr>
@@ -109,13 +118,17 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              There are many React based routers, unfortunately all with different APIs.
+              There are many React based routers, unfortunately all with
+              different APIs.
             </DxcText>
             <DxcText as="p">
-              So we decided to make our link component just an styled HTML anchor element which
-              allows it to be used in any React based router. For each API is different so here are
-              some examples for{" "}
-              <DxcLink href="https://reactrouter.com/docs/en/v6/hooks/use-href" newWindow>
+              So we decided to make our link component just an styled HTML
+              anchor element which allows it to be used in any React based
+              router. For each API is different so here are some examples for{" "}
+              <DxcLink
+                href="https://reactrouter.com/docs/en/v6/hooks/use-href"
+                newWindow
+              >
                 React Router
               </DxcLink>{" "}
               and{" "}
@@ -125,8 +138,9 @@ const sections = [
               >
                 NextJS Link
               </DxcLink>
-              . Some of these examples are just representations of how they should be implemented
-              but might not work correctly in this scenario.
+              . Some of these examples are just representations of how they
+              should be implemented but might not work correctly in this
+              scenario.
             </DxcText>
           </>
         ),
@@ -137,10 +151,14 @@ const sections = [
               <>
                 <DxcText as="p">
                   This is an example of{" "}
-                  <DxcLink href="https://v5.reactrouter.com/web/api/Route/component" newWindow>
+                  <DxcLink
+                    href="https://v5.reactrouter.com/web/api/Route/component"
+                    newWindow
+                  >
                     React Router
                   </DxcLink>{" "}
-                  using the prop <Code>component</Code>. Note that this Prop is not available in v6.
+                  using the prop <Code>component</Code>. Note that this Prop is
+                  not available in v6.
                 </DxcText>
                 <Example example={routerLink} defaultIsVisible />
               </>
@@ -158,9 +176,12 @@ const sections = [
                   >
                     React Router v6
                   </DxcLink>{" "}
-                  the prop <Code>component</Code> is no longer available so it is necessary to use
-                  hooks provided by{" "}
-                  <DxcLink href="https://reactrouter.com/docs/en/v6/hooks/use-href" newWindow>
+                  the prop <Code>component</Code> is no longer available so it
+                  is necessary to use hooks provided by{" "}
+                  <DxcLink
+                    href="https://reactrouter.com/docs/en/v6/hooks/use-href"
+                    newWindow
+                  >
                     React Router v6
                   </DxcLink>
                   .
@@ -197,9 +218,12 @@ const LinkCodePage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/link/code/LinkCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/link/code/LinkCodePage.tsx" />
     </DxcStack>
   );
 };

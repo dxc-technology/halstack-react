@@ -215,7 +215,7 @@ const PasswordInputCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/passwordInput/code/PasswordInputCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/password-input/code/PasswordInputCodePage.tsx" />
     </DxcStack>
   );
 };
