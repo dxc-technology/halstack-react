@@ -1,10 +1,9 @@
 import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
-import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import toggleGroupVariants from "./images/toggle_group_variants.png";
+import Example from "@/common/example/Example";
+import variants from "./example/variants";
 
 const sections = [
   {
@@ -18,9 +17,9 @@ const sections = [
         <DxcList>
           <DxcText>
             Minimal in number, i.e. 3 or 4 maximum choices where only one
-            selction is required
+            selection is required.
           </DxcText>
-          <DxcText>Opposites of each other</DxcText>
+          <DxcText>Opposites of each other.</DxcText>
         </DxcList>
       </>
     ),
@@ -29,15 +28,10 @@ const sections = [
     title: "Variants",
     content: (
       <>
-        <Figure caption="Toggle component single and multiple variants">
-          <Image
-            src={toggleGroupVariants}
-            alt="Toggle component single and multiple variants"
-          />
-        </Figure>
+        <Example example={variants} />
         <DxcText as="p">
           The selection of the toggle group can be mutually exclusive (single
-          variant) or multiple (multiple variant).
+          variant) or mutually inclusive (multiple variant).
         </DxcText>
       </>
     ),
