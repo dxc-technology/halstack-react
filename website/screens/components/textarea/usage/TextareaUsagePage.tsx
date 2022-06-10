@@ -9,8 +9,8 @@ const sections = [
     content: (
       <DxcList>
         <DxcText>
-          Use the texarea when you need users to enter a text longer than a
-          single line.
+          Use the texarea when users need to enter a text longer than a single
+          line.
         </DxcText>
         <DxcText>
           Avoid using the text area when complex questions can break up in
