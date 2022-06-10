@@ -15,7 +15,7 @@ const sections = [
           Every table cell requires a logical column header/row header.
         </DxcText>
         <DxcText>
-          Don&#39;t use the table for create visual layout of the content of a
+          Don&#39;t use the table to create visual layout of the content of a
           page.
         </DxcText>
         <DxcText>Avoid truncating content, wrap instead.</DxcText>
