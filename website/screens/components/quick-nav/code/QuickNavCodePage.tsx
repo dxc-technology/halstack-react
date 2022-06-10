@@ -68,7 +68,7 @@ const QuickNavCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/quick-nav/code/QuickNavCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/quick-nav/code/QuickNavCodePage.tsx" />
     </DxcStack>
   );
 };

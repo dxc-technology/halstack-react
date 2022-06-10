@@ -59,13 +59,9 @@ const linkPropsTable = () => {
         </td>
       </tr>
       <tr>
-        <td>children: string | node</td>
+        <td>children: string</td>
         <td></td>
-        <td>
-          Content of the link. To use the component with other libraries
-          (such as React Router or Next.js Link) pass the custom link as a child. 
-          The component will apply the styles to the custom link.
-        </td>
+        <td>Content of the link.</td>
       </tr>
       <tr>
         <td>margin: string | object</td>

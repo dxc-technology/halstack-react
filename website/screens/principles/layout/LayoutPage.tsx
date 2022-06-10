@@ -25,11 +25,9 @@ const sections = [
         <DxcText as="p">
           Halstack provide multiple components in order to achieve layout
           consistency and an easy way to arrange elements in the UI. The{" "}
-          <DxcLink>
-            <Link href="/components/application-layout/">
-              <a>application layout</a>
-            </Link>
-          </DxcLink>{" "}
+          <Link href="/components/application-layout/" passHref>
+            <DxcLink>application layout</DxcLink>
+          </Link>{" "}
           is the base component that wraps any application built with halstack.
           In addition, all of the components listed below can be used within
           each other to create a wide variety of standard layouts:
@@ -250,11 +248,12 @@ const sections = [
                   <DxcText>
                     The margin value provided are the minimun recommended, any
                     value from our{" "}
-                    <DxcLink>
-                      <Link href="/principles/spacing/#core-spacing-tokens">
-                        <a>spacing scale</a>
-                      </Link>
-                    </DxcLink>{" "}
+                    <Link
+                      href="/principles/spacing/#core-spacing-tokens"
+                      passHref
+                    >
+                      <DxcLink>spacing scale</DxcLink>
+                    </Link>{" "}
                     can be used or even an <Code>auto</Code> value.
                   </DxcText>
                 </DxcList>
@@ -281,7 +280,7 @@ const Layout = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/layout/LayoutPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/layout/LayoutPage.tsx" />
     </DxcStack>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { DxcLink } from "@dxc-technology/halstack-react";
 import homeLogo from "../images/home.svg";
-import { Link as RouterLink } from "@reach/router";
+import { Link as RouterLink } from "react-router-dom";
 
 const iconSVG = (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -187,18 +187,18 @@ function App() {
         <div className="test-case" id="custom-router-link">
           <p>
             This is a text with a{" "}
-            <DxcLink>
-              <RouterLink to="/test">custom router link</RouterLink>
-            </DxcLink>{" "}
+            <RouterLink to="/test" component={DxcLink}>
+              custom router link
+            </RouterLink>{" "}
             to another page.
           </p>
         </div>
         <div className="test-case" id="custom-inherit-router-link">
           <p>
             This is a text with a{" "}
-            <DxcLink inheritColor>
-              <RouterLink to="/test">custom router link</RouterLink>
-            </DxcLink>{" "}
+            <RouterLink to="/test" inheritColor component={DxcLink}>
+              custom router link
+            </RouterLink>{" "}
             to another page.
           </p>
         </div>
@@ -218,14 +218,14 @@ function App() {
       <div>
         <h4>Custom Link with margin</h4>
         <div className="test-case" id="margin-medium">
-          <DxcLink margin="medium">
-            <RouterLink to="/test">Router link with margin medium</RouterLink>
-          </DxcLink>
+          <RouterLink to="/test" margin="medium" component={DxcLink}>
+            Router link with margin medium
+          </RouterLink>
         </div>
         <div className="test-case" id="margin-large">
-          <DxcLink margin="large">
-            <RouterLink to="/test">Router link with margin large</RouterLink>
-          </DxcLink>
+          <RouterLink to="/test" margin="large" component={DxcLink}>
+            Router link with margin large
+          </RouterLink>
         </div>
       </div>
       <div>
@@ -233,18 +233,23 @@ function App() {
         <div className="test-case" id="icon-button">
           <p>
             This is a text with an{" "}
-            <DxcLink icon={iconSVG}>
-              <RouterLink to="/test">icon before</RouterLink>
-            </DxcLink>{" "}
+            <RouterLink to="/test" icon={iconSVG} component={DxcLink}>
+              icon before
+            </RouterLink>{" "}
             the button.
           </p>
         </div>
         <div className="test-case" id="icon-router-link">
           <p>
             This is a text with an{" "}
-            <DxcLink icon={iconSVG} iconPosition="after">
-              <RouterLink to="/test">icon after</RouterLink>
-            </DxcLink>{" "}
+            <RouterLink
+              to="/test"
+              icon={iconSVG}
+              iconPosition="after"
+              component={DxcLink}
+            >
+              icon after
+            </RouterLink>{" "}
             the router link.
           </p>
         </div>
@@ -252,9 +257,9 @@ function App() {
       <div>
         <h4>Disabled custom Link</h4>
         <div className="test-case" id="disabled-button-link">
-          <DxcLink disabled>
-            <RouterLink to="/test">Disabled custom router link</RouterLink>
-          </DxcLink>
+          <RouterLink to="/test" disabled component={DxcLink}>
+            Disabled custom router link
+          </RouterLink>
         </div>
       </div>
     </div>

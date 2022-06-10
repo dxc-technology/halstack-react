@@ -1,6 +1,6 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import DateInputUsagePage from "../../../screens/components/date-input/usage/DateInputUsagePage";
+import DateInputCodePage from "../../../screens/components/date-input/code/DateInputCodePage";
 import DateInputPageLayout from "../../../screens/components/date-input/DateInputPageLayout";
 
 const Usage = () => {
@@ -9,7 +9,7 @@ const Usage = () => {
       <Head>
         <title>Date Input — Halstack Design System</title>
       </Head>
-      <DateInputUsagePage />
+      <DateInputCodePage />
     </>
   );
 };
