@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces, responsiveSizes } from "../../common/variables.js";
 
 import useTheme from "../../useTheme";
 import { BackgroundColorProvider } from "../../BackgroundColorContext";
 import SidenavPropsType, { SidenavTitlePropsType, SidenavSubtitlePropsType, SidenavLinkPropsType } from "./types";
-import { SidenavContext } from "../ApplicationLayout";
+import { useSidenavVisibilityResponsive } from "../SidenavContext";
 
 const DxcSidenav = ({ padding, children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
@@ -19,23 +19,23 @@ const DxcSidenav = ({ padding, children }: SidenavPropsType): JSX.Element => {
   );
 };
 
-const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SideNavMenuTitle>{children}</SideNavMenuTitle>;
+const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavMenuTitle>{children}</SidenavMenuTitle>;
 
 const Subtitle = ({ children }: SidenavSubtitlePropsType): JSX.Element => (
-  <SideNavMenuSubTitle>{children}</SideNavMenuSubTitle>
+  <SidenavMenuSubTitle>{children}</SidenavMenuSubTitle>
 );
 
 const Link = ({ tabIndex = 0, href, onClick, children }: SidenavLinkPropsType): JSX.Element => {
-  const { setIsSidenavVisibleResponsive } = useContext(SidenavContext);
+  const setIsSidenavVisibleResponsive = useSidenavVisibilityResponsive();
   const handleClick = () => {
     onClick?.();
     setIsSidenavVisibleResponsive?.(false);
   };
 
   return (
-    <SideNavMenuLink tabIndex={tabIndex} href={href} onClick={handleClick}>
+    <SidenavMenuLink tabIndex={tabIndex} href={href} onClick={handleClick}>
       {children}
-    </SideNavMenuLink>
+    </SidenavMenuLink>
   );
 };
 
@@ -67,7 +67,7 @@ const SidenavContainer = styled.div<SidenavPropsType>`
   }
 `;
 
-const SideNavMenuTitle = styled.div`
+const SidenavMenuTitle = styled.div`
   font-family: ${(props) => props.theme.titleFontFamily};
   font-size: ${(props) => props.theme.titleFontSize};
   font-style: ${(props) => props.theme.titleFontStyle};
@@ -78,7 +78,7 @@ const SideNavMenuTitle = styled.div`
   margin-bottom: 16px;
 `;
 
-const SideNavMenuSubTitle = styled.div`
+const SidenavMenuSubTitle = styled.div`
   font-family: ${(props) => props.theme.subtitleFontFamily};
   font-size: ${(props) => props.theme.subtitleFontSize};
   font-style: ${(props) => props.theme.subtitleFontStyle};
@@ -89,7 +89,7 @@ const SideNavMenuSubTitle = styled.div`
   margin-bottom: 4px;
 `;
 
-const SideNavMenuLink = styled.a`
+const SidenavMenuLink = styled.a`
   font-family: ${(props) => props.theme.linkFontFamily};
   font-size: ${(props) => props.theme.linkFontSize};
   font-style: ${(props) => props.theme.linkFontStyle};

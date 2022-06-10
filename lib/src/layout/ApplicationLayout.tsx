@@ -1,4 +1,4 @@
-import React, { createContext, useState, useLayoutEffect, useRef } from "react";
+import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
 import { DxcHeader, DxcFooter } from "../main";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
@@ -11,11 +11,7 @@ import AppLayoutPropsType, {
 } from "./types";
 import DxcSidenav from "./sidenav/Sidenav";
 import { v4 as uuidv4 } from "uuid";
-
-type SidenavContextType = {
-  setIsSidenavVisibleResponsive: (isSidenavVisible: boolean) => void;
-};
-export const SidenavContext = createContext<SidenavContextType | null>(null);
+import { SidenavContextProvider, useSidenavVisibilityResponsive } from "./SidenavContext";
 
 const year = new Date().getFullYear();
 const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
@@ -60,18 +56,17 @@ const defaultFooter = () => (
 );
 const defaultHeader = () => <DxcHeader underlined />;
 
-const childTypeExists = (children, childType) =>
-  children.find((child) => child && child.type && child.type === childType);
+const childTypeExists = (children, childType) => children.find((child) => child?.type === childType);
 
 const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayoutPropsType): JSX.Element => {
   const [appLayoutId] = useState(`appLayout-${uuidv4()}`);
   const visibilityToggleLabelId = `label-${appLayoutId}`;
 
-  const ref = useRef(null);
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const [isResponsive, setIsResponsive] = useState(
     window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
   );
+  const ref = useRef(null);
 
   const childrenArray = React.Children.toArray(children);
   const header = childTypeExists(childrenArray, DxcHeader) || childTypeExists(childrenArray, Header) || defaultHeader();
@@ -93,6 +88,10 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
     };
   }, []);
 
+  useEffect(() => {
+    !isResponsive && setIsSidenavVisibleResponsive(false);
+  }, [isResponsive]);
+
   return (
     <ApplicationLayoutContainer ref={ref} isSidenavVisible={isSidenavVisibleResponsive}>
       <HeaderContainer>{header}</HeaderContainer>
@@ -100,7 +99,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
         <VisibilityToggle>
           <HamburguerTrigger
             onClick={handleSidenavVisibility}
-            aria-labelledBy={visibilityToggleLabelId}
+            aria-labelledby={visibilityToggleLabelId}
             title="Toggle visibility sidenav"
           >
             {hamburguerIcon}
@@ -110,11 +109,9 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
       )}
       <BodyContainer>
         <ContentContainer>
-          {(!isResponsive || (isResponsive && isSidenavVisibleResponsive)) && (
-            <SidenavContainer>
-              <SidenavContext.Provider value={{ setIsSidenavVisibleResponsive }}>{sidenav}</SidenavContext.Provider>
-            </SidenavContainer>
-          )}
+          <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
+            {(isResponsive ? isSidenavVisibleResponsive : true) && <SidenavContainer>{sidenav}</SidenavContainer>}
+          </SidenavContextProvider>
           <MainBodyContainer>
             {main}
             {footer}
@@ -124,11 +121,6 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
     </ApplicationLayoutContainer>
   );
 };
-
-DxcApplicationLayout.Header = Header;
-DxcApplicationLayout.Main = Main;
-DxcApplicationLayout.Footer = Footer;
-DxcApplicationLayout.SideNav = Sidenav;
 
 type ApplicationLayoutContainerProps = {
   isSidenavVisible: boolean;
@@ -231,6 +223,7 @@ const SidenavContainer = styled.div`
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     position: fixed;
+    top: 112px;
   }
 `;
 
@@ -240,5 +233,11 @@ const MainBodyContainer = styled.div`
   width: 100%;
   overflow: hidden;
 `;
+
+DxcApplicationLayout.Header = Header;
+DxcApplicationLayout.Main = Main;
+DxcApplicationLayout.Footer = Footer;
+DxcApplicationLayout.SideNav = Sidenav;
+DxcApplicationLayout.useSidenavVisibilityResponsive = useSidenavVisibilityResponsive;
 
 export default DxcApplicationLayout;
