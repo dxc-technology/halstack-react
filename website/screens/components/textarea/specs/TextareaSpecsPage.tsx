@@ -1,4 +1,10 @@
-import { DxcLink, DxcList, DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcLink,
+  DxcList,
+  DxcStack,
+  DxcTable,
+  DxcText,
+} from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -19,17 +25,17 @@ const sections = [
           <Image src={specsImage} alt="Component design specifications" />
         </Figure>
         <DxcText as="p">
-          The textarea <Code>color</Code>, <Code>typography</Code>, <Code>border</Code>,{" "}
-          <Code>width</Code> and <Code>margin</Code> specifications are inherited from the text
-          input, for reference{" "}
+          The textarea <Code>color</Code>, <Code>typography</Code>,{" "}
+          <Code>border</Code>, <Code>width</Code> and <Code>margin</Code>{" "}
+          specifications are inherited from the text input, for reference{" "}
           <Link href="/components/text-input" passHref>
             <DxcLink>check the text input component documentation</DxcLink>
           </Link>
           .
         </DxcText>
         <DxcText as="p">
-          The textarea doesn&#39;t have the following text-input elements, therefore, their listed
-          styles don&#39;t apply:
+          The textarea doesn&#39;t have the following text-input elements,
+          therefore, their listed styles don&#39;t apply:
         </DxcText>
         <DxcList>
           <DxcText>Action</DxcText>
@@ -44,8 +50,9 @@ const sections = [
     content: (
       <>
         <DxcText as="p">
-          States: <strong>enabled</strong>, <strong>hover</strong>, <strong>focus</strong>,{" "}
-          <strong>error</strong> and <strong>disabled</strong>.
+          States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
+          <strong>focus</strong>, <strong>error</strong> and{" "}
+          <strong>disabled</strong>.
         </DxcText>
         <Figure caption="Textarea component states example">
           <Image src={statesImage} alt="Textarea component states example" />
@@ -178,7 +185,10 @@ const sections = [
             </DxcText>
             <DxcText>
               Understanding WCAG 2.2 -{" "}
-              <DxcLink newWindow href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value">
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
+              >
                 4.1.2: Name, Role, Value
               </DxcLink>
             </DxcText>
@@ -191,7 +201,10 @@ const sections = [
           <DxcList>
             <DxcText>
               WAI-ARIA Accessible Rich Internet Applications 1.2 -{" "}
-              <DxcLink newWindow href="https://www.w3.org/TR/wai-aria-1.2/#textbox">
+              <DxcLink
+                newWindow
+                href="https://www.w3.org/TR/wai-aria-1.2/#textbox"
+              >
                 textbox role
               </DxcLink>
             </DxcText>
@@ -206,9 +219,12 @@ const TextareaSpecsPage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/textarea/specs/TextareaSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/textarea/specs/TextareaSpecsPage.tsx" />
     </DxcStack>
   );
 };
