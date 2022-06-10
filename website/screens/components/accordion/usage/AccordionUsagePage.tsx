@@ -9,6 +9,8 @@ import accordionPlacement from "./images/accordion_placement.png";
 import accordionAlignment from "./images/accordion_alignment.png";
 import accordionTriggers from "./images/accordion_triggers.png";
 import accordionContent from "./images/accordion_content.png";
+import accordionMultiExpand from "./images/accordion_multi_expand.png";
+import accordionGroup from "./examples/accordionGroup";
 import assistiveText from "./examples/assistiveText";
 import behaviorAndInteraction from "./examples/behaviorAndInteraction";
 
@@ -156,6 +158,55 @@ const sections = [
           <em>
             <strong>Right</strong>. Leave the header without caret or use a
             button to trigger the expand/collapse action.
+          </em>
+        </DxcText>
+      </>
+    ),
+    subSections: [
+      {
+        title: "Mobile",
+        content: (
+          <>
+            <DxcText as="p">
+              In small devices, extremely long pages are detrimental to the user
+              experience. Collapsing information minimizes excessive scrolling
+              and gives an overview of the structure and content available on
+              the page.
+            </DxcText>
+            <DxcList>
+              <DxcText>
+                In mobile use 100% of the available screen width.
+              </DxcText>
+            </DxcList>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Accordion group",
+    content: (
+      <>
+        <DxcText as="p">
+          Accordion headers are stacked vertically and different hierarchy
+          levels are allowed.
+        </DxcText>
+        <Example example={accordionGroup} />
+        <DxcText as="p">
+          <em>
+            The expandable section of an accordion group can contain different
+            types of plain information or clickable components.
+          </em>
+        </DxcText>
+        <DxcText as="p">
+          <Figure caption="Component placement examples">
+            <Image src={accordionMultiExpand} alt="image" />
+          </Figure>
+        </DxcText>
+        <DxcText as="p">
+          <em>
+            When one accordion panel is expanded, the rest of the group should
+            be collapsed.
           </em>
         </DxcText>
       </>

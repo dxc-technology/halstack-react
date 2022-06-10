@@ -34,16 +34,17 @@ const code = `() => {
           label="Expanded"
           isExpanded={isExpanded}
           onChange={onChangeExpanded}
-          padding="medium"
         >
-          <DxcStack gutter="small">
-            <DxcHeading level={3} text="Content header" />
-            <DxcInset space="xxxsmall">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </DxcInset>
-          </DxcStack>
+          <DxcInset space="large">
+            <DxcStack gutter="small">
+              <DxcHeading level={3} text="Content header" />
+              <DxcInset space="xxxsmall">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </DxcInset>
+            </DxcStack>
+          </DxcInset>
         </DxcAccordion>
       </DxcStack>
     </DxcInset>
