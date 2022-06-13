@@ -9,12 +9,6 @@ type TabsPageLayoutProps = {
 
 const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
   const router = useRouter();
-  // const tabsList = tabs ? tabs.map((tab) => ({ label: tab.label })) : [];
-  // const activeTabIndex = tabs.findIndex((tab) => tab.path === router.pathname);
-
-  const handleTabChange = (index: number) => {
-    router.push(tabs[index].path);
-  };
 
   return (
     <DxcNavTabs>

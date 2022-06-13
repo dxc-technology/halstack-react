@@ -6,8 +6,12 @@ type routerProps = {
   children: string;
 };
 
-const RouterLink = ({ to, component, children }: routerProps) => {
-  return <DxcNavTabs.Tab href={to}>{children}</DxcNavTabs.Tab>;
+const RouterLink = ({ to, component, children, ...other }: routerProps) => {
+  return (
+    <DxcNavTabs.Tab {...other} href={to}>
+      {children}
+    </DxcNavTabs.Tab>
+  );
 };
 
 const code = `() => {
@@ -16,10 +20,10 @@ const code = `() => {
         <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab} active>
           Tab 1
         </RouterLink>
-        <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab} disabled>
+        <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab}>
           Tab 2
         </RouterLink>
-        <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab} notificationNumber={120}>
+        <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab}>
           Tab 3
         </RouterLink>
     </DxcNavTabs>

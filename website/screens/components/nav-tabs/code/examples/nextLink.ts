@@ -12,17 +12,17 @@ const code = `() => {
   });
   return (
     <DxcNavTabs>
-      <Link href="components/nav-tabs/" passHref>
+      <Link href="/components/nav-tabs/" passHref>
         <CustomNavTab active>
           Tab 1
         </CustomNavTab>
       </Link>
-      <Link href="components/nav-tabs/" passHref>
+      <Link href="/components/nav-tabs/" passHref>
         <CustomNavTab>
           Tab 2
         </CustomNavTab>
       </Link>
-      <Link href="components/nav-tabs/" passHref>
+      <Link href="/components/nav-tabs/" passHref>
         <CustomNavTab>
           Tab 3
         </CustomNavTab>
