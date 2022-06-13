@@ -15,6 +15,7 @@ import Code from "@/common/Code";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import colorOverview from "./images/color_overview.png";
 import colorFamilies from "./images/color_families.png";
+import onDarkcolorFamilies from "./images/color_families_onDark.png";
 
 const sections = [
   {
@@ -49,6 +50,7 @@ const sections = [
   {
     title: "Color Tokens",
     content: (
+      <>
       <DxcText as="p">
         Halstack uses tokens to manage color. Appart from a multi-purpose
         greyscale family, purple and blue are the core color families used in
@@ -56,14 +58,20 @@ const sections = [
         as feedback role-based color palettes and must not be used outside this
         context.
       </DxcText>
+      <DxcText as="p"><strong>Light and Dark Modes</strong><br/>Halstack uses both light and dark mode variants for its colors. Colors that are used across both variants are referred to by their default light mode token name while dark mode color tokens follow the same pattern approach but end in one (such as 101 or 201).</DxcText>
+      <DxcText as="p">Refer to the Dark Mode core color families values diagram to see which color tokens are shared across variants.</DxcText>
+      </>
     ),
     subSections: [
       {
         title: "Core color tokens",
         content: (
           <>
-            <Figure caption="Core color families values">
+            <Figure caption="Light Mode core color families values">
               <Image src={colorFamilies} alt="Core color families values" />
+            </Figure>
+            <Figure caption="Dark Mode core color families values">
+              <Image src={onDarkcolorFamilies} alt="Dark Mode core color families values" />
             </Figure>
           </>
         ),
@@ -189,6 +197,55 @@ const sections = [
                         </td>
                         <td>#333333</td>
                         <td>(0, 0%, 20%)</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <Code>color-grey-51</Code>
+                        </td>
+                        <td>#0d0d0d</td>
+                        <td>(0, 0%, 5%)</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <Code>color-grey-101</Code>
+                        </td>
+                        <td>#1a1a1a</td>
+                        <td>(0, 0%, 10%)</td>
+                      </tr>
+                      <tr>  
+                        <td>
+                          <Code>color-grey-201</Code>
+                        </td>
+                        <td>#262626</td>
+                        <td>(0, 0%, 15%)</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <Code>color-grey-301</Code>
+                        </td>
+                        <td>#404040</td>
+                        <td>(0, 0%, 25%)</td>
+                      </tr>
+                      <tr>  
+                        <td>
+                          <Code>color-grey-401</Code>
+                        </td>
+                        <td>#595959</td>
+                        <td>(0, 0%, 35%)</td>
+                      </tr>
+                      <tr>  
+                        <td>
+                          <Code>color-grey-501</Code>
+                        </td>
+                        <td>#737373</td>
+                        <td>(0, 0%, 45%)</td>
+                      </tr>
+                      <tr>  
+                        <td>
+                          <Code>color-grey-801</Code>
+                        </td>
+                        <td>#d9d9d9</td>
+                        <td>(0, 0%, 85%)</td>
                       </tr>
                     </tbody>
                   </DxcTable>
@@ -379,6 +436,55 @@ const sections = [
                       <td>#321353</td>
                       <td>(269, 63%, 20%)</td>
                     </tr>
+                    <tr>
+                      <td>
+                        <Code>color-purple-51</Code>
+                      </td>
+                      <td>#0c0515</td>
+                      <td>(266, 62%, 5%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-purple-101</Code>
+                      </td>
+                      <td>#19092a</td>
+                      <td>(269, 65%, 10%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-purple-201</Code>
+                      </td>
+                      <td>#3e1868</td>
+                      <td>(269, 63%, 25%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-purple-401</Code>
+                      </td>
+                      <td>#702abb</td>
+                      <td>(269, 63%, 45%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-purple-501</Code>
+                      </td>
+                      <td>#9759d9</td>
+                      <td>(269, 63%, 60%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-purple-701</Code>
+                      </td>
+                      <td>#C0a5e4</td>
+                      <td>(266, 54%, 77%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-purple-801</Code>
+                      </td>
+                      <td>#d8c1f1</td>
+                      <td>(269, 63%, 85%)</td>
+                    </tr>
                   </tbody>
                 </DxcTable>
               </>
@@ -470,6 +576,34 @@ const sections = [
                       <td>#003c66</td>
                       <td>(205, 100%, 20%)</td>
                     </tr>
+                    <tr>
+                      <td>
+                        <Code>color-blue-51</Code>
+                      </td>
+                      <td>#000f1a</td>
+                      <td>(205, 100%, 5%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-blue-101</Code>
+                      </td>
+                      <td>#001e33</td>
+                      <td>(205, 100%, 10%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-blue-201</Code>
+                      </td>
+                      <td>#002d4d</td>
+                      <td>(205, 100%, 15%)</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Code>color-blue-301</Code>
+                      </td>
+                      <td>#004a80</td>
+                      <td>(205, 100%, 25%)</td>
+                    </tr>
                   </tbody>
                 </DxcTable>
               </>
@@ -557,6 +691,41 @@ const sections = [
                     <td>#65010e</td>
                     <td>(352, 99%, 20%)</td>
                   </tr>
+                  <tr>
+                    <td>
+                      <Code>color-red-51</Code>
+                    </td>
+                    <td>#190003</td>
+                    <td>(353, 100%, 5%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-red-101</Code>
+                    </td>
+                    <td>#4c000a</td>
+                    <td>(352, 100%, 15%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-red-401</Code>
+                    </td>
+                    <td>#cb011c</td>
+                    <td>(352, 99%, 40%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-red-701</Code>
+                    </td>
+                    <td>#fe8091</td>
+                    <td>(352, 98%, 75%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-red-801</Code>
+                    </td>
+                    <td>#ffb3bd</td>
+                    <td>(352, 100%, 85%)</td>
+                  </tr>
                 </tbody>
               </DxcTable>
             ),
@@ -642,6 +811,34 @@ const sections = [
                     </td>
                     <td>#135325</td>
                     <td>(137, 63%, 20%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-green-51</Code>
+                    </td>
+                    <td>#051509</td>
+                    <td>(135, 62%, 5%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-green-101</Code>
+                    </td>
+                    <td>#092a13</td>
+                    <td>(138, 65%, 10%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-green-401</Code>
+                    </td>
+                    <td>#26a64a</td>
+                    <td>(137, 63%, 40%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-green-801</Code>
+                    </td>
+                    <td>#c1f1ce</td>
+                    <td>(136, 63%, 85%)</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -729,6 +926,55 @@ const sections = [
                     <td>#624f04</td>
                     <td>(48, 93%, 20%)</td>
                   </tr>
+                  <tr>
+                    <td>
+                      <Code>color-yellow-51</Code>
+                    </td>
+                    <td>#191401</td>
+                    <td>(48, 92%, 5%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-yellow-301</Code>
+                    </td>
+                    <td>#b69307</td>
+                    <td>(48, 93%, 37%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-yellow-401</Code>
+                    </td>
+                    <td>#ddb308</td>
+                    <td>(48, 93%, 45%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-yellow-501</Code>
+                    </td>
+                    <td>#f7cc22</td>
+                    <td>(48, 93%, 55%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-yellow-601</Code>
+                    </td>
+                    <td>#f9d853</td>
+                    <td>(48, 93%, 65%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-yellow-701</Code>
+                    </td>
+                    <td>#fbe384</td>
+                    <td>(48, 94%, 75%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-yellow-801</Code>
+                    </td>
+                    <td>#fceeb5</td>
+                    <td>(48, 92%, 85%)</td>
+                  </tr>
                 </tbody>
               </DxcTable>
             ),
@@ -814,6 +1060,69 @@ const sections = [
                     </td>
                     <td>#613605</td>
                     <td>(32, 90%, 20%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-51</Code>
+                    </td>
+                    <td>#180e01</td>
+                    <td>(34, 92%, 5%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-101</Code>
+                    </td>
+                    <td>#492904</td>
+                    <td>(32, 90%, 15%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-201</Code>
+                    </td>
+                    <td>#794406</td>
+                    <td>(32, 91%, 25%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-301</Code>
+                    </td>
+                    <td>#aa5f09</td>
+                    <td>(32, 90%, 35%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-401</Code>
+                    </td>
+                    <td>#da7a0b</td>
+                    <td>(32, 90%, 45%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-501</Code>
+                    </td>
+                    <td>#f49325</td>
+                    <td>(32, 90%, 55%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-601</Code>
+                    </td>
+                    <td>#f6ab55</td>
+                    <td>(32, 90%, 65%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-701</Code>
+                    </td>
+                    <td>#f9c386</td>
+                    <td>(32, 91%, 75%)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>color-orange-801</Code>
+                    </td>
+                    <td>#fbdbb6</td>
+                    <td>(32, 90%, 85%)</td>
                   </tr>
                 </tbody>
               </DxcTable>
