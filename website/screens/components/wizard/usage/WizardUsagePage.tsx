@@ -1,13 +1,12 @@
 import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
-import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
-import variantsImage from "./images/wizard_variants.png";
-import validationImage from "./images/wizard_validation.png";
-import contentImage from "./images/wizard_content.png";
-import helperTextImage from "./images/wizard_helper_text.png";
+import Example from "@/common/example/Example";
+import variants from "./examples/variants";
+import validation from "./examples/validation";
+import content from "./examples/content";
+import description from "./examples/description";
 
 const sections = [
   {
@@ -34,12 +33,7 @@ const sections = [
           The wizard component has two variants: <strong>horizontal</strong> and{" "}
           <strong>vertical</strong>.
         </DxcText>
-        <Figure caption="Examples of horizontal and vertizal wizard flows">
-          <Image
-            src={variantsImage}
-            alt="Examples of horizontal and vertizal wizard flows"
-          />
-        </Figure>
+        <Example example={variants} />
       </>
     ),
   },
@@ -56,12 +50,7 @@ const sections = [
           represent the status of the validation respecting the content, with a
           success mark or an error mark visible on the step mark.
         </DxcText>
-        <Figure caption="Example of wizard step validation">
-          <Image
-            src={validationImage}
-            alt="Example of wizard step validation"
-          />
-        </Figure>
+        <Example example={validation} />
       </>
     ),
   },
@@ -77,25 +66,18 @@ const sections = [
           <DxcText>Only icons</DxcText>
           <DxcText>Numbers/icons with step label</DxcText>
         </DxcList>
-        <Figure caption="Examples of wizard content with an icon">
-          <Image
-            src={contentImage}
-            alt="Examples of wizard content with an icon"
-          />
-        </Figure>
+        <Example example={content} />
       </>
     ),
   },
   {
-    title: "Helper text",
+    title: "Description",
     content: (
       <>
         <DxcText as="p">
-          Helper text can be added to the wizard component step:
+          Description can be added to the wizard component step:
         </DxcText>
-        <Figure caption="Example of wizard helper text">
-          <Image src={helperTextImage} alt="Example of wizard helper text" />
-        </Figure>
+        <Example example={description} />
       </>
     ),
   },
@@ -110,7 +92,7 @@ const WizardUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/wizard/usage/WizardUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/wizard/usage/WizardUsagePage.tsx" />
     </DxcStack>
   );
 };
