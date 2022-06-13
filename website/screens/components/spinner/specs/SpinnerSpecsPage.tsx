@@ -274,7 +274,7 @@ const SpinnerSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/spinner/specs/SpinnerSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/spinner/specs/SpinnerSpecsPage.tsx" />
     </DxcStack>
   );
 };

@@ -1,4 +1,9 @@
-import { DxcStack, DxcText, DxcLink, DxcList } from "@dxc-technology/halstack-react";
+import {
+  DxcStack,
+  DxcText,
+  DxcLink,
+  DxcList,
+} from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import Figure from "@/common/Figure";
 import Code from "@/common/Code";
@@ -17,20 +22,24 @@ const sections = [
     content: (
       <>
         <Figure caption="Password input component specifications">
-          <Image src={passwordInputSpecs} alt="Password input component specifications" />
+          <Image
+            src={passwordInputSpecs}
+            alt="Password input component specifications"
+          />
         </Figure>
         <DxcText as="p">
-          The password input <Code>color</Code>, <Code>typography</Code>, <Code>border</Code>,{" "}
-          <Code>spacing</Code>, <Code>width</Code> and <Code>margin</Code> specifications are
-          inherited from the text input, for reference{" "}
+          The password input <Code>color</Code>, <Code>typography</Code>,{" "}
+          <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
+          <Code>margin</Code> specifications are inherited from the text input,
+          for reference{" "}
           <Link href="/components/text-input/specifications" passHref>
             <DxcLink>check the text input component documentation</DxcLink>
           </Link>
           .
         </DxcText>
         <DxcText as="p">
-          The password input doesn&#39;t have the following text input elements, therefore their
-          listed styles don&#39;t apply:
+          The password input doesn&#39;t have the following text input elements,
+          therefore their listed styles don&#39;t apply:
         </DxcText>
         <DxcList>
           <DxcText>Placeholder</DxcText>
@@ -43,13 +52,19 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">The component password has the following states:</DxcText>
         <DxcText as="p">
-          States: <strong>enabled</strong>, <strong>hover</strong>, <strong>focus</strong>,{" "}
-          <strong>error</strong> and <strong>disabled</strong>.
+          The component password has the following states:
+        </DxcText>
+        <DxcText as="p">
+          States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
+          <strong>focus</strong>, <strong>error</strong> and{" "}
+          <strong>disabled</strong>.
         </DxcText>
         <Figure caption="Password input component states">
-          <Image src={passworsInputStates} alt="Password input component states" />
+          <Image
+            src={passworsInputStates}
+            alt="Password input component states"
+          />
         </Figure>
       </>
     ),
@@ -86,16 +101,18 @@ const sections = [
           />
         </Figure>
         <DxcText as="p">
-          The value of the input can be toggled on or off using the default action the component
-          provides. The password input can also be clearable.
+          The value of the input can be toggled on or off using the default
+          action the component provides. The password input can also be
+          clearable.
         </DxcText>
         <DxcList>
           <DxcText>
-            The toggle indicates the action that will be performed when clicked, tapped, or pressing
-            keyboard <Code>Enter</Code> key.
+            The toggle indicates the action that will be performed when clicked,
+            tapped, or pressing keyboard <Code>Enter</Code> key.
           </DxcText>
           <DxcText>
-            The toggle has a <Code>title</Code> with a textual cue for the resulting action.
+            The toggle has a <Code>title</Code> with a textual cue for the
+            resulting action.
           </DxcText>
         </DxcList>
       </>
@@ -144,7 +161,10 @@ const sections = [
           <DxcList>
             <DxcText>
               Forms -{" "}
-              <DxcLink href="https://www.w3.org/WAI/tutorials/forms/examples/password/" newWindow>
+              <DxcLink
+                href="https://www.w3.org/WAI/tutorials/forms/examples/password/"
+                newWindow
+              >
                 Full Password Example
               </DxcLink>
             </DxcText>
@@ -159,9 +179,12 @@ const PasswordInputSpecsPage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/password-input/specs/PasswordInputSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/password-input/specs/PasswordInputSpecsPage.tsx" />
     </DxcStack>
   );
 };
