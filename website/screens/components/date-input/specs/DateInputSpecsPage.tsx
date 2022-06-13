@@ -1,4 +1,10 @@
-import { DxcText, DxcList, DxcTable, DxcStack, DxcLink } from "@dxc-technology/halstack-react";
+import {
+  DxcText,
+  DxcList,
+  DxcTable,
+  DxcStack,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import Link from "next/link";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -21,17 +27,18 @@ const sections = [
           <Image src={dateSpecs} alt="Date input design specifications" />
         </Figure>
         <DxcText as="p">
-          The date input <Code>color</Code>, <Code>typography</Code>, <Code>border</Code>,{" "}
-          <Code>spacing</Code>, <Code>width</Code> and <Code>margin</Code> specifications are
-          inherited from the text input, for reference{" "}
+          The date input <Code>color</Code>, <Code>typography</Code>,{" "}
+          <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
+          <Code>margin</Code> specifications are inherited from the text input,
+          for reference{" "}
           <Link href="/components/text-input/specifications" passHref>
             <DxcLink>check the text input component documentation</DxcLink>
           </Link>
           .
         </DxcText>
         <DxcText as="p">
-          The date input doesn&#39;t have the following text input elements or properties,
-          therefore, their listed styles don&#39;t apply:
+          The date input doesn&#39;t have the following text input elements or
+          properties, therefore, their listed styles don&#39;t apply:
         </DxcText>
         <DxcList>
           <DxcText>Prefix / Suffix</DxcText>
@@ -58,11 +65,15 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              States: <strong>enabled</strong>, <strong>hover</strong>, <strong>focus</strong>,{" "}
-              <strong>error</strong>, and <strong>disabled</strong>.
+              States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
+              <strong>focus</strong>, <strong>error</strong>, and{" "}
+              <strong>disabled</strong>.
             </DxcText>
             <Figure caption="Examples of date input states">
-              <Image src={dateSpecsStates} alt="Examples of date input states" />
+              <Image
+                src={dateSpecsStates}
+                alt="Examples of date input states"
+              />
             </Figure>
           </>
         ),
@@ -72,11 +83,14 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              States: <strong>enabled</strong>, <strong>hover</strong>, <strong>focus</strong>, and{" "}
-              <strong>selected</strong>.
+              States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
+              <strong>focus</strong>, and <strong>selected</strong>.
             </DxcText>
             <Figure caption="Examples of the calendar dialog states">
-              <Image src={dateSpecsPopup} alt="Examples of the calendar dialog states" />
+              <Image
+                src={dateSpecsPopup}
+                alt="Examples of the calendar dialog states"
+              />
             </Figure>
           </>
         ),
@@ -444,7 +458,10 @@ const sections = [
             <DxcList>
               <DxcText>
                 Understanding WCAG 2.2 -{" "}
-                <DxcLink href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard" newWindow>
+                <DxcLink
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
+                  newWindow
+                >
                   SC 2.1.1: Keyboard
                 </DxcLink>
               </DxcText>
@@ -468,7 +485,10 @@ const sections = [
               </DxcText>
               <DxcText>
                 Understanding WCAG 2.2 -{" "}
-                <DxcLink href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible" newWindow>
+                <DxcLink
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible"
+                  newWindow
+                >
                   SC 2.4.7: Focus Visible
                 </DxcLink>
               </DxcText>
@@ -482,7 +502,10 @@ const sections = [
           <DxcList>
             <DxcText>
               WAI-ARIA authoring practices 1.2 -{" "}
-              <DxcLink href="https://www.w3.org/TR/wai-aria-practices-1.2/#dialog_modal" newWindow>
+              <DxcLink
+                href="https://www.w3.org/TR/wai-aria-practices-1.2/#dialog_modal"
+                newWindow
+              >
                 3.9 Dialog modal
               </DxcLink>
             </DxcText>
@@ -506,9 +529,12 @@ const DateInputSpecsPage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/date-input/specs/DateInputSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/date-input/specs/DateInputSpecsPage.tsx" />
     </DxcStack>
   );
 };
