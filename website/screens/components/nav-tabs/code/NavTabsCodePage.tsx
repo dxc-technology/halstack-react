@@ -216,7 +216,7 @@ const sections = [
   },
 ];
 
-const ButtonCodePage = () => {
+const NavTabsCodePage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
@@ -225,9 +225,9 @@ const ButtonCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/nav-tabs/code/NavTabsCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/nav-tabs/code/NavTabsCodePage.tsx" />
     </DxcStack>
   );
 };
 
-export default ButtonCodePage;
+export default NavTabsCodePage;
