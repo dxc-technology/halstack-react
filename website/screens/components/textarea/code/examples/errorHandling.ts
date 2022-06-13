@@ -28,12 +28,13 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcTextarea
-        label="Custom pattern error"
+        label="Description"
         value={value}
         onChange={onChange}
         onBlur={onBlur}
         pattern='^.*(?=.*[a-zA-Z])(?=.*)(?=.*[!&$%&? "]).*$'
         error={customPatternError}
+        size="fillParent"
       />
     </DxcInset>
   );

@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
+import basicUsage from "./examples/basicUsage";
 
 const sections = [
   {
@@ -225,6 +226,14 @@ const sections = [
   {
     title: "Examples",
     subSections: [
+      {
+        title: "Basic usage",
+        content: (
+          <>
+            <Example example={basicUsage} defaultIsVisible />
+          </>
+        ),
+      },
       {
         title: "Controlled",
         content: (

@@ -17,7 +17,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcStack gutter="large" align="start">
-        <DxcTextarea label="Uncontrolled" ref={inputRef} />
+        <DxcTextarea label="Description" ref={inputRef} size="fillParent" />
         <DxcButton label="Submit" onClick={handleSubmit}></DxcButton>
       </DxcStack>
     </DxcInset>

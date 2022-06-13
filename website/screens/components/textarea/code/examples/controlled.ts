@@ -17,10 +17,11 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcTextarea
-        label="Controlled"
+        label="Description"
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        size="fillParent"
       />
     </DxcInset>
   );
