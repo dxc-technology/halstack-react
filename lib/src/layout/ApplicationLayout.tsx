@@ -1,5 +1,7 @@
 import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
-import { DxcHeader, DxcFooter } from "../main";
+import DxcHeader from "../header/Header";
+import DxcFooter from "../footer/Footer";
+import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo, hamburguerIcon } from "./Icons";
@@ -9,9 +11,8 @@ import AppLayoutPropsType, {
   AppLayoutMainPropsType,
   AppLayoutHeaderPropsType,
 } from "./types";
-import DxcSidenav from "./sidenav/Sidenav";
 import { v4 as uuidv4 } from "uuid";
-import { SidenavContextProvider, useSidenavVisibilityResponsive } from "./SidenavContext";
+import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
 
 const year = new Date().getFullYear();
 const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
@@ -93,7 +94,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
   }, [isResponsive]);
 
   return (
-    <ApplicationLayoutContainer ref={ref} isSidenavVisible={isSidenavVisibleResponsive}>
+    <ApplicationLayoutContainer isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
       <HeaderContainer>{header}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
@@ -108,15 +109,13 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
         </VisibilityToggle>
       )}
       <BodyContainer>
-        <ContentContainer>
-          <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
-            {(isResponsive ? isSidenavVisibleResponsive : true) && <SidenavContainer>{sidenav}</SidenavContainer>}
-          </SidenavContextProvider>
-          <MainBodyContainer>
-            {main}
-            {footer}
-          </MainBodyContainer>
-        </ContentContainer>
+        <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
+          {(isResponsive ? isSidenavVisibleResponsive : true) && <SidenavContainer>{sidenav}</SidenavContainer>}
+        </SidenavContextProvider>
+        <MainContentContainer>
+          {main}
+          {footer}
+        </MainContentContainer>
       </BodyContainer>
     </ApplicationLayoutContainer>
   );
@@ -168,7 +167,7 @@ const HamburguerTrigger = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   border-radius: 2px;
   padding: 3px;
   background-color: transparent;
@@ -196,16 +195,9 @@ const VisibilityToggleLabel = styled.span`
   font-family: Open Sans, sans-serif;
   font-weight: 600;
   font-size: 14px;
-  line-height: 19px;
 `;
 
 const BodyContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
 
@@ -227,7 +219,7 @@ const SidenavContainer = styled.div`
   }
 `;
 
-const MainBodyContainer = styled.div`
+const MainContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -238,6 +230,6 @@ DxcApplicationLayout.Header = Header;
 DxcApplicationLayout.Main = Main;
 DxcApplicationLayout.Footer = Footer;
 DxcApplicationLayout.SideNav = Sidenav;
-DxcApplicationLayout.useSidenavVisibilityResponsive = useSidenavVisibilityResponsive;
+DxcApplicationLayout.useResponsiveSidenavVisibility = useResponsiveSidenavVisibility;
 
 export default DxcApplicationLayout;

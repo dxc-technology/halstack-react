@@ -5,7 +5,7 @@ const SidenavContext = createContext<SidenavContextType | null>(null);
 
 export const SidenavContextProvider = SidenavContext.Provider;
 
-export const useSidenavVisibilityResponsive = () => {
-  const setIsSidenavVisibleResponsive = useContext(SidenavContext);
-  return setIsSidenavVisibleResponsive;
+export const useResponsiveSidenavVisibility = () => {
+  const changeResponsiveSidenavVisibility = useContext(SidenavContext);
+  return changeResponsiveSidenavVisibility;
 };

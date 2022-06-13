@@ -55,11 +55,11 @@ const getComponentsLinks = (type) => {
 
 const SidenavContent = () => {
   const location = useLocation();
-  const setIsSidenavVisibleResponsive =
-    DxcApplicationLayout.useSidenavVisibilityResponsive();
+  const changeResponsiveSidenavVisibility =
+    DxcApplicationLayout.useResponsiveSidenavVisibility();
 
   const handleLinkOnClick = () => {
-    setIsSidenavVisibleResponsive(false);
+    changeResponsiveSidenavVisibility(false);
   };
 
   return (
