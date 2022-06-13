@@ -7,13 +7,13 @@ const RouterLink = ({ to, component, children }) => {
 const code = `() => {
   return (
     <DxcNavTabs>
-        <RouterLink to="/components/button" component={DxcNavTabs.Tab} active>
+        <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab} active>
           Tab 1
         </RouterLink>
-        <RouterLink to="/components/button" component={DxcNavTabs.Tab} disabled>
+        <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab} disabled>
           Tab 2
         </RouterLink>
-        <RouterLink to="/components/button" component={DxcNavTabs.Tab} notificationNumber={120}>
+        <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab} notificationNumber={120}>
           Tab 3
         </RouterLink>
     </DxcNavTabs>

@@ -33,13 +33,13 @@ const code = `() => {
   return (
     <>
       <DxcNavTabs>
-        <CustomTab active to="/components/">
+        <CustomTab active to="/components/nav-tabs/">
           Tab 1
         </CustomTab>
-        <CustomTab to="/components/">
+        <CustomTab to="/components/nav-tabs/">
           Tab 2
         </CustomTab>
-        <CustomTab to="/components/">
+        <CustomTab to="/components/nav-tabs/">
           Tab 3
         </CustomTab>
       </DxcNavTabs>
