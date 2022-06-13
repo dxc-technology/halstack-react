@@ -1,21 +1,21 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TagUsagePage from "../../../screens/components/tag/usage/TagUsagePage";
+import TagCodePage from "../../../screens/components/tag/code/TagCodePage";
 import TagPageLayout from "../../../screens/components/tag/TagPageLayout";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
         <title>Tag — Halstack Design System</title>
       </Head>
-      <TagUsagePage></TagUsagePage>
+      <TagCodePage></TagCodePage>
     </>
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = function getLayout(page: ReactElement) {
   return <TagPageLayout>{page}</TagPageLayout>;
 };
 
-export default Usage;
+export default Index;

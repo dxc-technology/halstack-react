@@ -1,9 +1,4 @@
-import {
-  DxcLink,
-  DxcList,
-  DxcStack,
-  DxcText,
-} from "@dxc-technology/halstack-react";
+import { DxcLink, DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -17,30 +12,23 @@ const sections = [
     content: (
       <>
         <DxcText>
-          The specifications of each of the compound component children are
-          defined separately:
+          The specifications of each of the compound component children are defined separately:
         </DxcText>
         <DxcList>
           <DxcText>
-            <DxcLink>
-              <Link href="/components/header/specifications">
-                <a>Header</a>
-              </Link>
-            </DxcLink>
+            <Link href="/components/header/specifications" passHref>
+              <DxcLink>Header</DxcLink>
+            </Link>
           </DxcText>
           <DxcText>
-            <DxcLink>
-              <Link href="/components/sidenav/specifications">
-                <a>Sidenav</a>
-              </Link>
-            </DxcLink>
+            <Link href="/components/sidenav/specifications" passHref>
+              <DxcLink>Sidenav</DxcLink>
+            </Link>
           </DxcText>
           <DxcText>
-            <DxcLink>
-              <Link href="/components/footer/specifications">
-                <a>Footer</a>
-              </Link>
-            </DxcLink>
+            <Link href="/components/footer/specifications" passHref>
+              <DxcLink>Footer</DxcLink>
+            </Link>
           </DxcText>
         </DxcList>
       </>
@@ -50,10 +38,7 @@ const sections = [
     title: "Anatomy",
     content: (
       <>
-        <Image
-          src={ApplicationLayoutAnatomy}
-          alt="Application layout anatomy"
-        />
+        <Image src={ApplicationLayoutAnatomy} alt="Application layout anatomy" />
         <DxcList type="number">
           <DxcText>Header</DxcText>
           <DxcText>Main content</DxcText>
@@ -72,10 +57,7 @@ const sections = [
           <DxcList>
             <DxcText>
               WAI-ARIA Authoring practices 1.2 -{" "}
-              <DxcLink
-                newWindow
-                href="https://www.w3.org/WAI/perspective-videos/layout/"
-              >
+              <DxcLink newWindow href="https://www.w3.org/WAI/perspective-videos/layout/">
                 Clear Layout and Design
               </DxcLink>
             </DxcText>
@@ -90,10 +72,7 @@ const ApplicationLayoutSpecsPage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer
-          sections={sections}
-          startHeadingLevel={2}
-        ></QuickNavContainer>
+        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/application-layout/specs/ApplicationLayoutSpecsPage.tsx" />
     </DxcStack>

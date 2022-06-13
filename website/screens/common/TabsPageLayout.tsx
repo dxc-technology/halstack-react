@@ -1,7 +1,5 @@
-import React from "react";
 import { useRouter } from "next/router";
-import { DxcNavTabs } from "@dxc-technology/halstack-react";
-import Link from "next/link";
+import { DxcTabs } from "@dxc-technology/halstack-react";
 
 type TabsPageLayoutProps = {
   tabs: { label: string; path: string }[];
@@ -19,6 +17,12 @@ const CustomTabLink = React.forwardRef(({ path, children, active }, ref) => {
 
 const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
   const router = useRouter();
+  const tabsList = tabs ? tabs.map((tab) => ({ label: tab.label })) : [];
+  const activeTabIndex = tabs.findIndex((tab) => tab.path === router.pathname);
+
+  const handleTabChange = (index: number) => {
+    router.push(tabs[index].path);
+  };
 
   return (
     <DxcNavTabs>
