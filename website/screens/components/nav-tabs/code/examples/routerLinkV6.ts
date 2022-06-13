@@ -1,10 +1,19 @@
 import { DxcNavTabs } from "@dxc-technology/halstack-react";
 
-const useHref = (to) => {
+type routerProps = {
+  replace: string;
+  state: string;
+  target: string;
+};
+
+const useHref = (to: string) => {
   console.log(to);
 };
 
-const useLinkClickHandler = (to, { replace, state, target }) => {};
+const useLinkClickHandler = (
+  to: string,
+  { replace, state, target }: routerProps
+) => {};
 
 const code = `() => {
   const CustomTab = React.forwardRef(

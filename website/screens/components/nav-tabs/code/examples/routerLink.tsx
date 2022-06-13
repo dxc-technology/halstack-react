@@ -1,6 +1,12 @@
 import { DxcNavTabs } from "@dxc-technology/halstack-react";
 
-const RouterLink = ({ to, component, children }) => {
+type routerProps = {
+  to: string;
+  component: Node;
+  children: string;
+};
+
+const RouterLink = ({ to, component, children }: routerProps) => {
   return <DxcNavTabs.Tab href={to}>{children}</DxcNavTabs.Tab>;
 };
 
