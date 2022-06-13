@@ -1,10 +1,15 @@
-import { DxcText, DxcStack, DxcTable, DxcLink } from "@dxc-technology/halstack-react";
+import {
+  DxcText,
+  DxcStack,
+  DxcTable,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
-import basic from "./examples/basic";
+import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLinkV6 from "./examples/routerLinkV6";
 import nextLink from "./examples/nextLink";
@@ -24,7 +29,9 @@ const sections = [
           <td>
             <Code>'top'</Code>
           </td>
-          <td>Whether the icon should appear above or to the left of the label.</td>
+          <td>
+            Whether the icon should appear above or to the left of the label.
+          </td>
         </tr>
         <tr>
           <td>tabIndex: number</td>
@@ -43,7 +50,7 @@ const sections = [
         title: "Basic usage",
         content: (
           <>
-            <Example example={basic} defaultIsVisible />
+            <Example example={basicUsage} defaultIsVisible />
           </>
         ),
       },
@@ -52,13 +59,17 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              There are many React based routers, unfortunately all with different APIs.
+              There are many React based routers, unfortunately all with
+              different APIs.
             </DxcText>
             <DxcText as="p">
-              So we decided to make our link component just an styled HTML anchor element which
-              allows it to be used in any React based router. For each API is different so here are
-              some examples for{" "}
-              <DxcLink href="https://reactrouter.com/docs/en/v6/hooks/use-href" newWindow>
+              So we decided to make our link component just an styled HTML
+              anchor element which allows it to be used in any React based
+              router. For each API is different so here are some examples for{" "}
+              <DxcLink
+                href="https://reactrouter.com/docs/en/v6/hooks/use-href"
+                newWindow
+              >
                 React Router
               </DxcLink>{" "}
               and{" "}
@@ -79,10 +90,14 @@ const sections = [
               <>
                 <DxcText as="p">
                   This is an example of{" "}
-                  <DxcLink href="https://v5.reactrouter.com/web/api/Route/component" newWindow>
+                  <DxcLink
+                    href="https://v5.reactrouter.com/web/api/Route/component"
+                    newWindow
+                  >
                     React Router
                   </DxcLink>{" "}
-                  using the prop <Code>component</Code>. Note that this Prop is not available in v6.
+                  using the prop <Code>component</Code>. Note that this Prop is
+                  not available in v6.
                 </DxcText>
                 <Example example={routerLink} defaultIsVisible />
               </>
@@ -100,9 +115,12 @@ const sections = [
                   >
                     React Router v6
                   </DxcLink>{" "}
-                  the prop <Code>component</Code> is no longer available so it is necessary to use
-                  hooks provided by{" "}
-                  <DxcLink href="https://reactrouter.com/docs/en/v6/hooks/use-href" newWindow>
+                  the prop <Code>component</Code> is no longer available so it
+                  is necessary to use hooks provided by{" "}
+                  <DxcLink
+                    href="https://reactrouter.com/docs/en/v6/hooks/use-href"
+                    newWindow
+                  >
                     React Router v6
                   </DxcLink>
                   .
@@ -139,7 +157,10 @@ const ButtonCodePage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/nav-tabs/code/NavTabsCodePage.tsx" />
     </DxcStack>
