@@ -59,14 +59,14 @@ const sections = [
             <tr>
               <td>active: boolean</td>
               <td>
-                <code>false</code>
+                <Code>false</Code>
               </td>
               <td>Whether the tab is active or not.</td>
             </tr>
             <tr>
               <td>disabled: boolean</td>
               <td>
-                <code>false</code>
+                <Code>false</Code>
               </td>
               <td>Whether the tab is disabled or not.</td>
             </tr>
@@ -86,7 +86,7 @@ const sections = [
             <tr>
               <td>notificationNumber: boolean | number</td>
               <td>
-                <code>false</code>
+                <Code>false</Code>
               </td>
               <td>
                 If the value is 'true', an empty badge will appear. If it is
