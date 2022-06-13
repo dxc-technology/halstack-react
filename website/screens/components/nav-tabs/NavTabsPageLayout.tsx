@@ -13,7 +13,7 @@ const NumberInputPageHeading = ({
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Number Input" weight="bold"></DxcHeading>
+          <DxcHeading level={1} text="Nav Tabs" weight="bold"></DxcHeading>
           <DxcText as="p">Nav tabs allow the user to navigate easily.</DxcText>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
