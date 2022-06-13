@@ -17,31 +17,94 @@ import nextLink from "./examples/nextLink";
 const sections = [
   {
     title: "Props",
-    content: (
-      <DxcTable>
-        <tr>
-          <th>Name</th>
-          <th>Default</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td>iconPosition: 'top' | 'left'</td>
-          <td>
-            <Code>'top'</Code>
-          </td>
-          <td>
-            Whether the icon should appear above or to the left of the label.
-          </td>
-        </tr>
-        <tr>
-          <td>tabIndex: number</td>
-          <td>
-            <Code>0</Code>
-          </td>
-          <td>Value of the tabindex for each tab.</td>
-        </tr>
-      </DxcTable>
-    ),
+    subSections: [
+      {
+        title: "DxcNavTabs props",
+        content: (
+          <DxcTable>
+            <tr>
+              <th>Name</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>iconPosition: 'top' | 'left'</td>
+              <td>
+                <Code>'top'</Code>
+              </td>
+              <td>
+                Whether the icon should appear above or to the left of the
+                label.
+              </td>
+            </tr>
+            <tr>
+              <td>tabIndex: number</td>
+              <td>
+                <Code>0</Code>
+              </td>
+              <td>Value of the tabindex for each tab.</td>
+            </tr>
+          </DxcTable>
+        ),
+      },
+      {
+        title: "DxcNavTabs.Tab props",
+        content: (
+          <DxcTable>
+            <tr>
+              <th>Name</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>active: boolean</td>
+              <td>
+                <code>false</code>
+              </td>
+              <td>Whether the tab is active or not.</td>
+            </tr>
+            <tr>
+              <td>disabled: boolean</td>
+              <td>
+                <code>false</code>
+              </td>
+              <td>Whether the tab is disabled or not.</td>
+            </tr>
+            <tr>
+              <td>href: string</td>
+              <td></td>
+              <td>Page to be opened when the user clicks on the tab.</td>
+            </tr>
+            <tr>
+              <td>icon: node | string</td>
+              <td></td>
+              <td>
+                Element or path used as the icon that will be displayed in the
+                tab.
+              </td>
+            </tr>
+            <tr>
+              <td>notificationNumber: boolean | number</td>
+              <td>
+                <code>false</code>
+              </td>
+              <td>
+                If the value is 'true', an empty badge will appear. If it is
+                'false', no badge will appear. If a number is put it will be
+                shown as the label of the notification in the tab, taking into
+                account that if that number is greater than 99, it will appear
+                as '+99' in the badge.
+              </td>
+            </tr>
+            <tr>
+              <td>children: string</td>
+              <td></td>
+              <td>Content of the tab.</td>
+            </tr>
+          </DxcTable>
+        ),
+      },
+    ],
   },
   {
     title: "Examples",
