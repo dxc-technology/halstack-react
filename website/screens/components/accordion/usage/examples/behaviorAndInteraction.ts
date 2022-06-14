@@ -23,9 +23,8 @@ const code = `() => {
           label="Collapsed"
           isExpanded={isExpandedCollapsed}
           onChange={onChangeCollapsed}
-          padding="medium"
         >
-          <DxcInset space="xxxsmall">
+          <DxcInset space="large">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </DxcInset>
