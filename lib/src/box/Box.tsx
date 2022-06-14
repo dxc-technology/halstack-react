@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
@@ -19,13 +18,7 @@ const DxcBox = ({
 
   return (
     <ThemeProvider theme={colorsTheme.box}>
-      <StyledDxcBox
-        shadowDepth={shadowDepth}
-        display={display}
-        margin={margin}
-        padding={padding}
-        size={size}
-      >
+      <StyledDxcBox shadowDepth={shadowDepth} display={display} margin={margin} padding={padding} size={size}>
         <BackgroundColorProvider color={colorsTheme.box.backgroundColor}>{children}</BackgroundColorProvider>
       </StyledDxcBox>
     </ThemeProvider>
@@ -48,14 +41,13 @@ const calculateWidth = (margin, size, padding) => {
   return sizes[size];
 };
 
-const StyledDxcBox = styled.div`
-  display: ${({ display }) => display};
+const StyledDxcBox = styled.div<BoxPropsType>`
+  display: ${(props) => props.display};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => props.theme.borderColor};
   letter-spacing: ${(props) => props.theme.letterSpacing};
-  overflow: hidden;
   width: ${(props) => calculateWidth(props.margin, props.size, props.padding)};
   background-color: ${(props) => props.theme.backgroundColor};
   box-shadow: ${(props) =>
@@ -65,17 +57,25 @@ const StyledDxcBox = styled.div`
       ? `${props.theme.twoShadowDepthShadowOffsetX} ${props.theme.twoShadowDepthShadowOffsetY} ${props.theme.twoShadowDepthShadowBlur}  ${props.theme.twoShadowDepthShadowSpread} ${props.theme.twoShadowDepthShadowColor}`
       : `${props.theme.noneShadowDepthShadowOffsetX} ${props.theme.noneShadowDepthShadowOffsetY} ${props.theme.noneShadowDepthShadowBlur}  ${props.theme.noneShadowDepthShadowSpread} ${props.theme.noneShadowDepthShadowColor}`};
 
-  margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
-  margin-top: ${({ margin }) => (margin && margin.top ? spaces[margin.top] : "")};
-  margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
-  margin-bottom: ${({ margin }) => (margin && margin.bottom ? spaces[margin.bottom] : "")};
-  margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
+  margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
+  margin-top: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
+  margin-right: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.right ? spaces[props.margin.right] : ""};
+  margin-bottom: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
+  margin-left: ${(props) =>
+    props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
   padding: ${({ padding }) => (padding && typeof padding !== "object" ? spaces[padding] : "0px")};
-  padding-top: ${({ padding }) => (padding && padding.top ? spaces[padding.top] : "")};
-  padding-right: ${({ padding }) => (padding && padding.right ? spaces[padding.right] : "")};
-  padding-bottom: ${({ padding }) => (padding && padding.bottom ? spaces[padding.bottom] : "")};
-  padding-left: ${({ padding }) => (padding && padding.left ? spaces[padding.left] : "")};
+  padding-top: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+  padding-right: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+  padding-bottom: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+  padding-left: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
 
 export default DxcBox;
