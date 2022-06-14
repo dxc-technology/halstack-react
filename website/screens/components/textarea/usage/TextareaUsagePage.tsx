@@ -9,11 +9,11 @@ const sections = [
     content: (
       <DxcList>
         <DxcText>
-          Use the texarea when users need to enter a text longer than a single
+          Use the textarea when users need to enter text longer than a single
           line.
         </DxcText>
         <DxcText>
-          Avoid using the text area when complex questions can break up in
+          Avoid using the textarea when complex questions can break up in
           simpler ones.
         </DxcText>
       </DxcList>
@@ -30,7 +30,7 @@ const TextareaUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/textarea/usage/TextareaUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/textarea/usage/TextareaUsagePage.tsx" />
     </DxcStack>
   );
 };
