@@ -685,7 +685,7 @@ const ToggleGroupSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/toggle-group/specs/ToggleGroupSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/toggle-group/specs/ToggleGroupSpecsPage.tsx" />
     </DxcStack>
   );
 };
