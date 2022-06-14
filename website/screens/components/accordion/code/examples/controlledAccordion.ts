@@ -10,9 +10,9 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcAccordion
-        label="Controlled"
+        label="See deployments"
         isExpanded={isExpanded}
-        assistiveText="Additional information"
+        assistiveText="Deployments information"
         onChange={onChange}
       >
         <DxcInset space="large">

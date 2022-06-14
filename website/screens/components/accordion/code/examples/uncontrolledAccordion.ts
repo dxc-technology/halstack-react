@@ -5,8 +5,8 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcAccordion
-        label="Uncontrolled"
-        assistiveText="Additional information"
+        label="See deployments"
+        assistiveText="Deployments information"
         defaultIsExpanded
       >
         <DxcInset space="large">
