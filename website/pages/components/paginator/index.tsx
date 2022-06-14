@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import PaginatorPageLayout from "../../../screens/components/paginator/PaginatorPageLayout";
-import PaginatorUsagePage from "../../../screens/components/paginator/usage/PaginatorUsagePage";
+import PaginatorCodePage from "../../../screens/components/paginator/code/PaginatorCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Paginator — Halstack Design System</title>
       </Head>
-      <PaginatorUsagePage></PaginatorUsagePage>
+      <PaginatorCodePage></PaginatorCodePage>
     </>
   );
 };

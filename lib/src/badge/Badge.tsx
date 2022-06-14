@@ -3,11 +3,11 @@ import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import BadgePropsType from "./types";
 
-const DxcBadge = ({ notificationText }: BadgePropsType): JSX.Element => {
+const DxcBadge = ({ notificationText, disabled }: BadgePropsType): JSX.Element => {
   const colorsTheme = useTheme();
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
-      <StyledDxcBadge notificationText={notificationText}>
+      <StyledDxcBadge notificationText={notificationText} disabled={disabled}>
         <span>{notificationText}</span>
       </StyledDxcBadge>
     </ThemeProvider>
@@ -15,7 +15,8 @@ const DxcBadge = ({ notificationText }: BadgePropsType): JSX.Element => {
 };
 
 const StyledDxcBadge = styled.div<BadgePropsType>`
-  background-color: ${(props) => props.theme.badgeBackgroundColor};
+  background-color: ${(props) =>
+    props.disabled ? props.theme.disabledBadgeBackgroundColor : props.theme.badgeBackgroundColor};
   font-family: ${(props) => props.theme.badgeFontFamily};
   font-size: ${(props) => props.theme.badgeFontSize};
   font-style: ${(props) => props.theme.badgeFontStyle};

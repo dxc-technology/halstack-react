@@ -13,9 +13,7 @@ type NavigationLinks = {
   nextLink: LinkDetails | null;
 };
 
-const overviewLinks: LinkDetails[] = [
-  { label: "Introduction", path: "/overview/introduction" },
-];
+const overviewLinks: LinkDetails[] = [{ label: "Introduction", path: "/overview/introduction" }];
 
 const principlesLinks: LinkDetails[] = [
   { label: "Color", path: "/principles/color" },
@@ -43,6 +41,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Header", path: "/components/header" },
   { label: "Heading", path: "/components/heading" },
   { label: "Link", path: "/components/link" },
+  { label: "Nav Tabs", path: "/components/nav-tabs" },
   { label: "Number Input", path: "/components/number-input" },
   { label: "Paginator", path: "/components/paginator" },
   { label: "Password Input", path: "/components/password-input" },
