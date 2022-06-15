@@ -15,13 +15,13 @@ const code = `() => {
           onTabClick={onTabClick}
           tabs={[
             {
-              label: "Tab 1",
+              label: "Mail",
             },
             {
-              label: "Tab 2",
+              label: "Calendar",
             },
             {
-              label: "Tab 3",
+              label: "Contacts",
             },
           ]}
         ></DxcTabs>

@@ -9,23 +9,21 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <div>
-        <DxcTabs
-          activeTabIndex={activeTab}
-          onTabClick={onTabClick}
-          tabs={[
-            {
-              label: "Tab 1",
-            },
-            {
-              label: "Tab 2",
-            },
-            {
-              label: "Tab 3",
-            },
-          ]}
-        ></DxcTabs>
-      </div>
+      <DxcTabs
+        activeTabIndex={activeTab}
+        onTabClick={onTabClick}
+        tabs={[
+          {
+            label: "Mail",
+          },
+          {
+            label: "Calendar",
+          },
+          {
+            label: "Contacts",
+          },
+        ]}
+      ></DxcTabs>
     </DxcInset>
   );
 }`;

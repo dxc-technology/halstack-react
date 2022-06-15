@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import TabsCodePage from "../../../screens/components/tabs/code/TabsCodePage";
 import TabsPageLayout from "../../../screens/components/tabs/TabsPageLayout";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
@@ -14,8 +14,8 @@ const Usage = () => {
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = function getLayout(page: ReactElement) {
   return <TabsPageLayout>{page}</TabsPageLayout>;
 };
 
-export default Usage;
+export default Index;
