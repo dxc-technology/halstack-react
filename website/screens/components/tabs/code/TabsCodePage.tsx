@@ -5,6 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
+import uncontrolled from "./examples/uncontrolled";
 
 const sections = [
   {
@@ -111,6 +112,14 @@ const sections = [
         content: (
           <>
             <Example example={basicUsage} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Uncontrolled",
+        content: (
+          <>
+            <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
       },
