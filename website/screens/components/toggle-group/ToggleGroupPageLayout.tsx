@@ -8,7 +8,8 @@ const ToggleGroupPageHeading = ({
   children: React.ReactNode;
 }) => {
   const tabs = [
-    { label: "Usage", path: "/components/toggle-group" },
+    { label: "Code", path: "/components/toggle-group" },
+    { label: "Usage", path: "/components/toggle-group/usage" },
     {
       label: "Specifications",
       path: "/components/toggle-group/specifications",
