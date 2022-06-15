@@ -39,6 +39,7 @@ import Inset from "./cdk-components/inset/Inset";
 import Row from "./cdk-components/row/Row";
 import Bleed from "./cdk-components/bleed/Bleed";
 import QuickNav from "./cdk-components/quick-nav/QuickNav";
+import NavTabs from "./cdk-components/navtabs/NavTabs";
 
 export const types = {
   FORMS: "Forms",
@@ -179,6 +180,13 @@ export default [
     component: Link,
     type: types.UTILS,
     status: "ready",
+  },
+  {
+    path: "navtabs",
+    name: "Nav Tabs",
+    component: NavTabs,
+    type: types.NAVIGATION,
+    status: "experimental",
   },
   {
     path: "numberInput",
