@@ -14,7 +14,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcTextInput
-        label="Controlled"
+        label="Enter your name"
         value={value}
         onChange={onChange}
         onBlur={onBlur}

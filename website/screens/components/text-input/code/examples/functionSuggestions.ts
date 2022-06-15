@@ -31,7 +31,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcTextInput
-        label="Suggestions as a function"
+        label="Enter your country"
         value={value}
         onChange={onChange}
         suggestions={callbackFunc}

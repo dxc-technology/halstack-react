@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import functionSuggestions from "./examples/functionSuggestions";
+import errorHandling from "./examples/errorHandling";
 
 const sections = [
   {
@@ -275,6 +276,14 @@ const sections = [
         content: (
           <>
             <Example example={functionSuggestions} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Error handling",
+        content: (
+          <>
+            <Example example={errorHandling} defaultIsVisible />
           </>
         ),
       },

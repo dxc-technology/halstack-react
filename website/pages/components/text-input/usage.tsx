@@ -7,7 +7,7 @@ const Usage = () => {
   return (
     <>
       <Head>
-        <title>TextInput Usage — Halstack Design System</title>
+        <title>Text Input Usage — Halstack Design System</title>
       </Head>
       <TextInputUsagePage></TextInputUsagePage>
     </>

@@ -46,7 +46,7 @@ const sections = [
           <DxcList>
             <DxcText>
               Do not use text input for text longer than a single line (e.g.
-              name, phone number). Use the text area instead.
+              name, phone number). Use the textarea instead.
             </DxcText>
             <DxcText>Do not disable copy and paste.</DxcText>
             <DxcText>
