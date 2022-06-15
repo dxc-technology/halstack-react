@@ -5,6 +5,8 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
+import Example from "@/common/example/Example";
+import determinateIndeterminate from "./examples/determinateIndeterminate";
 import determinateImage from "./images/spinner_determinate_indeterminate.png";
 import variantsImage from "./images/spinner_variants.png";
 
@@ -50,12 +52,7 @@ const sections = [
     title: "Determinate or indeterminate",
     content: (
       <>
-        <Figure caption="Determinate and indeterminate spinners">
-          <Image
-            src={determinateImage}
-            alt="Determinate and indeterminate spinners"
-          />
-        </Figure>
+        <Example example={determinateIndeterminate} defaultIsVisible />
         <DxcList>
           <DxcText>
             Determinate indicators display how long a process will take. They
