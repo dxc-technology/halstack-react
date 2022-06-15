@@ -10,7 +10,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcSwitch
-        label="Controlled"
+        label="Wifi"
         checked={checked}
         onChange={onChange}
       />
