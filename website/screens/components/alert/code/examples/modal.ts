@@ -14,21 +14,15 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcStack gutter="large" align="center">
-        <DxcButton
-          label="Overlay Alert"
-          onClick={handleVisibility}
-          size="large"
+      <DxcButton label="Show information" onClick={handleVisibility} size="large" />
+      {isVisible && (
+        <DxcAlert
+          type="info"
+          mode="modal"
+          onClose={handleVisibility}
+          inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
         />
-        {isVisible && (
-          <DxcAlert
-            type="info"
-            mode="modal"
-            onClose={handleVisibility}
-            inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
-          />
-        )}
-      </DxcStack>
+      )}
     </DxcInset>
   );
 }`;

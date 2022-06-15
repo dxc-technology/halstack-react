@@ -5,6 +5,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
+import icon from "./examples/icon";
 
 const sections = [
   {
@@ -97,11 +98,11 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={basicUsage} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Icon",
+        content: <Example example={icon} defaultIsVisible />,
       },
     ],
   },

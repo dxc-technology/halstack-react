@@ -4,7 +4,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcBox shadowDepth={1}>
-        <DxcInset space="small">Box Content</DxcInset>
+        <DxcInset space="large">Personal information</DxcInset>
       </DxcBox>
     </DxcInset>
   );
