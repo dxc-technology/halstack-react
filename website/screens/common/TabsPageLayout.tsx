@@ -29,6 +29,8 @@ const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
 
 const TabsContainer = styled.div`
   display: flex;
+  width: 100%;
+  overflow-x: auto;
 `;
 
 const Space = styled.div`
