@@ -938,11 +938,9 @@ const sections = [
               <>
                 <DxcText as="p">
                   The select component <strong>input</strong> share the{" "}
-                  <DxcLink>
-                    <Link href="/components/text-input/specifications">
-                      <a>same spacing tokens of the text input</a>
-                    </Link>
-                  </DxcLink>
+                  <Link href="/components/text-input/specifications" passHref>
+                    <DxcLink>same spacing tokens of the text input</DxcLink>
+                  </Link>
                   .
                 </DxcText>
                 <DxcTable>
@@ -1203,7 +1201,7 @@ const SelectSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/select/specs/SelectSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/select/specs/SelectSpecsPage.tsx" />
     </DxcStack>
   );
 };

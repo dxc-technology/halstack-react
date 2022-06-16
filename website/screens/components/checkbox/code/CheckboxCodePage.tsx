@@ -155,7 +155,7 @@ const CheckboxCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/checkbox/code/CheckboxCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/checkbox/code/CheckboxCodePage.tsx" />
     </DxcStack>
   );
 };

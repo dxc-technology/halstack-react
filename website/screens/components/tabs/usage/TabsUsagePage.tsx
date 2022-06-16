@@ -4,18 +4,19 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
-import tabsUsage from "./images/tabs_usage.png";
+import tabsUsage from "./examples/tabsUsage";
+import defaultUsage from "./examples/defaultUsage";
 import contentUsageTabImage from "./images/tabs_content.png";
 import typographyUsageTabImage from "./images/tabs_typography.png";
 import tabsPlacement from "./images/tabs_placement.png";
-import defaultPlacement from "./images/tabs_default_placement.png";
-import scrollablePlacement from "./images/tabs_scrollable_placement.png";
 import scrollablePanelNavigation from "./images/tabs_scrollable_panel_navigation.png";
 import mobileNavigation from "./images/tabs_mobile_navigation.png";
 import panelNavigation from "./images/tabs_panel_navigation.png";
 import tabsAlignment from "./images/tabs_alignment.png";
 import tabsPanelBehavior from "./images/tabs_panel_behavior.png";
 import tabsScrollablePanelBehavior from "./images/tabs_scrollable_panel_behavior.png";
+import Example from "@/common/example/Example";
+import scrollableUsage from "./examples/scrollableUsage";
 
 const sections = [
   {
@@ -26,7 +27,7 @@ const sections = [
           Tabs organize and allow navigation between groups of content that are
           related and at the same level of hierarchy.
         </DxcText>
-        <Image src={tabsUsage} alt="image" />
+        <Example example={tabsUsage}></Example>
       </>
     ),
   },
@@ -103,12 +104,8 @@ const sections = [
                   When used for main navigation place tabs above the header
                   using 100% of the width of the screen.
                 </DxcText>
-                <Figure caption="Center horizontally in container is allowed when there is few tabs.">
-                  <Image src={defaultPlacement} alt="image" />
-                </Figure>
-                <Figure caption="Use an indicator when there are elements hidden in scrollable tabs.">
-                  <Image src={scrollablePlacement} alt="image" />
-                </Figure>
+                <Example example={defaultUsage}></Example>
+                <Example example={scrollableUsage}></Example>
                 <DxcText as="p">
                   <strong>Container</strong>
                 </DxcText>
@@ -172,10 +169,6 @@ const sections = [
             <Figure
               caption={
                 <>
-                  <DxcText as="p">
-                    <strong>Left</strong>: Tabs are always displayed in a single
-                    row.
-                  </DxcText>
                   <DxcText as="p">
                     <strong>Left</strong>: Tabs are always displayed in a single
                     row.
@@ -292,7 +285,7 @@ const TabsUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/tabs/usage/TabsUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/tabs/usage/TabsUsagePage.tsx" />
     </DxcStack>
   );
 };

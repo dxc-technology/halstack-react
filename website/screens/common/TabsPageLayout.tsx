@@ -1,5 +1,8 @@
 import { useRouter } from "next/router";
-import { DxcTabs } from "@dxc-technology/halstack-react";
+import { DxcNavTabs } from "@dxc-technology/halstack-react";
+import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
 
 type TabsPageLayoutProps = {
   tabs: { label: string; path: string }[];
@@ -7,20 +10,32 @@ type TabsPageLayoutProps = {
 
 const TabsPageLayout = ({ tabs }: TabsPageLayoutProps) => {
   const router = useRouter();
-  const tabsList = tabs ? tabs.map((tab) => ({ label: tab.label })) : [];
-  const activeTabIndex = tabs.findIndex((tab) => tab.path === router.pathname);
-
-  const handleTabChange = (index: number) => {
-    router.push(tabs[index].path);
-  };
 
   return (
-    <DxcTabs
-      activeTabIndex={activeTabIndex}
-      tabs={tabsList}
-      onTabClick={handleTabChange}
-    ></DxcTabs>
+    <TabsContainer>
+      <DxcNavTabs>
+        {tabs.map((tab, index) => (
+          <Link key={index} href={tab.path} passHref>
+            <DxcNavTabs.Tab active={tab.path === router.pathname}>
+              {tab.label}
+            </DxcNavTabs.Tab>
+          </Link>
+        ))}
+      </DxcNavTabs>
+      <Space></Space>
+    </TabsContainer>
   );
 };
+
+const TabsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+`;
+
+const Space = styled.div`
+  border-bottom: 2px solid #0000001a;
+  width: 100%;
+`;
 
 export default TabsPageLayout;

@@ -31,11 +31,9 @@ const sections = [
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
           for reference{" "}
-          <DxcLink>
-            <Link href="/components/text-input/specifications">
-              <a>check the text input component documentation</a>
-            </Link>
-          </DxcLink>
+          <Link href="/components/text-input/specifications" passHref>
+            <DxcLink>check the text input component documentation</DxcLink>
+          </Link>
           .
         </DxcText>
         <DxcText as="p">
@@ -536,7 +534,7 @@ const DateInputSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/date-input/specs/DateInputSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/date-input/specs/DateInputSpecsPage.tsx" />
     </DxcStack>
   );
 };

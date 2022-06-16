@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const TextareaPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/textarea" },
+    { label: "Code", path: "/components/textarea" },
+    { label: "Usage", path: "/components/textarea/usage" },
     { label: "Specifications", path: "/components/textarea/specifications" },
   ];
 

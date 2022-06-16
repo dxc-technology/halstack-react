@@ -15,7 +15,7 @@ const sections = [
           Every table cell requires a logical column header/row header.
         </DxcText>
         <DxcText>
-          Don&#39;t use the table for create visual layout of the content of a
+          Don&#39;t use the table to create visual layout of the content of a
           page.
         </DxcText>
         <DxcText>Avoid truncating content, wrap instead.</DxcText>
@@ -33,7 +33,7 @@ const TableUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/table/usage/TableUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/table/usage/TableUsagePage.tsx" />
     </DxcStack>
   );
 };

@@ -28,11 +28,9 @@ const sections = [
           The textarea <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>width</Code> and <Code>margin</Code>{" "}
           specifications are inherited from the text input, for reference{" "}
-          <DxcLink>
-            <Link href="/components/text-input">
-              <a>check the text input component documentation</a>
-            </Link>
-          </DxcLink>
+          <Link href="/components/text-input" passHref>
+            <DxcLink>check the text input component documentation</DxcLink>
+          </Link>
           .
         </DxcText>
         <DxcText as="p">
@@ -226,7 +224,7 @@ const TextareaSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/textarea/specs/TextareaSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/textarea/specs/TextareaSpecsPage.tsx" />
     </DxcStack>
   );
 };

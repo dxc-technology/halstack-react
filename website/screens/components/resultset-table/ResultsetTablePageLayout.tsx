@@ -8,7 +8,8 @@ const ResultsetTablePageHeading = ({
   children: React.ReactNode;
 }) => {
   const tabs = [
-    { label: "Usage", path: "/components/resultset-table" },
+    { label: "Code", path: "/components/resultset-table" },
+    { label: "Usage", path: "/components/resultset-table/usage" },
     {
       label: "Specifications",
       path: "/components/resultset-table/specifications",

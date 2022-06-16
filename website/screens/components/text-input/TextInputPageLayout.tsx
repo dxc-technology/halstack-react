@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const TextInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/text-input" },
+    { label: "Code", path: "/components/text-input" },
+    { label: "Usage", path: "/components/text-input/usage" },
     { label: "Specifications", path: "/components/text-input/specifications" },
   ];
 

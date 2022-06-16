@@ -4,7 +4,7 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
-import modes from "./examples/modes";
+import basicUsage from "./examples/basicUsage";
 
 const sections = [
   {
@@ -99,7 +99,7 @@ const sections = [
         title: "Basic usage",
         content: (
           <>
-            <Example example={modes} defaultIsVisible />
+            <Example example={basicUsage} defaultIsVisible />
           </>
         ),
       },
@@ -116,7 +116,7 @@ const ButtonCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/button/code/ButtonCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/button/code/ButtonCodePage.tsx" />
     </DxcStack>
   );
 };

@@ -4,7 +4,8 @@ import PageHeading from "@/common/PageHeading";
 
 const AccordionPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/accordion" },
+    { label: "Code", path: "/components/accordion" },
+    { label: "Usage", path: "/components/accordion/usage" },
     { label: "Specifications", path: "/components/accordion/specifications" },
   ];
 

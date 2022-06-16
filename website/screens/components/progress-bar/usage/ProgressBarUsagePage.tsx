@@ -1,11 +1,10 @@
 import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
-import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
-import determinateImage from "./images/progress_determinate_undeterminate.png";
-import variantsImage from "./images/progress_variants.png";
+import determinate_indeterminate from "./examples/determinate_undeterminate";
+import variants from "./examples/variants";
+import Example from "@/common/example/Example";
 
 const sections = [
   {
@@ -16,16 +15,16 @@ const sections = [
         content: (
           <DxcList>
             <DxcText>
-              Use a progress bar when it will give people feedback in a
+              Use a progress bar when it needs to give feedback in a
               long-running process with continuous values.
             </DxcText>
             <DxcText>
-              Add additional information to clarify to the user the action for
-              which is waiting (&quot;Sending documents...&quot;).
+              Add additional information to clarify the user about the action it
+              is waiting (&quot;Sending documents...&quot;).
             </DxcText>
             <DxcText>
-              Use the determinate type if it is possible, the user can have an
-              estimation on how long it is gonna take.
+              Use the determinate type whenever possible, the user can have an
+              estimation on how long it is going take.
             </DxcText>
           </DxcList>
         ),
@@ -40,7 +39,7 @@ const sections = [
             </DxcText>
             <DxcText>
               Do not use this type of component in actions that will take less
-              than 1 minute to the system.
+              than 1 minute of processing.
             </DxcText>
           </DxcList>
         ),
@@ -55,9 +54,7 @@ const sections = [
           The component progress-bar has two variants: <strong>default</strong>{" "}
           and <strong>overlay</strong>.
         </DxcText>
-        <Figure caption="Progress bar variants">
-          <Image src={variantsImage} alt="Progress bar variants" />
-        </Figure>
+        <Example example={variants} />
       </>
     ),
   },
@@ -65,12 +62,7 @@ const sections = [
     title: "Determinate or indeterminate",
     content: (
       <>
-        <Figure caption="Determinate vs undeterminate progress bar">
-          <Image
-            src={determinateImage}
-            alt="Determinate vs undeterminate progress bar"
-          />
-        </Figure>
+        <Example example={determinate_indeterminate} />
         <DxcList>
           <DxcText>
             Determinate indicators display how long a process will take. They
@@ -104,7 +96,7 @@ const ProgressBarUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/progress-bar/usage/ProgressBarUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/progress-bar/usage/ProgressBarUsagePage.tsx" />
     </DxcStack>
   );
 };

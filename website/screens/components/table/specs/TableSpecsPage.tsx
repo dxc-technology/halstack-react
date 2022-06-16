@@ -31,23 +31,17 @@ const sections = [
         <DxcText as="p">
           Some other components defined in the design system are used in the
           table component as the{" "}
-          <DxcLink>
-            <Link href="/components/checkbox">
-              <a>checkbox</a>
-            </Link>
-          </DxcLink>
+          <Link href="/components/checkbox" passHref>
+            <DxcLink>checkbox</DxcLink>
+          </Link>
           ,{" "}
-          <DxcLink>
-            <Link href="/components/button">
-              <a>button</a>
-            </Link>
-          </DxcLink>{" "}
+          <Link href="/components/button" passHref>
+            <DxcLink>button</DxcLink>
+          </Link>{" "}
           or{" "}
-          <DxcLink>
-            <Link href="/components/select">
-              <a>select</a>
-            </Link>
-          </DxcLink>
+          <Link href="/components/select" passHref>
+            <DxcLink>select</DxcLink>
+          </Link>
           . For concrete specifications about states, please, consider to see
           the documentation of each component.
         </DxcText>
@@ -596,7 +590,7 @@ const TableSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/table/specs/TableSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/table/specs/TableSpecsPage.tsx" />
     </DxcStack>
   );
 };
