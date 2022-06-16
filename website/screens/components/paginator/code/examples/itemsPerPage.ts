@@ -4,7 +4,6 @@ import { useState } from "react";
 const code = `() => {
   const [page, changePage] = useState(1);
   const [items, changeItems] = useState(10);
-
   const itemsPerPageClick = (value) => {
     changeItems(value);
   };
