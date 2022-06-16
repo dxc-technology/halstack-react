@@ -1,12 +1,9 @@
 import { DxcButton, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
-  const onClick = () => {
-    console.log("click");
-  };
   return (
     <DxcInset space="large">
-      <DxcButton label="Button" onClick={onClick} />
+      <DxcButton label="Button" />
     </DxcInset>
   );
 }`;
