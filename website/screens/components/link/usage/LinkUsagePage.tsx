@@ -2,7 +2,7 @@ import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import linksWithIcon from "./examples/linksWithIcon";
+import iconUsage from "./examples/iconUsage";
 import Example from "@/common/example/Example";
 
 const sections = [
@@ -30,7 +30,7 @@ const sections = [
           represent more graphical the purpose of the link, placing the icon
           before or after the link that is representing.
         </DxcText>
-        <Example example={linksWithIcon}></Example>
+        <Example example={iconUsage}></Example>
       </>
     ),
   },
