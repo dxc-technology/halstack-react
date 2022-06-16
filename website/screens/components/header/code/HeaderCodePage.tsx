@@ -1,0 +1,133 @@
+import { DxcText, DxcStack, DxcTable } from "@dxc-technology/halstack-react";
+import Code from "@/common/Code";
+import DocFooter from "@/common/DocFooter";
+import QuickNavContainer from "@/common/QuickNavContainer";
+import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import Example from "@/common/example/Example";
+import basicUsage from "./examples/basicUsage";
+import withCustomContent from "./examples/withCustomContent";
+import withDropdown from "./examples/withDropdown";
+
+const sections = [
+  {
+    title: "Props",
+    content: (
+      <DxcTable>
+        <tr>
+          <th>Name</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>underlined: boolean</td>
+          <td>
+            <Code>false</Code>
+          </td>
+          <td>
+            Wether a contrast line should appear at the bottom of the header.
+          </td>
+        </tr>
+        <tr>
+          <td>content: node</td>
+          <td></td>
+          <td>
+            Content showed in the header. Take into account that the component
+            applies styles for the first child in the content, so we recommend
+            the use of React.Fragment to be applied correctly. Otherwise, the
+            styles can be modified.
+          </td>
+        </tr>
+        <tr>
+          <td>responsiveContent: function</td>
+          <td></td>
+          <td>
+            Content showed in responsive version. It receives the close menu
+            handler that can be used to add that functionality when a element is
+            clicked.
+          </td>
+        </tr>
+        <tr>
+          <td>onClick: function</td>
+          <td></td>
+          <td>
+            This function will be called when the user clicks the header logo.
+          </td>
+        </tr>
+        <tr>
+          <td>margin: string</td>
+          <td></td>
+          <td>
+            Size of the bottom margin to be applied to the header ('xxsmall' |
+            'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+          </td>
+        </tr>
+        <tr>
+          <td>padding: string | object</td>
+          <td></td>
+          <td>
+            Size of the padding to be applied to the custom area of the
+            component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' |
+            'xlarge' | 'xxlarge'). You can pass an object with 'top', 'bottom',
+            'left' and 'right' properties in order to specify different padding
+            sizes.
+          </td>
+        </tr>
+        <tr>
+          <td>tabIndex: number</td>
+          <td>
+            <Code>0</Code>
+          </td>
+          <td>
+            Value of the tabindex for all interactuable elements, except those
+            inside the custom area.
+          </td>
+        </tr>
+      </DxcTable>
+    ),
+  },
+  {
+    title: "Examples",
+    subSections: [
+      {
+        title: "Basic usage",
+        content: (
+          <>
+            <Example example={basicUsage} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "With custom content",
+        content: (
+          <>
+            <Example example={withCustomContent} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "With dropdown",
+        content: (
+          <>
+            <Example example={withDropdown} defaultIsVisible />
+          </>
+        ),
+      },
+    ],
+  },
+];
+
+const HeaderCodePage = () => {
+  return (
+    <DxcStack gutter="xxlarge">
+      <QuickNavContainerLayout>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
+      </QuickNavContainerLayout>
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/header/code/HeaderCodePage.tsx" />
+    </DxcStack>
+  );
+};
+
+export default HeaderCodePage;

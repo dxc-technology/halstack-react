@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import HeaderPageLayout from "../../../screens/components/header/HeaderPageLayout";
-import HeaderUsagePage from "../../../screens/components/header/usage/HeaderUsagePage";
+import HeaderCodePage from "../../../screens/components/header/code/HeaderCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Header — Halstack Design System</title>
       </Head>
-      <HeaderUsagePage></HeaderUsagePage>
+      <HeaderCodePage></HeaderCodePage>
     </>
   );
 };
