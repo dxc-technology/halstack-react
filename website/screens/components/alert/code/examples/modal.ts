@@ -20,7 +20,7 @@ const code = `() => {
           type="info"
           mode="modal"
           onClose={handleVisibility}
-          inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+          inlineText="Please read the documents carefully before the submission of the data."
         />
       )}
     </DxcInset>

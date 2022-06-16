@@ -3,18 +3,15 @@ import { DxcAlert, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <DxcInset space="large">
-      <DxcStack gutter="large">
+      <DxcStack gutter="large" align="center">
         <DxcAlert
           type="confirm"
           size="fillParent"
           mode="inline"
           size="medium"
-          inlineText="Your data has been correctly saved."
+          inlineText="Inline text."
         >
-          <DxcInset space="xxxsmall">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </DxcInset>
+          <DxcInset space="xxxsmall">Custom content.</DxcInset>
         </DxcAlert>
       </DxcStack>
     </DxcInset>

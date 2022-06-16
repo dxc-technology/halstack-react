@@ -7,22 +7,22 @@ const code = `() => {
         <DxcAlert
           type="info"
           size="fillParent"
-          inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+          inlineText="Inline text."
         />
         <DxcAlert
           type="confirm"
           size="fillParent"
-          inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+          inlineText="Inline text."
         />
         <DxcAlert
           type="warning"
           size="fillParent"
-          inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+          inlineText="Inline text."
         />
         <DxcAlert
           type="error"
           size="fillParent"
-          inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+          inlineText="Inline text."
         />
       </DxcStack>
     </DxcInset>

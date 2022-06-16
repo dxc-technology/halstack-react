@@ -27,7 +27,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="medium">
+    <DxcInset space="large">
       <DxcStack gutter="medium">
         <DxcRow justify="spaceEvenly">
           <DxcButton label="Primary" size="large" icon={icon} />

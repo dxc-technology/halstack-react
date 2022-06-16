@@ -10,13 +10,12 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcAccordion
-        label="See deployments"
+        label="How to edit your profile?"
         isExpanded={isExpanded}
         onChange={onChange}
       >
-        <DxcInset space="large">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
+        <DxcInset space="medium">
+          To edit your profile you need to go to Settings and click on Profile.
         </DxcInset>
       </DxcAccordion>
     </DxcInset>

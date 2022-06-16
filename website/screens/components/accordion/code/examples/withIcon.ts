@@ -36,28 +36,29 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcStack gutter="large">
-        <DxcAccordion label="See deployments" icon={infoIcon}>
-          <DxcInset space="large">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+        <DxcAccordion label="How to edit your profile?" icon={infoIcon}>
+          <DxcInset space="medium">
+            To edit your profile you need to go to Settings and click on
+            Profile.
           </DxcInset>
         </DxcAccordion>
         <DxcAccordionGroup defaultIndexActive={0}>
           <DxcAccordionGroup.Accordion
-            label="Personal information"
+            label="How to edit your profile?"
             icon={successIcon}
           >
             <DxcInset space="medium">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
+              To edit your profile you need to go to Settings and click on
+              Profile.
             </DxcInset>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Address information" icon={successIcon}>
+          <DxcAccordionGroup.Accordion
+            label="How to log out?"
+            icon={successIcon}
+          >
             <DxcInset space="medium">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
+              To edit your profile you need to go to Settings and click on Log
+              out.
             </DxcInset>
           </DxcAccordionGroup.Accordion>
         </DxcAccordionGroup>

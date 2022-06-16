@@ -6,7 +6,7 @@ import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import controlledAccordion from "./examples/controlledAccordion";
 import uncontrolledAccordion from "./examples/uncontrolledAccordion";
-import icon from "./examples/icon";
+import withIcon from "./examples/withIcon";
 import controlledAccordionGroup from "./examples/controlledAccordionGroup";
 import uncontrolledAccordionGroup from "./examples/uncontrolledAccordionGroup";
 
@@ -261,8 +261,8 @@ const sections = [
         ),
       },
       {
-        title: "Icon",
-        content: <Example example={icon} defaultIsVisible />,
+        title: "With icon",
+        content: <Example example={withIcon} defaultIsVisible />,
       },
     ],
   },
