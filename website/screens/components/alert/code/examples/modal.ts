@@ -14,7 +14,7 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcButton label="Show information" onClick={handleVisibility} size="large" />
+      <DxcButton label="Show information" onClick={handleVisibility} />
       {isVisible && (
         <DxcAlert
           type="info"
