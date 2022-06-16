@@ -8,8 +8,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basicUsage from "../usage/examples/basicUsage";
-import childrenUsage from "../usage/examples/childrenUsage";
+import types from "../usage/examples/types";
+import content from "./examples/content";
 
 const sections = [
   {
@@ -48,7 +48,7 @@ const sections = [
     title: "Types",
     content: (
       <>
-        <Example example={basicUsage} />
+        <Example example={types} />
         <DxcTable>
           <thead>
             <tr>
@@ -136,7 +136,7 @@ const sections = [
     title: "Content",
     content: (
       <>
-        <Example example={childrenUsage} />
+        <Example example={content} />
         <DxcText as="p">
           Depending on the content that need to be displayed, more detailed
           descriptions can be added to the alert component as children.
