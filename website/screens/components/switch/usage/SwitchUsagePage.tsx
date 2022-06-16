@@ -10,7 +10,8 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
 import stackingImage from "./images/switch_stacking.png";
-import positionImage from "./images/switch_label_position.png";
+import labelPosition from "./examples/labelPosition";
+import Example from "@/common/example/Example";
 
 const sections = [
   {
@@ -50,12 +51,7 @@ const sections = [
     title: "Label position",
     content: (
       <>
-        <Figure caption="Switch label position options example">
-          <Image
-            src={positionImage}
-            alt="Switch label position options example"
-          />
-        </Figure>
+        <Example example={labelPosition} />
         <DxcTable>
           <thead>
             <tr>

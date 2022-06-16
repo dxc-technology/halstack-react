@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import SwitchPageLayout from "../../../screens/components/switch/SwitchPageLayout";
-import SwitchUsagePage from "../../../screens/components/switch/usage/SwitchUsagePage";
+import SwitchCodePage from "../../../screens/components/switch/code/SwitchCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Switch — Halstack Design System</title>
       </Head>
-      <SwitchUsagePage></SwitchUsagePage>
+      <SwitchCodePage></SwitchCodePage>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import ToggleGroupPageLayout from "../../../screens/components/toggle-group/ToggleGroupPageLayout";
-import ToggleGroupUsagePage from "../../../screens/components/toggle-group/usage/ToggleGroupUsagePage";
+import ToggleGroupCodePage from "../../../screens/components/toggle-group/code/ToggleGroupCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Toggle Group — Halstack Design System</title>
       </Head>
-      <ToggleGroupUsagePage></ToggleGroupUsagePage>
+      <ToggleGroupCodePage></ToggleGroupCodePage>
     </>
   );
 };
