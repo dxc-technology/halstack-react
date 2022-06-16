@@ -7,7 +7,6 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import determinateIndeterminate from "./examples/determinateIndeterminate";
-import determinateImage from "./images/spinner_determinate_indeterminate.png";
 import variantsImage from "./images/spinner_variants.png";
 
 const sections = [
@@ -23,12 +22,12 @@ const sections = [
           second.
         </DxcText>
         <DxcText>
-          The text of the action it is not mandatory but recommendable.
+          The text of the action is not mandatory but recommendable.
         </DxcText>
         <DxcText>
           If only a portion of a page is displaying new content or being
-          updated, use a <Code>medium</Code> or <Code>small</Code> spinner place
-          the spinner in that part of the page.
+          updated, use a <Code>medium</Code> or <Code>small</Code> spinner in
+          that part of the page.
         </DxcText>
       </DxcList>
     ),

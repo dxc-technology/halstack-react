@@ -17,7 +17,6 @@ const sections = [
           <th>Default</th>
           <th>Description</th>
         </tr>
-
         <tr>
           <td>label: string</td>
           <td></td>

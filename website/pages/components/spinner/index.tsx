@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import SpinnerCodePage from "../../../screens/components/spinner/code/SpinnerCodePage";
 import SpinnerPageLayout from "../../../screens/components/spinner/SpinnerPageLayout";
 
-const Usage = () => {
+const Index = () => {
   return (
     <>
       <Head>
@@ -14,8 +14,8 @@ const Usage = () => {
   );
 };
 
-Usage.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = function getLayout(page: ReactElement) {
   return <SpinnerPageLayout>{page}</SpinnerPageLayout>;
 };
 
-export default Usage;
+export default Index;
