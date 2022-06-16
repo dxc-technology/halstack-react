@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const SpinnerPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/spinner" },
+    { label: "Code", path: "/components/spinner" },
+    { label: "Usage", path: "/components/spinner/usage" },
     { label: "Specifications", path: "/components/spinner/specifications" },
   ];
 

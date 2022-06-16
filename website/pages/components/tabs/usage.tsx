@@ -1,21 +1,21 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
-import TabsCodePage from "../../../screens/components/tabs/code/TabsCodePage";
+import TabsUsagePage from "../../../screens/components/tabs/usage/TabsUsagePage";
 import TabsPageLayout from "../../../screens/components/tabs/TabsPageLayout";
 
-const Index = () => {
+const Usage = () => {
   return (
     <>
       <Head>
         <title>Tabs — Halstack Design System</title>
       </Head>
-      <TabsCodePage></TabsCodePage>
+      <TabsUsagePage></TabsUsagePage>
     </>
   );
 };
 
-Index.getLayout = function getLayout(page: ReactElement) {
+Usage.getLayout = function getLayout(page: ReactElement) {
   return <TabsPageLayout>{page}</TabsPageLayout>;
 };
 
-export default Index;
+export default Usage;
