@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const code = `() => {
   const [files, setFiles] = useState([]);
-
   const callbackFile = (files) => {
     const updatedFiles = files.map((file) => {
       if (file.error)
@@ -12,10 +11,11 @@ const code = `() => {
     });
     setFiles(updatedFiles);
   };
+
   return (
     <DxcInset space="large">
       <DxcFileInput
-        label="File"
+        label="Select your files"
         value={files}
         callbackFile={callbackFile}
         minSize={100000}

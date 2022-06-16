@@ -137,7 +137,6 @@ const sections = [
     content: (
       <>
         <Example example={childrenUsage} />
-
         <DxcText as="p">
           Depending on the content that need to be displayed, more detailed
           descriptions can be added to the alert component as children.
