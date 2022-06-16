@@ -4,7 +4,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basicUsage from "./examples/basicUsage";
+import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 
 const sections = [
@@ -111,7 +111,7 @@ const sections = [
         title: "Controlled",
         content: (
           <>
-            <Example example={basicUsage} defaultIsVisible />
+            <Example example={controlled} defaultIsVisible />
           </>
         ),
       },
