@@ -12,7 +12,6 @@ const code = `() => {
       <DxcAccordion
         label="See deployments"
         isExpanded={isExpanded}
-        assistiveText="Deployments information"
         onChange={onChange}
       >
         <DxcInset space="large">
