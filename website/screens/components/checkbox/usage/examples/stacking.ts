@@ -9,7 +9,7 @@ import {
 const code = `() => {
   return (
     <DxcInset space="large">
-      <DxcRow gutter="xxxlarge">
+      <DxcRow gutter="xxxlarge" justify="center">
         <DxcStack gutter="xsmall">
           <DxcHeading level={4} text="Vertical"></DxcHeading>
           <DxcCheckbox label="Option" labelPosition="after" />
