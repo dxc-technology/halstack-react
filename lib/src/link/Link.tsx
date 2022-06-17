@@ -6,7 +6,7 @@ import { Margin, LinkProps, Space } from "./types";
 
 const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JSX.Element => {
   return (
-    <LinkText>
+    <React.Fragment>
       {iconPosition === "after" && children}
       {icon && (
         <LinkIconContainer iconPosition={iconPosition}>
@@ -14,7 +14,7 @@ const LinkContent = React.memo(({ iconPosition, icon, children }: LinkProps): JS
         </LinkIconContainer>
       )}
       {iconPosition === "before" && children}
-    </LinkText>
+    </React.Fragment>
   );
 });
 
@@ -84,6 +84,7 @@ const StyledLink = styled.div<StyledLinkProps>`
   font-style: ${(props) => props.theme.fontStyle};
   font-family: ${(props) => props.theme.fontFamily};
   text-decoration-color: transparent;
+  width: fit-content;
 
   ${(props) =>
     `padding-bottom: ${props.theme.underlineSpacing};
@@ -117,12 +118,6 @@ const StyledLink = styled.div<StyledLinkProps>`
       `color: ${props.theme.activeFontColor} !important;
        border-bottom-color: ${props.theme.activeUnderlineColor} !important;`}
   }
-`;
-
-const LinkText = styled.div`
-  display: flex;
-  align-items: baseline;
-  max-width: 100%;
 `;
 
 const LinkIcon = styled.img``;

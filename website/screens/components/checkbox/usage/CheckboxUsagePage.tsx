@@ -8,7 +8,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import stacking from "./examples/StackingCheckbox";
+import stacking from "./examples/stacking";
 
 const sections = [
   {

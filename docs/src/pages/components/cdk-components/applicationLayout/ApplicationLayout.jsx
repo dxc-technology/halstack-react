@@ -34,9 +34,9 @@ function ApplicationLayout() {
         <p>
           Everything between this tags will be displayed as a header, at the top
           of the screen. If you want to show a{" "}
-          <DxcLink>
-            <Link to={`/components/header`}>DxcHeader</Link>
-          </DxcLink>
+          <Link to={`/components/header`} component={DxcLink}>
+            DxcHeader
+          </Link>
           , as a shortcut, you can use it as a direct child of the
           DxcApplicationLayout without the tags. This is optional and if it is
           not specified, the DxcHeader will be shown by default.
@@ -49,9 +49,9 @@ function ApplicationLayout() {
         <p>
           Everything between the tags will be displayed as a footer, at the
           bottom of the screen. If you want to show a{" "}
-          <DxcLink>
-            <Link to={`/components/footer`}>DxcFooter</Link>
-          </DxcLink>
+          <Link to={`/components/footer`} component={DxcLink}>
+            DxcFooter
+          </Link>
           , as a shortcut, you can use it as a direct child of the
           DxcApplicationLayout without the tags. This is optional and if it is
           not specified, the DxcFooter will be shown by default.
