@@ -1,4 +1,9 @@
-import { DxcText, DxcStack, DxcTable } from "@dxc-technology/halstack-react";
+import {
+  DxcStack,
+  DxcTable,
+  DxcText,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -7,6 +12,8 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import withCustomContent from "./examples/withCustomContent";
 import withDropdown from "./examples/withDropdown";
+import Link from "next/link";
+import React from "react";
 
 const sections = [
   {
@@ -86,31 +93,39 @@ const sections = [
     ),
   },
   {
+    title: "Children",
+    subSections: [
+      {
+        title: "DxcHeader.Dropdown",
+        content: (
+          <DxcText>
+            Everything between this tags will be displayed as a dropdown. If you
+            want to show a{" "}
+            <Link href="/components/dropdown" passHref>
+              <DxcLink>DxcDropdown</DxcLink>
+            </Link>
+            , as a shortcut, you can also use it as a direct child of the
+            DxcHeader without the tags, but we recommend to use it with the tags
+            since some styles will be applied for a better fit in the header.
+          </DxcText>
+        ),
+      },
+    ],
+  },
+  {
     title: "Examples",
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={basicUsage} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
         title: "With custom content",
-        content: (
-          <>
-            <Example example={withCustomContent} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={withCustomContent} defaultIsVisible />,
       },
       {
         title: "With dropdown",
-        content: (
-          <>
-            <Example example={withDropdown} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={withDropdown} defaultIsVisible />,
       },
     ],
   },
