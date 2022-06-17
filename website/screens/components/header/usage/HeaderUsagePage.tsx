@@ -4,8 +4,9 @@ import Figure from "@/common/Figure";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import headerVariants from "./images/header_variants.png";
 import headerResponsive from "./images/header_responsive.png";
+import variants from "./examples/variants";
+import Example from "@/common/example/Example";
 
 const sections = [
   {
@@ -27,9 +28,7 @@ const sections = [
     title: "Variants",
     content: (
       <>
-        <Figure caption="Header component variants">
-          <Image src={headerVariants} alt="Header component variants" />
-        </Figure>
+        <Example example={variants} />
         <DxcText as="p">
           Following the convention of the variants that can be found in a
           component, two main variants are defined for the header. Variants:{" "}
