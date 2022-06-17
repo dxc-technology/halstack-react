@@ -31,6 +31,7 @@ const DxcLink = forwardRef(
       margin,
       tabIndex = 0,
       children,
+      ...otherProps
     }: LinkProps,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
@@ -48,6 +49,7 @@ const DxcLink = forwardRef(
           inheritColor={inheritColor}
           margin={margin}
           ref={ref}
+          {...otherProps}
         >
           <LinkContent iconPosition={iconPosition} icon={icon} children={children} />
         </StyledLink>
