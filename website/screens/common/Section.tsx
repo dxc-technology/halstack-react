@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import { DxcStack } from "@dxc-technology/halstack-react";
+import styled from "styled-components";
 import HeadingLink from "./HeadingLink";
 
 type SectionType = {
@@ -24,18 +25,25 @@ const Section = ({
       {children}
       {subSections?.map((subSection) => {
         return (
-          <Section
-            key={`subSection-${subSection.title}`}
-            title={subSection.title}
-            subSections={subSection.subSections}
-            level={level + 1 <= 5 ? level + 1 : 5}
-          >
-            {subSection.content}
-          </Section>
+          <Subsection key={subSection.title}>
+            <Section
+              key={`subSection-${subSection.title}`}
+              title={subSection.title}
+              subSections={subSection.subSections}
+              level={level + 1 <= 5 ? level + 1 : 5}
+            >
+              {subSection.content}
+            </Section>
+          </Subsection>
         );
       })}
     </DxcStack>
   );
 };
+
+const Subsection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default Section;

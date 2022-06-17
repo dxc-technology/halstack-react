@@ -5,7 +5,8 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
-import determinateImage from "./images/spinner_determinate_indeterminate.png";
+import Example from "@/common/example/Example";
+import determinateIndeterminate from "./examples/determinateIndeterminate";
 import variantsImage from "./images/spinner_variants.png";
 
 const sections = [
@@ -21,12 +22,12 @@ const sections = [
           second.
         </DxcText>
         <DxcText>
-          The text of the action it is not mandatory but recommendable.
+          The text of the action is not mandatory but recommendable.
         </DxcText>
         <DxcText>
           If only a portion of a page is displaying new content or being
-          updated, use a <Code>medium</Code> or <Code>small</Code> spinner place
-          the spinner in that part of the page.
+          updated, use a <Code>medium</Code> or <Code>small</Code> spinner in
+          that part of the page.
         </DxcText>
       </DxcList>
     ),
@@ -50,12 +51,7 @@ const sections = [
     title: "Determinate or indeterminate",
     content: (
       <>
-        <Figure caption="Determinate and indeterminate spinners">
-          <Image
-            src={determinateImage}
-            alt="Determinate and indeterminate spinners"
-          />
-        </Figure>
+        <Example example={determinateIndeterminate} defaultIsVisible />
         <DxcList>
           <DxcText>
             Determinate indicators display how long a process will take. They
