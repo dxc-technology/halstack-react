@@ -4,7 +4,8 @@ import TabsPageLayout from "@/common/TabsPageLayout";
 
 const TabsPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/tabs" },
+    { label: "Code", path: "/components/tabs" },
+    { label: "Usage", path: "/components/tabs/usage" },
     { label: "Specifications", path: "/components/tabs/specifications" },
   ];
 

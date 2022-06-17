@@ -21,9 +21,9 @@ function Radio() {
       ></ComponentHeader>
       <DxcAlert type="warning" margin={{ bottom: "small" }} size="fillParent">
         The component status has been changed to deprecated. Use the new{" "}
-        <DxcLink inheritColor>
-          <Link to="/components/radioGroup">Radio Group</Link>
-        </DxcLink>{" "}
+        <Link to="/components/radioGroup" component={DxcLink} inheritColor>
+          Radio Group
+        </Link>{" "}
         component instead.
       </DxcAlert>
       <Section>

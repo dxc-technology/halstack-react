@@ -13,16 +13,16 @@ const code = `() => {
         indexActive={indexAccordion}
         onActiveChange={onActiveChange}
       >
-        <DxcAccordionGroup.Accordion label="See deployments">
+        <DxcAccordionGroup.Accordion label="How to edit your profile?">
           <DxcInset space="medium">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            To edit your profile you need to go to Settings and click on
+            Profile.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
-        <DxcAccordionGroup.Accordion label="See environments">
+        <DxcAccordionGroup.Accordion label="How to log out?">
           <DxcInset space="medium">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            To edit your profile you need to go to Settings and click on Log
+            out.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
       </DxcAccordionGroup>

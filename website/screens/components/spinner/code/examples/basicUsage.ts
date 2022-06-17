@@ -1,15 +1,15 @@
-import { DxcChip, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcSpinner, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="large">
-      <DxcChip label="Experimental" />
+      <DxcSpinner />
     </DxcInset>
   );
 }`;
 
 const scope = {
-  DxcChip,
+  DxcSpinner,
   DxcInset,
 };
 
