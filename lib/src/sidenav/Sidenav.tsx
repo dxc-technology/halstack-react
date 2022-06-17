@@ -1,8 +1,7 @@
 // @ts-nocheck
-import React, { useMemo, useState } from "react";
+import React, { forwardRef, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 
-import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import SidenavPropsType, { SidenavLinkPropsType, SidenavSectionPropsType, SidenavTitlePropsType } from "./types.js";
@@ -42,11 +41,12 @@ const Title = ({ children, icon }: SidenavTitlePropsType): JSX.Element => (
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   <div>
     <DxcStack gutter="small">
-      {React.Children.map(children, (child) => {
+      {/* {React.Children.map(children, (child) => {
         if (child.type === Group || child.type === Link) {
           return child;
         }
-      })}
+      })} */}
+      {children}
     </DxcStack>
   </div>
 );
@@ -94,26 +94,33 @@ const Group = ({ children, title, collapsable, icon }: SidenavGroupPropsType): J
   );
 };
 
-const Link = ({ href, children, newWindow = false, selected = false, icon }: SidenavLinkPropsType): JSX.Element => {
-  return (
-    <SideNavLink
-      selected={selected}
-      href={href ? href : undefined}
-      target={href ? (newWindow ? "_blank" : "_self") : undefined}
-    >
-      <span>
-        {icon}
-        {children}
-      </span>
-      {newWindow && (
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-          <path d="M0 0h24v24H0z" fill="none" />
-          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
-        </svg>
-      )}
-    </SideNavLink>
-  );
-};
+const Link = forwardRef(
+  (
+    { href, children, newWindow = false, selected = false, icon, ...rest }: SidenavLinkPropsType,
+    ref: Ref<HTMLAnchorElement>
+  ): JSX.Element => {
+    return (
+      <SideNavLink
+        selected={selected}
+        href={href ? href : undefined}
+        target={href ? (newWindow ? "_blank" : "_self") : undefined}
+        ref={ref}
+        {...rest}
+      >
+        <span>
+          {icon}
+          {children}
+        </span>
+        {newWindow && (
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+          </svg>
+        )}
+      </SideNavLink>
+    );
+  }
+);
 
 const SideNavContainer = styled.div`
   display: flex;
@@ -144,13 +151,6 @@ const SideNavContainer = styled.div`
 `;
 
 const SidenavTitle = styled.div`
-  /* font-family: ${(props) => props.theme.titleFontFamily};
-  font-size: ${(props) => props.theme.titleFontSize};
-  font-style: ${(props) => props.theme.titleFontStyle};
-  font-weight: ${(props) => props.theme.titleFontWeight};
-  color: ${(props) => props.theme.titleFontColor};
-  letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
-  text-transform: ${(props) => props.theme.titleFontTextTransform}; */
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 600;
@@ -167,7 +167,10 @@ const SidenavTitle = styled.div`
   }
 `;
 
-const SideNavGroup = styled.div`
+type StyledSideNavGroupProps = {
+  isGroupSelected: boolean;
+};
+const SideNavGroup = styled.div<StyledSideNavGroupProps>`
   width: 100%;
 
   button.sidenav-title {
@@ -206,12 +209,15 @@ const SideNavGroup = styled.div`
       align-items: center;
     }
   }
-  a:not(.sidenav-title) {
+  a {
     padding: 7px 24px 7px 36px;
   }
 `;
 
-const SideNavLink = styled.a`
+type StyledLinkProps = {
+  selected: boolean;
+};
+const SideNavLink = styled.a<StyledLinkProps>`
   letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
 
   text-transform: ${(props) => props.theme.linkFontTextTransform};
@@ -225,7 +231,7 @@ const SideNavLink = styled.a`
 
   ${(props) =>
     props.selected
-      ?`color: ${props.theme.linkSelectedFontColor}; background: ${props.theme.linkSelectedBackgroundColor};`
+      ? `color: ${props.theme.linkSelectedFontColor}; background: ${props.theme.linkSelectedBackgroundColor};`
       : `color: ${props.theme.linkFontColor}; background: transparent;`}
 
   display: flex;
@@ -251,9 +257,9 @@ const SideNavLink = styled.a`
 
   &:hover {
     ${(props) =>
-    props.selected
-      ? `color: ${props.theme.linkSelectedHoverFontColor}; background: ${props.theme.linkSelectedHoverBackgroundColor};`
-      : `color: ${props.theme.linkFontColor}; background: transparent;`}
+      props.selected
+        ? `color: ${props.theme.linkSelectedHoverFontColor}; background: ${props.theme.linkSelectedHoverBackgroundColor};`
+        : `color: ${props.theme.linkFontColor}; background: transparent;`}
   }
 
   &:focus {
@@ -263,58 +269,6 @@ const SideNavLink = styled.a`
 
   &:active {
     color: #ffffff;
-    background: #4d4d4d;
-    outline: 2px solid #0095ff;
-    outline-offset: -2px;
-  }
-`;
-
-const CustomLinkContainer = styled.div`
-  svg {
-    width: 16px;
-    fill: currentColor;
-    margin-right: 8px;
-  }
-  a {
-    font-family: ${(props) => props.theme.linkFontFamily};
-    font-size: ${(props) => props.theme.linkFontSize};
-    font-style: ${(props) => props.theme.linkFontStyle};
-    font-weight: ${(props) => props.theme.linkFontWeight};
-    letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
-
-    text-transform: ${(props) => props.theme.linkFontTextTransform};
-    text-decoration: ${(props) => props.theme.linkTextDecoration};
-
-    ${(props) => (props.selected ? "color: #ffffff;" : "color: #4D4D4D;")}
-
-    /* padding: 0.5rem 1rem; */
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
-  display: flex;
-  ${(props) => (props.selected ? "background: #4d4d4d;" : "background: transparent;")}
-  align-items: center;
-
-  min-height: 17px;
-  box-shadow: 0 0 0 2px transparent;
-
-  :hover {
-    ${(props) => (props.selected ? "background: #4d4d4d;" : "background: #e6e6e6;")}
-    a {
-      ${(props) => (props.selected ? "color: #ffffff;" : "")}
-    }
-  }
-
-  :focus {
-    outline: 2px solid ${(props) => props.theme.linkFocusColor};
-    outline-offset: -2px;
-  }
-
-  :active {
-    a {
-      color: #ffffff;
-    }
     background: #4d4d4d;
     outline: 2px solid #0095ff;
     outline-offset: -2px;

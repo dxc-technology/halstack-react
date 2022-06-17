@@ -1,5 +1,10 @@
 import React from "react";
-import { DxcSidenav, DxcLink, DxcFooter, HalstackProvider } from "@dxc-technology/halstack-react";
+import {
+  DxcSidenav,
+  DxcLink,
+  DxcFooter,
+  HalstackProvider,
+} from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { BrowserRouter, Link as RouterLink } from "react-router-dom";
 
@@ -12,9 +17,16 @@ const colors = {
 const SidenavLink = React.forwardRef(
   ({ href, children, newWindow = false, selected = false, icon }, ref) => {
     return (
-      <DxcSidenav.Link newWindow={newWindow} selected={selected} href={href} icon={icon}>
-        {children}
-      </DxcSidenav.Link>
+      <Link href={href} passHref>
+        <DxcSidenav.Link
+          newWindow={newWindow}
+          selected={selected}
+          icon={icon}
+          ref={ref}
+        >
+          {children}
+        </DxcSidenav.Link>
+      </Link>
     );
   }
 );
@@ -22,35 +34,18 @@ const SidenavLink = React.forwardRef(
 function App() {
   return (
     <div>
-      {/* <div className="test-case" id="children">
-        <DxcSidenav>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-        </DxcSidenav>
-      </div>
-
-      <div className="test-case" id="custom-colors">
-        <h4>Custom Sidenav</h4>
-        <HalstackProvider theme={colors}>
-          <DxcSidenav>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </DxcSidenav>
-        </HalstackProvider>
-      </div> */}
-
       <div className="test-case" id="sidenav-menu">
         <h4>Compound components Sidenav</h4>
         <BrowserRouter>
           <DxcSidenav>
             <DxcSidenav.Title
               icon={
-                <svg xmlns="http://www.w3.org/2000/svg" width="73" height="40" viewBox="0 0 73 40">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="73"
+                  height="40"
+                  viewBox="0 0 73 40"
+                >
                   <title>DXC Logo</title>
                   <g id="g10" transform="translate(0)">
                     <g id="g12">
@@ -73,45 +68,60 @@ function App() {
             >
               CULO CULO
             </DxcSidenav.Title>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+              ullamcorper consectetur mollis. Suspendisse vitae lacinia libero.
+              Donec ullamcorper mauris vitae enim porta, maximus sagittis lectus
+              porttitor. Cras sodales justo augue, tempor venenatis justo
+              aliquam non. Cras commodo augue eget quam auctor vestibulum.
+              Suspendisse et ipsum sem. Mauris mollis dolor et nunc pharetra
+              mollis. Quisque faucibus molestie ultricies. Sed nec suscipit
+              ipsum. Sed ac leo ac metus congue suscipit. Suspendisse vehicula
+              molestie eleifend. Nam hendrerit libero nec nisl sodales, et
+              placerat lorem vehicula.
+            </p>
+            <DxcSidenav.Link href="http://localhost:3000/sidenav">
+              SOLO CULO
+            </DxcSidenav.Link>
             <DxcSidenav.Section>
               <DxcSidenav.Group title="Culo II" collapsable={true}>
-                <Link href="/" passHref>
-                  <SidenavLink
-                    newWindow
-                    icon={
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z"
-                          fill="#323232"
-                        />
-                        <path
-                          d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z"
-                          fill="#323232"
-                        />
-                        <path
-                          d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z"
-                          fill="#323232"
-                        />
-                        <path
-                          d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z"
-                          fill="#323232"
-                        />
-                        <path
-                          d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12 17.5C14.33 17.5 16.32 16.05 17.12 14H15.45C14.76 15.19 13.48 16 12 16C10.52 16 9.25 15.19 8.55 14H6.88C7.68 16.05 9.67 17.5 12 17.5Z"
-                          fill="#323232"
-                        />
-                      </svg>
-                    }
-                  >
-                    TEST
-                  </SidenavLink>
-                </Link>
+                <SidenavLink
+                  selected
+                  href="/#/sidenav"
+                  newWindow
+                  icon={
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z"
+                        fill="#323232"
+                      />
+                      <path
+                        d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z"
+                        fill="#323232"
+                      />
+                      <path
+                        d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z"
+                        fill="#323232"
+                      />
+                      <path
+                        d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z"
+                        fill="#323232"
+                      />
+                      <path
+                        d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12 17.5C14.33 17.5 16.32 16.05 17.12 14H15.45C14.76 15.19 13.48 16 12 16C10.52 16 9.25 15.19 8.55 14H6.88C7.68 16.05 9.67 17.5 12 17.5Z"
+                        fill="#323232"
+                      />
+                    </svg>
+                  }
+                >
+                  TEST
+                </SidenavLink>
                 <RouterLink
                   href="/"
                   icon={
@@ -146,7 +156,6 @@ function App() {
                   }
                   component={DxcSidenav.Link}
                   newWindow
-                  selected
                 >
                   TEST II
                 </RouterLink>
@@ -185,31 +194,63 @@ function App() {
                 title="Culo II"
                 collapsable={true}
               >
-                <DxcSidenav.Link href="http://localhost:3000/sidenav">CULO III</DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  CULO III
+                </DxcSidenav.Link>
               </DxcSidenav.Group>
             </DxcSidenav.Section>
 
             <DxcSidenav.Section>
               <DxcSidenav.Group title="Culo II" collapsable={true}>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
               </DxcSidenav.Group>
               <DxcSidenav.Group title="Culo II" collapsable={true}>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
               </DxcSidenav.Group>
             </DxcSidenav.Section>
 
             <DxcSidenav.Section>
               <DxcSidenav.Group title="Culo II" collapsable={true}>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
               </DxcSidenav.Group>
               <DxcSidenav.Group title="Culo II" collapsable={true}>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
-                <DxcSidenav.Link href="http://localhost:3000/sidenav"> Culo III </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
+                <DxcSidenav.Link href="http://localhost:3000/sidenav">
+                  {" "}
+                  Culo III{" "}
+                </DxcSidenav.Link>
               </DxcSidenav.Group>
             </DxcSidenav.Section>
           </DxcSidenav>
