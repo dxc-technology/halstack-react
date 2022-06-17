@@ -9,7 +9,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
-import basic from "./examples/basic";
+import basicUsage from "./examples/basicUsage";
 
 const sections = [
   {
