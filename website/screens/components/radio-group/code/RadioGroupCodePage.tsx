@@ -4,7 +4,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basicUsage from "./examples/basicUsage";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
@@ -14,7 +13,6 @@ const sections = [
     title: "Props",
     content: (
       <DxcTable>
-        {" "}
         <tr>
           <th>Name</th>
           <th>Default</th>
@@ -167,28 +165,12 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: (
-          <>
-            <Example example={basicUsage} defaultIsVisible />
-          </>
-        ),
-      },
-      {
         title: "Controlled",
-        content: (
-          <>
-            <Example example={controlled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={controlled} defaultIsVisible />,
       },
       {
         title: "Uncontrolled",
-        content: (
-          <>
-            <Example example={uncontrolled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={uncontrolled} defaultIsVisible />,
       },
       {
         title: "Error handling",
