@@ -6,7 +6,7 @@ const code = `() => {
     };
 
     return (
-      <DxcInset space="medium">
+      <DxcInset space="large">
         <DxcWizard
           defaultCurrentStep={1}
           onStepClick={onStepClick}

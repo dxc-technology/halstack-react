@@ -2,8 +2,8 @@ import { DxcWizard, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
 
 const code = `() => {
     return (
-      <DxcInset space="medium">
-        <DxcStack gutter="medium">
+      <DxcInset space="large">
+        <DxcStack gutter="large">
           <DxcWizard
             steps={[
               {

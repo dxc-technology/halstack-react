@@ -15,7 +15,7 @@ const code = `() => {
     );
 
     return (
-      <DxcInset space="medium">
+      <DxcInset space="large">
         <DxcWizard
           currentStep={myCurrentStep}
           onStepClick={onStepClick}

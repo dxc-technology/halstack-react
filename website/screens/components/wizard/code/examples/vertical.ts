@@ -2,7 +2,7 @@ import { DxcWizard, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
     return (
-      <DxcInset space="medium">
+      <DxcInset space="large">
         <DxcWizard
           mode="vertical"
           steps={[
