@@ -11,7 +11,7 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcCheckbox label="Uncontrolled" defaultChecked onChange={onChange} />
+      <DxcCheckbox label="Of legal age" defaultChecked onChange={onChange} />
     </DxcInset>
   );
 }`;

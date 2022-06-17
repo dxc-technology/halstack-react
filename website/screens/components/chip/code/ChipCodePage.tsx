@@ -5,6 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
+import icon from "./examples/icon";
 
 const sections = [
   {
@@ -79,6 +80,14 @@ const sections = [
         content: (
           <>
             <Example example={basicUsage} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "Icon",
+        content: (
+          <>
+            <Example example={icon} defaultIsVisible />
           </>
         ),
       },
