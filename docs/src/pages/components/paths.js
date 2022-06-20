@@ -39,6 +39,8 @@ import Inset from "./cdk-components/inset/Inset";
 import Row from "./cdk-components/row/Row";
 import Bleed from "./cdk-components/bleed/Bleed";
 import QuickNav from "./cdk-components/quick-nav/QuickNav";
+import Typography from "./cdk-components/typography/Typography";
+import BulletedList from "./cdk-components/bulletedList/BulletedList";
 
 export const types = {
   FORMS: "Forms",
@@ -181,6 +183,13 @@ export default [
     status: "ready",
   },
   {
+    path: "bulletedList",
+    name: "BulletedList",
+    component: BulletedList,
+    type: types.UTILS,
+    status: "experimental",
+  },
+  {
     path: "numberInput",
     name: "Number Input",
     component: NumberInput,
@@ -306,6 +315,13 @@ export default [
     component: Tag,
     type: types.UTILS,
     status: "ready",
+  },
+  {
+    path: "typography",
+    name: "Typography",
+    component: Typography,
+    type: types.UTILS,
+    status: "experimental",
   },
   {
     path: "textarea",
