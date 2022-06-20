@@ -205,11 +205,11 @@ const sections = [
               </>
             ),
           },
-          {
-            title: "With icon",
-            content: <Example example={withIcon} defaultIsVisible />,
-          },
         ],
+      },
+      {
+        title: "With icon",
+        content: <Example example={withIcon} defaultIsVisible />,
       },
     ],
   },
