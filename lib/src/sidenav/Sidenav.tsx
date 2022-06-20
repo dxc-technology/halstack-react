@@ -53,21 +53,8 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
 
 const Group = ({ children, title, collapsable, icon }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
-  const isGroupSelected = useMemo(() => {
-    if (collapsable && collapsed) {
-      let selected = false;
-      React.Children.forEach(children, (child) => {
-        if (child.props?.selected) {
-          selected = true;
-        }
-      });
-      return selected;
-    } else {
-      return false;
-    }
-  }, [collapsed, collapsable, children]);
   return (
-    <SideNavGroup isGroupSelected={isGroupSelected} icon>
+    <SideNavGroup icon>
       {collapsable ? (
         <button className="sidenav-title" aria-expanded={collapsed} onClick={() => setCollapsed(!collapsed)}>
           <span>
@@ -167,10 +154,7 @@ const SidenavTitle = styled.div`
   }
 `;
 
-type StyledSideNavGroupProps = {
-  isGroupSelected: boolean;
-};
-const SideNavGroup = styled.div<StyledSideNavGroupProps>`
+const SideNavGroup = styled.div`
   width: 100%;
 
   button.sidenav-title {

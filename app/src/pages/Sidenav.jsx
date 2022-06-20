@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  DxcSidenav,
-  DxcLink,
-  DxcFooter,
-  HalstackProvider,
-} from "@dxc-technology/halstack-react";
+import { DxcSidenav } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { BrowserRouter, Link as RouterLink } from "react-router-dom";
 
@@ -82,6 +77,22 @@ function App() {
             </p>
             <DxcSidenav.Link href="http://localhost:3000/sidenav">
               SOLO CULO
+            </DxcSidenav.Link>
+            <DxcSidenav.Link href="http://localhost:3000/sidenav">
+              {" "}
+              Culo III{" "}
+            </DxcSidenav.Link>
+            <DxcSidenav.Link href="http://localhost:3000/sidenav">
+              {" "}
+              Culo III{" "}
+            </DxcSidenav.Link>
+            <DxcSidenav.Link href="http://localhost:3000/sidenav">
+              {" "}
+              Culo III{" "}
+            </DxcSidenav.Link>
+            <DxcSidenav.Link href="http://localhost:3000/sidenav">
+              {" "}
+              Culo III{" "}
             </DxcSidenav.Link>
             <DxcSidenav.Section>
               <DxcSidenav.Group title="Culo II" collapsable={true}>
