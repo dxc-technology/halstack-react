@@ -41,6 +41,7 @@ import Bleed from "./cdk-components/bleed/Bleed";
 import QuickNav from "./cdk-components/quick-nav/QuickNav";
 import Typography from "./cdk-components/typography/Typography";
 import BulletedList from "./cdk-components/bulletedList/BulletedList";
+import NavTabs from "./cdk-components/navtabs/NavTabs";
 
 export const types = {
   FORMS: "Forms",
@@ -187,6 +188,12 @@ export default [
     name: "BulletedList",
     component: BulletedList,
     type: types.UTILS,
+  },
+  {
+    path: "navtabs",
+    name: "Nav Tabs",
+    component: NavTabs,
+    type: types.NAVIGATION,
     status: "experimental",
   },
   {

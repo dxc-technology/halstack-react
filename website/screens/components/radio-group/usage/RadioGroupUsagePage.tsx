@@ -4,12 +4,11 @@ import {
   DxcText,
   DxcTable,
 } from "@dxc-technology/halstack-react";
-import Image from "@/common/Image";
-import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import radioGroupStacking from "./images/radio_group_stacking.png";
+import Example from "@/common/example/Example";
+import stacking from "./examples/stacking";
 
 const sections = [
   {
@@ -17,14 +16,14 @@ const sections = [
     content: (
       <DxcList>
         <DxcText>
-          Labelling should be concise and clearly differentiated with respect to
-          other options.
+          Labelling should be concise and clearly differentiated from other
+          options.
         </DxcText>
         <DxcText>
-          One option of the radio group can be pre-selected. Try to select the
-          safest or convenient option.
+          One option of the radio group can be pre-selected. Select the safest
+          or convenient option.
         </DxcText>
-        <DxcText>Single radio buttons should not be used.</DxcText>
+        <DxcText>Single radio button should not be used.</DxcText>
         <DxcText>
           If the question that the user needs to responde is as easier as
           yes/no, it is recommended to use a checkbox instead of radio group.
@@ -36,9 +35,7 @@ const sections = [
     title: "Stacking",
     content: (
       <>
-        <Figure caption="Radio button stacking options">
-          <Image src={radioGroupStacking} alt="Radio button stacking options" />
-        </Figure>
+        <Example example={stacking} />
         <DxcTable>
           <thead>
             <tr>
@@ -86,7 +83,7 @@ const RadioGroupUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/radio-group/usage/RadioGroupUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/radio-group/usage/RadioGroupUsagePage.tsx" />
     </DxcStack>
   );
 };

@@ -42,18 +42,20 @@ const sections = [
             <td>margin: string | object</td>
             <td></td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' |
-              'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass an object with 'top',
-              'bottom', 'left' and 'right' properties in order to specify different margin sizes.
+              Size of the margin to be applied to the component ('xxsmall' |
+              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+              You can pass an object with 'top', 'bottom', 'left' and 'right'
+              properties in order to specify different margin sizes.
             </td>
           </tr>
           <tr>
             <td>padding: string | object</td>
             <td></td>
             <td>
-              Size of the padding to be applied to the component ('xxsmall' | 'xsmall' | 'small' |
-              'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass an object with 'top',
-              'bottom', 'left' and 'right' properties in order to specify different padding sizes.
+              Size of the padding to be applied to the component ('xxsmall' |
+              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+              You can pass an object with 'top', 'bottom', 'left' and 'right'
+              properties in order to specify different padding sizes.
             </td>
           </tr>
           <tr>
@@ -62,7 +64,8 @@ const sections = [
               <Code>'fitContent'</Code>
             </td>
             <td>
-              Size of the component ('small' | 'medium' | 'large' | 'fillParent'| 'fitContent').
+              Size of the component ('small' | 'medium' | 'large' |
+              'fillParent'| 'fitContent').
             </td>
           </tr>
         </tbody>
@@ -88,9 +91,12 @@ const BoxCodePage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/box/code/BoxCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/box/code/BoxCodePage.tsx" />
     </DxcStack>
   );
 };

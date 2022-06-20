@@ -5,6 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
+import icon from "./examples/icon";
 
 const sections = [
   {
@@ -82,6 +83,14 @@ const sections = [
           </>
         ),
       },
+      {
+        title: "Icon",
+        content: (
+          <>
+            <Example example={icon} defaultIsVisible />
+          </>
+        ),
+      },
     ],
   },
 ];
@@ -95,7 +104,7 @@ const ChipCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/chip/code/ChipCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/chip/code/ChipCodePage.tsx" />
     </DxcStack>
   );
 };

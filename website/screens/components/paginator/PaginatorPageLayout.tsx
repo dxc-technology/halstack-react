@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const PaginatorPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/paginator" },
+    { label: "Code", path: "/components/paginator" },
+    { label: "Usage", path: "/components/paginator/usage" },
     { label: "Specifications", path: "/components/paginator/specifications" },
   ];
 

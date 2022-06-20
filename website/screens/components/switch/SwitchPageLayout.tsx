@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const SwitchPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/switch" },
+    { label: "Code", path: "/components/switch" },
+    { label: "Usage", path: "/components/switch/usage" },
     { label: "Specifications", path: "/components/switch/specifications" },
   ];
 

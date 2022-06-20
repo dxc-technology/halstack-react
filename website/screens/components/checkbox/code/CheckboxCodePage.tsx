@@ -4,7 +4,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basic from "./examples/basicUsage";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 
@@ -119,14 +118,6 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: (
-          <>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
-      },
-      {
         title: "Controlled",
         content: (
           <>
@@ -155,7 +146,7 @@ const CheckboxCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/checkbox/code/CheckboxCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/checkbox/code/CheckboxCodePage.tsx" />
     </DxcStack>
   );
 };

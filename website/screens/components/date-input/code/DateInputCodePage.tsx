@@ -25,14 +25,17 @@ const sections = [
           <tr>
             <td>defaultValue: string</td>
             <td></td>
-            <td>Initial value of the input element, only when it is uncontrolled.</td>
+            <td>
+              Initial value of the input element, only when it is uncontrolled.
+            </td>
           </tr>
           <tr>
             <td>value: string</td>
             <td></td>
             <td>
-              Value of the input element. If undefined, the component will be uncontrolled and the
-              value will be managed internally by the component.
+              Value of the input element. If undefined, the component will be
+              uncontrolled and the value will be managed internally by the
+              component.
             </td>
           </tr>
           <tr>
@@ -55,7 +58,9 @@ const sections = [
             <td>
               <Code>false</Code>
             </td>
-            <td>If true, the date format will appear as placeholder in the field.</td>
+            <td>
+              If true, the date format will appear as placeholder in the field.
+            </td>
           </tr>
           <tr>
             <td>format: string</td>
@@ -63,9 +68,10 @@ const sections = [
               <Code>'dd-MM-yyyy'</Code>
             </td>
             <td>
-              The format in which the date value will be displayed. User must follow this format
-              when editing the value or it will be considered as an invalid date. In this case, the
-              onBlur and onChange functions will be called with an internal error as a parameter
+              The format in which the date value will be displayed. User must
+              follow this format when editing the value or it will be considered
+              as an invalid date. In this case, the onBlur and onChange
+              functions will be called with an internal error as a parameter
               reporting the situation.
             </td>
           </tr>
@@ -74,7 +80,10 @@ const sections = [
             <td>
               <Code>false</Code>
             </td>
-            <td>If true, the date input will have an action to clear the entered value.</td>
+            <td>
+              If true, the date input will have an action to clear the entered
+              value.
+            </td>
           </tr>
           <tr>
             <td>disabled: boolean</td>
@@ -89,44 +98,52 @@ const sections = [
               <Code>false</Code>
             </td>
             <td>
-              If true, the date will be optional, showing <Code>(Optional)</Code> next to the label.
-              Otherwise, the field will be considered required and an error will be passed as a
-              parameter to the OnBlur and onChange functions when it has not been filled.
+              If true, the date will be optional, showing{" "}
+              <Code>(Optional)</Code> next to the label. Otherwise, the field
+              will be considered required and an error will be passed as a
+              parameter to the OnBlur and onChange functions when it has not
+              been filled.
             </td>
           </tr>
           <tr>
             <td>onChange: function</td>
             <td></td>
             <td>
-              This function will be called when the user types within the input element of the
-              component. An object including the string value, the error and the date value will be
-              passed to this function. An example of this object is: {"{ "}
+              This function will be called when the user types within the input
+              element of the component. An object including the string value,
+              the error and the date value will be passed to this function. An
+              example of this object is: {"{ "}
               <Code>value: value, error: error, date: date</Code>
-              {" }"}. If the string value is a valid date, <Code>error</Code> will be undefined.
-              Also, if the string value is not a valid date, <Code>date</Code> will be undefined.
+              {" }"}. If the string value is a valid date, <Code>error</Code>{" "}
+              will be undefined. Also, if the string value is not a valid date,{" "}
+              <Code>date</Code> will be undefined.
             </td>
           </tr>
           <tr>
             <td>onBlur: function</td>
             <td></td>
             <td>
-              This function will be called when the input element loses the focus. An object
-              including the string value, the error and the date value will be passed to this
-              function. An example of this object is: {"{ "}
+              This function will be called when the input element loses the
+              focus. An object including the string value, the error and the
+              date value will be passed to this function. An example of this
+              object is: {"{ "}
               <Code>value: value, error: error, date: date</Code>
-              {" }"}. If the string value is a valid date, <Code>error</Code> will be undefined.
-              Also, if the string value is not a valid date, <Code>date</Code> will be undefined.
+              {" }"}. If the string value is a valid date, <Code>error</Code>{" "}
+              will be undefined. Also, if the string value is not a valid date,{" "}
+              <Code>date</Code> will be undefined.
             </td>
           </tr>
           <tr>
             <td>error: string</td>
             <td></td>
             <td>
-              If it is a defined value and also a truthy string, the component will change its
-              appearance, showing the error below the date input component. If the defined value is
-              an empty string, it will reserve a space below the component for a future error, but
-              it would not change its look. In case of being undefined or null, both the appearance
-              and the space for the error message would not be modified.
+              If it is a defined value and also a truthy string, the component
+              will change its appearance, showing the error below the date input
+              component. If the defined value is an empty string, it will
+              reserve a space below the component for a future error, but it
+              would not change its look. In case of being undefined or null,
+              both the appearance and the space for the error message would not
+              be modified.
             </td>
           </tr>
           <tr>
@@ -135,9 +152,10 @@ const sections = [
               <Code>'off'</Code>
             </td>
             <td>
-              HTML autocomplete attribute. Lets the user specify if any permission the user agent
-              has to provide automated assistance in filling out the input value. Its value must be
-              one of all the possible values of the HTML autocomplete attribute: 'on', 'off',
+              HTML autocomplete attribute. Lets the user specify if any
+              permission the user agent has to provide automated assistance in
+              filling out the input value. Its value must be one of all the
+              possible values of the HTML autocomplete attribute: 'on', 'off',
               'email', 'username', 'new-password', ...
             </td>
           </tr>
@@ -145,9 +163,10 @@ const sections = [
             <td>margin: string | object</td>
             <td></td>
             <td>
-              Size of the margin to be applied to the component ('xxsmall' | 'xsmall' | 'small' |
-              'medium' | 'large' | 'xlarge' | 'xxlarge'). You can pass an object with 'top',
-              'bottom', 'left' and 'right' properties in order to specify different margin sizes.
+              Size of the margin to be applied to the component ('xxsmall' |
+              'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+              You can pass an object with 'top', 'bottom', 'left' and 'right'
+              properties in order to specify different margin sizes.
             </td>
           </tr>
           <tr>
@@ -190,9 +209,9 @@ const sections = [
         content: (
           <>
             <DxcText as="p">
-              The component behaviour varies depending on the value of the <Code>error</Code>. We
-              recommend reading the description of the prop carefully to fully understand the
-              following example.
+              The component behaviour varies depending on the value of the{" "}
+              <Code>error</Code>. We recommend reading the description of the
+              prop carefully to fully understand the following example.
             </DxcText>
             <Example example={errorHandling} defaultIsVisible />
           </>
@@ -222,9 +241,12 @@ const DateInputCodePage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/date-input/code/DateInputCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/date-input/code/DateInputCodePage.tsx" />
     </DxcStack>
   );
 };

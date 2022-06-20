@@ -8,7 +8,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import stacking from "./examples/StackingCheckbox";
+import stacking from "./examples/stacking";
 
 const sections = [
   {
@@ -76,7 +76,7 @@ const CheckboxInputUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/checkbox/usage/CheckboxUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/checkbox/usage/CheckboxUsagePage.tsx" />
     </DxcStack>
   );
 };
