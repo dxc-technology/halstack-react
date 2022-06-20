@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const WizardPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -12,7 +13,7 @@ const WizardPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Wizard" weight="bold"></DxcHeading>
+          <ComponentHeading name="Wizard" status="Ready" />
           <DxcText as="p">
             Wizard represents a stepped workflow as a form of linear and
             mandatory progression through a defined process with several bullet
