@@ -29,10 +29,6 @@ export type TabProps = {
    * Content of the tab.
    */
   children: string;
-  iconPosition?: "top" | "left";
-  tabIndex?: number;
-  hasIcons?: boolean;
-  focused?: boolean;
 };
 
 export type NavTabsProps = {
@@ -48,4 +44,11 @@ export type NavTabsProps = {
    * Content of the tabs nav.
    */
   children: React.ReactNode;
+};
+
+export type NavTabsContextProps = {
+  iconPosition: "top" | "left";
+  tabIndex: number;
+  hasIcons: boolean;
+  focusedLabel: string;
 };
