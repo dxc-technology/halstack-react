@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const WizardPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/wizard" },
+    { label: "Code", path: "/components/wizard" },
+    { label: "Usage", path: "/components/wizard/usage" },
     { label: "Specifications", path: "/components/wizard/specifications" },
   ];
 
