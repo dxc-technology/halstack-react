@@ -1,5 +1,4 @@
 import { DxcSelect, DxcStack, DxcInset } from "@dxc-technology/halstack-react";
-import { useState } from "react";
 
 const code = `() => {
   const options = [
@@ -11,13 +10,12 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcStack gutter="large">
+      <DxcStack gutter="large" align="center">
         <DxcSelect
           label="Single selection"
           helperText="Select an option"
           defaultValue="1"
           options={options}
-          size="fillParent"
         />
         <DxcSelect
           label="Multiple selection"
@@ -25,7 +23,6 @@ const code = `() => {
           defaultValue={["1", "2"]}
           options={options}
           multiple
-          size="fillParent"
         />
       </DxcStack>
     </DxcInset>
@@ -36,7 +33,6 @@ const scope = {
   DxcSelect,
   DxcStack,
   DxcInset,
-  useState,
 };
 
 export default { code, scope };
