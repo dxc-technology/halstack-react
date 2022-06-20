@@ -40,21 +40,30 @@ export const Chromatic = () => (
         >
           Dxc technology
         </DxcSidenav.Title>
-        <div>Custom content</div>
-        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-        <DxcSidenav.Group collapsable={false} title="Single Group">
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
-        </DxcSidenav.Group>
+        <DxcSidenav.Section>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
+            vitae lacinia libero.
+          </p>
+        </DxcSidenav.Section>
+        <DxcSidenav.Section>
+          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Group collapsable={false} title="Single Group">
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
         <DxcSidenav.Section>
           <DxcSidenav.Group collapsable={true} title="Section Group">
             <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           </DxcSidenav.Group>
-          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Group>
+            <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
           <DxcSidenav.Group collapsable={false} title="Section Group">
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
             <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -95,9 +104,15 @@ export const FocusedSidenav = () => (
       >
         Dxc technology
       </DxcSidenav.Title>
-      <div>Custom content</div>
-      <DxcSidenav.Link>Single Link</DxcSidenav.Link>
       <DxcSidenav.Section>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse vitae
+          lacinia libero.
+        </p>
+      </DxcSidenav.Section>
+      <DxcSidenav.Section>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
         <DxcSidenav.Group collapsable={true} title="Collapsable Group">
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -206,8 +221,9 @@ const HoverSidenav = () => (
         Dxc technology
       </DxcSidenav.Title>
       <div>Custom content</div>
-      <DxcSidenav.Link>Single Link</DxcSidenav.Link>
       <DxcSidenav.Section>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
         <DxcSidenav.Group collapsable={true} title="Collapsable Group">
           <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
@@ -220,10 +236,8 @@ const HoverSidenav = () => (
           <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
         </DxcSidenav.Group>
-
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>
-
         <DxcSidenav.Group collapsable={true} title="Collapsable Group">
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
           <DxcSidenav.Link>Group Link</DxcSidenav.Link>
