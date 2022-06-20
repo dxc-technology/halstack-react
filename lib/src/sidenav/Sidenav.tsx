@@ -14,13 +14,13 @@ const DxcSidenav = ({ children }: SidenavPropsType): JSX.Element => {
       <SideNavContainer>
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
           {React.Children.map(children, (child) => {
-            if (child.type !== Section && child.type !== Group && child.type !== Link) {
+            if (child.type === Title) {
               return child;
             }
           })}
           <DxcStack divider={true} gutter="small">
             {React.Children.map(children, (child) => {
-              if (child.type === Section || child.type === Group || child.type === Link) {
+              if (child.type === Section) {
                 return child;
               }
             })}
@@ -40,22 +40,15 @@ const Title = ({ children, icon }: SidenavTitlePropsType): JSX.Element => (
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   <div>
-    <DxcStack gutter="small">
-      {/* {React.Children.map(children, (child) => {
-        if (child.type === Group || child.type === Link) {
-          return child;
-        }
-      })} */}
-      {children}
-    </DxcStack>
+    <DxcStack gutter="small">{children}</DxcStack>
   </div>
 );
 
 const Group = ({ children, title, collapsable, icon }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <SideNavGroup icon>
-      {collapsable ? (
+    <SideNavGroup>
+      {collapsable && title ? (
         <button className="sidenav-title" aria-expanded={collapsed} onClick={() => setCollapsed(!collapsed)}>
           <span>
             {icon}
@@ -74,7 +67,12 @@ const Group = ({ children, title, collapsable, icon }: SidenavGroupPropsType): J
           )}
         </button>
       ) : (
-        <div className="sidenav-title">{title}</div>
+        title && (
+          <div className="sidenav-title">
+            {icon}
+            {title}
+          </div>
+        )
       )}
       {(!collapsable || (collapsable && !collapsed)) && children}
     </SideNavGroup>
@@ -160,7 +158,11 @@ const SideNavGroup = styled.div`
   button.sidenav-title {
     all: unset;
     cursor: pointer;
-    ${(props) => (props.isGroupSelected ? "color: #ffffff; background: #4d4d4d;" : "")}
+    justify-content: space-between;
+    span {
+      display: flex;
+      align-items: center;
+    }
     &:focus {
       outline: 2px solid ${(props) => props.theme.linkFocusColor};
       outline-offset: -2px;
@@ -184,14 +186,8 @@ const SideNavGroup = styled.div`
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin: 0px;
     padding: 7px 24px;
-
-    span {
-      display: flex;
-      align-items: center;
-    }
   }
   a {
     padding: 7px 24px 7px 36px;

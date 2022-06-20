@@ -2,7 +2,7 @@ type SVG = React.SVGProps<SVGSVGElement>;
 
 type SidenavPropsType = {
   /**
-   * The area inside the sidenav. This area can be used to render custom content.
+   * The area inside the sidenav. This area can be used to render a sidenav title and sections.
    */
   children: React.ReactNode;
 };
@@ -20,15 +20,27 @@ export type SidenavTitlePropsType = {
 
 export type SidenavSectionPropsType = {
   /**
-   * The area inside the sidenav section. This area can be used to render sidenav groups or links.
+   * The area inside the sidenav section. This area can be used to render sidenav groups, links and custom content.
    */
   children: React.ReactNode;
 };
 
 export type SidenavGroupPropsType = {
+  /**
+   * The area inside the sidenav group. This area can be used to render sidenav links.
+   */
   children: React.ReactNode;
-  title: string;
+  /**
+   * The title of the sidenav group.
+   */
+  title?: string;
+  /**
+   * If true the sidenav group title will be considered a button and the group will be collapsable.
+   */
   collapsable: boolean;
+  /**
+   * The icon to be displayed next to the title of the group.
+   */
   icon?: SVG;
 };
 
@@ -56,7 +68,7 @@ export type SidenavLinkPropsType = {
   /**
    * The area inside the sidenav link. This area can be used to render custom content.
    */
-  children: React.ReactNode;
+  children: string;
 };
 
 export default SidenavPropsType;
