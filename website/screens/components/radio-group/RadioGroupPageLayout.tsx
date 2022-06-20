@@ -4,7 +4,8 @@ import TabsPageHeading from "@/common/TabsPageLayout";
 
 const RadioGroupPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/radio-group" },
+    { label: "Code", path: "/components/radio-group" },
+    { label: "Usage", path: "/components/radio-group/usage" },
     { label: "Specifications", path: "/components/radio-group/specifications" },
   ];
 

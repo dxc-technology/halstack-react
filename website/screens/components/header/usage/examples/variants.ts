@@ -1,0 +1,28 @@
+import {
+  DxcHeader,
+  DxcInset,
+  DxcStack,
+  DxcHeading,
+} from "@dxc-technology/halstack-react";
+
+const code = `() => {
+  return (
+    <DxcInset space="large">
+      <DxcStack gutter="large">
+        <DxcHeading level={4} text="Default"></DxcHeading>
+        <DxcHeader />
+        <DxcHeading level={4} text="Underlined"></DxcHeading>
+        <DxcHeader underlined="true"/>
+      </DxcStack>
+    </DxcInset>
+  );
+}`;
+
+const scope = {
+  DxcHeader,
+  DxcInset,
+  DxcStack,
+  DxcHeading,
+};
+
+export default { code, scope };
