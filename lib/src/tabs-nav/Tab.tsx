@@ -1,6 +1,7 @@
-import React, { useLayoutEffect, createRef, forwardRef, Ref } from "react";
+import React, { useLayoutEffect, createRef, forwardRef, Ref, useContext } from "react";
 import styled from "styled-components";
 import DxcBadge from "../badge/Badge";
+import { NavTabsContext } from "./NavTabs";
 import { TabProps } from "./types";
 
 const DxcTab = forwardRef(
@@ -12,18 +13,17 @@ const DxcTab = forwardRef(
       disabled = false,
       notificationNumber = false,
       children,
-      iconPosition,
-      tabIndex,
-      hasIcons = false,
-      focused = false,
+      ...otherProps
     }: TabProps,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef: React.MutableRefObject<HTMLAnchorElement> = createRef();
 
+    const { iconPosition, tabIndex, hasIcons, focusedLabel } = useContext(NavTabsContext);
+
     useLayoutEffect(() => {
-      focused && tabRef?.current?.focus();
-    }, [focused]);
+      focusedLabel === children.toString() && tabRef?.current?.focus();
+    }, [focusedLabel]);
 
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
       switch (event.keyCode) {
@@ -44,10 +44,17 @@ const DxcTab = forwardRef(
           hasIcon={hasIcons}
           ref={(anchorRef) => {
             tabRef.current = anchorRef;
-            return ref;
+
+            if (ref) {
+              if (typeof ref === "function") ref(anchorRef);
+              else {
+                (ref as React.MutableRefObject<HTMLAnchorElement | null>).current = anchorRef;
+              }
+            }
           }}
           onKeyDown={handleOnKeyDown}
           tabIndex={active ? tabIndex : -1}
+          {...otherProps}
         >
           {icon && (
             <TabIconContainer iconPosition={iconPosition}>
