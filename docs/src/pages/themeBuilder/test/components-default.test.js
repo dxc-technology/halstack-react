@@ -238,29 +238,6 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render radio component", async () => {
-    const { getByText, getAllByText, findByText } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
-    act(() => {
-      fireEvent.click(getByText("Radio"));
-    });
-    expect(getByText("Radio component")).toBeTruthy();
-    expect(getByText("Light Mode")).toBeTruthy();
-    // expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(1);
-    expect(getAllByText("Disabled").length).toBe(1);
-    expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(defaultTheme["radio"]).forEach((themeInputs) =>
-      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
-    );
-  });
-
   it("Should render sidenav component", async () => {
     const { getByText, findByText } = render(
       <Router history={history}>

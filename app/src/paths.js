@@ -6,7 +6,6 @@ import Table from "./pages/Table";
 import Tabs from "./pages/Tabs";
 import Accordion from "./pages/Accordion";
 import Slider from "./pages/Slider";
-import Radio from "./pages/Radio";
 import Dropdown from "./pages/Dropdown";
 import ProgressBar from "./pages/ProgressBar";
 import Header from "./pages/Header";
@@ -157,11 +156,6 @@ export default [
     path: "quickNav",
     name: "Quick nav",
     component: QuickNav,
-  },
-  {
-    path: "radio",
-    name: "Radio",
-    component: Radio,
   },
   {
     path: "resultsetTable",

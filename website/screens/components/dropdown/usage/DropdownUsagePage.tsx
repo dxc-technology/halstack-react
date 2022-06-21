@@ -68,7 +68,7 @@ const sections = [
         <DxcText>
           Consider the number of options (binary decisions or a few items) to
           decide to implement one component that represent in a better way the
-          data, i.e. radio button or switch toggle.
+          data, i.e. switch toggle.
         </DxcText>
         <DxcText>
           For a large number of well specified options, consider to use an
