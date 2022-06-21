@@ -13,7 +13,7 @@ import nextLink from "./examples/nextLink";
 import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLink6 from "./examples/routerLink6";
-import withIcon from "./examples/withIcon";
+import icons from "./examples/icons";
 
 const sections = [
   {
@@ -208,8 +208,8 @@ const sections = [
         ],
       },
       {
-        title: "With icon",
-        content: <Example example={withIcon} defaultIsVisible />,
+        title: "Icons",
+        content: <Example example={icons} defaultIsVisible />,
       },
     ],
   },

@@ -6,7 +6,7 @@ import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import withIcon from "./examples/withIcon";
+import icons from "./examples/icons";
 
 const sections = [
   {
@@ -112,8 +112,8 @@ const sections = [
         content: <Example example={uncontrolled} defaultIsVisible />,
       },
       {
-        title: "With icon",
-        content: <Example example={withIcon} defaultIsVisible />,
+        title: "Icons",
+        content: <Example example={icons} defaultIsVisible />,
       },
     ],
   },

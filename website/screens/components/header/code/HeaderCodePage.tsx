@@ -10,8 +10,8 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import withCustomContent from "./examples/withCustomContent";
-import withDropdown from "./examples/withDropdown";
+import customContent from "./examples/customContent";
+import dropdownHeader from "./examples/dropdownHeader";
 import Link from "next/link";
 import React from "react";
 
@@ -120,12 +120,12 @@ const sections = [
         content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
-        title: "With custom content",
-        content: <Example example={withCustomContent} defaultIsVisible />,
+        title: "Custom content",
+        content: <Example example={customContent} defaultIsVisible />,
       },
       {
-        title: "With dropdown",
-        content: <Example example={withDropdown} defaultIsVisible />,
+        title: "Dropdown Header",
+        content: <Example example={dropdownHeader} defaultIsVisible />,
       },
     ],
   },

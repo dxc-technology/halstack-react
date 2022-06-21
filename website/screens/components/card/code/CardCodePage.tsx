@@ -135,7 +135,7 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <Example example={basic} defaultIsVisible />,
+        content: <Example example={basicUsage} defaultIsVisible />,
       },
     ],
   },
