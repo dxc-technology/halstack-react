@@ -11,7 +11,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import customContent from "./examples/customContent";
-import dropdownHeader from "./examples/dropdownHeader";
+import dropdown from "./examples/dropdown";
 import Link from "next/link";
 import React from "react";
 
@@ -124,8 +124,8 @@ const sections = [
         content: <Example example={customContent} defaultIsVisible />,
       },
       {
-        title: "Dropdown Header",
-        content: <Example example={dropdownHeader} defaultIsVisible />,
+        title: "Dropdown",
+        content: <Example example={dropdown} defaultIsVisible />,
       },
     ],
   },
