@@ -3,7 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
-import dropdownWithIcons from "./examples/dropdownWithIcons";
+import iconUsage from "./examples/iconUsage";
 
 const sections = [
   {
@@ -54,7 +54,7 @@ const sections = [
           consistency with the rest of the components of the design system such
           as buttons or selects, that have the same behavior.
         </DxcText>
-        <Example example={dropdownWithIcons}></Example>
+        <Example example={iconUsage}></Example>
       </>
     ),
   },

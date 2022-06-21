@@ -1,4 +1,4 @@
-import { DxcDropdown, DxcRow, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcDropdown, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const selectOption = (value) => {
@@ -7,27 +7,25 @@ const code = `() => {
   const options = [
     {
       value: 1,
-      label: "Android"
+      label: "Android",
     },
     {
       value: 2,
-      label: "Windows"
+      label: "Windows",
     },
     {
       value: 3,
-      label: "IOS"
-    }
+      label: "IOS",
+    },
   ];
 
   return (
     <DxcInset space="large">
-      <DxcRow justify="center">
-        <DxcDropdown
+      <DxcDropdown
+        label="Select platform"
         options={options}
         onSelectOption={selectOption}
-        label="Select platform"
-        ></DxcDropdown>
-      </DxcRow>
+      ></DxcDropdown>
     </DxcInset>
   );
 }`;
@@ -35,7 +33,6 @@ const code = `() => {
 const scope = {
   DxcDropdown,
   DxcInset,
-  DxcRow,
 };
 
 export default { code, scope };
