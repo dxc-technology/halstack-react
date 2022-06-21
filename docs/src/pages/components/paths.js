@@ -42,6 +42,7 @@ import QuickNav from "./cdk-components/quick-nav/QuickNav";
 import Typography from "./cdk-components/typography/Typography";
 import BulletedList from "./cdk-components/bulletedList/BulletedList";
 import NavTabs from "./cdk-components/navtabs/NavTabs";
+import Paragraph from "./cdk-components/paragraph/Paragraph";
 
 export const types = {
   FORMS: "Forms",
@@ -357,5 +358,12 @@ export default [
     component: Wizard,
     type: types.NAVIGATION,
     status: "ready",
+  },
+  {
+    path: "paragraph",
+    name: "Paragraph",
+    component: Paragraph,
+    type: types.UTILS,
+    status: "experimental",
   },
 ];

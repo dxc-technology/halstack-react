@@ -73,11 +73,10 @@ const Icon = styled.div`
   width: auto;
   margin-right: 0.5rem;
   align-content: center;
-
+  color: ${({ backgroundType }) => (backgroundType && backgroundType === "dark" ? "#FFFFFF" : "#000000")};
   & > svg {
     height: 1.5rem;
     width: 1.5rem;
-    fill: ${({ backgroundType }) => (backgroundType && backgroundType === "dark" ? "#FFFFFF" : "#000000")};
   }
 `;
 

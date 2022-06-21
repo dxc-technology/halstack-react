@@ -41,43 +41,41 @@ function Typography({
   const textOverflowValue = textOverflow ?? (componentContext?.textOverflow || "unset");
   const whiteSpaceValue = whiteSpace ?? (componentContext?.whiteSpace || "normal");
   return (
-    <ThemeProvider theme={colorsTheme.text}>
-      <TypographyContext.Provider
-        value={{
-          as: asValue,
-          display: displayValue,
-          fontFamily: fontFamilyValue,
-          fontSize: fontSizeValue,
-          fontStyle: fontStyleValue,
-          fontWeight: fontWeightValue,
-          letterSpacing: letterSpacingValue,
-          lineHeight: lineHeightValue,
-          textAlign: textAlignValue,
-          color: colorValue,
-          textDecoration: textDecorationValue,
-          textOverflow: textOverflowValue,
-          whiteSpace: whiteSpaceValue,
-        }}
+    <TypographyContext.Provider
+      value={{
+        as: asValue,
+        display: displayValue,
+        fontFamily: fontFamilyValue,
+        fontSize: fontSizeValue,
+        fontStyle: fontStyleValue,
+        fontWeight: fontWeightValue,
+        letterSpacing: letterSpacingValue,
+        lineHeight: lineHeightValue,
+        textAlign: textAlignValue,
+        color: colorValue,
+        textDecoration: textDecorationValue,
+        textOverflow: textOverflowValue,
+        whiteSpace: whiteSpaceValue,
+      }}
+    >
+      <StyledTypography
+        as={asValue}
+        display={displayValue}
+        fontFamily={fontFamilyValue}
+        fontSize={fontSizeValue}
+        fontStyle={fontStyleValue}
+        fontWeight={fontWeightValue}
+        letterSpacing={letterSpacingValue}
+        lineHeight={lineHeightValue}
+        textAlign={textAlignValue}
+        color={colorValue}
+        textDecoration={textDecorationValue}
+        textOverflow={textOverflowValue}
+        whiteSpace={whiteSpaceValue}
       >
-        <StyledTypography
-          as={asValue}
-          display={displayValue}
-          fontFamily={fontFamilyValue}
-          fontSize={fontSizeValue}
-          fontStyle={fontStyleValue}
-          fontWeight={fontWeightValue}
-          letterSpacing={letterSpacingValue}
-          lineHeight={lineHeightValue}
-          textAlign={textAlignValue}
-          color={colorValue}
-          textDecoration={textDecorationValue}
-          textOverflow={textOverflowValue}
-          whiteSpace={whiteSpaceValue}
-        >
-          {children}
-        </StyledTypography>
-      </TypographyContext.Provider>
-    </ThemeProvider>
+        {children}
+      </StyledTypography>
+    </TypographyContext.Provider>
   );
 }
 

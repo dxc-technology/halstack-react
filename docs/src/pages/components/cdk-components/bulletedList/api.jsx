@@ -15,11 +15,6 @@ const BulletedListPropsTable = () => {
         <td>Defines the style of the bullet point in the list.</td>
       </tr>
       <tr>
-        <td>children: node</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
         <td>icon: string | SVGSVGElement</td>
         <td></td>
         <td>Icon to display as bullet.</td>

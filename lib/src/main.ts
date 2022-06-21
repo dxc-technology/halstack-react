@@ -43,7 +43,7 @@ import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
 import DxcQuickNav from "./quick-nav/QuickNav";
 import DxcNavTabs from "./tabs-nav/NavTabs";
-
+import DxcParagraph from "./paragraph/Paragraph";
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
 
@@ -97,4 +97,5 @@ export {
   DxcInset,
   DxcQuickNav,
   DxcNavTabs,
+  DxcParagraph,
 };

@@ -1,4 +1,4 @@
-type As = "p" | "span" | "strong" | "small" | "em" | "u";
+type As = keyof HTMLElementTagNameMap;
 
 type FontSize = "3.75rem" | "3rem" | "2rem" | "1.5rem" | "1.25rem" | "1rem" | "0.875rem" | "0.75rem";
 
