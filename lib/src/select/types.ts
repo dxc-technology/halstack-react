@@ -193,6 +193,7 @@ export type ListboxProps = {
   optionalItem: Option;
   searchable: boolean;
   handleOptionOnClick: (option: Option) => void;
+  styles: { width: number };
 };
 
 /**

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useMemo, useRef, useState, useLayoutEffect, useCallback } from "react";
+import React, { useMemo, useRef, useState, useLayoutEffect, useCallback, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -9,6 +9,7 @@ import { getMargin } from "../common/utils.js";
 import SelectPropsType, { RefType } from "./types";
 import selectIcons from "./Icons";
 import Listbox from "./Listbox";
+import * as Popover from "@radix-ui/react-popover";
 
 const groupsHaveOptions = (innerOptions) =>
   innerOptions[0].hasOwnProperty("options")
@@ -128,8 +129,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
     const [isOpen, changeIsOpen] = useState(false);
+    const [listboxStyles, setListboxStyles] = useState(null);
 
-    const selectContainerRef = useRef(null);
+    const selectRef = useRef(null);
     const selectSearchInputRef = useRef(null);
     const selectOptionsListRef = useRef(null);
 
@@ -302,6 +304,18 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
     }, [visualFocusIndex]);
 
+    const handleListboxResize = () => {
+      const rect = selectRef?.current?.getBoundingClientRect();
+      setListboxStyles({ width: rect?.width });
+    };
+    useEffect(() => {
+      handleListboxResize();
+      window.addEventListener("resize", handleListboxResize);
+      return () => {
+        window.removeEventListener("resize", handleListboxResize);
+      };
+    }, [setListboxStyles]);
+
     return (
       <ThemeProvider theme={colorsTheme.select}>
         <SelectContainer margin={margin} size={size} ref={ref}>
@@ -310,7 +324,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               id={selectLabelId}
               disabled={disabled}
               onClick={() => {
-                selectContainerRef.current.focus();
+                selectRef.current.focus();
               }}
               helperText={helperText}
             >
@@ -318,97 +332,113 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
-          <Select
-            id={selectId}
-            disabled={disabled}
-            error={error}
-            onBlur={handleSelectOnBlur}
-            onClick={handleSelectOnClick}
-            onFocus={handleSelectOnFocus}
-            onKeyDown={handleSelectOnKeyDown}
-            ref={selectContainerRef}
-            tabIndex={tabIndex}
-            role="combobox"
-            aria-controls={optionsListId}
-            aria-disabled={disabled}
-            aria-expanded={isOpen}
-            aria-haspopup="listbox"
-            aria-labelledby={selectLabelId}
-            aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
-            aria-invalid={error ? "true" : "false"}
-            aria-errormessage={error ? errorId : undefined}
-            aria-required={!disabled && !optional}
-          >
-            {multiple && selectedOption.length > 0 && (
-              <SelectionIndicator>
-                <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
-                <ClearOptionsAction
-                  disabled={disabled}
-                  onMouseDown={(event) => {
-                    // Avoid input to lose focus when pressed
-                    event.preventDefault();
-                  }}
-                  onClick={handleClearOptionsActionOnClick}
-                  tabIndex={-1}
-                  title={translatedLabels.select.actionClearSelectionTitle}
-                  aria-label={translatedLabels.select.actionClearSelectionTitle}
-                >
-                  {selectIcons.clear}
-                </ClearOptionsAction>
-              </SelectionIndicator>
-            )}
-            <SearchableValueContainer>
-              <ValueInput
-                name={name}
-                value={multiple ? (value ?? innerValue).join(",") : value ?? innerValue}
-                readOnly
-                aria-hidden="true"
-              />
-              {searchable && (
-                <SearchInput
-                  value={searchValue}
-                  disabled={disabled}
-                  onChange={handleSearchIOnChange}
-                  ref={selectSearchInputRef}
-                  autoComplete="nope"
-                  autoCorrect="nope"
-                  size={1}
-                />
-              )}
-              {(!searchable || searchValue === "") &&
-                (multiple ? (
-                  <SelectedOption
-                    disabled={disabled}
-                    atBackground={(value ?? innerValue).length === 0 || (searchable && isOpen)}
-                  >
-                    <SelectedOptionLabel>{selectedOption.map((option) => option.label).join(", ")}</SelectedOptionLabel>
-                    {selectedOption.length === 0 && placeholder}
-                  </SelectedOption>
-                ) : (
-                  <SelectedOption disabled={disabled} atBackground={!(value ?? innerValue) || (searchable && isOpen)}>
-                    <SelectedOptionLabel>{selectedOption?.label ?? placeholder}</SelectedOptionLabel>
-                  </SelectedOption>
-                ))}
-            </SearchableValueContainer>
-            {!disabled && error && <ErrorIcon>{selectIcons.error}</ErrorIcon>}
-            {searchable && searchValue.length > 0 && (
-              <ClearSearchAction
-                onMouseDown={(event) => {
-                  // Avoid input to lose focus
-                  event.preventDefault();
-                }}
-                onClick={handleClearSearchActionOnClick}
-                tabIndex={-1}
-                title={translatedLabels.select.actionClearSearchTitle}
-                aria-label={translatedLabels.select.actionClearSearchTitle}
+          <Popover.Root open={isOpen}>
+            <Popover.Trigger asChild>
+              <Select
+                id={selectId}
+                disabled={disabled}
+                error={error}
+                onBlur={handleSelectOnBlur}
+                onClick={handleSelectOnClick}
+                onFocus={handleSelectOnFocus}
+                onKeyDown={handleSelectOnKeyDown}
+                ref={selectRef}
+                tabIndex={tabIndex}
+                role="combobox"
+                aria-controls={optionsListId}
+                aria-disabled={disabled}
+                aria-expanded={isOpen}
+                aria-haspopup="listbox"
+                aria-labelledby={selectLabelId}
+                aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
+                aria-invalid={error ? "true" : "false"}
+                aria-errormessage={error ? errorId : undefined}
+                aria-required={!disabled && !optional}
               >
-                {selectIcons.clear}
-              </ClearSearchAction>
-            )}
-            <CollapseIndicator disabled={disabled}>
-              {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
-            </CollapseIndicator>
-            {isOpen && (
+                {multiple && selectedOption.length > 0 && (
+                  <SelectionIndicator>
+                    <SelectionNumber disabled={disabled}>{selectedOption.length}</SelectionNumber>
+                    <ClearOptionsAction
+                      disabled={disabled}
+                      onMouseDown={(event) => {
+                        // Avoid input to lose focus when pressed
+                        event.preventDefault();
+                      }}
+                      onClick={handleClearOptionsActionOnClick}
+                      tabIndex={-1}
+                      title={translatedLabels.select.actionClearSelectionTitle}
+                      aria-label={translatedLabels.select.actionClearSelectionTitle}
+                    >
+                      {selectIcons.clear}
+                    </ClearOptionsAction>
+                  </SelectionIndicator>
+                )}
+                <SearchableValueContainer>
+                  <ValueInput
+                    name={name}
+                    value={multiple ? (value ?? innerValue).join(",") : value ?? innerValue}
+                    readOnly
+                    aria-hidden="true"
+                  />
+                  {searchable && (
+                    <SearchInput
+                      value={searchValue}
+                      disabled={disabled}
+                      onChange={handleSearchIOnChange}
+                      ref={selectSearchInputRef}
+                      autoComplete="nope"
+                      autoCorrect="nope"
+                      size={1}
+                    />
+                  )}
+                  {(!searchable || searchValue === "") &&
+                    (multiple ? (
+                      <SelectedOption
+                        disabled={disabled}
+                        atBackground={(value ?? innerValue).length === 0 || (searchable && isOpen)}
+                      >
+                        <SelectedOptionLabel>
+                          {selectedOption.map((option) => option.label).join(", ")}
+                        </SelectedOptionLabel>
+                        {selectedOption.length === 0 && placeholder}
+                      </SelectedOption>
+                    ) : (
+                      <SelectedOption
+                        disabled={disabled}
+                        atBackground={!(value ?? innerValue) || (searchable && isOpen)}
+                      >
+                        <SelectedOptionLabel>{selectedOption?.label ?? placeholder}</SelectedOptionLabel>
+                      </SelectedOption>
+                    ))}
+                </SearchableValueContainer>
+                {!disabled && error && <ErrorIcon>{selectIcons.error}</ErrorIcon>}
+                {searchable && searchValue.length > 0 && (
+                  <ClearSearchAction
+                    onMouseDown={(event) => {
+                      // Avoid input to lose focus
+                      event.preventDefault();
+                    }}
+                    onClick={handleClearSearchActionOnClick}
+                    tabIndex={-1}
+                    title={translatedLabels.select.actionClearSearchTitle}
+                    aria-label={translatedLabels.select.actionClearSearchTitle}
+                  >
+                    {selectIcons.clear}
+                  </ClearSearchAction>
+                )}
+                <CollapseIndicator disabled={disabled}>
+                  {isOpen ? selectIcons.arrowUp : selectIcons.arrowDown}
+                </CollapseIndicator>
+              </Select>
+            </Popover.Trigger>
+            <Popover.Content
+              asChild
+              sideOffset={4}
+              onOpenAutoFocus={(event) => {
+                // Avoid select to lose focus when the list is opened
+                event.preventDefault();
+              }}
+            >
               <Listbox
                 id={optionsListId}
                 currentValue={value ?? innerValue}
@@ -421,9 +451,10 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 searchable={searchable}
                 handleOptionOnClick={handleOptionOnClick}
                 ref={selectOptionsListRef}
+                styles={listboxStyles}
               />
-            )}
-          </Select>
+            </Popover.Content>
+          </Popover.Root>
           {!disabled && typeof error === "string" && (
             <Error id={errorId} aria-live={error ? "assertive" : "off"}>
               {error}
@@ -554,8 +585,6 @@ const ClearOptionsAction = styled.button`
   align-content: center;
   width: 23px;
   height: 22px;
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily};
   border: none;
   padding: 0.25rem;
   ${(props) => (props.disabled ? `cursor: not-allowed;` : `cursor: pointer;`)}

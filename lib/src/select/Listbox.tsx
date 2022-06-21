@@ -22,11 +22,13 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
       optionalItem,
       searchable,
       handleOptionOnClick,
+      styles,
     },
     ref
   ): JSX.Element => {
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
+
     let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
     const mapOptionFunc = (option, mapIndex) => {
       if (option.options) {
@@ -91,6 +93,7 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
           role="listbox"
           aria-multiselectable={multiple}
           aria-orientation="vertical"
+          style={styles}
         >
           {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
             <OptionsSystemMessage>
@@ -121,15 +124,10 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
 );
 
 const ListboxContainer = styled.ul`
-  position: absolute;
-  z-index: 1;
   max-height: 304px;
   overflow-y: auto;
-  top: calc(100% + 4px);
-  left: 0;
   margin: 0;
   padding: 0.25rem 0;
-  width: 100%;
   background-color: ${(props) => props.theme.listDialogBackgroundColor};
   border: 1px solid ${(props) => props.theme.listDialogBorderColor};
   border-radius: 0.25rem;
