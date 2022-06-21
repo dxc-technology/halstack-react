@@ -49,6 +49,7 @@ const code = `() => {
         options={options}
         onSelectOption={selectOption}
         label="Select platform"
+        icon={downloadIcon}
         ></DxcDropdown>
       </DxcRow>
     </DxcInset>
