@@ -1,5 +1,5 @@
 import React from "react";
-import { DxcSidenav, DxcFooter } from "@dxc-technology/halstack-react";
+import { DxcSidenav } from "@dxc-technology/halstack-react";
 
 function App() {
   return (
@@ -23,7 +23,6 @@ function App() {
             <p>Lorem ipsum</p>
           </DxcSidenav.Section>
         </DxcSidenav>
-        <DxcFooter />
       </div>
 
       <div className="test-case" id="sidenav-menu">
@@ -66,7 +65,6 @@ function App() {
             </DxcSidenav.Group>
           </DxcSidenav.Section>
         </DxcSidenav>
-        <DxcFooter />
       </div>
     </div>
   );
