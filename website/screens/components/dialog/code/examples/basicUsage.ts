@@ -11,15 +11,15 @@ const code = `() => {
   const handleClick = () => {
     setDialogVisible(!isDialogVisible);
   };
+
   return (
     <DxcInset space="large">
-        <DxcButton label="Open Dialog" onClick={handleClick}></DxcButton>
-        {isDialogVisible && (
-          <DxcDialog onCloseClick={handleClick}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </DxcDialog>
-        )}
+      <DxcButton label="Enter your data" onClick={handleClick}></DxcButton>
+      {isDialogVisible && (
+        <DxcDialog onCloseClick={handleClick}>
+          Please enter your personal information.
+        </DxcDialog>
+      )}
     </DxcInset>
   );
 }`;

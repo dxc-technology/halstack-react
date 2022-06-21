@@ -1,4 +1,4 @@
-import { DxcNavTabs } from "@dxc-technology/halstack-react";
+import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
 
 type routerProps = {
   replace: string;
@@ -39,25 +39,23 @@ const code = `() => {
       );
     }
   );
+
   return (
-    <>
+    <DxcInset space="large">
       <DxcNavTabs>
         <CustomTab active to="/components/nav-tabs/">
           Tab 1
         </CustomTab>
-        <CustomTab to="/components/nav-tabs/">
-          Tab 2
-        </CustomTab>
-        <CustomTab to="/components/nav-tabs/">
-          Tab 3
-        </CustomTab>
+        <CustomTab to="/components/nav-tabs/">Tab 2</CustomTab>
+        <CustomTab to="/components/nav-tabs/">Tab 3</CustomTab>
       </DxcNavTabs>
-    </>
+    </DxcInset>
   );
 }`;
 
 const scope = {
   DxcNavTabs,
+  DxcInset,
   useHref,
   useLinkClickHandler,
 };

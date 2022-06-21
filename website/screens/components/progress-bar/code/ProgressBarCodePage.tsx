@@ -67,19 +67,11 @@ const sections = [
     subSections: [
       {
         title: "Basic Usage",
-        content: (
-          <>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basic} defaultIsVisible />,
       },
       {
         title: "Overlay",
-        content: (
-          <>
-            <Example example={overlay} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={overlay} defaultIsVisible />,
       },
     ],
   },

@@ -1,5 +1,4 @@
 import { DxcSelect, DxcInset } from "@dxc-technology/halstack-react";
-import { useState } from "react";
 
 const code = `() => {
   const options = [
@@ -39,7 +38,6 @@ const code = `() => {
         placeholder="Choose a colleague"
         options={options}
         multiple
-        size="fillParent"
       />
     </DxcInset>
   );
@@ -48,7 +46,6 @@ const code = `() => {
 const scope = {
   DxcSelect,
   DxcInset,
-  useState,
 };
 
 export default { code, scope };

@@ -7,6 +7,7 @@ const code = `() => {
   const onChange = ({ value }) => {
     setValue(value);
   };
+  
   const onBlur = ({ value, error }) => {
     setValue(value);
     setError(error);
@@ -15,8 +16,8 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcDateInput
-        size="fillParent"
-        label="Formatted"
+        label="Start date"
+        helperText="Please enter the start date."
         format="MM/dd/yyyy"
         value={value}
         onChange={onChange}

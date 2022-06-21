@@ -119,19 +119,11 @@ const sections = [
     subSections: [
       {
         title: "Controlled",
-        content: (
-          <>
-            <Example example={controlled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={controlled} defaultIsVisible />,
       },
       {
         title: "Uncontrolled",
-        content: (
-          <>
-            <Example example={uncontrolled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={uncontrolled} defaultIsVisible />,
       },
     ],
   },

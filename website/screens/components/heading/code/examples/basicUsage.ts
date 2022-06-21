@@ -1,15 +1,14 @@
-import { DxcTextarea, DxcInset } from "@dxc-technology/halstack-react";
-
+import { DxcHeading, DxcInset } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <DxcInset space="large">
-      <DxcTextarea label="Description" size="fillParent" />
+      <DxcHeading level={2} text="Introduction" />
     </DxcInset>
   );
 }`;
 
 const scope = {
-  DxcTextarea,
+  DxcHeading,
   DxcInset,
 };
 

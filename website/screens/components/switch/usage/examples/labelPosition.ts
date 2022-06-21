@@ -3,6 +3,7 @@ import {
   DxcInset,
   DxcRow,
   DxcStack,
+  DxcHeading,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -10,11 +11,11 @@ const code = `() => {
     <DxcInset space="large">
       <DxcRow justify="center" gutter="xlarge">
         <DxcStack>
-          <label style={{ fontWeight: 600 }}>Before</label>
+          <DxcHeading level={4} text="Before"></DxcHeading>
           <DxcSwitch label="Show all" />
         </DxcStack>
         <DxcStack>
-          <label style={{ fontWeight: 600 }}>After</label>
+          <DxcHeading level={4} text="After"></DxcHeading>
           <DxcSwitch label="Off" labelPosition="after" />
         </DxcStack>
       </DxcRow>
@@ -27,6 +28,7 @@ const scope = {
   DxcInset,
   DxcRow,
   DxcStack,
+  DxcHeading,
 };
 
 export default { code, scope };

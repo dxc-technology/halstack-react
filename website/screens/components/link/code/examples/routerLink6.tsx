@@ -13,26 +13,26 @@ type routerProps = {
 const useLinkClickHandler = (
   to: string,
   { replace, state, target }: routerProps
-) => {};
+) => {
+  console.log("useClickHandler");
+};
 
 const code = `() => {
   const CustomLink = React.forwardRef(
     ({ onClick, replace = false, state, target, to, ...rest }, ref) => {
       let href = useHref(to);
-      let handleClick = useLinkClickHandler(to, {
+      let handleClick = () => (useLinkClickHandler(to, {
         replace,
         state,
         target,
-      });
+      }));
 
       return (
         <DxcLink
           {...rest}
           href={href}
           onClick={(event) => {
-            if (!event.defaultPrevented) {
-              handleClick(event);
-            }
+            handleClick(event);
           }}
           ref={ref}
           target={target}
