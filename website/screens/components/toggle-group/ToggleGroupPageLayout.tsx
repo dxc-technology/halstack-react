@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const ToggleGroupPageHeading = ({
   children,
@@ -20,7 +21,7 @@ const ToggleGroupPageHeading = ({
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Toggle Group" weight="bold"></DxcHeading>
+          <ComponentHeading name="Toggle Group" status="Ready" />
           <DxcText as="p">
             Toggle buttons can be used to put together related options that
             share a common attribute modification. It allows the user to switch

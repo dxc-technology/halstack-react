@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const LinkPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -13,7 +14,7 @@ const LinkPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Link" weight="bold"></DxcHeading>
+          <ComponentHeading name="Link" status="Ready" />
           <DxcText as="p">
             Links are used as navigational elements. They may appear isolated,
             inside a sentence or paragraph or following the content.
