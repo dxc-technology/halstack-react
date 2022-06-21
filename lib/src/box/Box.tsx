@@ -48,6 +48,7 @@ const StyledDxcBox = styled.div<BoxPropsType>`
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => props.theme.borderColor};
   letter-spacing: ${(props) => props.theme.letterSpacing};
+  overflow: hidden;
   width: ${(props) => calculateWidth(props.margin, props.size, props.padding)};
   background-color: ${(props) => props.theme.backgroundColor};
   box-shadow: ${(props) =>
