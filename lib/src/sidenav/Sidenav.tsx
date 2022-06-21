@@ -117,7 +117,7 @@ const SideNavContainer = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
-  height: 100vh;
+  height: 100%;
   padding: 2rem 0;
 
   overflow-y: auto;
