@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 
 const code = `() => {
   const inputRef = useRef();
-  
+
   const handleSubmit = () => {
     const input = inputRef.current.getElementsByTagName("input")[0];
     console.log(input.value);
@@ -17,7 +17,11 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcStack gutter="large" align="start">
-        <DxcTextInput label="Enter your surname" ref={inputRef} />
+        <DxcTextInput
+          label="Enter your surname"
+          defaultValue="Harris"
+          ref={inputRef}
+        />
         <DxcButton label="Submit" onClick={handleSubmit}></DxcButton>
       </DxcStack>
     </DxcInset>
