@@ -19,7 +19,7 @@ const sections = [
     title: "Props",
     subSections: [
       {
-        title: "DxcNavTabs props",
+        title: "DxcNavTabs",
         content: (
           <DxcTable>
             <tr>
@@ -48,7 +48,7 @@ const sections = [
         ),
       },
       {
-        title: "DxcNavTabs.Tab props",
+        title: "DxcNavTabs.Tab",
         content: (
           <DxcTable>
             <tr>
