@@ -4,30 +4,8 @@ import { DxcSidenav } from "@dxc-technology/halstack-react";
 function App() {
   return (
     <div>
-      <div className="test-case" id="children">
-        <DxcSidenav>
-          <DxcSidenav.Section>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </DxcSidenav.Section>
-          <DxcSidenav.Section>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </DxcSidenav.Section>
-        </DxcSidenav>
-      </div>
-
       <div className="test-case" id="sidenav-menu">
-        <h4>Compound components Sidenav</h4>
-        <DxcSidenav padding="medium">
+        <DxcSidenav>
           <DxcSidenav.Title>My sidenav</DxcSidenav.Title>
           <DxcSidenav.Section>
             <p>Lorem ipsum</p>
