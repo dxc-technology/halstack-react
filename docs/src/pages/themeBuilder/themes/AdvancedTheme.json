@@ -548,24 +548,6 @@
     "fontStyle": "normal",
     "fontWeight": "400"
   },
-  "radio": {
-    "fontColor": "#000000",
-    "fontColorOnDark": "#FFFFFF",
-    "fontFamily": "Open Sans, sans-serif",
-    "fontSize": "16px",
-    "fontStyle": "normal",
-    "fontWeight": "400",
-    "color": "#000000",
-    "colorOnDark": "#FFFFFF",
-    "disabledColor": "#b1b1b1",
-    "disabledColorOnDark": "#575757",
-    "disabledFontColor": "#b1b1b1",
-    "disabledFontColorOnDark": "#575757",
-    "focusColor": "#0095ff",
-    "focusColorOnDark": "#1682FF",
-    "circleLabelSpacing": "10px",
-    "circleSize": "24px"
-  },
   "radioGroup": {
     "fontFamily": "Open Sans, sans-serif",
     "radioInputColor": "#0086e6",
