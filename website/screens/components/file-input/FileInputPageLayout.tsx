@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const FileInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -16,7 +17,7 @@ const FileInputPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="File Input" weight="bold"></DxcHeading>
+          <ComponentHeading name="File Input" status="Ready" />
           <DxcText as="p">
             The file input component is used to choose files from any location
             in the local machine and update those files to the server where the
