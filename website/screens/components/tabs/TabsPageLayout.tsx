@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageLayout from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const TabsPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -13,7 +14,7 @@ const TabsPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Tabs" weight="bold"></DxcHeading>
+          <ComponentHeading name="Tabs" status="Ready" />
           <DxcText as="p">
             Tabs allow the user to interact across the sections to switch from
             one set of content to another, making the transition easily from one

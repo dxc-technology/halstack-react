@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const SliderPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -13,7 +14,7 @@ const SliderPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Slider" weight="bold"></DxcHeading>
+          <ComponentHeading name="Slider" status="Ready" />
           <DxcText as="p">
             Slider control allows users to select a specific value or a range of
             values from a set. Usually, slider presents a relatively large

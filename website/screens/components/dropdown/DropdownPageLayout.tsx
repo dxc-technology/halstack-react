@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const DropdownPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -13,7 +14,7 @@ const DropdownPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Dropdown" weight="bold"></DxcHeading>
+          <ComponentHeading name="Dropdown" status="Ready" />
           <DxcText as="p">
             The use of dropdowns has its advantages but it depends on the screen
             support. Dropdowns are a standard widget, so the users know how to
