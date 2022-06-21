@@ -1,5 +1,4 @@
-import { DxcDropdown } from "@dxc-technology/halstack-react";
-import { useState } from "react";
+import { DxcDropdown, DxcRow, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const selectOption = (value) => {
@@ -21,18 +20,22 @@ const code = `() => {
   ];
 
   return (
-    <DxcDropdown
-      options={options}
-      onSelectOption={selectOption}
-      label="Select platform"
-      margin="medium"
-    ></DxcDropdown>
+    <DxcInset space="large">
+      <DxcRow justify="center">
+        <DxcDropdown
+        options={options}
+        onSelectOption={selectOption}
+        label="Select platform"
+        ></DxcDropdown>
+      </DxcRow>
+    </DxcInset>
   );
 }`;
 
 const scope = {
   DxcDropdown,
-  useState,
+  DxcInset,
+  DxcRow,
 };
 
 export default { code, scope };

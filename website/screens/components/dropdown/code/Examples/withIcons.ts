@@ -48,6 +48,7 @@ const code = `() => {
         <DxcDropdown
         options={options}
         onSelectOption={selectOption}
+        label="Select platform"
         ></DxcDropdown>
       </DxcRow>
     </DxcInset>
