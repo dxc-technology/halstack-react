@@ -186,9 +186,6 @@ function CustomThemes() {
         fontColor: "#666666", // quick nav's font color theme input
         accentColor: "#5f249f", // quick nav's accent color theme input
       },
-      radio: {
-        baseColor: "#000000", // radio's base color theme input
-      },
       select: {
         baseColor: "#d9d9d9", // select's base color theme input
         fontColor: "#000000", // select's font color theme input

@@ -548,24 +548,6 @@
     "fontStyle": "fStyle",
     "fontWeight": "fWeight"
   },
-  "radio": {
-    "color": "color",
-    "disabledColor": "color",
-    "fontColor": "color",
-    "disabledFontColor": "color",
-    "focusColor": "color",
-    "fontFamily": "fFamily",
-    "fontSize": "length",
-    "fontWeight": "fWeight",
-    "fontStyle": "fStyle",
-    "circleLabelSpacing": "length",
-    "circleSize": "length",
-    "colorOnDark": "color",
-    "disabledColorOnDark": "color",
-    "fontColorOnDark": "color",
-    "disabledFontColorOnDark": "color",
-    "focusColorOnDark": "color"
-  },
   "radioGroup": {
     "fontFamily": "fFamily",
     "radioInputColor": "color",
