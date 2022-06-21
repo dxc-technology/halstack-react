@@ -2,9 +2,6 @@ import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Image from "@/common/Image";
-import Figure from "@/common/Figure";
-import dropdownIconUsage from "./images/dropdown_icon_usage.png";
 import Example from "@/common/example/Example";
 import dropdownWithIcons from "./examples/dropdownWithIcons";
 
@@ -58,9 +55,6 @@ const sections = [
           as buttons or selects, that have the same behavior.
         </DxcText>
         <Example example={dropdownWithIcons}></Example>
-        <Figure caption="Examples of icon usage">
-          <Image src={dropdownIconUsage} alt="Examples of icon usage" />
-        </Figure>
       </>
     ),
   },
