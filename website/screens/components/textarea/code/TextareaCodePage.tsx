@@ -7,7 +7,6 @@ import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
-import basicUsage from "./examples/basicUsage";
 
 const sections = [
   {
@@ -227,36 +226,16 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: (
-          <>
-            <Example example={basicUsage} defaultIsVisible />
-          </>
-        ),
-      },
-      {
         title: "Controlled",
-        content: (
-          <>
-            <Example example={controlled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={controlled} defaultIsVisible />,
       },
       {
         title: "Uncontrolled",
-        content: (
-          <>
-            <Example example={uncontrolled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={uncontrolled} defaultIsVisible />,
       },
       {
         title: "Error handling",
-        content: (
-          <>
-            <Example example={errorHandling} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={errorHandling} defaultIsVisible />,
       },
     ],
   },

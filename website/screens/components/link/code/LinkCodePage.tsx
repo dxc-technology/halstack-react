@@ -13,6 +13,7 @@ import nextLink from "./examples/nextLink";
 import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLink6 from "./examples/routerLink6";
+import icons from "./examples/icons";
 
 const sections = [
   {
@@ -107,11 +108,7 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={basicUsage} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
         title: "Router links",
@@ -209,6 +206,10 @@ const sections = [
             ),
           },
         ],
+      },
+      {
+        title: "Icons",
+        content: <Example example={icons} defaultIsVisible />,
       },
     ],
   },

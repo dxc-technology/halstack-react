@@ -5,7 +5,7 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import errorHandling from "./examples/errorHandling";
-import basic from "./examples/basicUsage";
+import basicUsage from "./examples/basicUsage";
 
 const sections = [
   {
@@ -165,19 +165,11 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
         title: "Error handling",
-        content: (
-          <>
-            <Example example={errorHandling} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={errorHandling} defaultIsVisible />,
       },
     ],
   },

@@ -1,5 +1,4 @@
 import { DxcSelect, DxcInset } from "@dxc-technology/halstack-react";
-import { useState } from "react";
 
 const code = `() => {
   const url_options = [
@@ -36,15 +35,15 @@ const code = `() => {
           value: "figma",
           icon: "https://logowik.com/content/uploads/images/figma.jpg",
         },
-        { 
-          label: "Adobe XD", 
-          value: "adobexd", 
-          icon: "https://cdn.worldvectorlogo.com/logos/adobe-xd-2.svg" 
+        {
+          label: "Adobe XD",
+          value: "adobexd",
+          icon: "https://cdn.worldvectorlogo.com/logos/adobe-xd-2.svg",
         },
-        { 
-          label: "Sketch", 
-          value: "sketch", 
-          icon: "https://cdn.worldvectorlogo.com/logos/sketch-2.svg" 
+        {
+          label: "Sketch",
+          value: "sketch",
+          icon: "https://cdn.worldvectorlogo.com/logos/sketch-2.svg",
         },
       ],
     },
@@ -56,7 +55,6 @@ const code = `() => {
         label="Select your favourite social media"
         placeholder="Choose an option"
         options={url_options}
-        size="fillParent"
       />
     </DxcInset>
   );
@@ -65,7 +63,6 @@ const code = `() => {
 const scope = {
   DxcSelect,
   DxcInset,
-  useState,
 };
 
 export default { code, scope };
