@@ -5,6 +5,8 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Image from "@/common/Image";
 import Figure from "@/common/Figure";
 import dropdownIconUsage from "./images/dropdown_icon_usage.png";
+import Example from "@/common/example/Example";
+import dropdownWithIcons from "./examples/dropdownWithIcons";
 
 const sections = [
   {
@@ -12,9 +14,9 @@ const sections = [
     content: (
       <>
         <DxcText as="p">
-          Dropdowns have a similar look and behaviour to select components, the
-          difference is that while select is only to collect user's data into a
-          form, dropdown can be used in a variety of scenarios.
+          Dropdowns have a similar look and behavior to select components, the
+          the difference is that while select is only to collect user's data
+          into a form, dropdown can be used in a variety of scenarios.
         </DxcText>
         <DxcList>
           <DxcText>
@@ -36,9 +38,9 @@ const sections = [
         <DxcText as="p">
           If there is a special case when the dropdown couldn't be displayed
           below the selector because it is hiding important information reducing
-          discoverability and scanability in the website then consider to use
+          discoverability and scanability in the website then consider using
           other options to display the information or customize the position of
-          the pop up to fitting the necessities of the application.
+          the pop-up to fitting the necessities of the application.
         </DxcText>
       </>
     ),
@@ -55,6 +57,7 @@ const sections = [
           consistency with the rest of the components of the design system such
           as buttons or selects, that have the same behavior.
         </DxcText>
+        <Example example={dropdownWithIcons}></Example>
         <Figure caption="Examples of icon usage">
           <Image src={dropdownIconUsage} alt="Examples of icon usage" />
         </Figure>
@@ -71,8 +74,8 @@ const sections = [
           data, i.e. radio button or switch toggle.
         </DxcText>
         <DxcText>
-          For a large number of well specified options, consider to use an
-          autocomplete field to filter the amount of options while typing.
+          For a large number of well specified options, consider using an
+          autocomplete field to filter the number of options while typing.
         </DxcText>
         <DxcText>
           Consider the input, might be that a text input would fit better than a
