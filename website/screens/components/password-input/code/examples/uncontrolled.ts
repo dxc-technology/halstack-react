@@ -15,7 +15,7 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcPasswordInput label="Uncontrolled" ref={inputRef} clearable />
+      <DxcPasswordInput label="Password" ref={inputRef} clearable />
       <DxcInset top="small">
         <DxcButton onClick={handleSubmit} label="Submit" />
       </DxcInset>

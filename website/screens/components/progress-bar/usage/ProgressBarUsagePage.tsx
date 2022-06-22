@@ -2,9 +2,11 @@ import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import determinate_indeterminate from "./examples/determinate_undeterminate";
-import variants from "./examples/variants";
+import Figure from "@/common/Figure";
+import Image from "@/common/Image";
 import Example from "@/common/example/Example";
+import determinate_indeterminate from "./examples/determinate_undeterminate";
+import variants from "./images/progress_variants.png";
 
 const sections = [
   {
@@ -54,7 +56,9 @@ const sections = [
           The component progress-bar has two variants: <strong>default</strong>{" "}
           and <strong>overlay</strong>.
         </DxcText>
-        <Example example={variants} />
+        <Figure caption="Progress bar variants">
+          <Image src={variants} alt="Progress bar variants" />
+        </Figure>
       </>
     ),
   },

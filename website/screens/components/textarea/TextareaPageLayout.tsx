@@ -1,10 +1,12 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const TextareaPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/textarea" },
+    { label: "Code", path: "/components/textarea" },
+    { label: "Usage", path: "/components/textarea/usage" },
     { label: "Specifications", path: "/components/textarea/specifications" },
   ];
 
@@ -12,7 +14,7 @@ const TextareaPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Textarea" weight="bold"></DxcHeading>
+          <ComponentHeading name="Textarea" status="Ready" />
           <DxcText as="p">
             A textarea allows the users enter a multi-line, free-form text.
           </DxcText>

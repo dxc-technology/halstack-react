@@ -17,8 +17,8 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcPasswordInput
-        label="Custom length error"
-        helperText="Using onChange/onBlur event for handling errors"
+        label="Password"
+        helperText="Password must contain at least one lower case letter, one upper case letter and a special character."
         value={value}
         onChange={onChange}
         onBlur={onBlur}

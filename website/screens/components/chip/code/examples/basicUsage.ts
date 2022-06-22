@@ -3,7 +3,7 @@ import { DxcChip, DxcInset } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <DxcInset space="large">
-      <DxcChip label="Default Chip" />
+      <DxcChip label="Experimental" />
     </DxcInset>
   );
 }`;

@@ -262,29 +262,6 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render radio component", async () => {
-    const { getByText, getAllByText, findByText } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
-    act(() => {
-      fireEvent.click(getByText("Radio"));
-    });
-    expect(getByText("Radio component")).toBeTruthy();
-    expect(getByText("Light Mode")).toBeTruthy();
-    // expect(getByText("Dark Mode")).toBeTruthy();
-    expect(getAllByText("Default").length).toBe(1);
-    expect(getAllByText("Disabled").length).toBe(1);
-    expect(getByText("Theme Inputs")).toBeTruthy();
-    Object.keys(advancedTheme["radio"]).forEach((themeInputs) =>
-      expect(getByText(makeReadable(themeInputs))).toBeTruthy()
-    );
-  });
-
   it("Should render select component", async () => {
     const { getByText, getAllByText, findByText } = render(
       <Router history={history}>
@@ -300,7 +277,9 @@ describe("Successful component tests for advanced theme", () => {
     expect(getByText("Select component")).toBeTruthy();
     expect(getAllByText("Default").length).toBe(1);
     expect(getAllByText("Searchable and optional").length).toBe(1);
-    expect(getAllByText("Multiple selection with groups and icons").length).toBe(1);
+    expect(
+      getAllByText("Multiple selection with groups and icons").length
+    ).toBe(1);
     expect(getByText("Theme Inputs")).toBeTruthy();
     Object.keys(advancedTheme["select"]).forEach((themeInputs) =>
       expect(getByText(makeReadable(themeInputs))).toBeTruthy()

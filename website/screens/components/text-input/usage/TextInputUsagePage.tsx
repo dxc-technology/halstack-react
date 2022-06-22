@@ -6,16 +6,17 @@ import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import inputActionsClearImage from "./images/input_actions_clear.png";
 import inputActionsCustom from "./images/input_actions_custom.png";
-import inputPrefixSuffix from "./images/input_prefix_suffix.png";
-import inputHelperText from "./images/input_helper_text.png";
+import prefixSuffix from "./examples/prefixSuffix";
+import Example from "@/common/example/Example";
+import helperText from "./examples/helperText";
 
 const sections = [
   {
     title: "Usage",
     content: (
       <DxcText as="p">
-        Use text inputs in forms to help people enter, select, and search for
-        text. Common text input types include: Usernames, descriptions, URLs,
+        Use text inputs in forms to help people enter, select and search for
+        text. Common text input types include: usernames, descriptions, URLs,
         phone numbers, credit cards, emails, addresses or plain text searches.
       </DxcText>
     ),
@@ -30,7 +31,7 @@ const sections = [
             </DxcText>
             <DxcText>
               Do use sentence for any input text case with standard, local
-              grammar, and punctuation rules.
+              grammar and punctuation rules.
             </DxcText>
             <DxcText>
               Do use helpful and clear text for labels, error messages and
@@ -45,7 +46,7 @@ const sections = [
           <DxcList>
             <DxcText>
               Do not use text input for text longer than a single line (e.g.
-              name, phone number). Use the text-area instead.
+              name, phone number). Use the textarea instead.
             </DxcText>
             <DxcText>Do not disable copy and paste.</DxcText>
             <DxcText>
@@ -106,12 +107,7 @@ const sections = [
               Prefixes and suffixes help the user to understand the purpose of
               the text input.
             </DxcText>
-            <Figure caption="Icon or text prefixes and suffixes usage">
-              <Image
-                src={inputPrefixSuffix}
-                alt="Icon or text prefixes and suffixes usage"
-              />
-            </Figure>
+            <Example example={prefixSuffix} />
           </>
         ),
       },
@@ -126,9 +122,7 @@ const sections = [
           filling in the form. It should be always visible even in a focus
           state.
         </DxcText>
-        <Figure caption="Text input helper text example">
-          <Image src={inputHelperText} alt="Text input helper text example" />
-        </Figure>
+        <Example example={helperText} />
       </>
     ),
     subSections: [
@@ -146,7 +140,7 @@ const sections = [
                 the user.
               </DxcText>
               <DxcText>
-                Should give an example or an explanation of the field
+                Should give an example or an explanation of the field.
               </DxcText>
             </DxcList>
             <DxcText as="p">Don&#39;t:</DxcText>

@@ -4,13 +4,12 @@ import {
   DxcStack,
   DxcTable,
 } from "@dxc-technology/halstack-react";
-import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Figure from "@/common/Figure";
 import DocFooter from "@/common/DocFooter";
-import stackingImage from "./images/switch_stacking.png";
-import positionImage from "./images/switch_label_position.png";
+import Example from "@/common/example/Example";
+import labelPosition from "./examples/labelPosition";
+import stacking from "./examples/stacking";
 
 const sections = [
   {
@@ -35,9 +34,7 @@ const sections = [
     title: "Stacking",
     content: (
       <>
-        <Figure caption="Switch stacking options">
-          <Image src={stackingImage} alt="Switch stacking options" />
-        </Figure>
+        <Example example={stacking} />
         <DxcText as="p">
           In some application the use of several switches based on the
           requirements could appear, that why we provide some indications in the
@@ -50,12 +47,7 @@ const sections = [
     title: "Label position",
     content: (
       <>
-        <Figure caption="Switch label position options example">
-          <Image
-            src={positionImage}
-            alt="Switch label position options example"
-          />
-        </Figure>
+        <Example example={labelPosition} />
         <DxcTable>
           <thead>
             <tr>
