@@ -7,7 +7,7 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcSwitch label="Bluetooth" onChange={onChange} />
+      <DxcSwitch label="Bluetooth" defaultChecked={true} onChange={onChange} />
     </DxcInset>
   );
 }`;
