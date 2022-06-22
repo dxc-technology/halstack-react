@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { forwardRef, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { spaces, responsiveSizes } from "../common/variables.js";
 
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
@@ -107,7 +108,7 @@ const Link = forwardRef(
   }
 );
 
-const SideNavContainer = styled.div`
+const SidenavContainer = styled.div<SidenavPropsType>`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
