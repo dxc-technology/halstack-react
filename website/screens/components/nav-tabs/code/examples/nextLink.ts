@@ -1,4 +1,4 @@
-import { DxcNavTabs } from "@dxc-technology/halstack-react";
+import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import React from "react";
 
@@ -10,29 +10,27 @@ const code = `() => {
       </DxcNavTabs.Tab>
     );
   });
+
   return (
-    <DxcNavTabs>
-      <Link href="/components/nav-tabs/" passHref>
-        <CustomNavTab active>
-          Tab 1
-        </CustomNavTab>
-      </Link>
-      <Link href="/components/nav-tabs/" passHref>
-        <CustomNavTab>
-          Tab 2
-        </CustomNavTab>
-      </Link>
-      <Link href="/components/nav-tabs/" passHref>
-        <CustomNavTab>
-          Tab 3
-        </CustomNavTab>
-      </Link>
-    </DxcNavTabs>
+    <DxcInset space="large">
+      <DxcNavTabs>
+        <Link href="/components/nav-tabs/" passHref>
+          <CustomNavTab active>Tab 1</CustomNavTab>
+        </Link>
+        <Link href="/components/nav-tabs/" passHref>
+          <CustomNavTab>Tab 2</CustomNavTab>
+        </Link>
+        <Link href="/components/nav-tabs/" passHref>
+          <CustomNavTab>Tab 3</CustomNavTab>
+        </Link>
+      </DxcNavTabs>
+    </DxcInset>
   );
 }`;
 
 const scope = {
   DxcNavTabs,
+  DxcInset,
   Link,
   React,
 };

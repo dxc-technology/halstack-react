@@ -16,7 +16,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcNumberInput
-        label="Custom range error"
+        label="Enter your age"
         value={value}
         onChange={onChange}
         onBlur={onBlur}

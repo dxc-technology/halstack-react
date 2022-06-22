@@ -8,9 +8,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import variants from "./examples/variantsSelect";
-import requiredOptional from "./examples/requiredOptionalSelect";
-import filterable from "./examples/filterableSelect";
+import variants from "./examples/variants";
+import requiredOptional from "./examples/requiredOptional";
+import filterable from "./examples/filterable";
 
 const sections = [
   {

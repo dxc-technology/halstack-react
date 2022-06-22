@@ -7,7 +7,6 @@ import DxcDialog from "./dialog/Dialog";
 import DxcDropdown from "./dropdown/Dropdown";
 import DxcFooter from "./footer/Footer";
 import DxcHeader from "./header/Header";
-import DxcRadio from "./radio/Radio";
 import DxcSlider from "./slider/Slider";
 import DxcSwitch from "./switch/Switch";
 import DxcTabs from "./tabs/Tabs";
@@ -56,7 +55,6 @@ export {
   DxcDropdown,
   DxcSwitch,
   DxcSlider,
-  DxcRadio,
   DxcHeader,
   DxcTable,
   DxcTabs,

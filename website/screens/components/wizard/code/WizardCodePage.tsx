@@ -4,10 +4,9 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basicUsage from "./examples/basicUsage";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
-import vertical from "./examples/vertical";
+import icons from "./examples/icons";
 
 const sections = [
   {
@@ -63,12 +62,12 @@ const sections = [
                 <b>Label: string</b>: Step label.
               </li>
               <li>
-                <b>Description: string</b>: Description that will be placed next to the
-                step.
+                <b>Description: string</b>: Description that will be placed next
+                to the step.
               </li>
               <li>
-                <b>Icon: string | SVGSVGElement</b>: Element or path used as the icon displayed in the
-                step.
+                <b>Icon: string | SVGSVGElement</b>: Element or path used as the
+                icon displayed in the step.
               </li>
               <li>
                 <b>Disabled: boolean</b>: Whether the step is disabled or not.
@@ -105,10 +104,6 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: <Example example={basicUsage} defaultIsVisible />,
-      },
-      {
         title: "Controlled",
         content: <Example example={controlled} defaultIsVisible />,
       },
@@ -117,8 +112,8 @@ const sections = [
         content: <Example example={uncontrolled} defaultIsVisible />,
       },
       {
-        title: "Vertical",
-        content: <Example example={vertical} defaultIsVisible />,
+        title: "Icons",
+        content: <Example example={icons} defaultIsVisible />,
       },
     ],
   },

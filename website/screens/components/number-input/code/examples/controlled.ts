@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-
   const onChange = ({ value }) => {
     setValue(value);
   };
@@ -14,7 +13,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcNumberInput
-        label="Controlled"
+        label="Enter your age"
         value={value}
         onChange={onChange}
         onBlur={onBlur}

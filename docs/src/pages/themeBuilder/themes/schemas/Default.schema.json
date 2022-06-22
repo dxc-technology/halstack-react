@@ -58,10 +58,6 @@
     "fontColor": "color",
     "accentColor": "color"
   },
-  "radio": {
-    "baseColor": "color",
-    "fontColor": "color"
-  },
   "radioGroup": {
     "baseColor": "color",
     "fontColor": "color"
