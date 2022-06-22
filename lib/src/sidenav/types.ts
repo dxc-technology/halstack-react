@@ -69,6 +69,8 @@ export type SidenavLinkPropsType = {
    * The area inside the sidenav link. This area can be used to render custom content.
    */
   children: string;
+
+  onClick?: () => void;
 };
 
 export default SidenavPropsType;

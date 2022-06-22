@@ -1,33 +1,38 @@
-// @ts-nocheck
-import React, { forwardRef, useMemo, useState } from "react";
+import React, { forwardRef, ReactElement, Ref, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces, responsiveSizes } from "../common/variables.js";
+import { responsiveSizes } from "../common/variables.js";
+import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
 
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
-import SidenavPropsType, { SidenavLinkPropsType, SidenavSectionPropsType, SidenavTitlePropsType } from "./types.js";
+import SidenavPropsType, {
+  SidenavGroupPropsType,
+  SidenavLinkPropsType,
+  SidenavSectionPropsType,
+  SidenavTitlePropsType,
+} from "./types.js";
 import DxcStack from "../stack/Stack";
 
 const DxcSidenav = ({ children }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
-      <SideNavContainer>
+      <SidenavContainer>
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
-          {React.Children.map(children, (child) => {
+          {React.Children.map(children, (child: ReactElement<any>) => {
             if (child.type === Title) {
               return child;
             }
           })}
           <DxcStack divider={true} gutter="small">
-            {React.Children.map(children, (child) => {
+            {React.Children.map(children, (child: ReactElement<any>) => {
               if (child.type === Section) {
                 return child;
               }
             })}
           </DxcStack>
         </BackgroundColorProvider>
-      </SideNavContainer>
+      </SidenavContainer>
     </ThemeProvider>
   );
 };
@@ -48,7 +53,7 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
 const Group = ({ children, title, collapsable, icon }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <SideNavGroup>
+    <SidenavGroup>
       {collapsable && title ? (
         <button className="sidenav-title" aria-expanded={collapsed} onClick={() => setCollapsed(!collapsed)}>
           <span>
@@ -76,22 +81,28 @@ const Group = ({ children, title, collapsable, icon }: SidenavGroupPropsType): J
         )
       )}
       {(!collapsable || (collapsable && !collapsed)) && children}
-    </SideNavGroup>
+    </SidenavGroup>
   );
 };
 
 const Link = forwardRef(
   (
-    { href, children, newWindow = false, selected = false, icon, ...rest }: SidenavLinkPropsType,
+    { href, children, newWindow = false, selected = false, icon, onClick, ...otherProps }: SidenavLinkPropsType,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
+    const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
+    const handleClick = () => {
+      onClick?.();
+      setIsSidenavVisibleResponsive?.(false);
+    };
     return (
-      <SideNavLink
+      <SidenavLink
         selected={selected}
         href={href ? href : undefined}
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
-        {...rest}
+        {...otherProps}
+        onClick={handleClick}
       >
         <span>
           {icon}
@@ -103,7 +114,7 @@ const Link = forwardRef(
             <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
           </svg>
         )}
-      </SideNavLink>
+      </SidenavLink>
     );
   }
 );
@@ -112,12 +123,12 @@ const SidenavContainer = styled.div<SidenavPropsType>`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
-  width: 280px;
   box-sizing: border-box;
+  width: 280px;
+  @media (max-width: ${responsiveSizes.medium}rem) {
+    width: 100vw;
+  }
 
-  position: fixed;
-  top: 0px;
-  left: 0px;
   height: 100%;
   padding: 2rem 0;
 
@@ -153,7 +164,7 @@ const SidenavTitle = styled.div`
   }
 `;
 
-const SideNavGroup = styled.div`
+const SidenavGroup = styled.div`
   width: 100%;
 
   button.sidenav-title {
@@ -198,7 +209,7 @@ const SideNavGroup = styled.div`
 type StyledLinkProps = {
   selected: boolean;
 };
-const SideNavLink = styled.a<StyledLinkProps>`
+const SidenavLink = styled.a<StyledLinkProps>`
   letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
 
   text-transform: ${(props) => props.theme.linkFontTextTransform};
