@@ -4,7 +4,7 @@ import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
-import { facebookLogo, linkedinLogo, twitterLogo, hamburguerIcon } from "./Icons";
+import { facebookLogo, linkedinLogo, twitterLogo, hamburgerIcon } from "./Icons";
 import AppLayoutPropsType, {
   AppLayoutSidenavPropsType,
   AppLayoutFooterPropsType,
@@ -99,14 +99,14 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
       <HeaderContainer>{header}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
-          <HamburguerTrigger
+          <HamburgerTrigger
             onClick={handleSidenavVisibility}
             aria-labelledby={visibilityToggleLabel ? visibilityToggleLabelId : undefined}
             aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
-            {hamburguerIcon}
-          </HamburguerTrigger>
+            {hamburgerIcon}
+          </HamburgerTrigger>
           {visibilityToggleLabel && (
             <VisibilityToggleLabel id={visibilityToggleLabelId}>{visibilityToggleLabel}</VisibilityToggleLabel>
           )}
@@ -169,7 +169,7 @@ const VisibilityToggle = styled.div`
   z-index: 2;
 `;
 
-const HamburguerTrigger = styled.button`
+const HamburgerTrigger = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
