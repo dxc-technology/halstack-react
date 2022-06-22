@@ -2,7 +2,6 @@ import Button from "./cdk-components/button/Button";
 import Checkbox from "./cdk-components/checkbox/Checkbox";
 import Switch from "./cdk-components/switch/Switch";
 import Alert from "./cdk-components/alert/Alert";
-import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
 import Tabs from "./cdk-components/tabs/Tabs";
 import Accordion from "./cdk-components/accordion/Accordion";
@@ -39,6 +38,7 @@ import Inset from "./cdk-components/inset/Inset";
 import Row from "./cdk-components/row/Row";
 import Bleed from "./cdk-components/bleed/Bleed";
 import QuickNav from "./cdk-components/quick-nav/QuickNav";
+import NavTabs from "./cdk-components/navtabs/NavTabs";
 
 export const types = {
   FORMS: "Forms",
@@ -181,6 +181,13 @@ export default [
     status: "ready",
   },
   {
+    path: "navtabs",
+    name: "Nav Tabs",
+    component: NavTabs,
+    type: types.NAVIGATION,
+    status: "experimental",
+  },
+  {
     path: "numberInput",
     name: "Number Input",
     component: NumberInput,
@@ -215,13 +222,6 @@ export default [
     component: QuickNav,
     type: types.NAVIGATION,
     status: "experimental",
-  },
-  {
-    path: "radio",
-    name: "Radio Button",
-    component: Radio,
-    type: types.FORMS,
-    status: "deprecated",
   },
   {
     path: "radioGroup",

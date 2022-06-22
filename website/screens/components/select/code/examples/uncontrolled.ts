@@ -4,7 +4,7 @@ import {
   DxcStack,
   DxcInset,
 } from "@dxc-technology/halstack-react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 const code = `() => {
   const selectRef = useRef();
@@ -12,28 +12,24 @@ const code = `() => {
     const select = selectRef.current.getElementsByTagName("input")[0];
     console.log(select.value);
   };
-
   const options = [
-    { label: "Option 01", value: "1" },
-    { label: "Option 02", value: "2" },
-    { label: "Option 03", value: "3" },
-    { label: "Option 04", value: "4" },
+    { label: "Madrid", value: "madrid" },
+    { label: "Melbourne", value: "melbourne" },
+    { label: "London", value: "london" },
+    { label: "Roma", value: "roma" },
   ];
 
   return (
     <DxcInset space="large">
       <DxcStack gutter="large" align="start">
         <DxcSelect
-          label="Label"
-          defaultValue="4"
+          label="Select your favorite city"
+          placeholder="Choose a city"
+          defaultValue="madrid"
           options={options}
-          size="fillParent"
           ref={selectRef}
         />
-        <DxcButton
-          onClick={handleSubmit}
-          label="Submit"
-        />
+        <DxcButton onClick={handleSubmit} label="Submit" />
       </DxcStack>
     </DxcInset>
   );
@@ -44,7 +40,6 @@ const scope = {
   DxcStack,
   DxcInset,
   DxcButton,
-  useState,
   useRef,
 };
 

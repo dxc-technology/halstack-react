@@ -22,25 +22,19 @@ const sections = [
         </DxcText>
         <DxcList>
           <DxcText>
-            <DxcLink>
-              <Link href="/components/header/specifications">
-                <a>Header</a>
-              </Link>
-            </DxcLink>
+            <Link href="/components/header/specifications" passHref>
+              <DxcLink>Header</DxcLink>
+            </Link>
           </DxcText>
           <DxcText>
-            <DxcLink>
-              <Link href="/components/sidenav/specifications">
-                <a>Sidenav</a>
-              </Link>
-            </DxcLink>
+            <Link href="/components/sidenav/specifications" passHref>
+              <DxcLink>Sidenav</DxcLink>
+            </Link>
           </DxcText>
           <DxcText>
-            <DxcLink>
-              <Link href="/components/footer/specifications">
-                <a>Footer</a>
-              </Link>
-            </DxcLink>
+            <Link href="/components/footer/specifications" passHref>
+              <DxcLink>Footer</DxcLink>
+            </Link>
           </DxcText>
         </DxcList>
       </>
@@ -95,7 +89,7 @@ const ApplicationLayoutSpecsPage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/application-layout/specs/ApplicationLayoutSpecsPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/application-layout/specs/ApplicationLayoutSpecsPage.tsx" />
     </DxcStack>
   );
 };

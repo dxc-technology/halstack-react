@@ -168,10 +168,6 @@ const parseTheme = (theme) => {
   quickNavTokens.selectedFontColor = theme?.quickNav?.accentColor ?? quickNavTokens.selectedFontColor;
   quickNavTokens.hoverFontColor = setOpacity(theme?.quickNav?.accentColor, 0.7) ?? quickNavTokens.hoverFontColor;
 
-  const radioTokens = componentTokensCopy.radio;
-  radioTokens.color = theme?.radio?.baseColor ?? radioTokens.color;
-  radioTokens.fontColor = theme?.radio?.fontColor ?? radioTokens.color;
-
   const radioGroupTokens = componentTokensCopy.radioGroup;
   radioGroupTokens.radioInputColor = theme?.radioGroup?.baseColor ?? radioGroupTokens.radioInputColor;
   radioGroupTokens.labelFontColor = theme?.radioGroup?.fontColor ?? radioGroupTokens.labelFontColor;

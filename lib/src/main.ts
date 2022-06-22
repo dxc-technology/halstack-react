@@ -7,7 +7,6 @@ import DxcDialog from "./dialog/Dialog";
 import DxcDropdown from "./dropdown/Dropdown";
 import DxcFooter from "./footer/Footer";
 import DxcHeader from "./header/Header";
-import DxcRadio from "./radio/Radio";
 import DxcSlider from "./slider/Slider";
 import DxcSwitch from "./switch/Switch";
 import DxcTabs from "./tabs/Tabs";
@@ -42,6 +41,7 @@ import DxcRadioGroup from "./radio-group/RadioGroup";
 import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
 import DxcQuickNav from "./quick-nav/QuickNav";
+import DxcNavTabs from "./tabs-nav/NavTabs";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
@@ -55,7 +55,6 @@ export {
   DxcDropdown,
   DxcSwitch,
   DxcSlider,
-  DxcRadio,
   DxcHeader,
   DxcTable,
   DxcTabs,
@@ -95,4 +94,5 @@ export {
   DxcBleed,
   DxcInset,
   DxcQuickNav,
+  DxcNavTabs,
 };

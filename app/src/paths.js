@@ -6,7 +6,6 @@ import Table from "./pages/Table";
 import Tabs from "./pages/Tabs";
 import Accordion from "./pages/Accordion";
 import Slider from "./pages/Slider";
-import Radio from "./pages/Radio";
 import Dropdown from "./pages/Dropdown";
 import ProgressBar from "./pages/ProgressBar";
 import Header from "./pages/Header";
@@ -35,6 +34,7 @@ import Textarea from "./pages/Textarea";
 import Select from "./pages/Select";
 import FileInput from "./pages/FileInput";
 import QuickNav from "./pages/QuickNav";
+import NavTabs from "./pages/NavTabs";
 
 export default [
   {
@@ -128,6 +128,11 @@ export default [
     component: Link,
   },
   {
+    path: "navTabs",
+    name: "Nav Tabs",
+    component: NavTabs,
+  },
+  {
     path: "numberInput",
     name: "Number Input",
     component: NumberInput,
@@ -151,11 +156,6 @@ export default [
     path: "quickNav",
     name: "Quick nav",
     component: QuickNav,
-  },
-  {
-    path: "radio",
-    name: "Radio",
-    component: Radio,
   },
   {
     path: "resultsetTable",

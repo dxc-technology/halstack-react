@@ -1,10 +1,9 @@
 import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Image from "@/common/Image";
-import linkStatesIcon from "./images/link_states_icon.png";
+import iconUsage from "./examples/iconUsage";
+import Example from "@/common/example/Example";
 
 const sections = [
   {
@@ -31,9 +30,7 @@ const sections = [
           represent more graphical the purpose of the link, placing the icon
           before or after the link that is representing.
         </DxcText>
-        <Figure caption="Icon usage for the link component">
-          <Image src={linkStatesIcon} alt="Icon usage for the link component" />
-        </Figure>
+        <Example example={iconUsage}></Example>
       </>
     ),
   },
@@ -48,7 +45,7 @@ const LinkUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/link/usage/LinkUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/link/usage/LinkUsagePage.tsx" />
     </DxcStack>
   );
 };

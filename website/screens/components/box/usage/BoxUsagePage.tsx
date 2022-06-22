@@ -2,10 +2,9 @@ import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
-import Figure from "@/common/Figure";
-import Image from "@/common/Image";
 import DocFooter from "@/common/DocFooter";
-import boxVariants from "./images/box_variants.png";
+import variants from "./examples/variants";
+import Example from "@/common/example/Example";
 
 const sections = [
   {
@@ -31,9 +30,7 @@ const sections = [
     title: "Variants",
     content: (
       <>
-        <Figure caption="Box component variants">
-          <Image src={boxVariants} alt="Box component variants" />
-        </Figure>
+        <Example example={variants} />
         <DxcText as="p">
           The <Code>shadow-default</Code> and <Code>shadow-high</Code> variants
           can be used to create clear distictions between sections of content
@@ -65,7 +62,7 @@ const BoxUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/box/usage/BoxUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/box/usage/BoxUsagePage.tsx" />
     </DxcStack>
   );
 };

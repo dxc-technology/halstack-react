@@ -40,8 +40,8 @@ function SidenavContent() {
               links={links}
               filter={filter}
               currentPath={currentPath}
+              lastElement={LinksSections.length - 1 === index}
             ></LinksList>
-            {LinksSections.length - 1 !== index && <Separator></Separator>}
           </>
         ))}
       </DxcStack>
@@ -54,8 +54,15 @@ type LinksListProps = {
   links: LinkDetails[];
   filter: string;
   currentPath: string;
+  lastElement: boolean;
 };
-function LinksList({ currentPath, title, links, filter }: LinksListProps) {
+function LinksList({
+  currentPath,
+  title,
+  links,
+  filter,
+  lastElement,
+}: LinksListProps) {
   const filteredLinks = links.filter((link) =>
     link.label.toLowerCase().includes(filter.toLowerCase())
   );
@@ -63,20 +70,24 @@ function LinksList({ currentPath, title, links, filter }: LinksListProps) {
   if (filteredLinks.length > 0) {
     return (
       <>
-        <DxcStack>
-          <SidenavSectionTitle>{title}</SidenavSectionTitle>
-          {filteredLinks.map(({ label, path }) => (
-            <Link key={`${label}-${path}`} href={path} passHref>
-              <SidenavLink
-                selected={
-                  currentPath.slice(0, -1) === path ||
-                  currentPath.slice(0, -1) === path + "/specifications"
-                }
-              >
-                {label}
-              </SidenavLink>
-            </Link>
-          ))}
+        <DxcStack gutter="medium">
+          <DxcStack>
+            <SidenavSectionTitle>{title}</SidenavSectionTitle>
+            {filteredLinks.map(({ label, path }) => (
+              <Link key={`${label}-${path}`} href={path} passHref>
+                <SidenavLink
+                  selected={
+                    currentPath.slice(0, -1) === path ||
+                    currentPath.slice(0, -1) === path + "/specifications" ||
+                    currentPath.slice(0, -1) === path + "/usage"
+                  }
+                >
+                  {label}
+                </SidenavLink>
+              </Link>
+            ))}
+          </DxcStack>
+          {!lastElement && <Separator></Separator>}
         </DxcStack>
       </>
     );

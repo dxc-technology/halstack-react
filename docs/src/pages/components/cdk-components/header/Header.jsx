@@ -24,9 +24,9 @@ function Input() {
         <p>
           Everything between this tags will be displayed as a dropdown. If you
           want to show a{" "}
-          <DxcLink>
-            <Link to={`/components/dropdown`}>DxcDropdown</Link>
-          </DxcLink>
+          <Link to={`/components/dropdown`} component={DxcLink}>
+            DxcDropdown
+          </Link>
           , as a shortcut, you can also use it as a direct child of the
           DxcHeader without the tags, but we recommend to use it with the tags
           since some styles will be applied for a better fit in the header.

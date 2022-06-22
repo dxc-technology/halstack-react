@@ -1,10 +1,12 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const TablePageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/table" },
+    { label: "Code", path: "/components/table" },
+    { label: "Usage", path: "/components/table/usage" },
     { label: "Specifications", path: "/components/table/specifications" },
   ];
 
@@ -12,7 +14,7 @@ const TablePageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Table" weight="bold"></DxcHeading>
+          <ComponentHeading name="Table" status="Ready" />
           <DxcText as="p">
             Data table is a component with a high rate of usage within the
             applications. It allows to show the user a big amount of information

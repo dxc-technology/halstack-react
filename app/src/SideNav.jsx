@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 
 import paths from "./paths";
 
@@ -9,8 +9,10 @@ function SideNav() {
     <SideNavContainer>
       <Title>React Components</Title>
       <Links id="links-list">
-        {paths.map(path => (
-          <Link key={path.path} to={path.path}>{path.name}</Link>
+        {paths.map((path) => (
+          <Link key={path.path} to={path.path}>
+            {path.name}
+          </Link>
         ))}
       </Links>
     </SideNavContainer>

@@ -1,4 +1,3 @@
-import Image from "@/common/Image";
 import {
   DxcList,
   DxcStack,
@@ -8,9 +7,9 @@ import {
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
-import Figure from "@/common/Figure";
-import sliderInput from "./images/slider_input.png";
-import sliderVariants from "./images/slider_variants.png";
+import Example from "@/common/example/Example";
+import variants from "./examples/variants";
+import input from "./examples/input";
 
 const sections = [
   {
@@ -61,9 +60,7 @@ const sections = [
             </tr>
           </tbody>
         </DxcTable>
-        <Figure caption="Slider variants">
-          <Image src={sliderVariants} alt="Slider variants" />
-        </Figure>
+        <Example example={variants} />
       </>
     ),
   },
@@ -76,9 +73,7 @@ const sections = [
           designed with the purpose of offering a great user experience within
           the application.
         </DxcText>
-        <Figure caption="Slider with input example">
-          <Image src={sliderInput} alt="Slider with input example" />
-        </Figure>
+        <Example example={input} />
       </>
     ),
   },
@@ -93,7 +88,7 @@ const SliderUsagePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/slider/usage/SliderUsagePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/slider/usage/SliderUsagePage.tsx" />
     </DxcStack>
   );
 };

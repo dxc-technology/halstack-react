@@ -4,7 +4,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basic from "./examples/basicUsage";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
@@ -224,59 +223,16 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: <Example example={basic} defaultIsVisible />,
-      },
-      {
         title: "Controlled",
-        content: (
-          <>
-            <DxcText as="p">
-              This is an example of how to manage the state of the select
-              component using React stateful variables.
-            </DxcText>
-            <Example example={controlled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={controlled} defaultIsVisible />,
       },
       {
         title: "Uncontrolled",
-        content: (
-          <>
-            <DxcText as="p">
-              Alternatively you can let the component manage its state
-              internally. The example below shows how to handle the value of an
-              uncontrolled select in the submit event.
-            </DxcText>
-            <DxcText as="p">
-              The select's value is empty by default, but an initial,
-              uncontrolled, value can be provided using the{" "}
-              <Code>defaultValue</Code> prop.
-            </DxcText>
-            <Example example={uncontrolled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={uncontrolled} defaultIsVisible />,
       },
       {
         title: "Error handling",
-        content: (
-          <>
-            <DxcText as="p">
-              When handling errors, we recommend initializing the{" "}
-              <Code>error</Code> prop with an empty string. This will reserve
-              space for a possible future error message and prevent unintended
-              layout changes. Also, the <Code>onBlur</Code> and{" "}
-              <Code>onChange</Code> events will send <Code>undefined</Code> when
-              there is no error, so you may need to check this too to avoid the
-              same problem.
-            </DxcText>
-            <DxcText>
-              Below there is an example of how to treat errors using the{" "}
-              <Code>onBlur</Code> event.
-            </DxcText>
-            <Example example={errorHandling} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={errorHandling} defaultIsVisible />,
       },
       {
         title: "Grouped options",
@@ -299,7 +255,7 @@ const SelectCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/select/examples/SelectCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/select/code/SelectCodePage.tsx" />
     </DxcStack>
   );
 };

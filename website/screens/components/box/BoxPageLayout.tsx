@@ -1,10 +1,12 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/box" },
+    { label: "Code", path: "/components/box" },
+    { label: "Usage", path: "/components/box/usage" },
     { label: "Specifications", path: "/components/box/specifications" },
   ];
 
@@ -12,7 +14,7 @@ const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Box" weight="bold"></DxcHeading>
+          <ComponentHeading name="Box" status="Ready" />
           <DxcText as="p">
             There are different ways to organise the content on the webpage to
             facilitate the user according to his nature of interaction with the

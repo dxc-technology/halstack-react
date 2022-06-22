@@ -1,10 +1,12 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const ChipPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/chip" },
+    { label: "Code", path: "/components/chip" },
+    { label: "Usage", path: "/components/chip/usage" },
     { label: "Specifications", path: "/components/chip/specifications" },
   ];
 
@@ -12,7 +14,7 @@ const ChipPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Chip" weight="bold"></DxcHeading>
+          <ComponentHeading name="Chip" status="Ready" />
           <DxcText as="p">
             Chips are elements that represent status, complementary information,
             or association between elements.

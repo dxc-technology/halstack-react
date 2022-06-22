@@ -571,33 +571,6 @@ const sections = [
         ),
       },
       {
-        title: "Radio",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Theme Input</th>
-                <th>Tokens (calculation)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Base color</td>
-                <td>
-                  <Code>color</Code>
-                </td>
-              </tr>
-              <tr>
-                <td>Font color</td>
-                <td>
-                  <Code>fontColor</Code>
-                </td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
         title: "Radio Group",
         content: (
           <DxcTable>
@@ -1066,7 +1039,7 @@ const Themes = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/principles/themes/ThemesPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/themes/ThemesPage.tsx" />
     </DxcStack>
   );
 };

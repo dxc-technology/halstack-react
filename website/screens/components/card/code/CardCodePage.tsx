@@ -1,10 +1,15 @@
-import { DxcText, DxcList, DxcStack, DxcTable } from "@dxc-technology/halstack-react";
+import {
+  DxcText,
+  DxcList,
+  DxcStack,
+  DxcTable,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
-import basic from "./examples/basic";
+import basicUsage from "./examples/basicUsage";
 
 const sections = [
   {
@@ -24,8 +29,9 @@ const sections = [
               <td>imageSrc: string</td>
               <td></td>
               <td>
-                URL of the image that will be placed in the card component. In case of omission, the
-                image container will not appear and the content will occupy its space.
+                URL of the image that will be placed in the card component. In
+                case of omission, the image container will not appear and the
+                content will occupy its space.
               </td>
             </tr>
             <tr>
@@ -39,9 +45,10 @@ const sections = [
               <td>imagePadding: string | object </td>
               <td></td>
               <td>
-                Size of the padding to be applied to the image section of the component (`xxsmall` |
-                `xsmall` | `small` | `medium` | `large` | `xlarge` | `xxlarge`). You can pass an
-                object with `top`, `bottom`, `left` and `right` properties in order to specify
+                Size of the padding to be applied to the image section of the
+                component (`xxsmall` | `xsmall` | `small` | `medium` | `large` |
+                `xlarge` | `xxlarge`). You can pass an object with `top`,
+                `bottom`, `left` and `right` properties in order to specify
                 different padding sizes.
               </td>
             </tr>
@@ -50,22 +57,25 @@ const sections = [
               <td>
                 <Code>`before`</Code>
               </td>
-              <td>Whether the image should appear in relation to the content.</td>
+              <td>
+                Whether the image should appear in relation to the content.
+              </td>
             </tr>
             <tr>
               <td>linkHref: string</td>
               <td></td>
               <td>
-                If defined, the card will be displayed as an anchor, using this prop as `href`.
-                Component will show some visual feedback on hover.
+                If defined, the card will be displayed as an anchor, using this
+                prop as `href`. Component will show some visual feedback on
+                hover.
               </td>
             </tr>
             <tr>
               <td>onClick: function</td>
               <td></td>
               <td>
-                This function will be called when the user clicks the card. Component will show some
-                visual feedback on hover.
+                This function will be called when the user clicks the card.
+                Component will show some visual feedback on hover.
               </td>
             </tr>
             <tr>
@@ -73,24 +83,28 @@ const sections = [
               <td>
                 <Code>false</Code>
               </td>
-              <td>Whether the image must cover the whole image area of the card.</td>
+              <td>
+                Whether the image must cover the whole image area of the card.
+              </td>
             </tr>
             <tr>
               <td>margin: string | object</td>
               <td></td>
               <td>
-                Size of the margin to be applied to the component (`xxsmall` | `xsmall` | `small` |
-                `medium` | `large` | `xlarge` | `xxlarge`). You can pass an object with `top`,
-                `bottom`, `left` and `right` properties in order to specify different margin sizes.
+                Size of the margin to be applied to the component (`xxsmall` |
+                `xsmall` | `small` | `medium` | `large` | `xlarge` | `xxlarge`).
+                You can pass an object with `top`, `bottom`, `left` and `right`
+                properties in order to specify different margin sizes.
               </td>
             </tr>
             <tr>
               <td>contentPadding: string | object</td>
               <td></td>
               <td>
-                Size of the padding to be applied to the content area (`xxsmall` | `xsmall` |
-                `small` | `medium` | `large` | `xlarge` | `xxlarge`). You can pass an object with
-                `top`, `bottom`, `left` and `right` properties in order to specify different padding
+                Size of the padding to be applied to the content area (`xxsmall`
+                | `xsmall` | `small` | `medium` | `large` | `xlarge` |
+                `xxlarge`). You can pass an object with `top`, `bottom`, `left`
+                and `right` properties in order to specify different padding
                 sizes.
               </td>
             </tr>
@@ -121,11 +135,7 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
       },
     ],
   },
@@ -135,9 +145,12 @@ const SelectCodePage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
-        <QuickNavContainer sections={sections} startHeadingLevel={2}></QuickNavContainer>
+        <QuickNavContainer
+          sections={sections}
+          startHeadingLevel={2}
+        ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/card/code/CardCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/card/code/CardCodePage.tsx" />
     </DxcStack>
   );
 };

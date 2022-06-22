@@ -4,7 +4,8 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basic from "./examples/basicUsage";
+import basicUsage from "./examples/basicUsage";
+import socialLinks from "./examples/socialLinks";
 
 const sections = [
   {
@@ -99,17 +100,16 @@ const sections = [
       </DxcTable>
     ),
   },
-
   {
     title: "Examples",
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Social links",
+        content: <Example example={socialLinks} defaultIsVisible />,
       },
     ],
   },
@@ -124,7 +124,7 @@ const FooterCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/footer/code/FooterCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/footer/code/FooterCodePage.tsx" />
     </DxcStack>
   );
 };

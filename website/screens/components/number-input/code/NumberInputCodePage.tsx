@@ -4,7 +4,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
-import basic from "./examples/basicUsage";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import errorUsage from "./examples/errorHandling";
@@ -202,36 +201,16 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: (
-          <>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
-      },
-      {
         title: "Controlled",
-        content: (
-          <>
-            <Example example={controlled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={controlled} defaultIsVisible />,
       },
       {
         title: "Uncontrolled",
-        content: (
-          <>
-            <Example example={uncontrolled} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={uncontrolled} defaultIsVisible />,
       },
       {
         title: "Error handling",
-        content: (
-          <>
-            <Example example={errorUsage} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={errorUsage} defaultIsVisible />,
       },
     ],
   },
@@ -246,7 +225,7 @@ const NumberInputCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/number-input/code/NumberInputCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/number-input/code/NumberInputCodePage.tsx" />
     </DxcStack>
   );
 };

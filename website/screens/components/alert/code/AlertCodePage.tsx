@@ -2,7 +2,7 @@ import { DxcText, DxcStack, DxcTable } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import basic from "./examples/basic";
+import basicUsage from "./examples/basicUsage";
 import modal from "./examples/modal";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
@@ -104,19 +104,11 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
         title: "Modal",
-        content: (
-          <>
-            <Example example={modal} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={modal} defaultIsVisible />,
       },
     ],
   },
@@ -131,7 +123,7 @@ const AlertCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-style-guide/blob/master/website/screens/components/alert/code/AlertCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/alert/code/AlertCodePage.tsx" />
     </DxcStack>
   );
 };

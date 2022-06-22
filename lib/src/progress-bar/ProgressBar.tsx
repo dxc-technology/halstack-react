@@ -11,7 +11,7 @@ import ProgressBarPropsType from "./types";
 const DxcProgressBar = ({
   label = "",
   helperText = "",
-  overlay = true,
+  overlay = false,
   value,
   showValue = false,
   margin,
