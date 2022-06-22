@@ -64,9 +64,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
   const [appLayoutId] = useState(`appLayout-${uuidv4()}`);
   const visibilityToggleLabelId = `label-${appLayoutId}`;
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
-  const [isResponsive, setIsResponsive] = useState(
-    window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
-  );
+  const [isResponsive, setIsResponsive] = useState(false);
   const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
 
@@ -84,6 +82,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
   };
 
   useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
