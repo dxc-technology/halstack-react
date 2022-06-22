@@ -14,7 +14,7 @@ const code = `() => {
   };
   return (
     <DxcInset space="large">
-      <DxcButton label="Open Dialog" onClick={handleClick}></DxcButton>
+      <DxcButton label="Enter your data" onClick={handleClick}></DxcButton>
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>
           <DxcInset top="medium" bottom="medium">

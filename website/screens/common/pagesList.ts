@@ -13,7 +13,9 @@ type NavigationLinks = {
   nextLink: LinkDetails | null;
 };
 
-const overviewLinks: LinkDetails[] = [{ label: "Introduction", path: "/overview/introduction" }];
+const overviewLinks: LinkDetails[] = [
+  { label: "Introduction", path: "/overview/introduction" },
+];
 
 const principlesLinks: LinkDetails[] = [
   { label: "Color", path: "/principles/color" },
@@ -47,7 +49,6 @@ const componentsLinks: LinkDetails[] = [
   { label: "Password Input", path: "/components/password-input" },
   { label: "Progress Bar", path: "/components/progress-bar" },
   { label: "Quick Nav", path: "/components/quick-nav" },
-  { label: "Radio", path: "/components/radio" },
   { label: "Radio Group", path: "/components/radio-group" },
   { label: "Resultset Table", path: "/components/resultset-table" },
   { label: "Select", path: "/components/select" },

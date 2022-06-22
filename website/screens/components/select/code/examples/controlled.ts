@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-
   const onChange = ({ value }) => {
     setValue(value);
   };
@@ -27,7 +26,6 @@ const code = `() => {
         value={value}
         onBlur={onBlur}
         onChange={onChange}
-        size="fillParent"
       />
     </DxcInset>
   );

@@ -6,9 +6,9 @@ import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import inputActionsClearImage from "./images/input_actions_clear.png";
 import inputActionsCustom from "./images/input_actions_custom.png";
-import prefixSuffix from "./example/prefixSuffix";
+import prefixSuffix from "./examples/prefixSuffix";
 import Example from "@/common/example/Example";
-import helperText from "./example/helperText";
+import helperText from "./examples/helperText";
 
 const sections = [
   {

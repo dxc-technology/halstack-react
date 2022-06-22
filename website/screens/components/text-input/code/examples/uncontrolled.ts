@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 
 const code = `() => {
   const inputRef = useRef();
-
+  
   const handleSubmit = () => {
     const input = inputRef.current.getElementsByTagName("input")[0];
     console.log(input.value);

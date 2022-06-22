@@ -14,6 +14,7 @@ const code = `() => {
       changeIsVisible(false);
     });
   };
+  
   const fetchData = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
