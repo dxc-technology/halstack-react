@@ -50,7 +50,7 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   </div>
 );
 
-const Group = ({ children, title, collapsable, icon }: SidenavGroupPropsType): JSX.Element => {
+const Group = ({ children, title, collapsable = false, icon }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <SidenavGroup>
@@ -87,7 +87,16 @@ const Group = ({ children, title, collapsable, icon }: SidenavGroupPropsType): J
 
 const Link = forwardRef(
   (
-    { href, children, newWindow = false, selected = false, icon, onClick, ...otherProps }: SidenavLinkPropsType,
+    {
+      href,
+      children,
+      newWindow = false,
+      selected = false,
+      icon,
+      tabIndex = 0,
+      onClick,
+      ...otherProps
+    }: SidenavLinkPropsType,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
@@ -101,8 +110,9 @@ const Link = forwardRef(
         href={href ? href : undefined}
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
-        {...otherProps}
         onClick={handleClick}
+        tabIndex={tabIndex}
+        {...otherProps}
       >
         <span>
           {icon}
