@@ -50,7 +50,8 @@ export type AppLayoutSidenavPropsType = {
 
 type AppLayoutPropsType = {
   /**
-   * Label of the hamburguer button, which appears next to it in responsive mode.
+   * Text to be placed next to the hamburger button that toggles the
+   * visibility of the sidenav.
    */
   visibilityToggleLabel?: string;
   /**
