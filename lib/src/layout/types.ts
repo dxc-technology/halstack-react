@@ -46,23 +46,13 @@ export type AppLayoutSidenavPropsType = {
    * The area inside the sidenav. This area can be used to render custom content.
    */
   children: React.ReactNode;
-  /**
-   * If false, the arrow button is hidden.
-   * In lower resolutions the arrow will be always displayed.
-   */
-  displayArrow?: boolean;
-  /**
-   * Default action over the content of the page, overlay the content or push to the right ('push' | 'overlay').
-   * In lower resolutions the mode will always be overlay.
-   */
-  mode: "push" | "overlay";
 };
 
 type AppLayoutPropsType = {
   /**
    * Label of the hamburguer button, which appears next to it in responsive mode.
    */
-  visibilityToggleLabel: string;
+  visibilityToggleLabel?: string;
   /**
    * The area inside the sidenav. This area can be used to render custom content.
    */

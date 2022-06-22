@@ -13,6 +13,7 @@ import AppLayoutPropsType, {
 } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
+import useTranslatedLabels from "../useTranslatedLabels";
 
 const year = new Date().getFullYear();
 const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
@@ -62,12 +63,12 @@ const childTypeExists = (children, childType) => children.find((child) => child?
 const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayoutPropsType): JSX.Element => {
   const [appLayoutId] = useState(`appLayout-${uuidv4()}`);
   const visibilityToggleLabelId = `label-${appLayoutId}`;
-
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const [isResponsive, setIsResponsive] = useState(
     window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
   );
   const ref = useRef(null);
+  const translatedLabels = useTranslatedLabels();
 
   const childrenArray = React.Children.toArray(children);
   const header = childTypeExists(childrenArray, DxcHeader) || childTypeExists(childrenArray, Header) || defaultHeader();
@@ -100,20 +101,25 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
         <VisibilityToggle>
           <HamburguerTrigger
             onClick={handleSidenavVisibility}
-            aria-labelledby={visibilityToggleLabelId}
-            title="Toggle visibility sidenav"
+            aria-labelledby={visibilityToggleLabel ? visibilityToggleLabelId : undefined}
+            aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
+            title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
             {hamburguerIcon}
           </HamburguerTrigger>
-          <VisibilityToggleLabel id={visibilityToggleLabelId}>{visibilityToggleLabel}</VisibilityToggleLabel>
+          {visibilityToggleLabel && (
+            <VisibilityToggleLabel id={visibilityToggleLabelId}>{visibilityToggleLabel}</VisibilityToggleLabel>
+          )}
         </VisibilityToggle>
       )}
       <BodyContainer>
         <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
-          {(isResponsive ? isSidenavVisibleResponsive : true) && <SidenavContainer>{sidenav}</SidenavContainer>}
+          {sidenav && (isResponsive ? isSidenavVisibleResponsive : true) && (
+            <SidenavContainer>{sidenav}</SidenavContainer>
+          )}
         </SidenavContextProvider>
         <MainContentContainer>
-          {main}
+          <MainContainer>{main}</MainContainer>
           {footer}
         </MainContentContainer>
       </BodyContainer>
@@ -200,6 +206,7 @@ const VisibilityToggleLabel = styled.span`
 const BodyContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex: 1;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
     position: relative;
@@ -217,6 +224,10 @@ const SidenavContainer = styled.div`
     position: fixed;
     top: 112px;
   }
+`;
+
+const MainContainer = styled.div`
+  flex: 1;
 `;
 
 const MainContentContainer = styled.div`

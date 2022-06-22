@@ -305,6 +305,7 @@ const parseLabels = (labels) => {
   });
   return parsedLabels;
 };
+
 type HalstackProviderPropsType = {
   theme?: object;
   advancedTheme?: object;
