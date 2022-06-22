@@ -2,7 +2,13 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcLink,
+  DxcStack,
+  DxcTable,
+  DxcText,
+} from "@dxc-technology/halstack-react";
+import Link from "next/link";
 
 const sections = [
   {
@@ -24,7 +30,11 @@ const sections = [
     subSections: [
       {
         title: "DxcSidenav.Title",
-        content: <DxcText as="p"></DxcText>,
+        content: (
+          <DxcText as="p">
+            The title will always be positioned over the sections.
+          </DxcText>
+        ),
         subSections: [
           {
             title: "Props",
@@ -87,8 +97,9 @@ const sections = [
             title: "DxcSidenav.Group",
             content: (
               <DxcText as="p">
-                This can have any type of child but we recommend using only the
-                DxcLink.
+                Even though any children are accepted we recommend using only
+                the DxcSidenav.Link or any react based router with the
+                DxcSidenav.Link.
               </DxcText>
             ),
             subSections: [
@@ -116,7 +127,9 @@ const sections = [
                     </tr>
                     <tr>
                       <td>collapsable: boolean</td>
-                      <td></td>
+                      <td>
+                        <Code>false</Code>
+                      </td>
                       <td>
                         If true the sidenav group title will be considered a
                         button and the group will be collapsable.
@@ -136,7 +149,17 @@ const sections = [
           },
           {
             title: "DxcSidenav.Link",
-            content: <DxcText as="p"></DxcText>,
+            content: (
+              <DxcText as="p">
+                As the our link component, we decided to make our link component
+                just a styled HTML anchor element which allows it to be used in
+                any React based router. You can check the{" "}
+                <Link href={"/components/link/"} passHref>
+                  <DxcLink>Link</DxcLink>
+                </Link>{" "}
+                for more information regarding this.
+              </DxcText>
+            ),
             subSections: [
               {
                 title: "Props",
@@ -149,7 +172,9 @@ const sections = [
                     </tr>
                     <tr>
                       <td>tabIndex: number</td>
-                      <td></td>
+                      <td>
+                        <Code>0</Code>
+                      </td>
                       <td>Value of the tabindex.</td>
                     </tr>
                     <tr>
@@ -161,7 +186,9 @@ const sections = [
                     </tr>
                     <tr>
                       <td>newWindow: boolean</td>
-                      <td></td>
+                      <td>
+                        <Code>false</Code>
+                      </td>
                       <td>If true, the page is opened in a new browser tab.</td>
                     </tr>
                     <tr>
@@ -174,7 +201,9 @@ const sections = [
                     </tr>
                     <tr>
                       <td>selected: boolean</td>
-                      <td></td>
+                      <td>
+                        <Code>false</Code>
+                      </td>
                       <td>If true, the link will be marked as selected.</td>
                     </tr>
                     <tr>
@@ -186,12 +215,9 @@ const sections = [
                       </td>
                     </tr>
                     <tr>
-                      <td>children: node</td>
+                      <td>children: string</td>
                       <td></td>
-                      <td>
-                        The area inside the sidenav link. This area can be used
-                        to render custom content.
-                      </td>
+                      <td>The area inside the sidenav link.</td>
                     </tr>
                   </DxcTable>
                 ),
