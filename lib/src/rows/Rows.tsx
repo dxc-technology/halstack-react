@@ -37,7 +37,7 @@ DxcRows.Row = DxcRow;
 
 const RowsContainer = styled.div<RowsProps>`
   display: flex;
-  ${({ alignX, alignY, gutter, reverse }) => `
+  ${({ alignX, gutter, reverse }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
     align-items: ${alignX};
     gap: ${gutter};
