@@ -26,7 +26,7 @@ type Props = {
   /**
    * Single column.
    */
-  children: React.ReactElement<React.ReactNode>[] | React.ReactElement<eact.ReactNode>;
+  children: React.ReactElement<React.ReactNode>[] | React.ReactElement<React.ReactNode>;
 };
 
 export default Props;
