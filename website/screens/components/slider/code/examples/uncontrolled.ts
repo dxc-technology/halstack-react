@@ -7,7 +7,7 @@ const code = `() => {
 
   return (
     <DxcInset space="large">
-      <DxcSlider label="Select a value" onChange={onChange} />
+      <DxcSlider label="Select a value" defaultValue={40} onChange={onChange} />
     </DxcInset>
   );
 }`;

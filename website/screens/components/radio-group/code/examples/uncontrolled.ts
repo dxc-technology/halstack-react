@@ -21,6 +21,7 @@ const code = `() => {
       <DxcInset space="large">
         <DxcRadioGroup
           label="Fruit"
+          defaultValue="apple"
           options={options}
           onChange={onChange}
         />

@@ -25,7 +25,7 @@ const code = `() => {
         <DxcSelect
           label="Select your favorite city"
           placeholder="Choose a city"
-          defaultValue="4"
+          defaultValue="madrid"
           options={options}
           ref={selectRef}
         />
