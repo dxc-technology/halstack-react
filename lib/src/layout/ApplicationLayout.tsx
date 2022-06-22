@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DxcHeader from "../header/Header";
 import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
@@ -82,16 +82,16 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
     setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
   };
 
-  useLayoutEffect(() => {
-    ref.current && window.addEventListener("resize", handleResize);
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [setIsResponsive]);
 
   useEffect(() => {
     !isResponsive && setIsSidenavVisibleResponsive(false);
-  }, [isResponsive]);
+  }, [isResponsive, setIsSidenavVisibleResponsive]);
 
   return (
     <ApplicationLayoutContainer isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
@@ -223,7 +223,6 @@ const MainContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow: hidden;
 `;
 
 DxcApplicationLayout.Header = Header;
