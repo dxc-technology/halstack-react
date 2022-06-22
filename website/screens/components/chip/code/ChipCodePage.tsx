@@ -5,6 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
+import icons from "./examples/icons";
 
 const sections = [
   {
@@ -76,9 +77,13 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
+        content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Icons",
         content: (
           <>
-            <Example example={basicUsage} defaultIsVisible />
+            <Example example={icons} defaultIsVisible />
           </>
         ),
       },

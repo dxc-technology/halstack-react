@@ -4,7 +4,6 @@ import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
-import basicUsage from "./examples/basicUsage";
 import itemsPerPage from "./examples/itemsPerPage";
 
 const sections = [
@@ -89,14 +88,6 @@ const sections = [
   {
     title: "Examples",
     subSections: [
-      {
-        title: "Basic usage",
-        content: (
-          <>
-            <Example example={basicUsage} defaultIsVisible />
-          </>
-        ),
-      },
       {
         title: "Items per page",
         content: (

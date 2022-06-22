@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const code = `() => {
   const [value, setValue] = useState("");
-
   const onChange = ({ value }) => {
     setValue(value);
   };
@@ -15,8 +14,8 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcPasswordInput
+        label="Password"
         value={value}
-        label="Controlled"
         onChange={onChange}
         onBlur={onBlur}
       />

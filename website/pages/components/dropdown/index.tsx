@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import DropdownPageLayout from "../../../screens/components/dropdown/DropdownPageLayout";
-import DropdownUsagePage from "../../../screens/components/dropdown/usage/DropdownUsagePage";
+import DropdownCodePage from "../../../screens/components/dropdown/code/DropdownCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Dropdown — Halstack Design System</title>
       </Head>
-      <DropdownUsagePage></DropdownUsagePage>
+      <DropdownCodePage></DropdownCodePage>
     </>
   );
 };

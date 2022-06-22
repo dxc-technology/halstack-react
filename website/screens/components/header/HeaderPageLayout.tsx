@@ -1,10 +1,12 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const HeaderPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
-    { label: "Usage", path: "/components/header" },
+    { label: "Code", path: "/components/header" },
+    { label: "Usage", path: "/components/header/usage" },
     { label: "Specifications", path: "/components/header/specifications" },
   ];
 
@@ -12,7 +14,7 @@ const HeaderPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Header" weight="bold"></DxcHeading>
+          <ComponentHeading name="Header" status="Ready" />
           <DxcText as="p">
             The header is an important component in the interface, it is the
             area dedicated for the navigation across the application and helps

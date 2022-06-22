@@ -11,6 +11,7 @@ import Figure from "@/common/Figure";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import specsImage from "./images/switch_specs.png";
+import stackingImage from "./images/switch_stacking.png";
 import statesImage from "./images/switch_states.png";
 import anatomyImage from "./images/switch_anatomy.png";
 
@@ -18,9 +19,14 @@ const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Switch design specifications">
-        <Image src={specsImage} alt="Switch design specifications" />
-      </Figure>
+      <>
+        <Figure caption="Switch design specifications">
+          <Image src={specsImage} alt="Switch design specifications" />
+        </Figure>
+        <Figure caption="Switch stacking specifications">
+          <Image src={stackingImage} alt="Switch stacking specifications" />
+        </Figure>
+      </>
     ),
   },
   {

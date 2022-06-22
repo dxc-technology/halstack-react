@@ -9,7 +9,6 @@ import DropdownPreview from "./previews/Dropdown";
 import AccordionPreview from "./previews/Accordion";
 import SideNavPreview from "./previews/Sidenav";
 import ProgressBarPreview from "./previews/ProgressBar";
-import RadioButtonPreview from "./previews/RadioButton";
 import FooterPreview from "./previews/Footer";
 import WizardPreview from "./previews/Wizard";
 import HeaderPreview from "./previews/Header";
@@ -107,10 +106,6 @@ const SampleComponents = [
   {
     name: "quickNav",
     preview: QuickNavPreview,
-  },
-  {
-    name: "radio",
-    preview: RadioButtonPreview,
   },
   {
     name: "radioGroup",

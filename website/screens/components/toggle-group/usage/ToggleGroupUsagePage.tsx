@@ -3,7 +3,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
-import variants from "./example/variants";
+import variants from "./examples/variants";
 
 const sections = [
   {

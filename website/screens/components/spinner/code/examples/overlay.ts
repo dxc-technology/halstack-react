@@ -7,7 +7,6 @@ import { useState } from "react";
 
 const code = `() => {
   const [isVisible, changeIsVisible] = useState(false);
-
   const showModal = () => {
     changeIsVisible(true);
     fetchData().then(() => {

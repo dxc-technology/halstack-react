@@ -3,14 +3,13 @@ import { useState } from "react";
 
 const code = `() => {
   const [files, setFiles] = useState([]);
-
   const callbackFile = (files) => {
     setFiles(files);
   };
 
   return (
     <DxcInset space="large">
-      <DxcFileInput label="File" value={files} callbackFile={callbackFile} />
+      <DxcFileInput label="Select your files" value={files} callbackFile={callbackFile} />
     </DxcInset>
   );
 }`;
