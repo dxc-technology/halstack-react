@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DxcStack from "../stack/Stack";
 import DxcTypography from "../typography/Typography";
 import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
+import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
 
 const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element => {
@@ -11,6 +12,7 @@ const BulletedListItem = ({ children }: BulletedListItemPropsType): JSX.Element 
 };
 
 const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPropsType): JSX.Element => {
+  const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
   return (
@@ -21,7 +23,13 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
             <GeneralContent>
               {type === "number" ? (
                 <Number>
-                  <DxcTypography color={backgroundType && backgroundType === "dark" ? "#FFFFFF" : "#000000"}>
+                  <DxcTypography
+                    color={
+                      backgroundType && backgroundType === "dark"
+                        ? colorsTheme.bulletedList.fontColorOnDark
+                        : colorsTheme.bulletedList.fontColor
+                    }
+                  >
                     {index + 1}.
                   </DxcTypography>
                 </Number>
@@ -42,7 +50,13 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
                   <Disc backgroundType={backgroundType}></Disc>
                 </Bullet>
               )}
-              <DxcTypography color={backgroundType && backgroundType === "dark" ? "#FFFFFF" : "#000000"}>
+              <DxcTypography
+                color={
+                  backgroundType && backgroundType === "dark"
+                    ? colorsTheme.bulletedList.fontColorOnDark
+                    : colorsTheme.bulletedList.fontColor
+                }
+              >
                 {child}
               </DxcTypography>
             </GeneralContent>
