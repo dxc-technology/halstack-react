@@ -18,132 +18,116 @@ export const Chromatic = () => (
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="Align = baseline" theme="light" level={4} />
+    <Title title="AlignX = start" theme="light" level={4} />
     <Container>
-      <DxcStack align="baseline">
+      <DxcStack alignX="start">
         <Placeholder paddingLeft={20}></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder paddingRight={60}></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="Align = center" theme="light" level={4} />
+    <Title title="AlignX = end" theme="light" level={4} />
     <Container>
-      <DxcStack align="center">
+      <DxcStack alignX="end">
         <Placeholder paddingLeft={20}></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder paddingLeft={60}></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="Align = end" theme="light" level={4} />
+    <Title title="AlignX = center" theme="light" level={4} />
     <Container>
-      <DxcStack align="end">
+      <DxcStack alignX="center">
         <Placeholder paddingLeft={20}></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder paddingLeft={60}></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="Align = start" theme="light" level={4} />
+    <Title title="AlignX = baseline" theme="light" level={4} />
     <Container>
-      <DxcStack align="start">
+      <DxcStack alignX="baseline">
         <Placeholder paddingLeft={20}></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder paddingLeft={60}></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="Align = stretch" theme="light" level={4} />
+    <Title title="AlignX = stretch" theme="light" level={4} />
     <Container>
-      <DxcStack align="stretch">
+      <DxcStack alignX="stretch">
         <Placeholder paddingLeft={20}></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder paddingLeft={60}></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = xxxsmall" theme="light" level={4} />
+    <Title title="Gutter = 0rem" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="xxxsmall">
+      <DxcStack gutter="0rem">
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = xxsmall" theme="light" level={4} />
+    <Title title="Gutter = 0.125rem" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="xxsmall">
+      <DxcStack gutter="0.125rem">
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = xsmall" theme="light" level={4} />
+    <Title title="Gutter = 0.25rem" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="xsmall">
+      <DxcStack gutter="0.25rem">
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = small" theme="light" level={4} />
+    <Title title="Gutter = 0.5rem" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="small">
+      <DxcStack gutter="0.5rem">
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = medium" theme="light" level={4} />
+    <Title title="Gutter = 0.75rem" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="medium">
+      <DxcStack gutter="0.75rem">
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = large" theme="light" level={4} />
+    <Title title="Gutter = 1rem" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="large">
+      <DxcStack gutter="1rem">
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = xlarge" theme="light" level={4} />
+    <Title title="Gutter = 1.5rem" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="xlarge">
+      <DxcStack gutter="1.5rem">
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = xxlarge" theme="light" level={4} />
+    <Title title="Gutter = 2rem && divider" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="xxlarge">
+      <DxcStack gutter="2rem" divider>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
         <Placeholder></Placeholder>
       </DxcStack>
     </Container>
-    <Title title="gutter = xxxlarge" theme="light" level={4} />
+    <Title title="Reverse" theme="light" level={4} />
     <Container>
-      <DxcStack gutter="xxxlarge">
-        <Placeholder></Placeholder>
-        <Placeholder></Placeholder>
-        <Placeholder></Placeholder>
-      </DxcStack>
-    </Container>
-    <Title title="gutter = xxlarge && divider" theme="light" level={4} />
-    <Container>
-      <DxcStack gutter="xxlarge" divider>
-        <Placeholder></Placeholder>
-        <Placeholder></Placeholder>
-        <Placeholder></Placeholder>
-      </DxcStack>
-    </Container>
-    <Title title="gutter = none" theme="light" level={4} />
-    <Container>
-      <DxcStack gutter="none">
-        <Placeholder></Placeholder>
-        <Placeholder></Placeholder>
-        <Placeholder></Placeholder>
+      <DxcStack reverse>
+        <Placeholder>1</Placeholder>
+        <Placeholder>2</Placeholder>
+        <Placeholder>3</Placeholder>
       </DxcStack>
     </Container>
   </>
@@ -154,7 +138,9 @@ const Container = styled.div`
   padding: 10px;
 `;
 
-const Placeholder = styled.div`
+type PlaceholderProps = { paddingLeft?: number; paddingRight?: number };
+
+const Placeholder = styled.div<PlaceholderProps>`
   min-height: 40px;
   min-width: 120px;
   border: 1px solid #a46ede;
