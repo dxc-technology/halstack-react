@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
+import { BackgroundColorProvider } from "../BackgroundColorContext";
+import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import DarkContainer from "../../.storybook/components/DarkSection";
+
 import DxcBulletedList from "./BulletedList";
 
 export default {
@@ -17,91 +21,184 @@ const icon = (
 
 export const Chromatic = () => (
   <>
-    <Title title="Icon list" theme="light" level={4} />
-    <DxcBulletedList type="icon" icon={icon}>
-      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-    </DxcBulletedList>
-    <Title title="Number list" theme="light" level={4} />
-    <DxcBulletedList type="number">
-      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-    </DxcBulletedList>
-    <Title title="Square" theme="light" level={4} />
-    <DxcBulletedList type="square">
-      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-    </DxcBulletedList>
-    <Title title="Circle" theme="light" level={4} />
-    <DxcBulletedList type="circle">
-      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-    </DxcBulletedList>
-    <Title title="Disc" theme="light" level={4} />
-    <DxcBulletedList>
-      <DxcBulletedList.Item>Code</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
-      <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
-    </DxcBulletedList>
-
-    <Title title="Multiple lines" theme="light" level={4} />
-    <Container>
-      <Title title="Number" theme="light" level={4} />
-      <DxcBulletedList type="number">
-        <DxcBulletedList.Item>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+    <ExampleContainer>
+      <Title title="Icon list" theme="light" level={4} />
+      <DxcBulletedList type="icon" icon={icon}>
+        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
       </DxcBulletedList>
-    </Container>
-    <Container>
+      <Title title="Number list" theme="light" level={4} />
+      <DxcBulletedList type="number">
+        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+      </DxcBulletedList>
       <Title title="Square" theme="light" level={4} />
       <DxcBulletedList type="square">
-        <DxcBulletedList.Item>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
       </DxcBulletedList>
-    </Container>
-    <Container>
       <Title title="Circle" theme="light" level={4} />
       <DxcBulletedList type="circle">
-        <DxcBulletedList.Item>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
       </DxcBulletedList>
-    </Container>
-    <Title title="Disc" theme="light" level={4} />
-    <Container>
+      <Title title="Disc" theme="light" level={4} />
       <DxcBulletedList>
-        <DxcBulletedList.Item>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+        <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
       </DxcBulletedList>
-    </Container>
-    <Container>
-      <Title title="Icon" theme="light" level={4} />
-      <DxcBulletedList type="icon" icon={icon}>
-        <DxcBulletedList.Item>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-        </DxcBulletedList.Item>
-        <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
-      </DxcBulletedList>
-    </Container>
+
+      <Title title="Multiple lines" theme="light" level={4} />
+      <Container>
+        <Title title="Number" theme="light" level={4} />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+        </DxcBulletedList>
+      </Container>
+      <Container>
+        <Title title="Square" theme="light" level={4} />
+        <DxcBulletedList type="square">
+          <DxcBulletedList.Item>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+        </DxcBulletedList>
+      </Container>
+      <Container>
+        <Title title="Circle" theme="light" level={4} />
+        <DxcBulletedList type="circle">
+          <DxcBulletedList.Item>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+        </DxcBulletedList>
+      </Container>
+      <Title title="Disc" theme="light" level={4} />
+      <Container>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+        </DxcBulletedList>
+      </Container>
+      <Container>
+        <Title title="Icon" theme="light" level={4} />
+        <DxcBulletedList type="icon" icon={icon}>
+          <DxcBulletedList.Item>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+        </DxcBulletedList>
+      </Container>
+    </ExampleContainer>
+    <BackgroundColorProvider color="#333333">
+      <DarkContainerForBulletedList>
+        <Title title="Icon list" theme="dark" level={4} />
+        <DxcBulletedList type="icon" icon={icon}>
+          <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        </DxcBulletedList>
+        <Title title="Number list" theme="dark" level={4} />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        </DxcBulletedList>
+        <Title title="Square" theme="dark" level={4} />
+        <DxcBulletedList type="square">
+          <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        </DxcBulletedList>
+        <Title title="Circle" theme="dark" level={4} />
+        <DxcBulletedList type="circle">
+          <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        </DxcBulletedList>
+        <Title title="Disc" theme="dark" level={4} />
+        <DxcBulletedList>
+          <DxcBulletedList.Item>Code</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Usage</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Specifications</DxcBulletedList.Item>
+        </DxcBulletedList>
+
+        <Title title="Multiple lines" theme="dark" level={4} />
+        <Container>
+          <Title title="Number" theme="dark" level={4} />
+          <DxcBulletedList type="number">
+            <DxcBulletedList.Item>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+          </DxcBulletedList>
+        </Container>
+        <Container>
+          <Title title="Square" theme="dark" level={4} />
+          <DxcBulletedList type="square">
+            <DxcBulletedList.Item>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+          </DxcBulletedList>
+        </Container>
+        <Container>
+          <Title title="Circle" theme="dark" level={4} />
+          <DxcBulletedList type="circle">
+            <DxcBulletedList.Item>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+          </DxcBulletedList>
+        </Container>
+        <Title title="Disc" theme="dark" level={4} />
+        <Container>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+          </DxcBulletedList>
+        </Container>
+        <Container>
+          <Title title="Icon" theme="dark" level={4} />
+          <DxcBulletedList type="icon" icon={icon}>
+            <DxcBulletedList.Item>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>Text 2.</DxcBulletedList.Item>
+          </DxcBulletedList>
+        </Container>
+      </DarkContainerForBulletedList>
+    </BackgroundColorProvider>
   </>
 );
 
 const Container = styled.div`
   width: 400px;
+`;
+
+const DarkContainerForBulletedList = styled.div`
+  background-color: #333333;
+  padding: 5px;
 `;
