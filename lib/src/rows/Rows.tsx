@@ -16,7 +16,11 @@ const DxcRows = ({
       {React.Children.map(children, (child, index) => {
         return (
           <>
-            {React.cloneElement(child, { alignY })}
+            {child.type === DxcRows.Row ? (
+              React.cloneElement(child, { alignY })
+            ) : (
+              <DxcRow alignY={alignY}>{child}</DxcRow>
+            )}
             {divider && index !== React.Children.count(children) - 1 && <Divider />}
           </>
         );

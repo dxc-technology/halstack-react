@@ -26,7 +26,7 @@ export type RowsProps = {
   /**
    * Single Row.
    */
-  children: React.ReactElement<RowProps>[] | React.ReactElement<RowProps>;
+  children: React.ReactElement[] | React.ReactElement;
 };
 
 export type RowProps = {

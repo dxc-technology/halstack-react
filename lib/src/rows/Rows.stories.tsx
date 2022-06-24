@@ -27,15 +27,9 @@ export const Chromatic = () => (
     <Title title="AlignX = end" theme="light" level={4} />
     <Container>
       <DxcRows alignX="end">
-        <DxcRows.Row>
-          <Placeholder width="small" />
-        </DxcRows.Row>
-        <DxcRows.Row>
-          <Placeholder width="medium" />
-        </DxcRows.Row>
-        <DxcRows.Row>
-          <Placeholder width="large" />
-        </DxcRows.Row>
+        <Placeholder width="small" />
+        <Placeholder width="medium" />
+        <Placeholder width="large" />
       </DxcRows>
     </Container>
     <Title title="AlignX = center" theme="light" level={4} />
