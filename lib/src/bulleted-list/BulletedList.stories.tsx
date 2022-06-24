@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Title from "../../.storybook/components/Title";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-import DarkContainer from "../../.storybook/components/DarkSection";
 
 import DxcBulletedList from "./BulletedList";
 
