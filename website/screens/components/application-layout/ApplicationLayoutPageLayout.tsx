@@ -9,7 +9,7 @@ const ApplicationLayoutPageHeading = ({
   children: React.ReactNode;
 }) => {
   const tabs = [
-    { label: "Usage", path: "/components/application-layout" },
+    { label: "Code", path: "/components/application-layout" },
     {
       label: "Specifications",
       path: "/components/application-layout/specifications",
