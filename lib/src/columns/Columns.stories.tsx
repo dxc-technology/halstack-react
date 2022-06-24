@@ -14,28 +14,27 @@ export const Chromatic = () => (
     <Container>
       <DxcColumns>
         <DxcColumns.Column>
-          <Placeholder height="small" />
+          <Placeholder height="auto" width="small">
+            auto height
+          </Placeholder>
         </DxcColumns.Column>
         <DxcColumns.Column>
-          <Placeholder height="medium" />
+          <Placeholder height="medium" width="medium" />
+          <Placeholder height="medium" width="auto">
+            auto width
+          </Placeholder>
         </DxcColumns.Column>
         <DxcColumns.Column>
-          <Placeholder height="large" />
+          <Placeholder height="large" width="small" />
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
     <Title title="AlignY = end" theme="light" level={4} />
     <Container>
       <DxcColumns alignY="end">
-        <DxcColumns.Column>
-          <Placeholder height="small" />
-        </DxcColumns.Column>
-        <DxcColumns.Column>
-          <Placeholder height="medium" />
-        </DxcColumns.Column>
-        <DxcColumns.Column>
-          <Placeholder height="large" />
-        </DxcColumns.Column>
+        <Placeholder height="small" />
+        <Placeholder height="medium" />
+        <Placeholder height="large" />
       </DxcColumns>
     </Container>
     <Title title="AlignY = center" theme="light" level={4} />
@@ -66,11 +65,11 @@ export const Chromatic = () => (
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
-    <Title title="AlignY = stretch" theme="light" level={4} />
+    <Title title="AlignY = start" theme="light" level={4} />
     <Container>
-      <DxcColumns alignY="stretch">
+      <DxcColumns alignY="start">
         <DxcColumns.Column>
-          <Placeholder height="auto" />
+          <Placeholder height="small" />
         </DxcColumns.Column>
         <DxcColumns.Column>
           <Placeholder height="medium" />
@@ -131,20 +130,20 @@ export const Chromatic = () => (
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
-    <Title title="AlignX = stretch" theme="light" level={4} />
+    <Title title="AlignX = start" theme="light" level={4} />
     <Container>
-      <DxcColumns alignX="stretch">
+      <DxcColumns alignX="start">
         <DxcColumns.Column>
           <Placeholder height="small" width="small" />
-          <Placeholder height="medium" width="auto" />
+          <Placeholder height="medium" width="medium" />
         </DxcColumns.Column>
         <DxcColumns.Column>
-          <Placeholder height="medium" width="auto" />
+          <Placeholder height="medium" width="medium" />
           <Placeholder height="small" width="small" />
         </DxcColumns.Column>
         <DxcColumns.Column>
           <Placeholder height="large" width="large" />
-          <Placeholder height="small" width="auto" />
+          <Placeholder height="small" width="small" />
         </DxcColumns.Column>
       </DxcColumns>
     </Container>

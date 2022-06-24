@@ -26,7 +26,7 @@ export type ColumnsProps = {
   /**
    * Single column.
    */
-  children: React.ReactElement<ColumnProps>[] | React.ReactElement<ColumnProps>;
+  children: React.ReactElement[] | React.ReactElement;
 };
 
 export type ColumnProps = {

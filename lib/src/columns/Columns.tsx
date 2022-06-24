@@ -12,30 +12,34 @@ const DxcColumns = ({
   children,
 }: ColumnsProps): JSX.Element => {
   return (
-    <ColumnsContainer as={as} alignY={alignY} gutter={gutter} reverse={reverse}>
+    <Columns as={as} alignY={alignY} gutter={gutter} reverse={reverse}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
-            {React.cloneElement(child, { alignX })}
+            {child.type === DxcColumns.Column ? (
+              React.cloneElement(child, { alignX })
+            ) : (
+              <DxcColumn alignX={alignX}>{child}</DxcColumn>
+            )}
             {divider && index !== React.Children.count(children) - 1 && <Divider />}
           </>
         );
       })}
-    </ColumnsContainer>
+    </Columns>
   );
 };
 
 const DxcColumn = ({ width = "auto", alignX, children }: ColumnProps): JSX.Element => {
   return (
-    <StyledColumn width={width} alignX={alignX}>
+    <Column width={width} alignX={alignX}>
       {children}
-    </StyledColumn>
+    </Column>
   );
 };
 
 DxcColumns.Column = DxcColumn;
 
-const ColumnsContainer = styled.div<ColumnsProps>`
+const Columns = styled.div<ColumnsProps>`
   display: flex;
   ${({ alignY, gutter, reverse }) => `
     flex-direction: ${reverse ? "row-reverse" : "row"};
@@ -50,7 +54,7 @@ const Divider = styled.div`
   background-color: #999999;
 `;
 
-const StyledColumn = styled.div<ColumnProps>`
+const Column = styled.div<ColumnProps>`
   ${({ width }) =>
     width === "content"
       ? "width: fit-content"
