@@ -197,7 +197,7 @@ const DxcFileInput = ({
               }
               onClick={handleClick}
               disabled={disabled}
-              size="medium"
+              size="fitContent"
               tabIndex={tabIndex}
             />
             {files.map((file) => {
