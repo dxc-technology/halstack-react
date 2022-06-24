@@ -20,7 +20,7 @@ export const Chromatic = () => (
           <Placeholder width="medium" />
         </DxcRows.Row>
         <DxcRows.Row>
-          <Placeholder width="large" />
+          <Placeholder width="auto" />
         </DxcRows.Row>
       </DxcRows>
     </Container>
@@ -60,11 +60,11 @@ export const Chromatic = () => (
         </DxcRows.Row>
       </DxcRows>
     </Container>
-    <Title title="AlignX = stretch" theme="light" level={4} />
+    <Title title="AlignX = start" theme="light" level={4} />
     <Container>
-      <DxcRows alignX="stretch">
+      <DxcRows alignX="start">
         <DxcRows.Row>
-          <Placeholder width="auto" />
+          <Placeholder width="small" />
         </DxcRows.Row>
         <DxcRows.Row>
           <Placeholder width="medium" />
@@ -125,20 +125,20 @@ export const Chromatic = () => (
         </DxcRows.Row>
       </DxcRows>
     </Container>
-    <Title title="AlignY = stretch" theme="light" level={4} />
+    <Title title="AlignY = start" theme="light" level={4} />
     <Container>
-      <DxcRows alignY="stretch">
+      <DxcRows alignY="start">
         <DxcRows.Row>
           <Placeholder width="small" height="small" />
-          <Placeholder width="medium" height="auto" />
+          <Placeholder width="medium" height="medium" />
         </DxcRows.Row>
         <DxcRows.Row>
-          <Placeholder width="medium" height="auto" />
+          <Placeholder width="medium" height="medium" />
           <Placeholder width="small" height="small" />
         </DxcRows.Row>
         <DxcRows.Row>
           <Placeholder width="large" height="large" />
-          <Placeholder width="small" />
+          <Placeholder width="small" height="small"/>
         </DxcRows.Row>
       </DxcRows>
     </Container>
