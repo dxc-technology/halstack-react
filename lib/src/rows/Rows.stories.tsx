@@ -20,7 +20,7 @@ export const Chromatic = () => (
           <Placeholder width="medium" />
         </DxcRows.Row>
         <DxcRows.Row>
-          <Placeholder width="auto" />
+          <Placeholder width="auto">auto width</Placeholder>
         </DxcRows.Row>
       </DxcRows>
     </Container>
@@ -138,7 +138,7 @@ export const Chromatic = () => (
         </DxcRows.Row>
         <DxcRows.Row>
           <Placeholder width="large" height="large" />
-          <Placeholder width="small" height="small"/>
+          <Placeholder width="small" height="small" />
         </DxcRows.Row>
       </DxcRows>
     </Container>
