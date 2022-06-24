@@ -46,19 +46,14 @@ export type AppLayoutSidenavPropsType = {
    * The area inside the sidenav. This area can be used to render custom content.
    */
   children: React.ReactNode;
-  /**
-   * If false, the arrow button is hidden.
-   * In lower resolutions the arrow will be always displayed.
-   */
-  displayArrow?: boolean;
-  /**
-   * Default action over the content of the page, overlay the content or push to the right ('push' | 'overlay').
-   * In lower resolutions the mode will always be overlay.
-   */
-  mode: "push" | "overlay";
 };
 
 type AppLayoutPropsType = {
+  /**
+   * Text to be placed next to the hamburger button that toggles the
+   * visibility of the sidenav.
+   */
+  visibilityToggleLabel?: string;
   /**
    * The area inside the sidenav. This area can be used to render custom content.
    */
