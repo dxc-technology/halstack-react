@@ -12,7 +12,7 @@ const DxcRows = ({
   children,
 }: RowsProps): JSX.Element => {
   return (
-    <RowsContainer as={as} alignX={alignX} gutter={gutter} reverse={reverse}>
+    <Rows as={as} alignX={alignX} gutter={gutter} reverse={reverse}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
@@ -25,21 +25,21 @@ const DxcRows = ({
           </>
         );
       })}
-    </RowsContainer>
+    </Rows>
   );
 };
 
 const DxcRow = ({ height = "auto", alignY, children }: RowProps): JSX.Element => {
   return (
-    <StyledRow height={height} alignY={alignY}>
+    <Row height={height} alignY={alignY}>
       {children}
-    </StyledRow>
+    </Row>
   );
 };
 
 DxcRows.Row = DxcRow;
 
-const RowsContainer = styled.div<RowsProps>`
+const Rows = styled.div<RowsProps>`
   display: flex;
   ${({ alignX, gutter, reverse }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
@@ -54,7 +54,7 @@ const Divider = styled.div`
   background-color: #999999;
 `;
 
-const StyledRow = styled.div<RowProps>`
+const Row = styled.div<RowProps>`
   ${({ height }) =>
     height === "content"
       ? "height: fit-content"
