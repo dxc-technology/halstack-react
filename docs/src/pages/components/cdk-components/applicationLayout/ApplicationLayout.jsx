@@ -7,7 +7,9 @@ import Section from "../../common/Section";
 import ComponentHeader from "../../common/ComponentHeader";
 import defaultLayout from "././examples/default";
 import sidenavLayout from "././examples/sidenavLayout";
-import SidenavApplicationLayoutPropsTable from "./api.jsx";
+import SidenavApplicationLayoutPropsTable, {
+  ApplicationLayoutPropsTable,
+} from "./api.jsx";
 
 function ApplicationLayout() {
   return (
@@ -17,15 +19,8 @@ function ApplicationLayout() {
         status="ready"
       ></ComponentHeader>
       <Section>
-        <DxcHeading level={3} text="Children" margin={{ bottom: "small" }} />
-        <p>
-          This component has no props. It has children and it follows the design
-          guidelines available{" "}
-          <DxcLink href="https://developer.dxc.com/design/guidelines/principles/layout">
-            here
-          </DxcLink>
-          .
-        </p>
+        <DxcHeading level={3} text="Props" />
+        <ApplicationLayoutPropsTable />
         <DxcHeading
           text="DxcApplicationLayout.Header"
           level={4}
@@ -67,17 +62,23 @@ function ApplicationLayout() {
           and the footer. This is optional and if it is not specified, the
           DxcSidenav will not be shown.
         </p>
-        <DxcHeading
-          text="Props"
-          level={5}
-          weight="bold"
-          margin={{ bottom: "medium" }}
-        />{" "}
+        <DxcHeading text="Props" level={5} weight="bold" />
         <SidenavApplicationLayoutPropsTable />
         <DxcHeading text="DxcApplicationLayout.Main" level={4} weight="bold" />
         <p>
           Everything between the tags will be displayed as the content of the
-          main part of the application.{" "}
+          main part of the application.
+        </p>
+        <DxcHeading
+          text="DxcApplicationLayout.useResponsiveSidenavVisibility"
+          level={4}
+          weight="bold"
+        />
+        <p>
+          Custom hook that returns a function to manually change the visibility
+          of the sidenav in responsive mode. This can be very useful for cases
+          where a custom sidenav is being used and some of its inner elements
+          can close it (for example, a navigation link).
         </p>
       </Section>
       <Section>
