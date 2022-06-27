@@ -17,7 +17,11 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcStack gutter="large" align="start">
-        <DxcTextarea label="Comments" ref={inputRef} />
+        <DxcTextarea
+          label="Comments"
+          defaultValue="My personal documents are attached."
+          ref={inputRef}
+        />
         <DxcButton label="Submit" onClick={handleSubmit}></DxcButton>
       </DxcStack>
     </DxcInset>

@@ -19,6 +19,7 @@ const code = `() => {
         <DxcNumberInput
           label="Enter your age"
           ref={inputRef}
+          defaultValue={10}
         />
         <DxcButton onClick={handleSubmit} label="Submit"></DxcButton>
       </DxcStack>

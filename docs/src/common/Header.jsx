@@ -42,7 +42,7 @@ function App() {
   return (
     <DxcHeader
       underlined
-      padding={{ left: "medium", right: "medium" }}
+      padding={{ left: "small" }}
       content={
         <React.Fragment>
           <HeaderSelect>
