@@ -29,12 +29,47 @@ export const Chromatic = () => (
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
+    <Title title="Default with divider" theme="light" level={4} />
+    <Container>
+      <DxcColumns divider>
+        <DxcColumns.Column>
+          <Placeholder height="auto" width="auto">
+            auto height
+          </Placeholder>
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" width="auto">
+            auto width
+          </Placeholder>
+          <Placeholder height="medium" width="auto">
+            auto width
+          </Placeholder>
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="large" width="small" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="large" width="large" />
+          <Placeholder height="large" width="medium" />
+        </DxcColumns.Column>
+      </DxcColumns>
+    </Container>
+    <Title title="Default with one column" theme="light" level={4} />
+    <Container>
+      <DxcColumns>
+        <DxcColumns.Column>
+          <Placeholder height="auto" width="auto" />
+        </DxcColumns.Column>
+      </DxcColumns>
+    </Container>
     <Title title="AlignY = end" theme="light" level={4} />
     <Container>
       <DxcColumns alignY="end">
         <Placeholder height="small" />
         <Placeholder height="medium" />
         <Placeholder height="large" />
+        <Placeholder height="medium" />
+        <Placeholder height="small" />
       </DxcColumns>
     </Container>
     <Title title="AlignY = center" theme="light" level={4} />
@@ -62,6 +97,12 @@ export const Chromatic = () => (
         </DxcColumns.Column>
         <DxcColumns.Column>
           <Placeholder height="large" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="small" />
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
@@ -111,6 +152,14 @@ export const Chromatic = () => (
           <Placeholder height="large" width="large" />
           <Placeholder height="small" width="small" />
         </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" width="medium" />
+          <Placeholder height="small" width="small" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="small" width="small" />
+          <Placeholder height="medium" width="medium" />
+        </DxcColumns.Column>
       </DxcColumns>
     </Container>
     <Title title="AlignX = baseline" theme="light" level={4} />
@@ -145,6 +194,15 @@ export const Chromatic = () => (
           <Placeholder height="large" width="large" />
           <Placeholder height="small" width="small" />
         </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" width="medium" />
+          <Placeholder height="small" width="small" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="small" width="small" />
+          <Placeholder height="medium" width="medium" />
+          <Placeholder height="large" width="large" />
+        </DxcColumns.Column>
       </DxcColumns>
     </Container>
     <Title title="Gutter = 0.125rem" theme="light" level={4} />
@@ -158,6 +216,15 @@ export const Chromatic = () => (
         </DxcColumns.Column>
         <DxcColumns.Column>
           <Placeholder height="large" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="large" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="small" />
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
@@ -187,6 +254,15 @@ export const Chromatic = () => (
         <DxcColumns.Column>
           <Placeholder height="large" />
         </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="large" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="small" />
+        </DxcColumns.Column>
       </DxcColumns>
     </Container>
     <Title title="Gutter = 0.75rem" theme="light" level={4} />
@@ -215,6 +291,15 @@ export const Chromatic = () => (
         <DxcColumns.Column>
           <Placeholder height="large" />
         </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="large" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="small" />
+        </DxcColumns.Column>
       </DxcColumns>
     </Container>
     <Title title="Gutter = 1.5rem" theme="light" level={4} />
@@ -242,6 +327,15 @@ export const Chromatic = () => (
         </DxcColumns.Column>
         <DxcColumns.Column>
           <Placeholder height="large" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="large" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="small" />
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
@@ -276,6 +370,9 @@ export const Chromatic = () => (
     <Title title="Widths" theme="light" level={4} />
     <Container>
       <DxcColumns>
+        <DxcColumns.Column width="1">
+          <Placeholder height="small">1</Placeholder>
+        </DxcColumns.Column>
         <DxcColumns.Column width="1">
           <Placeholder height="small">1</Placeholder>
         </DxcColumns.Column>
