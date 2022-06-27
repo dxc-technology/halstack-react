@@ -4,7 +4,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
-import basic from "./examples/basicUsage";
+import basicUsage from "./examples/basicUsage";
 import errorHandling from "./examples/errorHandling";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
@@ -198,11 +198,15 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: (
-          <>
-            <Example example={basic} defaultIsVisible />
-          </>
-        ),
+        content: <Example example={basicUsage} defaultIsVisible />,
+      },
+      {
+        title: "Controlled",
+        content: <Example example={controlled} defaultIsVisible />,
+      },
+      {
+        title: "Uncontrolled",
+        content: <Example example={uncontrolled} defaultIsVisible />,
       },
       {
         title: "Error handling",
@@ -214,22 +218,6 @@ const sections = [
               prop carefully to fully understand the following example.
             </DxcText>
             <Example example={errorHandling} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Controlled",
-        content: (
-          <>
-            <Example example={controlled} defaultIsVisible />
-          </>
-        ),
-      },
-      {
-        title: "Uncontrolled",
-        content: (
-          <>
-            <Example example={uncontrolled} defaultIsVisible />
           </>
         ),
       },

@@ -29,9 +29,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <HalstackProvider advancedTheme={{}}>
-        <DxcApplicationLayout>
-          <DxcApplicationLayout.SideNav mode="push">
-            <SidenavContent></SidenavContent>
+        <DxcApplicationLayout visibilityToggleLabel="Menu">
+          <DxcApplicationLayout.SideNav>
+            <SidenavContent />
           </DxcApplicationLayout.SideNav>
           <DxcApplicationLayout.Main>
             <MainContainer>{componentWithLayout}</MainContainer>

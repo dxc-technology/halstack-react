@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const ApplicationLayoutPageHeading = ({
   children,
@@ -8,7 +9,7 @@ const ApplicationLayoutPageHeading = ({
   children: React.ReactNode;
 }) => {
   const tabs = [
-    { label: "Usage", path: "/components/application-layout" },
+    { label: "Code", path: "/components/application-layout" },
     {
       label: "Specifications",
       path: "/components/application-layout/specifications",
@@ -19,11 +20,7 @@ const ApplicationLayoutPageHeading = ({
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading
-            level={1}
-            text="Application layout"
-            weight="bold"
-          ></DxcHeading>
+          <ComponentHeading name="Application layout" status="Ready" />
           <DxcText>
             The application layout provides a base UI wrapper for any
             application built with Halstack.

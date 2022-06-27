@@ -4,6 +4,7 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcTabs
+        defaultActiveTabIndex={1}
         tabs={[
           {
             label: "Mail",

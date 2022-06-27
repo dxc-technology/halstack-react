@@ -2,7 +2,6 @@ import Button from "./cdk-components/button/Button";
 import Checkbox from "./cdk-components/checkbox/Checkbox";
 import Switch from "./cdk-components/switch/Switch";
 import Alert from "./cdk-components/alert/Alert";
-import Radio from "./cdk-components/radio/Radio";
 import Dropdown from "./cdk-components/dropdown/Dropdown";
 import Tabs from "./cdk-components/tabs/Tabs";
 import Accordion from "./cdk-components/accordion/Accordion";
@@ -232,13 +231,6 @@ export default [
     component: QuickNav,
     type: types.NAVIGATION,
     status: "experimental",
-  },
-  {
-    path: "radio",
-    name: "Radio Button",
-    component: Radio,
-    type: types.FORMS,
-    status: "deprecated",
   },
   {
     path: "radioGroup",

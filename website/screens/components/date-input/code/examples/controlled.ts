@@ -13,9 +13,9 @@ const code = `() => {
   return (
     <DxcInset space="large">
       <DxcDateInput
-        size="fillParent"
-        label="Controlled"
-        helperText="Helper Text"
+        label="Start date"
+        helperText="Please enter the start date."
+        placeholder
         value={value}
         onChange={onChange}
         onBlur={onBlur}

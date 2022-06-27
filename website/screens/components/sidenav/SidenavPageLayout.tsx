@@ -1,6 +1,7 @@
-import { DxcHeading, DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const SidenavPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -12,7 +13,7 @@ const SidenavPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <DxcHeading level={1} text="Sidenav" weight="bold"></DxcHeading>
+          <ComponentHeading name="Sidenav" status="Ready" />
           <DxcText as="p">
             The sidenav component is part of the layout of the application and
             it makes easier to divide the main screen into two different areas.

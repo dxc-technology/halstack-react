@@ -54,10 +54,6 @@
     "baseColor": "#cecece",
     "fontColor": "#000000"
   },
-  "radio": {
-    "baseColor": "#000000",
-    "fontColor": "#000000"
-  },
   "radioGroup": {
     "baseColor": "#0086e6",
     "fontColor": "#000000"

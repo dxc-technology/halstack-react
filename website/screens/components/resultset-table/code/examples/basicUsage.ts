@@ -24,7 +24,7 @@ const code = `() => {
       { displayValue: "002"},
       { displayValue: "Louis"},
       { displayValue: "London"},
-      { displayValue: "" },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
     [
       { displayValue: "003"},
@@ -48,7 +48,7 @@ const code = `() => {
       { displayValue: "006"},
       { displayValue: "Cris"},
       { displayValue: "Paris"},
-      { displayValue: "" },
+      { displayValue: <DxcButton icon={deleteIcon} /> },
     ],
   ];
 

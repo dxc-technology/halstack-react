@@ -1,4 +1,4 @@
-import { DxcNavTabs } from "@dxc-technology/halstack-react";
+import { DxcNavTabs, DxcInset } from "@dxc-technology/halstack-react";
 
 type routerProps = {
   to: string;
@@ -16,8 +16,13 @@ const RouterLink = ({ to, component, children, ...other }: routerProps) => {
 
 const code = `() => {
   return (
-    <DxcNavTabs>
-        <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab} active>
+    <DxcInset space="large">
+      <DxcNavTabs>
+        <RouterLink
+          to="/components/nav-tabs/"
+          component={DxcNavTabs.Tab}
+          active
+        >
           Tab 1
         </RouterLink>
         <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab}>
@@ -26,12 +31,14 @@ const code = `() => {
         <RouterLink to="/components/nav-tabs/" component={DxcNavTabs.Tab}>
           Tab 3
         </RouterLink>
-    </DxcNavTabs>
+      </DxcNavTabs>
+    </DxcInset>
   );
 }`;
 
 const scope = {
   DxcNavTabs,
+  DxcInset,
   RouterLink,
 };
 

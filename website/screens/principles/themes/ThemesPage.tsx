@@ -571,33 +571,6 @@ const sections = [
         ),
       },
       {
-        title: "Radio",
-        content: (
-          <DxcTable>
-            <thead>
-              <tr>
-                <th>Theme Input</th>
-                <th>Tokens (calculation)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Base color</td>
-                <td>
-                  <Code>color</Code>
-                </td>
-              </tr>
-              <tr>
-                <td>Font color</td>
-                <td>
-                  <Code>fontColor</Code>
-                </td>
-              </tr>
-            </tbody>
-          </DxcTable>
-        ),
-      },
-      {
         title: "Radio Group",
         content: (
           <DxcTable>
