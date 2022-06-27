@@ -24,12 +24,33 @@ export const Chromatic = () => (
         </DxcRows.Row>
       </DxcRows>
     </Container>
+    <Title title="Default with divider" theme="light" level={4} />
+    <Container>
+      <DxcRows divider>
+        <DxcRows.Row>
+          <Placeholder width="auto" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="auto" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="auto" />
+        </DxcRows.Row>
+      </DxcRows>
+    </Container>
+    <Title title="Default with one row" theme="light" level={4} />
+    <Container>
+      <DxcRows>
+        <Placeholder width="auto" />
+      </DxcRows>
+    </Container>
     <Title title="AlignX = end" theme="light" level={4} />
     <Container>
       <DxcRows alignX="end">
         <Placeholder width="small" />
         <Placeholder width="medium" />
         <Placeholder width="large" />
+        <Placeholder width="medium" />
       </DxcRows>
     </Container>
     <Title title="AlignX = center" theme="light" level={4} />
@@ -43,6 +64,12 @@ export const Chromatic = () => (
         </DxcRows.Row>
         <DxcRows.Row>
           <Placeholder width="large" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="small" />
         </DxcRows.Row>
       </DxcRows>
     </Container>
@@ -58,6 +85,12 @@ export const Chromatic = () => (
         <DxcRows.Row>
           <Placeholder width="large" />
         </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="small" />
+        </DxcRows.Row>
       </DxcRows>
     </Container>
     <Title title="AlignX = start" theme="light" level={4} />
@@ -72,6 +105,12 @@ export const Chromatic = () => (
         <DxcRows.Row>
           <Placeholder width="large" />
         </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="small" />
+        </DxcRows.Row>
       </DxcRows>
     </Container>
     <Title title="AlignY = end" theme="light" level={4} />
@@ -83,10 +122,6 @@ export const Chromatic = () => (
         </DxcRows.Row>
         <DxcRows.Row>
           <Placeholder width="medium" height="medium" />
-          <Placeholder width="small" height="small" />
-        </DxcRows.Row>
-        <DxcRows.Row>
-          <Placeholder width="large" height="large" />
           <Placeholder width="small" height="small" />
         </DxcRows.Row>
       </DxcRows>
@@ -154,6 +189,12 @@ export const Chromatic = () => (
         <DxcRows.Row>
           <Placeholder width="large" />
         </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="small" />
+        </DxcRows.Row>
       </DxcRows>
     </Container>
     <Title title="Gutter = 0.25rem" theme="light" level={4} />
@@ -182,6 +223,12 @@ export const Chromatic = () => (
         <DxcRows.Row>
           <Placeholder width="large" />
         </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="small" />
+        </DxcRows.Row>
       </DxcRows>
     </Container>
     <Title title="Gutter = 0.75rem" theme="light" level={4} />
@@ -209,6 +256,12 @@ export const Chromatic = () => (
         </DxcRows.Row>
         <DxcRows.Row>
           <Placeholder width="large" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="small" />
         </DxcRows.Row>
       </DxcRows>
     </Container>
@@ -273,6 +326,9 @@ export const Chromatic = () => (
       <DxcRows>
         <DxcRows.Row height="1">
           <Placeholder width="small">1</Placeholder>
+        </DxcRows.Row>
+        <DxcRows.Row height="1">
+          <Placeholder width="large">1</Placeholder>
         </DxcRows.Row>
         <DxcRows.Row height="3">
           <Placeholder width="medium">3</Placeholder>
