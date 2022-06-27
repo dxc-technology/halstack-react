@@ -9,6 +9,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Example from "@/common/example/Example";
 import Link from "next/link";
+import basicUsage from "./examples/basicUsage";
+import withSidenav from "./examples/withSideNav";
+import customHeaderFooter from "./examples/customHeaderFooter";
 
 const ApplicationLayoutPropsTable = () => (
   <DxcTable>
@@ -138,7 +141,15 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <></>,
+        content: <Example example={basicUsage} />,
+      },
+      {
+        title: "With sidenav",
+        content: <Example example={withSidenav} />,
+      },
+      {
+        title: "Custom header and footer",
+        content: <Example example={customHeaderFooter} />,
       },
     ],
   },
