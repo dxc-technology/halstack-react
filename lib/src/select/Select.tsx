@@ -349,7 +349,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 aria-disabled={disabled}
                 aria-expanded={isOpen}
                 aria-haspopup="listbox"
-                aria-labelledby={selectLabelId}
+                aria-labelledby={label ? selectLabelId : undefined}
                 aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
                 aria-invalid={error ? "true" : "false"}
                 aria-errormessage={error ? errorId : undefined}
