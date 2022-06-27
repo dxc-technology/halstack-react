@@ -20,9 +20,7 @@ export const Chromatic = () => (
         </DxcColumns.Column>
         <DxcColumns.Column>
           <Placeholder height="medium" width="medium" />
-          <Placeholder height="medium" width="auto">
-            auto width
-          </Placeholder>
+          <Placeholder height="medium">auto width</Placeholder>
         </DxcColumns.Column>
         <DxcColumns.Column>
           <Placeholder height="large" width="small" />
@@ -33,17 +31,11 @@ export const Chromatic = () => (
     <Container>
       <DxcColumns divider>
         <DxcColumns.Column>
-          <Placeholder height="auto" width="auto">
-            auto height
-          </Placeholder>
+          <Placeholder height="auto">auto height</Placeholder>
         </DxcColumns.Column>
         <DxcColumns.Column>
-          <Placeholder height="medium" width="auto">
-            auto width
-          </Placeholder>
-          <Placeholder height="medium" width="auto">
-            auto width
-          </Placeholder>
+          <Placeholder height="medium">auto width</Placeholder>
+          <Placeholder height="medium">auto width</Placeholder>
         </DxcColumns.Column>
         <DxcColumns.Column>
           <Placeholder height="large" width="small" />
@@ -58,7 +50,7 @@ export const Chromatic = () => (
     <Container>
       <DxcColumns>
         <DxcColumns.Column>
-          <Placeholder height="auto" width="auto" />
+          <Placeholder height="auto" />
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
@@ -399,8 +391,10 @@ type PlaceholderProps = {
 };
 
 const Placeholder = styled.div<PlaceholderProps>`
-  width: ${({ width }) =>
-    width === "large" ? "150px" : width === "medium" ? "120px" : width === "small" ? "100px" : "100%"};
+  ${({ width }) =>
+    width
+      ? `width: ${width === "large" ? "150px" : width === "medium" ? "120px" : width === "small" ? "100px" : "100%"};`
+      : ""};
   ${({ height }) =>
     height
       ? `height: ${height === "large" ? "100px" : height === "medium" ? "70px" : height === "small" ? "50px" : "100%"};`
