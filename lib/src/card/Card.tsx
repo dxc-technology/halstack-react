@@ -31,33 +31,26 @@ const DxcCard = ({
     </ImageContainer>
   );
 
-  const tagContent = (
-    <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
-      <ThemeProvider theme={colorsTheme.card}>
-        <CardContainer hasAction={onClick || linkHref} imagePosition={imagePosition}>
-          {imageSrc && imagePosition === "before" && imageComponent}
-          <CardContent contentPadding={contentPadding}>{children}</CardContent>
-          {imageSrc && imagePosition === "after" && imageComponent}
-        </CardContainer>
-      </ThemeProvider>
-    </DxcBox>
-  );
-
   return (
     <StyledDxcCard
       margin={margin}
       onMouseEnter={() => changeIsHovered(true)}
       onMouseLeave={() => changeIsHovered(false)}
       onClick={onClick}
-      hasAction={onClick}
-      tabIndex={typeof onClick === "function" && !linkHref ? tabIndex : -1}
+      hasAction={onClick || linkHref}
+      tabIndex={tabIndex}
+      as={linkHref && "a"}
+      href={linkHref}
     >
-      {(linkHref && (
-        <StyledLink tabIndex={tabIndex} href={linkHref}>
-          {tagContent}
-        </StyledLink>
-      )) ||
-        tagContent}
+      <DxcBox shadowDepth={!outlined ? 0 : isHovered && (onClick || linkHref) ? 2 : 1}>
+        <ThemeProvider theme={colorsTheme.card}>
+          <CardContainer hasAction={onClick || linkHref} imagePosition={imagePosition}>
+            {imageSrc && imagePosition === "before" && imageComponent}
+            <CardContent contentPadding={contentPadding}>{children}</CardContent>
+            {imageSrc && imagePosition === "after" && imageComponent}
+          </CardContainer>
+        </ThemeProvider>
+      </DxcBox>
     </StyledDxcCard>
   );
 };
@@ -71,6 +64,7 @@ const StyledDxcCard = styled.div`
   margin-right: ${({ margin }) => (margin && margin.right ? spaces[margin.right] : "")};
   margin-bottom: ${({ margin }) => (margin && margin.bottom ? spaces[margin.bottom] : "")};
   margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
+  text-decoration: none;
 
   :focus {
     outline: #0095ff auto 1px;
@@ -83,15 +77,6 @@ const CardContainer = styled.div`
   width: ${(props) => props.theme.width};
   &:hover {
     border-color: ${({ hasAction }) => (hasAction ? "" : "unset")};
-  }
-`;
-
-const StyledLink = styled.a`
-  cursor: pointer;
-  text-decoration: none;
-
-  :focus {
-    outline-color: #0095ff;
   }
 `;
 
