@@ -38,5 +38,6 @@ export type RowProps = {
    * Custom content inside the row.
    */
   children: React.ReactNode;
-  alignY?: "start" | "end" | "center" | "baseline" | "stretch";
 };
+
+export type RowsContextProps = { alignY?: "start" | "end" | "center" | "baseline" | "stretch" };
