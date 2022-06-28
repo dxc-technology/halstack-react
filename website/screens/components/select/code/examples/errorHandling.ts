@@ -20,7 +20,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcSelect
         label="Select your favorite city"
         placeholder="Choose a city"

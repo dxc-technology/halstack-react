@@ -20,7 +20,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcStack gutter="large" align="center">
         <DxcRow gutter="large">
           <DxcLink icon={icon} href="#">

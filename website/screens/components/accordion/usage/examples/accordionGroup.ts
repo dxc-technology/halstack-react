@@ -13,7 +13,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcAccordionGroup
         indexActive={indexAccordion}
         onActiveChange={onActiveChange}
@@ -22,10 +22,10 @@ const code = `() => {
           label="Expanded"
           assistiveText="Additional information"
         >
-          <DxcInset space="large">
+          <DxcInset space="2rem">
             <DxcStack gutter="small">
               <DxcHeading level={3} text="Content header" />
-              <DxcInset space="xxxsmall">
+              <DxcInset space="0.125rem">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
@@ -37,7 +37,7 @@ const code = `() => {
           label="Collapsed"
           assistiveText="Additional information"
         >
-          <DxcInset space="medium">
+          <DxcInset space="1.5rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </DxcInset>
@@ -46,7 +46,7 @@ const code = `() => {
           label="Collapsed"
           assistiveText="Additional information"
         >
-          <DxcInset space="medium">
+          <DxcInset space="1.5rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </DxcInset>

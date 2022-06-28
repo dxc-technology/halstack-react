@@ -41,7 +41,7 @@ const code = `() => {
     }
   );
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       This is a text with a
       <CustomLink to="/components/link" component={DxcLink}>
         React Router v6
