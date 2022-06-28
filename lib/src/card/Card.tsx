@@ -66,9 +66,11 @@ const StyledDxcCard = styled.div`
   margin-left: ${({ margin }) => (margin && margin.left ? spaces[margin.left] : "")};
   text-decoration: none;
 
-  :focus {
+  ${({ hasAction }) =>
+    hasAction &&
+    `:focus {
     outline: #0095ff auto 1px;
-  }
+  }`}
 `;
 
 const CardContainer = styled.div`
