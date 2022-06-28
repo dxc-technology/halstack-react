@@ -2,7 +2,7 @@ import React, { createContext, useContext, useMemo } from "react";
 import styled from "styled-components";
 import { RowProps, RowsContextProps, RowsProps } from "./types";
 
-export const RowsContext = createContext<RowsContextProps | null>(null);
+const RowsContext = createContext<RowsContextProps | null>(null);
 
 const DxcRows = ({
   alignX = "stretch",
