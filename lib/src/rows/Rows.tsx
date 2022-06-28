@@ -47,7 +47,7 @@ const Rows = styled.div<RowsProps>`
   display: flex;
   ${({ alignX, gutter, reverse }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
-    align-items: ${alignX};
+    align-items: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
     gap: ${gutter};
   `}
   flex-grow: 1;
@@ -67,7 +67,7 @@ const Row = styled.div<RowProps & RowsContextProps>`
       : `height: ${(parseInt(height) / 8) * 100}%`};
 
   display: flex;
-  align-items: ${({ alignY }) => alignY};
+  align-items: ${({ alignY }) => (alignY === "start" || alignY === "end" ? `flex-${alignY}` : alignY)};
 `;
 
 export default DxcRows;
