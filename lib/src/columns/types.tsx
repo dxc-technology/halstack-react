@@ -38,5 +38,6 @@ export type ColumnProps = {
    * Custom content inside the column.
    */
   children: React.ReactNode;
-  alignX?: "start" | "end" | "center" | "baseline" | "stretch";
 };
+
+export type ColumnContextProps = { alignX?: "start" | "end" | "center" | "baseline" | "stretch" };

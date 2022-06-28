@@ -1,6 +1,8 @@
-import React from "react";
+import React, { createContext, useContext, useMemo } from "react";
 import styled from "styled-components";
-import { ColumnProps, ColumnsProps } from "./types";
+import { ColumnContextProps, ColumnProps, ColumnsProps } from "./types";
+
+const ColumnsContext = createContext<ColumnContextProps | null>(null);
 
 const DxcColumns = ({
   alignX = "stretch",
@@ -11,25 +13,27 @@ const DxcColumns = ({
   reverse = false,
   children,
 }: ColumnsProps): JSX.Element => {
+  const contextValue = useMemo(() => ({ alignX }), [alignX]);
+
   return (
     <Columns as={as} alignY={alignY} gutter={gutter} reverse={reverse}>
-      {React.Children.map(children, (child, index) => {
-        return (
-          <>
-            {child.type === DxcColumns.Column ? (
-              React.cloneElement(child, { alignX })
-            ) : (
-              <DxcColumn alignX={alignX}>{child}</DxcColumn>
-            )}
-            {divider && index !== React.Children.count(children) - 1 && <Divider />}
-          </>
-        );
-      })}
+      <ColumnsContext.Provider value={contextValue}>
+        {React.Children.map(children, (child, index) => {
+          return (
+            <>
+              {child.type === DxcColumns.Column ? child : <DxcColumn>{child}</DxcColumn>}
+              {divider && index !== React.Children.count(children) - 1 && <Divider />}
+            </>
+          );
+        })}
+      </ColumnsContext.Provider>
     </Columns>
   );
 };
 
-const DxcColumn = ({ width = "auto", alignX, children }: ColumnProps): JSX.Element => {
+const DxcColumn = ({ width = "auto", children }: ColumnProps): JSX.Element => {
+  const { alignX } = useContext(ColumnsContext);
+
   return (
     <Column width={width} alignX={alignX}>
       {children}
@@ -54,7 +58,7 @@ const Divider = styled.div`
   background-color: #999999;
 `;
 
-const Column = styled.div<ColumnProps>`
+const Column = styled.div<ColumnProps & ColumnContextProps>`
   ${({ width }) =>
     width === "content"
       ? "width: fit-content"
