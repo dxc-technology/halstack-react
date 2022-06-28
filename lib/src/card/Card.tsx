@@ -38,7 +38,7 @@ const DxcCard = ({
       onMouseLeave={() => changeIsHovered(false)}
       onClick={onClick}
       hasAction={onClick || linkHref}
-      tabIndex={tabIndex}
+      tabIndex={onClick || linkHref ? tabIndex : -1}
       as={linkHref && "a"}
       href={linkHref}
     >
