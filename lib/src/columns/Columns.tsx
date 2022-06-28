@@ -47,7 +47,7 @@ const Columns = styled.div<ColumnsProps>`
   display: flex;
   ${({ alignY, gutter, reverse }) => `
     flex-direction: ${reverse ? "row-reverse" : "row"};
-    align-items: ${alignY};
+    align-items: ${alignY === "start" || alignY === "end" ? `flex-${alignY}` : alignY};
     gap: ${gutter};
   `}
   flex-grow: 1;
@@ -68,7 +68,7 @@ const Column = styled.div<ColumnProps & ColumnContextProps>`
 
   display: flex;
   flex-direction: column;
-  align-items: ${({ alignX }) => alignX};
+  align-items: ${({ alignX }) => (alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX)};
 `;
 
 export default DxcColumns;
