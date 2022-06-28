@@ -1,7 +1,5 @@
-// @ts-nocheck
 import React, { useContext } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import useTheme from "../useTheme";
+import styled from "styled-components";
 import TypographyPropsTypes from "./types";
 import TypographyContextPropTypes from "./typographyContextTypes";
 
@@ -23,8 +21,6 @@ function Typography({
   whiteSpace,
   children,
 }: TypographyPropsTypes): JSX.Element {
-  const colorsTheme = useTheme();
-
   const componentContext = useContext(TypographyContext);
 
   const asValue = as ?? (componentContext?.as || "span");
@@ -79,11 +75,11 @@ function Typography({
   );
 }
 
-const StyledTypography = styled.span<TypographyProps>`
+const StyledTypography = styled.span<TypographyPropsTypes>`
   margin: 0px;
-  display: ${(props) => props.display};
+  display: ${({ display }) => display};
   color: ${({ color }) => color};
-  font-family: ${(props) => props.fontFamily};
+  font-family: ${({ fontFamily }) => fontFamily};
   font-size: ${({ fontSize }) => fontSize};
   font-style: ${({ fontStyle }) => fontStyle};
   font-weight: ${({ fontWeight }) => fontWeight};
@@ -92,7 +88,9 @@ const StyledTypography = styled.span<TypographyProps>`
   line-height: ${({ lineHeight }) => lineHeight};
   text-decoration: ${({ textDecoration }) => textDecoration};
   text-overflow: ${({ textOverflow }) => textOverflow};
-  white-space: ${({ whiteSpace }) => whiteSpace};
+  white-space: ${({ whiteSpace, textOverflow }) =>
+    whiteSpace !== "normal" ? whiteSpace : textOverflow !== "unset" ? "nowrap" : "normal"};
+  overflow: ${({ textOverflow }) => (textOverflow !== "unset" ? "hidden" : "visible")};
 `;
 
 export default Typography;

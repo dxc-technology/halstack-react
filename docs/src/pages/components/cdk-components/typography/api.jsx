@@ -38,7 +38,7 @@ const TypographyPropsTable = () => {
         <td>Specifies the font-size CSS property of the component.</td>
       </tr>
       <tr>
-        <td>fontStile: "italic" | "normal"</td>
+        <td>fontStyle: "italic" | "normal"</td>
         <td>'normal'</td>
         <td>Specifies the font-style CSS property of the component.</td>
       </tr>
@@ -70,7 +70,7 @@ const TypographyPropsTable = () => {
       <tr>
         <td>color: string</td>
         <td>'#000000'</td>
-        <td>Colour of text.</td>
+        <td>Color of text.</td>
       </tr>
       <tr>
         <td>textDecoration: "none" | "underline" | "line-through"</td>

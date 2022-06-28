@@ -3,19 +3,19 @@ import DxcTypography from "../typography/Typography";
 import BackgroundColorContext from "../BackgroundColorContext";
 import useTheme from "../useTheme";
 
-type ParagraphProps = {
+type ParagraphPropsType = {
   children: React.ReactNode;
 };
 
-function Paragraph({ children }: ParagraphProps): JSX.Element {
+function Paragraph({ children }: ParagraphPropsType): JSX.Element {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
   return (
     <DxcTypography
       as="p"
-      display="block"
-      fontSize="1rem"
-      fontWeight="400"
+      display={colorsTheme.paragraph.display}
+      fontSize={colorsTheme.paragraph.fontSize}
+      fontWeight={colorsTheme.paragraph.fontWeight}
       color={
         backgroundType && backgroundType === "dark"
           ? colorsTheme.paragraph.fontColorOnDark

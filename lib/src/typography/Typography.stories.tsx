@@ -11,7 +11,6 @@ export const Chromatic = () => (
   <>
     <Title title="Default Typography" theme="light" level={4} />
     <DxcTypography>Default typography.</DxcTypography>
-
     <Title title="Typography font sizes" theme="light" level={4} />
     <DxcTypography display="block" fontSize="3.75rem">
       3.75rem.
@@ -37,7 +36,6 @@ export const Chromatic = () => (
     <DxcTypography display="block" fontSize="0.75rem">
       0.75rem.
     </DxcTypography>
-
     <Title title="Typography letter spacing" theme="light" level={4} />
     <DxcTypography display="block" letterSpacing="-0.025em">
       -0.025em.
@@ -57,7 +55,6 @@ export const Chromatic = () => (
     <DxcTypography display="block" letterSpacing="0.1em">
       0.1em.
     </DxcTypography>
-
     <Title title="Typography line height" theme="light" level={4} />
     <DxcTypography display="block" lineHeight="1em">
       1em.
@@ -77,7 +74,6 @@ export const Chromatic = () => (
     <DxcTypography display="block" lineHeight="2em">
       2em.
     </DxcTypography>
-
     <Title title="Typography font weight" theme="light" level={4} />
     <DxcTypography display="block" fontWeight="300">
       300.
@@ -91,7 +87,6 @@ export const Chromatic = () => (
     <DxcTypography display="block" fontWeight="700">
       700.
     </DxcTypography>
-
     <Title title="Typography decoration" theme="light" level={4} />
     <DxcTypography display="block" textDecoration="underline">
       Underline.
@@ -99,7 +94,6 @@ export const Chromatic = () => (
     <DxcTypography display="block" textDecoration="line-through">
       Line-through.
     </DxcTypography>
-
     <Title title="Typography font family" theme="light" level={4} />
     <DxcTypography display="block" fontFamily="Open Sans, sans-serif">
       Open Sans, sans-serif.
@@ -107,7 +101,6 @@ export const Chromatic = () => (
     <DxcTypography display="block" fontFamily="Source Code Pro, monospace">
       Source Code Pro, monospace.
     </DxcTypography>
-
     <Title title="Typography font style" theme="light" level={4} />
     <DxcTypography display="block" fontStyle="italic">
       Italic.
@@ -115,7 +108,6 @@ export const Chromatic = () => (
     <DxcTypography display="block" fontStyle="normal">
       Normal.
     </DxcTypography>
-
     <Title title="Typography align" theme="light" level={4} />
     <DxcTypography display="block" textAlign="left">
       Left.
@@ -126,5 +118,58 @@ export const Chromatic = () => (
     <DxcTypography display="block" textAlign="right">
       Right.
     </DxcTypography>
+    <Title title="Typography whitespace" theme="light" level={4} />
+    <div style={{ margin: "50px", border: "1px solid red", width: "125px" }}>
+      <DxcTypography whiteSpace="normal" fontSize="2rem">
+        {"                  "} Normal: A bunch of words you see.
+      </DxcTypography>
+    </div>
+    <div style={{ margin: "50px", border: "1px solid red", width: "125px" }}>
+      <DxcTypography whiteSpace="nowrap" fontSize="2rem">
+        {"                  "}No-wrap: A bunch of words you see.
+      </DxcTypography>
+    </div>
+    <div style={{ margin: "50px", border: "1px solid red", width: "125px" }}>
+      <DxcTypography whiteSpace="pre" fontSize="2rem">
+        {"                  "} pre: A bunch of words you see.
+      </DxcTypography>
+    </div>
+    <div style={{ margin: "50px", border: "1px solid red", width: "125px" }}>
+      <DxcTypography whiteSpace="pre-line" fontSize="2rem">
+        {"                  "}pre-line: A bunch of words you see.
+      </DxcTypography>
+    </div>
+    <div style={{ margin: "50px", border: "1px solid red", width: "125px" }}>
+      <DxcTypography whiteSpace="pre-wrap" fontSize="2rem">
+        {"                  "} pre-wrap: A bunch of words you see.
+      </DxcTypography>
+    </div>
+
+    <Title title="Typography display" theme="light" level={4} />
+    <DxcTypography display="block" textAlign="left">
+      Display Block.
+      <DxcTypography>A different text.</DxcTypography>
+    </DxcTypography>
+    <DxcTypography display="inline" textAlign="left">
+      Display Inline.
+      <DxcTypography>A different text.</DxcTypography>
+    </DxcTypography>
+
+    <Title title="Typography text-overflow" theme="light" level={4} />
+    <div style={{ width: "75px" }}>
+      <DxcTypography display="block" textOverflow="clip">
+        Overflow clip.
+      </DxcTypography>
+    </div>
+    <div style={{ width: "75px" }}>
+      <DxcTypography display="block" textOverflow="ellipsis">
+        Overflow ellipsis.
+      </DxcTypography>
+    </div>
+    <div style={{ width: "75px" }}>
+      <DxcTypography display="block" textOverflow="unset">
+        Overflow unset.
+      </DxcTypography>
+    </div>
   </>
 );

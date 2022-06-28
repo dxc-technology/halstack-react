@@ -14,7 +14,6 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Default Paragraph" theme="light" level={4} />
-
       <DxcParagraph>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id tortor sit amet velit auctor cursus id eget
         nisl. Vivamus luctus egestas eros, at mattis libero eleifend ac. Integer vel urna rutrum, pretium arcu
@@ -29,7 +28,6 @@ export const Chromatic = () => (
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
         <Title title="Default Paragraph" theme="dark" level={4} />
-
         <DxcParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id tortor sit amet velit auctor cursus id eget
           nisl. Vivamus luctus egestas eros, at mattis libero eleifend ac. Integer vel urna rutrum, pretium arcu

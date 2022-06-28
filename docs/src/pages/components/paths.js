@@ -185,7 +185,7 @@ export default [
   },
   {
     path: "bulletedList",
-    name: "BulletedList",
+    name: "Bulleted List",
     component: BulletedList,
     type: types.UTILS,
   },
