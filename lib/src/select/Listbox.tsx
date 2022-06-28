@@ -124,6 +124,7 @@ const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
 );
 
 const ListboxContainer = styled.ul`
+  box-sizing: border-box;
   max-height: 304px;
   overflow-y: auto;
   margin: 0;
