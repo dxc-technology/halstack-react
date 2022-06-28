@@ -15,7 +15,7 @@ const bleedPropsTable = () => {
           | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to all sides.</td>
       </tr>
@@ -25,7 +25,7 @@ const bleedPropsTable = () => {
           '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the left and right sides.</td>
       </tr>
@@ -35,7 +35,7 @@ const bleedPropsTable = () => {
           '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the top and bottom sides.</td>
       </tr>
@@ -45,7 +45,7 @@ const bleedPropsTable = () => {
           '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the top side.</td>
       </tr>
@@ -55,7 +55,7 @@ const bleedPropsTable = () => {
           | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the right side.</td>
       </tr>
@@ -65,7 +65,7 @@ const bleedPropsTable = () => {
           | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the bottom side.</td>
       </tr>
@@ -75,7 +75,7 @@ const bleedPropsTable = () => {
           '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the left side.</td>
       </tr>
