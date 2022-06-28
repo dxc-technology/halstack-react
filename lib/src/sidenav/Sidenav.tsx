@@ -40,13 +40,13 @@ const DxcSidenav = ({ children }: SidenavPropsType): JSX.Element => {
     <ThemeProvider theme={colorsTheme.sidenav}>
       <SidenavContainer>
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
-          {React.Children.map(children, (child: ReactElement<any>) => {
+          {React.Children.map(children, (child: ReactElement) => {
             if (child.type === Title) {
               return child;
             }
           })}
           <DxcStack divider={true} gutter="small">
-            {React.Children.map(children, (child: ReactElement<any>) => {
+            {React.Children.map(children, (child: ReactElement) => {
               if (child.type === Section) {
                 return child;
               }
@@ -60,7 +60,7 @@ const DxcSidenav = ({ children }: SidenavPropsType): JSX.Element => {
 
 const Title = ({ children, icon }: SidenavTitlePropsType): JSX.Element => (
   <SidenavTitle>
-    {icon}
+    {typeof icon === "string" ? <img src={icon} /> : icon}
     {children}
   </SidenavTitle>
 );
@@ -73,21 +73,21 @@ const Group = ({ children, title, collapsable = false, icon }: SidenavGroupProps
     <SidenavGroup>
       {collapsable && title ? (
         <SidenavGroupTitleButton aria-expanded={collapsed} onClick={() => setCollapsed(!collapsed)}>
-          <span>
-            {icon}
+          <SidenavSpan>
+            {typeof icon === "string" ? <SidenavIconImg src={icon} /> : icon}
             {title}
-          </span>{" "}
+          </SidenavSpan>
           {collapsed ? collapsedIcon : collapsableIcon}
         </SidenavGroupTitleButton>
       ) : (
         title && (
           <SidenavGroupTitle>
-            {icon}
+            {typeof icon === "string" ? <SidenavIconImg src={icon} /> : icon}
             {title}
           </SidenavGroupTitle>
         )
       )}
-      {(!collapsable || (collapsable && !collapsed)) && children}
+      {!collapsed && children}
     </SidenavGroup>
   );
 };
@@ -121,10 +121,10 @@ const Link = forwardRef(
         tabIndex={tabIndex}
         {...otherProps}
       >
-        <span>
-          {icon}
+        <SidenavSpan>
+          {typeof icon === "string" ? <SidenavIconImg src={icon} /> : icon}
           {children}
-        </span>
+        </SidenavSpan>
         {newWindow && externalLinkIcon}
       </SidenavLink>
     );
@@ -220,14 +220,6 @@ const SidenavGroupTitleButton = styled.button`
   align-items: center;
   margin: 0px;
   padding: 7px 24px;
-  span {
-    display: flex;
-    align-items: center;
-    svg {
-      width: 16px;
-      margin-right: 8px;
-    }
-  }
   &:focus {
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
     outline-offset: -2px;
@@ -263,15 +255,8 @@ const SidenavLink = styled.a<StyledLinkProps>`
   padding: 7px 24px;
 
   cursor: pointer;
-
-  & > span {
-    display: flex;
-    align-items: center;
-  }
-
   svg {
     width: 16px;
-    fill: currentColor;
     margin-right: 8px;
   }
 
@@ -279,7 +264,7 @@ const SidenavLink = styled.a<StyledLinkProps>`
     ${(props) =>
       props.selected
         ? `color: ${props.theme.linkSelectedHoverFontColor}; background: ${props.theme.linkSelectedHoverBackgroundColor};`
-        : `color: ${props.theme.linkFontColor}; background: transparent;`}
+        : `color: ${props.theme.linkFontColor}; background: ${props.theme.linkHoverBackgroundColor};`}
   }
 
   &:focus {
@@ -293,6 +278,21 @@ const SidenavLink = styled.a<StyledLinkProps>`
     outline: 2px solid #0095ff;
     outline-offset: -2px;
   }
+`;
+
+const SidenavSpan = styled.span`
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 16px;
+    margin-right: 8px;
+  }
+`;
+
+const SidenavIconImg = styled.img`
+  width: 16px;
+  margin-right: 8px;
 `;
 
 DxcSidenav.Section = Section;

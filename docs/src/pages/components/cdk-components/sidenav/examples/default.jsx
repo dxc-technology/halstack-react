@@ -4,11 +4,13 @@ import { useState } from "react";
 const code = `() => {
   return (
     <DxcSidenav>
-      <p>Lorem ipsum</p>
-      <p>Lorem ipsum</p>
-      <p>Lorem ipsum</p>
-      <p>Lorem ipsum</p>
-      <p>Lorem ipsum</p>
+      <DxcSidenav.Section>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+      </DxcSidenav.Section>
     </DxcSidenav>
   );
 }`;

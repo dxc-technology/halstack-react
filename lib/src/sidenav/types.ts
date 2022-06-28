@@ -15,7 +15,7 @@ export type SidenavTitlePropsType = {
   /**
    * The icon to be displayed in the sidenav title.
    */
-  icon?: SVG;
+  icon?: string | SVG;
 };
 
 export type SidenavSectionPropsType = {
@@ -37,11 +37,11 @@ export type SidenavGroupPropsType = {
   /**
    * If true the sidenav group title will be considered a button and the group will be collapsable.
    */
-  collapsable: boolean;
+  collapsable?: boolean;
   /**
    * The icon to be displayed next to the title of the group.
    */
-  icon?: SVG;
+  icon?: string | SVG;
 };
 
 export type SidenavLinkPropsType = {
@@ -60,7 +60,7 @@ export type SidenavLinkPropsType = {
   /**
    * Element or path used as the icon that will be placed to the left of the link text.
    */
-  icon?: SVG;
+  icon?: string | SVG;
   /**
    * If true, the link will be marked as selected. This can also affect the group if it is closed to indicate that one of its links is selected.
    */

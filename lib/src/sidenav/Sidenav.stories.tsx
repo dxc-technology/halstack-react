@@ -140,7 +140,7 @@ export const FocusedSidenav = () => (
 const CollapsedGroup = () => (
   <>
     <ExampleContainer>
-      <Title title="Deafult sidenav" theme="light" level={4} />
+      <Title title="Default sidenav" theme="light" level={4} />
       <DxcSidenav>
         <DxcSidenav.Title
           icon={
