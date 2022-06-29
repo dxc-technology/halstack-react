@@ -38,10 +38,7 @@ import Inset from "./cdk-components/inset/Inset";
 import Row from "./cdk-components/row/Row";
 import Bleed from "./cdk-components/bleed/Bleed";
 import QuickNav from "./cdk-components/quick-nav/QuickNav";
-import Typography from "./cdk-components/typography/Typography";
-import BulletedList from "./cdk-components/bulletedList/BulletedList";
 import NavTabs from "./cdk-components/navtabs/NavTabs";
-import Paragraph from "./cdk-components/paragraph/Paragraph";
 
 export const types = {
   FORMS: "Forms",
@@ -184,12 +181,6 @@ export default [
     status: "ready",
   },
   {
-    path: "bulletedList",
-    name: "Bulleted List",
-    component: BulletedList,
-    type: types.UTILS,
-  },
-  {
     path: "navtabs",
     name: "Nav Tabs",
     component: NavTabs,
@@ -317,13 +308,6 @@ export default [
     status: "ready",
   },
   {
-    path: "typography",
-    name: "Typography",
-    component: Typography,
-    type: types.UTILS,
-    status: "experimental",
-  },
-  {
     path: "textarea",
     name: "Textarea",
     component: Textarea,
@@ -350,12 +334,5 @@ export default [
     component: Wizard,
     type: types.NAVIGATION,
     status: "ready",
-  },
-  {
-    path: "paragraph",
-    name: "Paragraph",
-    component: Paragraph,
-    type: types.UTILS,
-    status: "experimental",
   },
 ];
