@@ -32,7 +32,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcSelect
         label="Select your coworkers"
         placeholder="Choose a colleague"

@@ -3,16 +3,16 @@ import { useState } from "react";
 
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcAccordionGroup defaultIndexActive={0}>
         <DxcAccordionGroup.Accordion label="How to edit your profile?">
-          <DxcInset space="medium">
+          <DxcInset space="1.5rem">
             To edit your profile you need to go to Settings and click on
             Profile.
           </DxcInset>
         </DxcAccordionGroup.Accordion>
         <DxcAccordionGroup.Accordion label="How to log out?">
-          <DxcInset space="medium">
+          <DxcInset space="1.5rem">
             To edit your profile you need to go to Settings and click on Log
             out.
           </DxcInset>

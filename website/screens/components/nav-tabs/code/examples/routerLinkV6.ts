@@ -41,7 +41,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcNavTabs>
         <CustomTab active to="/components/nav-tabs/">
           Tab 1

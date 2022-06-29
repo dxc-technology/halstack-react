@@ -11,71 +11,71 @@ const insetPropsTable = () => {
       </tr>
       <tr>
         <td>
-          space: 'none' | 'xxxsmall' | 'xxsmall' | 'xsmall' | 'small' | 'medium'
-          | 'large' | 'xlarge' | 'xxlarge' | 'xxxlarge'
+          space: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem'
+          | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to all sides.</td>
       </tr>
       <tr>
         <td>
-          horizontal: 'none' | 'xxxsmall' | 'xxsmall' | 'xsmall' | 'small' |
-          'medium' | 'large' | 'xlarge' | 'xxlarge' | 'xxxlarge'
+          horizontal: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' |
+          '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the left and right sides.</td>
       </tr>
       <tr>
         <td>
-          vertical: 'none' | 'xxxsmall' | 'xxsmall' | 'xsmall' | 'small' |
-          'medium' | 'large' | 'xlarge' | 'xxlarge' | 'xxxlarge'
+          vertical: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' |
+          '1.5rem' | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the top and bottom sides.</td>
       </tr>
       <tr>
         <td>
-          top: 'none' | 'xxxsmall' | 'xxsmall' | 'xsmall' | 'small' | 'medium' |
-          'large' | 'xlarge' | 'xxlarge' | 'xxxlarge'
+          top: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+          '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the top side.</td>
       </tr>
       <tr>
         <td>
-          right: 'none' | 'xxxsmall' | 'xxsmall' | 'xsmall' | 'small' | 'medium'
-          | 'large' | 'xlarge' | 'xxlarge' | 'xxxlarge'
+          right: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem'
+          | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the right side.</td>
       </tr>
       <tr>
         <td>
-          bottom: 'none' | 'xxxsmall' | 'xxsmall' | 'xsmall' | 'small' |
-          'medium' | 'large' | 'xlarge' | 'xxlarge' | 'xxxlarge'
+          bottom: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem'
+          | '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the bottom side.</td>
       </tr>
       <tr>
         <td>
-          left: 'none' | 'xxxsmall' | 'xxsmall' | 'xsmall' | 'small' | 'medium'
-          | 'large' | 'xlarge' | 'xxlarge' | 'xxxlarge'
+          left: '0rem' | '0.125rem' | '0.25rem' | '0.5rem' | '1rem' | '1.5rem' |
+          '2rem' | '3rem' | '4rem' | '5rem'
         </td>
         <td>
-          <code>none</code>
+          <code>'0rem'</code>
         </td>
         <td>Applies the spacing scale to the left side.</td>
       </tr>

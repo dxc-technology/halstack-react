@@ -22,7 +22,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcToggleGroup
         label="Choose a social network"
         options={options}

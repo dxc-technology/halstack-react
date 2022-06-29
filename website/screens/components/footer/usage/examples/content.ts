@@ -36,13 +36,13 @@ const code = `() => {
     },
   ];
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcFooter
         bottomLinks={bottom}
         socialLinks={social}
         copyright="© DXC Technology Company"
       >
-        <DxcInset top="medium">
+        <DxcInset top="1.5rem">
           <DxcRow gutter="medium">
             <DxcStack gutter="xxxsmall">
               <div

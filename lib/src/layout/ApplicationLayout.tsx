@@ -94,7 +94,11 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
   }, [isResponsive, setIsSidenavVisibleResponsive]);
 
   return (
-    <ApplicationLayoutContainer isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
+    <ApplicationLayoutContainer
+      hasSidenav={sidenav ? true : false}
+      isSidenavVisible={isSidenavVisibleResponsive}
+      ref={ref}
+    >
       <HeaderContainer>{header}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
@@ -117,10 +121,10 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
             <SidenavContainer>{sidenav}</SidenavContainer>
           )}
         </SidenavContextProvider>
-        <MainContentContainer>
-          <MainContainer>{main}</MainContainer>
+        <MainContainer>
+          <MainContentContainer>{main}</MainContentContainer>
           {footer}
-        </MainContentContainer>
+        </MainContainer>
       </BodyContainer>
     </ApplicationLayoutContainer>
   );
@@ -128,6 +132,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
 
 type ApplicationLayoutContainerProps = {
   isSidenavVisible: boolean;
+  hasSidenav: boolean;
 };
 const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   position: absolute;
@@ -139,7 +144,7 @@ const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   flex-direction: column;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
-    top: 112px;
+    ${(props) => props.hasSidenav && "top: 112px"};
     ${(props) => props.isSidenavVisible && "overflow: hidden;"}
   }
 `;
@@ -206,10 +211,6 @@ const BodyContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-
-  @media (max-width: ${responsiveSizes.medium}rem) {
-    position: relative;
-  }
 `;
 
 const SidenavContainer = styled.div`
@@ -226,13 +227,13 @@ const SidenavContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  flex: 1;
-`;
-
-const MainContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+const MainContentContainer = styled.div`
+  flex: 1;
 `;
 
 DxcApplicationLayout.Header = Header;
