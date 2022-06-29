@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import StackPropsType from "./types";
 
-export default function Stack({
+const DxcStack = ({
   alignX = "stretch",
   as = "div",
   divider = false,
@@ -11,7 +11,7 @@ export default function Stack({
   children,
 }: StackPropsType): JSX.Element {
   return (
-    <StyledStack gutter={gutter} alignX={alignX} reverse={reverse} as={as}>
+    <Stack gutter={gutter} alignX={alignX} reverse={reverse} as={as}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
@@ -20,7 +20,7 @@ export default function Stack({
           </>
         );
       })}
-    </StyledStack>
+    </Stack>
   );
 }
 
@@ -29,11 +29,13 @@ const Divider = styled.div`
   background-color: #999999;
 `;
 
-const StyledStack = styled.div<StackPropsType>`
+const Stack = styled.div<StackPropsType>`
   display: flex;
   ${({ alignX, gutter, reverse }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
-    align-items: ${alignX};
+    align-items: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
     gap: ${gutter};
   `}
 `;
+
+export default DxcStack;
