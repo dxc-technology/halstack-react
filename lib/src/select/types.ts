@@ -197,11 +197,6 @@ export type ListboxProps = {
 };
 
 /**
- * Reference to the listbox component.
- */
-export type ListboxRefType = HTMLUListElement;
-
-/**
  * Reference to the select component.
  */
 export type RefType = HTMLDivElement;

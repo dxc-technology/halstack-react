@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useMemo, useRef, useState, useLayoutEffect, useCallback, useEffect } from "react";
+import React, { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -133,7 +133,6 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
 
     const selectRef = useRef(null);
     const selectSearchInputRef = useRef(null);
-    const selectOptionsListRef = useRef(null);
 
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
@@ -290,20 +289,6 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       [handleSelectChangeValue, closeOptions, multiple]
     );
 
-    useLayoutEffect(() => {
-      if (isOpen && singleSelectionIndex) {
-        const listEl = selectOptionsListRef?.current;
-        const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
-        listEl?.scrollTo?.({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
-      }
-    }, [isOpen]);
-
-    useLayoutEffect(() => {
-      const visualFocusedOptionEl =
-        selectOptionsListRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
-      visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
-    }, [visualFocusIndex]);
-
     const handleListboxResize = () => {
       const rect = selectRef?.current?.getBoundingClientRect();
       setListboxStyles({ width: rect?.width });
@@ -432,10 +417,13 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               </Select>
             </Popover.Trigger>
             <Popover.Content
-              asChild
               sideOffset={4}
               onOpenAutoFocus={(event) => {
                 // Avoid select to lose focus when the list is opened
+                event.preventDefault();
+              }}
+              onCloseAutoFocus={(event) => {
+                // Avoid select to lose focus when the list is closed
                 event.preventDefault();
               }}
             >
@@ -450,7 +438,6 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 optionalItem={optionalItem}
                 searchable={searchable}
                 handleOptionOnClick={handleOptionOnClick}
-                ref={selectOptionsListRef}
                 styles={listboxStyles}
               />
             </Popover.Content>
