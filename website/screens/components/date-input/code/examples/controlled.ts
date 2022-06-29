@@ -11,7 +11,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcDateInput
         label="Start date"
         helperText="Please enter the start date."

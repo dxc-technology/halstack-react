@@ -41,7 +41,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcResultsetTable columns={columns} rows={rows}></DxcResultsetTable>
     </DxcInset>
   );

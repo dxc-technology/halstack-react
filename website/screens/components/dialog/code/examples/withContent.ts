@@ -13,17 +13,17 @@ const code = `() => {
     setDialogVisible(!isDialogVisible);
   };
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcButton label="Enter your data" onClick={handleClick}></DxcButton>
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>
-          <DxcInset top="medium" bottom="medium">
+          <DxcInset top="1.5rem" bottom="1.5rem">
             <DxcRow gutter="large">
               <DxcTextInput label="Name" />
               <DxcTextInput label="Last name" />
             </DxcRow>
           </DxcInset>
-          <DxcInset bottom="xxlarge">
+          <DxcInset bottom="4rem">
               <DxcTextInput label="Address" size="fillParent" />
           </DxcInset>
           <DxcRow justify="center">

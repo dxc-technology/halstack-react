@@ -1,9 +1,9 @@
 import { DxcInset, DxcCard } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcCard imageSrc="https://picsum.photos/id/1022/200/300">
-        <DxcInset space="small">Personal information</DxcInset>
+        <DxcInset space="1rem">Personal information</DxcInset>
       </DxcCard>
     </DxcInset>
   );

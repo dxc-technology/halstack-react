@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcFileInput label="Select your files" value={files} callbackFile={callbackFile} />
     </DxcInset>
   );

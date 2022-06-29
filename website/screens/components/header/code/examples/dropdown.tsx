@@ -20,7 +20,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcHeader
         content={
           <DxcHeader.Dropdown

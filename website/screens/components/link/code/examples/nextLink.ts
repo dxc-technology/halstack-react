@@ -11,7 +11,7 @@ const code = `() => {
     );
   });
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       This is a text with a
       <Link href="/components/link" passHref>
         <CustomLink> next link</CustomLink>
