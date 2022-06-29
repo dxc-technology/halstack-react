@@ -12,7 +12,7 @@ const BulletedListPropsTable = () => {
       <tr>
         <td>type: 'disc' | 'circle' | 'square' | 'number' | 'icon'</td>
         <td>'disc'</td>
-        <td>Defines the style of the bullet point in the list.</td>
+        <td>Defines the style of the bullet point in the list. </td>
       </tr>
       <tr>
         <td>icon: string | SVGSVGElement</td>
