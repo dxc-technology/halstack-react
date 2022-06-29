@@ -34,10 +34,10 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcStack gutter="large">
         <DxcAccordion label="How to edit your profile?" icon={infoIcon}>
-          <DxcInset space="medium">
+          <DxcInset space="1.5rem">
             To edit your profile you need to go to Settings and click on
             Profile.
           </DxcInset>
@@ -47,7 +47,7 @@ const code = `() => {
             label="How to edit your profile?"
             icon={successIcon}
           >
-            <DxcInset space="medium">
+            <DxcInset space="1.5rem">
               To edit your profile you need to go to Settings and click on
               Profile.
             </DxcInset>
@@ -56,7 +56,7 @@ const code = `() => {
             label="How to log out?"
             icon={successIcon}
           >
-            <DxcInset space="medium">
+            <DxcInset space="1.5rem">
               To edit your profile you need to go to Settings and click on Log
               out.
             </DxcInset>

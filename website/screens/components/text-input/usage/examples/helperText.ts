@@ -2,7 +2,7 @@ import { DxcTextInput, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcRow justify="center">
         <DxcTextInput
           label="Enabled"

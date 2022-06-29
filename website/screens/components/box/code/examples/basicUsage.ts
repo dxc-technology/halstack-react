@@ -2,9 +2,9 @@ import { DxcBox, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcBox shadowDepth={1}>
-        <DxcInset space="large">Personal information</DxcInset>
+        <DxcInset space="2rem">Personal information</DxcInset>
       </DxcBox>
     </DxcInset>
   );

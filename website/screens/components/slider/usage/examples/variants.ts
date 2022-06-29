@@ -12,7 +12,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcStack gutter="xxlarge">
         <DxcSlider
           label="Discrete"

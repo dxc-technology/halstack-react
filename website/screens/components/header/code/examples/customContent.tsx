@@ -2,7 +2,7 @@ import { DxcHeader, DxcInset, DxcButton } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcHeader
         content={<DxcButton label={"Logout"} />}
         responsiveContent={(closeHandler) => <DxcButton label={"Logout"} onClick={closeHandler} />}

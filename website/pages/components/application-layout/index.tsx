@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import ApplicationLayoutPageLayout from "../../../screens/components/application-layout/ApplicationLayoutPageLayout";
-import ApplicationLayoutUsagePage from "../../../screens/components/application-layout/usage/ApplicationLayoutUsagePage";
+import ApplicationLayoutCodePage from "../../../screens/components/application-layout/code/ApplicationLayoutCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Application layout — Halstack Design System</title>
       </Head>
-      <ApplicationLayoutUsagePage></ApplicationLayoutUsagePage>
+      <ApplicationLayoutCodePage></ApplicationLayoutCodePage>
     </>
   );
 };

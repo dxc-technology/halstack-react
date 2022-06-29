@@ -41,7 +41,7 @@ function SidenavContent() {
               filter={filter}
               currentPath={currentPath}
               lastElement={LinksSections.length - 1 === index}
-            ></LinksList>
+            />
           </>
         ))}
       </DxcStack>

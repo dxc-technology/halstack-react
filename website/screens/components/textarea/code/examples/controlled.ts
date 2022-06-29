@@ -15,7 +15,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcTextarea
         label="Comments"
         value={value}

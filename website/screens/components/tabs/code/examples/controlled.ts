@@ -8,7 +8,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcTabs
         activeTabIndex={activeTab}
         onTabClick={onTabClick}

@@ -7,7 +7,7 @@ import QuickNavTypes from "./types";
 import DxcHeading from "../heading/Heading";
 import DxcStack from "../stack/Stack";
 import DxcInset from "../inset/Inset";
-import DxcText from "../text/Text";
+import DxcTypography from "../typography/Typography";
 import useTranslatedLabels from "../useTranslatedLabels";
 
 const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
@@ -23,19 +23,19 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
             <DxcStack gutter="xsmall">
               {links.map((link) => (
                 <ListRow>
-                  <DxcInset space="xxsmall">
-                    <DxcText>
+                  <DxcInset space="0.25rem">
+                    <DxcTypography>
                       <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
                       {link.links?.map((sublink) => (
                         <ListRow>
-                          <DxcInset horizontal="xsmall">
-                            <DxcText>
+                          <DxcInset horizontal="0.5rem">
+                            <DxcTypography>
                               <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
-                            </DxcText>
+                            </DxcTypography>
                           </DxcInset>
                         </ListRow>
                       ))}
-                    </DxcText>
+                    </DxcTypography>
                   </DxcInset>
                 </ListRow>
               ))}
