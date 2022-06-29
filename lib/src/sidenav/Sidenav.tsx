@@ -34,23 +34,15 @@ const externalLinkIcon = (
   </svg>
 );
 
-const DxcSidenav = ({ children }: SidenavPropsType): JSX.Element => {
+const DxcSidenav = ({ children, title }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
       <SidenavContainer>
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
-          {React.Children.map(children, (child: ReactElement) => {
-            if (child.type === Title) {
-              return child;
-            }
-          })}
+          {title}
           <DxcStack divider={true} gutter="small">
-            {React.Children.map(children, (child: ReactElement) => {
-              if (child.type === Section) {
-                return child;
-              }
-            })}
+            {children}
           </DxcStack>
         </BackgroundColorProvider>
       </SidenavContainer>
@@ -65,7 +57,7 @@ const Title = ({ children, icon }: SidenavTitlePropsType): JSX.Element => (
   </SidenavTitle>
 );
 
-const Section = ({ children }: SidenavSectionPropsType): JSX.Element => <DxcStack gutter="small">{children}</DxcStack>;
+const Section = ({ children }: SidenavSectionPropsType): JSX.Element => <DxcStack>{children}</DxcStack>;
 
 const Group = ({ children, title, collapsable = false, icon }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);

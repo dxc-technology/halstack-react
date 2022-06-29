@@ -1,15 +1,23 @@
 import React from "react";
 import { DxcSidenav } from "@dxc-technology/halstack-react";
 
+const titleWrapper = () => {
+  return <DxcSidenav.Title>My sidenav</DxcSidenav.Title>;
+};
+
 function App() {
+  console.log(typeof titleWrapper);
   return (
     <div>
       <div className="test-case" id="sidenav-menu">
-        <DxcSidenav>
-          <DxcSidenav.Title>My sidenav</DxcSidenav.Title>
+        <DxcSidenav title={<DxcSidenav.Title>My sidenav</DxcSidenav.Title>}>
           <DxcSidenav.Section>
             <p>Lorem ipsum</p>
-            <DxcSidenav.Group title="Group title">
+            <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>
+            <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>
+            <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>
+            <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>
+            <DxcSidenav.Group title="Group title" collapsable>
               <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>
               <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>
               <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>

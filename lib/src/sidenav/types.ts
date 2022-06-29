@@ -1,10 +1,16 @@
+import React from "react";
+
 type SVG = React.SVGProps<SVGSVGElement>;
 
 type SidenavPropsType = {
   /**
-   * The area inside the sidenav. This area can be used to render a sidenav title and sections.
+   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
    */
   children: React.ReactNode;
+  /**
+   * The area assigned to render the title. It is highly recommended to use the sidenav title.
+   */
+  title?: React.ReactNode;
 };
 
 export type SidenavTitlePropsType = {
