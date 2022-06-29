@@ -23,7 +23,7 @@ const code = `() => {
               <DxcTextInput label="Last name" />
             </DxcRow>
           </DxcInset>
-          <DxcInset bottom="xxlarge">
+          <DxcInset bottom="4rem">
               <DxcTextInput label="Address" size="fillParent" />
           </DxcInset>
           <DxcRow justify="center">
