@@ -19,6 +19,23 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
+    <Title title="Default with divider" theme="light" level={4} />
+    <Container>
+      <DxcInline divider>
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="large" />
+        <Placeholder height="small" width="large" />
+        <Placeholder height="large" width="large" />
+        <Placeholder height="medium" width="small" />
+      </DxcInline>
+    </Container>
+    <Title title="Default with one child" theme="light" level={4} />
+    <Container>
+      <DxcInline>
+        <Placeholder height="large" width="large" />
+      </DxcInline>
+    </Container>
     <Title title="Wrap" theme="light" level={4} />
     <Container customWidth>
       <DxcInline>
@@ -55,9 +72,9 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
-    <Title title="AlignY = start" theme="light" level={4} />
+    <Title title="AlignY = stretch" theme="light" level={4} />
     <Container>
-      <DxcInline alignY="start">
+      <DxcInline alignY="stretch">
         <Placeholder width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="large" width="large" />
@@ -92,9 +109,9 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
-    <Title title="AlignX = start" theme="light" level={4} />
+    <Title title="AlignX = stretch" theme="light" level={4} />
     <Container>
-      <DxcInline alignX="start">
+      <DxcInline alignX="stretch">
         <Placeholder height="small" width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="large" width="large" />
