@@ -48,7 +48,7 @@ function App() {
               Halstack is the DXC Technology's open source design system for
               insurance products and digital experiences. Our system provides
               all the tools and resources needed to create superior, beautiful
-              but above all, functional user experiences.
+              but above all, functional user experiences. 
             </DxcText>
           </Content>
           <Content id="principles">
