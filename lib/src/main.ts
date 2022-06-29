@@ -35,8 +35,8 @@ import DxcSelect from "./select/Select";
 import DxcFileInput from "./file-input/FileInput";
 import DxcStack from "./stack/Stack";
 import DxcRow from "./row/Row";
-import DxcTypography from "./typography/Typography";
-import DxcBulletedList from "./bulleted-list/BulletedList";
+import DxcText from "./text/Text";
+import DxcList from "./list/List";
 import DxcRadioGroup from "./radio-group/RadioGroup";
 import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
@@ -90,8 +90,8 @@ export {
   DxcFileInput,
   DxcStack,
   DxcRow,
-  DxcTypography,
-  DxcBulletedList,
+  DxcText,
+  DxcList,
   DxcRadioGroup,
   DxcBleed,
   DxcInset,
