@@ -17,7 +17,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
 
   return (
     <ThemeProvider theme={colorsTheme.bulletedList}>
-      <DxcStack as={type === "number" ? "ol" : "ul"} gutter="xxsmall">
+      <DxcStack as={type === "number" ? "ol" : "ul"} gutter="0.25rem">
         {React.Children.map(children, (child, index) => {
           return (
             <ListItem>

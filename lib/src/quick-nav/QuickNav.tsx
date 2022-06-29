@@ -17,10 +17,10 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
   return (
     <ThemeProvider theme={colorsTheme.quickNav}>
       <QuickNavContainer>
-        <DxcStack gutter="xsmall">
+        <DxcStack gutter="0.5rem">
           <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
           <ListColumn>
-            <DxcStack gutter="xsmall">
+            <DxcStack gutter="0.5rem">
               {links.map((link) => (
                 <ListRow>
                   <DxcInset space="0.25rem">
