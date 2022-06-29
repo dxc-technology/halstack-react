@@ -12,7 +12,7 @@ const DxcInline = ({
   children,
 }: InlineProps): JSX.Element => {
   return (
-    <InlineContainer as={as} alignX={alignX} alignY={alignY} gutter={gutter} reverse={reverse}>
+    <Inline as={as} alignX={alignX} alignY={alignY} gutter={gutter} reverse={reverse}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
@@ -21,16 +21,16 @@ const DxcInline = ({
           </>
         );
       })}
-    </InlineContainer>
+    </Inline>
   );
 };
 
-const InlineContainer = styled.div<InlineProps>`
+const Inline = styled.div<InlineProps>`
   display: flex;
   ${({ alignX, alignY, gutter, reverse }) => `
     flex-direction: ${reverse ? "row-reverse" : "row"};
-    align-items: ${alignY};
-    justify-content: ${alignX};
+    align-items: ${alignY === "start" || alignY === "end" ? `flex-${alignY}` : alignY};
+    justify-content: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
     gap: ${gutter};
   `}
   flex-wrap: wrap;
