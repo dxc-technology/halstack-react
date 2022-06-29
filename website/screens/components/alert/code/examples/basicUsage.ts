@@ -2,7 +2,7 @@ import { DxcAlert, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcAlert inlineText="Please read the documents carefully before the submission of the data." />
     </DxcInset>
   );

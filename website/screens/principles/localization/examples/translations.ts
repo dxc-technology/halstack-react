@@ -1,4 +1,10 @@
-import {DxcSelect, DxcTextInput, DxcPaginator, HalstackProvider,  DxcInset} from "@dxc-technology/halstack-react";
+import {
+  DxcSelect,
+  DxcTextInput,
+  DxcPaginator,
+  HalstackProvider,
+  DxcInset,
+} from "@dxc-technology/halstack-react";
 
 const code = `()=>{
 
@@ -20,7 +26,7 @@ const code = `()=>{
       
     return (
       <HalstackProvider labels={labels}>
-        <DxcInset space="large">
+        <DxcInset space="2rem">
           <DxcSelect
             label="Label"
             helperText="Helper text"
@@ -35,10 +41,10 @@ const code = `()=>{
             optional
           />
         </DxcInset>
-        <DxcInset space="large">
+        <DxcInset space="2rem">
           <DxcTextInput label="Input text" defaultValue="Example text" clearable optional />
         </DxcInset>
-        <DxcInset space="large">
+        <DxcInset space="2rem">
           <DxcPaginator itemsPerPageOptions={[10, 15]} totalItems={27}></DxcPaginator>
         </DxcInset>
       </HalstackProvider>
@@ -46,7 +52,11 @@ const code = `()=>{
 }`;
 
 const scope = {
-    DxcSelect, DxcTextInput, DxcPaginator, HalstackProvider, DxcInset
+  DxcSelect,
+  DxcTextInput,
+  DxcPaginator,
+  HalstackProvider,
+  DxcInset,
 };
 
-export default{code, scope};
+export default { code, scope };

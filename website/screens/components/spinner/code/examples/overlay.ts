@@ -22,7 +22,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcButton label="Show Spinner for 3 seconds" onClick={showModal} />
       {isVisible && <DxcSpinner label="Loading..." mode="overlay" />}
     </DxcInset>
