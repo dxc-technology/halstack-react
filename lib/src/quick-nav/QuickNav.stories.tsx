@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import DxcQuickNav from "./QuickNav";
 import DxcHeading from "../heading/Heading";
-import DxcText from "../text/Text";
+import DxcTypography from "../typography/Typography";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
@@ -53,7 +53,7 @@ export const Chromatic = () => (
         <ContentContainer>
           <Content id="overview">
             <DxcHeading level={1} text="Overview" margin={{ bottom: "small" }} />
-            <DxcText>
+            <DxcTypography>
               Halstack is the DXC Technology's open source design system for insurance products and digital experiences.
               Our system provides all the tools and resources needed to create superior, beautiful but above all,
               functional user experiences. Halstack is the DXC Technology's open source design system for insurance
@@ -70,10 +70,10 @@ export const Chromatic = () => (
               create superior, beautiful but above all, functional user experiences.Halstack is the DXC Technology's
               open source design system for insurance products and digital experiences. Our system provides all the
               tools and resources needed to create superior, beautiful but above all, functional user experiences.
-            </DxcText>
+            </DxcTypography>
             <Content id="introduction">
               <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
+              <DxcTypography>
                 Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
                 provide guidance for development teams in order to deliver delightful and consistent user experiences to
                 our customers: Balance Consistency Visual hierarchy All our components, design tokens, accessibility
@@ -103,14 +103,14 @@ export const Chromatic = () => (
                 to use and contribute back to. We are charmed to receive external contributions to help us find bugs,
                 design new features, or help us improve the project documentation. If you're interested, definitely
                 check out our contribution guidelines.
-              </DxcText>
+              </DxcTypography>
             </Content>
           </Content>
           <Content id="principles">
             <DxcHeading level={1} text="Principles" margin={{ top: "small", bottom: "xsmall" }} />
             <Content id="color">
               <DxcHeading level={2} text="Color" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
+              <DxcTypography>
                 The color palette is an essential asset as a communication resource of our design system. Halstack color
                 palette brings a unified consistency and helps in guiding the user's perception order. Our color palette
                 is based in the HSL model . All our color families are calculated using the lightness value of the
@@ -143,11 +143,11 @@ export const Chromatic = () => (
                 tokens to manage color. Appart from a multi-purpose greyscale family, purple and blue are the core color
                 families used in our set of components. Additional families as red, green and yellow help as feedback
                 role-based color palettes and must not be used outside this context.
-              </DxcText>
+              </DxcTypography>
             </Content>
             <Content id="spacing">
               <DxcHeading level={2} text="Spacing" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
+              <DxcTypography>
                 In the search of consistent alignment between the elements we provide a spacing scale based on a root
                 values of 8px and 4px. The numbers 4 and 8 are easily multiplied, they provide flexible and consistent,
                 yet distinct enough, steps between them.In the search of consistent alignment between the elements we
@@ -165,11 +165,11 @@ export const Chromatic = () => (
                 consistent, yet distinct enough, steps between them.In the search of consistent alignment between the
                 elements we provide a spacing scale based on a root values of 8px and 4px. The numbers 4 and 8 are
                 easily multiplied, they provide flexible and consistent, yet distinct enough, steps between them.
-              </DxcText>
+              </DxcTypography>
             </Content>
             <Content id="typography">
               <DxcHeading level={2} text="Typography" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
+              <DxcTypography>
                 Our selected typography helps in structuring our user's experience based on the visual impact that it
                 has on the user interface content. It defines what is the first noticeable piece of information or data
                 based on the font shape, size, color, or type and it highlights some pieces of text over the rest. Some
@@ -201,7 +201,7 @@ export const Chromatic = () => (
                 Halstack Design System include headers, body, taglines, captions, and labels. Make sure you include all
                 the different typographic variants in order to enhance the application's content structure, including
                 the Heading component which defines different levels of page and section titles.
-              </DxcText>
+              </DxcTypography>
             </Content>
           </Content>
         </ContentContainer>
