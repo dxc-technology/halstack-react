@@ -9,7 +9,7 @@ const DxcStack = ({
   gutter = "0rem",
   reverse = false,
   children,
-}: StackPropsType): JSX.Element {
+}: StackPropsType): JSX.Element => {
   return (
     <Stack gutter={gutter} alignX={alignX} reverse={reverse} as={as}>
       {React.Children.map(children, (child, index) => {
@@ -22,7 +22,7 @@ const DxcStack = ({
       })}
     </Stack>
   );
-}
+};
 
 const Divider = styled.div`
   height: 1px;
