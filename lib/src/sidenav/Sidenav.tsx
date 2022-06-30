@@ -216,6 +216,9 @@ const SidenavGroupTitleButton = styled.button`
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
     outline-offset: -2px;
   }
+  &:hover {
+    background-color: ${(props) => props.theme.groupTitleHoverBackgroundColor};
+  }
 `;
 
 type StyledLinkProps = {
