@@ -38,7 +38,7 @@ const TitleComponent = () => {
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="Deafult sidenav" theme="light" level={4} />
+      <Title title="Default sidenav" theme="light" level={4} />
       <DxcSidenav title={<TitleComponent />}>
         <DxcSidenav.Section>
           <p>
@@ -77,7 +77,7 @@ export const Chromatic = () => (
 
 export const FocusedSidenav = () => (
   <ExampleContainer pseudoState="pseudo-focus">
-    <Title title="Deafult sidenav" theme="light" level={4} />
+    <Title title="Default sidenav" theme="light" level={4} />
     <DxcSidenav title={<TitleComponent />}>
       <DxcSidenav.Section>
         <p>
@@ -143,7 +143,7 @@ const CollapsedGroup = () => (
 
 const HoverSidenav = () => (
   <ExampleContainer pseudoState="pseudo-hover">
-    <Title title="Deafult sidenav" theme="light" level={4} />
+    <Title title="Default sidenav" theme="light" level={4} />
     <DxcSidenav title={<TitleComponent />}>
       <DxcSidenav.Section>
         <DxcSidenav.Link>Single Link</DxcSidenav.Link>

@@ -13,14 +13,14 @@ import SidenavPropsType, {
 } from "./types.js";
 import DxcStack from "../stack/Stack";
 
-const collapsableIcon = (
+const collapsedIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
   </svg>
 );
 
-const collapsedIcon = (
+const collapsableIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
@@ -65,16 +65,16 @@ const Group = ({ children, title, collapsable = false, icon }: SidenavGroupProps
     <SidenavGroup>
       {collapsable && title ? (
         <SidenavGroupTitleButton aria-expanded={collapsed} onClick={() => setCollapsed(!collapsed)}>
-          <SidenavSpan>
-            {typeof icon === "string" ? <SidenavIconImg src={icon} /> : icon}
+          <SidenavContent>
+            {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
             {title}
-          </SidenavSpan>
+          </SidenavContent>
           {collapsed ? collapsedIcon : collapsableIcon}
         </SidenavGroupTitleButton>
       ) : (
         title && (
           <SidenavGroupTitle>
-            {typeof icon === "string" ? <SidenavIconImg src={icon} /> : icon}
+            {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
             {title}
           </SidenavGroupTitle>
         )
@@ -113,10 +113,10 @@ const Link = forwardRef(
         tabIndex={tabIndex}
         {...otherProps}
       >
-        <SidenavSpan>
-          {typeof icon === "string" ? <SidenavIconImg src={icon} /> : icon}
+        <SidenavContent>
+          {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
           {children}
-        </SidenavSpan>
+        </SidenavContent>
         {newWindow && externalLinkIcon}
       </SidenavLink>
     );
@@ -275,7 +275,7 @@ const SidenavLink = styled.a<StyledLinkProps>`
   }
 `;
 
-const SidenavSpan = styled.span`
+const SidenavContent = styled.span`
   display: flex;
   align-items: center;
 
@@ -285,7 +285,7 @@ const SidenavSpan = styled.span`
   }
 `;
 
-const SidenavIconImg = styled.img`
+const SidenavIcon = styled.img`
   width: 16px;
   margin-right: 8px;
 `;
