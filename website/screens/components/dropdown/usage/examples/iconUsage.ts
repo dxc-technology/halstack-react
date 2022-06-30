@@ -35,7 +35,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcRow justify="center">
         <DxcDropdown
           icon={icon}

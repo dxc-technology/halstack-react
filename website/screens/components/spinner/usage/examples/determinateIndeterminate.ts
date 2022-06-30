@@ -2,7 +2,7 @@ import { DxcSpinner, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcRow gutter="large" justify="center">
         <DxcSpinner label="Loading..." showValue value={50} />
         <DxcSpinner label="Loading..." />

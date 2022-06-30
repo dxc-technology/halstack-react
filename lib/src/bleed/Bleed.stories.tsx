@@ -15,7 +15,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="none">
+        <DxcBleed space="0rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -25,7 +25,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="xxxsmall">
+        <DxcBleed space="0.125rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -35,7 +35,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="xxsmall">
+        <DxcBleed space="0.25rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -45,7 +45,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="xsmall">
+        <DxcBleed space="0.5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -55,7 +55,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="small">
+        <DxcBleed space="1rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -65,7 +65,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="medium">
+        <DxcBleed space="1.5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -75,7 +75,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="large">
+        <DxcBleed space="2rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -85,7 +85,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="xlarge">
+        <DxcBleed space="3rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -95,7 +95,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="xxlarge">
+        <DxcBleed space="4rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -105,7 +105,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed space="xxxlarge">
+        <DxcBleed space="5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -116,7 +116,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="none">
+        <DxcBleed horizontal="0rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -126,7 +126,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="xxxsmall">
+        <DxcBleed horizontal="0.125rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -136,7 +136,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="xxsmall">
+        <DxcBleed horizontal="0.25rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -146,7 +146,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="xsmall">
+        <DxcBleed horizontal="0.5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -156,7 +156,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="small">
+        <DxcBleed horizontal="1rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -166,7 +166,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="medium">
+        <DxcBleed horizontal="1.5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -176,7 +176,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="large">
+        <DxcBleed horizontal="2rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -186,7 +186,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="xlarge">
+        <DxcBleed horizontal="3rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -196,7 +196,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="xxlarge">
+        <DxcBleed horizontal="4rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -206,7 +206,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed horizontal="xxxlarge">
+        <DxcBleed horizontal="5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -217,7 +217,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="none">
+        <DxcBleed vertical="0rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -227,7 +227,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="xxxsmall">
+        <DxcBleed vertical="0.125rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -237,7 +237,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="xxsmall">
+        <DxcBleed vertical="0.25rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -247,7 +247,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="xsmall">
+        <DxcBleed vertical="0.5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -257,7 +257,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="small">
+        <DxcBleed vertical="1rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -267,7 +267,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="medium">
+        <DxcBleed vertical="1.5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -277,7 +277,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="large">
+        <DxcBleed vertical="2rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -287,7 +287,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="xlarge">
+        <DxcBleed vertical="3rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -297,7 +297,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="xxlarge">
+        <DxcBleed vertical="4rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -307,7 +307,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed vertical="xxxlarge">
+        <DxcBleed vertical="5rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -318,7 +318,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium">
         <Placeholder></Placeholder>
-        <DxcBleed top="xsmall" right="small" bottom="medium" left="large">
+        <DxcBleed top="0.5rem" right="1rem" bottom="1.5rem" left="2rem">
           <Placeholder></Placeholder>
         </DxcBleed>
         <Placeholder></Placeholder>
@@ -339,4 +339,3 @@ const Placeholder = styled.div`
   border: 1px solid #a46ede;
   background-color: #e5d5f6;
 `;
-

@@ -43,7 +43,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcDropdown
         options={options}
         onSelectOption={selectOption}

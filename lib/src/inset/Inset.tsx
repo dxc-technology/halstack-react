@@ -28,30 +28,7 @@ export default function Inset({
 }
 
 function getSpacingValue(spacingName) {
-  switch (spacingName) {
-    case "none":
-      return "0rem";
-    case "xxxsmall":
-      return "0.125rem";
-    case "xxsmall":
-      return "0.25rem";
-    case "xsmall":
-      return "0.5rem";
-    case "small":
-      return "1rem";
-    case "medium":
-      return "1.5rem";
-    case "large":
-      return "2rem";
-    case "xlarge":
-      return "3rem";
-    case "xxlarge":
-      return "4rem";
-    case "xxxlarge":
-      return "5rem";
-    default:
-      return "0rem";
-  }
+  return spacingName ? spacingName : "0rem";
 }
 
 const StyledInset = styled.div<InsetPropsType>`

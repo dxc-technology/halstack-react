@@ -2,7 +2,7 @@ import { DxcTable, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcTable>
         <tr>
           <th>header 1</th>
