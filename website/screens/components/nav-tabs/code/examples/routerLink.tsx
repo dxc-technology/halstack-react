@@ -16,7 +16,7 @@ const RouterLink = ({ to, component, children, ...other }: routerProps) => {
 
 const code = `() => {
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcNavTabs>
         <RouterLink
           to="/components/nav-tabs/"

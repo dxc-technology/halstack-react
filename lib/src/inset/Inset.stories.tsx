@@ -19,187 +19,187 @@ export const Chromatic = () => (
     </Container>
     <Title title="space = none" level={4} />
     <Container>
-      <DxcInset space="none">
+      <DxcInset space="0rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = xxxsmall" level={4} />
     <Container>
-      <DxcInset space="xxxsmall">
+      <DxcInset space="0.125rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = xxsmall" level={4} />
     <Container>
-      <DxcInset space="xxsmall">
+      <DxcInset space="0.25rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = xsmall" level={4} />
     <Container>
-      <DxcInset space="xsmall">
+      <DxcInset space="0.5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = small" level={4} />
     <Container>
-      <DxcInset space="small">
+      <DxcInset space="1rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = medium" level={4} />
     <Container>
-      <DxcInset space="medium">
+      <DxcInset space="1.5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = large" level={4} />
     <Container>
-      <DxcInset space="large">
+      <DxcInset space="2rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = xlarge" level={4} />
     <Container>
-      <DxcInset space="xlarge">
+      <DxcInset space="3rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = xxlarge" level={4} />
     <Container>
-      <DxcInset space="xxlarge">
+      <DxcInset space="4rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="space = xxxlarge" level={4} />
     <Container>
-      <DxcInset space="xxxlarge">
+      <DxcInset space="5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = none" level={4} />
     <Container>
-      <DxcInset horizontal="none">
+      <DxcInset horizontal="0rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = xxxsmall" level={4} />
     <Container>
-      <DxcInset horizontal="xxxsmall">
+      <DxcInset horizontal="0.125rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = xxsmall" level={4} />
     <Container>
-      <DxcInset horizontal="xxsmall">
+      <DxcInset horizontal="0.25rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = xsmall" level={4} />
     <Container>
-      <DxcInset horizontal="xsmall">
+      <DxcInset horizontal="0.5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = small" level={4} />
     <Container>
-      <DxcInset horizontal="small">
+      <DxcInset horizontal="1rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = medium" level={4} />
     <Container>
-      <DxcInset horizontal="medium">
+      <DxcInset horizontal="1.5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = large" level={4} />
     <Container>
-      <DxcInset horizontal="large">
+      <DxcInset horizontal="2rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = xlarge" level={4} />
     <Container>
-      <DxcInset horizontal="xlarge">
+      <DxcInset horizontal="3rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = xxlarge" level={4} />
     <Container>
-      <DxcInset horizontal="xxlarge">
+      <DxcInset horizontal="4rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="horizontal = xxxlarge" level={4} />
     <Container>
-      <DxcInset horizontal="xxxlarge">
+      <DxcInset horizontal="5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = none" level={4} />
     <Container>
-      <DxcInset vertical="none">
+      <DxcInset vertical="0rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = xxxsmall" level={4} />
     <Container>
-      <DxcInset vertical="xxxsmall">
+      <DxcInset vertical="0.125rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = xxsmall" level={4} />
     <Container>
-      <DxcInset vertical="xxsmall">
+      <DxcInset vertical="0.25rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = xsmall" level={4} />
     <Container>
-      <DxcInset vertical="xsmall">
+      <DxcInset vertical="0.5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = small" level={4} />
     <Container>
-      <DxcInset vertical="small">
+      <DxcInset vertical="1rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = medium" level={4} />
     <Container>
-      <DxcInset vertical="medium">
+      <DxcInset vertical="1.5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = large" level={4} />
     <Container>
-      <DxcInset vertical="large">
+      <DxcInset vertical="2rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = xlarge" level={4} />
     <Container>
-      <DxcInset vertical="xlarge">
+      <DxcInset vertical="3rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = xxlarge" level={4} />
     <Container>
-      <DxcInset vertical="xxlarge">
+      <DxcInset vertical="4rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="vertical = xxxlarge" level={4} />
     <Container>
-      <DxcInset vertical="xxxlarge">
+      <DxcInset vertical="5rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
     <Title title="top = xxsmall, right= medium, bottom = large and left = xxlarge" level={4} />
     <Container>
-      <DxcInset top="xxsmall" right="medium" bottom="large" left="xxlarge">
+      <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
@@ -207,7 +207,7 @@ export const Chromatic = () => (
     <Container>
       <DxcStack gutter="medium" divider>
         <Placeholder></Placeholder>
-        <DxcInset top="xxsmall" right="medium" bottom="large" left="xxlarge">
+        <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
           <Placeholder></Placeholder>
         </DxcInset>
         <Placeholder></Placeholder>

@@ -4,7 +4,7 @@ import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
-import { facebookLogo, linkedinLogo, twitterLogo, hamburguerIcon } from "./Icons";
+import { facebookLogo, linkedinLogo, twitterLogo, hamburgerIcon } from "./Icons";
 import AppLayoutPropsType, {
   AppLayoutSidenavPropsType,
   AppLayoutFooterPropsType,
@@ -64,9 +64,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
   const [appLayoutId] = useState(`appLayout-${uuidv4()}`);
   const visibilityToggleLabelId = `label-${appLayoutId}`;
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
-  const [isResponsive, setIsResponsive] = useState(
-    window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches
-  );
+  const [isResponsive, setIsResponsive] = useState(false);
   const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
 
@@ -84,6 +82,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
   };
 
   useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -95,18 +94,22 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
   }, [isResponsive, setIsSidenavVisibleResponsive]);
 
   return (
-    <ApplicationLayoutContainer isSidenavVisible={isSidenavVisibleResponsive} ref={ref}>
+    <ApplicationLayoutContainer
+      hasSidenav={sidenav ? true : false}
+      isSidenavVisible={isSidenavVisibleResponsive}
+      ref={ref}
+    >
       <HeaderContainer>{header}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
-          <HamburguerTrigger
+          <HamburgerTrigger
             onClick={handleSidenavVisibility}
             aria-labelledby={visibilityToggleLabel ? visibilityToggleLabelId : undefined}
             aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
-            {hamburguerIcon}
-          </HamburguerTrigger>
+            {hamburgerIcon}
+          </HamburgerTrigger>
           {visibilityToggleLabel && (
             <VisibilityToggleLabel id={visibilityToggleLabelId}>{visibilityToggleLabel}</VisibilityToggleLabel>
           )}
@@ -118,10 +121,10 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
             <SidenavContainer>{sidenav}</SidenavContainer>
           )}
         </SidenavContextProvider>
-        <MainContentContainer>
-          <MainContainer>{main}</MainContainer>
+        <MainContainer>
+          <MainContentContainer>{main}</MainContentContainer>
           {footer}
-        </MainContentContainer>
+        </MainContainer>
       </BodyContainer>
     </ApplicationLayoutContainer>
   );
@@ -129,6 +132,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
 
 type ApplicationLayoutContainerProps = {
   isSidenavVisible: boolean;
+  hasSidenav: boolean;
 };
 const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   position: absolute;
@@ -140,7 +144,7 @@ const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   flex-direction: column;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
-    top: 112px;
+    ${(props) => props.hasSidenav && "top: 112px"};
     ${(props) => props.isSidenavVisible && "overflow: hidden;"}
   }
 `;
@@ -169,7 +173,7 @@ const VisibilityToggle = styled.div`
   z-index: 2;
 `;
 
-const HamburguerTrigger = styled.button`
+const HamburgerTrigger = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -207,10 +211,6 @@ const BodyContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-
-  @media (max-width: ${responsiveSizes.medium}rem) {
-    position: relative;
-  }
 `;
 
 const SidenavContainer = styled.div`
@@ -227,13 +227,13 @@ const SidenavContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  flex: 1;
-`;
-
-const MainContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+const MainContentContainer = styled.div`
+  flex: 1;
 `;
 
 DxcApplicationLayout.Header = Header;

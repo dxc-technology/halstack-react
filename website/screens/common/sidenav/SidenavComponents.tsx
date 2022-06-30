@@ -1,19 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { DxcApplicationLayout } from "@dxc-technology/halstack-react";
 
 type SidenavLinkProps = {
-  onClick?: () => void;
   href?: string;
   children: React.ReactNode;
   selected?: boolean;
 };
+export const SidenavLink = React.forwardRef<
+  HTMLAnchorElement,
+  SidenavLinkProps
+>(({ href, children, selected }, ref): JSX.Element => {
+  const setIsSidenavVisibleResponsive =
+    DxcApplicationLayout.useResponsiveSidenavVisibility();
+  const handleOnClick = () => {
+    setIsSidenavVisibleResponsive?.(false);
+  };
 
-export const SidenavLink = React.forwardRef(function SidenavLink(
-  { onClick, href, children, selected }: SidenavLinkProps,
-  ref: React.Ref<HTMLAnchorElement>
-) {
   return (
-    <StyledLink href={href} selected={selected} onClick={onClick} ref={ref}>
+    <StyledLink
+      href={href}
+      selected={selected}
+      onClick={handleOnClick}
+      ref={ref}
+    >
       {children}
     </StyledLink>
   );

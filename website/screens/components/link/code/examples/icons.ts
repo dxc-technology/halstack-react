@@ -15,7 +15,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       This is a text with a{" "}
       <DxcLink href="#" icon={icon}>
         Link

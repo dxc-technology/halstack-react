@@ -9,7 +9,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcTag label="Favourite" icon={icon} />
     </DxcInset>
   );

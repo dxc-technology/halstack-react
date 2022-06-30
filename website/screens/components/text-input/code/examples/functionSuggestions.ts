@@ -26,7 +26,7 @@ const code = `() => {
     return result;
   };
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcTextInput
         label="Enter your country"
         value={value}

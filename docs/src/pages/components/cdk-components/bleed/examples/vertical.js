@@ -11,7 +11,7 @@ const code = `() => {
     >
         <DxcStack gutter="medium">
             <Placeholder></Placeholder>
-            <DxcBleed vertical="medium">
+            <DxcBleed vertical="1.5rem">
                 <Placeholder></Placeholder>
             </DxcBleed>
             <Placeholder></Placeholder>

@@ -20,7 +20,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcToggleGroup
         label="Choose a social network"
         defaultValue={2}
