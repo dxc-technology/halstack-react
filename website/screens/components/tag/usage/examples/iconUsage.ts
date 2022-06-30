@@ -15,7 +15,7 @@ const code = `() => {
   );
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcRow justify="spaceEvenly">
         <DxcStack gutter="large">
           <DxcHeading level={4} text="Icon before"></DxcHeading>

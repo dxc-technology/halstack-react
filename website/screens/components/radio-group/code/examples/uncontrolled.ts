@@ -18,7 +18,7 @@ const code = `() => {
     ];
   
     return (
-      <DxcInset space="large">
+      <DxcInset space="2rem">
         <DxcRadioGroup
           label="Fruit"
           defaultValue="apple"

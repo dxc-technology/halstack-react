@@ -8,14 +8,14 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcAccordion
         label="Collapsed accordion"
         assistiveText="Additional information"
         isExpanded={isExpanded}
         onChange={onChange}
       >
-        <DxcInset space="large">
+        <DxcInset space="2rem">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           malesuada lacus ex, sit amet blandit leo lobortis eget.
         </DxcInset>

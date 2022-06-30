@@ -15,7 +15,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcStack gutter="large" align="start">
         <DxcTextarea
           label="Comments"
