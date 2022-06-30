@@ -5,6 +5,7 @@ import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import quickNav from "./examples/quickNav";
+import HeaderCell from "@/common/HeaderCell";
 
 const sections = [
   {
@@ -14,7 +15,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <th>Description</th>
+          <HeaderCell>Description</HeaderCell>
         </tr>
         <tr>
           <td>title: string</td>

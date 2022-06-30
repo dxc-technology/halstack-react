@@ -7,6 +7,7 @@ import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
 import withContent from "./examples/withContent";
 import backgroundClick from "./examples/backgroundClick";
+import HeaderCell from "@/common/HeaderCell";
 
 const sections = [
   {
@@ -16,7 +17,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <th>Description</th>
+          <HeaderCell>Description</HeaderCell>
         </tr>
         <tr>
           <td>isCloseVisible: boolean</td>

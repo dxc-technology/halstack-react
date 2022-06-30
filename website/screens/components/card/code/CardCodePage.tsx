@@ -10,6 +10,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
+import HeaderCell from "@/common/HeaderCell";
 
 const sections = [
   {
@@ -21,7 +22,7 @@ const sections = [
             <tr>
               <th>Name</th>
               <th>Default</th>
-              <th>Description</th>
+              <HeaderCell>Description</HeaderCell>
             </tr>
           </thead>
           <tbody>

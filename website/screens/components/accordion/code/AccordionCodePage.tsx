@@ -9,6 +9,7 @@ import uncontrolledAccordion from "./examples/uncontrolledAccordion";
 import icons from "./examples/icons";
 import controlledAccordionGroup from "./examples/controlledAccordionGroup";
 import uncontrolledAccordionGroup from "./examples/uncontrolledAccordionGroup";
+import HeaderCell from "@/common/HeaderCell";
 
 const sections = [
   {
@@ -21,7 +22,7 @@ const sections = [
             <tr>
               <th>Name</th>
               <th>Default</th>
-              <th>Description</th>
+              <HeaderCell>Description</HeaderCell>
             </tr>
             <tr>
               <td>label: string</td>
@@ -117,7 +118,7 @@ const sections = [
             <tr>
               <th>Name</th>
               <th>Default</th>
-              <th>Description</th>
+              <HeaderCell>Description</HeaderCell>
             </tr>
             <tr>
               <td>defaultIndexActive: number</td>
@@ -179,7 +180,7 @@ const sections = [
                     <tr>
                       <th>Name</th>
                       <th>Default</th>
-                      <th>Description</th>
+                      <HeaderCell>Description</HeaderCell>
                     </tr>
                     <tr>
                       <td>label: string</td>

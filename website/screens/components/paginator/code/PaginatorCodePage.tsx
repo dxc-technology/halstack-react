@@ -5,6 +5,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
 import itemsPerPage from "./examples/itemsPerPage";
+import HeaderCell from "@/common/HeaderCell";
 
 const sections = [
   {
@@ -14,7 +15,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <th>Description</th>
+          <HeaderCell>Description</HeaderCell>
         </tr>
         <tr>
           <td>currentPage: number</td>

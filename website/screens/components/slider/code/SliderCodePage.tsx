@@ -7,6 +7,7 @@ import Code from "@/common/Code";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import formatLabel from "./examples/formatLabel";
+import HeaderCell from "@/common/HeaderCell";
 
 const sections = [
   {
@@ -16,7 +17,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <th>Description</th>
+          <HeaderCell>Description</HeaderCell>
         </tr>
         <tr>
           <td>defaultValue: number</td>

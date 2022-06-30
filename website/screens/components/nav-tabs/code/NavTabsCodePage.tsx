@@ -13,6 +13,7 @@ import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLinkV6 from "./examples/routerLinkV6";
 import nextLink from "./examples/nextLink";
+import HeaderCell from "@/common/HeaderCell";
 
 const sections = [
   {
@@ -25,7 +26,7 @@ const sections = [
             <tr>
               <th>Name</th>
               <th>Default</th>
-              <th>Description</th>
+              <HeaderCell>Description</HeaderCell>
             </tr>
             <tr>
               <td>iconPosition: 'top' | 'left'</td>
@@ -54,7 +55,7 @@ const sections = [
             <tr>
               <th>Name</th>
               <th>Default</th>
-              <th>Description</th>
+              <HeaderCell>Description</HeaderCell>
             </tr>
             <tr>
               <td>active: boolean</td>
