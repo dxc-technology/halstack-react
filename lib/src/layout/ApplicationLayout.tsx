@@ -109,10 +109,10 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
             {hamburgerIcon}
+            {visibilityToggleLabel && (
+              <VisibilityToggleLabel id={visibilityToggleLabelId}>{visibilityToggleLabel}</VisibilityToggleLabel>
+            )}
           </HamburgerTrigger>
-          {visibilityToggleLabel && (
-            <VisibilityToggleLabel id={visibilityToggleLabelId}>{visibilityToggleLabel}</VisibilityToggleLabel>
-          )}
         </VisibilityToggle>
       )}
       <BodyContainer>
@@ -166,7 +166,6 @@ const VisibilityToggle = styled.div`
   display: flex;
   align-items: center;
   padding: 12px 16px;
-  gap: 10px;
   width: 100%;
   background-color: #f2f2f2;
   user-select: none;
@@ -175,6 +174,7 @@ const VisibilityToggle = styled.div`
 
 const HamburgerTrigger = styled.button`
   display: flex;
+  gap: 10px;
   flex-wrap: wrap;
   align-content: center;
   border: 0px solid transparent;
