@@ -23,7 +23,18 @@ const sections = [
         <tr>
           <td>children: node</td>
           <td></td>
+          <td>
+            The area inside the sidenav. The content will be placed inside a
+            stack with a divider between each element.
+          </td>
+        </tr>
+        <tr>
+          <td>title: node</td>
           <td></td>
+          <td>
+            The area assigned to render the title. It is highly recommended to
+            use the sidenav title.
+          </td>
         </tr>
       </DxcTable>
     ),
@@ -54,7 +65,7 @@ const sections = [
                   </td>
                 </tr>
                 <tr>
-                  <td>icon: SVG</td>
+                  <td>icon: SVG | string</td>
                   <td></td>
                   <td>The icon to be displayed in the sidenav title.</td>
                 </tr>
@@ -67,9 +78,9 @@ const sections = [
         title: "DxcSidenav.Section",
         content: (
           <DxcText as="p">
-            This must be defined as children of the Sidenav. It will wrap each
-            of its children in a DxcStack component with space small and a
-            divider. It has the following props:
+            This must be defined as children of the Sidenav. It helps to
+            separate groups and links into different agroupations. It has the
+            following props:
           </DxcText>
         ),
         subSections: [
@@ -97,9 +108,9 @@ const sections = [
             title: "DxcSidenav.Group",
             content: (
               <DxcText as="p">
-                Even though any children are accepted we recommend using only
-                the DxcSidenav.Link or any react based router with the
-                DxcSidenav.Link.
+                Even though any children are accepted in the group we recommend
+                using only the DxcSidenav.Link or any react based router with
+                the DxcSidenav.Link.
               </DxcText>
             ),
             subSections: [
@@ -136,7 +147,7 @@ const sections = [
                       </td>
                     </tr>
                     <tr>
-                      <td>icon: SVG</td>
+                      <td>icon: SVG | string</td>
                       <td></td>
                       <td>
                         The icon to be displayed next to the title of the group.
@@ -192,7 +203,7 @@ const sections = [
                       <td>If true, the page is opened in a new browser tab.</td>
                     </tr>
                     <tr>
-                      <td>icon: SVG</td>
+                      <td>icon: SVG | string</td>
                       <td></td>
                       <td>
                         Element or path used as the icon that will be placed to
