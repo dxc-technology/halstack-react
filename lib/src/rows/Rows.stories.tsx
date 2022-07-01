@@ -38,6 +38,20 @@ export const Chromatic = () => (
         </DxcRows.Row>
       </DxcRows>
     </Container>
+    <Title
+      title="One child with different alignment (parent alignment center, child alignment end)"
+      theme="light"
+      level={4}
+    />
+    <Container>
+      <DxcRows alignY="center" alignX="center">
+        <Placeholder width="medium" height="medium" />
+        <Placeholder width="medium" height="small" />
+        <DxcRows.Row alignY="end" alignX="end">
+          <Placeholder width="small" height="medium" />
+        </DxcRows.Row>
+      </DxcRows>
+    </Container>
     <Title title="Default with one row" theme="light" level={4} />
     <Container>
       <DxcRows>

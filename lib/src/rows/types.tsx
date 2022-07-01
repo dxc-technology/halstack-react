@@ -1,3 +1,5 @@
+import InlineProps from "../inline/types";
+
 export type RowsProps = {
   /**
    * Align columns in the main axis.
@@ -29,7 +31,7 @@ export type RowsProps = {
   children: React.ReactElement[] | React.ReactElement;
 };
 
-export type RowProps = {
+export type RowProps = InlineProps & {
   /**
    * Fixed width of the single row.
    */
@@ -40,4 +42,4 @@ export type RowProps = {
   children: React.ReactNode;
 };
 
-export type RowsContextProps = { alignY?: "start" | "end" | "center" | "baseline" | "stretch" };
+export type RowContextProps = "auto" | "content" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
