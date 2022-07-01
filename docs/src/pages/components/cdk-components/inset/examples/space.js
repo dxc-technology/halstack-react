@@ -8,7 +8,7 @@ const code = `() => {
         background: "#f2eafa"
       }}
     >
-      <DxcInset space="medium">
+      <DxcInset space="1.5rem">
           <Placeholder></Placeholder>
       </DxcInset>
     </div>

@@ -24,7 +24,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcStack space="large" align="start">
         <DxcButton
           label="Show Progress Bar for 3 seconds"

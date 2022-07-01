@@ -12,7 +12,7 @@ const code = `() => {
   ];
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcRow gutter="xxxlarge" justify="center">
         <DxcRadioGroup
           label="Vertical"

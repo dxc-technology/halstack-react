@@ -17,14 +17,14 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcStack gutter="large">
         <DxcAccordion
           label="Collapsed"
           isExpanded={isExpandedCollapsed}
           onChange={onChangeCollapsed}
         >
-          <DxcInset space="large">
+          <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </DxcInset>
@@ -34,10 +34,10 @@ const code = `() => {
           isExpanded={isExpanded}
           onChange={onChangeExpanded}
         >
-          <DxcInset space="large">
+          <DxcInset space="2rem">
             <DxcStack gutter="small">
               <DxcHeading level={3} text="Content header" />
-              <DxcInset space="xxxsmall">
+              <DxcInset space="0.125rem">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.

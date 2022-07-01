@@ -12,7 +12,7 @@ const code = `() => {
   });
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcNavTabs>
         <Link href="/components/nav-tabs/" passHref>
           <CustomNavTab active>Tab 1</CustomNavTab>

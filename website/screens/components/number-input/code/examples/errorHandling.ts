@@ -14,7 +14,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcNumberInput
         label="Enter your age"
         value={value}
