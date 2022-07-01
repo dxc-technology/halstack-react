@@ -11,6 +11,7 @@ import Example from "@/common/example/Example";
 import variants from "./examples/variants";
 import requiredOptional from "./examples/requiredOptional";
 import filterable from "./examples/filterable";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -51,7 +52,7 @@ const sections = [
           <thead>
             <tr>
               <th>Variant</th>
-              <th>Description</th>
+              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
           </thead>
           <tbody>
