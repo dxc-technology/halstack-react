@@ -18,14 +18,14 @@ const sections = [
           <th>Description</th>
         </tr>
         <tr>
-          <td>alignX: 'start' | 'end' | 'center' | 'baseline' | 'stretch'</td>
+          <td>alignX: 'start' | 'end' | 'center'</td>
           <td>
-            <Code>'stretch'</Code>
+            <Code>'start'</Code>
           </td>
           <td>Alignment applied to children in the main axis.</td>
         </tr>
         <tr>
-          <td>alignY: 'start' | 'end' | 'center'</td>
+          <td>alignY: 'start' | 'end' | 'center' | 'baseline' | 'stretch'</td>
           <td>
             <Code>'stretch'</Code>
           </td>
