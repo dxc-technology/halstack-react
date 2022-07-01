@@ -2,7 +2,7 @@ type Props = {
   /**
    * Align children in the main axis.
    */
-  alignX?: "start" | "end" | "center" | "baseline" | "stretch";
+  alignX?: "start" | "end" | "center";
   /**
    * Align children in the cross axis.
    */
