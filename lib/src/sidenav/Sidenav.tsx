@@ -219,6 +219,9 @@ const SidenavGroupTitleButton = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.groupTitleHoverBackgroundColor};
   }
+  &:active {
+    background-color: ${(props) => props.theme.groupTitleActiveBackgroundColor};
+  }
 `;
 
 type StyledLinkProps = {
