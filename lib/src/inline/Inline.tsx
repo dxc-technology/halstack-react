@@ -32,20 +32,21 @@ const Inline = styled.div<
   InlineProps & { height?: "auto" | "content" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" }
 >`
   display: flex;
-  ${({ alignX, alignY, gutter, reverse, height }) => `
+  ${({ alignX, alignY, gutter, reverse }) => `
     flex-direction: ${reverse ? "row-reverse" : "row"};
     align-items: ${alignY === "start" || alignY === "end" ? `flex-${alignY}` : alignY};
     justify-content: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
     gap: ${gutter};
   `}
   flex-wrap: wrap;
+  flex-grow: 1;
 
   ${({ height }) =>
     height &&
     (height === "content"
       ? "height: fit-content"
       : height === "auto"
-      ? "flex-grow: 1;"
+      ? ""
       : `height: ${(parseInt(height) / 8) * 100}%`)};
 `;
 
