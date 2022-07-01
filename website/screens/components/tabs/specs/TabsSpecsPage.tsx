@@ -18,7 +18,7 @@ import specsScrollable from "./images/tabs_scrollable.png";
 import specsNotification from "./images/tabs_notification.png";
 import statesTabs from "./images/tabs_states_specs.png";
 import specsAnatomy from "./images/tabs_anatomy.png";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -294,7 +294,7 @@ const sections = [
             <thead>
               <tr>
                 <th>key</th>
-                <HeaderCell>Description</HeaderCell>
+                <HeaderDescriptionCell>Description</HeaderDescriptionCell>
               </tr>
             </thead>
             <tbody>

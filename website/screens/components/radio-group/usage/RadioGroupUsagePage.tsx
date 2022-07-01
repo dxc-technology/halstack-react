@@ -9,7 +9,7 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import stacking from "./examples/stacking";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -41,7 +41,7 @@ const sections = [
           <thead>
             <tr>
               <th>Name</th>
-              <HeaderCell>Description</HeaderCell>
+              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
           </thead>
           <tbody>

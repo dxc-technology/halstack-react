@@ -7,7 +7,7 @@ import { DxcStack, DxcTable } from "@dxc-technology/halstack-react";
 import controlled from "./examples/controlled";
 import errorHandling from "./examples/errorHandling";
 import uncontrolled from "./examples/uncontrolled";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -17,7 +17,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <HeaderCell>Description</HeaderCell>
+          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
           <td>value: string</td>

@@ -9,7 +9,7 @@ import uncontrolled from "./examples/uncontrolled";
 import action from "./examples/action";
 import functionSuggestions from "./examples/functionSuggestions";
 import errorHandling from "./examples/errorHandling";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -19,7 +19,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <HeaderCell>Description</HeaderCell>
+          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
           <td>defaultValue: string</td>

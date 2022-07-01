@@ -12,14 +12,14 @@ import Link from "next/link";
 import basicUsage from "./examples/basicUsage";
 import withSidenav from "./examples/withSideNav";
 import customHeaderFooter from "./examples/customHeaderFooter";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const ApplicationLayoutPropsTable = () => (
   <DxcTable>
     <tr>
       <th>Name</th>
       <th>Default</th>
-      <HeaderCell>Description</HeaderCell>
+      <HeaderDescriptionCell>Description</HeaderDescriptionCell>
     </tr>
     <tr>
       <td>visibilityToggleLabel: string</td>
@@ -37,7 +37,7 @@ const SidenavApplicationLayoutPropsTable = () => (
     <tr>
       <th>Name</th>
       <th>Default</th>
-      <HeaderCell>Description</HeaderCell>
+      <HeaderDescriptionCell>Description</HeaderDescriptionCell>
     </tr>
     <tr>
       <td>padding: string | object</td>

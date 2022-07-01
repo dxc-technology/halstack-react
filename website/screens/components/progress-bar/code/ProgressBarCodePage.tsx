@@ -6,7 +6,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basic from "./examples/basicUsage";
 import overlay from "./examples/overlay";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -16,7 +16,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <HeaderCell>Description</HeaderCell>
+          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
           <td>label: string</td>

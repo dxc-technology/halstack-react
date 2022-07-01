@@ -5,7 +5,7 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basicUsage from "./examples/basicUsage";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -16,7 +16,7 @@ const sections = [
           <tr>
             <th>Name</th>
             <th>Default</th>
-            <HeaderCell>Description</HeaderCell>
+            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>

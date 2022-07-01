@@ -14,7 +14,7 @@ import customContent from "./examples/customContent";
 import dropdown from "./examples/dropdown";
 import Link from "next/link";
 import React from "react";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -24,7 +24,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <HeaderCell>Description</HeaderCell>
+          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
           <td>underlined: boolean</td>

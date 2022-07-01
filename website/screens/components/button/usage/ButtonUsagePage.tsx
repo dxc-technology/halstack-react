@@ -10,7 +10,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import variants from "./examples/variants";
 import icons from "./examples/iconUsage";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -52,7 +52,7 @@ const sections = [
           <thead>
             <tr>
               <th>Variant</th>
-              <HeaderCell>Description</HeaderCell>
+              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
           </thead>
           <tbody>

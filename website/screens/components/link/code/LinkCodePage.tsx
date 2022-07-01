@@ -14,7 +14,7 @@ import basicUsage from "./examples/basicUsage";
 import routerLink from "./examples/routerLink";
 import routerLink6 from "./examples/routerLink6";
 import icons from "./examples/icons";
-import HeaderCell from "@/common/HeaderCell";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -25,7 +25,7 @@ const sections = [
           <tr>
             <th>Name</th>
             <th>Default</th>
-            <HeaderCell>Description</HeaderCell>
+            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
