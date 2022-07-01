@@ -43,6 +43,7 @@ import DxcInset from "./inset/Inset";
 import DxcQuickNav from "./quick-nav/QuickNav";
 import DxcNavTabs from "./tabs-nav/NavTabs";
 import DxcColumns from './columns/Columns';
+import DxcInline from "./inline/Inline";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
@@ -96,5 +97,6 @@ export {
   DxcInset,
   DxcQuickNav,
   DxcNavTabs,
-  DxcColumns
+  DxcColumns,
+  DxcInline,
 };

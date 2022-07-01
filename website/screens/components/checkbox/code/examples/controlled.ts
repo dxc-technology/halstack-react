@@ -12,7 +12,7 @@ const code = `() => {
   };
 
   return (
-    <DxcInset space="large">
+    <DxcInset space="2rem">
       <DxcCheckbox label="Of legal age" checked={checked} onChange={onChange} />
     </DxcInset>
   );

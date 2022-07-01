@@ -1,135 +1,143 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
-import { ListboxProps, ListboxRefType } from "./types";
+import { ListboxProps } from "./types";
 import Option from "./Option";
 import selectIcons from "./Icons";
 
 const groupsHaveOptions = (options) =>
   options?.[0].options ? options.some((groupOption) => groupOption.options?.length > 0) : true;
 
-const Listbox = React.forwardRef<ListboxRefType, ListboxProps>(
-  (
-    {
-      id,
-      currentValue,
-      options,
-      visualFocusIndex,
-      lastOptionIndex,
-      multiple,
-      optional,
-      optionalItem,
-      searchable,
-      handleOptionOnClick,
-    },
-    ref
-  ): JSX.Element => {
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
-    let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
-    const mapOptionFunc = (option, mapIndex) => {
-      if (option.options) {
-        const groupId = `group-${mapIndex}`;
-        return (
-          option.options.length > 0 && (
-            <li key={`group-${mapIndex}`}>
-              <GroupList role="group" aria-labelledby={groupId}>
-                <GroupLabel role="presentation" id={groupId}>
-                  {option.label}
-                </GroupLabel>
-                {option.options.map((singleOption) => {
-                  globalIndex++;
-                  return (
-                    <Option
-                      key={`option-${singleOption.value}`}
-                      id={`option-${globalIndex}`}
-                      option={singleOption}
-                      onClick={handleOptionOnClick}
-                      multiple={multiple}
-                      visualFocused={visualFocusIndex === globalIndex}
-                      isGroupedOption={true}
-                      isLastOption={lastOptionIndex === globalIndex}
-                      isSelected={
-                        multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
-                      }
-                    />
-                  );
-                })}
-              </GroupList>
-            </li>
-          )
-        );
-      } else {
-        globalIndex++;
-        return (
-          <Option
-            key={`option-${option.value}`}
-            id={`option-${globalIndex}`}
-            option={option}
-            onClick={handleOptionOnClick}
-            multiple={multiple}
-            visualFocused={visualFocusIndex === globalIndex}
-            isLastOption={lastOptionIndex === globalIndex}
-            isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
-          />
-        );
-      }
-    };
+const Listbox = ({
+  id,
+  currentValue,
+  options,
+  visualFocusIndex,
+  lastOptionIndex,
+  multiple,
+  optional,
+  optionalItem,
+  searchable,
+  handleOptionOnClick,
+  styles,
+}: ListboxProps): JSX.Element => {
+  const colorsTheme = useTheme();
+  const translatedLabels = useTranslatedLabels();
+  const listboxRef = useRef(null);
 
-    return (
-      <ThemeProvider theme={colorsTheme.select}>
-        <ListboxContainer
-          id={id}
-          onClick={(event) => {
-            event.stopPropagation();
-          }}
-          onMouseDown={(event) => {
-            event.preventDefault();
-          }}
-          ref={ref}
-          role="listbox"
-          aria-multiselectable={multiple}
-          aria-orientation="vertical"
-        >
-          {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
-            <OptionsSystemMessage>
-              <NoMatchesFoundIcon>{selectIcons.searchOff}</NoMatchesFoundIcon>
-              {translatedLabels.select.noMatchesErrorMessage}
-            </OptionsSystemMessage>
-          ) : (
-            optional &&
-            !multiple && (
-              <Option
-                key={`option-${optionalItem.value}`}
-                id={`option-${0}`}
-                option={optionalItem}
-                onClick={handleOptionOnClick}
-                multiple={multiple}
-                visualFocused={visualFocusIndex === 0}
-                isGroupedOption={false}
-                isLastOption={lastOptionIndex === 0}
-                isSelected={multiple ? currentValue.includes(optionalItem.value) : currentValue === optionalItem.value}
-              />
-            )
-          )}
-          {options.map(mapOptionFunc)}
-        </ListboxContainer>
-      </ThemeProvider>
-    );
-  }
-);
+  let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
+  const mapOptionFunc = (option, mapIndex) => {
+    if (option.options) {
+      const groupId = `group-${mapIndex}`;
+      return (
+        option.options.length > 0 && (
+          <li key={`group-${mapIndex}`}>
+            <GroupList role="group" aria-labelledby={groupId}>
+              <GroupLabel role="presentation" id={groupId}>
+                {option.label}
+              </GroupLabel>
+              {option.options.map((singleOption) => {
+                globalIndex++;
+                return (
+                  <Option
+                    key={`option-${singleOption.value}`}
+                    id={`option-${globalIndex}`}
+                    option={singleOption}
+                    onClick={handleOptionOnClick}
+                    multiple={multiple}
+                    visualFocused={visualFocusIndex === globalIndex}
+                    isGroupedOption={true}
+                    isLastOption={lastOptionIndex === globalIndex}
+                    isSelected={
+                      multiple ? currentValue.includes(singleOption.value) : currentValue === singleOption.value
+                    }
+                  />
+                );
+              })}
+            </GroupList>
+          </li>
+        )
+      );
+    } else {
+      globalIndex++;
+      return (
+        <Option
+          key={`option-${option.value}`}
+          id={`option-${globalIndex}`}
+          option={option}
+          onClick={handleOptionOnClick}
+          multiple={multiple}
+          visualFocused={visualFocusIndex === globalIndex}
+          isLastOption={lastOptionIndex === globalIndex}
+          isSelected={multiple ? currentValue.includes(option.value) : currentValue === option.value}
+        />
+      );
+    }
+  };
+
+  useLayoutEffect(() => {
+    if (currentValue && !multiple) {
+      const listEl = listboxRef?.current;
+      const selectedListOptionEl = listEl?.querySelector("[aria-selected='true']");
+      listEl?.scrollTo?.({ top: selectedListOptionEl?.offsetTop - listEl?.clientHeight / 2 });
+    }
+  }, [currentValue, multiple]);
+
+  useLayoutEffect(() => {
+    const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
+    visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
+  }, [visualFocusIndex]);
+
+  return (
+    <ThemeProvider theme={colorsTheme.select}>
+      <ListboxContainer
+        id={id}
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+        onMouseDown={(event) => {
+          event.preventDefault();
+        }}
+        ref={listboxRef}
+        role="listbox"
+        aria-multiselectable={multiple}
+        aria-orientation="vertical"
+        style={styles}
+      >
+        {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
+          <OptionsSystemMessage>
+            <NoMatchesFoundIcon>{selectIcons.searchOff}</NoMatchesFoundIcon>
+            {translatedLabels.select.noMatchesErrorMessage}
+          </OptionsSystemMessage>
+        ) : (
+          optional &&
+          !multiple && (
+            <Option
+              key={`option-${optionalItem.value}`}
+              id={`option-${0}`}
+              option={optionalItem}
+              onClick={handleOptionOnClick}
+              multiple={multiple}
+              visualFocused={visualFocusIndex === 0}
+              isGroupedOption={false}
+              isLastOption={lastOptionIndex === 0}
+              isSelected={multiple ? currentValue.includes(optionalItem.value) : currentValue === optionalItem.value}
+            />
+          )
+        )}
+        {options.map(mapOptionFunc)}
+      </ListboxContainer>
+    </ThemeProvider>
+  );
+};
 
 const ListboxContainer = styled.ul`
-  position: absolute;
-  z-index: 1;
+  box-sizing: border-box;
   max-height: 304px;
   overflow-y: auto;
-  top: calc(100% + 4px);
-  left: 0;
   margin: 0;
   padding: 0.25rem 0;
-  width: 100%;
   background-color: ${(props) => props.theme.listDialogBackgroundColor};
   border: 1px solid ${(props) => props.theme.listDialogBorderColor};
   border-radius: 0.25rem;
