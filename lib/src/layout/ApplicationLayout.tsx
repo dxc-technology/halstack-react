@@ -165,11 +165,11 @@ const VisibilityToggle = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  padding: 12px 16px;
+  padding: 0px 16px;
   width: 100%;
   background-color: #f2f2f2;
   user-select: none;
-  z-index: 2;
+  z-index: 3;
 `;
 
 const HamburgerTrigger = styled.button`
@@ -179,7 +179,7 @@ const HamburgerTrigger = styled.button`
   align-content: center;
   border: 0px solid transparent;
   border-radius: 2px;
-  padding: 3px;
+  padding: 15px 3px;
   background-color: transparent;
   box-shadow: 0 0 0 2px transparent;
   cursor: pointer;
