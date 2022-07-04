@@ -169,7 +169,7 @@ const VisibilityToggle = styled.div`
   width: 100%;
   background-color: #f2f2f2;
   user-select: none;
-  z-index: 3;
+  z-index: 2;
 `;
 
 const HamburgerTrigger = styled.button`
