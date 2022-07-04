@@ -1,12 +1,11 @@
 import React from "react";
-
 import { userEvent, within, waitFor } from "@storybook/testing-library";
-import { fireEvent } from "@testing-library/react";
-
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
-
 import DxcSelect from "./Select";
+import Listbox from "./Listbox";
+import DxcButton from "../button/Button";
+import DxcCheckbox from "../checkbox/Checkbox";
 
 export default {
   title: "Select",
@@ -340,7 +339,7 @@ const Select = () => (
       <DxcSelect label="Label" options={single_options} multiple defaultValue={["1", "2", "3", "4"]} />
       <Title title="Value with ellipsis" theme="light" level={4} />
       <DxcSelect label="Label" options={optionsWithEllipsisMedium} defaultValue="1" size="medium" />
-      <Title title="Option with ellipsis" theme="light" level={4} />
+      <Title title="Options with ellipsis" theme="light" level={4} />
       <DxcSelect
         label="Label"
         placeholder="Choose an option"
@@ -351,16 +350,103 @@ const Select = () => (
     </ExampleContainer>
   </>
 );
-export const Chromatic = Select.bind({});
-Chromatic.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getAllByRole("combobox")[24]);
-};
-const DefaultSelect = () => (
-  <ExampleContainer expanded>
-    <Title title="Default select" theme="light" level={4} />
-    <DxcSelect label="Select label" options={single_options} optional placeholder="Choose an option" />
-  </ExampleContainer>
+const SelectListbox = () => (
+  <>
+    <Title title="Listbox" theme="light" level={2} />
+    <Title title="Default with opened listbox" theme="light" level={3} />
+    <ExampleContainer>
+      <div style={{ display: "flex", gap: "30px", flexDirection: "column", marginBottom: "80px" }}>
+        <DxcSelect label="Label" options={single_options} optional placeholder="Choose an option" />
+        <DxcCheckbox
+          label="You understand the selection and give your consent"
+          onChange={() => {}}
+          labelPosition="after"
+        />
+        <DxcButton label="Submit" onClick={() => {}} size="medium" />
+      </div>
+    </ExampleContainer>
+    <Title title="Listbox option states" theme="light" level={3} />
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered option" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue=""
+        options={one_option}
+        visualFocusIndex={-1}
+        lastOptionIndex={0}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        styles={{ width: 360 }}
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active option" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue=""
+        options={one_option}
+        visualFocusIndex={-1}
+        lastOptionIndex={0}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        styles={{ width: 360 }}
+      />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Focused option" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue=""
+        options={one_option}
+        visualFocusIndex={0}
+        lastOptionIndex={0}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        styles={{ width: 360 }}
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered selected option" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue="1"
+        options={single_options}
+        visualFocusIndex={-1}
+        lastOptionIndex={3}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        styles={{ width: 360 }}
+      />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Active selected option" theme="light" level={4} />
+      <Listbox
+        id="x"
+        currentValue="2"
+        options={single_options}
+        visualFocusIndex={0}
+        lastOptionIndex={3}
+        multiple={false}
+        optional={false}
+        optionalItem={{ label: "Empty", value: "" }}
+        searchable={false}
+        handleOptionOnClick={() => {}}
+        styles={{ width: 360 }}
+      />
+    </ExampleContainer>
+  </>
 );
 const SearchableSelect = () => (
   <ExampleContainer expanded>
@@ -368,7 +454,7 @@ const SearchableSelect = () => (
     <DxcSelect label="Select Label" searchable options={single_options} placeholder="Choose an option" />
   </ExampleContainer>
 );
-const SearchableWithValue = () => (
+const SearchValue = () => (
   <ExampleContainer expanded>
     <Title title="Searchable select with value" theme="light" level={4} />
     <DxcSelect
@@ -380,7 +466,6 @@ const SearchableWithValue = () => (
     />
   </ExampleContainer>
 );
-
 const MultipleSelect = () => (
   <>
     <ExampleContainer expanded>
@@ -443,36 +528,7 @@ const MultipleGroupedOptionsSelectWithIcons = () => (
     />
   </ExampleContainer>
 );
-const OnlyOneOptionHovered = () => (
-  <ExampleContainer pseudoState="pseudo-hover" expanded>
-    <Title title="Hovered Option" theme="light" level={4} />
-    <DxcSelect label="Hovered" options={one_option} placeholder="Choose an option" />
-  </ExampleContainer>
-);
-const OnlyOneOptionFocused = () => (
-  <ExampleContainer pseudoState="pseudo-focus" expanded>
-    <Title title="Focused Option" theme="light" level={4} />
-    <DxcSelect label="Focused" options={one_option} placeholder="Choose an option" />
-  </ExampleContainer>
-);
-const OnlyOneOptionActived = () => (
-  <ExampleContainer pseudoState="pseudo-active" expanded>
-    <Title title="Actived Option" theme="light" level={4} />
-    <DxcSelect label="Actived" options={one_option} placeholder="Choose an option" />
-  </ExampleContainer>
-);
-const SelectedOptionHovered = () => (
-  <ExampleContainer pseudoState="pseudo-hover" expanded>
-    <Title title="Hovered Selected Option" theme="light" level={4} />
-    <DxcSelect label="Hovered" defaultValue="1" options={one_option} placeholder="Choose an option" />
-  </ExampleContainer>
-);
-const SelectedOptionActived = () => (
-  <ExampleContainer pseudoState="pseudo-active" expanded>
-    <Title title="Actived Selected Option" theme="light" level={4} />
-    <DxcSelect label="Actived" defaultValue="1" options={one_option} placeholder="Choose an option" />
-  </ExampleContainer>
-);
+
 const MultipleSearchable = () => (
   <ExampleContainer expanded>
     <Title title="Searchable multiple select with value" theme="light" level={4} />
@@ -486,12 +542,20 @@ const MultipleSearchable = () => (
     />
   </ExampleContainer>
 );
-export const OptionsDisplayed = DefaultSelect.bind({});
-OptionsDisplayed.play = async ({ canvasElement }) => {
+
+export const Chromatic = Select.bind({});
+Chromatic.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getAllByRole("combobox")[24]);
+};
+
+export const ListboxStates = SelectListbox.bind({});
+ListboxStates.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
 };
+
 export const Searchable = SearchableSelect.bind({});
 Searchable.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -500,14 +564,15 @@ Searchable.play = async ({ canvasElement }) => {
     userEvent.type(canvas.getByRole("combobox"), "r");
   });
 };
-export const SelectSearchableWithValue = SearchableWithValue.bind({});
-SelectSearchableWithValue.play = async ({ canvasElement }) => {
+
+export const SearchableWithValue = SearchValue.bind({});
+SearchableWithValue.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("combobox"));
 };
 
-export const SelectMultipleSearchableWithValue = MultipleSearchable.bind({});
-SelectMultipleSearchableWithValue.play = async ({ canvasElement }) => {
+export const MultipleSearchableWithValue = MultipleSearchable.bind({});
+MultipleSearchableWithValue.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
@@ -519,75 +584,42 @@ GroupOptionsDisplayed.play = async ({ canvasElement }) => {
   await userEvent.click(select);
 };
 
-export const SelectMultipleOptionsDisplayed = MultipleSelect.bind({});
-SelectMultipleOptionsDisplayed.play = async ({ canvasElement }) => {
+export const MultipleOptionsDisplayed = MultipleSelect.bind({});
+MultipleOptionsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getAllByRole("combobox")[0]);
 };
 
-export const SelectMultipleGroupedOptionsDisplayed = MultipleGroupedOptionsSelect.bind({});
-SelectMultipleGroupedOptionsDisplayed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-export const SelectWithIconsDisplayed = SelectWithIcons.bind({});
-SelectWithIconsDisplayed.play = async ({ canvasElement }) => {
+export const MultipleGroupedOptionsDisplayed = MultipleGroupedOptionsSelect.bind({});
+MultipleGroupedOptionsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
 };
 
-export const SelectWithRescaledIconsDisplayed = RescaledIcons.bind({});
-SelectWithRescaledIconsDisplayed.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-export const SelectMultipleWithIconsDisplayed = SelectMultipleWithIcons.bind({});
-SelectMultipleWithIconsDisplayed.play = async ({ canvasElement }) => {
+export const WithIconsDisplayed = SelectWithIcons.bind({});
+WithIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
 };
 
-export const SelectMultipleGroupedWithIconsDisplayed = MultipleGroupedOptionsSelectWithIcons.bind({});
-SelectMultipleGroupedWithIconsDisplayed.play = async ({ canvasElement }) => {
+export const WithRescaledIconsDisplayed = RescaledIcons.bind({});
+WithRescaledIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
 };
 
-export const OptionHovered = OnlyOneOptionHovered.bind({});
-OptionHovered.play = async ({ canvasElement }) => {
+export const MultipleWithIconsDisplayed = SelectMultipleWithIcons.bind({});
+MultipleWithIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);
 };
 
-export const OptionFocused = OnlyOneOptionFocused.bind({});
-OptionFocused.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-  await waitFor(async () => {
-    fireEvent.keyDown(select, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-  });
-};
-export const OptionActived = OnlyOneOptionActived.bind({});
-OptionActived.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-export const OptionSelectedHovered = SelectedOptionHovered.bind({});
-OptionSelectedHovered.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const select = canvas.getByRole("combobox");
-  await userEvent.click(select);
-};
-export const OptionSelectedActived = SelectedOptionActived.bind({});
-OptionSelectedActived.play = async ({ canvasElement }) => {
+export const MultipleGroupedWithIconsDisplayed = MultipleGroupedOptionsSelectWithIcons.bind({});
+MultipleGroupedWithIconsDisplayed.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const select = canvas.getByRole("combobox");
   await userEvent.click(select);

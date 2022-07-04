@@ -193,12 +193,8 @@ export type ListboxProps = {
   optionalItem: Option;
   searchable: boolean;
   handleOptionOnClick: (option: Option) => void;
+  styles: { width: number };
 };
-
-/**
- * Reference to the listbox component.
- */
-export type ListboxRefType = HTMLUListElement;
 
 /**
  * Reference to the select component.

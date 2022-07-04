@@ -6,6 +6,7 @@ import basicUsage from "./examples/basicUsage";
 import modal from "./examples/modal";
 import Example from "@/common/example/Example";
 import Code from "@/common/Code";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -15,7 +16,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <th>Description</th>
+          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
           <td>type: 'info' | 'confirm' | 'warning' | 'error'</td>
