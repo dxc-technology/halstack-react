@@ -16,6 +16,8 @@ export const Chromatic = () => (
         <Placeholder />
         <Placeholder />
         <Placeholder />
+        <Placeholder />
+        <Placeholder />
       </DxcStack>
     </Container>
     <Title title="Default with divider" theme="light" level={4} />
@@ -32,12 +34,23 @@ export const Chromatic = () => (
         <Placeholder />
       </DxcStack>
     </Container>
+    <Title title="Wrap" theme="light" level={4} />
+    <FlexContainer customHeight>
+      <DxcStack>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </DxcStack>
+    </FlexContainer>
     <Title title="AlignX = start" theme="light" level={4} />
     <Container>
       <DxcStack alignX="start">
         <Placeholder paddingLeft={20}></Placeholder>
         <Placeholder />
         <Placeholder paddingRight={60}></Placeholder>
+        <Placeholder paddingLeft={20}></Placeholder>
       </DxcStack>
     </Container>
     <Title title="AlignX = end" theme="light" level={4} />
@@ -54,6 +67,7 @@ export const Chromatic = () => (
         <Placeholder paddingLeft={20}></Placeholder>
         <Placeholder />
         <Placeholder paddingLeft={60}></Placeholder>
+        <Placeholder paddingLeft={20}></Placeholder>
       </DxcStack>
     </Container>
     <Title title="AlignX = baseline" theme="light" level={4} />
@@ -64,9 +78,22 @@ export const Chromatic = () => (
         <Placeholder paddingLeft={60}></Placeholder>
       </DxcStack>
     </Container>
+    <Title title="AlignX with wrapped items" theme="light" level={4} />
+    <FlexContainer customHeight>
+      <DxcStack alignX="center">
+        <Placeholder />
+        <Placeholder paddingRight={60} />
+        <Placeholder paddingLeft={20} />
+        <Placeholder />
+        <Placeholder paddingRight={20} />
+        <Placeholder paddingLeft={60} />
+      </DxcStack>
+    </FlexContainer>
     <Title title="Gutter = 0rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="0rem">
+        <Placeholder />
+        <Placeholder />
         <Placeholder />
         <Placeholder />
         <Placeholder />
@@ -86,6 +113,8 @@ export const Chromatic = () => (
         <Placeholder />
         <Placeholder />
         <Placeholder />
+        <Placeholder />
+        <Placeholder />
       </DxcStack>
     </Container>
     <Title title="Gutter = 0.5rem" theme="light" level={4} />
@@ -99,6 +128,8 @@ export const Chromatic = () => (
     <Title title="Gutter = 0.75rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="0.75rem">
+        <Placeholder />
+        <Placeholder />
         <Placeholder />
         <Placeholder />
         <Placeholder />
@@ -118,6 +149,8 @@ export const Chromatic = () => (
         <Placeholder />
         <Placeholder />
         <Placeholder />
+        <Placeholder />
+        <Placeholder />
       </DxcStack>
     </Container>
     <Title title="Gutter = 2rem & divider" theme="light" level={4} />
@@ -134,12 +167,19 @@ export const Chromatic = () => (
         <Placeholder>1</Placeholder>
         <Placeholder>2</Placeholder>
         <Placeholder>3</Placeholder>
+        <Placeholder>4</Placeholder>
       </DxcStack>
     </Container>
   </>
 );
 
-const Container = styled.div`
+const FlexContainer = styled.div<{ customHeight?: boolean }>`
+  display: flex;
+  ${({ customHeight }) => customHeight && `height: 100px;`};
+  background: #f2eafa;
+`;
+
+const Container = styled.div<{ customHeight?: boolean }>`
   background: #f2eafa;
 `;
 
