@@ -9,6 +9,7 @@ import uncontrolled from "./examples/uncontrolled";
 import errorHandling from "./examples/errorHandling";
 import groups from "./examples/groupedOptions";
 import icons from "./examples/icons";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -19,7 +20,7 @@ const sections = [
           <tr>
             <th>Name</th>
             <th>Default</th>
-            <th>Description</th>
+            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
