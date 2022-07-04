@@ -12,6 +12,7 @@ import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import sidenavVariants from "./images/sidenav_variants.png";
 import sidenavResponsive from "./images/sidenav_responsive.png";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -60,7 +61,7 @@ const sections = [
           <thead>
             <tr>
               <th>Variant</th>
-              <th>Description</th>
+              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
           </thead>
           <tbody>
