@@ -352,6 +352,37 @@ export const Chromatic = () => (
         </DxcRows.Row>
       </DxcRows>
     </Container>
+    <Title title="Two rows without height" theme="light" level={4} />
+    <Container>
+      <DxcRows>
+        <DxcRows.Row height="auto">
+          <Placeholder width="large">auto</Placeholder>
+        </DxcRows.Row>
+        <DxcRows.Row height="auto">
+          <Placeholder width="large">auto</Placeholder>
+        </DxcRows.Row>
+        <DxcRows.Row height="4">
+          <Placeholder width="large">4</Placeholder>
+        </DxcRows.Row>
+      </DxcRows>
+    </Container>
+    <Title title="Three rows without height" theme="light" level={4} />
+    <Container>
+      <DxcRows>
+        <DxcRows.Row height="content">
+          <Placeholder width="large">content</Placeholder>
+        </DxcRows.Row>
+        <DxcRows.Row height="auto">
+          <Placeholder width="large">auto</Placeholder>
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="large">no height</Placeholder>
+        </DxcRows.Row>
+        <DxcRows.Row height="2">
+          <Placeholder width="large">2</Placeholder>
+        </DxcRows.Row>
+      </DxcRows>
+    </Container>
   </>
 );
 
