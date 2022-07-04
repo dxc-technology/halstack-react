@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { RowProps, RowContextProps, RowsProps } from "./types";
 import DxcInline from "../inline/Inline";
@@ -19,12 +19,38 @@ const DxcRows = ({
   reverse = false,
   children,
 }: RowsProps): JSX.Element => {
+  const [heightPerChild, setHeightPerChild] = useState(null);
+
+  useEffect(() => {
+    let availableHeight = 8;
+    let childrenWithoutHeight = 0;
+    React.Children.forEach(children, (child) => {
+      if (child.props.height && Number(child.props.height))
+        availableHeight = availableHeight - Number(child.props.height);
+      else childrenWithoutHeight++;
+    });
+
+    if (childrenWithoutHeight > 0) {
+      setHeightPerChild(availableHeight / childrenWithoutHeight);
+    }
+  }, [children]);
+
   return (
     <Rows as={as} alignX={alignX} gutter={gutter} reverse={reverse}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
-            {child.type === DxcRows.Row ? React.cloneElement(child, {alignY}) : <DxcRow alignY={alignY}>{child}</DxcRow>}
+            {child.type === DxcRows.Row ? (
+              React.cloneElement(child, {
+                alignY,
+                height:
+                  child.props.height && (Number(child.props.height) || child.props.height === "content")
+                    ? child.props.height
+                    : heightPerChild,
+              })
+            ) : (
+              <DxcRow alignY={alignY}>{child}</DxcRow>
+            )}
             {divider && index !== React.Children.count(children) - 1 && <Divider />}
           </>
         );
