@@ -165,7 +165,7 @@ const VisibilityToggle = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  padding: 0px 16px;
+  padding: 4px 16px;
   width: 100%;
   background-color: #f2f2f2;
   user-select: none;
@@ -183,10 +183,6 @@ const HamburgerTrigger = styled.button`
   background-color: transparent;
   box-shadow: 0 0 0 2px transparent;
   cursor: pointer;
-
-  :hover {
-    background-color: #e6e6e6;
-  }
   :active {
     background-color: #cccccc;
   }
