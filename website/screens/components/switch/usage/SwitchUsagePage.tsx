@@ -10,6 +10,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import labelPosition from "./examples/labelPosition";
 import stacking from "./examples/stacking";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -52,7 +53,7 @@ const sections = [
           <thead>
             <tr>
               <th>Position</th>
-              <th>Description</th>
+              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
           </thead>
           <tbody>

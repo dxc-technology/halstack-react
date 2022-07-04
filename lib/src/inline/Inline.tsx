@@ -3,7 +3,7 @@ import styled from "styled-components";
 import InlineProps from "./types";
 
 const DxcInline = ({
-  alignX = "stretch",
+  alignX = "start",
   alignY = "stretch",
   as = "div",
   divider = false,

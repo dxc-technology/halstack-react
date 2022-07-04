@@ -4,6 +4,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import basic from "./examples/basicUsage";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -13,7 +14,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <th>Description</th>
+          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
           <td>children: node</td>
