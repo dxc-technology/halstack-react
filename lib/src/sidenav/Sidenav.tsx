@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref, useMemo, useState } from "react";
+import React, { forwardRef, Ref, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
@@ -12,6 +12,7 @@ import SidenavPropsType, {
   SidenavTitlePropsType,
 } from "./types.js";
 import DxcStack from "../stack/Stack";
+import DxcBleed from "../bleed/Bleed";
 
 const collapsedIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
@@ -57,7 +58,11 @@ const Title = ({ children, icon }: SidenavTitlePropsType): JSX.Element => (
   </SidenavTitle>
 );
 
-const Section = ({ children }: SidenavSectionPropsType): JSX.Element => <DxcStack>{children}</DxcStack>;
+const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
+  <DxcBleed left="1rem" right="1rem">
+    <DxcStack>{children}</DxcStack>
+  </DxcBleed>
+);
 
 const Group = ({ children, title, collapsable = false, icon }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
@@ -134,7 +139,7 @@ const SidenavContainer = styled.div<SidenavPropsType>`
   }
 
   height: 100%;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
 
   overflow-y: auto;
   overflow-x: hidden;
