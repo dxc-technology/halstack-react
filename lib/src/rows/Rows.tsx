@@ -1,9 +1,25 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useContext, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import { RowProps, RowContextProps, RowsProps } from "./types";
 import DxcInline from "../inline/Inline";
 
 const RowContext = createContext<RowContextProps | null>(null);
+
+const getHeightPerChild = (children) => {
+  let availableHeight = 8;
+  let childrenWithoutHeight = 0;
+  React.Children.forEach(children, (child) => {
+    if (child.props.height && Number(child.props.height))
+      availableHeight = availableHeight - Number(child.props.height);
+    else childrenWithoutHeight++;
+  });
+
+  if (childrenWithoutHeight > 0) {
+    return availableHeight / childrenWithoutHeight;
+  }
+
+  return null;
+};
 
 export const useRowContext = () => {
   const height = useContext(RowContext);
@@ -21,18 +37,8 @@ const DxcRows = ({
 }: RowsProps): JSX.Element => {
   const [heightPerChild, setHeightPerChild] = useState(null);
 
-  useEffect(() => {
-    let availableHeight = 8;
-    let childrenWithoutHeight = 0;
-    React.Children.forEach(children, (child) => {
-      if (child.props.height && Number(child.props.height))
-        availableHeight = availableHeight - Number(child.props.height);
-      else childrenWithoutHeight++;
-    });
-
-    if (childrenWithoutHeight > 0) {
-      setHeightPerChild(availableHeight / childrenWithoutHeight);
-    }
+  useLayoutEffect(() => {
+    setHeightPerChild(getHeightPerChild(children));
   }, [children]);
 
   return (
