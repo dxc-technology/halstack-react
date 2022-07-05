@@ -28,6 +28,14 @@ export const Chromatic = () => (
         <Placeholder />
       </DxcStack>
     </Container>
+    <Title title="Alignment with divider" theme="light" level={4} />
+    <Container>
+      <DxcStack alignX="end" divider>
+        <Placeholder paddingLeft={20}></Placeholder>
+        <Placeholder />
+        <Placeholder paddingLeft={60}></Placeholder>
+      </DxcStack>
+    </Container>
     <Title title="Default with one child" theme="light" level={4} />
     <Container>
       <DxcStack divider>
