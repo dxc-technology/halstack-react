@@ -6,6 +6,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -15,7 +16,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <th>Description</th>
+          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
           <td>defaultChecked: boolean</td>

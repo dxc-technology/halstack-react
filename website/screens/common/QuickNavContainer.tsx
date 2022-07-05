@@ -77,7 +77,8 @@ const Container = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
 `;
 
 const QuickNavContainer = styled.div`

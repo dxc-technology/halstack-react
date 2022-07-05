@@ -10,6 +10,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import types from "../usage/examples/types";
 import content from "./examples/content";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -53,7 +54,7 @@ const sections = [
           <thead>
             <tr>
               <th>Name</th>
-              <th>Description</th>
+              <HeaderDescriptionCell>Description</HeaderDescriptionCell>
             </tr>
           </thead>
           <tbody>
@@ -106,7 +107,7 @@ const sections = [
         <thead>
           <tr>
             <th>Name</th>
-            <th>Description</th>
+            <HeaderDescriptionCell>Description</HeaderDescriptionCell>
           </tr>
         </thead>
         <tbody>
