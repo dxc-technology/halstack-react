@@ -45,7 +45,7 @@ export type AppLayoutSidenavPropsType = {
   /**
    * The area inside the sidenav. This area can be used to render custom content.
    */
-  children: React.ReactNode;
+  children: React.ReactElement<ChildrenType> | React.ReactElement<ChildrenType>[];
 };
 
 type AppLayoutPropsType = {
