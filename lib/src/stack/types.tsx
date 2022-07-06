@@ -8,7 +8,7 @@ type Props = {
    */
   as?: React.ElementType;
   /**
-   * If true, a divider is shown between children.
+   * If true, a divider is shown between each child.
    */
   divider?: boolean;
   /**
@@ -16,7 +16,7 @@ type Props = {
    */
   gutter?: "0rem" | "0.125rem" | "0.25rem" | "0.5rem" | "0.75rem" | "1rem" | "1.5rem" | "2rem";
   /**
-   * Change the direction of the stack to reverse.
+   * If true, it changes the direction of the stack to reverse.
    */
   reverse?: boolean;
   /**

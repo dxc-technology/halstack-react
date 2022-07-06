@@ -55,6 +55,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Sidenav", path: "/components/sidenav" },
   { label: "Slider", path: "/components/slider" },
   { label: "Spinner", path: "/components/spinner" },
+  { label: "Stack", path: "/components/stack" },
   { label: "Switch", path: "/components/switch" },
   { label: "Table", path: "/components/table" },
   { label: "Tabs", path: "/components/tabs" },
