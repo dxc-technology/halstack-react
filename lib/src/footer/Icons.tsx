@@ -1,7 +1,7 @@
 import React from "react";
 
 export const dxcLogo = (
-  <svg id="g10" xmlns="http://www.w3.org/2000/svg" width="inherit" height="32" viewBox="0 0 280.781 32">
+  <svg id="g10" xmlns="http://www.w3.org/2000/svg" width="100%" height="32" viewBox="0 0 280.781 32">
     <title>DXC Logo</title>
     <g id="g12">
       <path
