@@ -11,9 +11,9 @@ const TextInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Text Input" status="Ready" />
           <DxcText as="p">
             Text inputs are input fields typically used in forms that allow the

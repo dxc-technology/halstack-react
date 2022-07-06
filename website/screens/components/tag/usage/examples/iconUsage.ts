@@ -17,15 +17,15 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcRow justify="spaceEvenly">
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <DxcHeading level={4} text="Icon before"></DxcHeading>
           <DxcTag label="Enabled" labelPosition="before" icon={icon} />
         </DxcStack>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <DxcHeading level={4} text="Icon after"></DxcHeading>
           <DxcTag label="Enabled" icon={icon} />
         </DxcStack>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <DxcHeading level={4} text="Only icon"></DxcHeading>
           <DxcTag icon={icon} />
         </DxcStack>

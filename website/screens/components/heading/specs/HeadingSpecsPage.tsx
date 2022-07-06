@@ -424,7 +424,7 @@ const sections = [
 
 const HeadingSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

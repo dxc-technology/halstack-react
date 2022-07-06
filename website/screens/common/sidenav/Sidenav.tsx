@@ -31,7 +31,7 @@ function SidenavContent() {
           left: "xsmall",
         }}
       />
-      <DxcStack gutter="medium">
+      <DxcStack gutter="1.5rem">
         {LinksSections.map(({ label, links }, index) => (
           <>
             <LinksList
@@ -70,7 +70,7 @@ function LinksList({
   if (filteredLinks.length > 0) {
     return (
       <>
-        <DxcStack gutter="medium">
+        <DxcStack gutter="1.5rem">
           <DxcStack>
             <SidenavSectionTitle>{title}</SidenavSectionTitle>
             {filteredLinks.map(({ label, path }) => (

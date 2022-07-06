@@ -35,7 +35,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcStack gutter="2rem">
         <DxcAccordion label="How to edit your profile?" icon={infoIcon}>
           <DxcInset space="1.5rem">
             To edit your profile you need to go to Settings and click on

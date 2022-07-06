@@ -11,9 +11,9 @@ const HeadingPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Heading" status="Ready" />
           <DxcText as="p">
             Heading component is an essential element that contributes to define

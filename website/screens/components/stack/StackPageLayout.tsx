@@ -7,9 +7,9 @@ const StackPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [{ label: "Code", path: "/components/stack" }];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Stack" status="Experimental" />
           <DxcText as="p">
             Stack layout arranges child nodes vertically, wrapping them into

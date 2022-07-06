@@ -17,9 +17,9 @@ const ApplicationLayoutPageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Application layout" status="Ready" />
           <DxcText>
             The application layout provides a base UI wrapper for any

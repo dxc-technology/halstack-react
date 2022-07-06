@@ -11,9 +11,9 @@ const CardPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Card" status="Ready" />
           <DxcText as="p">
             Cards are a container of information, actions and data with a

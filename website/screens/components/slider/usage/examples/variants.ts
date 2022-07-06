@@ -13,7 +13,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="xxlarge">
+      <DxcStack gutter="4rem">
         <DxcSlider
           label="Discrete"
           minValue={0}

@@ -28,7 +28,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="medium">
+      <DxcStack gutter="1.5rem">
         <DxcRow justify="spaceEvenly">
           <DxcButton label="Primary" size="large" icon={icon} />
           <DxcButton

@@ -25,7 +25,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack space="large" align="start">
+      <DxcStack space="2rem" alignX="start">
         <DxcButton
           label="Show Progress Bar for 3 seconds"
           onClick={showModal}

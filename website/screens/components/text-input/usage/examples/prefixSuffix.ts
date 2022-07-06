@@ -7,7 +7,7 @@ import {
 const code = `() => {  
     return (
       <DxcInset space="2rem">
-        <DxcStack gutter="large" align="center">
+        <DxcStack gutter="2rem" alignX="center">
           <DxcTextInput label="Prefix" prefix="+34"/>
           <DxcTextInput label="Suffix" suffix="USD"/>
         </DxcStack>

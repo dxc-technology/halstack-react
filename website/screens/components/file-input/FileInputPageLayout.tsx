@@ -14,9 +14,9 @@ const FileInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="File Input" status="Ready" />
           <DxcText as="p">
             The file input component is used to choose files from any location

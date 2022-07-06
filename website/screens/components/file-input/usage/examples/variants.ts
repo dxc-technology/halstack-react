@@ -7,7 +7,7 @@ import {
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcStack gutter="2rem">
         <DxcFileInput label="File" />
         <DxcFileInput label="Filedrop" mode="filedrop" />
         <DxcFileInput label="Dropzone" mode="dropzone" />

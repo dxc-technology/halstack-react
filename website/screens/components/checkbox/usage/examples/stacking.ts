@@ -10,13 +10,13 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcRow gutter="xxxlarge" justify="center">
-        <DxcStack gutter="xsmall">
+        <DxcStack gutter="0.5rem">
           <DxcHeading level={4} text="Vertical"></DxcHeading>
           <DxcCheckbox label="Option" labelPosition="after" />
           <DxcCheckbox label="Option" labelPosition="after" />
           <DxcCheckbox label="Option" labelPosition="after" />
         </DxcStack>
-        <DxcStack gutter="xsmall">
+        <DxcStack gutter="0.5rem">
           <DxcHeading level={4} text="Horizontal"></DxcHeading>
           <DxcRow gutter="medium">
             <DxcCheckbox label="Option" labelPosition="after"></DxcCheckbox>

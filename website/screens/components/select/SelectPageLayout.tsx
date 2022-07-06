@@ -11,9 +11,9 @@ const SelectPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Select" status="Ready" />
           <DxcText as="p">
             The select component allows users to make single or multiple

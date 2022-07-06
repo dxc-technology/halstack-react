@@ -11,9 +11,9 @@ const AccordionPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Accordion" status="Ready" />
           <DxcText as="p">
             Accordions are used to group similar content and hide or show it

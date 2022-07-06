@@ -11,9 +11,9 @@ const PaginatorPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Paginator" status="Ready" />
           <DxcText as="p">
             The paginator component allows dividing large amounts of content

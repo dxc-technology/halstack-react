@@ -19,7 +19,7 @@ const Section = ({
 }: SectionType): JSX.Element => {
   return (
     <DxcStack
-      gutter={level === 1 ? "xlarge" : level === 2 ? "large" : "medium"}
+      gutter={level === 1 ? "3rem" : level === 2 ? "2rem" : "1.5rem"}
     >
       <HeadingLink level={level}>{title}</HeadingLink>
       {children}

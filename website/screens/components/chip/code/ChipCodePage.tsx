@@ -94,7 +94,7 @@ const sections = [
 
 const ChipCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

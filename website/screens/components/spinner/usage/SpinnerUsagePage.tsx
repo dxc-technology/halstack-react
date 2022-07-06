@@ -57,7 +57,7 @@ const sections = [
             Determinate indicators display how long a process will take. They
             should be used in longer processes.
           </DxcText>
-          <DxcStack gutter="xsmall">
+          <DxcStack gutter="0.5rem">
             <DxcText>
               Indeterminate indicators express an unspecified amount of wait
               time. They should be used when:
@@ -78,7 +78,7 @@ const sections = [
 
 const SpinnerUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

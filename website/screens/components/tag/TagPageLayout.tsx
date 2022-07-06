@@ -11,9 +11,9 @@ const TagPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Tag" status="Ready" />
           <DxcText as="p">
             The Tag represents resources and global terms to identify and linked

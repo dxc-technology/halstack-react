@@ -45,7 +45,7 @@ const DxcQuickNavContainer = ({
   return (
     <Container>
       <ContentContainer>
-        <DxcStack gutter="xlarge">
+        <DxcStack gutter="3rem">
           {sections.map((section) => (
             <Section
               title={section.title}

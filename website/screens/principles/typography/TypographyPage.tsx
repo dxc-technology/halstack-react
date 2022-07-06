@@ -1124,9 +1124,9 @@ const sections = [
 
 const Typography = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <DxcHeading level={1} text="Typography" weight="bold"></DxcHeading>
         </DxcStack>
       </PageHeading>

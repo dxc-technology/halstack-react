@@ -54,7 +54,7 @@ const sections = [
 
 const TableCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

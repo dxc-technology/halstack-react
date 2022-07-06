@@ -18,9 +18,9 @@ const ResultsetTablePageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Resultset Table" status="Ready" />
           <DxcText as="p">
             Data table is a component with a high rate of usage within the

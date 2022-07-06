@@ -46,13 +46,13 @@ const sections = [
           be placed, some of them are contemplated in the following list:
         </DxcText>
         <DxcList>
-          <DxcStack gutter="xsmall">
+          <DxcStack gutter="0.5rem">
             <DxcText>Plain text or content</DxcText>
             <DxcList type="circle">
               <DxcText>Informational purpose text</DxcText>
             </DxcList>
           </DxcStack>
-          <DxcStack gutter="xsmall">
+          <DxcStack gutter="0.5rem">
             <DxcText>Menu links</DxcText>
             <DxcList type="circle">
               <DxcText>Global navigation</DxcText>
@@ -60,7 +60,7 @@ const sections = [
               <DxcText>Useful links or resources</DxcText>
             </DxcList>
           </DxcStack>
-          <DxcStack gutter="xsmall">
+          <DxcStack gutter="0.5rem">
             <DxcText>Forms</DxcText>
             <DxcList type="circle">
               <DxcText>Select language</DxcText>
@@ -68,7 +68,7 @@ const sections = [
               <DxcText>Provide email adress / Subscribe</DxcText>
             </DxcList>
           </DxcStack>
-          <DxcStack gutter="xsmall">
+          <DxcStack gutter="0.5rem">
             <DxcText>Actions</DxcText>
             <DxcList type="circle">
               <DxcText>Ask for help / Support</DxcText>
@@ -84,7 +84,7 @@ const sections = [
 
 const FooterUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

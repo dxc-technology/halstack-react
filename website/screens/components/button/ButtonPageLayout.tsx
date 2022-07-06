@@ -11,9 +11,9 @@ const ButtonPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Button" status="Ready" />
           <DxcText as="p">
             Buttons are basic interface elements that initialize an action or

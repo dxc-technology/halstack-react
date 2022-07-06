@@ -11,9 +11,9 @@ const WizardPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Wizard" status="Ready" />
           <DxcText as="p">
             Wizard represents a stepped workflow as a form of linear and

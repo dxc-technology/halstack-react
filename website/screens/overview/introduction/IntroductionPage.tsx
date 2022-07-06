@@ -149,9 +149,9 @@ const sections = [
 
 const Introduction = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <DxcHeading
             level={1}
             text="Halstack Design System"

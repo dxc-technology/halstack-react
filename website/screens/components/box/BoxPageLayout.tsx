@@ -11,9 +11,9 @@ const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Box" status="Ready" />
           <DxcText as="p">
             There are different ways to organise the content on the webpage to

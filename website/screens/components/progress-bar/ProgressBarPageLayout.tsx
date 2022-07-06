@@ -18,9 +18,9 @@ const ProgressBarPageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Progress Bar" status="Ready" />
           <DxcText as="p">
             Progress indicators offer visibility of system status to the user,

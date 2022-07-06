@@ -11,9 +11,9 @@ const TabsPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Tabs" status="Ready" />
           <DxcText as="p">
             Tabs allow the user to interact across the sections to switch from

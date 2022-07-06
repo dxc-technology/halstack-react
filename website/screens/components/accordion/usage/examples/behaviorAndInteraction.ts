@@ -18,7 +18,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcStack gutter="2rem">
         <DxcAccordion
           label="Collapsed"
           isExpanded={isExpandedCollapsed}
@@ -35,7 +35,7 @@ const code = `() => {
           onChange={onChangeExpanded}
         >
           <DxcInset space="2rem">
-            <DxcStack gutter="small">
+            <DxcStack gutter="1rem">
               <DxcHeading level={3} text="Content header" />
               <DxcInset space="0.125rem">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.

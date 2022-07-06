@@ -11,9 +11,9 @@ const SliderPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Slider" status="Ready" />
           <DxcText as="p">
             Slider control allows users to select a specific value or a range of

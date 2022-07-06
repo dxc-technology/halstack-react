@@ -7,7 +7,7 @@ import {
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcStack gutter="2rem">
         <DxcProgressBar
           label="Determinate"
           helperText="Helper text"

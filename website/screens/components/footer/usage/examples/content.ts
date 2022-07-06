@@ -44,7 +44,7 @@ const code = `() => {
       >
         <DxcInset top="1.5rem">
           <DxcRow gutter="medium">
-            <DxcStack gutter="xxxsmall">
+            <DxcStack gutter="0.125rem">
               <div
                 style={{
                   color: "#0095ff",
@@ -83,7 +83,7 @@ const code = `() => {
                 Business Process Services
               </div>
             </DxcStack>
-            <DxcStack gutter="xxxsmall">
+            <DxcStack gutter="0.125rem">
               <div
                 style={{
                   color: "#0095ff",
@@ -122,7 +122,7 @@ const code = `() => {
                 Our History
               </div>
             </DxcStack>
-            <DxcStack gutter="xxxsmall">
+            <DxcStack gutter="0.125rem">
               <div
                 style={{
                   color: "#0095ff",

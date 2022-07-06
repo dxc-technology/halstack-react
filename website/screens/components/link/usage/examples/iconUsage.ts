@@ -21,7 +21,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="center">
+      <DxcStack gutter="2rem" alignX="center">
         <DxcRow gutter="large">
           <DxcLink icon={icon} href="#">
             Link

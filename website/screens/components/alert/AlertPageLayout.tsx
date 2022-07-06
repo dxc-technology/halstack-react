@@ -11,9 +11,9 @@ const AlertPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Alert" status="Ready" />
           <DxcText as="p">
             Alert messages are meant to provide contextual feedback about

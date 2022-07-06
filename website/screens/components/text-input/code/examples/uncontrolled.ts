@@ -16,7 +16,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="start">
+      <DxcStack gutter="2rem" alignX="start">
         <DxcTextInput
           label="Enter your surname"
           defaultValue="Harris"

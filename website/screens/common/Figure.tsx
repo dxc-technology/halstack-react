@@ -8,7 +8,7 @@ type DocImageProps = {
 const Figure = ({ caption, children }: DocImageProps) => {
   return (
     <StyledFigure>
-      <DxcStack gutter="small">
+      <DxcStack gutter="1rem">
         {children}
         <StyledFigcaption>{caption}</StyledFigcaption>
       </DxcStack>

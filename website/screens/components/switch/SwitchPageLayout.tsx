@@ -11,9 +11,9 @@ const SwitchPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Switch" status="Ready" />
           <DxcText as="p">
             Switch toggles are elements that can get two simple states, each of

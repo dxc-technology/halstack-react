@@ -18,9 +18,9 @@ const ToggleGroupPageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Toggle Group" status="Ready" />
           <DxcText as="p">
             Toggle buttons can be used to put together related options that

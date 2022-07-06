@@ -11,9 +11,9 @@ const NumberInputPageHeading = ({
   const tabs = [{ label: "Code", path: "/components/nav-tabs" }];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Nav Tabs" status="Experimental" />
           <DxcText as="p">Nav tabs allow the user to navigate easily.</DxcText>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>

@@ -21,7 +21,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="start">
+      <DxcStack gutter="2rem" alignX="start">
         <DxcSelect
           label="Select your favorite city"
           placeholder="Choose a city"

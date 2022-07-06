@@ -11,9 +11,9 @@ const DateInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Date Input" status="Ready" />
           <DxcText as="p">
             A date input is a user interface element where the user can type or

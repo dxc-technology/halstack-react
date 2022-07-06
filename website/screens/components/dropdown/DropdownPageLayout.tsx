@@ -11,9 +11,9 @@ const DropdownPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Dropdown" status="Ready" />
           <DxcText as="p">
             The use of dropdowns has its advantages but it depends on the screen

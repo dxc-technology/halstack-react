@@ -18,9 +18,9 @@ const PasswordInputPageHeading = ({
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Password Input" status="Ready" />
           <DxcText as="p">
             The password input component is very much like the text input, with

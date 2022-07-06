@@ -10,12 +10,12 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
 
   return (
     <DocFooterContainer>
-      <DxcStack divider gutter="xxlarge">
+      <DxcStack divider gutter="4rem">
         <DxcLink icon={githubIcon} href={githubLink} newWindow>
           Edit this page on GitHub
         </DxcLink>
         <DxcRow justify="spaceBetween">
-          <DxcStack gutter="small">
+          <DxcStack gutter="1rem">
             {previousLink && (
               <>
                 <DxcText>Previous</DxcText>
@@ -25,7 +25,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
               </>
             )}
           </DxcStack>
-          <DxcStack align="end" gutter="small">
+          <DxcStack alignX="end" gutter="1rem">
             {nextLink && (
               <>
                 <DxcText>Next</DxcText>

@@ -23,7 +23,7 @@ const code = `() => {
           assistiveText="Additional information"
         >
           <DxcInset space="2rem">
-            <DxcStack gutter="small">
+            <DxcStack gutter="1rem">
               <DxcHeading level={3} text="Content header" />
               <DxcInset space="0.125rem">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.

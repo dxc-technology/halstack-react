@@ -131,7 +131,7 @@ const sections = [
             Use icons and animation to easily reflect collapsed and expanded
             states.
           </DxcText>
-          <DxcStack gutter="xsmall">
+          <DxcStack gutter="0.5rem">
             <DxcText>
               Use a chevron icon to indicate the expand/collapse behavior.
             </DxcText>
@@ -268,7 +268,7 @@ const sections = [
 
 const AccordionUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

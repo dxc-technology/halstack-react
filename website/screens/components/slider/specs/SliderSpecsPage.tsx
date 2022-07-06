@@ -799,7 +799,7 @@ const sections = [
 
 const SliderSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcStack gutter="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

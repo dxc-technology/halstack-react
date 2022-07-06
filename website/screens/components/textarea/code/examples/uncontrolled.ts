@@ -16,7 +16,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="start">
+      <DxcStack gutter="2rem" alignX="start">
         <DxcTextarea
           label="Comments"
           defaultValue="My personal documents are attached."

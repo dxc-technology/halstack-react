@@ -8,7 +8,7 @@ import {
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcStack gutter="2rem">
         <DxcHeading level={4} text="Default"></DxcHeading>
         <DxcHeader />
         <DxcHeading level={4} text="Underlined"></DxcHeading>

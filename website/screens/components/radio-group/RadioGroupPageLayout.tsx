@@ -11,9 +11,9 @@ const RadioGroupPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Radio Group" status="Experimental" />
           <DxcText as="p">
             A radio group let the user make a mutually exclusive selection from

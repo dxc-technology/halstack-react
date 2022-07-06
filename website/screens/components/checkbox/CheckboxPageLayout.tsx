@@ -11,9 +11,9 @@ const CheckboxPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Checkbox" status="Ready" />
           <DxcText as="p">
             Checkboxes are inputs that offer to the user the possibility to
