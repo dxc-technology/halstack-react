@@ -41,52 +41,46 @@ export const Chromatic = () => (
         <DxcText>Text 2.</DxcText>
       </DxcList>
     </Container>
-    <Title title="gutter = xxxsmall" theme="light" level={4} />
-    <DxcList gutter="xxsmall">
+    <Title title="gutter = 0rem" theme="light" level={4} />
+    <DxcList gutter="0rem">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
-    <Title title="gutter = xxsmall" theme="light" level={4} />
-    <DxcList gutter="xxsmall">
+    <Title title="gutter = 0.125rem" theme="light" level={4} />
+    <DxcList gutter="0.125rem">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
-    <Title title="gutter = xsmall" theme="light" level={4} />
-    <DxcList gutter="xsmall">
+    <Title title="gutter = 0.25rem" theme="light" level={4} />
+    <DxcList gutter="0.25rem">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
-    <Title title="gutter = small" theme="light" level={4} />
-    <DxcList gutter="small">
+    <Title title="gutter = 0.5rem" theme="light" level={4} />
+    <DxcList gutter="0.5rem">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
-    <Title title="gutter = medium" theme="light" level={4} />
-    <DxcList gutter="medium">
+    <Title title="gutter = 0.75rem" theme="light" level={4} />
+    <DxcList gutter="0.75rem">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
-    <Title title="gutter = large" theme="light" level={4} />
-    <DxcList gutter="large">
+    <Title title="gutter = 1rem" theme="light" level={4} />
+    <DxcList gutter="1rem">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
-    <Title title="gutter = xlarge" theme="light" level={4} />
-    <DxcList gutter="xlarge">
+    <Title title="gutter = 1.5rem" theme="light" level={4} />
+    <DxcList gutter="1.5rem">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
-    <Title title="gutter = xxlarge" theme="light" level={4} />
-    <DxcList gutter="xxlarge">
+    <Title title="gutter = 2rem" theme="light" level={4} />
+    <DxcList gutter="2rem">
       <DxcText>Text 1.</DxcText>
       <DxcText>Text 2.</DxcText>
     </DxcList>
-    <Title title="gutter = xxxlarge" theme="light" level={4} />
-    <DxcList gutter="xxxlarge">
-      <DxcText>Text 1.</DxcText>
-      <DxcText>Text 2.</DxcText>
-    </DxcList>
-
   </>
 );
 
