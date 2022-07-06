@@ -8,7 +8,7 @@ type SidenavPropsType = {
    */
   children: React.ReactElement<React.ReactNode>[] | React.ReactElement<React.ReactNode>;
   /**
-   * The area assigned to render the title. It is highly recommended to use the sidenav title.
+   * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
    */
   title?: React.ReactElement<React.ReactNode>[] | React.ReactElement<React.ReactNode>;
 };
@@ -17,7 +17,7 @@ export type SidenavTitlePropsType = {
   /**
    * The area inside the sidenav title. This area can be used to render custom content.
    */
-  children: React.ReactElement<React.ReactNode>[] | React.ReactElement<React.ReactNode>;
+  children: React.ReactElement<React.ReactNode>[] | React.ReactElement<React.ReactNode> | string;
   /**
    * The icon to be displayed in the sidenav title.
    */
@@ -72,7 +72,7 @@ export type SidenavLinkPropsType = {
    */
   selected?: boolean;
   /**
-   * The area inside the sidenav link. This area can be used to render custom content.
+   * The area inside the sidenav link.
    */
   children: string;
   /**

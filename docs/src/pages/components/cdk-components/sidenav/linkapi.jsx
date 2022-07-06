@@ -26,9 +26,30 @@ const sidenavLinkPropsTable = () => {
         <td>Value of the tabindex attribute.</td>
       </tr>
       <tr>
-        <td>children: node</td>
+        <td>children: string</td>
         <td></td>
-        <td>Custom content of the link.</td>
+        <td>The area inside the sidenav link.</td>
+      </tr>
+      <tr>
+        <td>newWindow: boolean</td>
+        <td></td>
+        <td>If true, the page is opened in a new browser tab.</td>
+      </tr>
+      <tr>
+        <td>icon: string | SVG</td>
+        <td></td>
+        <td>
+          Element or path used as the icon that will be placed to the left of
+          the link text.
+        </td>
+      </tr>
+      <tr>
+        <td>selected: boolean</td>
+        <td></td>
+        <td>
+          Element or path used as the icon that will be placed to the left of
+          the link text.
+        </td>
       </tr>
     </DxcTable>
   );

@@ -227,6 +227,11 @@ const SidenavGroupTitleButton = styled.button`
   &:active {
     background-color: ${(props) => props.theme.groupTitleActiveBackgroundColor};
   }
+
+  svg {
+    width: 18px;
+    height: auto;
+  }
 `;
 
 type StyledLinkProps = {
