@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import slugify from "slugify";
 import { DxcHeading } from "@dxc-technology/halstack-react";
+import { responsiveSizes } from "../common/variables.js";
 
 type HeadingLinkProps = {
   children: string;
@@ -46,6 +47,10 @@ const HeadingLinkContainer = styled.div`
   scroll-margin-top: 64px;
   &:hover svg {
     opacity: 0.5;
+  }
+
+  @media (max-width: ${responsiveSizes.tablet}px) {
+    word-break: break-word;
   }
 `;
 
