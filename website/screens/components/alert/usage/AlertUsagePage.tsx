@@ -149,7 +149,7 @@ const sections = [
 
 const AlertUsagePage = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcStack gutter="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}

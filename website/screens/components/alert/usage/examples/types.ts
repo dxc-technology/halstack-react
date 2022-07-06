@@ -3,7 +3,7 @@ import { DxcAlert, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcStack gutter="2rem">
         <DxcAlert
           type="info"
           size="fillParent"
