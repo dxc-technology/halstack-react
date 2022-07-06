@@ -42,7 +42,7 @@ const DxcSidenav = ({ children, title }: SidenavPropsType): JSX.Element => {
       <SidenavContainer>
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
           {title}
-          <DxcStack divider={true} gutter="small">
+          <DxcStack divider={true} gutter="1rem">
             {children}
           </DxcStack>
         </BackgroundColorProvider>
