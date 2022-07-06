@@ -169,6 +169,28 @@ export const Chromatic = () => (
         <Placeholder />
       </DxcStack>
     </Container>
+    <Title title="Gutter = 3rem" theme="light" level={4} />
+    <Container>
+      <DxcStack gutter="3rem">
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </DxcStack>
+    </Container>
+    <Title title="Gutter = 4rem" theme="light" level={4} />
+    <Container>
+      <DxcStack gutter="4rem">
+        <Placeholder />
+        <Placeholder />
+      </DxcStack>
+    </Container>
+    <Title title="Gutter = 5rem" theme="light" level={4} />
+    <Container>
+      <DxcStack gutter="5rem">
+        <Placeholder />
+        <Placeholder />
+      </DxcStack>
+    </Container>
     <Title title="Reverse" theme="light" level={4} />
     <Container>
       <DxcStack reverse>

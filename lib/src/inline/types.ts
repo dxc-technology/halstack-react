@@ -18,7 +18,18 @@ type Props = {
   /**
    * Spacing between columns.
    */
-  gutter?: "0rem" | "0.125rem" | "0.25rem" | "0.5rem" | "0.75rem" | "1rem" | "1.5rem" | "2rem";
+  gutter?:
+    | "0rem"
+    | "0.125rem"
+    | "0.25rem"
+    | "0.5rem"
+    | "0.75rem"
+    | "1rem"
+    | "1.5rem"
+    | "2rem"
+    | "3rem"
+    | "4rem"
+    | "5rem";
   /**
    * Change the flex-direction of the column to reverse.
    */
@@ -26,7 +37,7 @@ type Props = {
   /**
    * Single column.
    */
-  children: React.ReactElement<React.ReactNode>[] | React.ReactElement<React.ReactNode>;
+  children: React.ReactNode[] | React.ReactNode;
 };
 
 export default Props;
