@@ -331,6 +331,42 @@ export const Chromatic = () => (
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
+    <Title title="Gutter = 3rem" theme="light" level={4} />
+    <Container>
+      <DxcColumns gutter="3rem">
+        <DxcColumns.Column>
+          <Placeholder height="small" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="large" />
+        </DxcColumns.Column>
+      </DxcColumns>
+    </Container>
+    <Title title="Gutter = 4rem" theme="light" level={4} />
+    <Container>
+      <DxcColumns gutter="4rem">
+        <DxcColumns.Column>
+          <Placeholder height="small" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" />
+        </DxcColumns.Column>
+      </DxcColumns>
+    </Container>
+    <Title title="Gutter = 5rem" theme="light" level={4} />
+    <Container>
+      <DxcColumns gutter="5rem">
+        <DxcColumns.Column>
+          <Placeholder height="small" />
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="medium" />
+        </DxcColumns.Column>
+      </DxcColumns>
+    </Container>
     <Title title="Reverse" theme="light" level={4} />
     <Container>
       <DxcColumns reverse>
