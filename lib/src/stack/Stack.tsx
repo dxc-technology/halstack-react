@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useColumnContext } from "../columns/Columns";
 import StackPropsType from "./types";
 
 const DxcStack = ({
@@ -10,8 +11,10 @@ const DxcStack = ({
   reverse = false,
   children,
 }: StackPropsType): JSX.Element => {
+  const width = useColumnContext();
+
   return (
-    <Stack gutter={gutter} alignX={alignX} reverse={reverse} as={as}>
+    <Stack gutter={gutter} alignX={alignX} reverse={reverse} as={as} width={width}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
@@ -30,9 +33,12 @@ const Divider = styled.div`
   background-color: #999999;
 `;
 
-const Stack = styled.div<StackPropsType>`
+const Stack = styled.div<
+  StackPropsType & { width?: "auto" | "content" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" }
+>`
   display: flex;
   flex-wrap: wrap;
+  flex-grow: 1;
   ${({ alignX, gutter, reverse }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
     align-items: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
@@ -40,6 +46,9 @@ const Stack = styled.div<StackPropsType>`
   `}
   padding: 0px;
   margin: 0px;
+
+  ${({ width }) =>
+    width === "content" ? "width: fit-content" : width === "auto" ? "" : `width: ${(parseInt(width) / 8) * 100}%`};
 `;
 
 export default DxcStack;

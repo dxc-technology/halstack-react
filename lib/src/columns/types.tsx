@@ -1,3 +1,5 @@
+import StackProps from "../stack/types";
+
 export type ColumnsProps = {
   /**
    * Align columns in the main axis.
@@ -29,7 +31,7 @@ export type ColumnsProps = {
   children: React.ReactElement[] | React.ReactElement;
 };
 
-export type ColumnProps = {
+export type ColumnProps = StackProps & {
   /**
    * Fixed width of the single column.
    */
@@ -40,4 +42,4 @@ export type ColumnProps = {
   children: React.ReactNode;
 };
 
-export type ColumnContextProps = { alignX?: "start" | "end" | "center" | "baseline" | "stretch" };
+export type ColumnContextProps = "auto" | "content" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8";
