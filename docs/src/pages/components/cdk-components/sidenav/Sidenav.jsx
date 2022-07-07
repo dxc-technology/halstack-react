@@ -3,10 +3,11 @@ import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
 import Example from "../../common/Example";
 import ComponentHeader from "../../common/ComponentHeader";
-import SidenavPropsTable from "./api.jsx";
-import SidenavTitlePropsTable from "./titleapi.jsx";
-import SidenavGroupPropsTable from "./groupapi.jsx";
-import SidenavLinkPropsTable from "./linkapi.jsx";
+import SidenavPropsTable, {
+  SidenavTitlePropsTable,
+  SidenavGroupPropsTable,
+  SidenavLinkPropsTable,
+} from "./api.jsx";
 import { DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
 import defaultSidenav from "./examples/default";
 import compoundSidenav from "./examples/compound";

@@ -193,7 +193,7 @@ const SidenavGroupTitle = styled.span`
   font-style: ${(props) => props.theme.groupTitleFontStyle};
   font-weight: ${(props) => props.theme.groupTitleFontWeight};
   font-size: ${(props) => props.theme.groupTitleFontSize};
-  line-height: 19px;
+  line-height: 18px;
 
   display: flex;
   align-items: center;
