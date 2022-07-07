@@ -6,11 +6,10 @@ const titleWrapper = () => {
 };
 
 function App() {
-  console.log(typeof titleWrapper);
   return (
     <div>
       <div className="test-case" id="sidenav-menu">
-        <DxcSidenav title={<DxcSidenav.Title>My sidenav</DxcSidenav.Title>}>
+        <DxcSidenav title={titleWrapper}>
           <DxcSidenav.Section>
             <p>Lorem ipsum</p>
             <DxcSidenav.Link href="#">Lorem ipsum</DxcSidenav.Link>

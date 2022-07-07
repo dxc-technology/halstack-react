@@ -69,7 +69,7 @@ const Group = ({ children, title, collapsable = false, icon }: SidenavGroupProps
   return (
     <SidenavGroup>
       {collapsable && title ? (
-        <SidenavGroupTitleButton aria-expanded={collapsed} onClick={() => setCollapsed(!collapsed)}>
+        <SidenavGroupTitleButton role="button" aria-expanded={!collapsed} onClick={() => setCollapsed(!collapsed)}>
           <SidenavContent>
             {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
             {title}
@@ -157,33 +157,34 @@ const SidenavContainer = styled.div<SidenavPropsType>`
 `;
 
 const SidenavTitle = styled.div`
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  font-family: ${(props) => props.theme.titleFontFamily};
+  font-style: ${(props) => props.theme.titleFontStyle};
+  font-weight: ${(props) => props.theme.titleFontWeight};
+  font-size: ${(props) => props.theme.titleFontSize};
   line-height: 27px;
   display: flex;
   align-items: center;
-
-  color: #4d4d4d;
-  padding: 12px 24px;
+  color: ${(props) => props.theme.titleFontColor};
+  text-transform: ${(props) => props.theme.titleFontTextTransform};
+  letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
+  padding: 0.5rem 1.2rem;
 
   svg {
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 `;
 
 const SidenavGroup = styled.div`
   width: 100%;
   a {
-    padding: 7px 24px 7px 36px;
+    padding: 0.5rem 1.2rem 0.5rem 2.25rem;
   }
 `;
 
 const SidenavGroupTitle = styled.span`
   svg {
     width: 16px;
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
   box-sizing: border-box;
   width: 100%;
@@ -197,7 +198,7 @@ const SidenavGroupTitle = styled.span`
   display: flex;
   align-items: center;
   margin: 0px;
-  padding: 7px 24px;
+  padding: 0.5rem 1.2rem;
 `;
 
 const SidenavGroupTitleButton = styled.button`
@@ -216,7 +217,7 @@ const SidenavGroupTitleButton = styled.button`
   display: flex;
   align-items: center;
   margin: 0px;
-  padding: 7px 24px;
+  padding: 0.5rem 1.2rem;
   &:focus {
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
     outline-offset: -2px;
@@ -260,12 +261,12 @@ const SidenavLink = styled.a<StyledLinkProps>`
 
   box-shadow: 0 0 0 2px transparent;
 
-  padding: 7px 24px;
+  padding: 0.5rem 1.2rem;
 
   cursor: pointer;
   svg {
     width: 16px;
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 
   &:hover {
@@ -294,13 +295,13 @@ const SidenavContent = styled.span`
 
   svg {
     width: 16px;
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 `;
 
 const SidenavIcon = styled.img`
   width: 16px;
-  margin-right: 8px;
+  margin-right: 0.5rem;
 `;
 
 DxcSidenav.Section = Section;
