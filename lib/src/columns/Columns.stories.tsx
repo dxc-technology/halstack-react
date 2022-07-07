@@ -376,6 +376,37 @@ export const Chromatic = () => (
         </DxcColumns.Column>
       </DxcColumns>
     </Container>
+    <Title title="Two columns without width" theme="light" level={4} />
+    <Container>
+      <DxcColumns>
+        <DxcColumns.Column width="auto">
+          <Placeholder height="large">auto</Placeholder>
+        </DxcColumns.Column>
+        <DxcColumns.Column width="auto">
+          <Placeholder height="small">auto</Placeholder>
+        </DxcColumns.Column>
+        <DxcColumns.Column width="4">
+          <Placeholder height="medium">4</Placeholder>
+        </DxcColumns.Column>
+      </DxcColumns>
+    </Container>
+    <Title title="Three columns without width" theme="light" level={4} />
+    <Container>
+      <DxcColumns>
+        <DxcColumns.Column width="content">
+          <Placeholder height="large">content</Placeholder>
+        </DxcColumns.Column>
+        <DxcColumns.Column width="auto">
+          <Placeholder height="small">auto</Placeholder>
+        </DxcColumns.Column>
+        <DxcColumns.Column>
+          <Placeholder height="large">no width</Placeholder>
+        </DxcColumns.Column>
+        <DxcColumns.Column width="2">
+          <Placeholder height="medium">2</Placeholder>
+        </DxcColumns.Column>
+      </DxcColumns>
+    </Container>
   </>
 );
 

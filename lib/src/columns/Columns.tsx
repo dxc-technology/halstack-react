@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, useContext, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import { ColumnContextProps, ColumnProps, ColumnsProps } from "./types";
 import DxcStack from "../stack/Stack";
@@ -10,6 +10,21 @@ export const useColumnContext = () => {
   return width;
 };
 
+const getWidthPerChild = (children) => {
+  let availableWidth = 8;
+  let childrenWithoutWidth = 0;
+  React.Children.forEach(children, (child) => {
+    if (child.props.width && Number(child.props.width)) availableWidth = availableWidth - Number(child.props.width);
+    else childrenWithoutWidth++;
+  });
+
+  if (childrenWithoutWidth > 0) {
+    return availableWidth / childrenWithoutWidth;
+  }
+
+  return null;
+};
+
 const DxcColumns = ({
   alignX = "stretch",
   alignY = "stretch",
@@ -19,7 +34,11 @@ const DxcColumns = ({
   reverse = false,
   children,
 }: ColumnsProps): JSX.Element => {
-  const contextValue = useMemo(() => ({ alignX }), [alignX]);
+  const [widthPerChild, setWidthPerChild] = useState(null);
+
+  useLayoutEffect(() => {
+    setWidthPerChild(getWidthPerChild(children));
+  }, [children]);
 
   return (
     <Columns as={as} alignY={alignY} gutter={gutter} reverse={reverse}>
@@ -27,7 +46,13 @@ const DxcColumns = ({
         return (
           <>
             {child.type === DxcColumns.Column ? (
-              React.cloneElement(child, { alignX })
+              React.cloneElement(child, {
+                alignX,
+                width:
+                  child.props.width && (Number(child.props.width) || child.props.width === "content")
+                    ? child.props.width
+                    : widthPerChild,
+              })
             ) : (
               <DxcColumn alignX={alignX}>{child}</DxcColumn>
             )}
@@ -63,18 +88,5 @@ const Divider = styled.div`
   width: 1px;
   background-color: #999999;
 `;
-
-// const Column = styled.div<ColumnProps & ColumnContextProps>`
-  // ${({ width }) =>
-  //   width === "content"
-  //     ? "width: fit-content"
-  //     : width === "auto"
-  //     ? "flex-grow: 1;"
-  //     : `width: ${(parseInt(width) / 8) * 100}%`};
-
-//   display: flex;
-//   flex-direction: column;
-//   align-items: ${({ alignX }) => (alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX)};
-// `;
 
 export default DxcColumns;
