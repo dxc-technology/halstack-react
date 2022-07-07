@@ -37,7 +37,7 @@ type Props = {
   /**
    * Custom content inside the stack.
    */
-  children: React.ReactNode[] | React.ReactNode;
+  children: React.ReactNode;
 };
 
 export default Props;
