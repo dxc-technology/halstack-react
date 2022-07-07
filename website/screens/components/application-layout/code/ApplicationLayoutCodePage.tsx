@@ -142,17 +142,15 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <Example example={basicUsage} actionsVisible={false} />,
+        content: <Example example={basicUsage} />,
       },
       {
         title: "With sidenav",
-        content: <Example example={withSidenav} actionsVisible={false} />,
+        content: <Example example={withSidenav} />,
       },
       {
         title: "Custom header and footer",
-        content: (
-          <Example example={customHeaderFooter} actionsVisible={false} />
-        ),
+        content: <Example example={customHeaderFooter} />,
       },
     ],
   },

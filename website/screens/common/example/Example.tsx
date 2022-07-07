@@ -10,7 +10,6 @@ type Example = {
   code?: string;
 };
 type ExamplePropTypes = {
-  actionsVisible?: boolean;
   defaultIsVisible?: boolean;
   example: Example;
 };
@@ -43,7 +42,6 @@ const icons = {
 };
 
 const Example = ({
-  actionsVisible = true,
   defaultIsVisible = false,
   example,
 }: ExamplePropTypes): JSX.Element => {
@@ -76,7 +74,7 @@ const Example = ({
       (
         liveEditorRef?.current?.children[0].children[0] as HTMLTextAreaElement
       ).focus();
-  }, [isCodeVisible, firstUpdate]);
+  }, [isCodeVisible]);
 
   useEffect(() => {
     if (copied) {
@@ -95,24 +93,22 @@ const Example = ({
             <LiveError />
           </StyledError>
         </StyledPreview>
-        {actionsVisible && (
-          <CodeActionsContainer isCodeVisible={isCodeVisible}>
-            {isCodeVisible && (
-              <DxcButton
-                label={"Copy code"}
-                icon={icons.copy}
-                mode="text"
-                onClick={copyCode}
-              />
-            )}
+        <CodeActionsContainer isCodeVisible={isCodeVisible}>
+          {isCodeVisible && (
             <DxcButton
-              label={isCodeVisible ? "Hide code" : "View code"}
-              icon={icons.code}
+              label={"Copy code"}
+              icon={icons.copy}
               mode="text"
-              onClick={handleCodeOnClick}
+              onClick={copyCode}
             />
-          </CodeActionsContainer>
-        )}
+          )}
+          <DxcButton
+            label={isCodeVisible ? "Hide code" : "View code"}
+            icon={icons.code}
+            mode="text"
+            onClick={handleCodeOnClick}
+          />
+        </CodeActionsContainer>
         {isCodeVisible && (
           <LiveEditorContainer ref={liveEditorRef}>
             {copied && (
