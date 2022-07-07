@@ -41,7 +41,7 @@ const DxcColumns = ({
   }, [children]);
 
   return (
-    <Columns as={as} alignY={alignY} gutter={gutter} reverse={reverse}>
+    <Columns as={as} alignY={alignY} gutter={gutter} reverse={reverse} divider={divider}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
@@ -76,15 +76,16 @@ DxcColumns.Column = DxcColumn;
 
 const Columns = styled.div<ColumnsProps>`
   display: flex;
-  ${({ alignY, gutter, reverse }) => `
+  ${({ alignY, gutter, reverse, divider }) => `
     flex-direction: ${reverse ? "row-reverse" : "row"};
     align-items: ${alignY === "start" || alignY === "end" ? `flex-${alignY}` : alignY};
-    gap: ${gutter};
+    gap: ${divider ? `calc(${gutter}/2)` : gutter};
   `}
   flex-grow: 1;
 `;
 
 const Divider = styled.div`
+  height: 100%;
   width: 1px;
   background-color: #999999;
 `;
