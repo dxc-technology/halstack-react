@@ -42,6 +42,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Footer", path: "/components/footer" },
   { label: "Header", path: "/components/header" },
   { label: "Heading", path: "/components/heading" },
+  { label: "Inline", path: "/components/inline" },
   { label: "Link", path: "/components/link" },
   { label: "Nav Tabs", path: "/components/nav-tabs" },
   { label: "Number Input", path: "/components/number-input" },
