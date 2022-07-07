@@ -38,6 +38,8 @@ const Stack = styled.div<StackPropsType>`
     align-items: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
     gap: ${gutter};
   `}
+  padding: 0px;
+  margin: 0px;
 `;
 
 export default DxcStack;

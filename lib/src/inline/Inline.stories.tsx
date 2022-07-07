@@ -196,6 +196,28 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
+    <Title title="Gutter = 3rem" theme="light" level={4} />
+    <Container>
+      <DxcInline gutter="3rem">
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="large" />
+      </DxcInline>
+    </Container>
+    <Title title="Gutter = 4rem" theme="light" level={4} />
+    <Container>
+      <DxcInline gutter="4rem">
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="medium" />
+      </DxcInline>
+    </Container>
+    <Title title="Gutter = 5rem" theme="light" level={4} />
+    <Container>
+      <DxcInline gutter="5rem">
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="medium" />
+      </DxcInline>
+    </Container>
     <Title title="Reverse" theme="light" level={4} />
     <Container>
       <DxcInline reverse>
@@ -233,7 +255,9 @@ type PlaceholderProps = {
 };
 
 const Placeholder = styled.div<PlaceholderProps>`
-  ${({ width }) => width && `width: ${width === "xlarge" ? "350px" : width === "large" ? "150px" : width === "medium" ? "100px" : "50px"};`};
+  ${({ width }) =>
+    width &&
+    `width: ${width === "xlarge" ? "350px" : width === "large" ? "150px" : width === "medium" ? "100px" : "50px"};`};
   ${({ height }) => height && `height: ${height === "large" ? "150px" : height === "medium" ? "100px" : "50px"};`};
   border: 1px solid #a46ede;
   background-color: #e5d5f6;
