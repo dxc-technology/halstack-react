@@ -11,7 +11,7 @@ const DxcStack = ({
   children,
 }: StackPropsType): JSX.Element => {
   return (
-    <Stack gutter={gutter} alignX={alignX} reverse={reverse} as={as}>
+    <Stack gutter={gutter} alignX={alignX} reverse={reverse} as={as} divider={divider}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
@@ -33,10 +33,10 @@ const Divider = styled.div`
 const Stack = styled.div<StackPropsType>`
   display: flex;
   flex-wrap: wrap;
-  ${({ alignX, gutter, reverse }) => `
+  ${({ alignX, gutter, reverse, divider }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
     align-items: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
-    gap: ${gutter};
+    gap: ${divider ? `calc(${gutter}/2)` : gutter};
   `}
   padding: 0px;
   margin: 0px;
