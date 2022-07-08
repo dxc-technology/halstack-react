@@ -10,7 +10,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
 
   return (
     <DocFooterContainer>
-      <DxcStack divider gutter="2rem">
+      <DxcStack divider gutter="4rem">
         <DxcLink icon={githubIcon} href={githubLink} newWindow>
           Edit this page on GitHub
         </DxcLink>
