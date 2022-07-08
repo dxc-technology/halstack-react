@@ -7,9 +7,9 @@ const InlinePageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [{ label: "Code", path: "/components/inline" }];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Inline" status="Experimental" />
           <DxcText as="p">
             Inline layout arranges child nodes horizontally, wrapping them into
