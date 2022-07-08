@@ -127,17 +127,6 @@ const MainContainer = styled.div`
   display: flex;
 `;
 
-const ComponentLink = styled.p`
-  :hover {
-    cursor: pointer;
-  }
-  text-decoration: none;
-  font: ${(props) => (props.isSelected ? "700" : "400")} 14px/19px Open Sans;
-  letter-spacing: 0.24px;
-  color: ${(props) => (props.isSelected ? "#000000" : "#00000099")};
-  margin: 6px 10px;
-`;
-
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;

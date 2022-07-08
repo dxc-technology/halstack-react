@@ -56,11 +56,4 @@ const SideNav = () => {
 
 const SideNavContainer = styled.div``;
 
-const SidenavWithScroll = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 500px;
-  margin-bottom: 50px;
-`;
-
 export default SideNav;
