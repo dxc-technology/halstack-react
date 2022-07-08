@@ -4,7 +4,7 @@ import DxcStack from "../stack/Stack";
 import DxcText from "../text/Text";
 import ListPropsType from "./types";
 
-function List({ children, type = "disc", gutter = "xxsmall" }: ListPropsType): JSX.Element {
+function List({ children, type = "disc", gutter = "0.25rem" }: ListPropsType): JSX.Element {
   return (
     <DxcStack as={type === "number" ? "ol" : "ul"} gutter={gutter}>
       {React.Children.map(children, (child, index) => {

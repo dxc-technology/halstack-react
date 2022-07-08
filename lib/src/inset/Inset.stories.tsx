@@ -205,7 +205,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="Inside a stack" level={4} />
     <Container>
-      <DxcStack gutter="medium" divider>
+      <DxcStack gutter="0.75rem" divider>
         <Placeholder></Placeholder>
         <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
           <Placeholder></Placeholder>
