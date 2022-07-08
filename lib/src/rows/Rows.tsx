@@ -42,7 +42,7 @@ const DxcRows = ({
   }, [children]);
 
   return (
-    <Rows as={as} alignX={alignX} gutter={gutter} reverse={reverse}>
+    <Rows as={as} alignX={alignX} gutter={gutter} reverse={reverse} divider={divider}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
@@ -77,10 +77,10 @@ DxcRows.Row = DxcRow;
 
 const Rows = styled.div<RowsProps>`
   display: flex;
-  ${({ alignX, gutter, reverse }) => `
+  ${({ alignX, gutter, reverse, divider }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
     align-items: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
-    gap: ${gutter};
+    gap: ${divider ? `calc(${gutter}/2)` : gutter};
   `}
   flex-grow: 1;
 `;
