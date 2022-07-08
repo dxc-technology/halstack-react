@@ -307,6 +307,42 @@ export const Chromatic = () => (
         </DxcRows.Row>
       </DxcRows>
     </Container>
+    <Title title="Gutter = 3rem" theme="light" level={4} />
+    <Container>
+      <DxcRows gutter="3rem">
+        <DxcRows.Row>
+          <Placeholder width="small" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="large" />
+        </DxcRows.Row>
+      </DxcRows>
+    </Container>
+    <Title title="Gutter = 4rem" theme="light" level={4} />
+    <Container>
+      <DxcRows gutter="4rem">
+        <DxcRows.Row>
+          <Placeholder width="small" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+      </DxcRows>
+    </Container>
+    <Title title="Gutter = 5rem" theme="light" level={4} />
+    <Container>
+      <DxcRows gutter="5rem">
+        <DxcRows.Row>
+          <Placeholder width="small" />
+        </DxcRows.Row>
+        <DxcRows.Row>
+          <Placeholder width="medium" />
+        </DxcRows.Row>
+      </DxcRows>
+    </Container>
     <Title title="Reverse" theme="light" level={4} />
     <Container>
       <DxcRows reverse>
