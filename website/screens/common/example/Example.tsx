@@ -145,6 +145,10 @@ const StyledPreview = styled.div`
   border: 1px solid #707070;
   border-radius: 0.25rem;
   margin-bottom: 0.5rem;
+  overflow: auto;
+  > div {
+    width: fit-content;
+  }
 `;
 
 const StyledError = styled.div`
