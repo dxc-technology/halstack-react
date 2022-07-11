@@ -16,7 +16,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcRow justify="spaceEvenly">
+      <DxcRow justify="spaceEvenly" gutter="xlarge">
         <DxcStack gutter="2rem">
           <DxcHeading level={4} text="Icon before"></DxcHeading>
           <DxcTag label="Enabled" labelPosition="before" icon={icon} />
