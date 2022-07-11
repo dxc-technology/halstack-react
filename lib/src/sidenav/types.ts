@@ -71,10 +71,6 @@ export type SidenavLinkPropsType = {
    * The area inside the sidenav link.
    */
   children: string;
-  /**
-   * This function will be called when the user clicks the link.
-   */
-  onClick?: () => void;
 };
 
 export default SidenavPropsType;

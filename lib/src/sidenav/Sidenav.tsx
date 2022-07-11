@@ -86,30 +86,15 @@ const Group = ({ children, title, collapsable = false, icon }: SidenavGroupProps
 
 const Link = forwardRef(
   (
-    {
-      href,
-      children,
-      newWindow = false,
-      selected = false,
-      icon,
-      tabIndex = 0,
-      onClick,
-      ...otherProps
-    }: SidenavLinkPropsType,
+    { href, children, newWindow = false, selected = false, icon, tabIndex = 0, ...otherProps }: SidenavLinkPropsType,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
-    const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
-    const handleClick = () => {
-      onClick?.();
-      setIsSidenavVisibleResponsive?.(false);
-    };
     return (
       <SidenavLink
         selected={selected}
         href={href ? href : undefined}
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
-        onClick={handleClick}
         tabIndex={tabIndex}
         {...otherProps}
       >

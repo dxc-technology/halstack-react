@@ -89,11 +89,6 @@ export const SidenavLinkPropsTable = () => {
         <td>Page to be opened when the user clicks on the link.</td>
       </tr>
       <tr>
-        <td>onClick: function</td>
-        <td></td>
-        <td>This function will be called when the user clicks the link.</td>
-      </tr>
-      <tr>
         <td>tabIndex: number</td>
         <td>0</td>
         <td>Value of the tabindex attribute.</td>
