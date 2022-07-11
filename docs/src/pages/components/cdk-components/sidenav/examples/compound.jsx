@@ -13,8 +13,7 @@ const code = `() => {
     </svg>
   );
   return (
-    <DxcSidenav>
-      <DxcSidenav.Title>My design system</DxcSidenav.Title>
+    <DxcSidenav title={<DxcSidenav.Title>My design system</DxcSidenav.Title>}>
       <DxcSidenav.Section>
         <DxcSidenav.Group>
           <DxcSidenav.Link href="#">Overview</DxcSidenav.Link>

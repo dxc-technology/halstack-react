@@ -136,12 +136,6 @@ export const SidenavTitlePropsTable = () => {
         <th>Default</th>
         <th>Description</th>
       </tr>
-
-      <tr>
-        <td>icon: string | SVG </td>
-        <td></td>
-        <td>The icon to be displayed in the sidenav title.</td>
-      </tr>
       <tr>
         <td>children: node | string</td>
         <td></td>

@@ -32,8 +32,8 @@ function Sidenav() {
         </p>
         <DxcHeading text="DxcSidenav.Title" level={4} weight="bold" />
         <p>
-          The content will be showed as the main title in the sidenav, it is
-          recommended to use in the sidenav title prop.
+          The content will be showed as the main title in the sidenav, it should
+          be used only in the sidenav title prop.
         </p>
         <SidenavTitlePropsTable />
         <DxcHeading

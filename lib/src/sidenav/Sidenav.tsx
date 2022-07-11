@@ -51,12 +51,7 @@ const DxcSidenav = ({ children, title }: SidenavPropsType): JSX.Element => {
   );
 };
 
-const Title = ({ children, icon }: SidenavTitlePropsType): JSX.Element => (
-  <SidenavTitle>
-    {typeof icon === "string" ? <img src={icon} /> : icon}
-    {children}
-  </SidenavTitle>
-);
+const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavTitle>{children}</SidenavTitle>;
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   <DxcBleed left="1rem" right="1rem">

@@ -108,11 +108,14 @@ const Components = () => (
     <DxcApplicationLayout.Header>
       <Header />
     </DxcApplicationLayout.Header>
-    <DxcApplicationLayout.SideNav padding="large">
-      <DxcSidenav.Title>
-        React
-        <ReactLogo src={reactIcon} alt="React Logo" />
-      </DxcSidenav.Title>
+    <DxcApplicationLayout.SideNav
+      title={
+        <DxcSidenav.Title>
+          React
+          <ReactLogo src={reactIcon} alt="React Logo" />
+        </DxcSidenav.Title>
+      }
+    >
       <DxcSidenav.Section>
         <SidenavContent />
       </DxcSidenav.Section>
