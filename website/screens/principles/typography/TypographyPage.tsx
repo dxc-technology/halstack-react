@@ -582,7 +582,7 @@ const sections = [
             </Figure>
             <DxcText as="p">
               Styles for the headings can be found in the{" "}
-              <Link href="/components/heading" passHref>
+              <Link href="/components/heading/specifications/" passHref>
                 <DxcLink>component documentation</DxcLink>
               </Link>
               . When using native <Code>&lt;h1&gt;...&lt;h5&gt;</Code> html tags
