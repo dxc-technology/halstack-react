@@ -17,6 +17,7 @@ import typesOpenSans from "./images/type_open_sans.png";
 import headingTypes from "./images/type_set_headings.png";
 import bodyTypes from "./images/type_set_body.png";
 import additionalTypes from "./images/type_set_additional.png";
+import Link from "next/link";
 
 const sections = [
   {
@@ -581,9 +582,9 @@ const sections = [
             </Figure>
             <DxcText as="p">
               Styles for the headings can be found in the{" "}
-              <a href="https://developer.dxc.com/design/guidelines/components/heading">
-                component documentation
-              </a>
+              <Link href="/components/heading/specifications/" passHref>
+                <DxcLink>component documentation</DxcLink>
+              </Link>
               . When using native <Code>&lt;h1&gt;...&lt;h5&gt;</Code> html tags
               or a different component to represent application headings, use
               the styles defined.
