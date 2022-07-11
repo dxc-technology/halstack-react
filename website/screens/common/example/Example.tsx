@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "./liveEditorTheme";
 import { DxcButton } from "@dxc-technology/halstack-react";
+import { responsiveSizes } from "../../common/variables.js";
 
 type Example = {
   scope?: object;
@@ -146,8 +147,15 @@ const StyledPreview = styled.div`
   border-radius: 0.25rem;
   margin-bottom: 0.5rem;
   overflow: auto;
+  width: inherit;
   > div {
-    width: fit-content;
+    width: inherit;
+    overflow: auto;
+  }
+  @media (max-width: ${responsiveSizes.mobileLarge}px) {
+    > div {
+      width: fit-content;
+    }
   }
 `;
 
