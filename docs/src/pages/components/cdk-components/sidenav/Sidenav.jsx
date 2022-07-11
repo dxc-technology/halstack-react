@@ -21,7 +21,11 @@ function Sidenav() {
         <SidenavPropsTable />
       </Section>
       <Section>
-        <DxcHeading level={3} text="Children" margin={{ bottom: "small" }} />
+        <DxcHeading
+          level={3}
+          text="Compound components"
+          margin={{ bottom: "small" }}
+        />
         <p>
           This component includes different compound components that are
           customized following the{" "}
