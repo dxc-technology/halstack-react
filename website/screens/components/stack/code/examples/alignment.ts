@@ -1,5 +1,5 @@
 import { DxcStack, DxcInset } from "@dxc-technology/halstack-react";
-import Placeholder from "./Placeholder";
+import Placeholder from '@/common/Placeholder';
 
 const code = `() => {
   return (
