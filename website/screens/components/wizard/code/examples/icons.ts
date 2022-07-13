@@ -17,7 +17,7 @@ const code = `() => {
   const homeIcon = (
     <svg
       viewBox="0 0 24 24"
-      enable-background="new 0 0 24 24"
+      enableBackground="new 0 0 24 24"
       fill="currentColor"
     >
       <g id="Bounding_Box">
