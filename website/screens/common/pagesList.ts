@@ -52,6 +52,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Quick Nav", path: "/components/quick-nav" },
   { label: "Radio Group", path: "/components/radio-group" },
   { label: "Resultset Table", path: "/components/resultset-table" },
+  { label: "Rows", path: "/components/rows" },
   { label: "Select", path: "/components/select" },
   { label: "Sidenav", path: "/components/sidenav" },
   { label: "Slider", path: "/components/slider" },
