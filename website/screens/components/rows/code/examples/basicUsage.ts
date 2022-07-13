@@ -5,7 +5,7 @@ const code = `() => {
   return (
     <Container>
       <DxcRows gutter="0.5rem" divider>
-        <DxcRows.Row height="1">
+        <DxcRows.Row>
           <Placeholder width="small" height="small" />
           <Placeholder width="medium" />
         </DxcRows.Row>
