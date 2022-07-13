@@ -32,7 +32,7 @@ const icon = (
 );
 
 const TitleComponent = () => {
-  return <DxcSidenav.Title icon={icon}>Dxc technology</DxcSidenav.Title>;
+  return <DxcSidenav.Title>Dxc technology</DxcSidenav.Title>;
 };
 
 export const Chromatic = () => (
