@@ -147,7 +147,7 @@ const StyledPreview = styled.div`
   margin-bottom: 0.5rem;
   overflow: auto;
   > div {
-    width: fit-content;
+    min-width: min-content;
   }
 `;
 
