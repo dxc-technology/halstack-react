@@ -146,7 +146,6 @@ const StyledPreview = styled.div`
   border-radius: 0.25rem;
   margin-bottom: 0.5rem;
   overflow: auto;
-  width: 100%;
   > div {
     min-width: min-content;
   }
