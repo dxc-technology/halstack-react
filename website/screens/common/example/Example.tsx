@@ -147,15 +147,9 @@ const StyledPreview = styled.div`
   border-radius: 0.25rem;
   margin-bottom: 0.5rem;
   overflow: auto;
-  width: inherit;
+  width: 100%;
   > div {
-    width: inherit;
-    overflow: auto;
-  }
-  @media (max-width: ${responsiveSizes.mobileLarge}px) {
-    > div {
-      width: fit-content;
-    }
+    min-width: min-content;
   }
 `;
 
