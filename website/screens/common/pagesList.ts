@@ -35,6 +35,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Card", path: "/components/card" },
   { label: "Checkbox", path: "/components/checkbox" },
   { label: "Chip", path: "/components/chip" },
+  { label: "Columns", path: "/components/columns" },
   { label: "Date Input", path: "/components/date-input" },
   { label: "Dialog", path: "/components/dialog" },
   { label: "Dropdown", path: "/components/dropdown" },
