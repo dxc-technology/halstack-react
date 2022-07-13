@@ -60,7 +60,7 @@ const DxcAccordionGroup = ({
         {(Array.isArray(children) ? children : [children])
           .filter((child) => child.type === AccordionGroupAccordion)
           .map((accordion, index) => (
-            <AccordionGroupAccordionContext.Provider value={{ index, ...contextValue }}>
+            <AccordionGroupAccordionContext.Provider key={`accordion-${index}`} value={{ index, ...contextValue }}>
               {accordion}
             </AccordionGroupAccordionContext.Provider>
           ))}
