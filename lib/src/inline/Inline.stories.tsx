@@ -54,9 +54,9 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
-    <Title title="AlignY = end" theme="light" level={4} />
+    <Title title="AlignY = end with divider" theme="light" level={4} />
     <Container>
-      <DxcInline alignY="end">
+      <DxcInline alignY="end" divider>
         <Placeholder height="small" width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="large" width="large" />
@@ -101,9 +101,9 @@ export const Chromatic = () => (
         <Placeholder height="small" />
       </DxcInline>
     </Container>
-    <Title title="AlignX = end" theme="light" level={4} />
+    <Title title="AlignX = end with divider" theme="light" level={4} />
     <Container>
-      <DxcInline alignX="end">
+      <DxcInline alignX="end" divider>
         <Placeholder height="small" width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="small" width="small" />

@@ -64,7 +64,6 @@ const sections = [
         title: "Color",
         content: (
           <>
-            {" "}
             <DxcTable>
               <thead>
                 <tr>

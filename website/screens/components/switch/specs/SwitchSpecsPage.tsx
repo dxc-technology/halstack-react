@@ -394,7 +394,6 @@ const sections = [
         title: "Margin",
         content: (
           <>
-            {" "}
             <DxcTable>
               <thead>
                 <tr>
