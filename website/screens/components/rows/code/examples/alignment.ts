@@ -6,12 +6,15 @@ const code = `() => {
     <Container>
       <DxcRows gutter="0.125rem" alignX="end" alignY="center">
         <DxcRows.Row>
-          <Placeholder width="small" height="medium" />
+          <Placeholder width="large" height="large" />
+          <Placeholder width="medium" height="medium" />
+          <Placeholder width="small" height="small" />
           <Placeholder width="small" height="small" />
         </DxcRows.Row>
         <DxcRows.Row>
           <Placeholder width="large" height="medium" />
           <Placeholder width="medium" height="large" />
+          <Placeholder width="large" height="small" />
         </DxcRows.Row>
         <Placeholder width="large" height="large" />
       </DxcRows>

@@ -8,6 +8,7 @@ const code = `() => {
         <DxcRows.Row>
           <Placeholder width="small" height="small" />
           <Placeholder width="medium" />
+          <Placeholder width="large" height="medium" />
         </DxcRows.Row>
         <DxcRows.Row>
           <Placeholder width="large" height="small" />
@@ -17,10 +18,10 @@ const code = `() => {
           <Placeholder width="medium" height="medium" />
           <Placeholder width="medium" />
           <Placeholder width="small" />
+          <Placeholder width="large" height="small" />
         </DxcRows.Row>
         <DxcRows.Row height="1">
-          <Placeholder width="small" height="small" />
-          <Placeholder width="large" height="medium" />
+          <Placeholder />
         </DxcRows.Row>
       </DxcRows>
     </Container>
