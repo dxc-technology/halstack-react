@@ -1,9 +1,9 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionActions";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
@@ -39,12 +39,12 @@ const DxcAccordion = ({
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
       <DXCAccordion padding={padding} margin={margin} disabled={disabled} icon={icon}>
-        <ExpansionPanel
+        <Accordion
           disabled={disabled}
           onChange={handlerAccordion}
           expanded={isExpanded != null ? isExpanded : innerIsExpanded}
         >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
             <AccordionInfo disabled={disabled}>
               {icon && (
                 <IconContainer disabled={disabled}>
@@ -54,15 +54,15 @@ const DxcAccordion = ({
               <AccordionLabel>{label}</AccordionLabel>
             </AccordionInfo>
             {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          </AccordionSummary>
+          <AccordionDetails>
             <AccordionContent disabled={disabled}>
               <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>
                 {children}
               </BackgroundColorProvider>
             </AccordionContent>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          </AccordionDetails>
+        </Accordion>
       </DXCAccordion>
     </ThemeProvider>
   );
