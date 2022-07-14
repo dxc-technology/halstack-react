@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import theme from "./liveEditorTheme";
 import { DxcButton } from "@dxc-technology/halstack-react";
+import { responsiveSizes } from "../../common/variables.js";
 
 type Example = {
   scope?: object;
@@ -182,6 +183,10 @@ const CodeActionsContainer = styled.div<CodeActionsContainerProps>`
   display: flex;
   column-gap: 0.5rem;
   justify-content: flex-end;
+  @media (max-width: ${responsiveSizes.mobileLarge}px) {
+    justify-content: ${({ isCodeVisible }) =>
+      isCodeVisible ? "space-between" : "flex-end"};
+  }
   ${({ isCodeVisible }) => isCodeVisible && "margin-bottom: 0.5rem;"};
 `;
 
