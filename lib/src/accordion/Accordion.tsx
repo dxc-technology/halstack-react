@@ -99,15 +99,15 @@ const DXCAccordion = styled.div`
     &.Mui-expanded {
       border-radius: ${(props) => props.theme.borderRadius};
     }
-    &.MuiExpansionPanel-root {
+    &.MuiAccordion-root {
       display: flex;
       flex-direction: column;
       min-height: 48px;
     }
-    &.MuiExpansionPanel-rounded {
+    &.MuiAccordion-rounded {
       border-radius: ${(props) => props.theme.borderRadius};
     }
-    .MuiButtonBase-root.MuiExpansionPanelSummary-root {
+    .MuiButtonBase-root.MuiAccordionSummary-root {
       min-height: 48px;
       height: 48px;
 
@@ -140,7 +140,7 @@ const DXCAccordion = styled.div`
       &.MuiIconButton-root {
         height: auto;
       }
-      .MuiExpansionPanelSummary-content {
+      .MuiAccordionSummary-content {
         padding-top: ${(props) => props.theme.titleLabelPaddingTop};
         padding-bottom: ${(props) => props.theme.titleLabelPaddingBottom};
         padding-right: ${(props) => props.theme.titleLabelPaddingRight};
@@ -175,7 +175,7 @@ const DXCAccordion = styled.div`
       color: ${(props) => (props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor)};
     }
   }
-  .MuiExpansionPanelDetails-root {
+  .MuiAccordionDetails-root {
     padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
     padding-top: ${(props) =>
       props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
