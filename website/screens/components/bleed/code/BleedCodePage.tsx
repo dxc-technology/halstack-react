@@ -111,7 +111,7 @@ const sections = [
   },
 ];
 
-const BoxCodePage = () => {
+const BleedCodePage = () => {
   return (
     <DxcStack gutter="xxlarge">
       <QuickNavContainerLayout>
@@ -120,9 +120,9 @@ const BoxCodePage = () => {
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/box/Code/BoxCodePage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/box/code/BleedCodePage.tsx" />
     </DxcStack>
   );
 };
 
-export default BoxCodePage;
+export default BleedCodePage;
