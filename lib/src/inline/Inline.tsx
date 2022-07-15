@@ -31,13 +31,15 @@ const Inline = styled.div<InlineProps>`
     flex-direction: ${reverse ? "row-reverse" : "row"};
     align-items: stretch;
     justify-content: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
-    gap: ${divider ? `calc(${gutter}/2)` : gutter};
+    gap: ${divider ? `calc(${gutter}/2 - 1px)` : gutter};
 
     & > * {
       align-self: ${alignY === "start" || alignY === "end" ? `flex-${alignY}` : alignY};
     }
   `}
   flex-wrap: wrap;
+  padding: 0px;
+  margin: 0px;
 `;
 
 const Divider = styled.div`
