@@ -12,7 +12,7 @@ const BleedPageHeading = ({ children }: { children: React.ReactNode }) => {
         <DxcStack gutter="large">
           <ComponentHeading name="Bleed" status="Experimental" />
           <DxcText as="p">
-            Bleed layout applies spacing scale to its child nodes.
+            Bleed layout applies negative spacing scale to its child nodes.
           </DxcText>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
