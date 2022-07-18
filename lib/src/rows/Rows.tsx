@@ -80,7 +80,7 @@ const Rows = styled.div<RowsProps>`
   ${({ alignX, gutter, reverse, divider }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
     align-items: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
-    gap: ${divider ? `calc(${gutter}/2)` : gutter};
+    gap: ${divider ? `calc(${gutter}/2 - 1px)` : gutter};
   `}
   flex-grow: 1;
 `;
