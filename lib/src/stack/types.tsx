@@ -31,6 +31,10 @@ type Props = {
    */
   reverse?: boolean;
   /**
+   * Wrap the items if needed.
+   */
+   wrap?: boolean;
+  /**
    * Custom content inside the stack.
    */
   children: React.ReactNode[] | React.ReactNode;

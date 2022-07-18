@@ -44,9 +44,17 @@ export const Chromatic = () => (
     </Container>
     <Title title="Wrap" theme="light" level={4} />
     <FlexContainer customHeight>
+      <DxcStack wrap>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </DxcStack>
+    </FlexContainer>
+    <Title title="No wrap" theme="light" level={4} />
+    <FlexContainer customHeight>
       <DxcStack>
-        <Placeholder />
-        <Placeholder />
         <Placeholder />
         <Placeholder />
         <Placeholder />
@@ -88,7 +96,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="AlignX with wrapped items" theme="light" level={4} />
     <FlexContainer customHeight>
-      <DxcStack alignX="center">
+      <DxcStack alignX="center" wrap>
         <Placeholder />
         <Placeholder paddingRight={60} />
         <Placeholder paddingLeft={20} />
