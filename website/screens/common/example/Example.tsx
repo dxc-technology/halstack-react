@@ -10,6 +10,7 @@ type Example = {
   code?: string;
 };
 type ExamplePropTypes = {
+  actionsVisible?: boolean;
   defaultIsVisible?: boolean;
   example: Example;
 };
@@ -42,6 +43,7 @@ const icons = {
 };
 
 const Example = ({
+  actionsVisible = true,
   defaultIsVisible = false,
   example,
 }: ExamplePropTypes): JSX.Element => {
@@ -93,22 +95,24 @@ const Example = ({
             <LiveError />
           </StyledError>
         </StyledPreview>
-        <CodeActionsContainer isCodeVisible={isCodeVisible}>
-          {isCodeVisible && (
+        {actionsVisible && (
+          <CodeActionsContainer isCodeVisible={isCodeVisible}>
+            {isCodeVisible && (
+              <DxcButton
+                label={"Copy code"}
+                icon={icons.copy}
+                mode="text"
+                onClick={copyCode}
+              />
+            )}
             <DxcButton
-              label={"Copy code"}
-              icon={icons.copy}
+              label={isCodeVisible ? "Hide code" : "View code"}
+              icon={icons.code}
               mode="text"
-              onClick={copyCode}
+              onClick={handleCodeOnClick}
             />
-          )}
-          <DxcButton
-            label={isCodeVisible ? "Hide code" : "View code"}
-            icon={icons.code}
-            mode="text"
-            onClick={handleCodeOnClick}
-          />
-        </CodeActionsContainer>
+          </CodeActionsContainer>
+        )}
         {isCodeVisible && (
           <LiveEditorContainer ref={liveEditorRef}>
             {copied && (
@@ -145,6 +149,10 @@ const StyledPreview = styled.div`
   border: 1px solid #707070;
   border-radius: 0.25rem;
   margin-bottom: 0.5rem;
+  overflow: auto;
+  > div {
+    min-width: min-content;
+  }
 `;
 
 const StyledError = styled.div`

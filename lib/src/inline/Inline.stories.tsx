@@ -30,12 +30,12 @@ export const Chromatic = () => (
         <Placeholder height="medium" width="small" />
       </DxcInline>
     </Container>
-    <Title title="Default with one child" theme="light" level={4} />
-    <Container>
+    <Title title="One child larger than flex container" theme="light" level={4} />
+    <FlexContainer customWidth>
       <DxcInline>
-        <Placeholder height="large" width="large" />
+        <Placeholder height="large" width="xlarge" />
       </DxcInline>
-    </Container>
+    </FlexContainer>
     <Title title="Wrap" theme="light" level={4} />
     <Container customWidth>
       <DxcInline>
@@ -45,9 +45,18 @@ export const Chromatic = () => (
         <Placeholder height="large" width="medium" />
       </DxcInline>
     </Container>
-    <Title title="AlignY = end" theme="light" level={4} />
+    <Title title="AlignY = start" theme="light" level={4} />
     <Container>
-      <DxcInline alignY="end">
+      <DxcInline alignY="stretch">
+        <Placeholder width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="large" />
+        <Placeholder height="small" width="large" />
+      </DxcInline>
+    </Container>
+    <Title title="AlignY = end with divider" theme="light" level={4} />
+    <Container>
+      <DxcInline alignY="end" divider>
         <Placeholder height="small" width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="large" width="large" />
@@ -63,6 +72,17 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
+    <Title title="AlignY with wrapped items" theme="light" level={4} />
+    <Container customWidth>
+      <DxcInline alignY="end">
+        <Placeholder height="large" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="small" width="medium" />
+      </DxcInline>
+    </Container>
     <Title title="AlignY = baseline" theme="light" level={4} />
     <Container>
       <DxcInline alignY="baseline">
@@ -72,18 +92,18 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
-    <Title title="AlignY = stretch" theme="light" level={4} />
+    <Title title="AlignX = start" theme="light" level={4} />
     <Container>
-      <DxcInline alignY="stretch">
-        <Placeholder width="small" />
+      <DxcInline alignX="start">
+        <Placeholder height="small" width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="large" width="large" />
-        <Placeholder height="small" width="large" />
+        <Placeholder height="small" />
       </DxcInline>
     </Container>
-    <Title title="AlignX = end" theme="light" level={4} />
+    <Title title="AlignX = end with divider" theme="light" level={4} />
     <Container>
-      <DxcInline alignX="end">
+      <DxcInline alignX="end" divider>
         <Placeholder height="small" width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="small" width="small" />
@@ -100,22 +120,17 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
-    <Title title="AlignX = baseline" theme="light" level={4} />
-    <Container>
-      <DxcInline alignX="baseline">
+    <Title title="AlignX with wrapped items" theme="light" level={4} />
+    <Container customWidth>
+      <DxcInline alignX="center">
         <Placeholder height="small" width="small" />
-        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
         <Placeholder height="large" width="large" />
+        <Placeholder height="medium" width="small" />
         <Placeholder height="small" width="large" />
-      </DxcInline>
-    </Container>
-    <Title title="AlignX = stretch" theme="light" level={4} />
-    <Container>
-      <DxcInline alignX="stretch">
-        <Placeholder height="small" width="small" />
-        <Placeholder height="medium" width="medium" />
         <Placeholder height="large" width="large" />
-        <Placeholder height="small" />
+        <Placeholder height="large" width="medium" />
       </DxcInline>
     </Container>
     <Title title="Gutter = 0.125rem" theme="light" level={4} />
@@ -181,6 +196,28 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
+    <Title title="Gutter = 3rem" theme="light" level={4} />
+    <Container>
+      <DxcInline gutter="3rem">
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="large" />
+      </DxcInline>
+    </Container>
+    <Title title="Gutter = 4rem" theme="light" level={4} />
+    <Container>
+      <DxcInline gutter="4rem">
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="medium" />
+      </DxcInline>
+    </Container>
+    <Title title="Gutter = 5rem" theme="light" level={4} />
+    <Container>
+      <DxcInline gutter="5rem">
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="medium" />
+      </DxcInline>
+    </Container>
     <Title title="Reverse" theme="light" level={4} />
     <Container>
       <DxcInline reverse>
@@ -201,20 +238,27 @@ export const Chromatic = () => (
   </>
 );
 
+const FlexContainer = styled.div<{ customWidth?: boolean }>`
+  display: flex;
+  ${({ customWidth }) => customWidth && `width: 200px;`};
+  background: #f2eafa;
+`;
+
 const Container = styled.div<{ customWidth?: boolean }>`
   background: #f2eafa;
-  ${({ customWidth }) => (customWidth ? `width: 300px;` : "")};
+  ${({ customWidth }) => customWidth && `width: 300px;`};
 `;
 
 type PlaceholderProps = {
-  width?: "large" | "medium" | "small" | "auto";
+  width?: "xlarge" | "large" | "medium" | "small" | "auto";
   height?: "large" | "medium" | "small" | "auto";
 };
 
 const Placeholder = styled.div<PlaceholderProps>`
-  ${({ width }) => (width ? `width: ${width === "large" ? "150px" : width === "medium" ? "100px" : "50px"};` : "")};
-  ${({ height }) =>
-    height ? `height: ${height === "large" ? "150px" : height === "medium" ? "100px" : "50px"};` : ""};
+  ${({ width }) =>
+    width &&
+    `width: ${width === "xlarge" ? "350px" : width === "large" ? "150px" : width === "medium" ? "100px" : "50px"};`};
+  ${({ height }) => height && `height: ${height === "large" ? "150px" : height === "medium" ? "100px" : "50px"};`};
   border: 1px solid #a46ede;
   background-color: #e5d5f6;
 `;
