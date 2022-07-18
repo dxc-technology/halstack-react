@@ -45,6 +45,15 @@ export const Chromatic = () => (
         <Placeholder height="large" width="medium" />
       </DxcInline>
     </Container>
+    <Title title="Nowrap (default)" theme="light" level={4} />
+    <Container customWidth>
+      <DxcInline>
+        <Placeholder height="large" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="large" width="medium" />
+      </DxcInline>
+    </Container>
     <Title title="AlignY = start" theme="light" level={4} />
     <Container>
       <DxcInline alignY="stretch">
