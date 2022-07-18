@@ -208,6 +208,15 @@ export const Chromatic = () => (
         <Placeholder>4</Placeholder>
       </DxcStack>
     </Container>
+    <Title title="Wrapped and reversed children" theme="light" level={4} />
+    <FlexContainer customHeight>
+      <DxcStack reverse wrap>
+        <Placeholder>1</Placeholder>
+        <Placeholder>2</Placeholder>
+        <Placeholder>3</Placeholder>
+        <Placeholder>4</Placeholder>
+      </DxcStack>
+    </FlexContainer>
   </>
 );
 
