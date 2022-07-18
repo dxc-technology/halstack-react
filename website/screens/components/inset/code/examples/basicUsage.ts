@@ -5,6 +5,8 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <Placeholder height="large" />
+      <Placeholder height="large" />
+      <Placeholder height="large" />
     </DxcInset>
   );
 }`;
