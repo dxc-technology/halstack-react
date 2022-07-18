@@ -9,6 +9,7 @@ import {
   DxcText,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
+import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
   {
@@ -18,7 +19,7 @@ const sections = [
         <tr>
           <th>Name</th>
           <th>Default</th>
-          <th>Description</th>
+          <HeaderDescriptionCell>Description</HeaderDescriptionCell>
         </tr>
         <tr>
           <td>children: node</td>
@@ -43,7 +44,8 @@ const sections = [
         title: "DxcSidenav.Title",
         content: (
           <DxcText as="p">
-            The title will always be positioned over the sections.
+            The title will always be positioned over the sections and should be
+            only used in the sidenav title prop.
           </DxcText>
         ),
         subSections: [
@@ -54,7 +56,7 @@ const sections = [
                 <tr>
                   <th>Name</th>
                   <th>Default</th>
-                  <th>Description</th>
+                  <HeaderDescriptionCell>Description</HeaderDescriptionCell>
                 </tr>
                 <tr>
                   <td>children: node</td>
@@ -63,11 +65,6 @@ const sections = [
                     The area inside the sidenav title. This area can be used to
                     render custom content.
                   </td>
-                </tr>
-                <tr>
-                  <td>icon: SVG | string</td>
-                  <td></td>
-                  <td>The icon to be displayed in the sidenav title.</td>
                 </tr>
               </DxcTable>
             ),
@@ -91,7 +88,7 @@ const sections = [
                 <tr>
                   <th>Name</th>
                   <th>Default</th>
-                  <th>Description</th>
+                  <HeaderDescriptionCell>Description</HeaderDescriptionCell>
                 </tr>
                 <tr>
                   <td>children: node</td>
@@ -121,7 +118,7 @@ const sections = [
                     <tr>
                       <th>Name</th>
                       <th>Default</th>
-                      <th>Description</th>
+                      <HeaderDescriptionCell>Description</HeaderDescriptionCell>
                     </tr>
                     <tr>
                       <td>children: node</td>
@@ -179,7 +176,7 @@ const sections = [
                     <tr>
                       <th>Name</th>
                       <th>Default</th>
-                      <th>Description</th>
+                      <HeaderDescriptionCell>Description</HeaderDescriptionCell>
                     </tr>
                     <tr>
                       <td>tabIndex: number</td>
@@ -216,14 +213,6 @@ const sections = [
                         <Code>false</Code>
                       </td>
                       <td>If true, the link will be marked as selected.</td>
-                    </tr>
-                    <tr>
-                      <td>onClick: function</td>
-                      <td></td>
-                      <td>
-                        This function will be called when the user clicks the
-                        link.
-                      </td>
                     </tr>
                     <tr>
                       <td>children: string</td>
