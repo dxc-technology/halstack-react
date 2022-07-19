@@ -50,7 +50,7 @@ export const Chromatic = () => (
         <Placeholder height="large" width="medium" />
       </DxcStack>
     </FlexContainer>
-    <Title title="No wrap in a flex container (overflows)" theme="light" level={4} />
+    <Title title="No wrap in a flex container" theme="light" level={4} />
     <FlexContainer customHeight>
       <DxcStack>
         <Placeholder height="small" width="small" />

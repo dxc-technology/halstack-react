@@ -41,6 +41,7 @@ const Stack = styled.div<StackPropsType>`
   `}
   padding: 0px;
   margin: 0px;
+  height: 100%;
 `;
 
 export default DxcStack;
