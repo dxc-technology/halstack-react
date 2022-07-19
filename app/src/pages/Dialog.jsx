@@ -5,7 +5,6 @@ function App() {
   const [isDialog1Visible, setIsDialog1Visible] = useState(false);
   const [isDialog2Visible, setIsDialog2Visible] = useState(false);
   const [isDialog3Visible, setIsDialog3Visible] = useState(false);
-  const [isDialog4Visible, setIsDialog4Visible] = useState(false);
 
   const onClickDialog1 = () => {
     setIsDialog1Visible(!isDialog1Visible);
@@ -15,9 +14,6 @@ function App() {
   };
   const onClickDialog3 = () => {
     setIsDialog3Visible(!isDialog3Visible);
-  };
-  const onClickDialog4 = () => {
-    setIsDialog4Visible(!isDialog4Visible);
   };
 
   return (

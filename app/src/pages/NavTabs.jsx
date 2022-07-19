@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import {
-  DxcNavTabs,
-  HalstackProvider,
-  HalstackContext,
-} from "@dxc-technology/halstack-react";
+import React from "react";
+import { DxcNavTabs } from "@dxc-technology/halstack-react";
 import twitterIcon from "../images/twitter-black.svg";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -33,15 +29,6 @@ const linkedinSVG = (
     </g>
   </svg>
 );
-
-const colors = {
-  tabs: {
-    baseColor: "#5c3b92",
-  },
-  button: {
-    color: "#fabada",
-  },
-};
 
 function NavTabs() {
   return (

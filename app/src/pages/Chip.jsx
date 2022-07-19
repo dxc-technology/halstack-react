@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DxcChip, HalstackProvider } from "@dxc-technology/halstack-react";
 import avatar from "../images/avatar.svg";
 
@@ -23,7 +23,6 @@ const deleteSVG = (
 );
 
 function App() {
-  const [isExpanded, changeIsExpanded] = useState(true);
   const onClickSuffix = (chip) => {
     console.log("Suffix CLICKED");
   };

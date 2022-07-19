@@ -106,15 +106,15 @@ function App() {
   const social = [
     {
       href: "https://www.linkedin.com/company/dxctechnology",
-      logo: <img src={linkedinIcon} />,
+      logo: <img src={linkedinIcon} alt="Linkedin" />,
     },
     {
       href: "https://twitter.com/dxctechnology",
-      logo: <img src={twitterIcon} />,
+      logo: <img src={twitterIcon} alt="Twitter" />,
     },
     {
       href: "https://www.facebook.com/DXCTechnology/",
-      logo: <img src={facebookIcon} />,
+      logo: <img src={facebookIcon} alt="Facebook" />,
     },
   ];
   const socialLarge = [
