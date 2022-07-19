@@ -59,6 +59,16 @@ const sections = [
           <td>If true, it changes the direction of the stack to reverse.</td>
         </tr>
         <tr>
+          <td>wrap: boolean</td>
+          <td>
+            <Code>false</Code>
+          </td>
+          <td>
+            Sets whether the children are forced onto one column or can wrap
+            onto multiple columns.
+          </td>
+        </tr>
+        <tr>
           <td>children: node</td>
           <td></td>
           <td>Custom content inside the stack.</td>
