@@ -33,7 +33,6 @@ const Divider = styled.div`
 
 const Stack = styled.div<StackPropsType>`
   display: flex;
-  flex-wrap: wrap;
   ${({ alignX, gutter, reverse, divider, wrap }) => `
     flex-direction: ${reverse ? "column-reverse" : "column"};
     align-items: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
