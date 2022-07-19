@@ -31,9 +31,9 @@ type Props = {
    */
   reverse?: boolean;
   /**
-   * Wrap the items if needed.
+   * Sets whether the children are forced onto one column or can wrap onto multiple columns.
    */
-   wrap?: boolean;
+  wrap?: boolean;
   /**
    * Custom content inside the stack.
    */
