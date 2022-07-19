@@ -1,5 +1,9 @@
 type Props = {
   /**
+   * Sets whether the children are forced onto one line or can wrap onto multiple lines.
+   */
+  wrap?: boolean;
+  /**
    * Alignment applied to children in the main axis.
    */
   alignX?: "start" | "end" | "center";

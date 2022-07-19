@@ -781,57 +781,57 @@ const sections = [
                     </td>
                     <td>#5f249f</td>
                   </tr>
+                  <tr>
+                    <td>
+                      <Code>textHoverBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:hover</td>
+                    <td>
+                      <Code>color-purple-100</Code>
+                    </td>
+                    <td>#f2eafa</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>textActiveBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:active</td>
+                    <td>
+                      <Code>color-purple-200</Code>
+                    </td>
+                    <td>#e5d5f6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>textDisabledBackgroundColor</Code>
+                    </td>
+                    <td>Container fill:disabled</td>
+                    <td>
+                      <Code>color-transparent</Code>
+                    </td>
+                    <td>transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>textDisabledFontColor</Code>
+                    </td>
+                    <td>Label:disabled</td>
+                    <td>
+                      <Code>color-grey-500</Code>
+                    </td>
+                    <td>#999999</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>textFocusBorderColor</Code>
+                    </td>
+                    <td>Container border:focus</td>
+                    <td>
+                      <Code>color-blue-600</Code>
+                    </td>
+                    <td>#0095ff</td>
+                  </tr>
                 </tbody>
-                <tr>
-                  <td>
-                    <Code>textHoverBackgroundColor</Code>
-                  </td>
-                  <td>Container fill:hover</td>
-                  <td>
-                    <Code>color-purple-100</Code>
-                  </td>
-                  <td>#f2eafa</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>textActiveBackgroundColor</Code>
-                  </td>
-                  <td>Container fill:active</td>
-                  <td>
-                    <Code>color-purple-200</Code>
-                  </td>
-                  <td>#e5d5f6</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>textDisabledBackgroundColor</Code>
-                  </td>
-                  <td>Container fill:disabled</td>
-                  <td>
-                    <Code>color-transparent</Code>
-                  </td>
-                  <td>transparent</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>textDisabledFontColor</Code>
-                  </td>
-                  <td>Label:disabled</td>
-                  <td>
-                    <Code>color-grey-500</Code>
-                  </td>
-                  <td>#999999</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>textFocusBorderColor</Code>
-                  </td>
-                  <td>Container border:focus</td>
-                  <td>
-                    <Code>color-blue-600</Code>
-                  </td>
-                  <td>#0095ff</td>
-                </tr>
               </DxcTable>
             ),
           },

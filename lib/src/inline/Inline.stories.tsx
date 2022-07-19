@@ -38,13 +38,37 @@ export const Chromatic = () => (
     </FlexContainer>
     <Title title="Wrap" theme="light" level={4} />
     <Container customWidth>
-      <DxcInline>
+      <DxcInline wrap>
         <Placeholder height="large" width="small" />
         <Placeholder height="large" width="medium" />
         <Placeholder height="medium" width="small" />
         <Placeholder height="large" width="medium" />
       </DxcInline>
     </Container>
+    <Title title="Nowrap (default)" theme="light" level={4} />
+    <Container customWidth>
+      <DxcInline>
+        <Placeholder height="large" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="large" />
+        <Placeholder height="small" width="medium" />
+      </DxcInline>
+    </Container>
+    <Title title="Nowrap in a flex container (overflows)" theme="light" level={4} />
+    <FlexContainer customWidth>
+      <DxcInline>
+        <Placeholder height="large" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="large" />
+        <Placeholder height="small" width="medium" />
+      </DxcInline>
+    </FlexContainer>
     <Title title="AlignY = start" theme="light" level={4} />
     <Container>
       <DxcInline alignY="stretch">
@@ -74,7 +98,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="AlignY with wrapped items" theme="light" level={4} />
     <Container customWidth>
-      <DxcInline alignY="end">
+      <DxcInline alignY="end" wrap>
         <Placeholder height="large" width="small" />
         <Placeholder height="large" width="medium" />
         <Placeholder height="medium" width="small" />
@@ -122,7 +146,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="AlignX with wrapped items" theme="light" level={4} />
     <Container customWidth>
-      <DxcInline alignX="center">
+      <DxcInline alignX="center" wrap>
         <Placeholder height="small" width="small" />
         <Placeholder height="large" width="medium" />
         <Placeholder height="medium" width="small" />
@@ -221,6 +245,23 @@ export const Chromatic = () => (
     <Title title="Reverse" theme="light" level={4} />
     <Container>
       <DxcInline reverse>
+        <Placeholder height="small" width="small">
+          1
+        </Placeholder>
+        <Placeholder height="medium" width="medium">
+          2
+        </Placeholder>
+        <Placeholder height="large" width="large">
+          3
+        </Placeholder>
+        <Placeholder height="small" width="large">
+          4
+        </Placeholder>
+      </DxcInline>
+    </Container>
+    <Title title="Wrapped and reversed children" theme="light" level={4} />
+    <Container customWidth>
+      <DxcInline reverse wrap>
         <Placeholder height="small" width="small">
           1
         </Placeholder>
