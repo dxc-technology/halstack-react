@@ -1,10 +1,5 @@
 import React, { useRef, useState } from "react";
-import {
-  DxcButton,
-  DxcTextInput,
-  BackgroundColorProvider,
-} from "@dxc-technology/halstack-react";
-import styled from "styled-components";
+import { DxcButton, DxcTextInput } from "@dxc-technology/halstack-react";
 import { ReactComponent as TrashIcon } from "../images/delete-24px.svg";
 
 const countries = [
@@ -109,8 +104,8 @@ function App() {
 
   return (
     <>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Controlled & Uncontrolled</h4>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Controlled & Uncontrolled</h4>
         <DxcTextInput
           label="Controlled"
           value={value}
@@ -125,9 +120,9 @@ function App() {
           margin="medium"
           clearable
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Sizes</h4>
         <DxcTextInput
           label="Small"
           margin={{ left: "medium", right: "medium" }}
@@ -151,18 +146,18 @@ function App() {
           size="fillParent"
           clearable
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Clearable</h4>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Clearable</h4>
         <DxcTextInput
           value={value}
           onChange={onChange}
           margin={{ left: "medium", right: "medium" }}
           clearable
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With pattern (At least one letter, one number and one special
           character)
         </h4>
@@ -174,9 +169,9 @@ function App() {
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With min length 5 and max length 10
         </h4>
         <DxcTextInput
@@ -188,9 +183,9 @@ function App() {
           minLength={5}
           maxLength={10}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With pattern (At least one letter, one number and one special
           character) and minimum length 5 and maximum length 10
         </h4>
@@ -204,9 +199,9 @@ function App() {
           minLength={5}
           maxLength={10}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With pattern (At least one letter, one number and one special
           character) - Custom error message
         </h4>
@@ -219,9 +214,9 @@ function App() {
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           error={errorMessage}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With min length 5 and max length 10 - Custom error message
         </h4>
         <DxcTextInput
@@ -234,9 +229,9 @@ function App() {
           maxLength={10}
           error={errorMessage}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With pattern (At least one letter, one number and one special
           character) and minimum length 5 and maximum length 10 - Custom error
           message
@@ -252,9 +247,9 @@ function App() {
           maxLength={10}
           error={errorMessage}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
           special character)
         </h4>
@@ -268,9 +263,9 @@ function App() {
           clearable
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           Autosuggest - With min length 5 and max length 10
         </h4>
         <DxcTextInput
@@ -283,9 +278,9 @@ function App() {
           minLength={5}
           maxLength={10}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
           special character) and minimum length 5 and maximum length 10
         </h4>
@@ -300,9 +295,9 @@ function App() {
           minLength={5}
           maxLength={10}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
           special character) - Custom error messages
         </h4>
@@ -316,9 +311,9 @@ function App() {
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           error={errorMessage}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           Autosuggest - With min length 5 and max length 10 - Custom error
           messages
         </h4>
@@ -333,9 +328,9 @@ function App() {
           maxLength={10}
           error={errorMessage}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           Autosuggest - With pattern (At least one letter, one number and one
           special character) and minimum length 5 and maximum length 10 - Custom
           error messages
@@ -352,8 +347,8 @@ function App() {
           maxLength={10}
           error={errorMessage}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Prefix and suffix text input"
           optional
@@ -363,8 +358,8 @@ function App() {
           placeholder="Placeholder"
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Prefix icon text input"
           prefix={
@@ -375,7 +370,7 @@ function App() {
               width="24px"
               height="24px"
               viewBox="0 0 24 24"
-              enable-background="new 0 0 24 24"
+              enableBackground="new 0 0 24 24"
             >
               <g id="Bounding_Box">
                 <rect fill="none" width="24" height="24" />
@@ -389,8 +384,8 @@ function App() {
           placeholder="Placeholder"
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Action text input with a SVG"
           helperText="Example of helper text"
@@ -398,8 +393,8 @@ function App() {
           margin="medium"
           action={actionTrashSVG}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Action text input with a URL"
           helperText="Example of helper text"
@@ -410,8 +405,8 @@ function App() {
             icon: "https://cdn.icon-icons.com/icons2/2518/PNG/512/brand_instagram_icon_151534.png",
           }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           prefix="😀"
           label="Error text input"
@@ -423,15 +418,15 @@ function App() {
           action={action}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="With 'on' autocomplete"
           autocomplete="on"
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Disabled text input"
           helperText="Example of helper text"
@@ -439,8 +434,8 @@ function App() {
           margin="medium"
           disabled
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Disabled text input with prefix and suffix"
           helperText="Example of helper text"
@@ -450,8 +445,8 @@ function App() {
           margin="medium"
           disabled
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Disabled text input with action"
           helperText="Example of helper text"
@@ -460,8 +455,8 @@ function App() {
           margin="medium"
           disabled
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Text input with suggestions"
           helperText="Example of helper text"
@@ -472,8 +467,8 @@ function App() {
           suggestions={countries}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Suggestions + action"
           helperText="Example of helper text"
@@ -485,8 +480,8 @@ function App() {
           suggestions={countries}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Uncontrolled suggestions"
           helperText="Example of helper text"
@@ -500,8 +495,8 @@ function App() {
           ]}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Uncontrolled suggestions filtered by default"
           helperText="Example of helper text"
@@ -516,8 +511,8 @@ function App() {
           ]}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Text input with suggestions function"
           helperText="Example of helper text"
@@ -528,8 +523,8 @@ function App() {
           suggestions={callbackFunc}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Text input with suggestions error function"
           helperText="Example of helper text"
@@ -538,8 +533,8 @@ function App() {
           suggestions={errorCallbackFunc}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextInput
           label="Text input with ref"
           helperText="Example of helper text"
@@ -556,29 +551,9 @@ function App() {
           label="Focus!"
           margin={{ left: "medium" }}
         ></DxcButton>
-      </p>
+      </div>
     </>
   );
 }
-
-const Mode = ({ mode, children }) => {
-  return (
-    <ModeContainer mode={mode}>
-      <PreviewsContainer>{children}</PreviewsContainer>
-    </ModeContainer>
-  );
-};
-
-const ModeContainer = styled.div`
-  background-color: ${(props) =>
-    props.mode === "dark" ? "#000000" : "transparent"};
-
-  display: flex;
-  flex-flow: row wrap;
-`;
-
-const PreviewsContainer = styled.div`
-  flex: 100%;
-`;
 
 export default App;

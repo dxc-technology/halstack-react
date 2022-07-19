@@ -1,10 +1,8 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
 import styled from "styled-components";
-
 import SideNav from "./SideNav";
 import AllComponents from "./pages/AllComponents";
-
 import paths from "./paths";
 
 function App() {

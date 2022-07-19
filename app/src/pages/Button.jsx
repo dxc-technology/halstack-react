@@ -68,7 +68,7 @@ function App() {
               width="24px"
               height="24px"
               viewBox="0 0 24 24"
-              enable-background="new 0 0 24 24"
+              enableBackground="new 0 0 24 24"
               fill="currentColor"
             >
               <g id="Bounding_Box">
@@ -94,7 +94,7 @@ function App() {
               width="24px"
               height="24px"
               viewBox="0 0 24 24"
-              enable-background="new 0 0 24 24"
+              enableBackground="new 0 0 24 24"
               fill="currentColor"
             >
               <g id="Bounding_Box">
@@ -120,7 +120,7 @@ function App() {
               width="24px"
               height="24px"
               viewBox="0 0 24 24"
-              enable-background="new 0 0 24 24"
+              enableBackground="new 0 0 24 24"
               fill="currentColor"
             >
               <g id="Bounding_Box">
@@ -288,7 +288,7 @@ function App() {
                 width="24px"
                 height="24px"
                 viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
+                enableBackground="new 0 0 24 24"
                 fill="currentColor"
               >
                 <g id="Bounding_Box">
@@ -358,7 +358,7 @@ function App() {
                 width="24px"
                 height="24px"
                 viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
+                enableBackground="new 0 0 24 24"
                 fill="yellow"
               >
                 <g id="Bounding_Box">
@@ -396,7 +396,7 @@ function App() {
             label="ButL"
             iconPosition="after"
             onClick={onClick}
-            icon={<img src={homeLogo} />}
+            icon={<img src={homeLogo} alt="Home" />}
             size="medium"
             margin="xsmall"
           />
@@ -486,7 +486,7 @@ function App() {
                 width="24px"
                 height="24px"
                 viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
+                enableBackground="new 0 0 24 24"
                 fill="currentColor"
               >
                 <g id="Bounding_Box">
@@ -577,7 +577,7 @@ function App() {
                 width="24px"
                 height="24px"
                 viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
+                enableBackground="new 0 0 24 24"
                 fill="currentColor"
               >
                 <g id="Bounding_Box">
@@ -621,7 +621,7 @@ function App() {
                 width="24px"
                 height="24px"
                 viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
+                enableBackground="new 0 0 24 24"
                 fill="currentColor"
               >
                 <g id="Bounding_Box">
@@ -665,7 +665,7 @@ function App() {
                 width="24px"
                 height="24px"
                 viewBox="0 0 24 24"
-                enable-background="new 0 0 24 24"
+                enableBackground="new 0 0 24 24"
                 fill="currentColor"
               >
                 <g id="Bounding_Box">
