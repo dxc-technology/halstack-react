@@ -51,9 +51,24 @@ export const Chromatic = () => (
         <Placeholder height="large" width="small" />
         <Placeholder height="large" width="medium" />
         <Placeholder height="medium" width="small" />
-        <Placeholder height="large" width="medium" />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="large" />
+        <Placeholder height="small" width="medium" />
       </DxcInline>
     </Container>
+    <Title title="Nowrap in a flex container (overflows)" theme="light" level={4} />
+    <FlexContainer customWidth>
+      <DxcInline>
+        <Placeholder height="large" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="large" />
+        <Placeholder height="small" width="medium" />
+      </DxcInline>
+    </FlexContainer>
     <Title title="AlignY = start" theme="light" level={4} />
     <Container>
       <DxcInline alignY="stretch">
