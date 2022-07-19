@@ -41,6 +41,7 @@ const Inline = styled.div<InlineProps>`
   `}
   padding: 0px;
   margin: 0px;
+  width: 100%;
 `;
 
 const Divider = styled.div`

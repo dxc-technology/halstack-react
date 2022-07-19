@@ -30,10 +30,16 @@ export const Chromatic = () => (
         <Placeholder height="medium" width="small" />
       </DxcInline>
     </Container>
-    <Title title="One child larger than flex container" theme="light" level={4} />
+    <Title title="One child larger (width) than the container" theme="light" level={4} />
     <FlexContainer customWidth>
       <DxcInline>
         <Placeholder height="large" width="xlarge" />
+      </DxcInline>
+    </FlexContainer>
+    <Title title="One child larger (min-width) than the container" theme="light" level={4} />
+    <FlexContainer customWidth customHeight>
+      <DxcInline>
+        <MinSizePlaceholder height="medium" />
       </DxcInline>
     </FlexContainer>
     <Title title="Wrap" theme="light" level={4} />
@@ -45,7 +51,7 @@ export const Chromatic = () => (
         <Placeholder height="large" width="medium" />
       </DxcInline>
     </Container>
-    <Title title="Nowrap (default)" theme="light" level={4} />
+    <Title title="Nowrap in a non-flex container" theme="light" level={4} />
     <Container customWidth>
       <DxcInline>
         <Placeholder height="large" width="small" />
@@ -57,7 +63,7 @@ export const Chromatic = () => (
         <Placeholder height="small" width="medium" />
       </DxcInline>
     </Container>
-    <Title title="Nowrap in a flex container (overflows)" theme="light" level={4} />
+    <Title title="Nowrap in a flex container" theme="light" level={4} />
     <FlexContainer customWidth>
       <DxcInline>
         <Placeholder height="large" width="small" />
@@ -279,9 +285,10 @@ export const Chromatic = () => (
   </>
 );
 
-const FlexContainer = styled.div<{ customWidth?: boolean }>`
+const FlexContainer = styled.div<{ customWidth?: boolean, customHeight?: boolean }>`
   display: flex;
   ${({ customWidth }) => customWidth && `width: 200px;`};
+  ${({ customHeight }) => customHeight && `height: 200px;`};
   background: #f2eafa;
 `;
 
@@ -299,6 +306,13 @@ const Placeholder = styled.div<PlaceholderProps>`
   ${({ width }) =>
     width &&
     `width: ${width === "xlarge" ? "350px" : width === "large" ? "150px" : width === "medium" ? "100px" : "50px"};`};
+  ${({ height }) => height && `height: ${height === "large" ? "150px" : height === "medium" ? "100px" : "50px"};`};
+  border: 1px solid #a46ede;
+  background-color: #e5d5f6;
+`;
+
+const MinSizePlaceholder = styled.div<PlaceholderProps>`
+  min-width: 300px;
   ${({ height }) => height && `height: ${height === "large" ? "150px" : height === "medium" ? "100px" : "50px"};`};
   border: 1px solid #a46ede;
   background-color: #e5d5f6;
