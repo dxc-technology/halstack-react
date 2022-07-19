@@ -7,9 +7,9 @@ const BleedPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [{ label: "Code", path: "/components/bleed" }];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcStack gutter="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcStack gutter="2rem">
           <ComponentHeading name="Bleed" status="Experimental" />
           <DxcText as="p">
             Bleed layout applies negative spacing scale to its child nodes.
