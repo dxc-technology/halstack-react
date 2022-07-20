@@ -4,9 +4,13 @@ import Placeholder from "./Placeholder";
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <Placeholder height="large" />
-      <Placeholder height="large" />
-      <Placeholder height="large" />
+      <DxcStack gutter="large">
+        <Placeholder height="large" />
+        <DxcInset space="1rem">
+          <Placeholder height="large" />
+        </DxcInset>
+        <Placeholder height="large" />
+      </DxcStack>
     </DxcInset>
   );
 }`;
