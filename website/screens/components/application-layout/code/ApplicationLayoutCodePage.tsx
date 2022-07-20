@@ -16,47 +16,55 @@ import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const ApplicationLayoutPropsTable = () => (
   <DxcTable>
-    <tr>
-      <th>Name</th>
-      <th>Default</th>
-      <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-    </tr>
-    <tr>
-      <td>visibilityToggleLabel: string</td>
-      <td></td>
-      <td>
-        Text to be placed next to the hamburger button that toggles the
-        visibility of the sidenav.
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Default</th>
+        <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>visibilityToggleLabel: string</td>
+        <td></td>
+        <td>
+          Text to be placed next to the hamburger button that toggles the
+          visibility of the sidenav.
+        </td>
+      </tr>
+    </tbody>
   </DxcTable>
 );
 
 const SidenavApplicationLayoutPropsTable = () => (
   <DxcTable>
-    <tr>
-      <th>Name</th>
-      <th>Default</th>
-      <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-    </tr>
-    <tr>
-      <td>padding: string | object</td>
-      <td></td>
-      <td>
-        Size of the padding to be applied to the custom area ('xxsmall' |
-        'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You can
-        pass an object with 'top', 'bottom', 'left' and 'right' properties in
-        order to specify different padding sizes.
-      </td>
-    </tr>
-    <tr>
-      <td>children: React.ReactNode</td>
-      <td></td>
-      <td>
-        The area inside the sidenav. This area can be used to render custom
-        content.
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Default</th>
+        <HeaderDescriptionCell>Description</HeaderDescriptionCell>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>padding: string | object</td>
+        <td></td>
+        <td>
+          Size of the padding to be applied to the custom area ('xxsmall' |
+          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
+          can pass an object with 'top', 'bottom', 'left' and 'right' properties
+          in order to specify different padding sizes.
+        </td>
+      </tr>
+      <tr>
+        <td>children: React.ReactNode</td>
+        <td></td>
+        <td>
+          The area inside the sidenav. This area can be used to render custom
+          content.
+        </td>
+      </tr>
+    </tbody>
   </DxcTable>
 );
 
@@ -142,15 +150,17 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <Example example={basicUsage} />,
+        content: <Example example={basicUsage} actionsVisible={false} />,
       },
       {
         title: "With sidenav",
-        content: <Example example={withSidenav} />,
+        content: <Example example={withSidenav} actionsVisible={false} />,
       },
       {
         title: "Custom header and footer",
-        content: <Example example={customHeaderFooter} />,
+        content: (
+          <Example example={customHeaderFooter} actionsVisible={false} />
+        ),
       },
     ],
   },

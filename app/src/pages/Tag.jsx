@@ -86,7 +86,7 @@ function App() {
           <DxcTag
             margin="medium"
             label="Size medium"
-            icon={<img src={inIcon} />}
+            icon={<img src={inIcon} alt="Logo" />}
             size="medium"
             iconBgColor="#50ABF1"
           ></DxcTag>
@@ -95,7 +95,7 @@ function App() {
           <DxcTag
             margin="medium"
             label="Size large"
-            icon={<img src={inIcon} />}
+            icon={<img src={inIcon} alt="Logo" />}
             size="large"
             iconBgColor="#50ABF1"
           ></DxcTag>

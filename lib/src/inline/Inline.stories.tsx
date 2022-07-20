@@ -30,21 +30,51 @@ export const Chromatic = () => (
         <Placeholder height="medium" width="small" />
       </DxcInline>
     </Container>
-    <Title title="One child larger than flex container" theme="light" level={4} />
+    <Title title="One child larger (width) than the container" theme="light" level={4} />
     <FlexContainer customWidth>
       <DxcInline>
         <Placeholder height="large" width="xlarge" />
       </DxcInline>
     </FlexContainer>
+    <Title title="One child larger (min-width) than the container" theme="light" level={4} />
+    <FlexContainer customWidth customHeight>
+      <DxcInline>
+        <MinSizePlaceholder height="medium" />
+      </DxcInline>
+    </FlexContainer>
     <Title title="Wrap" theme="light" level={4} />
     <Container customWidth>
-      <DxcInline>
+      <DxcInline wrap>
         <Placeholder height="large" width="small" />
         <Placeholder height="large" width="medium" />
         <Placeholder height="medium" width="small" />
         <Placeholder height="large" width="medium" />
       </DxcInline>
     </Container>
+    <Title title="Nowrap in a non-flex container" theme="light" level={4} />
+    <Container customWidth>
+      <DxcInline>
+        <Placeholder height="large" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="large" />
+        <Placeholder height="small" width="medium" />
+      </DxcInline>
+    </Container>
+    <Title title="Nowrap in a flex container" theme="light" level={4} />
+    <FlexContainer customWidth>
+      <DxcInline>
+        <Placeholder height="large" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="large" />
+        <Placeholder height="small" width="medium" />
+      </DxcInline>
+    </FlexContainer>
     <Title title="AlignY = start" theme="light" level={4} />
     <Container>
       <DxcInline alignY="stretch">
@@ -54,9 +84,9 @@ export const Chromatic = () => (
         <Placeholder height="small" width="large" />
       </DxcInline>
     </Container>
-    <Title title="AlignY = end" theme="light" level={4} />
+    <Title title="AlignY = end with divider" theme="light" level={4} />
     <Container>
-      <DxcInline alignY="end">
+      <DxcInline alignY="end" divider>
         <Placeholder height="small" width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="large" width="large" />
@@ -74,7 +104,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="AlignY with wrapped items" theme="light" level={4} />
     <Container customWidth>
-      <DxcInline alignY="end">
+      <DxcInline alignY="end" wrap>
         <Placeholder height="large" width="small" />
         <Placeholder height="large" width="medium" />
         <Placeholder height="medium" width="small" />
@@ -101,9 +131,9 @@ export const Chromatic = () => (
         <Placeholder height="small" />
       </DxcInline>
     </Container>
-    <Title title="AlignX = end" theme="light" level={4} />
+    <Title title="AlignX = end with divider" theme="light" level={4} />
     <Container>
-      <DxcInline alignX="end">
+      <DxcInline alignX="end" divider>
         <Placeholder height="small" width="small" />
         <Placeholder height="medium" width="medium" />
         <Placeholder height="small" width="small" />
@@ -122,7 +152,7 @@ export const Chromatic = () => (
     </Container>
     <Title title="AlignX with wrapped items" theme="light" level={4} />
     <Container customWidth>
-      <DxcInline alignX="center">
+      <DxcInline alignX="center" wrap>
         <Placeholder height="small" width="small" />
         <Placeholder height="large" width="medium" />
         <Placeholder height="medium" width="small" />
@@ -235,12 +265,30 @@ export const Chromatic = () => (
         </Placeholder>
       </DxcInline>
     </Container>
+    <Title title="Wrapped and reversed children" theme="light" level={4} />
+    <Container customWidth>
+      <DxcInline reverse wrap>
+        <Placeholder height="small" width="small">
+          1
+        </Placeholder>
+        <Placeholder height="medium" width="medium">
+          2
+        </Placeholder>
+        <Placeholder height="large" width="large">
+          3
+        </Placeholder>
+        <Placeholder height="small" width="large">
+          4
+        </Placeholder>
+      </DxcInline>
+    </Container>
   </>
 );
 
-const FlexContainer = styled.div<{ customWidth?: boolean }>`
+const FlexContainer = styled.div<{ customWidth?: boolean, customHeight?: boolean }>`
   display: flex;
   ${({ customWidth }) => customWidth && `width: 200px;`};
+  ${({ customHeight }) => customHeight && `height: 200px;`};
   background: #f2eafa;
 `;
 
@@ -258,6 +306,13 @@ const Placeholder = styled.div<PlaceholderProps>`
   ${({ width }) =>
     width &&
     `width: ${width === "xlarge" ? "350px" : width === "large" ? "150px" : width === "medium" ? "100px" : "50px"};`};
+  ${({ height }) => height && `height: ${height === "large" ? "150px" : height === "medium" ? "100px" : "50px"};`};
+  border: 1px solid #a46ede;
+  background-color: #e5d5f6;
+`;
+
+const MinSizePlaceholder = styled.div<PlaceholderProps>`
+  min-width: 300px;
   ${({ height }) => height && `height: ${height === "large" ? "150px" : height === "medium" ? "100px" : "50px"};`};
   border: 1px solid #a46ede;
   background-color: #e5d5f6;
