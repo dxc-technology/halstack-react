@@ -17,7 +17,7 @@ const iconSVG = (
 );
 
 const iconSVGLarge = (
-  <svg enable-background="new 0 0 24 24" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
+  <svg enableBackground="new 0 0 24 24" height="48px" viewBox="0 0 24 24" width="48px" fill="currentColor">
     <g>
       <path d="M0,0h24v24H0V0z" fill="none" />
       <path d="M0,0h24v24H0V0z" fill="none" />

@@ -18,8 +18,8 @@ function App() {
 
   return (
     <>
-      <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
-      <p>
+      <h4 style={{ marginLeft: "36px" }}>Controlled</h4>
+      <div>
         <DxcNumberInput
           value={value}
           label="Number Input"
@@ -27,8 +27,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Number Input"
@@ -37,8 +37,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Number Input"
@@ -47,8 +47,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Number Input"
@@ -57,8 +57,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Number Input"
@@ -67,8 +67,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Prefix"
@@ -77,8 +77,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Suffix"
@@ -87,8 +87,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Min 5"
@@ -97,8 +97,8 @@ function App() {
           margin="medium"
           min={5}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Max 10"
@@ -107,8 +107,8 @@ function App() {
           margin="medium"
           max={10}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Min 5, max 10"
@@ -118,8 +118,8 @@ function App() {
           min={5}
           max={10}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Step 5"
@@ -128,8 +128,8 @@ function App() {
           margin="medium"
           step={5}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Min 5, step 5"
@@ -139,8 +139,8 @@ function App() {
           min={5}
           step={5}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Max 20, step 5"
@@ -150,8 +150,8 @@ function App() {
           max={20}
           step={5}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Min 5, max 20, step 5"
@@ -162,8 +162,8 @@ function App() {
           max={20}
           step={5}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Invalid"
@@ -172,9 +172,9 @@ function App() {
           margin="medium"
           error="Error message."
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Custom error messages</h4>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Custom error messages</h4>
         <DxcNumberInput
           value={value}
           label="Min 5, max 20, step 5"
@@ -186,8 +186,8 @@ function App() {
           step={5}
           error={errorMessage}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           value={value}
           label="Fill parent size"
@@ -196,45 +196,45 @@ function App() {
           margin="medium"
           size="fillParent"
         />
-      </p>
-      <h4 style={{ "margin-left": "36px" }}>Uncontrolled</h4>
-      <p>
+      </div>
+      <h4 style={{ marginLeft: "36px" }}>Uncontrolled</h4>
+      <div>
         <DxcNumberInput label="Number Input" margin="medium" />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput label="Min 5" margin="medium" min={5} />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput label="Max 10" margin="medium" max={10} />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           label="Min 5, max 10"
           margin="medium"
           min={5}
           max={10}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput label="Step 5" margin="medium" step={5} />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           label="Min 5, step 5"
           margin="medium"
           min={5}
           step={5}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           label="Max 20, step 5"
           margin="medium"
           max={20}
           step={5}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           label="Min 5, max 20, step 5"
           margin="medium"
@@ -242,9 +242,9 @@ function App() {
           max={20}
           step={5}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Custom error messages</h4>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Custom error messages</h4>
         <DxcNumberInput
           label="Min 5, max 20, step 5"
           margin="medium"
@@ -253,16 +253,16 @@ function App() {
           step={5}
           error={errorMessage}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           label="With 'on' autocomplete"
           placeholder="Placeholder"
           margin={{ left: "medium", right: "medium" }}
           autocomplete="on"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcNumberInput
           label="With ref"
           helperText="Example of helper text"
@@ -278,7 +278,7 @@ function App() {
           label="Focus!"
           margin={{ left: "medium" }}
         ></DxcButton>
-      </p>
+      </div>
     </>
   );
 }

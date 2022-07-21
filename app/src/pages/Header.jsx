@@ -5,7 +5,6 @@ import {
   DxcDropdown,
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
-import { useState } from "react";
 import invisionLogo from "../images/invision.png";
 import skyscannerLogo from "../images/skyscanner.jpeg";
 import yahooLogo from "../images/yahoo.png";
@@ -23,11 +22,6 @@ const colors = {
 };
 
 function App() {
-  const [selected, changeSelected] = useState(true);
-  const onClickToggle = (newValue) => {
-    changeSelected(newValue);
-  };
-
   const onClick = () => {};
 
   const selectOption = (value) => {

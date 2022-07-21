@@ -48,7 +48,7 @@ function App() {
               width="24px"
               height="24px"
               viewBox="0 0 24 24"
-              enable-background="new 0 0 24 24"
+              enableBackground="new 0 0 24 24"
               fill="currentColor"
             >
               <g id="Bounding_Box">
@@ -86,7 +86,7 @@ function App() {
         <DxcAccordion
           label="Accordion"
           iconPosition="after"
-          icon={<img src={homeIcon}></img>}
+          icon={<img src={homeIcon} alt="Home" />}
           onChange={onChange}
           padding="medium"
         >

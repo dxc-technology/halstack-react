@@ -22,6 +22,13 @@ const sections = [
         </thead>
         <tbody>
           <tr>
+            <td>wrap: boolean</td>
+            <td>
+              <Code>false</Code>
+            </td>
+            <td>Sets whether the children are forced onto one line or can wrap onto multiple lines.</td>
+          </tr>
+          <tr>
             <td>alignX: 'start' | 'end' | 'center'</td>
             <td>
               <Code>'start'</Code>

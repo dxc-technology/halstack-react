@@ -278,7 +278,7 @@ function App() {
 
   return (
     <>
-      <p>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Default (uncontrolled)</h4>
         <DxcSelect
           label="Label"
@@ -287,8 +287,8 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Controlled</h4>
         <DxcSelect
           label="Label"
@@ -301,8 +301,8 @@ function App() {
           error={errorMessage}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Multiple</h4>
         <DxcSelect
           label="Label"
@@ -312,8 +312,8 @@ function App() {
           multiple
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Controlled multiple</h4>
         <DxcSelect
           label="Label"
@@ -326,8 +326,8 @@ function App() {
           multiple
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Controlled multiple inmutable</h4>
         <DxcSelect
           label="Label"
@@ -338,8 +338,8 @@ function App() {
           multiple
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Searchable</h4>
         <DxcSelect
           label="Label"
@@ -349,8 +349,8 @@ function App() {
           searchable
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Searchable & Multiple</h4>
         <DxcSelect
           label="Label"
@@ -361,8 +361,8 @@ function App() {
           multiple
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Grouped</h4>
         <DxcSelect
           label="Label"
@@ -372,8 +372,8 @@ function App() {
           searchable
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Grouped & Multiple</h4>
         <DxcSelect
           label="Label"
@@ -384,8 +384,8 @@ function App() {
           multiple
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Icons</h4>
         <DxcSelect
           label="Label"
@@ -395,8 +395,8 @@ function App() {
           searchable
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Icons & Multiple</h4>
         <DxcSelect
           label="Label"
@@ -407,8 +407,8 @@ function App() {
           multiple
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Icons & Multiple & Grouped</h4>
         <DxcSelect
           label="Label"
@@ -419,8 +419,8 @@ function App() {
           multiple
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Disabled</h4>
         <DxcSelect
           label="Label"
@@ -431,8 +431,8 @@ function App() {
           margin="medium"
           disabled
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Disabled & Multiple</h4>
         <DxcSelect
           label="Label"
@@ -444,8 +444,8 @@ function App() {
           disabled
           multiple
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Optional</h4>
         <DxcSelect
           label="Label"
@@ -459,8 +459,8 @@ function App() {
           margin="medium"
           optional
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Optional & Multiple</h4>
         <DxcSelect
           label="Label"
@@ -475,8 +475,8 @@ function App() {
           optional
           multiple
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>
           Optional & Grouped & Searchable & Multiple
         </h4>
@@ -494,8 +494,8 @@ function App() {
           margin="medium"
           optional
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Optional grouped</h4>
         <DxcSelect
           label="Label"
@@ -509,8 +509,8 @@ function App() {
           margin="medium"
           optional
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Optional grouped searchable</h4>
         <DxcSelect
           label="Label"
@@ -525,8 +525,8 @@ function App() {
           margin="medium"
           optional
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Optional without placeholder</h4>
         <DxcSelect
           label="Label"
@@ -536,8 +536,8 @@ function App() {
           searchable
           optional
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Error</h4>
         <DxcSelect
           label="Label"
@@ -547,8 +547,8 @@ function App() {
           margin="medium"
           error="Error message"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Sizes</h4>
         <DxcSelect
           label="Small"
@@ -575,8 +575,8 @@ function App() {
           size="fillParent"
           searchable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Undefined options</h4>
         <DxcSelect
           label="Label"
@@ -584,8 +584,8 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Empty options</h4>
         <DxcSelect
           label="Label"
@@ -594,8 +594,8 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Empty grouped options</h4>
         <DxcSelect
           label="Label"
@@ -609,8 +609,8 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Undefined groups</h4>
         <DxcSelect
           label="Label"
@@ -624,8 +624,8 @@ function App() {
           placeholder="Choose an option"
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <h4 style={{ marginLeft: "36px" }}>Using ref prop</h4>
         <DxcSelect
           label="Select with ref"
@@ -644,7 +644,7 @@ function App() {
           label="Focus!"
           margin="medium"
         ></DxcButton>
-      </p>
+      </div>
     </>
   );
 }
