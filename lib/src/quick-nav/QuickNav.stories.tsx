@@ -23,34 +23,22 @@ const links = [
     ],
   },
   {
-    label: "Principles",
+    label: "Principles very very very very very very very very long",
     id: "principles",
     links: [
-      { label: "Color", id: "color" },
-      { label: "Spacing", id: "spacing" },
+      { label: "Color very very very very very very very very long", id: "color" },
+      { label: "Spacingveryveryveryveryveryveryveryverylong", id: "spacing" },
       { label: "Typography", id: "typography" },
     ],
   },
-];
-
-const longLinks = [
   {
-    label: "Overview very very very very long",
-    id: "overview",
+    label: "Componentsveryveryveryveryveryveryveryverylong",
+    id: "components",
     links: [
       {
-        label: "Introduction very very very very very very very very long",
-        id: "introduction",
+        label: "Accordion",
+        id: "accordion",
       },
-    ],
-  },
-  {
-    label: "Principles",
-    id: "principles",
-    links: [
-      { label: "Color", id: "color" },
-      { label: "Spacing", id: "spacing" },
-      { label: "Typography very very very very very very very very long", id: "typography" },
     ],
   },
 ];
@@ -232,162 +220,20 @@ export const Chromatic = () => (
               </DxcText>
             </Content>
           </Content>
+          <Content id="components">
+            <DxcHeading level={1} text="Components" margin={{ top: "small", bottom: "xsmall" }} />
+            <Content id="accordion">
+              <DxcHeading level={2} text="Accordion" margin={{ top: "xsmall", bottom: "xsmall" }} />
+              <DxcText>
+                Accordions are used to group similar content and hide or show it depending on user needs or preferences.
+                Accordions give users more granular control over the interface and help digest content in stages, rather
+                than all at once.
+              </DxcText>
+            </Content>
+          </Content>
         </ContentContainer>
         <QuickNavContainer>
           <DxcQuickNav title="Sections" links={links}></DxcQuickNav>
-        </QuickNavContainer>
-      </Container>
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="QuickNav with long links" level={4} />
-      <Container>
-        <ContentContainer>
-          <Content id="overview">
-            <DxcHeading level={1} text="Overview" margin={{ bottom: "small" }} />
-            <DxcText>
-              Halstack is the DXC Technology's open source design system for insurance products and digital experiences.
-              Our system provides all the tools and resources needed to create superior, beautiful but above all,
-              functional user experiences.
-            </DxcText>
-            <Content id="introduction">
-              <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
-                provide guidance for development teams in order to deliver delightful and consistent user experiences to
-                our customers.
-              </DxcText>
-            </Content>
-          </Content>
-          <Content id="principles">
-            <DxcHeading level={1} text="Principles" margin={{ top: "small", bottom: "xsmall" }} />
-            <Content id="color">
-              <DxcHeading level={2} text="Color" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                The color palette is an essential asset as a communication resource of our design system. Halstack color
-                palette brings a unified consistency and helps in guiding the user's perception order. Our color palette
-                is based in the HSL model.
-              </DxcText>
-            </Content>
-            <Content id="spacing">
-              <DxcHeading level={2} text="Spacing" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                In the search of consistent alignment between the elements we provide a spacing scale based on a root
-                values of 8px and 4px.
-              </DxcText>
-            </Content>
-            <Content id="typography">
-              <DxcHeading level={2} text="Typography" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                Our selected typography helps in structuring our user's experience based on the visual impact that it
-                has on the user interface content.
-              </DxcText>
-            </Content>
-          </Content>
-        </ContentContainer>
-        <QuickNavContainer>
-          <DxcQuickNav title="Sections" links={longLinks}></DxcQuickNav>
-        </QuickNavContainer>
-      </Container>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="QuickNav with long links and focus" level={4} />
-      <Container>
-        <ContentContainer>
-          <Content id="overview">
-            <DxcHeading level={1} text="Overview" margin={{ bottom: "small" }} />
-            <DxcText>
-              Halstack is the DXC Technology's open source design system for insurance products and digital experiences.
-              Our system provides all the tools and resources needed to create superior, beautiful but above all,
-              functional user experiences.
-            </DxcText>
-            <Content id="introduction">
-              <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
-                provide guidance for development teams in order to deliver delightful and consistent user experiences to
-                our customers.
-              </DxcText>
-            </Content>
-          </Content>
-          <Content id="principles">
-            <DxcHeading level={1} text="Principles" margin={{ top: "small", bottom: "xsmall" }} />
-            <Content id="color">
-              <DxcHeading level={2} text="Color" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                The color palette is an essential asset as a communication resource of our design system. Halstack color
-                palette brings a unified consistency and helps in guiding the user's perception order. Our color palette
-                is based in the HSL model.
-              </DxcText>
-            </Content>
-            <Content id="spacing">
-              <DxcHeading level={2} text="Spacing" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                In the search of consistent alignment between the elements we provide a spacing scale based on a root
-                values of 8px and 4px.
-              </DxcText>
-            </Content>
-            <Content id="typography">
-              <DxcHeading level={2} text="Typography" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                Our selected typography helps in structuring our user's experience based on the visual impact that it
-                has on the user interface content.
-              </DxcText>
-            </Content>
-          </Content>
-        </ContentContainer>
-        <QuickNavContainer>
-          <DxcQuickNav title="Sections" links={longLinks}></DxcQuickNav>
-        </QuickNavContainer>
-      </Container>
-    </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="QuickNav with long links and hover" level={4} />
-      <Container>
-        <ContentContainer>
-          <Content id="overview">
-            <DxcHeading level={1} text="Overview" margin={{ bottom: "small" }} />
-            <DxcText>
-              Halstack is the DXC Technology's open source design system for insurance products and digital experiences.
-              Our system provides all the tools and resources needed to create superior, beautiful but above all,
-              functional user experiences.
-            </DxcText>
-            <Content id="introduction">
-              <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
-                provide guidance for development teams in order to deliver delightful and consistent user experiences to
-                our customers.
-              </DxcText>
-            </Content>
-          </Content>
-          <Content id="principles">
-            <DxcHeading level={1} text="Principles" margin={{ top: "small", bottom: "xsmall" }} />
-            <Content id="color">
-              <DxcHeading level={2} text="Color" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                The color palette is an essential asset as a communication resource of our design system. Halstack color
-                palette brings a unified consistency and helps in guiding the user's perception order. Our color palette
-                is based in the HSL model.
-              </DxcText>
-            </Content>
-            <Content id="spacing">
-              <DxcHeading level={2} text="Spacing" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                In the search of consistent alignment between the elements we provide a spacing scale based on a root
-                values of 8px and 4px.
-              </DxcText>
-            </Content>
-            <Content id="typography">
-              <DxcHeading level={2} text="Typography" margin={{ top: "xsmall", bottom: "xsmall" }} />
-              <DxcText>
-                Our selected typography helps in structuring our user's experience based on the visual impact that it
-                has on the user interface content.
-              </DxcText>
-            </Content>
-          </Content>
-        </ContentContainer>
-        <QuickNavContainer>
-          <DxcQuickNav title="Sections" links={longLinks}></DxcQuickNav>
         </QuickNavContainer>
       </Container>
     </ExampleContainer>
