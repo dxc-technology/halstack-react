@@ -340,6 +340,57 @@ export const Chromatic = () => (
         </QuickNavContainer>
       </Container>
     </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="QuickNav with long links and hover" level={4} />
+      <Container>
+        <ContentContainer>
+          <Content id="overview">
+            <DxcHeading level={1} text="Overview" margin={{ bottom: "small" }} />
+            <DxcText>
+              Halstack is the DXC Technology's open source design system for insurance products and digital experiences.
+              Our system provides all the tools and resources needed to create superior, beautiful but above all,
+              functional user experiences.
+            </DxcText>
+            <Content id="introduction">
+              <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
+              <DxcText>
+                Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
+                provide guidance for development teams in order to deliver delightful and consistent user experiences to
+                our customers.
+              </DxcText>
+            </Content>
+          </Content>
+          <Content id="principles">
+            <DxcHeading level={1} text="Principles" margin={{ top: "small", bottom: "xsmall" }} />
+            <Content id="color">
+              <DxcHeading level={2} text="Color" margin={{ top: "xsmall", bottom: "xsmall" }} />
+              <DxcText>
+                The color palette is an essential asset as a communication resource of our design system. Halstack color
+                palette brings a unified consistency and helps in guiding the user's perception order. Our color palette
+                is based in the HSL model.
+              </DxcText>
+            </Content>
+            <Content id="spacing">
+              <DxcHeading level={2} text="Spacing" margin={{ top: "xsmall", bottom: "xsmall" }} />
+              <DxcText>
+                In the search of consistent alignment between the elements we provide a spacing scale based on a root
+                values of 8px and 4px.
+              </DxcText>
+            </Content>
+            <Content id="typography">
+              <DxcHeading level={2} text="Typography" margin={{ top: "xsmall", bottom: "xsmall" }} />
+              <DxcText>
+                Our selected typography helps in structuring our user's experience based on the visual impact that it
+                has on the user interface content.
+              </DxcText>
+            </Content>
+          </Content>
+        </ContentContainer>
+        <QuickNavContainer>
+          <DxcQuickNav title="Sections" links={longLinks}></DxcQuickNav>
+        </QuickNavContainer>
+      </Container>
+    </ExampleContainer>
   </>
 );
 
