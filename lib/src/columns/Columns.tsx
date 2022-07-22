@@ -79,7 +79,7 @@ const Columns = styled.div<ColumnsProps>`
   ${({ alignY, gutter, reverse, divider }) => `
     flex-direction: ${reverse ? "row-reverse" : "row"};
     align-items: ${alignY === "start" || alignY === "end" ? `flex-${alignY}` : alignY};
-    gap: ${divider ? `calc(${gutter}/2)` : gutter};
+    gap: ${divider ? `calc(${gutter}/2 - 1px)` : gutter};
   `}
   flex-grow: 1;
 `;
