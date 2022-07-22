@@ -101,7 +101,7 @@ const DxcCheckbox = ({
           disabled={disabled}
           tabIndex={-1}
         />
-        <CheckboxFocus backgroundType={backgroundType} labelPosition={labelPosition}>
+        <CheckboxFocus backgroundType={backgroundType} labelPosition={labelPosition} label={label}>
           {disabled ? (
             <DisabledCheckbox
               backgroundType={backgroundType}
@@ -280,7 +280,7 @@ const Checkbox = styled.span<CheckboxProps>`
   border-radius: 3px;
   position: absolute;
   top: 3px;
-  left: 3px;
+  left: 4px;
   &:hover {
     border: solid 2px
       ${(props) =>
