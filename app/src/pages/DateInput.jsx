@@ -25,12 +25,12 @@ function App() {
 
   return (
     <>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Default</h4>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Default</h4>
         <DxcDateInput margin={{ left: "medium", right: "medium" }} />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Sizes</h4>
         <DxcDateInput
           label="Medium"
           margin={{ left: "medium", right: "medium" }}
@@ -45,9 +45,9 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Margins</h4>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Margins</h4>
         <DxcDateInput margin="xxsmall" />
         <DxcDateInput margin="xsmall" />
         <DxcDateInput margin="small" />
@@ -55,9 +55,9 @@ function App() {
         <DxcDateInput margin="large" />
         <DxcDateInput margin="xlarge" />
         <DxcDateInput margin="xxlarge" />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Controlled</h4>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Controlled</h4>
         <DxcDateInput
           value={inputValue}
           onChange={onChange}
@@ -66,45 +66,45 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcDateInput
           label="With label + placerholder"
           placeholder
           margin={{ left: "medium", right: "medium" }}
           clearable
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcDateInput
           label="With helper text"
           helperText="Some sample text"
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcDateInput
           label="With 'on' autocomplete"
           autocomplete="on"
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcDateInput
           label="Disabled"
           disabled
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcDateInput
           label="Optional"
           optional
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Formats</h4>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Formats</h4>
         <DxcDateInput
           label="With new format"
           margin={{ left: "medium", right: "medium" }}
@@ -123,8 +123,8 @@ function App() {
           format="MM-dd-yyyy"
           placeholder
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcDateInput
           label="With onBlur & onChange events"
           value={inputValue}
@@ -133,15 +133,15 @@ function App() {
           error={errorMessage}
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcDateInput
           label="With error"
           error="An error was catched."
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcDateInput
           label="With ref"
           helperText="Example of helper text"
@@ -157,7 +157,7 @@ function App() {
           label="Focus!"
           margin={{ left: "medium" }}
         ></DxcButton>
-      </p>
+      </div>
       <BackgroundColorProvider color="#000000">
         <DarkMode>
           <DxcDateInput

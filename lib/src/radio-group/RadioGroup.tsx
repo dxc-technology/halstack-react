@@ -152,6 +152,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
                 focused={currentFocusIndex === index}
                 readonly={readonly}
                 tabIndex={tabIndex}
+                key={`radio-${index}`}
               />
             ))}
           </RadioGroup>

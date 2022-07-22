@@ -94,7 +94,7 @@ function Wizard() {
             {
               label: "Third step",
               description: "This is the final step",
-              icon: <img src={homeIcon} />,
+              icon: <img src={homeIcon} alt="Home" />,
             },
           ]}
         ></DxcWizard>

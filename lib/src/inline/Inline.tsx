@@ -3,6 +3,7 @@ import styled from "styled-components";
 import InlineProps from "./types";
 
 const DxcInline = ({
+  wrap = false,
   alignX = "start",
   alignY = "stretch",
   as = "div",
@@ -12,7 +13,7 @@ const DxcInline = ({
   children,
 }: InlineProps): JSX.Element => {
   return (
-    <Inline as={as} alignX={alignX} alignY={alignY} gutter={gutter} reverse={reverse} divider={divider}>
+    <Inline wrap={wrap} as={as} alignX={alignX} alignY={alignY} gutter={gutter} reverse={reverse} divider={divider}>
       {React.Children.map(children, (child, index) => {
         return (
           <>
@@ -27,7 +28,8 @@ const DxcInline = ({
 
 const Inline = styled.div<InlineProps>`
   display: flex;
-  ${({ alignX, alignY, gutter, reverse, divider }) => `
+  ${({ wrap, alignX, alignY, gutter, reverse, divider }) => `
+    flex-wrap: ${wrap ? "wrap" : "nowrap"};
     flex-direction: ${reverse ? "row-reverse" : "row"};
     align-items: stretch;
     justify-content: ${alignX === "start" || alignX === "end" ? `flex-${alignX}` : alignX};
@@ -37,9 +39,9 @@ const Inline = styled.div<InlineProps>`
       align-self: ${alignY === "start" || alignY === "end" ? `flex-${alignY}` : alignY};
     }
   `}
-  flex-wrap: wrap;
   padding: 0px;
   margin: 0px;
+  width: 100%;
 `;
 
 const Divider = styled.div`

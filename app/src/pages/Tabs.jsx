@@ -242,7 +242,7 @@ function Tabs() {
             },
             {
               label: "Twitter",
-              icon: <img src={twitterIcon} />,
+              icon: <img src={twitterIcon} alt="Twitter" />,
             },
           ]}
         />
@@ -284,7 +284,7 @@ function Tabs() {
             },
             {
               label: "Twitter",
-              icon: <img src={twitterIcon} />,
+              icon: <img src={twitterIcon} alt="Twitter" />,
             },
           ]}
         />
@@ -758,7 +758,7 @@ function Tabs() {
             },
             {
               label: "Twitter",
-              icon: <img src={twitterIcon} />,
+              icon: <img src={twitterIcon} alt="Twitter" />,
               notificationNumber: "30",
             },
           ]}
@@ -803,7 +803,7 @@ function Tabs() {
             {
               label: "Twitter",
               notificationNumber: "20",
-              icon: <img src={twitterIcon} />,
+              icon: <img src={twitterIcon} alt="Twitter" />,
             },
           ]}
         />
@@ -867,7 +867,7 @@ function Tabs() {
               },
               {
                 label: "Twitter",
-                icon: <img src={twitterIcon} />,
+                icon: <img src={twitterIcon} alt="Twitter" />,
               },
             ]}
           />
