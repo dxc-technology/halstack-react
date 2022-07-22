@@ -246,9 +246,11 @@ const CheckboxFocus = styled.span<CheckboxFocusProps>`
   height: 24px;
   position: relative;
   ${(props) =>
-    props.labelPosition === "after"
-      ? "margin-right: " + props.theme.checkLabelSpacing
-      : "margin-left: " + props.theme.checkLabelSpacing};
+    props.label
+      ? props.labelPosition === "after"
+        ? "margin-right: " + props.theme.checkLabelSpacing
+        : "margin-left: " + props.theme.checkLabelSpacing
+      : ""};
   &:focus-within {
     border-radius: 0.25rem;
     outline: 2px solid
