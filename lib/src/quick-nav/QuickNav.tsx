@@ -61,9 +61,12 @@ const ListColumn = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
+  width: 100%;
 `;
 
-const ListRow = styled.li``;
+const ListRow = styled.li`
+  width: 100%;
+`;
 
 const Link = styled.a`
   text-decoration: none;
@@ -72,6 +75,12 @@ const Link = styled.a`
   font-style: ${(props) => props.theme.fontStyle};
   font-weight: ${(props) => props.theme.fontWeight};
   color: ${(props) => props.theme.fontColor};
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
 
   &:hover {
     color: ${(props) => props.theme.hoverFontColor};
