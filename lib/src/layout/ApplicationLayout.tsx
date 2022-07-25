@@ -208,9 +208,9 @@ const SidenavContainer = styled.div`
   z-index: 1;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
-    position: fixed;
-    top: 116px;
-    height: calc(100vh - 116px);
+    position: absolute;
+    top: 0px;
+    height: 100%;
   }
 `;
 
