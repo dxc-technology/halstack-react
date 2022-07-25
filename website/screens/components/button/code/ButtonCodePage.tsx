@@ -26,21 +26,19 @@ const sections = [
             <td>
               <Code>'primary'</Code>
             </td>
-            <td>Uses one of the available button modes.</td>
+            <td>The available button modes.</td>
           </tr>
           <tr>
             <td>type: 'button' | 'reset' | 'submit'</td>
             <td>
               <Code>'button'</Code>
             </td>
-            <td>
-              This prop corresponds to the 'type' prop of the button in html.
-            </td>
+            <td>'type' html prop of the button.</td>
           </tr>
           <tr>
             <td>label: string</td>
             <td></td>
-            <td>Text to be placed next to the button.</td>
+            <td>Text to be placed in the button.</td>
           </tr>
           <tr>
             <td>icon: node | string</td>
