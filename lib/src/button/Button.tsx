@@ -238,7 +238,7 @@ const Button = styled.button<ButtonProps>`
         background-color: ${
           backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
         };
-        color: ${backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor} !important;
+        color: ${backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor};
         &:hover {
           background-color: ${
             backgroundType === "dark"
