@@ -277,7 +277,7 @@ const Checkbox = styled.span<CheckboxProps>`
         ? getNotDisabledColor(props, "hoverBackground")
         : getNotDisabledColor(props, "background")
       : "transparent"};
-  border-radius: 3px;
+  border-radius: 2px;
   position: absolute;
   top: 3px;
   left: 3px;
@@ -299,7 +299,6 @@ const Checkbox = styled.span<CheckboxProps>`
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-    border-radius: 1px;
     ${(props) => (props.checked ? `display: block;` : `display: none`)}
   }
   &:focus {
