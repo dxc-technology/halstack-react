@@ -4,7 +4,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
-import ButtonPropsType from "./types";
+import ButtonPropsType, { Space, Margin } from "./types";
 
 const sizes = {
   small: "42px",
@@ -69,13 +69,6 @@ const DxcButton = ({
   );
 };
 
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
-  top?: Space;
-  bottom?: Space;
-  left?: Space;
-  right?: Space;
-};
 type ButtonContainerPropsType = {
   margin?: Space | Margin;
   size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
