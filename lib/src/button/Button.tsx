@@ -113,14 +113,14 @@ const Button = styled.button<ButtonProps>`
   height: 40px;
   cursor: pointer;
   &:focus {
-    border-color: transparent;
+    outline: none;
     box-shadow: 0 0 0 2px
       ${(props) =>
         props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor};
   }
 
   ${(props) => {
-    const { mode, backgroundType } = props;
+    const { mode, backgroundType, disabled } = props;
     if (mode === "primary") {
       return `
         border-radius: ${props.theme.primaryBorderRadius};
@@ -150,10 +150,14 @@ const Button = styled.button<ButtonProps>`
               ? props.theme.primaryActiveBackgroundColorOnDark
               : props.theme.primaryActiveBackgroundColor
           };
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-          };
+          outline: none;
+          box-shadow: ${
+            !disabled
+              ? `0 0 0 2px ${
+                  backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
+                }`
+              : ""
+          }
         }
         &:disabled { 
           cursor: not-allowed;
@@ -194,6 +198,9 @@ const Button = styled.button<ButtonProps>`
             backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
           };
         }
+        &:focus {
+          border-color: transparent;
+        }
         &:active {
           background-color: ${
             backgroundType === "dark"
@@ -203,10 +210,14 @@ const Button = styled.button<ButtonProps>`
           color: ${
             backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
           };
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-          };
+          outline: none;
+          box-shadow: ${
+            !disabled
+              ? `0 0 0 2px ${
+                  backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
+                }`
+              : ""
+          }
         }
         &:disabled {
           cursor: not-allowed;
@@ -252,10 +263,14 @@ const Button = styled.button<ButtonProps>`
               ? props.theme.textActiveBackgroundColorOnDark
               : props.theme.textActiveBackgroundColor
           };
-          border-color: transparent;
-          box-shadow: 0 0 0 2px ${
-            backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-          };
+          outline: none;
+          box-shadow: ${
+            !disabled
+              ? `0 0 0 2px ${
+                  backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
+                }`
+              : ""
+          }
         }
         &:disabled {
           cursor:not-allowed;
