@@ -210,6 +210,7 @@ const Button = styled.button<ButtonProps>`
           color: ${
             backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
           };
+          border-color: transparent;
           outline: none;
           box-shadow: ${
             !disabled
