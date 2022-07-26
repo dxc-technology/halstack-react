@@ -8,10 +8,23 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import MenuList from "@material-ui/core/MenuList";
 import DropdownPropsType from "./types";
-
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
+
+const upArrowIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7 14l5-5 5 5z" />
+    <path d="M0 0h24v24H0z" fill="none" />
+  </svg>
+);
+
+const downArrowIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7 10l5 5 5-5z" />
+    <path d="M0 0h24v24H0z" fill="none" />
+  </svg>
+);
 
 const DxcDropdown = ({
   options,
@@ -28,137 +41,116 @@ const DxcDropdown = ({
   disabled = false,
 }: DropdownPropsType): JSX.Element => {
   const [width, setWidth] = useState();
-  const colorsTheme = useTheme();
+  const [anchorEl, setAnchorEl] = useState(null);
 
+  const colorsTheme = useTheme();
   const ref = useRef(null);
+
   const handleResize = () => {
-    if (ref.current) setWidth(ref.current.offsetWidth);
+    setWidth(ref?.current?.offsetWidth);
+  };
+
+  const handleClickListItem = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuItemClick = (option) => {
+    setAnchorEl(null);
+    onSelectOption(option.value);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.addEventListener("resize", handleResize);
-      handleResize();
-    }
-
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => {
-      if (ref.current) ref.current.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
-
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  function handleClickListItem(event) {
-    setAnchorEl(event.currentTarget);
-  }
-
-  function handleMenuItemClick(option) {
-    setAnchorEl(null);
-    onSelectOption(option.value);
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
-
-  const handleCloseOver = expandOnHover ? handleClose : undefined;
-
-  const UpArrowIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M7 14l5-5 5 5z" />
-      <path d="M0 0h24v24H0z" fill="none" />
-    </svg>
-  );
-
-  const DownArrowIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M7 10l5 5 5-5z" />
-      <path d="M0 0h24v24H0z" fill="none" />
-    </svg>
-  );
-
-  const labelComponent = (
-    <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
-      {label}
-    </DropdownTriggerLabel>
-  );
+  }, [setWidth]);
 
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
-      <DXCDropdownContainer margin={margin} size={size} disabled={disabled}>
-        <div
+      <DropdownContainer margin={margin} size={size} disabled={disabled}>
+        <DropdownTrigger
+          opened={anchorEl === null ? false : true}
+          onClick={handleClickListItem}
           onMouseOver={expandOnHover && !disabled ? handleClickListItem : undefined}
-          onMouseOut={handleCloseOver}
-          onFocus={handleCloseOver}
-          onBlur={handleCloseOver}
+          onMouseOut={expandOnHover && !disabled ? handleClose : undefined}
+          onFocus={expandOnHover && !disabled ? handleClose : undefined}
+          onBlur={expandOnHover && !disabled ? handleClose : undefined}
+          disabled={disabled}
+          label={label}
+          margin={margin}
+          size={size}
+          ref={ref}
+          tabIndex={tabIndex}
         >
-          <DropdownTrigger
-            opened={anchorEl === null ? false : true}
-            onClick={handleClickListItem}
-            disabled={disabled}
-            label={label}
-            caretHidden={caretHidden}
-            margin={margin}
-            size={size}
-            ref={ref}
-            tabIndex={tabIndex}
-          >
-            <DropdownTriggerContainer caretHidden={caretHidden}>
-              {iconPosition === "after" && labelComponent}
-              {icon && (
-                <ButtonIconContainer label={label} iconPosition={iconPosition} disabled={disabled}>
-                  {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
-                </ButtonIconContainer>
-              )}
-              {iconPosition === "before" && labelComponent}
-            </DropdownTriggerContainer>
-            <CaretIconContainer caretHidden={caretHidden} disabled={disabled}>
-              {!caretHidden && (anchorEl === null ? <DownArrowIcon /> : <UpArrowIcon />)}
-            </CaretIconContainer>
-          </DropdownTrigger>
-          <DXCMenu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            getContentAnchorEl={null}
-            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-            transformOrigin={{ vertical: "top", horizontal: "left" }}
-            size={size}
-            width={width}
-            role={undefined}
-            transition
-            disablePortal
-            placement="bottom-start"
-          >
-            {({ TransitionProps }) => (
-              <Grow {...TransitionProps}>
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow">
-                      {options.map((option) => (
-                        <MenuItem
-                          key={option.value}
-                          value={option.value}
-                          disableRipple={true}
-                          onClick={(event) => handleMenuItemClick(option)}
-                        >
-                          {optionsIconPosition === "after" && <span className="optionLabel">{option.label}</span>}
-                          {option.icon && (
-                            <ListIconContainer label={option.label} iconPosition={optionsIconPosition}>
-                              {typeof option.icon === "string" ? <ListIcon src={option.icon} /> : option.icon}
-                            </ListIconContainer>
-                          )}
-                          {optionsIconPosition === "before" && <span className="optionLabel">{option.label}</span>}
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
+          <DropdownTriggerContent caretHidden={caretHidden}>
+            {label && iconPosition === "after" && (
+              <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
+                {label}
+              </DropdownTriggerLabel>
             )}
-          </DXCMenu>
-        </div>
-      </DXCDropdownContainer>
+            {icon && (
+              <DropdownTriggerIcon label={label} iconPosition={iconPosition} disabled={disabled}>
+                {typeof icon === "string" ? <DropdownTriggerImg src={icon} /> : icon}
+              </DropdownTriggerIcon>
+            )}
+            {label && iconPosition === "before" && (
+              <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
+                {label}
+              </DropdownTriggerLabel>
+            )}
+          </DropdownTriggerContent>
+          {!caretHidden && (
+            <CaretIcon disabled={disabled}>
+              {!caretHidden && (anchorEl === null ? downArrowIcon : upArrowIcon)}
+            </CaretIcon>
+          )}
+        </DropdownTrigger>
+        <DropdownMenu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          getContentAnchorEl={null}
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          transformOrigin={{ vertical: "top", horizontal: "left" }}
+          size={size}
+          width={width}
+          role={undefined}
+          transition
+          disablePortal
+          placement="bottom-start"
+        >
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow">
+                    {options.map((option) => (
+                      <MenuItem
+                        key={option.value}
+                        value={option.value}
+                        disableRipple={true}
+                        onClick={(event) => handleMenuItemClick(option)}
+                      >
+                        {optionsIconPosition === "after" && <span className="optionLabel">{option.label}</span>}
+                        {option.icon && (
+                          <ListIconContainer label={option.label} iconPosition={optionsIconPosition}>
+                            {typeof option.icon === "string" ? <ListIcon src={option.icon} /> : option.icon}
+                          </ListIconContainer>
+                        )}
+                        {optionsIconPosition === "before" && <span className="optionLabel">{option.label}</span>}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </DropdownMenu>
+      </DropdownContainer>
     </ThemeProvider>
   );
 };
@@ -171,14 +163,12 @@ const sizes = {
   fitContent: "unset",
 };
 
-const calculateWidth = (margin, size) => {
-  if (size === "fillParent") {
-    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-  }
-  return sizes[size];
-};
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
-const DXCDropdownContainer = styled.div`
+const DropdownContainer = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
   text-overflow: ellipsis;
   overflow: hidden;
@@ -194,7 +184,7 @@ const DXCDropdownContainer = styled.div`
   display: inline-block;
 `;
 
-const DXCMenu = styled(Popper)`
+const DropdownMenu = styled(Popper)`
   z-index: 1;
 
   .MuiMenuItem-gutters {
@@ -265,19 +255,16 @@ const DropdownTrigger = styled.button`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  gap: ${(props) => props.theme.caretIconSpacing};
   width: 100%;
-  height: auto;
   min-height: 40px;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  font-family: ${(props) => props.theme.buttonFontFamily};
-  font-size: ${(props) => props.theme.buttonFontSize};
-  font-style: ${(props) => props.theme.buttonFontStyle};
-  font-weight: ${(props) => props.theme.buttonFontWeight};
+  min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => (props.disabled ? props.theme.disabledBorderColor : props.theme.borderColor)};
-  min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
+  border-bottom-right-radius: ${(props) => (props.opened ? "0px" : props.theme.borderRadius)};
+  border-bottom-left-radius: ${(props) => (props.opened ? "0px" : props.theme.borderRadius)};
   padding-top: ${(props) => props.theme.buttonPaddingTop};
   padding-bottom: ${(props) => props.theme.buttonPaddingBottom};
   padding-left: ${(props) => props.theme.buttonPaddingLeft};
@@ -285,8 +272,7 @@ const DropdownTrigger = styled.button`
   background-color: ${(props) =>
     props.disabled ? props.theme.disabledButtonBackgroundColor : props.theme.buttonBackgroundColor};
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonFontColor)};
-  border-bottom-right-radius: ${(props) => (props.opened ? "0px" : props.theme.borderRadius)};
-  border-bottom-left-radius: ${(props) => (props.opened ? "0px" : props.theme.borderRadius)};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   ${(props) =>
     !props.disabled &&
@@ -307,37 +293,49 @@ const DropdownTrigger = styled.button`
   `};
 `;
 
-const DropdownTriggerLabel = styled.span`
-  text-align: left;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
-const DropdownTriggerContainer = styled.span`
+const DropdownTriggerContent = styled.span`
   display: flex;
   align-items: center;
   margin-left: 0px;
   margin-right: 0px;
-  width: ${(props) => (props.caretHidden ? "100%" : "calc(100% - 36px)")};
+  width: 100%;
   white-space: nowrap;
 `;
 
-const ButtonIcon = styled.img``;
+const DropdownTriggerLabel = styled.span`
+  font-family: ${(props) => props.theme.buttonFontFamily};
+  font-size: ${(props) => props.theme.buttonFontSize};
+  font-style: ${(props) => props.theme.buttonFontStyle};
+  font-weight: ${(props) => props.theme.buttonFontWeight};
+  text-overflow: ellipsis;
+`;
 
-const ButtonIconContainer = styled.div`
-  overflow: hidden;
+const DropdownTriggerImg = styled.img``;
+
+const DropdownTriggerIcon = styled.div`
   width: ${(props) => props.theme.buttonIconSize};
   height: ${(props) => props.theme.buttonIconSize};
   margin-left: ${(props) =>
     (props.iconPosition === "after" && props.label !== "" && props.theme.buttonIconSpacing) || "0px"};
   margin-right: ${(props) =>
     (props.iconPosition === "before" && props.label !== "" && props.theme.buttonIconSpacing) || "0px"};
+  overflow: hidden;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
 
   img,
   svg {
     height: 100%;
     width: 100%;
+  }
+`;
+
+const CaretIcon = styled.span`
+  display: inline-flex;
+  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
+
+  svg {
+    width: ${(props) => props.theme.caretIconSize};
+    height: ${(props) => props.theme.caretIconSize};
   }
 `;
 
@@ -357,17 +355,6 @@ const ListIconContainer = styled.div`
   svg {
     height: 100%;
     width: 100%;
-  }
-`;
-
-const CaretIconContainer = styled.div`
-  display: ${(props) => (props.caretHidden ? "none" : "inline-flex")};
-  margin-left: ${(props) => props.theme.caretIconSpacing};
-  color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
-
-  svg {
-    width: ${(props) => props.theme.caretIconSize};
-    height: ${(props) => props.theme.caretIconSize};
   }
 `;
 
