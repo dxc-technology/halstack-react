@@ -89,7 +89,7 @@ const DxcCheckbox = ({
         checked={checked ?? innerChecked}
       >
         {label && labelPosition === "before" && labelComponent}
-        <input
+        <CheckboxInput
           type="checkbox"
           checked={checked ?? innerChecked}
           name={name}
@@ -223,18 +223,18 @@ const CheckboxContainer = styled.div<CheckboxContainerProps>`
   align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   position: relative;
+`;
 
-  input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+const CheckboxInput = styled.input`
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 type CheckboxFocusProps = CheckboxPropsType & {
