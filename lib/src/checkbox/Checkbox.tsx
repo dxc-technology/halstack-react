@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces, componentTokens } from "../common/variables.js";
+import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
@@ -60,7 +60,6 @@ const DxcCheckbox = ({
       id={labelId}
       onClick={disabled === true ? () => {} : handleCheckboxChange}
       disabled={disabled}
-      className="labelContainer"
       backgroundType={backgroundType}
       onMouseOver={handleLabelHover}
       onMouseOut={handleLabelHover}
@@ -79,15 +78,7 @@ const DxcCheckbox = ({
 
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
-      <CheckboxContainer
-        id={name}
-        labelPosition={labelPosition}
-        disabled={disabled}
-        margin={margin}
-        size={size}
-        backgroundType={backgroundType}
-        checked={checked ?? innerChecked}
-      >
+      <CheckboxContainer id={name} disabled={disabled} margin={margin} size={size}>
         {label && labelPosition === "before" && labelComponent}
         <CheckboxInput
           type="checkbox"
@@ -101,21 +92,21 @@ const DxcCheckbox = ({
           disabled={disabled}
           tabIndex={-1}
         />
-        <CheckboxFocus backgroundType={backgroundType} labelPosition={labelPosition} label={label}>
+        <CheckboxFocus
+          backgroundType={backgroundType}
+          labelPosition={labelPosition}
+          label={label}
+          tabIndex={tabIndex}
+          onClick={disabled === true ? () => {} : handleCheckboxChange}
+          onKeyDown={disabled === true ? () => {} : handleKeyboard}
+        >
           {disabled ? (
-            <DisabledCheckbox
-              backgroundType={backgroundType}
-              isLabelHovered={isLabelHovered}
-              checked={checked ?? innerChecked}
-            />
+            <DisabledCheckbox backgroundType={backgroundType} checked={checked ?? innerChecked} />
           ) : (
             <Checkbox
               backgroundType={backgroundType}
               isLabelHovered={isLabelHovered}
               checked={checked ?? innerChecked}
-              tabIndex={tabIndex}
-              onClick={disabled === true ? () => {} : handleCheckboxChange}
-              onKeyDown={disabled === true ? () => {} : handleKeyboard}
             />
           )}
         </CheckboxFocus>
@@ -192,7 +183,7 @@ const getNotDisabledColor = (props, element) => {
 
 type LabelContainerProps = {
   disabled: boolean;
-  backgroundType: string;
+  backgroundType: "dark" | "light";
 };
 
 const LabelContainer = styled.span<LabelContainerProps>`
@@ -203,9 +194,7 @@ const LabelContainer = styled.span<LabelContainerProps>`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 `;
 
-type CheckboxContainerProps = CheckboxPropsType & {
-  backgroundType: string;
-};
+type CheckboxContainerProps = CheckboxPropsType;
 
 const CheckboxContainer = styled.div<CheckboxContainerProps>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -231,14 +220,11 @@ const CheckboxInput = styled.input`
   cursor: pointer;
   height: 0;
   width: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 `;
 
 type CheckboxFocusProps = CheckboxPropsType & {
-  backgroundType: string;
+  backgroundType: "dark" | "light";
 };
 
 const CheckboxFocus = styled.span<CheckboxFocusProps>`
@@ -251,7 +237,7 @@ const CheckboxFocus = styled.span<CheckboxFocusProps>`
         ? `margin-right: ${props.theme.checkLabelSpacing}; left: 1px; right: unset;`
         : `margin-left: ${props.theme.checkLabelSpacing}; right: 1px; left: unset;`
       : "right: 1px; left: unset;"};
-  &:focus-within {
+  &:focus-visible {
     border-radius: 0.25rem;
     outline: 2px solid
       ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
@@ -260,8 +246,8 @@ const CheckboxFocus = styled.span<CheckboxFocusProps>`
 `;
 
 type CheckboxProps = CheckboxPropsType & {
-  backgroundType: string;
-  isLabelHovered: boolean;
+  backgroundType: "dark" | "light";
+  isLabelHovered?: boolean;
 };
 
 const Checkbox = styled.span<CheckboxProps>`
@@ -296,8 +282,6 @@ const Checkbox = styled.span<CheckboxProps>`
     height: 12px;
     border: solid ${(props) => getNotDisabledColor(props, "check")};
     border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
     transform: rotate(45deg);
     ${(props) => (props.checked ? `display: block;` : `display: none`)}
   }
