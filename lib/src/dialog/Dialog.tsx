@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import DialogPropsType, { Padding, Space } from "./types";
 
@@ -16,6 +16,7 @@ const DxcDialog = ({
   tabIndex = 0,
 }: DialogPropsType): JSX.Element => {
   const colorsTheme = useTheme();
+  const ref = useRef<HTMLButtonElement>(null);
 
   const handleClose = () => {
     onCloseClick?.();
@@ -25,17 +26,29 @@ const DxcDialog = ({
     onBackgroundClick?.();
   };
 
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.keyCode === 27) {
+      // escape
+      event.preventDefault();
+      handleClose();
+    }
+  };
+
+  useEffect(() => {
+    ref?.current?.focus();
+  }, [isCloseVisible]);
+
   return (
     <ThemeProvider theme={colorsTheme.dialog}>
       <BodyStyle />
       <DialogContainer role="presentation">
         {overlay && <Overlay onClick={handleOverlayClick} />}
-        <Dialog role="dialog" isCloseVisible={isCloseVisible}>
+        <Dialog role="dialog" aria-modal={overlay} isCloseVisible={isCloseVisible}>
           <Children padding={padding}>
             <BackgroundColorProvider color={colorsTheme.dialog.backgroundColor}>{children}</BackgroundColorProvider>
           </Children>
           {isCloseVisible && (
-            <CloseIconContainer onClick={handleClose} tabIndex={tabIndex}>
+            <CloseIconContainer onClick={handleClose} onKeyDown={handleOnKeyDown} tabIndex={tabIndex} ref={ref}>
               <CloseIcon
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
