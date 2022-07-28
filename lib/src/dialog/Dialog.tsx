@@ -97,6 +97,8 @@ const Dialog = styled.div<{ isCloseVisible?: boolean }>`
   z-index: 1300;
   background-color: ${(props) => props.theme.backgroundColor};
   font-family: ${(props) => props.theme.fontFamily};
+  font-size: ${(props) => props.theme.fontSize};
+  font-weight: ${(props) => props.theme.fontWeight};
   min-height: ${(props) => (props.isCloseVisible ? "72px" : "")};
   box-sizing: border-box;
   box-shadow: ${(props) =>
