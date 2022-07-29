@@ -88,6 +88,7 @@ const Button = styled.button<ButtonProps>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   display: inline-flex;
   width: ${(props) => calculateWidth(props.margin, props.size)};
+  height: 40px;
   padding-left: ${(props) => props.theme.paddingLeft};
   padding-right: ${(props) => props.theme.paddingRight};
   padding-top: ${(props) => props.theme.paddingTop};
@@ -99,7 +100,6 @@ const Button = styled.button<ButtonProps>`
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
   letter-spacing: ${(props) => props.theme.labelLetterSpacing};
-  height: 40px;
   cursor: pointer;
   &:focus {
     outline: none;
