@@ -44,38 +44,39 @@ const DxcButton = ({
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
-      <ButtonContainer margin={margin} size={size} backgroundType={backgroundType}>
-        <Button
-          type={type}
-          mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
-          disabled={disabled}
-          aria-disabled={disabled}
-          tabIndex={disabled ? -1 : tabIndex}
-          backgroundType={backgroundType}
-          onClick={() => {
-            onClick();
-          }}
-        >
-          {label && iconPosition === "after" && labelComponent}
-          {icon && (
-            <IconContainer label={label} iconPosition={iconPosition}>
-              {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
-            </IconContainer>
-          )}
-          {label && iconPosition === "before" && labelComponent}
-        </Button>
-      </ButtonContainer>
+      <Button
+        type={type}
+        mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
+        disabled={disabled}
+        aria-disabled={disabled}
+        tabIndex={disabled ? -1 : tabIndex}
+        backgroundType={backgroundType}
+        margin={margin}
+        size={size}
+        onClick={() => {
+          onClick();
+        }}
+      >
+        {label && iconPosition === "after" && labelComponent}
+        {icon && (
+          <IconContainer label={label} iconPosition={iconPosition}>
+            {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
+          </IconContainer>
+        )}
+        {label && iconPosition === "before" && labelComponent}
+      </Button>
     </ThemeProvider>
   );
 };
 
-type ButtonContainerPropsType = {
+type ButtonProps = {
+  mode?: "primary" | "secondary" | "text";
   margin?: Space | Margin;
   size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   backgroundType?: "dark" | "light";
 };
 
-const ButtonContainer = styled.div<ButtonContainerPropsType>`
+const Button = styled.button<ButtonProps>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -85,17 +86,8 @@ const ButtonContainer = styled.div<ButtonContainerPropsType>`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: inline-block;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-`;
-
-type ButtonProps = {
-  mode?: "primary" | "secondary" | "text";
-  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
-  backgroundType?: "dark" | "light";
-};
-
-const Button = styled.button<ButtonProps>`
+  height: 40px;
   padding-left: ${(props) => props.theme.paddingLeft};
   padding-right: ${(props) => props.theme.paddingRight};
   padding-top: ${(props) => props.theme.paddingTop};
@@ -108,9 +100,6 @@ const Button = styled.button<ButtonProps>`
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
   letter-spacing: ${(props) => props.theme.labelLetterSpacing};
-  min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
-  width: 100%;
-  height: 40px;
   cursor: pointer;
   &:focus {
     outline: none;
@@ -118,152 +107,131 @@ const Button = styled.button<ButtonProps>`
       ${(props) =>
         props.backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor};
   }
-
   ${(props) => {
     const { mode, backgroundType, disabled } = props;
-    if (mode === "primary") {
-      return `
-        border-radius: ${props.theme.primaryBorderRadius};
-        border-width:  ${props.theme.primaryBorderThickness};
-        border-style:  ${props.theme.primaryBorderStyle};
-        font-family:   ${props.theme.primaryFontFamily};
-        font-size:     ${props.theme.primaryFontSize};
-        font-weight:   ${props.theme.primaryFontWeight};
+    return `
+        border-radius: ${
+          props.mode === "primary"
+            ? props.theme.primaryBorderRadius
+            : props.mode === "secondary"
+            ? props.theme.secondaryBorderRadius
+            : props.theme.textBorderRadius
+        };
+        border-width: ${
+          props.mode === "primary"
+            ? props.theme.primaryBorderThickness
+            : props.mode === "secondary"
+            ? props.theme.secondaryBorderThickness
+            : props.theme.textBorderThickness
+        };
+        border-style: ${
+          mode === "primary"
+            ? props.theme.primaryBorderStyle
+            : mode === "secondary"
+            ? props.theme.secondaryBorderStyle
+            : props.theme.textBorderStyle
+        };
+        font-family: ${
+          mode === "primary"
+            ? props.theme.primaryFontFamily
+            : mode === "secondary"
+            ? props.theme.secondaryFontFamily
+            : props.theme.textFontFamily
+        };
+        font-size: ${
+          mode === "primary"
+            ? props.theme.primaryFontSize
+            : mode === "secondary"
+            ? props.theme.secondaryFontSize
+            : props.theme.textFontSize
+        };
+        font-weight: ${
+          mode === "primary"
+            ? props.theme.primaryFontWeight
+            : mode === "secondary"
+            ? props.theme.secondaryFontWeight
+            : props.theme.textFontWeight
+        };
         background-color: ${
-          backgroundType === "dark" ? props.theme.primaryBackgroundColorOnDark : props.theme.primaryBackgroundColor
+          mode === "primary"
+            ? backgroundType === "dark"
+              ? props.theme.primaryBackgroundColorOnDark
+              : props.theme.primaryBackgroundColor
+            : mode === "secondary"
+            ? backgroundType === "dark"
+              ? props.theme.secondaryBackgroundColorOnDark
+              : props.theme.secondaryBackgroundColor
+            : backgroundType === "dark"
+            ? props.theme.textBackgroundColorOnDark
+            : props.theme.textBackgroundColor
         };
         color: ${
-          backgroundType && backgroundType === "dark"
-            ? props.theme.primaryFontColorOnDark
-            : props.theme.primaryFontColor
+          mode === "primary"
+            ? backgroundType === "dark"
+              ? props.theme.primaryFontColorOnDark
+              : props.theme.primaryFontColor
+            : mode === "secondary"
+            ? backgroundType === "dark"
+              ? props.theme.secondaryFontColorOnDark
+              : props.theme.secondaryFontColor
+            : backgroundType === "dark"
+            ? props.theme.textFontColorOnDark
+            : props.theme.textFontColor
         };
-        &:hover {
-          background-color: ${
-            backgroundType === "dark"
-              ? props.theme.primaryHoverBackgroundColorOnDark
-              : props.theme.primaryHoverBackgroundColor
-          };
-        }
-        &:active {
-          background-color: ${
-            backgroundType === "dark"
-              ? props.theme.primaryActiveBackgroundColorOnDark
-              : props.theme.primaryActiveBackgroundColor
-          };
-          outline: none;
-          box-shadow: ${
-            !disabled
-              ? `0 0 0 2px ${
-                  backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-                }`
-              : ""
-          }
-        }
-        &:disabled { 
-          cursor: not-allowed;
-          background-color: ${
-            backgroundType === "dark"
-              ? props.theme.primaryDisabledBackgroundColorOnDark
-              : props.theme.primaryDisabledBackgroundColor
-          };
-          color: ${
-            backgroundType === "dark"
-              ? props.theme.primaryDisabledFontColorOnDark
-              : props.theme.primaryDisabledFontColor
-          };
-        }
-      `;
-    } else if (mode === "secondary") {
-      return `
-        border-radius: ${props.theme.secondaryBorderRadius};
-        border-width:  ${props.theme.secondaryBorderThickness};
-        border-style:  ${props.theme.secondaryBorderStyle};
-        font-family:   ${props.theme.secondaryFontFamily};
-        font-size:     ${props.theme.secondaryFontSize};
-        font-weight:   ${props.theme.secondaryFontWeight};
-        background-color: ${
-          backgroundType === "dark" ? props.theme.secondaryBackgroundColorOnDark : props.theme.secondaryBackgroundColor
-        };
-        color: ${backgroundType === "dark" ? props.theme.secondaryFontColorOnDark : props.theme.secondaryFontColor};
         border-color: ${
-          backgroundType === "dark" ? props.theme.secondaryBorderColorOnDark : props.theme.secondaryBorderColor
+          mode === "secondary"
+            ? backgroundType === "dark"
+              ? props.theme.secondaryBorderColorOnDark
+              : props.theme.secondaryBorderColor
+            : ""
         };
         &:hover {
           background-color: ${
-            backgroundType === "dark"
-              ? props.theme.secondaryHoverBackgroundColorOnDark
-              : props.theme.secondaryHoverBackgroundColor
-          };
-          color: ${
-            backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
-          };
-        }
-        &:focus {
-          border-color: transparent;
-        }
-        &:active {
-          background-color: ${
-            backgroundType === "dark"
-              ? props.theme.secondaryActiveBackgroundColorOnDark
-              : props.theme.secondaryActiveBackgroundColor
-          };
-          color: ${
-            backgroundType === "dark" ? props.theme.secondaryHoverFontColorOnDark : props.theme.secondaryHoverFontColor
-          };
-          border-color: transparent;
-          outline: none;
-          box-shadow: ${
-            !disabled
-              ? `0 0 0 2px ${
-                  backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
-                }`
-              : ""
-          }
-        }
-        &:disabled {
-          cursor: not-allowed;
-          background-color: ${
-            backgroundType === "dark"
-              ? props.theme.secondaryDisabledBackgroundColorOnDark
-              : props.theme.secondaryDisabledBackgroundColor
-          };
-          color: ${
-            backgroundType === "dark"
-              ? props.theme.secondaryDisabledFontColorOnDark
-              : props.theme.secondaryDisabledFontColor
-          };
-          border-color: ${
-            backgroundType === "dark"
-              ? props.theme.secondaryDisabledBorderColorOnDark
-              : props.theme.secondaryDisabledBorderColor
-          };
-          }
-        `;
-    } else if (mode === "text") {
-      return `
-        border-radius: ${props.theme.textBorderRadius};
-        border-width:  ${props.theme.textBorderThickness};
-        border-style:  ${props.theme.textBorderStyle};
-        font-family:   ${props.theme.textFontFamily};
-        font-size:     ${props.theme.textFontSize};
-        font-weight:   ${props.theme.textFontWeight};
-        background-color: ${
-          backgroundType === "dark" ? props.theme.textBackgroundColorOnDark : props.theme.textBackgroundColor
-        };
-        color: ${backgroundType === "dark" ? props.theme.textFontColorOnDark : props.theme.textFontColor};
-        &:hover {
-          background-color: ${
-            backgroundType === "dark"
+            mode === "primary"
+              ? backgroundType === "dark"
+                ? props.theme.primaryHoverBackgroundColorOnDark
+                : props.theme.primaryHoverBackgroundColor
+              : mode === "secondary"
+              ? backgroundType === "dark"
+                ? props.theme.secondaryHoverBackgroundColorOnDark
+                : props.theme.secondaryHoverBackgroundColor
+              : backgroundType === "dark"
               ? props.theme.textHoverBackgroundColorOnDark
               : props.theme.textHoverBackgroundColor
           };
+          color: ${
+            mode === "secondary"
+              ? backgroundType === "dark"
+                ? props.theme.secondaryHoverFontColorOnDark
+                : props.theme.secondaryHoverFontColor
+              : ""
+          };
+        }
+        &:focus {
+          border-color: ${mode === "secondary" ? "transparent" : ""};
         }
         &:active {
           background-color: ${
-            backgroundType === "dark"
+            mode === "primary"
+              ? backgroundType === "dark"
+                ? props.theme.primaryActiveBackgroundColorOnDark
+                : props.theme.primaryActiveBackgroundColor
+              : mode === "secondary"
+              ? backgroundType === "dark"
+                ? props.theme.secondaryActiveBackgroundColorOnDark
+                : props.theme.secondaryActiveBackgroundColor
+              : backgroundType === "dark"
               ? props.theme.textActiveBackgroundColorOnDark
               : props.theme.textActiveBackgroundColor
           };
+          color: ${
+            mode === "secondary"
+              ? backgroundType === "dark"
+                ? props.theme.secondaryHoverFontColorOnDark
+                : props.theme.secondaryHoverFontColor
+              : ""
+          };
+          border-color: ${mode === "secondary" ? "transparent" : ""};
           outline: none;
           box-shadow: ${
             !disabled
@@ -271,21 +239,45 @@ const Button = styled.button<ButtonProps>`
                   backgroundType === "dark" ? props.theme.focusBorderColorOnDark : props.theme.focusBorderColor
                 }`
               : ""
-          }
+          };
         }
         &:disabled {
-          cursor:not-allowed;
-          color: ${
-            backgroundType === "dark" ? props.theme.textDisabledFontColorOnDark : props.theme.textDisabledFontColor
-          };
+          cursor: not-allowed;
           background-color: ${
-            backgroundType === "dark"
+            mode === "primary"
+              ? backgroundType === "dark"
+                ? props.theme.primaryDisabledBackgroundColorOnDark
+                : props.theme.primaryDisabledBackgroundColor
+              : mode === "secondary"
+              ? backgroundType === "dark"
+                ? props.theme.secondaryDisabledBackgroundColorOnDark
+                : props.theme.secondaryDisabledBackgroundColor
+              : backgroundType === "dark"
               ? props.theme.textDisabledBackgroundColorOnDark
               : props.theme.textDisabledBackgroundColor
           };
+          color: ${
+            mode === "primary"
+              ? backgroundType === "dark"
+                ? props.theme.primaryDisabledFontColorOnDark
+                : props.theme.primaryDisabledFontColor
+              : mode === "secondary"
+              ? backgroundType === "dark"
+                ? props.theme.secondaryDisabledFontColorOnDark
+                : props.theme.secondaryDisabledFontColor
+              : backgroundType === "dark"
+              ? props.theme.textDisabledFontColorOnDark
+              : props.theme.textDisabledFontColor
+          };
+          border-color: ${
+            mode === "secondary"
+              ? backgroundType === "dark"
+                ? props.theme.secondaryDisabledBorderColorOnDark
+                : props.theme.secondaryDisabledBorderColor
+              : ""
+          };
         }
       `;
-    }
   }}
 `;
 
