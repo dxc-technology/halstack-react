@@ -4,7 +4,7 @@ import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
-import ButtonPropsType, { Space, Margin } from "./types";
+import ButtonPropsType, { Space, Margin, SVG } from "./types";
 
 const sizes = {
   small: "42px",
@@ -44,39 +44,39 @@ const DxcButton = ({
 
   return (
     <ThemeProvider theme={colorsTheme.button}>
-      <ButtonContainer margin={margin} size={size} backgroundType={backgroundType}>
-        <Button
-          type={type}
-          mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
-          disabled={disabled}
-          aria-disabled={disabled}
-          tabIndex={disabled ? -1 : tabIndex}
-          backgroundType={backgroundType}
-          size={size}
-          onClick={() => {
-            onClick();
-          }}
-        >
-          {label && iconPosition === "after" && labelComponent}
-          {icon && (
-            <IconContainer label={label} iconPosition={iconPosition}>
-              {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
-            </IconContainer>
-          )}
-          {label && iconPosition === "before" && labelComponent}
-        </Button>
-      </ButtonContainer>
+      <Button
+        type={type}
+        mode={mode !== "primary" && mode !== "secondary" && mode !== "text" ? "primary" : mode}
+        disabled={disabled}
+        aria-disabled={disabled}
+        tabIndex={disabled ? -1 : tabIndex}
+        backgroundType={backgroundType}
+        size={size}
+        margin={margin}
+        onClick={() => {
+          onClick();
+        }}
+      >
+        {label && iconPosition === "after" && labelComponent}
+        {icon && (
+          <IconContainer label={label} iconPosition={iconPosition}>
+            {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
+          </IconContainer>
+        )}
+        {label && iconPosition === "before" && labelComponent}
+      </Button>
     </ThemeProvider>
   );
 };
 
-type ButtonContainerPropsType = {
+type ButtonProps = {
+  mode?: "primary" | "secondary" | "text";
   margin?: Space | Margin;
   size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
   backgroundType?: "dark" | "light";
 };
 
-const ButtonContainer = styled.div<ButtonContainerPropsType>`
+const Button = styled.button<ButtonProps>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -86,22 +86,12 @@ const ButtonContainer = styled.div<ButtonContainerPropsType>`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: inline-block;
+  display: inline-flex;
   width: ${(props) => calculateWidth(props.margin, props.size)};
-`;
-
-type ButtonProps = {
-  mode?: "primary" | "secondary" | "text";
-  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
-  backgroundType?: "dark" | "light";
-};
-
-const Button = styled.button<ButtonProps>`
   padding-left: ${(props) => props.theme.paddingLeft};
   padding-right: ${(props) => props.theme.paddingRight};
   padding-top: ${(props) => props.theme.paddingTop};
   padding-bottom: ${(props) => props.theme.paddingBottom};
-  display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 0 2px transparent;
@@ -110,7 +100,6 @@ const Button = styled.button<ButtonProps>`
   font-weight: ${(props) => props.theme.fontWeight};
   letter-spacing: ${(props) => props.theme.labelLetterSpacing};
   min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
-  width: 100%;
   height: 40px;
   cursor: pointer;
   &:focus {
@@ -293,7 +282,12 @@ const Button = styled.button<ButtonProps>`
   }}
 `;
 
-const LabelContainer = styled.span<ButtonPropsType>`
+type LabelPropsType = {
+  iconPosition?: "before" | "after";
+  icon?: string | SVG;
+};
+
+const LabelContainer = styled.span<LabelPropsType>`
   line-height: ${(props) => props.theme.labelFontLineHeight};
   font-size: ${(props) => props.theme.fontSize};
   text-overflow: ellipsis;
@@ -304,7 +298,12 @@ const LabelContainer = styled.span<ButtonPropsType>`
   margin-left: ${(props) => (!props.icon || props.iconPosition === "after" ? "8px" : "0px")};
 `;
 
-const IconContainer = styled.div<ButtonPropsType>`
+type IconPropsType = {
+  label?: string;
+  iconPosition?: "before" | "after";
+};
+
+const IconContainer = styled.div<IconPropsType>`
   max-height: 24px;
   max-width: 24px;
   margin-left: ${(props) =>
@@ -320,6 +319,12 @@ const IconContainer = styled.div<ButtonPropsType>`
   }
 `;
 
-const ButtonIcon = styled.img``;
+const ButtonIcon = styled.img`
+  img,
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+`;
 
 export default DxcButton;
