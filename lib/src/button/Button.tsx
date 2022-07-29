@@ -99,7 +99,6 @@ const Button = styled.button<ButtonProps>`
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
   letter-spacing: ${(props) => props.theme.labelLetterSpacing};
-  min-width: ${(props) => (props.size === "small" && "calc(100% - 22px)") || "unset"};
   height: 40px;
   cursor: pointer;
   &:focus {
