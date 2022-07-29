@@ -52,7 +52,6 @@ const DxcButton = ({
           aria-disabled={disabled}
           tabIndex={disabled ? -1 : tabIndex}
           backgroundType={backgroundType}
-          margin={margin}
           size={size}
           onClick={() => {
             onClick();
