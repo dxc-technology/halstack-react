@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
-import CheckboxPropsType from "./types";
+import CheckboxPropsType, { Margin, Space } from "./types";
 
 const DxcCheckbox = ({
   checked,
@@ -194,7 +194,11 @@ const LabelContainer = styled.span<LabelContainerProps>`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 `;
 
-type CheckboxContainerProps = CheckboxPropsType;
+type CheckboxContainerProps = {
+  margin: Space | Margin;
+  size: "small" | "medium" | "large" | "fillParent" | "fitContent";
+  disabled: boolean;
+};
 
 const CheckboxContainer = styled.div<CheckboxContainerProps>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -223,8 +227,10 @@ const CheckboxInput = styled.input`
   user-select: none;
 `;
 
-type CheckboxFocusProps = CheckboxPropsType & {
+type CheckboxFocusProps = {
   backgroundType: "dark" | "light";
+  label: string;
+  labelPosition: "after" | "before";
 };
 
 const CheckboxFocus = styled.span<CheckboxFocusProps>`
@@ -245,9 +251,10 @@ const CheckboxFocus = styled.span<CheckboxFocusProps>`
   }
 `;
 
-type CheckboxProps = CheckboxPropsType & {
+type CheckboxProps = {
   backgroundType: "dark" | "light";
   isLabelHovered?: boolean;
+  checked: boolean;
 };
 
 const Checkbox = styled.span<CheckboxProps>`
