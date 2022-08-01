@@ -24,23 +24,26 @@ export const Chromatic = () => (
     <Container>
       <DxcFlex direction="column" wrap="wrap" justifyContent="end" alignItems="center" gap="20px">
         <Placeholder />
-        <Placeholder width="50px" />
+        <Placeholder width="100px" />
         <Placeholder />
-        <Placeholder width="50px" />
+        <Placeholder width="100px" />
         <Placeholder />
       </DxcFlex>
     </Container>
-    <Title title="Wrap with align content space between" level={4} />
+    <Title title="Wrap with align content space between and as a span" level={4} />
     <Container height="250px">
-      <DxcFlex wrap="wrap" alignContent="space-between">
-        <Placeholder />
-        <Placeholder width="50px" />
+      <DxcFlex wrap="wrap" alignContent="space-between" as="span">
         <Placeholder />
         <Placeholder />
-        <Placeholder width="50px" />
-        <Placeholder width="50px" />
         <Placeholder />
-        <Placeholder width="50px" />
+        <Placeholder />
+        <Placeholder width="100px" />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder width="100px" />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder width="100px" />
         <Placeholder />
       </DxcFlex>
     </Container>
@@ -56,7 +59,7 @@ const Container = styled.div<{ height?: string }>`
 
 const Placeholder = styled.div<{ width?: string }>`
   height: 40px;
-  width: ${({ width }) => width || "120px"};
+  width: ${({ width }) => width || "200px"};
   border: 1px solid #a46ede;
   background-color: #e5d5f6;
 `;

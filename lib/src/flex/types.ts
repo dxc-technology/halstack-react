@@ -34,6 +34,7 @@ type Props = {
     | "space-evenly"
     | "stretch";
   gap?: string;
+  as?: React.ElementType;
   children: React.ReactNode;
 };
 

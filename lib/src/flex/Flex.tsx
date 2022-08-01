@@ -9,6 +9,7 @@ export default function Flex({
   alignItems = "stretch",
   alignContent = "normal",
   gap = "0",
+  as,
   children,
 }: FlexPropsType): JSX.Element {
   return (
@@ -19,6 +20,7 @@ export default function Flex({
       alignItems={alignItems}
       alignContent={alignContent}
       gap={gap}
+      as={as}
     >
       {children}
     </FlexContainer>
