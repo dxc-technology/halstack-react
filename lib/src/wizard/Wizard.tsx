@@ -1,9 +1,8 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
-import WizardPropsType from "./types";
+import WizardPropsType, { Margin, Mode, Space } from "./types";
 
 const icons = {
   validIcon: (
@@ -89,13 +88,11 @@ const DxcWizard = ({
               <StepHeader validityIcon={step.valid !== undefined}>
                 <IconContainer current={i === renderedCurrent} visited={i < renderedCurrent} disabled={step.disabled}>
                   {step.icon ? (
-                    <StepIconContainer disabled={step.disabled}>
+                    <StepIconContainer>
                       {typeof step.icon === "string" ? <Icon src={step.icon}></Icon> : step.icon}
                     </StepIconContainer>
                   ) : (
-                    <Number disabled={step.disabled} current={i === renderedCurrent}>
-                      {i + 1}
-                    </Number>
+                    <Number>{i + 1}</Number>
                   )}
                 </IconContainer>
                 {step.valid !== undefined &&
@@ -128,10 +125,14 @@ const DxcWizard = ({
   );
 };
 
-const StepsContainer = styled.div`
+type StepsContainerProps = {
+  mode: Mode;
+  margin: Space | Margin;
+};
+const StepsContainer = styled.div<StepsContainerProps>`
   display: flex;
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
-  justify-content: "center";
+  justify-content: center;
   ${(props) => props.mode === "vertical" && "height: 500px"};
   font-family: ${(props) => props.theme.fontFamily};
 
@@ -146,20 +147,30 @@ const StepsContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const StepContainer = styled.div`
+type StepContainerProps = {
+  mode: Mode;
+  lastStep: boolean;
+};
+const StepContainer = styled.div<StepContainerProps>`
   display: inline-flex;
-  ${(props) => (props.mode === "vertical" ? "" : "align-items: center;")}
+  ${(props) => props.mode !== "vertical" && "align-items: center;"}
   flex-grow: ${(props) => (props.lastStep ? "0" : "1")};
   flex-direction: ${(props) => (props.mode === "vertical" ? "column" : "row")};
-  ${(props) => (props.mode === "vertical" ? "width: 100%;" : "")}
+  ${(props) => props.mode === "vertical" && "width: fit-content;"}
 `;
 
-const Step = styled.button`
-  border: none;
-  background: inherit;
+type StepProps = {
+  mode: Mode;
+  first: boolean;
+  last: boolean;
+};
+const Step = styled.button<StepProps>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  border: none;
+  border-radius: 0.25rem;
+  background: inherit;
   margin: ${(props) =>
     props.first
       ? props.mode === "vertical"
@@ -180,17 +191,25 @@ const Step = styled.button`
     ${(props) => (props.disabled ? "" : "cursor: pointer")};
   }
   &:focus {
-    outline: ${(props) => props.theme.focusColor} auto 1px;
+    outline: 2px solid ${(props) => props.theme.focusColor};
   }
 `;
 
-const StepHeader = styled.div`
+type StepHeaderProps = {
+  validityIcon: boolean;
+};
+const StepHeader = styled.div<StepHeaderProps>`
   position: relative;
   display: inline-flex;
   ${(props) => props.validityIcon && "padding-bottom: 4px;"}
 `;
 
-const IconContainer = styled.div`
+type StateProps = {
+  current: boolean;
+  visited: boolean;
+  disabled: boolean;
+};
+const IconContainer = styled.div<StateProps>`
   width: ${(props) =>
     props.disabled
       ? props.theme.disabledStepWidth
@@ -287,7 +306,7 @@ const InfoContainer = styled.div`
   margin-left: 12px;
 `;
 
-const Label = styled.p`
+const Label = styled.p<StateProps>`
   text-align: ${(props) => props.theme.labelTextAlign};
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -308,7 +327,7 @@ const Label = styled.p`
   margin: 0;
 `;
 
-const Description = styled.p`
+const Description = styled.p<StateProps>`
   text-align: ${(props) => props.theme.helperTextTextAlign};
   font-family: ${(props) => props.theme.helperTextFontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
@@ -329,7 +348,10 @@ const Description = styled.p`
   margin: 0;
 `;
 
-const StepSeparator = styled.div`
+type StepSeparatorProps = {
+  mode: Mode;
+};
+const StepSeparator = styled.div<StepSeparatorProps>`
   width: ${(props) => (props.mode === "horizontal" ? "" : "0")};
   height: ${(props) => (props.mode === "horizontal" ? "0" : "")};
   ${(props) => (props.mode === "vertical" ? "margin: 0 18px;" : "")}
