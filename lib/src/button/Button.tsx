@@ -70,10 +70,10 @@ const DxcButton = ({
 };
 
 type ButtonProps = {
-  mode?: "primary" | "secondary" | "text";
+  mode: "primary" | "secondary" | "text";
   margin?: Space | Margin;
-  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
-  backgroundType?: "dark" | "light";
+  size: "small" | "medium" | "large" | "fillParent" | "fitContent";
+  backgroundType: "dark" | "light";
 };
 
 const Button = styled.button<ButtonProps>`
@@ -282,7 +282,7 @@ const Button = styled.button<ButtonProps>`
 `;
 
 type LabelPropsType = {
-  iconPosition?: "before" | "after";
+  iconPosition: "before" | "after";
   icon?: string | SVG;
 };
 
@@ -299,7 +299,7 @@ const LabelContainer = styled.span<LabelPropsType>`
 
 type IconPropsType = {
   label?: string;
-  iconPosition?: "before" | "after";
+  iconPosition: "before" | "after";
 };
 
 const IconContainer = styled.div<IconPropsType>`
