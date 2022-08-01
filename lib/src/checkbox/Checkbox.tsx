@@ -195,7 +195,7 @@ const LabelContainer = styled.span<LabelContainerProps>`
 `;
 
 type CheckboxContainerProps = {
-  margin: Space | Margin;
+  margin?: Space | Margin;
   size: "small" | "medium" | "large" | "fillParent" | "fitContent";
   disabled: boolean;
 };
