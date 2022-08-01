@@ -261,7 +261,7 @@ const sections = [
                 </td>
                 <td>Track</td>
                 <td>-</td>
-                <td>60px</td>
+                <td>36px</td>
               </tr>
               <tr>
                 <td>
