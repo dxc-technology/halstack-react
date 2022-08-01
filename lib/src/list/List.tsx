@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import DxcStack from "../stack/Stack";
+import DxcFlex from "../flex/Flex";
 import DxcText from "../text/Text";
 import ListPropsType from "./types";
 
 function List({ children, type = "disc", gutter = "0.25rem" }: ListPropsType): JSX.Element {
   return (
-    <DxcStack as={type === "number" ? "ol" : "ul"} gutter={gutter}>
+    <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap={gutter}>
       {React.Children.map(children, (child, index) => {
         return (
           <ListItem>
@@ -25,7 +25,7 @@ function List({ children, type = "disc", gutter = "0.25rem" }: ListPropsType): J
           </ListItem>
         );
       })}
-    </DxcStack>
+    </DxcFlex>
   );
 }
 
