@@ -1,11 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import DropdownMenuItem from "./DropdownMenuItem";
 import { DropdownMenuProps } from "./types";
 
-const DropdownMenu = ({ id, iconsPosition, handleOptionOnClick, options, styles }: DropdownMenuProps) => {
+const DropdownMenu = ({ id, iconsPosition, handleOptionOnClick, options, styles, tabIndex }: DropdownMenuProps) => {
   const colorsTheme = useTheme();
+  const [currentFocusIndex, setCurrentFocusIndex] = useState(0);
+
+  const setPreviousRadioChecked = () => {
+    setCurrentFocusIndex((currentFocusIndex) => {
+      let index = currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
+      return index;
+    });
+  };
+  const setNextRadioChecked = () => {
+    setCurrentFocusIndex((currentFocusIndex) => {
+      let index = currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
+      return index;
+    });
+  };
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+    switch (event.keyCode) {
+      case 37: // arrow left
+      case 38: // arrow up
+        event.preventDefault();
+        setPreviousRadioChecked();
+        break;
+      case 39: // arrow right
+      case 40: // arrow down
+        event.preventDefault();
+        setNextRadioChecked();
+        break;
+      case 13: // enter
+      case 32: // space
+        event.preventDefault();
+        handleOptionOnClick(options[currentFocusIndex]);
+        break;
+    }
+  };
 
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
@@ -24,9 +57,12 @@ const DropdownMenu = ({ id, iconsPosition, handleOptionOnClick, options, styles 
         {options.map((option, index) => (
           <DropdownMenuItem
             key={`option-${index}`}
+            focused={index === currentFocusIndex}
             iconPosition={iconsPosition}
             onClick={handleOptionOnClick}
+            onKeyDown={handleOnKeyDown}
             option={option}
+            tabIndex={tabIndex}
           />
         ))}
       </DropdownMenuContainer>

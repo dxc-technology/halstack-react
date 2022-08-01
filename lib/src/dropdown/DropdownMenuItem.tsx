@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { DropdownMenuItemProps } from "./types";
 
-const DropdownMenuItem = ({ iconPosition, onClick, option }: DropdownMenuItemProps) => {
+const DropdownMenuItem = ({ focused, iconPosition, onClick, onKeyDown, option, tabIndex }: DropdownMenuItemProps) => {
   const colorsTheme = useTheme();
+  const ref = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    focused && ref?.current?.focus();
+  }, [focused]);
 
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
@@ -13,7 +18,9 @@ const DropdownMenuItem = ({ iconPosition, onClick, option }: DropdownMenuItemPro
         onClick={() => {
           onClick(option);
         }}
-        tabIndex={0}
+        onKeyDown={onKeyDown}
+        tabIndex={focused ? tabIndex : -1}
+        ref={ref}
       >
         {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
         {option.icon && (

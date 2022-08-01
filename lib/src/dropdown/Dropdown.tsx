@@ -60,6 +60,20 @@ const DxcDropdown = ({
     onSelectOption(option.value);
     changeIsOpen(false);
   };
+  const handleOnKeyDown = (event) => {
+    switch (event.keyCode) {
+      case 40: // arrow down
+      case 13: // enter
+      case 32: // space
+        event.preventDefault();
+        handleOnOpen();
+        break;
+      case 27: // esc
+        event.preventDefault();
+        handleOnClose();
+        break;
+    }
+  };
 
   useEffect(() => {
     handleMenuResize();
@@ -83,6 +97,7 @@ const DxcDropdown = ({
               opened={isOpen}
               onClick={handleTriggerOnClick}
               onBlur={!disabled && handleOnClose}
+              onKeyDown={handleOnKeyDown}
               disabled={disabled}
               label={label}
               margin={margin}
@@ -123,6 +138,7 @@ const DxcDropdown = ({
               iconsPosition={optionsIconPosition}
               handleOptionOnClick={handleOptionOnClick}
               styles={menuStyles}
+              tabIndex={tabIndex}
             />
           </Popover.Content>
         </Popover.Root>

@@ -86,12 +86,16 @@ export type DropdownMenuProps = {
   handleOptionOnClick: (option: Option) => void;
   options: Option[];
   styles: { width: number };
+  tabIndex: number;
 }
 
 export type DropdownMenuItemProps = {
+  focused: boolean;
   iconPosition: "before" | "after";
   onClick: (option: Option) => void;
+  onKeyDown: (event: React.KeyboardEvent<HTMLLIElement>) => void;
   option: Option;
+  tabIndex: number;
 }
 
 export default Props;
