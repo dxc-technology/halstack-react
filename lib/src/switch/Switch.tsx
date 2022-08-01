@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -26,18 +25,23 @@ const DxcSwitch = ({
   const [switchId] = useState(`switch-${uuidv4()}`);
   const labelId = `label-${switchId}`;
   const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
+  const [hasLabel] = useState((label !== "" && label !== null && label !== undefined) ?? false);
+
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
   const backgroundType = useContext(BackgroundColorContext);
-  const hasLabel = (label !== "" && label !== null && label !== undefined) ?? false;
 
   const handlerSwitchChange = (event) => {
     if (checked === undefined) {
       const isChecked = event.target.checked ?? !innerChecked;
       setInnerChecked(isChecked);
-      onChange?.(isChecked);
+      if (typeof onChange === "function") {
+        onChange(isChecked);
+      }
     } else {
-      onChange?.(!checked);
+      if (typeof onChange === "function") {
+        onChange(!checked);
+      }
     }
   };
 
@@ -64,24 +68,18 @@ const DxcSwitch = ({
 
   return (
     <ThemeProvider theme={colorsTheme.switch}>
-      <SwitchContainer
-        margin={margin}
-        disabled={disabled}
-        labelPosition={labelPosition}
-        size={size}
-        backgroundType={backgroundType}
-      >
+      <SwitchContainer margin={margin} size={size}>
         {labelPosition === "before" && hasLabel && labelComponent}
         <SwitchBase
           labelPosition={labelPosition}
           hasLabel={hasLabel}
-          onClick={!disabled ? handlerSwitchChange : undefined}
           htmlFor={labelId}
+          onClick={disabled === true ? () => {} : handlerSwitchChange}
         >
           <SwitchInput
             type="checkbox"
-            name={name}
             role="switch"
+            name={name}
             id={labelId}
             disabled={disabled}
             value={value}
@@ -101,7 +99,7 @@ const DxcSwitch = ({
             <SwitchTrack
               backgroundType={backgroundType}
               data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
-              tabIndex={!disabled ? tabIndex : -1}
+              tabIndex={tabIndex}
             />
           )}
         </SwitchBase>
@@ -124,7 +122,7 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const SwitchContainer = styled.div`
+const SwitchContainer = styled.div<SwitchPropsType>`
   display: inline-flex;
   align-items: center;
   width: ${(props) => calculateWidth(props.margin, props.size)};
@@ -141,7 +139,14 @@ const SwitchContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const LabelContainer = styled.span`
+type LabelProps = {
+  backgroundType: "dark" | "light";
+  labelPosition: "after" | "before";
+  disabled: boolean;
+  hasLabel: boolean;
+};
+
+const LabelContainer = styled.span<LabelProps>`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -170,7 +175,12 @@ const LabelContainer = styled.span`
   ${(props) => props.labelPosition === "before" && "order: -1"}
 `;
 
-const SwitchBase = styled.label`
+type SwitchBaseProps = {
+  labelPosition: "after" | "before";
+  hasLabel: boolean;
+};
+
+const SwitchBase = styled.label<SwitchBaseProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -186,7 +196,11 @@ const SwitchInput = styled.input`
   margin: 0px;
 `;
 
-const SwitchTrack = styled.span`
+type SwitchTrackProps = {
+  backgroundType: "dark" | "light";
+};
+
+const SwitchTrack = styled.span<SwitchTrackProps>`
   background-color: red;
   border-radius: 15px;
   width: ${(props) => props.theme.trackWidth};
