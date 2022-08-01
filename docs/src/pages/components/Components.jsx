@@ -6,7 +6,6 @@ import { types } from "./paths.js";
 import {
   DxcBox,
   DxcLink,
-  DxcFooter,
   DxcApplicationLayout,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
@@ -112,13 +111,24 @@ const SidenavContent = () => {
 };
 
 const Components = () => (
-  <DxcApplicationLayout visibilityToggleLabel="Components">
-    <DxcApplicationLayout.Header>
-      <Header />
-    </DxcApplicationLayout.Header>
-    <DxcApplicationLayout.SideNav padding="large">
-      <SidenavContent />
-    </DxcApplicationLayout.SideNav>
+  <DxcApplicationLayout
+    visibilityToggleLabel="Components"
+    header={<Header />}
+    sidenav={
+      <DxcApplicationLayout.SideNav padding="large">
+        <SidenavContent />
+      </DxcApplicationLayout.SideNav>
+    }
+    footer={
+      <DxcApplicationLayout.Footer
+        bottomLinks={[
+          { text: "Twitter", href: "http://www.google.com" },
+          { text: "Facebook", href: "http://www.google.com" },
+          { text: "Instagram", href: "http://www.google.com" },
+        ]}
+      ></DxcApplicationLayout.Footer>
+    }
+  >
     <DxcApplicationLayout.Main>
       <MainContent>
         <Route exact path="/components">
@@ -153,15 +163,6 @@ const Components = () => (
         ))}
       </MainContent>
     </DxcApplicationLayout.Main>
-    <DxcApplicationLayout.Footer>
-      <DxcFooter
-        bottomLinks={[
-          { text: "Twitter", href: "http://www.google.com" },
-          { text: "Facebook", href: "http://www.google.com" },
-          { text: "Instagram", href: "http://www.google.com" },
-        ]}
-      ></DxcFooter>
-    </DxcApplicationLayout.Footer>
   </DxcApplicationLayout>
 );
 

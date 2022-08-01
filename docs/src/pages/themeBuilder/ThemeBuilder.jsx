@@ -2,9 +2,9 @@ import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import {
   DxcApplicationLayout,
-  DxcSidenav,
   DxcButton,
 } from "@dxc-technology/halstack-react";
+// import DxcSidenav from "../../../../lib/src/sidenav/Sidenav";
 import defaultTheme from "./themes/DefaultTheme.json";
 import advancedTheme from "./themes/AdvancedTheme.json";
 import ComponentPreview from "./components/ComponentPreview";
@@ -45,63 +45,72 @@ const ThemeBuilder = () => {
   );
 
   return (
-    <DxcApplicationLayout>
-      <DxcApplicationLayout.Header>
-        <Header></Header>
-      </DxcApplicationLayout.Header>
-      <DxcApplicationLayout.SideNav mode="push" padding="small">
-        <DxcSidenav.Title>Global theme actions</DxcSidenav.Title>
-        <ButtonsContainer>
-          <DxcButton
-            mode="text"
-            label="Reset"
-            onClick={() => {
-              setCustomTheme(
-                type === "advancedTheme" ? advancedTheme : defaultTheme
-              );
-            }}
-            icon={resetIcon}
-          />
-          <DxcButton
-            mode="secondary"
-            label="Import"
-            onClick={() => {
-              setDialogVisible(true);
-            }}
-            margin={{ top: "xxsmall", bottom: "xxsmall" }}
-            icon={importIcon}
-          />
-          {isDialogVisible && (
-            <ImportDialog
-              customThemeSchema={customThemeSchema}
-              setCustomTheme={setCustomTheme}
-              setDialogVisible={setDialogVisible}
+    <DxcApplicationLayout
+      header={<Header />}
+      sidenav={
+        <DxcApplicationLayout.SideNav mode="push" padding="small">
+          {/* <DxcSidenav.Title>Global theme actions</DxcSidenav.Title> */}
+          <ButtonsContainer>
+            <DxcButton
+              mode="text"
+              label="Reset"
+              onClick={() => {
+                setCustomTheme(
+                  type === "advancedTheme" ? advancedTheme : defaultTheme
+                );
+              }}
+              icon={resetIcon}
             />
-          )}
-          <DxcButton
-            mode="primary"
-            label="Export"
-            onClick={() => {
-              downloadFile(customTheme);
-            }}
-            icon={exportIcon}
-          />
-        </ButtonsContainer>
-        <DxcSidenav.Title>Components</DxcSidenav.Title>
-        {Object.keys(
-          type === "advancedTheme" ? advancedTheme : defaultTheme
-        ).map((component, index) => (
-          <ComponentLink
-            key={`componentLink-${index}`}
-            isSelected={currentComponent === component}
-            onClick={() => {
-              setCurrentComponent(component);
-            }}
-          >
-            {makeReadableSidenav(component)}
-          </ComponentLink>
-        ))}
-      </DxcApplicationLayout.SideNav>
+            <DxcButton
+              mode="secondary"
+              label="Import"
+              onClick={() => {
+                setDialogVisible(true);
+              }}
+              margin={{ top: "xxsmall", bottom: "xxsmall" }}
+              icon={importIcon}
+            />
+            {isDialogVisible && (
+              <ImportDialog
+                customThemeSchema={customThemeSchema}
+                setCustomTheme={setCustomTheme}
+                setDialogVisible={setDialogVisible}
+              />
+            )}
+            <DxcButton
+              mode="primary"
+              label="Export"
+              onClick={() => {
+                downloadFile(customTheme);
+              }}
+              icon={exportIcon}
+            />
+          </ButtonsContainer>
+          {/* <DxcSidenav.Title>Components</DxcSidenav.Title> */}
+          {Object.keys(
+            type === "advancedTheme" ? advancedTheme : defaultTheme
+          ).map((component, index) => {
+            if (
+              component !== "footer" &&
+              component !== "header" &&
+              component !== "sidenav"
+            ) {
+              return (
+                <ComponentLink
+                  key={`componentLink-${index}`}
+                  isSelected={currentComponent === component}
+                  onClick={() => {
+                    setCurrentComponent(component);
+                  }}
+                >
+                  {makeReadableSidenav(component)}
+                </ComponentLink>
+              );
+            }
+          })}
+        </DxcApplicationLayout.SideNav>
+      }
+    >
       <DxcApplicationLayout.Main>
         <MainContainer>
           <ComponentPreview

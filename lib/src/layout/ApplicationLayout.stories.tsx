@@ -30,15 +30,18 @@ export const DefaultApplicationLayout = () => (
 
 export const ApplicationLayoutWithDefaultSidenav = () => (
   <>
-    <DxcApplicationLayout>
-      <DxcApplicationLayout.SideNav>
-        <DxcSidenav.Title>Application layout with sidenav</DxcSidenav.Title>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-      </DxcApplicationLayout.SideNav>
+    <DxcApplicationLayout
+      sidenav={
+        <DxcApplicationLayout.SideNav>
+          <DxcSidenav.Title>Application layout with sidenav</DxcSidenav.Title>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+        </DxcApplicationLayout.SideNav>
+      }
+    >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
         <p>Main Content</p>
@@ -51,15 +54,19 @@ export const ApplicationLayoutWithDefaultSidenav = () => (
 
 export const ApplicationLayoutWithResponsiveSidenav = () => (
   <>
-    <DxcApplicationLayout visibilityToggleLabel="Example">
-      <DxcApplicationLayout.SideNav>
-        <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-      </DxcApplicationLayout.SideNav>
+    <DxcApplicationLayout
+      visibilityToggleLabel="Example"
+      sidenav={
+        <DxcApplicationLayout.SideNav>
+          <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+        </DxcApplicationLayout.SideNav>
+      }
+    >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
         <p>Main Content</p>
@@ -78,19 +85,19 @@ ApplicationLayoutWithResponsiveSidenav.parameters = {
 
 export const ApplicationLayoutWithCustomHeader = () => (
   <>
-    <DxcApplicationLayout>
-      <DxcApplicationLayout.Header>
-        {" "}
-        <p>Custom Header</p>{" "}
-      </DxcApplicationLayout.Header>
-      <DxcApplicationLayout.SideNav>
-        <DxcSidenav.Title>Application layout with custom header</DxcSidenav.Title>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-      </DxcApplicationLayout.SideNav>
+    <DxcApplicationLayout
+      header={<p>Custom Header</p>}
+      sidenav={
+        <DxcApplicationLayout.SideNav>
+          <DxcSidenav.Title>Application layout with custom header</DxcSidenav.Title>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+        </DxcApplicationLayout.SideNav>
+      }
+    >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
         <p>Main Content</p>
@@ -103,24 +110,25 @@ export const ApplicationLayoutWithCustomHeader = () => (
 
 export const ApplicationLayoutWithCustomFooter = () => (
   <>
-    <DxcApplicationLayout>
-      <DxcApplicationLayout.SideNav>
-        <DxcSidenav.Title>Application layout with custom footer</DxcSidenav.Title>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-      </DxcApplicationLayout.SideNav>
+    <DxcApplicationLayout
+      sidenav={
+        <DxcApplicationLayout.SideNav>
+          <DxcSidenav.Title>Application layout with custom footer</DxcSidenav.Title>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+        </DxcApplicationLayout.SideNav>
+      }
+      footer={<p>Custom Footer</p>}
+    >
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
         <p>Main Content</p>
         <p>Main Content</p>
         <p>Main Content</p>
       </DxcApplicationLayout.Main>
-      <DxcApplicationLayout.Footer>
-        <p>Custom Footer</p>
-      </DxcApplicationLayout.Footer>
     </DxcApplicationLayout>
   </>
 );

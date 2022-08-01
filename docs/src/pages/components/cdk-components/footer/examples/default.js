@@ -1,53 +1,17 @@
-import { DxcFooter } from "@dxc-technology/halstack-react";
-
-import linkedinLogo from "./images/linkedin.svg";
-import twitterLogo from "./images/twitter.svg";
-import facebookLogo from "./images/facebook.svg";
-
 const code = `() => {
-  const social = [
-    {
-      href: "https://www.linkedin.com/company/dxctechnology",
-      logo: linkedinLogo
-    },
-    {
-      href: "https://twitter.com/dxctechnology",
-      logo: twitterLogo
-    },
-    {
-      href: "https://www.facebook.com/DXCTechnology/",
-      logo: facebookLogo
-    }
-  ];
-  const bottom = [
-    {
-      href: "https://www.linkedin.com/company/dxctechnology",
-      text: "Linkedin"
-    },
-    {
-      href: "https://twitter.com/dxctechnology",
-      text: "Twitter"
-    },
-    {
-      href: "https://www.facebook.com/DXCTechnology/",
-      text: "Facebook"
-    }
-  ];
-
   return (
-    <DxcFooter
-      bottomLinks={bottom}
-      socialLinks={social}
-      margin="medium"
-    ></DxcFooter>
+    <iframe
+      src="https://codesandbox.io/embed/without-sidenav-k7xjqf?fontsize=14&hidenavigation=1&theme=dark"
+      width="100%"
+      height="500px"
+      border="0"
+      borderRadius="4px"
+      overflow="hidden"
+      title="Without sidenav"
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    ></iframe>
   );
 }`;
 
-const scope = {
-  DxcFooter,
-  linkedinLogo,
-  twitterLogo,
-  facebookLogo,
-};
-
-export default { code, scope };
+export default { code };

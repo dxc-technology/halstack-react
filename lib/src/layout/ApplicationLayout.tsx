@@ -5,23 +5,22 @@ import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo, hamburgerIcon } from "./Icons";
-import AppLayoutPropsType, {
-  AppLayoutSidenavPropsType,
-  AppLayoutFooterPropsType,
-  AppLayoutMainPropsType,
-  AppLayoutHeaderPropsType,
-} from "./types";
+import AppLayoutPropsType, { AppLayoutSidenavPropsType, AppLayoutMainPropsType } from "./types";
+import HeaderPropsType from "../header/types";
+import FooterPropsType from "../footer/types";
 import { v4 as uuidv4 } from "uuid";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 
 const year = new Date().getFullYear();
-const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
+const Header = ({ ...props }: HeaderPropsType): JSX.Element => <DxcHeader {...props} />;
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
-const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => <>{children}</>;
+const Footer = ({ ...props }: FooterPropsType): JSX.Element => <DxcFooter {...props} />;
 const Sidenav = ({ ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
   <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>
 );
+
+const defaultHeader = () => <DxcHeader underlined />;
 
 const defaultFooter = () => (
   <DxcFooter
@@ -56,11 +55,16 @@ const defaultFooter = () => (
     ]}
   />
 );
-const defaultHeader = () => <DxcHeader underlined />;
 
 const childTypeExists = (children, childType) => children.find((child) => child?.type === childType);
 
-const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayoutPropsType): JSX.Element => {
+const DxcApplicationLayout = ({
+  visibilityToggleLabel = "",
+  header,
+  sidenav,
+  footer,
+  children,
+}: AppLayoutPropsType): JSX.Element => {
   const [appLayoutId] = useState(`appLayout-${uuidv4()}`);
   const visibilityToggleLabelId = `label-${appLayoutId}`;
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
@@ -69,9 +73,9 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
   const translatedLabels = useTranslatedLabels();
 
   const childrenArray = React.Children.toArray(children);
-  const header = childTypeExists(childrenArray, DxcHeader) || childTypeExists(childrenArray, Header) || defaultHeader();
-  const footer = childTypeExists(childrenArray, DxcFooter) || childTypeExists(childrenArray, Footer) || defaultFooter();
-  const sidenav = childTypeExists(childrenArray, Sidenav);
+  const headerContent = (header && header) || defaultHeader();
+  const footerContent = (footer && footer) || defaultFooter();
+  const sidenavContent = sidenav && sidenav;
   const main = childTypeExists(childrenArray, Main);
 
   const handleResize = () => {
@@ -95,12 +99,12 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
 
   return (
     <ApplicationLayoutContainer
-      hasSidenav={sidenav ? true : false}
+      hasSidenav={sidenavContent ? true : false}
       isSidenavVisible={isSidenavVisibleResponsive}
       ref={ref}
     >
-      <HeaderContainer>{header}</HeaderContainer>
-      {sidenav && isResponsive && (
+      <HeaderContainer>{headerContent}</HeaderContainer>
+      {sidenavContent && isResponsive && (
         <VisibilityToggle>
           <HamburgerTrigger
             onClick={handleSidenavVisibility}
@@ -117,13 +121,13 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
       )}
       <BodyContainer>
         <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
-          {sidenav && (isResponsive ? isSidenavVisibleResponsive : true) && (
-            <SidenavContainer>{sidenav}</SidenavContainer>
+          {sidenavContent && (isResponsive ? isSidenavVisibleResponsive : true) && (
+            <SidenavContainer>{sidenavContent}</SidenavContainer>
           )}
         </SidenavContextProvider>
         <MainContainer>
           <MainContentContainer>{main}</MainContentContainer>
-          {footer}
+          {footerContent}
         </MainContainer>
       </BodyContainer>
     </ApplicationLayoutContainer>
@@ -134,6 +138,7 @@ type ApplicationLayoutContainerProps = {
   isSidenavVisible: boolean;
   hasSidenav: boolean;
 };
+
 const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   position: absolute;
   top: 64px;
