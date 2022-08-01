@@ -70,7 +70,6 @@ const DxcSwitch = ({
         labelPosition={labelPosition}
         size={size}
         backgroundType={backgroundType}
-        tabIndex={!disabled ? tabIndex : -1}
       >
         {labelPosition === "before" && hasLabel && labelComponent}
         <SwitchBase
@@ -96,11 +95,13 @@ const DxcSwitch = ({
             <DisabledSwitchTrack
               backgroundType={backgroundType}
               data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
+              tabIndex={-1}
             />
           ) : (
             <SwitchTrack
               backgroundType={backgroundType}
               data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
+              tabIndex={!disabled ? tabIndex : -1}
             />
           )}
         </SwitchBase>
@@ -138,20 +139,6 @@ const SwitchContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-
-  &:focus-visible {
-    outline: none;
-    span {
-      outline: none;
-      ::before {
-        outline: ${(props) =>
-          `${
-            props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
-          } solid 2px`};
-        outline-offset: 6px;
-      }
-    }
-  }
 `;
 
 const LabelContainer = styled.span`
@@ -206,6 +193,17 @@ const SwitchTrack = styled.span`
   height: ${(props) => props.theme.trackHeight};
   position: relative;
   transition: transform 0.2s ease;
+
+  &:focus-visible {
+    outline: none;
+    ::before {
+      outline: ${(props) =>
+        `${
+          props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
+        } solid 2px`};
+      outline-offset: 6px;
+    }
+  }
 
   /* Thumb element */
   ::before {
