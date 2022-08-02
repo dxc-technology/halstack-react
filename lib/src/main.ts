@@ -42,7 +42,6 @@ import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
 import DxcQuickNav from "./quick-nav/QuickNav";
 import DxcNavTabs from "./tabs-nav/NavTabs";
-import DxcInline from "./inline/Inline";
 import DxcFlex from "./flex/Flex";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
@@ -97,6 +96,5 @@ export {
   DxcInset,
   DxcQuickNav,
   DxcNavTabs,
-  DxcInline,
   DxcFlex,
 };
