@@ -36,6 +36,11 @@ type Props = {
     | "space-evenly"
     | "stretch";
   gap?: string | Gap;
+  order?: number;
+  grow?: number;
+  shrink?: number;
+  basis?: string | 0;
+  alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
   as?: React.ElementType;
   children: React.ReactNode;
 };

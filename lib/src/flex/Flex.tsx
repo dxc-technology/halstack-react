@@ -9,6 +9,11 @@ export default function Flex({
   alignItems = "stretch",
   alignContent = "normal",
   gap = "0",
+  order = 0,
+  grow = 0,
+  shrink = 1,
+  basis = "auto",
+  alignSelf = "auto",
   as,
   children,
 }: FlexPropsType): JSX.Element {
@@ -19,6 +24,11 @@ export default function Flex({
       justifyContent={justifyContent}
       alignItems={alignItems}
       alignContent={alignContent}
+      order={order}
+      grow={grow}
+      shrink={shrink}
+      basis={basis}
+      alignSelf={alignSelf}
       gap={gap}
       as={as}
     >
@@ -29,12 +39,17 @@ export default function Flex({
 
 const FlexContainer = styled.div<FlexPropsType>`
   display: flex;
-  ${({ direction, wrap, justifyContent, alignItems, alignContent, gap }) =>
+  ${({ direction, wrap, justifyContent, alignItems, alignContent, gap, order, grow, shrink, basis, alignSelf }) =>
     `flex-direction: ${direction}; 
     flex-wrap: ${wrap}; 
     justify-content: ${justifyContent}; 
     align-items: ${alignItems};
     align-content: ${alignContent};
     gap: ${typeof gap === "object" ? `${gap.rowGap} ${gap.columnGap}` : gap};
+    order: ${order};
+    flex-grow: ${grow};
+    flex-shrink: ${shrink};
+    flex-basis: ${basis};
+    align-self: ${alignSelf};
     `}
 `;
