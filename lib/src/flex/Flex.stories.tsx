@@ -47,7 +47,7 @@ export const Chromatic = () => (
         <Placeholder />
       </DxcFlex>
     </Container>
-    <Title title="Basis 100%, order, grow" level={4} />
+    <Title title="Basis 100%, order, grow and align self" level={4} />
     <Container height="75px">
       <DxcFlex basis="100%">
         <DxcFlex order={3} grow={1} alignSelf="flex-end">
