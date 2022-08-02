@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
@@ -16,14 +16,15 @@ const DxcProgressBar = ({
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
-  const valueProgressBar =
-    value === null || value === undefined ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100;
-  const variant = showValue ? "determinate" : "indeterminate";
+  const [valueProgressBar] = useState(
+    value === null || value === undefined ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100
+  );
+  const [variant] = useState(showValue ? "determinate" : "indeterminate");
 
   return (
     <ThemeProvider theme={colorsTheme.progressBar}>
       <BackgroundProgressBar overlay={overlay}>
-        <DXCProgressBar overlay={overlay} margin={margin}>
+        <ProgressBarContainer overlay={overlay} margin={margin}>
           <InfoProgressBar>
             <ProgressBarLabel overlay={overlay} backgroundType={backgroundType} aria-label={label || undefined}>
               {label}
@@ -62,13 +63,13 @@ const DxcProgressBar = ({
               {helperText}
             </HelperText>
           )}
-        </DXCProgressBar>
+        </ProgressBarContainer>
       </BackgroundProgressBar>
     </ThemeProvider>
   );
 };
 
-const BackgroundProgressBar = styled.div<ProgressBarPropsType>`
+const BackgroundProgressBar = styled.div<{ overlay?: boolean }>`
   background-color: ${(props) => (props.overlay === true ? `${props.theme.overlayColor}` : "transparent")};
   opacity: ${(props) => props.overlay === true && "0.8"};
   width: ${(props) => (props.overlay === true ? "100%" : "")};
@@ -88,7 +89,7 @@ const BackgroundProgressBar = styled.div<ProgressBarPropsType>`
   width: 100%;
 `;
 
-const DXCProgressBar = styled.div<ProgressBarPropsType>`
+const ProgressBarContainer = styled.div<ProgressBarPropsType>`
   z-index: ${(props) => (props.overlay === true && "100") || "0"};
   width: ${(props) => (props.overlay === true ? "80%" : "100%")};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -114,7 +115,7 @@ const InfoProgressBar = styled.div`
 `;
 
 type LabelProps = {
-  backgroundType: string;
+  backgroundType: "dark" | "light";
   overlay: boolean;
 };
 
@@ -137,7 +138,7 @@ const ProgressBarLabel = styled.div<LabelProps>`
 `;
 
 type ProgressProps = {
-  backgroundType: string;
+  backgroundType: "dark" | "light";
   overlay: boolean;
   showValue: boolean;
   value: number;
@@ -161,7 +162,7 @@ const ProgressBarProgress = styled.div<ProgressProps>`
 `;
 
 type HelperTextProps = {
-  backgroundType: string;
+  backgroundType: "dark" | "light";
   overlay: boolean;
 };
 
@@ -179,11 +180,7 @@ const HelperText = styled.span<HelperTextProps>`
   line-height: 1.5em;
 `;
 
-type LinearProps = {
-  helperText: string;
-};
-
-const LinearProgress = styled.div<LinearProps>`
+const LinearProgress = styled.div<{ helperText?: string }>`
   height: ${(props) => props.theme.thickness};
   background-color: ${(props) => props.theme.totalLineColor};
   border-radius: ${(props) => props.theme.borderRadius};
@@ -193,7 +190,7 @@ const LinearProgress = styled.div<LinearProps>`
 `;
 
 type LinearProgressBarProps = {
-  backgroundType: string;
+  backgroundType: "dark" | "light";
   variant: string;
   value: number;
   container: string;
