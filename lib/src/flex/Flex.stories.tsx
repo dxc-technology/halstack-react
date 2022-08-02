@@ -30,9 +30,9 @@ export const Chromatic = () => (
         <Placeholder />
       </DxcFlex>
     </Container>
-    <Title title="Wrap with align content space between and as a span" level={4} />
+    <Title title="Wrap with align content space between, row and column gaps, and as a span" level={4} />
     <Container height="250px">
-      <DxcFlex wrap="wrap" alignContent="space-between" as="span">
+      <DxcFlex wrap="wrap" alignContent="space-between" as="span" gap={{ rowGap: "10px", columnGap: "20px" }}>
         <Placeholder />
         <Placeholder />
         <Placeholder />

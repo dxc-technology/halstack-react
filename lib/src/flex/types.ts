@@ -1,3 +1,5 @@
+type Gap = { rowGap: string; columnGap: string };
+
 type Props = {
   direction?: "row" | "row-reverse" | "column" | "column-reverse";
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
@@ -33,7 +35,7 @@ type Props = {
     | "space-around"
     | "space-evenly"
     | "stretch";
-  gap?: string;
+  gap?: string | Gap;
   as?: React.ElementType;
   children: React.ReactNode;
 };

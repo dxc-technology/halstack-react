@@ -35,6 +35,6 @@ const FlexContainer = styled.div<FlexPropsType>`
     justify-content: ${justifyContent}; 
     align-items: ${alignItems};
     align-content: ${alignContent};
-    gap: ${gap};
+    gap: ${typeof gap === "object" ? `${gap.rowGap} ${gap.columnGap}` : gap};
     `}
 `;
