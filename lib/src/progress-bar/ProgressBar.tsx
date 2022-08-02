@@ -17,7 +17,7 @@ const DxcProgressBar = ({
   const backgroundType = useContext(BackgroundColorContext);
 
   const [valueProgressBar] = useState(
-    value === null || value === undefined ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100
+    value === null || value === undefined || value < 0 ? 0 : value >= 0 && value <= 100 ? value : 100
   );
   const [variant] = useState(showValue ? "determinate" : "indeterminate");
 
