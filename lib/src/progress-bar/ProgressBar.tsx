@@ -69,22 +69,25 @@ const DxcProgressBar = ({
 };
 
 const BackgroundProgressBar = styled.div<{ overlay?: boolean }>`
-  background-color: ${(props) => (props.overlay === true ? `${props.theme.overlayColor}` : "transparent")};
-  opacity: ${(props) => props.overlay === true && "0.8"};
-  width: ${(props) => (props.overlay === true ? "100%" : "")};
+  ${({ overlay, theme }) =>
+    overlay
+      ? `background-color: ${theme.overlayColor};
+      opacity: 0.8;
+      width: 100%;
+      justify-content: center;
+      height: 100vh;
+      align-items: center;
+      max-width: 100%;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1300;`
+      : `background-color: "transparent";`}
   display: flex;
   flex-wrap: wrap;
-  justify-content: ${(props) => (props.overlay === true ? "center" : "")};
-  height: ${(props) => (props.overlay === true ? "100vh" : "")};
-  align-items: ${(props) => (props.overlay === true ? "center" : "")};
   min-width: 100px;
-  max-width: ${(props) => (props.overlay === true ? "100%" : "")};
-  position: ${(props) => (props.overlay === true ? "fixed" : "")};
-  top: ${(props) => (props.overlay === true ? "0" : "")};
-  bottom: ${(props) => (props.overlay === true ? "0" : "")};
-  left: ${(props) => (props.overlay === true ? "0" : "")};
-  right: ${(props) => (props.overlay === true ? "0" : "")};
-  z-index: ${(props) => (props.overlay ? 1300 : "")};
   width: 100%;
 `;
 
