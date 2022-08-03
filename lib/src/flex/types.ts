@@ -39,7 +39,7 @@ type Props = {
   order?: number;
   grow?: number;
   shrink?: number;
-  basis?: string | 0;
+  basis?: string;
   alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
   as?: React.ElementType;
   children: React.ReactNode;
