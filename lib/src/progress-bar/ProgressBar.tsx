@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
-import ProgressBarPropsType from "./types";
+import { Size, Props, Space } from "./types";
 
 const DxcProgressBar = ({
   label = "",
@@ -12,7 +12,7 @@ const DxcProgressBar = ({
   value,
   showValue = false,
   margin,
-}: ProgressBarPropsType): JSX.Element => {
+}: Props): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
@@ -88,7 +88,12 @@ const BackgroundProgressBar = styled.div<{ overlay?: boolean }>`
   width: 100%;
 `;
 
-const ProgressBarContainer = styled.div<ProgressBarPropsType>`
+type ProgressBarContainerProps = {
+  overlay: boolean;
+  margin: Size | Space;
+};
+
+const ProgressBarContainer = styled.div<ProgressBarContainerProps>`
   z-index: ${(props) => (props.overlay === true && "100") || "0"};
   width: ${(props) => (props.overlay === true ? "80%" : "100%")};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
