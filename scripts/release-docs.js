@@ -71,7 +71,7 @@ const moveToBucket = (version) => {
 };
 
 const updateRedirectionToLatest = (version) => {
-  const redirection = `window.location.replace("https://developer.dxc.com/tools/react/${version}");`;
+  const redirection = `window.location.replace("https://developer.dxc.com/tools/react/${version}/");`;
   return new Promise((resolve, reject) => {
     exec(
       `echo '${redirection}' | aws s3 cp - s3://${BUCKET_NAME}/${DIRECTORY}redirect.js`,
@@ -109,7 +109,7 @@ const updateAvailableVersions = async (versions, currentVersion) => {
     const currentItem = isNaN(version) ? "next" : version;
     return {
       versionNumber: currentItem,
-      versionURL: `https://developer.dxc.com/tools/react/${currentItem}`,
+      versionURL: `https://developer.dxc.com/tools/react/${currentItem}/`,
       current: currentItem === currentVersion
     }
   })
