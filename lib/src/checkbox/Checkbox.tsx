@@ -8,6 +8,12 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
 import CheckboxPropsType, { Margin, Space } from "./types";
 
+const CheckedIcon = (
+  <svg fill="currentColor" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CheckBoxIcon">
+    <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+  </svg>
+);
+
 const DxcCheckbox = ({
   checked,
   defaultChecked = false,
@@ -70,7 +76,7 @@ const DxcCheckbox = ({
         </>
       ) : (
         <>
-          {optional && <span>(Optional)</span>} {label}
+          {optional && <span>{translatedLabels.formFields.optionalLabel}</span>} {label}
         </>
       )}
     </LabelContainer>
@@ -101,13 +107,13 @@ const DxcCheckbox = ({
           onKeyDown={disabled === true ? () => {} : handleKeyboard}
         >
           {disabled ? (
-            <DisabledCheckbox backgroundType={backgroundType} checked={checked ?? innerChecked} />
+            <DisabledCheckbox backgroundType={backgroundType} checked={checked ?? innerChecked}>
+              {(checked ?? innerChecked) && CheckedIcon}
+            </DisabledCheckbox>
           ) : (
-            <Checkbox
-              backgroundType={backgroundType}
-              isLabelHovered={isLabelHovered}
-              checked={checked ?? innerChecked}
-            />
+            <Checkbox backgroundType={backgroundType} isLabelHovered={isLabelHovered} checked={checked ?? innerChecked}>
+              {(checked ?? innerChecked) && CheckedIcon}
+            </Checkbox>
           )}
         </CheckboxFocus>
         {label && labelPosition === "after" && labelComponent}
@@ -263,47 +269,40 @@ const Checkbox = styled.span<CheckboxProps>`
   border: solid 2px
     ${(props) =>
       props.isLabelHovered ? getNotDisabledColor(props, "hoverBorder") : getNotDisabledColor(props, "border")};
-  content: "";
-  background-color: ${(props) =>
-    props.checked
-      ? props.isLabelHovered
-        ? getNotDisabledColor(props, "hoverBackground")
-        : getNotDisabledColor(props, "background")
-      : "transparent"};
+  background-color: ${(props) => (props.checked ? getNotDisabledColor(props, "check") : "transparent")};
+  color: ${(props) =>
+    props.isLabelHovered ? getNotDisabledColor(props, "hoverBackground") : getNotDisabledColor(props, "background")};
   border-radius: 2px;
   position: absolute;
   top: 3px;
   left: 3px;
   &:hover {
-    border: solid 2px
-      ${(props) =>
-        props.backgroundType === "dark" ? props.theme.hoverBorderColorOnDark : props.theme.hoverBorderColor};
-    background-color: ${(props) => (props.checked ? getNotDisabledColor(props, "hoverBackground") : "transparent")};
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    left: 3px;
-    bottom: 2px;
-    width: 5px;
-    height: 12px;
-    border: solid ${(props) => getNotDisabledColor(props, "check")};
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    ${(props) => (props.checked ? `display: block;` : `display: none`)}
+    border: solid 2px ${(props) => getDisabledColor(props, "hoverBorder")};
+    background-color: ${(props) => (props.checked ? getNotDisabledColor(props, "check") : "transparent")};
+    color: ${(props) => getNotDisabledColor(props, "hoverBackground")};
   }
   &:focus {
     outline: none;
+  }
+  svg {
+    width: 24px;
+    position: absolute;
+    right: -5px;
+    top: -5px;
   }
 `;
 
 const DisabledCheckbox = styled(Checkbox)`
   opacity: 0.34;
-  border: solid 2px ${(props) => getDisabledColor(props, "border")};
-  background-color: ${(props) => (props.checked ? getDisabledColor(props, "background") : "transparent")};
+  border: solid 2px
+    ${(props) => (props.isLabelHovered ? getDisabledColor(props, "hoverBorder") : getDisabledColor(props, "border"))};
+  background-color: ${(props) => (props.checked ? getDisabledColor(props, "check") : "transparent")};
+  color: ${(props) =>
+    props.isLabelHovered ? getDisabledColor(props, "hoverBackground") : getDisabledColor(props, "background")};
   &:hover {
     border: solid 2px ${(props) => getDisabledColor(props, "border")};
-    background-color: ${(props) => (props.checked ? getDisabledColor(props, "background") : "transparent")};
+    background-color: ${(props) => (props.checked ? getDisabledColor(props, "check") : "transparent")};
+    color: ${(props) => getDisabledColor(props, "background")};
   }
   &:after {
     border: solid ${(props) => getDisabledColor(props, "check")};
