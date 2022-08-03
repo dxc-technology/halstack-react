@@ -66,18 +66,15 @@ export const Chromatic = () => (
     </Container>
     <Title title="Basis and shrink" level={4} />
     <Container>
-      <DxcFlex basis="100%">
+      <DxcFlex basis="600px">
         <DxcFlex shrink={4} basis="400px">
           <PlaceholderGrowAndShrink>shrink 4</PlaceholderGrowAndShrink>
         </DxcFlex>
         <DxcFlex shrink={2} basis="400px">
           <PlaceholderGrowAndShrink>shrink 2</PlaceholderGrowAndShrink>
         </DxcFlex>
-        <DxcFlex basis="400px">
-          <PlaceholderGrowAndShrink></PlaceholderGrowAndShrink>
-        </DxcFlex>
-        <DxcFlex basis="400px">
-          <PlaceholderGrowAndShrink></PlaceholderGrowAndShrink>
+        <DxcFlex shrink={1} basis="400px">
+          <PlaceholderGrowAndShrink>shrink 1</PlaceholderGrowAndShrink>
         </DxcFlex>
       </DxcFlex>
     </Container>
