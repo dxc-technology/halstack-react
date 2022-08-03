@@ -6,7 +6,7 @@ import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
-import SwitchPropsType from "./types";
+import { SwitchPropsType, Space, Margin } from "./types";
 
 const DxcSwitch = ({
   defaultChecked,
@@ -122,7 +122,12 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const SwitchContainer = styled.div<SwitchPropsType>`
+type SwitchContainerProps = {
+  margin: Margin | Space;
+  size: "small" | "medium" | "large" | "fillParent" | "fitContent";
+};
+
+const SwitchContainer = styled.div<SwitchContainerProps>`
   display: inline-flex;
   align-items: center;
   width: ${(props) => calculateWidth(props.margin, props.size)};
