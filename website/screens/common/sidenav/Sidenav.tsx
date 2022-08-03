@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { DxcStack, DxcTextInput } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTextInput } from "@dxc-technology/halstack-react";
 import { SidenavLink, SidenavSectionTitle } from "./SidenavComponents";
 import { LinksSections, LinkDetails } from "../pagesList";
 import SidenavLogo from "./SidenavLogo";
@@ -31,7 +31,7 @@ function SidenavContent() {
           left: "xsmall",
         }}
       />
-      <DxcStack gutter="medium">
+      <DxcFlex direction="column" gap="1.5rem">
         {LinksSections.map(({ label, links }, index) => (
           <>
             <LinksList
@@ -44,7 +44,7 @@ function SidenavContent() {
             />
           </>
         ))}
-      </DxcStack>
+      </DxcFlex>
     </SidenavContainer>
   );
 }
@@ -70,8 +70,8 @@ function LinksList({
   if (filteredLinks.length > 0) {
     return (
       <>
-        <DxcStack gutter="medium">
-          <DxcStack>
+        <DxcFlex direction="column" gap="1.5rem">
+          <DxcFlex direction="column">
             <SidenavSectionTitle>{title}</SidenavSectionTitle>
             {filteredLinks.map(({ label, path }) => (
               <Link key={`${label}-${path}`} href={path} passHref>
@@ -86,9 +86,9 @@ function LinksList({
                 </SidenavLink>
               </Link>
             ))}
-          </DxcStack>
+          </DxcFlex>
           {!lastElement && <Separator></Separator>}
-        </DxcStack>
+        </DxcFlex>
       </>
     );
   }

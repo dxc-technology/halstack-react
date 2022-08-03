@@ -1,6 +1,6 @@
 import {
   DxcTable,
-  DxcStack,
+  DxcFlex,
   DxcText,
   DxcList,
   DxcLink,
@@ -518,7 +518,7 @@ const sections = [
 
 const DropdownSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -526,7 +526,7 @@ const DropdownSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/dropdown/specs/DropdownSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,20 +1,20 @@
-import { DxcButton, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
+import { DxcButton, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcRow gutter="large" justify="center">
+      <DxcFlex gap="2rem" justifyContent="center">
         <DxcButton mode="primary" label="Primary" />
         <DxcButton mode="secondary" label="Secondary" />
         <DxcButton mode="text" label="Text" />
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcButton,
-  DxcRow,
+  DxcFlex,
   DxcInset,
 };
 

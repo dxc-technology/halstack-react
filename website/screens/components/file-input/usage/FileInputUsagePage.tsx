@@ -1,5 +1,5 @@
 import {
-  DxcStack,
+  DxcFlex,
   DxcText,
   DxcList,
   DxcTable,
@@ -100,7 +100,7 @@ const sections = [
 
 const FileInputUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -108,7 +108,7 @@ const FileInputUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/file-input/usage/FileInputUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

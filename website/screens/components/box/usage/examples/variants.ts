@@ -1,9 +1,9 @@
-import { DxcBox, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
+import { DxcBox, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcRow gutter="xxxlarge">
+      <DxcFlex gap="5rem">
         <DxcBox shadowDepth={0} padding="medium">
           No shadow
         </DxcBox>
@@ -13,7 +13,7 @@ const code = `() => {
         <DxcBox shadowDepth={2} padding="medium">
           Shadow high
         </DxcBox>
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -21,7 +21,7 @@ const code = `() => {
 const scope = {
   DxcBox,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 };
 
 export default { code, scope };
