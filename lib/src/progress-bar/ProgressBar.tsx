@@ -19,7 +19,6 @@ const DxcProgressBar = ({
   const [valueProgressBar] = useState(
     value === null || value === undefined || value < 0 ? 0 : value >= 0 && value <= 100 ? value : 100
   );
-  const [variant] = useState(showValue ? "determinate" : "indeterminate");
 
   return (
     <ThemeProvider theme={colorsTheme.progressBar}>
@@ -45,7 +44,7 @@ const DxcProgressBar = ({
           >
             <LinearProgressBar
               backgroundType={backgroundType}
-              variant={variant}
+              variant={showValue ? "determinate" : "indeterminate"}
               container="first"
               value={valueProgressBar}
             ></LinearProgressBar>
@@ -191,7 +190,7 @@ const LinearProgress = styled.div<{ helperText?: string }>`
 
 type LinearProgressBarProps = {
   backgroundType: "dark" | "light";
-  variant: string;
+  variant: "determinate" | "indeterminate";
   value: number;
   container: string;
 };
