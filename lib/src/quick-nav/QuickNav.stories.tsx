@@ -23,12 +23,22 @@ const links = [
     ],
   },
   {
-    label: "Principles",
+    label: "Principles very very very very very very very very long",
     id: "principles",
     links: [
-      { label: "Color", id: "color" },
-      { label: "Spacing", id: "spacing" },
+      { label: "Color very very very very very very very very long", id: "color" },
+      { label: "Spacingveryveryveryveryveryveryveryverylong", id: "spacing" },
       { label: "Typography", id: "typography" },
+    ],
+  },
+  {
+    label: "Componentsveryveryveryveryveryveryveryverylong",
+    id: "components",
+    links: [
+      {
+        label: "Accordion",
+        id: "accordion",
+      },
     ],
   },
 ];
@@ -43,6 +53,12 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Link hovered" level={4} />
+      <QuickNavContainer>
+        <DxcQuickNav links={links}></DxcQuickNav>
+      </QuickNavContainer>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Link focus" level={4} />
       <QuickNavContainer>
         <DxcQuickNav links={links}></DxcQuickNav>
       </QuickNavContainer>
@@ -201,6 +217,17 @@ export const Chromatic = () => (
                 Halstack Design System include headers, body, taglines, captions, and labels. Make sure you include all
                 the different typographic variants in order to enhance the application's content structure, including
                 the Heading component which defines different levels of page and section titles.
+              </DxcText>
+            </Content>
+          </Content>
+          <Content id="components">
+            <DxcHeading level={1} text="Components" margin={{ top: "small", bottom: "xsmall" }} />
+            <Content id="accordion">
+              <DxcHeading level={2} text="Accordion" margin={{ top: "xsmall", bottom: "xsmall" }} />
+              <DxcText>
+                Accordions are used to group similar content and hide or show it depending on user needs or preferences.
+                Accordions give users more granular control over the interface and help digest content in stages, rather
+                than all at once.
               </DxcText>
             </Content>
           </Content>

@@ -153,8 +153,10 @@ const sections = [
         content: (
           <DxcTable>
             <thead>
-              <th>Theme Input</th>
-              <th>Tokens (calculation)</th>
+              <tr>
+                <th>Theme Input</th>
+                <th>Tokens (calculation)</th>
+              </tr>
             </thead>
             <tbody>
               <tr>

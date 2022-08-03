@@ -31,6 +31,10 @@ type Props = {
    */
   reverse?: boolean;
   /**
+   * Sets whether the children are forced onto one column or can wrap onto multiple columns.
+   */
+  wrap?: boolean;
+  /**
    * Custom content inside the stack.
    */
   children: React.ReactNode[] | React.ReactNode;

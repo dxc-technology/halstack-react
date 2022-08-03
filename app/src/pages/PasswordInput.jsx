@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <p>
+      <div>
         <DxcPasswordInput
           value={value}
           clearable
@@ -26,8 +26,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcPasswordInput
           value={value}
           label="Password input"
@@ -36,8 +36,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcPasswordInput
           value={value}
           label="Non clearable password input"
@@ -45,8 +45,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcPasswordInput
           value={value}
           label="Help password input"
@@ -56,16 +56,16 @@ function App() {
           margin="medium"
           helperText="Help message"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcPasswordInput
           label="With 'on' autocomplete"
           clearable
           autocomplete="on"
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcPasswordInput
           value={value}
           label="Error password input"
@@ -75,8 +75,8 @@ function App() {
           onBlur={onBlur}
           margin="medium"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcPasswordInput
           value={value}
           label="Large size password input"
@@ -86,8 +86,8 @@ function App() {
           margin="medium"
           size="large"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcPasswordInput
           value={value}
           label="Fill parent password input"
@@ -97,9 +97,9 @@ function App() {
           margin="medium"
           size="fillParent"
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With pattern (At least one letter, one number and one special
           character) - Strict
         </h4>
@@ -111,9 +111,9 @@ function App() {
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With min length 5 and max length 10 - Strict
         </h4>
         <DxcPasswordInput
@@ -125,9 +125,9 @@ function App() {
           minLength={5}
           maxLength={10}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With pattern (At least one letter, one number and one special
           character) and minimum length 5 and maximum length 10 - Strict
         </h4>
@@ -141,9 +141,9 @@ function App() {
           minLength={5}
           maxLength={10}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With pattern (At least one letter, one number and one special
           character) - Non strict
         </h4>
@@ -156,9 +156,9 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           error={errorMessage}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With min length 5 and max length 10 - Non strict
         </h4>
         <DxcPasswordInput
@@ -171,9 +171,9 @@ function App() {
           maxLength={10}
           error={errorMessage}
         />
-      </p>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>
+      </div>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>
           With pattern (At least one letter, one number and one special
           character) and minimum length 5 and maximum length 10 - Non strict
         </h4>
@@ -188,8 +188,8 @@ function App() {
           maxLength={10}
           error={errorMessage}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcPasswordInput
           label="With ref"
           helperText="Example of helper text"
@@ -205,7 +205,7 @@ function App() {
           label="Focus!"
           margin={{ left: "medium" }}
         ></DxcButton>
-      </p>
+      </div>
     </>
   );
 }

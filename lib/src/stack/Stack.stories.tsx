@@ -13,193 +13,227 @@ export const Chromatic = () => (
     <Title title="Default" theme="light" level={4} />
     <Container>
       <DxcStack>
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="large" />
+        <Placeholder height="small" width="large" />
       </DxcStack>
     </Container>
     <Title title="Default with divider" theme="light" level={4} />
     <Container>
       <DxcStack divider>
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="large" />
+        <Placeholder height="small" width="large" />
       </DxcStack>
     </Container>
     <Title title="Alignment with divider" theme="light" level={4} />
     <Container>
       <DxcStack alignX="end" divider>
-        <Placeholder paddingLeft={20}></Placeholder>
-        <Placeholder />
-        <Placeholder paddingLeft={60}></Placeholder>
+        <Placeholder height="small" width="small" />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="Default with one child" theme="light" level={4} />
     <Container>
       <DxcStack divider>
-        <Placeholder />
+        <Placeholder height="large" width="xlarge" />
       </DxcStack>
     </Container>
     <Title title="Wrap" theme="light" level={4} />
     <FlexContainer customHeight>
-      <DxcStack>
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+      <DxcStack wrap>
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="large" width="medium" />
       </DxcStack>
     </FlexContainer>
+    <Title title="No wrap in a flex container" theme="light" level={4} />
+    <FlexContainer customHeight>
+      <DxcStack>
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="small" width="medium" />
+      </DxcStack>
+    </FlexContainer>
+    <Title title="No wrap (default)" theme="light" level={4} />
+    <Container customHeight>
+      <DxcStack>
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="small" width="small" />
+      </DxcStack>
+    </Container>
     <Title title="AlignX = start" theme="light" level={4} />
     <Container>
       <DxcStack alignX="start">
-        <Placeholder paddingLeft={20}></Placeholder>
-        <Placeholder />
-        <Placeholder paddingRight={60}></Placeholder>
-        <Placeholder paddingLeft={20}></Placeholder>
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="large" width="medium" />
       </DxcStack>
     </Container>
     <Title title="AlignX = end" theme="light" level={4} />
     <Container>
       <DxcStack alignX="end">
-        <Placeholder paddingLeft={20}></Placeholder>
-        <Placeholder />
-        <Placeholder paddingLeft={60}></Placeholder>
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="AlignX = center" theme="light" level={4} />
     <Container>
       <DxcStack alignX="center">
-        <Placeholder paddingLeft={20}></Placeholder>
-        <Placeholder />
-        <Placeholder paddingLeft={60}></Placeholder>
-        <Placeholder paddingLeft={20}></Placeholder>
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
+        <Placeholder height="large" width="medium" />
       </DxcStack>
     </Container>
     <Title title="AlignX = baseline" theme="light" level={4} />
     <Container>
       <DxcStack alignX="baseline">
-        <Placeholder paddingLeft={20}></Placeholder>
-        <Placeholder />
-        <Placeholder paddingLeft={60}></Placeholder>
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="AlignX with wrapped items" theme="light" level={4} />
-    <FlexContainer customHeight>
-      <DxcStack alignX="center">
-        <Placeholder />
-        <Placeholder paddingRight={60} />
-        <Placeholder paddingLeft={20} />
-        <Placeholder />
-        <Placeholder paddingRight={20} />
-        <Placeholder paddingLeft={60} />
+    <Container customHeight>
+      <DxcStack alignX="center" wrap>
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="small" width="small" />
       </DxcStack>
-    </FlexContainer>
+    </Container>
     <Title title="Gutter = 0rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="0rem">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="small" width="medium" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 0.125rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="0.125rem">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 0.25rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="0.25rem">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="small" width="medium" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 0.5rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="0.5rem">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 0.75rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="0.75rem">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="small" width="medium" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 1rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="1rem">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 1.5rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="1.5rem">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="medium" width="medium" />
+        <Placeholder height="large" width="small" />
+        <Placeholder height="small" width="medium" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 2rem & divider" theme="light" level={4} />
     <Container>
       <DxcStack gutter="2rem" divider>
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 3rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="3rem">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="small" />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 4rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="4rem">
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="large" width="medium" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="Gutter = 5rem" theme="light" level={4} />
     <Container>
       <DxcStack gutter="5rem">
-        <Placeholder />
-        <Placeholder />
+        <Placeholder height="small" width="small" />
+        <Placeholder height="medium" width="small" />
       </DxcStack>
     </Container>
     <Title title="Reverse" theme="light" level={4} />
     <Container>
       <DxcStack reverse>
-        <Placeholder>1</Placeholder>
-        <Placeholder>2</Placeholder>
-        <Placeholder>3</Placeholder>
-        <Placeholder>4</Placeholder>
+        <Placeholder height="small" width="medium">
+          1
+        </Placeholder>
+        <Placeholder height="large" width="small">
+          2
+        </Placeholder>
+        <Placeholder height="medium" width="medium">
+          3
+        </Placeholder>
+        <Placeholder height="large" width="small">
+          4
+        </Placeholder>
       </DxcStack>
     </Container>
+    <Title title="Wrapped and reversed children" theme="light" level={4} />
+    <FlexContainer customHeight>
+      <DxcStack reverse wrap>
+        <Placeholder height="small" width="medium">
+          1
+        </Placeholder>
+        <Placeholder height="large" width="small">
+          2
+        </Placeholder>
+        <Placeholder height="medium" width="medium">
+          3
+        </Placeholder>
+        <Placeholder height="large" width="small">
+          4
+        </Placeholder>
+      </DxcStack>
+    </FlexContainer>
   </>
 );
 
@@ -211,15 +245,19 @@ const FlexContainer = styled.div<{ customHeight?: boolean }>`
 
 const Container = styled.div<{ customHeight?: boolean }>`
   background: #f2eafa;
+  ${({ customHeight }) => customHeight && `height: 100px;`};
 `;
 
-type PlaceholderProps = { paddingLeft?: number; paddingRight?: number };
+type PlaceholderProps = {
+  width?: "xlarge" | "large" | "medium" | "small" | "auto";
+  height?: "large" | "medium" | "small" | "auto";
+};
 
 const Placeholder = styled.div<PlaceholderProps>`
-  min-height: 40px;
-  min-width: 120px;
+  ${({ width }) =>
+    width &&
+    `width: ${width === "xlarge" ? "350px" : width === "large" ? "150px" : width === "medium" ? "100px" : "50px"};`};
+  ${({ height }) => height && `height: ${height === "large" ? "100px" : height === "medium" ? "80px" : "50px"};`};
   border: 1px solid #a46ede;
   background-color: #e5d5f6;
-  padding-left: ${({ paddingLeft }) => `${paddingLeft ?? 0}px`};
-  padding-right: ${({ paddingRight }) => `${paddingRight ?? 0}px`};
 `;

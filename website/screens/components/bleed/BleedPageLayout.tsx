@@ -3,17 +3,16 @@ import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
 
-const InlinePageHeading = ({ children }: { children: React.ReactNode }) => {
-  const tabs = [{ label: "Code", path: "/components/inline" }];
+const BleedPageHeading = ({ children }: { children: React.ReactNode }) => {
+  const tabs = [{ label: "Code", path: "/components/bleed" }];
 
   return (
     <DxcStack gutter="xlarge">
       <PageHeading>
         <DxcStack gutter="large">
-          <ComponentHeading name="Inline" status="Experimental" />
+          <ComponentHeading name="Bleed" status="Experimental" />
           <DxcText as="p">
-            Inline layout arranges child nodes horizontally, wrapping them into
-            multiple lines if needed, with equal spacing between items.
+            Bleed layout applies negative spacing scale to its child nodes.
           </DxcText>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
@@ -23,4 +22,4 @@ const InlinePageHeading = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default InlinePageHeading;
+export default BleedPageHeading;
