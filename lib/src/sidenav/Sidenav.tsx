@@ -11,7 +11,7 @@ import SidenavPropsType, {
   SidenavSectionPropsType,
   SidenavTitlePropsType,
 } from "./types.js";
-import DxcStack from "../stack/Stack";
+import DxcFlex from "../flex/Flex";
 import DxcBleed from "../bleed/Bleed";
 
 const collapsedIcon = (
@@ -42,9 +42,16 @@ const DxcSidenav = ({ children, title }: SidenavPropsType): JSX.Element => {
       <SidenavContainer>
         <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
           {title}
-          <DxcStack divider={true} gutter="1rem">
-            {children}
-          </DxcStack>
+          <DxcFlex direction="column" gap="1rem">
+            {React.Children.map(children, (child, index) => {
+              return (
+                <>
+                  {child}
+                  {index !== React.Children.count(children) - 1 && <Divider />}
+                </>
+              );
+            })}
+          </DxcFlex>
         </BackgroundColorProvider>
       </SidenavContainer>
     </ThemeProvider>
@@ -55,7 +62,7 @@ const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavTitl
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
   <DxcBleed left="1rem" right="1rem">
-    <DxcStack>{children}</DxcStack>
+    <DxcFlex direction="column">{children}</DxcFlex>
   </DxcBleed>
 );
 
@@ -86,9 +93,23 @@ const Group = ({ children, title, collapsable = false, icon }: SidenavGroupProps
 
 const Link = forwardRef(
   (
-    { href, children, newWindow = false, selected = false, icon, tabIndex = 0, ...otherProps }: SidenavLinkPropsType,
+    {
+      href,
+      children,
+      newWindow = false,
+      selected = false,
+      icon,
+      tabIndex = 0,
+      onClick,
+      ...otherProps
+    }: SidenavLinkPropsType,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
+    const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
+    const handleClick = ($event) => {
+      onClick?.($event);
+      setIsSidenavVisibleResponsive?.(false);
+    };
     return (
       <SidenavLink
         selected={selected}
@@ -96,6 +117,7 @@ const Link = forwardRef(
         target={href ? (newWindow ? "_blank" : "_self") : undefined}
         ref={ref}
         tabIndex={tabIndex}
+        onClick={handleClick}
         {...otherProps}
       >
         <SidenavContent>
@@ -152,6 +174,12 @@ const SidenavTitle = styled.div`
   svg {
     margin-right: 0.5rem;
   }
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #999999;
 `;
 
 const SidenavGroup = styled.div`

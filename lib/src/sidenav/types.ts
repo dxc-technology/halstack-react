@@ -17,7 +17,7 @@ export type SidenavTitlePropsType = {
   /**
    * The area inside the sidenav title. This area can be used to render custom content.
    */
-  children: React.ReactNode | string;
+  children: React.ReactNode;
 };
 
 export type SidenavSectionPropsType = {
@@ -71,6 +71,10 @@ export type SidenavLinkPropsType = {
    * The area inside the sidenav link.
    */
   children: string;
+  /**
+   * This function will be called when the user clicks the link.
+   */
+  onClick?: ($event) => void;
 };
 
 export default SidenavPropsType;
