@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import DxcStack from "../stack/Stack";
+import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
 import useTheme from "../useTheme";
@@ -16,7 +16,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
 
   return (
     <ThemeProvider theme={colorsTheme.bulletedList}>
-      <DxcStack as={type === "number" ? "ol" : "ul"} gutter="0.125rem">
+      <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap={{ rowGap: "0.125rem", columnGap: "0rem" }}>
         {React.Children.map(children, (child, index) => {
           return (
             <ListItem>
@@ -63,7 +63,7 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
             </ListItem>
           );
         })}
-      </DxcStack>
+      </DxcFlex>
     </ThemeProvider>
   );
 };
