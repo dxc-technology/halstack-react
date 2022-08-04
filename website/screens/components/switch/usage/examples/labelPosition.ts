@@ -26,7 +26,6 @@ const scope = {
   DxcSwitch,
   DxcInset,
   DxcFlex,
-  DxcFlex,
   DxcHeading,
 };
 
