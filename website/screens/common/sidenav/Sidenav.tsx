@@ -104,6 +104,8 @@ const Separator = styled.hr`
 `;
 
 const SidenavContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 2rem 0;
 `;
 
