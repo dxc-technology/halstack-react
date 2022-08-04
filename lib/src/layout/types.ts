@@ -40,11 +40,11 @@ export type AppLayoutSidenavPropsType = {
   /**
    * The area inside the sidenav. This area can be used to render the content inside the sidenav.
    */
-  children: React.ReactElement<React.ReactNode>[] | React.ReactElement<React.ReactNode>;
+  children: React.ReactNode;
   /**
    * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
    */
-  title?: React.ReactElement<React.ReactNode>[] | React.ReactElement<React.ReactNode>;
+  title?: React.ReactNode;
 };
 
 type AppLayoutPropsType = {
