@@ -3,12 +3,12 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import {
   DxcBulletedList,
-  DxcStack,
+  DxcFlex,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
-import typesOpenSans from "../images/type_open_sans.png";
+import typesOpenSans from "./images/type_open_sans.png";
 
 const sections = [
   {
@@ -75,7 +75,7 @@ const sections = [
 ];
 const TypographyUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -83,7 +83,7 @@ const TypographyUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/typography/usage/TypographyUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,7 +1,7 @@
 import {
   DxcHeading,
   DxcParagraph,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
@@ -12,19 +12,19 @@ const ColorPageHeading = ({ children }: { children: React.ReactNode }) => {
     { label: "Usage", path: "/principles/color/usage" },
   ];
   return (
-    <DxcStack gutter="xlarge">
+    <DxcFlex direction="column" gap="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={1} text="Color" weight="bold"></DxcHeading>
           <DxcParagraph>
             This section explains and shows examples of all colors used in
             Halstack Design System.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       {children}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

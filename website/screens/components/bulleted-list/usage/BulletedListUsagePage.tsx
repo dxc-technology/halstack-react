@@ -3,7 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import {
-  DxcStack,
+  DxcFlex,
   DxcBulletedList,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
@@ -44,7 +44,7 @@ const sections = [
 
 const BulletedListUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -52,7 +52,7 @@ const BulletedListUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/bulleted-list/usage/BulletedListUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

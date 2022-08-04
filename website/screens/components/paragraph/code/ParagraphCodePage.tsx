@@ -2,7 +2,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcStack, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
 import multipleParagraphs from "./examples/multipleParagraphs";
 
@@ -41,7 +41,7 @@ const sections = [
 
 const ParagraphCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -49,7 +49,7 @@ const ParagraphCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/paragraph/code/ParagraphCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

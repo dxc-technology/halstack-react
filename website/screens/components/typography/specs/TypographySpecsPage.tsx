@@ -6,7 +6,7 @@ import {
   DxcBulletedList,
   DxcLink,
   DxcParagraph,
-  DxcStack,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 
@@ -797,7 +797,7 @@ const sections = [
 
 const TypographySpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -805,7 +805,7 @@ const TypographySpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/typography/specs/TypographySpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

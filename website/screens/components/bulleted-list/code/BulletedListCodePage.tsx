@@ -5,7 +5,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import {
   DxcParagraph,
-  DxcStack,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import basicUsage from "./examples/basicUsage";
@@ -94,7 +94,7 @@ const sections = [
 
 const BulletedListCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -102,7 +102,7 @@ const BulletedListCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/bulleted-list/code/BulletedListCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

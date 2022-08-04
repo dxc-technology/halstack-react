@@ -1,13 +1,6 @@
 import PageHeading from "@/common/PageHeading";
-import {
-  DxcHeading,
-  DxcStack,
-  DxcParagraph,
-  DxcLink,
-  DxcAlert,
-} from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcFlex, DxcAlert } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
-import Link from "next/link";
 
 const TypographyPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -15,10 +8,11 @@ const TypographyPageHeading = ({ children }: { children: React.ReactNode }) => {
     { label: "Usage", path: "/components/typography/usage" },
     { label: "Specifications", path: "/components/typography/specifications" },
   ];
+
   return (
-    <DxcStack gutter="xlarge">
+    <DxcFlex direction="column" gap="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={1} text="Typography" weight="bold"></DxcHeading>
           <DxcAlert type="warning" size="fillParent">
             Use this component only if all other Halstack Design System
@@ -26,10 +20,10 @@ const TypographyPageHeading = ({ children }: { children: React.ReactNode }) => {
             component should always be the LAST OPTION to use.
           </DxcAlert>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       {children}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

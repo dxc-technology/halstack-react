@@ -1,6 +1,6 @@
 import {
   DxcTable,
-  DxcStack,
+  DxcFlex,
   DxcLink,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
@@ -842,7 +842,7 @@ const sections = [
 
 const ColorUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -850,7 +850,7 @@ const ColorUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/color/usage/ColorUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

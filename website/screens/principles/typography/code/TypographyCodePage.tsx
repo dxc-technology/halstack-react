@@ -3,7 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcStack } from "@dxc-technology/halstack-react";
+import { DxcFlex } from "@dxc-technology/halstack-react";
 import typographyBasicUsage from "./examples/typographyBasicUsage";
 import paragraphBasicUsage from "./examples/paragraphBasicUsage";
 import bulletedListBasicUsage from "./examples/bulletedListBasicUsage";
@@ -35,7 +35,7 @@ const sections = [
 
 const TypographyCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -43,7 +43,7 @@ const TypographyCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/typography/code/TypographyCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
