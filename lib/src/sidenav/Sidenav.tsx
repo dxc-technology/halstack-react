@@ -61,7 +61,7 @@ const DxcSidenav = ({ children, title }: SidenavPropsType): JSX.Element => {
 const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavTitle>{children}</SidenavTitle>;
 
 const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
-  <DxcBleed left="1rem" right="1rem">
+  <DxcBleed horizontal="1rem">
     <DxcFlex direction="column">{children}</DxcFlex>
   </DxcBleed>
 );
@@ -243,10 +243,7 @@ const SidenavGroupTitleButton = styled.button`
   }
 `;
 
-type StyledLinkProps = {
-  selected: boolean;
-};
-const SidenavLink = styled.a<StyledLinkProps>`
+const SidenavLink = styled.a<{ selected: boolean }>`
   letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
 
   text-transform: ${(props) => props.theme.linkFontTextTransform};

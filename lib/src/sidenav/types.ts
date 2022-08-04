@@ -1,5 +1,3 @@
-import React from "react";
-
 type SVG = React.SVGProps<SVGSVGElement>;
 
 type SidenavPropsType = {
