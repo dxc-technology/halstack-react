@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import DxcSidenav from "./Sidenav";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
