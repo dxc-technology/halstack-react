@@ -73,10 +73,6 @@ const SidenavContent = () => {
 
   return (
     <>
-      <Title>
-        React
-        <ReactLogo src={reactIcon} alt="React Logo" />
-      </Title>
       {Object.keys(types).map((type) => (
         <DxcSidenav.Group key={types[type]} title={types[type]}>
           {paths
