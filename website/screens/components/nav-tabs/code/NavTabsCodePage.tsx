@@ -1,6 +1,6 @@
 import {
   DxcParagraph,
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcLink,
 } from "@dxc-technology/halstack-react";
@@ -227,7 +227,7 @@ const sections = [
 
 const NavTabsCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -235,7 +235,7 @@ const NavTabsCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/nav-tabs/code/NavTabsCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

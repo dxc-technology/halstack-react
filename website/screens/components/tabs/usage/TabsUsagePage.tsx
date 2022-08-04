@@ -1,7 +1,7 @@
 import {
   DxcParagraph,
   DxcBulletedList,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -284,7 +284,7 @@ const sections = [
 
 const TabsUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -292,7 +292,7 @@ const TabsUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/tabs/usage/TabsUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

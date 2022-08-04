@@ -1,5 +1,5 @@
 import {
-  DxcStack,
+  DxcFlex,
   DxcParagraph,
   DxcBulletedList,
 } from "@dxc-technology/halstack-react";
@@ -34,7 +34,7 @@ const sections = [
 
 const NumberInputUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -42,7 +42,7 @@ const NumberInputUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/number-input/usage/NumberInputUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

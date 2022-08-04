@@ -1,8 +1,7 @@
 import {
   DxcLink,
-  DxcStack,
+  DxcFlex,
   DxcInset,
-  DxcRow,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -21,8 +20,8 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="center">
-        <DxcRow gutter="large">
+      <DxcFlex direction="column" gap="2rem" alignItems="center">
+        <DxcFlex gap="2rem">
           <DxcLink icon={icon} href="#">
             Link
           </DxcLink>
@@ -32,8 +31,8 @@ const code = `() => {
           <DxcLink disabled icon={icon} href="#">
             Link
           </DxcLink>
-        </DxcRow>
-        <DxcRow gutter="large">
+        </DxcFlex>
+        <DxcFlex gap="2rem">
           <DxcLink iconPosition="after" icon={icon} href="#">
             Link
           </DxcLink>
@@ -47,17 +46,16 @@ const code = `() => {
           <DxcLink iconPosition="after" disabled icon={icon} href="#">
             Link
           </DxcLink>
-        </DxcRow>
-      </DxcStack>
+        </DxcFlex>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcLink,
-  DxcStack,
+  DxcFlex,
   DxcInset,
-  DxcRow,
 };
 
 export default { code, scope };

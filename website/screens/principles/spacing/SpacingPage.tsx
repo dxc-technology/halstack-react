@@ -1,7 +1,6 @@
-import PageLayout from "../../common/PageLayout";
 import {
   DxcHeading,
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
@@ -312,11 +311,11 @@ const sections = [
 
 const Spacing = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={1} text="Spacing" weight="bold"></DxcHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
@@ -325,7 +324,7 @@ const Spacing = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/spacing/SpacingPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

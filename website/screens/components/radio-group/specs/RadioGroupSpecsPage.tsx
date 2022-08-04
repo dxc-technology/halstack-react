@@ -1,7 +1,7 @@
 import {
   DxcBulletedList,
-  DxcStack,
   DxcParagraph,
+  DxcFlex,
   DxcTable,
   DxcLink,
 } from "@dxc-technology/halstack-react";
@@ -748,7 +748,7 @@ const sections = [
 
 const RadioGroupSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -756,7 +756,7 @@ const RadioGroupSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/radio-group/specs/RadioGroupSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

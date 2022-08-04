@@ -1,9 +1,9 @@
 import {
   DxcLink,
   DxcHeading,
-  DxcStack,
   DxcParagraph,
   DxcBulletedList,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
@@ -149,15 +149,15 @@ const sections = [
 
 const Introduction = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading
             level={1}
             text="Halstack Design System"
             weight="bold"
           ></DxcHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
@@ -166,7 +166,7 @@ const Introduction = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/overview/introduction/IntroductionPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

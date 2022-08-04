@@ -1,6 +1,6 @@
 import {
   DxcBulletedList,
-  DxcStack,
+  DxcFlex,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
@@ -50,15 +50,15 @@ const sections = [
           be placed, some of them are contemplated in the following list:
         </DxcParagraph>
         <DxcBulletedList>
-          <DxcStack gutter="xsmall">
+          <DxcFlex direction="column" gap="0.5rem">
             <DxcBulletedList.Item>Plain text or content</DxcBulletedList.Item>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>
                 Informational purpose text
               </DxcBulletedList.Item>
             </DxcBulletedList>
-          </DxcStack>
-          <DxcStack gutter="xsmall">
+          </DxcFlex>
+          <DxcFlex direction="column" gap="0.5rem">
             <DxcParagraph>Menu links</DxcParagraph>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>Global navigation</DxcBulletedList.Item>
@@ -67,8 +67,8 @@ const sections = [
                 Useful links or resources
               </DxcBulletedList.Item>
             </DxcBulletedList>
-          </DxcStack>
-          <DxcStack gutter="xsmall">
+          </DxcFlex>
+          <DxcFlex direction="column" gap="0.5rem">
             <DxcParagraph>Forms</DxcParagraph>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>Select language</DxcBulletedList.Item>
@@ -77,8 +77,8 @@ const sections = [
                 Provide email adress / Subscribe
               </DxcBulletedList.Item>
             </DxcBulletedList>
-          </DxcStack>
-          <DxcStack gutter="xsmall">
+          </DxcFlex>
+          <DxcFlex direction="column" gap="0.5rem">
             <DxcParagraph>Actions</DxcParagraph>
             <DxcBulletedList type="circle">
               <DxcBulletedList.Item>
@@ -89,7 +89,7 @@ const sections = [
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>Search</DxcBulletedList.Item>
             </DxcBulletedList>
-          </DxcStack>
+          </DxcFlex>
         </DxcBulletedList>
       </>
     ),
@@ -98,7 +98,7 @@ const sections = [
 
 const FooterUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -106,7 +106,7 @@ const FooterUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/footer/usage/FooterUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

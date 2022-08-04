@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -52,7 +52,7 @@ const sections = [
 
 const TagUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -60,7 +60,7 @@ const TagUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/tag/usage/TagUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

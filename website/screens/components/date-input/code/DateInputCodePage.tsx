@@ -1,5 +1,5 @@
 import {
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
@@ -232,7 +232,7 @@ const sections = [
 
 const DateInputCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -240,7 +240,7 @@ const DateInputCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/date-input/code/DateInputCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

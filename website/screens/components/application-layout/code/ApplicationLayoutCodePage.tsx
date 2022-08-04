@@ -1,6 +1,6 @@
 import {
   DxcParagraph,
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcLink,
 } from "@dxc-technology/halstack-react";
@@ -168,7 +168,7 @@ const sections = [
 
 const ButtonCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -176,7 +176,7 @@ const ButtonCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/button/Code/ButtonCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

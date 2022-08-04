@@ -1,4 +1,4 @@
-import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageLayout from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -11,9 +11,9 @@ const TabsPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcFlex direction="column" gap="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Tabs" status="Ready" />
           <DxcParagraph>
             Tabs allow the user to interact across the sections to switch from
@@ -21,10 +21,10 @@ const TabsPageHeading = ({ children }: { children: React.ReactNode }) => {
             peer to the other.
           </DxcParagraph>
           <TabsPageLayout tabs={tabs}></TabsPageLayout>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       {children}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

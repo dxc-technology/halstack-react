@@ -1,6 +1,6 @@
 import {
   DxcBulletedList,
-  DxcStack,
+  DxcFlex,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
@@ -90,7 +90,7 @@ const sections = [
 
 const HeaderUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -98,7 +98,7 @@ const HeaderUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/header/usage/HeaderUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

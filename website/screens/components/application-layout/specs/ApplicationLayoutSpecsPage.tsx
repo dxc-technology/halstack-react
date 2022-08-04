@@ -1,8 +1,8 @@
 import {
   DxcLink,
   DxcBulletedList,
-  DxcStack,
   DxcParagraph,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -82,7 +82,7 @@ const sections = [
 
 const ApplicationLayoutSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -90,7 +90,7 @@ const ApplicationLayoutSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/application-layout/specs/ApplicationLayoutSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

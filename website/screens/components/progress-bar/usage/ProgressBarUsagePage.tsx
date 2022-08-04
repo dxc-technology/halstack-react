@@ -1,7 +1,7 @@
 import {
   DxcParagraph,
   DxcBulletedList,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -76,7 +76,7 @@ const sections = [
             Determinate indicators display how long a process will take. They
             should be used in longer processes.
           </DxcBulletedList.Item>
-          <DxcStack gutter="xsmall">
+          <DxcFlex direction="column" gap="0.5rem">
             <DxcBulletedList.Item>
               Indeterminate indicators express an unspecified amount of wait
               time. They should be used when:
@@ -86,11 +86,11 @@ const sections = [
                 The processing time is unknown.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                The wait time is expected to be short enough that it’s not
+                The wait time is expected to be short enough that it's not
                 necessary to display.
               </DxcBulletedList.Item>
             </DxcBulletedList>
-          </DxcStack>
+          </DxcFlex>
         </DxcBulletedList>
       </>
     ),
@@ -99,7 +99,7 @@ const sections = [
 
 const ProgressBarUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -107,7 +107,7 @@ const ProgressBarUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/progress-bar/usage/ProgressBarUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

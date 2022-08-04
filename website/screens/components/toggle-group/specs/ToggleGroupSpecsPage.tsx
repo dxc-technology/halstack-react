@@ -1,8 +1,8 @@
 import {
   DxcTable,
-  DxcStack,
   DxcParagraph,
   DxcBulletedList,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -678,7 +678,7 @@ const sections = [
 
 const ToggleGroupSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -686,7 +686,7 @@ const ToggleGroupSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/toggle-group/specs/ToggleGroupSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,4 +1,4 @@
-import { DxcBulletedList, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -41,7 +41,7 @@ const sections = [
 
 const PasswordInputUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -49,7 +49,7 @@ const PasswordInputUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/password-input/usage/PasswordInputUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

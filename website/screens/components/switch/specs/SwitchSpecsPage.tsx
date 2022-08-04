@@ -1,8 +1,8 @@
 import {
   DxcTable,
-  DxcStack,
   DxcParagraph,
   DxcBulletedList,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -512,7 +512,7 @@ const sections = [
 
 const SwitchSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -520,7 +520,7 @@ const SwitchSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/switch/specs/SwitchSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

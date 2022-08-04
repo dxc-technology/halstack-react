@@ -2,7 +2,7 @@ import Image from "@/common/Image";
 import {
   DxcLink,
   DxcBulletedList,
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
@@ -603,7 +603,7 @@ const sections = [
 
 const AlertSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -611,7 +611,7 @@ const AlertSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/alert/specs/AlertSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

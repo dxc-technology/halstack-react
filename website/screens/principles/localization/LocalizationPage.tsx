@@ -6,7 +6,7 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import {
   DxcHeading,
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcParagraph,
 } from "@dxc-technology/halstack-react";
@@ -509,11 +509,11 @@ const sections = [
 
 const Localization = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={1} text="Localization" weight="bold"></DxcHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
@@ -522,7 +522,7 @@ const Localization = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/localization/LocalizationPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

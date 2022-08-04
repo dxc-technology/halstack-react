@@ -1,7 +1,7 @@
 import {
   DxcParagraph,
   DxcBulletedList,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -61,7 +61,7 @@ const sections = [
             Determinate indicators display how long a process will take. They
             should be used in longer processes.
           </DxcBulletedList.Item>
-          <DxcStack gutter="xsmall">
+          <DxcFlex direction="column" gap="0.5rem">
             <DxcBulletedList.Item>
               Indeterminate indicators express an unspecified amount of wait
               time. They should be used when:
@@ -75,7 +75,7 @@ const sections = [
                 necessary to display.
               </DxcBulletedList.Item>
             </DxcBulletedList>
-          </DxcStack>
+          </DxcFlex>
         </DxcBulletedList>
       </>
     ),
@@ -84,7 +84,7 @@ const sections = [
 
 const SpinnerUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -92,7 +92,7 @@ const SpinnerUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/spinner/usage/SpinnerUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

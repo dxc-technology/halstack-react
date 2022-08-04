@@ -1,7 +1,7 @@
 import {
-  DxcStack,
   DxcParagraph,
   DxcBulletedList,
+  DxcFlex,
   DxcTable,
   DxcLink,
 } from "@dxc-technology/halstack-react";
@@ -585,7 +585,7 @@ const sections = [
 
 const CheckboxSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -593,7 +593,7 @@ const CheckboxSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/checkbox/specs/CheckboxSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
