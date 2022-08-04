@@ -1,8 +1,4 @@
-import {
-  DxcAlert,
-  DxcInset,
-  DxcTypography,
-} from "@dxc-technology/halstack-react";
+import { DxcInset, DxcTypography } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
@@ -15,7 +11,6 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcAlert,
   DxcInset,
   DxcTypography,
 };

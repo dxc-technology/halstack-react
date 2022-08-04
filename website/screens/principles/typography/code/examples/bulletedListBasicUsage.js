@@ -1,7 +1,6 @@
 import {
   DxcBulletedList,
   DxcInset,
-  DxcRow,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
 
@@ -20,7 +19,6 @@ const code = `() => {
 const scope = {
   DxcBulletedList,
   DxcInset,
-  DxcRow,
   DxcHeading,
 };
 export default { code, scope };
