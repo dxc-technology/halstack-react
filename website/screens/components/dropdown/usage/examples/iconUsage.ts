@@ -1,4 +1,4 @@
-import { DxcDropdown, DxcRow, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcDropdown, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const icon = (
@@ -36,20 +36,20 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcRow justify="center">
+      <DxcFlex justifyContent="center">
         <DxcDropdown
           icon={icon}
           options={options}
           onSelectOption={selectOption}
         ></DxcDropdown>
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcDropdown,
-  DxcRow,
+  DxcFlex,
   DxcInset,
 };
 

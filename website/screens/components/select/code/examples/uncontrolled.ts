@@ -1,7 +1,7 @@
 import {
   DxcSelect,
   DxcButton,
-  DxcStack,
+  DxcFlex,
   DxcInset,
 } from "@dxc-technology/halstack-react";
 import { useRef } from "react";
@@ -21,7 +21,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="start">
+      <DxcFlex direction="column" gap="2rem" alignItems="flex-start">
         <DxcSelect
           label="Select your favorite city"
           placeholder="Choose a city"
@@ -30,14 +30,14 @@ const code = `() => {
           ref={selectRef}
         />
         <DxcButton onClick={handleSubmit} label="Submit" />
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcSelect,
-  DxcStack,
+  DxcFlex,
   DxcInset,
   DxcButton,
   useRef,

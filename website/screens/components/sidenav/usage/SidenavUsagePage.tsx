@@ -1,7 +1,7 @@
 import {
   DxcText,
   DxcList,
-  DxcStack,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
@@ -115,7 +115,7 @@ const sections = [
 
 const SidenavUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -123,7 +123,7 @@ const SidenavUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/sidenav/usage/SidenavUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

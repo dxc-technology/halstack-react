@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -14,9 +14,9 @@ const FileInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcFlex direction="column" gap="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="File Input" status="Ready" />
           <DxcText as="p">
             The file input component is used to choose files from any location
@@ -26,10 +26,10 @@ const FileInputPageHeading = ({ children }: { children: React.ReactNode }) => {
             information in digital formats.
           </DxcText>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       {children}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,7 +1,7 @@
 import {
   DxcAccordion,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
@@ -18,7 +18,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcFlex direction="column" gap="2rem">
         <DxcAccordion
           label="Collapsed"
           isExpanded={isExpandedCollapsed}
@@ -35,17 +35,17 @@ const code = `() => {
           onChange={onChangeExpanded}
         >
           <DxcInset space="2rem">
-            <DxcStack gutter="small">
+            <DxcFlex direction="column" gap="1rem">
               <DxcHeading level={3} text="Content header" />
               <DxcInset space="0.125rem">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
               </DxcInset>
-            </DxcStack>
+            </DxcFlex>
           </DxcInset>
         </DxcAccordion>
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -53,7 +53,7 @@ const code = `() => {
 const scope = {
   DxcAccordion,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   DxcHeading,
   useState,
 };

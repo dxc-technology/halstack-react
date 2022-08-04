@@ -8,7 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@dxc-technology/halstack-react": "0.0.0-8c10296",
+    "@dxc-technology/halstack-react": "0.0.0-f9a5f2c",
     "@types/styled-components": "^5.1.18",
     "cross-env": "^7.0.3",
     "next": "12.1.0",

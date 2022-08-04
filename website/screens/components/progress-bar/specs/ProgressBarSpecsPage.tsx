@@ -1,6 +1,6 @@
 import {
   DxcTable,
-  DxcStack,
+  DxcFlex,
   DxcList,
   DxcText,
 } from "@dxc-technology/halstack-react";
@@ -450,7 +450,7 @@ const sections = [
 
 const ProgressBarSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -458,7 +458,7 @@ const ProgressBarSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/progress-bar/specs/ProgressBarSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

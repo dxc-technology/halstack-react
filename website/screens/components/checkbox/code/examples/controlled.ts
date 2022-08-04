@@ -1,7 +1,6 @@
 import {
   DxcCheckbox,
   DxcInset,
-  DxcStack,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
@@ -21,7 +20,6 @@ const code = `() => {
 const scope = {
   DxcCheckbox,
   DxcInset,
-  DxcStack,
   useState,
 };
 
