@@ -2,7 +2,6 @@ import {
   DxcAlert,
   DxcButton,
   DxcInset,
-  DxcStack,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
@@ -31,7 +30,6 @@ const scope = {
   DxcAlert,
   DxcButton,
   DxcInset,
-  DxcStack,
   useState,
 };
 

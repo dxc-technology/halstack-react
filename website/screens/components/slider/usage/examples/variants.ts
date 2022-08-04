@@ -1,4 +1,4 @@
-import { DxcSlider, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcSlider, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -13,7 +13,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="xxlarge">
+      <DxcFlex direction="column" gap="4rem">
         <DxcSlider
           label="Discrete"
           minValue={0}
@@ -32,7 +32,7 @@ const code = `() => {
           value={continuousValue}
           onChange={onChangeContinuous}
         />
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -40,7 +40,7 @@ const code = `() => {
 const scope = {
   DxcSlider,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   useState,
 };
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DxcStack } from "@dxc-technology/halstack-react";
+import { DxcFlex } from "@dxc-technology/halstack-react";
 
 type DocImageProps = {
   children: React.ReactNode;
@@ -8,10 +8,10 @@ type DocImageProps = {
 const Figure = ({ caption, children }: DocImageProps) => {
   return (
     <StyledFigure>
-      <DxcStack gutter="small">
+      <DxcFlex direction="column" gap="1rem">
         {children}
         <StyledFigcaption>{caption}</StyledFigcaption>
-      </DxcStack>
+      </DxcFlex>
     </StyledFigure>
   );
 };

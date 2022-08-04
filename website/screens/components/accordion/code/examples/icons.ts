@@ -1,7 +1,7 @@
 import {
   DxcAccordion,
   DxcAccordionGroup,
-  DxcStack,
+  DxcFlex,
   DxcInset,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
@@ -35,7 +35,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcFlex direction="column" gap="2rem">
         <DxcAccordion label="How to edit your profile?" icon={infoIcon}>
           <DxcInset space="1.5rem">
             To edit your profile you need to go to Settings and click on
@@ -62,7 +62,7 @@ const code = `() => {
             </DxcInset>
           </DxcAccordionGroup.Accordion>
         </DxcAccordionGroup>
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -71,7 +71,7 @@ const scope = {
   DxcAccordion,
   DxcInset,
   DxcAccordionGroup,
-  DxcStack,
+  DxcFlex,
   useState,
 };
 

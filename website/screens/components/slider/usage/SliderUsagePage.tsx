@@ -1,6 +1,6 @@
 import {
   DxcList,
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcText,
 } from "@dxc-technology/halstack-react";
@@ -82,7 +82,7 @@ const sections = [
 
 const SliderUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -90,7 +90,7 @@ const SliderUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/slider/usage/SliderUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

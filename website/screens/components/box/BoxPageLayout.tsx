@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -11,9 +11,9 @@ const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcFlex direction="column" gap="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Box" status="Ready" />
           <DxcText as="p">
             There are different ways to organise the content on the webpage to
@@ -23,10 +23,10 @@ const BoxPageHeading = ({ children }: { children: React.ReactNode }) => {
             be achieved by using a dedicated Box component.
           </DxcText>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       {children}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

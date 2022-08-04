@@ -1,6 +1,6 @@
 import {
   DxcTable,
-  DxcStack,
+  DxcFlex,
   DxcText,
   DxcList,
   DxcLink,
@@ -777,7 +777,7 @@ const sections = [
 
 const WizardSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -785,7 +785,7 @@ const WizardSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/wizard/specs/WizardSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,4 +1,4 @@
-import { DxcTabs, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
+import { DxcTabs, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -9,7 +9,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcRow justify="center">
+      <DxcFlex justifyContent="center">
         <div style={{ width: "400px" }}>
           <DxcTabs
             activeTabIndex={activeTab}
@@ -30,7 +30,7 @@ const code = `() => {
             ]}
           ></DxcTabs>
         </div>
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -39,7 +39,7 @@ const scope = {
   DxcTabs,
   useState,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 };
 
 export default { code, scope };
