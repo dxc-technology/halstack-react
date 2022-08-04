@@ -1,7 +1,6 @@
 import {
   DxcTag,
   DxcInset,
-  DxcRow,
   DxcFlex,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
@@ -16,7 +15,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcRow justify="spaceEvenly">
+      <DxcFlex justifyContent="space-evenly">
         <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={4} text="Icon before"></DxcHeading>
           <DxcTag label="Enabled" labelPosition="before" icon={icon} />
@@ -29,7 +28,7 @@ const code = `() => {
           <DxcHeading level={4} text="Only icon"></DxcHeading>
           <DxcTag icon={icon} />
         </DxcFlex>
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -37,7 +36,7 @@ const code = `() => {
 const scope = {
   DxcTag,
   DxcInset,
-  DxcRow,
+  DxcFlex,
   DxcFlex,
   DxcHeading,
 };
