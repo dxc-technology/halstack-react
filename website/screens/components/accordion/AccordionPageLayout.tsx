@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import PageHeading from "@/common/PageHeading";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,12 +15,12 @@ const AccordionPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcStack gutter="large">
           <ComponentHeading name="Accordion" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             Accordions are used to group similar content and hide or show it
             depending on user needs or preferences. Accordions give users more
             granular control over the interface and help digest content in
             stages, rather than all at once.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
       </PageHeading>

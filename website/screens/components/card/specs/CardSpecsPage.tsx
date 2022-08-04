@@ -1,6 +1,6 @@
 import {
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
   DxcStack,
   DxcTable,
 } from "@dxc-technology/halstack-react";
@@ -27,10 +27,10 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Component states: <strong>enabled</strong>, <strong>hover</strong> and{" "}
           <strong>focus</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Card component states">
           <Image src={statesImage} alt="Card component states" />
         </Figure>
@@ -42,11 +42,11 @@ const sections = [
     content: (
       <>
         <Image src={anatomyImage} alt="Card anatomy" />
-        <DxcList type="number">
-          <DxcText>Card image</DxcText>
-          <DxcText>Custom content</DxcText>
-          <DxcText>Container</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Card image</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Custom content</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -89,11 +89,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               The <Code>background-color</Code> token belongs to the box
               component, changes made on that component will affect the card
               element.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -278,11 +278,11 @@ const sections = [
         title: "Margin",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Margin properties can be applied independently to <Code>top</Code>
               , <Code>right</Code>, <Code>bottom</Code> and <Code>left</Code>{" "}
               sides of the card container.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -342,11 +342,11 @@ const sections = [
         title: "Padding",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Padding properties can be applied independently to{" "}
               <Code>top</Code>, <Code>right</Code>, <Code>bottom</Code> and{" "}
               <Code>left</Code> sides of the card container.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>

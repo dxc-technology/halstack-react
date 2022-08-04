@@ -1,7 +1,7 @@
 import {
   DxcStack,
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -14,43 +14,45 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcText as="p">Considerations for the file input component use:</DxcText>
+      <DxcParagraph>
+        Considerations for the file input component use:
+      </DxcParagraph>
     ),
     subSections: [
       {
         title: "Do's",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Provide a meaningful label and helper text to help the user
               understand the files expected.
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               When displaying errors, provide feedback about the type of error
               using the error message.
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               When the file input process fails, provide useful information
               instead of showing an error message using technical or
               undetermined information (e.g. &#39;0x94 ERROR_PATH_BUSY&#39;).
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
 
       {
         title: "Don'ts",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Use the file input component to upload multiple files inside a
               modal dialog.
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Use a variant with drag and drop functionality when designing for
               mobile devices.
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],

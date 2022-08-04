@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,10 +15,10 @@ const TextInputPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcStack gutter="large">
           <ComponentHeading name="Text Input" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             Text inputs are input fields typically used in forms that allow the
             user to enter text data in a structured format.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
       </PageHeading>

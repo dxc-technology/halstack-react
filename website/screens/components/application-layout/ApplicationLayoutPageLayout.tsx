@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -21,10 +21,10 @@ const ApplicationLayoutPageHeading = ({
       <PageHeading>
         <DxcStack gutter="large">
           <ComponentHeading name="Application layout" status="Ready" />
-          <DxcText>
+          <DxcParagraph>
             The application layout provides a base UI wrapper for any
             application built with Halstack.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
       </PageHeading>

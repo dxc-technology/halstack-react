@@ -1,6 +1,6 @@
 import {
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
   DxcTable,
   DxcStack,
   DxcLink,
@@ -26,7 +26,7 @@ const sections = [
         <Figure caption="Date input design specifications">
           <Image src={dateSpecs} alt="Date input design specifications" />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           The date input <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
@@ -35,17 +35,17 @@ const sections = [
             <DxcLink>check the text input component documentation</DxcLink>
           </Link>
           .
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           The date input doesn&#39;t have the following text input elements or
           properties, therefore, their listed styles don&#39;t apply:
-        </DxcText>
-        <DxcList>
-          <DxcText>Prefix / Suffix</DxcText>
-          <DxcText>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>Prefix / Suffix</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             The size <Code>small</Code> is not available
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -64,11 +64,11 @@ const sections = [
         title: " Date input",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong>, <strong>error</strong>, and{" "}
               <strong>disabled</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Examples of date input states">
               <Image
                 src={dateSpecsStates}
@@ -82,10 +82,10 @@ const sections = [
         title: " Date dialog",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong>, and <strong>selected</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Examples of the calendar dialog states">
               <Image
                 src={dateSpecsPopup}
@@ -102,18 +102,18 @@ const sections = [
     content: (
       <>
         <Image src={dateSpecsAnatomy} alt="Component anatomy example" />
-        <DxcList type="number">
-          <DxcText>Label</DxcText>
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Helper text <em>(Optional)</em>
-          </DxcText>
-          <DxcText>Input container</DxcText>
-          <DxcText>Date button</DxcText>
-          <DxcText>Clear action</DxcText>
-          <DxcText>Error indicator</DxcText>
-          <DxcText>Error message</DxcText>
-          <DxcText>Placeholder / value</DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Input container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Date button</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Clear action</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error indicator</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Placeholder / value</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -455,8 +455,8 @@ const sections = [
         title: "WCAG 2.2",
         content: (
           <>
-            <DxcList>
-              <DxcText>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
@@ -464,8 +464,8 @@ const sections = [
                 >
                   SC 2.1.1: Keyboard
                 </DxcLink>
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap"
@@ -473,8 +473,8 @@ const sections = [
                 >
                   SC 2.1.2: No keyboard trap
                 </DxcLink>
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels"
@@ -482,8 +482,8 @@ const sections = [
                 >
                   SC 2.4.6: Headings and labels
                 </DxcLink>
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible"
@@ -491,16 +491,16 @@ const sections = [
                 >
                   SC 2.4.7: Focus Visible
                 </DxcLink>
-              </DxcText>
-            </DxcList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </>
         ),
       },
       {
         title: "WAI-ARIA 1.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA authoring practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/#dialog_modal"
@@ -508,8 +508,8 @@ const sections = [
               >
                 3.9 Dialog modal
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA authoring practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html"
@@ -517,8 +517,8 @@ const sections = [
               >
                 Date picker design pattern
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],

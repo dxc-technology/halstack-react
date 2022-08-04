@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,7 +15,9 @@ const NumberInputPageHeading = ({
       <PageHeading>
         <DxcStack gutter="large">
           <ComponentHeading name="Nav Tabs" status="Experimental" />
-          <DxcText as="p">Nav tabs allow the user to navigate easily.</DxcText>
+          <DxcParagraph>
+            Nav tabs allow the user to navigate easily.
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
       </PageHeading>

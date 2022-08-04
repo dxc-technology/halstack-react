@@ -1,8 +1,8 @@
 import {
-  DxcList,
+  DxcBulletedList,
   DxcStack,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import Figure from "@/common/Figure";
@@ -27,13 +27,13 @@ const sections = [
     content: (
       <>
         <Image src={paginatorAnatomy} alt="Paginator anatomy" />
-        <DxcList type="number">
-          <DxcText>Container</DxcText>
-          <DxcText>Items per page</DxcText>
-          <DxcText>Items indicator</DxcText>
-          <DxcText>Page actions</DxcText>
-          <DxcText>Page selector</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Items per page</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Items indicator</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Page actions</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Page selector</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },

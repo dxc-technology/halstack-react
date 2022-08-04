@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,10 +15,10 @@ const AlertPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcStack gutter="large">
           <ComponentHeading name="Alert" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             Alert messages are meant to provide contextual feedback about
             important changes in the interface.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
       </PageHeading>

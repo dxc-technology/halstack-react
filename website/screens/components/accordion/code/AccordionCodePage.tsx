@@ -1,4 +1,8 @@
-import { DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcStack,
+  DxcTable,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -182,10 +186,10 @@ const sections = [
           {
             title: "DxcAccordionGroup.Accordion",
             content: (
-              <DxcText as="p">
+              <DxcParagraph>
                 This must be defined as children of the accordion group. It has
                 the following props:
-              </DxcText>
+              </DxcParagraph>
             ),
             subSections: [
               {

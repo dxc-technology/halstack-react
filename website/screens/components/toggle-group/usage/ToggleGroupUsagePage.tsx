@@ -1,4 +1,8 @@
-import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcBulletedList,
+  DxcStack,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -10,17 +14,17 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Toggles should be used in place of radio buttons whenever the options
           are:
-        </DxcText>
-        <DxcList>
-          <DxcText>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             Minimal in number, i.e. 3 or 4 maximum choices where only one
             selection is required.
-          </DxcText>
-          <DxcText>Opposites of each other.</DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Opposites of each other.</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -29,23 +33,23 @@ const sections = [
     content: (
       <>
         <Example example={variants} />
-        <DxcText as="p">
+        <DxcParagraph>
           The selection of the toggle group can be mutually exclusive (single
           variant) or mutually inclusive (multiple variant).
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
   {
     title: "Icon usage",
     content: (
-      <DxcText as="p">
+      <DxcParagraph>
         Inside the toggle button, it is possible to use icons to represent
         recognizable actions. The specifications for icon usage differs a little
         bit in relation to text usage. The size of the icons should be 24 by 24
         pixels, it must be centered respecting to the box that contains it
         vertically and horizontally.{" "}
-      </DxcText>
+      </DxcParagraph>
     ),
   },
 ];

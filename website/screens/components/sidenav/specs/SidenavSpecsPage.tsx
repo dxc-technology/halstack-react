@@ -1,8 +1,8 @@
 import {
   DxcTable,
   DxcStack,
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -27,13 +27,13 @@ const sections = [
     content: (
       <>
         <Image src={sidenavAnatomy} alt="Sidenav anatomy" />
-        <DxcList type="number">
-          <DxcText>Title</DxcText>
-          <DxcText>Subtitle</DxcText>
-          <DxcText>Link</DxcText>
-          <DxcText>Container</DxcText>
-          <DxcText>Arrow</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Title</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Subtitle</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Link</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Arrow</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -406,13 +406,13 @@ const sections = [
         title: "Padding",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Padding can be set through the following values: (xxsmall&#39;,
               &#39;xsmall&#39;, &#39;small&#39;, &#39;medium&#39;,
               &#39;large&#39;, &#39;xlarge&#39;, &#39;xxlarge&#39;) and
               independently for <Code>top</Code>, <Code>right</Code>,{" "}
               <Code>bottom</Code> and <Code>left</Code>.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -497,10 +497,10 @@ const sections = [
     title: "Responsive version for mobile and tablet",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Some properties regarding width vary, the details are indicated in the
           table below.
-        </DxcText>
+        </DxcParagraph>
         <DxcTable>
           <thead>
             <tr>

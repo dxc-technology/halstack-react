@@ -1,6 +1,6 @@
 import {
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
   DxcStack,
   DxcTable,
 } from "@dxc-technology/halstack-react";
@@ -16,19 +16,19 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Switch toggles should be used in place of radio buttons whenever the
           options are opposites of each other (i.e. yes/no, on/off, etc).
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Whenever is possible stack the switch component vertically.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Switches have immediate effect over the application, changing
           preferences and configuration settings. Don&#39;t use a submit button.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
@@ -36,11 +36,11 @@ const sections = [
     content: (
       <>
         <Example example={stacking} />
-        <DxcText as="p">
+        <DxcParagraph>
           In some application the use of several switches based on the
           requirements could appear, that why we provide some indications in the
           case that the user needs to use stacked switches.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },

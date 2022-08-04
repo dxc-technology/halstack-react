@@ -1,8 +1,8 @@
 import {
   DxcTable,
   DxcStack,
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
@@ -31,11 +31,11 @@ const sections = [
         title: "Dropdown button",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               States: <strong>Enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong>, <strong>active</strong> and{" "}
               <strong>disabled</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Example of the dropdown component states">
               <Image
                 src={statesImage}
@@ -50,10 +50,10 @@ const sections = [
         content: (
           <>
             {" "}
-            <DxcText as="p">
+            <DxcParagraph>
               States: <strong>Enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong> and <strong>selected</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Example of the option list states">
               <Image
                 src={optionListStatesImage}
@@ -473,8 +473,8 @@ const sections = [
         title: "WCAG 2.2",
         content: (
           <>
-            <DxcList>
-              <DxcText>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   newWindow
@@ -482,8 +482,8 @@ const sections = [
                 >
                   SC 1.4.13: Content on Hover or Focus
                 </DxcLink>
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   newWindow
@@ -491,16 +491,16 @@ const sections = [
                 >
                   SC 3.2.2: On Input
                 </DxcLink>
-              </DxcText>
-            </DxcList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </>
         ),
       },
       {
         title: "WAI-ARIA 1.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring Practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -508,8 +508,8 @@ const sections = [
               >
                 3.16 Menu button
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],

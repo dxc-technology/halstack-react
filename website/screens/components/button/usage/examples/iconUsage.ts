@@ -3,7 +3,6 @@ import {
   DxcStack,
   DxcRow,
   DxcInset,
-  DxcText,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -76,7 +75,6 @@ const scope = {
   DxcRow,
   DxcStack,
   DxcInset,
-  DxcText,
 };
 
 export default { code, scope };

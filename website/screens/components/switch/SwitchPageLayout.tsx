@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,13 +15,13 @@ const SwitchPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcStack gutter="large">
           <ComponentHeading name="Switch" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             Switch toggles are elements that can get two simple states, each of
             them has an impact on the system and it can be switched on or off,
             there are no more options. If the switch toggle is on one state, the
             action to change it will modify to value of the element to the
             contrary.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
       </PageHeading>

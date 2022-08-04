@@ -1,8 +1,8 @@
 import {
   DxcTable,
   DxcStack,
-  DxcList,
-  DxcText,
+  DxcBulletedList,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -28,19 +28,19 @@ const sections = [
     content: (
       <>
         <Image src={anatomyImage} alt="Component anatomy" />
-        <DxcList type="number">
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>
             Label <em>(Optional)</em>
-          </DxcText>
-          <DxcText>Progress track line</DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Progress track line</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Helper text <em>(Optional)</em>
-          </DxcText>
-          <DxcText>Progress total line</DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Progress total line</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Progress indicator <em>(Optional)</em>{" "}
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -312,11 +312,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               And also apply different values to each side of the component:
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code>,{" "}
               <Code>right</Code>.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },

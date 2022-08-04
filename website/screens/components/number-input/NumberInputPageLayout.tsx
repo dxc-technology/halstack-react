@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -22,11 +22,11 @@ const NumberInputPageHeading = ({
       <PageHeading>
         <DxcStack gutter="large">
           <ComponentHeading name="Number Input" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             The number input is a text input component that only allows
             numerical values and it has controls for incrementing or
             decrementing them.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
       </PageHeading>

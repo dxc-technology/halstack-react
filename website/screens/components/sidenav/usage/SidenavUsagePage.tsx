@@ -1,6 +1,6 @@
 import {
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
   DxcStack,
   DxcTable,
 } from "@dxc-technology/halstack-react";
@@ -18,21 +18,21 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Use the sidenav element to improve the discoverability of the
           application, making the navigation links accessible to the users.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Keep in mind the type of the devices that you are developing for, and
           handle the behavior in a way that doesn&#39;t block or reduce the
           available space of the main area in the application.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Try to follow and order for the sidenav content and make use of
           hierarchy to differentiate between a title and a link.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
@@ -41,10 +41,10 @@ const sections = [
       <>
         <Figure
           caption={
-            <DxcText as="p">
+            <DxcParagraph>
               Example of the <Code>overlay</Code> and <Code>push</Code> sidenav
               variants
-            </DxcText>
+            </DxcParagraph>
           }
         >
           <Image
@@ -52,11 +52,11 @@ const sections = [
             alt="Example of the overlay and push sidenav variants"
           />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           Two different modes can be set in the element, according to the needs
           of the application and the relation between the main content and the
           sidenav.
-        </DxcText>
+        </DxcParagraph>
         <DxcTable>
           <thead>
             <tr>
@@ -94,7 +94,7 @@ const sections = [
             alt="Sidenav component example in mobile devices"
           />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           The responsive version of the component for mobile and tablet works a
           little bit different compared with the version for desktop. As the
           size of the screen in those devices is reduced, the default behavior
@@ -102,12 +102,12 @@ const sections = [
           Taking this approach, as a first view of the page the user has all the
           content in the main area visible, and then he will need to interact
           with the component to make it visible and navigate to other resources.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           Also, as an important point to mention, the only variant that works
           with responsive is the overlay, due to lack of space in the screen if
           the sidenav pushed the content of the main container.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },

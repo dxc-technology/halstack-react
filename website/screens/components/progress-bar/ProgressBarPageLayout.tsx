@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcStack } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -22,7 +22,7 @@ const ProgressBarPageHeading = ({
       <PageHeading>
         <DxcStack gutter="large">
           <ComponentHeading name="Progress Bar" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             Progress indicators offer visibility of system status to the user,
             giving feedback to indicate that the application is taking some time
             to processing data. The main aim of these components is to reduce
@@ -31,7 +31,7 @@ const ProgressBarPageHeading = ({
             any scenario that will take more than 1 second in performing the
             action, for anything that takes less than that time, it will be
             distracting for the user.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcStack>
       </PageHeading>

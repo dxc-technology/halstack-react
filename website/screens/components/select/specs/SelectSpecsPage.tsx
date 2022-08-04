@@ -1,6 +1,6 @@
 import {
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
   DxcTable,
   DxcStack,
   DxcLink,
@@ -35,13 +35,13 @@ const sections = [
             title: "Select input",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   States are defined for select component based on the
                   interactions that the user can reproduce. The states are:{" "}
                   <strong>enabled</strong>, <strong>hover</strong>,{" "}
                   <strong>focus</strong>, <strong>active</strong>,{" "}
                   <strong>error</strong> and <strong>disabled</strong>:
-                </DxcText>
+                </DxcParagraph>
                 <Image src={selectSingleSpecsStates} alt="Select states" />
               </>
             ),
@@ -50,9 +50,9 @@ const sections = [
             title: "Multiple selection",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   Allows the user to select more than one option from the list.
-                </DxcText>
+                </DxcParagraph>
                 <Image
                   src={selectMultipleSpecsStates}
                   alt="Select multiple option"
@@ -63,11 +63,11 @@ const sections = [
           {
             title: "List options",
             content: (
-              <DxcText as="p">
+              <DxcParagraph>
                 To indicate which items are selected and which not, the
                 select-multiple variant integrates a checkbox pairing with each
                 option from the dropdown.
-              </DxcText>
+              </DxcParagraph>
             ),
             subSections: [
               {
@@ -101,21 +101,27 @@ const sections = [
         content: (
           <>
             <Image src={selectAnatomy} alt="Select anatomy" />
-            <DxcList type="number">
-              <DxcText>Label</DxcText>
-              <DxcText>Helper text</DxcText>
-              <DxcText>Selection indicator (multiple)</DxcText>
-              <DxcText>List dialog</DxcText>
-              <DxcText>Action - Clear</DxcText>
-              <DxcText>Collapse indicator</DxcText>
-              <DxcText>List option</DxcText>
-              <DxcText>Divider</DxcText>
-              <DxcText>List option label</DxcText>
-              <DxcText>List option icon</DxcText>
-              <DxcText>List option checkbox (multiple)</DxcText>
-              <DxcText>Select value</DxcText>
-              <DxcText>List item selected indicator</DxcText>
-            </DxcList>
+            <DxcBulletedList type="number">
+              <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Selection indicator (multiple)
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>List dialog</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Action - Clear</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Collapse indicator</DxcBulletedList.Item>
+              <DxcBulletedList.Item>List option</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Divider</DxcBulletedList.Item>
+              <DxcBulletedList.Item>List option label</DxcBulletedList.Item>
+              <DxcBulletedList.Item>List option icon</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                List option checkbox (multiple)
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>Select value</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                List item selected indicator
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </>
         ),
       },
@@ -936,13 +942,13 @@ const sections = [
             title: "Spacing",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   The select component <strong>input</strong> share the{" "}
                   <Link href="/components/text-input/specifications" passHref>
                     <DxcLink>same spacing tokens of the text input</DxcLink>
                   </Link>
                   .
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -1022,10 +1028,10 @@ const sections = [
             title: "Size",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   The component <Code>width</Code> can adopt the following
                   values:
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -1067,9 +1073,9 @@ const sections = [
             title: "Margin",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   Select <Code>margin</Code> can use the values:
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -1122,12 +1128,12 @@ const sections = [
                     </tr>
                   </tbody>
                 </DxcTable>
-                <DxcText as="p">
+                <DxcParagraph>
                   These values can be applied independently to each side of the
                   component: <Code>top</Code>, <Code>bottom</Code>,{" "}
                   <Code>left</Code> and
                   <Code>right</Code>.
-                </DxcText>
+                </DxcParagraph>
               </>
             ),
           },
@@ -1139,8 +1145,8 @@ const sections = [
           {
             title: "WCAG 2.2",
             content: (
-              <DxcList>
-                <DxcText>
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
                   Understanding WCAG 2.2 -{" "}
                   <DxcLink
                     href="https://www.w3.org/WAI/WCAG22/Understanding/on-input.html"
@@ -1148,15 +1154,15 @@ const sections = [
                   >
                     SC 3.2.2: On Input
                   </DxcLink>
-                </DxcText>
-              </DxcList>
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
             ),
           },
           {
             title: "WAI-ARIA 1.2",
             content: (
-              <DxcList>
-                <DxcText>
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
                   WAI-ARIA practices 1.2 -{" "}
                   <DxcLink
                     href="https://www.w3.org/TR/wai-aria-practices-1.2/#combobox"
@@ -1164,8 +1170,8 @@ const sections = [
                   >
                     3.8 Combobox
                   </DxcLink>
-                </DxcText>
-                <DxcText>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
                   WAI-ARIA practices 1.2 -{" "}
                   <DxcLink
                     href="https://www.w3.org/TR/wai-aria-practices-1.2/#Listbox"
@@ -1173,8 +1179,8 @@ const sections = [
                   >
                     3.14 Listbox
                   </DxcLink>
-                </DxcText>
-                <DxcText>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
                   WAI-ARIA examples 1.2 -{" "}
                   <DxcLink
                     href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/combobox/combobox-autocomplete-none.html"
@@ -1182,8 +1188,8 @@ const sections = [
                   >
                     Editable Combobox without Autocomplete Example
                   </DxcLink>
-                </DxcText>
-              </DxcList>
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
             ),
           },
         ],

@@ -1,4 +1,4 @@
-import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcStack } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -10,25 +10,29 @@ const sections = [
       {
         title: "Do's",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Use the component password input when the value expected is a
               password and need to be secured.
-            </DxcText>
-            <DxcText>Provide the requirements in the helper text.</DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Provide the requirements in the helper text.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "Don'ts",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Show the validation of the password input until the component
               loses the focus.
-            </DxcText>
-            <DxcText>Disable the copy/paste input functionality.</DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Disable the copy/paste input functionality.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],

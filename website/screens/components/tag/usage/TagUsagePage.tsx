@@ -1,4 +1,4 @@
-import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcStack } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -10,22 +10,22 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Use the tag component to highlight properties of a section that want
           to remark.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Make consistent use of the component accross the application.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Be responsible of the use of background color and icons.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           If there are multiple tags, the space between them should be at least
           16px.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
@@ -33,16 +33,18 @@ const sections = [
     content: (
       <>
         <Example example={iconUsage} />
-        <DxcList>
-          <DxcText>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             The tag can be displayed with icon and label or only icon.
-          </DxcText>
-          <DxcText>The icon can be placed before or after.</DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            The icon can be placed before or after.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             The icon background color can be defined with the
             <Code>iconBgColor</Code> component property.
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
