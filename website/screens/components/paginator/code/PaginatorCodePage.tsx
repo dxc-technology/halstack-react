@@ -3,7 +3,7 @@ import DocFooter from "@/common/DocFooter";
 import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import { DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable, DxcText } from "@dxc-technology/halstack-react";
 import itemsPerPage from "./examples/itemsPerPage";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
@@ -111,7 +111,7 @@ const sections = [
 
 const PaginatorCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -119,7 +119,7 @@ const PaginatorCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/paginator/code/PaginatorCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

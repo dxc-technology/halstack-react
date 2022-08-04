@@ -2,7 +2,7 @@ import {
   DxcText,
   DxcTable,
   DxcLink,
-  DxcStack,
+  DxcFlex,
   DxcList,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -1047,7 +1047,7 @@ const sections = [
 
 const TextInputSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -1055,7 +1055,7 @@ const TextInputSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/text-input/specs/TextInputSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

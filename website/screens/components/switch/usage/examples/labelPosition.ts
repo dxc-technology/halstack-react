@@ -2,7 +2,7 @@ import {
   DxcSwitch,
   DxcInset,
   DxcRow,
-  DxcStack,
+  DxcFlex,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
 
@@ -10,14 +10,14 @@ const code = `() => {
   return (
     <DxcInset space="2rem">
       <DxcRow justify="center" gutter="xlarge">
-        <DxcStack>
+        <DxcFlex direction="column">
           <DxcHeading level={4} text="Before"></DxcHeading>
           <DxcSwitch label="Show all" />
-        </DxcStack>
-        <DxcStack>
+        </DxcFlex>
+        <DxcFlex direction="column">
           <DxcHeading level={4} text="After"></DxcHeading>
           <DxcSwitch label="Off" labelPosition="after" />
-        </DxcStack>
+        </DxcFlex>
       </DxcRow>
     </DxcInset>
   );
@@ -27,7 +27,7 @@ const scope = {
   DxcSwitch,
   DxcInset,
   DxcRow,
-  DxcStack,
+  DxcFlex,
   DxcHeading,
 };
 

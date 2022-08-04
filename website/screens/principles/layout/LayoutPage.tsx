@@ -1,7 +1,7 @@
 import {
   DxcHeading,
   DxcText,
-  DxcStack,
+  DxcFlex,
   DxcList,
   DxcLink,
   DxcTable,
@@ -268,11 +268,11 @@ const sections = [
 
 const Layout = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={1} text="Layout" weight="bold"></DxcHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
@@ -281,7 +281,7 @@ const Layout = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/layout/LayoutPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
