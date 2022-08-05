@@ -37,7 +37,6 @@ const scope = {
   DxcTag,
   DxcInset,
   DxcFlex,
-  DxcFlex,
   DxcHeading,
 };
 
