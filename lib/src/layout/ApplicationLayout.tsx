@@ -12,13 +12,7 @@ import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./Sidena
 import useTranslatedLabels from "../useTranslatedLabels";
 
 const year = new Date().getFullYear();
-const Header = ({ ...props }: HeaderPropsType): JSX.Element => <DxcHeader {...props} />;
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
-const Footer = ({ ...props }: FooterPropsType): JSX.Element => <DxcFooter {...props} />;
-const Sidenav = ({ ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
-  <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>
-);
-
 const defaultHeader = () => <DxcHeader underlined />;
 
 const defaultFooter = () => (
@@ -229,10 +223,10 @@ const MainContentContainer = styled.div`
   flex: 1;
 `;
 
-DxcApplicationLayout.Header = Header;
+DxcApplicationLayout.Header = DxcHeader;
 DxcApplicationLayout.Main = Main;
-DxcApplicationLayout.Footer = Footer;
-DxcApplicationLayout.SideNav = Sidenav;
+DxcApplicationLayout.Footer = DxcFooter;
+DxcApplicationLayout.SideNav = DxcSidenav;
 DxcApplicationLayout.useResponsiveSidenavVisibility = useResponsiveSidenavVisibility;
 
 export default DxcApplicationLayout;
