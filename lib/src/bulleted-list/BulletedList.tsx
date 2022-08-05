@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import DxcStack from "../stack/Stack";
+import DxcFlex from "../flex/Flex";
 import DxcTypography from "../typography/Typography";
 import BulletedListPropsType, { BulletedListItemPropsType } from "./types";
 import useTheme from "../useTheme";
@@ -16,59 +16,69 @@ const DxcBulletedList = ({ children, type = "disc", icon = "" }: BulletedListPro
 
   return (
     <ThemeProvider theme={colorsTheme.bulletedList}>
-      <DxcStack as={type === "number" ? "ol" : "ul"} gutter="0.125rem">
-        {React.Children.map(children, (child, index) => {
-          return (
-            <ListItem>
-              <GeneralContent>
-                {type === "number" ? (
-                  <Number>
-                    <DxcTypography
-                      color={
-                        backgroundType && backgroundType === "dark"
-                          ? colorsTheme.bulletedList.fontColorOnDark
-                          : colorsTheme.bulletedList.fontColor
-                      }
-                    >
-                      {index + 1}.
-                    </DxcTypography>
-                  </Number>
-                ) : type === "square" ? (
-                  <Bullet>
-                    <Square backgroundType={backgroundType}></Square>
-                  </Bullet>
-                ) : type === "circle" ? (
-                  <Bullet>
-                    <Circle backgroundType={backgroundType}></Circle>
-                  </Bullet>
-                ) : type === "icon" ? (
-                  <Bullet>
-                    <Icon backgroundType={backgroundType}>{icon}</Icon>
-                  </Bullet>
-                ) : (
-                  <Bullet>
-                    <Disc backgroundType={backgroundType}></Disc>
-                  </Bullet>
-                )}
-                <DxcTypography
-                  color={
-                    backgroundType && backgroundType === "dark"
-                      ? colorsTheme.bulletedList.fontColorOnDark
-                      : colorsTheme.bulletedList.fontColor
-                  }
-                >
-                  {child}
-                </DxcTypography>
-              </GeneralContent>
-            </ListItem>
-          );
-        })}
-      </DxcStack>
+      <ListContainer>
+        <DxcFlex direction="column" as={type === "number" ? "ol" : "ul"} gap="0.125rem">
+          {React.Children.map(children, (child, index) => {
+            return (
+              <ListItem>
+                <GeneralContent>
+                  {type === "number" ? (
+                    <Number>
+                      <DxcTypography
+                        color={
+                          backgroundType && backgroundType === "dark"
+                            ? colorsTheme.bulletedList.fontColorOnDark
+                            : colorsTheme.bulletedList.fontColor
+                        }
+                      >
+                        {index + 1}.
+                      </DxcTypography>
+                    </Number>
+                  ) : type === "square" ? (
+                    <Bullet>
+                      <Square backgroundType={backgroundType}></Square>
+                    </Bullet>
+                  ) : type === "circle" ? (
+                    <Bullet>
+                      <Circle backgroundType={backgroundType}></Circle>
+                    </Bullet>
+                  ) : type === "icon" ? (
+                    <Bullet>
+                      <Icon backgroundType={backgroundType}>{icon}</Icon>
+                    </Bullet>
+                  ) : (
+                    <Bullet>
+                      <Disc backgroundType={backgroundType}></Disc>
+                    </Bullet>
+                  )}
+                  <DxcTypography
+                    color={
+                      backgroundType && backgroundType === "dark"
+                        ? colorsTheme.bulletedList.fontColorOnDark
+                        : colorsTheme.bulletedList.fontColor
+                    }
+                  >
+                    {child}
+                  </DxcTypography>
+                </GeneralContent>
+              </ListItem>
+            );
+          })}
+        </DxcFlex>
+      </ListContainer>
     </ThemeProvider>
   );
 };
 
 DxcBulletedList.Item = BulletedListItem;
+
+const ListContainer = styled.div`
+  ul,
+  ol {
+    padding: 0;
+    margin: 0;
+  }
+`;
 
 const Bullet = styled.div<BulletedListPropsType>`
   display: flex;
@@ -145,7 +155,7 @@ const ListItem = styled.li`
   padding: 0px;
   list-style: none;
   display: flex;
-  font-size: "1em";
+  font-size: 1em;
 `;
 
 export default DxcBulletedList;
