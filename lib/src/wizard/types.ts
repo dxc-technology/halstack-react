@@ -1,5 +1,5 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
+export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
@@ -28,12 +28,13 @@ type Step = {
    */
   valid?: boolean;
 };
+export type Mode = "horizontal" | "vertical";
 
 type Props = {
   /**
    * The wizard can be showed in horizontal or vertical.
    */
-  mode?: "horizontal" | "vertical";
+  mode?: Mode;
   /**
    * Initially selected step, only when it is uncontrolled.
    */
