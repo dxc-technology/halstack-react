@@ -62,9 +62,9 @@ const DxcApplicationLayout = ({
   const translatedLabels = useTranslatedLabels();
 
   const childrenArray = React.Children.toArray(children);
-  const headerContent = (header && header) || defaultHeader();
-  const footerContent = (footer && footer) || defaultFooter();
-  const sidenavContent = sidenav && sidenav;
+  const headerContent = header || defaultHeader();
+  const footerContent = footer || defaultFooter();
+
   const main = childTypeExists(childrenArray, Main);
 
   const handleResize = () => {
@@ -88,12 +88,12 @@ const DxcApplicationLayout = ({
 
   return (
     <ApplicationLayoutContainer
-      hasSidenav={sidenavContent ? true : false}
+      hasSidenav={sidenav ? true : false}
       isSidenavVisible={isSidenavVisibleResponsive}
       ref={ref}
     >
       <HeaderContainer>{headerContent}</HeaderContainer>
-      {sidenavContent && isResponsive && (
+      {sidenav && isResponsive && (
         <VisibilityToggle>
           <HamburgerTrigger
             onClick={handleSidenavVisibility}
@@ -107,8 +107,8 @@ const DxcApplicationLayout = ({
       )}
       <BodyContainer>
         <SidenavContextProvider value={setIsSidenavVisibleResponsive}>
-          {sidenavContent && (isResponsive ? isSidenavVisibleResponsive : true) && (
-            <SidenavContainer>{sidenavContent}</SidenavContainer>
+          {sidenav && (isResponsive ? isSidenavVisibleResponsive : true) && (
+            <SidenavContainer>{sidenav}</SidenavContainer>
           )}
         </SidenavContextProvider>
         <MainContainer>
