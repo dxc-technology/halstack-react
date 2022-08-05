@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { DxcText, DxcLink, DxcStack, DxcRow } from "@dxc-technology/halstack-react";
+import { DxcTypography, DxcLink, DxcFlex } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 import styled from "styled-components";
@@ -10,25 +10,26 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
 
   return (
     <DocFooterContainer>
-      <DxcStack divider gutter="xxlarge">
+      <DxcFlex direction="column" gap="2rem">
         <DxcLink icon={githubIcon} href={githubLink} newWindow>
           Edit this page on GitHub
         </DxcLink>
-        <DxcRow justify="spaceBetween">
-          <DxcStack gutter="small">
+        <Separator />
+        <DxcFlex justifyContent="space-between">
+          <DxcFlex direction="column" gap="1rem">
             {previousLink && (
               <>
-                <DxcText>Previous</DxcText>
+                <DxcTypography>Previous</DxcTypography>
                 <Link href={previousLink.path} passHref>
                   <DxcLink icon={arrowBack}>{previousLink.label}</DxcLink>
                 </Link>
               </>
             )}
-          </DxcStack>
-          <DxcStack align="end" gutter="small">
+          </DxcFlex>
+          <DxcFlex direction="column" alignItems="flex-end" gap="1rem">
             {nextLink && (
               <>
-                <DxcText>Next</DxcText>
+                <DxcTypography>Next</DxcTypography>
                 <Link href={nextLink.path} passHref>
                   <DxcLink icon={arrowForward} iconPosition="after">
                     {nextLink.label}
@@ -36,9 +37,9 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
                 </Link>
               </>
             )}
-          </DxcStack>
-        </DxcRow>
-      </DxcStack>
+          </DxcFlex>
+        </DxcFlex>
+      </DxcFlex>
     </DocFooterContainer>
   );
 };
@@ -71,7 +72,12 @@ const arrowBack = (
     fill="currentColor"
   >
     <g id="arrow_forward_black_24dp" transform="translate(16 16) rotate(180)">
-      <path id="Path_2989" data-name="Path 2989" d="M0,0H16V16H0Z" fill="none" />
+      <path
+        id="Path_2989"
+        data-name="Path 2989"
+        d="M0,0H16V16H0Z"
+        fill="none"
+      />
       <path
         id="Path_2990"
         data-name="Path 2990"
@@ -90,7 +96,11 @@ const githubIcon = (
     viewBox="0 0 24 24"
     fill="currentColor"
   >
-    <g id="Group_4275" data-name="Group 4275" transform="translate(-670.003 -820.294)">
+    <g
+      id="Group_4275"
+      data-name="Group 4275"
+      transform="translate(-670.003 -820.294)"
+    >
       <g id="Group_4276" data-name="Group 4276">
         <rect
           id="Rectangle_2690"
@@ -112,6 +122,11 @@ const githubIcon = (
 
 const DocFooterContainer = styled.div`
   max-width: 800px;
+`;
+
+const Separator = styled.div`
+  height: 1px;
+  background-color: #999999;
 `;
 
 export default DocFooter;

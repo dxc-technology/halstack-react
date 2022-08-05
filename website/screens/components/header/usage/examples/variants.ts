@@ -1,19 +1,19 @@
 import {
   DxcHeader,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcFlex direction="column" gap="2rem">
         <DxcHeading level={4} text="Default"></DxcHeading>
         <DxcHeader />
         <DxcHeading level={4} text="Underlined"></DxcHeading>
         <DxcHeader underlined="true"/>
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -21,7 +21,7 @@ const code = `() => {
 const scope = {
   DxcHeader,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   DxcHeading,
 };
 

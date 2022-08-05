@@ -1,7 +1,7 @@
 import {
-  DxcStack,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
@@ -103,7 +103,7 @@ const sections = [
       {
         title: "DxcHeader.Dropdown",
         content: (
-          <DxcText>
+          <DxcParagraph>
             Everything between this tags will be displayed as a dropdown. If you
             want to show a{" "}
             <Link href="/components/dropdown" passHref>
@@ -112,7 +112,7 @@ const sections = [
             , as a shortcut, you can also use it as a direct child of the
             DxcHeader without the tags, but we recommend to use it with the tags
             since some styles will be applied for a better fit in the header.
-          </DxcText>
+          </DxcParagraph>
         ),
       },
     ],
@@ -138,7 +138,7 @@ const sections = [
 
 const HeaderCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -146,7 +146,7 @@ const HeaderCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/header/code/HeaderCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

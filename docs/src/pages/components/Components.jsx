@@ -9,6 +9,7 @@ import {
   DxcFooter,
   DxcApplicationLayout,
   DxcHeading,
+  DxcSidenav,
 } from "@dxc-technology/halstack-react";
 import paths from "./paths.js";
 import reactIcon from "../../common/react-icon.png";
@@ -71,43 +72,34 @@ const SidenavContent = () => {
   };
 
   return (
-    <SidenavContainer>
-      <Title>
-        React
-        <ReactLogo src={reactIcon} alt="React Logo" />
-      </Title>
+    <>
       {Object.keys(types).map((type) => (
-        <React.Fragment key={types[type]}>
-          <ComponentType>{types[type]}</ComponentType>
-          <ComponentsList>
-            {paths
-              .filter((path) => path.type === types[type])
-              .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
-              .map((path) => (
-                <NavLink
-                  isActive={location.pathname === `/components/${path.path}`}
-                  key={path.path}
+        <DxcSidenav.Group key={types[type]} title={types[type]}>
+          {paths
+            .filter((path) => path.type === types[type])
+            .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
+            .map((path) => (
+              <>
+                <Link
+                  to={`/components/${path.path}`}
+                  onClick={handleLinkOnClick}
+                  component={DxcSidenav.Link}
+                  selected={location.pathname === `/components/${path.path}`}
                 >
-                  <Link
-                    to={`/components/${path.path}`}
-                    onClick={handleLinkOnClick}
-                  >
-                    {path.name}
-                  </Link>
-                  {path.status === "deprecated" && (
-                    <StatusTag
-                      status={
-                        path.status.charAt(0).toUpperCase() +
-                        path.status.slice(1)
-                      }
-                    />
-                  )}
-                </NavLink>
-              ))}
-          </ComponentsList>
-        </React.Fragment>
+                  {path.name}
+                </Link>
+                {path.status === "deprecated" && (
+                  <StatusTag
+                    status={
+                      path.status.charAt(0).toUpperCase() + path.status.slice(1)
+                    }
+                  />
+                )}
+              </>
+            ))}
+        </DxcSidenav.Group>
       ))}
-    </SidenavContainer>
+    </>
   );
 };
 
@@ -116,8 +108,17 @@ const Components = () => (
     <DxcApplicationLayout.Header>
       <Header />
     </DxcApplicationLayout.Header>
-    <DxcApplicationLayout.SideNav padding="large">
-      <SidenavContent />
+    <DxcApplicationLayout.SideNav
+      title={
+        <DxcSidenav.Title>
+          React
+          <ReactLogo src={reactIcon} alt="React Logo" />
+        </DxcSidenav.Title>
+      }
+    >
+      <DxcSidenav.Section>
+        <SidenavContent />
+      </DxcSidenav.Section>
     </DxcApplicationLayout.SideNav>
     <DxcApplicationLayout.Main>
       <MainContent>
@@ -165,65 +166,14 @@ const Components = () => (
   </DxcApplicationLayout>
 );
 
-const SidenavContainer = styled.div`
-  margin-bottom: 40px;
-`;
-
 const MainContent = styled.div`
   height: 100%;
   min-height: 100vh;
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  color: #646464;
-  font-weight: normal;
-  line-height: 18px;
-`;
-
 const ReactLogo = styled.img`
   max-width: 28px;
   margin-left: 8px;
-`;
-
-const ComponentType = styled.div`
-  text-transform: uppercase;
-  color: gray;
-  font-size: 14px;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-`;
-
-const ComponentsList = styled.div`
-  margin-left: 10px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const NavLink = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 4px 0px;
-  & a {
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
-    color: ${({ isActive }) => (isActive && "black") || "gray"};
-    ::before {
-      display: table;
-      content: "";
-      margin-bottom: 0.21875rem;
-    }
-    ::after {
-      display: table;
-      content: "";
-      margin-top: 0.21875rem;
-    }
-  }
 `;
 
 const ComponentsLinksContainer = styled.div`

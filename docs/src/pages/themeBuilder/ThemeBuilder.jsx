@@ -49,58 +49,62 @@ const ThemeBuilder = () => {
       <DxcApplicationLayout.Header>
         <Header></Header>
       </DxcApplicationLayout.Header>
-      <DxcApplicationLayout.SideNav mode="push" padding="small">
-        <DxcSidenav.Title>Global theme actions</DxcSidenav.Title>
-        <ButtonsContainer>
-          <DxcButton
-            mode="text"
-            label="Reset"
-            onClick={() => {
-              setCustomTheme(
-                type === "advancedTheme" ? advancedTheme : defaultTheme
-              );
-            }}
-            icon={resetIcon}
-          />
-          <DxcButton
-            mode="secondary"
-            label="Import"
-            onClick={() => {
-              setDialogVisible(true);
-            }}
-            margin={{ top: "xxsmall", bottom: "xxsmall" }}
-            icon={importIcon}
-          />
-          {isDialogVisible && (
-            <ImportDialog
-              customThemeSchema={customThemeSchema}
-              setCustomTheme={setCustomTheme}
-              setDialogVisible={setDialogVisible}
+      <DxcApplicationLayout.SideNav
+        title={<DxcSidenav.Title>Global theme actions</DxcSidenav.Title>}
+      >
+        <DxcSidenav.Section>
+          <ButtonsContainer>
+            <DxcButton
+              mode="text"
+              label="Reset"
+              onClick={() => {
+                setCustomTheme(
+                  type === "advancedTheme" ? advancedTheme : defaultTheme
+                );
+              }}
+              icon={resetIcon}
             />
-          )}
-          <DxcButton
-            mode="primary"
-            label="Export"
-            onClick={() => {
-              downloadFile(customTheme);
-            }}
-            icon={exportIcon}
-          />
-        </ButtonsContainer>
-        <DxcSidenav.Title>Components</DxcSidenav.Title>
-        {Object.keys(
-          type === "advancedTheme" ? advancedTheme : defaultTheme
-        ).map((component, index) => (
-          <ComponentLink
-            key={`componentLink-${index}`}
-            isSelected={currentComponent === component}
-            onClick={() => {
-              setCurrentComponent(component);
-            }}
-          >
-            {makeReadableSidenav(component)}
-          </ComponentLink>
-        ))}
+            <DxcButton
+              mode="secondary"
+              label="Import"
+              onClick={() => {
+                setDialogVisible(true);
+              }}
+              margin={{ top: "xxsmall", bottom: "xxsmall" }}
+              icon={importIcon}
+            />
+            {isDialogVisible && (
+              <ImportDialog
+                customThemeSchema={customThemeSchema}
+                setCustomTheme={setCustomTheme}
+                setDialogVisible={setDialogVisible}
+              />
+            )}
+            <DxcButton
+              mode="primary"
+              label="Export"
+              onClick={() => {
+                downloadFile(customTheme);
+              }}
+              icon={exportIcon}
+            />
+          </ButtonsContainer>
+          <DxcSidenav.Group title="Components">
+            {Object.keys(
+              type === "advancedTheme" ? advancedTheme : defaultTheme
+            ).map((component, index) => (
+              <DxcSidenav.Link
+                key={`componentLink-${index}`}
+                selected={currentComponent === component}
+                onClick={() => {
+                  setCurrentComponent(component);
+                }}
+              >
+                {makeReadableSidenav(component)}
+              </DxcSidenav.Link>
+            ))}
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
       </DxcApplicationLayout.SideNav>
       <DxcApplicationLayout.Main>
         <MainContainer>
@@ -123,21 +127,10 @@ const MainContainer = styled.div`
   display: flex;
 `;
 
-const ComponentLink = styled.p`
-  :hover {
-    cursor: pointer;
-  }
-  text-decoration: none;
-  font: ${(props) => (props.isSelected ? "700" : "400")} 14px/19px Open Sans;
-  letter-spacing: 0.24px;
-  color: ${(props) => (props.isSelected ? "#000000" : "#00000099")};
-  margin: 6px 10px;
-`;
-
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  padding: 1.2rem;
 `;
 
 export default ThemeBuilder;

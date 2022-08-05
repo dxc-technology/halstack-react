@@ -1,4 +1,8 @@
-import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcBulletedList,
+  DxcFlex,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -8,23 +12,23 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Usage considerations about the paginator component:
-        </DxcText>
-        <DxcList>
-          <DxcText>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             Use the paginator when the number of elements is affecting the
             system load, or when the screen size grows considerably.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Always place the paginator at the bottom of the data that is being
             divided.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Identify the current page and the number of elements that are being
             displayed.
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -32,7 +36,7 @@ const sections = [
 
 const PaginatorUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -40,7 +44,7 @@ const PaginatorUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/paginator/usage/PaginatorUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

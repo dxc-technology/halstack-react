@@ -1,7 +1,7 @@
 import {
-  DxcStack,
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
@@ -31,21 +31,21 @@ const sections = [
   {
     title: "States",
     content: (
-      <DxcText as="p">
+      <DxcParagraph>
         The component file input is made-up of an input (type: file) and a
         file-item(s).
-      </DxcText>
+      </DxcParagraph>
     ),
     subSections: [
       {
         title: "File",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The element has the following states: <strong>enabled</strong>,{" "}
               <strong>hover</strong>, <strong>focus</strong>,{" "}
               <strong>active</strong> and <strong>disabled</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="File variant states">
               <Image src={fileInputStatesFile} alt="File variant states" />
             </Figure>
@@ -56,12 +56,12 @@ const sections = [
         title: "Filedrop",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The element has the following states: <strong>enabled</strong>,{" "}
               <strong>hover</strong>, <strong>focus</strong>,{" "}
               <strong>active</strong>, <strong>dragover</strong> and{" "}
               <strong>disabled</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Filedrop variant states">
               <Image
                 src={fileInputStatesFiledrop}
@@ -75,12 +75,12 @@ const sections = [
         title: "Dropzone",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The element has the following states: <strong>enabled</strong>,{" "}
               <strong>hover</strong>, <strong>focus</strong>,{" "}
               <strong>active</strong>, <strong>dragover</strong> and{" "}
               <strong>disabled</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Dropzone variant states">
               <Image
                 src={fileInputStatesDropzone}
@@ -94,12 +94,12 @@ const sections = [
         title: "File items",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The element has the following states: <strong>enabled</strong>,{" "}
               <strong>hover</strong>, <strong>focus</strong>,{" "}
               <strong>active</strong>, <strong>loading</strong> and{" "}
               <strong>error</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="File item states">
               <Image src={fileInputStatesFileItem} alt="File item states" />
             </Figure>
@@ -113,18 +113,18 @@ const sections = [
     content: (
       <>
         <Image src={fileInputAnatomy} alt="Component file input anatomy" />
-        <DxcList type="number">
-          <DxcText>Label</DxcText>
-          <DxcText>Drag and drop area</DxcText>
-          <DxcText>Error message</DxcText>
-          <DxcText>Error indicator</DxcText>
-          <DxcText>Action - Remove file</DxcText>
-          <DxcText>Helper text</DxcText>
-          <DxcText>file input button</DxcText>
-          <DxcText>File preview</DxcText>
-          <DxcText>File name</DxcText>
-          <DxcText>File item container</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Drag and drop area</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error indicator</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Action - Remove file</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>
+          <DxcBulletedList.Item>file input button</DxcBulletedList.Item>
+          <DxcBulletedList.Item>File preview</DxcBulletedList.Item>
+          <DxcBulletedList.Item>File name</DxcBulletedList.Item>
+          <DxcBulletedList.Item>File item container</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -132,11 +132,11 @@ const sections = [
     title: "File item with preview",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           When the files to upload are mainly images, the preview can provide
           more feedback to the user rather than the name of the file, preventing
           errors loading content.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="File item with preview example">
           <Image
             src={fileInputFileFileItemPreview}
@@ -150,11 +150,11 @@ const sections = [
     title: "Single-file file input",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           In order to provide a compact version of the file input component to
           accommodate any layout restriction, the variant file displays the file
           name in the same row instead of growing vertically.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Variant file single">
           <Image src={fileInputFileSingleFile} alt="Variant file single" />
         </Figure>
@@ -743,7 +743,7 @@ const sections = [
 
 const FileInputSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -751,7 +751,7 @@ const FileInputSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/file-input/specs/FileInputSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

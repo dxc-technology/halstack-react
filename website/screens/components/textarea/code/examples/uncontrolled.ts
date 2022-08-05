@@ -1,7 +1,7 @@
 import {
   DxcTextarea,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   DxcButton,
 } from "@dxc-technology/halstack-react";
 import { useRef } from "react";
@@ -16,14 +16,14 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="start">
+      <DxcFlex direction="column" gap="2rem" alignItems="flex-start">
         <DxcTextarea
           label="Comments"
           defaultValue="My personal documents are attached."
           ref={inputRef}
         />
         <DxcButton label="Submit" onClick={handleSubmit}></DxcButton>
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -31,7 +31,7 @@ const code = `() => {
 const scope = {
   DxcTextarea,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   useRef,
   DxcButton,
 };

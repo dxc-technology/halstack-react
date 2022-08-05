@@ -1,8 +1,8 @@
 import {
   DxcTable,
-  DxcStack,
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -33,13 +33,13 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Five different states are defined in the life cycle of the component:{" "}
           <strong>unselected enabled</strong>, <strong>unselected focus</strong>
           , <strong>unselected disabled</strong>,{" "}
           <strong>selected enabled</strong>, <strong>selected focus</strong> and{" "}
           <strong>selected disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Switch component states">
           <Image src={statesImage} alt="Switch component states" />
         </Figure>
@@ -53,11 +53,11 @@ const sections = [
         <Figure caption="Switch component anatomy">
           <Image src={anatomyImage} alt="Switch component anatomy" />
         </Figure>
-        <DxcList type="number">
-          <DxcText>Label</DxcText>
-          <DxcText>Thumb</DxcText>
-          <DxcText>Track</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Thumb</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Track</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -446,11 +446,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               And also apply different values to each side of the component:{" "}
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code> and{" "}
               <Code>right</Code>.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -500,9 +500,9 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               <em>*Depending on the position of the label</em>
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -512,7 +512,7 @@ const sections = [
 
 const SwitchSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -520,7 +520,7 @@ const SwitchSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/switch/specs/SwitchSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

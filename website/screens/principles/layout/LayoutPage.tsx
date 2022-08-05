@@ -1,10 +1,10 @@
 import {
   DxcHeading,
-  DxcText,
-  DxcStack,
-  DxcList,
+  DxcFlex,
   DxcLink,
   DxcTable,
+  DxcParagraph,
+  DxcBulletedList,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -22,7 +22,7 @@ const sections = [
     title: "Introduction",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Halstack provide multiple components in order to achieve layout
           consistency and an easy way to arrange elements in the UI. The{" "}
           <Link href="/components/application-layout/" passHref>
@@ -31,13 +31,13 @@ const sections = [
           is the base component that wraps any application built with halstack.
           In addition, all of the components listed below can be used within
           each other to create a wide variety of standard layouts:
-        </DxcText>
-        <DxcList>
-          <DxcText>Stack</DxcText>
-          <DxcText>Row</DxcText>
-          <DxcText>Bleed</DxcText>
-          <DxcText>Inset</DxcText>
-        </DxcList>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>Stack</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Row</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Bleed</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Inset</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -48,13 +48,13 @@ const sections = [
         title: "Grid",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The grid provides the foundation for consistently positioning
               elements onscreen. The 8x Grid is the geometric foundation of all
               the visual elements of Halstack Design System components and
               spacing. It provides structure and guidance for all creative
               decision-making.
-            </DxcText>
+            </DxcParagraph>
             <Image src={layoutGrid} alt="Layout grid of 8px" />
           </>
         ),
@@ -62,23 +62,23 @@ const sections = [
           {
             title: "Grid usage",
             content: (
-              <DxcList>
-                <DxcText>
+              <DxcBulletedList>
+                <DxcBulletedList.Item>
                   Use multiples of 8px when defining measurements, spacing, and
                   positioning elements.
-                </DxcText>
-                <DxcText>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
                   When necessary use 4px to make more fine tuned adjustments.
-                </DxcText>
-                <DxcText>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
                   Whenever possible, make sure that objects line up, both
                   vertically and horizontally.
-                </DxcText>
-                <DxcText>
+                </DxcBulletedList.Item>
+                <DxcBulletedList.Item>
                   Align your bounding box to the grid, not the baseline of your
                   text.
-                </DxcText>
-              </DxcList>
+                </DxcBulletedList.Item>
+              </DxcBulletedList>
             ),
           },
         ],
@@ -87,12 +87,12 @@ const sections = [
         title: "Breakpoints",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Breakpoints define resolutions at which screen components adjust
               to offer an optimal user experience across screen sizes and
               devices. We&#39;ve defined five different breakpoints to
               accommodate multiple web, tablet, and mobile screen resolutions:
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -139,11 +139,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               The image below illustrates how we&#39;ve used data on the most
               popular screen resolutions by device over the past few years to
               help define each breakpoint.
-            </DxcText>
+            </DxcParagraph>
             <Image src={layoutBreakpoints} alt="Layout grid of 8px" />
           </>
         ),
@@ -153,25 +153,25 @@ const sections = [
         content: (
           <>
             <Image src={layoutColumns} alt="Layout grid of 8px" />
-            <DxcText as="p">
+            <DxcParagraph>
               Columns, gutters, and margins make up the responsive layout grid
               following these breakpoints. Depending on resolution and screen
               size of a device, column numbers and the values of the margins and
               gutters adjust to accommodate all screen elements in the most
               optimal manner.
-            </DxcText>
-            <DxcList>
-              <DxcText>
+            </DxcParagraph>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
                 Columns are the areas of the screen where content is placed.{" "}
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 A gutter is the space between columns used to separate content.{" "}
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Margins are the space between the edges of the screen and
                 content.
-              </DxcText>
-            </DxcList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </>
         ),
         subSections: [
@@ -179,10 +179,10 @@ const sections = [
             title: "Recommended values",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   The following table describes the columns, margins, and gutter
                   at each of the different breakpoints:
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -239,13 +239,13 @@ const sections = [
                     </tr>
                   </tbody>
                 </DxcTable>
-                <DxcList type="number">
-                  <DxcText>
+                <DxcBulletedList type="number">
+                  <DxcBulletedList.Item>
                     Any value provided by the <Code>gutter</Code> prop in the
                     layout components can be used (ideally multiples of 8)
                     although we recommend to stick to the values provided.{" "}
-                  </DxcText>
-                  <DxcText>
+                  </DxcBulletedList.Item>
+                  <DxcBulletedList.Item>
                     The margin value provided are the minimun recommended, any
                     value from our{" "}
                     <Link
@@ -255,8 +255,8 @@ const sections = [
                       <DxcLink>spacing scale</DxcLink>
                     </Link>{" "}
                     can be used or even an <Code>auto</Code> value.
-                  </DxcText>
-                </DxcList>
+                  </DxcBulletedList.Item>
+                </DxcBulletedList>
               </>
             ),
           },
@@ -268,11 +268,11 @@ const sections = [
 
 const Layout = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={1} text="Layout" weight="bold"></DxcHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
@@ -281,7 +281,7 @@ const Layout = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/layout/LayoutPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

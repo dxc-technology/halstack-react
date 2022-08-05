@@ -41,8 +41,8 @@ function App() {
 
   return (
     <>
-      <p>
-        <h4 style={{ "margin-left": "36px" }}>Sizes</h4>
+      <div>
+        <h4 style={{ marginLeft: "36px" }}>Sizes</h4>
         <DxcTextarea
           label="Small"
           margin={{ left: "medium", right: "medium" }}
@@ -62,8 +62,8 @@ function App() {
           margin={{ left: "medium", right: "medium" }}
           size="fillParent"
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Default"
           helperText="Sample text"
@@ -71,13 +71,13 @@ function App() {
           optional
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
+      </div>
       <DxcTextarea
         label="With 'on' autocomplete"
         margin={{ left: "medium", right: "medium" }}
         autocomplete="on"
       />
-      <p>
+      <div>
         <DxcTextarea
           label="Disabled"
           helperText="Sample text"
@@ -86,8 +86,8 @@ function App() {
           verticalGrow="manual"
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Controlled"
           helperText="Sample text"
@@ -98,8 +98,8 @@ function App() {
           error={error}
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Pattern"
           helperText="The value should have at least one letter, one number and one special
@@ -108,8 +108,8 @@ function App() {
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Length"
           helperText="The value should be 5 < value < 10"
@@ -118,8 +118,8 @@ function App() {
           maxLength={10}
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Custom length error"
           helperText="The value should be 5 < value < 10"
@@ -132,8 +132,8 @@ function App() {
           maxLength={10}
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Custom pattern error"
           helperText="The value should have at least one letter, one number and one special
@@ -145,24 +145,24 @@ function App() {
           pattern='^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$'
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Vertical grow 'none'"
           placeholder="Enter your text here..."
           verticalGrow="none"
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Vertical grow 'manual'"
           placeholder="Enter your text here..."
           verticalGrow="manual"
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Vertical grow 'auto' with long initial value"
           helperText="Initially should also be changed"
@@ -170,8 +170,8 @@ function App() {
           value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="With rows"
           placeholder="Enter your text here..."
@@ -179,16 +179,16 @@ function App() {
           verticalGrow="manual"
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Error"
           placeholder="Enter your text here..."
           error="Custom and very long error."
           margin={{ left: "medium", right: "medium" }}
         />
-      </p>
-      <p>
+      </div>
+      <div>
         <DxcTextarea
           label="Ref"
           placeholder="Enter your text here..."
@@ -203,7 +203,7 @@ function App() {
           label="Change disable"
           margin={{ left: "medium" }}
         ></DxcButton>
-      </p>
+      </div>
       <BackgroundColorProvider color="#000000">
         <Mode mode="dark">
           <DxcTextarea

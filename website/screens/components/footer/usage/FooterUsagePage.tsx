@@ -1,4 +1,8 @@
-import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcBulletedList,
+  DxcFlex,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -12,27 +16,27 @@ const sections = [
     content: (
       <>
         <Example example={usage} />
-        <DxcList>
-          <DxcText>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             The footer frame should be docked at the bottom of the page and
             should not scroll with any of the data within working section of the
             screen.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             The footer frame should span the entire screen width.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             The footer frame should display the copyright information at the
             right margin.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             We recommend uploading either an alternate version or a smaller
             brand image than the used in the header. If the company has an
             alternate version of the logo, isotype, imagotype or isologo
             available, we encourage to use it. In the opposite case a smaller
             version of the main brand image can be used.
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -41,42 +45,52 @@ const sections = [
     content: (
       <>
         <Example example={content} />
-        <DxcText as="p">
+        <DxcParagraph>
           The footer component has a custom area where many kinds of content can
           be placed, some of them are contemplated in the following list:
-        </DxcText>
-        <DxcList>
-          <DxcStack gutter="xsmall">
-            <DxcText>Plain text or content</DxcText>
-            <DxcList type="circle">
-              <DxcText>Informational purpose text</DxcText>
-            </DxcList>
-          </DxcStack>
-          <DxcStack gutter="xsmall">
-            <DxcText>Menu links</DxcText>
-            <DxcList type="circle">
-              <DxcText>Global navigation</DxcText>
-              <DxcText>Sitemap</DxcText>
-              <DxcText>Useful links or resources</DxcText>
-            </DxcList>
-          </DxcStack>
-          <DxcStack gutter="xsmall">
-            <DxcText>Forms</DxcText>
-            <DxcList type="circle">
-              <DxcText>Select language</DxcText>
-              <DxcText>Login / Sing up</DxcText>
-              <DxcText>Provide email adress / Subscribe</DxcText>
-            </DxcList>
-          </DxcStack>
-          <DxcStack gutter="xsmall">
-            <DxcText>Actions</DxcText>
-            <DxcList type="circle">
-              <DxcText>Ask for help / Support</DxcText>
-              <DxcText>Business related actions / Call to action</DxcText>
-              <DxcText>Search</DxcText>
-            </DxcList>
-          </DxcStack>
-        </DxcList>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcFlex direction="column" gap="0.5rem">
+            <DxcBulletedList.Item>Plain text or content</DxcBulletedList.Item>
+            <DxcBulletedList type="circle">
+              <DxcBulletedList.Item>
+                Informational purpose text
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcFlex>
+          <DxcFlex direction="column" gap="0.5rem">
+            <DxcParagraph>Menu links</DxcParagraph>
+            <DxcBulletedList type="circle">
+              <DxcBulletedList.Item>Global navigation</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Sitemap</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Useful links or resources
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcFlex>
+          <DxcFlex direction="column" gap="0.5rem">
+            <DxcParagraph>Forms</DxcParagraph>
+            <DxcBulletedList type="circle">
+              <DxcBulletedList.Item>Select language</DxcBulletedList.Item>
+              <DxcBulletedList.Item>Login / Sing up</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Provide email adress / Subscribe
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcFlex>
+          <DxcFlex direction="column" gap="0.5rem">
+            <DxcParagraph>Actions</DxcParagraph>
+            <DxcBulletedList type="circle">
+              <DxcBulletedList.Item>
+                Ask for help / Support
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Business related actions / Call to action
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>Search</DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcFlex>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -84,7 +98,7 @@ const sections = [
 
 const FooterUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -92,7 +106,7 @@ const FooterUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/footer/usage/FooterUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

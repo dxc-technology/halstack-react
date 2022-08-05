@@ -1,30 +1,29 @@
 import {
   DxcCheckbox,
   DxcInset,
-  DxcStack,
-  DxcRow,
+  DxcFlex,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcRow gutter="xxxlarge" justify="center">
-        <DxcStack gutter="xsmall">
-          <DxcHeading level={4} text="Vertical"></DxcHeading>
+      <DxcFlex gap="5rem" justifyContent="center">
+        <DxcFlex direction="column" gap="0.5rem">
+          <DxcHeading level={4} text="Vertical" />
           <DxcCheckbox label="Option" labelPosition="after" />
           <DxcCheckbox label="Option" labelPosition="after" />
           <DxcCheckbox label="Option" labelPosition="after" />
-        </DxcStack>
-        <DxcStack gutter="xsmall">
-          <DxcHeading level={4} text="Horizontal"></DxcHeading>
-          <DxcRow gutter="medium">
-            <DxcCheckbox label="Option" labelPosition="after"></DxcCheckbox>
-            <DxcCheckbox label="Option" labelPosition="after"></DxcCheckbox>
-            <DxcCheckbox label="Option" labelPosition="after"></DxcCheckbox>
-          </DxcRow>
-        </DxcStack>
-      </DxcRow>
+        </DxcFlex>
+        <DxcFlex direction="column" gap="0.5rem">
+          <DxcHeading level={4} text="Horizontal" />
+          <DxcFlex gap="1.5rem">
+            <DxcCheckbox label="Option" labelPosition="after" />
+            <DxcCheckbox label="Option" labelPosition="after" />
+            <DxcCheckbox label="Option" labelPosition="after" />
+          </DxcFlex>
+        </DxcFlex>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -32,8 +31,7 @@ const code = `() => {
 const scope = {
   DxcCheckbox,
   DxcInset,
-  DxcStack,
-  DxcRow,
+  DxcFlex,
   DxcHeading,
 };
 

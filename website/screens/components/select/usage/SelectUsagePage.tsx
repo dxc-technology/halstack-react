@@ -1,7 +1,7 @@
 import {
-  DxcText,
-  DxcList,
-  DxcStack,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -18,28 +18,30 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <DxcText as="p">Considerations about the select usage:</DxcText>
-        <DxcList>
-          <DxcText>
+        <DxcParagraph>Considerations about the select usage:</DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             A dialog element should allow the user to select one option from a
             list.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             If the list of options is short (4 or less), use checkboxes instead
             of the select component.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             The select component should always display a label different from
             any name in the option list.
-          </DxcText>
-          <DxcText>Use a pre-selected good default where possible.</DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Use a pre-selected good default where possible.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Use progressive disclosure between linked select components.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             If more than one option is applicable, use the multi-select variant.
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -78,25 +80,27 @@ const sections = [
     content: (
       <>
         <Example example={filterable} />
-        <DxcList>
-          <DxcText>Both select variants can be filterable.</DxcText>
-          <DxcText>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            Both select variants can be filterable.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Use the filter when the number of items in the optionList is
             extremely long (± 15 elements).
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             This list will be reduced to show only the matches as the user
             types.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             The value will change when the user types a string that matches an
             option from the list or pick one manually.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             When the search does not match any result, a "No matches found"
             message will be displayed.
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -105,19 +109,19 @@ const sections = [
     content: (
       <>
         <Example example={requiredOptional} />
-        <DxcList>
-          <DxcText>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             When labeled as optional, the select will display an option matching
             the placeholder to allow leaving it empty.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             When no optional label appears, the select is required.
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             If the select was left empty, the required should display the error
             "This field can not be empty" when the select loses the focus.
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -125,7 +129,7 @@ const sections = [
 
 const SelectUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -133,7 +137,7 @@ const SelectUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/select/usage/SelectUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,10 +1,10 @@
 import Image from "@/common/Image";
 import {
   DxcLink,
-  DxcList,
-  DxcStack,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -28,11 +28,11 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           States for the close action of the alert component:{" "}
           <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, and <strong>active</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Alert action specs">
           <Image src={AlertStatesImage} alt="Alert action specs" />
         </Figure>
@@ -44,16 +44,16 @@ const sections = [
     content: (
       <>
         <Image src={AlertAnatomyImage} alt="Alert anatomy" />
-        <DxcList type="number">
-          <DxcText>Container</DxcText>
-          <DxcText>Icon</DxcText>
-          <DxcText>Title</DxcText>
-          <DxcText>Inline text</DxcText>
-          <DxcText>Close action</DxcText>
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Icon</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Title</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Inline text</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Close action</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Content <em>(Optional)</em>
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -479,17 +479,17 @@ const sections = [
         title: "Width",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The alert component has a property that is customizable depending
               on the context and the scenario where the component is used. This
               property defines the size of the alert and it can get multiple
               values according to the needs of the application.
-            </DxcText>
-            <DxcText as="p">
+            </DxcParagraph>
+            <DxcParagraph>
               Widths for alert component: <strong>fill content</strong>,{" "}
               <strong>fit parent</strong>, <strong>small</strong>,{" "}
               <strong>medium</strong> and <strong>large</strong>.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -541,8 +541,8 @@ const sections = [
       {
         title: "WCWAG",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -550,15 +550,15 @@ const sections = [
               >
                 SC 4.1.3 Status Messages
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "WAI-ARIA",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -566,8 +566,8 @@ const sections = [
               >
                 3.2 Alert
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -575,8 +575,8 @@ const sections = [
               >
                 3.3 Alert and Message dialogs
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -584,8 +584,8 @@ const sections = [
               >
                 Alert design pattern
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -593,8 +593,8 @@ const sections = [
               >
                 Alert Dialog design pattern
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -603,7 +603,7 @@ const sections = [
 
 const AlertSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -611,7 +611,7 @@ const AlertSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/alert/specs/AlertSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

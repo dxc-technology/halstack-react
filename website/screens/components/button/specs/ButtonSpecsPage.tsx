@@ -1,9 +1,9 @@
 import {
   DxcLink,
-  DxcList,
-  DxcStack,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -31,16 +31,16 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The states are the different behaviors of the button component based
           on the interaction of the user. For the desktop version, we
           contemplate five different states by which can pass.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>active</strong> and{" "}
           <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Button component states">
           <Image src={buttonStatesImage} alt="Button component states" />
         </Figure>
@@ -52,11 +52,11 @@ const sections = [
     content: (
       <>
         <Image src={buttonAnatomyImage} alt="Button anatomy" />
-        <DxcList type="number">
-          <DxcText>Container</DxcText>
-          <DxcText>Icon</DxcText>
-          <DxcText>Label</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Icon</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -171,10 +171,10 @@ const sections = [
             title: "Size",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   The component <Code>width</Code> can adopt the following
                   values:
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -215,9 +215,9 @@ const sections = [
                     </tr>
                   </tbody>
                 </DxcTable>
-                <DxcText as="p">
+                <DxcParagraph>
                   The component <Code>height</Code> is fixed:
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -241,9 +241,9 @@ const sections = [
             title: "Margin",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   Button <Code>margin</Code> can use the values:
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -296,11 +296,11 @@ const sections = [
                     </tr>
                   </tbody>
                 </DxcTable>
-                <DxcText as="p">
+                <DxcParagraph>
                   These values can be applied independently to each side of the
                   component: <Code>top</Code>, <Code>bottom</Code>,{" "}
                   <Code>left</Code>,<Code>right</Code>.
-                </DxcText>
+                </DxcParagraph>
               </>
             ),
           },
@@ -936,8 +936,8 @@ const sections = [
   {
     title: "Accessibility",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Understanding WCAG 2.2 -{" "}
           <DxcLink
             href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible"
@@ -945,8 +945,8 @@ const sections = [
           >
             2.4.7: Focus Visible
           </DxcLink>
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Understanding WCAG 2.2 -{" "}
           <DxcLink
             href="https://www.w3.org/WAI/WCAG22/Understanding/on-input"
@@ -954,8 +954,8 @@ const sections = [
           >
             3.2.2: On Input
           </DxcLink>
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           WAI-ARIA Authoring Practices 1.2 -{" "}
           <DxcLink
             href="https://www.w3.org/TR/wai-aria-practices-1.2/#button"
@@ -963,15 +963,15 @@ const sections = [
           >
             Button Design Pattern
           </DxcLink>
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
 ];
 
 const ButtonSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -979,7 +979,7 @@ const ButtonSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/button/specs/ButtonSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
