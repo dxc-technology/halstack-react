@@ -195,10 +195,7 @@ const Step = styled.button<StepProps>`
   }
 `;
 
-type StepHeaderProps = {
-  validityIcon: boolean;
-};
-const StepHeader = styled.div<StepHeaderProps>`
+const StepHeader = styled.div<{ validityIcon: boolean }>`
   position: relative;
   display: inline-flex;
   ${(props) => props.validityIcon && "padding-bottom: 4px;"}
@@ -348,13 +345,9 @@ const Description = styled.p<StateProps>`
   margin: 0;
 `;
 
-type StepSeparatorProps = {
-  mode: Mode;
-};
-const StepSeparator = styled.div<StepSeparatorProps>`
-  width: ${(props) => (props.mode === "horizontal" ? "" : "0")};
-  height: ${(props) => (props.mode === "horizontal" ? "0" : "")};
-  ${(props) => (props.mode === "vertical" ? "margin: 0 18px;" : "")}
+const StepSeparator = styled.div<{ mode: Mode }>`
+  ${(props) => (props.mode === "horizontal" ? "height: 0;" : "width: 0;")};
+  ${(props) => props.mode === "vertical" && "margin: 0 18px;"}
   border: ${(props) =>
     `${props.theme.separatorBorderStyle} ${props.theme.separatorBorderThickness} ${props.theme.separatorColor}`};
   opacity: 1;
