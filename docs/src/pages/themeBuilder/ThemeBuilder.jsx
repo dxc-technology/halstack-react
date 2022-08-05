@@ -94,12 +94,14 @@ const ThemeBuilder = () => {
             <DxcApplicationLayout.SideNav.Group title="Components">
               {Object.keys(
                 type === "advancedTheme" ? advancedTheme : defaultTheme
-              ).map((component, index) => {
-                if (
-                  component !== "footer" &&
-                  component !== "header" &&
-                  component !== "sidenav"
-                ) {
+              )
+                .filter(
+                  (component) =>
+                    component !== "footer" &&
+                    component !== "header" &&
+                    component !== "sidenav"
+                )
+                .map((component, index) => {
                   return (
                     <DxcApplicationLayout.SideNav.Link
                       key={`componentLink-${index}`}
@@ -111,8 +113,7 @@ const ThemeBuilder = () => {
                       {makeReadableSidenav(component)}
                     </DxcApplicationLayout.SideNav.Link>
                   );
-                }
-              })}
+                })}
             </DxcApplicationLayout.SideNav.Group>
           </DxcApplicationLayout.SideNav.Section>
         </DxcApplicationLayout.SideNav>
