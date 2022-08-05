@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -11,16 +11,18 @@ const NumberInputPageHeading = ({
   const tabs = [{ label: "Code", path: "/components/nav-tabs" }];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcFlex direction="column" gap="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Nav Tabs" status="Experimental" />
-          <DxcText as="p">Nav tabs allow the user to navigate easily.</DxcText>
+          <DxcParagraph>
+            Nav tabs allow the user to navigate easily.
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       {children}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

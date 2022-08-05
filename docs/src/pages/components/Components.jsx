@@ -70,7 +70,7 @@ const SidenavContent = () => {
   };
 
   return (
-    <SidenavContainer>
+    <>
       <Title>
         React
         <ReactLogo src={reactIcon} alt="React Logo" />
@@ -106,7 +106,7 @@ const SidenavContent = () => {
           </ComponentsList>
         </React.Fragment>
       ))}
-    </SidenavContainer>
+    </>
   );
 };
 
@@ -165,10 +165,6 @@ const Components = () => (
     </DxcApplicationLayout.Main>
   </DxcApplicationLayout>
 );
-
-const SidenavContainer = styled.div`
-  margin-bottom: 40px;
-`;
 
 const MainContent = styled.div`
   height: 100%;

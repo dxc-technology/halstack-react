@@ -2,7 +2,6 @@ import {
   DxcDialog,
   DxcButton,
   DxcInset,
-  DxcRow,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
@@ -29,7 +28,6 @@ const scope = {
   DxcButton,
   DxcDialog,
   DxcInset,
-  DxcRow,
 };
 
 export default { code, scope };

@@ -1,4 +1,4 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -11,19 +11,19 @@ const DateInputPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcFlex direction="column" gap="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Date Input" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             A date input is a user interface element where the user can type or
             select a date in a predefined format.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       {children}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

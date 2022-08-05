@@ -1,4 +1,8 @@
-import { DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcFlex,
+  DxcTable,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
@@ -246,7 +250,7 @@ const sections = [
         title: "Width",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               In the cases of <Code>fillParent</Code> and{" "}
               <Code>fillContent</Code> the box is going to behave as a fluid
               container occupying the space the parent leaves for its children
@@ -254,7 +258,7 @@ const sections = [
               using a fluid approach, you can set a fixed size, choosing between{" "}
               <Code>small</Code>, <Code>medium</Code> and <Code>large</Code>{" "}
               properties.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -354,11 +358,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               And also apply different values to each side of the component:{" "}
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code> and{" "}
               <Code>right</Code>.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -418,11 +422,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               And also apply different values to each side of the component:{" "}
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code> and{" "}
               <Code>right</Code>.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -432,7 +436,7 @@ const sections = [
 
 const BoxSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -440,7 +444,7 @@ const BoxSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/box/specs/BoxSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
