@@ -32,36 +32,42 @@ const ApplicationLayoutPropsTable = () => (
           visibility of the sidenav.
         </td>
       </tr>
-    </tbody>
-  </DxcTable>
-);
-
-const SidenavApplicationLayoutPropsTable = () => (
-  <DxcTable>
-    <thead>
       <tr>
-        <th>Name</th>
-        <th>Default</th>
-        <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>padding: string | object</td>
+        <td>header: node</td>
         <td></td>
         <td>
-          Size of the padding to be applied to the custom area ('xxsmall' |
-          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
-          can pass an object with 'top', 'bottom', 'left' and 'right' properties
-          in order to specify different padding sizes.
+          Header of the application layout shown at the top of the screen. It is
+          optional and if it is not specified, the default header will be shown.
+          Please check the Header documentation{" "}
+          <Link href="/components/header" passHref>
+            <DxcLink>here</DxcLink>
+          </Link>
+          .
         </td>
       </tr>
       <tr>
-        <td>children: React.ReactNode</td>
+        <td>footer: node</td>
         <td></td>
         <td>
-          The area inside the sidenav. This area can be used to render custom
-          content.
+          Footer of the application layout shown at the bottom of the screen. It
+          is optional and if it is not specified, the default header will be
+          shown. Please check the Footer documentation{" "}
+          <Link href="/components/footer" passHref>
+            <DxcLink>here</DxcLink>
+          </Link>
+          .
+        </td>
+      </tr>
+      <tr>
+        <td>sidenav: node</td>
+        <td></td>
+        <td>
+          Sidenav of the application layout shown at the left side of the
+          screen. Please check the Sidenav documentation{" "}
+          <Link href="/components/sidenav" passHref>
+            <DxcLink>here</DxcLink>
+          </Link>
+          .
         </td>
       </tr>
     </tbody>
@@ -75,53 +81,6 @@ const sections = [
       {
         title: "DxcApplicationLayout",
         content: <ApplicationLayoutPropsTable />,
-      },
-      {
-        title: "DxcApplicationLayout.Header",
-        content: (
-          <DxcParagraph>
-            Everything between this tags will be displayed as a header, at the
-            top of the screen. If you want to show a{" "}
-            <Link href="/components/header" passHref>
-              <DxcLink>DxcHeader</DxcLink>
-            </Link>
-            , as a shortcut, you can use it as a direct child of the
-            DxcApplicationLayout without the tags. This is optional and if it is
-            not specified, the DxcHeader will be shown by default.
-          </DxcParagraph>
-        ),
-      },
-      {
-        title: "DxcApplicationLayout.Footer",
-        content: (
-          <DxcParagraph>
-            Everything between the tags will be displayed as a footer, at the
-            bottom of the screen. If you want to show a{" "}
-            <Link href="/components/footer" passHref>
-              <DxcLink>DxcFooter</DxcLink>
-            </Link>
-            , as a shortcut, you can use it as a direct child of the
-            DxcApplicationLayout without the tags. This is optional and if it is
-            not specified, the DxcFooter will be shown by default.
-          </DxcParagraph>
-        ),
-      },
-      {
-        title: "DxcApplicationLayout.Sidenav",
-        content: (
-          <DxcParagraph>
-            Everything between the tags will be displayed as the content of the
-            sidenav, positioned on the left side of the screen, between the
-            header and the footer. This is optional and if it is not specified,
-            the DxcSidenav will not be shown.
-          </DxcParagraph>
-        ),
-        subSections: [
-          {
-            title: "Props",
-            content: <SidenavApplicationLayoutPropsTable />,
-          },
-        ],
       },
       {
         title: "DxcApplicationLayout.Main",

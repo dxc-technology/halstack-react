@@ -1,7 +1,8 @@
-import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
+import Link from "next/link";
 
 const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -23,6 +24,14 @@ const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
             is a key layout element to the overall experience. Is a choice of
             the designer to either leave the footer visible by default or push
             it down, depending on the use case.
+          </DxcParagraph>
+          <DxcParagraph>
+            The footer is part of the application layout, so it can only be used
+            inside of it. Please check the{" "}
+            <Link href="/components/applicationLayout" passHref>
+              <DxcLink>DxcApplicationLayout</DxcLink>
+            </Link>{" "}
+            documentation.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

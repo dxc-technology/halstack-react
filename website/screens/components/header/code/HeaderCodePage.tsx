@@ -122,15 +122,15 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <Example example={basicUsage} defaultIsVisible />,
+        // content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
         title: "Custom content",
-        content: <Example example={customContent} defaultIsVisible />,
+        // content: <Example example={customContent} defaultIsVisible />,
       },
       {
         title: "Dropdown",
-        content: <Example example={dropdown} defaultIsVisible />,
+        // content: <Example example={dropdown} defaultIsVisible />,
       },
     ],
   },

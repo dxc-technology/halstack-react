@@ -110,11 +110,11 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <Example example={basicUsage} defaultIsVisible />,
+        // content: <Example example={basicUsage} defaultIsVisible />,
       },
       {
         title: "Social links",
-        content: <Example example={socialLinks} defaultIsVisible />,
+        // content: <Example example={socialLinks} defaultIsVisible />,
       },
     ],
   },
