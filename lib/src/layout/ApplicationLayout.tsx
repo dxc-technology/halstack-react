@@ -5,9 +5,7 @@ import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo, hamburgerIcon } from "./Icons";
-import HeaderPropsType from "../header/types";
-import FooterPropsType from "../footer/types";
-import AppLayoutPropsType, { AppLayoutSidenavPropsType, AppLayoutMainPropsType } from "./types";
+import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 
