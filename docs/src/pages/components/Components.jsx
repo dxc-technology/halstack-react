@@ -6,10 +6,8 @@ import { types } from "./paths.js";
 import {
   DxcBox,
   DxcLink,
-  DxcFooter,
   DxcApplicationLayout,
   DxcHeading,
-  DxcSidenav,
 } from "@dxc-technology/halstack-react";
 import paths from "./paths.js";
 import reactIcon from "../../common/react-icon.png";
@@ -74,7 +72,10 @@ const SidenavContent = () => {
   return (
     <>
       {Object.keys(types).map((type) => (
-        <DxcSidenav.Group key={types[type]} title={types[type]}>
+        <DxcApplicationLayout.SideNav.Group
+          key={types[type]}
+          title={types[type]}
+        >
           {paths
             .filter((path) => path.type === types[type])
             .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
@@ -83,7 +84,7 @@ const SidenavContent = () => {
                 <Link
                   to={`/components/${path.path}`}
                   onClick={handleLinkOnClick}
-                  component={DxcSidenav.Link}
+                  component={DxcApplicationLayout.SideNav.Link}
                   selected={location.pathname === `/components/${path.path}`}
                 >
                   {path.name}
@@ -97,29 +98,41 @@ const SidenavContent = () => {
                 )}
               </>
             ))}
-        </DxcSidenav.Group>
+        </DxcApplicationLayout.SideNav.Group>
       ))}
     </>
   );
 };
 
 const Components = () => (
-  <DxcApplicationLayout visibilityToggleLabel="Components">
-    <DxcApplicationLayout.Header>
-      <Header />
-    </DxcApplicationLayout.Header>
-    <DxcApplicationLayout.SideNav
-      title={
-        <DxcSidenav.Title>
-          React
-          <ReactLogo src={reactIcon} alt="React Logo" />
-        </DxcSidenav.Title>
-      }
-    >
-      <DxcSidenav.Section>
-        <SidenavContent />
-      </DxcSidenav.Section>
-    </DxcApplicationLayout.SideNav>
+  <DxcApplicationLayout
+    visibilityToggleLabel="Components"
+    header={<Header />}
+    footer={
+      <DxcApplicationLayout.Footer
+        bottomLinks={[
+          { text: "Twitter", href: "http://www.google.com" },
+          { text: "Facebook", href: "http://www.google.com" },
+          { text: "Instagram", href: "http://www.google.com" },
+        ]}
+      ></DxcApplicationLayout.Footer>
+    }
+    sidenav={
+      <DxcApplicationLayout.SideNav
+        padding="large"
+        title={
+          <DxcApplicationLayout.SideNav.Title>
+            React
+            <ReactLogo src={reactIcon} alt="React Logo" />
+          </DxcApplicationLayout.SideNav.Title>
+        }
+      >
+        <DxcApplicationLayout.SideNav.Section>
+          <SidenavContent />
+        </DxcApplicationLayout.SideNav.Section>
+      </DxcApplicationLayout.SideNav>
+    }
+  >
     <DxcApplicationLayout.Main>
       <MainContent>
         <Route exact path="/components">
@@ -154,15 +167,6 @@ const Components = () => (
         ))}
       </MainContent>
     </DxcApplicationLayout.Main>
-    <DxcApplicationLayout.Footer>
-      <DxcFooter
-        bottomLinks={[
-          { text: "Twitter", href: "http://www.google.com" },
-          { text: "Facebook", href: "http://www.google.com" },
-          { text: "Instagram", href: "http://www.google.com" },
-        ]}
-      ></DxcFooter>
-    </DxcApplicationLayout.Footer>
   </DxcApplicationLayout>
 );
 

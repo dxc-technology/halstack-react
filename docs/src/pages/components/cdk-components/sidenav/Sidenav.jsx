@@ -8,7 +8,12 @@ import SidenavPropsTable, {
   SidenavGroupPropsTable,
   SidenavLinkPropsTable,
 } from "./api.jsx";
-import { DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
+import {
+  DxcHeading,
+  DxcLink,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
+import { Link } from "react-router-dom";
 import defaultSidenav from "./examples/default";
 import compoundSidenav from "./examples/compound";
 
@@ -17,7 +22,19 @@ function Sidenav() {
     <ComponentDoc>
       <ComponentHeader title="Sidenav" status="ready"></ComponentHeader>
       <Section>
-        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <DxcParagraph>
+          The sidenav is part of the application layout, so it can only be used
+          inside of it. Please check the{" "}
+          <Link to={`/components/applicationLayout`} component={DxcLink}>
+            DxcApplicationLayout
+          </Link>{" "}
+          documentation.
+        </DxcParagraph>
+        <DxcHeading
+          level={3}
+          text="Props"
+          margin={{ top: "small", bottom: "small" }}
+        />
         <SidenavPropsTable />
       </Section>
       <Section>

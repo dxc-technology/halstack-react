@@ -7,33 +7,13 @@ type Padding = {
   right?: Space;
 };
 
-type ChildrenType =
-  | AppLayoutHeaderPropsType
-  | AppLayoutMainPropsType
-  | AppLayoutFooterPropsType
-  | AppLayoutSidenavPropsType;
-
-export type AppLayoutHeaderPropsType = {
-  /**
-   * Everything between this tags will be displayed as a header, at the top of the screen.
-   * This is optional and if it is not specified, the DxcHeader will be shown by default.
-   */
-  children?: React.ReactNode;
-};
+type ChildrenType = AppLayoutMainPropsType | AppLayoutSidenavPropsType;
 
 export type AppLayoutMainPropsType = {
   /**
    * Everything between the tags will be displayed as the content of the main part of the application.
    */
   children: React.ReactNode;
-};
-
-export type AppLayoutFooterPropsType = {
-  /**
-   * Everything between the tags will be displayed as a footer, at the bottom of the screen.
-   * This is optional and if it is not specified, the DxcFooter will be shown by default.
-   */
-  children?: React.ReactNode;
 };
 
 export type AppLayoutSidenavPropsType = {
@@ -53,6 +33,18 @@ type AppLayoutPropsType = {
    * visibility of the sidenav.
    */
   visibilityToggleLabel?: string;
+  /**
+   * Header content.
+   */
+  header?: React.ReactNode;
+  /**
+   * Sidenav content
+   */
+  sidenav?: React.ReactNode;
+  /**
+   * Footer content
+   */
+  footer?: React.ReactNode;
   /**
    * The area inside the sidenav. This area can be used to render custom content.
    */
