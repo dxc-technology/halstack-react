@@ -41,7 +41,7 @@ type Props = {
   shrink?: number;
   basis?: string;
   alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
-  as?: React.ElementType;
+  as?: keyof HTMLElementTagNameMap;
   children: React.ReactNode;
 };
 
