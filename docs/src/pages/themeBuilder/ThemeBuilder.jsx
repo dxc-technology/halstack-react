@@ -130,7 +130,7 @@ const MainContainer = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  padding: 1.2rem;
 `;
 
 export default ThemeBuilder;
