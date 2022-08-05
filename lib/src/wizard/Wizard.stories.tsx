@@ -218,7 +218,12 @@ export const Chromatic = () => (
   </>
 );
 
-const WizardSelected = () => <DxcWizard steps={stepWithLabel} mode="vertical"></DxcWizard>;
+const WizardSelected = () => (
+  <ExampleContainer>
+    <Title title="Clicked step" theme="light" level={4} />
+    <DxcWizard steps={stepWithLabel} mode="vertical"></DxcWizard>
+  </ExampleContainer>
+);
 
 export const WizardStepActived = WizardSelected.bind({});
 WizardStepActived.play = async ({ canvasElement }) => {
