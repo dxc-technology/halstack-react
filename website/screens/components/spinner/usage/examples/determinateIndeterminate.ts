@@ -1,12 +1,12 @@
-import { DxcSpinner, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
+import { DxcSpinner, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcRow gutter="large" justify="center">
+      <DxcFlex gap="2rem" justifyContent="center">
         <DxcSpinner label="Loading..." showValue value={50} />
         <DxcSpinner label="Loading..." />
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -14,7 +14,7 @@ const code = `() => {
 const scope = {
   DxcSpinner,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 };
 
 export default { code, scope };

@@ -1,4 +1,4 @@
-import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
+import { DxcList, DxcFlex, DxcText } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -74,7 +74,7 @@ const sections = [
 
 const HeadingUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -82,7 +82,7 @@ const HeadingUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/heading/usage/HeadingUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,7 +1,7 @@
 import {
   DxcList,
   DxcText,
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcLink,
 } from "@dxc-technology/halstack-react";
@@ -646,7 +646,7 @@ const sections = [
 
 const AccordionSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -654,7 +654,7 @@ const AccordionSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/accordion/specs/AccordionSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

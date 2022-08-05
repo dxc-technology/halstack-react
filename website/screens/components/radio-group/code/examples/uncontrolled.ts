@@ -1,8 +1,4 @@
-import {
-  DxcRadioGroup,
-  DxcInset,
-  DxcStack,
-} from "@dxc-technology/halstack-react";
+import { DxcRadioGroup, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -32,7 +28,6 @@ const code = `() => {
 const scope = {
   DxcRadioGroup,
   DxcInset,
-  DxcStack,
   useState,
 };
 

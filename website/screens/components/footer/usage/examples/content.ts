@@ -1,7 +1,6 @@
 import {
   DxcFooter,
-  DxcRow,
-  DxcStack,
+  DxcFlex,
   DxcInset,
 } from "@dxc-technology/halstack-react";
 import { linkedinLogo, twitterLogo, facebookLogo } from "./Icons";
@@ -43,8 +42,8 @@ const code = `() => {
         copyright="© DXC Technology Company"
       >
         <DxcInset top="1.5rem">
-          <DxcRow gutter="medium">
-            <DxcStack gutter="xxxsmall">
+          <DxcFlex gap="1.5rem">
+            <DxcFlex direction="column" gap="0.125rem">
               <div
                 style={{
                   color: "#0095ff",
@@ -82,8 +81,8 @@ const code = `() => {
               >
                 Business Process Services
               </div>
-            </DxcStack>
-            <DxcStack gutter="xxxsmall">
+            </DxcFlex>
+            <DxcFlex direction="column" gap="0.125rem">
               <div
                 style={{
                   color: "#0095ff",
@@ -121,8 +120,8 @@ const code = `() => {
               >
                 Our History
               </div>
-            </DxcStack>
-            <DxcStack gutter="xxxsmall">
+            </DxcFlex>
+            <DxcFlex direction="column" gap="0.125rem">
               <div
                 style={{
                   color: "#0095ff",
@@ -151,8 +150,8 @@ const code = `() => {
               >
                 Life science
               </div>
-            </DxcStack>
-          </DxcRow>
+            </DxcFlex>
+          </DxcFlex>
         </DxcInset>
       </DxcFooter>
     </DxcInset>
@@ -161,8 +160,7 @@ const code = `() => {
 
 const scope = {
   DxcFooter,
-  DxcRow,
-  DxcStack,
+  DxcFlex,
   DxcInset,
   linkedinLogo,
   twitterLogo,

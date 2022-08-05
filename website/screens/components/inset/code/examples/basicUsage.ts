@@ -1,23 +1,23 @@
-import { DxcInset, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 import Placeholder from "./Placeholder";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcFlex direction="column" gap="2rem">
         <Placeholder height="large" />
         <DxcInset space="1rem">
           <Placeholder height="large" />
         </DxcInset>
         <Placeholder height="large" />
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcInset,
-  DxcStack,
+  DxcFlex,
   Placeholder,
 };
 

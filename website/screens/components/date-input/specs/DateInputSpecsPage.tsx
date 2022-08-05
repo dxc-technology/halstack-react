@@ -2,7 +2,7 @@ import {
   DxcText,
   DxcList,
   DxcTable,
-  DxcStack,
+  DxcFlex,
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
@@ -527,7 +527,7 @@ const sections = [
 
 const DateInputSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -535,7 +535,7 @@ const DateInputSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/date-input/specs/DateInputSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

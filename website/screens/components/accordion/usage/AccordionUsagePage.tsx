@@ -1,4 +1,4 @@
-import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
+import { DxcList, DxcFlex, DxcText } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -131,7 +131,7 @@ const sections = [
             Use icons and animation to easily reflect collapsed and expanded
             states.
           </DxcText>
-          <DxcStack gutter="xsmall">
+          <DxcFlex direction="column" gap="0.5rem">
             <DxcText>
               Use a chevron icon to indicate the expand/collapse behavior.
             </DxcText>
@@ -145,7 +145,7 @@ const sections = [
                 clockwise.
               </DxcText>
             </DxcList>
-          </DxcStack>
+          </DxcFlex>
         </DxcList>
         <Image src={accordionTriggers} alt="Accordion trigger usage" />
         <DxcText as="p">
@@ -268,7 +268,7 @@ const sections = [
 
 const AccordionUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -276,7 +276,7 @@ const AccordionUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/accordion/usage/AccordionUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,7 +1,7 @@
 import {
   DxcRadioGroup,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -13,7 +13,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcRow gutter="xxxlarge" justify="center">
+      <DxcFlex gap="5rem" justifyContent="center">
         <DxcRadioGroup
           label="Vertical"
           helperText="Helper Text"
@@ -25,7 +25,7 @@ const code = `() => {
           options={options}
           stacking="row"
         />
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -33,7 +33,7 @@ const code = `() => {
 const scope = {
   DxcRadioGroup,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 };
 
 export default { code, scope };

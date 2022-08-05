@@ -1,7 +1,7 @@
 import {
   DxcText,
   DxcList,
-  DxcStack,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
@@ -408,7 +408,7 @@ const sections = [
 
 const CardSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -416,7 +416,7 @@ const CardSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/card/specs/CardSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

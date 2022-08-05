@@ -1,8 +1,4 @@
-import {
-  DxcTextInput,
-  DxcStack,
-  DxcInset,
-} from "@dxc-technology/halstack-react";
+import { DxcTextInput, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -37,7 +33,6 @@ const code = `() => {
 const scope = {
   DxcTextInput,
   DxcInset,
-  DxcStack,
   useState,
 };
 

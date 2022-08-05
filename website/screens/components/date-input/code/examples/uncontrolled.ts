@@ -2,7 +2,7 @@ import {
   DxcDateInput,
   DxcInset,
   DxcButton,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import { useRef } from "react";
 
@@ -15,7 +15,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="start">
+      <DxcFlex direction="column" gap="2rem" justifyContent="flex-start">
         <DxcDateInput
           label="Start date"
           helperText="Please enter the start date."
@@ -24,8 +24,8 @@ const code = `() => {
           clearable
           ref={inputRef}
         />
-        <DxcButton label="Submit" onClick={handleSubmit}></DxcButton>
-      </DxcStack>
+        <DxcButton label="Submit" onClick={handleSubmit} size="medium" />
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -33,7 +33,7 @@ const code = `() => {
 const scope = {
   DxcDateInput,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   DxcButton,
   useRef,
 };
