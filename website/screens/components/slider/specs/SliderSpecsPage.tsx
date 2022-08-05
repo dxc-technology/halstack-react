@@ -1,9 +1,9 @@
 import {
   DxcLink,
-  DxcList,
+  DxcBulletedList,
   DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -28,12 +28,12 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The slider component has the following states:{" "}
           <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>active</strong> and{" "}
           <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Slider component different states example">
           <Image
             src={sliderStates}
@@ -49,23 +49,23 @@ const sections = [
     content: (
       <>
         <Image src={sliderAnatomy} alt="Slider Anatomy" />
-        <DxcList type="number">
-          <DxcText>Label</DxcText>
-          <DxcText>Helper text</DxcText>
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Floor label <em>(Optional)</em>
-          </DxcText>
-          <DxcText>Total line</DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Total line</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Ceil label <em>(Optional)</em>
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Value input <em>(Optional)</em>
-          </DxcText>
-          <DxcText>Tick</DxcText>
-          <DxcText>Thumb</DxcText>
-          <DxcText>Track line</DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Tick</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Thumb</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Track line</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -593,10 +593,10 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               [*] The thumb element size is 14x14px in the following states:{" "}
               <Code>:hover</Code> and <Code>:active</Code>.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -701,8 +701,8 @@ const sections = [
       {
         title: "WCAG",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -710,8 +710,8 @@ const sections = [
               >
                 SC 1.3.1 Info and Relationships
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -719,8 +719,8 @@ const sections = [
               >
                 SC 1.3.2 Meaningful Sequence
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -728,8 +728,8 @@ const sections = [
               >
                 SC 2.1.1 Keyboard
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -737,8 +737,8 @@ const sections = [
               >
                 SC 2.4.3 Focus Order
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -746,8 +746,8 @@ const sections = [
               >
                 SC 2.4.6 Headings and Labels
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -755,8 +755,8 @@ const sections = [
               >
                 SC 2.4.7 Focus Visible
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -764,15 +764,15 @@ const sections = [
               >
                 SC 4.1.2 Name, Role, Value
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "WAI-ARIA",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -780,8 +780,8 @@ const sections = [
               >
                 3.19 Slider
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -789,8 +789,8 @@ const sections = [
               >
                 Slider example
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],

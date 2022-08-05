@@ -1,8 +1,8 @@
 import {
+  DxcBulletedList,
   DxcFlex,
-  DxcList,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
@@ -27,13 +27,13 @@ const sections = [
     content: (
       <>
         <Image src={footerAnatomy} alt="Footer anatomy" />
-        <DxcList type="number">
-          <DxcText>Container</DxcText>
-          <DxcText>Logo</DxcText>
-          <DxcText>Social icons</DxcText>
-          <DxcText>Copyright</DxcText>
-          <DxcText>Company links</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Logo</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Social icons</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Copyright</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Company links</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -457,10 +457,10 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               The content of the footer should be adapt to the space available
               depending on the screen device.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -470,26 +470,26 @@ const sections = [
     title: "Responsive version for mobile and tablet",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The same content in the footer will be displayed for the responsive
           versions and the only modification will be the width of it. With less
           space available to display the content, some of the items will be
           relocated to fit well in the screen.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           Regarding his behavior, the footer must be pushed down always so it is
           not visible by default after page load, even when the content is
           smaller than the device screen size. This includes the splash screen,
           which must push the footer down. Of course, if the content is larger
           than the device screen size, the footer will be pushed down anyway.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           On the mobile version, first we have the logo. Below it the links to
           privacy and terms to let a space for custom component and at the
           bottom the copyright terms, centered. At this stage, the custom
           content and the disposition is responsability of the user, the same
           way as it is in the desktop and tablet version.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },

@@ -5,22 +5,13 @@ import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo, hamburgerIcon } from "./Icons";
-import AppLayoutPropsType, {
-  AppLayoutSidenavPropsType,
-  AppLayoutFooterPropsType,
-  AppLayoutMainPropsType,
-  AppLayoutHeaderPropsType,
-} from "./types";
+import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 
 const year = new Date().getFullYear();
-const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
-const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => <>{children}</>;
-const Sidenav = ({ ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
-  <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>
-);
+const defaultHeader = () => <DxcHeader underlined />;
 
 const defaultFooter = () => (
   <DxcFooter
@@ -55,20 +46,25 @@ const defaultFooter = () => (
     ]}
   />
 );
-const defaultHeader = () => <DxcHeader underlined />;
 
 const childTypeExists = (children, childType) => children.find((child) => child?.type === childType);
 
-const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayoutPropsType): JSX.Element => {
+const DxcApplicationLayout = ({
+  visibilityToggleLabel = "",
+  header,
+  sidenav,
+  footer,
+  children,
+}: AppLayoutPropsType): JSX.Element => {
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const [isResponsive, setIsResponsive] = useState(false);
   const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
 
   const childrenArray = React.Children.toArray(children);
-  const header = childTypeExists(childrenArray, DxcHeader) || childTypeExists(childrenArray, Header) || defaultHeader();
-  const footer = childTypeExists(childrenArray, DxcFooter) || childTypeExists(childrenArray, Footer) || defaultFooter();
-  const sidenav = childTypeExists(childrenArray, Sidenav);
+  const headerContent = header || defaultHeader();
+  const footerContent = footer || defaultFooter();
+
   const main = childTypeExists(childrenArray, Main);
 
   const handleResize = () => {
@@ -96,7 +92,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
       isSidenavVisible={isSidenavVisibleResponsive}
       ref={ref}
     >
-      <HeaderContainer>{header}</HeaderContainer>
+      <HeaderContainer>{headerContent}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
           <HamburgerTrigger
@@ -117,7 +113,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
         </SidenavContextProvider>
         <MainContainer>
           <MainContentContainer>{main}</MainContentContainer>
-          {footer}
+          {footerContent}
         </MainContainer>
       </BodyContainer>
     </ApplicationLayoutContainer>
@@ -128,6 +124,7 @@ type ApplicationLayoutContainerProps = {
   isSidenavVisible: boolean;
   hasSidenav: boolean;
 };
+
 const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   position: absolute;
   top: 64px;
@@ -224,10 +221,10 @@ const MainContentContainer = styled.div`
   flex: 1;
 `;
 
-DxcApplicationLayout.Header = Header;
+DxcApplicationLayout.Header = DxcHeader;
 DxcApplicationLayout.Main = Main;
-DxcApplicationLayout.Footer = Footer;
-DxcApplicationLayout.SideNav = Sidenav;
+DxcApplicationLayout.Footer = DxcFooter;
+DxcApplicationLayout.SideNav = DxcSidenav;
 DxcApplicationLayout.useResponsiveSidenavVisibility = useResponsiveSidenavVisibility;
 
 export default DxcApplicationLayout;

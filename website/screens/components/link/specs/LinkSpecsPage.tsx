@@ -1,9 +1,9 @@
 import {
   DxcLink,
-  DxcList,
+  DxcBulletedList,
   DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import Figure from "@/common/Figure";
@@ -27,11 +27,11 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>active</strong>,{" "}
           <strong>visited</strong> and <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Example of the link component states">
           <Image
             src={linkStatesNoIcon}
@@ -315,8 +315,8 @@ const sections = [
       {
         title: "WCAG 2.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-link-only.html"
@@ -324,8 +324,8 @@ const sections = [
               >
                 2.4.9: Link Purpose (Link Only)
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html"
@@ -333,15 +333,15 @@ const sections = [
               >
                 2.4.4: Link Purpose (In Context)
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "WAI-ARIA 1.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA authoring practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/#link"
@@ -349,8 +349,8 @@ const sections = [
               >
                 3.13 Link
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],

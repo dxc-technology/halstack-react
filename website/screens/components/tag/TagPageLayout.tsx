@@ -1,4 +1,4 @@
-import { DxcText, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,14 +15,14 @@ const TagPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Tag" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             The Tag represents resources and global terms to identify and linked
             with a text section to provide to the user more context and
             information regarding a topic. It usually appears in the top or
             bottom of the section and multiple tags can be concatenated to
             generate a series of resources displayed with a visual hierarchy
             that calls the user&#39;s attention.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>

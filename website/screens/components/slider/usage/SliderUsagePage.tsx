@@ -1,8 +1,8 @@
 import {
-  DxcList,
+  DxcBulletedList,
   DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -16,27 +16,27 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Visualize the output of the slider as feedback to the user of the
           current state.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           As more information can give it to the user, the easier the selection
           will be.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           If the value has to be specific, give some resource to the user to
           fill a precise input, i.e. an input next to the slider.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
     title: "Variants",
     content: (
       <>
-        <DxcText as="p">The slider has two variants:</DxcText>
+        <DxcParagraph>The slider has two variants:</DxcParagraph>
         <DxcTable>
           <thead>
             <tr>
@@ -69,11 +69,11 @@ const sections = [
     title: "Slider with input",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           To accomplish these considerations, some slider&#39;s variations were
           designed with the purpose of offering a great user experience within
           the application.
-        </DxcText>
+        </DxcParagraph>
         <Example example={input} />
       </>
     ),

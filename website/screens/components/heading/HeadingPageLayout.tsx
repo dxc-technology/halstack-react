@@ -1,4 +1,4 @@
-import { DxcText, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,13 +15,13 @@ const HeadingPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Heading" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             Heading component is an essential element that contributes to define
             a great hierarchy within the application. It helps to give semantic
             meaning to the content as well as contributing to define a good
             structure for SEO (search engine optimization). The implementation
             will rely on the use of HTML tags.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>

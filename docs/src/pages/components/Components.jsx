@@ -6,7 +6,6 @@ import { types } from "./paths.js";
 import {
   DxcBox,
   DxcLink,
-  DxcFooter,
   DxcApplicationLayout,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
@@ -72,53 +71,68 @@ const SidenavContent = () => {
 
   return (
     <>
-      <Title>
-        React
-        <ReactLogo src={reactIcon} alt="React Logo" />
-      </Title>
       {Object.keys(types).map((type) => (
-        <React.Fragment key={types[type]}>
-          <ComponentType>{types[type]}</ComponentType>
-          <ComponentsList>
-            {paths
-              .filter((path) => path.type === types[type])
-              .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
-              .map((path) => (
-                <NavLink
-                  isActive={location.pathname === `/components/${path.path}`}
-                  key={path.path}
+        <DxcApplicationLayout.SideNav.Group
+          key={types[type]}
+          title={types[type]}
+        >
+          {paths
+            .filter((path) => path.type === types[type])
+            .sort((path1, path2) => (path1.name < path2.name ? -1 : 1))
+            .map((path) => (
+              <>
+                <Link
+                  to={`/components/${path.path}`}
+                  onClick={handleLinkOnClick}
+                  component={DxcApplicationLayout.SideNav.Link}
+                  selected={location.pathname === `/components/${path.path}`}
                 >
-                  <Link
-                    to={`/components/${path.path}`}
-                    onClick={handleLinkOnClick}
-                  >
-                    {path.name}
-                  </Link>
-                  {path.status === "deprecated" && (
-                    <StatusTag
-                      status={
-                        path.status.charAt(0).toUpperCase() +
-                        path.status.slice(1)
-                      }
-                    />
-                  )}
-                </NavLink>
-              ))}
-          </ComponentsList>
-        </React.Fragment>
+                  {path.name}
+                </Link>
+                {path.status === "deprecated" && (
+                  <StatusTag
+                    status={
+                      path.status.charAt(0).toUpperCase() + path.status.slice(1)
+                    }
+                  />
+                )}
+              </>
+            ))}
+        </DxcApplicationLayout.SideNav.Group>
       ))}
     </>
   );
 };
 
 const Components = () => (
-  <DxcApplicationLayout visibilityToggleLabel="Components">
-    <DxcApplicationLayout.Header>
-      <Header />
-    </DxcApplicationLayout.Header>
-    <DxcApplicationLayout.SideNav padding="large">
-      <SidenavContent />
-    </DxcApplicationLayout.SideNav>
+  <DxcApplicationLayout
+    visibilityToggleLabel="Components"
+    header={<Header />}
+    footer={
+      <DxcApplicationLayout.Footer
+        bottomLinks={[
+          { text: "Twitter", href: "http://www.google.com" },
+          { text: "Facebook", href: "http://www.google.com" },
+          { text: "Instagram", href: "http://www.google.com" },
+        ]}
+      ></DxcApplicationLayout.Footer>
+    }
+    sidenav={
+      <DxcApplicationLayout.SideNav
+        padding="large"
+        title={
+          <DxcApplicationLayout.SideNav.Title>
+            React
+            <ReactLogo src={reactIcon} alt="React Logo" />
+          </DxcApplicationLayout.SideNav.Title>
+        }
+      >
+        <DxcApplicationLayout.SideNav.Section>
+          <SidenavContent />
+        </DxcApplicationLayout.SideNav.Section>
+      </DxcApplicationLayout.SideNav>
+    }
+  >
     <DxcApplicationLayout.Main>
       <MainContent>
         <Route exact path="/components">
@@ -153,15 +167,6 @@ const Components = () => (
         ))}
       </MainContent>
     </DxcApplicationLayout.Main>
-    <DxcApplicationLayout.Footer>
-      <DxcFooter
-        bottomLinks={[
-          { text: "Twitter", href: "http://www.google.com" },
-          { text: "Facebook", href: "http://www.google.com" },
-          { text: "Instagram", href: "http://www.google.com" },
-        ]}
-      ></DxcFooter>
-    </DxcApplicationLayout.Footer>
   </DxcApplicationLayout>
 );
 
@@ -170,56 +175,9 @@ const MainContent = styled.div`
   min-height: 100vh;
 `;
 
-const Title = styled.h1`
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  color: #646464;
-  font-weight: normal;
-  line-height: 18px;
-`;
-
 const ReactLogo = styled.img`
   max-width: 28px;
   margin-left: 8px;
-`;
-
-const ComponentType = styled.div`
-  text-transform: uppercase;
-  color: gray;
-  font-size: 14px;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-`;
-
-const ComponentsList = styled.div`
-  margin-left: 10px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const NavLink = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 4px 0px;
-  & a {
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: ${({ isActive }) => (isActive && "bold") || "normal"};
-    color: ${({ isActive }) => (isActive && "black") || "gray"};
-    ::before {
-      display: table;
-      content: "";
-      margin-bottom: 0.21875rem;
-    }
-    ::after {
-      display: table;
-      content: "";
-      margin-top: 0.21875rem;
-    }
-  }
 `;
 
 const ComponentsLinksContainer = styled.div`

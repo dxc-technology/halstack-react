@@ -1,5 +1,5 @@
 import {
-  DxcText,
+  DxcParagraph,
   DxcFlex,
   DxcTable,
   DxcLink,
@@ -79,7 +79,7 @@ const sections = [
       {
         title: "DxcApplicationLayout.Header",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             Everything between this tags will be displayed as a header, at the
             top of the screen. If you want to show a{" "}
             <Link href="/components/header" passHref>
@@ -88,13 +88,13 @@ const sections = [
             , as a shortcut, you can use it as a direct child of the
             DxcApplicationLayout without the tags. This is optional and if it is
             not specified, the DxcHeader will be shown by default.
-          </DxcText>
+          </DxcParagraph>
         ),
       },
       {
         title: "DxcApplicationLayout.Footer",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             Everything between the tags will be displayed as a footer, at the
             bottom of the screen. If you want to show a{" "}
             <Link href="/components/footer" passHref>
@@ -103,18 +103,18 @@ const sections = [
             , as a shortcut, you can use it as a direct child of the
             DxcApplicationLayout without the tags. This is optional and if it is
             not specified, the DxcFooter will be shown by default.
-          </DxcText>
+          </DxcParagraph>
         ),
       },
       {
         title: "DxcApplicationLayout.Sidenav",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             Everything between the tags will be displayed as the content of the
             sidenav, positioned on the left side of the screen, between the
             header and the footer. This is optional and if it is not specified,
             the DxcSidenav will not be shown.
-          </DxcText>
+          </DxcParagraph>
         ),
         subSections: [
           {
@@ -126,21 +126,21 @@ const sections = [
       {
         title: "DxcApplicationLayout.Main",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             Everything between the tags will be displayed as the main content of
             the application layout.
-          </DxcText>
+          </DxcParagraph>
         ),
       },
       {
         title: "DxcApplicationLayout.useResponsiveSidenavVisibility",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             Custom hook that returns a function to manually change the
             visibility of the sidenav in responsive mode. This can be very
             useful for cases where a custom sidenav is being used and some of
             its inner elements can close it (for example, a navigation link).
-          </DxcText>
+          </DxcParagraph>
         ),
       },
     ],

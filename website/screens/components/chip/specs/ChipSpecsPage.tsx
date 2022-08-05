@@ -1,8 +1,8 @@
 import {
-  DxcList,
+  DxcBulletedList,
   DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -28,19 +28,19 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The chip component container states are <strong>enabled</strong> and{" "}
           <strong>disabled</strong>:
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Chip container states">
           <Image src={statesImage} alt="Chip container states" />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           The chip action item has the following states:{" "}
           <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>active</strong> and{" "}
           <strong>disabled</strong>:
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Chip prefix and suffix states">
           <Image
             src={prefixSuffixStatesImage}
@@ -55,16 +55,16 @@ const sections = [
     content: (
       <>
         <Image src={anatomyImage} alt="Component anatomy" />
-        <DxcList type="number">
-          <DxcText>Container</DxcText>
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Prefix <em>(Optional)</em>
-          </DxcText>
-          <DxcText>Label</DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Suffix <em>(Optional)</em>
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },

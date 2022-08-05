@@ -1,4 +1,4 @@
-import { DxcText, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,10 +15,10 @@ const SelectPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Select" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             The select component allows users to make single or multiple
             selections from a pre-defined list of options.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>

@@ -1,9 +1,9 @@
 import {
-  DxcText,
+  DxcParagraph,
   DxcTable,
   DxcLink,
+  DxcBulletedList,
   DxcFlex,
-  DxcList,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -28,11 +28,11 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Text input states: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>error</strong> and{" "}
           <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Example of the text input component states">
           <Image
             src={inputStates}
@@ -47,17 +47,17 @@ const sections = [
     content: (
       <>
         <Image src={inputAnatomy} alt="Text input anatomy" />
-        <DxcList type="number">
-          <DxcText>Label text</DxcText>
-          <DxcText>Helper text (Optional)</DxcText>
-          <DxcText>Error indicator</DxcText>
-          <DxcText>Clear action (Optional)</DxcText>
-          <DxcText>Input action (Optional)</DxcText>
-          <DxcText>Input container</DxcText>
-          <DxcText>Placeholder text</DxcText>
-          <DxcText>Error message</DxcText>
-          <DxcText>Prefix</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label text</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Helper text (Optional)</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error indicator</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Clear action (Optional)</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Input action (Optional)</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Input container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Placeholder text</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Prefix</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -976,11 +976,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText>
+            <DxcParagraph>
               And also apply different values to each side of the component:{" "}
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code> and{" "}
               <Code>right</Code>.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -992,8 +992,8 @@ const sections = [
       {
         title: "WCAG 2.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
@@ -1001,8 +1001,8 @@ const sections = [
               >
                 1.3.1: Information and Relationships
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification"
@@ -1010,8 +1010,8 @@ const sections = [
               >
                 3.3.1: Error Identification
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions"
@@ -1019,8 +1019,8 @@ const sections = [
               >
                 3.3.2: Labels and Instructions
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion"
@@ -1028,8 +1028,8 @@ const sections = [
               >
                 3.3.3: Error Suggestion
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
@@ -1037,8 +1037,8 @@ const sections = [
               >
                 4.1.2: Name, Role, Value
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],

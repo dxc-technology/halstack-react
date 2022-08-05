@@ -1,4 +1,4 @@
-import { DxcText, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -11,11 +11,11 @@ const QuickNavPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Quick Nav" status="Experimental" />
-          <DxcText as="p">
+          <DxcParagraph>
             The quick nav component allows navigation inside a page. It renders
             the links according to the headings of the content in order to
             navigate to each section.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>

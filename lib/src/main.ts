@@ -5,8 +5,6 @@ import DxcCard from "./card/Card";
 import DxcCheckbox from "./checkbox/Checkbox";
 import DxcDialog from "./dialog/Dialog";
 import DxcDropdown from "./dropdown/Dropdown";
-import DxcFooter from "./footer/Footer";
-import DxcHeader from "./header/Header";
 import DxcSlider from "./slider/Slider";
 import DxcSwitch from "./switch/Switch";
 import DxcTabs from "./tabs/Tabs";
@@ -16,7 +14,6 @@ import DxcTable from "./table/Table";
 import DxcBox from "./box/Box";
 import DxcTag from "./tag/Tag";
 import DxcPaginator from "./paginator/Paginator";
-import DxcSidenav from "./sidenav/Sidenav";
 import DxcWizard from "./wizard/Wizard";
 import DxcLink from "./link/Link";
 import DxcHeading from "./heading/Heading";
@@ -51,13 +48,11 @@ import { BackgroundColorProvider } from "./BackgroundColorContext";
 export {
   DxcAlert,
   DxcButton,
-  DxcFooter,
   DxcCheckbox,
   DxcTextInput,
   DxcDropdown,
   DxcSwitch,
   DxcSlider,
-  DxcHeader,
   DxcTable,
   DxcTabs,
   DxcToggleGroup,
@@ -69,7 +64,6 @@ export {
   DxcBox,
   DxcTag,
   DxcPaginator,
-  DxcSidenav,
   DxcWizard,
   DxcLink,
   DxcHeading,

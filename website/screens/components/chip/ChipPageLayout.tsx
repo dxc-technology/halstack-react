@@ -1,4 +1,4 @@
-import { DxcText, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
@@ -15,10 +15,10 @@ const ChipPageHeading = ({ children }: { children: React.ReactNode }) => {
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Chip" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             Chips are elements that represent status, complementary information,
             or association between elements.
-          </DxcText>
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
       </PageHeading>
