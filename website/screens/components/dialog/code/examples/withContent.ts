@@ -3,7 +3,7 @@ import {
   DxcButton,
   DxcTextInput,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
@@ -18,18 +18,18 @@ const code = `() => {
       {isDialogVisible && (
         <DxcDialog onCloseClick={handleClick}>
           <DxcInset top="1.5rem" bottom="1.5rem">
-            <DxcRow gutter="large">
+            <DxcFlex gap="2rem">
               <DxcTextInput label="Name" />
               <DxcTextInput label="Last name" />
-            </DxcRow>
+            </DxcFlex>
           </DxcInset>
           <DxcInset bottom="4rem">
               <DxcTextInput label="Address" size="fillParent" />
           </DxcInset>
-          <DxcRow justify="center">
+          <DxcFlex justifyContent="center">
             <DxcButton label="Add client" onClick={handleClick} />
             <DxcButton label="Cancel" onClick={handleClick} mode="text" />
-          </DxcRow>
+          </DxcFlex>
         </DxcDialog>
       )}
     </DxcInset>
@@ -42,7 +42,7 @@ const scope = {
   DxcDialog,
   DxcTextInput,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 };
 
 export default { code, scope };

@@ -1,7 +1,6 @@
 import {
   DxcCheckbox,
   DxcInset,
-  DxcStack,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -19,7 +18,6 @@ const code = `() => {
 const scope = {
   DxcCheckbox,
   DxcInset,
-  DxcStack,
 };
 
 export default { code, scope };

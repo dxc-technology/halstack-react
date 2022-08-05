@@ -2,7 +2,7 @@ import {
   DxcProgressBar,
   DxcButton,
   DxcInset,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
@@ -25,7 +25,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack space="large" align="start">
+      <DxcFlex direction="column" gap="2rem" alignItems="flex-start">
         <DxcButton
           label="Show Progress Bar for 3 seconds"
           onClick={showModal}
@@ -37,7 +37,7 @@ const code = `() => {
             overlay={true}
           />
         )}
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -46,7 +46,7 @@ const scope = {
   DxcProgressBar,
   DxcButton,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   useState,
 };
 

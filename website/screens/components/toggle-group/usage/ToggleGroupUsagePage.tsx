@@ -1,4 +1,4 @@
-import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcText, DxcList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -52,7 +52,7 @@ const sections = [
 
 const ToggleGroupUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -60,7 +60,7 @@ const ToggleGroupUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/toggle-group/usage/ToggleGroupUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

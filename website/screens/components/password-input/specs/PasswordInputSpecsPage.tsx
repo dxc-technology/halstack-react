@@ -1,5 +1,5 @@
 import {
-  DxcStack,
+  DxcFlex,
   DxcText,
   DxcLink,
   DxcList,
@@ -177,7 +177,7 @@ const sections = [
 
 const PasswordInputSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -185,7 +185,7 @@ const PasswordInputSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/password-input/specs/PasswordInputSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

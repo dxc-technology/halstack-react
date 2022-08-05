@@ -1,4 +1,4 @@
-import { DxcText, DxcStack, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcText, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import DocFooter from "@/common/DocFooter";
@@ -249,7 +249,7 @@ const sections = [
 
 const SelectCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -257,7 +257,7 @@ const SelectCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/select/code/SelectCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

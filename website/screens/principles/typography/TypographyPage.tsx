@@ -3,7 +3,7 @@ import {
   DxcHeading,
   DxcText,
   DxcList,
-  DxcStack,
+  DxcFlex,
   DxcLink,
   DxcTable,
 } from "@dxc-technology/halstack-react";
@@ -1125,11 +1125,11 @@ const sections = [
 
 const Typography = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={1} text="Typography" weight="bold"></DxcHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
@@ -1138,7 +1138,7 @@ const Typography = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/typography/TypographyPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

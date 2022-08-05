@@ -1,5 +1,5 @@
 import {
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcText,
   DxcLink,
@@ -138,7 +138,7 @@ const sections = [
 
 const HeaderCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -146,7 +146,7 @@ const HeaderCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/header/code/HeaderCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
