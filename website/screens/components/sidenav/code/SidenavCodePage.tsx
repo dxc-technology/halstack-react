@@ -4,9 +4,9 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import {
   DxcLink,
-  DxcStack,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
@@ -43,10 +43,9 @@ const sections = [
       {
         title: "DxcSidenav.Title",
         content: (
-          <DxcText as="p">
-            The title will always be positioned over the sections and should be
-            only used in the sidenav title prop.
-          </DxcText>
+          <DxcParagraph>
+            The title should be only used in the sidenav title prop.
+          </DxcParagraph>
         ),
         subSections: [
           {
@@ -74,11 +73,11 @@ const sections = [
       {
         title: "DxcSidenav.Section",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             This must be defined as children of the Sidenav. It helps to
             separate groups and links into different agroupations. It has the
             following props:
-          </DxcText>
+          </DxcParagraph>
         ),
         subSections: [
           {
@@ -104,11 +103,11 @@ const sections = [
           {
             title: "DxcSidenav.Group",
             content: (
-              <DxcText as="p">
+              <DxcParagraph>
                 Even though any children are accepted in the group we recommend
                 using only the DxcSidenav.Link or any react based router with
                 the DxcSidenav.Link.
-              </DxcText>
+              </DxcParagraph>
             ),
             subSections: [
               {
@@ -158,7 +157,7 @@ const sections = [
           {
             title: "DxcSidenav.Link",
             content: (
-              <DxcText as="p">
+              <DxcParagraph>
                 As the DxcLink component, we decided to make our link component
                 in the sidenav just a styled HTML anchor element which allows it
                 to be used in any React based router. You can check the{" "}
@@ -166,7 +165,7 @@ const sections = [
                   <DxcLink>Link</DxcLink>
                 </Link>{" "}
                 for more information regarding this.
-              </DxcText>
+              </DxcParagraph>
             ),
             subSections: [
               {
@@ -219,6 +218,14 @@ const sections = [
                       <td></td>
                       <td>The area inside the sidenav link.</td>
                     </tr>
+                    <tr>
+                      <td>onClick: function</td>
+                      <td></td>
+                      <td>
+                        This function will be called when the user clicks the
+                        link and the event will be passed to this function.
+                      </td>
+                    </tr>
                   </DxcTable>
                 ),
               },
@@ -232,7 +239,7 @@ const sections = [
 
 const SidenavCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -240,7 +247,7 @@ const SidenavCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/sidenav/code/SidenavCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
