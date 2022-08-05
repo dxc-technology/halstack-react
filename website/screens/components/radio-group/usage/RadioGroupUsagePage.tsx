@@ -1,7 +1,7 @@
 import {
-  DxcList,
+  DxcBulletedList,
+  DxcParagraph,
   DxcFlex,
-  DxcText,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -15,21 +15,23 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Labelling should be concise and clearly differentiated from other
           options.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           One option of the radio group can be pre-selected. Select the safest
           or convenient option.
-        </DxcText>
-        <DxcText>Single radio button should not be used.</DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Single radio button should not be used.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           If the question that the user needs to responde is as easier as
           yes/no, it is recommended to use a checkbox instead of radio group.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
@@ -65,11 +67,11 @@ const sections = [
             </tr>
           </tbody>
         </DxcTable>
-        <DxcText as="p">
+        <DxcParagraph>
           *In any case, in the specification it is specified the ideal distance
           between component with label in the same horizontal edge to avoid the
           problem of pairing and scannability.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },

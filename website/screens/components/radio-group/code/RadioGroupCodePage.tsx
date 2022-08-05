@@ -1,4 +1,8 @@
-import { DxcFlex, DxcTable, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcFlex,
+  DxcTable,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
@@ -182,14 +186,14 @@ const sections = [
         title: "Error handling",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               For handling errors, we suggest initializing the{" "}
               <Code>error</Code> prop with an empty string. This will reserve
               space for a possible future error message and prevent unintended
               layout changes. Also, the <Code>onBlur</Code> event will send{" "}
               <Code>undefined</Code> when there is no error, so you may also
               need to control this too to avoid the same problem.
-            </DxcText>
+            </DxcParagraph>
             <Example example={errorHandling} defaultIsVisible />
           </>
         ),

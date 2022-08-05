@@ -1,4 +1,4 @@
-import { DxcText, DxcList, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcBulletedList, DxcFlex } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -7,17 +7,17 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Organize the card collection so thery are easy to use, take a layout
           that presents the information in a clear way and apply the same styles
           for every card.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           If a collection want be create, won&#39;t use different card styles,
           use the same to keep consistency.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
 ];

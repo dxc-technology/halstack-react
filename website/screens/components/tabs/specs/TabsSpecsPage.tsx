@@ -1,9 +1,9 @@
 import {
   DxcTable,
+  DxcParagraph,
   DxcFlex,
-  DxcText,
   DxcLink,
-  DxcList,
+  DxcBulletedList,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -58,12 +58,12 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Tabs can get different states based on user interaction. States:{" "}
           <strong>inactive</strong>, <strong>enabled</strong>,{" "}
           <strong>hover</strong>, <strong>pressed</strong>,{" "}
           <strong>focus</strong> and <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Image src={statesTabs} alt="image" />
       </>
     ),
@@ -73,18 +73,24 @@ const sections = [
     content: (
       <>
         <Image src={specsAnatomy} alt="image" />
-        <DxcList type="number">
-          <DxcText>Container</DxcText>
-          <DxcText>Active icon (Optional if there&#39;s a label)</DxcText>
-          <DxcText>Active text label (Optional if there&#39;s an icon)</DxcText>
-          <DxcText>Active tab indicator</DxcText>
-          <DxcText>Inactive icon (Optional if there&#39;s a label)</DxcText>
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Active icon (Optional if there&#39;s a label)
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Active text label (Optional if there&#39;s an icon)
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Active tab indicator</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Inactive icon (Optional if there&#39;s a label)
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Inactive text label (Optional if there&#39;s an icon)
-          </DxcText>
-          <DxcText>Tab item</DxcText>
-          <DxcText>Divider</DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Tab item</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Divider</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -264,18 +270,18 @@ const sections = [
     title: "Accessibility",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Each tab must have a unique title that clearly describes tab panel
           content. This is particularly helpful for users of assistive
           technologies so they have the necessary information to efficiently
           navigate the content.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           Content authors need to ensure the content that is added to the tab
           panel is accessible. For example, if you add an image to the panel you
           need to include alternative text to pass accessibility testing.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           <DxcLink
             href="https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel"
             newWindow
@@ -283,7 +289,7 @@ const sections = [
             W3C WAI-ARIA Tab Design Pattern
           </DxcLink>{" "}
           covers the usage of ARIA names.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
     subSections: [

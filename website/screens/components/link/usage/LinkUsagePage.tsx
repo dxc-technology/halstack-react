@@ -1,4 +1,8 @@
-import { DxcList, DxcFlex, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcBulletedList,
+  DxcFlex,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -9,27 +13,31 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Provide visual cue to suggest clickability for all types of links.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Distinguish the visited and unvisited for navigation links.
-        </DxcText>
-        <DxcText>Clearly explain where the link will take you to.</DxcText>
-        <DxcText>Front-load the most relevant keyword.</DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Clearly explain where the link will take you to.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Front-load the most relevant keyword.
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
     title: "Icon usage",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           An icon can be used either in the normal or underlined mode to
           represent more graphical the purpose of the link, placing the icon
           before or after the link that is representing.
-        </DxcText>
+        </DxcParagraph>
         <Example example={iconUsage}></Example>
       </>
     ),

@@ -1,4 +1,8 @@
-import { DxcText, DxcList, DxcFlex } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -12,27 +16,27 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           The horizontal/vertical line should not extend to the left of the
           first circle or to the right of the last circle.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Do not overwhelmed the component with too many steps, it won't be a
           good idea for the user workflow neither for the display of the
           information.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
     title: "Variants",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The wizard component has two variants: <strong>horizontal</strong> and{" "}
           <strong>vertical</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Example example={variants} />
       </>
     ),
@@ -41,7 +45,7 @@ const sections = [
     title: "Validation",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           There could be some scenarios in which the content of a step wants to
           be validated while the user is filling the fields with information or
           doing relevant actions in every step of the wizard. For that case, a
@@ -49,7 +53,7 @@ const sections = [
           navigate to the next step in the linear progression. This will
           represent the status of the validation respecting the content, with a
           success mark or an error mark visible on the step mark.
-        </DxcText>
+        </DxcParagraph>
         <Example example={validation} />
       </>
     ),
@@ -58,14 +62,16 @@ const sections = [
     title: "Content",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Different variations of the content can be performed in the step:
-        </DxcText>
-        <DxcList>
-          <DxcText>Only numbers</DxcText>
-          <DxcText>Only icons</DxcText>
-          <DxcText>Numbers/icons with step label</DxcText>
-        </DxcList>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>Only numbers</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Only icons</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Numbers/icons with step label
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
         <Example example={content} />
       </>
     ),
@@ -74,9 +80,9 @@ const sections = [
     title: "Description",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Description can be added to the wizard component step:
-        </DxcText>
+        </DxcParagraph>
         <Example example={description} />
       </>
     ),

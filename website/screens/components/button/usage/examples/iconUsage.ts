@@ -2,7 +2,6 @@ import {
   DxcButton,
   DxcFlex,
   DxcInset,
-  DxcText,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -74,7 +73,6 @@ const scope = {
   DxcButton,
   DxcFlex,
   DxcInset,
-  DxcText,
 };
 
 export default { code, scope };

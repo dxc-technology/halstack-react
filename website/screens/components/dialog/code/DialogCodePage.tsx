@@ -1,4 +1,8 @@
-import { DxcText, DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcFlex,
+  DxcTable,
+} from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -98,10 +102,10 @@ const sections = [
         title: "With content",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               This is an example of how to use the Dialog to display multiple
               inputs and buttons to collect information.
-            </DxcText>
+            </DxcParagraph>
             <Example example={withContent} defaultIsVisible />
           </>
         ),
@@ -110,10 +114,10 @@ const sections = [
         title: "With background click event",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Example of a dialog that will close when the user clicks anywhere
               outside it.
-            </DxcText>
+            </DxcParagraph>
             <Example example={backgroundClick} defaultIsVisible />
           </>
         ),
