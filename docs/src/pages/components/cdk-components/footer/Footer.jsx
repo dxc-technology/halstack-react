@@ -1,5 +1,9 @@
 import React from "react";
-import { DxcHeading, DxcText, DxcLink } from "@dxc-technology/halstack-react";
+import {
+  DxcHeading,
+  DxcParagraph,
+  DxcLink,
+} from "@dxc-technology/halstack-react";
 import { Link } from "react-router-dom";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
@@ -13,14 +17,14 @@ function App() {
   return (
     <ComponentDoc>
       <ComponentHeader title="Footer" status="ready"></ComponentHeader>
-      <DxcText>
+      <DxcParagraph>
         The footer is part of the application layout, so it can only be used
         inside of it. Please check the{" "}
         <Link to={`/components/applicationLayout`} component={DxcLink}>
           DxcApplicationLayout
         </Link>{" "}
         documentation.
-      </DxcText>
+      </DxcParagraph>
       <Section>
         <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
         <InputPropsTable />
