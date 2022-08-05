@@ -1,15 +1,12 @@
 import {
-  DxcHeading,
-  DxcText,
   DxcTable,
   DxcFlex,
   DxcLink,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
-import HeadingLink from "@/common/HeadingLink";
 import QuickNavContainer from "@/common/QuickNavContainer";
-import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -24,13 +21,13 @@ const sections = [
         <Figure caption="Base Halstack core colors">
           <Image src={colorOverview} alt="DXC Colors" />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           <strong>
             The color palette is an essential asset as a communication resource
-            of our design system.
+            of our Design System.
           </strong>
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           Halstack color palette brings a unified consistency and helps in
           guiding the user&#39;s perception order. Our color palette is based in
           the{" "}
@@ -42,20 +39,20 @@ const sections = [
           </DxcLink>
           . All our color families are calculated using the lightness value of
           the standard DXC palette colors.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
   {
     title: "Color Tokens",
     content: (
-      <DxcText as="p">
+      <DxcParagraph>
         Halstack uses tokens to manage color. Appart from a multi-purpose
         greyscale family, purple and blue are the core color families used in
         our set of components. Additional families as red, green and yellow help
         as feedback role-based color palettes and must not be used outside this
         context.
-      </DxcText>
+      </DxcParagraph>
     ),
     subSections: [
       {
@@ -297,9 +294,9 @@ const sections = [
             title: "Purple",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   The core Purple family serves as the primary action color.
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -388,9 +385,9 @@ const sections = [
             title: "Blue",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   The core Blue family serves as the accent color.
-                </DxcText>
+                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
@@ -823,25 +820,38 @@ const sections = [
       },
     ],
   },
+  {
+    title: "Dark mode",
+    subSections: [
+      {
+        title: "BackgroundColorProvider",
+        content: (
+          <>
+            <DxcParagraph>
+              The Design System components have two versions, 'onDark' and
+              'onLight' to ensure that they are displayed correctly regardless
+              of their background. This is not two different themes of the same
+              component but a way to ensure correct display.
+            </DxcParagraph>
+          </>
+        ),
+      },
+    ],
+  },
 ];
 
-const Color = () => {
+const ColorUsagePage = () => {
   return (
     <DxcFlex direction="column" gap="4rem">
-      <PageHeading>
-        <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Color" weight="bold"></DxcHeading>
-        </DxcFlex>
-      </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
-      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/color/ColorPage.tsx" />
+      <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/color/usage/ColorUsagePage.tsx" />
     </DxcFlex>
   );
 };
 
-export default Color;
+export default ColorUsagePage;

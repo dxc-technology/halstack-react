@@ -8,7 +8,7 @@ import {
   DxcHeading,
   DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import translations from "./examples/translations";
 
@@ -17,17 +17,17 @@ const sections = [
     title: "Translation",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Halstack Design System provides the possibility to translate all the
           labels, that cannot be changed by the component properties, through
           the Halstack Provider and its property <Code>labels</Code>.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           You will need to create an object with your translations. In this
           object, you will have as much objects as components you want to
           translate, using the label from the list we will show below, following
           the structure you can see in the example.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
@@ -38,20 +38,20 @@ const sections = [
   {
     title: "Default labels",
     content: (
-      <DxcText as="p">
+      <DxcParagraph>
         The following lists define the structure of the JSON object containing
         the different components and the associated labels.
-      </DxcText>
+      </DxcParagraph>
     ),
     subSections: [
       {
         title: "formFields",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               FormFields labels are common to several components of the design
               system.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>

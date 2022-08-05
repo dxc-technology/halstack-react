@@ -1,7 +1,7 @@
 import {
   DxcTable,
+  DxcParagraph,
   DxcFlex,
-  DxcText,
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import DocFooter from "@/common/DocFooter";
@@ -115,11 +115,11 @@ const sections = [
         title: "Router links",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               There are many React based routers, unfortunately all with
               different APIs.
-            </DxcText>
-            <DxcText as="p">
+            </DxcParagraph>
+            <DxcParagraph>
               So we decided to make our link component just an styled HTML
               anchor element which allows it to be used in any React based
               router. For each API is different so here are some examples for{" "}
@@ -139,7 +139,7 @@ const sections = [
               . Some of these examples are just representations of how they
               should be implemented but might not work correctly in this
               scenario.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
         subSections: [
@@ -147,7 +147,7 @@ const sections = [
             title: "React router",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   This is an example of{" "}
                   <DxcLink
                     href="https://v5.reactrouter.com/web/api/Route/component"
@@ -157,7 +157,7 @@ const sections = [
                   </DxcLink>{" "}
                   using the prop <Code>component</Code>. Note that this Prop is
                   not available in v6.
-                </DxcText>
+                </DxcParagraph>
                 <Example example={routerLink} defaultIsVisible />
               </>
             ),
@@ -166,7 +166,7 @@ const sections = [
             title: "React router v6",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   In{" "}
                   <DxcLink
                     href="https://github.com/remix-run/react-router/blob/main/docs/upgrading/v5.md#remove-link-component-prop"
@@ -183,7 +183,7 @@ const sections = [
                     React Router v6
                   </DxcLink>
                   .
-                </DxcText>
+                </DxcParagraph>
                 <Example example={routerLink6} defaultIsVisible />
               </>
             ),
@@ -192,7 +192,7 @@ const sections = [
             title: "NextJS Link",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   This is an example of{" "}
                   <DxcLink
                     href="https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-functional-component"
@@ -201,7 +201,7 @@ const sections = [
                     NextJS
                   </DxcLink>{" "}
                   .
-                </DxcText>
+                </DxcParagraph>
                 <Example example={nextLink} defaultIsVisible />
               </>
             ),

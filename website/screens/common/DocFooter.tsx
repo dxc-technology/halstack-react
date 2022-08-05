@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { DxcText, DxcLink, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcTypography, DxcLink, DxcFlex } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { getNavigationLinks } from "./pagesList";
 import styled from "styled-components";
@@ -19,7 +19,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
           <DxcFlex direction="column" gap="1rem">
             {previousLink && (
               <>
-                <DxcText>Previous</DxcText>
+                <DxcTypography>Previous</DxcTypography>
                 <Link href={previousLink.path} passHref>
                   <DxcLink icon={arrowBack}>{previousLink.label}</DxcLink>
                 </Link>
@@ -29,7 +29,7 @@ const DocFooter = ({ githubLink }: { githubLink: string }) => {
           <DxcFlex direction="column" alignItems="flex-end" gap="1rem">
             {nextLink && (
               <>
-                <DxcText>Next</DxcText>
+                <DxcTypography>Next</DxcTypography>
                 <Link href={nextLink.path} passHref>
                   <DxcLink icon={arrowForward} iconPosition="after">
                     {nextLink.label}
@@ -72,7 +72,12 @@ const arrowBack = (
     fill="currentColor"
   >
     <g id="arrow_forward_black_24dp" transform="translate(16 16) rotate(180)">
-      <path id="Path_2989" data-name="Path 2989" d="M0,0H16V16H0Z" fill="none" />
+      <path
+        id="Path_2989"
+        data-name="Path 2989"
+        d="M0,0H16V16H0Z"
+        fill="none"
+      />
       <path
         id="Path_2990"
         data-name="Path 2990"
@@ -91,7 +96,11 @@ const githubIcon = (
     viewBox="0 0 24 24"
     fill="currentColor"
   >
-    <g id="Group_4275" data-name="Group 4275" transform="translate(-670.003 -820.294)">
+    <g
+      id="Group_4275"
+      data-name="Group 4275"
+      transform="translate(-670.003 -820.294)"
+    >
       <g id="Group_4276" data-name="Group 4276">
         <rect
           id="Rectangle_2690"

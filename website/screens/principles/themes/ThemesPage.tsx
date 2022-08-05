@@ -1,10 +1,10 @@
 import {
-  DxcText,
   DxcTable,
-  DxcList,
   DxcFlex,
   DxcLink,
   DxcHeading,
+  DxcParagraph,
+  DxcBulletedList,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
@@ -17,15 +17,15 @@ const sections = [
     title: "What is a theme?",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           In order to understand what a theme is, we need to understand first
           that the definition of colors, sizes, shapes... is an intrinsic part
           of a design system. Since these parameters are essential for
           guaranteeing accessibility and a good user experience, having the
           ability of changing them, might go frontally against the intentions of
           the design system.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           This is precisely what themes are, just custom defined objects that
           allow users to{" "}
           <strong>
@@ -35,14 +35,14 @@ const sections = [
           System, and using themes could result in applications not being
           compliant with the Halstack guidelines, or even introducing many
           different types of accessibility issues if not used carefully.
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           Typically, you would create a Halstack Design System application, and
           after that,{" "}
           <strong>only if there is a white-labeling requirement</strong>, we
           would apply a theme on top of the base application. This, and only
           this, is the whole purpose of using themes.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
@@ -50,15 +50,15 @@ const sections = [
     title: "Different theming strategies",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           As explained in the previous section, themes are basically a list of
           properties that allow you to override fundamental decisions of the
           design system. Based on the amount of decisions that can be
           overridden, Halstack Design System has two different theming
           strategies:
-        </DxcText>
-        <DxcList>
-          <DxcText>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             <strong>Opinionated theme.</strong> This theming strategy lets you
             change some decisions of the design system, but is still opinionated
             about the ones we consider fundamental. The list of configurable
@@ -71,8 +71,8 @@ const sections = [
               opinionated theme generator
             </DxcLink>
             .
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <strong>Advanced theme.</strong> This theming strategy lets you
             change most of the design decisions of the design system (all the
             design tokens), trying to be as little opinionated as possible. Have
@@ -88,8 +88,8 @@ const sections = [
               advanced theme generator
             </DxcLink>
             .
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -97,15 +97,15 @@ const sections = [
     title: "Opinionated theme inputs list",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Tokens in the second column, which names are in bold, will have the
           value that results from applying the transformation indicated in
           brackets to the &#39;Theme input&#39;. (If nothing, they will have the
           same value as the &#39;Theme input&#39;).
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           Theme inputs value must be hexadecimal without alpha channel.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
     subSections: [

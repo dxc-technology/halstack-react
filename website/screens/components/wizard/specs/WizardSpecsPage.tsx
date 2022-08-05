@@ -1,8 +1,8 @@
 import {
   DxcTable,
+  DxcParagraph,
+  DxcBulletedList,
   DxcFlex,
-  DxcText,
-  DxcList,
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
@@ -37,11 +37,11 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           States: <strong>enabled</strong>, <strong>focus</strong>,{" "}
           <strong>selected</strong>, <strong>unvisited</strong> and{" "}
           <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Example of the wizard step states">
           <Image src={statesImage} alt="Example of the wizard step states" />
         </Figure>
@@ -55,17 +55,17 @@ const sections = [
         <Figure caption="Wizard component anatomy">
           <Image src={anatomyImage} alt="Wizard component anatomy" />
         </Figure>
-        <DxcList type="number">
-          <DxcText>Step</DxcText>
-          <DxcText>Label</DxcText>
-          <DxcText>Separator</DxcText>
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Step</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Separator</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Helper text <em>(Optional)</em>
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Step validator <em>(Optional)</em>
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -283,11 +283,11 @@ const sections = [
         title: "Margin",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Different values can be applied to each side of the component:
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code>,{" "}
               <Code>right</Code>.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -715,8 +715,8 @@ const sections = [
       {
         title: "WCAG 2.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
@@ -724,8 +724,8 @@ const sections = [
               >
                 SC 1.3.1: Info and Relationships
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html"
@@ -733,8 +733,8 @@ const sections = [
               >
                 SC 2.2.1: Timing Adjustable
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html"
@@ -742,8 +742,8 @@ const sections = [
               >
                 SC 2.2.2: Pause, Stop, Hide
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
@@ -751,15 +751,15 @@ const sections = [
               >
                 SC 3.3.2: Labels or Instructions
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "WAI-ARIA",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Web accessibility tutorials -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/tutorials/forms/multi-page/"
@@ -767,8 +767,8 @@ const sections = [
               >
                 Multi-page forms
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],

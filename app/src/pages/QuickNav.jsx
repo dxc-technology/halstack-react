@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   DxcQuickNav,
   DxcHeading,
-  DxcText,
+  DxcParagraph,
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
 
@@ -44,12 +44,12 @@ function App() {
               text="Overview"
               margin={{ bottom: "small" }}
             />
-            <DxcText>
+            <DxcParagraph>
               Halstack is the DXC Technology's open source design system for
               insurance products and digital experiences. Our system provides
               all the tools and resources needed to create superior, beautiful
-              but above all, functional user experiences. 
-            </DxcText>
+              but above all, functional user experiences.
+            </DxcParagraph>
           </Content>
           <Content id="principles">
             <DxcHeading
@@ -63,7 +63,7 @@ function App() {
                 text="Color"
                 margin={{ top: "xsmall", bottom: "xsmall" }}
               />
-              <DxcText>
+              <DxcParagraph>
                 The color palette is an essential asset as a communication
                 resource of our design system. Halstack color palette brings a
                 unified consistency and helps in guiding the user's perception
@@ -75,7 +75,7 @@ function App() {
                 components. Additional families as red, green and yellow help as
                 feedback role-based color palettes and must not be used outside
                 this context.
-              </DxcText>
+              </DxcParagraph>
             </Content>
             <Content id="spacing">
               <DxcHeading
@@ -83,12 +83,12 @@ function App() {
                 text="Spacing"
                 margin={{ top: "xsmall", bottom: "xsmall" }}
               />
-              <DxcText>
+              <DxcParagraph>
                 In the search of consistent alignment between the elements we
                 provide a spacing scale based on a root values of 8px and 4px.
                 The numbers 4 and 8 are easily multiplied, they provide flexible
                 and consistent, yet distinct enough, steps between them.
-              </DxcText>
+              </DxcParagraph>
             </Content>
             <Content id="typography">
               <DxcHeading
@@ -96,7 +96,7 @@ function App() {
                 text="Typography"
                 margin={{ top: "xsmall", bottom: "xsmall" }}
               />
-              <DxcText>
+              <DxcParagraph>
                 Our selected typography helps in structuring our user's
                 experience based on the visual impact that it has on the user
                 interface content. It defines what is the first noticeable piece
@@ -108,7 +108,7 @@ function App() {
                 enhance the application's content structure, including the
                 Heading component which defines different levels of page and
                 section titles
-              </DxcText>
+              </DxcParagraph>
             </Content>
             <Content id="layout">
               <DxcHeading
@@ -116,7 +116,7 @@ function App() {
                 text="Layout"
                 margin={{ top: "xsmall", bottom: "xsmall" }}
               />
-              <DxcText>
+              <DxcParagraph>
                 The grid provides the foundation for consistently positioning
                 elements onscreen. The 8x Grid is the geometric foundation of
                 all the visual elements of Halstack Design System components and
@@ -148,7 +148,7 @@ function App() {
                 visual elements of Halstack Design System components and
                 spacing. It provides structure and guidance for all creative
                 decision-making.
-              </DxcText>
+              </DxcParagraph>
             </Content>
             <Content id="themes">
               <DxcHeading
@@ -156,7 +156,7 @@ function App() {
                 text="Themes"
                 margin={{ top: "xsmall", bottom: "xsmall" }}
               />
-              <DxcText>
+              <DxcParagraph>
                 In order to understand what a theme is, we need to understand
                 first that the definition of colors, sizes, shapes... is an
                 intrinsic part of a design system. Since these parameters are
@@ -222,7 +222,7 @@ function App() {
                 white-labeling requirement, we would apply a theme on top of the
                 base application. This, and only this, is the whole purpose of
                 using themes.
-              </DxcText>
+              </DxcParagraph>
             </Content>
           </Content>
         </ContentContainer>

@@ -1,4 +1,8 @@
-import { DxcText, DxcList, DxcFlex } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -23,10 +27,10 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Tabs organize and allow navigation between groups of content that are
           related and at the same level of hierarchy.
-        </DxcText>
+        </DxcParagraph>
         <Example example={tabsUsage}></Example>
       </>
     ),
@@ -34,31 +38,33 @@ const sections = [
   {
     title: "Do's",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Use tabs for navigation when dividing content into different sections.
-        </DxcText>
-        <DxcText>The content should have the same level of hierarchy.</DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          The content should have the same level of hierarchy.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Tabs can contain icons and text. Text labels should be short and have
           a clear relation to content.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
     title: "Don'ts",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Do not use tabs to move through sequential content that needs to be
           read in a particular order.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Avoid using tabs for comparing content across multiple tabs, such as
           different sizes of the same item.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
@@ -68,23 +74,23 @@ const sections = [
         title: "Placement",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               There are two variations of tabs, default and container. They are
               hierarchically the same and should never be nested within each
               other. Tabs are usually placed above the content under the header
               o general navigation.
-            </DxcText>
+            </DxcParagraph>
             <Figure
               caption={
                 <>
-                  <DxcText as="p">
+                  <DxcParagraph>
                     <strong>Left</strong>: A standalone tab that can also be
                     nested within components.
-                  </DxcText>
-                  <DxcText as="p">
+                  </DxcParagraph>
+                  <DxcParagraph>
                     <strong>Right</strong>: Emphasized tab always paired with an
                     attached background container.
-                  </DxcText>
+                  </DxcParagraph>
                 </>
               }
             >
@@ -97,23 +103,23 @@ const sections = [
             title: "Desktop",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   <strong>Default</strong>
-                </DxcText>
-                <DxcText as="p">
+                </DxcParagraph>
+                <DxcParagraph>
                   When used for main navigation place tabs above the header
                   using 100% of the width of the screen.
-                </DxcText>
+                </DxcParagraph>
                 <Example example={defaultUsage}></Example>
                 <Example example={scrollableUsage}></Example>
-                <DxcText as="p">
+                <DxcParagraph>
                   <strong>Container</strong>
-                </DxcText>
-                <DxcText as="p">
+                </DxcParagraph>
+                <DxcParagraph>
                   When used for panel navigation place tabs in the top of the
                   panel using all available width. Scrollable tabs are allowed
                   when there is not enough space available.
-                </DxcText>
+                </DxcParagraph>
                 <Figure caption="Using scrollable tabs for panel navigation.">
                   <Image src={scrollablePanelNavigation} alt="image" />
                 </Figure>
@@ -124,32 +130,32 @@ const sections = [
             title: "Mobile",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   <strong>Main navigation</strong>
-                </DxcText>
-                <DxcText as="p">
+                </DxcParagraph>
+                <DxcParagraph>
                   When used for main navigation place tabs above the header
                   using 100% of the width of the screen.
-                </DxcText>
+                </DxcParagraph>
                 <Figure
                   caption={
                     <>
-                      <DxcText as="p">
+                      <DxcParagraph>
                         <strong>Left</strong>: Main navigation tabs are place
                         above the content.
-                      </DxcText>
-                      <DxcText as="p">
+                      </DxcParagraph>
+                      <DxcParagraph>
                         <strong>Right</strong>: Don&#39;t stack more than 4
                         fixed tabs.
-                      </DxcText>
+                      </DxcParagraph>
                     </>
                   }
                 >
                   <Image src={mobileNavigation} alt="image" />
                 </Figure>
-                <DxcText as="p">
+                <DxcParagraph>
                   <strong>Panel navigation</strong>
-                </DxcText>
+                </DxcParagraph>
                 <Figure caption="When used for panel navigation tabs are placed in the top of the panel using all available width.">
                   <Image src={panelNavigation} alt="image" />
                 </Figure>
@@ -162,17 +168,17 @@ const sections = [
         title: "Alignment",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Tabs are always displayed horizontally in a single row. They can
               be left aligned or entered depending on the content and context.
-            </DxcText>
+            </DxcParagraph>
             <Figure
               caption={
                 <>
-                  <DxcText as="p">
+                  <DxcParagraph>
                     <strong>Left</strong>: Tabs are always displayed in a single
                     row.
-                  </DxcText>
+                  </DxcParagraph>
                 </>
               }
             >
@@ -190,18 +196,18 @@ const sections = [
         <Figure
           caption={
             <>
-              <DxcText as="p">
+              <DxcParagraph>
                 <strong>Left:</strong> Text labels should clearly and succinctly
                 describe the content of the tab they represent.
-              </DxcText>
-              <DxcText as="p">
+              </DxcParagraph>
+              <DxcParagraph>
                 <strong>Center:</strong> Tab content should contain a cohesive
                 set of items that share a common characteristics.
-              </DxcText>
-              <DxcText as="p">
+              </DxcParagraph>
+              <DxcParagraph>
                 <strong>Right</strong>: Tab labels should appear in a single
                 row. They can use a second line if needed, with truncated text.
-              </DxcText>
+              </DxcParagraph>
             </>
           }
         >
@@ -214,10 +220,10 @@ const sections = [
         title: "Typography",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Avoid to use all caps for tab labels. ALL CAPS is rarely a good
               idea because it&#39;s harder to read.
-            </DxcText>
+            </DxcParagraph>
             <Figure
               caption="Is recommended to use sentence-case capitalization and semibold
             style for tab labels."
@@ -235,35 +241,35 @@ const sections = [
       {
         title: "Main navigation",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             Users can navigate between tabs by tapping a tab, or by performing a
             swipe gesture over content in mobile devices.
-          </DxcText>
+          </DxcParagraph>
         ),
       },
       {
         title: "Panel navigation",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Interacting with the tabs makes the content scrolls to the point
               that is associated with that specific tab, while the tabs keep
               fixed at the top of the container.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Do not use main navigation if they only affect an specific panel.">
               <Image src={tabsPanelBehavior} alt="image" />
             </Figure>
             <Figure
               caption={
                 <>
-                  <DxcText as="p">
+                  <DxcParagraph>
                     The use of scrollable tabs in panel navigation could cause
                     swipe interferences with OS navigation.
-                  </DxcText>
-                  <DxcText as="p">
+                  </DxcParagraph>
+                  <DxcParagraph>
                     Do not use main navigation if they only affect an specific
                     panel.
-                  </DxcText>
+                  </DxcParagraph>
                 </>
               }
             >

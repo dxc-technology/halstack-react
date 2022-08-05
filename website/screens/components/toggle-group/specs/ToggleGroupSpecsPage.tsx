@@ -1,8 +1,8 @@
 import {
   DxcTable,
+  DxcParagraph,
+  DxcBulletedList,
   DxcFlex,
-  DxcText,
-  DxcList,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -27,7 +27,7 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Different states are defined in the life cycle of the component:
           <strong>Unselected enabled</strong>, <strong>unselected hover</strong>
           , <strong>unselected focus</strong>,{" "}
@@ -36,7 +36,7 @@ const sections = [
           <strong>selected enabled</strong>, <strong>selected hover</strong>,{" "}
           <strong>selected focus</strong>, <strong>selected active</strong> and{" "}
           <strong>selected disabled</strong>
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Toggle button states example">
           <Image src={toggleGroupStates} alt="Toggle button states example" />
         </Figure>
@@ -48,14 +48,14 @@ const sections = [
     content: (
       <>
         <Image src={toggleGroupAnatomy} alt="Toggle design specifications" />
-        <DxcList type="number">
-          <DxcText>Label</DxcText>
-          <DxcText>Helper text</DxcText>
-          <DxcText>Container</DxcText>
-          <DxcText>Button</DxcText>
-          <DxcText>Button icon</DxcText>
-          <DxcText>Button label</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Button</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Button icon</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Button label</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -664,11 +664,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               And also apply different values to each side of the component:
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code> and{" "}
               <Code>right</Code>
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },

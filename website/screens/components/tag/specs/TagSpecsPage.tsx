@@ -1,8 +1,8 @@
 import {
-  DxcList,
+  DxcBulletedList,
   DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
@@ -33,14 +33,14 @@ const sections = [
         <Figure caption="Component tag states">
           <Image src={statesImage} alt="Component tag states" />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           Also, this component is static, which means that there is only one
           difference between the default and hover state, changing the cursor
           from the default to the pointer cursor. The tag is merely a link to
           other resource or a place to display some information, so it is not
           intended that the flow of the component consider all the different
           states.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
@@ -49,11 +49,11 @@ const sections = [
     content: (
       <>
         <Image src={anatomyImage} alt="Component tag anatomy" />
-        <DxcList type="number">
-          <DxcText>Icon</DxcText>
-          <DxcText>Label</DxcText>
-          <DxcText>Container</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Icon</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -112,7 +112,7 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               *
               <em>
                 The <Code>tag</Code> component is using the <Code>box</Code>{" "}
@@ -121,7 +121,7 @@ const sections = [
                 white and not themable, so it will be the same for both
                 components.
               </em>
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -208,7 +208,7 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               *
               <em>
                 The <Code>shadow-default</Code> token is used for the{" "}
@@ -216,7 +216,7 @@ const sections = [
                 <Code>:disabled</Code> states. The <Code>shadow-high</Code> for{" "}
                 <Code>:hover</Code> and <Code>:active</Code>.
               </em>
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
