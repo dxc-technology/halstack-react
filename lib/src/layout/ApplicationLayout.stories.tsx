@@ -31,13 +31,14 @@ export const DefaultApplicationLayout = () => (
 export const ApplicationLayoutWithDefaultSidenav = () => (
   <>
     <DxcApplicationLayout>
-      <DxcApplicationLayout.SideNav>
-        <DxcSidenav.Title>Application layout with sidenav</DxcSidenav.Title>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
+      <DxcApplicationLayout.SideNav title={<DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>}>
+        <DxcSidenav.Section>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+        </DxcSidenav.Section>
       </DxcApplicationLayout.SideNav>
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -52,13 +53,14 @@ export const ApplicationLayoutWithDefaultSidenav = () => (
 export const ApplicationLayoutWithResponsiveSidenav = () => (
   <>
     <DxcApplicationLayout visibilityToggleLabel="Example">
-      <DxcApplicationLayout.SideNav>
-        <DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
+      <DxcApplicationLayout.SideNav title={<DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>}>
+        <DxcSidenav.Section>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+        </DxcSidenav.Section>
       </DxcApplicationLayout.SideNav>
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -83,13 +85,14 @@ export const ApplicationLayoutWithCustomHeader = () => (
         {" "}
         <p>Custom Header</p>{" "}
       </DxcApplicationLayout.Header>
-      <DxcApplicationLayout.SideNav>
-        <DxcSidenav.Title>Application layout with custom header</DxcSidenav.Title>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
+      <DxcApplicationLayout.SideNav title={<DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>}>
+        <DxcSidenav.Section>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+        </DxcSidenav.Section>
       </DxcApplicationLayout.SideNav>
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
@@ -104,13 +107,14 @@ export const ApplicationLayoutWithCustomHeader = () => (
 export const ApplicationLayoutWithCustomFooter = () => (
   <>
     <DxcApplicationLayout>
-      <DxcApplicationLayout.SideNav>
-        <DxcSidenav.Title>Application layout with custom footer</DxcSidenav.Title>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
-        <p>SideNav Content</p>
+      <DxcApplicationLayout.SideNav title={<DxcSidenav.Title>Application layout with push sidenav</DxcSidenav.Title>}>
+        <DxcSidenav.Section>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+          <p>SideNav Content</p>
+        </DxcSidenav.Section>
       </DxcApplicationLayout.SideNav>
       <DxcApplicationLayout.Main>
         <p>Main Content</p>
