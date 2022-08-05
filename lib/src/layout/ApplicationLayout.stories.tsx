@@ -131,7 +131,7 @@ export const ApplicationLayoutWithCustomHeader = () => (
 export const ApplicationLayoutWithCustomFooter = () => (
   <>
     <DxcApplicationLayout
-      footer={<p>Custom footer</p>}
+      footer={<p>Custom Footer</p>}
       sidenav={
         <DxcApplicationLayout.SideNav
           title={
