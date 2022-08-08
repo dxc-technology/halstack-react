@@ -12,7 +12,7 @@ import "../global-styles.css";
 import { responsiveSizes } from "../screens/common/variables.js";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { useRouter } from "next/router";
-import { LinksSections } from "@/common/pagesList";
+import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
 import Link from "next/link";
 
 type NextPageWithLayout = NextPage & {
@@ -35,19 +35,18 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     setFilter(value);
   };
 
-  const filteredLinks = useMemo(
-    () =>
-      LinksSections.filter((section) => {
-        const sectionFilteredLinks = section?.links.filter((link) =>
-          link.label.toLowerCase().includes(filter.toLowerCase())
-        );
-        if (sectionFilteredLinks.length) {
-          return { label: section.label, links: sectionFilteredLinks };
-        }
-      }),
-    [filter]
-  );
-
+  const filteredLinks = useMemo(() => {
+    const filtered: LinksSectionDetails[] = [];
+    LinksSections.map((section) => {
+      const sectionFilteredLinks = section?.links.filter((link) =>
+        link.label.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (sectionFilteredLinks.length) {
+        filtered.push({ label: section.label, links: sectionFilteredLinks });
+      }
+    });
+    return filtered;
+  }, [filter]);
   return (
     <>
       <Head>
