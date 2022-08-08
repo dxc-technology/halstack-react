@@ -3,7 +3,7 @@ export type LinkDetails = {
   path: string;
 };
 
-type LinksSectionDetails = {
+export type LinksSectionDetails = {
   label: string;
   links: LinkDetails[];
 };

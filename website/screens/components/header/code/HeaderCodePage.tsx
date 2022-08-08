@@ -8,10 +8,6 @@ import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Example from "@/common/example/Example";
-import basicUsage from "./examples/basicUsage";
-import customContent from "./examples/customContent";
-import dropdown from "./examples/dropdown";
 import Link from "next/link";
 import React from "react";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
@@ -114,23 +110,6 @@ const sections = [
             since some styles will be applied for a better fit in the header.
           </DxcParagraph>
         ),
-      },
-    ],
-  },
-  {
-    title: "Examples",
-    subSections: [
-      {
-        title: "Basic usage",
-        content: <Example example={basicUsage} defaultIsVisible />,
-      },
-      {
-        title: "Custom content",
-        content: <Example example={customContent} defaultIsVisible />,
-      },
-      {
-        title: "Dropdown",
-        content: <Example example={dropdown} defaultIsVisible />,
       },
     ],
   },
