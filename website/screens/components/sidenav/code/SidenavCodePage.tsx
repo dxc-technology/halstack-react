@@ -235,6 +235,29 @@ const sections = [
       },
     ],
   },
+  {
+    title: "Examples",
+    subSections: [
+      {
+        title: "Application layout with sidenav",
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/with-sidenav-xce9s2?fontsize=14&hidenavigation=1&theme=dark"
+            style={{
+              width: "100%",
+              minHeight: "500px",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+            title="Application layout with sidenav"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          ></iframe>
+        ),
+      },
+    ],
+  },
 ];
 
 const SidenavCodePage = () => {
