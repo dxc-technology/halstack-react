@@ -66,6 +66,13 @@ const ApplicationLayoutPropsTable = () => (
           .
         </td>
       </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          Use the DxcApplicationLayout.Main provided to render main content.
+        </td>
+      </tr>
     </tbody>
   </DxcTable>
 );
