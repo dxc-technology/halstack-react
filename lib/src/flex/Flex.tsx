@@ -6,7 +6,19 @@ const DxcFlex = ({ children, ...props }: FlexPropsType): JSX.Element => <Flex {.
 
 const Flex = styled.div<FlexPropsType>`
   display: flex;
-  ${({ direction, wrap, justifyContent, alignItems, alignContent, gap, order, grow, shrink, basis, alignSelf }) => `
+  ${({
+    direction = "row",
+    wrap = "nowrap",
+    justifyContent = "flex-start",
+    alignItems = "stretch",
+    alignContent = "normal",
+    alignSelf = "auto",
+    gap = "0",
+    order = 0,
+    grow = 0,
+    shrink = 1,
+    basis = "auto",
+  }) => `
     flex-direction: ${direction}; 
     flex-wrap: ${wrap}; 
     justify-content: ${justifyContent}; 
