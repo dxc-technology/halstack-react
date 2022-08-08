@@ -33,8 +33,7 @@ const sections = [
           each other to create a wide variety of standard layouts:
         </DxcParagraph>
         <DxcBulletedList>
-          <DxcBulletedList.Item>Stack</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Row</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Flex</DxcBulletedList.Item>
           <DxcBulletedList.Item>Bleed</DxcBulletedList.Item>
           <DxcBulletedList.Item>Inset</DxcBulletedList.Item>
         </DxcBulletedList>
