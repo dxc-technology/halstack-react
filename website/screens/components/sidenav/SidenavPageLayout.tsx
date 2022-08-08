@@ -1,7 +1,8 @@
-import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
+import Link from "next/link";
 
 const SidenavPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [{ label: "Code", path: "/components/sidenav" }];
@@ -17,6 +18,14 @@ const SidenavPageHeading = ({ children }: { children: React.ReactNode }) => {
             The main area will have all the content and the sidenav as a
             secondary element as an index, including links to different
             resources on the web page.
+          </DxcParagraph>
+          <DxcParagraph>
+            The sidenav is part of the application layout, so it can only be
+            used inside of it. Please check the{" "}
+            <Link href="/components/applicationLayout" passHref>
+              <DxcLink>DxcApplicationLayout</DxcLink>
+            </Link>{" "}
+            documentation.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
