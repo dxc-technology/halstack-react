@@ -3,9 +3,6 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
-import Example from "@/common/example/Example";
-import basicUsage from "./examples/basicUsage";
-import socialLinks from "./examples/socialLinks";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [

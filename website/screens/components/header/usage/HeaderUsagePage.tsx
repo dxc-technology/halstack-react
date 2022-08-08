@@ -9,8 +9,6 @@ import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import headerResponsive from "./images/header_responsive.png";
-import variants from "./examples/variants";
-import Example from "@/common/example/Example";
 
 const sections = [
   {

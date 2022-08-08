@@ -6,9 +6,6 @@ import {
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Example from "@/common/example/Example";
-import usage from "./examples/usage";
-import content from "./examples/content";
 
 const sections = [
   {
