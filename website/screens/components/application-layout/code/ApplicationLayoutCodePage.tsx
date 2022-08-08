@@ -7,11 +7,7 @@ import {
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Example from "@/common/example/Example";
 import Link from "next/link";
-import basicUsage from "./examples/basicUsage";
-import withSidenav from "./examples/withSideNav";
-import customHeaderFooter from "./examples/customHeaderFooter";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const ApplicationLayoutPropsTable = () => (
