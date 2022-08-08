@@ -30,8 +30,6 @@ import DxcNumberInput from "./number-input/NumberInput";
 import DxcTextarea from "./textarea/Textarea";
 import DxcSelect from "./select/Select";
 import DxcFileInput from "./file-input/FileInput";
-import DxcStack from "./stack/Stack";
-import DxcRow from "./row/Row";
 import DxcRadioGroup from "./radio-group/RadioGroup";
 import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
@@ -82,8 +80,6 @@ export {
   DxcTextarea,
   DxcSelect,
   DxcFileInput,
-  DxcStack,
-  DxcRow,
   DxcRadioGroup,
   DxcBleed,
   DxcInset,

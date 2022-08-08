@@ -1,4 +1,4 @@
-import { DxcStack, DxcBleed } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcBleed } from "@dxc-technology/halstack-react";
 import Placeholder from "../../../common/Placeholder";
 
 const code = `() => {
@@ -9,17 +9,17 @@ const code = `() => {
         padding: "2rem"
       }}
     >
-        <DxcStack gutter="medium">
-            <Placeholder></Placeholder>
-            <DxcBleed space="1.5rem">
-                <Placeholder></Placeholder>
-            </DxcBleed>
-            <Placeholder></Placeholder>
-        </DxcStack>
+      <DxcFlex direction="column" gap="1.5rem">
+        <Placeholder></Placeholder>
+        <DxcBleed space="1.5rem">
+          <Placeholder></Placeholder>
+        </DxcBleed>
+        <Placeholder></Placeholder>
+      </DxcFlex>
     </div>
   );
 }`;
 
-const scope = { DxcStack, DxcBleed, Placeholder };
+const scope = { DxcFlex, DxcBleed, Placeholder };
 
 export default { code, scope };
