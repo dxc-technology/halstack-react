@@ -21,7 +21,7 @@ const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
             appear at the bottom and it is the last thing that the user
             interacts with. But the presence of the footer must be designed in
             every application and be part of it (consumer or back-office) as it
-            is a key layout element to the overall experience. Is a choice of
+            is a key layout element to the overall experience. It is a choice of
             the designer to either leave the footer visible by default or push
             it down, depending on the use case.
           </DxcParagraph>
