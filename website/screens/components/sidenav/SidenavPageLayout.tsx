@@ -22,7 +22,7 @@ const SidenavPageHeading = ({ children }: { children: React.ReactNode }) => {
           <DxcParagraph>
             The sidenav is part of the application layout, so it can only be
             used inside of it. Please check the{" "}
-            <Link href="/components/applicationLayout" passHref>
+            <Link href="/components/application-layout" passHref>
               <DxcLink>DxcApplicationLayout</DxcLink>
             </Link>{" "}
             documentation.
