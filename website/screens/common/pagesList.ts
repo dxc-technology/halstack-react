@@ -41,6 +41,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Dialog", path: "/components/dialog" },
   { label: "Dropdown", path: "/components/dropdown" },
   { label: "File Input", path: "/components/file-input" },
+  { label: "Flex", path: "/components/flex" },
   { label: "Footer", path: "/components/footer" },
   { label: "Header", path: "/components/header" },
   { label: "Heading", path: "/components/heading" },
