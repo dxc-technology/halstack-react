@@ -12,6 +12,7 @@ const sections = [
     title: "Usage",
     content: (
       <>
+        {/* <Example example={usage} /> */}
         <DxcBulletedList>
           <DxcBulletedList.Item>
             The footer frame should be docked at the bottom of the page and
@@ -40,6 +41,7 @@ const sections = [
     title: "Content",
     content: (
       <>
+        {/* <Example example={content} /> */}
         <DxcParagraph>
           The footer component has a custom area where many kinds of content can
           be placed, some of them are contemplated in the following list:

@@ -32,6 +32,7 @@ const sections = [
     title: "Variants",
     content: (
       <>
+        {/* <Example example={variants} /> */}
         <DxcParagraph>
           Following the convention of the variants that can be found in a
           component, two main variants are defined for the header. Variants:{" "}

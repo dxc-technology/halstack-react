@@ -7,11 +7,7 @@ import {
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Example from "@/common/example/Example";
 import Link from "next/link";
-import basicUsage from "./examples/basicUsage";
-import withSidenav from "./examples/withSideNav";
-import customHeaderFooter from "./examples/customHeaderFooter";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const ApplicationLayoutPropsTable = () => (
@@ -32,36 +28,49 @@ const ApplicationLayoutPropsTable = () => (
           visibility of the sidenav.
         </td>
       </tr>
-    </tbody>
-  </DxcTable>
-);
-
-const SidenavApplicationLayoutPropsTable = () => (
-  <DxcTable>
-    <thead>
       <tr>
-        <th>Name</th>
-        <th>Default</th>
-        <HeaderDescriptionCell>Description</HeaderDescriptionCell>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>padding: string | object</td>
+        <td>header: node</td>
         <td></td>
         <td>
-          Size of the padding to be applied to the custom area ('xxsmall' |
-          'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'). You
-          can pass an object with 'top', 'bottom', 'left' and 'right' properties
-          in order to specify different padding sizes.
+          Header of the application layout shown at the top of the screen. It is
+          optional and if it is not specified, the default header will be shown.
+          Please check the Header documentation{" "}
+          <Link href="/components/header" passHref>
+            <DxcLink>here</DxcLink>
+          </Link>
+          .
         </td>
       </tr>
       <tr>
-        <td>children: React.ReactNode</td>
+        <td>footer: node</td>
         <td></td>
         <td>
-          The area inside the sidenav. This area can be used to render custom
-          content.
+          Footer of the application layout shown at the bottom of the screen. It
+          is optional and if it is not specified, the default header will be
+          shown. Please check the Footer documentation{" "}
+          <Link href="/components/footer" passHref>
+            <DxcLink>here</DxcLink>
+          </Link>
+          .
+        </td>
+      </tr>
+      <tr>
+        <td>sidenav: node</td>
+        <td></td>
+        <td>
+          Sidenav of the application layout shown at the left side of the
+          screen. Please check the Sidenav documentation{" "}
+          <Link href="/components/sidenav" passHref>
+            <DxcLink>here</DxcLink>
+          </Link>
+          .
+        </td>
+      </tr>
+      <tr>
+        <td>children: node</td>
+        <td></td>
+        <td>
+          Use the DxcApplicationLayout.Main provided to render main content.
         </td>
       </tr>
     </tbody>
@@ -75,53 +84,6 @@ const sections = [
       {
         title: "DxcApplicationLayout",
         content: <ApplicationLayoutPropsTable />,
-      },
-      {
-        title: "DxcApplicationLayout.Header",
-        content: (
-          <DxcParagraph>
-            Everything between this tags will be displayed as a header, at the
-            top of the screen. If you want to show a{" "}
-            <Link href="/components/header" passHref>
-              <DxcLink>DxcHeader</DxcLink>
-            </Link>
-            , as a shortcut, you can use it as a direct child of the
-            DxcApplicationLayout without the tags. This is optional and if it is
-            not specified, the DxcHeader will be shown by default.
-          </DxcParagraph>
-        ),
-      },
-      {
-        title: "DxcApplicationLayout.Footer",
-        content: (
-          <DxcParagraph>
-            Everything between the tags will be displayed as a footer, at the
-            bottom of the screen. If you want to show a{" "}
-            <Link href="/components/footer" passHref>
-              <DxcLink>DxcFooter</DxcLink>
-            </Link>
-            , as a shortcut, you can use it as a direct child of the
-            DxcApplicationLayout without the tags. This is optional and if it is
-            not specified, the DxcFooter will be shown by default.
-          </DxcParagraph>
-        ),
-      },
-      {
-        title: "DxcApplicationLayout.Sidenav",
-        content: (
-          <DxcParagraph>
-            Everything between the tags will be displayed as the content of the
-            sidenav, positioned on the left side of the screen, between the
-            header and the footer. This is optional and if it is not specified,
-            the DxcSidenav will not be shown.
-          </DxcParagraph>
-        ),
-        subSections: [
-          {
-            title: "Props",
-            content: <SidenavApplicationLayoutPropsTable />,
-          },
-        ],
       },
       {
         title: "DxcApplicationLayout.Main",
@@ -150,16 +112,56 @@ const sections = [
     subSections: [
       {
         title: "Basic usage",
-        content: <Example example={basicUsage} actionsVisible={false} />,
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/basic-usage-pi619r?fontsize=14&hidenavigation=1&theme=dark"
+            style={{
+              width: "100%",
+              minHeight: "500px",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+            title="Basic usage"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          ></iframe>
+        ),
       },
       {
         title: "With sidenav",
-        content: <Example example={withSidenav} actionsVisible={false} />,
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/with-sidenav-xce9s2?fontsize=14&hidenavigation=1&theme=dark"
+            style={{
+              width: "100%",
+              minHeight: "500px",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+            title="With sidenav"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          ></iframe>
+        ),
       },
       {
         title: "Custom header and footer",
         content: (
-          <Example example={customHeaderFooter} actionsVisible={false} />
+          <iframe
+            src="https://codesandbox.io/embed/custom-footer-and-header-lt3gkv?fontsize=14&hidenavigation=1&theme=dark"
+            style={{
+              width: "100%",
+              minHeight: "500px",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+            title="Custom footer and header"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          ></iframe>
         ),
       },
     ],

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import ParagraphPageLayout from "../../../screens/components/paragraph/ParagraphPageLayout";
-import ParagraphSpecsPage from "../../../screens/components/paragraph/specifications/ParagraphSpecsPage";
+import ParagraphSpecsPage from "../../../screens/components/paragraph/specs/ParagraphSpecsPage";
 
 const Specifications = () => {
   return (
