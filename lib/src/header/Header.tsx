@@ -168,6 +168,7 @@ const HeaderContainer = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
 `;
 
 const LogoAnchor = styled.a`
