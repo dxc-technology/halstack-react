@@ -1,10 +1,12 @@
-import { ReactElement, ReactNode, useMemo, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useMemo, useState } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import styled from "styled-components";
 import {
   DxcApplicationLayout,
+  DxcInset,
+  DxcSelect,
   DxcTextInput,
   HalstackProvider,
 } from "@dxc-technology/halstack-react";
@@ -14,6 +16,8 @@ import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { useRouter } from "next/router";
 import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
 import Link from "next/link";
+import axios from "axios";
+import portal from "@/common/portal.json";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -23,6 +27,18 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
+type VersionsResponse = {
+  versionNumber: number | string;
+  versionURL: string;
+  current: boolean;
+};
+
+type Version = {
+  label: string;
+  value: string;
+  url: string;
+};
+
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page);
 
@@ -30,6 +46,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   const [filter, setFilter] = useState("");
   const { asPath: currentPath } = useRouter();
+
+  const [versions, setVersions] = useState<Version[]>([]);
+  const [selectedVersion, setSelectedVersion] = useState("");
 
   const onFilterInputChange = ({ value }: { value: string }) => {
     setFilter(value);
@@ -47,6 +66,43 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     });
     return filtered;
   }, [filter]);
+
+  useEffect(() => {
+    const fetchVersions = async () => {
+      const versionsResp = await axios({
+        method: "get",
+        url: portal.url,
+      });
+      setVersions(
+        versionsResp.data.map(
+          ({ versionNumber, versionURL }: VersionsResponse) => ({
+            label: versionNumber.toString(),
+            value: versionNumber.toString(),
+            url: versionURL,
+          })
+        )
+      );
+      const versionUrl = window.location.pathname;
+      const currentSelectedVersion =
+        versionUrl.split("/")[2] ||
+        versionsResp.data
+          .find((v: VersionsResponse) => v.current)
+          .versionNumber.toString();
+      setSelectedVersion(currentSelectedVersion);
+    };
+
+    fetchVersions();
+  }, []);
+
+  const changeVersion = ({ value }: { value: string | undefined }) => {
+    if (typeof value === "string" && versions) {
+      const newVersion: Version | undefined = versions?.find(
+        (v: Version) => v.label === value
+      );
+      if (newVersion) window.location.href = newVersion.url;
+    }
+  };
+
   return (
     <>
       <Head>
@@ -55,6 +111,29 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <HalstackProvider advancedTheme={{}}>
         <DxcApplicationLayout
           visibilityToggleLabel="Menu"
+          header={
+            <DxcApplicationLayout.Header
+              underlined
+              content={
+                <DxcSelect
+                  options={versions}
+                  value={selectedVersion}
+                  onChange={changeVersion}
+                  size="small"
+                />
+              }
+              responsiveContent={() => (
+                <DxcInset top="1rem">
+                  <DxcSelect
+                    options={versions}
+                    value={selectedVersion}
+                    onChange={changeVersion}
+                    size="small"
+                  />
+                </DxcInset>
+              )}
+            />
+          }
           sidenav={
             <DxcApplicationLayout.SideNav title={<SidenavLogo />}>
               <DxcApplicationLayout.SideNav.Section>

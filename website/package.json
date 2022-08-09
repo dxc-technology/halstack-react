@@ -10,6 +10,7 @@
   "dependencies": {
     "@dxc-technology/halstack-react": "0.0.0-290c489",
     "@types/styled-components": "^5.1.18",
+    "axios": "^0.27.2",
     "cross-env": "^7.0.3",
     "next": "12.1.0",
     "raw-loader": "^4.0.2",
