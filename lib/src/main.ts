@@ -5,8 +5,6 @@ import DxcCard from "./card/Card";
 import DxcCheckbox from "./checkbox/Checkbox";
 import DxcDialog from "./dialog/Dialog";
 import DxcDropdown from "./dropdown/Dropdown";
-import DxcFooter from "./footer/Footer";
-import DxcHeader from "./header/Header";
 import DxcSlider from "./slider/Slider";
 import DxcSwitch from "./switch/Switch";
 import DxcTabs from "./tabs/Tabs";
@@ -16,7 +14,6 @@ import DxcTable from "./table/Table";
 import DxcBox from "./box/Box";
 import DxcTag from "./tag/Tag";
 import DxcPaginator from "./paginator/Paginator";
-import DxcSidenav from "./sidenav/Sidenav";
 import DxcWizard from "./wizard/Wizard";
 import DxcLink from "./link/Link";
 import DxcHeading from "./heading/Heading";
@@ -33,15 +30,15 @@ import DxcNumberInput from "./number-input/NumberInput";
 import DxcTextarea from "./textarea/Textarea";
 import DxcSelect from "./select/Select";
 import DxcFileInput from "./file-input/FileInput";
-import DxcStack from "./stack/Stack";
-import DxcRow from "./row/Row";
-import DxcText from "./text/Text";
-import DxcList from "./list/List";
 import DxcRadioGroup from "./radio-group/RadioGroup";
 import DxcBleed from "./bleed/Bleed";
 import DxcInset from "./inset/Inset";
 import DxcQuickNav from "./quick-nav/QuickNav";
 import DxcNavTabs from "./tabs-nav/NavTabs";
+import DxcFlex from "./flex/Flex";
+import DxcTypography from "./typography/Typography";
+import DxcParagraph from "./paragraph/Paragraph";
+import DxcBulletedList from "./bulleted-list/BulletedList";
 
 import HalstackContext, { HalstackProvider, HalstackLanguageContext } from "./HalstackContext";
 import { BackgroundColorProvider } from "./BackgroundColorContext";
@@ -49,13 +46,11 @@ import { BackgroundColorProvider } from "./BackgroundColorContext";
 export {
   DxcAlert,
   DxcButton,
-  DxcFooter,
   DxcCheckbox,
   DxcTextInput,
   DxcDropdown,
   DxcSwitch,
   DxcSlider,
-  DxcHeader,
   DxcTable,
   DxcTabs,
   DxcToggleGroup,
@@ -67,7 +62,6 @@ export {
   DxcBox,
   DxcTag,
   DxcPaginator,
-  DxcSidenav,
   DxcWizard,
   DxcLink,
   DxcHeading,
@@ -86,13 +80,13 @@ export {
   DxcTextarea,
   DxcSelect,
   DxcFileInput,
-  DxcStack,
-  DxcRow,
-  DxcText,
-  DxcList,
   DxcRadioGroup,
   DxcBleed,
   DxcInset,
   DxcQuickNav,
   DxcNavTabs,
+  DxcFlex,
+  DxcTypography,
+  DxcParagraph,
+  DxcBulletedList,
 };

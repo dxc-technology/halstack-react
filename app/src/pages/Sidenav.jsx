@@ -1,62 +1,26 @@
 import React from "react";
-import {
-  DxcSidenav,
-  DxcFooter,
-  HalstackProvider,
-} from "@dxc-technology/halstack-react";
-
-const colors = {
-  sidenav: {
-    baseColor: "#FABADA",
-  },
-};
+import styled from "styled-components";
 
 function App() {
   return (
-    <div>
-      <div className="test-case" id="children">
-        <DxcSidenav padding="medium">
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-        </DxcSidenav>
-        <DxcFooter />
-      </div>
-
-      <div className="test-case" id="custom-colors">
-        <h4>Custom Sidenav</h4>
-        <HalstackProvider theme={colors}>
-          <DxcSidenav padding="medium">
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-          </DxcSidenav>
-          <DxcFooter />
-        </HalstackProvider>
-      </div>
-
-      <div className="test-case" id="sidenav-menu">
-        <h4>Compound components Sidenav</h4>
-        <DxcSidenav padding="medium">
-          <DxcSidenav.Title>My sidenav</DxcSidenav.Title>
-          <p>This is a sidenav.</p>
-          <DxcSidenav.Subtitle>My subtitle</DxcSidenav.Subtitle>
-          <DxcSidenav.Link href="#">Home</DxcSidenav.Link>
-          <DxcSidenav.Link href="/test">Test</DxcSidenav.Link>
-          <DxcSidenav.Subtitle>My subtitle2</DxcSidenav.Subtitle>
-          <DxcSidenav.Link href="#">Home2</DxcSidenav.Link>
-          <DxcSidenav.Link onClick={() => console.log("click")}>
-            Test2
-          </DxcSidenav.Link>
-          <p>This is a sidenav2.</p>
-        </DxcSidenav>
-        <DxcFooter />
-      </div>
-    </div>
+    <CodesanboxContainer>
+      <iframe
+        src="https://codesandbox.io/embed/with-sidenav-clkbs?fontsize=14&hidenavigation=1&theme=dark"
+        width="100%"
+        height="100%"
+        border="0"
+        borderRadius="4px"
+        overflow="hidden"
+        title="With sidenav"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+      ></iframe>
+    </CodesanboxContainer>
   );
 }
+
+const CodesanboxContainer = styled.div`
+  height: 100vh;
+`;
 
 export default App;

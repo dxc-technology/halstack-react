@@ -1,4 +1,8 @@
-import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -15,35 +19,35 @@ const sections = [
       {
         title: "Do's",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Use a progress bar when it needs to give feedback in a
               long-running process with continuous values.
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Add additional information to clarify the user about the action it
               is waiting (&quot;Sending documents...&quot;).
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Use the determinate type whenever possible, the user can have an
               estimation on how long it is going take.
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "Don'ts",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               For an unknown amount of time/progress, consider using a loading
               spinner instead.
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Do not use this type of component in actions that will take less
               than 1 minute of processing.
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -52,10 +56,10 @@ const sections = [
     title: "Variants",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The component progress-bar has two variants: <strong>default</strong>{" "}
           and <strong>overlay</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Progress bar variants">
           <Image src={variants} alt="Progress bar variants" />
         </Figure>
@@ -67,25 +71,27 @@ const sections = [
     content: (
       <>
         <Example example={determinate_indeterminate} />
-        <DxcList>
-          <DxcText>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             Determinate indicators display how long a process will take. They
             should be used in longer processes.
-          </DxcText>
-          <DxcStack gutter="xsmall">
-            <DxcText>
+          </DxcBulletedList.Item>
+          <DxcFlex direction="column" gap="0.5rem">
+            <DxcBulletedList.Item>
               Indeterminate indicators express an unspecified amount of wait
               time. They should be used when:
-            </DxcText>
-            <DxcList type="circle">
-              <DxcText>The processing time is unknown.</DxcText>
-              <DxcText>
-                The wait time is expected to be short enough that it’s not
+            </DxcBulletedList.Item>
+            <DxcBulletedList type="circle">
+              <DxcBulletedList.Item>
+                The processing time is unknown.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                The wait time is expected to be short enough that it's not
                 necessary to display.
-              </DxcText>
-            </DxcList>
-          </DxcStack>
-        </DxcList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcFlex>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -93,7 +99,7 @@ const sections = [
 
 const ProgressBarUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -101,7 +107,7 @@ const ProgressBarUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/progress-bar/usage/ProgressBarUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

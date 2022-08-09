@@ -132,14 +132,28 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Current step in the third step, labels and description" theme="light" level={4} />
       <DxcWizard defaultCurrentStep={2} steps={stepWithLabelDescription}></DxcWizard>
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With long description in horizontal" theme="light" level={4} />
       <DxcWizard steps={stepWithLongDescription}></DxcWizard>
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With long description in vertical" theme="light" level={4} />
       <DxcWizard mode="vertical" steps={stepWithLongDescription}></DxcWizard>
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="Disabled steps" theme="light" level={4} />
       <DxcWizard steps={stepDisabled}></DxcWizard>
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused steps" theme="light" level={4} />
+      <DxcWizard steps={stepIcons}></DxcWizard>
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With icons" theme="light" level={4} />
       <DxcWizard steps={stepIcons}></DxcWizard>
+    </ExampleContainer>
+    <ExampleContainer>
       <Title title="With large icons" theme="light" level={4} />
       <DxcWizard steps={stepLargeIcons}></DxcWizard>
     </ExampleContainer>
@@ -204,7 +218,12 @@ export const Chromatic = () => (
   </>
 );
 
-const WizardSelected = () => <DxcWizard steps={stepWithLabel}></DxcWizard>;
+const WizardSelected = () => (
+  <ExampleContainer>
+    <Title title="Clicked step" theme="light" level={4} />
+    <DxcWizard steps={stepWithLabel} mode="vertical"></DxcWizard>
+  </ExampleContainer>
+);
 
 export const WizardStepActived = WizardSelected.bind({});
 WizardStepActived.play = async ({ canvasElement }) => {

@@ -1,8 +1,7 @@
 import {
-  DxcList,
-  DxcStack,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
-  DxcText,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import Figure from "@/common/Figure";
@@ -27,13 +26,13 @@ const sections = [
     content: (
       <>
         <Image src={paginatorAnatomy} alt="Paginator anatomy" />
-        <DxcList type="number">
-          <DxcText>Container</DxcText>
-          <DxcText>Items per page</DxcText>
-          <DxcText>Items indicator</DxcText>
-          <DxcText>Page actions</DxcText>
-          <DxcText>Page selector</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Items per page</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Items indicator</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Page actions</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Page selector</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -278,7 +277,7 @@ const sections = [
 
 const PaginatorSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -286,7 +285,7 @@ const PaginatorSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/paginator/specs/PaginatorSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

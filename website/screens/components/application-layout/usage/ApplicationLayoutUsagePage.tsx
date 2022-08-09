@@ -1,4 +1,8 @@
-import { DxcText, DxcStack, DxcList } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcFlex,
+  DxcBulletedList,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Image from "@/common/Image";
 import Figure from "@/common/Figure";
@@ -12,20 +16,22 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <DxcText>
+        <DxcParagraph>
           When using the application layout component consider the following:
-        </DxcText>
-        <DxcList>
-          <DxcText>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             Use the sidenav when the application navigation has an horizontal
             hierarchy
-          </DxcText>
-          <DxcText>Header and footer elements should be always present</DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Header and footer elements should be always present
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Only use the mode overlay if the content cannot dynamically adapt to
             the available space
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -39,13 +45,13 @@ const sections = [
             alt="Overlay and push behavior of the sidenav component"
           />
         </Figure>
-        <DxcText>
+        <DxcParagraph>
           Overlay and push interactions by the sidenav component can alter the
           way the layout is displayed. For overlay, the sidenav simply slides
           over the content with no changes to position. The push interaction
           moves the main container to the side depending on the width of the
           sidenav.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
     subSections: [
@@ -59,10 +65,10 @@ const sections = [
                 alt="Default sidenav behavior on mobile devices"
               />
             </Figure>
-            <DxcText as="p">
+            <DxcParagraph>
               The default behavior for mobile device is overlay since the
               available space doesn&#39;t allow to push the main content.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -72,7 +78,7 @@ const sections = [
 
 const ApplicationLayoutUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -80,7 +86,7 @@ const ApplicationLayoutUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/application-layout/usage/ApplicationLayoutUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

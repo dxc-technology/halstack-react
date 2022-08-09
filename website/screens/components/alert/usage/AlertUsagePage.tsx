@@ -1,7 +1,7 @@
 import {
-  DxcText,
-  DxcStack,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -16,33 +16,35 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Incorporate messages into the application when necessary to keep users
           informed of important changes.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Messages should use positive rhetoric. Avoid using negatives. (e.g.
           Use “City is required.” instead of “You didn&#39;t enter a city.”)
-        </DxcText>
-        <DxcText>Always use active instead of passive voice.</DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
+          Always use active instead of passive voice.
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Be concise. Avoid words that plead, belittle or intimidate (i.e.
           please, wrong, or else).
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Non-entry of a non-required entry field should never generate an edit
           message or warning message, nor deny user forward movement.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           If possible, dialog messages must always display in full without any
           scroll bar.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Dialog messages will retract only when the user closes the dialog or
           completes through interaction.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
@@ -138,10 +140,10 @@ const sections = [
     content: (
       <>
         <Example example={content} />
-        <DxcText as="p">
+        <DxcParagraph>
           Depending on the content that need to be displayed, more detailed
           descriptions can be added to the alert component as children.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
@@ -149,7 +151,7 @@ const sections = [
 
 const AlertUsagePage = () => {
   return (
-    <DxcStack gutter="xxxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -157,7 +159,7 @@ const AlertUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/alert/usage/AlertUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
