@@ -153,33 +153,21 @@ const DxcHeader = ({
 
 DxcHeader.Dropdown = Dropdown;
 
-const HeaderContainer = styled(AppBar)`
+const HeaderContainer = styled.header`
   margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-
-  &.MuiAppBar-colorPrimary {
-    background-color: ${(props) => props.theme.backgroundColor};
-    border-bottom: ${(props) =>
-      props.$underlined &&
-      `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
-
-    &.MuiPaper-elevation4 {
-      box-shadow: none;
-    }
-    .ChildComponents {
-      display: flex;
-      align-items: center;
-    }
-  }
-  & {
-    min-height: ${(props) => props.theme.minHeight};
-  }
-  &.MuiAppBar-root {
-    flex-direction: row;
-    align-items: center;
-    padding: ${(props) =>
-      `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
-    justify-content: space-between;
-  }
+  padding: ${(props) =>
+    `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
+  background-color: ${(props) => props.theme.backgroundColor};
+  border-bottom: ${(props) =>
+    props.$underlined &&
+    `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
+  min-height: ${(props) => props.theme.minHeight};
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const LogoAnchor = styled.a`
