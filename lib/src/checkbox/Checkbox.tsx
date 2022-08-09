@@ -294,11 +294,9 @@ const Checkbox = styled.span<CheckboxProps>`
 
 const DisabledCheckbox = styled(Checkbox)`
   opacity: 0.34;
-  border: solid 2px
-    ${(props) => (props.isLabelHovered ? getDisabledColor(props, "hoverBorder") : getDisabledColor(props, "border"))};
+  border: solid 2px ${(props) => getDisabledColor(props, "border")};
   background-color: ${(props) => (props.checked ? getDisabledColor(props, "check") : "transparent")};
-  color: ${(props) =>
-    props.isLabelHovered ? getDisabledColor(props, "hoverBackground") : getDisabledColor(props, "background")};
+  color: ${(props) => getDisabledColor(props, "background")};
   &:hover {
     border: solid 2px ${(props) => getDisabledColor(props, "border")};
     background-color: ${(props) => (props.checked ? getDisabledColor(props, "check") : "transparent")};
