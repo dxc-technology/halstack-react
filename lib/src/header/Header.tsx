@@ -1,14 +1,12 @@
-// @ts-nocheck
 import React, { useState, useEffect, useRef, useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import AppBar from "@material-ui/core/AppBar";
 import DxcDropdown from "../dropdown/Dropdown";
 import { dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext";
-import HeaderPropsType from "./types";
+import HeaderPropsType, { Space, Padding } from "./types";
 
 const closeIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -109,7 +107,7 @@ const DxcHeader = ({
 
   return (
     <ThemeProvider theme={colorsTheme.header}>
-      <HeaderContainer $underlined={underlined} position="static" margin={margin} ref={ref}>
+      <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
         <LogoAnchor
           tabIndex={typeof onClick === "function" ? tabIndex : -1}
           interactuable={typeof onClick === "function"}
@@ -120,7 +118,7 @@ const DxcHeader = ({
         {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer padding={padding}>
-              <HamburguerItem tabIndex={tabIndex} underlined={underlined} onClick={handleMenu}>
+              <HamburguerItem tabIndex={tabIndex} onClick={handleMenu}>
                 {hamburgerIcon}
                 <HamburguerTitle>Menu</HamburguerTitle>
               </HamburguerItem>
@@ -153,13 +151,18 @@ const DxcHeader = ({
 
 DxcHeader.Dropdown = Dropdown;
 
-const HeaderContainer = styled.header`
+type HeaderContainerProps = {
+  margin: Padding | Space;
+  underlined: boolean;
+};
+
+const HeaderContainer = styled.header<HeaderContainerProps>`
   margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   padding: ${(props) =>
     `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
   background-color: ${(props) => props.theme.backgroundColor};
   border-bottom: ${(props) =>
-    props.$underlined &&
+    props.underlined &&
     `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
   min-height: ${(props) => props.theme.minHeight};
   box-shadow: none;
@@ -171,7 +174,7 @@ const HeaderContainer = styled.header`
   box-sizing: border-box;
 `;
 
-const LogoAnchor = styled.a`
+const LogoAnchor = styled.a<{ interactuable: boolean }>`
   ${(props) => {
     if (!props.interactuable) {
       return "cursor: default; outline:none;";
@@ -191,7 +194,7 @@ const LogoContainer = styled.div`
   vertical-align: middle;
 `;
 
-const ChildContainer = styled.div`
+const ChildContainer = styled.div<{ padding: Space | Padding }>`
   width: calc(100% - 186px);
   display: flex;
   align-items: center;
@@ -208,7 +211,13 @@ const ChildContainer = styled.div`
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
-const ContentContainer = styled.div`
+
+type ContentContainerProps = {
+  padding: Space | Padding;
+  backgroundType: "dark" | "light";
+};
+
+const ContentContainer = styled.div<ContentContainerProps>`
   width: calc(100% - 186px);
   display: flex;
   align-items: center;
@@ -258,7 +267,7 @@ const MainContainer = styled.div`
   flex-grow: 1;
 `;
 
-const ResponsiveMenu = styled.div`
+const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -310,7 +319,7 @@ const CloseContainer = styled.div`
   padding: ${spaces.xxsmall};
 `;
 
-const MenuContent = styled.div`
+const MenuContent = styled.div<{ backgroundType: "dark" | "light" }>`
   height: 100%;
   margin-top: 40px;
   display: flex;
@@ -319,7 +328,7 @@ const MenuContent = styled.div`
   color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
 `;
 
-const Overlay = styled.div`
+const Overlay = styled.div<{ hasVisibility: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
