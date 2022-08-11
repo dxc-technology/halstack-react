@@ -29,50 +29,106 @@ const DxcDropdown = ({
   iconPosition = "before",
   label = "",
   caretHidden = false,
-  onSelectOption,
+  disabled = false,
   expandOnHover = false,
+  onSelectOption,
   margin,
   size = "fitContent",
   tabIndex = 0,
-  disabled = false,
 }: DropdownPropsType): JSX.Element => {
-  const [menuId] = useState(`dropdown-${uuidv4()}`);
+  const [triggerId] = useState(`trigger-${uuidv4()}`);
+  const menuId = `menu-${triggerId}`;
   const [isOpen, changeIsOpen] = useState(false);
   const [menuStyles, setMenuStyles] = useState(null);
 
-  const colorsTheme = useTheme();
-  const ref = useRef(null);
+  const [visualFocusIndex, setVisualFocusIndex] = useState(0);
 
+  const colorsTheme = useTheme();
+  const triggerRef = useRef(null);
+  const menuRef = useRef(null);
+
+  const handleOnOpenMenu = () => {
+    changeIsOpen(true);
+  };
+  const handleOnCloseMenu = () => {
+    changeIsOpen(false);
+    setVisualFocusIndex(0);
+  };
+  const handleOnBlur = (event) => {
+    !event.currentTarget.contains(event.relatedTarget) && handleOnCloseMenu();
+  };
+  const handleOnKeyDown = (event) => {
+    switch (event.key) {
+      case "Up":
+      case "ArrowUp":
+        event.preventDefault();
+        setVisualFocusIndex(options.length - 1);
+        handleOnOpenMenu();
+        break;
+      case " ":
+      case "Down":
+      case "ArrowDown":
+      case "Enter":
+        event.preventDefault();
+        handleOnOpenMenu();
+        break;
+      case "Esc":
+      case "Escape":
+        handleOnCloseMenu();
+        break;
+    }
+  };
+
+  const setPreviousIndexFocus = () => {
+    setVisualFocusIndex((currentFocusIndex) => {
+      let index = currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
+      return index;
+    });
+  };
+  const setNextIndexFocus = () => {
+    setVisualFocusIndex((currentFocusIndex) => {
+      let index = currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
+      return index;
+    });
+  };
+  const handleMenuOnKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    switch (event.key) {
+      case "Up":
+      case "ArrowUp":
+        event.preventDefault();
+        setPreviousIndexFocus();
+        break;
+      case "Down":
+      case "ArrowDown":
+        event.preventDefault();
+        setNextIndexFocus();
+        break;
+      case " ":
+      case "Enter":
+        event.preventDefault();
+        handleOptionOnClick(options[visualFocusIndex]);
+        break;
+      case "Esc":
+      case "Escape":
+        event.preventDefault();
+        handleOnCloseMenu();
+        triggerRef.current?.focus();
+        break;
+    }
+  };
   const handleMenuResize = () => {
-    const rect = ref?.current?.getBoundingClientRect();
+    const rect = triggerRef?.current?.getBoundingClientRect();
     setMenuStyles({ width: rect?.width });
   };
+
   const handleTriggerOnClick = () => {
     changeIsOpen((isOpen) => !isOpen);
   };
-  const handleOnOpen = () => {
-    changeIsOpen(true);
-  };
-  const handleOnClose = () => {
-    changeIsOpen(false);
-  };
+
   const handleOptionOnClick = (option) => {
     onSelectOption(option.value);
-    changeIsOpen(false);
-  };
-  const handleOnKeyDown = (event) => {
-    switch (event.keyCode) {
-      case 40: // arrow down
-      case 13: // enter
-      case 32: // space
-        event.preventDefault();
-        handleOnOpen();
-        break;
-      case 27: // esc
-        event.preventDefault();
-        handleOnClose();
-        break;
-    }
+    handleOnCloseMenu();
+    triggerRef.current?.focus();
   };
 
   useEffect(() => {
@@ -86,28 +142,31 @@ const DxcDropdown = ({
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
       <DropdownContainer
+        onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
+        onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
+        onBlur={!disabled && handleOnBlur}
         margin={margin}
         size={size}
-        onMouseOver={!disabled && expandOnHover ? handleOnOpen : undefined}
-        onMouseLeave={!disabled && expandOnHover ? handleOnClose : undefined}
       >
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild>
             <DropdownTrigger
               opened={isOpen}
               onClick={handleTriggerOnClick}
-              onBlur={!disabled && handleOnClose}
               onKeyDown={handleOnKeyDown}
+              onBlur={(event) => {
+                event.stopPropagation();
+              }}
               disabled={disabled}
               label={label}
               margin={margin}
               size={size}
-              ref={ref}
-              tabIndex={tabIndex}
+              id={triggerId}
               aria-disabled={disabled}
               aria-haspopup="true"
-              aria-controls={menuId}
               aria-expanded={isOpen}
+              tabIndex={tabIndex}
+              ref={triggerRef}
             >
               <DropdownTriggerContent>
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
@@ -121,24 +180,17 @@ const DxcDropdown = ({
               {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
             </DropdownTrigger>
           </Popover.Trigger>
-          <Popover.Content
-            sideOffset={1}
-            onOpenAutoFocus={(event) => {
-              // Avoid dropdown to lose focus when the list is opened
-              event.preventDefault();
-            }}
-            onCloseAutoFocus={(event) => {
-              // Avoid dropdown to lose focus when the list is closed
-              event.preventDefault();
-            }}
-          >
+          <Popover.Content sideOffset={1} asChild>
             <DropdownMenu
               id={menuId}
+              dropdownId={triggerId}
               options={options}
               iconsPosition={optionsIconPosition}
-              handleOptionOnClick={handleOptionOnClick}
+              visualFocusIndex={visualFocusIndex}
+              optionOnClick={handleOptionOnClick}
+              onKeyDown={handleMenuOnKeyDown}
               styles={menuStyles}
-              tabIndex={tabIndex}
+              ref={menuRef}
             />
           </Popover.Content>
         </Popover.Root>
@@ -209,11 +261,8 @@ const DropdownTrigger = styled.button<DropdownTriggerProps>`
 
   ${(props) =>
     !props.disabled &&
-    `  
+    `
       &:focus {
-        outline: none;
-      }
-      &:focus-visible {
         outline: ${props.theme.focusColor} solid 2px;
         outline-offset: -2px;
       }

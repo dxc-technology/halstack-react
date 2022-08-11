@@ -1,26 +1,27 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import { DropdownMenuItemProps } from "./types";
 
-const DropdownMenuItem = ({ focused, iconPosition, onClick, onKeyDown, option, tabIndex }: DropdownMenuItemProps) => {
+const DropdownMenuItem = ({
+  id,
+  visuallyFocused,
+  iconPosition,
+  onClick,
+  option,
+}: DropdownMenuItemProps): JSX.Element => {
   const colorsTheme = useTheme();
-  const ref = useRef<HTMLLIElement>(null);
-
-  useEffect(() => {
-    focused && ref?.current?.focus();
-  }, [focused]);
 
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
       <DropdownMenuItemContainer
-        role="menuitem"
+        visuallyFocused={visuallyFocused}
         onClick={() => {
           onClick(option);
         }}
-        onKeyDown={onKeyDown}
-        tabIndex={focused ? tabIndex : -1}
-        ref={ref}
+        id={id}
+        role="menuitem"
+        tabIndex={-1}
       >
         {iconPosition === "after" && <DropdownMenuItemLabel>{option.label}</DropdownMenuItemLabel>}
         {option.icon && (
@@ -38,7 +39,7 @@ const DropdownMenuItem = ({ focused, iconPosition, onClick, onKeyDown, option, t
   );
 };
 
-const DropdownMenuItemContainer = styled.li`
+const DropdownMenuItemContainer = styled.li<{ visuallyFocused: boolean }>`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -49,18 +50,13 @@ const DropdownMenuItemContainer = styled.li`
   padding-right: ${(props) => props.theme.optionPaddingRight};
   background-color: ${(props) => props.theme.optionBackgroundColor};
   cursor: pointer;
-
-  :focus {
-    outline: ${(props) => props.theme.focusColor} solid 2px;
-    outline-offset: -2px;
-  }
+  
+  ${(props) => props.visuallyFocused && `outline: ${props.theme.focusColor} solid 2px; outline-offset: -2px;`}
   :hover {
     background-color: ${(props) => props.theme.hoverOptionBackgroundColor};
   }
   :active {
     background-color: ${(props) => props.theme.activeOptionBackgroundColor};
-    outline: ${(props) => props.theme.focusColor} solid 2px;
-    outline-offset: -2px;
   }
 `;
 
