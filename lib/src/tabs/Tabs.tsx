@@ -91,9 +91,11 @@ const DxcTabs = ({
     if (countClick <= scrollWidth) {
       moveX = 0;
       setLeftIndicatorEnabled(false);
+      setRightIndicatorEnabled(true);
     } else {
       moveX = countClick - scrollWidth;
       setRightIndicatorEnabled(true);
+      setLeftIndicatorEnabled(true);
     }
     setTranslateScroll(-moveX);
     setCountClick(moveX);
@@ -105,9 +107,11 @@ const DxcTabs = ({
     if (countClick + scrollWidth + viewWidth >= totalTabsWidth) {
       moveX = totalTabsWidth - viewWidth;
       setRightIndicatorEnabled(false);
+      setLeftIndicatorEnabled(true);
     } else {
       moveX = countClick + scrollWidth;
       setLeftIndicatorEnabled(true);
+      setRightIndicatorEnabled(true);
     }
     setTranslateScroll(-moveX);
     setCountClick(moveX);
