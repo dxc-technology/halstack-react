@@ -140,7 +140,6 @@ const DxcTabs = ({
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
       <TabsContainer margin={margin}>
-        <Underline />
         <Tabs
           value={activeTabIndex ?? innerActiveTabIndex}
           hasLabelAndIcon={hasLabelAndIcon}
@@ -193,6 +192,7 @@ const DxcTabs = ({
             {iconIndicator.right}
           </ScrollRightIndicator>
         </Tabs>
+        <Underline />
       </TabsContainer>
     </ThemeProvider>
   );
@@ -231,7 +231,7 @@ const Underline = styled.div`
   position: absolute;
   height: ${(props) => props.theme.dividerThickness};
   background-color: ${(props) => props.theme.dividerColor};
-  z-index: 1;
+  z-index: 0;
 `;
 
 const TabsContainer = styled.div`
@@ -279,6 +279,10 @@ const Tab = styled.button`
   vertical-align: middle;
   justify-content: center;
   text-decoration: none;
+
+  border-bottom-width: ${(props) => props.theme.dividerThickness};
+  border-bottom-style: solid;
+  border-bottom-color: ${(props) => props.theme.dividerColor};
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
@@ -381,6 +385,7 @@ const ActiveIndicator = styled.span`
 
 const TabsContent = styled.div`
   display: flex;
+  z-index: 1;
   flex: 1 1 auto;
   display: inline-block;
   position: relative;
