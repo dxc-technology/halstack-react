@@ -275,6 +275,7 @@ const Tab = styled.button`
   vertical-align: middle;
   justify-content: center;
   text-decoration: none;
+  opacity: 0.7;
 
   border-bottom-width: ${(props) => props.theme.dividerThickness};
   border-bottom-style: solid;
@@ -317,6 +318,7 @@ const Tab = styled.button`
     svg {
       color: ${(props) => props.theme.selectedIconColor};
     }
+    opacity: 1;
   }
 
   &[aria-disabled="true"] {
