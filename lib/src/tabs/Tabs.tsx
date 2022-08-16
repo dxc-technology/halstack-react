@@ -136,24 +136,22 @@ const DxcTabs = ({
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
       <TabsContainer margin={margin}>
-        <Tabs
-          value={activeTabIndex ?? innerActiveTabIndex}
-          hasLabelAndIcon={hasLabelAndIcon}
-          iconPosition={iconPosition}
-        >
-          <ScrollLeftIndicator
+        <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+          <ScrollLeftComponent
             onClick={scrollLeft}
             leftIndicatorEnabled={leftIndicatorEnabled}
             enabled={viewWidth < totalTabsWidth}
+            aria-disabled="false"
           >
             {iconIndicator.left}
-          </ScrollLeftIndicator>
+          </ScrollLeftComponent>
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList}>
-              <TabList>
+              <TabList role="tablist">
                 {tabs.map((tab, i) => (
                   <Tab
                     role="tab"
+                    type="button"
                     tabIndex={(activeTabIndex === i || innerActiveTabIndex === i) && !tab.isDisabled ? tabIndex : -1}
                     key={`tab${i}${tab.label}`}
                     disabled={tab.isDisabled}
@@ -179,13 +177,14 @@ const DxcTabs = ({
               <ActiveIndicator tabWidth={activeIndicatorWidth} tabLeft={activeIndicatorLeft}></ActiveIndicator>
             </TabsContentScroll>
           </TabsContent>
-          <ScrollRightIndicator
+          <ScrollRightComponent
             onClick={scrollRight}
             rightIndicatorEnabled={rightIndicatorEnabled}
             enabled={viewWidth < totalTabsWidth}
+            aria-disabled="false"
           >
             {iconIndicator.right}
-          </ScrollRightIndicator>
+          </ScrollRightComponent>
         </Tabs>
         <Underline />
       </TabsContainer>
@@ -216,13 +215,12 @@ const TabsContainer = styled.div<{ margin: Margin | Space }>`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-type TabsProps = {
+type IconProps = {
   hasLabelAndIcon: boolean;
   iconPosition: "top" | "left";
-  value: number;
 };
 
-const Tabs = styled.div<TabsProps>`
+const Tabs = styled.div<IconProps>`
   background-color: #ffffff;
   min-height: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
@@ -231,11 +229,6 @@ const Tabs = styled.div<TabsProps>`
   display: flex;
   overflow: hidden;
 `;
-
-type IconProps = {
-  hasLabelAndIcon: boolean;
-  iconPosition: "top" | "left";
-};
 
 const Tab = styled.button<IconProps>`
   text-transform: none;
@@ -323,7 +316,7 @@ type ScrollIndicatorProps = {
 };
 
 const ScrollIndicator = styled.div<ScrollIndicatorProps>`
-  ${(props) => props.enabled && `display: flex;`}
+  display: ${(props) => (props.enabled ? "flex" : "none")};
   background-color: #ffffff;
   font-size: 1.25rem;
   color: #666666;
@@ -332,7 +325,6 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
   height: 100%;
   padding: 0;
   justify-content: center;
-  display: none;
   cursor: pointer;
   &:hover {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
@@ -350,12 +342,12 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
   }
 `;
 
-const ScrollLeftIndicator = styled(ScrollIndicator)`
+const ScrollLeftComponent = styled(ScrollIndicator)`
   ${(props) =>
     props.enabled && (props.leftIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
 `;
 
-const ScrollRightIndicator = styled(ScrollIndicator)`
+const ScrollRightComponent = styled(ScrollIndicator)`
   ${(props) =>
     props.enabled &&
     (props.rightIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
