@@ -1,9 +1,6 @@
 // @ts-nocheck
 import React, { useCallback, useEffect, useRef, useState } from "react";
-// import Tabs from "@material-ui/core/Tabs";
-// import Tab from "@material-ui/core/Tab";
 import styled, { ThemeProvider } from "styled-components";
-
 import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
 import useTheme from "../useTheme";
@@ -76,7 +73,7 @@ const DxcTabs = ({
     setTotalTabsWidth(sumWidth);
     setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetWidth);
     setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft);
-  });
+  }, [refTabs]);
 
   const handleSelected = (newValue) => {
     activeTabIndex ?? setInnerActiveTabIndex(newValue);
@@ -145,7 +142,6 @@ const DxcTabs = ({
           hasLabelAndIcon={hasLabelAndIcon}
           iconPosition={iconPosition}
         >
-          {console.log("viewWidth < totalTabsWidth: ", viewWidth < totalTabsWidth)}
           <ScrollLeftIndicator
             onClick={scrollLeft}
             leftIndicatorEnabled={leftIndicatorEnabled}
@@ -337,6 +333,7 @@ const Tab = styled.button`
 `;
 
 const ScrollIndicator = styled.div`
+  ${(props) => props.enabled && `display: flex;`}
   background-color: #ffffff;
   font-size: 1.25rem;
   color: #666666;
@@ -361,15 +358,17 @@ const ScrollIndicator = styled.div`
   @media (max-width: 599.95px) {
     display: flex;
   }
-  ${(props) => props.enabled && `display: flex;`}
 `;
 
 const ScrollLeftIndicator = styled(ScrollIndicator)`
-  ${(props) => props.enabled && (props.leftIndicatorEnabled ? `visibility: visible;` : `visibility: hidden;`)}
+  ${(props) =>
+    props.enabled && (props.leftIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
 `;
 
 const ScrollRightIndicator = styled(ScrollIndicator)`
-  ${(props) => props.enabled && (props.rightIndicatorEnabled ? `visibility: visible;` : `visibility: hidden;`)}
+  ${(props) =>
+    props.enabled &&
+    (props.rightIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
 `;
 
 const ActiveIndicator = styled.span`
