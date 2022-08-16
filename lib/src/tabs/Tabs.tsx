@@ -276,8 +276,6 @@ const Tab = styled.button`
   justify-content: center;
   text-decoration: none;
   opacity: 0.7;
-
-  border-bottom-width: ${(props) => props.theme.dividerThickness};
   border-bottom-style: solid;
   border-bottom-color: ${(props) => props.theme.dividerColor};
 
@@ -331,6 +329,7 @@ const Tab = styled.button`
       color: ${(props) => props.theme.disabledIconColor};
     }
     outline: none !important;
+    opacity: 0.5;
   }
 `;
 
