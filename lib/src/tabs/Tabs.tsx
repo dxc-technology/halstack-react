@@ -1,10 +1,9 @@
-// @ts-nocheck
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
 import useTheme from "../useTheme";
-import TabsPropsType from "./types";
+import TabsPropsType, { Margin, Space } from "./types";
 
 const iconIndicator = {
   left: (
@@ -193,32 +192,6 @@ const DxcTabs = ({
     </ThemeProvider>
   );
 };
-const ParentLabelSpan = styled.div`
-  position: relative;
-`;
-
-const TabLabelContainer = styled.div`
-  display: flex;
-  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
-  align-items: center;
-`;
-
-const LabelTextContainer = styled.div``;
-
-const BadgeContainer = styled.div`
-  position: absolute;
-  right: 0;
-  top: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "0") || "5px"};
-  width: 23px;
-  height: 17px;
-`;
-
-const MainLabelContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-left: ${(props) => (props.hasBadge && "35px") || "unset"};
-  margin-right: ${(props) => (props.hasBadge && "35px") || "unset"};
-`;
 
 const Underline = styled.div`
   left: 0;
@@ -230,7 +203,7 @@ const Underline = styled.div`
   z-index: 0;
 `;
 
-const TabsContainer = styled.div`
+const TabsContainer = styled.div<{ margin: Margin | Space }>`
   position: relative;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -243,7 +216,13 @@ const TabsContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 `;
 
-const Tabs = styled.div`
+type TabsProps = {
+  hasLabelAndIcon: boolean;
+  iconPosition: "top" | "left";
+  value: number;
+};
+
+const Tabs = styled.div<TabsProps>`
   background-color: #ffffff;
   min-height: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
@@ -253,7 +232,12 @@ const Tabs = styled.div`
   overflow: hidden;
 `;
 
-const Tab = styled.button`
+type IconProps = {
+  hasLabelAndIcon: boolean;
+  iconPosition: "top" | "left";
+};
+
+const Tab = styled.button<IconProps>`
   text-transform: none;
   overflow: hidden;
   position: relative;
@@ -278,7 +262,6 @@ const Tab = styled.button`
   opacity: 0.7;
   border-bottom-style: solid;
   border-bottom-color: ${(props) => props.theme.dividerColor};
-
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
@@ -333,7 +316,13 @@ const Tab = styled.button`
   }
 `;
 
-const ScrollIndicator = styled.div`
+type ScrollIndicatorProps = {
+  enabled: boolean;
+  leftIndicatorEnabled?: boolean;
+  rightIndicatorEnabled?: boolean;
+};
+
+const ScrollIndicator = styled.div<ScrollIndicatorProps>`
   ${(props) => props.enabled && `display: flex;`}
   background-color: #ffffff;
   font-size: 1.25rem;
@@ -372,7 +361,12 @@ const ScrollRightIndicator = styled(ScrollIndicator)`
     (props.rightIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
 `;
 
-const ActiveIndicator = styled.span`
+type ActiveIndicatorProps = {
+  tabLeft: number;
+  tabWidth: number;
+};
+
+const ActiveIndicator = styled.span<ActiveIndicatorProps>`
   left: ${(props) => `${props.tabLeft}px`};
   width: ${(props) => `${props.tabWidth}px`};
   z-index: 2;
@@ -400,7 +394,7 @@ const TabList = styled.div`
   display: flex;
 `;
 
-const TabsContentScroll = styled.div`
+const TabsContentScroll = styled.div<{ translateScroll: number }>`
   display: flex;
   transform: translateX(${(props) => `${props.translateScroll}px`});
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -414,7 +408,34 @@ const TabIcon = styled.img`
   justify-content: center;
 `;
 
-const TabIconContainer = styled.div`
+const ParentLabelSpan = styled.div`
+  position: relative;
+`;
+
+const TabLabelContainer = styled.div<IconProps>`
+  display: flex;
+  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
+  align-items: center;
+`;
+
+const LabelTextContainer = styled.div``;
+
+const BadgeContainer = styled.div<IconProps>`
+  position: absolute;
+  right: 0;
+  top: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "0") || "5px"};
+  width: 23px;
+  height: 17px;
+`;
+
+const MainLabelContainer = styled.div<{ hasBadge: boolean }>`
+  display: flex;
+  flex-direction: row;
+  margin-left: ${(props) => (props.hasBadge && "35px") || "unset"};
+  margin-right: ${(props) => (props.hasBadge && "35px") || "unset"};
+`;
+
+const TabIconContainer = styled.div<IconProps>`
   max-height: 22px;
   max-width: 22px;
   margin-bottom: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "8px") || ""};
