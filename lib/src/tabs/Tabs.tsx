@@ -146,7 +146,7 @@ const DxcTabs = ({
             {iconIndicator.left}
           </ScrollLeftComponent>
           <TabsContent>
-            <TabsContentScroll translateScroll={translateScroll} ref={refTabList}>
+            <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={viewWidth < totalTabsWidth}>
               <TabList role="tablist">
                 {tabs.map((tab, i) => (
                   <Tab
@@ -337,9 +337,6 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
     width: 20px;
     align-self: center;
   }
-  @media (max-width: 599.95px) {
-    display: flex;
-  }
 `;
 
 const ScrollLeftComponent = styled(ScrollIndicator)`
@@ -386,9 +383,14 @@ const TabList = styled.div`
   display: flex;
 `;
 
-const TabsContentScroll = styled.div<{ translateScroll: number }>`
+type TabsContentScrollProps = {
+  translateScroll: number;
+  enabled: boolean;
+};
+
+const TabsContentScroll = styled.div<TabsContentScrollProps>`
   display: flex;
-  transform: translateX(${(props) => `${props.translateScroll}px`});
+  ${(props) => (props.enabled ? `transform: translateX(${props.translateScroll}px)` : `transform: translateX(0px)`)};
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;
 
