@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import DxcBadge from "../badge/Badge";
@@ -64,6 +64,8 @@ const DxcTabs = ({
   const refTabList = useRef(null);
 
   const viewWidth = useResize(refTabList);
+
+  const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {
     const sumWidth = refTabs?.current?.reduce(function (count, obj) {
@@ -140,13 +142,13 @@ const DxcTabs = ({
           <ScrollLeftComponent
             onClick={scrollLeft}
             leftIndicatorEnabled={leftIndicatorEnabled}
-            enabled={viewWidth < totalTabsWidth}
+            enabled={enabledIndicator}
             aria-disabled="false"
           >
             {iconIndicator.left}
           </ScrollLeftComponent>
           <TabsContent>
-            <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={viewWidth < totalTabsWidth}>
+            <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
               <TabList role="tablist">
                 {tabs.map((tab, i) => (
                   <Tab
@@ -180,7 +182,7 @@ const DxcTabs = ({
           <ScrollRightComponent
             onClick={scrollRight}
             rightIndicatorEnabled={rightIndicatorEnabled}
-            enabled={viewWidth < totalTabsWidth}
+            enabled={enabledIndicator}
             aria-disabled="false"
           >
             {iconIndicator.right}
