@@ -1,6 +1,5 @@
 // @ts-nocheck
 import React, { useState, useMemo, useContext } from "react";
-import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
@@ -30,6 +29,7 @@ const DxcSlider = ({
   size = "fillParent",
 }: SliderPropsType): JSX.Element => {
   const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
+  const [dragging, setDragging] = useState(false);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
@@ -39,19 +39,39 @@ const DxcSlider = ({
     () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
     [labelFormatCallback, minValue]
   );
+
   const maxLabel = useMemo(
     () => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue),
     [labelFormatCallback, maxValue]
   );
 
-  const handlerSliderChange = (event, newValue) => {
-    const valueToCheck = value ?? innerValue;
-    valueToCheck !== newValue && setInnerValue(newValue);
-    onChange?.(newValue);
+  const tickMarks = useMemo(() => {
+    const ticks = [];
+    const numberOfMarks = Math.floor(maxValue / step - minValue / step);
+    let index = 0;
+    const range = maxValue - minValue;
+    while (index <= numberOfMarks) {
+      ticks.push(<TickMark stepPosition={((step * index) / range) * 100}></TickMark>);
+      index++;
+    }
+    return ticks;
+  }, [minValue, maxValue, step]);
+
+  const handleSliderChange = (event, newValue) => {
+    const valueToCheck = event.target.value;
+    (valueToCheck !== value || valueToCheck !== innerValue) && setInnerValue(valueToCheck);
+    onChange?.(valueToCheck);
   };
 
-  const handleSliderOnChangeCommited = (event, selectedValue) => {
-    onDragEnd?.(selectedValue);
+  const handleSliderDragging = (event) => {
+    setDragging(true);
+  };
+
+  const handleSliderOnChangeCommited = (event) => {
+    if (dragging) {
+      setDragging(false);
+      onDragEnd?.(event.target.value);
+    }
   };
 
   const handlerInputChange = (event) => {
@@ -79,17 +99,26 @@ const DxcSlider = ({
               {minLabel}
             </MinLabelContainer>
           )}
-          <Slider
-            value={(value != null && value >= 0 && value) || innerValue}
-            min={minValue}
-            max={maxValue}
-            onChange={handlerSliderChange}
-            onChangeCommitted={handleSliderOnChangeCommited}
-            step={step}
-            marks={marks || []}
-            disabled={disabled}
-            aria-labelledby={labelId}
-          />
+          <SliderInputContainer>
+            <Slider
+              type="range"
+              value={(value != null && value >= 0 && value) || innerValue}
+              min={minValue}
+              max={maxValue}
+              step={step}
+              marks={marks || []}
+              disabled={disabled}
+              aria-labelledby={labelId}
+              aria-orientation="horizontal"
+              aria-valuemax={maxValue}
+              aria-valuemin={minValue}
+              aria-valuenow={(value != null && value >= 0 && value) || innerValue}
+              onChange={handleSliderChange}
+              onMouseUp={handleSliderOnChangeCommited}
+              onMouseDown={handleSliderDragging}
+            />
+            {marks && <MarksContainer showLimitsValues={showLimitsValues}>{tickMarks}</MarksContainer>}
+          </SliderInputContainer>
           {showLimitsValues && (
             <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
               {maxLabel}
@@ -171,136 +200,59 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
+const Slider = styled.input`
+  width: 99%;
+  height: ${(props) => props.theme.trackLineThickness};
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.totalLineColorOnDark : props.theme.totalLineColor};
+  background-image: ${(props) =>
+    props.backgroundType === "dark"
+      ? `linear-gradient(${props.theme.trackLineColorOnDark}, ${props.theme.trackLineColorOnDark})`
+      : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
+  background-repeat: no-repeat;
+  background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
+  border-radius: 5px;
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    z-index: 1;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    margin: 0px -6px;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    z-index: 1;
+    height: ${(props) => props.theme.thumbHeight};
+    width: ${(props) => props.theme.thumbWidth};
+    border-radius: 25px;
+    background: ${(props) =>
+      props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
+    cursor: pointer;
+    &:active {
+      background: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.activeThumbBackgroundColor
+          : props.theme.activeThumbBackgroundColorOnDark};
+    }
+    &:hover {
+      height: ${(props) => props.theme.hoverThumbHeight};
+      width: ${(props) => props.theme.hoverThumbWidth};
+      background: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.hoverThumbBackgroundColor
+          : props.theme.hoverThumbBackgroundColorOnDark};
+    }
+  }
+`;
+
 const SliderContainer = styled.div`
   display: flex;
   height: 48px;
   align-items: center;
-
-  .MuiSlider-root {
-    min-width: 15rem;
-  }
-  .MuiSlider-container {
-    padding: 30px 24px;
-  }
-  .MuiSlider-root.Mui-disabled {
-    color: ${(props) =>
-      props.backgroundType === "dark"
-        ? props.theme.disabledThumbBackgroundColorOnDark
-        : props.theme.disabledThumbBackgroundColor};
-    cursor: not-allowed;
-  }
-  .Mui-disabled {
-    & .MuiSlider-thumb {
-      height: ${(props) => props.theme.thumbHeight};
-      width: ${(props) => props.theme.thumbWidth};
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledThumbBackgroundColorOnDark
-          : props.theme.disabledThumbBackgroundColor};
-      top: ${(props) => props.theme.disabledThumbVerticalPosition};
-    }
-    & .MuiSlider-track {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledTrackLineColorOnDark
-          : props.theme.disabledTrackLineColor};
-    }
-    & .MuiSlider-rail {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledTotalLineColorOnDark
-          : props.theme.disabledTotalLineColor};
-    }
-    & > .MuiSlider-mark.MuiSlider-markActive {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledTickBackgroundColorOnDark
-          : props.theme.disabledTickBackgroundColor} !important;
-    }
-    & > .MuiSlider-mark {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledTickBackgroundColorOnDark
-          : props.theme.disabledTickBackgroundColor};
-      height: ${(props) => props.theme.tickHeight};
-      width: ${(props) => props.theme.tickWidth};
-      border-radius: 18px;
-      top: ${(props) => props.theme.disabledTickVerticalPosition};
-    }
-  }
-  .MuiSlider-thumb {
-    height: ${(props) => props.theme.thumbHeight};
-    width: ${(props) => props.theme.thumbWidth};
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
-    top: ${(props) => props.theme.thumbVerticalPosition};
-    border-radius: 9999px;
-
-    :hover,
-    &.Mui-focusVisible {
-      box-shadow: none;
-    }
-    &.MuiSlider-active {
-      box-shadow: none;
-    }
-    :focus {
-      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
-        auto 1px;
-      outline-offset: 2px;
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.focusThumbBackgroundColorOnDark
-          : props.theme.focusThumbBackgroundColor};
-    }
-    :hover {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.hoverThumbBackgroundColorOnDark
-          : props.theme.hoverThumbBackgroundColor};
-      transform: scale(${(props) => props.theme.hoverThumbScale});
-      transform-origin: center;
-      height: ${(props) => props.theme.hoverThumbHeight};
-      width: ${(props) => props.theme.hoverThumbWidth};
-      top: ${(props) => props.theme.hoverThumbVerticalPosition};
-    }
-    :active {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.activeThumbBackgroundColorOnDark
-          : props.theme.activeThumbBackgroundColor};
-      transform: scale(${(props) => props.theme.activeThumbScale});
-      transform-origin: center;
-    }
-  }
-  .MuiSlider-track {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
-    height: ${(props) => props.theme.trackLineThickness};
-    top: ${(props) => props.theme.trackLineVerticalPosition};
-    border-radius: 9999px;
-  }
-  .MuiSlider-track.MuiSlider-trackAfter {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
-  }
-  .MuiSlider-rail {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.totalLineColorOnDark : props.theme.totalLineColor};
-    height: ${(props) => props.theme.totalLineThickness};
-    top: ${(props) => props.theme.totalLineVerticalPosition};
-  }
-  .MuiSlider-mark.MuiSlider-markActive {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
-  }
-  .MuiSlider-mark {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
-    height: ${(props) => props.theme.tickHeight};
-    width: ${(props) => props.theme.tickWidth};
-    border-radius: 18px;
-    top: ${(props) => props.theme.tickVerticalPosition};
-  }
 `;
 
 const MinLabelContainer = styled.span`
@@ -335,6 +287,33 @@ const MaxLabelContainer = styled.span`
   letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
   white-space: nowrap;
   margin-left: ${(props) => (props.step === 1 ? props.theme.ceilLabelMarginLeft : "1.25rem")};
+`;
+
+const SliderInputContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const MarksContainer = styled.div`
+  position: absolute;
+  margin-right: 4px;
+  width: 99%;
+  top: 1px;
+  pointer-events: none;
+  height: 2px;
+`;
+
+const TickMark = styled.span<{ stepPosition: number }>`
+  position: absolute;
+  background: ${(props) =>
+    props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
+  height: ${(props) => props.theme.tickHeight};
+  width: ${(props) => props.theme.tickWidth};
+  border-radius: 18px;
+  left: ${(props) => `${props.stepPosition}%`};
 `;
 
 const StyledTextInput = styled.div`
