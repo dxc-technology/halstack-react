@@ -201,7 +201,7 @@ const HelperText = styled.span`
 `;
 
 const Slider = styled.input`
-  width: 99%;
+  width: 100%;
   height: ${(props) => props.theme.trackLineThickness};
   display: inline-block;
   vertical-align: middle;
@@ -217,15 +217,15 @@ const Slider = styled.input`
   border-radius: 5px;
   &::-webkit-slider-runnable-track {
     -webkit-appearance: none;
-    z-index: 1;
+
     box-shadow: none;
     border: none;
     background: transparent;
-    margin: 0px -6px;
+    margin: 0px -8px;
   }
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    z-index: 1;
+
     height: ${(props) => props.theme.thumbHeight};
     width: ${(props) => props.theme.thumbWidth};
     border-radius: 25px;
@@ -241,6 +241,8 @@ const Slider = styled.input`
     &:hover {
       height: ${(props) => props.theme.hoverThumbHeight};
       width: ${(props) => props.theme.hoverThumbWidth};
+      transform: scale(1.16667);
+      transform-origin: center center;
       background: ${(props) =>
         props.backgroundType === "dark"
           ? props.theme.hoverThumbBackgroundColor
@@ -300,7 +302,7 @@ const SliderInputContainer = styled.div`
 const MarksContainer = styled.div`
   position: absolute;
   margin-right: 4px;
-  width: 99%;
+  width: 100%;
   top: 1px;
   pointer-events: none;
   height: 2px;
