@@ -207,7 +207,7 @@ const Slider = styled.input`
   vertical-align: middle;
   -webkit-appearance: none;
   background-color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.totalLineColorOnDark : props.theme.totalLineColor};
+    props.backgroundType === "dark" ? props.theme.totalLineColorOnDark + "61" : props.theme.totalLineColor + "61"};
   background-image: ${(props) =>
     props.backgroundType === "dark"
       ? `linear-gradient(${props.theme.trackLineColorOnDark}, ${props.theme.trackLineColorOnDark})`
@@ -237,6 +237,7 @@ const Slider = styled.input`
         props.backgroundType === "dark"
           ? props.theme.activeThumbBackgroundColor
           : props.theme.activeThumbBackgroundColorOnDark};
+      transform: scale(1.16667);
     }
     &:hover {
       height: ${(props) => props.theme.hoverThumbHeight};
@@ -297,13 +298,15 @@ const SliderInputContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 1px;
+  margin-right: -2px;
 `;
 
 const MarksContainer = styled.div`
   position: absolute;
   margin-right: 4px;
   width: 100%;
-  top: 1px;
+  top: 2px;
   pointer-events: none;
   height: 2px;
 `;
