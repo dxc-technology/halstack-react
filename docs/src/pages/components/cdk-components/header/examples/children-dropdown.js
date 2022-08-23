@@ -1,39 +1,17 @@
-import { DxcHeader } from "@dxc-technology/halstack-react";
-
 const code = `() => {
-  const selectOption = (value) => {
-    console.log(value);
-  };
-  const options = [
-    {
-      value: 1,
-      label: "Amazon",
-    },
-    {
-      value: 2,
-      label: "Ebay",
-    },
-    {
-      value: 3,
-      label: "Apple",
-    },
-  ];
-
   return (
-    <DxcHeader
-      content={
-        <DxcHeader.Dropdown
-          options={options}
-          onSelectOption={selectOption}
-          label="Default Dropdown"
-        />
-      }
-    ></DxcHeader>
+    <iframe
+      src="https://codesandbox.io/embed/hardcore-goldwasser-g52mp6?fontsize=14&hidenavigation=1&theme=dark"
+      width="100%"
+      height="500px"
+      border="0"
+      border-radius="4px"
+      overflow="hidden"
+      title="hardcore-goldwasser-g52mp6"
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    ></iframe>
   );
 }`;
 
-const scope = {
-  DxcHeader,
-};
-
-export default { code, scope };
+export default { code };

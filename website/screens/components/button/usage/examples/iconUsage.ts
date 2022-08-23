@@ -1,9 +1,7 @@
 import {
   DxcButton,
-  DxcStack,
-  DxcRow,
+  DxcFlex,
   DxcInset,
-  DxcText,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -28,8 +26,8 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="medium">
-        <DxcRow justify="spaceEvenly">
+      <DxcFlex direction="column" gap="1.5rem">
+        <DxcFlex justifyContent="space-evenly">
           <DxcButton label="Primary" size="large" icon={icon} />
           <DxcButton
             label="Primary"
@@ -38,8 +36,8 @@ const code = `() => {
             icon={icon}
           />
           <DxcButton icon={icon} />
-        </DxcRow>
-        <DxcRow justify="spaceEvenly">
+        </DxcFlex>
+        <DxcFlex justifyContent="space-evenly">
           <DxcButton
             size="large"
             mode="secondary"
@@ -54,8 +52,8 @@ const code = `() => {
             icon={icon}
           />
           <DxcButton mode="secondary" icon={icon} />
-        </DxcRow>
-        <DxcRow justify="spaceEvenly">
+        </DxcFlex>
+        <DxcFlex justifyContent="space-evenly">
           <DxcButton label="Text" mode="text" size="large" icon={icon} />
           <DxcButton
             label="Text"
@@ -65,18 +63,16 @@ const code = `() => {
             icon={icon}
           />
           <DxcButton mode="text" icon={icon} />
-        </DxcRow>
-      </DxcStack>
+        </DxcFlex>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcButton,
-  DxcRow,
-  DxcStack,
+  DxcFlex,
   DxcInset,
-  DxcText,
 };
 
 export default { code, scope };

@@ -1,7 +1,7 @@
 import {
   DxcToggleGroup,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
@@ -33,7 +33,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcRow justify="spaceBetween">
+      <DxcFlex justifyContent="space-between">
         <DxcToggleGroup
           label="Single selection"
           helperText="Mutually exclusive options"
@@ -47,7 +47,7 @@ const code = `() => {
           defaultValue={[1, 2]}  
           multiple
         ></DxcToggleGroup>
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -55,7 +55,7 @@ const code = `() => {
 const scope = {
   DxcToggleGroup,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 };
 
 export default { code, scope };

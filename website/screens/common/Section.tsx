@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from "react";
-import { DxcStack } from "@dxc-technology/halstack-react";
+import { DxcFlex } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 import HeadingLink from "./HeadingLink";
 
@@ -18,8 +18,9 @@ const Section = ({
   children,
 }: SectionType): JSX.Element => {
   return (
-    <DxcStack
-      gutter={level === 1 ? "xlarge" : level === 2 ? "large" : "medium"}
+    <DxcFlex
+      direction="column"
+      gap={level === 1 ? "3rem" : level === 2 ? "2rem" : "1.5rem"}
     >
       <HeadingLink level={level}>{title}</HeadingLink>
       {children}
@@ -37,7 +38,7 @@ const Section = ({
           </Subsection>
         );
       })}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

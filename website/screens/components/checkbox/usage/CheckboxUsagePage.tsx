@@ -1,7 +1,7 @@
 import {
-  DxcStack,
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -15,12 +15,16 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <DxcText as="p">Use the checkbox when:</DxcText>
-        <DxcList>
-          <DxcText>Multiple choices offered.</DxcText>
-          <DxcText>Binary response are requested (yes/no).</DxcText>
-          <DxcText>Accepting conditions and additional features.</DxcText>
-        </DxcList>
+        <DxcParagraph>Use the checkbox when:</DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>Multiple choices offered.</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Binary response are requested (yes/no).
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Accepting conditions and additional features.
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -28,9 +32,9 @@ const sections = [
     title: "Stacking",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Checkbox may be either vertically or horizontally stacked.
-        </DxcText>
+        </DxcParagraph>
         <Example example={stacking} />
         <DxcTable>
           <thead>
@@ -69,7 +73,7 @@ const sections = [
 
 const CheckboxInputUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -77,7 +81,7 @@ const CheckboxInputUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/checkbox/usage/CheckboxUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -2,7 +2,7 @@ import {
   DxcNumberInput,
   DxcButton,
   DxcInset,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import { useState, useRef } from "react";
 
@@ -15,14 +15,14 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="start">
+      <DxcFlex direction="column" gap="2rem" alignItems="flex-start">
         <DxcNumberInput
           label="Enter your age"
           ref={inputRef}
           defaultValue={10}
         />
         <DxcButton onClick={handleSubmit} label="Submit"></DxcButton>
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -31,7 +31,7 @@ const scope = {
   DxcNumberInput,
   DxcButton,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   useState,
   useRef,
 };

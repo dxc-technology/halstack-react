@@ -1,16 +1,16 @@
 import {
   DxcTextInput,
   DxcInset,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {  
     return (
       <DxcInset space="2rem">
-        <DxcStack gutter="large" align="center">
+        <DxcFlex direction="column" gap="2rem" alignItems="center">
           <DxcTextInput label="Prefix" prefix="+34"/>
           <DxcTextInput label="Suffix" suffix="USD"/>
-        </DxcStack>
+        </DxcFlex>
       </DxcInset>
     );
   }`;
@@ -18,7 +18,7 @@ const code = `() => {
 const scope = {
   DxcTextInput,
   DxcInset,
-  DxcStack,
+  DxcFlex,
 };
 
 export default { code, scope };

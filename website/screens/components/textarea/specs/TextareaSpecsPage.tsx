@@ -1,9 +1,9 @@
 import {
   DxcLink,
-  DxcList,
-  DxcStack,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -24,7 +24,7 @@ const sections = [
         <Figure caption="Component design specifications">
           <Image src={specsImage} alt="Component design specifications" />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           The textarea <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>width</Code> and <Code>margin</Code>{" "}
           specifications are inherited from the text input, for reference{" "}
@@ -32,16 +32,16 @@ const sections = [
             <DxcLink>check the text input component documentation</DxcLink>
           </Link>
           .
-        </DxcText>
-        <DxcText as="p">
+        </DxcParagraph>
+        <DxcParagraph>
           The textarea doesn&#39;t have the following text-input elements,
           therefore, their listed styles don&#39;t apply:
-        </DxcText>
-        <DxcList>
-          <DxcText>Action</DxcText>
-          <DxcText>Prefix / Suffix</DxcText>
-          <DxcText>Error indicator</DxcText>
-        </DxcList>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>Action</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Prefix / Suffix</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error indicator</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -49,11 +49,11 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong>, <strong>error</strong> and{" "}
           <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Textarea component states example">
           <Image src={statesImage} alt="Textarea component states example" />
         </Figure>
@@ -65,16 +65,16 @@ const sections = [
     content: (
       <>
         <Image src={anatomyImage} alt="Anatomy image" />
-        <DxcList type="number">
-          <DxcText>Label</DxcText>
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Helper text <em>(Optional)</em>
-          </DxcText>
-          <DxcText>Placeholder/Value</DxcText>
-          <DxcText>Container</DxcText>
-          <DxcText>Resizer</DxcText>
-          <DxcText>Error message</DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Placeholder/Value</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Resizer</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -146,8 +146,8 @@ const sections = [
       {
         title: "WCAG",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -155,8 +155,8 @@ const sections = [
               >
                 1.3.1: Information and Relationships
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -164,8 +164,8 @@ const sections = [
               >
                 3.3.1: Error Identification
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -173,8 +173,8 @@ const sections = [
               >
                 3.3.2: Labels and Instructions
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -182,8 +182,8 @@ const sections = [
               >
                 3.3.3: Error Suggestion
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 newWindow
@@ -191,15 +191,15 @@ const sections = [
               >
                 4.1.2: Name, Role, Value
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "WAI-ARIA",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Accessible Rich Internet Applications 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -207,8 +207,8 @@ const sections = [
               >
                 textbox role
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -217,7 +217,7 @@ const sections = [
 
 const TextareaSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -225,7 +225,7 @@ const TextareaSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/textarea/specs/TextareaSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

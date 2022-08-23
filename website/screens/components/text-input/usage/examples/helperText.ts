@@ -1,16 +1,20 @@
-import { DxcTextInput, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
+import {
+  DxcTextInput,
+  DxcInset,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcRow justify="center">
+      <DxcFlex justifyContent="center">
         <DxcTextInput
           label="Enabled"
           helperText="Helper Text"
           placeholder="Placeholder"
           clearable
         />
-      </DxcRow>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -18,7 +22,7 @@ const code = `() => {
 const scope = {
   DxcTextInput,
   DxcInset,
-  DxcRow,
+  DxcFlex,
 };
 
 export default { code, scope };

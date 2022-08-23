@@ -1,182 +1,180 @@
 import React from "react";
-import styled from "styled-components";
 import DxcSidenav from "./Sidenav";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import { userEvent, within } from "@storybook/testing-library";
 
 export default {
   title: "Sidenav",
   component: DxcSidenav,
 };
 
-const linkClick = () => {
-  console.log("click");
-};
+const iconSVG = (
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+  </svg>
+);
 
-const StyledContainer = styled["div"]`
-  display: flex;
-  flex-direction: row;
-  height: 500px;
-`;
+const TitleComponent = () => {
+  return <DxcSidenav.Title>Dxc technology</DxcSidenav.Title>;
+};
 
 export const Chromatic = () => (
   <>
     <ExampleContainer>
-      <Title title="Deafult sidenav" theme="light" level={4} />
-      <DxcSidenav>
-        {" "}
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>{" "}
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav with xxsmall padding" theme="light" level={4} />
-      <DxcSidenav padding="xxsmall">
-        {" "}
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>{" "}
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav with xsmall padding" theme="light" level={4} />
-      <DxcSidenav padding="xsmall">
-        {" "}
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>{" "}
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav with small padding" theme="light" level={4} />
-      <DxcSidenav padding="small">
-        {" "}
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>{" "}
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav with medium padding" theme="light" level={4} />
-      <DxcSidenav padding="medium">
-        {" "}
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>{" "}
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav with large padding" theme="light" level={4} />
-      <DxcSidenav padding="large">
-        {" "}
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>{" "}
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav with xlarge padding" theme="light" level={4} />
-      <DxcSidenav padding="xlarge">
-        {" "}
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>{" "}
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav with xxlarge padding" theme="light" level={4} />
-      <DxcSidenav padding="xxlarge">
-        {" "}
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>
-        <p>Lorem ipsum</p>{" "}
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav compound components" theme="light" level={4} />
-      <DxcSidenav>
-        <DxcSidenav.Title>My sidenav</DxcSidenav.Title>
-        <DxcSidenav.Subtitle>Components</DxcSidenav.Subtitle>
-        <DxcSidenav.Link href="#">Button</DxcSidenav.Link>
-        <DxcSidenav.Link href="#">Date</DxcSidenav.Link>
-        <DxcSidenav.Subtitle>Guidelines</DxcSidenav.Subtitle>
-        <DxcSidenav.Link onClick={linkClick}>Layout</DxcSidenav.Link>
-        <DxcSidenav.Link onClick={linkClick}>Footer</DxcSidenav.Link>
-      </DxcSidenav>
-    </ExampleContainer>
-
-    <ExampleContainer>
-      <Title title="Sidenav with scroll" theme="light" level={4} />
-      <StyledContainer>
-        <DxcSidenav>
+      <Title title="Default sidenav" theme="light" level={4} />
+      <DxcSidenav title={<TitleComponent />}>
+        <DxcSidenav.Section>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna,
-            placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Donec congue laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus
-            tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus
-            eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue
-            gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare,
-            malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam
-            sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo.
-            Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Morbi egestas luctus porttitor. Donec massa magna, placerat sit amet felis
-            eget, venenatis fringilla ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue
-            laoreet orci, nec elementum dolor consequat quis. Curabitur rhoncus justo sed dapibus tincidunt. Vestibulum
-            cursus ut risus sit amet congue. Nunc luctus, urna ullamcorper facilisis Jia Le, risus eros aliquam erat, ut
-            efficitur ante neque id odio. Nam orci leo, dignissim sit amet dolor ut, congue gravida enim. Donec rhoncus
-            aliquam nisl, ac cursus enim bibendum vitae. Nunc sit amet elit ornare, malesuada urna eu, fringilla mauris.
-            Vivamus bibendum turpis est, id elementum purus euismod sit amet. Etiam sit amet maximus augue. Vivamus erat
-            sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc dignissim, pharetra
-            neque molestie, molestie lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas
-            luctus porttitor. Donec massa magna, placerat sit amet felis eget, venenatis fringilla ipsum. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Donec congue laoreet orci, nec elementum dolor consequat quis.
-            Curabitur rhoncus justo sed dapibus tincidunt. Vestibulum cursus ut risus sit amet congue. Nunc luctus, urna
-            ullamcorper facilisis Jia Le, risus eros aliquam erat, ut efficitur ante neque id odio. Nam orci leo,
-            dignissim sit amet dolor ut, congue gravida enim. Donec rhoncus aliquam nisl, ac cursus enim bibendum vitae.
-            Nunc sit amet elit ornare, malesuada urna eu, fringilla mauris. Vivamus bibendum turpis est, id elementum
-            purus euismod sit amet. Etiam sit amet maximus augue. Vivamus erat sapien, ultricies fringilla tellus id,
-            condimentum blandit justo. Praesent quis nunc dignissim, pharetra neque molestie, molestie lectus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse
+            vitae lacinia libero.
           </p>
-        </DxcSidenav>
-      </StyledContainer>
-    </ExampleContainer>
-
-    <ExampleContainer pseudoState="pseudo-focus-visible">
-      <Title title="Focused" theme="light" level={4} />
-      <DxcSidenav>
-        <DxcSidenav.Title>My sidenav</DxcSidenav.Title>
-        <DxcSidenav.Subtitle>Components</DxcSidenav.Subtitle>
-        <DxcSidenav.Link href="#">Button</DxcSidenav.Link>
-        <DxcSidenav.Link href="#">Date</DxcSidenav.Link>
-        <DxcSidenav.Subtitle>Guidelines</DxcSidenav.Subtitle>
-        <DxcSidenav.Link onClick={linkClick}>Layout</DxcSidenav.Link>
-        <DxcSidenav.Link onClick={linkClick}>Footer</DxcSidenav.Link>
+        </DxcSidenav.Section>
+        <DxcSidenav.Section>
+          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Group collapsable={false} title="Single Group" icon={iconSVG}>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
+        <DxcSidenav.Section>
+          <DxcSidenav.Group collapsable={true} title="Section Group" icon={iconSVG}>
+            <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link icon={iconSVG}>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+          <DxcSidenav.Link icon={iconSVG}>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+          <DxcSidenav.Group collapsable={false} title="Section Group">
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
       </DxcSidenav>
     </ExampleContainer>
   </>
 );
+
+export const FocusedSidenav = () => (
+  <ExampleContainer pseudoState="pseudo-focus">
+    <Title title="Default sidenav" theme="light" level={4} />
+    <DxcSidenav title={<TitleComponent />}>
+      <DxcSidenav.Section>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper consectetur mollis. Suspendisse vitae
+          lacinia libero.
+        </p>
+      </DxcSidenav.Section>
+      <DxcSidenav.Section>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+      </DxcSidenav.Section>
+      <DxcSidenav.Section>
+        <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+          <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Group collapsable={false} title="Section Group">
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+      </DxcSidenav.Section>
+    </DxcSidenav>
+  </ExampleContainer>
+);
+
+const CollapsedGroup = () => (
+  <>
+    <ExampleContainer>
+      <Title title="Default sidenav" theme="light" level={4} />
+      <DxcSidenav title={<TitleComponent />}>
+        <DxcSidenav.Section>
+          <DxcSidenav.Group collapsable={true} title="Collapsable Group" icon={iconSVG}>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
+        <DxcSidenav.Section>
+          <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+            <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+          <DxcSidenav.Group collapsable={false} title="Section Group">
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+            <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          </DxcSidenav.Group>
+        </DxcSidenav.Section>
+      </DxcSidenav>
+    </ExampleContainer>
+  </>
+);
+
+const HoverSidenav = () => (
+  <ExampleContainer pseudoState="pseudo-hover">
+    <Title title="Default sidenav" theme="light" level={4} />
+    <DxcSidenav title={<TitleComponent />}>
+      <DxcSidenav.Section>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+          <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+      </DxcSidenav.Section>
+      <DxcSidenav.Section>
+        <DxcSidenav.Group collapsable={true} title="Not Collapsed Group">
+          <DxcSidenav.Link selected>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Link>Single Link</DxcSidenav.Link>
+        <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+
+        <DxcSidenav.Group collapsable={true} title="Collapsable Group">
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+          <DxcSidenav.Link>Group Link</DxcSidenav.Link>
+        </DxcSidenav.Group>
+      </DxcSidenav.Section>
+    </DxcSidenav>
+  </ExampleContainer>
+);
+
+export const CollapseGroup = CollapsedGroup.bind({});
+CollapseGroup.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const collapsableGroups = canvas.getAllByText("Collapsable Group");
+  collapsableGroups.forEach((group) => {
+    userEvent.click(group);
+  });
+};
+
+export const CollapseHoverGroup = HoverSidenav.bind({});
+CollapseHoverGroup.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const collapsableGroups = canvas.getAllByText("Collapsable Group");
+  collapsableGroups.forEach((group) => {
+    userEvent.click(group);
+  });
+};

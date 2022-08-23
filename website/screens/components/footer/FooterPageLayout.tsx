@@ -1,7 +1,8 @@
-import { DxcText, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcParagraph, DxcFlex, DxcLink } from "@dxc-technology/halstack-react";
 import PageHeading from "@/common/PageHeading";
 import TabsPageHeading from "@/common/TabsPageLayout";
 import ComponentHeading from "@/common/ComponentHeading";
+import Link from "next/link";
 
 const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -11,24 +12,32 @@ const FooterPageHeading = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <DxcStack gutter="xlarge">
+    <DxcFlex direction="column" gap="3rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <ComponentHeading name="Footer" status="Ready" />
-          <DxcText as="p">
+          <DxcParagraph>
             Footers are a secondary element in a web page because they usually
             appear at the bottom and it is the last thing that the user
             interacts with. But the presence of the footer must be designed in
             every application and be part of it (consumer or back-office) as it
-            is a key layout element to the overall experience. Is a choice of
+            is a key layout element to the overall experience. It is a choice of
             the designer to either leave the footer visible by default or push
             it down, depending on the use case.
-          </DxcText>
+          </DxcParagraph>
+          <DxcParagraph>
+            The footer is part of the application layout, so it can only be used
+            inside of it. Please check the{" "}
+            <Link href="/components/application-layout" passHref>
+              <DxcLink>DxcApplicationLayout</DxcLink>
+            </Link>{" "}
+            documentation.
+          </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       {children}
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
