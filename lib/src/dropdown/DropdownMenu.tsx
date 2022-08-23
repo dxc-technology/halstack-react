@@ -52,6 +52,7 @@ const DropdownMenuContainer = styled.ul`
   overflow-y: auto;
   padding: 0;
   margin: 0;
+  background-color: ${(props) => props.theme.optionBackgroundColor};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => props.theme.borderColor};

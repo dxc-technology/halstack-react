@@ -278,9 +278,11 @@ const DropdownTrigger = styled.button<DropdownTriggerProps>`
 const DropdownTriggerContent = styled.span`
   display: flex;
   align-items: center;
+  gap: ${(props) => props.theme.buttonIconSpacing};
   margin-left: 0px;
   margin-right: 0px;
   width: 100%;
+  overflow: hidden;
   white-space: nowrap;
 `;
 
@@ -290,6 +292,7 @@ const DropdownTriggerLabel = styled.span`
   font-style: ${(props) => props.theme.buttonFontStyle};
   font-weight: ${(props) => props.theme.buttonFontWeight};
   text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const DropdownTriggerImg = styled.img``;
@@ -302,11 +305,6 @@ type DropdownTriggerIconProps = {
 const DropdownTriggerIcon = styled.div<DropdownTriggerIconProps>`
   width: ${(props) => props.theme.buttonIconSize};
   height: ${(props) => props.theme.buttonIconSize};
-  margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.buttonIconSpacing) || "0px"};
-  margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.buttonIconSpacing) || "0px"};
-  overflow: hidden;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
 
   img,

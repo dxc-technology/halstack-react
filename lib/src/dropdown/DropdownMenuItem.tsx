@@ -43,14 +43,14 @@ const DropdownMenuItemContainer = styled.li<{ visuallyFocused: boolean }>`
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  gap: ${(props) => props.theme.optionIconSpacing};
   min-height: 36px;
   padding-top: ${(props) => props.theme.optionPaddingTop};
   padding-bottom: ${(props) => props.theme.optionPaddingBottom};
   padding-left: ${(props) => props.theme.optionPaddingLeft};
   padding-right: ${(props) => props.theme.optionPaddingRight};
-  background-color: ${(props) => props.theme.optionBackgroundColor};
   cursor: pointer;
-  
+
   ${(props) => props.visuallyFocused && `outline: ${props.theme.focusColor} solid 2px; outline-offset: -2px;`}
   :hover {
     background-color: ${(props) => props.theme.hoverOptionBackgroundColor};
@@ -74,12 +74,8 @@ type DropdownMenuItemIconProps = {
   label: string;
 };
 const DropdownMenuItemIcon = styled.div<DropdownMenuItemIconProps>`
-  overflow: hidden;
   width: ${(props) => props.theme.optionIconSize};
   height: ${(props) => props.theme.optionIconSize};
-  margin-left: ${(props) => (props.iconPosition === "after" && props.label && props.theme.optionIconSpacing) || "0px"};
-  margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label && props.theme.optionIconSpacing) || "0px"};
   color: ${(props) => props.theme.optionIconColor};
 
   img,
