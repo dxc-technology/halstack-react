@@ -182,15 +182,17 @@ const actionCard = () => (
 );
 
 const linkStates = async (focusCard, hoverCard) => {
+  const user = userEvent.setup();
   await focusCard.focus();
-  await userEvent.hover(hoverCard);
+  await user.hover(hoverCard);
 };
 
 export const ActionCardStates = actionCard.bind({});
 ActionCardStates.play = async ({ canvasElement }) => {
+  const user = userEvent.setup();
   const canvas = within(canvasElement);
-  await userEvent.tab();
-  await userEvent.hover(canvas.getAllByText("Hovered default with action")[1]);
+  await user.tab();
+  await user.hover(canvas.getAllByText("Hovered default with action")[1]);
 };
 
 export const Chromatic = Card.bind({});
