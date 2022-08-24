@@ -32,7 +32,7 @@ const DxcProgressBar = ({
             </ProgressBarProgress>
           </InfoProgressBar>
           <LinearProgress
-            variant={showValue ? "determinate" : "indeterminate"}
+            variant={value === null || value === undefined ? "indeterminate" : "determinate"}
             value={value === null || value === undefined ? 0 : value >= 0 && value <= 100 ? value : value < 0 ? 0 : 100}
           />
           {helperText && (
