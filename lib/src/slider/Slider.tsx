@@ -51,7 +51,7 @@ const DxcSlider = ({
     let index = 0;
     const range = maxValue - minValue;
     while (index <= numberOfMarks) {
-      ticks.push(<TickMark stepPosition={((step * index) / range) * 100}></TickMark>);
+      ticks.push(<TickMark disabled={disabled} stepPosition={((step * index) / range) * 100}></TickMark>);
       index++;
     }
     return ticks;
@@ -101,6 +101,7 @@ const DxcSlider = ({
           )}
           <SliderInputContainer>
             <Slider
+              role="slider"
               type="range"
               value={(value != null && value >= 0 && value) || innerValue}
               min={minValue}
@@ -207,17 +208,41 @@ const Slider = styled.input`
   vertical-align: middle;
   -webkit-appearance: none;
   background-color: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.totalLineColorOnDark + "61" : props.theme.totalLineColor + "61"};
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledTotalLineColorOnDark + "61"
+        : props.theme.disabledTotalLineColor + "61"
+      : props.backgroundType === "dark"
+      ? props.theme.totalLineColorOnDark + "61"
+      : props.theme.totalLineColor + "61"};
   background-image: ${(props) =>
-    props.backgroundType === "dark"
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? `linear-gradient(${props.theme.disabledTrackLineColorOnDark}, ${props.theme.disabledTrackLineColorOnDark})`
+        : `linear-gradient(${props.theme.disabledTrackLineColor}, ${props.theme.disabledTrackLineColor})`
+      : props.backgroundType === "dark"
       ? `linear-gradient(${props.theme.trackLineColorOnDark}, ${props.theme.trackLineColorOnDark})`
       : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
   background-repeat: no-repeat;
   background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
   border-radius: 5px;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  &:focus {
+    &::-webkit-slider-thumb {
+      outline: ${(props) =>
+          props.disabled
+            ? props.backgroundType === "dark"
+              ? props.theme.disabledFocusColorOnDark
+              : props.theme.disabledFocusColor
+            : props.backgroundType === "dark"
+            ? props.theme.focusColorOnDark
+            : props.theme.focusColor}
+        auto 1px;
+      outline-offset: 2px;
+    }
+  }
   &::-webkit-slider-runnable-track {
     -webkit-appearance: none;
-
     box-shadow: none;
     border: none;
     background: transparent;
@@ -225,13 +250,17 @@ const Slider = styled.input`
   }
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-
     height: ${(props) => props.theme.thumbHeight};
     width: ${(props) => props.theme.thumbWidth};
     border-radius: 25px;
     background: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
-    cursor: pointer;
+      props.disabled
+        ? props.backgroundType === "dark"
+          ? props.theme.disabledThumbBackgroundColorOnDark
+          : props.theme.disabledThumbBackgroundColor
+        : props.backgroundType === "dark"
+        ? props.theme.thumbBackgroundColorOnDark
+        : props.theme.thumbBackgroundColor};
     &:active {
       background: ${(props) =>
         props.backgroundType === "dark"
@@ -240,14 +269,18 @@ const Slider = styled.input`
       transform: scale(1.16667);
     }
     &:hover {
-      height: ${(props) => props.theme.hoverThumbHeight};
-      width: ${(props) => props.theme.hoverThumbWidth};
-      transform: scale(1.16667);
-      transform-origin: center center;
-      background: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.hoverThumbBackgroundColor
-          : props.theme.hoverThumbBackgroundColorOnDark};
+      ${(props) => {
+        if (!props.disabled) {
+          return `height: ${(props) => props.theme.hoverThumbHeight};
+          width: ${(props) => props.theme.hoverThumbWidth};
+          transform: scale(1.16667);
+          transform-origin: center center;
+          background: ${(props) =>
+            props.backgroundType === "dark"
+              ? props.theme.hoverThumbBackgroundColor
+              : props.theme.hoverThumbBackgroundColorOnDark};`;
+        }
+      }}
     }
   }
 `;
@@ -295,10 +328,10 @@ const MaxLabelContainer = styled.span`
 const SliderInputContainer = styled.div`
   position: relative;
   width: 100%;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 1px;
   margin-right: -2px;
 `;
 
@@ -306,15 +339,21 @@ const MarksContainer = styled.div`
   position: absolute;
   margin-right: 4px;
   width: 100%;
-  top: 2px;
+  top: calc(50% - 1px);
   pointer-events: none;
   height: 2px;
 `;
 
-const TickMark = styled.span<{ stepPosition: number }>`
+const TickMark = styled.span<{ stepPosition: number; disabled: boolean }>`
   position: absolute;
   background: ${(props) =>
-    props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledTickBackgroundColorOnDark
+        : props.theme.disabledTickBackgroundColor
+      : props.backgroundType === "dark"
+      ? props.theme.tickBackgroundColorOnDark
+      : props.theme.tickBackgroundColor};
   height: ${(props) => props.theme.tickHeight};
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
