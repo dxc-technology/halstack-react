@@ -57,7 +57,11 @@ const DxcDropdown = ({
   const handleOnBlur = (event) => {
     !event.currentTarget.contains(event.relatedTarget) && handleOnCloseMenu();
   };
-  const handleOnKeyDown = (event) => {
+
+  const handleTriggerOnClick = () => {
+    changeIsOpen((isOpen) => !isOpen);
+  };
+  const handleTriggerOnKeyDown = (event) => {
     switch (event.key) {
       case "Up":
       case "ArrowUp":
@@ -65,7 +69,7 @@ const DxcDropdown = ({
         setVisualFocusIndex(options.length - 1);
         handleOnOpenMenu();
         break;
-      case " ":
+      case "Space":
       case "Down":
       case "ArrowDown":
       case "Enter":
@@ -103,7 +107,7 @@ const DxcDropdown = ({
         event.preventDefault();
         setNextIndexFocus();
         break;
-      case " ":
+      case "Space":
       case "Enter":
         event.preventDefault();
         handleOptionOnClick(options[visualFocusIndex]);
@@ -119,10 +123,6 @@ const DxcDropdown = ({
   const handleMenuResize = () => {
     const rect = triggerRef?.current?.getBoundingClientRect();
     setMenuStyles({ width: rect?.width });
-  };
-
-  const handleTriggerOnClick = () => {
-    changeIsOpen((isOpen) => !isOpen);
   };
 
   const handleOptionOnClick = (option) => {
@@ -153,7 +153,7 @@ const DxcDropdown = ({
             <DropdownTrigger
               opened={isOpen}
               onClick={handleTriggerOnClick}
-              onKeyDown={handleOnKeyDown}
+              onKeyDown={handleTriggerOnKeyDown}
               onBlur={(event) => {
                 event.stopPropagation();
               }}
@@ -172,7 +172,7 @@ const DxcDropdown = ({
                 {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
                 {icon && (
                   <DropdownTriggerIcon label={label} iconPosition={iconPosition} disabled={disabled}>
-                    {typeof icon === "string" ? <DropdownTriggerImg src={icon} /> : icon}
+                    {typeof icon === "string" ? <img src={icon} /> : icon}
                   </DropdownTriggerIcon>
                 )}
                 {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
@@ -183,7 +183,7 @@ const DxcDropdown = ({
           <Popover.Content sideOffset={1} asChild>
             <DropdownMenu
               id={menuId}
-              dropdownId={triggerId}
+              dropdownTriggerId={triggerId}
               options={options}
               iconsPosition={optionsIconPosition}
               visualFocusIndex={visualFocusIndex}
@@ -294,8 +294,6 @@ const DropdownTriggerLabel = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
 `;
-
-const DropdownTriggerImg = styled.img``;
 
 type DropdownTriggerIconProps = {
   iconPosition: "before" | "after";

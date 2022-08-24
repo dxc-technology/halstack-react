@@ -82,7 +82,7 @@ type Props = {
 
 export type DropdownMenuProps = {
   id: string;
-  dropdownId: string;
+  dropdownTriggerId: string;
   iconsPosition: "before" | "after";
   visualFocusIndex: number;
   optionOnClick: (option: Option) => void;

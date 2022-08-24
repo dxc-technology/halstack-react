@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import DropdownMenuItem from "./DropdownMenuItem";
@@ -6,7 +6,7 @@ import { DropdownMenuProps } from "./types";
 
 const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
   (
-    { id, dropdownId, iconsPosition, visualFocusIndex, optionOnClick, onKeyDown, options, styles },
+    { id, dropdownTriggerId, iconsPosition, visualFocusIndex, optionOnClick, onKeyDown, options, styles },
     ref
   ): JSX.Element => {
     const colorsTheme = useTheme();
@@ -23,7 +23,7 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
           onKeyDown={onKeyDown}
           id={id}
           role="menu"
-          aria-labelledby={dropdownId}
+          aria-labelledby={dropdownTriggerId}
           aria-orientation="vertical"
           aria-activedescendant={`option-${visualFocusIndex}`}
           tabIndex={-1}
