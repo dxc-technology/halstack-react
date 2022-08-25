@@ -45,7 +45,6 @@ const DxcDropdown = ({
 
   const colorsTheme = useTheme();
   const triggerRef = useRef(null);
-  const menuRef = useRef(null);
 
   const handleOnOpenMenu = () => {
     changeIsOpen(true);
@@ -115,6 +114,10 @@ const DxcDropdown = ({
       case "Esc":
       case "Escape":
         event.preventDefault();
+        handleOnCloseMenu();
+        triggerRef.current?.focus();
+        break;
+      case "Tab":
         handleOnCloseMenu();
         triggerRef.current?.focus();
         break;
@@ -190,7 +193,6 @@ const DxcDropdown = ({
               optionOnClick={handleOptionOnClick}
               onKeyDown={handleMenuOnKeyDown}
               styles={menuStyles}
-              ref={menuRef}
             />
           </Popover.Content>
         </Popover.Root>

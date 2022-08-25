@@ -14,10 +14,8 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
     return (
       <ThemeProvider theme={colorsTheme.dropdown}>
         <DropdownMenuContainer
-          onClick={(event) => {
-            event.stopPropagation();
-          }}
           onMouseDown={(event) => {
+            // Prevent the onBlur event from closing menu when clicking on the menu since it is implemented with a Portal and the menu is not a child of the container
             event.preventDefault();
           }}
           onKeyDown={onKeyDown}
