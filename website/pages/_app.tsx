@@ -16,7 +16,7 @@ import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { useRouter } from "next/router";
 import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
 import Link from "next/link";
-import axios from "axios";
+import { HalApiCaller } from "@dxc-technology/halstack-client";
 import portal from "@/common/portal.json";
 
 type NextPageWithLayout = NextPage & {
@@ -69,12 +69,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   useEffect(() => {
     const fetchVersions = async () => {
-      const versionsResp = await axios({
-        method: "get",
+      const versionsResp = await HalApiCaller.get({
         url: portal.url,
       });
       setVersions(
-        versionsResp.data.map(
+        versionsResp.body.map(
           ({ versionNumber, versionURL }: VersionsResponse) => ({
             label: versionNumber.toString(),
             value: versionNumber.toString(),
@@ -85,7 +84,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       const versionUrl = window.location.pathname;
       const currentSelectedVersion =
         versionUrl.split("/")[2] ||
-        versionsResp.data
+        versionsResp.body
           .find((v: VersionsResponse) => v.current)
           .versionNumber.toString();
       setSelectedVersion(currentSelectedVersion);
