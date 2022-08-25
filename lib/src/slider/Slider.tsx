@@ -341,7 +341,7 @@ const MarksContainer = styled.div`
   position: absolute;
   margin-right: 4px;
   width: 100%;
-  top: calc(50% - 1px);
+  top: calc(50% - 2px);
   pointer-events: none;
   height: 2px;
 `;
