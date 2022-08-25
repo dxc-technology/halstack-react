@@ -12,138 +12,178 @@ import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 
 const sections = [
   {
-    title: "Introduction",
+    title: "What is Halstack",
     content: (
       <DxcParagraph>
-        Halstack is the DXC Technology&#39;s open source Design System for
-        insurance products and digital experiences. Our system provides all the
-        tools and resources needed to create superior, beautiful but above all,
-        functional user experiences.
+        Halstack is an Open Source Design System built and maintained by DXC
+        Technology with the purpose of providing all the necessary tools for
+        designing and implementing accessible, intuitive and consistent User
+        Experiences with Adobe XD and React.
       </DxcParagraph>
     ),
-  },
-  {
-    title: "Design principles",
-    content: (
-      <>
-        <DxcParagraph>
-          Halstack design principles are the fundamental part of DXC
-          Technology&#39;s approach to provide guidance for development teams in
-          order to deliver delightful and consistent user experiences to our
-          customers:
-        </DxcParagraph>
-        <DxcBulletedList>
-          <DxcBulletedList.Item>Balance</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Consistency</DxcBulletedList.Item>
-          <DxcBulletedList.Item>Visual hierarchy</DxcBulletedList.Item>
-        </DxcBulletedList>
-        <DxcParagraph>
-          All our components, design tokens, accessibility guidelines,
-          responsive design techniques, and layout proposals have been carefully
-          curated by DXC design and engineering teams with the objective of
-          creating a unique visual language and ecosystem for our applications.
-          This is the DXC way of creating User Experiences.
-        </DxcParagraph>
-      </>
-    ),
-  },
-  {
-    title: "Open Source",
-    content: (
-      <>
-        <DxcParagraph>
-          Halstack is an open source Design System, this means that we work
-          towards DXC Technology bussines needs, but it is open for anyone to
-          use and contribute back to.
-        </DxcParagraph>
-        <DxcParagraph>
-          We are charmed to receive external contributions to help us find bugs,
-          design new features, or help us improve the project documentation. If
-          you&#39;re interested, definitely check out our{" "}
-          <DxcLink href="https://github.com/dxc-technology/halstack-style-guide/blob/master/contributing/overview.md">
-            contribution guidelines
-          </DxcLink>
-          .
-        </DxcParagraph>
-      </>
-    ),
-  },
-  {
-    title: "Our Assets",
     subSections: [
       {
-        title: "Design",
+        title: "A tool for designers",
         content: (
           <DxcParagraph>
-            In addition to our design guidelines, we mantain an{" "}
-            <DxcLink href="https://shared-assets.adobe.com/link/732533f4-d925-487e-4761-9a760574cfac">
-              Adobe XD public library
-            </DxcLink>{" "}
-            in order to provide designers all the building blocks needed to
-            quickly create solutions four our clients. Helping them focusing on
-            innovation and user experience.
+            Halstack&#39;s first goal is to provide Product Designers with
+            pre-created designs for the most common use-cases they will face
+            during the product design stage. Using Halstack, they don&#39;t need
+            to reinvent the wheel looking for a solution to these mundane
+            problems, and can focus on adding business value. Also, by
+            centralizing these efforts in a Design System team, we can pay the
+            right amount of attention to aspects as important as usability,
+            accessibility, or consistency.
           </DxcParagraph>
         ),
       },
       {
-        title: "Code implementation",
+        title: "A tool for developers",
+        content: (
+          <DxcParagraph>
+            Halstack&#39;s second goal is to simplify the handoff process from
+            designers to developers, and facilitate the development of the
+            components and patterns that already exist as part of the Design
+            System. This way, we speed up the development process and minimize
+            the room for errors when implementing these components.
+          </DxcParagraph>
+        ),
+      },
+    ],
+  },
+  {
+    title: "What is not Halstack",
+    subSections: [
+      {
+        title: "A headless component library",
         content: (
           <>
             <DxcParagraph>
-              We also have our components documentation available in the
-              following frameworks:
+              Unlike headless component libraries like Radix UI or Reach UI,
+              which are intentionally agnostic of design decisions, Halstack is
+              a highly opinionated Design System, and most of its value resides
+              in its design opinions.
             </DxcParagraph>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>
-                <DxcLink href="https://developer.dxc.com/tools/react/next/#/">
-                  React documentation
-                </DxcLink>
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <DxcLink href="https://developer.dxc.com/tools/angular/next/#/">
-                  Angular documentation
-                </DxcLink>
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
             <DxcParagraph>
-              If you&#39;re using a different framework, you can still build
-              components by following our design guidelines.
+              Halstack React library does expose a themes API that allows
+              developers to override many of these opinions. Still, the themes
+              API has its limitations, and it is considered a work around the
+              Design System guidelines to allow a restricted level of
+              white-labeling. That means if you are designing an application and
+              you already have strong UI/UX opinions, Halstack might not be the
+              right tool for you.
             </DxcParagraph>
           </>
         ),
       },
       {
-        title: "GitHub",
+        title: "A business component library",
         content: (
           <>
             <DxcParagraph>
-              Our code implementation is available in the following GitHub
-              public repositories:
+              All the opinions provided by Halstack Design System always remain
+              within the boundaries of the generalistic UI/UX Design domain.
+              Halstack will not get into business-specific elements even if they
+              are reusable. For example, Halstack might provide guidelines on
+              using forms within the context of digital applications. Still, it
+              doesn&#39;t get into the specifics of designing a form for an
+              insurance quote application.
             </DxcParagraph>
-            <DxcBulletedList>
-              <DxcBulletedList.Item>
-                <DxcLink href="https://github.com/dxc-technology/halstack-style-guide">
-                  halstack-style-guide
-                </DxcLink>
-                : Design guidelines
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <DxcLink href="https://github.com/dxc-technology/halstack-react">
-                  halstack-react
-                </DxcLink>
-                : React CDK
-              </DxcBulletedList.Item>
-              <DxcBulletedList.Item>
-                <DxcLink href="https://github.com/dxc-technology/halstack-angular">
-                  halstack-angular
-                </DxcLink>
-                : Angular CDK
-              </DxcBulletedList.Item>
-            </DxcBulletedList>
+            <DxcParagraph>
+              This design domain is noticeable by looking at the different
+              configuration parameters in the Halstack React library, which
+              resemble the language used by UX designers, without ever getting
+              into the business semantics.
+            </DxcParagraph>
+            <DxcParagraph>
+              Although it doesn&#39;t get into the business domain, Halstack is
+              currently used for the most part by insurance applications. For
+              this reason, many of the decisions taken and the patterns observed
+              might be influenced by this reality.
+            </DxcParagraph>
           </>
         ),
       },
+      {
+        title: "A replacement for the Product Design stage",
+        content: (
+          <DxcParagraph>
+            Halstack should always be considered as assistance to the Product
+            Design process, but never as a replacement. Product Designers are
+            still a fundamental piece of this process since they will need to
+            add the business context, validate the patterns contemplated by the
+            Design System, and contribute back to the design system when
+            necessary.
+          </DxcParagraph>
+        ),
+      },
     ],
+  },
+  {
+    title: "Assets",
+    subSections: [
+      {
+        title: "Design Guidelines",
+        content: (
+          <DxcParagraph>
+            These are the pre-defined design opinions explained by writing. They
+            are contained on this website and describe, with a high level of
+            detail, aspects like usage, existing variants, or design
+            specifications of the identified patterns.{" "}
+          </DxcParagraph>
+        ),
+      },
+      {
+        title: "Adobe XD Library",
+        content: (
+          <DxcParagraph>
+            Implementing the previously described Design Guidelines so that
+            product designers can easily drag and drop the pre-created
+            components into their designs, obtaining automatic updates of these
+            components as the Design System evolves.
+          </DxcParagraph>
+        ),
+      },
+      {
+        title: "React Library",
+        content: (
+          <DxcParagraph>
+            Including tailored development tools that will assist React
+            developers in implementing Halstack applications. This library
+            attempts to bring the Design System guidelines to your application,
+            minimizing the effort by abstracting developers from the
+            implementation details while taking the design semantics into the
+            code.
+          </DxcParagraph>
+        ),
+      },
+    ],
+  },
+  {
+    title: "How to use this site",
+    content: (
+      <>
+        <DxcParagraph>
+          This website contains essential information for both designers and
+          developers. These are two different types of users, but they share a
+          significant part of the journey.
+        </DxcParagraph>
+        <DxcParagraph>
+          Some Design Systems decide to organize their documentation following a
+          development-centric approach, mimicking the structure of the
+          development libraries. That is not the case for Halstack. Since the
+          design process starts with designs, the Halstack documentation
+          site&#39;s main navigation structure follows a design-first approach.
+        </DxcParagraph>
+        <DxcParagraph>
+          Content is always presented and arranged by design elements. Each
+          design page contains not only information about usage and design
+          specifications but also technical details about the different tools
+          available for developers. These tools will help them implement the
+          corresponding design element.
+        </DxcParagraph>
+      </>
+    ),
   },
 ];
 
@@ -152,11 +192,7 @@ const Introduction = () => {
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading
-            level={1}
-            text="Halstack Design System"
-            weight="bold"
-          ></DxcHeading>
+          <DxcHeading level={1} text="Introduction" weight="bold"></DxcHeading>
         </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
