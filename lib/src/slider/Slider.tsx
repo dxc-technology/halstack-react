@@ -117,6 +117,7 @@ const DxcSlider = ({
               onChange={handleSliderChange}
               onMouseUp={handleSliderOnChangeCommited}
               onMouseDown={handleSliderDragging}
+              backgroundType={backgroundType}
             />
             {marks && <MarksContainer showLimitsValues={showLimitsValues}>{tickMarks}</MarksContainer>}
           </SliderInputContainer>
@@ -264,21 +265,22 @@ const Slider = styled.input`
     &:active {
       background: ${(props) =>
         props.backgroundType === "dark"
-          ? props.theme.activeThumbBackgroundColor
-          : props.theme.activeThumbBackgroundColorOnDark};
+          ? props.theme.activeThumbBackgroundColorOnDark
+          : props.theme.activeThumbBackgroundColor};
       transform: scale(1.16667);
     }
     &:hover {
       ${(props) => {
         if (!props.disabled) {
-          return `height: ${(props) => props.theme.hoverThumbHeight};
-          width: ${(props) => props.theme.hoverThumbWidth};
+          return `height: ${props.theme.hoverThumbHeight};
+          width: ${props.theme.hoverThumbWidth};
           transform: scale(1.16667);
           transform-origin: center center;
-          background: ${(props) =>
+          background: ${
             props.backgroundType === "dark"
-              ? props.theme.hoverThumbBackgroundColor
-              : props.theme.hoverThumbBackgroundColorOnDark};`;
+              ? props.theme.hoverThumbBackgroundColorOnDark
+              : props.theme.hoverThumbBackgroundColor
+          };`;
         }
       }}
     }
