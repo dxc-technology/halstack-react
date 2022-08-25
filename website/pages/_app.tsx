@@ -16,6 +16,7 @@ import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import { useRouter } from "next/router";
 import { LinksSectionDetails, LinksSections } from "@/common/pagesList";
 import Link from "next/link";
+// @ts-ignore
 import { HalApiCaller } from "@dxc-technology/halstack-client";
 import portal from "@/common/portal.json";
 
