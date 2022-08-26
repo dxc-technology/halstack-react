@@ -85,7 +85,7 @@ export type DropdownMenuProps = {
   dropdownTriggerId: string;
   iconsPosition: "before" | "after";
   visualFocusIndex: number;
-  optionOnClick: (option: Option) => void;
+  menuItemOnClick: (option: Option) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLUListElement>) => void;
   options: Option[];
   styles: { width: number };

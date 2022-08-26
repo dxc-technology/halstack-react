@@ -6,7 +6,7 @@ import { DropdownMenuProps } from "./types";
 
 const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
   (
-    { id, dropdownTriggerId, iconsPosition, visualFocusIndex, optionOnClick, onKeyDown, options, styles },
+    { id, dropdownTriggerId, iconsPosition, visualFocusIndex, menuItemOnClick, onKeyDown, options, styles },
     ref
   ): JSX.Element => {
     const colorsTheme = useTheme();
@@ -34,7 +34,7 @@ const DropdownMenu = React.forwardRef<HTMLUListElement, DropdownMenuProps>(
               key={`option-${index}`}
               visuallyFocused={index === visualFocusIndex}
               iconPosition={iconsPosition}
-              onClick={optionOnClick}
+              onClick={menuItemOnClick}
               option={option}
             />
           ))}

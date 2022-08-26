@@ -105,13 +105,13 @@ export const Chromatic = () => (
       <Title title="Hovered" theme="light" level={4} />
       <DxcDropdown label="Hovered" options={options} onSelectOption={(value) => {}} />
     </ExampleContainer>
-    <ExampleContainer pseudoState="pseudo-active">
-      <Title title="Actived" theme="light" level={4} />
-      <DxcDropdown label="Actived" options={options} onSelectOption={(value) => {}} />
-    </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <DxcDropdown label="Focused" options={options} onSelectOption={(value) => {}} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived" theme="light" level={4} />
+      <DxcDropdown label="Actived" options={options} onSelectOption={(value) => {}} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />

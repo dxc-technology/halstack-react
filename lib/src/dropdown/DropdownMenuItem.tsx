@@ -28,7 +28,7 @@ const DropdownMenuItem = ({
           <DropdownMenuItemIcon
             iconPosition={iconPosition}
             label={option.label}
-            role={!(typeof option.icon === "string") ? "img" : undefined}
+            role={typeof option.icon === "string" ? undefined : "img"}
           >
             {typeof option.icon === "string" ? <img src={option.icon} /> : option.icon}
           </DropdownMenuItemIcon>
@@ -74,14 +74,13 @@ type DropdownMenuItemIconProps = {
   label: string;
 };
 const DropdownMenuItemIcon = styled.div<DropdownMenuItemIconProps>`
-  width: ${(props) => props.theme.optionIconSize};
-  height: ${(props) => props.theme.optionIconSize};
+  display: flex;
   color: ${(props) => props.theme.optionIconColor};
 
   img,
   svg {
-    height: 100%;
-    width: 100%;
+    width: ${(props) => props.theme.optionIconSize};
+    height: ${(props) => props.theme.optionIconSize};
   }
 `;
 
