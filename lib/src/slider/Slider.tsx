@@ -227,6 +227,7 @@ const Slider = styled.input`
   background-repeat: no-repeat;
   background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
   border-radius: 5px;
+  z-index: 1;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &:focus {
     &::-webkit-slider-thumb {
@@ -339,11 +340,12 @@ const SliderInputContainer = styled.div`
 
 const MarksContainer = styled.div`
   position: absolute;
-  margin-right: 4px;
+  margin-right: 6px;
   width: 100%;
   top: calc(50% - 2px);
   pointer-events: none;
   height: 2px;
+  margin-left: 3px;
 `;
 
 const TickMark = styled.span<{ stepPosition: number; disabled: boolean }>`
