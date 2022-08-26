@@ -151,7 +151,7 @@ const DxcDropdown = ({
     return () => {
       window.removeEventListener("resize", handleMenuResize);
     };
-  }, [setMenuStyles]);
+  }, []);
 
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
