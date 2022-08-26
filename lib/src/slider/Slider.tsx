@@ -204,6 +204,7 @@ const HelperText = styled.span`
 
 const Slider = styled.input`
   width: 100%;
+  min-width: 240px;
   height: ${(props) => props.theme.trackLineThickness};
   display: inline-block;
   vertical-align: middle;
