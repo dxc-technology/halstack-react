@@ -231,7 +231,20 @@ const Slider = styled.input`
   z-index: 1;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &:focus {
+    outline: none;
     &::-webkit-slider-thumb {
+      outline: ${(props) =>
+          props.disabled
+            ? props.backgroundType === "dark"
+              ? props.theme.disabledFocusColorOnDark
+              : props.theme.disabledFocusColor
+            : props.backgroundType === "dark"
+            ? props.theme.focusColorOnDark
+            : props.theme.focusColor}
+        auto 1px;
+      outline-offset: 2px;
+    }
+    &::-moz-range-thumb {
       outline: ${(props) =>
           props.disabled
             ? props.backgroundType === "dark"
@@ -251,8 +264,10 @@ const Slider = styled.input`
     background: transparent;
     margin: 0px -8px;
   }
+
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
+    border: none;
     height: ${(props) => props.theme.thumbHeight};
     width: ${(props) => props.theme.thumbWidth};
     border-radius: 25px;
@@ -285,6 +300,54 @@ const Slider = styled.input`
           };`;
         }
       }}
+    }
+  }
+  &::-moz-range-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: #fabada;
+    width: 105%;
+  }
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: ${(props) => props.theme.thumbHeight};
+    width: ${(props) => props.theme.thumbWidth};
+    border-radius: 25px;
+    background: ${(props) =>
+      props.disabled
+        ? props.backgroundType === "dark"
+          ? props.theme.disabledThumbBackgroundColorOnDark
+          : props.theme.disabledThumbBackgroundColor
+        : props.backgroundType === "dark"
+        ? props.theme.thumbBackgroundColorOnDark
+        : props.theme.thumbBackgroundColor};
+    &:active {
+      background: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.activeThumbBackgroundColorOnDark
+          : props.theme.activeThumbBackgroundColor};
+      transform: scale(1.16667);
+    }
+    &:hover {
+      ${(props) => {
+        if (!props.disabled) {
+          return `height: ${props.theme.hoverThumbHeight};
+          width: ${props.theme.hoverThumbWidth};
+          transform: scale(1.16667);
+          transform-origin: center center;
+          background: ${
+            props.backgroundType === "dark"
+              ? props.theme.hoverThumbBackgroundColorOnDark
+              : props.theme.hoverThumbBackgroundColor
+          };`;
+        }
+      }}
+    }
+    &:-moz-focusring {
+      outline: 1px solid white;
+      outline-offset: -1px;
     }
   }
 `;
