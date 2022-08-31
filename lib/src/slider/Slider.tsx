@@ -306,8 +306,7 @@ const Slider = styled.input`
     -webkit-appearance: none;
     box-shadow: none;
     border: none;
-    background: #fabada;
-    width: 105%;
+    background: transparent;
   }
   &::-moz-range-thumb {
     -webkit-appearance: none;
@@ -404,12 +403,11 @@ const SliderInputContainer = styled.div`
 
 const MarksContainer = styled.div`
   position: absolute;
-  margin-right: 6px;
+  margin: 0px 5px;
   width: 100%;
   top: calc(50% - 2px);
   pointer-events: none;
   height: 2px;
-  margin-left: 3px;
 `;
 
 const TickMark = styled.span<{ stepPosition: number; disabled: boolean }>`
