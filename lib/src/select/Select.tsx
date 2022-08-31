@@ -195,8 +195,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       }
     };
     const handleSelectOnKeyDown = (event) => {
-      switch (event.keyCode) {
-        case 40: // Arrow Down
+      switch (event.key) {
+        case "Down":
+        case "ArrowDown":
           event.preventDefault();
           singleSelectionIndex !== undefined &&
           (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
@@ -207,7 +208,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               });
           openOptions();
           break;
-        case 38: // Arrow Up
+        case "Up":
+        case "ArrowUp":
           event.preventDefault();
           singleSelectionIndex !== undefined &&
           (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
@@ -217,12 +219,13 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               );
           openOptions();
           break;
-        case 27: // Esc
+        case "Esc":
+        case "Escape":
           event.preventDefault();
           closeOptions();
           setSearchValue("");
           break;
-        case 13: // Enter
+        case "Enter":
           if (isOpen && visualFocusIndex >= 0) {
             let accLength = optional && !multiple ? 1 : 0;
             if (searchable) {
@@ -299,7 +302,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       return () => {
         window.removeEventListener("resize", handleListboxResize);
       };
-    }, [setListboxStyles]);
+    }, []);
 
     return (
       <ThemeProvider theme={colorsTheme.select}>
@@ -328,7 +331,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 onFocus={handleSelectOnFocus}
                 onKeyDown={handleSelectOnKeyDown}
                 ref={selectRef}
-                tabIndex={tabIndex}
+                tabIndex={disabled ? -1 : tabIndex}
                 role="combobox"
                 aria-controls={optionsListId}
                 aria-disabled={disabled}
@@ -336,7 +339,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 aria-haspopup="listbox"
                 aria-labelledby={label ? selectLabelId : undefined}
                 aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
-                aria-invalid={error ? "true" : "false"}
+                aria-invalid={error ? true : false}
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={!disabled && !optional}
               >
