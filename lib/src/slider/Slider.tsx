@@ -84,6 +84,8 @@ const DxcSlider = ({
     }
   };
 
+  const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+
   return (
     <ThemeProvider theme={colorsTheme.slider}>
       <Container margin={margin} size={size}>
@@ -119,7 +121,11 @@ const DxcSlider = ({
               onMouseDown={handleSliderDragging}
               backgroundType={backgroundType}
             />
-            {marks && <MarksContainer showLimitsValues={showLimitsValues}>{tickMarks}</MarksContainer>}
+            {marks && (
+              <MarksContainer isFirefox={isFirefox} showLimitsValues={showLimitsValues}>
+                {tickMarks}
+              </MarksContainer>
+            )}
           </SliderInputContainer>
           {showLimitsValues && (
             <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
@@ -153,6 +159,18 @@ const calculateWidth = (margin, size) =>
   size === "fillParent"
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
+
+const getChromeStyles = () => {
+  return `
+  width: 100%;
+  margin-right: 4px;`;
+};
+
+const getFireFoxStyles = () => {
+  return `
+  width: calc(100% - 16px);
+  margin-right: 3px;`;
+};
 
 const Container = styled.div`
   display: flex;
@@ -228,35 +246,7 @@ const Slider = styled.input`
   background-repeat: no-repeat;
   background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
   border-radius: 5px;
-  z-index: 1;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  &:focus {
-    outline: none;
-    &::-webkit-slider-thumb {
-      outline: ${(props) =>
-          props.disabled
-            ? props.backgroundType === "dark"
-              ? props.theme.disabledFocusColorOnDark
-              : props.theme.disabledFocusColor
-            : props.backgroundType === "dark"
-            ? props.theme.focusColorOnDark
-            : props.theme.focusColor}
-        auto 1px;
-      outline-offset: 2px;
-    }
-    &::-moz-range-thumb {
-      outline: ${(props) =>
-          props.disabled
-            ? props.backgroundType === "dark"
-              ? props.theme.disabledFocusColorOnDark
-              : props.theme.disabledFocusColor
-            : props.backgroundType === "dark"
-            ? props.theme.focusColorOnDark
-            : props.theme.focusColor}
-        auto 1px;
-      outline-offset: 2px;
-    }
-  }
   &::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     box-shadow: none;
@@ -344,9 +334,32 @@ const Slider = styled.input`
         }
       }}
     }
-    &:-moz-focusring {
-      outline: 1px solid white;
-      outline-offset: -1px;
+  }
+  &:focus {
+    outline: none;
+    &::-webkit-slider-thumb {
+      outline: ${(props) =>
+          props.disabled
+            ? props.backgroundType === "dark"
+              ? props.theme.disabledFocusColorOnDark
+              : props.theme.disabledFocusColor
+            : props.backgroundType === "dark"
+            ? props.theme.focusColorOnDark
+            : props.theme.focusColor}
+        auto 1px;
+      outline-offset: 2px;
+    }
+    &::-moz-range-thumb {
+      outline: ${(props) =>
+          props.disabled
+            ? props.backgroundType === "dark"
+              ? props.theme.disabledFocusColorOnDark
+              : props.theme.disabledFocusColor
+            : props.backgroundType === "dark"
+            ? props.theme.focusColorOnDark
+            : props.theme.focusColor}
+        auto 1px;
+      outline-offset: 2px;
     }
   }
 `;
@@ -402,12 +415,12 @@ const SliderInputContainer = styled.div`
 `;
 
 const MarksContainer = styled.div`
+  ${(props) => (props.isFirefox ? getFireFoxStyles() : getChromeStyles())}
   position: absolute;
-  margin: 0px 5px;
-  width: 100%;
   top: calc(50% - 2px);
   pointer-events: none;
   height: 2px;
+  z-index: 1;
 `;
 
 const TickMark = styled.span<{ stepPosition: number; disabled: boolean }>`
