@@ -1,7 +1,7 @@
 import {
   DxcAccordionGroup,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   DxcHeading,
 } from "@dxc-technology/halstack-react";
 import { useState } from "react";
@@ -23,14 +23,14 @@ const code = `() => {
           assistiveText="Additional information"
         >
           <DxcInset space="2rem">
-            <DxcStack gutter="small">
+            <DxcFlex direction="column" gap="1rem">
               <DxcHeading level={3} text="Content header" />
               <DxcInset space="0.125rem">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
               </DxcInset>
-            </DxcStack>
+            </DxcFlex>
           </DxcInset>
         </DxcAccordionGroup.Accordion>
         <DxcAccordionGroup.Accordion
@@ -59,7 +59,7 @@ const code = `() => {
 const scope = {
   DxcAccordionGroup,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   DxcHeading,
   useState,
 };

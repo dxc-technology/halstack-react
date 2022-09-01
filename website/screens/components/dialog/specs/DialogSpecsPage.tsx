@@ -1,9 +1,9 @@
 import {
   DxcLink,
-  DxcList,
-  DxcStack,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import Code from "@/common/Code";
@@ -34,13 +34,13 @@ const sections = [
           src={dialogAnatomyImage}
           alt="Design specifications for dialog component"
         />
-        <DxcList type="number">
-          <DxcText>Dialog container</DxcText>
-          <DxcText>Title</DxcText>
-          <DxcText>Close action</DxcText>
-          <DxcText>Dialog actions</DxcText>
-          <DxcText>Content</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Dialog container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Title</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Close action</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Dialog actions</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Content</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -487,11 +487,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               And also apply different values to each side of the component:{" "}
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code> and{" "}
               <Code>right</Code>.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -504,8 +504,8 @@ const sections = [
         title: "WCAG",
         content: (
           <>
-            <DxcList>
-              <DxcText>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   newWindow
@@ -513,8 +513,8 @@ const sections = [
                 >
                   2.1.2 No Keyboard Trap
                 </DxcLink>
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   newWindow
@@ -522,16 +522,16 @@ const sections = [
                 >
                   2.4.3 Focus Order
                 </DxcLink>
-              </DxcText>
-            </DxcList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </>
         ),
       },
       {
         title: "WAI-ARIA",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -539,8 +539,8 @@ const sections = [
               >
                 3.9 Dialog (Modal)
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -548,8 +548,8 @@ const sections = [
               >
                 Modal Dialog Example
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -558,7 +558,7 @@ const sections = [
 
 const DialogSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -566,7 +566,7 @@ const DialogSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/dialog/specs/DialogSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,8 +1,8 @@
 import {
-  DxcList,
-  DxcStack,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -29,13 +29,13 @@ const sections = [
         <Figure caption="Header distribution example">
           <Image src={headerAnatomy} alt="Header distribution example" />
         </Figure>
-        <DxcList type="number">
-          <DxcText>Brand image</DxcText>
-          <DxcText>Application name</DxcText>
-          <DxcText>Navigation links</DxcText>
-          <DxcText>Header dropdown</DxcText>
-          <DxcText>Container</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Brand image</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Application name</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Navigation links</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Header dropdown</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -280,10 +280,10 @@ const sections = [
         title: "Margin",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The margin only applies to the <Code>margin-bottom</Code> of the
               header component.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -343,11 +343,11 @@ const sections = [
         title: "Padding",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The variable padding only applies to the content area, the{" "}
               <Code>padding-left</Code> applied to the brand area is fixed
               (20px).
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -400,11 +400,11 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">
+            <DxcParagraph>
               Different values can be applied to each side of the component:{" "}
               <Code>top</Code>, <Code>bottom</Code>, <Code>left</Code>,{" "}
               <Code>right</Code>.
-            </DxcText>
+            </DxcParagraph>
           </>
         ),
       },
@@ -414,7 +414,7 @@ const sections = [
 
 const HeaderSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -422,7 +422,7 @@ const HeaderSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/header/specs/HeaderSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

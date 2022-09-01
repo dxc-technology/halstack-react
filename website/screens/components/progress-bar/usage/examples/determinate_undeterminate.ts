@@ -1,13 +1,13 @@
 import {
   DxcProgressBar,
   DxcInset,
-  DxcStack,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcFlex direction="column" gap="2rem">
         <DxcProgressBar
           label="Determinate"
           helperText="Helper text"
@@ -18,7 +18,7 @@ const code = `() => {
           label="Undeterminate"
           helperText="Helper text"
         />
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -26,7 +26,7 @@ const code = `() => {
 const scope = {
   DxcProgressBar,
   DxcInset,
-  DxcStack,
+  DxcFlex,
 };
 
 export default { code, scope };

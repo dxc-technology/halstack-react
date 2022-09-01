@@ -1,9 +1,9 @@
-import { DxcWizard, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcWizard, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large">
+      <DxcFlex direction="column" gap="2rem">
         <DxcWizard
           steps={[
             {
@@ -25,7 +25,7 @@ const code = `() => {
             },
           ]}
         ></DxcWizard>
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -33,7 +33,7 @@ const code = `() => {
 const scope = {
   DxcWizard,
   DxcInset,
-  DxcStack,
+  DxcFlex,
 };
 
 export default { code, scope };

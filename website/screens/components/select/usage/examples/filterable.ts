@@ -1,4 +1,4 @@
-import { DxcSelect, DxcStack, DxcInset } from "@dxc-technology/halstack-react";
+import { DxcSelect, DxcFlex, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   const options = [
@@ -31,7 +31,7 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="center">
+      <DxcFlex direction="column" gap="2rem" alignItems="center">
         <DxcSelect
           label="Single searchable"
           placeholder="Choose an option"
@@ -47,14 +47,14 @@ const code = `() => {
           multiple
           searchable
         />
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
 
 const scope = {
   DxcSelect,
-  DxcStack,
+  DxcFlex,
   DxcInset,
 };
 

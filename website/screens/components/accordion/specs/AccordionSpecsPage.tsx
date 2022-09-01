@@ -1,9 +1,9 @@
 import {
-  DxcList,
-  DxcText,
-  DxcStack,
+  DxcFlex,
   DxcTable,
   DxcLink,
+  DxcParagraph,
+  DxcBulletedList,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -28,11 +28,11 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The accordion header can get four different states based on user
           interaction. States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
           <strong>focus</strong> and <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Accordion component states">
           <Image src={accordionStates} alt="Accordion component states" />
         </Figure>
@@ -47,14 +47,20 @@ const sections = [
         content: (
           <>
             <Image src={accordionAnatomy} alt="Accordion anatomy" />
-            <DxcList type="number">
-              <DxcText>Header</DxcText>
-              <DxcText>Custom icon (Optional)</DxcText>
-              <DxcText>Title</DxcText>
-              <DxcText>Helper text (Optional)</DxcText>
-              <DxcText>Caret icon (Expand/collapse)</DxcText>
-              <DxcText>Expanded panel</DxcText>
-            </DxcList>
+            <DxcBulletedList type="number">
+              <DxcBulletedList.Item>Header</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Custom icon (Optional)
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>Title</DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Helper text (Optional)
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Caret icon (Expand/collapse)
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>Expanded panel</DxcBulletedList.Item>
+            </DxcBulletedList>
           </>
         ),
       },
@@ -579,8 +585,8 @@ const sections = [
       {
         title: "WCAG 2.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
@@ -588,8 +594,8 @@ const sections = [
               >
                 SC 2.1.1 Keyboard
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
@@ -597,15 +603,15 @@ const sections = [
               >
                 SC 4.1.2 Name, Role, Value
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "WAI-ARIA 1.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring Practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/#accordion"
@@ -613,8 +619,8 @@ const sections = [
               >
                 3.1 Accordion (Sections With Show/Hide Functionality)
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring Practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/accordion/accordion.html"
@@ -622,8 +628,8 @@ const sections = [
               >
                 Accordion Design Pattern
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
@@ -632,10 +638,10 @@ const sections = [
           {
             title: "Printing",
             content: (
-              <DxcText as="p">
+              <DxcParagraph>
                 Accordions are often not well suited for printing documents and
                 require people to print snippets of content at a time.
-              </DxcText>
+              </DxcParagraph>
             ),
           },
         ],
@@ -646,7 +652,7 @@ const sections = [
 
 const AccordionSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -654,7 +660,7 @@ const AccordionSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/accordion/specs/AccordionSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

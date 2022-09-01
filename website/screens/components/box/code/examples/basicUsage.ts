@@ -1,4 +1,4 @@
-import { DxcBox, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcBox, DxcInset } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
@@ -13,7 +13,6 @@ const code = `() => {
 const scope = {
   DxcBox,
   DxcInset,
-  DxcStack,
 };
 
 export default { code, scope };

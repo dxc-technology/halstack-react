@@ -1,4 +1,8 @@
-import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -13,34 +17,34 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           There should only be a single spinner on a page at one time.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Only use the spinner component in a process that takes more than one
           second.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           The text of the action is not mandatory but recommendable.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           If only a portion of a page is displaying new content or being
           updated, use a <Code>medium</Code> or <Code>small</Code> spinner in
           that part of the page.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
     title: "Variants",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           There are three different variants for the spinner component due to
           the size or the position: <strong>large</strong>,{" "}
           <strong>small</strong> and <strong>overlay</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Spinner component variants">
           <Image src={variantsImage} alt="Spinner component variants" />
         </Figure>
@@ -52,25 +56,27 @@ const sections = [
     content: (
       <>
         <Example example={determinateIndeterminate} defaultIsVisible />
-        <DxcList>
-          <DxcText>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             Determinate indicators display how long a process will take. They
             should be used in longer processes.
-          </DxcText>
-          <DxcStack gutter="xsmall">
-            <DxcText>
+          </DxcBulletedList.Item>
+          <DxcFlex direction="column" gap="0.5rem">
+            <DxcBulletedList.Item>
               Indeterminate indicators express an unspecified amount of wait
               time. They should be used when:
-            </DxcText>
-            <DxcList type="circle">
-              <DxcText>The processing time is unknown.</DxcText>
-              <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList type="circle">
+              <DxcBulletedList.Item>
+                The processing time is unknown.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 The wait time is expected to be short enough that it&#39;s not
                 necessary to display.
-              </DxcText>
-            </DxcList>
-          </DxcStack>
-        </DxcList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </DxcFlex>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -78,7 +84,7 @@ const sections = [
 
 const SpinnerUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -86,7 +92,7 @@ const SpinnerUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/spinner/usage/SpinnerUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,7 +1,7 @@
 import {
-  DxcText,
-  DxcList,
-  DxcStack,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -16,19 +16,19 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Switch toggles should be used in place of radio buttons whenever the
           options are opposites of each other (i.e. yes/no, on/off, etc).
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Whenever is possible stack the switch component vertically.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Switches have immediate effect over the application, changing
           preferences and configuration settings. Don&#39;t use a submit button.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
@@ -36,11 +36,11 @@ const sections = [
     content: (
       <>
         <Example example={stacking} />
-        <DxcText as="p">
+        <DxcParagraph>
           In some application the use of several switches based on the
           requirements could appear, that why we provide some indications in the
           case that the user needs to use stacked switches.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
@@ -78,7 +78,7 @@ const sections = [
 
 const SwitchUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -86,7 +86,7 @@ const SwitchUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/switch/usage/SwitchUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -1,9 +1,8 @@
-import PageLayout from "../../common/PageLayout";
 import {
   DxcHeading,
-  DxcText,
-  DxcStack,
+  DxcFlex,
   DxcTable,
+  DxcParagraph,
 } from "@dxc-technology/halstack-react";
 import Figure from "@/common/Figure";
 import Image from "@/common/Image";
@@ -21,19 +20,19 @@ const sections = [
     title: "Introduction",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           In the search of consistent alignment between the elements we provide
           a spacing scale based on a root values of 8px and 4px. The numbers 4
           and 8 are easily multiplied, they provide flexible and consistent, yet
           distinct enough, steps between them.
-        </DxcText>
+        </DxcParagraph>
         <Image src={spacingOverview} alt="Spacing overview" />
-        <DxcText as="p">
+        <DxcParagraph>
           The spacing scale can be applied to <Code>margin</Code> or{" "}
           <Code>padding</Code> properties, as well as to both vertical and
           horizontal edges. The token takes the place of the values normally
           assigned to this properties.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
@@ -44,22 +43,22 @@ const sections = [
         title: "Fixed spacing",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Althouhg the fixed spacing scale is most commonly used for
               vertical spacing, it can also be applied for horizontal spacing,
               especially in the case of spacing inside components.
-            </DxcText>
+            </DxcParagraph>
             <Figure
               caption={
                 <>
-                  <DxcText as="p">
+                  <DxcParagraph>
                     <strong>Left</strong>: Horizontal: Used for smaller, more
                     refined spacing needs, inside components.
-                  </DxcText>
-                  <DxcText as="p">
+                  </DxcParagraph>
+                  <DxcParagraph>
                     <strong>Right</strong>: Vertical: Used for positioning
                     components on a page.
-                  </DxcText>
+                  </DxcParagraph>
                 </>
               }
             >
@@ -71,13 +70,13 @@ const sections = [
       {
         title: "Fluid spacing",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             The use of percentages (e.g. 50% or 33%) is a recommended way to
             divide a page or to control a component <Code>max-width</Code> and{" "}
             <Code>min-width</Code>. Using percentages for top and bottom values
             of <Code>padding</Code> or <Code>margin</Code> inside of a component
             or element should be avoided.
-          </DxcText>
+          </DxcParagraph>
         ),
       },
     ],
@@ -86,10 +85,10 @@ const sections = [
     title: "Core spacing tokens",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The core spacing scale is used to create space relationships for
           detail-level designs.
-        </DxcText>
+        </DxcParagraph>
         <DxcTable>
           <thead>
             <tr>
@@ -213,19 +212,19 @@ const sections = [
     title: "Component spacing tokens",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Most components across Halstack can adopt our component spacing tokens
           as <Code>margin</Code> or <Code>padding</Code> in every direction in
           order to create white space between components.
-        </DxcText>
+        </DxcParagraph>
         <Figure
           caption={
             <>
-              <DxcText as="p">
+              <DxcParagraph>
                 Usage of the <Code>medium</Code> token for <Code>left</Code>,{" "}
                 <Code> right</Code>, <Code>bottom</Code> and <Code>top</Code>{" "}
                 <Code>padding</Code> properties.
-              </DxcText>
+              </DxcParagraph>
             </>
           }
         >
@@ -312,11 +311,11 @@ const sections = [
 
 const Spacing = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <PageHeading>
-        <DxcStack gutter="large">
+        <DxcFlex direction="column" gap="2rem">
           <DxcHeading level={1} text="Spacing" weight="bold"></DxcHeading>
-        </DxcStack>
+        </DxcFlex>
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
@@ -325,7 +324,7 @@ const Spacing = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/principles/spacing/SpacingPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

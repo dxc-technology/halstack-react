@@ -3,7 +3,7 @@ export type LinkDetails = {
   path: string;
 };
 
-type LinksSectionDetails = {
+export type LinksSectionDetails = {
   label: string;
   links: LinkDetails[];
 };
@@ -32,6 +32,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Application layout", path: "/components/application-layout" },
   { label: "Bleed", path: "/components/bleed" },
   { label: "Box", path: "/components/box" },
+  { label: "Bulleted List", path: "/components/bulleted-list" },
   { label: "Button", path: "/components/button" },
   { label: "Card", path: "/components/card" },
   { label: "Checkbox", path: "/components/checkbox" },
@@ -40,6 +41,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Dialog", path: "/components/dialog" },
   { label: "Dropdown", path: "/components/dropdown" },
   { label: "File Input", path: "/components/file-input" },
+  { label: "Flex", path: "/components/flex" },
   { label: "Footer", path: "/components/footer" },
   { label: "Header", path: "/components/header" },
   { label: "Heading", path: "/components/heading" },
@@ -48,6 +50,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Nav Tabs", path: "/components/nav-tabs" },
   { label: "Number Input", path: "/components/number-input" },
   { label: "Paginator", path: "/components/paginator" },
+  { label: "Paragraph", path: "/components/paragraph" },
   { label: "Password Input", path: "/components/password-input" },
   { label: "Progress Bar", path: "/components/progress-bar" },
   { label: "Quick Nav", path: "/components/quick-nav" },
@@ -64,6 +67,7 @@ const componentsLinks: LinkDetails[] = [
   { label: "Text Input", path: "/components/text-input" },
   { label: "Textarea", path: "/components/textarea" },
   { label: "Toggle Group", path: "/components/toggle-group" },
+  { label: "Typography", path: "/components/typography" },
   { label: "Wizard", path: "/components/wizard" },
 ];
 

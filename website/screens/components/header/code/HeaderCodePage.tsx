@@ -1,17 +1,13 @@
 import {
-  DxcStack,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Code from "@/common/Code";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
-import Example from "@/common/example/Example";
-import basicUsage from "./examples/basicUsage";
-import customContent from "./examples/customContent";
-import dropdown from "./examples/dropdown";
 import Link from "next/link";
 import React from "react";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
@@ -103,7 +99,7 @@ const sections = [
       {
         title: "DxcHeader.Dropdown",
         content: (
-          <DxcText>
+          <DxcParagraph>
             Everything between this tags will be displayed as a dropdown. If you
             want to show a{" "}
             <Link href="/components/dropdown" passHref>
@@ -112,7 +108,7 @@ const sections = [
             , as a shortcut, you can also use it as a direct child of the
             DxcHeader without the tags, but we recommend to use it with the tags
             since some styles will be applied for a better fit in the header.
-          </DxcText>
+          </DxcParagraph>
         ),
       },
     ],
@@ -121,16 +117,22 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: <Example example={basicUsage} defaultIsVisible />,
-      },
-      {
-        title: "Custom content",
-        content: <Example example={customContent} defaultIsVisible />,
-      },
-      {
-        title: "Dropdown",
-        content: <Example example={dropdown} defaultIsVisible />,
+        title: "Header in application layout",
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/rough-https-9oduyh?fontsize=14&hidenavigation=1&theme=dark"
+            style={{
+              width: "100%",
+              minHeight: "500px",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+            title="Footer and header"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          ></iframe>
+        ),
       },
     ],
   },
@@ -138,7 +140,7 @@ const sections = [
 
 const HeaderCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -146,7 +148,7 @@ const HeaderCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/header/code/HeaderCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

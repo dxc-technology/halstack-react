@@ -1,5 +1,9 @@
 import React from "react";
-import { DxcHeading, DxcLink } from "@dxc-technology/halstack-react";
+import {
+  DxcHeading,
+  DxcLink,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import { Link } from "react-router-dom";
 import ComponentDoc from "../../common/ComponentDoc";
 import Section from "../../common/Section";
@@ -15,7 +19,19 @@ function Input() {
     <ComponentDoc>
       <ComponentHeader title="Header" status="ready"></ComponentHeader>
       <Section>
-        <DxcHeading level={3} text="Props" margin={{ bottom: "small" }} />
+        <DxcParagraph>
+          The header is part of the application layout, so it can only be used
+          inside of it. Please check the{" "}
+          <Link to={`/components/applicationLayout`} component={DxcLink}>
+            DxcApplicationLayout
+          </Link>{" "}
+          documentation.
+        </DxcParagraph>
+        <DxcHeading
+          level={3}
+          text="Props"
+          margin={{ top: "small", bottom: "small" }}
+        />
         <HeaderPropsTable />
       </Section>
       <Section>
