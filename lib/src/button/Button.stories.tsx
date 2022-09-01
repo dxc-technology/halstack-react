@@ -1,6 +1,6 @@
 import React from "react";
 import DxcButton from "./Button";
-import DxcStack from "../stack/Stack";
+import DxcFlex from "./../flex/Flex";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
@@ -271,13 +271,13 @@ export const Chromatic = () => (
       <Title title="Xxlarge margin" theme="light" level={4} />
       <DxcButton label="Xxlarge margin" margin="xxlarge" />
     </ExampleContainer>
-    <Title title="Inside a stack" theme="light" level={2} />
+    <Title title="Inside a flex" theme="light" level={2} />
     <ExampleContainer>
-      <DxcStack gutter="2rem">
+      <DxcFlex direction="column" gap="0.75rem">
         <DxcButton label="Button" />
         <DxcButton label="Button" />
         <DxcButton label="Button" />
-      </DxcStack>
+      </DxcFlex>
     </ExampleContainer>
   </>
 );
