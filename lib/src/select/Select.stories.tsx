@@ -379,7 +379,7 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
-        styles={{ width: 360 }}
+        getSelectWidth={() => 360}
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
@@ -395,7 +395,8 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
-        styles={{ width: 360 }}
+        getSelectWidth={() => 360}
+
       />
     </ExampleContainer>
     <ExampleContainer>
@@ -411,7 +412,7 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
-        styles={{ width: 360 }}
+        getSelectWidth={() => 360}
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
@@ -427,7 +428,7 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
-        styles={{ width: 360 }}
+        getSelectWidth={() => 360}
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
@@ -443,7 +444,7 @@ const SelectListbox = () => (
         optionalItem={{ label: "Empty", value: "" }}
         searchable={false}
         handleOptionOnClick={() => {}}
-        styles={{ width: 360 }}
+        getSelectWidth={() => 360}
       />
     </ExampleContainer>
   </>
