@@ -7,7 +7,7 @@ const code = `() => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       <DxcButton
         label="Primary Button"
         onClick={onClick}
