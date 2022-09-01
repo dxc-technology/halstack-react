@@ -29,8 +29,8 @@ function App() {
 
   return (
     <div>
-      <div>
-        <h4>Disabled</h4>
+      <h4>Disabled</h4>
+      <div style={{ display: "flex" }}>
         <DxcButton
           mode="primary"
           label="Custom Button"
