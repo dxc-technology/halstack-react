@@ -6,7 +6,7 @@ const code = `() => {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       <DxcButton
         mode="primary"
         label="Primary Button"
@@ -30,7 +30,7 @@ const code = `() => {
 }`;
 
 const scope = {
-  DxcButton
+  DxcButton,
 };
 
 export default { code, scope };
