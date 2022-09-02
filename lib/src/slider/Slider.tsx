@@ -246,6 +246,7 @@ const Slider = styled.input`
   background-repeat: no-repeat;
   background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
   border-radius: 5px;
+  z-index: 1;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &::-webkit-slider-runnable-track {
     -webkit-appearance: none;
@@ -412,6 +413,7 @@ const SliderInputContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: -2px;
+  padding-top: 1px;
 `;
 
 const MarksContainer = styled.div`
@@ -420,7 +422,6 @@ const MarksContainer = styled.div`
   top: calc(50% - 2px);
   pointer-events: none;
   height: 2px;
-  z-index: 1;
 `;
 
 const TickMark = styled.span<{ stepPosition: number; disabled: boolean }>`
