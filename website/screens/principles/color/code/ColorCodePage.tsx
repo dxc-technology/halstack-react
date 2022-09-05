@@ -4,28 +4,39 @@ import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
-// import internalUse from "./examples/internalUse";
 import customUse from "./examples/customUse";
 
 const sections = [
   {
     title: "Examples",
     subSections: [
-      // {
-      //   title: "Internal use",
-      //   content: (
-      //     <>
-      //       <DxcParagraph>
-      //         This is an example of how some components of the Design System use
-      //         internally the <Code>BackgroundColorProvider</Code>, in this case
-      //         the <Code>DxcFooter</Code> knows that its background color is
-      //         black and shows the <Code>DxcTextInput</Code> in its onDark
-      //         version for its correct visualization.
-      //       </DxcParagraph>
-      //       <Example example={internalUse} defaultIsVisible />
-      //     </>
-      //   ),
-      // },
+      {
+        title: "Internal use",
+        content: (
+          <>
+            <DxcParagraph>
+              This is an example of how some components of the Design System use
+              internally the <Code>BackgroundColorProvider</Code>, in this case
+              the <Code>DxcFooter</Code> knows that its background color is
+              black and shows the <Code>DxcTextInput</Code> in its onDark
+              version for its correct visualization.
+            </DxcParagraph>
+            <iframe
+              src="https://codesandbox.io/embed/dark-background-jbznwb?autoresize=1&fontsize=14&hidenavigation=1&theme=dark&view=preview"
+              style={{
+                width: "100%",
+                minHeight: "500px",
+                border: "0",
+                borderRadius: "4px",
+                overflow: "hidden",
+              }}
+              title="Dark background"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+            ></iframe>
+          </>
+        ),
+      },
       {
         title: "Custom use",
         content: (
