@@ -1,4 +1,8 @@
-import { DxcStack, DxcText, DxcList } from "@dxc-technology/halstack-react";
+import {
+  DxcFlex,
+  DxcParagraph,
+  DxcBulletedList,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -8,19 +12,21 @@ const sections = [
     title: "Usage",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Considerations for the use of the number input component:
-        </DxcText>
-        <DxcList>
-          <DxcText>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             Don&#39;t use the number input component for amounts. Use a text
             input instead.
-          </DxcText>
-          <DxcText>Always enable typing in the input field.</DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            Always enable typing in the input field.
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Avoid using the component when large values are expected.
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -28,7 +34,7 @@ const sections = [
 
 const NumberInputUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -36,7 +42,7 @@ const NumberInputUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/number-input/usage/NumberInputUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

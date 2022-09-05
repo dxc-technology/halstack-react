@@ -1,27 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import DxcHeader from "../header/Header";
 import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
 import styled from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { facebookLogo, linkedinLogo, twitterLogo, hamburgerIcon } from "./Icons";
-import AppLayoutPropsType, {
-  AppLayoutSidenavPropsType,
-  AppLayoutFooterPropsType,
-  AppLayoutMainPropsType,
-  AppLayoutHeaderPropsType,
-} from "./types";
-import { v4 as uuidv4 } from "uuid";
+import AppLayoutPropsType, { AppLayoutMainPropsType } from "./types";
 import { SidenavContextProvider, useResponsiveSidenavVisibility } from "./SidenavContext";
 import useTranslatedLabels from "../useTranslatedLabels";
 
 const year = new Date().getFullYear();
-const Header = ({ children }: AppLayoutHeaderPropsType): JSX.Element => <>{children}</>;
 const Main = ({ children }: AppLayoutMainPropsType): JSX.Element => <>{children}</>;
-const Footer = ({ children }: AppLayoutFooterPropsType): JSX.Element => <>{children}</>;
-const Sidenav = ({ ...childProps }: AppLayoutSidenavPropsType): JSX.Element => (
-  <DxcSidenav {...childProps}>{childProps.children}</DxcSidenav>
-);
+const defaultHeader = () => <DxcHeader underlined />;
 
 const defaultFooter = () => (
   <DxcFooter
@@ -56,22 +46,25 @@ const defaultFooter = () => (
     ]}
   />
 );
-const defaultHeader = () => <DxcHeader underlined />;
 
 const childTypeExists = (children, childType) => children.find((child) => child?.type === childType);
 
-const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayoutPropsType): JSX.Element => {
-  const [appLayoutId] = useState(`appLayout-${uuidv4()}`);
-  const visibilityToggleLabelId = `label-${appLayoutId}`;
+const DxcApplicationLayout = ({
+  visibilityToggleLabel = "",
+  header,
+  sidenav,
+  footer,
+  children,
+}: AppLayoutPropsType): JSX.Element => {
   const [isSidenavVisibleResponsive, setIsSidenavVisibleResponsive] = useState(false);
   const [isResponsive, setIsResponsive] = useState(false);
   const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
 
   const childrenArray = React.Children.toArray(children);
-  const header = childTypeExists(childrenArray, DxcHeader) || childTypeExists(childrenArray, Header) || defaultHeader();
-  const footer = childTypeExists(childrenArray, DxcFooter) || childTypeExists(childrenArray, Footer) || defaultFooter();
-  const sidenav = childTypeExists(childrenArray, Sidenav);
+  const headerContent = header || defaultHeader();
+  const footerContent = footer || defaultFooter();
+
   const main = childTypeExists(childrenArray, Main);
 
   const handleResize = () => {
@@ -81,17 +74,17 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
     setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [setIsResponsive]);
+  }, []);
 
   useEffect(() => {
     !isResponsive && setIsSidenavVisibleResponsive(false);
-  }, [isResponsive, setIsSidenavVisibleResponsive]);
+  }, [isResponsive]);
 
   return (
     <ApplicationLayoutContainer
@@ -99,19 +92,16 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
       isSidenavVisible={isSidenavVisibleResponsive}
       ref={ref}
     >
-      <HeaderContainer>{header}</HeaderContainer>
+      <HeaderContainer>{headerContent}</HeaderContainer>
       {sidenav && isResponsive && (
         <VisibilityToggle>
           <HamburgerTrigger
             onClick={handleSidenavVisibility}
-            aria-labelledby={visibilityToggleLabel ? visibilityToggleLabelId : undefined}
             aria-label={visibilityToggleLabel ? undefined : translatedLabels.applicationLayout.visibilityToggleTitle}
             title={translatedLabels.applicationLayout.visibilityToggleTitle}
           >
             {hamburgerIcon}
-            {visibilityToggleLabel && (
-              <VisibilityToggleLabel id={visibilityToggleLabelId}>{visibilityToggleLabel}</VisibilityToggleLabel>
-            )}
+            {visibilityToggleLabel}
           </HamburgerTrigger>
         </VisibilityToggle>
       )}
@@ -123,7 +113,7 @@ const DxcApplicationLayout = ({ visibilityToggleLabel = "", children }: AppLayou
         </SidenavContextProvider>
         <MainContainer>
           <MainContentContainer>{main}</MainContentContainer>
-          {footer}
+          {footerContent}
         </MainContainer>
       </BodyContainer>
     </ApplicationLayoutContainer>
@@ -134,6 +124,7 @@ type ApplicationLayoutContainerProps = {
   isSidenavVisible: boolean;
   hasSidenav: boolean;
 };
+
 const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   position: absolute;
   top: 64px;
@@ -144,7 +135,7 @@ const ApplicationLayoutContainer = styled.div<ApplicationLayoutContainerProps>`
   flex-direction: column;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
-    ${(props) => props.hasSidenav && "top: 112px"};
+    ${(props) => props.hasSidenav && "top: 116px"};
     ${(props) => props.isSidenavVisible && "overflow: hidden;"}
   }
 `;
@@ -174,14 +165,17 @@ const VisibilityToggle = styled.div`
 
 const HamburgerTrigger = styled.button`
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
-  align-content: center;
+  gap: 10px;
   border: 0px solid transparent;
   border-radius: 2px;
-  padding: 15px 3px;
+  padding: 12px 4px;
   background-color: transparent;
   box-shadow: 0 0 0 2px transparent;
+  font-family: Open Sans, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
   cursor: pointer;
   :active {
     background-color: #cccccc;
@@ -195,12 +189,6 @@ const HamburgerTrigger = styled.button`
     height: 20px;
     width: 20px;
   }
-`;
-
-const VisibilityToggleLabel = styled.span`
-  font-family: Open Sans, sans-serif;
-  font-weight: 600;
-  font-size: 14px;
 `;
 
 const BodyContainer = styled.div`
@@ -217,8 +205,9 @@ const SidenavContainer = styled.div`
   z-index: 1;
 
   @media (max-width: ${responsiveSizes.medium}rem) {
-    position: fixed;
-    top: 112px;
+    position: absolute;
+    top: 0px;
+    height: 100%;
   }
 `;
 
@@ -232,10 +221,10 @@ const MainContentContainer = styled.div`
   flex: 1;
 `;
 
-DxcApplicationLayout.Header = Header;
+DxcApplicationLayout.Header = DxcHeader;
 DxcApplicationLayout.Main = Main;
-DxcApplicationLayout.Footer = Footer;
-DxcApplicationLayout.SideNav = Sidenav;
+DxcApplicationLayout.Footer = DxcFooter;
+DxcApplicationLayout.SideNav = DxcSidenav;
 DxcApplicationLayout.useResponsiveSidenavVisibility = useResponsiveSidenavVisibility;
 
 export default DxcApplicationLayout;

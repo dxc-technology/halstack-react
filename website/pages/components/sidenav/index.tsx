@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import SidenavPageLayout from "../../../screens/components/sidenav/SidenavPageLayout";
-import SidenavUsagePage from "../../../screens/components/sidenav/usage/SidenavUsagePage";
+import SidenavCodePage from "../../../screens/components/sidenav/code/SidenavCodePage";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Head>
         <title>Sidenav — Halstack Design System</title>
       </Head>
-      <SidenavUsagePage></SidenavUsagePage>
+      <SidenavCodePage></SidenavCodePage>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import {
-  DxcStack,
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
   DxcLink,
 } from "@dxc-technology/halstack-react";
@@ -28,7 +28,7 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The following states are defined in the life cycle of the component:{" "}
           <strong>unselected enabled</strong>, <strong>unselected hover</strong>
           , <strong>unselected focus</strong>,{" "}
@@ -36,7 +36,7 @@ const sections = [
           <strong>selected enabled</strong>, <strong>selected hover</strong>,{" "}
           <strong>selected focus</strong> and{" "}
           <strong>selected disabled.</strong>
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Checkbox component states.">
           <Image src={checkboxStates} alt="Checkbox component states." />
         </Figure>
@@ -48,10 +48,10 @@ const sections = [
     content: (
       <>
         <Image src={checkboxAnatomy} alt="Checkbox anatomy" />
-        <DxcList type="number">
-          <DxcText>Checkbox input</DxcText>
-          <DxcText>Label</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Checkbox input</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -472,10 +472,10 @@ const sections = [
         title: "Margin",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Margin can be set independently for <Code>top</Code>,{" "}
               <Code>right</Code>, <Code>bottom</Code>, <Code>left</Code>.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -540,8 +540,8 @@ const sections = [
         title: "WCAG 2.2",
         content: (
           <>
-            <DxcList>
-              <DxcText>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
@@ -549,8 +549,8 @@ const sections = [
                 >
                   SC 1.3.1: Info and Relationships
                 </DxcLink>
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Understanding WCAG 2.2 -{" "}
                 <DxcLink
                   href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
@@ -558,16 +558,16 @@ const sections = [
                 >
                   SC 4.1.2: Name, Role, Value
                 </DxcLink>
-              </DxcText>
-            </DxcList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </>
         ),
       },
       {
         title: "WAI-ARIA 1.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring Practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/#checkbox"
@@ -575,8 +575,8 @@ const sections = [
               >
                 3.7 Checkbox
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -585,7 +585,7 @@ const sections = [
 
 const CheckboxSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -593,7 +593,7 @@ const CheckboxSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/checkbox/specs/CheckboxSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 
