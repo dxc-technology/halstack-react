@@ -17,7 +17,7 @@ const DropdownMenuItem = ({
       <DropdownMenuItemContainer
         visuallyFocused={visuallyFocused}
         onClick={() => {
-          onClick(option);
+          onClick(option.value);
         }}
         id={id}
         role="menuitem"

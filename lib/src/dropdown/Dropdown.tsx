@@ -54,8 +54,8 @@ const DxcDropdown = ({
     setVisualFocusIndex(0);
   };
   const handleMenuItemOnClick = useCallback(
-    (option) => {
-      onSelectOption(option.value);
+    (value) => {
+      onSelectOption(value);
       handleOnCloseMenu();
       triggerRef.current?.focus();
     },
@@ -114,7 +114,7 @@ const DxcDropdown = ({
         case "Space":
         case "Enter":
           event.preventDefault();
-          handleMenuItemOnClick(options[visualFocusIndex]);
+          handleMenuItemOnClick(options[visualFocusIndex].value);
           break;
         case "Esc":
         case "Escape":
@@ -178,7 +178,7 @@ const DxcDropdown = ({
               id={triggerId}
               aria-disabled={disabled}
               aria-haspopup="true"
-              aria-expanded={isOpen}
+              aria-expanded={isOpen ? true : undefined}
               tabIndex={tabIndex}
               ref={triggerRef}
             >

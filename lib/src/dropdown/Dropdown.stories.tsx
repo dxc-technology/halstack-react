@@ -6,16 +6,12 @@ import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DropdownMenu from "./DropdownMenu";
 import DxcCheckbox from "../checkbox/Checkbox";
 import DxcTextInput from "../text-input/TextInput";
+import { Option } from "./types";
+
 
 export default {
   title: "Dropdown",
   component: DxcDropdown,
-};
-
-type Option = {
-  label?: string;
-  icon?: string | React.SVGProps<SVGSVGElement>;
-  value: string;
 };
 
 const hamburguerIcon = (
@@ -77,12 +73,6 @@ const options: Option[] = [
   {
     value: "3",
     label: "Apple",
-  },
-];
-const option: Option[] = [
-  {
-    value: "1",
-    label: "Ebay",
   },
 ];
 const optionWithIcon: Option[] = [

@@ -8,7 +8,7 @@ export type Margin = {
 export type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
 type SVG = React.SVGProps<SVGSVGElement>;
 
-type Option = {
+export type Option = {
   /**
    * Option display value.
    */
@@ -85,7 +85,7 @@ export type DropdownMenuProps = {
   dropdownTriggerId: string;
   iconsPosition: "before" | "after";
   visualFocusIndex: number;
-  menuItemOnClick: (option: Option) => void;
+  menuItemOnClick: (value: string) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLUListElement>) => void;
   options: Option[];
   styles: { width: number };
@@ -95,7 +95,7 @@ export type DropdownMenuItemProps = {
   id: string;
   visuallyFocused: boolean;
   iconPosition: "before" | "after";
-  onClick: (option: Option) => void;
+  onClick: (value: string) => void;
   option: Option;
 }
 
