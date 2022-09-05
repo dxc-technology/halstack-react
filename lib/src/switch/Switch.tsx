@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
@@ -30,6 +30,21 @@ const DxcSwitch = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
   const backgroundType = useContext(BackgroundColorContext);
+  const refTrack = useRef(null);
+
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (event.keyCode) {
+      case 13: // enter
+        event.preventDefault();
+        refTrack.current.focus();
+        const isChecked = !(checked ?? innerChecked);
+        setInnerChecked(isChecked);
+        if (typeof onChange === "function") {
+          onChange(isChecked);
+        }
+        break;
+    }
+  };
 
   const handlerSwitchChange = (event) => {
     if (checked === undefined) {
@@ -68,7 +83,7 @@ const DxcSwitch = ({
 
   return (
     <ThemeProvider theme={colorsTheme.switch}>
-      <SwitchContainer margin={margin} size={size}>
+      <SwitchContainer margin={margin} size={size} onKeyDown={handleOnKeyDown}>
         {labelPosition === "before" && hasLabel && labelComponent}
         <SwitchBase
           labelPosition={labelPosition}
@@ -100,6 +115,7 @@ const DxcSwitch = ({
               backgroundType={backgroundType}
               data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
               tabIndex={tabIndex}
+              ref={refTrack}
             />
           )}
         </SwitchBase>
@@ -250,7 +266,7 @@ const SwitchTrack = styled.span<SwitchTrackProps>`
       : props.theme.uncheckedTrackBackgroundColor};
 
   /* Checked */
-  &[data-checked] {
+  &[data-checked="true"] {
     background-color: ${(props) =>
       props.backgroundType === "dark"
         ? props.theme.checkedTrackBackgroundColorOnDark
@@ -282,7 +298,7 @@ const DisabledSwitchTrack = styled(SwitchTrack)`
   }
 
   /* Checked */
-  &[data-checked] {
+  &[data-checked="true"] {
     background-color: ${(props) =>
       props.backgroundType === "dark"
         ? props.theme.disabledCheckedTrackBackgroundColorOnDark
