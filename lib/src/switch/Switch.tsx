@@ -206,7 +206,6 @@ type SwitchTrackProps = {
 };
 
 const SwitchTrack = styled.span<SwitchTrackProps>`
-  background-color: red;
   border-radius: 15px;
   width: ${(props) => props.theme.trackWidth};
   height: ${(props) => props.theme.trackHeight};
