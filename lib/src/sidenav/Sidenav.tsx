@@ -1,56 +1,159 @@
-import React from "react";
+import React, { forwardRef, Ref, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { spaces, responsiveSizes } from "../common/variables.js";
+import { responsiveSizes } from "../common/variables.js";
+import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
 
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
-import SidenavPropsType, { SidenavTitlePropsType, SidenavSubtitlePropsType, SidenavLinkPropsType } from "./types";
-import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
+import SidenavPropsType, {
+  SidenavGroupPropsType,
+  SidenavLinkPropsType,
+  SidenavSectionPropsType,
+  SidenavTitlePropsType,
+} from "./types.js";
+import DxcFlex from "../flex/Flex";
+import DxcBleed from "../bleed/Bleed";
 
-const DxcSidenav = ({ padding, children }: SidenavPropsType): JSX.Element => {
+const collapsedIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+  </svg>
+);
+
+const collapsableIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+  </svg>
+);
+
+const externalLinkIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+  </svg>
+);
+
+const DxcSidenav = ({ children, title }: SidenavPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-
   return (
     <ThemeProvider theme={colorsTheme.sidenav}>
-      <SidenavContainer padding={padding}>
-        <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>{children}</BackgroundColorProvider>
+      <SidenavContainer>
+        <BackgroundColorProvider color={colorsTheme.sidenav.backgroundColor}>
+          {title}
+          <DxcFlex direction="column" gap="1rem">
+            {React.Children.map(children, (child, index) => {
+              return (
+                <>
+                  {child}
+                  {index !== React.Children.count(children) - 1 && <Divider />}
+                </>
+              );
+            })}
+          </DxcFlex>
+        </BackgroundColorProvider>
       </SidenavContainer>
     </ThemeProvider>
   );
 };
 
-const Title = ({ children }: SidenavTitlePropsType): JSX.Element => <SidenavMenuTitle>{children}</SidenavMenuTitle>;
-
-const Subtitle = ({ children }: SidenavSubtitlePropsType): JSX.Element => (
-  <SidenavMenuSubTitle>{children}</SidenavMenuSubTitle>
+const Title = ({ children }: SidenavTitlePropsType): JSX.Element => (
+  <DxcBleed horizontal="1rem">
+    <SidenavTitle>{children}</SidenavTitle>
+  </DxcBleed>
 );
 
-const Link = ({ tabIndex = 0, href, onClick, children }: SidenavLinkPropsType): JSX.Element => {
-  const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
-  const handleClick = () => {
-    onClick?.();
-    setIsSidenavVisibleResponsive?.(false);
-  };
+const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
+  <DxcBleed horizontal="1rem">
+    <DxcFlex direction="column">{children}</DxcFlex>
+  </DxcBleed>
+);
 
+const Group = ({ children, title, collapsable = false, icon }: SidenavGroupPropsType): JSX.Element => {
+  const [collapsed, setCollapsed] = useState(false);
+  const selectedGroup = useMemo(() => {
+    return collapsed ? React.Children.toArray(children).some((child) => child["props"]?.selected) : false;
+  }, [collapsed, children]);
   return (
-    <SidenavMenuLink tabIndex={tabIndex} href={href} onClick={handleClick}>
-      {children}
-    </SidenavMenuLink>
+    <SidenavGroup>
+      {collapsable && title ? (
+        <SidenavGroupTitleButton
+          role="button"
+          aria-expanded={!collapsed}
+          onClick={() => setCollapsed(!collapsed)}
+          selectedGroup={selectedGroup}
+        >
+          <SidenavContent>
+            {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
+            {title}
+          </SidenavContent>
+          {collapsed ? collapsedIcon : collapsableIcon}
+        </SidenavGroupTitleButton>
+      ) : (
+        title && (
+          <SidenavGroupTitle>
+            {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
+            {title}
+          </SidenavGroupTitle>
+        )
+      )}
+      {!collapsed && children}
+    </SidenavGroup>
   );
 };
+
+const Link = forwardRef(
+  (
+    {
+      href,
+      children,
+      newWindow = false,
+      selected = false,
+      icon,
+      tabIndex = 0,
+      onClick,
+      ...otherProps
+    }: SidenavLinkPropsType,
+    ref: Ref<HTMLAnchorElement>
+  ): JSX.Element => {
+    const setIsSidenavVisibleResponsive = useResponsiveSidenavVisibility();
+    const handleClick = ($event) => {
+      onClick?.($event);
+      setIsSidenavVisibleResponsive?.(false);
+    };
+    return (
+      <SidenavLink
+        selected={selected}
+        href={href ? href : undefined}
+        target={href ? (newWindow ? "_blank" : "_self") : undefined}
+        ref={ref}
+        tabIndex={tabIndex}
+        onClick={handleClick}
+        {...otherProps}
+      >
+        <SidenavContent>
+          {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
+          {children}
+        </SidenavContent>
+        {newWindow && externalLinkIcon}
+      </SidenavLink>
+    );
+  }
+);
 
 const SidenavContainer = styled.div<SidenavPropsType>`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
-
+  box-sizing: border-box;
+  width: 280px;
   @media (max-width: ${responsiveSizes.medium}rem) {
-    width: ${(props) =>
-      props.padding ? `calc(100vw - ${spaces[props.padding]} - ${spaces[props.padding]})` : "100vw"};
+    width: 100vw;
   }
 
-  width: ${(props) => (props.padding ? `calc(300px - ${spaces[props.padding]} - ${spaces[props.padding]})` : "300px")};
-  padding: ${(props) => (props.padding ? spaces[props.padding] : "")};
+  height: 100%;
+  padding: 2rem 1rem;
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -67,49 +170,167 @@ const SidenavContainer = styled.div<SidenavPropsType>`
   }
 `;
 
-const SidenavMenuTitle = styled.div`
+const SidenavTitle = styled.div`
   font-family: ${(props) => props.theme.titleFontFamily};
-  font-size: ${(props) => props.theme.titleFontSize};
   font-style: ${(props) => props.theme.titleFontStyle};
   font-weight: ${(props) => props.theme.titleFontWeight};
+  font-size: ${(props) => props.theme.titleFontSize};
+  line-height: 27px;
+  display: flex;
+  align-items: center;
   color: ${(props) => props.theme.titleFontColor};
-  letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
   text-transform: ${(props) => props.theme.titleFontTextTransform};
-  margin-bottom: 16px;
-`;
+  letter-spacing: ${(props) => props.theme.titleFontLetterSpacing};
+  padding: 0.5rem 1.2rem;
 
-const SidenavMenuSubTitle = styled.div`
-  font-family: ${(props) => props.theme.subtitleFontFamily};
-  font-size: ${(props) => props.theme.subtitleFontSize};
-  font-style: ${(props) => props.theme.subtitleFontStyle};
-  font-weight: ${(props) => props.theme.subtitleFontWeight};
-  color: ${(props) => props.theme.subtitleFontColor};
-  letter-spacing: ${(props) => props.theme.subtitleFontLetterSpacing};
-  text-transform: ${(props) => props.theme.subtitleFontTextTransform};
-  margin-bottom: 4px;
-`;
-
-const SidenavMenuLink = styled.a`
-  font-family: ${(props) => props.theme.linkFontFamily};
-  font-size: ${(props) => props.theme.linkFontSize};
-  font-style: ${(props) => props.theme.linkFontStyle};
-  font-weight: ${(props) => props.theme.linkFontWeight};
-  color: ${(props) => props.theme.linkFontColor};
-  letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
-  text-transform: ${(props) => props.theme.linkFontTextTransform};
-  text-decoration: ${(props) => props.theme.linkTextDecoration};
-  margin: ${(props) =>
-    `${props.theme.linkMarginTop} ${props.theme.linkMarginRight} ${props.theme.linkMarginBottom} ${props.theme.linkMarginLeft}`};
-  cursor: pointer;
-
-  :focus-visible {
-    outline: 2px solid ${(props) => props.theme.linkFocusColor};
-    outline-offset: 1px;
+  svg {
+    margin-right: 0.5rem;
   }
 `;
 
-DxcSidenav.Title = Title;
-DxcSidenav.Subtitle = Subtitle;
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #999999;
+`;
+
+const SidenavGroup = styled.div`
+  width: 100%;
+  a {
+    padding: 0.5rem 1.2rem 0.5rem 2.25rem;
+  }
+`;
+
+const SidenavGroupTitle = styled.span`
+  svg {
+    width: 16px;
+    margin-right: 0.5rem;
+  }
+  box-sizing: border-box;
+  width: 100%;
+
+  font-family: ${(props) => props.theme.groupTitleFontFamily};
+  font-style: ${(props) => props.theme.groupTitleFontStyle};
+  font-weight: ${(props) => props.theme.groupTitleFontWeight};
+  font-size: ${(props) => props.theme.groupTitleFontSize};
+  line-height: 18px;
+
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 0.5rem 1.2rem;
+`;
+
+const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
+  all: unset;
+  cursor: pointer;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+
+  font-family: ${(props) => props.theme.groupTitleFontFamily};
+  font-style: ${(props) => props.theme.groupTitleFontStyle};
+  font-weight: ${(props) => props.theme.groupTitleFontWeight};
+  font-size: ${(props) => props.theme.groupTitleFontSize};
+  line-height: 19px;
+
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 0.5rem 1.2rem;
+  &:focus-visible {
+    outline: 2px solid ${(props) => props.theme.linkFocusColor};
+    outline-offset: -2px;
+  }
+  &:hover {
+    ${(props) =>
+      props.selectedGroup
+        ? `color: ${props.theme.groupTitleSelectedHoverFontColor}; background: ${props.theme.groupTitleSelectedHoverBackgroundColor};`
+        : `color: ${props.theme.groupTitleFontColor}; background: ${props.theme.groupTitleHoverBackgroundColor};`}
+  }
+  &:active {
+    background-color: ${(props) => props.theme.groupTitleActiveBackgroundColor};
+    color: ${(props) => props.theme.groupTitleFontColor};
+  }
+  ${(props) =>
+    props.selectedGroup
+      ? `color: ${props.theme.groupTitleSelectedFontColor}; background: ${props.theme.groupTitleSelectedBackgroundColor};`
+      : `color: ${props.theme.groupTitleFontColor}; background: transparent;`}
+  svg {
+    width: 18px;
+    height: auto;
+  }
+`;
+
+const SidenavLink = styled.a<{ selected: boolean }>`
+  letter-spacing: ${(props) => props.theme.linkFontLetterSpacing};
+
+  text-transform: ${(props) => props.theme.linkFontTextTransform};
+  text-decoration: ${(props) => props.theme.linkTextDecoration};
+
+  font-family: ${(props) => props.theme.linkFontFamily};
+  font-style: ${(props) => props.theme.linkFontStyle};
+  font-weight: ${(props) => props.theme.linkFontWeight};
+  font-size: ${(props) => props.theme.linkFontSize};
+  line-height: 19px;
+
+  ${(props) =>
+    props.selected
+      ? `color: ${props.theme.linkSelectedFontColor}; background: ${props.theme.linkSelectedBackgroundColor};`
+      : `color: ${props.theme.linkFontColor}; background: transparent;`}
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: 0 0 0 2px transparent;
+
+  padding: 0.5rem 1.2rem;
+
+  cursor: pointer;
+  svg {
+    width: 16px;
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    ${(props) =>
+      props.selected
+        ? `color: ${props.theme.linkSelectedHoverFontColor}; background: ${props.theme.linkSelectedHoverBackgroundColor};`
+        : `color: ${props.theme.linkFontColor}; background: ${props.theme.linkHoverBackgroundColor};`}
+  }
+
+  &:focus {
+    outline: 2px solid ${(props) => props.theme.linkFocusColor};
+    outline-offset: -2px;
+  }
+
+  &:active {
+    color: #ffffff;
+    background: #4d4d4d;
+    outline: 2px solid #0095ff;
+    outline-offset: -2px;
+  }
+`;
+
+const SidenavContent = styled.span`
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 16px;
+    margin-right: 0.5rem;
+  }
+`;
+
+const SidenavIcon = styled.img`
+  width: 16px;
+  margin-right: 0.5rem;
+`;
+
+DxcSidenav.Section = Section;
+DxcSidenav.Group = Group;
 DxcSidenav.Link = Link;
+DxcSidenav.Title = Title;
 
 export default DxcSidenav;

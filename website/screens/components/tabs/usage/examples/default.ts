@@ -1,4 +1,4 @@
-import { DxcTabs, DxcInset, DxcRow } from "@dxc-technology/halstack-react";
+import { DxcTabs, DxcInset } from "@dxc-technology/halstack-react";
 import { useState } from "react";
 
 const code = `() => {
@@ -35,7 +35,6 @@ const scope = {
   DxcTabs,
   useState,
   DxcInset,
-  DxcRow,
 };
 
 export default { code, scope };

@@ -1,8 +1,8 @@
 import {
   DxcLink,
-  DxcList,
-  DxcStack,
-  DxcText,
+  DxcBulletedList,
+  DxcParagraph,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -16,27 +16,27 @@ const sections = [
     title: "Specifications",
     content: (
       <>
-        <DxcText>
+        <DxcParagraph>
           The specifications of each of the compound component children are
           defined separately:
-        </DxcText>
-        <DxcList>
-          <DxcText>
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
             <Link href="/components/header/specifications" passHref>
               <DxcLink>Header</DxcLink>
             </Link>
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <Link href="/components/sidenav/specifications" passHref>
               <DxcLink>Sidenav</DxcLink>
             </Link>
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             <Link href="/components/footer/specifications" passHref>
               <DxcLink>Footer</DxcLink>
             </Link>
-          </DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -48,12 +48,12 @@ const sections = [
           src={ApplicationLayoutAnatomy}
           alt="Application layout anatomy"
         />
-        <DxcList type="number">
-          <DxcText>Header</DxcText>
-          <DxcText>Main content</DxcText>
-          <DxcText>Footer</DxcText>
-          <DxcText>Sidenav</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Header</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Main content</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Footer</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Sidenav</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -63,8 +63,8 @@ const sections = [
       {
         title: "WAI-ARIA",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 newWindow
@@ -72,8 +72,8 @@ const sections = [
               >
                 Clear Layout and Design
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -82,7 +82,7 @@ const sections = [
 
 const ApplicationLayoutSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -90,7 +90,7 @@ const ApplicationLayoutSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/application-layout/specs/ApplicationLayoutSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

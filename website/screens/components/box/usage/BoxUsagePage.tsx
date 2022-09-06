@@ -1,4 +1,8 @@
-import { DxcList, DxcStack, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcBulletedList,
+  DxcFlex,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import Code from "@/common/Code";
@@ -10,20 +14,20 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Organize the group layout with the information presented clearly by
           applying the styles in the box container.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Box can be reused accros the UI, avoid using different variants in the
           same page.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Use always a minimun padding and always leave enough margin when
           stacking boxes so the shadows don&#39;t overlap.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
   },
   {
@@ -31,7 +35,7 @@ const sections = [
     content: (
       <>
         <Example example={variants} />
-        <DxcText as="p">
+        <DxcParagraph>
           The <Code>shadow-default</Code> and <Code>shadow-high</Code> variants
           can be used to create clear distictions between sections of content
           without the use of borders or separators, the <Code>no-shadow</Code>{" "}
@@ -39,23 +43,23 @@ const sections = [
           application
           <Code>background-color</Code> different than white, the limits of the
           box are goig to be clearly visible no matter the variant chosen.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
   {
     title: "Content",
     content: (
-      <DxcText as="p">
+      <DxcParagraph>
         Any type of content can be place inside the box component.
-      </DxcText>
+      </DxcParagraph>
     ),
   },
 ];
 
 const BoxUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -63,7 +67,7 @@ const BoxUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/box/usage/BoxUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

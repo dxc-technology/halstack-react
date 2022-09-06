@@ -1,19 +1,17 @@
-import { DxcHeader, DxcButton } from "@dxc-technology/halstack-react";
-
 const code = `() => {
   return (
-    <DxcHeader
-      underlined={false}
-      margin="medium"
-      content={<DxcButton label={"Custom Button"} />}
-      responsiveContent={(closeHandler) => <DxcButton label={"Custom Button"} onClick={closeHandler} />}
-    />
+    <iframe
+      src="https://codesandbox.io/embed/header-custom-content-p8kiqg?fontsize=14&hidenavigation=1&theme=dark"
+      width="100%"
+      height="500px"
+      border="0"
+      borderRadius="4px"
+      overflow="hidden"
+      title="Header - Custom content"
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    ></iframe>
   );
 }`;
 
-const scope = {
-  DxcHeader,
-  DxcButton,
-};
-
-export default { code, scope };
+export default { code };

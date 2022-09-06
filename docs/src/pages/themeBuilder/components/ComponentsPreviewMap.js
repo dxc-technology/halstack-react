@@ -7,11 +7,8 @@ import SliderPreview from "./previews/Slider";
 import PaginatorPreview from "./previews/Paginator";
 import DropdownPreview from "./previews/Dropdown";
 import AccordionPreview from "./previews/Accordion";
-import SideNavPreview from "./previews/Sidenav";
 import ProgressBarPreview from "./previews/ProgressBar";
-import FooterPreview from "./previews/Footer";
 import WizardPreview from "./previews/Wizard";
-import HeaderPreview from "./previews/Header";
 import SpinnerPreview from "./previews/Spinner";
 import TabsPreview from "./previews/Tabs";
 import ToggleGroupPreview from "./previews/ToggleGroup";
@@ -76,14 +73,6 @@ const SampleComponents = [
     preview: FileInputPreview,
   },
   {
-    name: "footer",
-    preview: FooterPreview,
-  },
-  {
-    name: "header",
-    preview: HeaderPreview,
-  },
-  {
     name: "heading",
     preview: HeadingPreview,
   },
@@ -114,10 +103,6 @@ const SampleComponents = [
   {
     name: "select",
     preview: SelectPreview,
-  },
-  {
-    name: "sidenav",
-    preview: SideNavPreview,
   },
   {
     name: "slider",

@@ -1,9 +1,9 @@
-import { DxcAlert, DxcInset, DxcStack } from "@dxc-technology/halstack-react";
+import { DxcAlert, DxcInset, DxcFlex } from "@dxc-technology/halstack-react";
 
 const code = `() => {
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="center">
+      <DxcFlex gap="2rem" justifyContent="center">
         <DxcAlert
           type="confirm"
           size="fillParent"
@@ -13,7 +13,7 @@ const code = `() => {
         >
           <DxcInset space="0.125rem">Custom content.</DxcInset>
         </DxcAlert>
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -21,7 +21,7 @@ const code = `() => {
 const scope = {
   DxcAlert,
   DxcInset,
-  DxcStack,
+  DxcFlex,
 };
 
 export default { code, scope };

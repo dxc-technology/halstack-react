@@ -1,4 +1,8 @@
-import { DxcText, DxcList, DxcStack } from "@dxc-technology/halstack-react";
+import {
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import Figure from "@/common/Figure";
@@ -14,46 +18,50 @@ const sections = [
   {
     title: "Usage",
     content: (
-      <DxcText as="p">
+      <DxcParagraph>
         Use text inputs in forms to help people enter, select and search for
         text. Common text input types include: usernames, descriptions, URLs,
         phone numbers, credit cards, emails, addresses or plain text searches.
-      </DxcText>
+      </DxcParagraph>
     ),
     subSections: [
       {
         title: "Do's",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Do use fixed-width inputs for content that has a specific, known
               length (e.g. postcode, phone number).
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Do use sentence for any input text case with standard, local
               grammar and punctuation rules.
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Do use helpful and clear text for labels, error messages and
               helper texts.
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "Don'ts",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Do not use text input for text longer than a single line (e.g.
               name, phone number). Use the textarea instead.
-            </DxcText>
-            <DxcText>Do not disable copy and paste.</DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Do not disable copy and paste.
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Do not display a pop-up error message after validating.
-            </DxcText>
-            <DxcText>Avoid masking label, keep it always visible.</DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
+              Avoid masking label, keep it always visible.
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -68,10 +76,10 @@ const sections = [
             title: "Clearing content",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   Clear actions allow user to remove the content of the text
                   input.
-                </DxcText>
+                </DxcParagraph>
                 <Figure caption="Example of text input with a clear content action button">
                   <Image
                     src={inputActionsClearImage}
@@ -85,9 +93,9 @@ const sections = [
             title: "Custom actions",
             content: (
               <>
-                <DxcText as="p">
+                <DxcParagraph>
                   Text inputs can have an additional custom action.
-                </DxcText>
+                </DxcParagraph>
                 <Figure caption="Example of text input with an additional action">
                   <Image
                     src={inputActionsCustom}
@@ -103,10 +111,10 @@ const sections = [
         title: "Prefixes and suffixes",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Prefixes and suffixes help the user to understand the purpose of
               the text input.
-            </DxcText>
+            </DxcParagraph>
             <Example example={prefixSuffix} />
           </>
         ),
@@ -117,11 +125,11 @@ const sections = [
     title: "Helper text",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           Helper text can be used as additional instructions to the user when
           filling in the form. It should be always visible even in a focus
           state.
-        </DxcText>
+        </DxcParagraph>
         <Example example={helperText} />
       </>
     ),
@@ -130,25 +138,25 @@ const sections = [
         title: "Usage",
         content: (
           <>
-            <DxcText as="p">Do:</DxcText>
-            <DxcList>
-              <DxcText>
+            <DxcParagraph>Do:</DxcParagraph>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
                 Keep helper text as short and specific as possible.
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Only use helper text when truly necessary to avoid overloading
                 the user.
-              </DxcText>
-              <DxcText>
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
                 Should give an example or an explanation of the field.
-              </DxcText>
-            </DxcList>
-            <DxcText as="p">Don&#39;t:</DxcText>
-            <DxcList>
-              <DxcText>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+            <DxcParagraph>Don&#39;t:</DxcParagraph>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
                 Helper text should not run longer than the input area.
-              </DxcText>
-            </DxcList>
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
           </>
         ),
       },
@@ -158,7 +166,7 @@ const sections = [
 
 const TextInputUsagePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -166,7 +174,7 @@ const TextInputUsagePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/text-input/usage/TextInputUsagePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

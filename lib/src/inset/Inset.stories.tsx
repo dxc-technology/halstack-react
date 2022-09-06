@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "../../.storybook/components/Title";
 import styled from "styled-components";
-import DxcStack from "./../stack/Stack";
+import DxcFlex from "./../flex/Flex";
 import DxcInset from "./Inset";
 
 export default {
@@ -203,15 +203,15 @@ export const Chromatic = () => (
         <Placeholder></Placeholder>
       </DxcInset>
     </Container>
-    <Title title="Inside a stack" level={4} />
+    <Title title="Inside a flex column" level={4} />
     <Container>
-      <DxcStack gutter="0.75rem" divider>
+      <DxcFlex direction="column" gap="0.75rem">
         <Placeholder></Placeholder>
         <DxcInset top="0.25rem" right="1.5rem" bottom="2rem" left="4rem">
           <Placeholder></Placeholder>
         </DxcInset>
         <Placeholder></Placeholder>
-      </DxcStack>
+      </DxcFlex>
     </Container>
   </>
 );

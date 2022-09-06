@@ -1,8 +1,8 @@
 import {
   DxcTable,
-  DxcStack,
-  DxcText,
-  DxcList,
+  DxcParagraph,
+  DxcBulletedList,
+  DxcFlex,
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import Image from "@/common/Image";
@@ -28,8 +28,8 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
-          Some other components defined in the design system are used in the
+        <DxcParagraph>
+          Some other components defined in the Design System are used in the
           table component as the{" "}
           <Link href="/components/checkbox" passHref>
             <DxcLink>checkbox</DxcLink>
@@ -44,7 +44,7 @@ const sections = [
           </Link>
           . For concrete specifications about states, please, consider to see
           the documentation of each component.
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
@@ -53,15 +53,15 @@ const sections = [
     content: (
       <>
         <Image src={anatomyImage} alt="Table component anatomy" />
-        <DxcList type="number">
-          <DxcText>Header</DxcText>
-          <DxcText>Header title</DxcText>
-          <DxcText>Sorting action</DxcText>
-          <DxcText>Body</DxcText>
-          <DxcText>Cell</DxcText>
-          <DxcText>Cell value</DxcText>
-          <DxcText>Paginator</DxcText>
-        </DxcList>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Header</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Header title</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Sorting action</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Body</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Cell</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Cell value</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Paginator</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -485,8 +485,8 @@ const sections = [
       {
         title: "WCAG",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
@@ -494,8 +494,8 @@ const sections = [
               >
                 Success Criterion 1.3.1: Info and Relationships
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence"
@@ -503,8 +503,8 @@ const sections = [
               >
                 Success Criterion 1.3.2: Meaningful Sequence
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
@@ -512,8 +512,8 @@ const sections = [
               >
                 Success Criterion 2.1.1: Keyboard
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order"
@@ -521,8 +521,8 @@ const sections = [
               >
                 Success Criterion 2.4.3: Focus Order
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels"
@@ -530,8 +530,8 @@ const sections = [
               >
                 Success Criterion 2.4.6: Headings and Labels
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible"
@@ -539,8 +539,8 @@ const sections = [
               >
                 Success Criterion 2.4.7: Focus Visible
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value"
@@ -548,15 +548,15 @@ const sections = [
               >
                 Success Criterion 4.1.2: Name, Role, Value
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "WAI-ARIA",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring Practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/#table"
@@ -564,8 +564,8 @@ const sections = [
               >
                 3.23 Table
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring Practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/examples/table/sortable-table.html"
@@ -573,8 +573,8 @@ const sections = [
               >
                 Sortable Table Example
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -583,7 +583,7 @@ const sections = [
 
 const TableSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -591,7 +591,7 @@ const TableSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/table/specs/TableSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

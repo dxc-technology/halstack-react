@@ -1,7 +1,7 @@
 import {
   DxcTextInput,
   DxcButton,
-  DxcStack,
+  DxcFlex,
   DxcInset,
 } from "@dxc-technology/halstack-react";
 import { useRef, useState } from "react";
@@ -16,14 +16,14 @@ const code = `() => {
 
   return (
     <DxcInset space="2rem">
-      <DxcStack gutter="large" align="start">
+      <DxcFlex direction="column" gap="2rem" alignItems="flex-start">
         <DxcTextInput
           label="Enter your surname"
           defaultValue="Harris"
           ref={inputRef}
         />
         <DxcButton label="Submit" onClick={handleSubmit}></DxcButton>
-      </DxcStack>
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -32,7 +32,7 @@ const scope = {
   DxcTextInput,
   DxcButton,
   DxcInset,
-  DxcStack,
+  DxcFlex,
   useRef,
   useState,
 };
