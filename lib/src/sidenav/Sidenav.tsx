@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, useState } from "react";
+import React, { forwardRef, Ref, useMemo, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { responsiveSizes } from "../common/variables.js";
 import { useResponsiveSidenavVisibility } from "../layout/SidenavContext";
@@ -72,10 +72,18 @@ const Section = ({ children }: SidenavSectionPropsType): JSX.Element => (
 
 const Group = ({ children, title, collapsable = false, icon }: SidenavGroupPropsType): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
+  const selectedGroup = useMemo(() => {
+    return collapsed ? React.Children.toArray(children).some((child) => child["props"]?.selected) : false;
+  }, [collapsed, children]);
   return (
     <SidenavGroup>
       {collapsable && title ? (
-        <SidenavGroupTitleButton role="button" aria-expanded={!collapsed} onClick={() => setCollapsed(!collapsed)}>
+        <SidenavGroupTitleButton
+          role="button"
+          aria-expanded={!collapsed}
+          onClick={() => setCollapsed(!collapsed)}
+          selectedGroup={selectedGroup}
+        >
           <SidenavContent>
             {typeof icon === "string" ? <SidenavIcon src={icon} /> : icon}
             {title}
@@ -213,7 +221,7 @@ const SidenavGroupTitle = styled.span`
   padding: 0.5rem 1.2rem;
 `;
 
-const SidenavGroupTitleButton = styled.button`
+const SidenavGroupTitleButton = styled.button<{ selectedGroup: boolean }>`
   all: unset;
   cursor: pointer;
   justify-content: space-between;
@@ -230,17 +238,24 @@ const SidenavGroupTitleButton = styled.button`
   align-items: center;
   margin: 0px;
   padding: 0.5rem 1.2rem;
-  &:focus {
+  &:focus-visible {
     outline: 2px solid ${(props) => props.theme.linkFocusColor};
     outline-offset: -2px;
   }
   &:hover {
-    background-color: ${(props) => props.theme.groupTitleHoverBackgroundColor};
+    ${(props) =>
+      props.selectedGroup
+        ? `color: ${props.theme.groupTitleSelectedHoverFontColor}; background: ${props.theme.groupTitleSelectedHoverBackgroundColor};`
+        : `color: ${props.theme.groupTitleFontColor}; background: ${props.theme.groupTitleHoverBackgroundColor};`}
   }
   &:active {
     background-color: ${(props) => props.theme.groupTitleActiveBackgroundColor};
+    color: ${(props) => props.theme.groupTitleFontColor};
   }
-
+  ${(props) =>
+    props.selectedGroup
+      ? `color: ${props.theme.groupTitleSelectedFontColor}; background: ${props.theme.groupTitleSelectedBackgroundColor};`
+      : `color: ${props.theme.groupTitleFontColor}; background: transparent;`}
   svg {
     width: 18px;
     height: auto;
