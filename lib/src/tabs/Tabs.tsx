@@ -198,7 +198,6 @@ type IconProps = {
 };
 
 const Tabs = styled.div<IconProps>`
-  background-color: #ffffff;
   min-height: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
   height: ${(props) =>
@@ -218,8 +217,7 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
   background-color: #ffffff;
   font-size: 1.25rem;
   color: #666666;
-  min-width: 48px;
-  width: 48px;
+  min-width: ${(props) => props.theme.scrollButtonsWidth};
   height: 100%;
   padding: 0;
   justify-content: center;
@@ -257,9 +255,9 @@ const ActiveIndicator = styled.span<ActiveIndicatorProps>`
   left: ${(props) => `${props.tabLeft}px`};
   width: ${(props) => `${props.tabWidth}px`};
   z-index: 2;
-  background-color: #5f249f;
+  background-color: ${(props) => props.theme.selectedUnderlineColor};
   bottom: 0;
-  height: 2px;
+  height: ${(props) => props.theme.selectedUnderlineThickness};
   position: absolute;
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;

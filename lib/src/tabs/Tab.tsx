@@ -61,7 +61,7 @@ type IconProps = {
 };
 
 const TabContainer = styled.button<IconProps>`
-  text-transform: none;
+  text-transform: ${(props) => props.theme.fontTextTransform};
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
@@ -70,7 +70,6 @@ const TabContainer = styled.button<IconProps>`
   line-height: 1.75;
   white-space: normal;
   letter-spacing: 0.02857em;
-  color: inherit;
   border: 0;
   cursor: pointer;
   margin: 0;
@@ -85,6 +84,7 @@ const TabContainer = styled.button<IconProps>`
   opacity: 0.7;
   border-bottom-style: solid;
   border-bottom-color: ${(props) => props.theme.dividerColor};
+  border-bottom-width: ${(props) => props.theme.dividerThickness};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
