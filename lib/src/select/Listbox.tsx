@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useState, useLayoutEffect, useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -20,11 +20,12 @@ const Listbox = ({
   optionalItem,
   searchable,
   handleOptionOnClick,
-  styles,
+  getSelectWidth,
 }: ListboxProps): JSX.Element => {
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
   const listboxRef = useRef(null);
+  const [styles, setStyles] = useState(null);
 
   let globalIndex = optional && !multiple ? 0 : -1; // index for options, starting from 0 to options.length -1
   const mapOptionFunc = (option, mapIndex) => {
@@ -88,6 +89,21 @@ const Listbox = ({
     const visualFocusedOptionEl = listboxRef?.current?.querySelectorAll("[role='option']")[visualFocusIndex];
     visualFocusedOptionEl?.scrollIntoView?.({ block: "nearest", inline: "start" });
   }, [visualFocusIndex]);
+
+  const handleResize = () => {
+    setStyles({ width: getSelectWidth() });
+  };
+
+  useLayoutEffect(() => {
+    handleResize();
+  } , [getSelectWidth]);
+  
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [getSelectWidth]);
 
   return (
     <ThemeProvider theme={colorsTheme.select}>
