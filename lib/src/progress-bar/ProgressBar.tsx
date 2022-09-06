@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
@@ -15,10 +15,13 @@ const DxcProgressBar = ({
 }: Props): JSX.Element => {
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
+  const [valueProgressBar, setValueProgressBar] = useState(0);
 
-  const [valueProgressBar] = useState(
-    value === null || value === undefined || value < 0 ? 0 : value >= 0 && value <= 100 ? value : 100
-  );
+  useEffect(() => {
+    setValueProgressBar(
+      value === null || value === undefined || value < 0 ? 0 : value >= 0 && value <= 100 ? value : 100
+    );
+  }, [value]);
 
   return (
     <ThemeProvider theme={colorsTheme.progressBar}>
