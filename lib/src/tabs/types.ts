@@ -44,6 +44,18 @@ export type TabIconProps = TabCommonProps & {
   icon: string | SVG;
 };
 
+export type TabProps = {
+  tab: TabLabelProps | TabIconProps;
+  active: boolean;
+  tabIndex: number;
+  hasLabelAndIcon: boolean;
+  iconPosition: "top" | "left";
+  ref: React.Ref<HTMLButtonElement>;
+  onClick: () => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+};
+
 type Props = {
   /**
    * An array of objects representing the tabs.
