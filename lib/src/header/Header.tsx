@@ -183,18 +183,12 @@ const HeaderContainer = styled.header<HeaderContainerProps>`
   display: flex;
   align-items: center;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
 `;
 
 const LogoAnchor = styled.a<{ interactuable: boolean }>`
-  ${(props) => {
-    if (!props.interactuable) {
-      return "cursor: default; outline:none;";
-    }
-    return "cursor: pointer;";
-  }}
+  ${(props) => (props.interactuable ? "cursor: pointer" : "cursor: default; outline:none")};
 `;
 
 const LogoImg = styled.img`
