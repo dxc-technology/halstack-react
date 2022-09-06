@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DropdownPropsType, { Margin, Space, Size } from "./types";
 import { spaces } from "../common/variables.js";
@@ -45,6 +45,7 @@ const DxcDropdown = ({
 
   const colorsTheme = useTheme();
   const triggerRef = useRef(null);
+  const menuRef = useRef(null);
 
   const handleOnOpenMenu = () => {
     changeIsOpen(true);
@@ -140,6 +141,11 @@ const DxcDropdown = ({
     },
     [onSelectOption, visualFocusIndex, options]
   );
+  
+  useLayoutEffect(() => {
+    const visualFocusedMenuItem = menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
+    visualFocusedMenuItem?.scrollIntoView?.({ block: "nearest", inline: "start" });
+  }, [visualFocusIndex]);
 
   const handleMenuResize = () => {
     const rect = triggerRef?.current?.getBoundingClientRect();
@@ -209,6 +215,7 @@ const DxcDropdown = ({
               menuItemOnClick={handleMenuItemOnClick}
               onKeyDown={handleMenuOnKeyDown}
               styles={menuStyles}
+              ref={menuRef}
             />
           </Popover.Content>
         </Popover.Root>
