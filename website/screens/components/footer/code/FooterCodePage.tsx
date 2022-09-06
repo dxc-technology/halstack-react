@@ -1,11 +1,8 @@
-import { DxcStack, DxcTable } from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
 import Code from "@/common/Code";
-import Example from "@/common/example/Example";
-import basicUsage from "./examples/basicUsage";
-import socialLinks from "./examples/socialLinks";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
 
 const sections = [
@@ -109,12 +106,22 @@ const sections = [
     title: "Examples",
     subSections: [
       {
-        title: "Basic usage",
-        content: <Example example={basicUsage} defaultIsVisible />,
-      },
-      {
-        title: "Social links",
-        content: <Example example={socialLinks} defaultIsVisible />,
+        title: "Footer in application layout",
+        content: (
+          <iframe
+            src="https://codesandbox.io/embed/rough-https-9oduyh?fontsize=14&hidenavigation=1&theme=dark"
+            style={{
+              width: "100%",
+              minHeight: "500px",
+              border: "0",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+            title="Footer and header"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          ></iframe>
+        ),
       },
     ],
   },
@@ -122,7 +129,7 @@ const sections = [
 
 const FooterCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -130,7 +137,7 @@ const FooterCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/footer/code/FooterCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -3,17 +3,15 @@ import {
   DxcTag,
   DxcHeading,
   DxcLink,
-  DxcFooter,
   DxcApplicationLayout,
 } from "@dxc-technology/halstack-react";
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Link } from "react-router-dom";
-
 import Section from "../components/common/Section";
-import githubLogo from "./github-logo.png";
-import dxcLogo from "./dxc-logo.svg";
+import githubLogo from "../../common/github-logo.svg";
+import dxcLogo from "../../common/dxc-logo.svg";
 import reactLogo from "../../common/react-icon.png";
 import Header from "../../common/Header";
 
@@ -299,12 +297,18 @@ function Support() {
 
 function Overview() {
   return (
-    <DxcApplicationLayout>
-      <DxcApplicationLayout.Header>
-        <StyledHeader>
-          <Header></Header>
-        </StyledHeader>
-      </DxcApplicationLayout.Header>
+    <DxcApplicationLayout
+      header={<Header />}
+      footer={
+        <DxcApplicationLayout.Footer
+          bottomLinks={[
+            { text: "Twitter", href: "http://www.google.com" },
+            { text: "Facebook", href: "http://www.google.com" },
+            { text: "Instagram", href: "http://www.google.com" },
+          ]}
+        ></DxcApplicationLayout.Footer>
+      }
+    >
       <DxcApplicationLayout.Main>
         <Content>
           <OverviewHeader>
@@ -356,23 +360,9 @@ function Overview() {
           <Support></Support>
         </Content>
       </DxcApplicationLayout.Main>
-      <DxcApplicationLayout.Footer>
-        <DxcFooter
-          bottomLinks={[
-            { text: "Twitter", href: "http://www.google.com" },
-            { text: "Facebook", href: "http://www.google.com" },
-            { text: "Instagram", href: "http://www.google.com" },
-          ]}
-        ></DxcFooter>
-      </DxcApplicationLayout.Footer>
     </DxcApplicationLayout>
   );
 }
-const StyledHeader = styled.div`
-  width: 100%;
-  position: fixed;
-  z-index: 10;
-`;
 
 const Content = styled.div`
   max-width: 1120px;

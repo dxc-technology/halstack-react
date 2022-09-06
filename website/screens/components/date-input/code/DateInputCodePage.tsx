@@ -1,4 +1,8 @@
-import { DxcStack, DxcTable, DxcText } from "@dxc-technology/halstack-react";
+import {
+  DxcFlex,
+  DxcTable,
+  DxcParagraph,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -213,11 +217,11 @@ const sections = [
         title: "Error handling",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               The component behaviour varies depending on the value of the{" "}
               <Code>error</Code>. We recommend reading the description of the
               prop carefully to fully understand the following example.
-            </DxcText>
+            </DxcParagraph>
             <Example example={errorHandling} defaultIsVisible />
           </>
         ),
@@ -228,7 +232,7 @@ const sections = [
 
 const DateInputCodePage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -236,7 +240,7 @@ const DateInputCodePage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/date-input/code/DateInputCodePage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

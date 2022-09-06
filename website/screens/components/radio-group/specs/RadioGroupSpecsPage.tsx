@@ -1,7 +1,7 @@
 import {
-  DxcList,
-  DxcStack,
-  DxcText,
+  DxcBulletedList,
+  DxcParagraph,
+  DxcFlex,
   DxcTable,
   DxcLink,
 } from "@dxc-technology/halstack-react";
@@ -29,7 +29,7 @@ const sections = [
     title: "States",
     content: (
       <>
-        <DxcText as="p">
+        <DxcParagraph>
           The following states are defined in the life cycle of the component:{" "}
           <strong>unselected enabled</strong>, <strong>unselected hover</strong>
           , <strong>unselected focus</strong>,{" "}
@@ -37,15 +37,15 @@ const sections = [
           <strong>selected enabled</strong>, <strong>selected hover</strong>,{" "}
           <strong>selected focus</strong> and <strong>selected disabled</strong>
           .
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Radio button states">
           <Image src={radioGroupBaseStates} alt="Radio button input states" />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           The following states are defined in the life cycle of the component:{" "}
           <strong>enabled</strong>, <strong>error</strong>,{" "}
           <strong>readonly</strong> and <strong>disabled</strong>.
-        </DxcText>
+        </DxcParagraph>
         <Figure caption="Radio group states">
           <Image src={radioGroupStates} alt="Radio group states" />
         </Figure>
@@ -57,13 +57,13 @@ const sections = [
     content: (
       <Figure
         caption={
-          <DxcList type="number">
-            <DxcText>Label</DxcText>
-            <DxcText>Helper text</DxcText>
-            <DxcText>Radio input</DxcText>
-            <DxcText>Radio input label</DxcText>
-            <DxcText>Error message</DxcText>
-          </DxcList>
+          <DxcBulletedList type="number">
+            <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+            <DxcBulletedList.Item>Helper text</DxcBulletedList.Item>
+            <DxcBulletedList.Item>Radio input</DxcBulletedList.Item>
+            <DxcBulletedList.Item>Radio input label</DxcBulletedList.Item>
+            <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
+          </DxcBulletedList>
         }
       >
         <Image src={radioGroupAnatomy} alt="Radio button component anatomy" />
@@ -574,7 +574,9 @@ const sections = [
                 </tr>
               </tbody>
             </DxcTable>
-            <DxcText as="p">(*) Radio item = Radio input + Radio label</DxcText>
+            <DxcParagraph>
+              (*) Radio item = Radio input + Radio label
+            </DxcParagraph>
           </>
         ),
       },
@@ -626,10 +628,10 @@ const sections = [
         title: "Margin",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               Margin can be set independently for <Code>top</Code>,{" "}
               <Code>right</Code>, <Code>bottom</Code>, and <Code>left</Code>.
-            </DxcText>
+            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -693,8 +695,8 @@ const sections = [
       {
         title: "WCAG 2.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
@@ -702,8 +704,8 @@ const sections = [
               >
                 SC 1.3.1: Info and Relationships
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
@@ -711,8 +713,8 @@ const sections = [
               >
                 SC 3.3.2: Labels or Instructions
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               Understanding WCAG 2.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html"
@@ -720,15 +722,15 @@ const sections = [
               >
                 SC 2.4.6: Headings and Labels
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
       {
         title: "WAI-ARIA 1.2",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring Practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/#radiobutton"
@@ -736,8 +738,8 @@ const sections = [
               >
                 3.12 Radio group
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -746,7 +748,7 @@ const sections = [
 
 const RadioGroupSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -754,7 +756,7 @@ const RadioGroupSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/radio-group/specs/RadioGroupSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

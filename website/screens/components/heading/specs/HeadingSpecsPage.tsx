@@ -1,8 +1,8 @@
 import {
-  DxcList,
-  DxcStack,
+  DxcBulletedList,
+  DxcFlex,
   DxcTable,
-  DxcText,
+  DxcParagraph,
   DxcLink,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
@@ -17,11 +17,11 @@ const sections = [
       {
         title: "Color",
         content: (
-          <DxcText as="p">
+          <DxcParagraph>
             An inherit color from the definition of the application is received,
             so the component could change his color based on that parameter.
             There is no specific color tokens for this component.
-          </DxcText>
+          </DxcParagraph>
         ),
       },
       {
@@ -374,30 +374,30 @@ const sections = [
   {
     title: "Accessibility",
     content: (
-      <DxcList>
-        <DxcText>
+      <DxcBulletedList>
+        <DxcBulletedList.Item>
           Heading components should be in order. That means an{" "}
           <Code>Headings-H1</Code> is followed by an <Code>Headings-H2</Code>,
           an <Code>Headings-H2</Code> is followed by a <Code>Headings-H2</Code>{" "}
           or <Code>Headings-H3</Code> and so on.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Keep heading tags consistent. Inconsistently implementing headings can
           create confusion and frustration for users using assistive
           technologies.
-        </DxcText>
-        <DxcText>
+        </DxcBulletedList.Item>
+        <DxcBulletedList.Item>
           Headings are not interactive elements and therefore have no keyboard
           or pointer interaction.
-        </DxcText>
-      </DxcList>
+        </DxcBulletedList.Item>
+      </DxcBulletedList>
     ),
     subSections: [
       {
         title: "WCAG 2.1 Related Success Criterion",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               SC 1.3.1 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
@@ -405,8 +405,8 @@ const sections = [
               >
                 Info and relationships
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               SC 2.4.6 -{" "}
               <DxcLink
                 href="https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html"
@@ -414,8 +414,8 @@ const sections = [
               >
                 Headings and labels
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -424,7 +424,7 @@ const sections = [
 
 const HeadingSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -432,7 +432,7 @@ const HeadingSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/heading/specs/HeadingSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

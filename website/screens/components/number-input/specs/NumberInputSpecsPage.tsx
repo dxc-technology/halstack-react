@@ -1,8 +1,8 @@
 import {
-  DxcStack,
-  DxcText,
+  DxcParagraph,
+  DxcFlex,
   DxcLink,
-  DxcList,
+  DxcBulletedList,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import Figure from "@/common/Figure";
@@ -27,7 +27,7 @@ const sections = [
             alt="Design specifications of the number input component"
           />
         </Figure>
-        <DxcText as="p">
+        <DxcParagraph>
           The number input <Code>color</Code>, <Code>typography</Code>,{" "}
           <Code>border</Code>, <Code>spacing</Code>, <Code>width</Code> and{" "}
           <Code>margin</Code> specifications are inherited from the text input,
@@ -36,7 +36,7 @@ const sections = [
             <DxcLink>check the text input component documentation</DxcLink>
           </Link>
           .
-        </DxcText>
+        </DxcParagraph>
       </>
     ),
   },
@@ -47,11 +47,11 @@ const sections = [
         title: "Input",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong>, <strong>error</strong> and{" "}
               <strong>disabled</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Input states example">
               <Image src={numberInputSpecs} alt="Input states example" />
             </Figure>
@@ -62,11 +62,11 @@ const sections = [
         title: "Spin button",
         content: (
           <>
-            <DxcText as="p">
+            <DxcParagraph>
               States: <strong>enabled</strong>, <strong>hover</strong>,{" "}
               <strong>focus</strong>, <strong>active</strong> and{" "}
               <strong>disabled</strong>.
-            </DxcText>
+            </DxcParagraph>
             <Figure caption="Spin button states example">
               <Image src={numberInputStates} alt="Spin button states example" />
             </Figure>
@@ -83,21 +83,21 @@ const sections = [
           src={numberAnatomy}
           alt="Anatomy of the number input component"
         />
-        <DxcList type="number">
-          <DxcText>Label</DxcText>
-          <DxcText>
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>Label</DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Helper text <em>(Optional)</em>
-          </DxcText>
-          <DxcText>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
             Suffix <em>(Optional)</em>
-          </DxcText>
-          <DxcText>Container</DxcText>
-          <DxcText>Spin button increase</DxcText>
-          <DxcText>Spin button decrease</DxcText>
-          <DxcText>Error indicator</DxcText>
-          <DxcText>Error message</DxcText>
-          <DxcText>Value</DxcText>
-        </DxcList>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>Container</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Spin button increase</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Spin button decrease</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error indicator</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Value</DxcBulletedList.Item>
+        </DxcBulletedList>
       </>
     ),
   },
@@ -107,8 +107,8 @@ const sections = [
       {
         title: "WAI-ARIA",
         content: (
-          <DxcList>
-            <DxcText>
+          <DxcBulletedList>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.2/#spinbutton"
@@ -116,8 +116,8 @@ const sections = [
               >
                 3.21 Spinbutton
               </DxcLink>
-            </DxcText>
-            <DxcText>
+            </DxcBulletedList.Item>
+            <DxcBulletedList.Item>
               WAI-ARIA Authoring practices 1.2 -{" "}
               <DxcLink
                 href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/spinbutton/datepicker-spinbuttons.html"
@@ -125,8 +125,8 @@ const sections = [
               >
                 "Date Picker Spin Button" design pattern
               </DxcLink>
-            </DxcText>
-          </DxcList>
+            </DxcBulletedList.Item>
+          </DxcBulletedList>
         ),
       },
     ],
@@ -135,7 +135,7 @@ const sections = [
 
 const NumberInputSpecsPage = () => {
   return (
-    <DxcStack gutter="xxlarge">
+    <DxcFlex direction="column" gap="4rem">
       <QuickNavContainerLayout>
         <QuickNavContainer
           sections={sections}
@@ -143,7 +143,7 @@ const NumberInputSpecsPage = () => {
         ></QuickNavContainer>
       </QuickNavContainerLayout>
       <DocFooter githubLink="https://github.com/dxc-technology/halstack-react/blob/master/website/screens/components/number-input/specs/NumberInputSpecsPage.tsx" />
-    </DxcStack>
+    </DxcFlex>
   );
 };
 

@@ -7,19 +7,7 @@ type Padding = {
   right?: Space;
 };
 
-type ChildrenType =
-  | AppLayoutHeaderPropsType
-  | AppLayoutMainPropsType
-  | AppLayoutFooterPropsType
-  | AppLayoutSidenavPropsType;
-
-export type AppLayoutHeaderPropsType = {
-  /**
-   * Everything between this tags will be displayed as a header, at the top of the screen.
-   * This is optional and if it is not specified, the DxcHeader will be shown by default.
-   */
-  children?: React.ReactNode;
-};
+type ChildrenType = AppLayoutMainPropsType | AppLayoutSidenavPropsType;
 
 export type AppLayoutMainPropsType = {
   /**
@@ -28,24 +16,15 @@ export type AppLayoutMainPropsType = {
   children: React.ReactNode;
 };
 
-export type AppLayoutFooterPropsType = {
-  /**
-   * Everything between the tags will be displayed as a footer, at the bottom of the screen.
-   * This is optional and if it is not specified, the DxcFooter will be shown by default.
-   */
-  children?: React.ReactNode;
-};
-
 export type AppLayoutSidenavPropsType = {
   /**
-   * Size of the padding to be applied to the custom area ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
-   * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different padding sizes.
-   */
-  padding?: Space | Padding;
-  /**
-   * The area inside the sidenav. This area can be used to render custom content.
+   * The area inside the sidenav. This area can be used to render the content inside the sidenav.
    */
   children: React.ReactNode;
+  /**
+   * The area assigned to render the sidenav title. It is highly recommended to use the sidenav title.
+   */
+  title?: React.ReactNode;
 };
 
 type AppLayoutPropsType = {
@@ -54,6 +33,18 @@ type AppLayoutPropsType = {
    * visibility of the sidenav.
    */
   visibilityToggleLabel?: string;
+  /**
+   * Header content.
+   */
+  header?: React.ReactNode;
+  /**
+   * Sidenav content
+   */
+  sidenav?: React.ReactNode;
+  /**
+   * Footer content
+   */
+  footer?: React.ReactNode;
   /**
    * The area inside the sidenav. This area can be used to render custom content.
    */

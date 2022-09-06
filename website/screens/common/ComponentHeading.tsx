@@ -1,4 +1,4 @@
-import { DxcHeading, DxcRow } from "@dxc-technology/halstack-react";
+import { DxcHeading, DxcFlex } from "@dxc-technology/halstack-react";
 import React from "react";
 import styled from "styled-components";
 
@@ -9,10 +9,10 @@ type ComponentHeadingProps = {
 
 const ComponentHeading = ({ name, status }: ComponentHeadingProps) => {
   return (
-    <DxcRow align="center" gutter="medium">
+    <DxcFlex alignItems="center" gap="1.5rem">
       <DxcHeading level={1} text={name} weight="bold" />
       <StatusTag status={status}>{status}</StatusTag>
-    </DxcRow>
+    </DxcFlex>
   );
 };
 
