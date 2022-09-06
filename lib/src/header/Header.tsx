@@ -39,13 +39,28 @@ const HeaderDropdown = styled.div`
 `;
 
 const getLogoElement = (themeInput, logoLabel) => {
-  if (!themeInput) {
-    return dxcLogo;
-  }
-  if (typeof themeInput === "string") {
-    return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
-  }
-  return themeInput;
+  if (!themeInput) return dxcLogo;
+  else if (typeof themeInput === "string") return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
+  else return themeInput;
+};
+
+type ContentProps = {
+  isResponsive: boolean;
+  responsiveContent: (closeHandler: () => void) => React.ReactNode;
+  handleMenu: () => void;
+  padding: Padding | Space;
+  content: React.ReactNode;
+};
+
+const Content = ({ isResponsive, responsiveContent, handleMenu, padding, content }: ContentProps) => {
+  const backgroundType = useContext(BackgroundColorContext);
+  return isResponsive ? (
+    <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>
+  ) : (
+    <ContentContainer padding={padding} backgroundType={backgroundType}>
+      {content}
+    </ContentContainer>
+  );
 };
 
 const DxcHeader = ({
@@ -65,17 +80,7 @@ const DxcHeader = ({
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const handleResize = () => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches && !isResponsive);
-  };
-  const ContentContainerComponent = () => {
-    const backgroundType = useContext(BackgroundColorContext);
-    return (
-      (isResponsive && <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>) || (
-        <ContentContainer padding={padding} backgroundType={backgroundType}>
-          {content}
-        </ContentContainer>
-      )
-    );
+    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
   };
 
   const handleMenu = () => {
@@ -95,15 +100,16 @@ const DxcHeader = ({
   }, [colorsTheme.header.logoResponsive]);
 
   useEffect(() => {
-    if (ref.current) {
-      window.addEventListener("resize", handleResize);
-      handleResize();
-    }
-
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [setIsResponsive]);
+
+  useEffect(() => {
+    !isResponsive && setIsMenuVisible(false);
+  }, [isResponsive, setIsMenuVisible]);
 
   return (
     <ThemeProvider theme={colorsTheme.header}>
@@ -123,25 +129,33 @@ const DxcHeader = ({
                 <HamburguerTitle>Menu</HamburguerTitle>
               </HamburguerItem>
             </ChildContainer>
-            {
-              <div>
-                <ResponsiveMenu hasVisibility={isMenuVisible}>
-                  <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                  <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
-                    <ContentContainerComponent />
-                  </BackgroundColorProvider>
-                  <CloseContainer tabIndex={tabIndex} onClick={handleMenu} className="closeIcon">
-                    {closeIcon}
-                  </CloseContainer>
-                </ResponsiveMenu>
-                <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
-              </div>
-            }
+            <ResponsiveMenu hasVisibility={isMenuVisible}>
+              <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
+              <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
+                <Content
+                  isResponsive={isResponsive}
+                  responsiveContent={responsiveContent}
+                  handleMenu={handleMenu}
+                  padding={padding}
+                  content={content}
+                />
+              </BackgroundColorProvider>
+              <CloseContainer tabIndex={tabIndex} onClick={handleMenu} className="closeIcon">
+                {closeIcon}
+              </CloseContainer>
+            </ResponsiveMenu>
+            <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
           </MainContainer>
         )}
         {!isResponsive && (
           <BackgroundColorProvider color={colorsTheme.header.backgroundColor}>
-            <ContentContainerComponent />
+            <Content
+              isResponsive={isResponsive}
+              responsiveContent={responsiveContent}
+              handleMenu={handleMenu}
+              padding={padding}
+              content={content}
+            />
           </BackgroundColorProvider>
         )}
       </HeaderContainer>
@@ -283,7 +297,7 @@ const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
     width: ${(props) => props.theme.menuTabletWidth};
   }
 
-  @media not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem)) {
+  @media (not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem))) {
     //mobile phones
     width: ${(props) => props.theme.menuMobileWidth};
   }
