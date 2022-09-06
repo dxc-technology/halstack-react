@@ -14,9 +14,11 @@ export const Chromatic = () => (
       <Title title="Without labels" theme="light" level={4} />
       <DxcProgressBar value={50} showValue />
       <Title title="With helperText" theme="light" level={4} />
-      <DxcProgressBar helperText="Helper text" value={50} showValue />
+      <DxcProgressBar helperText="Helper text" value={24} showValue />
       <Title title="Without default value" theme="light" level={4} />
       <DxcProgressBar label="Loading..." showValue />
+      <Title title="With full value" theme="light" level={4} />
+      <DxcProgressBar label="Loading..." value={100} showValue />
     </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
