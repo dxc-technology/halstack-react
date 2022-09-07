@@ -46,8 +46,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const refDate = ref || useRef(null);
 
     const handleCalendarOnKeyDown = (event) => {
-      switch (event.keyCode) {
-        case 27: // Esc
+      switch (event.key) {
+        case "Esc":
+        case "Escape":
           event.preventDefault();
           setIsOpen(false);
           break;
