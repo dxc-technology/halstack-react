@@ -110,3 +110,31 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+export const ScrollableTabs = () => (
+  <>
+    <ExampleContainer>
+      <Title title="Only label" theme="light" level={4} />
+      <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered tabs" theme="light" level={4} />
+      <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused tabs" theme="light" level={4} />
+      <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived tabs" theme="light" level={4} />
+      <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+  </>
+);
+
+ScrollableTabs.parameters = {
+  viewport: {
+    defaultViewport: "iphonex",
+  },
+  chromatic: { viewports: [720] },
+};

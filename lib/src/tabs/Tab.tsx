@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, useRef } from "react";
+import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
 import { TabProps } from "./types";
 import DxcBadge from "../badge/Badge";
@@ -84,7 +84,6 @@ const TabContainer = styled.button<IconProps>`
   opacity: 0.7;
   border-bottom-style: solid;
   border-bottom-color: ${(props) => props.theme.dividerColor};
-  border-bottom-width: ${(props) => props.theme.dividerThickness};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
