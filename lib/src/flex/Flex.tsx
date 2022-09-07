@@ -24,12 +24,12 @@ const Flex = styled.div<FlexPropsType>`
     justify-content: ${justifyContent}; 
     align-items: ${alignItems};
     align-content: ${alignContent};
+    align-self: ${alignSelf};
     gap: ${typeof gap === "object" ? `${gap.rowGap} ${gap.columnGap}` : gap};
     order: ${order};
     flex-grow: ${grow};
     flex-shrink: ${shrink};
     flex-basis: ${basis};
-    align-self: ${alignSelf};
   `}
 `;
 
