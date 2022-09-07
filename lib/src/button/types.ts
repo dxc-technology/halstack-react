@@ -5,7 +5,7 @@ export type Margin = {
   left?: Space;
   right?: Space;
 };
-export type SVG = React.SVGProps<SVGSVGElement>;
+export type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type Props = {
   /**
