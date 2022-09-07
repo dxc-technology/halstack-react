@@ -105,11 +105,11 @@ const DxcHeader = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [setIsResponsive]);
+  }, []);
 
   useEffect(() => {
     !isResponsive && setIsMenuVisible(false);
-  }, [isResponsive, setIsMenuVisible]);
+  }, [isResponsive]);
 
   return (
     <ThemeProvider theme={colorsTheme.header}>
@@ -140,7 +140,7 @@ const DxcHeader = ({
                   content={content}
                 />
               </BackgroundColorProvider>
-              <CloseContainer tabIndex={tabIndex} onClick={handleMenu} className="closeIcon">
+              <CloseContainer tabIndex={tabIndex} onClick={handleMenu} aria-label="closeIcon">
                 {closeIcon}
               </CloseContainer>
             </ResponsiveMenu>
@@ -243,13 +243,15 @@ const ContentContainer = styled.div<ContentContainerProps>`
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
-const HamburguerItem = styled.div`
+const HamburguerItem = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 54px;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
   :hover {
     background-color: ${(props) => props.theme.hamburguerHoverColor};
   }
