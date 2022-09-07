@@ -13,8 +13,8 @@
   "main": "./main.js",
   "types": "./main.d.ts",
   "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "styled-components": "^5.0.1"
   },
   "dependencies": {
@@ -56,9 +56,9 @@
     "@storybook/addon-links": "^6.4.9",
     "@storybook/react": "^6.4.9",
     "@storybook/testing-library": "0.0.7",
-    "@testing-library/react": "^11.2.5",
+    "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^12.6.3",
-    "@types/react": "16.9.5",
+    "@types/react": "^18.0.18",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "chromatic": "^6.3.3",
@@ -73,8 +73,8 @@
     "eslint-plugin-storybook": "^0.5.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.5.4",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-test-renderer": "^16.8.6",
     "storybook-addon-pseudo-states": "^1.0.0",
     "styled-components": "^5.0.1",
