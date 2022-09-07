@@ -6,7 +6,7 @@ export type Margin = {
   right?: Space;
 };
 export type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
-type SVG = React.SVGProps<SVGSVGElement>;
+type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 export type Option = {
   /**

@@ -1,6 +1,5 @@
 import React from "react";
-import { userEvent, within, waitFor } from "@storybook/testing-library";
-import { fireEvent } from "@testing-library/react";
+import { userEvent, within, fireEvent } from "@storybook/testing-library";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import DxcHeader from "../header/Header";
 import DxcFooter from "../footer/Footer";
 import DxcSidenav from "../sidenav/Sidenav";
@@ -74,17 +74,17 @@ const DxcApplicationLayout = ({
     setIsSidenavVisibleResponsive((isSidenavVisibleResponsive) => !isSidenavVisibleResponsive);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [setIsResponsive]);
+  }, []);
 
   useEffect(() => {
     !isResponsive && setIsSidenavVisibleResponsive(false);
-  }, [isResponsive, setIsSidenavVisibleResponsive]);
+  }, [isResponsive]);
 
   return (
     <ApplicationLayoutContainer

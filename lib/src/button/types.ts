@@ -1,19 +1,19 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
+export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement>;
+export type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type Props = {
   /**
-   * Text to be placed next to the button.
+   * Text to be placed in the button.
    */
   label?: string;
   /**
-   * Uses one of the available button modes.
+   * The available button modes.
    */
   mode?: "primary" | "secondary" | "text";
   /**
@@ -25,11 +25,11 @@ type Props = {
    */
   iconPosition?: "before" | "after";
   /**
-   * This prop corresponds to the 'type' prop of the button in html.
+   * 'type' html prop of the button.
    */
   type?: "button" | "reset" | "submit";
   /**
-   * Element or path used as the icon that will be placed next to the button label.
+   * Element or path used as the icon that will be placed next to the label.
    */
   icon?: string | SVG;
   /**
