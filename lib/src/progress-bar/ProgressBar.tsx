@@ -47,7 +47,7 @@ const DxcProgressBar = ({
           >
             <LinearProgressBar
               backgroundType={backgroundType}
-              variant={showValue ? "determinate" : "indeterminate"}
+              variant={value === null || value === undefined ? "indeterminate" : "determinate"}
               container="first"
               value={valueProgressBar}
             ></LinearProgressBar>
