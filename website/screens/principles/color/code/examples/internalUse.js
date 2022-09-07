@@ -16,7 +16,7 @@ const code = `() => {
   };
   return (
     <HalstackProvider advancedTheme={customTheme}>
-      <DxcInset space="1rem">
+      <DxcInset space="2rem">
         <DxcAccordion isExpanded label="Accordion">
           <DxcInset space="2rem">
             <DxcTextInput label="Enter your surname" defaultValue="Harris" />
