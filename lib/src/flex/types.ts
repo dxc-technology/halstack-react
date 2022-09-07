@@ -35,12 +35,12 @@ type Props = {
     | "space-around"
     | "space-evenly"
     | "stretch";
+  alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
   gap?: string | Gap;
   order?: number;
   grow?: number;
   shrink?: number;
   basis?: string;
-  alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
   as?: keyof HTMLElementTagNameMap;
   children: React.ReactNode;
 };
