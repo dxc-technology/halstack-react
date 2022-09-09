@@ -132,9 +132,9 @@ const DxcHeader = ({
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <ResponsiveIconsContainer>
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <CloseContainer tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
+                <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
                   {closeIcon}
-                </CloseContainer>
+                </CloseAction>
               </ResponsiveIconsContainer>
               <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
                 <Content
@@ -317,20 +317,21 @@ const ResponsiveIconsContainer = styled.div`
   align-items: center;
 `;
 
-const CloseContainer = styled.button`
+const CloseAction = styled.button`
   cursor: pointer;
-  :focus {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  :focus,
+  :focus-visible {
     outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
   svg {
     width: 24px;
     height: 24px;
   }
-  width: 24px;
-  height: 24px;
-  border: none;
-  background-color: transparent;
-  padding: 0px;
 `;
 
 const MenuContent = styled.div<{ backgroundType: "dark" | "light" }>`
