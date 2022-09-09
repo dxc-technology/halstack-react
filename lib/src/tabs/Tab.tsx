@@ -8,26 +8,6 @@ const Tab = forwardRef(
     { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabProps,
     ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
-    const getLabelForTab = (tab) => (
-      <ParentLabelSpan>
-        <MainLabelContainer hasBadge={tab.notificationNumber}>
-          <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            {tab.icon && (
-              <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-                {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
-              </TabIconContainer>
-            )}
-            <LabelTextContainer>{tab.label}</LabelTextContainer>
-          </TabLabelContainer>
-        </MainLabelContainer>
-        {tab.notificationNumber && tab.notificationNumber !== false && (
-          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-            <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
-          </BadgeContainer>
-        )}
-      </ParentLabelSpan>
-    );
-
     return (
       <TabContainer
         role="tab"
@@ -49,7 +29,23 @@ const Tab = forwardRef(
           onMouseLeave();
         }}
       >
-        {getLabelForTab(tab)}
+        <ParentLabelSpan>
+          <MainLabelContainer hasBadge={tab.notificationNumber}>
+            <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+              {tab.icon && (
+                <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+                  {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
+                </TabIconContainer>
+              )}
+              <LabelTextContainer>{tab.label}</LabelTextContainer>
+            </TabLabelContainer>
+          </MainLabelContainer>
+          {tab.notificationNumber && tab.notificationNumber && (
+            <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+              <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
+            </BadgeContainer>
+          )}
+        </ParentLabelSpan>
       </TabContainer>
     );
   }
@@ -158,7 +154,7 @@ const BadgeContainer = styled.div<IconProps>`
   height: 17px;
 `;
 
-const MainLabelContainer = styled.div<{ hasBadge: boolean }>`
+const MainLabelContainer = styled.div<{ hasBadge: number | boolean }>`
   display: flex;
   flex-direction: row;
   margin-left: ${(props) => (props.hasBadge && "35px") || "unset"};

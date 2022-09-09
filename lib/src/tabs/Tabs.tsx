@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 import Tab from "./Tab";
 import TabsPropsType, { Margin, Space } from "./types";
 
@@ -51,7 +52,6 @@ const DxcTabs = ({
   const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(defaultActiveTabIndex ?? 0);
   const colorsTheme = useTheme();
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
-
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
   const [translateScroll, setTranslateScroll] = useState(0);
@@ -59,13 +59,11 @@ const DxcTabs = ({
   const [leftIndicatorEnabled, setLeftIndicatorEnabled] = useState(false);
   const [countClick, setCountClick] = useState(0);
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
-
   const refTabs = useRef([]);
   const refTabList = useRef(null);
-
   const viewWidth = useResize(refTabList);
-
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
+  const translatedLabels = useTranslatedLabels();
 
   useEffect(() => {
     const sumWidth = refTabs?.current?.reduce(function (count, obj) {
@@ -124,7 +122,7 @@ const DxcTabs = ({
             leftIndicatorEnabled={leftIndicatorEnabled}
             enabled={enabledIndicator}
             aria-disabled="false"
-            aria-label="Scroll left"
+            aria-label={translatedLabels.tabs.scrollLeft}
             role="button"
           >
             {iconIndicator.left}
@@ -161,7 +159,7 @@ const DxcTabs = ({
             rightIndicatorEnabled={rightIndicatorEnabled}
             enabled={enabledIndicator}
             aria-disabled="false"
-            aria-label="Scroll right"
+            aria-label={translatedLabels.tabs.scrollRight}
             role="button"
           >
             {iconIndicator.right}
