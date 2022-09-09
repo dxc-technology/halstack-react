@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useMemo, useRef, useState, useCallback, useEffect } from "react";
+import React, { useMemo, useRef, useState, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -129,7 +129,6 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
     const [searchValue, setSearchValue] = useState("");
     const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
     const [isOpen, changeIsOpen] = useState(false);
-    const [listboxStyles, setListboxStyles] = useState(null);
 
     const selectRef = useRef(null);
     const selectSearchInputRef = useRef(null);
@@ -195,8 +194,9 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       }
     };
     const handleSelectOnKeyDown = (event) => {
-      switch (event.keyCode) {
-        case 40: // Arrow Down
+      switch (event.key) {
+        case "Down":
+        case "ArrowDown":
           event.preventDefault();
           singleSelectionIndex !== undefined &&
           (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
@@ -207,7 +207,8 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               });
           openOptions();
           break;
-        case 38: // Arrow Up
+        case "Up":
+        case "ArrowUp":
           event.preventDefault();
           singleSelectionIndex !== undefined &&
           (!isOpen || (visualFocusIndex === -1 && singleSelectionIndex > -1 && singleSelectionIndex <= lastOptionIndex))
@@ -217,12 +218,13 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
               );
           openOptions();
           break;
-        case 27: // Esc
+        case "Esc":
+        case "Escape":
           event.preventDefault();
           closeOptions();
           setSearchValue("");
           break;
-        case 13: // Enter
+        case "Enter":
           if (isOpen && visualFocusIndex >= 0) {
             let accLength = optional && !multiple ? 1 : 0;
             if (searchable) {
@@ -289,17 +291,10 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
       [handleSelectChangeValue, closeOptions, multiple]
     );
 
-    const handleListboxResize = () => {
+    const getSelectWidth = useCallback(() => {
       const rect = selectRef?.current?.getBoundingClientRect();
-      setListboxStyles({ width: rect?.width });
-    };
-    useEffect(() => {
-      handleListboxResize();
-      window.addEventListener("resize", handleListboxResize);
-      return () => {
-        window.removeEventListener("resize", handleListboxResize);
-      };
-    }, [setListboxStyles]);
+      return rect?.width;
+    }, []);
 
     return (
       <ThemeProvider theme={colorsTheme.select}>
@@ -328,7 +323,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 onFocus={handleSelectOnFocus}
                 onKeyDown={handleSelectOnKeyDown}
                 ref={selectRef}
-                tabIndex={tabIndex}
+                tabIndex={disabled ? -1 : tabIndex}
                 role="combobox"
                 aria-controls={optionsListId}
                 aria-disabled={disabled}
@@ -336,7 +331,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 aria-haspopup="listbox"
                 aria-labelledby={label ? selectLabelId : undefined}
                 aria-activedescendant={visualFocusIndex >= 0 ? `option-${visualFocusIndex}` : undefined}
-                aria-invalid={error ? "true" : "false"}
+                aria-invalid={error ? true : false}
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={!disabled && !optional}
               >
@@ -438,7 +433,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 optionalItem={optionalItem}
                 searchable={searchable}
                 handleOptionOnClick={handleOptionOnClick}
-                styles={listboxStyles}
+                getSelectWidth={getSelectWidth}
               />
             </Popover.Content>
           </Popover.Root>

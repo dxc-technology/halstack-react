@@ -67,6 +67,17 @@ const sections = [
           </td>
         </tr>
         <tr>
+          <td>
+            alignSelf: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'
+          </td>
+          <td>
+            <Code>'auto'</Code>
+          </td>
+          <td>
+            Sets <Code>align-self</Code> CSS property.
+          </td>
+        </tr>
+        <tr>
           <td>wrap: 'nowrap' | 'wrap' | 'wrap-reverse'</td>
           <td>
             <Code>'nowrap'</Code>

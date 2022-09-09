@@ -5,7 +5,7 @@ type Margin = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement>;
+type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type OptionGroup = {
   /**
@@ -193,7 +193,7 @@ export type ListboxProps = {
   optionalItem: Option;
   searchable: boolean;
   handleOptionOnClick: (option: Option) => void;
-  styles: { width: number };
+  getSelectWidth: () => number;
 };
 
 /**

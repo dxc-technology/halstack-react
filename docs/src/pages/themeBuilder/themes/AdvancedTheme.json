@@ -267,7 +267,10 @@
     "boxShadowOffsetX": "0px",
     "boxShadowOffsetY": "1px",
     "boxShadowBlur": "3px",
-    "boxShadowColor": "rgba(0, 0, 0, 0.2)"
+    "boxShadowColor": "rgba(0, 0, 0, 0.2)",
+    "fontFamily": "Open Sans, sans-serif",
+    "fontSize": "1rem",
+    "fontWeight": "400"
   },
   "dropdown": {
     "buttonBackgroundColor": "#ffffff",
