@@ -130,7 +130,12 @@ const DxcHeader = ({
               </HamburguerItem>
             </ChildContainer>
             <ResponsiveMenu hasVisibility={isMenuVisible}>
-              <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
+              <ResponsiveIconsContainer>
+                <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
+                <CloseContainer tabIndex={tabIndex} onClick={handleMenu} aria-label="closeIcon">
+                  {closeIcon}
+                </CloseContainer>
+              </ResponsiveIconsContainer>
               <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
                 <Content
                   isResponsive={isResponsive}
@@ -140,9 +145,6 @@ const DxcHeader = ({
                   content={content}
                 />
               </BackgroundColorProvider>
-              <CloseContainer tabIndex={tabIndex} onClick={handleMenu} aria-label="closeIcon">
-                {closeIcon}
-              </CloseContainer>
             </ResponsiveMenu>
             <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
           </MainContainer>
@@ -280,8 +282,6 @@ const MainContainer = styled.div`
 const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
   background-color: ${(props) => props.theme.menuBackgroundColor};
   position: fixed;
   top: 0;
@@ -311,9 +311,12 @@ const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
 const ResponsiveLogoContainer = styled.div`
   max-height: ${(props) => props.theme.logoHeight};
   width: ${(props) => props.theme.logoWidth};
-  position: absolute;
-  top: 23px;
-  left: 20px;
+  display: flex;
+`;
+
+const ResponsiveIconsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const CloseContainer = styled.div`
@@ -321,7 +324,6 @@ const CloseContainer = styled.div`
   :focus {
     outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
-  position: fixed;
   top: 23px;
   right: 20px;
   width: 24px;
@@ -331,7 +333,6 @@ const CloseContainer = styled.div`
 
 const MenuContent = styled.div<{ backgroundType: "dark" | "light" }>`
   height: 100%;
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
