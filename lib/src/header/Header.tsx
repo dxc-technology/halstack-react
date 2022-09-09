@@ -124,15 +124,15 @@ const DxcHeader = ({
         {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer padding={padding}>
-              <HamburguerItem tabIndex={tabIndex} onClick={handleMenu}>
+              <HamburguerTrigger tabIndex={tabIndex} onClick={handleMenu}>
                 {hamburgerIcon}
-                <HamburguerTitle>Menu</HamburguerTitle>
-              </HamburguerItem>
+                Menu
+              </HamburguerTrigger>
             </ChildContainer>
             <ResponsiveMenu hasVisibility={isMenuVisible}>
               <ResponsiveIconsContainer>
                 <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                <CloseContainer tabIndex={tabIndex} onClick={handleMenu} aria-label="closeIcon">
+                <CloseContainer tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
                   {closeIcon}
                 </CloseContainer>
               </ResponsiveIconsContainer>
@@ -245,7 +245,7 @@ const ContentContainer = styled.div<ContentContainerProps>`
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
-const HamburguerItem = styled.button`
+const HamburguerTrigger = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -263,9 +263,6 @@ const HamburguerItem = styled.button`
   & > svg {
     fill: ${(props) => props.theme.hamburguerIconColor};
   }
-`;
-
-const HamburguerTitle = styled.span`
   font-family: ${(props) => props.theme.hamburguerFontFamily};
   font-style: ${(props) => props.theme.hamburguerFontStyle};
   font-size: ${(props) => props.theme.hamburguerFontSize};
@@ -317,18 +314,28 @@ const ResponsiveLogoContainer = styled.div`
 const ResponsiveIconsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
-const CloseContainer = styled.div`
+const CloseContainer = styled.button`
   cursor: pointer;
   :focus {
     outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
   }
   top: 23px;
   right: 20px;
   width: 24px;
   height: 24px;
   padding: ${spaces.xxsmall};
+  border: none;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  padding: 0px;
 `;
 
 const MenuContent = styled.div<{ backgroundType: "dark" | "light" }>`
