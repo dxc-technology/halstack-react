@@ -33,8 +33,9 @@ const DxcSwitch = ({
   const refTrack = useRef(null);
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (event.keyCode) {
-      case 13: // enter
+    switch (event.key) {
+      case "Enter":
+      case " ": //Space
         event.preventDefault();
         refTrack.current.focus();
         const isChecked = !(checked ?? innerChecked);
@@ -60,31 +61,21 @@ const DxcSwitch = ({
     }
   };
 
-  const labelComponent = (
-    <LabelContainer
-      id={labelId}
-      labelPosition={labelPosition}
-      onClick={!disabled ? handlerSwitchChange : undefined}
-      disabled={disabled}
-      backgroundType={backgroundType}
-      hasLabel={hasLabel}
-    >
-      {labelPosition === "before" ? (
-        <>
-          {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
-        </>
-      ) : (
-        <>
-          {optional && <span>{translatedLabels.formFields.optionalLabel}</span>} {label}
-        </>
-      )}
-    </LabelContainer>
-  );
-
   return (
     <ThemeProvider theme={colorsTheme.switch}>
       <SwitchContainer margin={margin} size={size} onKeyDown={handleOnKeyDown}>
-        {labelPosition === "before" && hasLabel && labelComponent}
+        {labelPosition === "before" && hasLabel && (
+          <LabelContainer
+            id={labelId}
+            labelPosition={labelPosition}
+            onClick={!disabled ? handlerSwitchChange : undefined}
+            disabled={disabled}
+            backgroundType={backgroundType}
+            hasLabel={hasLabel}
+          >
+            {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+          </LabelContainer>
+        )}
         <SwitchBase
           labelPosition={labelPosition}
           hasLabel={hasLabel}
@@ -119,7 +110,18 @@ const DxcSwitch = ({
             />
           )}
         </SwitchBase>
-        {labelPosition === "after" && hasLabel && labelComponent}
+        {labelPosition === "after" && hasLabel && (
+          <LabelContainer
+            id={labelId}
+            labelPosition={labelPosition}
+            onClick={!disabled ? handlerSwitchChange : undefined}
+            disabled={disabled}
+            backgroundType={backgroundType}
+            hasLabel={hasLabel}
+          >
+            {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
+          </LabelContainer>
+        )}
       </SwitchContainer>
     </ThemeProvider>
   );
