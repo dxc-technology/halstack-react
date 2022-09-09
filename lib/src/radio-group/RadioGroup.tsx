@@ -96,19 +96,23 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
       });
     };
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      switch (event.keyCode) {
-        case 37: // arrow left
-        case 38: // arrow up
+      switch (event.key) {
+        case "Left":
+        case "ArrowLeft":
+        case "Up":
+        case "ArrowUp":
           event.preventDefault();
           setPreviousRadioChecked();
           break;
-        case 39: // arrow right
-        case 40: // arrow down
+        case "Right":
+        case "ArrowRight":
+        case "Down":
+        case "ArrowDown":
           event.preventDefault();
           setNextRadioChecked();
           break;
-        case 13: // enter
-        case 32: // space
+        case "Enter":
+        case "Space":
           event.preventDefault();
           handleOnChange(innerOptions[currentFocusIndex].value);
           break;
