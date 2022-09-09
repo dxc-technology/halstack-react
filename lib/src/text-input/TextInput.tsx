@@ -52,10 +52,6 @@ const makeCancelable = (promise) => {
   };
 };
 
-const getNotOptionalErrorMessage = () => `This field is required. Please, enter a value.`;
-
-const getPatternErrorMessage = () => `Please match the format requested.`;
-
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
 const getLastOptionIndex = (filteredSuggestions) => {
@@ -200,13 +196,13 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       else onBlur?.({ value: event.target.value });
     };
     const handleIOnKeyDown = (event) => {
-      switch (event.keyCode) {
-        case 40: // Arrow Down
+      switch (event.key) {
+        case "Down":
+        case "ArrowDown":
+          event.preventDefault();
           if (numberInputContext?.typeNumber === "number") {
             decrementNumber();
-            event.preventDefault();
           } else {
-            event.preventDefault();
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
@@ -216,12 +212,12 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             }
           }
           break;
-        case 38: // Arrow Up
+        case "Up":
+        case "ArrowUp":
+          event.preventDefault();
           if (numberInputContext?.typeNumber === "number") {
             incrementNumber();
-            event.preventDefault();
           } else {
-            event.preventDefault();
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
               changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
@@ -232,14 +228,15 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             }
           }
           break;
-        case 27: // Esc
+        case "Esc":
+        case "Escape":
           event.preventDefault();
           if (hasSuggestions()) {
             changeValue("");
             isOpen && closeSuggestions();
           }
           break;
-        case 13: // Enter
+        case "Enter":
           if (hasSuggestions() && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 &&
