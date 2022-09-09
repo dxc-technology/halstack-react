@@ -61,12 +61,14 @@ const DxcNavTabs = ({ iconPosition = "top", tabIndex = 0, children }: NavTabsPro
     const activeTab = React.Children.toArray(children).findIndex((child: ReactElement) =>
       getPropInChild(child, "active")
     );
-    switch (event.keyCode) {
-      case 37: // arrow left
+    switch (event.key) {
+      case "Left":
+      case "ArrowLeft":
         event.preventDefault();
         setInnerFocus(getPreviousTabIndex(children, innerFocus === null ? activeTab : innerFocus));
         break;
-      case 39: // arrow right
+      case "Right":
+      case "ArrowRight":
         event.preventDefault();
         setInnerFocus(getNextTabIndex(children, innerFocus === null ? activeTab : innerFocus));
         break;
