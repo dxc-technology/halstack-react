@@ -326,15 +326,10 @@ const CloseContainer = styled.button`
     width: 24px;
     height: 24px;
   }
-  top: 23px;
-  right: 20px;
   width: 24px;
   height: 24px;
-  padding: ${spaces.xxsmall};
   border: none;
   background-color: transparent;
-  width: 24px;
-  height: 24px;
   padding: 0px;
 `;
 
