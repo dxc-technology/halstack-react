@@ -1,13 +1,14 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
+export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
   right?: Space;
 };
+export type Size = "small" | "medium" | "large" | "fillParent" | "fitContent";
 type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
-type Option = {
+export type Option = {
   /**
    * Option display value.
    */
@@ -68,7 +69,7 @@ type Props = {
   /**
    * Size of the component.
    */
-  size?: "small" | "medium" | "large" | "fillParent" | "fitContent";
+  size?: Size;
   /**
    * Value of the tabindex.
    */
@@ -78,5 +79,24 @@ type Props = {
    */
   disabled?: boolean;
 };
+
+export type DropdownMenuProps = {
+  id: string;
+  dropdownTriggerId: string;
+  iconsPosition: "before" | "after";
+  visualFocusIndex: number;
+  menuItemOnClick: (value: string) => void;
+  onKeyDown: (event: React.KeyboardEvent<HTMLUListElement>) => void;
+  options: Option[];
+  styles: { width: number };
+}
+
+export type DropdownMenuItemProps = {
+  id: string;
+  visuallyFocused: boolean;
+  iconPosition: "before" | "after";
+  onClick: (value: string) => void;
+  option: Option;
+}
 
 export default Props;
