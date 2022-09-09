@@ -267,7 +267,10 @@
     "boxShadowOffsetX": "length",
     "boxShadowOffsetY": "length",
     "boxShadowBlur": "length",
-    "boxShadowColor": "color"
+    "boxShadowColor": "color",
+    "fontFamily": "fFamily",
+    "fontSize": "length",
+    "fontWeight": "fWeight"
   },
   "dropdown": {
     "buttonBackgroundColor": "color",

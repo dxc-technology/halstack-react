@@ -267,7 +267,10 @@
     "boxShadowOffsetX": "0px",
     "boxShadowOffsetY": "1px",
     "boxShadowBlur": "3px",
-    "boxShadowColor": "rgba(0, 0, 0, 0.2)"
+    "boxShadowColor": "rgba(0, 0, 0, 0.2)",
+    "fontFamily": "Open Sans, sans-serif",
+    "fontSize": "1rem",
+    "fontWeight": "400"
   },
   "dropdown": {
     "buttonBackgroundColor": "#ffffff",
@@ -824,10 +827,10 @@
     "thumbFocusColorOnDark": "#1682FF",
     "thumbHeight": "24px",
     "thumbWidth": "24px",
-    "thumbShift": "40%",
+    "thumbShift": "1.25rem",
     "trackHeight": "12px",
-    "trackWidth": "60px",
-    "spaceBetweenLabelSwitch": "0px"
+    "trackWidth": "36px",
+    "spaceBetweenLabelSwitch": "8px"
   },
   "tag": {
     "fontFamily": "Open Sans, sans-serif",
