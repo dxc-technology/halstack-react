@@ -82,12 +82,11 @@ const sections = [
               </td>
             </tr>
             <tr>
-              <td>onSelectOption: function</td>
-              <td></td>
+              <td>disabled: boolean</td>
               <td>
-                This function will be called every time the selection changes.
-                The value of the selected option will be passed as a parameter.
+                <Code>false</Code>
               </td>
+              <td>If true, the component will be disabled.</td>
             </tr>
             <tr>
               <td>expandOnHover: boolean</td>
@@ -96,6 +95,14 @@ const sections = [
               </td>
               <td>
                 If true, the options are showed when the dropdown is hover.
+              </td>
+            </tr>
+            <tr>
+              <td>onSelectOption: function</td>
+              <td></td>
+              <td>
+                This function will be called every time the selection changes.
+                The value of the selected option will be passed as a parameter.
               </td>
             </tr>
             <tr>
@@ -124,13 +131,6 @@ const sections = [
                 <Code>0</Code>
               </td>
               <td>Value of the tabindex.</td>
-            </tr>
-            <tr>
-              <td>disabled: boolean</td>
-              <td>
-                <Code>false</Code>
-              </td>
-              <td>If true, the component will be disabled.</td>
             </tr>
           </tbody>
         </DxcTable>
