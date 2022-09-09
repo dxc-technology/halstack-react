@@ -30,8 +30,8 @@ const useResize = (refTabList) => {
     window.addEventListener("resize", handleWindowSizeChange);
 
     return () => {
-      window.addEventListener("load", handleWindowSizeChange);
-      window.addEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener("load", handleWindowSizeChange);
+      window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, [refTabList, handleWindowSizeChange]);
 
