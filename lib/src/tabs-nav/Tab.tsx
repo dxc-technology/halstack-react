@@ -6,15 +6,7 @@ import { TabProps } from "./types";
 
 const DxcTab = forwardRef(
   (
-    {
-      href,
-      active = false,
-      icon,
-      disabled = false,
-      notificationNumber = false,
-      children,
-      ...otherProps
-    }: TabProps,
+    { href, active = false, icon, disabled = false, notificationNumber = false, children, ...otherProps }: TabProps,
     ref: Ref<HTMLAnchorElement>
   ): JSX.Element => {
     const tabRef: React.MutableRefObject<HTMLAnchorElement> = createRef();
@@ -26,9 +18,9 @@ const DxcTab = forwardRef(
     }, [focusedLabel]);
 
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
-      switch (event.keyCode) {
-        case 13: // enter
-        case 32: // space
+      switch (event.key) {
+        case "Enter":
+        case "Space":
           tabRef?.current?.click();
           event.preventDefault();
           break;
