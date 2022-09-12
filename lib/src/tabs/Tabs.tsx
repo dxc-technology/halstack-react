@@ -81,7 +81,6 @@ const DxcTabs = ({
     onTabClick?.(newValue);
     setActiveIndicatorWidth(refTabs?.current[newValue]?.offsetWidth);
     setActiveIndicatorLeft(refTabs?.current[newValue]?.offsetLeft);
-    setCurrentFocusIndex(temporalFocusIndex);
   };
 
   const scrollLeft = () => {
@@ -153,9 +152,15 @@ const DxcTabs = ({
       case "Enter":
       case "Space":
         event.preventDefault();
+        setCurrentFocusIndex(temporalFocusIndex);
         handleSelected(temporalFocusIndex);
         break;
       case "Tab":
+        if (temporalFocusIndex !== currentFocusIndex) {
+          event.preventDefault();
+          setTemporalFocusIndex(currentFocusIndex);
+          refTabs?.current[currentFocusIndex].focus();
+        }
         handleSelected(currentFocusIndex);
         break;
     }
