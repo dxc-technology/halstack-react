@@ -298,7 +298,7 @@ const ScrollLeftComponent = styled(ScrollIndicator)`
 `;
 
 const ScrollRightComponent = styled(ScrollIndicator)`
-  margin-left: 1px;
+  margin-left: -3px;
   ${(props) =>
     props.enabled &&
     (props.rightIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
