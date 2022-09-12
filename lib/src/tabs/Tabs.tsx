@@ -55,8 +55,8 @@ const DxcTabs = ({
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
   const [translateScroll, setTranslateScroll] = useState(0);
-  const [rightIndicatorEnabled, setRightIndicatorEnabled] = useState(true);
-  const [leftIndicatorEnabled, setLeftIndicatorEnabled] = useState(false);
+  const [scrollRightEnabled, setScrollRightEnabled] = useState(true);
+  const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
   const [countClick, setCountClick] = useState(0);
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
   const [currentFocusIndex, setCurrentFocusIndex] = useState(0);
@@ -88,12 +88,12 @@ const DxcTabs = ({
     let moveX;
     if (countClick <= scrollWidth) {
       moveX = 0;
-      setLeftIndicatorEnabled(false);
-      setRightIndicatorEnabled(true);
+      setScrollLeftEnabled(false);
+      setScrollRightEnabled(true);
     } else {
       moveX = countClick - scrollWidth;
-      setRightIndicatorEnabled(true);
-      setLeftIndicatorEnabled(true);
+      setScrollRightEnabled(true);
+      setScrollLeftEnabled(true);
     }
     setTranslateScroll(-moveX);
     setCountClick(moveX);
@@ -104,12 +104,12 @@ const DxcTabs = ({
     let moveX;
     if (countClick + scrollWidth + viewWidth >= totalTabsWidth) {
       moveX = totalTabsWidth - viewWidth;
-      setRightIndicatorEnabled(false);
-      setLeftIndicatorEnabled(true);
+      setScrollRightEnabled(false);
+      setScrollLeftEnabled(true);
     } else {
       moveX = countClick + scrollWidth;
-      setLeftIndicatorEnabled(true);
-      setRightIndicatorEnabled(true);
+      setScrollLeftEnabled(true);
+      setScrollRightEnabled(true);
     }
     setTranslateScroll(-moveX);
     setCountClick(moveX);
@@ -172,7 +172,7 @@ const DxcTabs = ({
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
           <ScrollLeftComponent
             onClick={scrollLeft}
-            leftIndicatorEnabled={leftIndicatorEnabled}
+            scrollLeftEnabled={scrollLeftEnabled}
             enabled={enabledIndicator}
             aria-disabled="false"
             aria-label={translatedLabels.tabs.scrollLeft}
@@ -211,7 +211,7 @@ const DxcTabs = ({
           </TabsContent>
           <ScrollRightComponent
             onClick={scrollRight}
-            rightIndicatorEnabled={rightIndicatorEnabled}
+            scrollRightEnabled={scrollRightEnabled}
             enabled={enabledIndicator}
             aria-disabled="false"
             aria-label={translatedLabels.tabs.scrollRight}
@@ -265,8 +265,8 @@ const Tabs = styled.div<IconProps>`
 
 type ScrollIndicatorProps = {
   enabled: boolean;
-  leftIndicatorEnabled?: boolean;
-  rightIndicatorEnabled?: boolean;
+  scrollLeftEnabled?: boolean;
+  scrollRightEnabled?: boolean;
 };
 
 const ScrollIndicator = styled.div<ScrollIndicatorProps>`
@@ -294,14 +294,13 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
 
 const ScrollLeftComponent = styled(ScrollIndicator)`
   ${(props) =>
-    props.enabled && (props.leftIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
+    props.enabled && (props.scrollLeftEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
 `;
 
 const ScrollRightComponent = styled(ScrollIndicator)`
   margin-left: -3px;
   ${(props) =>
-    props.enabled &&
-    (props.rightIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
+    props.enabled && (props.scrollRightEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
 `;
 
 type ActiveIndicatorProps = {
