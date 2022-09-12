@@ -126,7 +126,7 @@ const DxcHeader = ({
             <ChildContainer padding={padding}>
               <HamburguerTrigger tabIndex={tabIndex} onClick={handleMenu}>
                 {hamburgerIcon}
-                Menu
+                {translatedLabels.header.hamburguerTitle}
               </HamburguerTrigger>
             </ChildContainer>
             <ResponsiveMenu hasVisibility={isMenuVisible}>
@@ -319,18 +319,14 @@ const ResponsiveIconsContainer = styled.div`
 
 const CloseAction = styled.button`
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  padding: 6px;
+  height: 36px;
+  width: 36px;
   border: none;
   background-color: transparent;
-  padding: 0px;
   :focus,
   :focus-visible {
     outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
-  }
-  svg {
-    width: 24px;
-    height: 24px;
   }
 `;
 
