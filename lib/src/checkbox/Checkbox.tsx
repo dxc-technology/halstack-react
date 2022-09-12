@@ -84,7 +84,13 @@ const DxcCheckbox = ({
 
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
-      <MainContainer id={name} disabled={disabled} margin={margin} size={size}>
+      <MainContainer
+        id={name}
+        disabled={disabled}
+        margin={margin}
+        size={size}
+        onClick={disabled === true ? () => {} : handleCheckboxChange}
+      >
         {label && labelPosition === "before" && labelComponent}
         <CheckboxInput
           type="checkbox"
@@ -106,7 +112,6 @@ const DxcCheckbox = ({
           aria-checked={checked ?? innerChecked}
           aria-disabled={disabled}
           aria-required={!disabled && !optional}
-          onClick={disabled === true ? () => {} : handleCheckboxChange}
           onKeyDown={disabled === true ? () => {} : handleKeyboard}
         >
           {disabled ? (
