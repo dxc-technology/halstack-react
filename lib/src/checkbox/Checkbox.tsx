@@ -55,7 +55,7 @@ const DxcCheckbox = ({
   };
 
   const handleKeyboard = (event) => {
-    if (event.code === "Space") {
+    if (event.key === " ") {
       event.preventDefault();
       handleCheckboxChange(event);
     }
@@ -84,25 +84,29 @@ const DxcCheckbox = ({
 
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
-      <CheckboxContainer id={name} disabled={disabled} margin={margin} size={size}>
+      <MainContainer id={name} disabled={disabled} margin={margin} size={size}>
         {label && labelPosition === "before" && labelComponent}
         <CheckboxInput
           type="checkbox"
           checked={checked ?? innerChecked}
           name={name}
           aria-labelledby={labelId}
-          role="checkbox"
-          aria-checked={checked ?? innerChecked}
+          aria-hidden="true"
           onChange={handleCheckboxChange}
           value={value}
           disabled={disabled}
           tabIndex={-1}
+          readOnly
         />
-        <CheckboxFocus
+        <CheckboxContainer
+          role="checkbox"
           backgroundType={backgroundType}
           labelPosition={labelPosition}
           label={label}
-          tabIndex={tabIndex}
+          tabIndex={disabled ? -1 : tabIndex}
+          aria-checked={checked ?? innerChecked}
+          aria-disabled={disabled}
+          aria-required={!disabled && !optional}
           onClick={disabled === true ? () => {} : handleCheckboxChange}
           onKeyDown={disabled === true ? () => {} : handleKeyboard}
         >
@@ -115,9 +119,9 @@ const DxcCheckbox = ({
               {(checked ?? innerChecked) && CheckedIcon}
             </Checkbox>
           )}
-        </CheckboxFocus>
+        </CheckboxContainer>
         {label && labelPosition === "after" && labelComponent}
-      </CheckboxContainer>
+      </MainContainer>
     </ThemeProvider>
   );
 };
@@ -200,13 +204,13 @@ const LabelContainer = styled.span<LabelContainerProps>`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 `;
 
-type CheckboxContainerProps = {
+type MainContainerProps = {
   margin?: Space | Margin;
   size: "small" | "medium" | "large" | "fillParent" | "fitContent";
   disabled: boolean;
 };
 
-const CheckboxContainer = styled.div<CheckboxContainerProps>`
+const MainContainer = styled.div<MainContainerProps>`
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.top ? spaces[props.margin.top] : ""};
@@ -233,13 +237,13 @@ const CheckboxInput = styled.input`
   user-select: none;
 `;
 
-type CheckboxFocusProps = {
+type CheckboxContainerProps = {
   backgroundType: "dark" | "light";
   label: string;
   labelPosition: "after" | "before";
 };
 
-const CheckboxFocus = styled.span<CheckboxFocusProps>`
+const CheckboxContainer = styled.span<CheckboxContainerProps>`
   width: 24px;
   height: 24px;
   position: relative;
