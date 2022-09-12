@@ -1,14 +1,12 @@
-// @ts-nocheck
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { Switch } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
-import SwitchPropsType from "./types";
+import { SwitchPropsType, Space, Margin } from "./types";
 
 const DxcSwitch = ({
   defaultChecked,
@@ -27,63 +25,103 @@ const DxcSwitch = ({
   const [switchId] = useState(`switch-${uuidv4()}`);
   const labelId = `label-${switchId}`;
   const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
+  const [hasLabel] = useState((label !== "" && label !== null && label !== undefined) ?? false);
+
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
   const backgroundType = useContext(BackgroundColorContext);
+  const refTrack = useRef(null);
+
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (event.key) {
+      case "Enter":
+      case " ": //Space
+        event.preventDefault();
+        refTrack.current.focus();
+        const isChecked = !(checked ?? innerChecked);
+        setInnerChecked(isChecked);
+        if (typeof onChange === "function") {
+          onChange(isChecked);
+        }
+        break;
+    }
+  };
 
   const handlerSwitchChange = (event) => {
     if (checked === undefined) {
       const isChecked = event.target.checked ?? !innerChecked;
       setInnerChecked(isChecked);
-      onChange?.(isChecked);
-    } else onChange?.(!checked);
+      if (typeof onChange === "function") {
+        onChange(isChecked);
+      }
+    } else {
+      if (typeof onChange === "function") {
+        onChange(!checked);
+      }
+    }
   };
-
-  const labelComponent = (
-    <LabelContainer
-      id={labelId}
-      labelPosition={labelPosition}
-      onClick={!disabled && handlerSwitchChange}
-      disabled={disabled}
-      backgroundType={backgroundType}
-    >
-      {labelPosition === "before" ? (
-        <>
-          {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
-        </>
-      ) : (
-        <>
-          {optional && <span>{translatedLabels.formFields.optionalLabel}</span>} {label}
-        </>
-      )}
-    </LabelContainer>
-  );
 
   return (
     <ThemeProvider theme={colorsTheme.switch}>
-      <SwitchContainer
-        margin={margin}
-        disabled={disabled}
-        labelPosition={labelPosition}
-        size={size}
-        backgroundType={backgroundType}
-      >
-        {labelPosition === "before" && labelComponent}
-        <Switch
-          checked={checked ?? innerChecked}
-          inputProps={{
-            name: name,
-            "aria-labelledby": labelId,
-            role: "switch",
-            "aria-checked": checked ?? innerChecked,
-            tabIndex: tabIndex,
-          }}
-          onChange={handlerSwitchChange}
-          value={value}
-          disabled={disabled}
-          disableRipple
-        />
-        {labelPosition === "after" && labelComponent}
+      <SwitchContainer margin={margin} size={size} onKeyDown={handleOnKeyDown}>
+        {labelPosition === "before" && hasLabel && (
+          <LabelContainer
+            id={labelId}
+            labelPosition={labelPosition}
+            onClick={!disabled ? handlerSwitchChange : undefined}
+            disabled={disabled}
+            backgroundType={backgroundType}
+            hasLabel={hasLabel}
+          >
+            {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+          </LabelContainer>
+        )}
+        <SwitchBase
+          labelPosition={labelPosition}
+          hasLabel={hasLabel}
+          htmlFor={labelId}
+          onClick={disabled === true ? () => {} : handlerSwitchChange}
+        >
+          <SwitchInput
+            type="checkbox"
+            role="switch"
+            name={name}
+            id={labelId}
+            disabled={disabled}
+            value={value}
+            aria-labelledby={labelId}
+            aria-label={hasLabel ? label : undefined}
+            aria-checked={checked ?? innerChecked}
+            defaultChecked={defaultChecked ?? undefined}
+            tabIndex={-1}
+          ></SwitchInput>
+          {disabled ? (
+            <DisabledSwitchTrack
+              backgroundType={backgroundType}
+              data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
+              tabIndex={-1}
+            />
+          ) : (
+            <SwitchTrack
+              backgroundType={backgroundType}
+              data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
+              tabIndex={tabIndex}
+              ref={refTrack}
+            />
+          )}
+        </SwitchBase>
+        {labelPosition === "after" && hasLabel && (
+          <LabelContainer
+            id={labelId}
+            labelPosition={labelPosition}
+            onClick={!disabled ? handlerSwitchChange : undefined}
+            disabled={disabled}
+            backgroundType={backgroundType}
+            hasLabel={hasLabel}
+          >
+            {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
+          </LabelContainer>
+        )}
       </SwitchContainer>
     </ThemeProvider>
   );
@@ -102,10 +140,16 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const SwitchContainer = styled.div`
-  width: ${(props) => calculateWidth(props.margin, props.size)};
+type SwitchContainerProps = {
+  margin: Margin | Space;
+  size: "small" | "medium" | "large" | "fillParent" | "fitContent";
+};
+
+const SwitchContainer = styled.div<SwitchContainerProps>`
   display: inline-flex;
   align-items: center;
+  width: ${(props) => calculateWidth(props.margin, props.size)};
+  height: 40px;
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -116,101 +160,16 @@ const SwitchContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "default")};
-
-  .MuiSwitch-root {
-    align-items: center;
-    width: ${(props) => props.theme.trackWidth};
-    height: 45px;
-    margin: 3px;
-
-    .Mui-focusVisible {
-      outline: ${(props) =>
-        `${
-          props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
-        } solid 2px`};
-      outline-offset: -3px;
-    }
-
-    .MuiSwitch-track {
-      /*Enabled and unchecked bar*/
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.uncheckedTrackBackgroundColorOnDark
-          : props.theme.uncheckedTrackBackgroundColor};
-      height: ${(props) => props.theme.trackHeight};
-    }
-
-    .MuiSwitch-switchBase + .MuiSwitch-track {
-      opacity: 1;
-    }
-
-    .MuiIconButton-root {
-      /*Enabled and unchecked*/
-      top: unset;
-      .MuiSwitch-thumb {
-        /*Only for thumb in all states*/
-        width: ${(props) => props.theme.thumbWidth};
-        height: ${(props) => props.theme.thumbHeight};
-      }
-      color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.uncheckedThumbBackgroundColorOnDark
-          : props.theme.uncheckedThumbBackgroundColor};
-      &:hover {
-        background-color: transparent;
-      }
-      &.Mui-disabled {
-        /*Disabled and unchecked*/
-        color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.disabledUncheckedThumbBackgroundColorOnDark
-            : props.theme.disabledUncheckedThumbBackgroundColor};
-        + .MuiSwitch-track {
-          /*Disabled and unchecked bar*/
-          background-color: ${(props) =>
-            props.backgroundType === "dark"
-              ? props.theme.disabledUncheckedTrackBackgroundColorOnDark
-              : props.theme.disabledUncheckedTrackBackgroundColor};
-        }
-      }
-      &.Mui-disabled.Mui-checked {
-        /*Disabled and checked*/
-        color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.disabledCheckedThumbBackgroundColorOnDark
-            : props.theme.disabledCheckedThumbBackgroundColor};
-        + .MuiSwitch-track {
-          /*Disabled and checked bar*/
-          background-color: ${(props) =>
-            props.backgroundType === "dark"
-              ? props.theme.disabledCheckedTrackBackgroundColorOnDark
-              : props.theme.disabledCheckedTrackBackgroundColor};
-        }
-      }
-      &.Mui-checked {
-        /*Enabled and checked*/
-        color: ${(props) =>
-          props.backgroundType === "dark"
-            ? props.theme.checkedThumbBackgroundColorOnDark
-            : props.theme.checkedThumbBackgroundColor};
-        transform: translateX(${(props) => props.theme.thumbShift});
-        &:hover {
-          background-color: transparent;
-        }
-        + .MuiSwitch-track {
-          /*Enabled and checked bar*/
-          background-color: ${(props) =>
-            props.backgroundType === "dark"
-              ? props.theme.checkedTrackBackgroundColorOnDark
-              : props.theme.checkedTrackBackgroundColor};
-        }
-      }
-    }
-  }
 `;
 
-const LabelContainer = styled.span`
+type LabelProps = {
+  backgroundType: "dark" | "light";
+  labelPosition: "after" | "before";
+  disabled: boolean;
+  hasLabel: boolean;
+};
+
+const LabelContainer = styled.span<LabelProps>`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -228,12 +187,133 @@ const LabelContainer = styled.span`
   font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
   font-weight: ${(props) => props.theme.labelFontWeight};
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
+
   ${(props) =>
-    props.labelPosition === "after"
+    !props.hasLabel
+      ? "margin: 0px;"
+      : props.labelPosition === "after"
       ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};`
-      : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`}
+      : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`};
 
   ${(props) => props.labelPosition === "before" && "order: -1"}
+`;
+
+type SwitchBaseProps = {
+  labelPosition: "after" | "before";
+  hasLabel: boolean;
+};
+
+const SwitchBase = styled.label<SwitchBaseProps>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin: ${(props) =>
+    !props.hasLabel ? "0px 4px" : props.labelPosition === "before" ? "0 4px 0 12px" : "0 12px 0 4px"};
+`;
+
+const SwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0px;
+`;
+
+type SwitchTrackProps = {
+  backgroundType: "dark" | "light";
+};
+
+const SwitchTrack = styled.span<SwitchTrackProps>`
+  border-radius: 15px;
+  width: ${(props) => props.theme.trackWidth};
+  height: ${(props) => props.theme.trackHeight};
+  position: relative;
+  transition: transform 0.2s ease;
+
+  &:focus-visible {
+    outline: none;
+    ::before {
+      outline: ${(props) =>
+        `${
+          props.backgroundType === "dark" ? props.theme.thumbFocusColorOnDark : props.theme.thumbFocusColor
+        } solid 2px`};
+      outline-offset: 6px;
+    }
+  }
+
+  /* Thumb element */
+  ::before {
+    content: "";
+    transform: initial;
+    transition: transform 0.2s ease;
+    position: absolute;
+    width: ${(props) => props.theme.thumbWidth};
+    height: ${(props) => props.theme.thumbHeight};
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    bottom: -6px;
+    left: -4px;
+    transform: translateX(0px);
+    background-color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.theme.uncheckedThumbBackgroundColorOnDark
+        : props.theme.uncheckedThumbBackgroundColor};
+  }
+
+  /* Unchecked */
+  background-color: ${(props) =>
+    props.backgroundType === "dark"
+      ? props.theme.uncheckedTrackBackgroundColorOnDark
+      : props.theme.uncheckedTrackBackgroundColor};
+
+  /* Checked */
+  &[data-checked="true"] {
+    background-color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.theme.checkedTrackBackgroundColorOnDark
+        : props.theme.checkedTrackBackgroundColor};
+    ::before {
+      transform: translateX(${(props) => props.theme.thumbShift});
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.checkedThumbBackgroundColorOnDark
+          : props.theme.checkedThumbBackgroundColor};
+    }
+  }
+`;
+
+const DisabledSwitchTrack = styled(SwitchTrack)`
+  cursor: not-allowed;
+
+  /* Unchecked */
+  background-color: ${(props) =>
+    props.backgroundType === "dark"
+      ? props.theme.disabledUncheckedTrackBackgroundColorOnDark
+      : props.theme.disabledUncheckedTrackBackgroundColor};
+
+  ::before {
+    background-color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.theme.disabledUncheckedThumbBackgroundColorOnDark
+        : props.theme.disabledUncheckedThumbBackgroundColor};
+  }
+
+  /* Checked */
+  &[data-checked="true"] {
+    background-color: ${(props) =>
+      props.backgroundType === "dark"
+        ? props.theme.disabledCheckedTrackBackgroundColorOnDark
+        : props.theme.disabledCheckedTrackBackgroundColor};
+
+    ::before {
+      transform: translateX(${(props) => props.theme.thumbShift});
+      background-color: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.disabledCheckedThumbBackgroundColorOnDark
+          : props.theme.disabledCheckedThumbBackgroundColor};
+    }
+  }
 `;
 
 export default DxcSwitch;
