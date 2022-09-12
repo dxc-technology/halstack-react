@@ -248,7 +248,8 @@ const HamburguerTrigger = styled.button`
   align-items: center;
   width: 54px;
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
   background-color: transparent;
   :hover {
     background-color: ${(props) => props.theme.hamburguerHoverColor};
