@@ -90,7 +90,6 @@ const DxcCheckbox = ({
           type="checkbox"
           checked={checked ?? innerChecked}
           name={name}
-          aria-labelledby={labelId}
           aria-hidden="true"
           onChange={handleCheckboxChange}
           value={value}
