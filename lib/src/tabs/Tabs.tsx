@@ -150,7 +150,7 @@ const DxcTabs = ({
         setNextTabFocus();
         break;
       case "Enter":
-      case "Space":
+      case " ":
         event.preventDefault();
         setCurrentFocusIndex(temporalFocusIndex);
         handleSelected(temporalFocusIndex);
@@ -298,6 +298,7 @@ const ScrollLeftComponent = styled(ScrollIndicator)`
 `;
 
 const ScrollRightComponent = styled(ScrollIndicator)`
+  margin-left: 1px;
   ${(props) =>
     props.enabled &&
     (props.rightIndicatorEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
