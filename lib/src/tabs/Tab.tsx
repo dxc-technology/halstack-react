@@ -60,7 +60,6 @@ const TabContainer = styled.button<IconProps>`
   text-transform: ${(props) => props.theme.fontTextTransform};
   overflow: hidden;
   position: relative;
-  box-sizing: border-box;
   text-align: center;
   flex-shrink: 0;
   line-height: 1.75;
@@ -68,15 +67,11 @@ const TabContainer = styled.button<IconProps>`
   letter-spacing: 0.02857em;
   border: 0;
   cursor: pointer;
-  margin: 0;
   display: inline-flex;
-  outline: 0;
   align-items: center;
   user-select: none;
-  border-radius: 0;
   vertical-align: middle;
   justify-content: center;
-  text-decoration: none;
   opacity: 0.7;
   border-bottom-style: solid;
   border-bottom-color: ${(props) => props.theme.dividerColor};
