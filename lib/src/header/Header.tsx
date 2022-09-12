@@ -322,7 +322,7 @@ const CloseAction = styled.button`
   border-radius: 2px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  align-content: center;
   background-color: transparent;
   :focus,
   :focus-visible {
