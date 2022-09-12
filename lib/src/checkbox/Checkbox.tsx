@@ -8,7 +8,7 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
 import CheckboxPropsType, { Margin, Space } from "./types";
 
-const CheckedIcon = (
+const checkedIcon = (
   <svg fill="currentColor" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CheckBoxIcon">
     <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
   </svg>
@@ -60,38 +60,26 @@ const DxcCheckbox = ({
       handleCheckboxChange(event);
     }
   };
-
-  const labelComponent = (
-    <LabelContainer
-      id={labelId}
-      onClick={disabled === true ? () => {} : handleCheckboxChange}
-      disabled={disabled}
-      backgroundType={backgroundType}
-      onMouseOver={handleLabelHover}
-      onMouseOut={handleLabelHover}
-    >
-      {labelPosition === "before" ? (
-        <>
-          {label} {optional && <span>{translatedLabels.formFields.optionalLabel}</span>}
-        </>
-      ) : (
-        <>
-          {optional && <span>{translatedLabels.formFields.optionalLabel}</span>} {label}
-        </>
-      )}
-    </LabelContainer>
-  );
-
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
       <MainContainer
         id={name}
         disabled={disabled}
+        onClick={disabled === true ? undefined : handleCheckboxChange}
         margin={margin}
         size={size}
-        onClick={disabled === true ? () => {} : handleCheckboxChange}
       >
-        {label && labelPosition === "before" && labelComponent}
+        {label && labelPosition === "before" && (
+          <LabelContainer
+            id={labelId}
+            disabled={disabled}
+            backgroundType={backgroundType}
+            onMouseOver={handleLabelHover}
+            onMouseOut={handleLabelHover}
+          >
+            {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+          </LabelContainer>
+        )}
         <CheckboxInput
           type="checkbox"
           checked={checked ?? innerChecked}
@@ -112,19 +100,29 @@ const DxcCheckbox = ({
           aria-checked={checked ?? innerChecked}
           aria-disabled={disabled}
           aria-required={!disabled && !optional}
-          onKeyDown={disabled === true ? () => {} : handleKeyboard}
+          onKeyDown={disabled === true ? undefined : handleKeyboard}
         >
           {disabled ? (
             <DisabledCheckbox backgroundType={backgroundType} checked={checked ?? innerChecked}>
-              {(checked ?? innerChecked) && CheckedIcon}
+              {(checked ?? innerChecked) && checkedIcon}
             </DisabledCheckbox>
           ) : (
             <Checkbox backgroundType={backgroundType} isLabelHovered={isLabelHovered} checked={checked ?? innerChecked}>
-              {(checked ?? innerChecked) && CheckedIcon}
+              {(checked ?? innerChecked) && checkedIcon}
             </Checkbox>
           )}
         </CheckboxContainer>
-        {label && labelPosition === "after" && labelComponent}
+        {label && labelPosition === "after" && (
+          <LabelContainer
+            id={labelId}
+            disabled={disabled}
+            backgroundType={backgroundType}
+            onMouseOver={handleLabelHover}
+            onMouseOut={handleLabelHover}
+          >
+            {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
+          </LabelContainer>
+        )}
       </MainContainer>
     </ThemeProvider>
   );
