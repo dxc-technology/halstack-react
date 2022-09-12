@@ -114,11 +114,7 @@ const DxcHeader = ({
   return (
     <ThemeProvider theme={colorsTheme.header}>
       <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
-        <LogoAnchor
-          tabIndex={typeof onClick === "function" ? tabIndex : -1}
-          interactuable={typeof onClick === "function"}
-          onClick={onClick}
-        >
+        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactuable={onClick ? true : false} onClick={onClick}>
           <LogoContainer>{headerLogo}</LogoContainer>
         </LogoAnchor>
         {isResponsive && responsiveContent && (
@@ -322,7 +318,11 @@ const CloseAction = styled.button`
   padding: 6px;
   height: 36px;
   width: 36px;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   background-color: transparent;
   :focus,
   :focus-visible {
