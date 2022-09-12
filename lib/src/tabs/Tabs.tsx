@@ -64,6 +64,8 @@ const DxcTabs = ({
   const viewWidth = useResize(refTabList);
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
   const translatedLabels = useTranslatedLabels();
+  const [currentFocusIndex, setCurrentFocusIndex] = useState(0);
+  const [temporalFocusIndex, setTemporalFocusIndex] = useState(0);
 
   useEffect(() => {
     const sumWidth = refTabs?.current?.reduce(function (count, obj) {
@@ -79,6 +81,7 @@ const DxcTabs = ({
     onTabClick?.(newValue);
     setActiveIndicatorWidth(refTabs?.current[newValue]?.offsetWidth);
     setActiveIndicatorLeft(refTabs?.current[newValue]?.offsetLeft);
+    setCurrentFocusIndex(temporalFocusIndex);
   };
 
   const scrollLeft = () => {
@@ -113,6 +116,51 @@ const DxcTabs = ({
     setCountClick(moveX);
   };
 
+  const setPreviousTabFocus = () => {
+    setTemporalFocusIndex((temporalFocusIndex) => {
+      let index = temporalFocusIndex === 0 ? tabs.length - 1 : temporalFocusIndex - 1;
+      while (tabs[index].isDisabled) {
+        index = index === 0 ? tabs.length - 1 : index - 1;
+      }
+      refTabs?.current[index].focus();
+      return index;
+    });
+  };
+
+  const setNextTabFocus = () => {
+    setTemporalFocusIndex((temporalFocusIndex) => {
+      let index = temporalFocusIndex === tabs.length - 1 ? 0 : temporalFocusIndex + 1;
+      while (tabs[index].isDisabled) {
+        index = index === tabs.length - 1 ? 0 : index + 1;
+      }
+      refTabs?.current[index].focus();
+      return index;
+    });
+  };
+
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (event.key) {
+      case "Left":
+      case "ArrowLeft":
+        event.preventDefault();
+        setPreviousTabFocus();
+        break;
+      case "Right":
+      case "ArrowRight":
+        event.preventDefault();
+        setNextTabFocus();
+        break;
+      case "Enter":
+      case "Space":
+        event.preventDefault();
+        handleSelected(temporalFocusIndex);
+        break;
+      case "Tab":
+        handleSelected(currentFocusIndex);
+        break;
+    }
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
       <TabsContainer margin={margin}>
@@ -129,7 +177,7 @@ const DxcTabs = ({
           </ScrollLeftComponent>
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
-              <TabList role="tablist">
+              <TabList role="tablist" onKeyDown={handleOnKeyDown}>
                 {tabs.map((tab, i) => (
                   <Tab
                     tab={tab}
@@ -140,6 +188,8 @@ const DxcTabs = ({
                     iconPosition={iconPosition}
                     ref={(el) => (refTabs.current[i] = el)}
                     onClick={() => {
+                      setCurrentFocusIndex(i);
+                      setTemporalFocusIndex(i);
                       handleSelected(i);
                     }}
                     onMouseEnter={() => {
