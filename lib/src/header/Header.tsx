@@ -1,14 +1,12 @@
-// @ts-nocheck
 import React, { useState, useEffect, useRef, useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import AppBar from "@material-ui/core/AppBar";
 import DxcDropdown from "../dropdown/Dropdown";
 import { dxcLogo } from "./Icons";
 import { spaces, responsiveSizes } from "../common/variables.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext, { BackgroundColorProvider } from "../BackgroundColorContext";
-import HeaderPropsType from "./types";
+import HeaderPropsType, { Space, Padding } from "./types";
 
 const closeIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -41,13 +39,28 @@ const HeaderDropdown = styled.div`
 `;
 
 const getLogoElement = (themeInput, logoLabel) => {
-  if (!themeInput) {
-    return dxcLogo;
-  }
-  if (typeof themeInput === "string") {
-    return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
-  }
-  return themeInput;
+  if (!themeInput) return dxcLogo;
+  else if (typeof themeInput === "string") return <LogoImg alt={logoLabel} src={themeInput}></LogoImg>;
+  else return themeInput;
+};
+
+type ContentProps = {
+  isResponsive: boolean;
+  responsiveContent: (closeHandler: () => void) => React.ReactNode;
+  handleMenu: () => void;
+  padding: Padding | Space;
+  content: React.ReactNode;
+};
+
+const Content = ({ isResponsive, responsiveContent, handleMenu, padding, content }: ContentProps) => {
+  const backgroundType = useContext(BackgroundColorContext);
+  return isResponsive ? (
+    <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>
+  ) : (
+    <ContentContainer padding={padding} backgroundType={backgroundType}>
+      {content}
+    </ContentContainer>
+  );
 };
 
 const DxcHeader = ({
@@ -67,17 +80,7 @@ const DxcHeader = ({
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const handleResize = () => {
-    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches && !isResponsive);
-  };
-  const ContentContainerComponent = () => {
-    const backgroundType = useContext(BackgroundColorContext);
-    return (
-      (isResponsive && <MenuContent backgroundType={backgroundType}>{responsiveContent(handleMenu)}</MenuContent>) || (
-        <ContentContainer padding={padding} backgroundType={backgroundType}>
-          {content}
-        </ContentContainer>
-      )
-    );
+    setIsResponsive(window.matchMedia(`(max-width: ${responsiveSizes.medium}rem)`).matches);
   };
 
   const handleMenu = () => {
@@ -97,53 +100,60 @@ const DxcHeader = ({
   }, [colorsTheme.header.logoResponsive]);
 
   useEffect(() => {
-    if (ref.current) {
-      window.addEventListener("resize", handleResize);
-      handleResize();
-    }
-
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  useEffect(() => {
+    !isResponsive && setIsMenuVisible(false);
+  }, [isResponsive]);
+
   return (
     <ThemeProvider theme={colorsTheme.header}>
-      <HeaderContainer $underlined={underlined} position="static" margin={margin} ref={ref}>
-        <LogoAnchor
-          tabIndex={typeof onClick === "function" ? tabIndex : -1}
-          interactuable={typeof onClick === "function"}
-          onClick={onClick}
-        >
+      <HeaderContainer underlined={underlined} margin={margin} ref={ref}>
+        <LogoAnchor tabIndex={onClick ? tabIndex : -1} interactuable={onClick ? true : false} onClick={onClick}>
           <LogoContainer>{headerLogo}</LogoContainer>
         </LogoAnchor>
         {isResponsive && responsiveContent && (
           <MainContainer>
             <ChildContainer padding={padding}>
-              <HamburguerItem tabIndex={tabIndex} underlined={underlined} onClick={handleMenu}>
+              <HamburguerTrigger tabIndex={tabIndex} onClick={handleMenu}>
                 {hamburgerIcon}
-                <HamburguerTitle>Menu</HamburguerTitle>
-              </HamburguerItem>
+                {translatedLabels.header.hamburguerTitle}
+              </HamburguerTrigger>
             </ChildContainer>
-            {
-              <div>
-                <ResponsiveMenu hasVisibility={isMenuVisible}>
-                  <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
-                  <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
-                    <ContentContainerComponent />
-                  </BackgroundColorProvider>
-                  <CloseContainer tabIndex={tabIndex} onClick={handleMenu} className="closeIcon">
-                    {closeIcon}
-                  </CloseContainer>
-                </ResponsiveMenu>
-                <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
-              </div>
-            }
+            <ResponsiveMenu hasVisibility={isMenuVisible}>
+              <ResponsiveIconsContainer>
+                <ResponsiveLogoContainer>{headerResponsiveLogo}</ResponsiveLogoContainer>
+                <CloseAction tabIndex={tabIndex} onClick={handleMenu} aria-label={translatedLabels.header.closeIcon}>
+                  {closeIcon}
+                </CloseAction>
+              </ResponsiveIconsContainer>
+              <BackgroundColorProvider color={colorsTheme.header.menuBackgroundColor}>
+                <Content
+                  isResponsive={isResponsive}
+                  responsiveContent={responsiveContent}
+                  handleMenu={handleMenu}
+                  padding={padding}
+                  content={content}
+                />
+              </BackgroundColorProvider>
+            </ResponsiveMenu>
+            <Overlay onClick={handleMenu} hasVisibility={isMenuVisible}></Overlay>
           </MainContainer>
         )}
         {!isResponsive && (
           <BackgroundColorProvider color={colorsTheme.header.backgroundColor}>
-            <ContentContainerComponent />
+            <Content
+              isResponsive={isResponsive}
+              responsiveContent={responsiveContent}
+              handleMenu={handleMenu}
+              padding={padding}
+              content={content}
+            />
           </BackgroundColorProvider>
         )}
       </HeaderContainer>
@@ -153,42 +163,30 @@ const DxcHeader = ({
 
 DxcHeader.Dropdown = Dropdown;
 
-const HeaderContainer = styled(AppBar)`
+type HeaderContainerProps = {
+  margin: Padding | Space;
+  underlined: boolean;
+};
+
+const HeaderContainer = styled.header<HeaderContainerProps>`
   margin-bottom: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
-
-  &.MuiAppBar-colorPrimary {
-    background-color: ${(props) => props.theme.backgroundColor};
-    border-bottom: ${(props) =>
-      props.$underlined &&
-      `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
-
-    &.MuiPaper-elevation4 {
-      box-shadow: none;
-    }
-    .ChildComponents {
-      display: flex;
-      align-items: center;
-    }
-  }
-  & {
-    min-height: ${(props) => props.theme.minHeight};
-  }
-  &.MuiAppBar-root {
-    flex-direction: row;
-    align-items: center;
-    padding: ${(props) =>
-      `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
-    justify-content: space-between;
-  }
+  padding: ${(props) =>
+    `${props.theme.paddingTop} ${props.theme.paddingRight} ${props.theme.paddingBottom} ${props.theme.paddingLeft}`};
+  background-color: ${(props) => props.theme.backgroundColor};
+  border-bottom: ${(props) =>
+    props.underlined &&
+    `${props.theme.underlinedThickness} ${props.theme.underlinedStyle} ${props.theme.underlinedColor}`};
+  min-height: ${(props) => props.theme.minHeight};
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
 `;
 
-const LogoAnchor = styled.a`
-  ${(props) => {
-    if (!props.interactuable) {
-      return "cursor: default; outline:none;";
-    }
-    return "cursor: pointer;";
-  }}
+const LogoAnchor = styled.a<{ interactuable: boolean }>`
+  ${(props) => (props.interactuable ? "cursor: pointer" : "cursor: default; outline:none")};
 `;
 
 const LogoImg = styled.img`
@@ -202,7 +200,7 @@ const LogoContainer = styled.div`
   vertical-align: middle;
 `;
 
-const ChildContainer = styled.div`
+const ChildContainer = styled.div<{ padding: Space | Padding }>`
   width: calc(100% - 186px);
   display: flex;
   align-items: center;
@@ -219,7 +217,13 @@ const ChildContainer = styled.div`
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
-const ContentContainer = styled.div`
+
+type ContentContainerProps = {
+  padding: Space | Padding;
+  backgroundType: "dark" | "light";
+};
+
+const ContentContainer = styled.div<ContentContainerProps>`
   width: calc(100% - 186px);
   display: flex;
   align-items: center;
@@ -237,13 +241,16 @@ const ContentContainer = styled.div`
   padding-left: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
 `;
-const HamburguerItem = styled.div`
+const HamburguerTrigger = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 54px;
   cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background-color: transparent;
   :hover {
     background-color: ${(props) => props.theme.hamburguerHoverColor};
   }
@@ -253,9 +260,6 @@ const HamburguerItem = styled.div`
   & > svg {
     fill: ${(props) => props.theme.hamburguerIconColor};
   }
-`;
-
-const HamburguerTitle = styled.span`
   font-family: ${(props) => props.theme.hamburguerFontFamily};
   font-style: ${(props) => props.theme.hamburguerFontStyle};
   font-size: ${(props) => props.theme.hamburguerFontSize};
@@ -269,11 +273,9 @@ const MainContainer = styled.div`
   flex-grow: 1;
 `;
 
-const ResponsiveMenu = styled.div`
+const ResponsiveMenu = styled.div<{ hasVisibility: boolean }>`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
   background-color: ${(props) => props.theme.menuBackgroundColor};
   position: fixed;
   top: 0;
@@ -285,7 +287,7 @@ const ResponsiveMenu = styled.div`
     width: ${(props) => props.theme.menuTabletWidth};
   }
 
-  @media not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem)) {
+  @media (not((max-width: ${responsiveSizes.large}rem) and (min-width: ${responsiveSizes.small}rem))) {
     //mobile phones
     width: ${(props) => props.theme.menuMobileWidth};
   }
@@ -303,34 +305,41 @@ const ResponsiveMenu = styled.div`
 const ResponsiveLogoContainer = styled.div`
   max-height: ${(props) => props.theme.logoHeight};
   width: ${(props) => props.theme.logoWidth};
-  position: absolute;
-  top: 23px;
-  left: 20px;
+  display: flex;
 `;
 
-const CloseContainer = styled.div`
+const ResponsiveIconsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const CloseAction = styled.button`
   cursor: pointer;
-  :focus {
+  padding: 6px;
+  height: 36px;
+  width: 36px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  background-color: transparent;
+  :focus,
+  :focus-visible {
     outline: ${(props) => props.theme.hamburguerFocusColor} auto 1px;
   }
-  position: fixed;
-  top: 23px;
-  right: 20px;
-  width: 24px;
-  height: 24px;
-  padding: ${spaces.xxsmall};
 `;
 
-const MenuContent = styled.div`
+const MenuContent = styled.div<{ backgroundType: "dark" | "light" }>`
   height: 100%;
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   color: ${(props) => (props.backgroundType === "dark" ? props.theme.contentColorOnDark : props.theme.contentColor)};
 `;
 
-const Overlay = styled.div`
+const Overlay = styled.div<{ hasVisibility: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
