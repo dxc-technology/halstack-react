@@ -5,7 +5,7 @@ type Size = {
   left?: Space;
   right?: Space;
 };
-type SVG = React.SVGProps<SVGSVGElement>;
+type SVG = React.ReactNode & React.SVGProps<SVGSVGElement>;
 
 type SocialLink = {
   /**

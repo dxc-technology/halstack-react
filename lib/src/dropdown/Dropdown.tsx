@@ -1,17 +1,26 @@
-// @ts-nocheck
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback, useLayoutEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import Popper from "@material-ui/core/Popper";
-import MenuItem from "@material-ui/core/MenuItem";
-import { ClickAwayListener } from "@material-ui/core";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import MenuList from "@material-ui/core/MenuList";
-import DropdownPropsType from "./types";
-
+import DropdownPropsType, { Margin, Space, Size } from "./types";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
+import { v4 as uuidv4 } from "uuid";
+import * as Popover from "@radix-ui/react-popover";
+import DropdownMenu from "./DropdownMenu";
+
+const upArrowIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7 14l5-5 5 5z" />
+    <path d="M0 0h24v24H0z" fill="none" />
+  </svg>
+);
+
+const downArrowIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7 10l5 5 5-5z" />
+    <path d="M0 0h24v24H0z" fill="none" />
+  </svg>
+);
 
 const DxcDropdown = ({
   options,
@@ -20,145 +29,197 @@ const DxcDropdown = ({
   iconPosition = "before",
   label = "",
   caretHidden = false,
-  onSelectOption,
+  disabled = false,
   expandOnHover = false,
+  onSelectOption,
   margin,
   size = "fitContent",
   tabIndex = 0,
-  disabled = false,
 }: DropdownPropsType): JSX.Element => {
-  const [width, setWidth] = useState();
-  const colorsTheme = useTheme();
+  const [triggerId] = useState(`trigger-${uuidv4()}`);
+  const menuId = `menu-${triggerId}`;
+  const [isOpen, changeIsOpen] = useState(false);
+  const [menuStyles, setMenuStyles] = useState(null);
 
-  const ref = useRef(null);
-  const handleResize = () => {
-    if (ref.current) setWidth(ref.current.offsetWidth);
+  const [visualFocusIndex, setVisualFocusIndex] = useState(0);
+
+  const colorsTheme = useTheme();
+  const triggerRef = useRef(null);
+  const menuRef = useRef(null);
+
+  const handleOnOpenMenu = () => {
+    changeIsOpen(true);
+  };
+  const handleOnCloseMenu = () => {
+    changeIsOpen(false);
+    setVisualFocusIndex(0);
+  };
+  const handleMenuItemOnClick = useCallback(
+    (value) => {
+      onSelectOption(value);
+      handleOnCloseMenu();
+      triggerRef.current?.focus();
+    },
+    [onSelectOption]
+  );
+  const handleOnBlur = (event) => {
+    !event.currentTarget.contains(event.relatedTarget) && handleOnCloseMenu();
   };
 
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.addEventListener("resize", handleResize);
-      handleResize();
+  const handleTriggerOnClick = () => {
+    changeIsOpen((isOpen) => !isOpen);
+  };
+  const handleTriggerOnKeyDown = (event) => {
+    switch (event.key) {
+      case "Up":
+      case "ArrowUp":
+        event.preventDefault();
+        setVisualFocusIndex(options.length - 1);
+        handleOnOpenMenu();
+        break;
+      case "Space":
+      case "Down":
+      case "ArrowDown":
+      case "Enter":
+        event.preventDefault();
+        handleOnOpenMenu();
+        break;
     }
+  };
 
+  const setPreviousIndexFocus = () => {
+    setVisualFocusIndex((currentFocusIndex) => {
+      let index = currentFocusIndex === 0 ? options.length - 1 : currentFocusIndex - 1;
+      return index;
+    });
+  };
+  const setNextIndexFocus = () => {
+    setVisualFocusIndex((currentFocusIndex) => {
+      let index = currentFocusIndex === options.length - 1 ? 0 : currentFocusIndex + 1;
+      return index;
+    });
+  };
+  const handleMenuOnKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLUListElement>) => {
+      switch (event.key) {
+        case "Up":
+        case "ArrowUp":
+          event.preventDefault();
+          setPreviousIndexFocus();
+          break;
+        case "Down":
+        case "ArrowDown":
+          event.preventDefault();
+          setNextIndexFocus();
+          break;
+        case "Space":
+        case "Enter":
+          event.preventDefault();
+          handleMenuItemOnClick(options[visualFocusIndex].value);
+          break;
+        case "Esc":
+        case "Escape":
+          event.preventDefault();
+          handleOnCloseMenu();
+          triggerRef.current?.focus();
+          break;
+        case "Home":
+        case "PageUp":
+          event.preventDefault();
+          setVisualFocusIndex(0);
+          break;
+        case "End":
+        case "PageDown":
+          event.preventDefault();
+          setVisualFocusIndex(options.length - 1);
+          break;
+        case "Tab":
+          handleOnCloseMenu();
+          triggerRef.current?.focus();
+          break;
+      }
+    },
+    [onSelectOption, visualFocusIndex, options]
+  );
+  
+  useLayoutEffect(() => {
+    const visualFocusedMenuItem = menuRef?.current?.querySelectorAll("[role='menuitem']")[visualFocusIndex];
+    visualFocusedMenuItem?.scrollIntoView?.({ block: "nearest", inline: "start" });
+  }, [visualFocusIndex]);
+
+  const handleMenuResize = () => {
+    const rect = triggerRef?.current?.getBoundingClientRect();
+    setMenuStyles({ width: rect?.width });
+  };
+  useEffect(() => {
+    handleMenuResize();
+    window.addEventListener("resize", handleMenuResize);
     return () => {
-      if (ref.current) ref.current.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleMenuResize);
     };
   }, []);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  function handleClickListItem(event) {
-    setAnchorEl(event.currentTarget);
-  }
-
-  function handleMenuItemClick(option) {
-    setAnchorEl(null);
-    onSelectOption(option.value);
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
-
-  const handleCloseOver = expandOnHover ? handleClose : undefined;
-
-  const UpArrowIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M7 14l5-5 5 5z" />
-      <path d="M0 0h24v24H0z" fill="none" />
-    </svg>
-  );
-
-  const DownArrowIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M7 10l5 5 5-5z" />
-      <path d="M0 0h24v24H0z" fill="none" />
-    </svg>
-  );
-
-  const labelComponent = (
-    <DropdownTriggerLabel iconPosition={iconPosition} label={label}>
-      {label}
-    </DropdownTriggerLabel>
-  );
-
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
-      <DXCDropdownContainer margin={margin} size={size} disabled={disabled}>
-        <div
-          onMouseOver={expandOnHover && !disabled ? handleClickListItem : undefined}
-          onMouseOut={handleCloseOver}
-          onFocus={handleCloseOver}
-          onBlur={handleCloseOver}
-        >
-          <DropdownTrigger
-            opened={anchorEl === null ? false : true}
-            onClick={handleClickListItem}
-            disabled={disabled}
-            label={label}
-            caretHidden={caretHidden}
-            margin={margin}
-            size={size}
-            ref={ref}
-            tabIndex={tabIndex}
-          >
-            <DropdownTriggerContainer caretHidden={caretHidden}>
-              {iconPosition === "after" && labelComponent}
-              {icon && (
-                <ButtonIconContainer label={label} iconPosition={iconPosition} disabled={disabled}>
-                  {typeof icon === "string" ? <ButtonIcon src={icon} /> : icon}
-                </ButtonIconContainer>
-              )}
-              {iconPosition === "before" && labelComponent}
-            </DropdownTriggerContainer>
-            <CaretIconContainer caretHidden={caretHidden} disabled={disabled}>
-              {!caretHidden && (anchorEl === null ? <DownArrowIcon /> : <UpArrowIcon />)}
-            </CaretIconContainer>
-          </DropdownTrigger>
-          <DXCMenu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            getContentAnchorEl={null}
-            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-            transformOrigin={{ vertical: "top", horizontal: "left" }}
-            size={size}
-            width={width}
-            role={undefined}
-            transition
-            disablePortal
-            placement="bottom-start"
-          >
-            {({ TransitionProps }) => (
-              <Grow {...TransitionProps}>
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList autoFocusItem={Boolean(anchorEl)} id="menu-list-grow">
-                      {options.map((option) => (
-                        <MenuItem
-                          key={option.value}
-                          value={option.value}
-                          disableRipple={true}
-                          onClick={(event) => handleMenuItemClick(option)}
-                        >
-                          {optionsIconPosition === "after" && <span className="optionLabel">{option.label}</span>}
-                          {option.icon && (
-                            <ListIconContainer label={option.label} iconPosition={optionsIconPosition}>
-                              {typeof option.icon === "string" ? <ListIcon src={option.icon} /> : option.icon}
-                            </ListIconContainer>
-                          )}
-                          {optionsIconPosition === "before" && <span className="optionLabel">{option.label}</span>}
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </DXCMenu>
-        </div>
-      </DXCDropdownContainer>
+      <DropdownContainer
+        onMouseEnter={!disabled && expandOnHover ? handleOnOpenMenu : undefined}
+        onMouseLeave={!disabled && expandOnHover ? handleOnCloseMenu : undefined}
+        onBlur={!disabled ? handleOnBlur : undefined}
+        margin={margin}
+        size={size}
+      >
+        <Popover.Root open={isOpen}>
+          <Popover.Trigger asChild>
+            <DropdownTrigger
+              opened={isOpen}
+              onClick={handleTriggerOnClick}
+              onKeyDown={handleTriggerOnKeyDown}
+              onBlur={(event) => {
+                event.stopPropagation();
+              }}
+              disabled={disabled}
+              label={label}
+              margin={margin}
+              size={size}
+              id={triggerId}
+              aria-disabled={disabled}
+              aria-haspopup="true"
+              aria-expanded={isOpen ? true : undefined}
+              tabIndex={tabIndex}
+              ref={triggerRef}
+            >
+              <DropdownTriggerContent>
+                {label && iconPosition === "after" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+                {icon && (
+                  <DropdownTriggerIcon
+                    label={label}
+                    iconPosition={iconPosition}
+                    disabled={disabled}
+                    role={typeof icon === "string" ? undefined : "img"}
+                  >
+                    {typeof icon === "string" ? <img src={icon} /> : icon}
+                  </DropdownTriggerIcon>
+                )}
+                {label && iconPosition === "before" && <DropdownTriggerLabel>{label}</DropdownTriggerLabel>}
+              </DropdownTriggerContent>
+              {!caretHidden && <CaretIcon disabled={disabled}>{isOpen ? upArrowIcon : downArrowIcon}</CaretIcon>}
+            </DropdownTrigger>
+          </Popover.Trigger>
+          <Popover.Content sideOffset={1} asChild>
+            <DropdownMenu
+              id={menuId}
+              dropdownTriggerId={triggerId}
+              options={options}
+              iconsPosition={optionsIconPosition}
+              visualFocusIndex={visualFocusIndex}
+              menuItemOnClick={handleMenuItemOnClick}
+              onKeyDown={handleMenuOnKeyDown}
+              styles={menuStyles}
+              ref={menuRef}
+            />
+          </Popover.Content>
+        </Popover.Root>
+      </DropdownContainer>
     </ThemeProvider>
   );
 };
@@ -171,14 +232,17 @@ const sizes = {
   fitContent: "unset",
 };
 
-const calculateWidth = (margin, size) => {
-  if (size === "fillParent") {
-    return `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
-  }
-  return sizes[size];
-};
+const calculateWidth = (margin, size) =>
+  size === "fillParent"
+    ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
+    : sizes[size];
 
-const DXCDropdownContainer = styled.div`
+type DropdownContainerProps = {
+  margin: Space | Margin;
+  size: Size;
+};
+const DropdownContainer = styled.div<DropdownContainerProps>`
+  display: inline-block;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   text-overflow: ellipsis;
   overflow: hidden;
@@ -191,93 +255,26 @@ const DXCDropdownContainer = styled.div`
     props.margin && typeof props.margin === "object" && props.margin.bottom ? spaces[props.margin.bottom] : ""};
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
-  display: inline-block;
 `;
 
-const DXCMenu = styled(Popper)`
-  z-index: 1;
-
-  .MuiMenuItem-gutters {
-    width: ${(props) => calculateWidth(props.margin, props.size)};
-  }
-  .MuiMenuItem-root {
-    min-height: 36px;
-    padding-top: ${(props) => props.theme.optionPaddingTop};
-    padding-bottom: ${(props) => props.theme.optionPaddingBottom};
-    padding-left: ${(props) => props.theme.optionPaddingLeft};
-    padding-right: ${(props) => props.theme.optionPaddingRight};
-    height: auto;
-  }
-  .MuiPaper-root {
-    min-width: ${(props) => `${props.width}px`};
-    border-width: ${(props) => props.theme.borderThickness};
-    border-style: ${(props) => props.theme.borderStyle};
-    border-color: ${(props) => props.theme.borderColor};
-    border-bottom-left-radius: ${(props) => props.theme.borderRadius};
-    border-bottom-right-radius: ${(props) => props.theme.borderRadius};
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    max-height: 230px;
-    overflow-y: auto;
-
-    ::-webkit-scrollbar {
-      width: 3px;
-    }
-    ::-webkit-scrollbar-track {
-      background-color: ${(props) => props.theme.scrollBarTrackColor};
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.scrollBarThumbColor};
-      border-radius: 3px;
-    }
-
-    .MuiList-padding {
-      padding-top: 0px;
-      padding-bottom: 0px;
-    }
-    .MuiListItem-button {
-      display: flex;
-      background-color: ${(props) => props.theme.optionBackgroundColor};
-      font-family: ${(props) => props.theme.optionFontFamily};
-      font-size: ${(props) => props.theme.optionFontSize};
-      font-style: ${(props) => props.theme.optionFontStyle};
-      font-weight: ${(props) => props.theme.optionFontWeight};
-      color: ${(props) => props.theme.optionFontColor};
-      cursor: pointer;
-    }
-    .MuiListItem-button:focus {
-      outline: ${(props) => props.theme.focusColor} solid 2px;
-      outline-offset: -2px;
-    }
-    .MuiListItem-button:hover {
-      background-color: ${(props) => props.theme.hoverOptionBackgroundColor};
-    }
-    .MuiListItem-button:active {
-      background-color: ${(props) => props.theme.activeOptionBackgroundColor};
-      outline: ${(props) => props.theme.focusColor} solid 2px;
-      outline-offset: -2px;
-    }
-  }
-`;
-
-const DropdownTrigger = styled.button`
-  display: inline-flex;
+type DropdownTriggerProps = {
+  label: string;
+  margin: Space | Margin;
+  opened: boolean;
+  size: Size;
+};
+const DropdownTrigger = styled.button<DropdownTriggerProps>`
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: ${(props) => props.theme.caretIconSpacing};
   width: 100%;
-  height: auto;
   min-height: 40px;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  font-family: ${(props) => props.theme.buttonFontFamily};
-  font-size: ${(props) => props.theme.buttonFontSize};
-  font-style: ${(props) => props.theme.buttonFontStyle};
-  font-weight: ${(props) => props.theme.buttonFontWeight};
+  min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: ${(props) => props.theme.borderThickness};
   border-style: ${(props) => props.theme.borderStyle};
   border-color: ${(props) => (props.disabled ? props.theme.disabledBorderColor : props.theme.borderColor)};
-  min-width: ${(props) => (props.label === "" ? "0px" : calculateWidth(props.margin, props.size))};
   padding-top: ${(props) => props.theme.buttonPaddingTop};
   padding-bottom: ${(props) => props.theme.buttonPaddingBottom};
   padding-left: ${(props) => props.theme.buttonPaddingLeft};
@@ -285,16 +282,12 @@ const DropdownTrigger = styled.button`
   background-color: ${(props) =>
     props.disabled ? props.theme.disabledButtonBackgroundColor : props.theme.buttonBackgroundColor};
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonFontColor)};
-  border-bottom-right-radius: ${(props) => (props.opened ? "0px" : props.theme.borderRadius)};
-  border-bottom-left-radius: ${(props) => (props.opened ? "0px" : props.theme.borderRadius)};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   ${(props) =>
     !props.disabled &&
-    `  
+    `
       &:focus {
-        outline: none;
-      }
-      &:focus-visible {
         outline: ${props.theme.focusColor} solid 2px;
         outline-offset: -2px;
       }
@@ -307,31 +300,34 @@ const DropdownTrigger = styled.button`
   `};
 `;
 
+const DropdownTriggerContent = styled.span`
+  display: flex;
+  align-items: center;
+  gap: ${(props) => props.theme.buttonIconSpacing};
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
 const DropdownTriggerLabel = styled.span`
-  text-align: left;
+  font-family: ${(props) => props.theme.buttonFontFamily};
+  font-size: ${(props) => props.theme.buttonFontSize};
+  font-style: ${(props) => props.theme.buttonFontStyle};
+  font-weight: ${(props) => props.theme.buttonFontWeight};
   text-overflow: ellipsis;
   overflow: hidden;
 `;
 
-const DropdownTriggerContainer = styled.span`
-  display: flex;
-  align-items: center;
-  margin-left: 0px;
-  margin-right: 0px;
-  width: ${(props) => (props.caretHidden ? "100%" : "calc(100% - 36px)")};
-  white-space: nowrap;
-`;
-
-const ButtonIcon = styled.img``;
-
-const ButtonIconContainer = styled.div`
-  overflow: hidden;
+type DropdownTriggerIconProps = {
+  iconPosition: "before" | "after";
+  disabled: boolean;
+  label: string;
+};
+const DropdownTriggerIcon = styled.div<DropdownTriggerIconProps>`
   width: ${(props) => props.theme.buttonIconSize};
   height: ${(props) => props.theme.buttonIconSize};
-  margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.buttonIconSpacing) || "0px"};
-  margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.buttonIconSpacing) || "0px"};
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.buttonIconColor)};
 
   img,
@@ -341,28 +337,8 @@ const ButtonIconContainer = styled.div`
   }
 `;
 
-const ListIcon = styled.img``;
-
-const ListIconContainer = styled.div`
-  overflow: hidden;
-  width: ${(props) => props.theme.optionIconSize};
-  height: ${(props) => props.theme.optionIconSize};
-  margin-left: ${(props) =>
-    (props.iconPosition === "after" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
-  margin-right: ${(props) =>
-    (props.iconPosition === "before" && props.label !== "" && props.theme.optionIconSpacing) || "0px"};
-  color: ${(props) => props.theme.optionIconColor};
-
-  img,
-  svg {
-    height: 100%;
-    width: 100%;
-  }
-`;
-
-const CaretIconContainer = styled.div`
-  display: ${(props) => (props.caretHidden ? "none" : "inline-flex")};
-  margin-left: ${(props) => props.theme.caretIconSpacing};
+const CaretIcon = styled.span<{ disabled: boolean }>`
+  display: flex;
   color: ${(props) => (props.disabled ? props.theme.disabledColor : props.theme.caretIconColor)};
 
   svg {

@@ -4,28 +4,28 @@ import Example from "@/common/example/Example";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import { DxcParagraph, DxcFlex } from "@dxc-technology/halstack-react";
-// import internalUse from "./examples/internalUse";
 import customUse from "./examples/customUse";
+import internalUse from "./examples/internalUse";
 
 const sections = [
   {
     title: "Examples",
     subSections: [
-      // {
-      //   title: "Internal use",
-      //   content: (
-      //     <>
-      //       <DxcParagraph>
-      //         This is an example of how some components of the Design System use
-      //         internally the <Code>BackgroundColorProvider</Code>, in this case
-      //         the <Code>DxcFooter</Code> knows that its background color is
-      //         black and shows the <Code>DxcTextInput</Code> in its onDark
-      //         version for its correct visualization.
-      //       </DxcParagraph>
-      //       <Example example={internalUse} defaultIsVisible />
-      //     </>
-      //   ),
-      // },
+      {
+        title: "Internal use",
+        content: (
+          <>
+            <DxcParagraph>
+              This is an example of how some components of the Design System use
+              internally the <Code>BackgroundColorProvider</Code>, in this case
+              the <Code>DxcAccordion</Code> knows that its background color is
+              black and shows the <Code>DxcTextInput</Code> in its onDark
+              version for its correct visualization.
+            </DxcParagraph>
+            <Example example={internalUse} defaultIsVisible />
+          </>
+        ),
+      },
       {
         title: "Custom use",
         content: (
