@@ -6,14 +6,14 @@ import useTranslatedLabels from "../useTranslatedLabels";
 import Tab from "./Tab";
 import TabsPropsType, { Margin, Space } from "./types";
 
-const iconIndicator = {
+const arrowIcons = {
   left: (
-    <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img" aria-labelledby="scrollLeft">
+    <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
       <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"></path>
     </svg>
   ),
   right: (
-    <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img" aria-labelledby="scrollRight">
+    <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
       <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>
     </svg>
   ),
@@ -49,8 +49,8 @@ const DxcTabs = ({
   iconPosition = "top",
   tabIndex = 0,
 }: TabsPropsType): JSX.Element => {
-  const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(defaultActiveTabIndex ?? 0);
   const colorsTheme = useTheme();
+  const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(defaultActiveTabIndex ?? 0);
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
@@ -59,13 +59,13 @@ const DxcTabs = ({
   const [leftIndicatorEnabled, setLeftIndicatorEnabled] = useState(false);
   const [countClick, setCountClick] = useState(0);
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
+  const [currentFocusIndex, setCurrentFocusIndex] = useState(0);
+  const [temporalFocusIndex, setTemporalFocusIndex] = useState(0);
   const refTabs = useRef([]);
   const refTabList = useRef(null);
   const viewWidth = useResize(refTabList);
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
   const translatedLabels = useTranslatedLabels();
-  const [currentFocusIndex, setCurrentFocusIndex] = useState(0);
-  const [temporalFocusIndex, setTemporalFocusIndex] = useState(0);
 
   useEffect(() => {
     const sumWidth = refTabs?.current?.reduce(function (count, obj) {
@@ -178,7 +178,7 @@ const DxcTabs = ({
             aria-label={translatedLabels.tabs.scrollLeft}
             role="button"
           >
-            {iconIndicator.left}
+            {arrowIcons.left}
           </ScrollLeftComponent>
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
@@ -217,7 +217,7 @@ const DxcTabs = ({
             aria-label={translatedLabels.tabs.scrollRight}
             role="button"
           >
-            {iconIndicator.right}
+            {arrowIcons.right}
           </ScrollRightComponent>
         </Tabs>
         <Underline />
