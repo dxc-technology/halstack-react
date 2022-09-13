@@ -133,13 +133,12 @@ export const Chromatic = () => (
           icon={folderIcon}
           padding="medium"
         >
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "26px" }}>
             <DxcTextInput
               label="Label"
               helperText="HelperText"
               placeholder="Placeholder"
               size="fillParent"
-              margin={{ bottom: "medium" }}
             />
             <DxcButton label="Submit" size="medium" />
           </div>
