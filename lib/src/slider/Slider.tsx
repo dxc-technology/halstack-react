@@ -45,7 +45,7 @@ const DxcSlider = ({
   );
 
   const handlerSliderChange = (event, newValue) => {
-    const valueToCheck = value ?? innerValue;
+    const valueToCheck = value != null && value >= 0 ? value : innerValue;
     valueToCheck !== newValue && setInnerValue(newValue);
     onChange?.(newValue);
   };
