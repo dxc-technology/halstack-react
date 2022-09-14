@@ -80,7 +80,7 @@ const DxcSlider = ({
             </MinLabelContainer>
           )}
           <Slider
-            value={(value != null && value >= 0 && value) || innerValue}
+            value={(value !== null && value >= 0 && value !== undefined) ? value : innerValue}
             min={minValue}
             max={maxValue}
             onChange={handlerSliderChange}
@@ -99,7 +99,7 @@ const DxcSlider = ({
             <StyledTextInput>
               <DxcTextInput
                 name={name}
-                value={(value != null && value >= 0 && value.toString()) || innerValue.toString()}
+                value={(value !== null && value >= 0 && value !== undefined) ? value.toString() : innerValue.toString()}
                 disabled={disabled}
                 onChange={handlerInputChange}
                 size="fillParent"
