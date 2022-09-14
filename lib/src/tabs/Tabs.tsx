@@ -349,7 +349,7 @@ const TabsContent = styled.div`
 
 const TabList = styled.div`
   display: flex;
-  height: 48px;
+  min-height: 48px;
 `;
 
 type TabsContentScrollProps = {

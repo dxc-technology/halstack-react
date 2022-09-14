@@ -80,9 +80,9 @@ const TabContainer = styled.button<IconProps>`
   padding: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") || "8px 16px"};
   height: ${(props) =>
-    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "72px"};
+    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "71px"};
   min-height: ${(props) =>
-    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "72px"};
+    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "71px"};
   background-color: ${(props) => props.theme.unselectedBackgroundColor};
   color: ${(props) => props.theme.unselectedFontColor};
   svg {
