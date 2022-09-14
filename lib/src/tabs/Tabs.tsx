@@ -169,6 +169,7 @@ const DxcTabs = ({
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
       <TabsContainer margin={margin}>
+        <Underline />
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
           <ScrollLeftComponent
             onClick={scrollLeft}
@@ -220,7 +221,6 @@ const DxcTabs = ({
             {arrowIcons.right}
           </ScrollRightComponent>
         </Tabs>
-        <Underline />
       </TabsContainer>
     </ThemeProvider>
   );
@@ -233,7 +233,7 @@ const Underline = styled.div`
   position: absolute;
   height: ${(props) => props.theme.dividerThickness};
   background-color: ${(props) => props.theme.dividerColor};
-  z-index: 0;
+  z-index: 1;
 `;
 
 const TabsContainer = styled.div<{ margin: Margin | Space }>`
@@ -273,12 +273,14 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
   display: ${(props) => (props.enabled ? "flex" : "none")};
   background-color: #ffffff;
   font-size: 1.25rem;
-  color: #666666;
   min-width: ${(props) => props.theme.scrollButtonsWidth};
   height: 100%;
   padding: 0;
   justify-content: center;
   cursor: pointer;
+  border-bottom: solid ${(props) => props.theme.dividerThickness} ${(props) => props.theme.dividerColor};
+  box-sizing: border-box;
+  visibility: visible;
   &:hover {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
   }
@@ -289,18 +291,31 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
     height: 20px;
     width: 20px;
     align-self: center;
+    fill: #666666;
   }
 `;
 
 const ScrollLeftComponent = styled(ScrollIndicator)`
-  ${(props) =>
-    props.enabled && (props.scrollLeftEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
+  ${(props) => props.enabled && !props.scrollLeftEnabled && "cursor: not-allowed;"}
+  &:hover {
+    background-color: ${(props) =>
+      props.scrollLeftEnabled ? `${props.theme.hoverBackgroundColor} !important` : "transparent !important"};
+  }
+  svg {
+    ${(props) => props.enabled && (props.scrollLeftEnabled ? `visibility: visible;` : `visibility: hidden;`)}
+  }
 `;
 
 const ScrollRightComponent = styled(ScrollIndicator)`
   margin-left: -3px;
-  ${(props) =>
-    props.enabled && (props.scrollRightEnabled ? `visibility: visible;` : `visibility: hidden; cursor: not-allowed;`)}
+  ${(props) => props.enabled && !props.scrollRightEnabled && "cursor: not-allowed;"}
+  &:hover {
+    background-color: ${(props) =>
+      props.scrollRightEnabled ? `${props.theme.hoverBackgroundColor} !important` : "transparent !important"};
+  }
+  svg {
+    ${(props) => props.enabled && (props.scrollRightEnabled ? `visibility: visible;` : `visibility: hidden;`)}
+  }
 `;
 
 type ActiveIndicatorProps = {
@@ -334,6 +349,7 @@ const TabsContent = styled.div`
 
 const TabList = styled.div`
   display: flex;
+  height: 48px;
 `;
 
 type TabsContentScrollProps = {

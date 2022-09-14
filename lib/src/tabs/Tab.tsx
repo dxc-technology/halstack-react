@@ -29,23 +29,23 @@ const Tab = forwardRef(
           onMouseLeave();
         }}
       >
-        <ParentLabelSpan>
-          <MainLabelContainer hasBadge={tab.notificationNumber}>
-            <TabLabelContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              {tab.icon && (
-                <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-                  {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
-                </TabIconContainer>
-              )}
-              <LabelTextContainer>{tab.label}</LabelTextContainer>
-            </TabLabelContainer>
-          </MainLabelContainer>
-          {tab.notificationNumber && tab.notificationNumber && (
-            <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-              <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
-            </BadgeContainer>
+        <MainLabelContainer
+          hasBadge={tab.notificationNumber}
+          hasLabelAndIcon={hasLabelAndIcon}
+          iconPosition={iconPosition}
+        >
+          {tab.icon && (
+            <TabIconContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+              {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
+            </TabIconContainer>
           )}
-        </ParentLabelSpan>
+          <LabelTextContainer>{tab.label}</LabelTextContainer>
+        </MainLabelContainer>
+        {tab.notificationNumber && tab.notificationNumber && (
+          <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
+            <DxcBadge notificationText={tab.notificationNumber > 99 ? "+99" : tab.notificationNumber} />
+          </BadgeContainer>
+        )}
       </TabContainer>
     );
   }
@@ -59,7 +59,6 @@ type IconProps = {
 const TabContainer = styled.button<IconProps>`
   text-transform: ${(props) => props.theme.fontTextTransform};
   overflow: hidden;
-  position: relative;
   text-align: center;
   flex-shrink: 0;
   line-height: 1.75;
@@ -72,9 +71,6 @@ const TabContainer = styled.button<IconProps>`
   user-select: none;
   vertical-align: middle;
   justify-content: center;
-  opacity: 0.7;
-  border-bottom-style: solid;
-  border-bottom-color: ${(props) => props.theme.dividerColor};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-style: ${(props) => props.theme.fontStyle};
@@ -84,9 +80,9 @@ const TabContainer = styled.button<IconProps>`
   padding: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "12px 16px") || "8px 16px"};
   height: ${(props) =>
-    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
+    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "72px"};
   min-height: ${(props) =>
-    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
+    ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "72px"};
   background-color: ${(props) => props.theme.unselectedBackgroundColor};
   color: ${(props) => props.theme.unselectedFontColor};
   svg {
@@ -125,35 +121,32 @@ const TabContainer = styled.button<IconProps>`
       color: ${(props) => props.theme.disabledIconColor};
     }
     outline: none !important;
-    opacity: 0.5;
+    > div {
+      opacity: 0.5;
+    }
   }
-`;
-
-const ParentLabelSpan = styled.div`
-  position: relative;
-`;
-
-const TabLabelContainer = styled.div<IconProps>`
-  display: flex;
-  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
-  align-items: center;
 `;
 
 const LabelTextContainer = styled.div``;
 
 const BadgeContainer = styled.div<IconProps>`
-  position: absolute;
-  right: 0;
-  top: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "0") || "5px"};
-  width: 23px;
-  height: 17px;
+  margin-left: 12px;
+  height: 100%;
+  display: flex;
+  align-items: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" ? "flex-start" : "center")};
 `;
 
-const MainLabelContainer = styled.div<{ hasBadge: number | boolean }>`
+type MainLabelContainerProps = {
+  hasBadge: number | boolean;
+  hasLabelAndIcon: boolean;
+  iconPosition: "top" | "left";
+};
+
+const MainLabelContainer = styled.div<MainLabelContainerProps>`
   display: flex;
-  flex-direction: row;
-  margin-left: ${(props) => (props.hasBadge && "35px") || "unset"};
-  margin-right: ${(props) => (props.hasBadge && "35px") || "unset"};
+  flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
+  align-items: center;
+  margin-left: ${(props) => (props.hasBadge ? (typeof props.hasBadge === "number" ? "35px" : "28px") : "unset")};
 `;
 
 const TabIconContainer = styled.div<IconProps>`
