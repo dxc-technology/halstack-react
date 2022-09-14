@@ -95,6 +95,7 @@ const AccordionContainer = styled.div<{ isExpanded: boolean; margin: Space | Mar
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
+  border-radius: ${(props) => props.theme.borderRadius};
   ${(props) => props.isExpanded && `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
   box-shadow: ${(props) =>
     `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
@@ -158,11 +159,11 @@ const AccordionInfo = styled.span<{ disabled: boolean }>`
 
 const AccordionLabel = styled.span`
   display: flex;
-  align-items: center;
   padding-top: ${(props) => props.theme.titleLabelPaddingTop};
   padding-bottom: ${(props) => props.theme.titleLabelPaddingBottom};
   padding-right: ${(props) => props.theme.titleLabelPaddingRight};
   padding-left: ${(props) => props.theme.titleLabelPaddingLeft};
+  line-height: 24px;
 `;
 
 const IconContainer = styled.span<{ disabled: boolean }>`
@@ -192,6 +193,7 @@ const AccordionAssistiveText = styled.span<{ disabled: boolean }>`
   color: ${(props) =>
     props.disabled ? props.theme.disabledAssistiveTextFontColor : props.theme.assistiveTextFontColor};
   letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
+  line-height: 24px;
 `;
 
 const CollapseIndicator = styled.span<{ disabled: boolean }>`
