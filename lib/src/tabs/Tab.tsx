@@ -146,7 +146,12 @@ const MainLabelContainer = styled.div<MainLabelContainerProps>`
   display: flex;
   flex-direction: ${(props) => (props.hasLabelAndIcon && props.iconPosition === "top" && "column") || "row"};
   align-items: center;
-  margin-left: ${(props) => (props.hasBadge ? (typeof props.hasBadge === "number" ? "35px" : "28px") : "unset")};
+  margin-left: ${(props) =>
+    props.hasBadge
+      ? typeof props.hasBadge === "number"
+        ? `calc(${props.theme.badgeWidthWithNotificationNumber} + 12px)`
+        : `calc(${props.theme.badgeWidth} + 12px)`
+      : "unset"};
 `;
 
 const TabIconContainer = styled.div<IconProps>`
