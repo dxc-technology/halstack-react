@@ -61,6 +61,7 @@ const DxcTabs = ({
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
   const [currentFocusIndex, setCurrentFocusIndex] = useState(0);
   const [temporalFocusIndex, setTemporalFocusIndex] = useState(0);
+  const [minHeightTabs, setMinHeightTabs] = useState(0);
   const refTabs = useRef([]);
   const refTabList = useRef(null);
   const viewWidth = useResize(refTabList);
@@ -75,6 +76,10 @@ const DxcTabs = ({
     setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetWidth);
     setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft);
   }, [refTabs]);
+
+  useEffect(() => {
+    setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
+  }, [refTabList]);
 
   const handleSelected = (newValue) => {
     activeTabIndex ?? setInnerActiveTabIndex(newValue);
@@ -183,7 +188,7 @@ const DxcTabs = ({
           </ScrollLeftComponent>
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
-              <TabList role="tablist" onKeyDown={handleOnKeyDown}>
+              <TabList role="tablist" onKeyDown={handleOnKeyDown} minHeightTabs={minHeightTabs}>
                 {tabs.map((tab, i) => (
                   <Tab
                     tab={tab}
@@ -347,9 +352,9 @@ const TabsContent = styled.div`
   }
 `;
 
-const TabList = styled.div`
+const TabList = styled.div<{ minHeightTabs: number }>`
   display: flex;
-  min-height: 48px;
+  min-height: ${(props) => props.minHeightTabs}px;
 `;
 
 type TabsContentScrollProps = {
