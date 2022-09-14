@@ -291,7 +291,7 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
     height: 20px;
     width: 20px;
     align-self: center;
-    fill: #666666;
+    color: ${(props) => props.theme.unselectedFontColor};
   }
 `;
 
