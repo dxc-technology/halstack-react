@@ -52,6 +52,7 @@ const DxcAccordion = ({
             tabIndex={disabled ? -1 : tabIndex}
             aria-expanded={isExpanded ?? innerIsExpanded}
             aria-controls={`accordion-panel-${id}`}
+            isExpanded={isExpanded ?? innerIsExpanded}
           >
             <AccordionInfo disabled={disabled}>
               <AccordionLabel>
@@ -94,7 +95,6 @@ const AccordionContainer = styled.div<{ isExpanded: boolean; margin: Space | Mar
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};
-  border-radius: ${(props) => props.theme.borderRadius};
   ${(props) => props.isExpanded && `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
   box-shadow: ${(props) =>
     `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
@@ -118,7 +118,7 @@ const AccordionHeader = styled.h3`
   margin: 0;
 `;
 
-const AccordionTrigger = styled.button`
+const AccordionTrigger = styled.button<{ isExpanded: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -127,6 +127,7 @@ const AccordionTrigger = styled.button`
   background-color: transparent;
   border: none;
   border-radius: ${(props) => props.theme.borderRadius};
+  ${(props) => props.isExpanded && `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
   padding: 12px 16px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
@@ -134,10 +135,10 @@ const AccordionTrigger = styled.button`
     outline: ${(props) =>
       `${props.theme.focusBorderColor} ${props.theme.focusBorderStyle} ${props.theme.focusBorderThickness}`};
   }
-  :hover {
+  :hover:enabled {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
   }
-  :active {
+  :active:enabled {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
   }
 `;
