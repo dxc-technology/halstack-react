@@ -69,10 +69,10 @@ const DxcTabs = ({
   const translatedLabels = useTranslatedLabels();
 
   useEffect(() => {
-    const sumWidth = refTabs?.current?.reduce(function (count, obj) {
+    let sumWidth = refTabs?.current?.reduce(function (count, obj) {
       return count + obj.offsetWidth;
     }, 0);
-    setTotalTabsWidth(sumWidth);
+    setTotalTabsWidth(sumWidth + 1); //1px for the outline to be shown in the last tab
     setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetWidth);
     setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft);
   }, [refTabs]);
@@ -176,16 +176,16 @@ const DxcTabs = ({
       <TabsContainer margin={margin}>
         <Underline />
         <Tabs hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
-          <ScrollLeftComponent
+          <ScrollIndicator
             onClick={scrollLeft}
             scrollLeftEnabled={scrollLeftEnabled}
             enabled={enabledIndicator}
-            aria-disabled="false"
+            aria-disabled={!scrollLeftEnabled}
             aria-label={translatedLabels.tabs.scrollLeft}
             role="button"
           >
             {arrowIcons.left}
-          </ScrollLeftComponent>
+          </ScrollIndicator>
           <TabsContent>
             <TabsContentScroll translateScroll={translateScroll} ref={refTabList} enabled={enabledIndicator}>
               <TabList role="tablist" onKeyDown={handleOnKeyDown} minHeightTabs={minHeightTabs}>
@@ -215,16 +215,16 @@ const DxcTabs = ({
               <ActiveIndicator tabWidth={activeIndicatorWidth} tabLeft={activeIndicatorLeft}></ActiveIndicator>
             </TabsContentScroll>
           </TabsContent>
-          <ScrollRightComponent
+          <ScrollIndicator
             onClick={scrollRight}
             scrollRightEnabled={scrollRightEnabled}
             enabled={enabledIndicator}
-            aria-disabled="false"
+            aria-disabled={!scrollRightEnabled}
             aria-label={translatedLabels.tabs.scrollRight}
             role="button"
           >
             {arrowIcons.right}
-          </ScrollRightComponent>
+          </ScrollIndicator>
         </Tabs>
       </TabsContainer>
     </ThemeProvider>
@@ -285,41 +285,36 @@ const ScrollIndicator = styled.div<ScrollIndicatorProps>`
   cursor: pointer;
   border-bottom: solid ${(props) => props.theme.dividerThickness} ${(props) => props.theme.dividerColor};
   box-sizing: border-box;
-  visibility: visible;
   &:hover {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
   }
   &:focus {
-    outline: ${(props) => props.theme.focusOutline} auto 1px;
+    outline: ${(props) => props.theme.focusOutline} solid 1px;
+    outline-offset: -1px;
+  }
+  &:active {
+    background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
   }
   svg {
     height: 20px;
     width: 20px;
     align-self: center;
     color: ${(props) => props.theme.unselectedFontColor};
+    visibility: visible;
   }
-`;
-
-const ScrollLeftComponent = styled(ScrollIndicator)`
-  ${(props) => props.enabled && !props.scrollLeftEnabled && "cursor: not-allowed;"}
-  &:hover {
-    background-color: ${(props) =>
-      props.scrollLeftEnabled ? `${props.theme.hoverBackgroundColor} !important` : "transparent !important"};
-  }
-  svg {
-    ${(props) => props.enabled && (props.scrollLeftEnabled ? `visibility: visible;` : `visibility: hidden;`)}
-  }
-`;
-
-const ScrollRightComponent = styled(ScrollIndicator)`
-  margin-left: -3px;
-  ${(props) => props.enabled && !props.scrollRightEnabled && "cursor: not-allowed;"}
-  &:hover {
-    background-color: ${(props) =>
-      props.scrollRightEnabled ? `${props.theme.hoverBackgroundColor} !important` : "transparent !important"};
-  }
-  svg {
-    ${(props) => props.enabled && (props.scrollRightEnabled ? `visibility: visible;` : `visibility: hidden;`)}
+  &[aria-disabled="true"] {
+    pointer-events: none;
+    cursor: default;
+    svg {
+      visibility: hidden;
+    }
+    &:focus {
+      outline: none;
+    }
+    &:hover,
+    &:active {
+      background-color: transparent !important;
+    }
   }
 `;
 

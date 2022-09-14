@@ -99,7 +99,8 @@ const TabContainer = styled.button<IconProps>`
   }
 
   &:focus {
-    outline: ${(props) => props.theme.focusOutline} auto 1px;
+    outline: ${(props) => props.theme.focusOutline} solid 1px;
+    outline-offset: -1px;
   }
 
   &[aria-selected="true"] {
