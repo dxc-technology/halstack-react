@@ -29,6 +29,15 @@ const tabs: any = [
   {
     label: "Tab 4",
   },
+  {
+    label: "Tab 5",
+  },
+  {
+    label: "Tab 6",
+  },
+  {
+    label: "Tab 7",
+  },
 ];
 
 const tabsNotification = tabs.map((tab, index) => ({
@@ -136,5 +145,5 @@ ScrollableTabs.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
-  chromatic: { viewports: [375] },
+  chromatic: { viewports: [375, 812] },
 };

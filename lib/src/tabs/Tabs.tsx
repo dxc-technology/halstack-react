@@ -34,7 +34,7 @@ const useResize = (refTabList) => {
       window.removeEventListener("load", handleWindowSizeChange);
       window.removeEventListener("resize", handleWindowSizeChange);
     };
-  }, [refTabList, handleWindowSizeChange]);
+  }, [handleWindowSizeChange]);
 
   return viewWidth;
 };
@@ -65,14 +65,15 @@ const DxcTabs = ({
   const refTabs = useRef([]);
   const refTabList = useRef(null);
   const viewWidth = useResize(refTabList);
-  const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
   const translatedLabels = useTranslatedLabels();
+
+  const enabledIndicator = viewWidth < totalTabsWidth;
 
   useEffect(() => {
     let sumWidth = refTabs?.current?.reduce(function (count, obj) {
       return count + obj.offsetWidth;
     }, 0);
-    setTotalTabsWidth(sumWidth + 1); //1px for the outline to be shown in the last tab
+    setTotalTabsWidth(sumWidth);
     setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetWidth);
     setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? innerActiveTabIndex]?.offsetLeft);
   }, [refTabs]);
@@ -89,7 +90,7 @@ const DxcTabs = ({
   };
 
   const scrollLeft = () => {
-    const scrollWidth = viewWidth * 0.75;
+    const scrollWidth = refTabList?.current?.offsetWidth * 0.75;
     let moveX;
     if (countClick <= scrollWidth) {
       moveX = 0;
@@ -105,10 +106,10 @@ const DxcTabs = ({
   };
 
   const scrollRight = () => {
-    const scrollWidth = viewWidth * 0.75;
+    const scrollWidth = refTabList?.current?.offsetWidth * 0.75;
     let moveX;
-    if (countClick + scrollWidth + viewWidth >= totalTabsWidth) {
-      moveX = totalTabsWidth - viewWidth;
+    if (countClick + scrollWidth + refTabList?.current?.offsetWidth >= totalTabsWidth) {
+      moveX = totalTabsWidth - refTabList?.current?.offsetWidth;
       setScrollRightEnabled(false);
       setScrollLeftEnabled(true);
     } else {
@@ -126,7 +127,8 @@ const DxcTabs = ({
       while (tabs[index].isDisabled) {
         index = index === 0 ? tabs.length - 1 : index - 1;
       }
-      refTabs?.current[index].focus();
+      refTabs?.current[index].focus({ preventScroll: true });
+      setScrollFocus(index);
       return index;
     });
   };
@@ -137,9 +139,34 @@ const DxcTabs = ({
       while (tabs[index].isDisabled) {
         index = index === tabs.length - 1 ? 0 : index + 1;
       }
-      refTabs?.current[index].focus();
+      refTabs?.current[index].focus({ preventScroll: true });
+      setScrollFocus(index);
       return index;
     });
+  };
+
+  const setScrollFocus = (actualIndex: number) => {
+    let sumPrev = 0;
+    refTabs?.current?.map((item, index) => {
+      if (index <= actualIndex) {
+        sumPrev += item.offsetWidth;
+      }
+    });
+    let moveX = 0;
+    if (actualIndex === tabs.length - 1) {
+      moveX = totalTabsWidth - refTabList?.current?.offsetWidth;
+      setScrollLeftEnabled(true);
+      setScrollRightEnabled(false);
+    } else if (sumPrev > refTabList?.current?.offsetWidth) {
+      moveX = sumPrev - refTabList?.current?.offsetWidth + 1; //plus 1px for the outline
+      setScrollLeftEnabled(true);
+      setScrollRightEnabled(true);
+    } else {
+      setScrollLeftEnabled(false);
+      setScrollRightEnabled(true);
+    }
+    setTranslateScroll(-moveX);
+    setCountClick(moveX);
   };
 
   const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
