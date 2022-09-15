@@ -205,7 +205,8 @@ const CollapseIndicator = styled.span<{ disabled: boolean }>`
 
 const AccordionPanel = styled.div<{ padding: Space | Padding }>`
   width: 100%;
-  border-radius: 0px 0px 4px 4px;
+  border-bottom-left-radius: ${(props) => props.theme.borderRadius};
+  border-bottom-right-radius: ${(props) => props.theme.borderRadius};
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
