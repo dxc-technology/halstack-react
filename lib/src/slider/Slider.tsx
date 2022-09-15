@@ -110,7 +110,7 @@ const DxcSlider = ({
             <Slider
               role="slider"
               type="range"
-              value={(value != null && value >= 0 && value) || innerValue}
+              value={value != null && value >= 0 ? value : innerValue}
               min={minValue}
               max={maxValue}
               step={step}
@@ -120,7 +120,7 @@ const DxcSlider = ({
               aria-orientation="horizontal"
               aria-valuemax={maxValue}
               aria-valuemin={minValue}
-              aria-valuenow={(value != null && value >= 0 && value) || innerValue}
+              aria-valuenow={value != null && value >= 0 ? value : innerValue}
               onChange={handleSliderChange}
               onMouseUp={handleSliderOnChangeCommited}
               onMouseDown={handleSliderDragging}
@@ -137,7 +137,7 @@ const DxcSlider = ({
             <StyledTextInput>
               <DxcTextInput
                 name={name}
-                value={(value != null && value >= 0 && value.toString()) || innerValue.toString()}
+                value={value != null && value >= 0 ? value.toString() : innerValue.toString()}
                 disabled={disabled}
                 onChange={handlerInputChange}
                 size="fillParent"
