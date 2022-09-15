@@ -209,7 +209,8 @@ const DxcTabs = ({
             enabled={enabledIndicator}
             aria-disabled={!scrollLeftEnabled}
             aria-label={translatedLabels.tabs.scrollLeft}
-            role="button"
+            tabIndex={scrollLeftEnabled ? tabIndex : -1}
+            minHeightTabs={minHeightTabs}
           >
             {arrowIcons.left}
           </ScrollIndicator>
@@ -252,7 +253,8 @@ const DxcTabs = ({
             enabled={enabledIndicator}
             aria-disabled={!scrollRightEnabled}
             aria-label={translatedLabels.tabs.scrollRight}
-            role="button"
+            tabIndex={scrollRightEnabled ? tabIndex : -1}
+            minHeightTabs={minHeightTabs}
           >
             {arrowIcons.right}
           </ScrollIndicator>
@@ -303,19 +305,21 @@ type ScrollIndicatorProps = {
   enabled: boolean;
   scrollLeftEnabled?: boolean;
   scrollRightEnabled?: boolean;
+  minHeightTabs: number;
 };
 
-const ScrollIndicator = styled.div<ScrollIndicatorProps>`
+const ScrollIndicator = styled.button<ScrollIndicatorProps>`
   display: ${(props) => (props.enabled ? "flex" : "none")};
   background-color: #ffffff;
   font-size: 1.25rem;
   min-width: ${(props) => props.theme.scrollButtonsWidth};
-  height: 100%;
+  height: ${(props) => props.minHeightTabs - 1}px;
   padding: 0;
   justify-content: center;
   cursor: pointer;
   border-bottom: solid ${(props) => props.theme.dividerThickness} ${(props) => props.theme.dividerColor};
   box-sizing: border-box;
+  border: none;
   &:hover {
     background-color: ${(props) => `${props.theme.hoverBackgroundColor} !important`};
   }
