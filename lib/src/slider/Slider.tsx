@@ -49,17 +49,21 @@ const DxcSlider = ({
     const numberOfMarks = Math.floor(maxValue / step - minValue / step);
     let index = 0;
     const range = maxValue - minValue;
-    while (index <= numberOfMarks) {
-      ticks.push(
-        <TickMark
-          disabled={disabled}
-          stepPosition={((step * index) / range) * 100}
-          backgroundType={backgroundType}
-        ></TickMark>
-      );
-      index++;
+    if (marks) {
+      while (index <= numberOfMarks) {
+        ticks.push(
+          <TickMark
+            disabled={disabled}
+            stepPosition={((step * index) / range) * 100}
+            backgroundType={backgroundType}
+          ></TickMark>
+        );
+        index++;
+      }
+      return ticks;
+    } else {
+      return null;
     }
-    return ticks;
   }, [minValue, maxValue, step]);
 
   const handleSliderChange = (event) => {
@@ -68,7 +72,7 @@ const DxcSlider = ({
     onChange?.(valueToCheck);
   };
 
-  const handleSliderDragging = (event) => {
+  const handleSliderDragging = () => {
     setDragging(true);
   };
 
@@ -173,7 +177,9 @@ const getFireFoxStyles = () => {
   margin-right: 3px;`;
 };
 
-const Container = styled.div<{ margin: Margin | Space; size: "medium" | "large" | "fillParent" }>`
+type ContainerProps = { margin: Margin | Space; size: "medium" | "large" | "fillParent" };
+
+const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -188,7 +194,9 @@ const Container = styled.div<{ margin: Margin | Space; size: "medium" | "large" 
   width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
-const Label = styled.label<{ disabled: boolean; backgroundType: "dark" | "light" }>`
+type LabelProps = { disabled: boolean; backgroundType: "dark" | "light" };
+
+const Label = styled.label<LabelProps>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -205,7 +213,7 @@ const Label = styled.label<{ disabled: boolean; backgroundType: "dark" | "light"
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span<{ disabled: boolean; backgroundType: "dark" | "light" }>`
+const HelperText = styled.span<LabelProps>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -214,6 +222,7 @@ const HelperText = styled.span<{ disabled: boolean; backgroundType: "dark" | "li
       : props.backgroundType === "dark"
       ? props.theme.helperTextFontColorOnDark
       : props.theme.helperTextFontColor};
+
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -221,15 +230,16 @@ const HelperText = styled.span<{ disabled: boolean; backgroundType: "dark" | "li
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const Slider = styled.input<{
+type SliderProps = {
   disabled: boolean;
   backgroundType: "dark" | "light";
   value: number;
   min: number;
   max: number;
   marks: boolean;
-  onChange: (event: React.ChangeEventHandler<HTMLInputElement>) => void;
-}>`
+};
+
+const Slider = styled.input<SliderProps>`
   width: 100%;
   min-width: 240px;
   height: ${(props) => props.theme.trackLineThickness};
@@ -380,7 +390,7 @@ const SliderContainer = styled.div`
   align-items: center;
 `;
 
-const MinLabelContainer = styled.span<{ disabled: boolean; backgroundType: "dark" | "light" }>`
+const LimitLabelContainer = styled.span<LabelProps>`
   color: ${(props) =>
     props.disabled
       ? props.theme.disabledLimitValuesFontColor
@@ -394,23 +404,13 @@ const MinLabelContainer = styled.span<{ disabled: boolean; backgroundType: "dark
   font-weight: ${(props) => props.theme.limitValuesFontWeight};
   letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
   white-space: nowrap;
+`;
+
+const MinLabelContainer = styled(LimitLabelContainer)`
   margin-right: ${(props) => props.theme.floorLabelMarginRight};
 `;
 
-const MaxLabelContainer = styled.span<{ disabled: boolean; backgroundType: "dark" | "light"; step: number }>`
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledLimitValuesFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.limitValuesFontColorOnDark
-      : props.theme.limitValuesFontColor};
-
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.limitValuesFontSize};
-  font-style: ${(props) => props.theme.limitValuesFontStyle};
-  font-weight: ${(props) => props.theme.limitValuesFontWeight};
-  letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
-  white-space: nowrap;
+const MaxLabelContainer = styled(LimitLabelContainer)<{ step: number }>`
   margin-left: ${(props) => (props.step === 1 ? props.theme.ceilLabelMarginLeft : "1.25rem")};
 `;
 
@@ -428,9 +428,10 @@ const SliderInputContainer = styled.div`
 const MarksContainer = styled.div<{ isFirefox: boolean }>`
   ${(props) => (props.isFirefox ? getFireFoxStyles() : getChromeStyles())}
   position: absolute;
-  top: calc(50% - 2px);
   pointer-events: none;
-  height: 2px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const TickMark = styled.span<{ stepPosition: number; disabled: boolean; backgroundType: "dark" | "light" }>`
@@ -451,9 +452,6 @@ const TickMark = styled.span<{ stepPosition: number; disabled: boolean; backgrou
 
 const StyledTextInput = styled.div`
   margin-left: ${(props) => props.theme.inputMarginLeft};
-  label + .MuiInput-formControl {
-    margin-top: 2px;
-  }
   max-width: 70px;
 `;
 
