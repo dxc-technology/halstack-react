@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
@@ -67,7 +67,7 @@ const DxcTabs = ({
   const viewWidth = useResize(refTabList);
   const translatedLabels = useTranslatedLabels();
 
-  const enabledIndicator = viewWidth < totalTabsWidth;
+  const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {
     let sumWidth = refTabs?.current?.reduce(function (count, obj) {
