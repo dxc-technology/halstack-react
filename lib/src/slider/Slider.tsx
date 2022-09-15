@@ -425,7 +425,9 @@ const SliderInputContainer = styled.div`
   padding-top: 1px;
 `;
 
-const MarksContainer = styled.div<{ isFirefox: boolean }>`
+type MarksContainerProps = { isFirefox: boolean };
+
+const MarksContainer = styled.div<MarksContainerProps>`
   ${(props) => (props.isFirefox ? getFireFoxStyles() : getChromeStyles())}
   position: absolute;
   pointer-events: none;
@@ -434,7 +436,9 @@ const MarksContainer = styled.div<{ isFirefox: boolean }>`
   align-items: center;
 `;
 
-const TickMark = styled.span<{ stepPosition: number; disabled: boolean; backgroundType: "dark" | "light" }>`
+type TickMarkProps = { stepPosition: number; disabled: boolean; backgroundType: "dark" | "light" };
+
+const TickMark = styled.span<TickMarkProps>`
   position: absolute;
   background: ${(props) =>
     props.disabled
