@@ -50,7 +50,6 @@ export type TabProps = {
   tabIndex: number;
   hasLabelAndIcon: boolean;
   iconPosition: "top" | "left";
-  ref: React.Ref<HTMLButtonElement>;
   onClick: () => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
