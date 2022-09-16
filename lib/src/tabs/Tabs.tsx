@@ -334,7 +334,7 @@ const ScrollIndicator = styled.button<ScrollIndicatorProps>`
     height: 20px;
     width: 20px;
     align-self: center;
-    color: ${(props) => props.theme.unselectedFontColor};
+    fill: ${(props) => props.theme.unselectedFontColor};
     visibility: visible;
   }
   &[aria-disabled="true"] {
