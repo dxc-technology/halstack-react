@@ -2,12 +2,16 @@ import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
 import { TabProps } from "./types";
 import DxcBadge from "../badge/Badge";
+import DxcTypography from "../typography/Typography";
+import useTheme from "../useTheme";
 
 const Tab = forwardRef(
   (
     { active, tab, tabIndex, hasLabelAndIcon, iconPosition, onClick, onMouseEnter, onMouseLeave }: TabProps,
     ref: Ref<HTMLButtonElement>
   ): JSX.Element => {
+    const colorsTheme = useTheme();
+
     return (
       <TabContainer
         role="tab"
@@ -39,7 +43,21 @@ const Tab = forwardRef(
               {typeof tab.icon === "string" ? <TabIcon src={tab.icon} /> : tab.icon}
             </TabIconContainer>
           )}
-          <LabelTextContainer>{tab.label}</LabelTextContainer>
+          <DxcTypography
+            color={
+              tab.isDisabled
+                ? colorsTheme.tabs.disabledFontColor
+                : active
+                ? colorsTheme.tabs.selectedFontColor
+                : colorsTheme.tabs.unselectedFontColor
+            }
+            fontFamily={colorsTheme.tabs.fontFamily}
+            fontSize={colorsTheme.tabs.fontSize}
+            fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
+            fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
+          >
+            {tab.label}
+          </DxcTypography>
         </MainLabelContainer>
         {tab.notificationNumber && tab.notificationNumber && (
           <BadgeContainer hasLabelAndIcon={hasLabelAndIcon} iconPosition={iconPosition}>
@@ -71,10 +89,6 @@ const TabContainer = styled.button<IconProps>`
   user-select: none;
   vertical-align: middle;
   justify-content: center;
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.fontSize};
-  font-style: ${(props) => props.theme.fontStyle};
-  font-weight: ${(props) => props.theme.fontWeight};
   min-width: 90px;
   max-width: 360px;
   padding: ${(props) =>
@@ -84,7 +98,6 @@ const TabContainer = styled.button<IconProps>`
   min-height: ${(props) =>
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "47px") || "71px"};
   background-color: ${(props) => props.theme.unselectedBackgroundColor};
-  color: ${(props) => props.theme.unselectedFontColor};
   svg {
     color: ${(props) => props.theme.unselectedIconColor};
   }
@@ -95,7 +108,6 @@ const TabContainer = styled.button<IconProps>`
 
   &:active {
     background-color: ${(props) => `${props.theme.pressedBackgroundColor} !important`};
-    font-weight: ${(props) => `${props.theme.pressedFontWeight} !important`};
   }
 
   &:focus {
@@ -105,7 +117,6 @@ const TabContainer = styled.button<IconProps>`
 
   &[aria-selected="true"] {
     background-color: ${(props) => props.theme.selectedBackgroundColor};
-    color: ${(props) => props.theme.selectedFontColor};
     svg {
       color: ${(props) => props.theme.selectedIconColor};
     }
@@ -116,7 +127,6 @@ const TabContainer = styled.button<IconProps>`
     background-color: ${(props) => props.theme.unselectedBackgroundColor} !important;
     cursor: not-allowed !important;
     pointer-events: all;
-    color: ${(props) => props.theme.disabledFontColor};
     font-style: ${(props) => props.theme.disabledFontStyle};
     svg {
       color: ${(props) => props.theme.disabledIconColor};
@@ -127,8 +137,6 @@ const TabContainer = styled.button<IconProps>`
     }
   }
 `;
-
-const LabelTextContainer = styled.div``;
 
 const BadgeContainer = styled.div<IconProps>`
   margin-left: 12px;
