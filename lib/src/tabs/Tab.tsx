@@ -55,6 +55,9 @@ const Tab = forwardRef(
             fontSize={colorsTheme.tabs.fontSize}
             fontStyle={tab.isDisabled ? colorsTheme.tabs.disabledFontStyle : colorsTheme.tabs.fontStyle}
             fontWeight={active ? colorsTheme.tabs.pressedFontWeight : colorsTheme.tabs.fontWeight}
+            textAlign="center"
+            letterSpacing="0.025em"
+            lineHeight="1.715em"
           >
             {tab.label}
           </DxcTypography>
@@ -77,11 +80,7 @@ type IconProps = {
 const TabContainer = styled.button<IconProps>`
   text-transform: ${(props) => props.theme.fontTextTransform};
   overflow: hidden;
-  text-align: center;
   flex-shrink: 0;
-  line-height: 1.75;
-  white-space: normal;
-  letter-spacing: 0.02857em;
   border: 0;
   cursor: pointer;
   display: inline-flex;
