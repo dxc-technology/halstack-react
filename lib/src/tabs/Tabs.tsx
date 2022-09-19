@@ -366,7 +366,6 @@ const ActiveIndicator = styled.span<ActiveIndicatorProps>`
   bottom: 0;
   height: ${(props) => props.theme.selectedUnderlineThickness};
   position: absolute;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   &[aria-disabled="true"] {
     background-color: ${(props) => props.theme.disabledFontColor};
   }
