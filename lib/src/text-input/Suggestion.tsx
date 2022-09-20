@@ -18,10 +18,12 @@ const Suggestion = ({
   return (
     <SuggestionContainer
       id={id}
-      onClick={onClick}
+      onClick={() => {
+        onClick(suggestion);
+      }}
       visuallyFocused={visuallyFocused}
       role="option"
-      aria-selected={visuallyFocused ? "true" : undefined}
+      aria-selected={visuallyFocused ? true : undefined}
     >
       <StyledSuggestion last={isLast} visuallyFocused={visuallyFocused}>
         {highlighted ? (
@@ -37,10 +39,9 @@ const Suggestion = ({
   );
 };
 
-type SuggestionContainerProps = {
+const SuggestionContainer = styled.li<{
   visuallyFocused: boolean;
-};
-const SuggestionContainer = styled.li<SuggestionContainerProps>`
+}>`
   display: flex;
   padding: 0 0.5rem;
   line-height: 1.715em;
@@ -56,11 +57,10 @@ const SuggestionContainer = styled.li<SuggestionContainerProps>`
   }
 `;
 
-type StyledSuggestionProps = {
+const StyledSuggestion = styled.span<{
   visuallyFocused: boolean;
   last: boolean;
-};
-const StyledSuggestion = styled.span<StyledSuggestionProps>`
+}>`
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
