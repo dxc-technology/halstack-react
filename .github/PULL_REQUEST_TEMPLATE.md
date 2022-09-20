@@ -10,6 +10,9 @@ _(Check off all the items before submitting)_
 - [ ] Added/updated documentation to `/website` as needed.
 - [ ] Added/updated tests as needed.
 
+**Purpose**
+A clear description of the purpose of the change. Applicable in case this change is not linked to an issue.
+
 **Description**
 A clear and concise description of the change.
 
