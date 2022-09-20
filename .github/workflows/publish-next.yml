@@ -56,5 +56,5 @@ jobs:
 
       - name: Move NEXT website to S3
         run: |
-          aws s3 rm s3://design-system-react-cdk-site/tools/react/next/ --recursive
-          aws s3 cp ./website/out/ s3://design-system-react-cdk-site/tools/react/next/ --recursive
+          aws s3 rm s3://design-system-react-cdk-site/halstack/next/ --recursive
+          aws s3 cp ./website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive
