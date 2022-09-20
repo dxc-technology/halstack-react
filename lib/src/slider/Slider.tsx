@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext } from "react";
+import React, { useState, useMemo, useContext, useId } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
@@ -6,7 +6,6 @@ import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
 import SliderPropsType, { Margin, Space } from "./types";
-import { v4 as uuidv4 } from "uuid";
 
 const DxcSlider = ({
   label = "",
@@ -32,7 +31,7 @@ const DxcSlider = ({
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
-  const [labelId] = useState(`label-${uuidv4()}`);
+  const labelId = "slider" + useId();
 
   const minLabel = useMemo(
     () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
@@ -111,7 +110,7 @@ const DxcSlider = ({
             </MinLabelContainer>
           )}
           <SliderInputContainer>
-            <Slider
+            <SliderInput
               role="slider"
               type="range"
               value={value != null && value >= 0 ? value : innerValue}
@@ -177,9 +176,9 @@ const getFireFoxStyles = () => {
   margin-right: 3px;`;
 };
 
-type ContainerProps = { margin: Margin | Space; size: "medium" | "large" | "fillParent" };
+type ContainerPropsType = { margin: Margin | Space; size: "medium" | "large" | "fillParent" };
 
-const Container = styled.div<ContainerProps>`
+const Container = styled.div<ContainerPropsType>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -194,9 +193,9 @@ const Container = styled.div<ContainerProps>`
   width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
-type LabelProps = { disabled: boolean; backgroundType: "dark" | "light" };
+type LabelPropsType = { disabled: boolean; backgroundType: "dark" | "light" };
 
-const Label = styled.label<LabelProps>`
+const Label = styled.label<LabelPropsType>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -213,7 +212,7 @@ const Label = styled.label<LabelProps>`
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span<LabelProps>`
+const HelperText = styled.span<LabelPropsType>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -230,7 +229,7 @@ const HelperText = styled.span<LabelProps>`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-type SliderProps = {
+type SliderInputPropsType = {
   disabled: boolean;
   backgroundType: "dark" | "light";
   value: number;
@@ -239,7 +238,7 @@ type SliderProps = {
   marks: boolean;
 };
 
-const Slider = styled.input<SliderProps>`
+const SliderInput = styled.input<SliderInputPropsType>`
   width: 100%;
   min-width: 240px;
   height: ${(props) => props.theme.trackLineThickness};
@@ -290,11 +289,17 @@ const Slider = styled.input<SliderProps>`
         ? props.theme.thumbBackgroundColorOnDark
         : props.theme.thumbBackgroundColor};
     &:active {
-      background: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.activeThumbBackgroundColorOnDark
-          : props.theme.activeThumbBackgroundColor};
-      transform: scale(1.16667);
+      ${(props) => {
+        if (!props.disabled) {
+          return `
+          background: ${
+            props.backgroundType === "dark"
+              ? props.theme.activeThumbBackgroundColorOnDark
+              : props.theme.activeThumbBackgroundColor
+          };
+            transform: scale(1.16667);`;
+        }
+      }}
     }
     &:hover {
       ${(props) => {
@@ -390,7 +395,7 @@ const SliderContainer = styled.div`
   align-items: center;
 `;
 
-const LimitLabelContainer = styled.span<LabelProps>`
+const LimitLabelContainer = styled.span<LabelPropsType>`
   color: ${(props) =>
     props.disabled
       ? props.theme.disabledLimitValuesFontColor
@@ -425,9 +430,9 @@ const SliderInputContainer = styled.div`
   padding-top: 1px;
 `;
 
-type MarksContainerProps = { isFirefox: boolean };
+type MarksContainerPropsType = { isFirefox: boolean };
 
-const MarksContainer = styled.div<MarksContainerProps>`
+const MarksContainer = styled.div<MarksContainerPropsType>`
   ${(props) => (props.isFirefox ? getFireFoxStyles() : getChromeStyles())}
   position: absolute;
   pointer-events: none;
@@ -436,9 +441,9 @@ const MarksContainer = styled.div<MarksContainerProps>`
   align-items: center;
 `;
 
-type TickMarkProps = { stepPosition: number; disabled: boolean; backgroundType: "dark" | "light" };
+type TickMarkPropsType = { stepPosition: number; disabled: boolean; backgroundType: "dark" | "light" };
 
-const TickMark = styled.span<TickMarkProps>`
+const TickMark = styled.span<TickMarkPropsType>`
   position: absolute;
   background: ${(props) =>
     props.disabled
