@@ -50,8 +50,11 @@ const DxcTabs = ({
   tabIndex = 0,
 }: TabsPropsType): JSX.Element => {
   const colorsTheme = useTheme();
-  const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(defaultActiveTabIndex ?? 0);
   const hasLabelAndIcon = tabs && tabs.filter((tab) => tab.label && tab.icon).length > 0;
+  const firstFocus = tabs && tabs.findIndex((tab) => !tab.isDisabled);
+  const [innerActiveTabIndex, setInnerActiveTabIndex] = useState(
+    tabs && defaultActiveTabIndex && !tabs[defaultActiveTabIndex].isDisabled ? defaultActiveTabIndex : firstFocus
+  );
   const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
   const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
   const [translateScroll, setTranslateScroll] = useState(0);
@@ -59,8 +62,8 @@ const DxcTabs = ({
   const [scrollLeftEnabled, setScrollLeftEnabled] = useState(false);
   const [countClick, setCountClick] = useState(0);
   const [totalTabsWidth, setTotalTabsWidth] = useState(0);
-  const [currentFocusIndex, setCurrentFocusIndex] = useState(0);
-  const [temporalFocusIndex, setTemporalFocusIndex] = useState(0);
+  const [currentFocusIndex, setCurrentFocusIndex] = useState(activeTabIndex ?? innerActiveTabIndex);
+  const [temporalFocusIndex, setTemporalFocusIndex] = useState(activeTabIndex ?? innerActiveTabIndex);
   const [minHeightTabs, setMinHeightTabs] = useState(0);
   const refTabs = useRef([]);
   const refTabList = useRef(null);
@@ -85,8 +88,8 @@ const DxcTabs = ({
   const handleSelected = (newValue) => {
     activeTabIndex ?? setInnerActiveTabIndex(newValue);
     onTabClick?.(newValue);
-    setActiveIndicatorWidth(refTabs?.current[newValue]?.offsetWidth);
-    setActiveIndicatorLeft(refTabs?.current[newValue]?.offsetLeft);
+    setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? newValue]?.offsetWidth);
+    setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? newValue]?.offsetLeft);
   };
 
   const scrollLeft = () => {
@@ -198,6 +201,10 @@ const DxcTabs = ({
     }
   };
 
+  const isTabActive = (index) => (activeTabIndex >= 0 ? activeTabIndex === index : innerActiveTabIndex === index);
+  const isActiveIndicatorDisabled =
+    firstFocus === -1 || (tabs && activeTabIndex >= 0 && tabs[activeTabIndex].isDisabled);
+
   return (
     <ThemeProvider theme={colorsTheme.tabs}>
       <TabsContainer margin={margin}>
@@ -221,8 +228,8 @@ const DxcTabs = ({
                   <Tab
                     tab={tab}
                     key={`tab${i}${tab.label}`}
-                    active={activeTabIndex === i || innerActiveTabIndex === i}
-                    tabIndex={(activeTabIndex === i || innerActiveTabIndex === i) && !tab.isDisabled ? tabIndex : -1}
+                    active={isTabActive(i)}
+                    tabIndex={isTabActive(i) && !tab.isDisabled ? tabIndex : -1}
                     hasLabelAndIcon={hasLabelAndIcon}
                     iconPosition={iconPosition}
                     ref={(el) => (refTabs.current[i] = el)}
@@ -243,7 +250,7 @@ const DxcTabs = ({
               <ActiveIndicator
                 tabWidth={activeIndicatorWidth}
                 tabLeft={activeIndicatorLeft}
-                aria-disabled={tabs[activeTabIndex ?? innerActiveTabIndex].isDisabled}
+                aria-disabled={isActiveIndicatorDisabled}
               ></ActiveIndicator>
             </TabsContentScroll>
           </TabsContent>
@@ -368,6 +375,7 @@ const ActiveIndicator = styled.span<ActiveIndicatorProps>`
   position: absolute;
   &[aria-disabled="true"] {
     background-color: ${(props) => props.theme.disabledFontColor};
+    display: none;
   }
 `;
 
