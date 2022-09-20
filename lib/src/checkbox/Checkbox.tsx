@@ -50,6 +50,12 @@ const DxcCheckbox = ({
     }
   };
 
+  const handleLabelDblClick = (event) => {
+    if (event.detail > 1) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
       <MainContainer
@@ -62,7 +68,12 @@ const DxcCheckbox = ({
         backgroundType={backgroundType}
       >
         {label && labelPosition === "before" && (
-          <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
+          <LabelContainer
+            onMouseDown={handleLabelDblClick}
+            id={labelId}
+            disabled={disabled}
+            backgroundType={backgroundType}
+          >
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </LabelContainer>
         )}
@@ -92,7 +103,12 @@ const DxcCheckbox = ({
           </Checkbox>
         </CheckboxContainer>
         {label && labelPosition === "after" && (
-          <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
+          <LabelContainer
+            onMouseDown={handleLabelDblClick}
+            id={labelId}
+            disabled={disabled}
+            backgroundType={backgroundType}
+          >
             {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
           </LabelContainer>
         )}
@@ -190,12 +206,12 @@ const CheckboxContainer = styled.span`
   width: 24px;
 `;
 
-type CheckboxPropsType = {
+type CheckboxInputPropsType = {
   backgroundType: "dark" | "light";
   checked: boolean;
   disabled: boolean;
 };
-const Checkbox = styled.span<CheckboxPropsType>`
+const Checkbox = styled.span<CheckboxInputPropsType>`
   box-sizing: border-box;
   display: flex;
   align-items: center;
