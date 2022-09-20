@@ -9,7 +9,10 @@ import {
 import twitterIcon from "../images/twitter-black.svg";
 
 const linkedinSVG = (
-  <img src="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png" />
+  <img
+    src="https://iconape.com/wp-content/files/yd/367773/svg/logo-linkedin-logo-icon-png-svg.png"
+    alt="Linkedin"
+  />
 );
 
 const colors = {
