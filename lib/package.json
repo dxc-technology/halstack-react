@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "description": "DXC Halstack React components library",
   "repository": "dxc-technology/halstack-react",
-  "homepage": "http://developer.dxc.com/tools/react",
+  "homepage": "https://developer.dxc.com/halstack",
   "license": "Apache-2.0",
   "author": {
     "name": "DXC Technology",
     "email": "DigitalInsurance@dxc.com",
-    "url": "https://dxc.com"
+    "url": "https://developer.dxc.com"
   },
   "main": "./main.js",
   "types": "./main.d.ts",
