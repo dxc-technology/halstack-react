@@ -29,7 +29,7 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Install lib dependencies
-        run: cd lib && npm install
+        run: cd lib && npm install --omit=dev
 
       - name: Build library
         run: cd lib && npm run build
