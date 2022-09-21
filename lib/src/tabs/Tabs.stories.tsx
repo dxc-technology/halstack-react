@@ -82,22 +82,14 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
-      <DxcTabs tabs={tabs} activeTabIndex={1} />
+      <DxcTabs tabs={tabs} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled tabs" theme="light" level={4} />
       <DxcTabs activeTabIndex={0} tabs={disabledTabs} />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="First tab disabled" theme="light" level={4} />
-      <DxcTabs activeTabIndex={0} tabs={firstDisabledTabs} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="First 2 tab disabled" theme="light" level={4} />
-      <DxcTabs activeTabIndex={1} tabs={firstDisabledTabs} />
-    </ExampleContainer>
-    <ExampleContainer>
-      <Title title="First 3 tab disabled" theme="light" level={4} />
+      <Title title="First two tabs disabled" theme="light" level={4} />
       <DxcTabs tabs={firstDisabledTabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
