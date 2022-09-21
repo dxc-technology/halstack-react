@@ -182,5 +182,5 @@ ScrollableTabs.parameters = {
   viewport: {
     defaultViewport: "iphonex",
   },
-  chromatic: { viewports: [100] },
+  chromatic: { viewports: [200] },
 };
