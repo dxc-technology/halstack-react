@@ -69,7 +69,6 @@ const DxcTabs = ({
   const refTabList = useRef(null);
   const viewWidth = useResize(refTabList);
   const translatedLabels = useTranslatedLabels();
-
   const enabledIndicator = useMemo(() => viewWidth < totalTabsWidth, [viewWidth]);
 
   useEffect(() => {
