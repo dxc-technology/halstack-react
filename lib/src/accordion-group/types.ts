@@ -71,4 +71,11 @@ type Props = {
   children: React.ReactElement<AccordionPropsType>[] | React.ReactElement<AccordionPropsType>;
 };
 
+export type AccordionGroupAccordionContextProps = {
+  activeIndex: number;
+  handlerActiveChange: (index: number) => void;
+  disabled: boolean;
+  index: number;
+};
+
 export default Props;

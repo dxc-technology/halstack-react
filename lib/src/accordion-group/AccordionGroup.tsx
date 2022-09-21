@@ -4,15 +4,9 @@ import DxcAccordion from "../accordion/Accordion";
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
-import AccordionGroupPropsType, { AccordionPropsType, Margin, Space } from "./types";
+import AccordionGroupPropsType, { AccordionGroupAccordionContextProps, AccordionPropsType, Margin, Space } from "./types";
 
-type AccordionGroupAccordionContext = {
-  activeIndex: number;
-  handlerActiveChange: (index: number) => void;
-  disabled: boolean;
-  index: number;
-};
-const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContext | null>(null);
+const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContextProps | null>(null);
 
 const AccordionGroupAccordion = ({ ...childProps }: AccordionPropsType): JSX.Element => {
   const { activeIndex, handlerActiveChange, disabled, index } = useContext(AccordionGroupAccordionContext);

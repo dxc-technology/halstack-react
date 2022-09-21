@@ -7,13 +7,13 @@ import { BackgroundColorProvider } from "../BackgroundColorContext";
 import AccordionPropsType, { Margin, Padding, Space } from "./types";
 import DxcFlex from "../flex/Flex";
 
-const expand_less = (
+const expandLess = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="currentColor">
     <path d="m7.4 15.375-1.4-1.4 6-6 6 6-1.4 1.4-4.6-4.6Z" />
   </svg>
 );
 
-const expand_more = (
+const expandMore = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="currentColor">
     <path d="m12 15.375-6-6 1.4-1.4 4.6 4.6 4.6-4.6 1.4 1.4Z" />
   </svg>
@@ -66,23 +66,19 @@ const DxcAccordion = ({
               {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
             </AccordionInfo>
             <CollapseIndicator disabled={disabled}>
-              {isExpanded ?? innerIsExpanded ? expand_less : expand_more}
+              {isExpanded ?? innerIsExpanded ? expandLess : expandMore}
             </CollapseIndicator>
           </AccordionTrigger>
         </AccordionHeader>
         {(isExpanded ?? innerIsExpanded) && (
-          <DxcFlex>
-            <AccordionPanel
-              id={`accordion-panel-${id}`}
-              role="region"
-              aria-labelledBy={`accordion-${id}`}
-              padding={padding}
-            >
-              <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>
-                {children}
-              </BackgroundColorProvider>
-            </AccordionPanel>
-          </DxcFlex>
+          <AccordionPanel
+            id={`accordion-panel-${id}`}
+            role="region"
+            aria-labelledBy={`accordion-${id}`}
+            padding={padding}
+          >
+            <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>{children}</BackgroundColorProvider>
+          </AccordionPanel>
         )}
       </AccordionContainer>
     </ThemeProvider>
@@ -204,7 +200,6 @@ const CollapseIndicator = styled.span<{ disabled: boolean }>`
 `;
 
 const AccordionPanel = styled.div<{ padding: Space | Padding }>`
-  width: 100%;
   border-bottom-left-radius: ${(props) => props.theme.borderRadius};
   border-bottom-right-radius: ${(props) => props.theme.borderRadius};
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
