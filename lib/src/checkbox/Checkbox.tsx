@@ -1,4 +1,4 @@
-import React, { useState, useContext, useId } from "react";
+import React, { useState, useContext, useId, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
@@ -27,15 +27,19 @@ const DxcCheckbox = ({
   size = "fitContent",
   tabIndex = 0,
 }: CheckboxPropsType): JSX.Element => {
-  const checkboxId = useId();
-  const labelId = `label-checkbox-${checkboxId}`;
+  const labelId = `label-checkbox` + useId();
   const [innerChecked, setInnerChecked] = useState(defaultChecked);
+
+  const checkboxRef = useRef(null);
 
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
   const translatedLabels = useTranslatedLabels();
 
   const handleCheckboxChange = () => {
+    if (document.activeElement !== checkboxRef?.current) {
+      checkboxRef?.current.focus();
+    }
     const newChecked = checked ?? innerChecked;
     checked ?? setInnerChecked((innerChecked) => !innerChecked);
     onChange?.(!newChecked);
@@ -50,16 +54,9 @@ const DxcCheckbox = ({
     }
   };
 
-  const handleLabelDblClick = (event) => {
-    if (event.detail > 1) {
-      event.preventDefault();
-    }
-  };
-
   return (
     <ThemeProvider theme={colorsTheme.checkbox}>
       <MainContainer
-        id={name}
         disabled={disabled}
         onClick={disabled ? undefined : handleCheckboxChange}
         margin={margin}
@@ -68,13 +65,9 @@ const DxcCheckbox = ({
         backgroundType={backgroundType}
       >
         {label && labelPosition === "before" && (
-          <LabelContainer
-            onMouseDown={handleLabelDblClick}
-            id={labelId}
-            disabled={disabled}
-            backgroundType={backgroundType}
-          >
-            {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+          <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
+            {label}
+            {optional && <>{` ${translatedLabels.formFields.optionalLabel}`}</>}
           </LabelContainer>
         )}
         <ValueInput
@@ -98,17 +91,13 @@ const DxcCheckbox = ({
             backgroundType={backgroundType}
             checked={checked ?? innerChecked}
             disabled={disabled}
+            ref={checkboxRef}
           >
             {(checked ?? innerChecked) && checkedIcon}
           </Checkbox>
         </CheckboxContainer>
         {label && labelPosition === "after" && (
-          <LabelContainer
-            onMouseDown={handleLabelDblClick}
-            id={labelId}
-            disabled={disabled}
-            backgroundType={backgroundType}
-          >
+          <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
             {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
           </LabelContainer>
         )}
@@ -191,7 +180,6 @@ const LabelContainer = styled.span<LabelContainerPropsType>`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 `;
 
 const ValueInput = styled.input`
@@ -230,7 +218,7 @@ const Checkbox = styled.span<CheckboxInputPropsType>`
   color: ${(props) =>
     props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
 
-  &:focus-visible {
+  &:focus {
     outline: 2px solid
       ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
     outline-offset: 2px;
