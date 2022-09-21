@@ -5,56 +5,56 @@ on:
     branches:
       - master
     paths:
-      - 'lib/**'
+      - "lib/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Install Node.js 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-        registry-url: https://registry.npmjs.org/
-      
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2
-        role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
-        role-duration-seconds: 3600
-        role-skip-session-tagging: true
-        
-    - name: Install lib dependencies
-      run: cd lib && npm install
+      - name: Install Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          registry-url: https://registry.npmjs.org/
 
-    - name: Build library
-      run: cd lib && npm run build
-    
-    - name: Install docs dependencies
-      run: cd docs && npm install
-    
-    - name: Test library
-      run: cd lib && npm run test
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+          role-to-assume: ${{ secrets.AWS_ROLE_SANDBOX }}
+          role-duration-seconds: 3600
+          role-skip-session-tagging: true
 
-    - name: Build docs
-      run: cd docs && npm run build
-      
-    - name: Publish NEXT version to npm
-      run: |
-        sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./dist/package.json
-        cd dist
-        npm publish --tag next --access public
-      env:
+      - name: Install lib dependencies
+        run: cd lib && npm install --omit=dev
+
+      - name: Build library
+        run: cd lib && npm run build
+
+      - name: Install website dependencies
+        run: cd website && yarn
+
+      - name: Test library
+        run: cd lib && npm run test
+
+      - name: Build website
+        run: cd website && yarn build
+
+      - name: Publish NEXT version to npm
+        run: |
+          sed -i "s#\"version\": \"0.0.0\"#\"version\": \"0.0.0-${GITHUB_SHA:0:7}\"#" ./dist/package.json
+          cd dist
+          npm publish --tag next --access public
+        env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-          
-    - name: Move NEXT docs to S3
-      run: |
-        aws s3 rm s3://design-system-react-cdk-site/tools/react/next/ --recursive
-        aws s3 cp ./docs/build/ s3://design-system-react-cdk-site/tools/react/next/ --recursive
+
+      - name: Move NEXT website to S3
+        run: |
+          aws s3 rm s3://design-system-react-cdk-site/halstack/next/ --recursive
+          aws s3 cp ./website/out/ s3://design-system-react-cdk-site/halstack/next/ --recursive
