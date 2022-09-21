@@ -98,7 +98,8 @@ const DxcCheckbox = ({
         </CheckboxContainer>
         {label && labelPosition === "after" && (
           <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
-            {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
+            {optional && <>{`${translatedLabels.formFields.optionalLabel} `}</>}
+            {label}
           </LabelContainer>
         )}
       </MainContainer>
