@@ -76,18 +76,18 @@ const AccordionGroupContainer = styled.div<{ margin: Space | Margin; disabled: b
   margin-left: ${({ margin }) => (margin && typeof margin === "object" && margin.left ? spaces[margin.left] : "")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
-  > div:not(:last-child) {
+  > div:not(:last-of-type):not(:only-of-type) {
     border-bottom: ${(props) =>
       `${props.theme.accordionGroupSeparatorBorderThickness} ${props.theme.accordionGroupSeparatorBorderStyle}`};
     border-color: ${(props) => props.theme.accordionGroupSeparatorBorderColor};
   }
-  > div:not(:last-child):not(:first-child) {
+  > div:not(:first-of-type):not(:last-of-type):not(:only-of-type) {
     border-radius: 0;
     & > h3 > button {
       border-radius: 0;
     }
   }
-  > div:first-child {
+  > div:first-of-type:not(:only-of-type) {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-top-left-radius: ${(props) => props.theme.borderRadius};
@@ -98,7 +98,7 @@ const AccordionGroupContainer = styled.div<{ margin: Space | Margin; disabled: b
       border-bottom-right-radius: 0;
     }
   }
-  > div:last-child {
+  > div:last-of-type:not(:only-of-type) {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: ${(props) => props.theme.borderRadius};
