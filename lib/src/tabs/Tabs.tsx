@@ -84,11 +84,20 @@ const DxcTabs = ({
     setMinHeightTabs(refTabList?.current?.offsetHeight + 1);
   }, [refTabList]);
 
+  useEffect(() => {
+    if (activeTabIndex >= 0) {
+      setActiveIndicatorWidth(refTabs?.current[activeTabIndex]?.offsetWidth);
+      setActiveIndicatorLeft(refTabs?.current[activeTabIndex]?.offsetLeft);
+    }
+  }, [activeTabIndex]);
+
   const handleSelected = (newValue) => {
     activeTabIndex ?? setInnerActiveTabIndex(newValue);
     onTabClick?.(newValue);
-    setActiveIndicatorWidth(refTabs?.current[activeTabIndex ?? newValue]?.offsetWidth);
-    setActiveIndicatorLeft(refTabs?.current[activeTabIndex ?? newValue]?.offsetLeft);
+    if (activeTabIndex === undefined) {
+      setActiveIndicatorWidth(refTabs?.current[newValue]?.offsetWidth);
+      setActiveIndicatorLeft(refTabs?.current[newValue]?.offsetLeft);
+    }
   };
 
   const scrollLeft = () => {
@@ -305,6 +314,7 @@ const Tabs = styled.div<IconProps>`
     ((!props.hasLabelAndIcon || (props.hasLabelAndIcon && props.iconPosition !== "top")) && "48px") || "72px"};
   display: flex;
   overflow: hidden;
+  background-color: ${(props) => props.theme.unselectedBackgroundColor};
 `;
 
 type ScrollIndicatorProps = {
