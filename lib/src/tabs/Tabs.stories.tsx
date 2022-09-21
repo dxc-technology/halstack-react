@@ -55,6 +55,20 @@ const disabledTabs: any = [
   },
 ];
 
+const firstDisabledTabs: any = [
+  {
+    label: "Tab 1",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 2",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 3",
+  },
+];
+
 const tabsNotification = tabs.map((tab, index) => ({
   ...tab,
   notificationNumber: (index === 0 && true) || (index === 1 && 5) || (index === 2 && 200),
@@ -68,11 +82,23 @@ export const Chromatic = () => (
   <>
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
-      <DxcTabs tabs={tabs} />
+      <DxcTabs tabs={tabs} activeTabIndex={1} />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled tabs" theme="light" level={4} />
       <DxcTabs activeTabIndex={0} tabs={disabledTabs} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="First tab disabled" theme="light" level={4} />
+      <DxcTabs activeTabIndex={0} tabs={firstDisabledTabs} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="First 2 tab disabled" theme="light" level={4} />
+      <DxcTabs activeTabIndex={1} tabs={firstDisabledTabs} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="First 3 tab disabled" theme="light" level={4} />
+      <DxcTabs tabs={firstDisabledTabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered tabs" theme="light" level={4} />
