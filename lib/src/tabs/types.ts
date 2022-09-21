@@ -1,5 +1,5 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
+export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
@@ -22,7 +22,7 @@ type TabCommonProps = {
   notificationNumber?: boolean | number;
 };
 
-type TabLabelProps = TabCommonProps & {
+export type TabLabelProps = TabCommonProps & {
   /**
    * Tab label.
    */
@@ -33,7 +33,7 @@ type TabLabelProps = TabCommonProps & {
   icon?: string | SVG;
 };
 
-type TabIconProps = TabCommonProps & {
+export type TabIconProps = TabCommonProps & {
   /**
    * Tab label.
    */
@@ -42,6 +42,17 @@ type TabIconProps = TabCommonProps & {
    * Element or path used as the icon that will be displayed in the tab.
    */
   icon: string | SVG;
+};
+
+export type TabProps = {
+  tab: TabLabelProps | TabIconProps;
+  active: boolean;
+  tabIndex: number;
+  hasLabelAndIcon: boolean;
+  iconPosition: "top" | "left";
+  onClick: () => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 };
 
 type Props = {
