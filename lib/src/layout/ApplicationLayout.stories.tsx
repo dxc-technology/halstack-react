@@ -94,6 +94,7 @@ ApplicationLayoutWithResponsiveSidenav.parameters = {
   viewport: {
     defaultViewport: "pixel",
   },
+  chromatic: { viewports: [540] },
 };
 
 export const ApplicationLayoutWithCustomHeader = () => (
