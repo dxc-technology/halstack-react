@@ -2,6 +2,7 @@ import React, { useState, useContext, useId, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
+import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
@@ -27,7 +28,7 @@ const DxcCheckbox = ({
   size = "fitContent",
   tabIndex = 0,
 }: CheckboxPropsType): JSX.Element => {
-  const labelId = `label-checkbox` + useId();
+  const [labelId] = useState(`label-checkbox-${uuidv4()}`);
   const [innerChecked, setInnerChecked] = useState(defaultChecked);
 
   const checkboxRef = useRef(null);
