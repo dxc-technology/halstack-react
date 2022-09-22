@@ -185,6 +185,36 @@ const sections = [
       </>
     ),
   },
+  {
+    title: "Older documentation",
+    content: (
+      <>
+        <DxcParagraph>
+          This site is new and comes to replace the existing one. However, the
+          old documentation is still available through the following links for
+          consultation:
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/tools/react" newWindow>
+              React CDK
+            </DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/tools/angular" newWindow>
+              Angular CDK
+            </DxcLink>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+        <DxcParagraph>
+          <em>
+            Please note that these sites are discontinued and may not be updated
+            anymore.
+          </em>
+        </DxcParagraph>
+      </>
+    ),
+  },
 ];
 
 const Introduction = () => {
