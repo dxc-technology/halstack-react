@@ -29,6 +29,44 @@ const tabs: any = [
   {
     label: "Tab 4",
   },
+  {
+    label: "Tab 5",
+  },
+  {
+    label: "Tab 6",
+  },
+  {
+    label: "Tab 7",
+  },
+];
+
+const disabledTabs: any = [
+  {
+    label: "Tab 1",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 2",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 3",
+    isDisabled: true,
+  },
+];
+
+const firstDisabledTabs: any = [
+  {
+    label: "Tab 1",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 2",
+    isDisabled: true,
+  },
+  {
+    label: "Tab 3",
+  },
 ];
 
 const tabsNotification = tabs.map((tab, index) => ({
@@ -45,6 +83,14 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Only label" theme="light" level={4} />
       <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled tabs" theme="light" level={4} />
+      <DxcTabs activeTabIndex={0} tabs={disabledTabs} />
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="First two tabs disabled" theme="light" level={4} />
+      <DxcTabs tabs={firstDisabledTabs} />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered tabs" theme="light" level={4} />
@@ -110,3 +156,31 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+export const ScrollableTabs = () => (
+  <>
+    <ExampleContainer>
+      <Title title="Only label" theme="light" level={4} />
+      <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-hover">
+      <Title title="Hovered tabs" theme="light" level={4} />
+      <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused tabs" theme="light" level={4} />
+      <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived tabs" theme="light" level={4} />
+      <DxcTabs tabs={tabs} />
+    </ExampleContainer>
+  </>
+);
+
+ScrollableTabs.parameters = {
+  viewport: {
+    defaultViewport: "iphonex",
+  },
+  chromatic: { viewports: [375], delay: 5000 },
+};
