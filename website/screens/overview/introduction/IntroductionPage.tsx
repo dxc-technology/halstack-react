@@ -186,7 +186,7 @@ const sections = [
     ),
   },
   {
-    title: "Older documentation",
+    title: "Documentation of other releases",
     content: (
       <>
         <DxcParagraph>
@@ -211,6 +211,17 @@ const sections = [
             Please note that these sites are discontinued and may not be updated
             anymore.
           </em>
+        </DxcParagraph>
+        <DxcParagraph>
+          The last development site can be accessed through this{" "}
+          <DxcLink href="https://developer.dxc.com/halstack/next/" newWindow>
+            link
+          </DxcLink>
+          ; and the last release is available{" "}
+          <DxcLink href="https://developer.dxc.com/halstack/6/" newWindow>
+            here
+          </DxcLink>
+          .
         </DxcParagraph>
       </>
     ),
