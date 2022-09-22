@@ -106,7 +106,7 @@ const DxcAccordion = ({
           <AccordionPanel
             id={`accordion-panel-${id}`}
             role="region"
-            aria-labelledBy={`accordion-${id}`}
+            aria-labelledby={`accordion-${id}`}
             padding={padding}
           >
             <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>{children}</BackgroundColorProvider>
