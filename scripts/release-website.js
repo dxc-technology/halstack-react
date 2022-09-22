@@ -52,6 +52,21 @@ const getVersionsInS3Bucket = async () => {
   return versionsFromPrevDirectory.concat(versions);
 };
 
+const buildSite = (version) => {
+  return new Promise((resolve, reject) => {
+    console.log(`Building site with version ${version}/`);
+    exec(`SITE_VERSION=${version} yarn build`, (error, stdout, stderr) => {
+      if (error) {
+        throw new Error(error.message);
+      }
+      if (stderr) {
+        throw new Error(stderr);
+      }
+      resolve(stdout);
+    });
+  });
+};
+
 const removeBucket = (version) => {
   return new Promise((resolve, reject) => {
     console.log(`Removing s3://${BUCKET_NAME}/${DIRECTORY}${version}/`);
@@ -113,6 +128,7 @@ const deploy = async () => {
   );
   const existingVersionsInBucket = await getVersionsInS3Bucket();
   const isNewLatest = !existingVersionsInBucket.includes(majorVersionToDeploy);
+  await buildSite(majorVersionToDeploy);
   await removeBucket(majorVersionToDeploy);
   await moveToBucket(majorVersionToDeploy);
   const listAvailableVersions = await getVersionsInS3Bucket();
