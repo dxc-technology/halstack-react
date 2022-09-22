@@ -1,5 +1,5 @@
-type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
-type Margin = {
+export type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type Margin = {
   top?: Space;
   bottom?: Space;
   left?: Space;
@@ -69,6 +69,13 @@ type Props = {
    * Customized accordion(s) that are allowed inside an Accordion Group.
    */
   children: React.ReactElement<AccordionPropsType>[] | React.ReactElement<AccordionPropsType>;
+};
+
+export type AccordionGroupAccordionContextProps = {
+  activeIndex: number;
+  handlerActiveChange: (index: number) => void;
+  disabled: boolean;
+  index: number;
 };
 
 export default Props;
