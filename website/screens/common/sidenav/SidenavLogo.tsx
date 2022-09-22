@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Image from "../Image";
-import halstackLogo from "../images/halstack_logo.svg";
+import Image from "@/common/Image";
+import halstackLogo from "@/common/images/halstack_logo.svg";
 
 const SidenavLogo = () => {
   return (
