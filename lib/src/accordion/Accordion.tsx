@@ -118,7 +118,12 @@ const DxcAccordion = ({
 
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const AccordionContainer = styled.div<{ isExpanded: boolean; margin: Space | Margin; padding: Space | Padding }>`
+type AccordionContainerProps = {
+  isExpanded: boolean;
+  margin: Space | Margin;
+  padding: Space | Padding;
+};
+const AccordionContainer = styled.div<AccordionContainerProps>`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.backgroundColor};

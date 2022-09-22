@@ -4,7 +4,12 @@ import DxcAccordion from "../accordion/Accordion";
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
-import AccordionGroupPropsType, { AccordionGroupAccordionContextProps, AccordionPropsType, Margin, Space } from "./types";
+import AccordionGroupPropsType, {
+  AccordionGroupAccordionContextProps,
+  AccordionPropsType,
+  Margin,
+  Space,
+} from "./types";
 
 const AccordionGroupAccordionContext = createContext<AccordionGroupAccordionContextProps | null>(null);
 
@@ -66,7 +71,11 @@ DxcAccordionGroup.Accordion = AccordionGroupAccordion;
 
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const AccordionGroupContainer = styled.div<{ margin: Space | Margin; disabled: boolean }>`
+type AccordionGroupContainerProps = {
+  margin: Space | Margin;
+  disabled: boolean;
+};
+const AccordionGroupContainer = styled.div<AccordionGroupContainerProps>`
   width: ${(props) => calculateWidth(props.margin)};
   margin: ${({ margin }) => (margin && typeof margin !== "object" ? spaces[margin] : "0px")};
   margin-top: ${({ margin }) => (margin && typeof margin === "object" && margin.top ? spaces[margin.top] : "")};
