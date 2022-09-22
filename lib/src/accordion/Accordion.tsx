@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
@@ -6,6 +6,7 @@ import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import AccordionPropsType, { Margin, Padding, Space } from "./types";
 import DxcTypography from "../typography/Typography";
+import { v4 as uuidv4 } from "uuid";
 
 const expandLess = (
   <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="currentColor">
@@ -32,7 +33,7 @@ const DxcAccordion = ({
   padding,
   tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
-  const id = useId();
+  const [id] = useState(uuidv4());
   const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
   const colorsTheme = useTheme();
 
