@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
@@ -31,16 +31,11 @@ const DxcCheckbox = ({
   const [labelId] = useState(`label-checkbox-${uuidv4()}`);
   const [innerChecked, setInnerChecked] = useState(defaultChecked);
 
-  const checkboxRef = useRef(null);
-
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
   const translatedLabels = useTranslatedLabels();
 
   const handleCheckboxChange = () => {
-    if (checkboxRef?.current && document.activeElement !== checkboxRef?.current) {
-      checkboxRef?.current?.focus();
-    }
     const newChecked = checked ?? innerChecked;
     checked ?? setInnerChecked((innerChecked) => !innerChecked);
     onChange?.(!newChecked);
@@ -60,10 +55,13 @@ const DxcCheckbox = ({
       <MainContainer
         disabled={disabled}
         onClick={disabled ? undefined : handleCheckboxChange}
+        onKeyDown={handleKeyboard}
         margin={margin}
         size={size}
         checked={checked ?? innerChecked}
         backgroundType={backgroundType}
+        tabIndex={disabled ? -1 : tabIndex}
+        data-testid="checkbox-main-container"
       >
         {label && labelPosition === "before" && (
           <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
@@ -82,9 +80,7 @@ const DxcCheckbox = ({
         />
         <CheckboxContainer>
           <Checkbox
-            onKeyDown={handleKeyboard}
             role="checkbox"
-            tabIndex={disabled ? -1 : tabIndex}
             aria-checked={checked ?? innerChecked}
             aria-disabled={disabled}
             aria-required={!disabled && !optional}
@@ -92,7 +88,6 @@ const DxcCheckbox = ({
             backgroundType={backgroundType}
             checked={checked ?? innerChecked}
             disabled={disabled}
-            ref={checkboxRef}
           >
             {(checked ?? innerChecked) && checkedIcon}
           </Checkbox>
@@ -221,10 +216,9 @@ const Checkbox = styled.span<CheckboxInputPropsType>`
     props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
 
   &:focus {
-    outline: 2px solid
-      ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
-    outline-offset: 2px;
+    outline: none;
   }
+
   svg {
     position: absolute;
     width: 22px;
@@ -268,6 +262,14 @@ const MainContainer = styled.div<MainContainerPropsType>`
         : "transparent"};
     color: ${(props) =>
       props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "hoverBackground")};
+  }
+  &:focus {
+    outline: none;
+    ${Checkbox} {
+      outline: 2px solid
+        ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
+      outline-offset: 2px;
+    }
   }
 `;
 
