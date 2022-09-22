@@ -37,8 +37,8 @@ const DxcCheckbox = ({
   const translatedLabels = useTranslatedLabels();
 
   const handleCheckboxChange = () => {
-    if (document.activeElement !== checkboxRef?.current) {
-      checkboxRef?.current.focus();
+    if (checkboxRef?.current && document.activeElement !== checkboxRef?.current) {
+      checkboxRef?.current?.focus();
     }
     const newChecked = checked ?? innerChecked;
     checked ?? setInnerChecked((innerChecked) => !innerChecked);
