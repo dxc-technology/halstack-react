@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useContext, useId } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
@@ -6,6 +6,7 @@ import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
 import SliderPropsType, { Margin, Space } from "./types";
+import { v4 as uuidv4 } from "uuid";
 
 const DxcSlider = ({
   label = "",
@@ -31,7 +32,7 @@ const DxcSlider = ({
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
-  const labelId = "slider" + useId();
+  const [labelId] = useState(`label-${uuidv4()}`);
 
   const minLabel = useMemo(
     () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
