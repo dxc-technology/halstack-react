@@ -309,6 +309,7 @@ export const FocusedAccordion = () => (
         lobortis eget.
       </div>
     </DxcAccordion>
+    <hr />
   </ExampleContainer>
 );
 
