@@ -1,10 +1,7 @@
 import PageHeading from "@/common/PageHeading";
-import {
-  DxcHeading,
-  DxcFlex,
-  DxcParagraph,
-} from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const ParagraphPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -17,7 +14,7 @@ const ParagraphPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Paragraph" weight="bold"></DxcHeading>
+          <ComponentHeading name="Paragraph" status="Ready" />
           <DxcParagraph>Paragraph is a block of text.</DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>
