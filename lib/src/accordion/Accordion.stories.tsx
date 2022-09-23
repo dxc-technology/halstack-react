@@ -299,7 +299,7 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
-const FocusedAccordion = () => (
+const Focused = () => (
   <ExampleContainer pseudoState="pseudo-focus">
     <Title title="Focused" theme="light" level={4} />
     <DxcAccordion label="Focused">
@@ -312,7 +312,7 @@ const FocusedAccordion = () => (
   </ExampleContainer>
 );
 
-export const ResponsiveHeaderFocus = FocusedAccordion.bind({});
+export const FocusedAccordion = Focused.bind({});
 FocusedAccordion.parameters = {
-  chromatic: { diffThreshold: 0.2 },
+  chromatic: { diffThreshold: 0.8 },
 };
