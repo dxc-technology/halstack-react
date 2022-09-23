@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState, useMemo, useId, useCallback } from "react";
+import React, { useContext, useEffect, useRef, useState, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
@@ -9,32 +9,8 @@ import NumberInputContext from "../number-input/NumberInputContext";
 import TextInputPropsType, { RefType } from "./types";
 import Suggestions from "./Suggestions";
 import * as Popover from "@radix-ui/react-popover";
-
-export const icons = {
-  error: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-    </svg>
-  ),
-  clear: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M0 0h24v24H0V0z" fill="none" />
-      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-    </svg>
-  ),
-  increment: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-    </svg>
-  ),
-  decrement: (
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M19 13H5v-2h14v2z" />
-    </svg>
-  ),
-};
+import icons from "./Icons";
+import { v4 as uuidv4 } from "uuid";
 
 const sizes = {
   small: "240px",
@@ -66,18 +42,6 @@ const makeCancelable = (promise) => {
 
 const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
 
-const getLastOptionIndex = (filteredSuggestions) => {
-  let last = 0;
-  const reducer = (acc, current) => acc + current.options?.length;
-
-  if (filteredSuggestions.length > 0)
-    filteredSuggestions[0].options
-      ? (last = filteredSuggestions.reduce(reducer, 0) - 1)
-      : (last = filteredSuggestions.length - 1);
-
-  return last;
-};
-
 const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
     {
@@ -107,7 +71,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     },
     ref
   ): JSX.Element => {
-    const id = useId();
+    const id = useState(uuidv4());
     const inputId = `input-${id}`;
     const autosuggestId = `suggestions-${id}`;
     const errorId = `error-${id}`;
@@ -117,7 +81,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const [isSearching, changeIsSearching] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
-    const [visualFocusedSuggIndex, changeVisualFocusedSuggIndex] = useState(-1);
+    const [visualFocusIndex, changeVisualFocusedSuggIndex] = useState(-1);
 
     const inputContainerRef = useRef(null);
     const inputRef = useRef(null);
@@ -128,8 +92,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const backgroundType = useContext(BackgroundColorContext);
 
     const numberInputContext = useContext(NumberInputContext);
-
-    const lastOptionIndex = useMemo(() => getLastOptionIndex(filteredSuggestions), [filteredSuggestions]);
 
     const isNotOptional = (value) => value === "" && !optional;
 
@@ -252,9 +214,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           if (hasSuggestions() && !isSearching) {
             const validFocusedSuggestion =
               filteredSuggestions.length > 0 &&
-              visualFocusedSuggIndex >= 0 &&
-              visualFocusedSuggIndex < filteredSuggestions.length;
-            validFocusedSuggestion && changeValue(filteredSuggestions[visualFocusedSuggIndex]);
+              visualFocusIndex >= 0 &&
+              visualFocusIndex < filteredSuggestions.length;
+            validFocusedSuggestion && changeValue(filteredSuggestions[visualFocusIndex]);
             isOpen && closeSuggestions();
           }
           break;
@@ -450,8 +412,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   aria-disabled={disabled}
                   aria-expanded={isTextInputType() && hasSuggestions() ? isOpen : undefined}
                   aria-activedescendant={
-                    isTextInputType() && hasSuggestions() && isOpen && visualFocusedSuggIndex !== -1
-                      ? `suggestion-${visualFocusedSuggIndex}`
+                    isTextInputType() && hasSuggestions() && isOpen && visualFocusIndex !== -1
+                      ? `suggestion-${visualFocusIndex}`
                       : undefined
                   }
                   aria-invalid={error ? true : false}
@@ -465,7 +427,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 )}
                 {!disabled && clearable && (value ?? innerValue).length > 0 && (
                   <Action
-                    onClick={() => handleClearActionOnClick()}
+                    onClick={handleClearActionOnClick}
                     onMouseDown={(event) => {
                       event.stopPropagation();
                     }}
@@ -482,7 +444,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     <Action
                       ref={actionRef}
                       disabled={disabled}
-                      onClick={() => handleDecrementActionOnClick()}
+                      onClick={handleDecrementActionOnClick}
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
@@ -496,7 +458,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     <Action
                       ref={actionRef}
                       disabled={disabled}
-                      onClick={() => handleIncrementActionOnClick()}
+                      onClick={handleIncrementActionOnClick}
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
@@ -513,7 +475,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     <Action
                       ref={actionRef}
                       disabled={disabled}
-                      onClick={() => action.onClick()}
+                      onClick={action.onClick}
                       onMouseDown={(event) => {
                         event.stopPropagation();
                       }}
@@ -548,9 +510,8 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 id={autosuggestId}
                 value={value ?? innerValue}
                 filteredSuggestions={filteredSuggestions}
-                lastOptionIndex={lastOptionIndex}
-                visualFocusedSuggIndex={visualFocusedSuggIndex}
-                highlightedSuggestions={typeof suggestions === "function"}
+                visualFocusIndex={visualFocusIndex}
+                highlightedSuggestions={typeof suggestions !== "function"}
                 searchHasErrors={isAutosuggestError}
                 isSearching={isSearching}
                 suggestionOnClick={(suggestion) => {

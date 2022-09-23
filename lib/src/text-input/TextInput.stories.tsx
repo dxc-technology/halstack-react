@@ -1,10 +1,16 @@
 import React from "react";
-import { userEvent, within, fireEvent } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/testing-library";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import DarkContainer from "../../.storybook/components/DarkSection";
 import DxcTextInput from "./TextInput";
+import DxcButton from "../button/Button";
+import DxcCheckbox from "../checkbox/Checkbox";
+import DxcFlex from "../flex/Flex";
+import Suggestions from "./Suggestions";
+import { ThemeProvider } from "styled-components";
+import useTheme from "../useTheme";
 
 export default {
   title: "Text input",
@@ -70,6 +76,14 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered action" theme="light" level={4} />
       <DxcTextInput label="Text input" defaultValue="Text" clearable />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-active">
+      <Title title="Actived action" theme="light" level={4} />
+      <DxcTextInput label="Text input" action={action} clearable />
+    </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused action" theme="light" level={4} />
+      <DxcTextInput label="Text input" action={action} clearable />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
@@ -151,7 +165,7 @@ export const Chromatic = () => (
     </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
-        <Title title="Dark" theme="dark" level={2} />
+        <Title title="Dark theme" theme="dark" level={2} />
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered" theme="dark" level={4} />
           <DxcTextInput label="Text input" />
@@ -163,6 +177,14 @@ export const Chromatic = () => (
         <ExampleContainer pseudoState="pseudo-hover">
           <Title title="Hovered action" theme="dark" level={4} />
           <DxcTextInput label="Text input" defaultValue="Text" clearable />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-active">
+          <Title title="Actived action" theme="dark" level={4} />
+          <DxcTextInput label="Text input" action={action} clearable />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-focus">
+          <Title title="Focused action" theme="dark" level={4} />
+          <DxcTextInput label="Text input" action={action} clearable />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Helper text, placeholder, optional and action" theme="dark" level={4} />
@@ -278,196 +300,167 @@ export const Chromatic = () => (
   </>
 );
 
-const FocusedActionTextInput = () => (
-  <ExampleContainer expanded>
-    <Title title="Focused action" theme="light" level={4} />
-    <DxcTextInput label="Text input" action={action} clearable />
-  </ExampleContainer>
-);
+const AutosuggestListbox = () => {
+  const colorsTheme = useTheme();
 
-const ActivedActionTextInput = () => (
-  <ExampleContainer pseudoState="pseudo-active" expanded>
-    <Title title="Actived action" theme="light" level={4} />
-    <DxcTextInput label="Text input" action={action} clearable />
-  </ExampleContainer>
-);
-
-const ShowOptionsAutosuggest = () => (
-  <ExampleContainer expanded>
-    <Title title="Show options" theme="light" level={4} />
-    <DxcTextInput label="Text input" suggestions={countries} clearable />
-  </ExampleContainer>
-);
-
-const HoveredOptionAutosuggest = () => (
-  <ExampleContainer expanded pseudoState="pseudo-hover">
-    <Title title="Hovered option" theme="light" level={4} />
-    <DxcTextInput label="Text input" suggestions={country} clearable />
-  </ExampleContainer>
-);
-
-const FocusedOptionAutosuggest = () => (
-  <ExampleContainer expanded>
-    <Title title="Focused option" theme="light" level={4} />
-    <DxcTextInput label="Text input" suggestions={country} clearable />
-  </ExampleContainer>
-);
-
-const ActivedOptionAutosuggest = () => (
-  <ExampleContainer expanded pseudoState="pseudo-active">
-    <Title title="Actived option" theme="light" level={4} />
-    <DxcTextInput label="Text input" suggestions={country} clearable />
-  </ExampleContainer>
-);
-
-const FocusedActionTextInputOnDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer expanded>
-        <Title title="Focused action" theme="dark" level={4} />
-        <DxcTextInput label="Text input" action={action} clearable />
+  return (
+    <ThemeProvider theme={colorsTheme.textInput}>
+      <ExampleContainer>
+        <Title title="Autosuggest listbox" theme="light" level={2} />
+        <ExampleContainer>
+          <Title title="Default with opened suggestions" theme="light" level={3} />
+          <DxcFlex direction="column" gap="80px">
+            <DxcTextInput label="Label" suggestions={countries} optional placeholder="Choose an option" />
+            <DxcCheckbox
+              label="You understand the selection and give your consent"
+              onChange={() => {}}
+              labelPosition="after"
+            />
+            <DxcButton label="Submit" onClick={() => {}} size="medium" margin={{ bottom: "xxlarge" }} />
+          </DxcFlex>
+        </ExampleContainer>
+        <Title title="Listbox suggestion states" theme="light" level={3} />
+        <ExampleContainer pseudoState="pseudo-hover">
+          <Title title="Hovered suggestion" theme="light" level={4} />
+          <Suggestions
+            id="x"
+            value=""
+            filteredSuggestions={country}
+            visualFocusIndex={-1}
+            highlightedSuggestions={false}
+            searchHasErrors={false}
+            isSearching={false}
+            suggestionOnClick={() => {}}
+            getTextInputWidth={() => 350}
+          />
+        </ExampleContainer>
+        <ExampleContainer pseudoState="pseudo-active">
+          <Title title="Active suggestion" theme="light" level={4} />
+          <Suggestions
+            id="x"
+            value=""
+            filteredSuggestions={country}
+            visualFocusIndex={-1}
+            highlightedSuggestions={false}
+            searchHasErrors={false}
+            isSearching={false}
+            suggestionOnClick={(suggestion) => {}}
+            getTextInputWidth={() => 350}
+          />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Focused suggestion" theme="light" level={4} />
+          <Suggestions
+            id="x"
+            value=""
+            filteredSuggestions={country}
+            visualFocusIndex={0}
+            highlightedSuggestions={false}
+            searchHasErrors={false}
+            isSearching={false}
+            suggestionOnClick={(suggestion) => {}}
+            getTextInputWidth={() => 350}
+          />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Highlighted suggestion" theme="light" level={4} />
+          <Suggestions
+            id="x"
+            value="Afgh"
+            filteredSuggestions={country}
+            visualFocusIndex={-1}
+            highlightedSuggestions={true}
+            searchHasErrors={false}
+            isSearching={false}
+            suggestionOnClick={(suggestion) => {}}
+            getTextInputWidth={() => 350}
+          />
+        </ExampleContainer>
       </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
-const ActivedActionTextInputOnDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer pseudoState="pseudo-active" expanded>
-        <Title title="Actived action" theme="dark" level={4} />
-        <DxcTextInput label="Text input" action={action} clearable />
+      <ExampleContainer>
+        <Title title="Autosuggest Error" theme="light" level={3} />
+        <Suggestions
+          id="x"
+          value=""
+          filteredSuggestions={country}
+          visualFocusIndex={-1}
+          highlightedSuggestions={false}
+          searchHasErrors={true}
+          isSearching={false}
+          suggestionOnClick={(suggestion) => {}}
+          getTextInputWidth={() => 350}
+        />
       </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
-const ShowOptionsAutosuggestOnDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer expanded>
-        <Title title="Show options" theme="dark" level={4} />
-        <DxcTextInput label="Text input" suggestions={countries} clearable />
+      <ExampleContainer>
+        <Title title="Autosuggest Searching message" theme="light" level={3} />
+        <Suggestions
+          id="x"
+          value=""
+          filteredSuggestions={country}
+          visualFocusIndex={-1}
+          highlightedSuggestions={false}
+          searchHasErrors={false}
+          isSearching={true}
+          suggestionOnClick={(suggestion) => {}}
+          getTextInputWidth={() => 350}
+        />
       </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
-const HoveredActionAutosuggestOnDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer expanded pseudoState="pseudo-hover">
-        <Title title="Hovered option" theme="dark" level={4} />
-        <DxcTextInput label="Text input" suggestions={country} clearable />
-      </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
-const FocusedOptionAutosuggestOnDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer expanded>
-        <Title title="Focused option" theme="dark" level={4} />
-        <DxcTextInput label="Text input" suggestions={country} clearable />
-      </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
-const ActivedOptionAutosuggestOnDark = () => (
-  <BackgroundColorProvider color="#333333">
-    <DarkContainer>
-      <ExampleContainer expanded pseudoState="pseudo-active">
-        <Title title="Actived option" theme="dark" level={4} />
-        <DxcTextInput label="Text input" suggestions={country} clearable />
-      </ExampleContainer>
-    </DarkContainer>
-  </BackgroundColorProvider>
-);
-
-export const FocusedAction = FocusedActionTextInput.bind({});
-FocusedAction.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const action = canvas.getByRole("button");
-  await action.focus();
+    </ThemeProvider>
+  );
 };
 
-export const ActivedAction = ActivedActionTextInput.bind({});
-ActivedAction.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const action = canvas.getByRole("button");
-  await userEvent.click(action);
+const DarkAutosuggestListbox = () => {
+  const colorsTheme = useTheme();
+
+  return (
+    <ThemeProvider theme={colorsTheme.textInput}>
+      <BackgroundColorProvider color="#333333">
+        <DarkContainer>
+          <Title title="Dark theme" theme="dark" level={2} />
+          <ExampleContainer>
+            <Title title="Default with opened suggestions" theme="dark" level={3} />
+            <DxcFlex direction="column" gap="80px">
+              <DxcTextInput label="Label" suggestions={countries} optional placeholder="Choose an option" />
+              <DxcCheckbox
+                label="You understand the selection and give your consent"
+                onChange={() => {}}
+                labelPosition="after"
+              />
+              <DxcButton label="Submit" onClick={() => {}} size="medium" margin={{ bottom: "xxlarge" }} />
+            </DxcFlex>
+          </ExampleContainer>
+          <ExampleContainer>
+            <Title title="Autosuggest Error" theme="dark" level={3} />
+            <div style={{ height: "100px" }}>
+              <Suggestions
+                id="x"
+                value=""
+                filteredSuggestions={country}
+                visualFocusIndex={-1}
+                highlightedSuggestions={false}
+                searchHasErrors={true}
+                isSearching={false}
+                suggestionOnClick={(suggestion) => {}}
+                getTextInputWidth={() => 350}
+              />
+            </div>
+          </ExampleContainer>
+        </DarkContainer>
+      </BackgroundColorProvider>
+    </ThemeProvider>
+  );
 };
 
-export const ShowOptions = ShowOptionsAutosuggest.bind({});
-ShowOptions.play = async ({ canvasElement }) => {
+export const AutosuggestListboxStates = AutosuggestListbox.bind({});
+AutosuggestListboxStates.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const autosuggest = canvas.getByRole("combobox");
-  await userEvent.click(autosuggest);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
 };
 
-export const HoveredOption = HoveredOptionAutosuggest.bind({});
-HoveredOption.play = async ({ canvasElement }) => {
+export const AutosuggestListboxOnDark = DarkAutosuggestListbox.bind({});
+AutosuggestListboxOnDark.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const autosuggest = canvas.getByRole("combobox");
-  await userEvent.click(autosuggest);
-};
-
-export const FocusedOption = FocusedOptionAutosuggest.bind({});
-FocusedOption.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const autosuggest = canvas.getByRole("combobox");
-  await userEvent.click(autosuggest);
-  fireEvent.keyDown(autosuggest, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-};
-
-export const ActivedOption = ActivedOptionAutosuggest.bind({});
-ActivedOption.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const autosuggest = canvas.getByRole("combobox");
-  await userEvent.click(autosuggest);
-};
-
-export const FocusedActionOnDark = FocusedActionTextInputOnDark.bind({});
-FocusedActionOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const action = canvas.getByRole("button");
-  await action.focus();
-};
-
-export const ActivedActionOnDark = ActivedActionTextInputOnDark.bind({});
-ActivedActionOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const action = canvas.getByRole("button");
-  await userEvent.click(action);
-};
-
-export const ShowOptionsOnDark = ShowOptionsAutosuggestOnDark.bind({});
-ShowOptionsOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const autosuggest = canvas.getByRole("combobox");
-  await userEvent.click(autosuggest);
-};
-
-export const HoveredActionOnDark = HoveredActionAutosuggestOnDark.bind({});
-HoveredActionOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const autosuggest = canvas.getByRole("combobox");
-  await userEvent.click(autosuggest);
-};
-
-export const FocusedOptionOnDark = FocusedOptionAutosuggestOnDark.bind({});
-FocusedOptionOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const autosuggest = canvas.getByRole("combobox");
-  await userEvent.click(autosuggest);
-  fireEvent.keyDown(autosuggest, { key: "ArrowDown", code: "ArrowDown", keyCode: 40, charCode: 40 });
-};
-
-export const ActivedOptionOnDark = ActivedOptionAutosuggestOnDark.bind({});
-ActivedOptionOnDark.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const autosuggest = canvas.getByRole("combobox");
-  await userEvent.click(autosuggest);
+  const select = canvas.getByRole("combobox");
+  await userEvent.click(select);
 };

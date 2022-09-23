@@ -180,8 +180,7 @@ export type SuggestionsProps = {
   id: string;
   value: string;
   filteredSuggestions: string[];
-  lastOptionIndex: number;
-  visualFocusedSuggIndex: number;
+  visualFocusIndex: number;
   highlightedSuggestions: boolean;
   searchHasErrors: boolean;
   isSearching: boolean;

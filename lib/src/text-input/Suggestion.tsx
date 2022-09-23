@@ -27,12 +27,12 @@ const Suggestion = ({
     >
       <StyledSuggestion last={isLast} visuallyFocused={visuallyFocused}>
         {highlighted ? (
-          suggestion
-        ) : (
           <>
             <strong>{matchedWords}</strong>
             {noMatchedWords}
           </>
+        ) : (
+          suggestion
         )}
       </StyledSuggestion>
     </SuggestionContainer>
@@ -46,9 +46,9 @@ const SuggestionContainer = styled.li<{
   padding: 0 0.5rem;
   line-height: 1.715em;
   cursor: pointer;
-
   box-shadow: inset 0 0 0 2px
     ${(props) => (props.visuallyFocused ? props.theme.focusListOptionBorderColor : "transparent")};
+
   &:hover {
     background-color: ${(props) => props.theme.hoverListOptionBackgroundColor};
   }
