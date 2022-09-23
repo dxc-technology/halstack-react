@@ -87,7 +87,7 @@ export const Chromatic = () => (
       </DxcAccordion>
     </ExampleContainer>
     <Title title="States" theme="light" level={2} />
-    <ExampleContainer pseudoState="pseudo-focus">
+    {/* <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <DxcAccordion label="Focused">
         <div>
@@ -95,7 +95,7 @@ export const Chromatic = () => (
           lobortis eget.
         </div>
       </DxcAccordion>
-    </ExampleContainer>
+    </ExampleContainer> */}
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <DxcAccordion label="Hovered">
@@ -134,12 +134,7 @@ export const Chromatic = () => (
           padding="medium"
         >
           <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
-            <DxcTextInput
-              label="Label"
-              helperText="HelperText"
-              placeholder="Placeholder"
-              size="fillParent"
-            />
+            <DxcTextInput label="Label" helperText="HelperText" placeholder="Placeholder" size="fillParent" />
             <DxcButton label="Submit" size="medium" />
           </div>
         </DxcAccordion>
@@ -304,3 +299,19 @@ export const Chromatic = () => (
     </ExampleContainer>
   </>
 );
+
+export const FocusedAccordion = () => (
+  <ExampleContainer pseudoState="pseudo-focus">
+    <Title title="Focused" theme="light" level={4} />
+    <DxcAccordion label="Focused">
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
+        lobortis eget.
+      </div>
+    </DxcAccordion>
+  </ExampleContainer>
+);
+
+FocusedAccordion.parameters = {
+  chromatic: { diffThreshold: 0.2 },
+};
