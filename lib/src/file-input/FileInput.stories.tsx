@@ -69,7 +69,7 @@ export const Chromatic = () => (
       <Title title="File item hovered" theme="light" level={4} />
       <DxcFileInput value={fileExample} callbackFile={() => {}} />
     </ExampleContainer>
-    {/* <ExampleContainer pseudoState="pseudo-focus">
+    <ExampleContainer pseudoState="pseudo-focus">
       <Title title="File item focused" theme="light" level={4} />
       <DxcFileInput value={fileExample} callbackFile={() => {}} />
     </ExampleContainer>
@@ -77,7 +77,7 @@ export const Chromatic = () => (
       <Title title="File item actived" theme="light" level={4} />
       <DxcFileInput value={fileExample} callbackFile={() => {}} />
     </ExampleContainer>
-    <Title title="File" theme="light" level={2} />
+    {/* <Title title="File" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Without label" theme="light" level={4} />
       <DxcFileInput value={[]} callbackFile={() => {}} />
