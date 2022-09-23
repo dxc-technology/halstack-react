@@ -314,5 +314,5 @@ export const FocusedAccordion = () => (
 );
 
 FocusedAccordion.parameters = {
-  chromatic: { diffThreshold: 0.3 },
+  chromatic: { diffThreshold: 0.4 },
 };
