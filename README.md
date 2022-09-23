@@ -8,7 +8,7 @@ Halstack React CDK is a npm library of reusable React components, made with the 
 
 ## Usage
 
-Halstack React CDK is a set of reusable components distributed as a npm library. See the [documentation site](https://developer.dxc.com/tools/react/) for details on how to use it.
+Halstack React CDK is a set of reusable components distributed as a npm library. See the [documentation site](https://developer.dxc.com/halstack/) for details on how to use it.
 
 ## Contributing
 

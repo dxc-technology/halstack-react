@@ -171,7 +171,13 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Large limit values labels" theme="light" level={4} />
-      <DxcSlider label="Slider" helperText="Help message" showLimitsValues labelFormatCallback={labelFormat} size="large" />
+      <DxcSlider
+        label="Slider"
+        helperText="Help message"
+        showLimitsValues
+        labelFormatCallback={labelFormat}
+        size="large"
+      />
     </ExampleContainer>
   </>
 );

@@ -1,13 +1,11 @@
-// @ts-nocheck
 import React, { useState, useMemo, useContext } from "react";
-import Slider from "@material-ui/lab/Slider";
 import styled, { ThemeProvider } from "styled-components";
 import DxcTextInput from "../text-input/TextInput";
 import { spaces } from "../common/variables.js";
 import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import BackgroundColorContext from "../BackgroundColorContext";
-import SliderPropsType from "./types";
+import SliderPropsType, { Margin, Space } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
 const DxcSlider = ({
@@ -30,6 +28,7 @@ const DxcSlider = ({
   size = "fillParent",
 }: SliderPropsType): JSX.Element => {
   const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
+  const [dragging, setDragging] = useState(false);
   const colorsTheme = useTheme();
   const backgroundType = useContext(BackgroundColorContext);
 
@@ -39,19 +38,49 @@ const DxcSlider = ({
     () => (labelFormatCallback ? labelFormatCallback(minValue) : minValue),
     [labelFormatCallback, minValue]
   );
+
   const maxLabel = useMemo(
     () => (labelFormatCallback ? labelFormatCallback(maxValue) : maxValue),
     [labelFormatCallback, maxValue]
   );
 
-  const handlerSliderChange = (event, newValue) => {
-    const valueToCheck = value != null && value >= 0 ? value : innerValue;
-    valueToCheck !== newValue && setInnerValue(newValue);
-    onChange?.(newValue);
+  const tickMarks = useMemo(() => {
+    const ticks = [];
+    const numberOfMarks = Math.floor(maxValue / step - minValue / step);
+    let index = 0;
+    const range = maxValue - minValue;
+    if (marks) {
+      while (index <= numberOfMarks) {
+        ticks.push(
+          <TickMark
+            disabled={disabled}
+            stepPosition={((step * index) / range) * 100}
+            backgroundType={backgroundType}
+          ></TickMark>
+        );
+        index++;
+      }
+      return ticks;
+    } else {
+      return null;
+    }
+  }, [minValue, maxValue, step]);
+
+  const handleSliderChange = (event) => {
+    const valueToCheck = event.target.value;
+    (valueToCheck !== value || valueToCheck !== innerValue) && setInnerValue(valueToCheck);
+    onChange?.(valueToCheck);
   };
 
-  const handleSliderOnChangeCommited = (event, selectedValue) => {
-    onDragEnd?.(selectedValue);
+  const handleSliderDragging = () => {
+    setDragging(true);
+  };
+
+  const handleSliderOnChangeCommited = (event) => {
+    if (dragging) {
+      setDragging(false);
+      onDragEnd?.(event.target.value);
+    }
   };
 
   const handlerInputChange = (event) => {
@@ -64,6 +93,8 @@ const DxcSlider = ({
     }
   };
 
+  const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+
   return (
     <ThemeProvider theme={colorsTheme.slider}>
       <Container margin={margin} size={size}>
@@ -73,23 +104,34 @@ const DxcSlider = ({
         <HelperText disabled={disabled} backgroundType={backgroundType}>
           {helperText}
         </HelperText>
-        <SliderContainer backgroundType={backgroundType}>
+        <SliderContainer>
           {showLimitsValues && (
             <MinLabelContainer backgroundType={backgroundType} disabled={disabled}>
               {minLabel}
             </MinLabelContainer>
           )}
-          <Slider
-            value={value != null && value >= 0 ? value : innerValue}
-            min={minValue}
-            max={maxValue}
-            onChange={handlerSliderChange}
-            onChangeCommitted={handleSliderOnChangeCommited}
-            step={step}
-            marks={marks || []}
-            disabled={disabled}
-            aria-labelledby={labelId}
-          />
+          <SliderInputContainer>
+            <SliderInput
+              role="slider"
+              type="range"
+              value={value != null && value >= 0 ? value : innerValue}
+              min={minValue}
+              max={maxValue}
+              step={step}
+              marks={marks}
+              disabled={disabled}
+              aria-labelledby={labelId}
+              aria-orientation="horizontal"
+              aria-valuemax={maxValue}
+              aria-valuemin={minValue}
+              aria-valuenow={value != null && value >= 0 ? value : innerValue}
+              onChange={handleSliderChange}
+              onMouseUp={handleSliderOnChangeCommited}
+              onMouseDown={handleSliderDragging}
+              backgroundType={backgroundType}
+            />
+            {marks && <MarksContainer isFirefox={isFirefox}>{tickMarks}</MarksContainer>}
+          </SliderInputContainer>
           {showLimitsValues && (
             <MaxLabelContainer backgroundType={backgroundType} disabled={disabled} step={step}>
               {maxLabel}
@@ -123,7 +165,21 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
-const Container = styled.div`
+const getChromeStyles = () => {
+  return `
+  width: 100%;
+  margin-right: 4px;`;
+};
+
+const getFireFoxStyles = () => {
+  return `
+  width: calc(100% - 16px);
+  margin-right: 3px;`;
+};
+
+type ContainerPropsType = { margin: Margin | Space; size: "medium" | "large" | "fillParent" };
+
+const Container = styled.div<ContainerPropsType>`
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
@@ -138,7 +194,9 @@ const Container = styled.div`
   width: ${(props) => calculateWidth(props.margin, props.size)};
 `;
 
-const Label = styled.label`
+type LabelPropsType = { disabled: boolean; backgroundType: "dark" | "light" };
+
+const Label = styled.label<LabelPropsType>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -155,7 +213,7 @@ const Label = styled.label`
   line-height: ${(props) => props.theme.labelLineHeight};
 `;
 
-const HelperText = styled.span`
+const HelperText = styled.span<LabelPropsType>`
   color: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
@@ -164,6 +222,7 @@ const HelperText = styled.span`
       : props.backgroundType === "dark"
       ? props.theme.helperTextFontColorOnDark
       : props.theme.helperTextFontColor};
+
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.helperTextFontSize};
   font-style: ${(props) => props.theme.helperTextFontStyle};
@@ -171,139 +230,173 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
+type SliderInputPropsType = {
+  disabled: boolean;
+  backgroundType: "dark" | "light";
+  value: number;
+  min: number;
+  max: number;
+  marks: boolean;
+};
+
+const SliderInput = styled.input<SliderInputPropsType>`
+  width: 100%;
+  min-width: 240px;
+  height: ${(props) => props.theme.trackLineThickness};
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledTotalLineColorOnDark + "61"
+        : props.theme.disabledTotalLineColor + "61"
+      : props.backgroundType === "dark"
+      ? props.theme.totalLineColorOnDark + "61"
+      : props.theme.totalLineColor + "61"};
+  background-image: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? `linear-gradient(${props.theme.disabledTrackLineColorOnDark}, ${props.theme.disabledTrackLineColorOnDark})`
+        : `linear-gradient(${props.theme.disabledTrackLineColor}, ${props.theme.disabledTrackLineColor})`
+      : props.backgroundType === "dark"
+      ? `linear-gradient(${props.theme.trackLineColorOnDark}, ${props.theme.trackLineColorOnDark})`
+      : `linear-gradient(${props.theme.trackLineColor}, ${props.theme.trackLineColor})`};
+  background-repeat: no-repeat;
+  background-size: ${(props) => ((props.value - props.min) * 100) / (props.max - props.min) + "% 100%"};
+  border-radius: 5px;
+  z-index: 1;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    margin: 0px -8px;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: ${(props) => props.theme.thumbHeight};
+    width: ${(props) => props.theme.thumbWidth};
+    border-radius: 25px;
+    background: ${(props) =>
+      props.disabled
+        ? props.backgroundType === "dark"
+          ? props.theme.disabledThumbBackgroundColorOnDark
+          : props.theme.disabledThumbBackgroundColor
+        : props.backgroundType === "dark"
+        ? props.theme.thumbBackgroundColorOnDark
+        : props.theme.thumbBackgroundColor};
+    &:active {
+      ${(props) => {
+        if (!props.disabled) {
+          return `
+          background: ${
+            props.backgroundType === "dark"
+              ? props.theme.activeThumbBackgroundColorOnDark
+              : props.theme.activeThumbBackgroundColor
+          };
+            transform: scale(1.16667);`;
+        }
+      }}
+    }
+    &:hover {
+      ${(props) => {
+        if (!props.disabled) {
+          return `height: ${props.theme.hoverThumbHeight};
+          width: ${props.theme.hoverThumbWidth};
+          transform: scale(1.16667);
+          transform-origin: center center;
+          background: ${
+            props.backgroundType === "dark"
+              ? props.theme.hoverThumbBackgroundColorOnDark
+              : props.theme.hoverThumbBackgroundColor
+          };`;
+        }
+      }}
+    }
+  }
+  &::-moz-range-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+  &::-moz-range-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: ${(props) => props.theme.thumbHeight};
+    width: ${(props) => props.theme.thumbWidth};
+    border-radius: 25px;
+    background: ${(props) =>
+      props.disabled
+        ? props.backgroundType === "dark"
+          ? props.theme.disabledThumbBackgroundColorOnDark
+          : props.theme.disabledThumbBackgroundColor
+        : props.backgroundType === "dark"
+        ? props.theme.thumbBackgroundColorOnDark
+        : props.theme.thumbBackgroundColor};
+    &:active {
+      background: ${(props) =>
+        props.backgroundType === "dark"
+          ? props.theme.activeThumbBackgroundColorOnDark
+          : props.theme.activeThumbBackgroundColor};
+      transform: scale(1.16667);
+    }
+    &:hover {
+      ${(props) => {
+        if (!props.disabled) {
+          return `height: ${props.theme.hoverThumbHeight};
+          width: ${props.theme.hoverThumbWidth};
+          transform: scale(1.16667);
+          transform-origin: center center;
+          background: ${
+            props.backgroundType === "dark"
+              ? props.theme.hoverThumbBackgroundColorOnDark
+              : props.theme.hoverThumbBackgroundColor
+          };`;
+        }
+      }}
+    }
+  }
+  &:focus {
+    outline: none;
+    &::-webkit-slider-thumb {
+      outline: ${(props) =>
+          props.disabled
+            ? props.backgroundType === "dark"
+              ? props.theme.disabledFocusColorOnDark
+              : props.theme.disabledFocusColor
+            : props.backgroundType === "dark"
+            ? props.theme.focusColorOnDark
+            : props.theme.focusColor}
+        auto 1px;
+      outline-offset: 2px;
+    }
+    &::-moz-range-thumb {
+      outline: ${(props) =>
+          props.disabled
+            ? props.backgroundType === "dark"
+              ? props.theme.disabledFocusColorOnDark
+              : props.theme.disabledFocusColor
+            : props.backgroundType === "dark"
+            ? props.theme.focusColorOnDark
+            : props.theme.focusColor}
+        auto 1px;
+      outline-offset: 2px;
+    }
+  }
+`;
+
 const SliderContainer = styled.div`
   display: flex;
   height: 48px;
   align-items: center;
-
-  .MuiSlider-root {
-    min-width: 15rem;
-  }
-  .MuiSlider-container {
-    padding: 30px 24px;
-  }
-  .MuiSlider-root.Mui-disabled {
-    color: ${(props) =>
-      props.backgroundType === "dark"
-        ? props.theme.disabledThumbBackgroundColorOnDark
-        : props.theme.disabledThumbBackgroundColor};
-    cursor: not-allowed;
-  }
-  .Mui-disabled {
-    & .MuiSlider-thumb {
-      height: ${(props) => props.theme.thumbHeight};
-      width: ${(props) => props.theme.thumbWidth};
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledThumbBackgroundColorOnDark
-          : props.theme.disabledThumbBackgroundColor};
-      top: ${(props) => props.theme.disabledThumbVerticalPosition};
-    }
-    & .MuiSlider-track {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledTrackLineColorOnDark
-          : props.theme.disabledTrackLineColor};
-    }
-    & .MuiSlider-rail {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledTotalLineColorOnDark
-          : props.theme.disabledTotalLineColor};
-    }
-    & > .MuiSlider-mark.MuiSlider-markActive {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledTickBackgroundColorOnDark
-          : props.theme.disabledTickBackgroundColor} !important;
-    }
-    & > .MuiSlider-mark {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledTickBackgroundColorOnDark
-          : props.theme.disabledTickBackgroundColor};
-      height: ${(props) => props.theme.tickHeight};
-      width: ${(props) => props.theme.tickWidth};
-      border-radius: 18px;
-      top: ${(props) => props.theme.disabledTickVerticalPosition};
-    }
-  }
-  .MuiSlider-thumb {
-    height: ${(props) => props.theme.thumbHeight};
-    width: ${(props) => props.theme.thumbWidth};
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.thumbBackgroundColorOnDark : props.theme.thumbBackgroundColor};
-    top: ${(props) => props.theme.thumbVerticalPosition};
-    border-radius: 9999px;
-
-    :hover,
-    &.Mui-focusVisible {
-      box-shadow: none;
-    }
-    &.MuiSlider-active {
-      box-shadow: none;
-    }
-    :focus {
-      outline: ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)}
-        auto 1px;
-      outline-offset: 2px;
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.focusThumbBackgroundColorOnDark
-          : props.theme.focusThumbBackgroundColor};
-    }
-    :hover {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.hoverThumbBackgroundColorOnDark
-          : props.theme.hoverThumbBackgroundColor};
-      transform: scale(${(props) => props.theme.hoverThumbScale});
-      transform-origin: center;
-      height: ${(props) => props.theme.hoverThumbHeight};
-      width: ${(props) => props.theme.hoverThumbWidth};
-      top: ${(props) => props.theme.hoverThumbVerticalPosition};
-    }
-    :active {
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.activeThumbBackgroundColorOnDark
-          : props.theme.activeThumbBackgroundColor};
-      transform: scale(${(props) => props.theme.activeThumbScale});
-      transform-origin: center;
-    }
-  }
-  .MuiSlider-track {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
-    height: ${(props) => props.theme.trackLineThickness};
-    top: ${(props) => props.theme.trackLineVerticalPosition};
-    border-radius: 9999px;
-  }
-  .MuiSlider-track.MuiSlider-trackAfter {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.trackLineColorOnDark : props.theme.trackLineColor};
-  }
-  .MuiSlider-rail {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.totalLineColorOnDark : props.theme.totalLineColor};
-    height: ${(props) => props.theme.totalLineThickness};
-    top: ${(props) => props.theme.totalLineVerticalPosition};
-  }
-  .MuiSlider-mark.MuiSlider-markActive {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
-  }
-  .MuiSlider-mark {
-    background-color: ${(props) =>
-      props.backgroundType === "dark" ? props.theme.tickBackgroundColorOnDark : props.theme.tickBackgroundColor};
-    height: ${(props) => props.theme.tickHeight};
-    width: ${(props) => props.theme.tickWidth};
-    border-radius: 18px;
-    top: ${(props) => props.theme.tickVerticalPosition};
-  }
 `;
 
-const MinLabelContainer = styled.span`
+const LimitLabelContainer = styled.span<LabelPropsType>`
   color: ${(props) =>
     props.disabled
       ? props.theme.disabledLimitValuesFontColor
@@ -317,31 +410,58 @@ const MinLabelContainer = styled.span`
   font-weight: ${(props) => props.theme.limitValuesFontWeight};
   letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
   white-space: nowrap;
+`;
+
+const MinLabelContainer = styled(LimitLabelContainer)`
   margin-right: ${(props) => props.theme.floorLabelMarginRight};
 `;
 
-const MaxLabelContainer = styled.span`
-  color: ${(props) =>
-    props.disabled
-      ? props.theme.disabledLimitValuesFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.limitValuesFontColorOnDark
-      : props.theme.limitValuesFontColor};
-
-  font-family: ${(props) => props.theme.fontFamily};
-  font-size: ${(props) => props.theme.limitValuesFontSize};
-  font-style: ${(props) => props.theme.limitValuesFontStyle};
-  font-weight: ${(props) => props.theme.limitValuesFontWeight};
-  letter-spacing: ${(props) => props.theme.limitValuesFontLetterSpacing};
-  white-space: nowrap;
+const MaxLabelContainer = styled(LimitLabelContainer)<{ step: number }>`
   margin-left: ${(props) => (props.step === 1 ? props.theme.ceilLabelMarginLeft : "1.25rem")};
+`;
+
+const SliderInputContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -2px;
+  padding-top: 1px;
+`;
+
+type MarksContainerPropsType = { isFirefox: boolean };
+
+const MarksContainer = styled.div<MarksContainerPropsType>`
+  ${(props) => (props.isFirefox ? getFireFoxStyles() : getChromeStyles())}
+  position: absolute;
+  pointer-events: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+type TickMarkPropsType = { stepPosition: number; disabled: boolean; backgroundType: "dark" | "light" };
+
+const TickMark = styled.span<TickMarkPropsType>`
+  position: absolute;
+  background: ${(props) =>
+    props.disabled
+      ? props.backgroundType === "dark"
+        ? props.theme.disabledTickBackgroundColorOnDark
+        : props.theme.disabledTickBackgroundColor
+      : props.backgroundType === "dark"
+      ? props.theme.tickBackgroundColorOnDark
+      : props.theme.tickBackgroundColor};
+  height: ${(props) => props.theme.tickHeight};
+  width: ${(props) => props.theme.tickWidth};
+  border-radius: 18px;
+  left: ${(props) => `${props.stepPosition}%`};
 `;
 
 const StyledTextInput = styled.div`
   margin-left: ${(props) => props.theme.inputMarginLeft};
-  label + .MuiInput-formControl {
-    margin-top: 2px;
-  }
   max-width: 70px;
 `;
 

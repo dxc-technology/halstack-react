@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 
 const customLoader = ({ src }: { src: string }) => {
-  return src;
+  return process.env.NODE_ENV === "production" ? src.replace("//", "/") : src;
 };
 
 type ImageProps = {
