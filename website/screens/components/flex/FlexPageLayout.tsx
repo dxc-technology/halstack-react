@@ -10,7 +10,7 @@ const FlexPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Flex" status="Experimental" />
+          <ComponentHeading name="Flex" status="Ready" />
           <DxcParagraph>
             Flex allows users to build{" "}
             <DxcLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">
