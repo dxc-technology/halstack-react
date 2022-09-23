@@ -1,6 +1,7 @@
 import PageHeading from "@/common/PageHeading";
 import { DxcHeading, DxcFlex, DxcAlert } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const TypographyPageHeading = ({ children }: { children: React.ReactNode }) => {
   const tabs = [
@@ -13,7 +14,7 @@ const TypographyPageHeading = ({ children }: { children: React.ReactNode }) => {
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Typography" weight="bold"></DxcHeading>
+          <ComponentHeading name="Typography" status="Ready" />
           <DxcAlert type="warning" size="fillParent">
             Use this component only if all other Halstack Design System
             components for adding text DO NOT meet your requirements. This
