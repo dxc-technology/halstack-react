@@ -37,7 +37,9 @@ const sections = [
                   displayed in the tab.
                 </li>
                 <li>
-                  <b>isDisabled</b>: Whether the tab is disabled or not.
+                  <b>isDisabled</b>: Whether the tab is disabled or not. If the
+                  component is uncontrolled and the selected tab is disabled,
+                  the first non-disabled tab from the array will be selected.
                 </li>
                 <li>
                   <b>notificationNumber</b>: It can have boolean type or number

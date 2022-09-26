@@ -1,15 +1,24 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { getMargin } from "../common/utils.js";
 import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import { BackgroundColorProvider } from "../BackgroundColorContext";
-import AccordionPropsType from "./types";
+import AccordionPropsType, { Margin, Padding, Space } from "./types";
+import DxcTypography from "../typography/Typography";
+import { v4 as uuidv4 } from "uuid";
+
+const expandLess = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="currentColor">
+    <path d="m7.4 15.375-1.4-1.4 6-6 6 6-1.4 1.4-4.6-4.6Z" />
+  </svg>
+);
+
+const expandMore = (
+  <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="currentColor">
+    <path d="m12 15.375-6-6 1.4-1.4 4.6 4.6 4.6-4.6 1.4 1.4Z" />
+  </svg>
+);
 
 const DxcAccordion = ({
   label = "",
@@ -24,54 +33,105 @@ const DxcAccordion = ({
   padding,
   tabIndex = 0,
 }: AccordionPropsType): JSX.Element => {
+  const [id] = useState(uuidv4());
   const [innerIsExpanded, setInnerIsExpanded] = useState(defaultIsExpanded ?? false);
   const colorsTheme = useTheme();
 
-  const handlerAccordion = () => {
-    if (isExpanded == null) {
-      setInnerIsExpanded(!innerIsExpanded);
-    }
-    if (typeof onChange === "function") {
-      onChange(isExpanded == null ? !innerIsExpanded : !isExpanded);
-    }
+  const handleAccordionState = () => {
+    isExpanded ?? setInnerIsExpanded((innerIsExpanded) => !innerIsExpanded);
+    onChange?.(!isExpanded ?? !innerIsExpanded);
   };
 
   return (
     <ThemeProvider theme={colorsTheme.accordion}>
-      <DXCAccordion padding={padding} margin={margin} disabled={disabled} icon={icon}>
-        <ExpansionPanel
-          disabled={disabled}
-          onChange={handlerAccordion}
-          expanded={isExpanded != null ? isExpanded : innerIsExpanded}
-        >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} tabIndex={disabled ? -1 : tabIndex}>
+      <AccordionContainer isExpanded={isExpanded ?? innerIsExpanded} padding={padding} margin={margin}>
+        <AccordionHeader>
+          <AccordionTrigger
+            id={`accordion-${id}`}
+            onClick={disabled ? undefined : handleAccordionState}
+            disabled={disabled}
+            tabIndex={disabled ? -1 : tabIndex}
+            aria-expanded={isExpanded ?? innerIsExpanded}
+            aria-controls={`accordion-panel-${id}`}
+            isExpanded={isExpanded ?? innerIsExpanded}
+          >
             <AccordionInfo disabled={disabled}>
-              {icon && (
-                <IconContainer disabled={disabled}>
-                  {typeof icon === "string" ? <AccordionIcon src={icon} /> : icon}
-                </IconContainer>
+              <AccordionLabel>
+                {icon && (
+                  <IconContainer disabled={disabled}>
+                    {typeof icon === "string" ? <IconImg src={icon} /> : icon}
+                  </IconContainer>
+                )}
+                <DxcTypography
+                  color={
+                    disabled
+                      ? colorsTheme.accordion.disabledTitleLabelFontColor
+                      : colorsTheme.accordion.titleLabelFontColor
+                  }
+                  fontFamily={colorsTheme.accordion.titleLabelFontFamily}
+                  fontSize={colorsTheme.accordion.titleLabelFontSize}
+                  fontStyle={colorsTheme.accordion.titleLabelFontStyle}
+                  fontWeight={colorsTheme.accordion.titleLabelFontWeight}
+                  lineHeight="1.5em"
+                >
+                  {label}
+                </DxcTypography>
+              </AccordionLabel>
+              {assistiveText && (
+                <AccordionAssistiveText disabled={disabled}>
+                  <DxcTypography
+                    color={
+                      disabled
+                        ? colorsTheme.accordion.disabledAssistiveTextFontColor
+                        : colorsTheme.accordion.assistiveTextFontColor
+                    }
+                    fontFamily={colorsTheme.accordion.assistiveTextFontFamily}
+                    fontSize={colorsTheme.accordion.assistiveTextFontSize}
+                    fontStyle={colorsTheme.accordion.assistiveTextFontStyle}
+                    fontWeight={colorsTheme.accordion.assistiveTextFontWeight}
+                    letterSpacing={colorsTheme.accordion.assistiveTextLetterSpacing}
+                    lineHeight="1.5em"
+                  >
+                    {assistiveText}
+                  </DxcTypography>
+                </AccordionAssistiveText>
               )}
-              <AccordionLabel>{label}</AccordionLabel>
             </AccordionInfo>
-            {assistiveText && <AccordionAssistiveText disabled={disabled}>{assistiveText}</AccordionAssistiveText>}
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <AccordionContent disabled={disabled}>
-              <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>
-                {children}
-              </BackgroundColorProvider>
-            </AccordionContent>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </DXCAccordion>
+            <CollapseIndicator disabled={disabled}>
+              {isExpanded ?? innerIsExpanded ? expandLess : expandMore}
+            </CollapseIndicator>
+          </AccordionTrigger>
+        </AccordionHeader>
+        {(isExpanded ?? innerIsExpanded) && (
+          <AccordionPanel
+            id={`accordion-panel-${id}`}
+            role="region"
+            aria-labelledby={`accordion-${id}`}
+            padding={padding}
+          >
+            <BackgroundColorProvider color={colorsTheme.accordion.backgroundColor}>{children}</BackgroundColorProvider>
+          </AccordionPanel>
+        )}
+      </AccordionContainer>
     </ThemeProvider>
   );
 };
 
 const calculateWidth = (margin) => `calc(100% - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`;
 
-const DXCAccordion = styled.div`
+type AccordionContainerProps = {
+  isExpanded: boolean;
+  margin: Space | Margin;
+  padding: Space | Padding;
+};
+const AccordionContainer = styled.div<AccordionContainerProps>`
   display: flex;
+  flex-direction: column;
+  background-color: ${(props) => props.theme.backgroundColor};
+  border-radius: ${(props) => props.theme.borderRadius};
+  ${(props) => props.isExpanded && `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
+  box-shadow: ${(props) =>
+    `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
   min-width: 280px;
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -83,162 +143,95 @@ const DXCAccordion = styled.div`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
   width: ${(props) => calculateWidth(props.margin)};
-  cursor: ${(props) => (props.disabled && "not-allowed") || "pointer"};
-
-  .MuiPaper-root {
-    min-width: 0;
-    display: flex;
-    left: 85px;
-    background-color: ${(props) => props.theme.backgroundColor} !important;
-    box-shadow: ${(props) =>
-      `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
-    position: static;
-    width: 100%;
-    border-radius: ${(props) => props.theme.borderRadius};
-
-    &.Mui-expanded {
-      border-radius: ${(props) => props.theme.borderRadius};
-    }
-    &.MuiExpansionPanel-root {
-      display: flex;
-      flex-direction: column;
-      min-height: 48px;
-    }
-    &.MuiExpansionPanel-rounded {
-      border-radius: ${(props) => props.theme.borderRadius};
-    }
-    .MuiButtonBase-root.MuiExpansionPanelSummary-root {
-      min-height: 48px;
-      height: 48px;
-
-      :focus {
-        outline-color: ${(props) => props.theme.focusBorderColor};
-        outline-style: ${(props) => props.theme.focusBorderStyle};
-        outline-width: ${(props) => props.theme.focusBorderThickness};
-        background-color: ${(props) => props.theme.backgroundColor};
-      }
-      :hover {
-        background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
-      }
-      :active {
-        background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
-      }
-      &.Mui-disabled {
-        opacity: 1;
-      }
-    }
-    .MuiButtonBase-root {
-      border-radius: ${(props) => props.theme.borderRadius};
-
-      &.Mui-expanded {
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-        .MuiSvgIcon-root {
-          opacity: 1;
-        }
-      }
-      &.MuiIconButton-root {
-        height: auto;
-      }
-      .MuiExpansionPanelSummary-content {
-        padding-top: ${(props) => props.theme.titleLabelPaddingTop};
-        padding-bottom: ${(props) => props.theme.titleLabelPaddingBottom};
-        padding-right: ${(props) => props.theme.titleLabelPaddingRight};
-        padding-left: ${(props) => props.theme.titleLabelPaddingLeft};
-        min-width: 0;
-        &.Mui-expanded {
-          div:nth-child(2) {
-            opacity: 1;
-          }
-        }
-        :hover {
-          div {
-            opacity: 1;
-          }
-        }
-      }
-    }
-    .MuiTouchRipple-root {
-      display: none;
-    }
-  }
-  .MuiCollapse-hidden {
-    display: none;
-  }
-  .MuiCollapse-container {
-    border-radius: 0px 0px 4px 4px;
-    cursor: default;
-    width: 100%;
-  }
-  .MuiIconButton-label {
-    & > .MuiSvgIcon-root {
-      color: ${(props) => (props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor)};
-    }
-  }
-  .MuiExpansionPanelDetails-root {
-    padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
-    padding-top: ${(props) =>
-      props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
-    padding-right: ${(props) =>
-      props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
-    padding-bottom: ${(props) =>
-      props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
-    padding-left: ${(props) =>
-      props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
-  }
 `;
 
-const AccordionInfo = styled.div`
+const AccordionHeader = styled.h3`
   display: flex;
-  align-items: center;
-  padding-left: ${(props) => props.theme.titlePaddingLeft};
-  padding-right: ${(props) => props.theme.titlePaddingRight};
-  font-family: ${(props) => props.theme.titleLabelFontFamily};
-  font-size: ${(props) => props.theme.titleLabelFontSize};
-  font-style: ${(props) => props.theme.titleLabelFontStyle};
-  font-weight: ${(props) => props.theme.titleFonLabeltWeight};
-  color: ${(props) => (props.disabled ? props.theme.disabledTitleLabelFontColor : props.theme.titleLabelFontColor)};
+  flex-direction: column;
+  min-height: 48px;
+  margin: 0;
 `;
 
-const AccordionLabel = styled.div``;
+const AccordionTrigger = styled.button<{ isExpanded: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-radius: ${(props) => props.theme.borderRadius};
+  ${(props) => props.isExpanded && `border-bottom-left-radius: 0; border-bottom-right-radius: 0;`}
+  padding: 12px 16px;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
-const AccordionContent = styled.div`
+  :focus {
+    outline: ${(props) =>
+      `${props.theme.focusBorderColor} ${props.theme.focusBorderStyle} ${props.theme.focusBorderThickness}`};
+  }
+  :hover:enabled {
+    background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
+  }
+  :active:enabled {
+    background-color: ${(props) => `${props.theme.hoverBackgroundColor}`};
+  }
+`;
+
+const AccordionInfo = styled.span<{ disabled: boolean }>`
+  display: inline-flex;
+  justify-content: space-between;
   width: 100%;
 `;
 
-const AccordionAssistiveText = styled.div`
-  padding-left: ${(props) => props.theme.assistiveTextPaddingLeft};
-  padding-right: ${(props) => props.theme.assistiveTextPaddingRight};
-  font-size: ${(props) => props.theme.assistiveTextFontSize};
-  font-family: ${(props) => props.theme.assistiveTextFontFamily};
-  font-style: ${(props) => props.theme.assistiveTextFontStyle};
-  font-weight: ${(props) => props.theme.assistiveTextFontWeight};
-  color: ${(props) =>
-    props.disabled ? props.theme.disabledAssistiveTextFontColor : props.theme.assistiveTextFontColor};
-  letter-spacing: ${(props) => props.theme.assistiveTextLetterSpacing};
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: ${(props) => props.theme.assistiveTextMinWidth};
-  text-align: end;
+const AccordionLabel = styled.span`
+  display: flex;
+  padding-top: ${(props) => props.theme.titleLabelPaddingTop};
+  padding-bottom: ${(props) => props.theme.titleLabelPaddingBottom};
+  padding-right: ${(props) => props.theme.titleLabelPaddingRight};
+  padding-left: ${(props) => props.theme.titleLabelPaddingLeft};
 `;
 
-const IconContainer = styled.div`
+const IconContainer = styled.span<{ disabled: boolean }>`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
   height: ${(props) => props.theme.iconSize};
   width: ${(props) => props.theme.iconSize};
   margin-left: ${(props) => props.theme.iconMarginLeft};
   margin-right: ${(props) => props.theme.iconMarginRigth};
-  overflow: hidden;
   color: ${(props) => (props.disabled ? props.theme.disabledIconColor : props.theme.iconColor)};
-
-  img,
-  svg {
-    height: 100%;
-    width: 100%;
-  }
 `;
 
-const AccordionIcon = styled.img``;
+const IconImg = styled.img`
+  height: ${(props) => props.theme.iconSize};
+  width: ${(props) => props.theme.iconSize};
+`;
+
+const AccordionAssistiveText = styled.span<{ disabled: boolean }>`
+  min-width: ${(props) => props.theme.assistiveTextMinWidth};
+  padding-left: ${(props) => props.theme.assistiveTextPaddingLeft};
+  padding-right: ${(props) => props.theme.assistiveTextPaddingRight};
+`;
+
+const CollapseIndicator = styled.span<{ disabled: boolean }>`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  color: ${(props) => (props.disabled ? props.theme.disabledArrowColor : props.theme.arrowColor)};
+`;
+
+const AccordionPanel = styled.div<{ padding: Space | Padding }>`
+  border-bottom-left-radius: ${(props) => props.theme.borderRadius};
+  border-bottom-right-radius: ${(props) => props.theme.borderRadius};
+  padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : "0px")};
+  padding-top: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
+  padding-right: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.right ? spaces[props.padding.right] : ""};
+  padding-bottom: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.bottom ? spaces[props.padding.bottom] : ""};
+  padding-left: ${(props) =>
+    props.padding && typeof props.padding === "object" && props.padding.left ? spaces[props.padding.left] : ""};
+`;
 
 export default DxcAccordion;

@@ -80,6 +80,32 @@ export const Chromatic = () => (
         </DxcAccordionGroup.Accordion>
       </DxcAccordionGroup>
     </ExampleContainer>
+    <ExampleContainer pseudoState="pseudo-focus">
+      <Title title="Focused" theme="light" level={4} />
+      <DxcAccordionGroup defaultIndexActive={2}>
+        <DxcAccordionGroup.Accordion label="Accordion1" padding="medium">
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </div>
+        </DxcAccordionGroup.Accordion>
+        <DxcAccordionGroup.Accordion label="Accordion2" padding="medium">
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </div>
+        </DxcAccordionGroup.Accordion>
+        <DxcAccordionGroup.Accordion label="Accordion2" padding="medium">
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit
+            leo lobortis eget.
+          </div>
+        </DxcAccordionGroup.Accordion>
+      </DxcAccordionGroup>
+    </ExampleContainer>
     <Title title="Margins" theme="light" level={2} />
     <ExampleContainer>
       <Title title="Xxsmall" theme="light" level={4} />

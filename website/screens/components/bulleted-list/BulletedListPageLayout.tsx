@@ -1,10 +1,7 @@
 import PageHeading from "@/common/PageHeading";
-import {
-  DxcHeading,
-  DxcFlex,
-  DxcParagraph,
-} from "@dxc-technology/halstack-react";
+import { DxcFlex, DxcParagraph } from "@dxc-technology/halstack-react";
 import TabsPageHeading from "@/common/TabsPageLayout";
+import ComponentHeading from "@/common/ComponentHeading";
 
 const BulletedListPageHeading = ({
   children,
@@ -23,7 +20,7 @@ const BulletedListPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <DxcHeading level={1} text="Bulleted list" weight="bold"></DxcHeading>
+          <ComponentHeading name="Bulleted List" status="Ready" />
           <DxcParagraph>
             Bulleted list are used to display text items in a bulleted format.
           </DxcParagraph>

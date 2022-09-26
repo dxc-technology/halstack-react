@@ -14,7 +14,7 @@ const NumberInputPageHeading = ({
     <DxcFlex direction="column" gap="3rem">
       <PageHeading>
         <DxcFlex direction="column" gap="2rem">
-          <ComponentHeading name="Nav Tabs" status="Experimental" />
+          <ComponentHeading name="Nav Tabs" status="Ready" />
           <DxcParagraph>
             Nav tabs allow the user to navigate easily.
           </DxcParagraph>
