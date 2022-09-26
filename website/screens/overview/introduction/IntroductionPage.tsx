@@ -186,7 +186,7 @@ const sections = [
     ),
   },
   {
-    title: "Documentation of other releases",
+    title: "Previous documentation sites",
     content: (
       <>
         <DxcParagraph>
@@ -213,12 +213,15 @@ const sections = [
           </em>
         </DxcParagraph>
         <DxcParagraph>
-          The last development site can be accessed through this{" "}
+          The latest development site can be accessed through this{" "}
           <DxcLink href="https://developer.dxc.com/halstack/next/" newWindow>
             link
           </DxcLink>
-          ; and the last release is available{" "}
-          <DxcLink href={`https://developer.dxc.com/halstack/${process.env.SITE_VERSION}/`} newWindow>
+          ; and the latest release is available{" "}
+          <DxcLink
+            href={`https://developer.dxc.com/halstack/${process.env.SITE_VERSION}/`}
+            newWindow
+          >
             here
           </DxcLink>
           .
