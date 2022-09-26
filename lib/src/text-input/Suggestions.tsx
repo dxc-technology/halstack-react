@@ -9,7 +9,7 @@ import icons from "./Icons";
 const Suggestions = ({
   id,
   value,
-  filteredSuggestions,
+  suggestions,
   visualFocusIndex,
   highlightedSuggestions,
   searchHasErrors,
@@ -56,15 +56,15 @@ const Suggestions = ({
     >
       {!isSearching &&
         !searchHasErrors &&
-        filteredSuggestions.length > 0 &&
-        filteredSuggestions.map((suggestion, index) => (
+        suggestions.length > 0 &&
+        suggestions.map((suggestion, index) => (
           <Suggestion
             key={`suggestion-${index}`}
             id={`suggestion-${index}`}
             value={value}
             onClick={suggestionOnClick}
             suggestion={suggestion}
-            isLast={index === filteredSuggestions.length - 1}
+            isLast={index === suggestions.length - 1}
             visuallyFocused={visualFocusIndex === index}
             highlighted={highlightedSuggestions}
           />

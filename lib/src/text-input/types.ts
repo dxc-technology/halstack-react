@@ -156,6 +156,21 @@ type Props = {
 };
 
 /**
+ * List of suggestions of an Text Input component.
+ */
+ export type SuggestionsProps = {
+  id: string;
+  value: string;
+  suggestions: string[];
+  visualFocusIndex: number;
+  highlightedSuggestions: boolean;
+  searchHasErrors: boolean;
+  isSearching: boolean;
+  suggestionOnClick: (suggestion: string) => void;
+  getTextInputWidth: () => number;
+}
+
+/**
  * Reference to the component.
  */
 export type RefType = HTMLDivElement;
@@ -172,20 +187,5 @@ export type SuggestionProps = {
   visuallyFocused: boolean;
   highlighted: boolean;
 };
-
-/**
- * List of suggestions of an Text Input component.
- */
-export type SuggestionsProps = {
-  id: string;
-  value: string;
-  filteredSuggestions: string[];
-  visualFocusIndex: number;
-  highlightedSuggestions: boolean;
-  searchHasErrors: boolean;
-  isSearching: boolean;
-  suggestionOnClick: (suggestion: string) => void;
-  getTextInputWidth: () => number;
-}
 
 export default Props;

@@ -40,7 +40,7 @@ const makeCancelable = (promise) => {
   };
 };
 
-const patternMatch = (pattern, value) => new RegExp(pattern).test(value);
+const patternMissmatch = (pattern, value) => pattern && !new RegExp(pattern).test(value);
 
 const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
   (
@@ -90,7 +90,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
     const backgroundType = useContext(BackgroundColorContext);
-
     const numberInputContext = useContext(NumberInputContext);
 
     const isNotOptional = (value) => value === "" && !optional;
@@ -119,8 +118,10 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     };
 
     const closeSuggestions = () => {
-      changeIsOpen(false);
-      changeVisualFocusedSuggIndex(-1);
+      if (hasSuggestions()) {
+        changeIsOpen(false);
+        changeVisualFocusedSuggIndex(-1);
+      }
     };
 
     const changeValue = (newValue) => {
@@ -134,10 +135,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           value: changedValue,
           error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
-      else if (newValue && pattern && !patternMatch(pattern, newValue))
+      else if (patternMissmatch(pattern, newValue))
         onChange?.({ value: changedValue, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else if (newValue && isNumberIncorrect(newValue))
-        onChange?.({ value: changedValue, error: getNumberErrorMessage(newValue) });
+      else if (isNumberIncorrect(newValue)) onChange?.({ value: changedValue, error: getNumberErrorMessage(newValue) });
       else onChange?.({ value: changedValue });
     };
 
@@ -154,7 +154,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
       changeValue(event.target.value);
     };
     const handleIOnBlur = (event) => {
-      suggestions && closeSuggestions();
+      closeSuggestions();
 
       if (isNotOptional(event.target.value))
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.requiredValueErrorMessage });
@@ -163,9 +163,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           value: event.target.value,
           error: translatedLabels.formFields.lengthErrorMessage(minLength, maxLength),
         });
-      else if (event.target.value && pattern && !patternMatch(pattern, event.target.value))
+      else if (patternMissmatch(pattern, event.target.value))
         onBlur?.({ value: event.target.value, error: translatedLabels.formFields.formatRequestedErrorMessage });
-      else if (event.target.value && isNumberIncorrect(event.target.value))
+      else if (isNumberIncorrect(event.target.value))
         onBlur?.({ value: event.target.value, error: getNumberErrorMessage(event.target.value) });
       else onBlur?.({ value: event.target.value });
     };
@@ -213,9 +213,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         case "Enter":
           if (hasSuggestions() && !isSearching) {
             const validFocusedSuggestion =
-              filteredSuggestions.length > 0 &&
-              visualFocusIndex >= 0 &&
-              visualFocusIndex < filteredSuggestions.length;
+              filteredSuggestions.length > 0 && visualFocusIndex >= 0 && visualFocusIndex < filteredSuggestions.length;
             validFocusedSuggestion && changeValue(filteredSuggestions[visualFocusIndex]);
             isOpen && closeSuggestions();
           }
@@ -391,9 +389,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   placeholder={placeholder}
                   onBlur={handleIOnBlur}
                   onChange={handleIOnChange}
-                  onFocus={() => {
-                    openSuggestions();
-                  }}
+                  onFocus={openSuggestions}
                   onKeyDown={handleIOnKeyDown}
                   onMouseDown={(event) => {
                     event.stopPropagation();
@@ -404,7 +400,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   pattern={pattern}
                   minLength={minLength}
                   maxLength={maxLength}
-                  autoComplete={autocomplete}
+                  autoComplete={autocomplete === "off" ? "nope" : autocomplete}
                   tabIndex={tabIndex}
                   role={isTextInputType() && hasSuggestions() ? "combobox" : "textbox"}
                   aria-autocomplete={isTextInputType() && hasSuggestions() ? "list" : undefined}
@@ -439,7 +435,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     {icons.clear}
                   </Action>
                 )}
-                {numberInputContext?.typeNumber === "number" ? (
+                {numberInputContext?.typeNumber === "number" && (
                   <>
                     <Action
                       ref={actionRef}
@@ -470,23 +466,22 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                       {icons.increment}
                     </Action>
                   </>
-                ) : (
-                  action && (
-                    <Action
-                      ref={actionRef}
-                      disabled={disabled}
-                      onClick={action.onClick}
-                      onMouseDown={(event) => {
-                        event.stopPropagation();
-                      }}
-                      title={action.title}
-                      aria-label={action.title}
-                      backgroundType={backgroundType}
-                      tabIndex={tabIndex}
-                    >
-                      {typeof action.icon === "string" ? <ActionIcon src={action.icon}></ActionIcon> : action.icon}
-                    </Action>
-                  )
+                )}
+                {action && (
+                  <Action
+                    ref={actionRef}
+                    disabled={disabled}
+                    onClick={action.onClick}
+                    onMouseDown={(event) => {
+                      event.stopPropagation();
+                    }}
+                    title={action.title}
+                    aria-label={action.title}
+                    backgroundType={backgroundType}
+                    tabIndex={tabIndex}
+                  >
+                    {typeof action.icon === "string" ? <ActionIcon src={action.icon}></ActionIcon> : action.icon}
+                  </Action>
                 )}
                 {suffix && (
                   <Suffix disabled={disabled} backgroundType={backgroundType}>
@@ -509,7 +504,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               <Suggestions
                 id={autosuggestId}
                 value={value ?? innerValue}
-                filteredSuggestions={filteredSuggestions}
+                suggestions={filteredSuggestions}
                 visualFocusIndex={visualFocusIndex}
                 highlightedSuggestions={typeof suggestions !== "function"}
                 searchHasErrors={isAutosuggestError}
