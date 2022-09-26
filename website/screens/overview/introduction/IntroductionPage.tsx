@@ -218,7 +218,7 @@ const sections = [
             link
           </DxcLink>
           ; and the last release is available{" "}
-          <DxcLink href="https://developer.dxc.com/halstack/6/" newWindow>
+          <DxcLink href={`https://developer.dxc.com/halstack/${process.env.SITE_VERSION}/`} newWindow>
             here
           </DxcLink>
           .
