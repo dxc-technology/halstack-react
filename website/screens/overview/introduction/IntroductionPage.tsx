@@ -217,8 +217,8 @@ const sections = [
           <DxcLink href="https://developer.dxc.com/halstack/next/" newWindow>
             link
           </DxcLink>
-          . Please note that this version can include bugs. For a more stable
-          version check the latest release that is available{" "}
+          . Please note that this experience can include bugs. For a more stable
+          one check the latest release that is available{" "}
           <DxcLink
             href={`https://developer.dxc.com/halstack/${process.env.SITE_VERSION}/`}
             newWindow
