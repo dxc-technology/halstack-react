@@ -301,7 +301,7 @@ export const Chromatic = () => (
 );
 
 const AutosuggestListbox = () => {
-  const colorsTheme = useTheme();
+  const colorsTheme: any = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.textInput}>
@@ -325,7 +325,7 @@ const AutosuggestListbox = () => {
           <Suggestions
             id="x"
             value=""
-            filteredSuggestions={country}
+            suggestions={country}
             visualFocusIndex={-1}
             highlightedSuggestions={false}
             searchHasErrors={false}
@@ -339,7 +339,7 @@ const AutosuggestListbox = () => {
           <Suggestions
             id="x"
             value=""
-            filteredSuggestions={country}
+            suggestions={country}
             visualFocusIndex={-1}
             highlightedSuggestions={false}
             searchHasErrors={false}
@@ -353,7 +353,7 @@ const AutosuggestListbox = () => {
           <Suggestions
             id="x"
             value=""
-            filteredSuggestions={country}
+            suggestions={country}
             visualFocusIndex={0}
             highlightedSuggestions={false}
             searchHasErrors={false}
@@ -367,7 +367,7 @@ const AutosuggestListbox = () => {
           <Suggestions
             id="x"
             value="Afgh"
-            filteredSuggestions={country}
+            suggestions={country}
             visualFocusIndex={-1}
             highlightedSuggestions={true}
             searchHasErrors={false}
@@ -382,7 +382,7 @@ const AutosuggestListbox = () => {
         <Suggestions
           id="x"
           value=""
-          filteredSuggestions={country}
+          suggestions={country}
           visualFocusIndex={-1}
           highlightedSuggestions={false}
           searchHasErrors={true}
@@ -396,7 +396,7 @@ const AutosuggestListbox = () => {
         <Suggestions
           id="x"
           value=""
-          filteredSuggestions={country}
+          suggestions={country}
           visualFocusIndex={-1}
           highlightedSuggestions={false}
           searchHasErrors={false}
@@ -410,7 +410,7 @@ const AutosuggestListbox = () => {
 };
 
 const DarkAutosuggestListbox = () => {
-  const colorsTheme = useTheme();
+  const colorsTheme: any = useTheme();
 
   return (
     <ThemeProvider theme={colorsTheme.textInput}>
@@ -435,7 +435,7 @@ const DarkAutosuggestListbox = () => {
               <Suggestions
                 id="x"
                 value=""
-                filteredSuggestions={country}
+                suggestions={country}
                 visualFocusIndex={-1}
                 highlightedSuggestions={false}
                 searchHasErrors={true}
