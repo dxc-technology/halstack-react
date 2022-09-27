@@ -25,7 +25,7 @@ const DxcSwitch = ({
   const [switchId] = useState(`switch-${uuidv4()}`);
   const labelId = `label-${switchId}`;
   const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
-  const [hasLabel] = useState((label !== "" && label !== null && label !== undefined) ?? false);
+  const hasLabel = (label !== "" && label !== null && label !== undefined) ?? false;
 
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
