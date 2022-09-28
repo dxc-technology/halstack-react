@@ -3,14 +3,12 @@ import Image from "@/common/Image";
 import halstackLogo from "@/common/images/halstack_logo.svg";
 import StatusTag from "@/common/StatusTag";
 import React from "react";
-
-const siteVersion = process.env.SITE_VERSION
-  ? typeof process.env.SITE_VERSION === "number"
-    ? `v${process.env.SITE_VERSION}.0.0`
-    : process.env.SITE_VERSION
-  : "dev";
+import { useRouter } from "next/router";
 
 const SidenavLogo = () => {
+  const router = useRouter();
+  const siteVersion = router.basePath.split("/")[2];
+
   return (
     <SidenavLogoContainer>
       <LogoContainer>
@@ -25,7 +23,13 @@ const SidenavLogo = () => {
         </Header>
         <Subtitle>Design system</Subtitle>
       </LogoContainer>
-      <StatusTag>{siteVersion}</StatusTag>
+      <StatusTag>
+        {router.basePath
+          ? isNaN(parseInt(siteVersion))
+            ? siteVersion
+            : `v${siteVersion}.0.0`
+          : "dev"}
+      </StatusTag>
     </SidenavLogoContainer>
   );
 };
