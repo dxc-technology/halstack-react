@@ -1,7 +1,3 @@
----
-title: [Major|Minor|Patch] Title
----
-
 **Checklist**
 _(Check off all the items before submitting)_
 - [ ] Build process is done without errors and all tests pass in `/lib` directory.
