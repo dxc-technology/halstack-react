@@ -185,6 +185,51 @@ const sections = [
       </>
     ),
   },
+  {
+    title: "Previous documentation sites",
+    content: (
+      <>
+        <DxcParagraph>
+          This site is new and comes to replace the existing one. However, the
+          old documentation is still available through the following links for
+          consultation:
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/tools/react" newWindow>
+              React CDK
+            </DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/tools/angular" newWindow>
+              Angular CDK
+            </DxcLink>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+        <DxcParagraph>
+          <em>
+            Please note that these sites are discontinued and may not be updated
+            anymore.
+          </em>
+        </DxcParagraph>
+        <DxcParagraph>
+          The latest development site can be accessed through this{" "}
+          <DxcLink href="https://developer.dxc.com/halstack/next/" newWindow>
+            link
+          </DxcLink>
+          . Please note that this version can include bugs. For a more stable
+          experience check the latest release that is available{" "}
+          <DxcLink
+            href={`https://developer.dxc.com/halstack/${process.env.SITE_VERSION}/`}
+            newWindow
+          >
+            here
+          </DxcLink>
+          .
+        </DxcParagraph>
+      </>
+    ),
+  },
 ];
 
 const Introduction = () => {
