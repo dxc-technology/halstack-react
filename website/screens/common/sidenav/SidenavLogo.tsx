@@ -6,8 +6,8 @@ import React from "react";
 import { useRouter } from "next/router";
 
 const SidenavLogo = () => {
-  const router = useRouter();
-  const siteVersion = router.basePath.split("/")[2];
+  const { basePath } = useRouter();
+  const siteVersion = basePath.split("/")[2];
 
   return (
     <SidenavLogoContainer>
@@ -24,7 +24,7 @@ const SidenavLogo = () => {
         <Subtitle>Design system</Subtitle>
       </LogoContainer>
       <StatusTag>
-        {router.basePath
+        {basePath
           ? isNaN(parseInt(siteVersion))
             ? siteVersion
             : `v${siteVersion}.0.0`
