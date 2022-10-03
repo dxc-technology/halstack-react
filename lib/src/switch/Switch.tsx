@@ -83,27 +83,30 @@ const DxcSwitch = ({
         <SwitchBase htmlFor={labelId}>
           <SwitchInput
             type="checkbox"
-            role="switch"
             name={name}
-            id={labelId}
-            disabled={disabled}
+            aria-hidden={true}
             value={value}
-            aria-labelledby={labelId}
-            aria-label={label ?? undefined}
-            aria-checked={checked ?? innerChecked}
-            defaultChecked={defaultChecked ?? undefined}
-            tabIndex={-1}
+            disabled={disabled}
+            readOnly
           ></SwitchInput>
           {disabled ? (
             <DisabledSwitchTrack
+              role="switch"
               backgroundType={backgroundType}
               data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
+              aria-checked={checked ?? innerChecked}
+              aria-labelledby={labelId}
+              aria-disabled={true}
               tabIndex={-1}
             />
           ) : (
             <SwitchTrack
+              role="switch"
               backgroundType={backgroundType}
               data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
+              aria-checked={checked ?? innerChecked}
+              aria-disabled={false}
+              aria-labelledby={labelId}
               tabIndex={tabIndex}
               ref={refTrack}
             />
