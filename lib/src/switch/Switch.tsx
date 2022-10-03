@@ -165,7 +165,7 @@ type LabelProps = {
   backgroundType: "dark" | "light";
   labelPosition: "after" | "before";
   disabled: boolean;
-  label: boolean;
+  label: string;
 };
 
 const LabelContainer = styled.span<LabelProps>`
@@ -199,7 +199,7 @@ const LabelContainer = styled.span<LabelProps>`
 
 type SwitchBaseProps = {
   labelPosition: "after" | "before";
-  label: boolean;
+  label: string;
 };
 
 const SwitchBase = styled.label<SwitchBaseProps>`
