@@ -62,12 +62,17 @@ const DxcSwitch = ({
 
   return (
     <ThemeProvider theme={colorsTheme.switch}>
-      <SwitchContainer margin={margin} size={size} onKeyDown={handleOnKeyDown}>
+      <SwitchContainer
+        margin={margin}
+        size={size}
+        onKeyDown={handleOnKeyDown}
+        onClick={!disabled ? handlerSwitchChange : undefined}
+        disabled={disabled}
+      >
         {labelPosition === "before" && label && (
           <LabelContainer
             id={labelId}
             labelPosition={labelPosition}
-            onClick={!disabled ? handlerSwitchChange : undefined}
             disabled={disabled}
             backgroundType={backgroundType}
             label={label}
@@ -75,12 +80,7 @@ const DxcSwitch = ({
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </LabelContainer>
         )}
-        <SwitchBase
-          labelPosition={labelPosition}
-          label={label}
-          htmlFor={labelId}
-          onClick={disabled === true ? () => {} : handlerSwitchChange}
-        >
+        <SwitchBase htmlFor={labelId}>
           <SwitchInput
             type="checkbox"
             role="switch"
@@ -142,6 +142,7 @@ const calculateWidth = (margin, size) =>
 type SwitchContainerProps = {
   margin: Margin | Space;
   size: "small" | "medium" | "large" | "fillParent" | "fitContent";
+  disabled: boolean;
 };
 
 const SwitchContainer = styled.div<SwitchContainerProps>`
@@ -149,6 +150,7 @@ const SwitchContainer = styled.div<SwitchContainerProps>`
   align-items: center;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   height: 40px;
+  cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -185,30 +187,23 @@ const LabelContainer = styled.span<LabelProps>`
   font-size: ${(props) => props.theme.labelFontSize};
   font-style: ${(props) => (props.disabled ? props.theme.disabledLabelFontStyle : props.theme.labelFontStyle)};
   font-weight: ${(props) => props.theme.labelFontWeight};
-  cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 
   ${(props) =>
     !props.label
-      ? "padding: 0px;"
+      ? "margin: 0px;"
       : props.labelPosition === "after"
-      ? `padding-left: ${props.theme.spaceBetweenLabelSwitch};`
-      : `padding-right: ${props.theme.spaceBetweenLabelSwitch};`};
+      ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};`
+      : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`};
 
   ${(props) => props.labelPosition === "before" && "order: -1"}
 `;
 
-type SwitchBaseProps = {
-  labelPosition: "after" | "before";
-  label: string;
-};
-
-const SwitchBase = styled.label<SwitchBaseProps>`
+const SwitchBase = styled.label`
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  padding: ${(props) =>
-    !props.label ? "0px 4px" : props.labelPosition === "before" ? "0 4px 0 12px" : "0 12px 0 4px"};
+  margin: 0px 12px;
 `;
 
 const SwitchInput = styled.input`
