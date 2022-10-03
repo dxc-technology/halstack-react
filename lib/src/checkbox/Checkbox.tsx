@@ -113,7 +113,7 @@ const sizes = {
   medium: "240px",
   large: "480px",
   fillParent: "100%",
-  fitContent: "unset",
+  fitContent: "fit-content",
 };
 
 const calculateWidth = (margin, size) => {
