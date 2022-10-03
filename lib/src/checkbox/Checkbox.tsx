@@ -38,9 +38,7 @@ const DxcCheckbox = ({
   const translatedLabels = useTranslatedLabels();
 
   const handleCheckboxChange = () => {
-    if (document.activeElement !== checkboxRef?.current && tabIndex > -1)
-      checkboxRef?.current?.focus();
-    
+    document.activeElement !== checkboxRef?.current && checkboxRef?.current?.focus();
     const newChecked = checked ?? innerChecked;
     checked ?? setInnerChecked((innerChecked) => !innerChecked);
     onChange?.(!newChecked);
@@ -68,7 +66,7 @@ const DxcCheckbox = ({
         {label && labelPosition === "before" && (
           <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
             {label}
-            {optional && <>{` ${translatedLabels.formFields.optionalLabel}`}</>}
+            {optional && ` ${translatedLabels.formFields.optionalLabel}`}
           </LabelContainer>
         )}
         <ValueInput
@@ -99,7 +97,7 @@ const DxcCheckbox = ({
         </CheckboxContainer>
         {label && labelPosition === "after" && (
           <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
-            {optional && <>{`${translatedLabels.formFields.optionalLabel} `}</>}
+            {optional && `${translatedLabels.formFields.optionalLabel} `}
             {label}
           </LabelContainer>
         )}
@@ -208,9 +206,9 @@ const Checkbox = styled.span<CheckboxInputPropsType>`
   justify-content: center;
   height: 18px;
   width: 18px;
-  border-radius: 2px;
   border: solid 2px
     ${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "border"))};
+  border-radius: 2px;
   background-color: ${(props) =>
     props.checked
       ? props.disabled
@@ -220,7 +218,7 @@ const Checkbox = styled.span<CheckboxInputPropsType>`
   color: ${(props) =>
     props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
 
-  &:focus {
+  :focus {
     outline: 2px solid
       ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
     outline-offset: 2px;
@@ -230,6 +228,7 @@ const Checkbox = styled.span<CheckboxInputPropsType>`
     width: 22px;
     height: 22px;
   }
+  ${(props) => props.disabled && "pointer-events: none;"}
 `;
 
 type MainContainerPropsType = {
@@ -256,7 +255,7 @@ const MainContainer = styled.div<MainContainerPropsType>`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   gap: ${(props) => props.theme.checkLabelSpacing};
 
-  &:hover ${Checkbox} {
+  :hover ${Checkbox} {
     border: 2px solid
       ${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "hoverBorder"))};
     background-color: ${(props) =>
