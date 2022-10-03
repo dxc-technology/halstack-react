@@ -25,7 +25,6 @@ const DxcSwitch = ({
   const [switchId] = useState(`switch-${uuidv4()}`);
   const labelId = `label-${switchId}`;
   const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
-  const hasLabel = (label !== "" && label !== null && label !== undefined) ?? false;
 
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
@@ -64,21 +63,21 @@ const DxcSwitch = ({
   return (
     <ThemeProvider theme={colorsTheme.switch}>
       <SwitchContainer margin={margin} size={size} onKeyDown={handleOnKeyDown}>
-        {labelPosition === "before" && hasLabel && (
+        {labelPosition === "before" && label && (
           <LabelContainer
             id={labelId}
             labelPosition={labelPosition}
             onClick={!disabled ? handlerSwitchChange : undefined}
             disabled={disabled}
             backgroundType={backgroundType}
-            hasLabel={hasLabel}
+            label={label}
           >
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </LabelContainer>
         )}
         <SwitchBase
           labelPosition={labelPosition}
-          hasLabel={hasLabel}
+          label={label}
           htmlFor={labelId}
           onClick={disabled === true ? () => {} : handlerSwitchChange}
         >
@@ -90,7 +89,7 @@ const DxcSwitch = ({
             disabled={disabled}
             value={value}
             aria-labelledby={labelId}
-            aria-label={hasLabel ? label : undefined}
+            aria-label={label ?? undefined}
             aria-checked={checked ?? innerChecked}
             defaultChecked={defaultChecked ?? undefined}
             tabIndex={-1}
@@ -110,14 +109,14 @@ const DxcSwitch = ({
             />
           )}
         </SwitchBase>
-        {labelPosition === "after" && hasLabel && (
+        {labelPosition === "after" && label && (
           <LabelContainer
             id={labelId}
             labelPosition={labelPosition}
             onClick={!disabled ? handlerSwitchChange : undefined}
             disabled={disabled}
             backgroundType={backgroundType}
-            hasLabel={hasLabel}
+            label={label}
           >
             {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
           </LabelContainer>
@@ -166,7 +165,7 @@ type LabelProps = {
   backgroundType: "dark" | "light";
   labelPosition: "after" | "before";
   disabled: boolean;
-  hasLabel: boolean;
+  label: boolean;
 };
 
 const LabelContainer = styled.span<LabelProps>`
@@ -189,18 +188,18 @@ const LabelContainer = styled.span<LabelProps>`
   cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 
   ${(props) =>
-    !props.hasLabel
-      ? "margin: 0px;"
+    !props.label
+      ? "padding: 0px;"
       : props.labelPosition === "after"
-      ? `margin-left: ${props.theme.spaceBetweenLabelSwitch};`
-      : `margin-right: ${props.theme.spaceBetweenLabelSwitch};`};
+      ? `padding-left: ${props.theme.spaceBetweenLabelSwitch};`
+      : `padding-right: ${props.theme.spaceBetweenLabelSwitch};`};
 
   ${(props) => props.labelPosition === "before" && "order: -1"}
 `;
 
 type SwitchBaseProps = {
   labelPosition: "after" | "before";
-  hasLabel: boolean;
+  label: boolean;
 };
 
 const SwitchBase = styled.label<SwitchBaseProps>`
@@ -208,15 +207,12 @@ const SwitchBase = styled.label<SwitchBaseProps>`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  margin: ${(props) =>
-    !props.hasLabel ? "0px 4px" : props.labelPosition === "before" ? "0 4px 0 12px" : "0 12px 0 4px"};
+  padding: ${(props) =>
+    !props.label ? "0px 4px" : props.labelPosition === "before" ? "0 4px 0 12px" : "0 12px 0 4px"};
 `;
 
 const SwitchInput = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-  margin: 0px;
+  display: none;
 `;
 
 type SwitchTrackProps = {
@@ -228,7 +224,6 @@ const SwitchTrack = styled.span<SwitchTrackProps>`
   width: ${(props) => props.theme.trackWidth};
   height: ${(props) => props.theme.trackHeight};
   position: relative;
-  transition: transform 0.2s ease;
 
   &:focus-visible {
     outline: none;
@@ -245,7 +240,6 @@ const SwitchTrack = styled.span<SwitchTrackProps>`
   ::before {
     content: "";
     transform: initial;
-    transition: transform 0.2s ease;
     position: absolute;
     width: ${(props) => props.theme.thumbWidth};
     height: ${(props) => props.theme.thumbHeight};
