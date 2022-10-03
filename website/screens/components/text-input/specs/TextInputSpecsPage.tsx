@@ -181,6 +181,76 @@ const sections = [
                     </td>
                     <td>#transparent</td>
                   </tr>
+                  <tr>
+                    <td>
+                      <Code>suffixColor</Code>
+                    </td>
+                    <td>Suffix</td>
+                    <td>
+                      <Code>color-grey-700</Code>
+                    </td>
+                    <td>#666666</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>prefixColor</Code>
+                    </td>
+                    <td>Prefix</td>
+                    <td>
+                      <Code>color-grey-700</Code>
+                    </td>
+                    <td>#666666</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>listOptionFontColor</Code>
+                    </td>
+                    <td>List option value</td>
+                    <td>
+                      <Code>color-black</Code>
+                    </td>
+                    <td>#000000</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>listOptionDividerColor</Code>
+                    </td>
+                    <td>List option divider</td>
+                    <td>
+                      <Code>color-grey-200</Code>
+                    </td>
+                    <td>#e6e6e6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>listDialogBorderColor</Code>
+                    </td>
+                    <td>List dialog</td>
+                    <td>
+                      <Code>color-grey-400</Code>
+                    </td>
+                    <td>#bfbfbf</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>listDialogBackgroundColor</Code>
+                    </td>
+                    <td>List dialog</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>systemMessageFontColor</Code>
+                    </td>
+                    <td>System message</td>
+                    <td>
+                      <Code>color-grey-700</Code>
+                    </td>
+                    <td>#666666</td>
+                  </tr>
                 </tbody>
               </DxcTable>
             ),
@@ -388,43 +458,6 @@ const sections = [
                     </td>
                     <td>#999999</td>
                   </tr>
-                </tbody>
-              </DxcTable>
-            ),
-          },
-          {
-            title: "Suffix/Prefix",
-            content: (
-              <DxcTable>
-                <thead>
-                  <tr>
-                    <th>Component token</th>
-                    <th>Element</th>
-                    <th>Token</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <Code>suffixColor</Code>
-                    </td>
-                    <td>Suffix</td>
-                    <td>
-                      <Code>color-grey-700</Code>
-                    </td>
-                    <td>#666666</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>prefixColor</Code>
-                    </td>
-                    <td>Prefix</td>
-                    <td>
-                      <Code>color-grey-700</Code>
-                    </td>
-                    <td>#666666</td>
-                  </tr>
                   <tr>
                     <td>
                       <Code>disabledSuffixColor</Code>
@@ -444,63 +477,6 @@ const sections = [
                       <Code>color-grey-400</Code>
                     </td>
                     <td>#bfbfbf</td>
-                  </tr>
-                </tbody>
-              </DxcTable>
-            ),
-          },
-          {
-            title: "Autosuggest",
-            content: (
-              <DxcTable>
-                <thead>
-                  <tr>
-                    <th>Component token</th>
-                    <th>Element</th>
-                    <th>Token</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <Code>listOptionFontColor</Code>
-                    </td>
-                    <td>List option value</td>
-                    <td>
-                      <Code>color-black</Code>
-                    </td>
-                    <td>#000000</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>listOptionDividerColor</Code>
-                    </td>
-                    <td>List option divider</td>
-                    <td>
-                      <Code>color-grey-200</Code>
-                    </td>
-                    <td>#e6e6e6</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>listDialogBorderColor</Code>
-                    </td>
-                    <td>List dialog</td>
-                    <td>
-                      <Code>color-grey-400</Code>
-                    </td>
-                    <td>#bfbfbf</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>listDialogBackgroundColor</Code>
-                    </td>
-                    <td>List dialog</td>
-                    <td>
-                      <Code>color-white</Code>
-                    </td>
-                    <td>#ffffff</td>
                   </tr>
                   <tr>
                     <td>
@@ -531,16 +507,6 @@ const sections = [
                       <Code>color-grey-300</Code>
                     </td>
                     <td>#cccccc</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>systemMessageFontColor</Code>
-                    </td>
-                    <td>System message</td>
-                    <td>
-                      <Code>color-grey-700</Code>
-                    </td>
-                    <td>#666666</td>
                   </tr>
                   <tr>
                     <td>

@@ -183,8 +183,8 @@ const sections = [
           <>
             <DxcBulletedList>
               <DxcBulletedList.Item>
-                Use the suggestions to help users select from a list
-                of standard responses when needed
+                Use the suggestions to help users select from a list of standard
+                responses when needed.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
                 If the value for the textbox must be chosen from a predefined
@@ -192,10 +192,10 @@ const sections = [
                 <Link href="/components/select" passHref>
                   <DxcLink>select</DxcLink>
                 </Link>{" "}
-                component instead
+                component instead.
               </DxcBulletedList.Item>
               <DxcBulletedList.Item>
-                Keep suggestions simple and avoid scroll
+                Keep suggestions simple and avoid scroll.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>
