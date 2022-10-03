@@ -308,16 +308,31 @@ const AutosuggestListbox = () => {
       <ExampleContainer>
         <Title title="Autosuggest listbox" theme="light" level={2} />
         <ExampleContainer>
-          <Title title="Default with opened suggestions" theme="light" level={3} />
-          <DxcFlex direction="column" gap="80px">
-            <DxcTextInput label="Label" suggestions={countries} optional placeholder="Choose an option" />
-            <DxcCheckbox
-              label="You understand the selection and give your consent"
-              onChange={() => {}}
-              labelPosition="after"
+          <Title title="List dialog uses a Radix Popover to appear over elements with a certain z-index" theme="light" level={3} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+              height: "150px",
+              width: "500px",
+              marginBottom: "250px",
+              padding: "20px",
+              border: "1px solid black",
+              borderRadius: "4px",
+              overflow: "auto",
+              zIndex: "1300",
+            }}
+          >
+            <DxcTextInput
+              label="Label"
+              suggestions={countries}
+              optional
+              placeholder="Choose an option"
+              size="fillParent"
             />
-            <DxcButton label="Submit" onClick={() => {}} size="medium" margin={{ bottom: "xxlarge" }} />
-          </DxcFlex>
+            <button style={{ zIndex: "1", width: "100px" }}>Submit</button>
+          </div>
         </ExampleContainer>
         <Title title="Listbox suggestion states" theme="light" level={3} />
         <ExampleContainer pseudoState="pseudo-hover">

@@ -81,7 +81,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const [isSearching, changeIsSearching] = useState(false);
     const [isAutosuggestError, changeIsAutosuggestError] = useState(false);
     const [filteredSuggestions, changeFilteredSuggestions] = useState([]);
-    const [visualFocusIndex, changeVisualFocusedSuggIndex] = useState(-1);
+    const [visualFocusIndex, changeVisualFocusIndex] = useState(-1);
 
     const inputContainerRef = useRef(null);
     const inputRef = useRef(null);
@@ -120,7 +120,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const closeSuggestions = () => {
       if (hasSuggestions()) {
         changeIsOpen(false);
-        changeVisualFocusedSuggIndex(-1);
+        changeVisualFocusIndex(-1);
       }
     };
 
@@ -179,7 +179,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
+              changeVisualFocusIndex((visualFocusedSuggIndex) => {
                 if (visualFocusedSuggIndex < filteredSuggestions.length - 1) return visualFocusedSuggIndex + 1;
                 else if (visualFocusedSuggIndex === filteredSuggestions.length - 1) return 0;
               });
@@ -194,7 +194,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
           } else {
             openSuggestions();
             if (!isAutosuggestError && !isSearching && filteredSuggestions.length > 0) {
-              changeVisualFocusedSuggIndex((visualFocusedSuggIndex) => {
+              changeVisualFocusIndex((visualFocusedSuggIndex) => {
                 if (visualFocusedSuggIndex === 0 || visualFocusedSuggIndex === -1)
                   return filteredSuggestions.length > 0 ? filteredSuggestions.length - 1 : suggestions.length - 1;
                 else return visualFocusedSuggIndex - 1;
@@ -337,7 +337,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
         changeFilteredSuggestions(
           suggestions.filter((suggestion) => suggestion.toUpperCase().startsWith((value ?? innerValue).toUpperCase()))
         );
-        changeVisualFocusedSuggIndex(-1);
+        changeVisualFocusIndex(-1);
       }
 
       numberInputContext?.typeNumber === "number" &&
