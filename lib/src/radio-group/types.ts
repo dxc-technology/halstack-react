@@ -102,8 +102,8 @@ export type RefType = HTMLDivElement;
  * Single radio prop types.
  */
 export type RadioProps = {
-  option: Option;
-  currentValue?: string;
+  label: string;
+  checked: boolean;
   onClick: () => void;
   error?: string;
   disabled: boolean;

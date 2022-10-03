@@ -58,11 +58,11 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           onChange?.(newValue);
         }
       },
-      [value, innerValue, setInnerValue, onChange]
+      [value, innerValue, onChange]
     );
-    const handleOnBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+    const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
       // If the radio group loses the focus to an element not contained inside it...
-      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
         setFirstTimeFocus(true);
 
         const currentValue = value ?? innerValue;
@@ -111,8 +111,7 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
           event.preventDefault();
           setNextRadioChecked();
           break;
-        case "Enter":
-        case "Space":
+        case " ":
           event.preventDefault();
           handleOnChange(innerOptions[currentFocusIndex].value);
           break;
@@ -124,7 +123,8 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
         <RadioGroupContainer ref={ref}>
           {label && (
             <Label id={radioGroupLabelId} helperText={helperText} disabled={disabled}>
-              {label} {optional && <OptionalLabel>{translatedLabels.formFields.optionalLabel}</OptionalLabel>}
+              {label}
+              {optional && <OptionalLabel>{` ${translatedLabels.formFields.optionalLabel}`}</OptionalLabel>}
             </Label>
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
@@ -136,17 +136,18 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             role="radiogroup"
             aria-disabled={disabled}
             aria-labelledby={radioGroupLabelId}
-            aria-invalid={error ? "true" : "false"}
+            aria-invalid={error ? true : false}
             aria-errormessage={error ? errorId : undefined}
             aria-required={!disabled && !readonly && !optional}
             aria-readonly={readonly}
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
-            <ValueInput name={name} value={value ?? innerValue} readOnly aria-hidden="true" />
+            <input type="hidden" name={name} value={value ?? innerValue ?? ""} />
             {innerOptions.map((option, index) => (
               <DxcRadio
-                option={option}
-                currentValue={value ?? innerValue}
+                key={`radio-${index}`}
+                label={option.label}
+                checked={(value ?? innerValue) === option.value}
                 onClick={() => {
                   handleOnChange(option.value);
                   setCurrentFocusIndex(index);
@@ -156,7 +157,6 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
                 focused={currentFocusIndex === index}
                 readonly={readonly}
                 tabIndex={tabIndex}
-                key={`radio-${index}`}
               />
             ))}
           </RadioGroup>
@@ -218,10 +218,6 @@ const RadioGroup = styled.div<RadioGroupProps>`
 
   row-gap: ${(props) => props.theme.groupVerticalGutter};
   column-gap: ${(props) => props.theme.groupHorizontalGutter};
-`;
-
-const ValueInput = styled.input`
-  display: none;
 `;
 
 const Error = styled.span`
