@@ -215,7 +215,6 @@ const RadioGroup = styled.div<RadioGroupProps>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: ${(props) => props.stacking};
-
   row-gap: ${(props) => props.theme.groupVerticalGutter};
   column-gap: ${(props) => props.theme.groupHorizontalGutter};
 `;
