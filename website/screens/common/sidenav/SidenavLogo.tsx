@@ -1,25 +1,45 @@
 import styled from "styled-components";
 import Image from "@/common/Image";
 import halstackLogo from "@/common/images/halstack_logo.svg";
+import StatusTag from "@/common/StatusTag";
+import React from "react";
+import { useRouter } from "next/router";
 
 const SidenavLogo = () => {
+  const { basePath } = useRouter();
+  const siteVersion = basePath.split("/")[2];
+
   return (
     <SidenavLogoContainer>
-      <Header>
-        <Image
-          src={halstackLogo}
-          alt="Halstack logo"
-          width="24px"
-          height="24px"
-        />
-        <Title>Halstack</Title>
-      </Header>
-      <Subtitle>Design system</Subtitle>
+      <LogoContainer>
+        <Header>
+          <Image
+            src={halstackLogo}
+            alt="Halstack logo"
+            width="24px"
+            height="24px"
+          />
+          <Title>Halstack</Title>
+        </Header>
+        <Subtitle>Design system</Subtitle>
+      </LogoContainer>
+      <StatusTag>
+        {basePath
+          ? isNaN(parseInt(siteVersion))
+            ? siteVersion
+            : `v${siteVersion}.0.0`
+          : "dev"}
+      </StatusTag>
     </SidenavLogoContainer>
   );
 };
 
 const SidenavLogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const LogoContainer = styled.div`
   margin: 0 24px;
   display: flex;
   flex-direction: column;

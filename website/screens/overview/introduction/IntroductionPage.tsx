@@ -9,8 +9,10 @@ import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const sections = [
+const sections = (currentVersion: number) => [
   {
     title: "What is Halstack",
     content: (
@@ -185,9 +187,70 @@ const sections = [
       </>
     ),
   },
+  {
+    title: "Previous documentation sites",
+    content: (
+      <>
+        <DxcParagraph>
+          This site is new and comes to replace the existing one. However, the
+          old documentation is still available through the following links for
+          consultation:
+        </DxcParagraph>
+        <DxcBulletedList>
+          <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/tools/react" newWindow>
+              React CDK
+            </DxcLink>
+          </DxcBulletedList.Item>
+          <DxcBulletedList.Item>
+            <DxcLink href="https://developer.dxc.com/tools/angular" newWindow>
+              Angular CDK
+            </DxcLink>
+          </DxcBulletedList.Item>
+        </DxcBulletedList>
+        <DxcParagraph>
+          <em>
+            Please note that these sites are discontinued and may not be updated
+            anymore.
+          </em>
+        </DxcParagraph>
+        <DxcParagraph>
+          The latest development site can be accessed through this{" "}
+          <DxcLink href="https://developer.dxc.com/halstack/next/" newWindow>
+            link
+          </DxcLink>
+          . Please note that this version can include bugs. For a more stable
+          experience check the latest release that is available{" "}
+          <DxcLink
+            href={`https://developer.dxc.com/halstack/${currentVersion}/`}
+            newWindow
+          >
+            here
+          </DxcLink>
+          .
+        </DxcParagraph>
+      </>
+    ),
+  },
 ];
 
 const Introduction = () => {
+  const [currentVersion, setCurrentVersion] = useState(0);
+
+  useEffect(() => {
+    const fetchVersions = async () => {
+      const versionsResp = await axios({
+        method: "get",
+        url: "https://developer.dxc.com/halstack/versions.json",
+      });
+      setCurrentVersion(
+        versionsResp.data.find((v: any) => v.current).versionNumber
+      );
+    };
+
+    fetchVersions();
+  }, []);
+
   return (
     <DxcFlex direction="column" gap="4rem">
       <PageHeading>
@@ -197,7 +260,7 @@ const Introduction = () => {
       </PageHeading>
       <QuickNavContainerLayout>
         <QuickNavContainer
-          sections={sections}
+          sections={sections(currentVersion)}
           startHeadingLevel={2}
         ></QuickNavContainer>
       </QuickNavContainerLayout>
