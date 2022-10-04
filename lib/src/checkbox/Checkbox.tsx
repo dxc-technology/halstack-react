@@ -218,7 +218,7 @@ const Checkbox = styled.span<CheckboxInputPropsType>`
   color: ${(props) =>
     props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
 
-  :focus {
+  &:focus {
     outline: 2px solid
       ${(props) => (props.backgroundType === "dark" ? props.theme.focusColorOnDark : props.theme.focusColor)};
     outline-offset: 2px;
@@ -255,7 +255,7 @@ const MainContainer = styled.div<MainContainerPropsType>`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   gap: ${(props) => props.theme.checkLabelSpacing};
 
-  :hover ${Checkbox} {
+  &:hover ${Checkbox} {
     border: 2px solid
       ${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "hoverBorder"))};
     background-color: ${(props) =>
