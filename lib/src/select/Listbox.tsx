@@ -118,7 +118,6 @@ const Listbox = ({
         ref={listboxRef}
         role="listbox"
         aria-multiselectable={multiple}
-        aria-orientation="vertical"
         style={styles}
       >
         {searchable && (options.length === 0 || !groupsHaveOptions(options)) ? (
