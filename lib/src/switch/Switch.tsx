@@ -73,15 +73,15 @@ const DxcSwitch = ({
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </LabelContainer>
         )}
-        <ValueInput htmlFor={labelId}>
-          <SwitchInput
+        <SwitchBase htmlFor={labelId}>
+          <ValueInput
             type="checkbox"
             name={name}
             aria-hidden={true}
             value={value}
             disabled={disabled}
             readOnly
-          ></SwitchInput>
+          ></ValueInput>
           {disabled ? (
             <DisabledSwitchTrack
               role="switch"
@@ -104,7 +104,7 @@ const DxcSwitch = ({
               ref={refTrack}
             />
           )}
-        </ValueInput>
+        </SwitchBase>
         {labelPosition === "after" && label && (
           <LabelContainer
             id={labelId}
@@ -194,7 +194,7 @@ const LabelContainer = styled.span<LabelProps>`
   ${(props) => props.labelPosition === "before" && "order: -1"}
 `;
 
-const ValueInput = styled.label`
+const SwitchBase = styled.label`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -202,7 +202,7 @@ const ValueInput = styled.label`
   margin: 0px 12px;
 `;
 
-const SwitchInput = styled.input`
+const ValueInput = styled.input`
   display: none;
 `;
 
