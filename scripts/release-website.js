@@ -54,16 +54,19 @@ const getVersionsInS3Bucket = async () => {
 
 const buildSite = (version) => {
   return new Promise((resolve, reject) => {
-    console.log(`Building site with version ${version}/`);
-    exec(`SITE_VERSION=${version} yarn build`, (error, stdout, stderr) => {
-      if (error) {
-        throw new Error(error.message);
+    console.log(`Building site with version ${version}`);
+    exec(
+      `cd website && SITE_VERSION=${version} yarn build`,
+      (error, stdout, stderr) => {
+        if (error) {
+          throw new Error(error.message);
+        }
+        if (stderr) {
+          throw new Error(stderr);
+        }
+        resolve(stdout);
       }
-      if (stderr) {
-        throw new Error(stderr);
-      }
-      resolve(stdout);
-    });
+    );
   });
 };
 
