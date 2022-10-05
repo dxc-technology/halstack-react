@@ -39,9 +39,7 @@ const DxcSwitch = ({
         refTrack.current.focus();
         const isChecked = !(checked ?? innerChecked);
         setInnerChecked(isChecked);
-        if (typeof onChange === "function") {
-          onChange(isChecked);
-        }
+        onChange?.(isChecked);
         break;
     }
   };
@@ -50,13 +48,9 @@ const DxcSwitch = ({
     if (checked === undefined) {
       const isChecked = event.target.checked ?? !innerChecked;
       setInnerChecked(isChecked);
-      if (typeof onChange === "function") {
-        onChange(isChecked);
-      }
+      onChange?.(isChecked);
     } else {
-      if (typeof onChange === "function") {
-        onChange(!checked);
-      }
+      onChange?.(!checked);
     }
   };
 
@@ -80,7 +74,7 @@ const DxcSwitch = ({
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </LabelContainer>
         )}
-        <SwitchBase htmlFor={labelId}>
+        <ValueInput htmlFor={labelId}>
           <SwitchInput
             type="checkbox"
             name={name}
@@ -111,7 +105,7 @@ const DxcSwitch = ({
               ref={refTrack}
             />
           )}
-        </SwitchBase>
+        </ValueInput>
         {labelPosition === "after" && label && (
           <LabelContainer
             id={labelId}
@@ -201,7 +195,7 @@ const LabelContainer = styled.span<LabelProps>`
   ${(props) => props.labelPosition === "before" && "order: -1"}
 `;
 
-const SwitchBase = styled.label`
+const ValueInput = styled.label`
   display: flex;
   align-items: center;
   justify-content: space-between;
