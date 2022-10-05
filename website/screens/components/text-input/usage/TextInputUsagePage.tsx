@@ -2,6 +2,7 @@ import {
   DxcParagraph,
   DxcBulletedList,
   DxcFlex,
+  DxcLink,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -13,6 +14,8 @@ import inputActionsCustom from "./images/input_actions_custom.png";
 import prefixSuffix from "./examples/prefixSuffix";
 import Example from "@/common/example/Example";
 import helperText from "./examples/helperText";
+import Link from "next/link";
+import autosuggest from "./examples/autosuggest";
 
 const sections = [
   {
@@ -151,10 +154,48 @@ const sections = [
                 Should give an example or an explanation of the field.
               </DxcBulletedList.Item>
             </DxcBulletedList>
-            <DxcParagraph>Don&#39;t:</DxcParagraph>
+            <DxcParagraph>Don't:</DxcParagraph>
             <DxcBulletedList>
               <DxcBulletedList.Item>
                 Helper text should not run longer than the input area.
+              </DxcBulletedList.Item>
+            </DxcBulletedList>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Autosuggest",
+    content: (
+      <>
+        <DxcParagraph>
+          Suggests a list of options to fill a text input. A user can either
+          select a suggestion or enter their own answer.
+        </DxcParagraph>
+        <Example example={autosuggest} />
+      </>
+    ),
+    subSections: [
+      {
+        title: "Usage",
+        content: (
+          <>
+            <DxcBulletedList>
+              <DxcBulletedList.Item>
+                Use the suggestions to help users select from a list of standard
+                responses when needed.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                If the value for the textbox must be chosen from a predefined
+                set of allowed values, use the{" "}
+                <Link href="/components/select" passHref>
+                  <DxcLink>select</DxcLink>
+                </Link>{" "}
+                component instead.
+              </DxcBulletedList.Item>
+              <DxcBulletedList.Item>
+                Keep suggestions simple and avoid scroll.
               </DxcBulletedList.Item>
             </DxcBulletedList>
           </>

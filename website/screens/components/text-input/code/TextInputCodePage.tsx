@@ -280,7 +280,7 @@ const sections = [
         content: <Example example={action} defaultIsVisible />,
       },
       {
-        title: "Suggestions as a function",
+        title: "Autosuggest",
         content: <Example example={functionSuggestions} defaultIsVisible />,
       },
       {
