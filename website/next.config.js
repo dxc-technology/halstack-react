@@ -24,15 +24,15 @@ module.exports = {
       },
     ];
   },
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
-    return {
-      ...defaultPathMap,
-      "/": { page: "/overview/introduction" },
-    };
-  },
-  assetPrefix: isProd ? `/halstack/${process.env.SITE_VERSION}` : undefined,
-  basePath: isProd ? `/halstack/${process.env.SITE_VERSION}` : undefined,
+  // exportPathMap: async function (
+  //   defaultPathMap,
+  //   { dev, dir, outDir, distDir, buildId }
+  // ) {
+  //   return {
+  //     ...defaultPathMap,
+  //     "/": { page: "/overview/introduction" },
+  //   };
+  // },
+  // assetPrefix: isProd ? `/halstack/${process.env.SITE_VERSION}` : undefined,
+  // basePath: isProd ? `/halstack/${process.env.SITE_VERSION}` : undefined,
 };
