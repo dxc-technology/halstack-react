@@ -73,7 +73,7 @@ const DxcSwitch = ({
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </LabelContainer>
         )}
-        <SwitchBase htmlFor={labelId}>
+        <SwitchBase>
           <ValueInput
             type="checkbox"
             name={name}
