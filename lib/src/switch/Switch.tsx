@@ -46,9 +46,8 @@ const DxcSwitch = ({
 
   const handlerSwitchChange = (event) => {
     if (checked === undefined) {
-      const isChecked = event.target.checked ?? !innerChecked;
-      setInnerChecked(isChecked);
-      onChange?.(isChecked);
+      setInnerChecked(!innerChecked);
+      onChange?.(!innerChecked);
     } else {
       onChange?.(!checked);
     }
