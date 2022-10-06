@@ -15,24 +15,6 @@ module.exports = {
     return config;
   },
   reactStrictMode: true,
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/overview/introduction",
-        permanent: true,
-      },
-    ];
-  },
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
-    return {
-      ...defaultPathMap,
-      "/": { page: "/overview/introduction" },
-    };
-  },
   assetPrefix: isProd ? `/halstack/${process.env.SITE_VERSION}` : undefined,
   basePath: isProd ? `/halstack/${process.env.SITE_VERSION}` : undefined,
 };
