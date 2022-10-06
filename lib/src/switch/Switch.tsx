@@ -196,7 +196,7 @@ const SwitchContainer = styled.div<SwitchContainerProps>`
   align-items: center;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   height: 40px;
-  // cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
+  cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -259,7 +259,7 @@ const SwitchTrack = styled.span<SwitchTrackProps>`
   width: ${(props) => props.theme.trackWidth};
   height: ${(props) => props.theme.trackHeight};
   position: relative;
-  // cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   &:focus-visible {
     outline: none;
