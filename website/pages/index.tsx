@@ -6,7 +6,7 @@ export default function Index() {
 
   useEffect(() => {
     asPath === "/" && push("/overview/introduction");
-  }, [asPath]);
+  }, [asPath, push]);
 
   return <></>;
 }
