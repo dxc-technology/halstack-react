@@ -45,13 +45,8 @@ const DxcSwitch = ({
   };
 
   const handlerSwitchChange = (event) => {
-    if (checked === undefined) {
-      const isChecked = event.target.checked ?? !innerChecked;
-      setInnerChecked(isChecked);
-      onChange?.(isChecked);
-    } else {
-      onChange?.(!checked);
-    }
+    checked ?? setInnerChecked((innerChecked) => !innerChecked);
+    onChange?.(checked ? !checked : !innerChecked);
   };
 
   return (
@@ -74,15 +69,8 @@ const DxcSwitch = ({
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </LabelContainer>
         )}
+        <ValueInput type="checkbox" name={name} aria-hidden={true} value={value} disabled={disabled} readOnly />
         <SwitchBase>
-          <ValueInput
-            type="checkbox"
-            name={name}
-            aria-hidden={true}
-            value={value}
-            disabled={disabled}
-            readOnly
-          ></ValueInput>
           <SwitchTrack
             role="switch"
             backgroundType={backgroundType}
