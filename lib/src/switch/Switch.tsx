@@ -46,8 +46,9 @@ const DxcSwitch = ({
 
   const handlerSwitchChange = (event) => {
     if (checked === undefined) {
-      setInnerChecked(!innerChecked);
-      onChange?.(!innerChecked);
+      const isChecked = event.target.checked ?? !innerChecked;
+      setInnerChecked(isChecked);
+      onChange?.(isChecked);
     } else {
       onChange?.(!checked);
     }
@@ -59,8 +60,8 @@ const DxcSwitch = ({
         margin={margin}
         size={size}
         onKeyDown={handleOnKeyDown}
-        onClick={!disabled ? handlerSwitchChange : undefined}
         disabled={disabled}
+        onClick={!disabled ? handlerSwitchChange : undefined}
       >
         {labelPosition === "before" && label && (
           <LabelContainer
@@ -82,34 +83,21 @@ const DxcSwitch = ({
             disabled={disabled}
             readOnly
           ></ValueInput>
-          {disabled ? (
-            <DisabledSwitchTrack
-              role="switch"
-              backgroundType={backgroundType}
-              data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
-              aria-checked={checked ?? innerChecked}
-              aria-labelledby={labelId}
-              aria-disabled={true}
-              tabIndex={-1}
-            />
-          ) : (
-            <SwitchTrack
-              role="switch"
-              backgroundType={backgroundType}
-              data-checked={checked ?? (innerChecked ? innerChecked : undefined)}
-              aria-checked={checked ?? innerChecked}
-              aria-disabled={false}
-              aria-labelledby={labelId}
-              tabIndex={tabIndex}
-              ref={refTrack}
-            />
-          )}
+          <SwitchTrack
+            role="switch"
+            backgroundType={backgroundType}
+            aria-checked={checked ?? innerChecked}
+            aria-disabled={disabled}
+            disabled={disabled}
+            aria-labelledby={labelId}
+            tabIndex={tabIndex ? tabIndex : -1}
+            ref={refTrack}
+          />
         </SwitchBase>
         {labelPosition === "after" && label && (
           <LabelContainer
             id={labelId}
             labelPosition={labelPosition}
-            onClick={!disabled ? handlerSwitchChange : undefined}
             disabled={disabled}
             backgroundType={backgroundType}
             label={label}
@@ -135,6 +123,68 @@ const calculateWidth = (margin, size) =>
     ? `calc(${sizes[size]} - ${getMargin(margin, "left")} - ${getMargin(margin, "right")})`
     : sizes[size];
 
+const getDisabledColor = (props, element, subelement?) => {
+  switch (element) {
+    case "track":
+      switch (subelement) {
+        case "check":
+          return props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.disabledCheckedTrackBackgroundColorOnDark
+            : props.theme.disabledCheckedTrackBackgroundColor;
+        case "uncheck":
+          return props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.disabledUncheckedTrackBackgroundColorOnDark
+            : props.theme.disabledUncheckedTrackBackgroundColor;
+      }
+    case "thumb":
+      switch (subelement) {
+        case "check":
+          return props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.disabledCheckedThumbBackgroundColorOnDark
+            : props.theme.disabledCheckedThumbBackgroundColor;
+        case "uncheck":
+          return props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.disabledUncheckedThumbBackgroundColorOnDark
+            : props.theme.disabledUncheckedThumbBackgroundColor;
+      }
+    case "label":
+      return props.backgroundType && props.backgroundType === "dark"
+        ? props.theme.disabledLabelFontColorOnDark
+        : props.theme.disabledLabelFontColor;
+  }
+};
+
+const getNotDisabledColor = (props, element, subelement?) => {
+  switch (element) {
+    case "track":
+      switch (subelement) {
+        case "check":
+          return props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.checkedTrackBackgroundColorOnDark
+            : props.theme.checkedTrackBackgroundColor;
+        case "uncheck":
+          return props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.uncheckedTrackBackgroundColorOnDark
+            : props.theme.uncheckedTrackBackgroundColor;
+      }
+    case "thumb":
+      switch (subelement) {
+        case "check":
+          return props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.checkedThumbBackgroundColorOnDark
+            : props.theme.checkedThumbBackgroundColor;
+        case "uncheck":
+          return props.backgroundType && props.backgroundType === "dark"
+            ? props.theme.uncheckedThumbBackgroundColorOnDark
+            : props.theme.uncheckedThumbBackgroundColor;
+      }
+    case "label":
+      return props.backgroundType && props.backgroundType === "dark"
+        ? props.theme.labelFontColorOnDark
+        : props.theme.labelFontColor;
+  }
+};
+
 type SwitchContainerProps = {
   margin: Margin | Space;
   size: "small" | "medium" | "large" | "fillParent" | "fitContent";
@@ -146,7 +196,7 @@ const SwitchContainer = styled.div<SwitchContainerProps>`
   align-items: center;
   width: ${(props) => calculateWidth(props.margin, props.size)};
   height: 40px;
-  cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
+  // cursor: ${(props) => (props.disabled === true ? "not-allowed" : "pointer")};
 
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -170,14 +220,7 @@ const LabelContainer = styled.span<LabelProps>`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: ${(props) =>
-    props.disabled
-      ? props.backgroundType === "dark"
-        ? props.theme.disabledLabelFontColorOnDark
-        : props.theme.disabledLabelFontColor
-      : props.backgroundType === "dark"
-      ? props.theme.labelFontColorOnDark
-      : props.theme.labelFontColor};
+  color: ${(props) => (props.disabled ? getDisabledColor(props, "label") : getNotDisabledColor(props, "label"))};
   opacity: 1;
   font-family: ${(props) => props.theme.labelFontFamily};
   font-size: ${(props) => props.theme.labelFontSize};
@@ -208,6 +251,7 @@ const ValueInput = styled.input`
 
 type SwitchTrackProps = {
   backgroundType: "dark" | "light";
+  disabled: boolean;
 };
 
 const SwitchTrack = styled.span<SwitchTrackProps>`
@@ -215,6 +259,7 @@ const SwitchTrack = styled.span<SwitchTrackProps>`
   width: ${(props) => props.theme.trackWidth};
   height: ${(props) => props.theme.trackHeight};
   position: relative;
+  // cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 
   &:focus-visible {
     outline: none;
@@ -241,62 +286,21 @@ const SwitchTrack = styled.span<SwitchTrackProps>`
     left: -4px;
     transform: translateX(0px);
     background-color: ${(props) =>
-      props.backgroundType === "dark"
-        ? props.theme.uncheckedThumbBackgroundColorOnDark
-        : props.theme.uncheckedThumbBackgroundColor};
+      props.disabled ? getDisabledColor(props, "thumb", "uncheck") : getNotDisabledColor(props, "thumb", "uncheck")};
   }
 
   /* Unchecked */
   background-color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.uncheckedTrackBackgroundColorOnDark
-      : props.theme.uncheckedTrackBackgroundColor};
+    props.disabled ? getDisabledColor(props, "track", "uncheck") : getNotDisabledColor(props, "track", "uncheck")};
 
   /* Checked */
-  &[data-checked="true"] {
+  &[aria-checked="true"] {
     background-color: ${(props) =>
-      props.backgroundType === "dark"
-        ? props.theme.checkedTrackBackgroundColorOnDark
-        : props.theme.checkedTrackBackgroundColor};
+      props.disabled ? getDisabledColor(props, "track", "check") : getNotDisabledColor(props, "track", "check")};
     ::before {
       transform: translateX(${(props) => props.theme.thumbShift});
       background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.checkedThumbBackgroundColorOnDark
-          : props.theme.checkedThumbBackgroundColor};
-    }
-  }
-`;
-
-const DisabledSwitchTrack = styled(SwitchTrack)`
-  cursor: not-allowed;
-
-  /* Unchecked */
-  background-color: ${(props) =>
-    props.backgroundType === "dark"
-      ? props.theme.disabledUncheckedTrackBackgroundColorOnDark
-      : props.theme.disabledUncheckedTrackBackgroundColor};
-
-  ::before {
-    background-color: ${(props) =>
-      props.backgroundType === "dark"
-        ? props.theme.disabledUncheckedThumbBackgroundColorOnDark
-        : props.theme.disabledUncheckedThumbBackgroundColor};
-  }
-
-  /* Checked */
-  &[data-checked="true"] {
-    background-color: ${(props) =>
-      props.backgroundType === "dark"
-        ? props.theme.disabledCheckedTrackBackgroundColorOnDark
-        : props.theme.disabledCheckedTrackBackgroundColor};
-
-    ::before {
-      transform: translateX(${(props) => props.theme.thumbShift});
-      background-color: ${(props) =>
-        props.backgroundType === "dark"
-          ? props.theme.disabledCheckedThumbBackgroundColorOnDark
-          : props.theme.disabledCheckedThumbBackgroundColor};
+        props.disabled ? getDisabledColor(props, "thumb", "check") : getNotDisabledColor(props, "thumb", "check")};
     }
   }
 `;
