@@ -13,7 +13,7 @@ const ExampleContainer = ({ children, pseudoState, expanded = false }: Props): J
   </DivContainer>
 );
 
-const DivContainer = styled.div`
+const DivContainer = styled.div<{ expanded: boolean }>`
   margin: 15px;
   ${(props) => props.expanded && "height: 100vh;"}
 `;
