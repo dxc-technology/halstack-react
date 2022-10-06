@@ -47,7 +47,6 @@ const DxcCheckbox = ({
   const handleKeyboard = (event) => {
     switch (event.key) {
       case " ":
-      case "Space":
         event.preventDefault();
         handleCheckboxChange();
     }
