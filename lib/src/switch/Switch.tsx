@@ -69,7 +69,15 @@ const DxcSwitch = ({
             {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
           </LabelContainer>
         )}
-        <ValueInput type="checkbox" name={name} aria-hidden={true} value={value} disabled={disabled} readOnly />
+        <ValueInput
+          type="checkbox"
+          name={name}
+          aria-hidden={true}
+          value={value}
+          disabled={disabled}
+          checked={checked ?? innerChecked}
+          readOnly
+        />
         <SwitchBase>
           <SwitchTrack
             role="switch"
@@ -78,7 +86,7 @@ const DxcSwitch = ({
             aria-disabled={disabled}
             disabled={disabled}
             aria-labelledby={labelId}
-            tabIndex={tabIndex ? tabIndex : -1}
+            tabIndex={!disabled ? tabIndex : -1}
             ref={refTrack}
           />
         </SwitchBase>
