@@ -77,7 +77,7 @@ const DxcDropdown = ({
         setVisualFocusIndex(options.length - 1);
         handleOnOpenMenu();
         break;
-      case "Space":
+      case " ":
       case "Down":
       case "ArrowDown":
       case "Enter":
@@ -112,7 +112,7 @@ const DxcDropdown = ({
           event.preventDefault();
           setNextIndexFocus();
           break;
-        case "Space":
+        case " ":
         case "Enter":
           event.preventDefault();
           handleMenuItemOnClick(options[visualFocusIndex].value);

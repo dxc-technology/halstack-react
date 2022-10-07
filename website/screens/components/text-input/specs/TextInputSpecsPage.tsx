@@ -14,14 +14,28 @@ import Image from "@/common/Image";
 import inputStates from "./images/input_states.png";
 import inputAnatomy from "./images/input_anatomy.png";
 import inputSpecs from "./images/input_specs.png";
+import autosuggestStatesListItem from "./images/autosuggest_states_listItem.png";
+import autosuggestAnatomy from "./images/autosuggest_anatomy.png";
+import autosuggestSpecs from "./images/autosuggest_specs.png";
 
 const sections = [
   {
     title: "Specifications",
     content: (
-      <Figure caption="Specifications for text input component">
-        <Image src={inputSpecs} alt="Specifications for text input component" />
-      </Figure>
+      <>
+        <Figure caption="Specifications for text input component">
+          <Image
+            src={inputSpecs}
+            alt="Specifications for text input component"
+          />
+        </Figure>
+        <Figure caption="Specifications for autosuggest text input component">
+          <Image
+            src={autosuggestSpecs}
+            alt="Specifications for autosuggest text input component"
+          />
+        </Figure>
+      </>
     ),
   },
   {
@@ -37,6 +51,16 @@ const sections = [
           <Image
             src={inputStates}
             alt="Example of the text input component states"
+          />
+        </Figure>
+        <DxcParagraph>
+          List option states: <strong>enabled</strong>, <strong>hover</strong>,{" "}
+          <strong>active</strong> and <strong>system</strong>.
+        </DxcParagraph>
+        <Figure caption="List option states examples">
+          <Image
+            src={autosuggestStatesListItem}
+            alt="List option states examples"
           />
         </Figure>
       </>
@@ -57,6 +81,13 @@ const sections = [
           <DxcBulletedList.Item>Placeholder text</DxcBulletedList.Item>
           <DxcBulletedList.Item>Error message</DxcBulletedList.Item>
           <DxcBulletedList.Item>Prefix</DxcBulletedList.Item>
+        </DxcBulletedList>
+        <Image src={autosuggestAnatomy} alt="Autosuggest anatomy" />
+        <DxcBulletedList type="number">
+          <DxcBulletedList.Item>List dialog</DxcBulletedList.Item>
+          <DxcBulletedList.Item>Text input</DxcBulletedList.Item>
+          <DxcBulletedList.Item>List option</DxcBulletedList.Item>
+          <DxcBulletedList.Item>List option value</DxcBulletedList.Item>
         </DxcBulletedList>
       </>
     ),
@@ -149,6 +180,76 @@ const sections = [
                       <Code>color-transparent</Code>
                     </td>
                     <td>#transparent</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>suffixColor</Code>
+                    </td>
+                    <td>Suffix</td>
+                    <td>
+                      <Code>color-grey-700</Code>
+                    </td>
+                    <td>#666666</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>prefixColor</Code>
+                    </td>
+                    <td>Prefix</td>
+                    <td>
+                      <Code>color-grey-700</Code>
+                    </td>
+                    <td>#666666</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>listOptionFontColor</Code>
+                    </td>
+                    <td>List option value</td>
+                    <td>
+                      <Code>color-black</Code>
+                    </td>
+                    <td>#000000</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>listOptionDividerColor</Code>
+                    </td>
+                    <td>List option divider</td>
+                    <td>
+                      <Code>color-grey-200</Code>
+                    </td>
+                    <td>#e6e6e6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>listDialogBorderColor</Code>
+                    </td>
+                    <td>List dialog</td>
+                    <td>
+                      <Code>color-grey-400</Code>
+                    </td>
+                    <td>#bfbfbf</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>listDialogBackgroundColor</Code>
+                    </td>
+                    <td>List dialog</td>
+                    <td>
+                      <Code>color-white</Code>
+                    </td>
+                    <td>#ffffff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>systemMessageFontColor</Code>
+                    </td>
+                    <td>System message</td>
+                    <td>
+                      <Code>color-grey-700</Code>
+                    </td>
+                    <td>#666666</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -357,43 +458,6 @@ const sections = [
                     </td>
                     <td>#999999</td>
                   </tr>
-                </tbody>
-              </DxcTable>
-            ),
-          },
-          {
-            title: "Suffix/Prefix",
-            content: (
-              <DxcTable>
-                <thead>
-                  <tr>
-                    <th>Component token</th>
-                    <th>Element</th>
-                    <th>Token</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <Code>suffixColor</Code>
-                    </td>
-                    <td>Suffix</td>
-                    <td>
-                      <Code>color-grey-700</Code>
-                    </td>
-                    <td>#666666</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Code>prefixColor</Code>
-                    </td>
-                    <td>Prefix</td>
-                    <td>
-                      <Code>color-grey-700</Code>
-                    </td>
-                    <td>#666666</td>
-                  </tr>
                   <tr>
                     <td>
                       <Code>disabledSuffixColor</Code>
@@ -413,6 +477,66 @@ const sections = [
                       <Code>color-grey-400</Code>
                     </td>
                     <td>#bfbfbf</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>hoverListOptionBackgroundColor</Code>
+                    </td>
+                    <td>List option:hover</td>
+                    <td>
+                      <Code>color-grey-100</Code>
+                    </td>
+                    <td>#f2f2f2</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>focusListOptionBorderColor</Code>
+                    </td>
+                    <td>List option:focus</td>
+                    <td>
+                      <Code>color-blue-600</Code>
+                    </td>
+                    <td>#0095ff</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>activeListOptionBackgroundColor</Code>
+                    </td>
+                    <td>List option:active</td>
+                    <td>
+                      <Code>color-grey-300</Code>
+                    </td>
+                    <td>#cccccc</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorListDialogFontColor</Code>
+                    </td>
+                    <td>List dialog error</td>
+                    <td>
+                      <Code>color-black</Code>
+                    </td>
+                    <td>#000000</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorListDialogBackgroundColor</Code>
+                    </td>
+                    <td>List dialog error</td>
+                    <td>
+                      <Code>color-red-50</Code>
+                    </td>
+                    <td>#fff5f6</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Code>errorListDialogBorderColor</Code>
+                    </td>
+                    <td>List dialog error</td>
+                    <td>
+                      <Code>color-red-700</Code>
+                    </td>
+                    <td>#d0011b</td>
                   </tr>
                 </tbody>
               </DxcTable>
@@ -564,6 +688,36 @@ const sections = [
                   </td>
                   <td>400</td>
                 </tr>
+                <tr>
+                  <td>
+                    <Code>listOptionFontSize</Code>
+                  </td>
+                  <td>List option</td>
+                  <td>
+                    <Code>font-scale-02</Code>
+                  </td>
+                  <td>0.875rem / 14px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>listOptionFontWeight</Code>
+                  </td>
+                  <td>List option</td>
+                  <td>
+                    <Code>font-weight-regular</Code>
+                  </td>
+                  <td>400</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>listOptionFontStyle</Code>
+                  </td>
+                  <td>List option</td>
+                  <td>
+                    <Code>font-style-normal</Code>
+                  </td>
+                  <td>normal</td>
+                </tr>
               </tbody>
             </DxcTable>
             <DxcTable>
@@ -631,6 +785,36 @@ const sections = [
                     <Code>font-weight</Code>
                   </td>
                   <td>Placeholder</td>
+                  <td>
+                    <Code>font-regular</Code>
+                  </td>
+                  <td>400</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>font-weight</Code>
+                  </td>
+                  <td>List option typed</td>
+                  <td>
+                    <Code>font-bold</Code>
+                  </td>
+                  <td>600</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>font-size</Code>
+                  </td>
+                  <td>System message</td>
+                  <td>
+                    <Code>font-scale-02</Code>
+                  </td>
+                  <td>0.875 / 14px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>font-weight</Code>
+                  </td>
+                  <td>System message</td>
                   <td>
                     <Code>font-regular</Code>
                   </td>
@@ -797,6 +981,86 @@ const sections = [
                   </td>
                   <td>0.5rem / 8px</td>
                 </tr>
+                <tr>
+                  <td>
+                    <Code>padding-top</Code>
+                  </td>
+                  <td>List dialog</td>
+                  <td>
+                    <Code>spacing-4</Code>
+                  </td>
+                  <td>0.25rem / 4px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>padding-bottom</Code>
+                  </td>
+                  <td>List dialog</td>
+                  <td>
+                    <Code>spacing-4</Code>
+                  </td>
+                  <td>0.25rem / 4px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>padding-left</Code>
+                  </td>
+                  <td>List option</td>
+                  <td>
+                    <Code>spacing-8</Code>
+                  </td>
+                  <td>0.5rem / 8px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>padding-right</Code>
+                  </td>
+                  <td>List option</td>
+                  <td>
+                    <Code>spacing-8</Code>
+                  </td>
+                  <td>0.5rem / 8px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>padding-top</Code>
+                  </td>
+                  <td>List option</td>
+                  <td>
+                    <Code>spacing-2</Code>
+                  </td>
+                  <td>0.125rem / 2px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>padding-bottom</Code>
+                  </td>
+                  <td>List option</td>
+                  <td>
+                    <Code>spacing-2</Code>
+                  </td>
+                  <td>0.125rem / 2px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>padding-left</Code>
+                  </td>
+                  <td>List option value</td>
+                  <td>
+                    <Code>spacing-8</Code>
+                  </td>
+                  <td>0.5rem / 8px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>padding-right</Code>
+                  </td>
+                  <td>List option value</td>
+                  <td>
+                    <Code>spacing-8</Code>
+                  </td>
+                  <td>0.5rem / 8px</td>
+                </tr>
               </tbody>
             </DxcTable>
           </>
@@ -875,6 +1139,66 @@ const sections = [
                     <Code>-</Code>
                   </td>
                   <td>0 0 0 2px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>border</Code>
+                  </td>
+                  <td>List dialog</td>
+                  <td>
+                    <Code>border-width-1</Code>
+                  </td>
+                  <td>1px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>border</Code>
+                  </td>
+                  <td>List dialog</td>
+                  <td>
+                    <Code>border-style-solid</Code>
+                  </td>
+                  <td>solid</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>border</Code>
+                  </td>
+                  <td>List dialog</td>
+                  <td>
+                    <Code>border-radius-medium</Code>
+                  </td>
+                  <td>0.25rem / 4px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>border</Code>
+                  </td>
+                  <td>List option divider</td>
+                  <td>
+                    <Code>border-width-1</Code>
+                  </td>
+                  <td>1px</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>border</Code>
+                  </td>
+                  <td>List option divider</td>
+                  <td>
+                    <Code>border-style-solid</Code>
+                  </td>
+                  <td>solid</td>
+                </tr>
+                <tr>
+                  <td>
+                    <Code>box-shadow</Code>
+                  </td>
+                  <td>List dialog</td>
+                  <td>
+                    <Code>shadow-default</Code>
+                  </td>
+                  <td>0 8px 14px -2px rgba(0,0,0,0.1)</td>
                 </tr>
               </tbody>
             </DxcTable>

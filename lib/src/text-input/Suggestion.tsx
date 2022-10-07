@@ -18,36 +18,37 @@ const Suggestion = ({
   return (
     <SuggestionContainer
       id={id}
-      onClick={onClick}
+      onClick={() => {
+        onClick(suggestion);
+      }}
       visuallyFocused={visuallyFocused}
       role="option"
-      aria-selected={visuallyFocused ? "true" : undefined}
+      aria-selected={visuallyFocused ? true : undefined}
     >
       <StyledSuggestion last={isLast} visuallyFocused={visuallyFocused}>
         {highlighted ? (
-          suggestion
-        ) : (
           <>
             <strong>{matchedWords}</strong>
             {noMatchedWords}
           </>
+        ) : (
+          suggestion
         )}
       </StyledSuggestion>
     </SuggestionContainer>
   );
 };
 
-type SuggestionContainerProps = {
+const SuggestionContainer = styled.li<{
   visuallyFocused: boolean;
-};
-const SuggestionContainer = styled.li<SuggestionContainerProps>`
+}>`
   display: flex;
   padding: 0 0.5rem;
   line-height: 1.715em;
   cursor: pointer;
-
   box-shadow: inset 0 0 0 2px
     ${(props) => (props.visuallyFocused ? props.theme.focusListOptionBorderColor : "transparent")};
+
   &:hover {
     background-color: ${(props) => props.theme.hoverListOptionBackgroundColor};
   }
@@ -56,11 +57,10 @@ const SuggestionContainer = styled.li<SuggestionContainerProps>`
   }
 `;
 
-type StyledSuggestionProps = {
+const StyledSuggestion = styled.span<{
   visuallyFocused: boolean;
   last: boolean;
-};
-const StyledSuggestion = styled.span<StyledSuggestionProps>`
+}>`
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
