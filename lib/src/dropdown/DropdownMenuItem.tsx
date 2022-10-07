@@ -52,10 +52,10 @@ const DropdownMenuItemContainer = styled.li<{ visuallyFocused: boolean }>`
   cursor: pointer;
 
   ${(props) => props.visuallyFocused && `outline: ${props.theme.focusColor} solid 2px; outline-offset: -2px;`}
-  :hover {
+  &:hover {
     background-color: ${(props) => props.theme.hoverOptionBackgroundColor};
   }
-  :active {
+  &:active {
     background-color: ${(props) => props.theme.activeOptionBackgroundColor};
   }
 `;

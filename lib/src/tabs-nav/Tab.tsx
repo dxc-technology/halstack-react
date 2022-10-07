@@ -19,8 +19,8 @@ const DxcTab = forwardRef(
 
     const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
       switch (event.key) {
+        case " ":
         case "Enter":
-        case "Space":
           tabRef?.current?.click();
           event.preventDefault();
           break;
