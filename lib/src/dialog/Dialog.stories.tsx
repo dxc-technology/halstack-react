@@ -1,5 +1,8 @@
 import React from "react";
 import DxcDialog from "./Dialog";
+import DxcTextInput from "../text-input/TextInput";
+import DxcButton from "../button/Button";
+import DxcFlex from "../flex/Flex";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
@@ -25,6 +28,50 @@ export const DefaultDialog = () => (
           augue. Vivamus erat sapien, ultricies fringilla tellus id, condimentum blandit justo. Praesent quis nunc
           dignissim, pharetra neque molestie, molestie lectus.
         </p>{" "}
+      </DxcDialog>
+    </ExampleContainer>
+  </>
+);
+
+export const DialogWithInputs = () => (
+  <>
+    <ExampleContainer expanded={true}>
+      <Title title="Dialog with inputs" theme="light" level={4} />
+      <DxcDialog>
+        <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
+        <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
+
+        <DxcFlex justifyContent="flex-end">
+          <DxcButton label="Save" margin="small" size="fitContent"></DxcButton>
+          <DxcButton
+            label="Cancel"
+            margin={{ top: "small", bottom: "small" }}
+            mode="secondary"
+            size="fitContent"
+          ></DxcButton>
+        </DxcFlex>
+      </DxcDialog>
+    </ExampleContainer>
+  </>
+);
+
+const RespDialog = () => (
+  <>
+    <ExampleContainer expanded={true}>
+      <Title title="Responsive dialog" theme="light" level={4} />
+      <DxcDialog>
+        <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
+        <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
+
+        <DxcFlex justifyContent="flex-end">
+          <DxcButton label="Save" margin="small" size="fitContent"></DxcButton>
+          <DxcButton
+            label="Cancel"
+            margin={{ top: "small", bottom: "small" }}
+            mode="secondary"
+            size="fitContent"
+          ></DxcButton>
+        </DxcFlex>
       </DxcDialog>
     </ExampleContainer>
   </>
@@ -209,3 +256,11 @@ export const DialogWithXxlargePadding = () => (
     </DxcDialog>
   </ExampleContainer>
 );
+
+export const ResponsiveDialog = RespDialog.bind({});
+ResponsiveDialog.parameters = {
+  viewport: {
+    defaultViewport: "iphonex",
+  },
+  chromatic: { viewports: [375] },
+};
