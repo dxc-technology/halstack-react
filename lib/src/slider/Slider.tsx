@@ -49,13 +49,16 @@ const DxcSlider = ({
     const numberOfMarks = Math.floor(maxValue / step - minValue / step);
     let index = 0;
     const range = maxValue - minValue;
+    const actualValue = (100 * (value != null && value >= 0 ? value : innerValue)) / maxValue;
     if (marks) {
       while (index <= numberOfMarks) {
+        const stepValue = ((step * index) / range) * 100;
         ticks.push(
           <TickMark
             disabled={disabled}
-            stepPosition={((step * index) / range) * 100}
+            stepPosition={stepValue}
             backgroundType={backgroundType}
+            isActive={!disabled ? stepValue <= actualValue : false}
           ></TickMark>
         );
         index++;
@@ -64,7 +67,7 @@ const DxcSlider = ({
     } else {
       return null;
     }
-  }, [minValue, maxValue, step]);
+  }, [minValue, maxValue, step, value, innerValue]);
 
   const handleSliderChange = (event) => {
     const valueToCheck = event.target.value;
@@ -442,7 +445,12 @@ const MarksContainer = styled.div<MarksContainerPropsType>`
   align-items: center;
 `;
 
-type TickMarkPropsType = { stepPosition: number; disabled: boolean; backgroundType: "dark" | "light" };
+type TickMarkPropsType = {
+  stepPosition: number;
+  disabled: boolean;
+  backgroundType: "dark" | "light";
+  isActive: boolean;
+};
 
 const TickMark = styled.span<TickMarkPropsType>`
   position: absolute;
@@ -458,6 +466,7 @@ const TickMark = styled.span<TickMarkPropsType>`
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
   left: ${(props) => `${props.stepPosition}%`};
+  z-index: ${(props) => (props.isActive ? "0" : "1")};
 `;
 
 const StyledTextInput = styled.div`
