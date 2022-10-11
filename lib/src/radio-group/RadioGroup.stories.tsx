@@ -1,3 +1,4 @@
+import React from "react";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 import Title from "../../.storybook/components/Title";
 import DxcRadioGroup from "./RadioGroup";
