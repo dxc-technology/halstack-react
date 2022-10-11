@@ -3,6 +3,7 @@ import DxcDialog from "./Dialog";
 import DxcTextInput from "../text-input/TextInput";
 import DxcButton from "../button/Button";
 import DxcFlex from "../flex/Flex";
+import DxcInset from "../inset/Inset";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
 
@@ -38,18 +39,18 @@ export const DialogWithInputs = () => (
     <ExampleContainer expanded={true}>
       <Title title="Dialog with inputs" theme="light" level={4} />
       <DxcDialog>
-        <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
-        <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
-
-        <DxcFlex justifyContent="flex-end">
-          <DxcButton label="Save" margin="small" size="fitContent"></DxcButton>
-          <DxcButton
-            label="Cancel"
-            margin={{ top: "small", bottom: "small" }}
-            mode="secondary"
-            size="fitContent"
-          ></DxcButton>
-        </DxcFlex>
+        <DxcInset bottom="1rem">
+          <DxcFlex gap="1rem" direction="column">
+            <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
+            <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
+          </DxcFlex>
+        </DxcInset>
+        <DxcInset top="1rem" bottom="1rem">
+          <DxcFlex justifyContent="flex-end" gap="1rem">
+            <DxcButton label="Save"></DxcButton>
+            <DxcButton label="Cancel" mode="secondary"></DxcButton>
+          </DxcFlex>
+        </DxcInset>
       </DxcDialog>
     </ExampleContainer>
   </>
@@ -60,18 +61,18 @@ const RespDialog = () => (
     <ExampleContainer expanded={true}>
       <Title title="Responsive dialog" theme="light" level={4} />
       <DxcDialog>
-        <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
-        <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
-
-        <DxcFlex justifyContent="flex-end">
-          <DxcButton label="Save" margin="small" size="fitContent"></DxcButton>
-          <DxcButton
-            label="Cancel"
-            margin={{ top: "small", bottom: "small" }}
-            mode="secondary"
-            size="fitContent"
-          ></DxcButton>
-        </DxcFlex>
+        <DxcInset bottom="1rem">
+          <DxcFlex gap="1rem" direction="column">
+            <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
+            <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
+          </DxcFlex>
+        </DxcInset>
+        <DxcInset top="1rem" bottom="1rem">
+          <DxcFlex justifyContent="flex-end" gap="1rem">
+            <DxcButton label="Save"></DxcButton>
+            <DxcButton label="Cancel" mode="secondary"></DxcButton>
+          </DxcFlex>
+        </DxcInset>
       </DxcDialog>
     </ExampleContainer>
   </>
