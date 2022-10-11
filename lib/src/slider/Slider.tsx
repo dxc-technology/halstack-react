@@ -56,7 +56,7 @@ const DxcSlider = ({
             disabled={disabled}
             stepPosition={(step * index) / range}
             backgroundType={backgroundType}
-            stepValue={value ?? innerValue}
+            stepValue={(value ?? innerValue) / maxValue}
           ></TickMark>
         );
 
@@ -465,7 +465,7 @@ const TickMark = styled.span<TickMarkPropsType>`
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
   left: ${(props) => `calc(${props.stepPosition} * 100%)`};
-  z-index: ${(props) => (props.stepPosition == props.stepValue / 100 ? "0" : "1")};
+  ${(props) => (!props.disabled ? `z-index: ${props.stepPosition <= props.stepValue ? "0" : "1"}` : ``)};
 `;
 
 const StyledTextInput = styled.div`
