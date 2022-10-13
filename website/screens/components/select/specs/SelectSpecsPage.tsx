@@ -1068,9 +1068,6 @@ const sections = [
         title: "Margin",
         content: (
           <>
-            <DxcParagraph>
-              Select <Code>margin</Code> can use the values:
-            </DxcParagraph>
             <DxcTable>
               <thead>
                 <tr>
@@ -1126,8 +1123,7 @@ const sections = [
             <DxcParagraph>
               These values can be applied independently to each side of the
               component: <Code>top</Code>, <Code>bottom</Code>,{" "}
-              <Code>left</Code> and
-              <Code>right</Code>.
+              <Code>left</Code> and <Code>right</Code>.
             </DxcParagraph>
           </>
         ),
