@@ -40,15 +40,15 @@ export const DialogWithInputs = () => (
       <Title title="Dialog with inputs" theme="light" level={4} />
       <DxcDialog>
         <DxcInset bottom="1rem">
-          <DxcFlex gap="1rem" direction="column">
-            <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
-            <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
-          </DxcFlex>
-        </DxcInset>
-        <DxcInset top="1rem" bottom="1rem">
-          <DxcFlex justifyContent="flex-end" gap="1rem">
-            <DxcButton label="Save"></DxcButton>
-            <DxcButton label="Cancel" mode="secondary"></DxcButton>
+          <DxcFlex gap="2rem" direction="column">
+            <DxcFlex gap="1rem" direction="column">
+              <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
+              <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
+            </DxcFlex>
+            <DxcFlex justifyContent="flex-end" gap="1rem">
+              <DxcButton label="Save"></DxcButton>
+              <DxcButton label="Cancel" mode="secondary"></DxcButton>
+            </DxcFlex>
           </DxcFlex>
         </DxcInset>
       </DxcDialog>
@@ -62,15 +62,15 @@ const RespDialog = () => (
       <Title title="Responsive dialog" theme="light" level={4} />
       <DxcDialog>
         <DxcInset bottom="1rem">
-          <DxcFlex gap="1rem" direction="column">
-            <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
-            <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
-          </DxcFlex>
-        </DxcInset>
-        <DxcInset top="1rem" bottom="1rem">
-          <DxcFlex justifyContent="flex-end" gap="1rem">
-            <DxcButton label="Save"></DxcButton>
-            <DxcButton label="Cancel" mode="secondary"></DxcButton>
+          <DxcFlex gap="2rem" direction="column">
+            <DxcFlex gap="1rem" direction="column">
+              <DxcTextInput size="fillParent" label="Name"></DxcTextInput>
+              <DxcTextInput size="fillParent" label="Surname"></DxcTextInput>
+            </DxcFlex>
+            <DxcFlex justifyContent="flex-end" gap="1rem">
+              <DxcButton label="Save"></DxcButton>
+              <DxcButton label="Cancel" mode="secondary"></DxcButton>
+            </DxcFlex>
           </DxcFlex>
         </DxcInset>
       </DxcDialog>
