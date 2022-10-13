@@ -54,17 +54,19 @@ const DxcSlider = ({
         ticks.push(
           <TickMark
             disabled={disabled}
-            stepPosition={((step * index) / range) * 100}
+            stepPosition={(step * index) / range}
             backgroundType={backgroundType}
+            stepValue={(value ?? innerValue) / maxValue}
           ></TickMark>
         );
+
         index++;
       }
       return ticks;
     } else {
       return null;
     }
-  }, [minValue, maxValue, step]);
+  }, [minValue, maxValue, step, value, innerValue]);
 
   const handleSliderChange = (event) => {
     const valueToCheck = event.target.value;
@@ -442,7 +444,12 @@ const MarksContainer = styled.div<MarksContainerPropsType>`
   align-items: center;
 `;
 
-type TickMarkPropsType = { stepPosition: number; disabled: boolean; backgroundType: "dark" | "light" };
+type TickMarkPropsType = {
+  stepPosition: number;
+  disabled: boolean;
+  backgroundType: "dark" | "light";
+  stepValue: number;
+};
 
 const TickMark = styled.span<TickMarkPropsType>`
   position: absolute;
@@ -457,7 +464,8 @@ const TickMark = styled.span<TickMarkPropsType>`
   height: ${(props) => props.theme.tickHeight};
   width: ${(props) => props.theme.tickWidth};
   border-radius: 18px;
-  left: ${(props) => `${props.stepPosition}%`};
+  left: ${(props) => `calc(${props.stepPosition} * 100%)`};
+  ${(props) => (!props.disabled ? `z-index: ${props.stepPosition <= props.stepValue ? "0" : "1"}` : ``)};
 `;
 
 const StyledTextInput = styled.div`
