@@ -2,6 +2,8 @@ import {
   DxcFlex,
   DxcTable,
   DxcParagraph,
+  DxcAlert,
+  DxcLink,
 } from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
@@ -14,10 +16,22 @@ import icons from "./examples/icons";
 import controlledAccordionGroup from "./examples/controlledAccordionGroup";
 import uncontrolledAccordionGroup from "./examples/uncontrolledAccordionGroup";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
+import Link from "next/link";
 
 const sections = [
   {
     title: "Props",
+    content: (
+      <DxcAlert type="warning" size="fillParent">
+        The padding prop is deprecated, consider using layout components like
+        the{" "}
+        <Link href="/components/inset/" passHref>
+          <DxcLink>inset</DxcLink>
+        </Link>
+        .
+      </DxcAlert>
+    ),
     subSections: [
       {
         title: "Accordion",
@@ -107,11 +121,18 @@ const sections = [
                 <td>padding: string | object</td>
                 <td></td>
                 <td>
-                  Size of the padding to be applied to the custom area
-                  ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' |
-                  'xlarge' | 'xxlarge'). You can pass an object with 'top',
-                  'bottom', 'left' and 'right' properties in order to specify
-                  different padding sizes.
+                  <DxcFlex
+                    gap="0.25rem"
+                    direction="column"
+                    alignItems="baseline"
+                  >
+                    <StatusTag status="Deprecated">Deprecated</StatusTag>
+                    Size of the padding to be applied to the custom area
+                    ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' |
+                    'xlarge' | 'xxlarge'). You can pass an object with 'top',
+                    'bottom', 'left' and 'right' properties in order to specify
+                    different padding sizes.
+                  </DxcFlex>
                 </td>
               </tr>
               <tr>
@@ -246,11 +267,20 @@ const sections = [
                         <td>padding: string | object</td>
                         <td></td>
                         <td>
-                          Size of the padding to be applied to the custom area
-                          ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' |
-                          'xlarge' | 'xxlarge'). You can pass an object with
-                          'top', 'bottom', 'left' and 'right' properties in
-                          order to specify different padding sizes.
+                          <DxcFlex
+                            gap="0.25rem"
+                            direction="column"
+                            alignItems="baseline"
+                          >
+                            <StatusTag status="Deprecated">
+                              Deprecated
+                            </StatusTag>
+                            Size of the padding to be applied to the custom area
+                            ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'
+                            | 'xlarge' | 'xxlarge'). You can pass an object with
+                            'top', 'bottom', 'left' and 'right' properties in
+                            order to specify different padding sizes.
+                          </DxcFlex>
                         </td>
                       </tr>
                     </tbody>

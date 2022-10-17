@@ -31,8 +31,9 @@ export type AccordionPropsType = {
    */
   disabled?: boolean;
   /**
-   * Size of the padding to be applied to the custom area ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
+   * @deprecated Size of the padding to be applied to the custom area ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different padding sizes.
+   * The prop will be removed, use Inset instead.
    */
   padding?: Space | Padding;
   /**
