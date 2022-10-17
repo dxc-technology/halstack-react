@@ -103,11 +103,12 @@ const Dialog = styled.div<{ isCloseVisible?: boolean }>`
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
-  ${(props) => props.isCloseVisible && "min-height: 72px;"}
+  ${(props) => props.isCloseVisible && "min-height: 72px; padding-top: 24px;"}
   box-sizing: border-box;
   box-shadow: ${(props) =>
     `${props.theme.boxShadowOffsetX} ${props.theme.boxShadowOffsetY} ${props.theme.boxShadowBlur} ${props.theme.boxShadowColor}`};
   border-radius: 4px;
+  position: relative;
 
   @media (min-width: ${responsiveSizes.medium}rem) {
     max-width: 80%;
@@ -124,7 +125,7 @@ const Dialog = styled.div<{ isCloseVisible?: boolean }>`
 const Children = styled.div<{ padding: Padding | Space }>`
   display: flex;
   flex-direction: column;
-
+  width: 100%;
   padding: ${(props) => (props.padding && typeof props.padding !== "object" ? spaces[props.padding] : spaces["small"])};
   padding-top: ${(props) =>
     props.padding && typeof props.padding === "object" && props.padding.top ? spaces[props.padding.top] : ""};
@@ -142,7 +143,7 @@ const CloseIconContainer = styled.button`
   margin: 0;
   background: none;
   border: none;
-  position: relative;
+  position: absolute;
   top: 20px;
   right: 20px;
   color: ${(props) => props.theme.closeIconColor};
