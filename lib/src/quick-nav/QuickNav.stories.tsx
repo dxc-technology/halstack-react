@@ -11,6 +11,36 @@ export default {
   component: DxcQuickNav,
 };
 
+const defaultLinks = [
+  {
+    label: "Overview",
+    id: "overview",
+  },
+  {
+    label: "Principles",
+    id: "principles",
+    links: [
+      { label: "Color", id: "color" },
+      { label: "Spacing", id: "spacing" },
+      { label: "Typography", id: "typography" },
+    ],
+  },
+  {
+    label: "Components",
+    id: "components",
+    links: [
+      {
+        label: "Accordion",
+        id: "accordion",
+      },
+      {
+        label: "Button",
+        id: "button",
+      },
+    ],
+  },
+];
+
 const links = [
   {
     label: "Overview",
@@ -48,19 +78,25 @@ export const Chromatic = () => (
     <ExampleContainer>
       <Title title="Default" level={4} />
       <QuickNavContainer>
-        <DxcQuickNav links={links}></DxcQuickNav>
+        <DxcQuickNav links={defaultLinks} />
+      </QuickNavContainer>
+    </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Text overflow" level={4} />
+      <QuickNavContainer>
+        <DxcQuickNav links={links} />
       </QuickNavContainer>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Link hovered" level={4} />
       <QuickNavContainer>
-        <DxcQuickNav links={links}></DxcQuickNav>
+        <DxcQuickNav links={links} />
       </QuickNavContainer>
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Link focus" level={4} />
       <QuickNavContainer>
-        <DxcQuickNav links={links}></DxcQuickNav>
+        <DxcQuickNav links={links} />
       </QuickNavContainer>
     </ExampleContainer>
     <ExampleContainer>
@@ -233,7 +269,7 @@ export const Chromatic = () => (
           </Content>
         </ContentContainer>
         <QuickNavContainer>
-          <DxcQuickNav title="Sections" links={links}></DxcQuickNav>
+          <DxcQuickNav title="Sections" links={links} />
         </QuickNavContainer>
       </Container>
     </ExampleContainer>
