@@ -156,7 +156,7 @@ const sections = [
               </tr>
               <tr>
                 <td>
-                  <Code>medium</Code> <em>(default)</em>
+                  <Code>medium</Code>
                 </td>
                 <td>240px</td>
               </tr>
