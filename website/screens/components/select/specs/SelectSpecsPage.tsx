@@ -1021,47 +1021,42 @@ const sections = [
         ),
       },
       {
-        title: "Size",
+        title: "Width",
         content: (
-          <>
-            <DxcParagraph>
-              The component <Code>width</Code> can adopt the following values:
-            </DxcParagraph>
-            <DxcTable>
-              <thead>
-                <tr>
-                  <th>Width</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <Code>small</Code>
-                  </td>
-                  <td>240px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>medium</Code>
-                  </td>
-                  <td>360px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>large</Code>
-                  </td>
-                  <td>480px</td>
-                </tr>
-                <tr>
-                  <td>
-                    <Code>fillParent</Code>
-                  </td>
-                  <td>100%</td>
-                </tr>
-              </tbody>
-            </DxcTable>
-          </>
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Width</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>small</Code>
+                </td>
+                <td>240px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>medium</Code>
+                </td>
+                <td>360px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>large</Code>
+                </td>
+                <td>480px</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>fillParent</Code>
+                </td>
+                <td>100%</td>
+              </tr>
+            </tbody>
+          </DxcTable>
         ),
       },
       {
