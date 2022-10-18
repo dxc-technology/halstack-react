@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import slugify from "slugify";
@@ -20,26 +19,26 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
         <DxcFlex direction="column" gap="0.5rem">
           <DxcHeading level={4} text={title || translatedLabels.quickNav.contentTitle} />
           <ListColumn>
-            <DxcFlex direction="column" gap="0.5rem">
-              {links.map((link) => (
-                <ListRow key={link.label}>
-                  <DxcInset space="0.25rem">
-                    <DxcTypography>
-                      <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
+            {links.map((link) => (
+              <li key={link.label}>
+                <DxcInset space="0.25rem">
+                  <DxcTypography>
+                    <Link href={`#${slugify(link?.label, { lower: true })}`}>{link?.label}</Link>
+                    <ListSecondColumn>
                       {link.links?.map((sublink) => (
-                        <ListRow key={sublink.label}>
+                        <li key={sublink.label}>
                           <DxcInset horizontal="0.5rem">
                             <DxcTypography>
                               <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
                             </DxcTypography>
                           </DxcInset>
-                        </ListRow>
+                        </li>
                       ))}
-                    </DxcTypography>
-                  </DxcInset>
-                </ListRow>
-              ))}
-            </DxcFlex>
+                    </ListSecondColumn>
+                  </DxcTypography>
+                </DxcInset>
+              </li>
+            ))}
           </ListColumn>
         </DxcFlex>
       </QuickNavContainer>
@@ -56,14 +55,20 @@ const QuickNavContainer = styled.div`
 `;
 
 const ListColumn = styled.ul`
-  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   margin: 0;
   padding: 0;
-  width: 100%;
+  list-style-type: none;
 `;
 
-const ListRow = styled.li`
-  width: 100%;
+const ListSecondColumn = styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 `;
 
 const Link = styled.a`
