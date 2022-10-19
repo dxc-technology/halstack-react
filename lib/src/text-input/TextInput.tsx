@@ -365,60 +365,54 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               {helperText}
             </HelperText>
           )}
-          <AutosuggestWrapper
-            condition={hasSuggestions(suggestions)}
-            wrapper={(children) => (
-              <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                <Popover.Trigger
-                  asChild
-                  type={undefined}
-                  aria-expanded={undefined}
-                  aria-controls={undefined}
-                  aria-haspopup={undefined}
-                >
-                  {children}
-                </Popover.Trigger>
-                <Popover.Content
-                  sideOffset={4}
-                  onOpenAutoFocus={(event) => {
-                    // Avoid select to lose focus when the list is opened
-                    event.preventDefault();
-                  }}
-                  onCloseAutoFocus={(event) => {
-                    // Avoid select to lose focus when the list is closed
-                    event.preventDefault();
-                  }}
-                >
-                  <Suggestions
-                    id={autosuggestId}
-                    value={value ?? innerValue}
-                    suggestions={filteredSuggestions}
-                    visualFocusIndex={visualFocusIndex}
-                    highlightedSuggestions={typeof suggestions !== "function"}
-                    searchHasErrors={isAutosuggestError}
-                    isSearching={isSearching}
-                    suggestionOnClick={(suggestion) => {
-                      changeValue(suggestion);
-                      closeSuggestions();
-                    }}
-                    getTextInputWidth={getTextInputWidth}
-                  />
-                </Popover.Content>
-              </Popover.Root>
-            )}
+          <InputContainer
+            error={error ? true : false}
+            disabled={disabled}
+            backgroundType={backgroundType}
+            onClick={handleInputContainerOnClick}
+            onMouseDown={handleInputContainerOnMouseDown}
           >
-            <InputContainer
-              error={error ? true : false}
-              disabled={disabled}
-              backgroundType={backgroundType}
-              onClick={handleInputContainerOnClick}
-              onMouseDown={handleInputContainerOnMouseDown}
-            >
-              {prefix && (
-                <Prefix disabled={disabled} backgroundType={backgroundType}>
-                  {prefix}
-                </Prefix>
+            {prefix && (
+              <Prefix disabled={disabled} backgroundType={backgroundType}>
+                {prefix}
+              </Prefix>
+            )}
+            <AutosuggestWrapper
+              condition={hasSuggestions(suggestions)}
+              wrapper={(children) => (
+                <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
+                  <Popover.Trigger asChild>
+                    {children}
+                  </Popover.Trigger>
+                  <Popover.Content
+                    sideOffset={4}
+                    onOpenAutoFocus={(event) => {
+                      // Avoid select to lose focus when the list is opened
+                      event.preventDefault();
+                    }}
+                    onCloseAutoFocus={(event) => {
+                      // Avoid select to lose focus when the list is closed
+                      event.preventDefault();
+                    }}
+                  >
+                    <Suggestions
+                      id={autosuggestId}
+                      value={value ?? innerValue}
+                      suggestions={filteredSuggestions}
+                      visualFocusIndex={visualFocusIndex}
+                      highlightedSuggestions={typeof suggestions !== "function"}
+                      searchHasErrors={isAutosuggestError}
+                      isSearching={isSearching}
+                      suggestionOnClick={(suggestion) => {
+                        changeValue(suggestion);
+                        closeSuggestions();
+                      }}
+                      getTextInputWidth={getTextInputWidth}
+                    />
+                  </Popover.Content>
+                </Popover.Root>
               )}
+            >
               <Input
                 id={inputId}
                 name={name}
@@ -454,80 +448,80 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 aria-errormessage={error ? errorId : undefined}
                 aria-required={optional ? false : true}
               />
-              {!disabled && error && (
-                <ErrorIcon backgroundType={backgroundType} aria-label="Error">
-                  {icons.error}
-                </ErrorIcon>
-              )}
-              {!disabled && clearable && (value ?? innerValue).length > 0 && (
-                <Action
-                  onClick={handleClearActionOnClick}
-                  onMouseDown={(event) => {
-                    event.stopPropagation();
-                  }}
-                  backgroundType={backgroundType}
-                  tabIndex={tabIndex}
-                  title={translatedLabels.textInput.clearFieldActionTitle}
-                  aria-label={translatedLabels.textInput.clearFieldActionTitle}
-                >
-                  {icons.clear}
-                </Action>
-              )}
-              {numberInputContext?.typeNumber === "number" && (
-                <>
-                  <Action
-                    ref={actionRef}
-                    disabled={disabled}
-                    onClick={handleDecrementActionOnClick}
-                    onMouseDown={(event) => {
-                      event.stopPropagation();
-                    }}
-                    backgroundType={backgroundType}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.numberInput.decrementValueTitle}
-                    aria-label={translatedLabels.numberInput.decrementValueTitle}
-                  >
-                    {icons.decrement}
-                  </Action>
-                  <Action
-                    ref={actionRef}
-                    disabled={disabled}
-                    onClick={handleIncrementActionOnClick}
-                    onMouseDown={(event) => {
-                      event.stopPropagation();
-                    }}
-                    backgroundType={backgroundType}
-                    tabIndex={tabIndex}
-                    title={translatedLabels.numberInput.incrementValueTitle}
-                    aria-label={translatedLabels.numberInput.incrementValueTitle}
-                  >
-                    {icons.increment}
-                  </Action>
-                </>
-              )}
-              {action && (
+            </AutosuggestWrapper>
+            {!disabled && error && (
+              <ErrorIcon backgroundType={backgroundType} aria-label="Error">
+                {icons.error}
+              </ErrorIcon>
+            )}
+            {!disabled && clearable && (value ?? innerValue).length > 0 && (
+              <Action
+                onClick={handleClearActionOnClick}
+                onMouseDown={(event) => {
+                  event.stopPropagation();
+                }}
+                backgroundType={backgroundType}
+                tabIndex={tabIndex}
+                title={translatedLabels.textInput.clearFieldActionTitle}
+                aria-label={translatedLabels.textInput.clearFieldActionTitle}
+              >
+                {icons.clear}
+              </Action>
+            )}
+            {numberInputContext?.typeNumber === "number" && (
+              <>
                 <Action
                   ref={actionRef}
                   disabled={disabled}
-                  onClick={action.onClick}
+                  onClick={handleDecrementActionOnClick}
                   onMouseDown={(event) => {
                     event.stopPropagation();
                   }}
-                  title={action.title}
-                  aria-label={action.title}
                   backgroundType={backgroundType}
                   tabIndex={tabIndex}
+                  title={translatedLabels.numberInput.decrementValueTitle}
+                  aria-label={translatedLabels.numberInput.decrementValueTitle}
                 >
-                  {typeof action.icon === "string" ? <ActionIcon src={action.icon}></ActionIcon> : action.icon}
+                  {icons.decrement}
                 </Action>
-              )}
-              {suffix && (
-                <Suffix disabled={disabled} backgroundType={backgroundType}>
-                  {suffix}
-                </Suffix>
-              )}
-            </InputContainer>
-          </AutosuggestWrapper>
+                <Action
+                  ref={actionRef}
+                  disabled={disabled}
+                  onClick={handleIncrementActionOnClick}
+                  onMouseDown={(event) => {
+                    event.stopPropagation();
+                  }}
+                  backgroundType={backgroundType}
+                  tabIndex={tabIndex}
+                  title={translatedLabels.numberInput.incrementValueTitle}
+                  aria-label={translatedLabels.numberInput.incrementValueTitle}
+                >
+                  {icons.increment}
+                </Action>
+              </>
+            )}
+            {action && (
+              <Action
+                ref={actionRef}
+                disabled={disabled}
+                onClick={action.onClick}
+                onMouseDown={(event) => {
+                  event.stopPropagation();
+                }}
+                title={action.title}
+                aria-label={action.title}
+                backgroundType={backgroundType}
+                tabIndex={tabIndex}
+              >
+                {typeof action.icon === "string" ? <ActionIcon src={action.icon}></ActionIcon> : action.icon}
+              </Action>
+            )}
+            {suffix && (
+              <Suffix disabled={disabled} backgroundType={backgroundType}>
+                {suffix}
+              </Suffix>
+            )}
+          </InputContainer>
           {!disabled && typeof error === "string" && (
             <Error id={errorId} backgroundType={backgroundType} aria-live={error ? "assertive" : "off"}>
               {error}
