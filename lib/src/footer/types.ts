@@ -58,9 +58,9 @@ type FooterPropsType = {
    */
   margin?: Space | Size;
   /**
-   * @deprecated Size of the padding to be applied to the custom area of the component.
+   * @deprecated This prop will be removed shortly, consider using the Inset component for this purpose.
+   * Size of the padding to be applied to the custom area of the component.
    * You can pass an object with properties in order to specify different padding sizes.
-   * The prop will be removed, use Inset instead.
    */
   padding?: Space | Size;
 };

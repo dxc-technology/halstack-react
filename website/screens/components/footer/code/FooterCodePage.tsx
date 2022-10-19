@@ -18,12 +18,12 @@ const sections = [
     content: (
       <>
         <DxcAlert type="warning" size="fillParent">
-          The padding prop is deprecated, consider using layout components like
-          the{" "}
+          The <Code>padding</Code> prop has been deprecated. Consider using
+          layout components like the{" "}
           <Link href="/components/inset/" passHref>
             <DxcLink>inset</DxcLink>
-          </Link>
-          .
+          </Link>{" "}
+          for the same purpose.
         </DxcAlert>
         <DxcTable>
           <thead>
