@@ -105,9 +105,6 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     const backgroundType = useContext(BackgroundColorContext);
     const numberInputContext = useContext(NumberInputContext);
 
-    const isTextInputType = () =>
-      !inputRef?.current?.getAttribute("type") || inputRef?.current?.getAttribute("type") === "text";
-
     const getNumberErrorMessage = (value) => {
       if (numberInputContext?.minNumber && parseInt(value) < numberInputContext?.minNumber)
         return translatedLabels.numberInput.valueGreaterThanOrEqualToErrorMessage(numberInputContext.minNumber);
@@ -372,7 +369,15 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
             condition={hasSuggestions(suggestions)}
             wrapper={(children) => (
               <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                <Popover.Trigger asChild>{children}</Popover.Trigger>
+                <Popover.Trigger
+                  asChild
+                  type={undefined}
+                  aria-expanded={undefined}
+                  aria-controls={undefined}
+                  aria-haspopup={undefined}
+                >
+                  {children}
+                </Popover.Trigger>
                 <Popover.Content
                   sideOffset={4}
                   onOpenAutoFocus={(event) => {
@@ -434,13 +439,14 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 maxLength={maxLength}
                 autoComplete={autocomplete === "off" ? "nope" : autocomplete}
                 tabIndex={tabIndex}
-                role={isTextInputType() && hasSuggestions(suggestions) ? "combobox" : "textbox"}
-                aria-autocomplete={isTextInputType() && hasSuggestions(suggestions) ? "list" : undefined}
-                aria-controls={isTextInputType() && hasSuggestions(suggestions) ? autosuggestId : undefined}
-                aria-disabled={disabled}
-                aria-expanded={isTextInputType() && hasSuggestions(suggestions) ? isOpen : undefined}
+                type="text"
+                role={hasSuggestions(suggestions) ? "combobox" : undefined}
+                aria-autocomplete={hasSuggestions(suggestions) ? "list" : undefined}
+                aria-controls={hasSuggestions(suggestions) ? autosuggestId : undefined}
+                aria-expanded={hasSuggestions(suggestions) ? isOpen : undefined}
+                aria-haspopup={hasSuggestions(suggestions) ? "listbox" : undefined}
                 aria-activedescendant={
-                  isTextInputType() && hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
+                  hasSuggestions(suggestions) && isOpen && visualFocusIndex !== -1
                     ? `suggestion-${visualFocusIndex}`
                     : undefined
                 }
