@@ -23,7 +23,7 @@ const sections = [
           The <Code>contentPadding</Code> prop has been deprecated. Consider
           using layout components like the{" "}
           <Link href="/components/inset/" passHref>
-            <DxcLink>inset</DxcLink>
+            <DxcLink>Inset</DxcLink>
           </Link>{" "}
           for the same purpose.
         </DxcAlert>
