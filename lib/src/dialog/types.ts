@@ -26,6 +26,7 @@ type Props = {
    */
   onBackgroundClick?: () => void;
   /**
+   * @deprecated This prop will be removed shortly, consider using the Inset component for this purpose.
    * Size of the padding to be applied to the component ('xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge').
    * You can pass an object with 'top', 'bottom', 'left' and 'right' properties in order to specify different padding sizes.
    */

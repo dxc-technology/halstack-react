@@ -1,4 +1,9 @@
-import { DxcFlex, DxcTable } from "@dxc-technology/halstack-react";
+import {
+  DxcAlert,
+  DxcFlex,
+  DxcLink,
+  DxcTable,
+} from "@dxc-technology/halstack-react";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import QuickNavContainerLayout from "@/common/QuickNavContainerLayout";
 import DocFooter from "@/common/DocFooter";
@@ -6,12 +11,22 @@ import Example from "@/common/example/Example";
 import Code from "@/common/Code";
 import basicUsage from "./examples/basicUsage";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
+import Link from "next/link";
 
 const sections = [
   {
     title: "Props",
     content: (
       <>
+        <DxcAlert type="warning" size="fillParent">
+          The <Code>contentPadding</Code> prop has been deprecated. Consider
+          using layout components like the{" "}
+          <Link href="/components/inset/" passHref>
+            <DxcLink>Inset</DxcLink>
+          </Link>{" "}
+          for the same purpose.
+        </DxcAlert>
         <DxcTable>
           <thead>
             <tr>
@@ -97,11 +112,14 @@ const sections = [
               <td>contentPadding: string | object</td>
               <td></td>
               <td>
-                Size of the padding to be applied to the content area (`xxsmall`
-                | `xsmall` | `small` | `medium` | `large` | `xlarge` |
-                `xxlarge`). You can pass an object with `top`, `bottom`, `left`
-                and `right` properties in order to specify different padding
-                sizes.
+                <DxcFlex gap="0.25rem" direction="column" alignItems="baseline">
+                  <StatusTag status="Deprecated">Deprecated</StatusTag>
+                  Size of the padding to be applied to the content area
+                  (`xxsmall` | `xsmall` | `small` | `medium` | `large` |
+                  `xlarge` | `xxlarge`). You can pass an object with `top`,
+                  `bottom`, `left` and `right` properties in order to specify
+                  different padding sizes.
+                </DxcFlex>
               </td>
             </tr>
             <tr>
