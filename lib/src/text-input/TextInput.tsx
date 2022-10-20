@@ -85,10 +85,9 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
     },
     ref
   ): JSX.Element => {
-    const id = useState(uuidv4());
-    const inputId = `input-${id}`;
-    const autosuggestId = `suggestions-${id}`;
-    const errorId = `error-${id}`;
+    const [inputId] = useState(`input-${uuidv4()}`);
+    const autosuggestId = `suggestions-${inputId}`;
+    const errorId = `error-${inputId}`;
 
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, changeIsOpen] = useState(false);
@@ -381,7 +380,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
               condition={hasSuggestions(suggestions)}
               wrapper={(children) => (
                 <Popover.Root open={isOpen && (filteredSuggestions.length > 0 || isSearching || isAutosuggestError)}>
-                  <Popover.Trigger asChild>
+                  <Popover.Trigger asChild aria-controls={undefined}>
                     {children}
                   </Popover.Trigger>
                   <Popover.Content
