@@ -241,9 +241,6 @@ const sections = [
             title: "Margin",
             content: (
               <>
-                <DxcParagraph>
-                  Button <Code>margin</Code> can use the values:
-                </DxcParagraph>
                 <DxcTable>
                   <thead>
                     <tr>
