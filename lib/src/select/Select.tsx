@@ -313,7 +313,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
           )}
           {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
           <Popover.Root open={isOpen}>
-            <Popover.Trigger asChild>
+            <Popover.Trigger asChild type={undefined}>
               <Select
                 id={selectId}
                 disabled={disabled}

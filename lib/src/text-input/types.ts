@@ -158,7 +158,7 @@ type Props = {
 /**
  * List of suggestions of an Text Input component.
  */
- export type SuggestionsProps = {
+export type SuggestionsProps = {
   id: string;
   value: string;
   suggestions: string[];
@@ -168,7 +168,7 @@ type Props = {
   isSearching: boolean;
   suggestionOnClick: (suggestion: string) => void;
   getTextInputWidth: () => number;
-}
+};
 
 /**
  * Reference to the component.
@@ -186,6 +186,12 @@ export type SuggestionProps = {
   isLast: boolean;
   visuallyFocused: boolean;
   highlighted: boolean;
+};
+
+export type AutosuggestWrapperProps = {
+  condition: boolean;
+  wrapper: (children: React.ReactNode) => JSX.Element;
+  children: React.ReactNode;
 };
 
 export default Props;
