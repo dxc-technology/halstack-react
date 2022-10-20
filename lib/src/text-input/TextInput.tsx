@@ -385,7 +385,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                     {children}
                   </Popover.Trigger>
                   <Popover.Content
-                    sideOffset={4}
+                    sideOffset={5}
                     onOpenAutoFocus={(event) => {
                       // Avoid select to lose focus when the list is opened
                       event.preventDefault();
