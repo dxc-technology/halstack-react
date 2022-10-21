@@ -9,6 +9,7 @@ type SectionType = {
   level?: 1 | 2 | 3 | 4 | 5;
   subSections?: SectionType[];
   children?: React.ReactNode;
+  navSubtitle?: string;
 };
 
 const Section = ({
@@ -16,13 +17,16 @@ const Section = ({
   subSections,
   level,
   children,
+  navSubtitle,
 }: SectionType): JSX.Element => {
   return (
     <DxcFlex
       direction="column"
       gap={level === 1 ? "3rem" : level === 2 ? "2rem" : "1.5rem"}
     >
-      <HeadingLink level={level}>{title}</HeadingLink>
+      <HeadingLink level={level} navSubtitle={navSubtitle}>
+        {title}
+      </HeadingLink>
       {children}
       {subSections?.map((subSection) => {
         return (
@@ -32,6 +36,7 @@ const Section = ({
               title={subSection.title}
               subSections={subSection.subSections}
               level={level + 1 <= 5 ? level + 1 : 5}
+              navSubtitle={`${title} ${subSection.title}`}
             >
               {subSection.content}
             </Section>
