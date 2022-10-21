@@ -169,7 +169,7 @@ const DxcDropdown = ({
         size={size}
       >
         <Popover.Root open={isOpen}>
-          <Popover.Trigger asChild>
+          <Popover.Trigger asChild type={undefined}>
             <DropdownTrigger
               opened={isOpen}
               onClick={handleTriggerOnClick}
@@ -182,8 +182,8 @@ const DxcDropdown = ({
               margin={margin}
               size={size}
               id={triggerId}
-              aria-disabled={disabled}
               aria-haspopup="true"
+              aria-controls={menuId}
               aria-expanded={isOpen ? true : undefined}
               tabIndex={tabIndex}
               ref={triggerRef}
