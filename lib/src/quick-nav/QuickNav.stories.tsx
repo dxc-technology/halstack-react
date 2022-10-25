@@ -14,28 +14,19 @@ export default {
 const defaultLinks = [
   {
     label: "Overview",
-    id: "overview",
   },
   {
     label: "Principles",
-    id: "principles",
-    links: [
-      { label: "Color", id: "color" },
-      { label: "Spacing", id: "spacing" },
-      { label: "Typography", id: "typography" },
-    ],
+    links: [{ label: "Color" }, { label: "Spacing" }, { label: "Typography" }],
   },
   {
     label: "Components",
-    id: "components",
     links: [
       {
         label: "Accordion",
-        id: "accordion",
       },
       {
         label: "Button",
-        id: "button",
       },
     ],
   },
