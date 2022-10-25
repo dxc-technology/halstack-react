@@ -8,11 +8,10 @@ type HeadingLinkProps = {
   children: string;
   level?: 1 | 2 | 3 | 4 | 5;
   as?: "h1" | "h2" | "h3" | "h4" | "h5";
-  navSubtitle?: string;
 };
 
-function HeadingLink({ children, level, as, navSubtitle }: HeadingLinkProps) {
-  const elementId = slugify(navSubtitle ?? children, { lower: true });
+function HeadingLink({ children, level, as }: HeadingLinkProps) {
+  const elementId = slugify(children, { lower: true });
   return (
     <HeadingLinkContainer id={elementId}>
       <HeadingAnchor href={`#${elementId}`}>{linkIcon}</HeadingAnchor>
