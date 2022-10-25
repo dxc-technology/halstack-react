@@ -29,7 +29,13 @@ const DxcQuickNav = ({ title, links }: QuickNavTypes): JSX.Element => {
                         <li key={sublink.label}>
                           <DxcInset horizontal="0.5rem">
                             <DxcTypography>
-                              <Link href={`#${slugify(sublink?.label, { lower: true })}`}>{sublink?.label}</Link>
+                              <Link
+                                href={`#${slugify(link?.label, { lower: true })}-${slugify(sublink?.label, {
+                                  lower: true,
+                                })}`}
+                              >
+                                {sublink?.label}
+                              </Link>
                             </DxcTypography>
                           </DxcInset>
                         </li>
