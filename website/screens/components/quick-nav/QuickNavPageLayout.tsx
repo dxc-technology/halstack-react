@@ -14,7 +14,9 @@ const QuickNavPageHeading = ({ children }: { children: React.ReactNode }) => {
           <DxcParagraph>
             The quick nav component allows navigation inside a page. It renders
             the links according to the headings of the content in order to
-            navigate to each section.
+            navigate to each section. The navigation is done using the link
+            label or the link label plus sublink label when it is a sublink. If
+            there is any space, it will be replaced by '-'.
           </DxcParagraph>
           <TabsPageHeading tabs={tabs}></TabsPageHeading>
         </DxcFlex>

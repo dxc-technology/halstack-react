@@ -144,10 +144,10 @@
   dependencies:
     "@date-io/core" "^1.3.13"
 
-"@dxc-technology/halstack-react@0.0.0-3216581":
-  version "0.0.0-3216581"
-  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-0.0.0-3216581.tgz#379a8c7eaa361e0bbff955253a857e5073e6ffcc"
-  integrity sha512-09IaHT0OyN9E960z7e+ogidistggVa7nG4feluY0LUY2LYQg1gD0gAeVKuMWodFYjT+umdRyIDR1F2/Dp1wuKA==
+"@dxc-technology/halstack-react@0.0.0-87e1151":
+  version "0.0.0-87e1151"
+  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-0.0.0-87e1151.tgz#9aff03bc08f523677003ba6e8b3c300f9294d3d9"
+  integrity sha512-wp1msZOaTGfIYqTn466rLX/EdiuyOZ+sMwG0qQBLLy/yOy7C0e4b3M7JtYRRFlJHJSdVGvf0J0447NQwMITrUw==
   dependencies:
     "@date-io/dayjs" "^1.3.9"
     "@material-ui/core" "4.11.1"
@@ -155,7 +155,7 @@
     "@material-ui/lab" "4.0.0-alpha.17"
     "@material-ui/pickers" "3.2.2"
     "@material-ui/styles" "4.0.2"
-    "@radix-ui/react-popover" "^0.1.6"
+    "@radix-ui/react-popover" "0.1.6"
     "@types/styled-components" "^5.1.24"
     "@types/uuid" "^8.3.4"
     color "^3.1.3"
@@ -546,7 +546,7 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-layout-effect" "0.1.0"
 
-"@radix-ui/react-popover@^0.1.6":
+"@radix-ui/react-popover@0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-0.1.6.tgz#788e969239d9c55239678e615ab591b6b7ba5cdc"
   integrity sha512-zQzgUqW4RQDb0ItAL1xNW4K4olUrkfV3jeEPs9rG+nsDQurO+W9TT+YZ9H1mmgAJqlthyv1sBRZGdBm4YjtD6Q==

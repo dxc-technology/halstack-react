@@ -6,6 +6,7 @@ import Code from "@/common/Code";
 import Example from "@/common/example/Example";
 import quickNav from "./examples/quickNav";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import withContent from "./examples/withContent";
 
 const sections = [
   {
@@ -57,6 +58,14 @@ const sections = [
         content: (
           <>
             <Example example={quickNav} defaultIsVisible />
+          </>
+        ),
+      },
+      {
+        title: "With content",
+        content: (
+          <>
+            <Example example={withContent} defaultIsVisible />
           </>
         ),
       },
