@@ -14,28 +14,19 @@ export default {
 const defaultLinks = [
   {
     label: "Overview",
-    id: "overview",
   },
   {
     label: "Principles",
-    id: "principles",
-    links: [
-      { label: "Color", id: "color" },
-      { label: "Spacing", id: "spacing" },
-      { label: "Typography", id: "typography" },
-    ],
+    links: [{ label: "Color" }, { label: "Spacing" }, { label: "Typography" }],
   },
   {
     label: "Components",
-    id: "components",
     links: [
       {
         label: "Accordion",
-        id: "accordion",
       },
       {
         label: "Button",
-        id: "button",
       },
     ],
   },
@@ -44,30 +35,36 @@ const defaultLinks = [
 const links = [
   {
     label: "Overview",
-    id: "overview",
     links: [
       {
         label: "Introduction",
-        id: "introduction",
+      },
+    ],
+  },
+  {
+    label: "Components",
+    links: [
+      {
+        label: "Introduction",
+      },
+      {
+        label: "Accordion",
       },
     ],
   },
   {
     label: "Principles very very very very very very very very long",
-    id: "principles",
     links: [
-      { label: "Color very very very very very very very very long", id: "color" },
-      { label: "Spacingveryveryveryveryveryveryveryverylong", id: "spacing" },
-      { label: "Typography", id: "typography" },
+      { label: "Color very very very very very very very very long" },
+      { label: "Spacingveryveryveryveryveryveryveryverylong" },
+      { label: "Typography" },
     ],
   },
   {
     label: "Componentsveryveryveryveryveryveryveryverylong",
-    id: "components",
     links: [
       {
         label: "Accordion",
-        id: "accordion",
       },
     ],
   },
@@ -123,7 +120,7 @@ export const Chromatic = () => (
               open source design system for insurance products and digital experiences. Our system provides all the
               tools and resources needed to create superior, beautiful but above all, functional user experiences.
             </DxcParagraph>
-            <Content id="introduction">
+            <Content id="overview-introduction">
               <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
                 Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
@@ -158,9 +155,54 @@ export const Chromatic = () => (
               </DxcParagraph>
             </Content>
           </Content>
-          <Content id="principles">
+          <Content id="components">
+            <DxcHeading level={1} text="Components" margin={{ top: "small", bottom: "xsmall" }} />
+            <Content id="components-introduction">
+              <DxcHeading level={2} text="Introduction" margin={{ top: "xsmall", bottom: "xsmall" }} />
+              <DxcParagraph>
+                Design principles Halstack design principles are the fundamental part of DXC Technology's approach to
+                provide guidance for development teams in order to deliver delightful and consistent user experiences to
+                our customers: Balance Consistency Visual hierarchy All our components, design tokens, accessibility
+                guidelines, responsive design techniques, and layout proposals have been carefully curated by DXC design
+                and engineering teams with the objective of creating a unique visual language and ecosystem for our
+                applications. This is the DXC way of creating User Experiences. Open Source Halstack is an open source
+                design system, this means that we work towards DXC Technology bussines needs, but it is open for anyone
+                to use and contribute back to. We are charmed to receive external contributions to help us find bugs,
+                design new features, or help us improve the project documentation. If you're interested, definitely
+                check out our contribution guidelines.Design principles Halstack design principles are the fundamental
+                part of DXC Technology's approach to provide guidance for development teams in order to deliver
+                delightful and consistent user experiences to our customers: Balance Consistency Visual hierarchy All
+                our components, design tokens, accessibility guidelines, responsive design techniques, and layout
+                proposals have been carefully curated by DXC design and engineering teams with the objective of creating
+                a unique visual language and ecosystem for our applications. This is the DXC way of creating User
+                Experiences. Open Source Halstack is an open source design system, this means that we work towards DXC
+                Technology bussines needs, but it is open for anyone to use and contribute back to. We are charmed to
+                receive external contributions to help us find bugs, design new features, or help us improve the project
+                documentation. If you're interested, definitely check out our contribution guidelines.Design principles
+                Halstack design principles are the fundamental part of DXC Technology's approach to provide guidance for
+                development teams in order to deliver delightful and consistent user experiences to our customers:
+                Balance Consistency Visual hierarchy All our components, design tokens, accessibility guidelines,
+                responsive design techniques, and layout proposals have been carefully curated by DXC design and
+                engineering teams with the objective of creating a unique visual language and ecosystem for our
+                applications. This is the DXC way of creating User Experiences. Open Source Halstack is an open source
+                design system, this means that we work towards DXC Technology bussines needs, but it is open for anyone
+                to use and contribute back to. We are charmed to receive external contributions to help us find bugs,
+                design new features, or help us improve the project documentation. If you're interested, definitely
+                check out our contribution guidelines.
+              </DxcParagraph>
+            </Content>
+            <Content id="components-accordion">
+              <DxcHeading level={2} text="Accordion" margin={{ top: "xsmall", bottom: "xsmall" }} />
+              <DxcParagraph>
+                Accordions are used to group similar content and hide or show it depending on user needs or preferences.
+                Accordions give users more granular control over the interface and help digest content in stages, rather
+                than all at once.
+              </DxcParagraph>
+            </Content>
+          </Content>
+          <Content id="principles-very-very-very-very-very-very-very-very-long">
             <DxcHeading level={1} text="Principles" margin={{ top: "small", bottom: "xsmall" }} />
-            <Content id="color">
+            <Content id="principles-very-very-very-very-very-very-very-very-long-color-very-very-very-very-very-very-very-very-long">
               <DxcHeading level={2} text="Color" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
                 The color palette is an essential asset as a communication resource of our design system. Halstack color
@@ -197,7 +239,7 @@ export const Chromatic = () => (
                 role-based color palettes and must not be used outside this context.
               </DxcParagraph>
             </Content>
-            <Content id="spacing">
+            <Content id="principles-very-very-very-very-very-very-very-very-long-spacingveryveryveryveryveryveryveryverylong">
               <DxcHeading level={2} text="Spacing" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
                 In the search of consistent alignment between the elements we provide a spacing scale based on a root
@@ -219,7 +261,7 @@ export const Chromatic = () => (
                 easily multiplied, they provide flexible and consistent, yet distinct enough, steps between them.
               </DxcParagraph>
             </Content>
-            <Content id="typography">
+            <Content id="principles-very-very-very-very-very-very-very-very-long-typography">
               <DxcHeading level={2} text="Typography" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
                 Our selected typography helps in structuring our user's experience based on the visual impact that it
@@ -256,9 +298,9 @@ export const Chromatic = () => (
               </DxcParagraph>
             </Content>
           </Content>
-          <Content id="components">
+          <Content id="componentsveryveryveryveryveryveryveryverylong">
             <DxcHeading level={1} text="Components" margin={{ top: "small", bottom: "xsmall" }} />
-            <Content id="accordion">
+            <Content id="componentsveryveryveryveryveryveryveryverylong-accordion">
               <DxcHeading level={2} text="Accordion" margin={{ top: "xsmall", bottom: "xsmall" }} />
               <DxcParagraph>
                 Accordions are used to group similar content and hide or show it depending on user needs or preferences.
