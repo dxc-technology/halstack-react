@@ -1,8 +1,6 @@
 type Gap = { rowGap: string; columnGap: string };
 
-type Props = {
-  direction?: "row" | "row-reverse" | "column" | "column-reverse";
-  wrap?: "nowrap" | "wrap" | "wrap-reverse";
+type CommonProps = {
   justifyContent?:
     | "flex-start"
     | "flex-end"
@@ -36,6 +34,11 @@ type Props = {
     | "space-evenly"
     | "stretch";
   alignSelf?: "auto" | "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
+};
+
+type Props = CommonProps & {
+  direction?: "row" | "row-reverse" | "column" | "column-reverse";
+  wrap?: "nowrap" | "wrap" | "wrap-reverse";
   gap?: string | Gap;
   order?: number;
   grow?: number;
@@ -43,6 +46,16 @@ type Props = {
   basis?: string;
   as?: keyof HTMLElementTagNameMap;
   children: React.ReactNode;
+};
+
+export type StyledProps = CommonProps & {
+  $direction?: "row" | "row-reverse" | "column" | "column-reverse";
+  $wrap?: "nowrap" | "wrap" | "wrap-reverse";
+  $gap?: string | Gap;
+  $order?: number;
+  $grow?: number;
+  $shrink?: number;
+  $basis?: string;
 };
 
 export default Props;

@@ -1,35 +1,52 @@
 import React from "react";
 import styled from "styled-components";
-import FlexPropsType from "./types";
+import FlexPropsType, { StyledProps } from "./types";
 
-const DxcFlex = ({ children, ...props }: FlexPropsType): JSX.Element => <Flex {...props}>{children}</Flex>;
+const DxcFlex = ({
+  direction = "row",
+  wrap = "nowrap",
+  gap = "0",
+  order = 0,
+  grow = 0,
+  shrink = 1,
+  basis = "auto",
+  children,
+  ...props
+}: FlexPropsType): JSX.Element => (
+  <Flex
+    $direction={direction}
+    $wrap={wrap}
+    $order={order}
+    $grow={grow}
+    $shrink={shrink}
+    $basis={basis}
+    $gap={gap}
+    {...props}
+  >
+    {children}
+  </Flex>
+);
 
-const Flex = styled.div<FlexPropsType>`
+const Flex = styled.div<StyledProps>`
   display: flex;
   ${({
-    direction = "row",
-    wrap = "nowrap",
     justifyContent = "flex-start",
     alignItems = "stretch",
     alignContent = "normal",
     alignSelf = "auto",
-    gap = "0",
-    order = 0,
-    grow = 0,
-    shrink = 1,
-    basis = "auto",
+    ...props
   }) => `
-    flex-direction: ${direction}; 
-    flex-wrap: ${wrap}; 
+    flex-direction: ${props.$direction}; 
+    flex-wrap: ${props.$wrap}; 
     justify-content: ${justifyContent}; 
     align-items: ${alignItems};
     align-content: ${alignContent};
     align-self: ${alignSelf};
-    gap: ${typeof gap === "object" ? `${gap.rowGap} ${gap.columnGap}` : gap};
-    order: ${order};
-    flex-grow: ${grow};
-    flex-shrink: ${shrink};
-    flex-basis: ${basis};
+    gap: ${typeof props.$gap === "object" ? `${props.$gap.rowGap} ${props.$gap.columnGap}` : props.$gap};
+    order: ${props.$order};
+    flex-grow: ${props.$grow};
+    flex-shrink: ${props.$shrink};
+    flex-basis: ${props.$basis};
   `}
 `;
 

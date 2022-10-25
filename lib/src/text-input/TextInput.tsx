@@ -642,12 +642,13 @@ const InputContainer = styled.div<CommonDisabledBackgroundTypeProps & { error: b
             : props.theme.hoverBorderColor
         };
         ${
-          props.error &&
-          `box-shadow: 0 0 0 2px ${
-            props.backgroundType === "dark"
-              ? props.theme.hoverErrorBorderColorOnDark
-              : props.theme.hoverErrorBorderColor
-          };`
+          props.error
+            ? `box-shadow: 0 0 0 2px ${
+                props.backgroundType === "dark"
+                  ? props.theme.hoverErrorBorderColorOnDark
+                  : props.theme.hoverErrorBorderColor
+              };`
+            : ""
         }
       }
       &:focus-within {
