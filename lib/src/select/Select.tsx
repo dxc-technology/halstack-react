@@ -356,6 +356,7 @@ const DxcSelect = React.forwardRef<RefType, SelectPropsType>(
                 <SearchableValueContainer>
                   <ValueInput
                     name={name}
+                    disabled={disabled}
                     value={multiple ? (value ?? innerValue).join(",") : value ?? innerValue}
                     readOnly
                     aria-hidden="true"
