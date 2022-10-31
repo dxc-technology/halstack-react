@@ -168,9 +168,6 @@ const TableRowGroup = styled.tbody`
     left: calc(50% - 68.5px);
     bottom: calc(50% - 68.5px - 30px);
   }
-  & tr {
-    height: ${(props) => props.theme.rowHeight || "70px"};
-  }
 `;
 const SortIcon = styled.div`
   top: 409px;

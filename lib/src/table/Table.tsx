@@ -60,6 +60,7 @@ const DxcTableContent = styled.table`
   & tr {
     border-bottom: ${(props) =>
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
+    height: 60px;
   }
   & td {
     background-color: ${(props) => props.theme.dataBackgroundColor};
