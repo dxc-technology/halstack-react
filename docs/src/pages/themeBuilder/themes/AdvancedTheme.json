@@ -495,13 +495,13 @@
     "fontTextTransform": "none",
     "verticalPadding": "0.75rem",
     "horizontalPadding": "2rem",
-    "marginRight": "40px",
-    "marginLeft": "20px",
+    "marginRight": "2rem",
+    "marginLeft": "2rem",
     "itemsPerPageSelectorMarginLeft": "0px",
-    "itemsPerPageSelectorMarginRight": "30px",
+    "itemsPerPageSelectorMarginRight": "0.5rem",
     "pageSelectorMarginRight": "30px",
     "pageSelectorMarginLeft": "0px",
-    "totalItemsContainerMarginRight": "30px",
+    "totalItemsContainerMarginRight": "2.5rem",
     "totalItemsContainerMarginLeft": "0px"
   },
   "progressBar": {
