@@ -1,3 +1,5 @@
+import React from "react";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -11,7 +13,7 @@ type Action = {
   /**
    * This function will be called when the user clicks the action.
    */
-  onClick: () => void;
+  onClick: (event?: React.MouseEvent<HTMLInputElement>) => void;
   /**
    * Icon to be shown in the action.
    */
