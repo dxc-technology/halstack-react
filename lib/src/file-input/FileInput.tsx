@@ -186,7 +186,17 @@ const DxcFileInput = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         {mode === "file" ? (
           <FileContainer multiple={multiple} files={files}>
-            <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+            <HiddenInputFile
+              id={fileInputId}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={selectFiles}
+              name={name}
+              disabled={disabled}
+              readOnly
+              aria-hidden="true"
+            />
             <DxcButton
               mode="secondary"
               label={
@@ -223,7 +233,17 @@ const DxcFileInput = ({
           </FileContainer>
         ) : (
           <Container>
-            <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+            <HiddenInputFile
+              id={fileInputId}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={selectFiles}
+              name={name}
+              disabled={disabled}
+              readOnly
+              aria-hidden="true"
+            />
             <DragDropArea
               isDragging={isDragging}
               disabled={disabled}
@@ -352,10 +372,7 @@ const FileContainer = styled.div`
 `;
 
 const HiddenInputFile = styled.input`
-  visibility: hidden;
-  position: absolute;
-  width: 0px;
-  height: 0px;
+  display: none;
 `;
 
 const ButtonContainer = styled.div`
