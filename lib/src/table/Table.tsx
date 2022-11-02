@@ -94,6 +94,9 @@ const DxcTableContent = styled.table`
   & th:last-child {
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
   }
+  & td:last-child {
+    padding-right: 40px;
+  }
 `;
 
 export default DxcTable;
