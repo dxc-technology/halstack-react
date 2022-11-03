@@ -265,6 +265,10 @@ const DatePickerToolbarButton = styled.button`
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);
   }
+  &:focus {
+    outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
+    outline-offset: -2px;
+  }
 `;
 
 const DatePickerToolbarSubtitleButton = styled(DatePickerToolbarButton)`
@@ -393,12 +397,14 @@ const EmptyDayCell = styled.div`
 
 const YearPicker = styled.div`
   width: ${(props) => props.theme.dateInput.pickerWidth};
+  height: ${(props) => props.theme.dateInput.pickerHeight};
+  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
-  align-items: center;
   flex-direction: column;
-  max-height: ${(props) => props.theme.dateInput.pickerHeight};
+  padding: 0px 10px;
+  justify-content: center;
+  border-radius: 4px;
   overflow-y: scroll;
-  height: 300px;
 `;
 
 const YearPickerButton = styled.button<SelectableProps>`
