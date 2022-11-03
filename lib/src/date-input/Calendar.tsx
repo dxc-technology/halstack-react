@@ -239,6 +239,7 @@ function getYearsArray() {
 const DatePicker = styled.div`
   box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
+  border-radius: 4px;
 `;
 
 const DatePickerToolbar = styled.div`
@@ -452,15 +453,18 @@ const YearPickerButton = styled.button<SelectableProps>`
 
 const MonthPicker = styled.div`
   width: ${(props) => props.theme.dateInput.pickerWidth};
-  display: flex;
-  flex-wrap: wrap;
   max-height: ${(props) => props.theme.dateInput.pickerHeight};
-  padding: 18px 0px;
+  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
+  display: flex;
+  padding: 18px 10px;
+  justify-content: center;
+  border-radius: 4px;
+  flex-wrap: wrap;
 `;
 
 const MonthPickerButton = styled.button<SelectableProps>`
   width: 58px;
-  margin: 0 7px;
+  margin: 2px 7px;
   border-radius: 20px;
   border: none;
   font-size: 14px;
