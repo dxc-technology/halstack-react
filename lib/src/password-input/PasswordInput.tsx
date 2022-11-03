@@ -66,16 +66,14 @@ const DxcPasswordInput = React.forwardRef<RefType, PasswordInputPropsType>(
       }
     }, [isPasswordVisible]);
 
-    const viewPassword = (event) => {
+    const viewPassword = () => {
       setInputType("text");
       setIsPasswordVisible(true);
-      event.preventDefault();
     };
 
-    const hidePassword = (event) => {
+    const hidePassword = () => {
       setInputType("password");
       setIsPasswordVisible(false);
-      event.preventDefault();
     };
 
     const action = {
