@@ -1,3 +1,5 @@
+import dayjs, { Dayjs } from "dayjs";
+
 type Space = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 type Margin = {
   top?: Space;
@@ -92,6 +94,21 @@ type Props = {
    * Value of the tabindex attribute.
    */
   tabIndex?: number;
+};
+
+export type CalendarPropsType = {
+  /**
+   * Initial selected date value. If invalid the actual date will be used instead.
+   */
+  date: Dayjs;
+  /**
+   * Function called when a date is selected.
+   */
+  onDateSelect: (date: Dayjs) => void;
+  /**
+   * Function called when there is an attempt to close the calendar.
+   */
+  onCloseCalendar: () => void;
 };
 
 /**

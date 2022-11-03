@@ -19,7 +19,13 @@ export const Chromatic = () => (
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Disabled" theme="light" level={4} />
-      <DxcDateInput label="Disabled date input" helperText="Help message" defaultValue="06-04-2027" clearable disabled />
+      <DxcDateInput
+        label="Disabled date input"
+        helperText="Help message"
+        defaultValue="06-04-2027"
+        clearable
+        disabled
+      />
     </ExampleContainer>
     <ExampleContainer>
       <Title title="Invalid" theme="light" level={4} />
@@ -38,7 +44,13 @@ export const Chromatic = () => (
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Disabled" theme="dark" level={4} />
-          <DxcDateInput label="Disabled Date input" helperText="Help message" defaultValue="06-04-2027" clearable disabled />
+          <DxcDateInput
+            label="Disabled Date input"
+            helperText="Help message"
+            defaultValue="06-04-2027"
+            clearable
+            disabled
+          />
         </ExampleContainer>
         <ExampleContainer>
           <Title title="Invalid" theme="dark" level={4} />
@@ -118,8 +130,9 @@ const YearPicker = () => (
 );
 
 export const ShowYearPicker = YearPicker.bind({});
-ShowYearPicker.play = async () => {
-  await fireEvent.click(screen.getByRole("button"));
+ShowYearPicker.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
   await fireEvent.click(screen.getByText("2023"));
 };
 
@@ -131,8 +144,24 @@ const YearPickerFocus = () => (
 );
 
 export const ShowYearPickerFocus = YearPickerFocus.bind({});
-ShowYearPickerFocus.play = async () => {
-  await fireEvent.click(screen.getByRole("button"));
+ShowYearPickerFocus.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
   await fireEvent.click(screen.getByText("2023"));
-  await screen.getByText("2021").focus();
+  await userEvent.tab();
+};
+
+const MonthPicker = () => (
+  <ExampleContainer expanded>
+    <Title title="Show date input" theme="light" level={4} />
+    <DxcDateInput label="Date input" defaultValue="10-06-2023" />
+  </ExampleContainer>
+);
+
+export const ShowMonthPicker = MonthPicker.bind({});
+ShowMonthPicker.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByRole("button"));
+  await fireEvent.click(screen.getByText("June"));
+  await userEvent.tab();
 };
