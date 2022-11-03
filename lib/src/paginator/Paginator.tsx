@@ -174,7 +174,7 @@ const ItemsLabel = styled.span`
 
 const GoToLabel = styled.span`
   margin-right: 0.5rem;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 `;
 
 const TotalItemsContainer = styled.span`
@@ -193,6 +193,7 @@ const LabelsContainer = styled.div`
 const PageToSelectContainer = styled.span`
   display: flex;
   align-items: center;
+  margin-right: 0.5rem;
 
   label {
     height: 0px;
