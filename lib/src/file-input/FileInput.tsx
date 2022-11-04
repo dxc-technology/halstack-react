@@ -186,7 +186,7 @@ const DxcFileInput = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         {mode === "file" ? (
           <FileContainer multiple={multiple} files={files}>
-            <HiddenInputFile
+            <ValueInput
               id={fileInputId}
               type="file"
               accept={accept}
@@ -233,7 +233,7 @@ const DxcFileInput = ({
           </FileContainer>
         ) : (
           <Container>
-            <HiddenInputFile
+            <ValueInput
               id={fileInputId}
               type="file"
               accept={accept}
@@ -371,7 +371,7 @@ const FileContainer = styled.div`
   margin-top: 0.25rem;
 `;
 
-const HiddenInputFile = styled.input`
+const ValueInput = styled.input`
   display: none;
 `;
 
