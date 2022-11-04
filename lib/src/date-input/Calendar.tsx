@@ -8,6 +8,28 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 
 const firstYear = 1899;
 const lastYear = 2100;
+function getYearsArray() {
+  const yearList = [];
+  for (let i = firstYear; i <= lastYear; i++) {
+    yearList.push(i);
+  }
+  return yearList;
+}
+const yearList = getYearsArray();
+
+const leftCaret = (
+  <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
+    <path fill="none" d="M0 0h24v24H0V0z"></path>
+  </svg>
+);
+
+const rightCaret = (
+  <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+    <path fill="none" d="M0 0h24v24H0V0z"></path>
+  </svg>
+);
 
 const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date.isValid() ? date : dayjs());
@@ -26,20 +48,19 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
 
   const ref = useRef(null);
 
+  const handleKeyboardEvent = (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      onCloseCalendar();
+    }
+  };
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      onCloseCalendar();
+    }
+  };
+
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        onCloseCalendar();
-      }
-    }
-    function handleKeyboardEvent(event) {
-      switch (event.key) {
-        case "Escape":
-          event.preventDefault();
-          onCloseCalendar();
-          break;
-      }
-    }
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKeyboardEvent);
     return () => {
@@ -147,20 +168,14 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
               aria-label="previous month"
               onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") - 1))}
             >
-              <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
-                <path fill="none" d="M0 0h24v24H0V0z"></path>
-              </svg>
+              {leftCaret}
             </PickerHeaderButton>
             <HeaderMonthYear aria-live="polite">{innerDate.format("MMMM YYYY")}</HeaderMonthYear>
             <PickerHeaderButton
               aria-label="next month"
               onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") + 1))}
             >
-              <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-                <path fill="none" d="M0 0h24v24H0V0z"></path>
-              </svg>
+              {rightCaret}
             </PickerHeaderButton>
           </PickerHeader>
           <WeekHeader>
@@ -174,7 +189,7 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
               day !== 0 ? (
                 <DayCell
                   onKeyDown={(event) => handleDayKeyboardEvent(event, day)}
-                  id={"day_" + day}
+                  id={`day_${day}`}
                   aria-label={day}
                   onClick={() => handleDateSelect(day, "date")}
                   selected={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
@@ -192,7 +207,7 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
       )}
       {content === "yearPicker" && (
         <YearPicker>
-          {getYearsArray().map((year) => (
+          {yearList.map((year) => (
             <YearPickerButton
               aria-label={year}
               selected={selectedDate.get("year") === year}
@@ -202,7 +217,7 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
                 setContent("calendar");
               }}
             >
-              <span>{year}</span>
+              <YearPickerButtonLabel selected={selectedDate.get("year") === year}>{year}</YearPickerButtonLabel>
             </YearPickerButton>
           ))}
         </YearPicker>
@@ -227,14 +242,6 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
     </DatePicker>
   );
 };
-
-function getYearsArray() {
-  const yearList = [];
-  for (let i = firstYear; i <= lastYear; i++) {
-    yearList.push(i);
-  }
-  return yearList;
-}
 
 const DatePicker = styled.div`
   box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
@@ -403,7 +410,6 @@ const YearPicker = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0px 10px;
-  justify-content: center;
   border-radius: 4px;
   overflow-y: scroll;
 `;
@@ -420,24 +426,6 @@ const YearPickerButton = styled.button<SelectableProps>`
   letter-spacing: 0.00938em;
   width: 100%;
   cursor: pointer;
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 87px;
-    height: 40px;
-    ${(props) =>
-      props.selected
-        ? `
-    color: ${props.theme.dateInput.pickerSelectedDateColor};
-    font-size: 1.5rem;
-    line-height: 1.334;
-    letter-spacing: 0em;
-    font-weight: 500;
-    border-radius: 20px;
-    background-color: ${props.theme.dateInput.pickerSelectedDateBackgroundColor};`
-        : `color: ${props.theme.dateInput.pickerYearFontColor};`}
-  }
 
   &:focus {
     color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
@@ -449,6 +437,25 @@ const YearPickerButton = styled.button<SelectableProps>`
 
     outline: none;
   }
+`;
+
+const YearPickerButtonLabel = styled.span<SelectableProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 87px;
+  height: 40px;
+  ${(props) =>
+    props.selected
+      ? `
+  color: ${props.theme.dateInput.pickerSelectedDateColor};
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  font-weight: 500;
+  border-radius: 20px;
+  background-color: ${props.theme.dateInput.pickerSelectedDateBackgroundColor};`
+      : `color: ${props.theme.dateInput.pickerYearFontColor};`}
 `;
 
 const MonthPicker = styled.div`

@@ -1,7 +1,6 @@
-// @ts-nocheck
 import React, { useState, useRef } from "react";
 import dayjs from "dayjs";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcTextInput from "../text-input/TextInput";
