@@ -6,105 +6,111 @@ import { getMargin } from "../common/utils.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
-import { SwitchPropsType, Space, Margin } from "./types";
+import SwitchPropsType, { Space, Margin, RefType } from "./types";
 
-const DxcSwitch = ({
-  defaultChecked,
-  checked,
-  value,
-  label = "",
-  labelPosition = "before",
-  name = "",
-  disabled = false,
-  optional = false,
-  onChange,
-  margin,
-  size = "fitContent",
-  tabIndex = 0,
-}: SwitchPropsType): JSX.Element => {
-  const [switchId] = useState(`switch-${uuidv4()}`);
-  const labelId = `label-${switchId}`;
-  const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
+const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
+  (
+    {
+      defaultChecked,
+      checked,
+      value,
+      label = "",
+      labelPosition = "before",
+      name = "",
+      disabled = false,
+      optional = false,
+      onChange,
+      margin,
+      size = "fitContent",
+      tabIndex = 0,
+    },
+    ref
+  ) => {
+    const [switchId] = useState(`switch-${uuidv4()}`);
+    const labelId = `label-${switchId}`;
+    const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);
 
-  const colorsTheme = useTheme();
-  const translatedLabels = useTranslatedLabels();
-  const backgroundType = useContext(BackgroundColorContext);
-  const refTrack = useRef(null);
+    const colorsTheme = useTheme();
+    const translatedLabels = useTranslatedLabels();
+    const backgroundType = useContext(BackgroundColorContext);
+    const refTrack = useRef(null);
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (event.key) {
-      case "Enter":
-      case " ": //Space
-        event.preventDefault();
-        refTrack.current.focus();
-        const isChecked = !(checked ?? innerChecked);
-        setInnerChecked(isChecked);
-        onChange?.(isChecked);
-        break;
-    }
-  };
+    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      switch (event.key) {
+        case "Enter":
+        case " ": //Space
+          event.preventDefault();
+          refTrack.current.focus();
+          const isChecked = !(checked ?? innerChecked);
+          setInnerChecked(isChecked);
+          onChange?.(isChecked);
+          break;
+      }
+    };
 
-  const handlerSwitchChange = (event) => {
-    checked ?? setInnerChecked((innerChecked) => !innerChecked);
-    onChange?.(checked ? !checked : !innerChecked);
-  };
+    const handlerSwitchChange = (event) => {
+      checked ?? setInnerChecked((innerChecked) => !innerChecked);
+      onChange?.(checked ? !checked : !innerChecked);
+    };
 
-  return (
-    <ThemeProvider theme={colorsTheme.switch}>
-      <SwitchContainer
-        margin={margin}
-        size={size}
-        onKeyDown={handleOnKeyDown}
-        disabled={disabled}
-        onClick={!disabled ? handlerSwitchChange : undefined}
-      >
-        {labelPosition === "before" && label && (
-          <LabelContainer
-            id={labelId}
-            labelPosition={labelPosition}
-            disabled={disabled}
-            backgroundType={backgroundType}
-            label={label}
-          >
-            {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
-          </LabelContainer>
-        )}
-        <ValueInput
-          type="checkbox"
-          name={name}
-          aria-hidden={true}
-          value={value}
+    return (
+      <ThemeProvider theme={colorsTheme.switch}>
+        <SwitchContainer
+          margin={margin}
+          size={size}
+          onKeyDown={handleOnKeyDown}
           disabled={disabled}
-          checked={checked ?? innerChecked}
-          readOnly
-        />
-        <SwitchBase>
-          <SwitchTrack
-            role="switch"
-            backgroundType={backgroundType}
-            aria-checked={checked ?? innerChecked}
-            aria-disabled={disabled}
+          onClick={!disabled ? handlerSwitchChange : undefined}
+          ref={ref}
+        >
+          {labelPosition === "before" && label && (
+            <LabelContainer
+              id={labelId}
+              labelPosition={labelPosition}
+              disabled={disabled}
+              backgroundType={backgroundType}
+              label={label}
+            >
+              {label} {optional && <>{translatedLabels.formFields.optionalLabel}</>}
+            </LabelContainer>
+          )}
+          <ValueInput
+            type="checkbox"
+            name={name}
+            aria-hidden={true}
+            value={value}
             disabled={disabled}
-            aria-labelledby={labelId}
-            tabIndex={!disabled ? tabIndex : -1}
-            ref={refTrack}
+            checked={checked ?? innerChecked}
+            readOnly
           />
-        </SwitchBase>
-        {labelPosition === "after" && label && (
-          <LabelContainer
-            id={labelId}
-            labelPosition={labelPosition}
-            disabled={disabled}
-            backgroundType={backgroundType}
-            label={label}
-          >
-            {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
-          </LabelContainer>
-        )}
-      </SwitchContainer>
-    </ThemeProvider>
-  );
-};
+          <SwitchBase>
+            <SwitchTrack
+              role="switch"
+              backgroundType={backgroundType}
+              aria-checked={checked ?? innerChecked}
+              aria-disabled={disabled}
+              disabled={disabled}
+              aria-labelledby={labelId}
+              tabIndex={!disabled ? tabIndex : -1}
+              ref={refTrack}
+            />
+          </SwitchBase>
+          {labelPosition === "after" && label && (
+            <LabelContainer
+              id={labelId}
+              labelPosition={labelPosition}
+              disabled={disabled}
+              backgroundType={backgroundType}
+              label={label}
+            >
+              {optional && <>{translatedLabels.formFields.optionalLabel}</>} {label}
+            </LabelContainer>
+          )}
+        </SwitchContainer>
+      </ThemeProvider>
+    );
+  }
+);
 
 const sizes = {
   small: "60px",

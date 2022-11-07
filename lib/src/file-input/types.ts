@@ -110,6 +110,11 @@ type FileModeProps = CommonProps & {
   dropAreaLabel?: never;
 };
 
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
+
 type Props = DropModeProps | FileModeProps;
 
 export default Props;
