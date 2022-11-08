@@ -58,7 +58,14 @@ const FileItem = ({
               {name}
             </FileName>
             {error && <ErrorIcon aria-label="Error">{errorIcon}</ErrorIcon>}
-            <DeleteIcon error={error} onClick={() => onDelete(name)} aria-label={`Remove ${name}`} tabIndex={tabIndex}>
+            <DeleteIcon
+              error={error}
+              onClick={() => {
+                onDelete(name);
+              }}
+              aria-label={`Remove ${name}`}
+              tabIndex={tabIndex}
+            >
               {deleteIcon}
             </DeleteIcon>
           </FileItemContainer>
@@ -71,13 +78,12 @@ const FileItem = ({
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: row;
   padding: ${(props) =>
     props.showPreview
       ? `calc(8px - ${props.theme.fileItemBorderThickness}) 8px`
       : `calc(8px - ${props.theme.fileItemBorderThickness}) 8px calc(8px - ${props.theme.fileItemBorderThickness}) 16px`};
-  background-color: ${(props) => props.error && props.theme.errorFileItemBackgroundColor};
-  border-radius: ${(props) => props.theme.fileItemBorderRadius};
   width: ${(props) =>
     props.mode === "file" && !props.multiple && props.numFiles === 1
       ? "calc(230px - 26px)"
@@ -90,11 +96,11 @@ const Container = styled.div`
       : !props.showPreview && props.error
       ? "calc(59px - 18px)"
       : "calc(64px - 18px)"};
+  background-color: ${(props) => props.error && props.theme.errorFileItemBackgroundColor};
   border-color: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)};
   border-width: ${(props) => props.theme.fileItemBorderThickness};
   border-style: ${(props) => props.theme.fileItemBorderStyle};
-  display: flex;
-  justify-content: center;
+  border-radius: ${(props) => props.theme.fileItemBorderRadius};
 `;
 
 const FileItemContent = styled.div`
@@ -207,4 +213,4 @@ const ErrorMessage = styled.span`
   line-height: ${(props) => props.theme.errorMessageLineHeight};
 `;
 
-export default FileItem;
+export default React.memo(FileItem);

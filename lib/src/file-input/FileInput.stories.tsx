@@ -2,6 +2,7 @@ import React from "react";
 import DxcFileInput from "./FileInput";
 import Title from "../../.storybook/components/Title";
 import ExampleContainer from "../../.storybook/components/ExampleContainer";
+import FileItem from "./FileItem";
 
 export default {
   title: "File input",
@@ -65,17 +66,48 @@ const filesExamples = [
 
 export const Chromatic = () => (
   <>
+    <Title title="File item states" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="File item hovered" theme="light" level={4} />
-      <DxcFileInput value={fileExample} callbackFile={() => {}} />
+      <FileItem
+        mode="dropzone"
+        multiple={true}
+        name={"file1"}
+        showPreview={false}
+        numFiles={1}
+        preview={picPreview}
+        type={"image/png"}
+        onDelete={() => {}}
+        tabIndex={0}
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="File item focused" theme="light" level={4} />
-      <DxcFileInput value={fileExample} callbackFile={() => {}} />
+      <FileItem
+        mode="dropzone"
+        multiple={true}
+        name={"file1"}
+        showPreview={false}
+        numFiles={1}
+        preview={picPreview}
+        type={"image/png"}
+        onDelete={() => {}}
+        tabIndex={0}
+      />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="File item actived" theme="light" level={4} />
-      <DxcFileInput value={fileExample} callbackFile={() => {}} />
+      <FileItem
+        mode="dropzone"
+        multiple={true}
+        name={"file1"}
+        showPreview={false}
+        numFiles={1}
+        preview={picPreview}
+        type={"image/png"}
+        onDelete={() => {}}
+        tabIndex={0}
+      />
     </ExampleContainer>
     <Title title="File" theme="light" level={2} />
     <ExampleContainer>
