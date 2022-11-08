@@ -2,19 +2,15 @@ import dayjs, { UnitType, Dayjs } from "dayjs";
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
+import useTranslatedLabels from "../useTranslatedLabels";
 
-const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-const firstYear = 1899;
-const lastYear = 2100;
-function getYearsArray() {
+const getYearsArray = () => {
   const yearList = [];
-  for (let i = firstYear; i <= lastYear; i++) {
+  for (let i = 1899; i <= 2100; i++) {
     yearList.push(i);
   }
   return yearList;
-}
+};
 const yearList = getYearsArray();
 
 const leftCaret = (
@@ -31,7 +27,7 @@ const rightCaret = (
   </svg>
 );
 
-const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType): JSX.Element => {
+const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date.isValid() ? date : dayjs());
   const [selectedDate, setSelectedDate] = useState(date.isValid() ? date : dayjs());
   const [dateToFocus, setDateToFocus] = useState(date.isValid() ? date : dayjs());
@@ -45,8 +41,10 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
     }
     return monthDayCells;
   }, [innerDate]);
-
   const ref = useRef(null);
+  const translatedLabels = useTranslatedLabels();
+  const weekDays = translatedLabels.calendar.daysShort;
+  const months = translatedLabels.calendar.monthsShort;
 
   const handleKeyboardEvent = (event) => {
     if (event.key === "Escape") {
@@ -67,29 +65,29 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyboardEvent);
     };
-  }, [ref.current]);
+  }, [onCloseCalendar]);
 
   useEffect(() => {
     document.getElementById(`day_` + dateToFocus.get("date"))?.focus();
   }, [dateToFocus]);
 
-  function handleDateSelect(date: number, unit: UnitType) {
+  const handleDateSelect = (date: number, unit: UnitType) => {
     setInnerDate((innerDate) => {
       const newDate = innerDate.set(unit, date);
       setSelectedDate(newDate);
       onDateSelect(newDate);
       return newDate;
     });
-  }
+  };
 
-  function focusDate(date: Dayjs) {
+  const focusDate = (date: Dayjs) => {
     if (innerDate.get("month") !== date.get("month") || innerDate.get("year") !== date.get("year")) {
       setInnerDate((innerDate) => {
         return innerDate.set("month", date.get("month")).set("year", date.get("year"));
       });
     }
     setDateToFocus(date);
-  }
+  };
 
   const handleDayKeyboardEvent = (event, day) => {
     let dateToFocusTemp = innerDate.set("date", day);
@@ -148,7 +146,7 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
   };
 
   return (
-    <DatePicker id="date-picker" ref={ref}>
+    <DatePicker ref={ref}>
       <DatePickerToolbar>
         <DatePickerToolbarButton
           onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
@@ -165,14 +163,16 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
         <Calendar>
           <PickerHeader>
             <PickerHeaderButton
-              aria-label="previous month"
+              aria-label={translatedLabels.calendar.previousMonthTitle}
+              title={translatedLabels.calendar.previousMonthTitle}
               onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") - 1))}
             >
               {leftCaret}
             </PickerHeaderButton>
             <HeaderMonthYear aria-live="polite">{innerDate.format("MMMM YYYY")}</HeaderMonthYear>
             <PickerHeaderButton
-              aria-label="next month"
+              aria-label={translatedLabels.calendar.nextMonthTitle}
+              title={translatedLabels.calendar.nextMonthTitle}
               onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") + 1))}
             >
               {rightCaret}
@@ -183,7 +183,6 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
               <DayHeaderCell key={weekDay}>{weekDay}</DayHeaderCell>
             ))}
           </WeekHeader>
-
           <DayCellsContainer>
             {dayCells.map((day) =>
               day !== 0 ? (
@@ -195,6 +194,7 @@ const DxcDateInputCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarP
                   selected={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
                   autoFocus={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
                   aria-selected={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
+                  tabIndex={day === dateToFocus.get("date") ? 0 : -1}
                 >
                   {day}
                 </DayCell>
@@ -378,7 +378,7 @@ const DayCell = styled.button<SelectableProps>`
   margin: 0 2px;
   margin-bottom: 2px;
   padding: 0;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
   font-weight: 500;
   border: none;
@@ -492,4 +492,4 @@ const MonthPickerButton = styled.button<SelectableProps>`
   }
 `;
 
-export default DxcDateInputCalendar;
+export default DxcCalendar;
