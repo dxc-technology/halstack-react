@@ -68,43 +68,43 @@ export const Chromatic = () => (
   <>
     <Title title="File item states" theme="light" level={2} />
     <ExampleContainer pseudoState="pseudo-hover">
-      <Title title="File item hovered" theme="light" level={4} />
+      <Title title="Hovered" theme="light" level={4} />
       <FileItem
         mode="dropzone"
         multiple={true}
-        name={"file1"}
+        name="file"
         showPreview={false}
         numFiles={1}
         preview={picPreview}
-        type={"image/png"}
+        type="image/png"
         onDelete={() => {}}
         tabIndex={0}
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
-      <Title title="File item focused" theme="light" level={4} />
+      <Title title="Focused" theme="light" level={4} />
       <FileItem
         mode="dropzone"
         multiple={true}
-        name={"file1"}
+        name="file"
         showPreview={false}
         numFiles={1}
         preview={picPreview}
-        type={"image/png"}
+        type="image/png"
         onDelete={() => {}}
         tabIndex={0}
       />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-active">
-      <Title title="File item actived" theme="light" level={4} />
+      <Title title="Actived" theme="light" level={4} />
       <FileItem
         mode="dropzone"
         multiple={true}
-        name={"file1"}
+        name="file"
         showPreview={false}
         numFiles={1}
         preview={picPreview}
-        type={"image/png"}
+        type="image/png"
         onDelete={() => {}}
         tabIndex={0}
       />
