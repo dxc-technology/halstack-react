@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import React, { useState, useEffect, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -6,8 +6,8 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
-import FileItem from "./FileItem";
 import FileInputPropsType from "./types";
+import FileItem from "./FileItem";
 
 const audioIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -196,12 +196,10 @@ const DxcFileInput = ({
             <FileItemListContainer mode={mode} multiple={multiple} files={files}>
               {files.map((file) => (
                 <FileItem
-                  mode={mode}
-                  multiple={multiple}
-                  name={file.file.name}
+                  fileName={file.file.name}
                   error={file.error}
+                  showError={multiple || files.length > 1}
                   showPreview={mode === "file" && !multiple ? false : showPreview}
-                  numFiles={files.length}
                   preview={file.preview}
                   type={file.file.type}
                   onDelete={onDelete}
@@ -260,12 +258,10 @@ const DxcFileInput = ({
             <FileItemListContainer mode={mode} multiple={multiple} files={files}>
               {files.map((file) => (
                 <FileItem
-                  mode={mode}
-                  multiple={multiple}
-                  name={file.file.name}
+                  fileName={file.file.name}
                   error={file.error}
+                  showError={multiple || files.length > 1}
                   showPreview={showPreview}
-                  numFiles={files.length}
                   preview={file.preview}
                   type={file.file.type}
                   onDelete={onDelete}

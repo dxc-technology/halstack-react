@@ -70,11 +70,10 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-hover">
       <Title title="Hovered" theme="light" level={4} />
       <FileItem
-        mode="dropzone"
-        multiple={true}
-        name="file"
+        fileName="file"
+        error=""
+        showError={false}
         showPreview={false}
-        numFiles={1}
         preview={picPreview}
         type="image/png"
         onDelete={() => {}}
@@ -84,11 +83,10 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
       <FileItem
-        mode="dropzone"
-        multiple={true}
-        name="file"
+        fileName="file"
+        error=""
+        showError={false}
         showPreview={false}
-        numFiles={1}
         preview={picPreview}
         type="image/png"
         onDelete={() => {}}
@@ -98,11 +96,10 @@ export const Chromatic = () => (
     <ExampleContainer pseudoState="pseudo-active">
       <Title title="Actived" theme="light" level={4} />
       <FileItem
-        mode="dropzone"
-        multiple={true}
-        name="file"
+        fileName="file"
+        error=""
+        showError={false}
         showPreview={false}
-        numFiles={1}
         preview={picPreview}
         type="image/png"
         onDelete={() => {}}
