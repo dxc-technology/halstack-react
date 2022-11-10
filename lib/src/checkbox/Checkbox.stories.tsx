@@ -26,8 +26,8 @@ const Checkbox = () => (
       <DxcCheckbox label="Checkbox" disabled />
     </ExampleContainer>
     <ExampleContainer>
-      <Title title="Disabled and checked" theme="light" level={4} />
-      <DxcCheckbox label="Checkbox" disabled defaultChecked />
+      <Title title="Disabled, checked and optional" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" disabled defaultChecked optional />
     </ExampleContainer>
     <ExampleContainer pseudoState="pseudo-focus">
       <Title title="Focused" theme="light" level={4} />
@@ -57,6 +57,10 @@ const Checkbox = () => (
       <Title title="Optional with label after" theme="light" level={4} />
       <DxcCheckbox label="Checkbox" optional labelPosition="after" />
     </ExampleContainer>
+    <ExampleContainer>
+      <Title title="Disabled and optional with label after" theme="light" level={4} />
+      <DxcCheckbox label="Checkbox" disabled labelPosition="after" optional />
+    </ExampleContainer>
     <BackgroundColorProvider color="#333333">
       <DarkContainer>
         <ExampleContainer>
@@ -72,8 +76,8 @@ const Checkbox = () => (
           <DxcCheckbox label="Checkbox" disabled />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Disabled and checked" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" disabled defaultChecked />
+          <Title title="Disabled, checked and optional" theme="dark" level={4} />
+          <DxcCheckbox label="Checkbox" disabled defaultChecked optional />
         </ExampleContainer>
         <ExampleContainer pseudoState="pseudo-focus">
           <Title title="Focused" theme="dark" level={4} />
@@ -96,8 +100,16 @@ const Checkbox = () => (
           <DxcCheckbox label="Checkbox" labelPosition="after" />
         </ExampleContainer>
         <ExampleContainer>
-          <Title title="Optional checked with label after" theme="dark" level={4} />
-          <DxcCheckbox label="Checkbox" defaultChecked optional labelPosition="after" />
+          <Title title="Checked with label after" theme="dark" level={4} />
+          <DxcCheckbox label="Checkbox" defaultChecked labelPosition="after" />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Optional with label after" theme="dark" level={4} />
+          <DxcCheckbox label="Checkbox" optional labelPosition="after" />
+        </ExampleContainer>
+        <ExampleContainer>
+          <Title title="Disabled and optional with label after" theme="dark" level={4} />
+          <DxcCheckbox label="Checkbox" disabled labelPosition="after" optional />
         </ExampleContainer>
       </DarkContainer>
     </BackgroundColorProvider>
