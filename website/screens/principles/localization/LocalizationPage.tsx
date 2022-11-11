@@ -150,6 +150,48 @@ const sections = [
         ),
       },
       {
+        title: "calendar",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Label Name</th>
+                <th>Default value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Code>daysShort</Code>
+                </td>
+                <td>[Su, Mo, Tu, We, Th, Fr, Sa]</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>monthsShort</Code>
+                </td>
+                <td>
+                  [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>previousMonthTitle</Code>
+                </td>
+                <td>previous month</td>
+              </tr>
+              <tr>
+                <td>
+                  <Code>nextMonthTitle</Code>
+                </td>
+                <td>next month</td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "dateInput",
         content: (
           <DxcTable>

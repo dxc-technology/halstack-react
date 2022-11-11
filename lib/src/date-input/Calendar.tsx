@@ -88,7 +88,7 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
   };
 
   useEffect(() => {
-    document.getElementById(`day_` + dateToFocus.get("date"))?.focus();
+    document.getElementById(`day_${dateToFocus.get("date")}`)?.focus();
   }, [dateToFocus]);
 
   const handleDateSelect = (date: number, unit: UnitType) => {
@@ -514,4 +514,4 @@ const MonthPickerButton = styled.button<SelectableProps>`
   }
 `;
 
-export default DxcCalendar;
+export default React.memo(DxcCalendar);

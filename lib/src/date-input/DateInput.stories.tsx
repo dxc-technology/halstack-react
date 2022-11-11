@@ -109,7 +109,7 @@ export const Chromatic = () => (
 
 const DatePicker = () => (
   <ExampleContainer expanded>
-    <Title title="Show date input" theme="light" level={4} />
+    <Title title="Show date picker" theme="light" level={4} />
     <DxcDateInput label="Date input" defaultValue="10-06-2023" />
   </ExampleContainer>
 );
@@ -124,7 +124,7 @@ ShowDatePicker.play = async ({ canvasElement }) => {
 
 const YearPicker = () => (
   <ExampleContainer expanded>
-    <Title title="Show date input" theme="light" level={4} />
+    <Title title="Show year picker" theme="light" level={4} />
     <DxcDateInput label="Date input" defaultValue="10-06-2023" />
   </ExampleContainer>
 );
@@ -138,7 +138,7 @@ ShowYearPicker.play = async ({ canvasElement }) => {
 
 const YearPickerFocus = () => (
   <ExampleContainer expanded>
-    <Title title="Show date input" theme="light" level={4} />
+    <Title title="Show year picker and focus" theme="light" level={4} />
     <DxcDateInput label="Date input" defaultValue="10-06-2023" />
   </ExampleContainer>
 );
@@ -153,7 +153,7 @@ ShowYearPickerFocus.play = async ({ canvasElement }) => {
 
 const MonthPicker = () => (
   <ExampleContainer expanded>
-    <Title title="Show date input" theme="light" level={4} />
+    <Title title="Show month picker" theme="light" level={4} />
     <DxcDateInput label="Date input" defaultValue="10-06-2023" />
   </ExampleContainer>
 );
