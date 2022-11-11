@@ -67,6 +67,26 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
     };
   }, [onCloseCalendar]);
 
+  const handleOnMonthNextTab = (event) => {
+    if (event.key === "Tab" && !event.shiftKey) {
+      if (selectedDate.get("month") !== innerDate.get("month") || selectedDate.get("year") !== innerDate.get("year")) {
+        setDateToFocus(innerDate.set("date", 1));
+      } else {
+        setDateToFocus(selectedDate);
+      }
+    }
+  };
+
+  const handleOnYearShiftTab = (event) => {
+    if (event.key === "Tab" && event.shiftKey) {
+      if (selectedDate.get("month") !== innerDate.get("month") || selectedDate.get("year") !== innerDate.get("year")) {
+        setDateToFocus(innerDate.set("date", 1));
+      } else {
+        setDateToFocus(selectedDate);
+      }
+    }
+  };
+
   useEffect(() => {
     document.getElementById(`day_` + dateToFocus.get("date"))?.focus();
   }, [dateToFocus]);
@@ -150,6 +170,7 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
       <DatePickerToolbar>
         <DatePickerToolbarButton
           onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
+          onKeyDown={handleOnYearShiftTab}
         >
           {selectedDate.format("YYYY")}
         </DatePickerToolbarButton>
@@ -174,6 +195,7 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
               aria-label={translatedLabels.calendar.nextMonthTitle}
               title={translatedLabels.calendar.nextMonthTitle}
               onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") + 1))}
+              onKeyDown={handleOnMonthNextTab}
             >
               {rightCaret}
             </PickerHeaderButton>
