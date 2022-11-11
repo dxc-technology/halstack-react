@@ -225,6 +225,12 @@ const sections = [
                 </td>
                 <td>or drop file</td>
               </tr>
+              <tr>
+                <td>
+                  <Code>deleteFileActionTitle</Code>
+                </td>
+                <td>Remove file</td>
+              </tr>
             </tbody>
           </DxcTable>
         ),

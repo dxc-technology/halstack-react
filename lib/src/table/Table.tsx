@@ -60,6 +60,7 @@ const DxcTableContent = styled.table`
   & tr {
     border-bottom: ${(props) =>
       `${props.theme.rowSeparatorThickness} ${props.theme.rowSeparatorStyle} ${props.theme.rowSeparatorColor}`};
+    height: 60px;
   }
   & td {
     background-color: ${(props) => props.theme.dataBackgroundColor};
@@ -92,6 +93,9 @@ const DxcTableContent = styled.table`
   }
   & th:last-child {
     border-top-right-radius: ${(props) => props.theme.headerBorderRadius};
+  }
+  & td:last-child {
+    padding-right: 40px;
   }
 `;
 

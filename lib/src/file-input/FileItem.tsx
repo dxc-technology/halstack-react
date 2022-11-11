@@ -2,6 +2,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
+import useTranslatedLabels from "../useTranslatedLabels";
 
 const deleteIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -29,27 +30,25 @@ const FileItem = ({
   tabIndex,
 }) => {
   const colorsTheme = useTheme();
-  const isImage = type.includes("image");
+  const translatedLabels = useTranslatedLabels();
 
   const getIconAriaLabel = () => {
-    if (type.includes("video")) {
+    if (type.includes("video"))
       return "video";
-    }
-    if (type.includes("audio")) {
+    else if (type.includes("audio"))
       return "audio";
-    }
-    return "file";
+    else return "file";
   };
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <Container mode={mode} multiple={multiple} error={error} showPreview={showPreview} numFiles={numFiles}>
         {showPreview &&
-          (isImage ? (
+          (type.includes("image") ? (
             <ImagePreview src={preview} alt={name} />
           ) : (
             <IconPreviewContainer error={error} aria-label={getIconAriaLabel()}>
-              <IconPreview error={error}>{preview}</IconPreview>
+              {preview}
             </IconPreviewContainer>
           ))}
         <FileItemContent>
@@ -57,10 +56,18 @@ const FileItem = ({
             <FileName mode={mode} multiple={multiple} error={error} showPreview={showPreview} numFiles={numFiles}>
               {name}
             </FileName>
-            {error && <ErrorIcon aria-label="Error">{errorIcon}</ErrorIcon>}
-            <DeleteIcon error={error} onClick={() => onDelete(name)} aria-label={`Remove ${name}`} tabIndex={tabIndex}>
+            {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
+            <DeleteFileAction
+              error={error}
+              onClick={() => {
+                onDelete(name);
+              }}
+              title={translatedLabels.fileInput.deleteFileActionTitle}
+              aria-label={translatedLabels.fileInput.deleteFileActionTitle}
+              tabIndex={tabIndex}
+            >
               {deleteIcon}
-            </DeleteIcon>
+            </DeleteFileAction>
           </FileItemContainer>
           {error && (multiple || numFiles > 1) && <ErrorMessage>{error}</ErrorMessage>}
         </FileItemContent>
@@ -72,12 +79,12 @@ const FileItem = ({
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  gap: 12px;
   padding: ${(props) =>
     props.showPreview
       ? `calc(8px - ${props.theme.fileItemBorderThickness}) 8px`
       : `calc(8px - ${props.theme.fileItemBorderThickness}) 8px calc(8px - ${props.theme.fileItemBorderThickness}) 16px`};
-  background-color: ${(props) => props.error && props.theme.errorFileItemBackgroundColor};
-  border-radius: ${(props) => props.theme.fileItemBorderRadius};
   width: ${(props) =>
     props.mode === "file" && !props.multiple && props.numFiles === 1
       ? "calc(230px - 26px)"
@@ -90,11 +97,11 @@ const Container = styled.div`
       : !props.showPreview && props.error
       ? "calc(59px - 18px)"
       : "calc(64px - 18px)"};
+  background-color: ${(props) => props.error && props.theme.errorFileItemBackgroundColor};
   border-color: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)};
   border-width: ${(props) => props.theme.fileItemBorderThickness};
   border-style: ${(props) => props.theme.fileItemBorderStyle};
-  display: flex;
-  justify-content: center;
+  border-radius: ${(props) => props.theme.fileItemBorderRadius};
 `;
 
 const FileItemContent = styled.div`
@@ -112,7 +119,6 @@ const ImagePreview = styled.img`
   width: 48px;
   height: 48px;
   object-fit: contain;
-  margin-right: 12px;
   border-radius: 2px;
 `;
 
@@ -120,7 +126,6 @@ const IconPreviewContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 12px;
   background-color: ${(props) =>
     props.error ? props.theme.errorFilePreviewBackgroundColor : props.theme.filePreviewBackgroundColor};
   width: 48px;
@@ -128,8 +133,6 @@ const IconPreviewContainer = styled.div`
   border-radius: 2px;
   color: ${(props) => (props.error ? props.theme.errorFilePreviewIconColor : props.theme.filePreviewIconColor)};
 `;
-
-const IconPreview = styled.div``;
 
 const FileName = styled.span`
   color: ${(props) => props.theme.fileNameFontColor};
@@ -164,7 +167,7 @@ const ErrorIcon = styled.span`
   color: #d0011b;
 `;
 
-const DeleteIcon = styled.button`
+const DeleteFileAction = styled.button`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -180,17 +183,14 @@ const DeleteIcon = styled.button`
   padding: 3px;
   cursor: pointer;
   color: ${(props) => props.theme.deleteFileItemColor};
+
   svg {
     line-height: 18px;
   }
   &:hover {
     background-color: ${(props) => props.theme.hoverDeleteFileItemBackgroundColor};
   }
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
-  }
-  &:focus-visible {
+  &:focus, &:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px ${(props) => props.theme.focusDeleteFileItemBorderColor};
   }
@@ -207,4 +207,4 @@ const ErrorMessage = styled.span`
   line-height: ${(props) => props.theme.errorMessageLineHeight};
 `;
 
-export default FileItem;
+export default React.memo(FileItem);
