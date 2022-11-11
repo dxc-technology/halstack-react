@@ -198,6 +198,7 @@ const DxcFileInput = ({
                 <FileItem
                   fileName={file.file.name}
                   error={file.error}
+                  singleFileMode={mode === "file" && !multiple}
                   showError={multiple || files.length > 1}
                   showPreview={mode === "file" && !multiple ? false : showPreview}
                   preview={file.preview}
@@ -260,6 +261,7 @@ const DxcFileInput = ({
                 <FileItem
                   fileName={file.file.name}
                   error={file.error}
+                  singleFileMode={mode === "file" && !multiple}
                   showError={multiple || files.length > 1}
                   showPreview={showPreview}
                   preview={file.preview}

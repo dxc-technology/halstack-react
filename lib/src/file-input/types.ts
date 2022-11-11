@@ -120,6 +120,7 @@ export type FileItemProps = {
   error?: string;
   showError: boolean;
   showPreview: boolean;
+  singleFileMode: boolean;
   preview: string;
   type: string;
   onDelete: (fileName: string) => void,

@@ -21,6 +21,7 @@ const errorIcon = (
 const FileItem = ({
   fileName = "",
   error = "",
+  singleFileMode,
   showError,
   showPreview,
   preview,
@@ -39,7 +40,7 @@ const FileItem = ({
 
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
-      <MainContainer error={error} showPreview={showPreview}>
+      <MainContainer error={error} singleFileMode={singleFileMode} showPreview={showPreview}>
         {showPreview &&
           (type.includes("image") ? (
             <ImagePreview src={preview} alt={fileName} />
@@ -70,16 +71,16 @@ const FileItem = ({
   );
 };
 
-const MainContainer = styled.div<{ showPreview: boolean; error: string }>`
+const MainContainer = styled.div<{ error: string; singleFileMode: boolean; showPreview: boolean; }>`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   gap: 12px;
-  width: 320px;
+  width: ${(props) => props.singleFileMode ? "230px" : "320px"};
   padding: ${(props) =>
     props.showPreview
-      ? `calc(8px - ${props.theme.fileItemBorderThickness}) 8px`
-      : `calc(8px - ${props.theme.fileItemBorderThickness}) 8px calc(8px - ${props.theme.fileItemBorderThickness}) 16px`};
+      ? `calc(8px - ${props.theme.fileItemBorderThickness})`
+      : `calc(8px - ${props.theme.fileItemBorderThickness}) calc(8px - ${props.theme.fileItemBorderThickness}) calc(8px - ${props.theme.fileItemBorderThickness}) 16px`};
   ${(props) => (props.error ? `background-color: ${props.theme.errorFileItemBackgroundColor};` : "")};
   border-color: ${(props) => (props.error ? props.theme.errorFileItemBorderColor : props.theme.fileItemBorderColor)};
   border-width: ${(props) => props.theme.fileItemBorderThickness};
@@ -90,8 +91,8 @@ const MainContainer = styled.div<{ showPreview: boolean; error: string }>`
 const ImagePreview = styled.img`
   width: 48px;
   height: 48px;
-  object-fit: contain;
   border-radius: 2px;
+  object-fit: contain;
 `;
 
 const IconPreview = styled.span<{ error: string }>`
@@ -135,7 +136,8 @@ const FileName = styled.span`
 const ErrorIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: center;  
+  margin-left: 0.25rem;
   padding: 3px;
   height: 18px;
   width: 18px;
@@ -152,7 +154,7 @@ const DeleteFileAction = styled.button`
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
   border-radius: 2px;
-  margin-left: 4px;
+  margin-left: 0.25rem;
   background-color: transparent;
   box-shadow: 0 0 0 2px transparent;
   padding: 3px;
