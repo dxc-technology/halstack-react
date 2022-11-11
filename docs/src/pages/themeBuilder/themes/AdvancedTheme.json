@@ -498,10 +498,10 @@
     "marginRight": "40px",
     "marginLeft": "20px",
     "itemsPerPageSelectorMarginLeft": "0px",
-    "itemsPerPageSelectorMarginRight": "30px",
+    "itemsPerPageSelectorMarginRight": "0.5rem",
     "pageSelectorMarginRight": "30px",
     "pageSelectorMarginLeft": "0px",
-    "totalItemsContainerMarginRight": "30px",
+    "totalItemsContainerMarginRight": "2.5rem",
     "totalItemsContainerMarginLeft": "0px"
   },
   "progressBar": {

@@ -463,6 +463,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 tabIndex={tabIndex}
                 title={translatedLabels.textInput.clearFieldActionTitle}
                 aria-label={translatedLabels.textInput.clearFieldActionTitle}
+                type="button"
               >
                 {icons.clear}
               </Action>
@@ -480,6 +481,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   tabIndex={tabIndex}
                   title={translatedLabels.numberInput.decrementValueTitle}
                   aria-label={translatedLabels.numberInput.decrementValueTitle}
+                  type="button"
                 >
                   {icons.decrement}
                 </Action>
@@ -494,6 +496,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                   tabIndex={tabIndex}
                   title={translatedLabels.numberInput.incrementValueTitle}
                   aria-label={translatedLabels.numberInput.incrementValueTitle}
+                  type="button"
                 >
                   {icons.increment}
                 </Action>
@@ -511,6 +514,7 @@ const DxcTextInput = React.forwardRef<RefType, TextInputPropsType>(
                 aria-label={action.title}
                 backgroundType={backgroundType}
                 tabIndex={tabIndex}
+                type="button"
               >
                 {typeof action.icon === "string" ? <ActionIcon src={action.icon}></ActionIcon> : action.icon}
               </Action>

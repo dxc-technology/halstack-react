@@ -142,7 +142,13 @@ const DxcRadioGroup = React.forwardRef<RefType, RadioGroupPropsType>(
             aria-readonly={readonly}
             aria-orientation={stacking === "column" ? "vertical" : "horizontal"}
           >
-            <input type="hidden" name={name} value={value ?? innerValue ?? ""} />
+            <ValueInput
+              name={name}
+              disabled={disabled}
+              value={value ?? innerValue ?? ""}
+              readOnly
+              aria-hidden="true"
+            />
             {innerOptions.map((option, index) => (
               <DxcRadio
                 key={`radio-${index}`}
@@ -217,6 +223,10 @@ const RadioGroup = styled.div<RadioGroupProps>`
   flex-direction: ${(props) => props.stacking};
   row-gap: ${(props) => props.theme.groupVerticalGutter};
   column-gap: ${(props) => props.theme.groupHorizontalGutter};
+`;
+
+const ValueInput = styled.input`
+  display: none;
 `;
 
 const Error = styled.span`
