@@ -210,7 +210,6 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
               day !== 0 ? (
                 <DayCell
                   onKeyDown={(event) => handleDayKeyboardEvent(event, day)}
-                  id={`day_${day}`}
                   aria-label={day}
                   onClick={() => handleDateSelect(day, "date")}
                   selected={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
@@ -232,6 +231,7 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
           {yearList.map((year) => (
             <YearPickerButton
               aria-label={year}
+              key={year}
               selected={selectedDate.get("year") === year}
               autoFocus={selectedDate.get("year") === year}
               onClick={() => {
@@ -249,6 +249,7 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
           {months.map((month, index) => (
             <MonthPickerButton
               aria-label={month}
+              key={month}
               selected={selectedDate.get("month") === index}
               autoFocus={selectedDate.get("month") === index}
               onClick={() => {
