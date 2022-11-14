@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { spaces } from "../common/variables.js";
@@ -30,6 +30,20 @@ const fileIcon = (
   </svg>
 );
 
+const getFilePreview = (file) => {
+  if (file.type.includes("video")) return videoIcon;
+  else if (file.type.includes("audio")) return audioIcon;
+  else if (file.type.includes("image"))
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        resolve(e.target.result);
+      };
+    });
+  else return fileIcon;
+};
+
 const DxcFileInput = ({
   name = "",
   mode = "file",
@@ -55,6 +69,78 @@ const DxcFileInput = ({
   const colorsTheme = useTheme();
   const translatedLabels = useTranslatedLabels();
 
+  const checkFileSize = (file) => {
+    if (file.size < minSize) return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
+    else if (file.size > maxSize) return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
+  };
+
+  const getFilesToAdd = async (selectedFiles) => {
+    const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
+      (previews) =>
+        selectedFiles.map((file, index) => {
+          const fileInfo = { file, error: checkFileSize(file), preview: previews[index] };
+          return fileInfo;
+        })
+    );
+    return filesToAdd;
+  };
+
+  const addFile = async (selectedFiles) => {
+    if (multiple) {
+      const filesToAdd = await getFilesToAdd(selectedFiles);
+      const finalFiles = [...files, ...filesToAdd];
+      callbackFile?.(finalFiles);
+    } else {
+      const fileToAdd =
+        selectedFiles.length === 1 ? await getFilesToAdd(selectedFiles) : await getFilesToAdd([selectedFiles[0]]);
+      callbackFile?.(fileToAdd);
+    }
+  };
+
+  const selectFiles = (e) => {
+    const selectedFiles = e.target.files;
+    const filesArray = Object.keys(selectedFiles).map((key) => selectedFiles[key]);
+    addFile(filesArray);
+  };
+
+  const onDelete = useCallback(
+    (fileName) => {
+      const filesCopy = [...files];
+      const fileToRemove = filesCopy.find((file) => {
+        return file.file.name === fileName;
+      });
+      const fileIndex = filesCopy.indexOf(fileToRemove);
+      filesCopy.splice(fileIndex, 1);
+      callbackFile?.(filesCopy);
+    },
+    [files, callbackFile]
+  );
+
+  const handleClick = () => {
+    document.getElementById(fileInputId).click();
+  };
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  const handleDragIn = (e) => {
+    if (e.dataTransfer.items?.length > 0) setIsDragging(true);
+  };
+  const handleDragOut = (e) => {
+    // only if dragged items leave container (outside, not to childs)
+    if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
+  };
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    const filesObject = e.dataTransfer.files;
+    if (filesObject?.length > 0) {
+      const filesArray = Object.keys(filesObject).map((key) => filesObject[key]);
+      addFile(filesArray);
+    }
+  };
+
   useEffect(() => {
     const getFiles = async () => {
       if (value) {
@@ -74,109 +160,6 @@ const DxcFileInput = ({
     getFiles();
   }, [value]);
 
-  const handleClick = () => {
-    document.getElementById(fileInputId).click();
-  };
-
-  const checkFileSize = (file) => {
-    if (file.size < minSize) {
-      return translatedLabels.fileInput.fileSizeGreaterThanErrorMessage;
-    }
-    if (file.size > maxSize) {
-      return translatedLabels.fileInput.fileSizeLessThanErrorMessage;
-    }
-  };
-
-  const getFilePreview = (file) => {
-    if (file.type.includes("video")) {
-      return videoIcon;
-    }
-    if (file.type.includes("audio")) {
-      return audioIcon;
-    }
-    if (file.type.includes("image")) {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (e) => {
-          resolve(e.target.result);
-        };
-      });
-    }
-    return fileIcon;
-  };
-
-  const getFilesToAdd = async (selectedFiles) => {
-    const filesToAdd = await Promise.all(selectedFiles.map((selectedFile) => getFilePreview(selectedFile))).then(
-      (previews) => {
-        return selectedFiles.map((selectedFile, index) => {
-          const fileInfo = { file: selectedFile, error: checkFileSize(selectedFile), preview: previews[index] };
-          return fileInfo;
-        });
-      }
-    );
-    return filesToAdd;
-  };
-
-  const addFile = async (selectedFiles) => {
-    if (multiple) {
-      const filesToAdd = await getFilesToAdd(selectedFiles);
-      const finalFiles = [...files, ...filesToAdd];
-      if (typeof callbackFile === "function") {
-        callbackFile(finalFiles);
-      }
-    } else {
-      const fileToAdd =
-        selectedFiles.length === 1 ? await getFilesToAdd(selectedFiles) : await getFilesToAdd([selectedFiles[0]]);
-      if (typeof callbackFile === "function") {
-        callbackFile(fileToAdd);
-      }
-    }
-  };
-
-  const selectFiles = (e) => {
-    const selectedFiles = e.target.files;
-    const filesArray = Object.keys(selectedFiles).map((key) => selectedFiles[key]);
-    addFile(filesArray);
-  };
-
-  const onDelete = (fileName) => {
-    const filesCopy = [...files];
-    const fileToRemove = filesCopy.find((file) => {
-      return file.file.name === fileName;
-    });
-    const fileIndex = filesCopy.indexOf(fileToRemove);
-    filesCopy.splice(fileIndex, 1);
-    if (typeof callbackFile === "function") {
-      callbackFile(filesCopy);
-    }
-  };
-
-  const handleDrag = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  const handleDragIn = (e) => {
-    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) setIsDragging(true);
-  };
-
-  const handleDragOut = (e) => {
-    // only if dragged items leave container (outside, not to childs)
-    if (!e.currentTarget.contains(e.relatedTarget)) setIsDragging(false);
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-    const filesObject = e.dataTransfer.files;
-    if (filesObject && filesObject.length > 0) {
-      const filesArray = Object.keys(filesObject).map((key) => filesObject[key]);
-      addFile(filesArray);
-    }
-  };
-
   return (
     <ThemeProvider theme={colorsTheme.fileInput}>
       <FileInputContainer margin={margin} name={name}>
@@ -186,7 +169,17 @@ const DxcFileInput = ({
         <HelperText disabled={disabled}>{helperText}</HelperText>
         {mode === "file" ? (
           <FileContainer multiple={multiple} files={files}>
-            <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+            <ValueInput
+              id={fileInputId}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={selectFiles}
+              name={name}
+              disabled={disabled}
+              readOnly
+              aria-hidden="true"
+            />
             <DxcButton
               mode="secondary"
               label={
@@ -197,33 +190,39 @@ const DxcFileInput = ({
               }
               onClick={handleClick}
               disabled={disabled}
-              size="medium"
+              size="fitContent"
               tabIndex={tabIndex}
             />
-            {files.map((file) => {
-              return (
-                <>
-                  <FileItemContainer mode={mode} multiple={multiple} files={files}>
-                    <FileItem
-                      mode={mode}
-                      multiple={multiple}
-                      name={file.file.name}
-                      error={file.error}
-                      showPreview={mode === "file" && !multiple ? false : showPreview}
-                      numFiles={files.length}
-                      preview={file.preview}
-                      type={file.file.type}
-                      onDelete={onDelete}
-                      tabIndex={tabIndex}
-                    />
-                  </FileItemContainer>
-                </>
-              );
-            })}
+            <FileItemListContainer mode={mode} multiple={multiple} files={files}>
+              {files.map((file) => (
+                <FileItem
+                  mode={mode}
+                  multiple={multiple}
+                  name={file.file.name}
+                  error={file.error}
+                  showPreview={mode === "file" && !multiple ? false : showPreview}
+                  numFiles={files.length}
+                  preview={file.preview}
+                  type={file.file.type}
+                  onDelete={onDelete}
+                  tabIndex={tabIndex}
+                />
+              ))}
+            </FileItemListContainer>
           </FileContainer>
         ) : (
           <Container>
-            <HiddenInputFile id={fileInputId} type="file" accept={accept} multiple={multiple} onChange={selectFiles} />
+            <ValueInput
+              id={fileInputId}
+              type="file"
+              accept={accept}
+              multiple={multiple}
+              onChange={selectFiles}
+              name={name}
+              disabled={disabled}
+              readOnly
+              aria-hidden="true"
+            />
             <DragDropArea
               isDragging={isDragging}
               disabled={disabled}
@@ -258,30 +257,26 @@ const DxcFileInput = ({
                 </FiledropLabel>
               )}
             </DragDropArea>
-            {files.map((file) => {
-              return (
-                <FileItemContainer mode={mode} multiple={multiple} files={files}>
-                  <FileItem
-                    mode={mode}
-                    multiple={multiple}
-                    name={file.file.name}
-                    error={file.error}
-                    showPreview={showPreview}
-                    numFiles={files.length}
-                    preview={file.preview}
-                    type={file.file.type}
-                    onDelete={onDelete}
-                    tabIndex={tabIndex}
-                  />
-                </FileItemContainer>
-              );
-            })}
+            <FileItemListContainer mode={mode} multiple={multiple} files={files}>
+              {files.map((file) => (
+                <FileItem
+                  mode={mode}
+                  multiple={multiple}
+                  name={file.file.name}
+                  error={file.error}
+                  showPreview={showPreview}
+                  numFiles={files.length}
+                  preview={file.preview}
+                  type={file.file.type}
+                  onDelete={onDelete}
+                  tabIndex={tabIndex}
+                />
+              ))}
+            </FileItemListContainer>
           </Container>
         )}
         {files.length === 1 &&
-          files.map((file) => {
-            return file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>;
-          })}
+          files.map((file) => file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>)}
       </FileInputContainer>
     </ThemeProvider>
   );
@@ -318,16 +313,41 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const DragDropArea = styled.div`
+const FileContainer = styled.div`
   display: flex;
-  overflow: hidden;
+  ${(props) =>
+    props.multiple || props.files.length > 1
+      ? "flex-direction: column; row-gap: 0.25rem;"
+      : "flex-direction: row; column-gap: 0.25rem;"}
+  margin-top: 0.25rem;
+`;
+
+const ValueInput = styled.input`
+  display: none;
+`;
+
+const FileItemListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  margin-top: 0.25rem;
+`;
+
+const DragDropArea = styled.div`
   box-sizing: border-box;
+  display: flex;
   flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
   ${(props) => props.mode === "dropzone" && "justify-content: center; padding: 1rem;"};
   align-items: center;
   height: ${(props) => (props.mode === "filedrop" ? "48px" : "160px")};
   width: 320px;
-
+  overflow: hidden;
   box-shadow: 0 0 0 2px transparent;
   border-radius: ${(props) => props.theme.dropBorderRadius};
   border-width: ${(props) => props.theme.dropBorderThickness};
@@ -343,19 +363,6 @@ const DragDropArea = styled.div`
     `}
 
   cursor: ${(props) => props.disabled && "not-allowed"};
-`;
-
-const FileContainer = styled.div`
-  display: flex;
-  flex-direction: ${(props) => (props.multiple || props.files.length > 1 ? "column" : "row")};
-  margin-top: 0.25rem;
-`;
-
-const HiddenInputFile = styled.input`
-  visibility: hidden;
-  position: absolute;
-  width: 0px;
-  height: 0px;
 `;
 
 const ButtonContainer = styled.div`
@@ -385,17 +392,6 @@ const FiledropLabel = styled.span`
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
   margin-right: 1rem;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.25rem;
-`;
-
-const FileItemContainer = styled.div`
-  margin-top: ${(props) => (props.multiple || props.files.length > 1 || props.mode !== "file") && "4px"};
-  margin-left: ${(props) => props.mode === "file" && props.files.length === 1 && !props.multiple && "4px"};
 `;
 
 const ErrorMessage = styled.div`
