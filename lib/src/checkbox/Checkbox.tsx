@@ -147,7 +147,7 @@ const getDisabledColor = (props, element) => {
   }
 };
 
-const getNotDisabledColor = (props, element) => {
+const getEnabledColor = (props, element) => {
   switch (element) {
     case "check":
       return props.backgroundType && props.backgroundType === "dark"
@@ -181,7 +181,7 @@ type LabelContainerPropsType = {
   backgroundType: "dark" | "light";
 };
 const LabelContainer = styled.span<LabelContainerPropsType>`
-  color: ${(props) => (props.disabled ? getDisabledColor(props, "label") : getNotDisabledColor(props, "label"))};
+  color: ${(props) => (props.disabled ? getDisabledColor(props, "label") : getEnabledColor(props, "label"))};
   font-family: ${(props) => props.theme.fontFamily};
   font-size: ${(props) => props.theme.fontSize};
   font-weight: ${(props) => props.theme.fontWeight};
@@ -205,23 +205,23 @@ type CheckboxInputPropsType = {
   disabled: boolean;
 };
 const Checkbox = styled.span<CheckboxInputPropsType>`
+  position: relative;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 18px;
   width: 18px;
-  border: solid 2px
-    ${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "border"))};
+  border: 2px solid
+    ${(props) => (props.disabled ? getDisabledColor(props, "border") : getEnabledColor(props, "border"))};
   border-radius: 2px;
   background-color: ${(props) =>
     props.checked
       ? props.disabled
         ? getDisabledColor(props, "check")
-        : getNotDisabledColor(props, "check")
+        : getEnabledColor(props, "check")
       : "transparent"};
-  color: ${(props) =>
-    props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "background")};
+  color: ${(props) => (props.disabled ? getDisabledColor(props, "background") : getEnabledColor(props, "background"))};
 
   &:focus {
     outline: 2px solid
@@ -244,6 +244,9 @@ type MainContainerPropsType = {
   backgroundType: "dark" | "light";
 };
 const MainContainer = styled.div<MainContainerPropsType>`
+  display: inline-flex;
+  align-items: center;
+  gap: ${(props) => props.theme.checkLabelSpacing};
   width: ${(props) => calculateWidth(props.margin, props.size)};
   margin: ${(props) => (props.margin && typeof props.margin !== "object" ? spaces[props.margin] : "0px")};
   margin-top: ${(props) =>
@@ -255,22 +258,19 @@ const MainContainer = styled.div<MainContainerPropsType>`
   margin-left: ${(props) =>
     props.margin && typeof props.margin === "object" && props.margin.left ? spaces[props.margin.left] : ""};
 
-  display: inline-flex;
-  align-items: center;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  gap: ${(props) => props.theme.checkLabelSpacing};
 
   &:hover ${Checkbox} {
     border: 2px solid
-      ${(props) => (props.disabled ? getDisabledColor(props, "border") : getNotDisabledColor(props, "hoverBorder"))};
+      ${(props) => (props.disabled ? getDisabledColor(props, "border") : getEnabledColor(props, "hoverBorder"))};
     background-color: ${(props) =>
       props.checked
         ? props.disabled
           ? getDisabledColor(props, "check")
-          : getNotDisabledColor(props, "check")
+          : getEnabledColor(props, "check")
         : "transparent"};
     color: ${(props) =>
-      props.disabled ? getDisabledColor(props, "background") : getNotDisabledColor(props, "hoverBackground")};
+      props.disabled ? getDisabledColor(props, "background") : getEnabledColor(props, "hoverBackground")};
   }
 `;
 
