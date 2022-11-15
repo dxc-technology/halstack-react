@@ -128,6 +128,7 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
         break;
       case "ArrowLeft":
         event.preventDefault();
+        console.log("ArrowLeft");
         dateToFocusTemp = dateToFocusTemp.set("date", dateToFocusTemp.get("date") - 1);
         focusDate(dateToFocusTemp);
         break;
@@ -211,6 +212,7 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
                 <DayCell
                   onKeyDown={(event) => handleDayKeyboardEvent(event, day)}
                   aria-label={day}
+                  id={`day_${day}`}
                   onClick={() => handleDateSelect(day, "date")}
                   selected={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
                   autoFocus={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
