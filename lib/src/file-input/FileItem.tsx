@@ -50,8 +50,8 @@ const FileItem = ({
             </IconPreview>
           ))}
         <FileItemContent>
-          <DxcFlex alignItems="center">
-            <FileName>{fileName}</FileName>
+          <FileName>{fileName}</FileName>
+          <DxcFlex gap="0.25rem">
             {error && <ErrorIcon>{errorIcon}</ErrorIcon>}
             <DeleteFileAction
               onClick={() => {
@@ -71,12 +71,12 @@ const FileItem = ({
   );
 };
 
-const MainContainer = styled.div<{ error: string; singleFileMode: boolean; showPreview: boolean; }>`
+const MainContainer = styled.div<{ error: string; singleFileMode: boolean; showPreview: boolean }>`
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  gap: 12px;
-  width: ${(props) => props.singleFileMode ? "230px" : "320px"};
+  gap: 0.75rem;
+  width: ${(props) => (props.singleFileMode ? "230px" : "320px")};
   padding: ${(props) =>
     props.showPreview
       ? `calc(8px - ${props.theme.fileItemBorderThickness})`
@@ -115,29 +115,29 @@ const IconPreview = styled.span<{ error: string }>`
 `;
 
 const FileItemContent = styled.div`
-  display: flex;
-  flex-direction: column;
   flex-grow: 1;
-  min-width: 0;
+  display: grid;
+  grid-template-columns: auto min-content;
+  grid-template-rows: 1fr minmax(50%, auto);
+  column-gap: 0.25rem;
 `;
 
 const FileName = styled.span`
-  flex-grow: 1;
+  align-self: center;
   color: ${(props) => props.theme.fileNameFontColor};
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-family: ${(props) => props.theme.fileItemFontFamily};
   font-size: ${(props) => props.theme.fileItemFontSize};
   font-weight: ${(props) => props.theme.fileItemFontWeight};
   line-height: ${(props) => props.theme.fileItemLineHeight};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const ErrorIcon = styled.span`
   display: flex;
   flex-wrap: wrap;
-  align-content: center;  
-  margin-left: 0.25rem;
+  align-content: center;
   padding: 3px;
   height: 18px;
   width: 18px;
@@ -154,7 +154,6 @@ const DeleteFileAction = styled.button`
   font-family: ${(props) => props.theme.fontFamily};
   border: 1px solid transparent;
   border-radius: 2px;
-  margin-left: 0.25rem;
   background-color: transparent;
   box-shadow: 0 0 0 2px transparent;
   padding: 3px;
