@@ -118,7 +118,7 @@ const FileItemContent = styled.div`
   flex-grow: 1;
   display: grid;
   grid-template-columns: auto min-content;
-  grid-template-rows: 1fr minmax(50%, auto);
+  grid-template-rows: min-content auto;
   column-gap: 0.25rem;
 `;
 
