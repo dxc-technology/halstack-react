@@ -1,17 +1,8 @@
-import dayjs, { UnitType, Dayjs } from "dayjs";
+import { UnitType, Dayjs } from "dayjs";
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { CalendarPropsType } from "./types";
+import { CalendarPropsType, SelectablePropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
-
-const getYearsArray = () => {
-  const yearList = [];
-  for (let i = 1899; i <= 2100; i++) {
-    yearList.push(i);
-  }
-  return yearList;
-};
-const yearList = getYearsArray();
 
 const leftCaret = (
   <svg fill="currentColor" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
@@ -27,11 +18,19 @@ const rightCaret = (
   </svg>
 );
 
-const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType): JSX.Element => {
-  const [innerDate, setInnerDate] = useState(date.isValid() ? date : dayjs());
-  const [selectedDate, setSelectedDate] = useState(date.isValid() ? date : dayjs());
-  const [dateToFocus, setDateToFocus] = useState(date.isValid() ? date : dayjs());
-  const [content, setContent] = useState("calendar");
+const isDaySelected = (day: number, selectedDate, innerDate) => {
+  if (
+    selectedDate.get("month") === innerDate.get("month") &&
+    selectedDate.get("year") === innerDate.get("year") &&
+    selectedDate.get("date") === day
+  ) {
+    return true;
+  }
+  return false;
+};
+
+const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
+  const [dateToFocus, setDateToFocus] = useState(selectedDate);
   const dayCells = useMemo(() => {
     const monthDayCells = [];
     const firstDayOfMonth = innerDate.startOf("month").day() === 0 ? 6 : innerDate.startOf("month").day() - 1;
@@ -41,31 +40,8 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
     }
     return monthDayCells;
   }, [innerDate]);
-  const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
-  const months = translatedLabels.calendar.monthsShort;
-
-  const handleKeyboardEvent = (event) => {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      onCloseCalendar();
-    }
-  };
-  const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      onCloseCalendar();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyboardEvent);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyboardEvent);
-    };
-  }, [onCloseCalendar]);
 
   const handleOnMonthNextTab = (event) => {
     if (event.key === "Tab" && !event.shiftKey) {
@@ -77,36 +53,22 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
     }
   };
 
-  const handleOnYearShiftTab = (event) => {
-    if (event.key === "Tab" && event.shiftKey) {
-      if (selectedDate.get("month") !== innerDate.get("month") || selectedDate.get("year") !== innerDate.get("year")) {
-        setDateToFocus(innerDate.set("date", 1));
-      } else {
-        setDateToFocus(selectedDate);
-      }
-    }
-  };
-
-  useEffect(() => {
-    document.getElementById(`day_${dateToFocus.get("date")}`)?.focus();
-  }, [dateToFocus]);
-
-  const handleDateSelect = (date: number, unit: UnitType) => {
-    setInnerDate((innerDate) => {
-      const newDate = innerDate.set(unit, date);
-      setSelectedDate(newDate);
-      onDateSelect(newDate);
-      return newDate;
-    });
+  const onDateClickHandler = (date: number, unit: UnitType) => {
+    onDaySelect(date, unit);
+    const dateToFocusTemp = innerDate.set(unit, date);
+    focusDate(dateToFocusTemp);
   };
 
   const focusDate = (date: Dayjs) => {
     if (innerDate.get("month") !== date.get("month") || innerDate.get("year") !== date.get("year")) {
-      setInnerDate((innerDate) => {
-        return innerDate.set("month", date.get("month")).set("year", date.get("year"));
-      });
+      onInnerDateChange(date);
     }
     setDateToFocus(date);
+    document.getElementById(`day_${date.get("date")}`)?.focus();
+  };
+
+  const handleMonthChange = (date: Dayjs) => {
+    onInnerDateChange(date);
   };
 
   const handleDayKeyboardEvent = (event, day) => {
@@ -128,7 +90,6 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
         break;
       case "ArrowLeft":
         event.preventDefault();
-        console.log("ArrowLeft");
         dateToFocusTemp = dateToFocusTemp.set("date", dateToFocusTemp.get("date") - 1);
         focusDate(dateToFocusTemp);
         break;
@@ -161,155 +122,61 @@ const DxcCalendar = ({ date, onDateSelect, onCloseCalendar }: CalendarPropsType)
         break;
       case " ":
         event.preventDefault();
-        handleDateSelect(day, "date");
+        onDaySelect(day, "date");
         break;
     }
   };
-
   return (
-    <DatePicker ref={ref}>
-      <DatePickerToolbar>
-        <DatePickerToolbarButton
-          onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
-          onKeyDown={handleOnYearShiftTab}
+    <CalendarContainer>
+      <PickerHeader>
+        <PickerHeaderButton
+          aria-label={translatedLabels.calendar.previousMonthTitle}
+          title={translatedLabels.calendar.previousMonthTitle}
+          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
         >
-          {selectedDate.format("YYYY")}
-        </DatePickerToolbarButton>
-        <DatePickerToolbarSubtitleButton
-          onClick={() => setContent((content) => (content === "monthPicker" ? "calendar" : "monthPicker"))}
+          {leftCaret}
+        </PickerHeaderButton>
+        <HeaderMonthYear aria-live="polite">{innerDate.format("MMMM YYYY")}</HeaderMonthYear>
+        <PickerHeaderButton
+          aria-label={translatedLabels.calendar.nextMonthTitle}
+          title={translatedLabels.calendar.nextMonthTitle}
+          onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
+          onKeyDown={handleOnMonthNextTab}
         >
-          {selectedDate.format("MMMM")}
-        </DatePickerToolbarSubtitleButton>
-      </DatePickerToolbar>
-      {content === "calendar" && (
-        <Calendar>
-          <PickerHeader>
-            <PickerHeaderButton
-              aria-label={translatedLabels.calendar.previousMonthTitle}
-              title={translatedLabels.calendar.previousMonthTitle}
-              onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") - 1))}
+          {rightCaret}
+        </PickerHeaderButton>
+      </PickerHeader>
+      <WeekHeader>
+        {weekDays.map((weekDay) => (
+          <DayHeaderCell key={weekDay}>{weekDay}</DayHeaderCell>
+        ))}
+      </WeekHeader>
+      <DayCellsContainer>
+        {dayCells.map((day, index) =>
+          day !== 0 ? (
+            <DayCell
+              onKeyDown={(event) => handleDayKeyboardEvent(event, day)}
+              aria-label={day}
+              id={`day_${day}`}
+              key={`day_${day}`}
+              onClick={() => onDateClickHandler(day, "date")}
+              selected={isDaySelected(day, selectedDate, innerDate)}
+              autoFocus={isDaySelected(day, selectedDate, innerDate)}
+              aria-selected={isDaySelected(day, selectedDate, innerDate)}
+              tabIndex={day === dateToFocus.get("date") ? 0 : -1}
             >
-              {leftCaret}
-            </PickerHeaderButton>
-            <HeaderMonthYear aria-live="polite">{innerDate.format("MMMM YYYY")}</HeaderMonthYear>
-            <PickerHeaderButton
-              aria-label={translatedLabels.calendar.nextMonthTitle}
-              title={translatedLabels.calendar.nextMonthTitle}
-              onClick={() => setInnerDate(innerDate.set("month", innerDate.get("month") + 1))}
-              onKeyDown={handleOnMonthNextTab}
-            >
-              {rightCaret}
-            </PickerHeaderButton>
-          </PickerHeader>
-          <WeekHeader>
-            {weekDays.map((weekDay) => (
-              <DayHeaderCell key={weekDay}>{weekDay}</DayHeaderCell>
-            ))}
-          </WeekHeader>
-          <DayCellsContainer>
-            {dayCells.map((day) =>
-              day !== 0 ? (
-                <DayCell
-                  onKeyDown={(event) => handleDayKeyboardEvent(event, day)}
-                  aria-label={day}
-                  id={`day_${day}`}
-                  onClick={() => handleDateSelect(day, "date")}
-                  selected={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
-                  autoFocus={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
-                  aria-selected={day === innerDate.get("date") && selectedDate.isSame(innerDate, "day")}
-                  tabIndex={day === dateToFocus.get("date") ? 0 : -1}
-                >
-                  {day}
-                </DayCell>
-              ) : (
-                <EmptyDayCell />
-              )
-            )}
-          </DayCellsContainer>
-        </Calendar>
-      )}
-      {content === "yearPicker" && (
-        <YearPicker>
-          {yearList.map((year) => (
-            <YearPickerButton
-              aria-label={year}
-              key={year}
-              selected={selectedDate.get("year") === year}
-              autoFocus={selectedDate.get("year") === year}
-              onClick={() => {
-                handleDateSelect(year, "year");
-                setContent("calendar");
-              }}
-            >
-              <YearPickerButtonLabel selected={selectedDate.get("year") === year}>{year}</YearPickerButtonLabel>
-            </YearPickerButton>
-          ))}
-        </YearPicker>
-      )}
-      {content === "monthPicker" && (
-        <MonthPicker>
-          {months.map((month, index) => (
-            <MonthPickerButton
-              aria-label={month}
-              key={month}
-              selected={selectedDate.get("month") === index}
-              autoFocus={selectedDate.get("month") === index}
-              onClick={() => {
-                handleDateSelect(index, "month");
-                setContent("calendar");
-              }}
-            >
-              {month}
-            </MonthPickerButton>
-          ))}
-        </MonthPicker>
-      )}
-    </DatePicker>
+              {day}
+            </DayCell>
+          ) : (
+            <EmptyDayCell key={`empty_${index}`} />
+          )
+        )}
+      </DayCellsContainer>
+    </CalendarContainer>
   );
 };
 
-const DatePicker = styled.div`
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  border-radius: 4px;
-`;
-
-const DatePickerToolbar = styled.div`
-  height: 100px;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 24px;
-  padding-right: 24px;
-`;
-
-const DatePickerToolbarButton = styled.button`
-  color: ${(props) => props.theme.dateInput.pickerActualDateFontColor};
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  font-size: 2rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: 400;
-  line-height: 1.75;
-  letter-spacing: 0.00938em;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.04);
-  }
-  &:focus {
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
-    outline-offset: -2px;
-  }
-`;
-
-const DatePickerToolbarSubtitleButton = styled(DatePickerToolbarButton)`
-  line-height: 1.235;
-  letter-spacing: 0.00735em;
-`;
-
-const Calendar = styled.div`
+const CalendarContainer = styled.div`
   width: ${(props) => props.theme.dateInput.pickerWidth};
   height: ${(props) => props.theme.dateInput.pickerHeight};
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
@@ -386,10 +253,7 @@ const DayCellsContainer = styled.div`
   padding: 0 5px;
 `;
 
-type SelectableProps = {
-  selected?: boolean;
-};
-const DayCell = styled.button<SelectableProps>`
+const DayCell = styled.button<SelectablePropsType>`
   display: inline-flex;
   background-color: ${(props) =>
     props.selected ? props.theme.dateInput.pickerSelectedDateBackgroundColor : "transparent"};
@@ -428,93 +292,4 @@ const EmptyDayCell = styled.div`
   height: 36px;
 `;
 
-const YearPicker = styled.div`
-  width: ${(props) => props.theme.dateInput.pickerWidth};
-  height: ${(props) => props.theme.dateInput.pickerHeight};
-  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  display: flex;
-  flex-direction: column;
-  padding: 0px 10px;
-  border-radius: 4px;
-  overflow-y: scroll;
-`;
-
-const YearPickerButton = styled.button<SelectableProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: transparent;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.75;
-  letter-spacing: 0.00938em;
-  width: 100%;
-  cursor: pointer;
-
-  &:focus {
-    color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
-    font-weight: 500;
-    ${(props) =>
-      props.selected
-        ? `span {background-color: ${props.theme.dateInput.pickerHoverDateBackgroundColor}; color: ${props.theme.dateInput.pickerHoverDateFontColor};}`
-        : `background-color: ${props.theme.dateInput.pickerHoverDateBackgroundColor};`}
-
-    outline: none;
-  }
-`;
-
-const YearPickerButtonLabel = styled.span<SelectableProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 87px;
-  height: 40px;
-  ${(props) =>
-    props.selected
-      ? `
-  color: ${props.theme.dateInput.pickerSelectedDateColor};
-  font-size: 1.5rem;
-  line-height: 1.334;
-  letter-spacing: 0em;
-  font-weight: 500;
-  border-radius: 20px;
-  background-color: ${props.theme.dateInput.pickerSelectedDateBackgroundColor};`
-      : `color: ${props.theme.dateInput.pickerYearFontColor};`}
-`;
-
-const MonthPicker = styled.div`
-  width: ${(props) => props.theme.dateInput.pickerWidth};
-  max-height: ${(props) => props.theme.dateInput.pickerHeight};
-  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  display: flex;
-  padding: 18px 10px;
-  justify-content: center;
-  border-radius: 4px;
-  flex-wrap: wrap;
-`;
-
-const MonthPickerButton = styled.button<SelectableProps>`
-  width: 58px;
-  margin: 2px 7px;
-  border-radius: 20px;
-  border: none;
-  font-size: 14px;
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  letter-spacing: 0.46px;
-  height: 40px;
-  cursor: pointer;
-  background-color: ${(props) =>
-    props.selected ? props.theme.dateInput.pickerSelectedDateBackgroundColor : "transparent"};
-  color: ${(props) =>
-    props.selected ? props.theme.dateInput.pickerSelectedDateColor : props.theme.dateInput.pickerDayFontColor};
-  &:hover {
-    background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
-    color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
-  }
-  &:focus {
-    outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
-  }
-`;
-
-export default React.memo(DxcCalendar);
+export default React.memo(Calendar);

@@ -5,7 +5,7 @@ import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcTextInput from "../text-input/TextInput";
 import DateInputPropsType, { RefType } from "./types";
-import DxcCalendar from "./Calendar";
+import DxcDatePicker from "./DatePicker";
 import * as Popover from "@radix-ui/react-popover";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
@@ -40,7 +40,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
       tabIndex,
     },
     ref
-  ) => {
+  ): JSX.Element => {
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -127,8 +127,8 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
               ref={refDate}
             />
           </Popover.Trigger>
-          <Popover.Content sideOffset={2} align="end" aria-modal={true}>
-            <DxcCalendar
+          <Popover.Content sideOffset={error ? -18 : 2} align="end" aria-modal={true} onFocusOutside={closeCalendar}>
+            <DxcDatePicker
               onCloseCalendar={closeCalendar}
               onDateSelect={handleCalendarOnClick}
               date={value || innerValue ? getValueForPicker(value ?? innerValue, format.toUpperCase()) : dayjs()}
