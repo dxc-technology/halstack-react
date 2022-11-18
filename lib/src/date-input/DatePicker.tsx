@@ -6,7 +6,13 @@ import Calendar from "./Calendar";
 import MonthPicker from "./MonthPicker";
 import YearPicker from "./YearPicker";
 
-const DxcDatePicker = ({ date, onDateSelect, onCloseCalendar }: DatePickerPropsType): JSX.Element => {
+const DxcDatePicker = ({
+  date,
+  onDateSelect,
+  onCloseCalendar,
+  onEscCalendar,
+  id,
+}: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date.isValid() ? date : dayjs());
   const [selectedDate, setSelectedDate] = useState(date.isValid() ? date : dayjs());
   const [dateToFocus, setDateToFocus] = useState(date.isValid() ? date : dayjs());
@@ -16,11 +22,11 @@ const DxcDatePicker = ({ date, onDateSelect, onCloseCalendar }: DatePickerPropsT
   const handleKeyboardEvent = (event) => {
     if (event.key === "Escape") {
       event.preventDefault();
-      onCloseCalendar();
+      onEscCalendar();
     }
   };
   const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
+    if (ref?.current && !ref?.current.contains(event.target)) {
       onCloseCalendar();
     }
   };
@@ -49,21 +55,13 @@ const DxcDatePicker = ({ date, onDateSelect, onCloseCalendar }: DatePickerPropsT
   }, [dateToFocus]);
 
   const handleDateSelect = (date: number, unit: UnitType) => {
-    setInnerDate((innerDate) => {
-      const newDate = innerDate.set(unit, date);
-      setSelectedDate(newDate);
-      onDateSelect(newDate);
-      return newDate;
-    });
+    const newDate = innerDate.set(unit, date);
+    setSelectedDate(newDate);
+    onDateSelect(newDate);
   };
 
   return (
-    <DatePicker
-      ref={ref}
-      // onMouseDown={(event) => {
-      //   event.preventDefault();
-      // }}
-    >
+    <DatePicker id={id} ref={ref}>
       <DatePickerToolbar>
         <DatePickerToolbarButton
           onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}

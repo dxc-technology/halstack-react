@@ -1,5 +1,5 @@
 import { UnitType, Dayjs } from "dayjs";
-import React, { useState, useMemo, useEffect, useRef } from "react";
+import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 import { CalendarPropsType, SelectablePropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
