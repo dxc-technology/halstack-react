@@ -22,7 +22,6 @@ const FileItem = ({
   fileName = "",
   error = "",
   singleFileMode,
-  showError,
   showPreview,
   preview,
   type,
@@ -64,7 +63,7 @@ const FileItem = ({
               {deleteIcon}
             </DeleteFileAction>
           </DxcFlex>
-          {error && showError && <ErrorMessage>{error}</ErrorMessage>}
+          {error && !singleFileMode && <ErrorMessage>{error}</ErrorMessage>}
         </FileItemContent>
       </MainContainer>
     </ThemeProvider>

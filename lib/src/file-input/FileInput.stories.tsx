@@ -72,7 +72,6 @@ export const Chromatic = () => (
         fileName="file"
         error=""
         singleFileMode={false}
-        showError={false}
         showPreview={false}
         preview={picPreview}
         type="image/png"
@@ -86,7 +85,6 @@ export const Chromatic = () => (
         fileName="file"
         error=""
         singleFileMode={false}
-        showError={false}
         showPreview={false}
         preview={picPreview}
         type="image/png"
@@ -100,7 +98,6 @@ export const Chromatic = () => (
         fileName="file"
         error=""
         singleFileMode={false}
-        showError={false}
         showPreview={false}
         preview={picPreview}
         type="image/png"

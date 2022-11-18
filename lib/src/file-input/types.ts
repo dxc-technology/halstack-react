@@ -118,7 +118,6 @@ type Props = DropModeProps | FileModeProps;
 export type FileItemProps = {
   fileName?: string;
   error?: string;
-  showError: boolean;
   showPreview: boolean;
   singleFileMode: boolean;
   preview: string;
