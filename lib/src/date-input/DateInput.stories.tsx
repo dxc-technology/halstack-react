@@ -117,7 +117,7 @@ const DatePicker = () => (
 export const ShowDatePicker = DatePicker.bind({});
 ShowDatePicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const dateBtn = canvas.getByRole("button");
+  const dateBtn = canvas.getByRole("combobox");
   await userEvent.click(dateBtn);
   await userEvent.tab();
 };
@@ -132,7 +132,7 @@ const YearPicker = () => (
 export const ShowYearPicker = YearPicker.bind({});
 ShowYearPicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("button"));
+  await userEvent.click(canvas.getByRole("combobox"));
   await fireEvent.click(screen.getByText("2023"));
 };
 
@@ -146,7 +146,7 @@ const YearPickerFocus = () => (
 export const ShowYearPickerFocus = YearPickerFocus.bind({});
 ShowYearPickerFocus.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("button"));
+  await userEvent.click(canvas.getByRole("combobox"));
   await fireEvent.click(screen.getByText("2023"));
   await userEvent.tab();
 };
@@ -161,7 +161,7 @@ const MonthPicker = () => (
 export const ShowMonthPicker = MonthPicker.bind({});
 ShowMonthPicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("button"));
+  await userEvent.click(canvas.getByRole("combobox"));
   await fireEvent.click(screen.getByText("June"));
   await userEvent.tab();
 };
