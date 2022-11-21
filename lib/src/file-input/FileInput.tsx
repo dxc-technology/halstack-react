@@ -168,7 +168,7 @@ const DxcFileInput = ({
         </Label>
         <HelperText disabled={disabled}>{helperText}</HelperText>
         {mode === "file" ? (
-          <FileContainer multiple={multiple}>
+          <FileContainer singleFileMode={!multiple && files.length === 1}>
             <ValueInput
               id={fileInputId}
               type="file"
@@ -199,7 +199,7 @@ const DxcFileInput = ({
                   <FileItem
                     fileName={file.file.name}
                     error={file.error}
-                    singleFileMode={!multiple}
+                    singleFileMode={!multiple && files.length === 1}
                     showPreview={mode === "file" && !multiple ? false : showPreview}
                     preview={file.preview}
                     type={file.file.type}
@@ -312,10 +312,10 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const FileContainer = styled.div`
+const FileContainer = styled.div<{ singleFileMode: boolean }>`
   display: flex;
   ${(props) =>
-    props.multiple ? "flex-direction: column; row-gap: 0.25rem;" : "flex-direction: row; column-gap: 0.25rem;"}
+    props.singleFileMode ? "flex-direction: row; column-gap: 0.25rem;" : "flex-direction: column; row-gap: 0.25rem;"}
   margin-top: 0.25rem;
 `;
 
