@@ -25,7 +25,7 @@ const DxcSwitch = React.forwardRef<RefType, SwitchPropsType>(
       tabIndex = 0,
     },
     ref
-  ) => {
+  ): JSX.Element => {
     const [switchId] = useState(`switch-${uuidv4()}`);
     const labelId = `label-${switchId}`;
     const [innerChecked, setInnerChecked] = useState(defaultChecked ?? false);

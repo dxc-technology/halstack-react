@@ -31,7 +31,7 @@ const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
       tabIndex = 0,
     },
     ref
-  ) => {
+  ): JSX.Element => {
     const [labelId] = useState(`label-checkbox-${uuidv4()}`);
     const [innerChecked, setInnerChecked] = useState(defaultChecked);
 

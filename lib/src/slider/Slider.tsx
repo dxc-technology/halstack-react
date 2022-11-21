@@ -30,7 +30,7 @@ const DxcSlider = React.forwardRef<RefType, SliderPropsType>(
       size = "fillParent",
     },
     ref
-  ) => {
+  ): JSX.Element => {
     const [innerValue, setInnerValue] = useState(defaultValue ?? 0);
     const [dragging, setDragging] = useState(false);
     const colorsTheme = useTheme();
