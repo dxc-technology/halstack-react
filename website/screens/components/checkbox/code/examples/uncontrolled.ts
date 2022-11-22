@@ -2,34 +2,33 @@ import {
   DxcCheckbox,
   DxcInset,
   DxcButton,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import { useRef } from "react";
 
 const code = `() => {
-  const inputRef = useRef();
+  const checkboxRef = useRef();
 
   const handleSubmit = () => {
-    const input = inputRef.current;
-    console.log(input);
-  };
-
-  const onChange = (newValue) => {
-    console.log(newValue);
+    const checkbox = checkboxRef.current.getElementsByTagName("input")[0];
+    console.log(checkbox.value);
   };
 
   return (
-    <DxcInset space="2rem">
-      <DxcCheckbox
-        label="Of legal age"
-        defaultChecked
-        onChange={onChange}
-        ref={inputRef}
-      />
-      <DxcButton
-        label="Submit"
-        onClick={handleSubmit}
-        margin={{ left: "medium", right: "medium", bottom: "medium" }}
-      ></DxcButton>
+    <DxcInset space="2rem">    
+      <DxcFlex direction="column" gap="2rem">
+        <DxcCheckbox
+          label="Of legal age"
+          defaultChecked
+          value="ofLegalAge"
+          ref={checkboxRef}
+        />
+        <DxcButton
+          label="Submit"
+          type="submit"
+          onClick={handleSubmit}
+        />
+      </DxcFlex>
     </DxcInset>
   );
 }`;
@@ -38,6 +37,7 @@ const scope = {
   DxcCheckbox,
   DxcInset,
   DxcButton,
+  DxcFlex,
   useRef,
 };
 
