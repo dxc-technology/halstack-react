@@ -119,6 +119,11 @@ const sections = [
             </td>
             <td>Value of the tabindex.</td>
           </tr>
+          <tr>
+            <td>ref: object</td>
+            <td></td>
+            <td>Reference to the component.</td>
+          </tr>
         </tbody>
       </DxcTable>
     ),
