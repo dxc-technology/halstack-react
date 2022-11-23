@@ -12,7 +12,7 @@ const code = `() => {
 
   const handleSubmit = () => {
     const fileInput = fileRef.current.getElementsByTagName("input")[0];
-    console.log(fileInput.value);
+    console.log(Array.from(fileInput.files).map(file => file.name));
   };
 
   const callbackFile = (files) => {
