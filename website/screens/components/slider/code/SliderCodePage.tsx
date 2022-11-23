@@ -8,6 +8,7 @@ import controlled from "./examples/controlled";
 import uncontrolled from "./examples/uncontrolled";
 import formatLabel from "./examples/formatLabel";
 import HeaderDescriptionCell from "@/common/HeaderDescriptionCell";
+import StatusTag from "@/common/StatusTag";
 
 const sections = [
   {
@@ -165,7 +166,12 @@ const sections = [
           <tr>
             <td>ref: object</td>
             <td></td>
-            <td>Reference to the component.</td>
+            <td>
+              <DxcFlex gap="0.25rem" direction="column" alignItems="baseline">
+                <StatusTag status="Information">New</StatusTag>
+                Reference to the component.
+              </DxcFlex>
+            </td>
           </tr>
         </tbody>
       </DxcTable>

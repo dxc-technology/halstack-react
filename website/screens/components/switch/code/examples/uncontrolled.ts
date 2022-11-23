@@ -14,18 +14,14 @@ const code = `() => {
     console.log(switchEl.value);
   };
 
-  const onChange = (newValue) => {
-    console.log(newValue);
-  };
-
   return (
     <DxcInset space="2rem">
       <DxcFlex direction="column" gap="2rem">
         <DxcSwitch
           label="Bluetooth"
           defaultChecked={true}
-          onChange={onChange}
           ref={switchRef}
+          value="Bluetooth"
         />
         <DxcButton label="Submit" type="submit" onClick={handleSubmit} />
       </DxcFlex>

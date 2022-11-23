@@ -14,17 +14,12 @@ const code = `() => {
     console.log(slider.value);
   };
 
-  const onChange = (newValue) => {
-    console.log(newValue);
-  };
-
   return (
     <DxcInset space="2rem">
       <DxcFlex direction="column" gap="2rem">
         <DxcSlider
           label="Select a value"
           defaultValue={40}
-          onChange={onChange}
           ref={sliderRef}
         />
         <DxcButton label="Submit" type="submit" onClick={handleSubmit} />
