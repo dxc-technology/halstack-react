@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import React, { useState, useEffect, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -6,8 +6,8 @@ import { spaces } from "../common/variables.js";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import DxcButton from "../button/Button";
-import FileItem from "./FileItem";
 import FileInputPropsType, { RefType } from "./types";
+import FileItem from "./FileItem";
 
 const audioIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -172,7 +172,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
           </Label>
           <HelperText disabled={disabled}>{helperText}</HelperText>
           {mode === "file" ? (
-            <FileContainer multiple={multiple} files={files}>
+            <FileContainer singleFileMode={!multiple && files.length === 1}>
               <ValueInput
                 id={fileInputId}
                 type="file"
@@ -197,22 +197,22 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 size="fitContent"
                 tabIndex={tabIndex}
               />
-              <FileItemListContainer mode={mode} multiple={multiple} files={files}>
-                {files.map((file) => (
-                  <FileItem
-                    mode={mode}
-                    multiple={multiple}
-                    name={file.file.name}
-                    error={file.error}
-                    showPreview={mode === "file" && !multiple ? false : showPreview}
-                    numFiles={files.length}
-                    preview={file.preview}
-                    type={file.file.type}
-                    onDelete={onDelete}
-                    tabIndex={tabIndex}
-                  />
-                ))}
-              </FileItemListContainer>
+              {files.length > 0 && (
+                <FileItemListContainer>
+                  {files.map((file) => (
+                    <FileItem
+                      fileName={file.file.name}
+                      error={file.error}
+                      singleFileMode={!multiple && files.length === 1}
+                      showPreview={mode === "file" && !multiple ? false : showPreview}
+                      preview={file.preview}
+                      type={file.file.type}
+                      onDelete={onDelete}
+                      tabIndex={tabIndex}
+                    />
+                  ))}
+                </FileItemListContainer>
+              )}
             </FileContainer>
           ) : (
             <Container>
@@ -236,15 +236,13 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                 onDragOver={handleDrag}
                 onDragLeave={handleDragOut}
               >
-                <ButtonContainer mode={mode}>
-                  <DxcButton
-                    mode="secondary"
-                    label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
-                    onClick={handleClick}
-                    disabled={disabled}
-                    size="fitContent"
-                  />
-                </ButtonContainer>
+                <DxcButton
+                  mode="secondary"
+                  label={buttonLabel ?? translatedLabels.fileInput.dropAreaButtonLabelDefault}
+                  onClick={handleClick}
+                  disabled={disabled}
+                  size="fitContent"
+                />
                 {mode === "dropzone" ? (
                   <DropzoneLabel disabled={disabled}>
                     {dropAreaLabel ??
@@ -261,28 +259,27 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                   </FiledropLabel>
                 )}
               </DragDropArea>
-              <FileItemListContainer mode={mode} multiple={multiple} files={files}>
-                {files.map((file) => (
-                  <FileItem
-                    mode={mode}
-                    multiple={multiple}
-                    name={file.file.name}
-                    error={file.error}
-                    showPreview={showPreview}
-                    numFiles={files.length}
-                    preview={file.preview}
-                    type={file.file.type}
-                    onDelete={onDelete}
-                    tabIndex={tabIndex}
-                  />
-                ))}
-              </FileItemListContainer>
+              {files.length > 0 && (
+                <FileItemListContainer>
+                  {files.map((file) => (
+                    <FileItem
+                      fileName={file.file.name}
+                      error={file.error}
+                      singleFileMode={false}
+                      showPreview={showPreview}
+                      preview={file.preview}
+                      type={file.file.type}
+                      onDelete={onDelete}
+                      tabIndex={tabIndex}
+                    />
+                  ))}
+                </FileItemListContainer>
+              )}
             </Container>
           )}
-          {files.length === 1 &&
-            files.map(
-              (file) => file.error && mode === "file" && !multiple && <ErrorMessage>{file.error}</ErrorMessage>
-            )}
+          {mode === "file" && !multiple && files.length === 1 && files[0].error && (
+            <ErrorMessage>{files[0].error}</ErrorMessage>
+          )}
         </FileInputContainer>
       </ThemeProvider>
     );
@@ -320,12 +317,10 @@ const HelperText = styled.span`
   line-height: ${(props) => props.theme.helperTextLineHeight};
 `;
 
-const FileContainer = styled.div`
+const FileContainer = styled.div<{ singleFileMode: boolean }>`
   display: flex;
   ${(props) =>
-    props.multiple || props.files.length > 1
-      ? "flex-direction: column; row-gap: 0.25rem;"
-      : "flex-direction: row; column-gap: 0.25rem;"}
+    props.singleFileMode ? "flex-direction: row; column-gap: 0.25rem;" : "flex-direction: column; row-gap: 0.25rem;"}
   margin-top: 0.25rem;
 `;
 
@@ -349,11 +344,16 @@ const Container = styled.div`
 const DragDropArea = styled.div`
   box-sizing: border-box;
   display: flex;
-  flex-direction: ${(props) => (props.mode === "filedrop" ? "row" : "column")};
-  ${(props) => props.mode === "dropzone" && "justify-content: center; padding: 1rem;"};
+  ${(props) =>
+    props.mode === "filedrop"
+      ? "flex-direction: row; column-gap: 0.75rem; height: 48px;"
+      : "justify-content: center; flex-direction: column; row-gap: 0.5rem; height: 160px;"}
   align-items: center;
-  height: ${(props) => (props.mode === "filedrop" ? "48px" : "160px")};
   width: 320px;
+  padding: ${(props) =>
+    props.mode === "filedrop"
+      ? `calc(4px - ${props.theme.dropBorderThickness}) 1rem calc(4px - ${props.theme.dropBorderThickness}) calc(4px - ${props.theme.dropBorderThickness})`
+      : "1rem"};
   overflow: hidden;
   box-shadow: 0 0 0 2px transparent;
   border-radius: ${(props) => props.theme.dropBorderRadius};
@@ -370,10 +370,6 @@ const DragDropArea = styled.div`
   cursor: ${(props) => props.disabled && "not-allowed"};
 `;
 
-const ButtonContainer = styled.div`
-  ${(props) => props.mode === "filedrop" && "padding: 2px 12px 2px 3px"};
-`;
-
 const DropzoneLabel = styled.div`
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -381,7 +377,6 @@ const DropzoneLabel = styled.div`
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   text-align: center;
-  margin-top: 0.5rem;
   color: ${(props) => (props.disabled ? props.theme.disabledDropLabelFontColor : props.theme.dropLabelFontColor)};
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
@@ -396,7 +391,6 @@ const FiledropLabel = styled.span`
   font-family: ${(props) => props.theme.dropLabelFontFamily};
   font-size: ${(props) => props.theme.dropLabelFontSize};
   font-weight: ${(props) => props.theme.dropLabelFontWeight};
-  margin-right: 1rem;
 `;
 
 const ErrorMessage = styled.div`
