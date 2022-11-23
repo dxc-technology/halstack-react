@@ -35,7 +35,7 @@ const StatusTag = styled.div<StatusTagProps>`
       ? "#FFFDF5"
       : props.status === "Information"
       ? "#F5FBFF"
-      : "#FAF7FD"}; ;
+      : "#FAF7FD"};
 `;
 
 export default StatusTag;
