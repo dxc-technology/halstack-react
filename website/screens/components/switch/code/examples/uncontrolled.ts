@@ -11,7 +11,7 @@ const code = `() => {
 
   const handleSubmit = () => {
     const switchEl = switchRef.current.getElementsByTagName("input")[0];
-    console.log(switchEl.value);
+    console.log(switchEl.checked ? switchEl.value : "");
   };
 
   return (

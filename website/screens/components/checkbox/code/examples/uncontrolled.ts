@@ -11,7 +11,7 @@ const code = `() => {
 
   const handleSubmit = () => {
     const checkbox = checkboxRef.current.getElementsByTagName("input")[0];
-    console.log(checkbox.value);
+    console.log(checkbox.checked ? checkbox.value : "");
   };
 
   return (
