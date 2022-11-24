@@ -1,4 +1,4 @@
-{ 
+{
   "name": "@dxc-technology/halstack-react",
   "version": "0.0.0",
   "description": "DXC Halstack React components library",
@@ -57,7 +57,7 @@
     "@storybook/react": "^6.4.9",
     "@storybook/testing-library": "0.0.7",
     "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^12.6.3",
+    "@testing-library/user-event": "^13.0.0",
     "@types/react": "^18.0.18",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
