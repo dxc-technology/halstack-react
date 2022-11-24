@@ -1,0 +1,25 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches:
+      - marcialfps-lighthouse
+
+jobs:
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Install dependencies and build
+        run: |
+          cd website & yarn
+          cd website && SITE_VERSION=next yarn build
+      - name: run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.8.x
+          cd website && lhci autorun

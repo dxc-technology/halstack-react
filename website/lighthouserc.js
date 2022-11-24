@@ -1,12 +1,15 @@
 module.exports = {
   ci: {
     collect: {
-      startServerCommand: "yarn dev",
-      url: ["http://localhost:3000"],
+      staticDistDir: "./out",
     },
     upload: {
-      target: "filesystem",
-      outputDir: "./lhci",
+      target: "temporary-public-storage",
+    },
+    assert: {
+      assertions: {
+        "categories:accessibility": ["error", { minScore: 0.95 }],
+      },
     },
   },
 };
