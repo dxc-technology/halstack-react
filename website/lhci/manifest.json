@@ -1,0 +1,41 @@
+[
+  {
+    "url": "http://localhost:3000/",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\mparrilla\\OneDrive - DXC Production\\Desktop\\DXC\\halstack-react\\website\\lhci\\localhost-_-2022_11_23_14_07_49.report.html",
+    "jsonPath": "C:\\Users\\mparrilla\\OneDrive - DXC Production\\Desktop\\DXC\\halstack-react\\website\\lhci\\localhost-_-2022_11_23_14_07_49.report.json",
+    "summary": {
+      "performance": 0.15,
+      "accessibility": 0.94,
+      "best-practices": 0.92,
+      "seo": 0.71,
+      "pwa": 0.3
+    }
+  },
+  {
+    "url": "http://localhost:3000/",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\mparrilla\\OneDrive - DXC Production\\Desktop\\DXC\\halstack-react\\website\\lhci\\localhost-_-2022_11_23_14_08_41.report.html",
+    "jsonPath": "C:\\Users\\mparrilla\\OneDrive - DXC Production\\Desktop\\DXC\\halstack-react\\website\\lhci\\localhost-_-2022_11_23_14_08_41.report.json",
+    "summary": {
+      "performance": 0.23,
+      "accessibility": 0.94,
+      "best-practices": 0.92,
+      "seo": 0.71,
+      "pwa": 0.3
+    }
+  },
+  {
+    "url": "http://localhost:3000/",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\mparrilla\\OneDrive - DXC Production\\Desktop\\DXC\\halstack-react\\website\\lhci\\localhost-_-2022_11_23_14_08_21.report.html",
+    "jsonPath": "C:\\Users\\mparrilla\\OneDrive - DXC Production\\Desktop\\DXC\\halstack-react\\website\\lhci\\localhost-_-2022_11_23_14_08_21.report.json",
+    "summary": {
+      "performance": 0.23,
+      "accessibility": 0.94,
+      "best-practices": 0.92,
+      "seo": 0.71,
+      "pwa": 0.3
+    }
+  }
+]
