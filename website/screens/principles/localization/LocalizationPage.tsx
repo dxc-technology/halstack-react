@@ -57,7 +57,7 @@ const sections = [
                 <tr>
                   <th>Label Name</th>
                   <th>Default value</th>
-                  <th></th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -265,7 +265,7 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
@@ -321,7 +321,7 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
@@ -373,7 +373,7 @@ const sections = [
               <tr>
                 <th>Label Name</th>
                 <th>Default value</th>
-                <th></th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
@@ -381,7 +381,7 @@ const sections = [
                 <td>
                   <Code>itemsPerPageText</Code>
                 </td>
-                <td>Items per page</td>
+                <td>Items per page:</td>
               </tr>
               <tr>
                 <td>
