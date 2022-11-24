@@ -6,7 +6,7 @@ export type Margin = {
   right?: Space;
 };
 
-export type SwitchPropsType = {
+type Props = {
   /**
    * Initial state of the switch, only when it is uncontrolled.
    */
@@ -60,3 +60,10 @@ export type SwitchPropsType = {
    */
   tabIndex?: number;
 };
+
+/**
+ * Reference to the component.
+ */
+export type RefType = HTMLDivElement;
+
+export default Props;
