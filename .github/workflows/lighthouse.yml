@@ -17,7 +17,7 @@ jobs:
           node-version: 16.x
       - name: Install dependencies and build
         run: |
-          cd website & yarn
+          cd website && yarn
           cd website && SITE_VERSION=next yarn build
       - name: run Lighthouse CI
         run: |
