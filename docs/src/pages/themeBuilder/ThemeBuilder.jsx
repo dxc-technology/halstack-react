@@ -14,9 +14,7 @@ import ImportDialog from "./ImportDialog";
 import { useParams } from "react-router";
 import defaultSchema from "./themes/schemas/Default.schema.json";
 import advancedSchema from "./themes/schemas/Advanced.schema.json";
-import exportIcon from "./images/ExportIcon";
-import importIcon from "./images/ImportIcon";
-import resetIcon from "./images/ResetIcon";
+import icons from "./images/GlobalActionsIcons";
 
 const ThemeBuilder = () => {
   const { type } = useParams();
@@ -65,7 +63,7 @@ const ThemeBuilder = () => {
                       type === "advancedTheme" ? advancedTheme : defaultTheme
                     );
                   }}
-                  icon={resetIcon}
+                  icon={icons.reset}
                   size="fillParent"
                 />
                 <DxcButton
@@ -75,7 +73,7 @@ const ThemeBuilder = () => {
                     setDialogVisible(true);
                   }}
                   margin={{ top: "xxsmall", bottom: "xxsmall" }}
-                  icon={importIcon}
+                  icon={icons.import}
                   size="fillParent"
                 />
                 <DxcButton
@@ -84,7 +82,7 @@ const ThemeBuilder = () => {
                   onClick={() => {
                     downloadFile(customTheme);
                   }}
-                  icon={exportIcon}
+                  icon={icons.export}
                   size="fillParent"
                 />
               </DxcFlex>
