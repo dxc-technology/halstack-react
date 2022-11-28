@@ -22,6 +22,27 @@ const downArrowIcon = (
   </svg>
 );
 
+const useWidth = (target) => {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (target != null) {
+      setWidth(target.getBoundingClientRect().width);
+      
+      const triggerObserver = new ResizeObserver((entries) => {
+        const rect = entries[0].target.getBoundingClientRect();
+        setWidth(rect?.width);
+      });
+      triggerObserver.observe(target);
+      return () => {
+        triggerObserver.unobserve(target);
+      };
+    }
+  }, [target]);
+
+  return width;
+};
+
 const DxcDropdown = ({
   options,
   optionsIconPosition = "before",
@@ -39,13 +60,12 @@ const DxcDropdown = ({
   const [triggerId] = useState(`trigger-${uuidv4()}`);
   const menuId = `menu-${triggerId}`;
   const [isOpen, changeIsOpen] = useState(false);
-  const [menuStyles, setMenuStyles] = useState(null);
-
   const [visualFocusIndex, setVisualFocusIndex] = useState(0);
 
   const colorsTheme = useTheme();
   const triggerRef = useRef(null);
   const menuRef = useRef(null);
+  const width = useWidth(triggerRef.current);
 
   const handleOnOpenMenu = () => {
     changeIsOpen(true);
@@ -147,18 +167,6 @@ const DxcDropdown = ({
     visualFocusedMenuItem?.scrollIntoView?.({ block: "nearest", inline: "start" });
   }, [visualFocusIndex]);
 
-  const handleMenuResize = () => {
-    const rect = triggerRef?.current?.getBoundingClientRect();
-    setMenuStyles({ width: rect?.width });
-  };
-  useEffect(() => {
-    handleMenuResize();
-    window.addEventListener("resize", handleMenuResize);
-    return () => {
-      window.removeEventListener("resize", handleMenuResize);
-    };
-  }, []);
-
   return (
     <ThemeProvider theme={colorsTheme.dropdown}>
       <DropdownContainer
@@ -214,7 +222,7 @@ const DxcDropdown = ({
               visualFocusIndex={visualFocusIndex}
               menuItemOnClick={handleMenuItemOnClick}
               onKeyDown={handleMenuOnKeyDown}
-              styles={menuStyles}
+              styles={{ width }}
               ref={menuRef}
             />
           </Popover.Content>

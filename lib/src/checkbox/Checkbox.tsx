@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import useTheme from "../useTheme";
 import useTranslatedLabels from "../useTranslatedLabels";
 import BackgroundColorContext from "../BackgroundColorContext";
-import CheckboxPropsType, { Margin, Space } from "./types";
+import CheckboxPropsType, { Margin, Space, RefType } from "./types";
 
 const checkedIcon = (
   <svg fill="currentColor" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
@@ -14,96 +14,102 @@ const checkedIcon = (
   </svg>
 );
 
-const DxcCheckbox = ({
-  checked,
-  defaultChecked = false,
-  value,
-  label = "",
-  labelPosition = "before",
-  name = "",
-  disabled = false,
-  optional = false,
-  onChange,
-  margin,
-  size = "fitContent",
-  tabIndex = 0,
-}: CheckboxPropsType): JSX.Element => {
-  const [labelId] = useState(`label-checkbox-${uuidv4()}`);
-  const [innerChecked, setInnerChecked] = useState(defaultChecked);
+const DxcCheckbox = React.forwardRef<RefType, CheckboxPropsType>(
+  (
+    {
+      checked,
+      defaultChecked = false,
+      value,
+      label = "",
+      labelPosition = "before",
+      name = "",
+      disabled = false,
+      optional = false,
+      onChange,
+      margin,
+      size = "fitContent",
+      tabIndex = 0,
+    },
+    ref
+  ): JSX.Element => {
+    const [labelId] = useState(`label-checkbox-${uuidv4()}`);
+    const [innerChecked, setInnerChecked] = useState(defaultChecked);
 
-  const checkboxRef = useRef(null);
+    const checkboxRef = useRef(null);
 
-  const colorsTheme = useTheme();
-  const backgroundType = useContext(BackgroundColorContext);
-  const translatedLabels = useTranslatedLabels();
+    const colorsTheme = useTheme();
+    const backgroundType = useContext(BackgroundColorContext);
+    const translatedLabels = useTranslatedLabels();
 
-  const handleCheckboxChange = () => {
-    document.activeElement !== checkboxRef?.current && checkboxRef?.current?.focus();
-    const newChecked = checked ?? innerChecked;
-    checked ?? setInnerChecked((innerChecked) => !innerChecked);
-    onChange?.(!newChecked);
-  };
+    const handleCheckboxChange = () => {
+      document.activeElement !== checkboxRef?.current && checkboxRef?.current?.focus();
+      const newChecked = checked ?? innerChecked;
+      checked ?? setInnerChecked((innerChecked) => !innerChecked);
+      onChange?.(!newChecked);
+    };
 
-  const handleKeyboard = (event) => {
-    switch (event.key) {
-      case " ":
-        event.preventDefault();
-        handleCheckboxChange();
-    }
-  };
+    const handleKeyboard = (event) => {
+      switch (event.key) {
+        case " ":
+          event.preventDefault();
+          handleCheckboxChange();
+      }
+    };
 
-  return (
-    <ThemeProvider theme={colorsTheme.checkbox}>
-      <MainContainer
-        disabled={disabled}
-        onClick={disabled ? undefined : handleCheckboxChange}
-        margin={margin}
-        size={size}
-        checked={checked ?? innerChecked}
-        backgroundType={backgroundType}
-      >
-        {label && labelPosition === "before" && (
-          <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
-            {label}
-            {optional && ` ${translatedLabels.formFields.optionalLabel}`}
-          </LabelContainer>
-        )}
-        <ValueInput
-          type="checkbox"
-          checked={checked ?? innerChecked}
-          name={name}
-          aria-hidden="true"
-          value={value}
+    return (
+      <ThemeProvider theme={colorsTheme.checkbox}>
+        <MainContainer
           disabled={disabled}
-          readOnly
-        />
-        <CheckboxContainer>
-          <Checkbox
-            onKeyDown={handleKeyboard}
-            role="checkbox"
-            tabIndex={disabled ? -1 : tabIndex}
-            aria-checked={checked ?? innerChecked}
-            aria-disabled={disabled}
-            aria-required={!disabled && !optional}
-            aria-labelledby={labelId}
-            backgroundType={backgroundType}
+          onClick={disabled ? undefined : handleCheckboxChange}
+          margin={margin}
+          size={size}
+          checked={checked ?? innerChecked}
+          backgroundType={backgroundType}
+          ref={ref}
+        >
+          {label && labelPosition === "before" && (
+            <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
+              {label}
+              {optional && ` ${translatedLabels.formFields.optionalLabel}`}
+            </LabelContainer>
+          )}
+          <ValueInput
+            type="checkbox"
             checked={checked ?? innerChecked}
+            name={name}
+            aria-hidden="true"
+            value={value}
             disabled={disabled}
-            ref={checkboxRef}
-          >
-            {(checked ?? innerChecked) && checkedIcon}
-          </Checkbox>
-        </CheckboxContainer>
-        {label && labelPosition === "after" && (
-          <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
-            {optional && `${translatedLabels.formFields.optionalLabel} `}
-            {label}
-          </LabelContainer>
-        )}
-      </MainContainer>
-    </ThemeProvider>
-  );
-};
+            readOnly
+          />
+          <CheckboxContainer>
+            <Checkbox
+              onKeyDown={handleKeyboard}
+              role="checkbox"
+              tabIndex={disabled ? -1 : tabIndex}
+              aria-checked={checked ?? innerChecked}
+              aria-disabled={disabled}
+              aria-required={!disabled && !optional}
+              aria-labelledby={labelId}
+              backgroundType={backgroundType}
+              checked={checked ?? innerChecked}
+              disabled={disabled}
+              ref={checkboxRef}
+            >
+              {(checked ?? innerChecked) && checkedIcon}
+            </Checkbox>
+          </CheckboxContainer>
+          {label && labelPosition === "after" && (
+            <LabelContainer id={labelId} disabled={disabled} backgroundType={backgroundType}>
+              {optional && `${translatedLabels.formFields.optionalLabel} `}
+              {label}
+            </LabelContainer>
+          )}
+        </MainContainer>
+      </ThemeProvider>
+    );
+  }
+);
 
 const sizes = {
   small: "120px",
