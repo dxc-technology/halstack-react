@@ -6,8 +6,8 @@ import {
   DxcHeading,
   DxcAlert,
   DxcFlex,
+  DxcInset,
 } from "@dxc-technology/halstack-react";
-import styled from "styled-components";
 import { deepMerge } from "./utils";
 
 const validateInputTheme = (json, customThemeSchema) => {
@@ -71,23 +71,19 @@ const ImportDialog = ({
   };
 
   return (
-    <DxcDialog
-      isCloseVisible={false}
-      padding="xsmall"
-      onBackgroundClick={closeDialog}
-    >
-      <DialogContainer>
+    <DxcDialog isCloseVisible={false} onBackgroundClick={closeDialog}>
+      <DxcInset space="1rem">
         <DxcHeading
           text="Import theme"
-          level={3}
+          level={2}
           margin={{ bottom: "small" }}
           weight="normal"
         />
         <DxcTextarea
-          label="Paste here your theme"
+          label="Paste your theme here"
           value={value}
           onChange={onChange}
-          rows={18}
+          rows={24}
           margin={{ bottom: "small" }}
           error={validationErrorMessage !== ""}
           size="fillParent"
@@ -112,13 +108,9 @@ const ImportDialog = ({
           />
           <DxcButton mode="text" label="Cancel" onClick={closeDialog} />
         </DxcFlex>
-      </DialogContainer>
+      </DxcInset>
     </DxcDialog>
   );
 };
-
-const DialogContainer = styled.div`
-  margin: 3%;
-`;
 
 export default ImportDialog;

@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import styled from "styled-components";
 import {
   DxcApplicationLayout,
   DxcButton,
@@ -10,7 +9,6 @@ import defaultTheme from "./themes/DefaultTheme.json";
 import advancedTheme from "./themes/AdvancedTheme.json";
 import ComponentPreview from "./components/ComponentPreview";
 import { downloadFile, makeReadableSidenav } from "./utils";
-import Header from "../../common/Header";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
 import ImportDialog from "./ImportDialog";
 import { useParams } from "react-router";
@@ -47,7 +45,7 @@ const ThemeBuilder = () => {
 
   return (
     <DxcApplicationLayout
-      header={<Header />}
+      visibilityToggleLabel="Menu"
       sidenav={
         <DxcApplicationLayout.SideNav
           title={
@@ -57,7 +55,7 @@ const ThemeBuilder = () => {
           }
         >
           <DxcApplicationLayout.SideNav.Section>
-            <DxcInset space="1rem" bottom="1.5rem">
+            <DxcInset space="1rem">
               <DxcFlex direction="column">
                 <DxcButton
                   mode="text"
@@ -80,13 +78,6 @@ const ThemeBuilder = () => {
                   icon={importIcon}
                   size="fillParent"
                 />
-                {isDialogVisible && (
-                  <ImportDialog
-                    customThemeSchema={customThemeSchema}
-                    setCustomTheme={setCustomTheme}
-                    setDialogVisible={setDialogVisible}
-                  />
-                )}
                 <DxcButton
                   mode="primary"
                   label="Export"
@@ -98,6 +89,8 @@ const ThemeBuilder = () => {
                 />
               </DxcFlex>
             </DxcInset>
+          </DxcApplicationLayout.SideNav.Section>
+          <DxcApplicationLayout.SideNav.Section>
             <DxcApplicationLayout.SideNav.Group title="Components">
               {Object.keys(
                 type === "advancedTheme" ? advancedTheme : defaultTheme
@@ -138,6 +131,13 @@ const ThemeBuilder = () => {
             onChangeCustomTheme={setComponentProperty}
           />
         </DxcFlex>
+        {isDialogVisible && (
+          <ImportDialog
+            customThemeSchema={customThemeSchema}
+            setCustomTheme={setCustomTheme}
+            setDialogVisible={setDialogVisible}
+          />
+        )}
       </DxcApplicationLayout.Main>
     </DxcApplicationLayout>
   );
