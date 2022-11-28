@@ -35,7 +35,7 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --env=jsdom",
     "test:watch": "npm test -- --watch --coverage",
     "build": "babel src --extensions .js,.jsx,.ts,.tsx --out-dir ../dist --copy-files --verbose && node ../scripts/build/copy-package.js && tsc ",
     "build:watch": "babel src --watch --extensions .js,.jsx,.ts,.tsx --out-dir ../dist --copy-files --verbose",
@@ -72,7 +72,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-storybook": "^0.5.5",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.0.0",
+    "jest": "^27.0.0",
     "react": "^18.x",
     "react-dom": "^18.x",
     "react-test-renderer": "^16.8.6",
