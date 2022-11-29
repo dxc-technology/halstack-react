@@ -82,7 +82,7 @@ const Tabs = () => {
             {
               label: "Tab 2",
               icon: twitterIcon,
-              isDisabled: "true",
+              isDisabled: true,
             },
             {
               label: "Tab 3",
@@ -119,7 +119,7 @@ const Tabs = () => {
             {
               label: "Tab 5",
               icon: twitterIcon,
-              isDisabled: "true",
+              isDisabled: true,
               notificationNumber: true,
             },
           ]}
