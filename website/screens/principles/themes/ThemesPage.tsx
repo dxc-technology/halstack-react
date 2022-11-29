@@ -978,11 +978,8 @@ const sections = [
                 <td>Base color</td>
                 <td>
                   <Code>selectedStepBackgroundColor</Code>
-                </td>
-              </tr>
-              <tr>
-                <td>Font color</td>
-                <td>
+                  <br />
+                  <br />
                   <Code>selectedStepBorderColor</Code>
                 </td>
               </tr>
