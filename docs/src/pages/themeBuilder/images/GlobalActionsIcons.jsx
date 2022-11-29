@@ -20,7 +20,7 @@ const icons = {
       </g>
     </svg>
   ),
-  import: (
+  export: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       enableBackground="new 0 0 24 24"
@@ -37,7 +37,7 @@ const icons = {
       </g>
     </svg>
   ),
-  export: (
+  import: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       enableBackground="new 0 0 24 24"

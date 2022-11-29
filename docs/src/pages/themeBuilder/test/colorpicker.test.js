@@ -26,6 +26,20 @@ const server = setupServer(...handler);
 
 beforeAll(() => {
   server.listen();
+
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
 });
 
 afterEach(() => {
@@ -43,20 +57,13 @@ describe("Successful color picker tests for default theme", () => {
   window.location.pathname = "/tools/react/next/";
 
   it("Change accordion component property value", async () => {
-    const {
-      getByText,
-      getAllByRole,
-      findByText,
-      getByRole,
-      getByDisplayValue,
-    } = render(
+    const { getByText, getAllByRole, getByRole, getByDisplayValue } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
     expect(getByText("Accordion component")).toBeTruthy();
     expect(getByText("Accent color")).toBeTruthy();
     expect(getAllByRole("color-container")[0].getAttribute("color")).toBe(
@@ -79,20 +86,13 @@ describe("Successful color picker tests for default theme", () => {
   });
 
   it("Change button component property value", async () => {
-    const {
-      getByText,
-      getAllByRole,
-      findByText,
-      getByRole,
-      getByDisplayValue,
-    } = render(
+    const { getByText, getAllByRole, getByRole, getByDisplayValue } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Button"));
     });
@@ -127,20 +127,13 @@ describe("Successful color picker tests for advanced theme", () => {
       .spyOn(routeData, "useParams")
       .mockReturnValue({ type: "advancedTheme" });
     window.location.pathname = "/tools/react/next/";
-    const {
-      getByText,
-      getAllByRole,
-      findByText,
-      getByRole,
-      getByDisplayValue,
-    } = render(
+    const { getByText, getAllByRole, getByRole, getByDisplayValue } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
     act(() => {
       fireEvent.click(getByText("Alert"));
     });

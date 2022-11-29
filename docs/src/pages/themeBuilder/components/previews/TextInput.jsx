@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcTextInput, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcTextInput } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const countries = [
@@ -70,11 +70,6 @@ const TextInput = () => {
 
   return (
     <TextInputContainer>
-      <DxcHeading
-        text="Light Mode"
-        level={5}
-        margin={{ top: "xsmall", bottom: "xxsmall" }}
-      />
       <Mode text="Default">
         <DxcTextInput
           value={value}

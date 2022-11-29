@@ -59,6 +59,20 @@ const server = setupServer(...handler);
 
 beforeAll(() => {
   server.listen();
+
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
 });
 
 afterEach(() => {
@@ -76,15 +90,13 @@ describe("Import default theme", () => {
   window.location.pathname = "/tools/react/next/";
 
   it("Should open a dialog when Import button is clicked", async () => {
-    const { getByText, getAllByText, getByRole, findByText } = render(
+    const { getByText, getAllByText, getByRole } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
-
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -95,15 +107,13 @@ describe("Import default theme", () => {
   });
 
   it("Should close the import dialog when Cancel button is clicked", async () => {
-    const { getByText, queryByText, findByText } = render(
+    const { getByText, queryByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
-
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -116,7 +126,7 @@ describe("Import default theme", () => {
   });
 
   it("Should show the JSON error message", async () => {
-    const { getByText, getByRole, getAllByText, queryByText, findByText } =
+    const { getByText, getByRole, getAllByText, queryByText } =
       render(
         <Router history={history}>
           <Route>
@@ -124,8 +134,6 @@ describe("Import default theme", () => {
           </Route>
         </Router>
       );
-    await findByText("next");
-
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -144,7 +152,7 @@ describe("Import default theme", () => {
   });
 
   it("Should show the component error message", async () => {
-    const { getByText, getByRole, getAllByText, queryByText, findByText } =
+    const { getByText, getByRole, getAllByText, queryByText } =
       render(
         <Router history={history}>
           <Route>
@@ -152,8 +160,6 @@ describe("Import default theme", () => {
           </Route>
         </Router>
       );
-    await findByText("next");
-
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -172,7 +178,7 @@ describe("Import default theme", () => {
   });
 
   it("Should show the theme input error message", async () => {
-    const { getByText, getByRole, getAllByText, queryByText, findByText } =
+    const { getByText, getByRole, getAllByText, queryByText } =
       render(
         <Router history={history}>
           <Route>
@@ -180,7 +186,6 @@ describe("Import default theme", () => {
           </Route>
         </Router>
       );
-    await findByText("next");
 
     act(() => {
       fireEvent.click(getByText("Import"));
@@ -196,7 +201,7 @@ describe("Import default theme", () => {
       fireEvent.click(getAllByText("Import")[1].closest("button"));
     });
     expect(
-      getByText("Invalid theme input name in component accordion.")
+      getByText("Invalid theme input name in the accordion component.")
     ).toBeTruthy();
     expect(getAllByText("Import")[1].closest("button").disabled).toBeTruthy();
   });
@@ -207,7 +212,6 @@ describe("Import default theme", () => {
       getByRole,
       getAllByText,
       queryByText,
-      findByText,
       getAllByRole,
     } = render(
       <Router history={history}>
@@ -216,7 +220,6 @@ describe("Import default theme", () => {
         </Route>
       </Router>
     );
-    await findByText("next");
 
     act(() => {
       fireEvent.click(getByText("Import"));
@@ -260,7 +263,6 @@ describe("Import default theme", () => {
       getAllByRole,
       getAllByText,
       queryByText,
-      findByText,
     } = render(
       <Router history={history}>
         <Route>
@@ -268,8 +270,6 @@ describe("Import default theme", () => {
         </Route>
       </Router>
     );
-    await findByText("next");
-
     act(() => {
       fireEvent.click(getByText("Import"));
     });
