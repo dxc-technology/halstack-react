@@ -199,7 +199,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
               />
               {files.length > 0 && (
                 <FileItemListContainer>
-                  {files.map((file) => (
+                  {files.map((file, index) => (
                     <FileItem
                       fileName={file.file.name}
                       error={file.error}
@@ -209,6 +209,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                       type={file.file.type}
                       onDelete={onDelete}
                       tabIndex={tabIndex}
+                      key={`file-${index}`}
                     />
                   ))}
                 </FileItemListContainer>
@@ -261,7 +262,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
               </DragDropArea>
               {files.length > 0 && (
                 <FileItemListContainer>
-                  {files.map((file) => (
+                  {files.map((file, index) => (
                     <FileItem
                       fileName={file.file.name}
                       error={file.error}
@@ -271,6 +272,7 @@ const DxcFileInput = React.forwardRef<RefType, FileInputPropsType>(
                       type={file.file.type}
                       onDelete={onDelete}
                       tabIndex={tabIndex}
+                      key={`file-${index}`}
                     />
                   ))}
                 </FileItemListContainer>
