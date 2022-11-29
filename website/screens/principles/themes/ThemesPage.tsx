@@ -649,7 +649,7 @@ const sections = [
                 </td>
               </tr>
               <tr>
-                <td>Option Font color</td>
+                <td>Option font color</td>
                 <td>
                   <Code>listOptionFontColor</Code>
                 </td>
