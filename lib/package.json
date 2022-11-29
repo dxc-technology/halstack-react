@@ -72,7 +72,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-storybook": "^0.5.5",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.0.0",
+    "jest": "^28.0.0",
+    "jest-environment-jsdom": "^29.3.1",
     "react": "^18.x",
     "react-dom": "^18.x",
     "react-test-renderer": "^16.8.6",
@@ -84,7 +85,8 @@
     "moduleNameMapper": {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy",
       "\\.(svg)$": "<rootDir>/test/mocks/svgMock.js",
-      "\\.(png)$": "<rootDir>/test/mocks/pngMock.js"
+      "\\.(png)$": "<rootDir>/test/mocks/pngMock.js",
+      "^uuid$": "uuid"
     }
   }
 }
