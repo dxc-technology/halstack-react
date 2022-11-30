@@ -573,6 +573,33 @@ const sections = [
         ),
       },
       {
+        title: "Quick Nav",
+        content: (
+          <DxcTable>
+            <thead>
+              <tr>
+                <th>Theme Input</th>
+                <th>Tokens (calculation)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Accent color</td>
+                <td>
+                  <Code>hoverFontColor</Code> (70% of opacity)
+                </td>
+              </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>fontColor</Code>
+                </td>
+              </tr>
+            </tbody>
+          </DxcTable>
+        ),
+      },
+      {
         title: "Radio Group",
         content: (
           <DxcTable>
