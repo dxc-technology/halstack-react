@@ -660,9 +660,6 @@ const sections = [
               <tr>
                 <td>Font color</td>
                 <td>
-                  <Code>listOptionFontColor</Code>
-                  <br />
-                  <br />
                   <Code>valueFontColor</Code>
                   <br />
                   <br />
@@ -676,6 +673,12 @@ const sections = [
                   <br />
                   <br />
                   <Code>collapseIndicatorColor</Code>
+                </td>
+              </tr>
+              <tr>
+                <td>Option font color</td>
+                <td>
+                  <Code>listOptionFontColor</Code>
                 </td>
               </tr>
             </tbody>
