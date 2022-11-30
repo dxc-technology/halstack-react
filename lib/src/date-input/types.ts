@@ -135,7 +135,7 @@ export type CalendarPropsType = {
   /**
    * Function called when a date is selected.
    */
-  onDaySelect: (date: number, unit: UnitType) => void;
+  onDaySelect: (date: Dayjs) => void;
 };
 
 export type MonthPickerPropsType = {
@@ -159,11 +159,6 @@ export type YearPickerPropsType = {
    */
   onYearSelect: (year: number) => void;
 };
-
-export type SelectablePropsType = {
-  selected?: boolean;
-};
-
 /**
  * Reference to the component.
  */
