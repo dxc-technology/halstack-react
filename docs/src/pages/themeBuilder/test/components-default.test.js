@@ -57,7 +57,7 @@ describe("Successful component tests for default theme", () => {
   history.push("/themeBuilder");
   window.location.pathname = "/tools/react/next/";
 
-  it("Should render accordion component", async () => {
+  it("Should render accordion component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -65,7 +65,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     expect(getByText("Accordion component")).toBeTruthy();
     expect(getByText("Default")).toBeTruthy();
     expect(getByText("Disabled")).toBeTruthy();
@@ -77,7 +77,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render button component", async () => {
+  it("Should render button component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -85,7 +85,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Button"));
     });
@@ -99,7 +99,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render checkbox component", async () => {
+  it("Should render checkbox component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -107,7 +107,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Checkbox"));
     });
@@ -121,7 +121,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render chip component", async () => {
+  it("Should render chip component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -129,7 +129,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Chip"));
     });
@@ -145,7 +145,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render dropdown component", async () => {
+  it("Should render dropdown component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -153,7 +153,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Dropdown"));
     });
@@ -165,7 +165,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  // it("Should render footer component", async () => {
+  // it("Should render footer component", () => {
   //   const { getByText } = render(
   //     <Router history={history}>
   //       <Route>
@@ -173,7 +173,7 @@ describe("Successful component tests for default theme", () => {
   //       </Route>
   //     </Router>
   //   );
-    
+
   //   act(() => {
   //     fireEvent.click(getByText("Footer"));
   //   });
@@ -185,7 +185,7 @@ describe("Successful component tests for default theme", () => {
   //   );
   // });
 
-  // it("Should render header component", async () => {
+  // it("Should render header component", () => {
   //   const { getByText } = render(
   //     <Router history={history}>
   //       <Route>
@@ -193,7 +193,7 @@ describe("Successful component tests for default theme", () => {
   //       </Route>
   //     </Router>
   //   );
-    
+
   //   act(() => {
   //     fireEvent.click(getByText("Header"));
   //   });
@@ -206,7 +206,7 @@ describe("Successful component tests for default theme", () => {
   //   );
   // });
 
-  it("Should render paginator component", async () => {
+  it("Should render paginator component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -214,7 +214,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Paginator"));
     });
@@ -226,7 +226,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render progress bar component", async () => {
+  it("Should render progress bar component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -234,7 +234,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Progress Bar"));
     });
@@ -248,7 +248,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  // it("Should render sidenav component", async () => {
+  // it("Should render sidenav component", () => {
   //   const { getByText } = render(
   //     <Router history={history}>
   //       <Route>
@@ -256,7 +256,7 @@ describe("Successful component tests for default theme", () => {
   //       </Route>
   //     </Router>
   //   );
-    
+
   //   act(() => {
   //     fireEvent.click(getByText("Sidenav"));
   //   });
@@ -270,7 +270,7 @@ describe("Successful component tests for default theme", () => {
   //   );
   // });
 
-  it("Should render slider component", async () => {
+  it("Should render slider component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -278,7 +278,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Slider"));
     });
@@ -293,7 +293,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render spinner component", async () => {
+  it("Should render spinner component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -301,7 +301,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Spinner"));
     });
@@ -316,7 +316,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render switch component", async () => {
+  it("Should render switch component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -324,7 +324,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Switch"));
     });
@@ -337,7 +337,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render table component", async () => {
+  it("Should render table component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -345,7 +345,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Table"));
     });
@@ -359,7 +359,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render tabs component", async () => {
+  it("Should render tabs component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -367,7 +367,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Tabs"));
     });
@@ -382,7 +382,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render text input component", async () => {
+  it("Should render text input component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -390,7 +390,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Text Input"));
     });
@@ -406,7 +406,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render wizard component", async () => {
+  it("Should render wizard component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -414,7 +414,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Wizard"));
     });
@@ -427,7 +427,7 @@ describe("Successful component tests for default theme", () => {
     );
   });
 
-  it("Should render toggle group component", async () => {
+  it("Should render toggle group component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -435,7 +435,7 @@ describe("Successful component tests for default theme", () => {
         </Route>
       </Router>
     );
-    
+
     act(() => {
       fireEvent.click(getByText("Toggle Group"));
     });

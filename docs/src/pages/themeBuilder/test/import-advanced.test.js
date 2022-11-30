@@ -95,7 +95,7 @@ describe("Import advanced theme", () => {
   window.location.pathname = "/tools/react/next/";
   jest.spyOn(routeData, "useParams").mockReturnValue({ type: "advancedTheme" });
 
-  it("Should open a dialog when Import button is clicked", async () => {
+  it("Should open a dialog when Import button is clicked", () => {
     const { getByText, getAllByText, getByPlaceholderText } = render(
       <Router history={history}>
         <Route>
@@ -112,7 +112,7 @@ describe("Import advanced theme", () => {
     expect(getByPlaceholderText("Paste your theme here...")).toBeTruthy();
   });
 
-  it("Should close the import dialog when 'Cancel' button is clicked", async () => {
+  it("Should close the import dialog when 'Cancel' button is clicked", () => {
     const { getByText, queryByText } = render(
       <Router history={history}>
         <Route>
@@ -131,14 +131,15 @@ describe("Import advanced theme", () => {
     expect(getByText("Accordion component")).toBeTruthy();
   });
 
-  it("Should show the JSON error message", async () => {
-    const { getByText, getByPlaceholderText, getAllByText, queryByText } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
+  it("Should show the JSON error message", () => {
+    const { getByText, getByPlaceholderText, getAllByText, queryByText } =
+      render(
+        <Router history={history}>
+          <Route>
+            <ThemeBuilder />
+          </Route>
+        </Router>
+      );
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -156,14 +157,15 @@ describe("Import advanced theme", () => {
     expect(getAllByText("Import")[1].closest("button").disabled).toBeTruthy();
   });
 
-  it("Should show the component error message", async () => {
-    const { getByText, getByPlaceholderText, getAllByText, queryByText } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
+  it("Should show the component error message", () => {
+    const { getByText, getByPlaceholderText, getAllByText, queryByText } =
+      render(
+        <Router history={history}>
+          <Route>
+            <ThemeBuilder />
+          </Route>
+        </Router>
+      );
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -181,14 +183,15 @@ describe("Import advanced theme", () => {
     expect(getAllByText("Import")[1].closest("button").disabled).toBeTruthy();
   });
 
-  it("Should show the theme input error message", async () => {
-    const { getByText, getByPlaceholderText, getAllByText, queryByText } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
+  it("Should show the theme input error message", () => {
+    const { getByText, getByPlaceholderText, getAllByText, queryByText } =
+      render(
+        <Router history={history}>
+          <Route>
+            <ThemeBuilder />
+          </Route>
+        </Router>
+      );
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -208,7 +211,7 @@ describe("Import advanced theme", () => {
     expect(getAllByText("Import")[1].closest("button").disabled).toBeTruthy();
   });
 
-  it("Should import a valid json and update the current theme of the builder", async () => {
+  it("Should import a valid json and update the current theme of the builder", () => {
     const {
       getByText,
       getByPlaceholderText,

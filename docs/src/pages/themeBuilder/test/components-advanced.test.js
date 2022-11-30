@@ -58,7 +58,7 @@ describe("Successful component tests for advanced theme", () => {
   window.location.pathname = "/tools/react/next/";
   jest.spyOn(routeData, "useParams").mockReturnValue({ type: "advancedTheme" });
 
-  it("Should render accordion component", async () => {
+  it("Should render accordion component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -77,7 +77,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render button component", async () => {
+  it("Should render button component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -98,7 +98,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render checkbox component", async () => {
+  it("Should render checkbox component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -119,7 +119,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render chip component", async () => {
+  it("Should render chip component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -142,7 +142,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render date component", async () => {
+  it("Should render date component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -161,7 +161,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render dropdown component", async () => {
+  it("Should render dropdown component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -180,7 +180,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  // it("Should render footer component", async () => {
+  // it("Should render footer component", () => {
   //   const { getByText } = render(
   //     <Router history={history}>
   //       <Route>
@@ -199,7 +199,7 @@ describe("Successful component tests for advanced theme", () => {
   //   );
   // });
 
-  // it("Should render header component", async () => {
+  // it("Should render header component", () => {
   //   const { getByText } = render(
   //     <Router history={history}>
   //       <Route>
@@ -219,7 +219,7 @@ describe("Successful component tests for advanced theme", () => {
   //   );
   // });
 
-  it("Should render paginator component", async () => {
+  it("Should render paginator component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -238,7 +238,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render progress bar component", async () => {
+  it("Should render progress bar component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -259,7 +259,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render select component", async () => {
+  it("Should render select component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -282,7 +282,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  // it("Should render sidenav component", async () => {
+  // it("Should render sidenav component", () => {
   //   const { getByText } = render(
   //     <Router history={history}>
   //       <Route>
@@ -303,7 +303,7 @@ describe("Successful component tests for advanced theme", () => {
   //   );
   // });
 
-  it("Should render slider component", async () => {
+  it("Should render slider component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -325,7 +325,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render spinner component", async () => {
+  it("Should render spinner component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -347,7 +347,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render switch component", async () => {
+  it("Should render switch component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -367,7 +367,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render table component", async () => {
+  it("Should render table component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -388,7 +388,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render tabs component", async () => {
+  it("Should render tabs component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -410,7 +410,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render text input component", async () => {
+  it("Should render text input component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>
@@ -434,7 +434,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render wizard component", async () => {
+  it("Should render wizard component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -454,7 +454,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render toggle group component", async () => {
+  it("Should render toggle group component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -475,7 +475,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render alert component", async () => {
+  it("Should render alert component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -498,7 +498,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render box component", async () => {
+  it("Should render box component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -519,7 +519,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render card component", async () => {
+  it("Should render card component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -538,7 +538,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render dialog component", async () => {
+  it("Should render dialog component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -559,7 +559,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render heading component", async () => {
+  it("Should render heading component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -582,7 +582,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render link component", async () => {
+  it("Should render link component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -605,7 +605,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render tag component", async () => {
+  it("Should render tag component", () => {
     const { getByText } = render(
       <Router history={history}>
         <Route>
@@ -624,7 +624,7 @@ describe("Successful component tests for advanced theme", () => {
     );
   });
 
-  it("Should render textarea component", async () => {
+  it("Should render textarea component", () => {
     const { getByText, getAllByText } = render(
       <Router history={history}>
         <Route>

@@ -56,7 +56,7 @@ describe("Successful color picker tests for default theme", () => {
   history.push("/themeBuilder");
   window.location.pathname = "/tools/react/next/";
 
-  it("Change accordion component property value", async () => {
+  it("Change accordion component property value", () => {
     const { getByText, getAllByRole, getByRole, getByDisplayValue } = render(
       <Router history={history}>
         <Route>
@@ -85,7 +85,7 @@ describe("Successful color picker tests for default theme", () => {
     );
   });
 
-  it("Change button component property value", async () => {
+  it("Change button component property value", () => {
     const { getByText, getAllByRole, getByRole, getByDisplayValue } = render(
       <Router history={history}>
         <Route>
@@ -122,7 +122,7 @@ describe("Successful color picker tests for advanced theme", () => {
   const history = createMemoryHistory();
   history.push("/themeBuilder");
 
-  it("Change alert component property value", async () => {
+  it("Change alert component property value", () => {
     jest
       .spyOn(routeData, "useParams")
       .mockReturnValue({ type: "advancedTheme" });
