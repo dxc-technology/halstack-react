@@ -811,6 +811,12 @@ const sections = [
                   opacity)
                 </td>
               </tr>
+              <tr>
+                <td>Font color</td>
+                <td>
+                  <Code>labelFontColor</Code>
+                </td>
+              </tr>
             </tbody>
           </DxcTable>
         ),
