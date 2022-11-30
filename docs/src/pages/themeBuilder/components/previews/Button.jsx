@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcButton, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcButton } from "@dxc-technology/halstack-react";
 
 import Mode from "../Mode";
 import linkedinIcon from "../../images/LinkedinIcon";
@@ -12,11 +12,6 @@ const Button = () => {
 
   return (
     <ButtonContainer>
-      <DxcHeading
-        text="Light Mode"
-        level={5}
-        margin={{ top: "xxsmall", bottom: "xsmall" }}
-      />
       <Mode text="Primary">
         <DxcButton
           mode="primary"

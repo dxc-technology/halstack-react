@@ -1,22 +1,20 @@
 import React, { useState, useCallback } from "react";
-import styled from "styled-components";
 import {
   DxcApplicationLayout,
   DxcButton,
+  DxcInset,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import defaultTheme from "./themes/DefaultTheme.json";
 import advancedTheme from "./themes/AdvancedTheme.json";
 import ComponentPreview from "./components/ComponentPreview";
 import { downloadFile, makeReadableSidenav } from "./utils";
-import Header from "../../common/Header";
 import ThemeInputsConfig from "./components/ThemeInputsConfig";
 import ImportDialog from "./ImportDialog";
 import { useParams } from "react-router";
 import defaultSchema from "./themes/schemas/Default.schema.json";
 import advancedSchema from "./themes/schemas/Advanced.schema.json";
-import exportIcon from "./images/ExportIcon";
-import importIcon from "./images/ImportIcon";
-import resetIcon from "./images/ResetIcon";
+import icons from "./images/GlobalActionsIcons";
 
 const ThemeBuilder = () => {
   const { type } = useParams();
@@ -45,7 +43,7 @@ const ThemeBuilder = () => {
 
   return (
     <DxcApplicationLayout
-      header={<Header />}
+      visibilityToggleLabel="Menu"
       sidenav={
         <DxcApplicationLayout.SideNav
           title={
@@ -55,42 +53,42 @@ const ThemeBuilder = () => {
           }
         >
           <DxcApplicationLayout.SideNav.Section>
-            <ButtonsContainer>
-              <DxcButton
-                mode="text"
-                label="Reset"
-                onClick={() => {
-                  setCustomTheme(
-                    type === "advancedTheme" ? advancedTheme : defaultTheme
-                  );
-                }}
-                icon={resetIcon}
-              />
-              <DxcButton
-                mode="secondary"
-                label="Import"
-                onClick={() => {
-                  setDialogVisible(true);
-                }}
-                margin={{ top: "xxsmall", bottom: "xxsmall" }}
-                icon={importIcon}
-              />
-              {isDialogVisible && (
-                <ImportDialog
-                  customThemeSchema={customThemeSchema}
-                  setCustomTheme={setCustomTheme}
-                  setDialogVisible={setDialogVisible}
+            <DxcInset space="1rem">
+              <DxcFlex direction="column">
+                <DxcButton
+                  mode="text"
+                  label="Reset"
+                  onClick={() => {
+                    setCustomTheme(
+                      type === "advancedTheme" ? advancedTheme : defaultTheme
+                    );
+                  }}
+                  icon={icons.reset}
+                  size="fillParent"
                 />
-              )}
-              <DxcButton
-                mode="primary"
-                label="Export"
-                onClick={() => {
-                  downloadFile(customTheme);
-                }}
-                icon={exportIcon}
-              />
-            </ButtonsContainer>
+                <DxcButton
+                  mode="secondary"
+                  label="Import"
+                  onClick={() => {
+                    setDialogVisible(true);
+                  }}
+                  margin={{ top: "xxsmall", bottom: "xxsmall" }}
+                  icon={icons.import}
+                  size="fillParent"
+                />
+                <DxcButton
+                  mode="primary"
+                  label="Export"
+                  onClick={() => {
+                    downloadFile(customTheme);
+                  }}
+                  icon={icons.export}
+                  size="fillParent"
+                />
+              </DxcFlex>
+            </DxcInset>
+          </DxcApplicationLayout.SideNav.Section>
+          <DxcApplicationLayout.SideNav.Section>
             <DxcApplicationLayout.SideNav.Group title="Components">
               {Object.keys(
                 type === "advancedTheme" ? advancedTheme : defaultTheme
@@ -120,7 +118,7 @@ const ThemeBuilder = () => {
       }
     >
       <DxcApplicationLayout.Main>
-        <MainContainer>
+        <DxcFlex>
           <ComponentPreview
             customTheme={customTheme}
             componentId={currentComponent}
@@ -130,20 +128,17 @@ const ThemeBuilder = () => {
             componentInputsTypes={customThemeSchema[currentComponent]}
             onChangeCustomTheme={setComponentProperty}
           />
-        </MainContainer>
+        </DxcFlex>
+        {isDialogVisible && (
+          <ImportDialog
+            customThemeSchema={customThemeSchema}
+            setCustomTheme={setCustomTheme}
+            setDialogVisible={setDialogVisible}
+          />
+        )}
       </DxcApplicationLayout.Main>
     </DxcApplicationLayout>
   );
 };
-
-const MainContainer = styled.div`
-  display: flex;
-`;
-
-const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 1.2rem;
-`;
 
 export default ThemeBuilder;

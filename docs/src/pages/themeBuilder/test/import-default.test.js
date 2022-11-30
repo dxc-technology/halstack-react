@@ -59,6 +59,20 @@ const server = setupServer(...handler);
 
 beforeAll(() => {
   server.listen();
+
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
 });
 
 afterEach(() => {
@@ -75,16 +89,14 @@ describe("Import default theme", () => {
   history.push("/themeBuilder");
   window.location.pathname = "/tools/react/next/";
 
-  it("Should open a dialog when Import button is clicked", async () => {
-    const { getByText, getAllByText, getByRole, findByText } = render(
+  it("Should open a dialog when Import button is clicked", () => {
+    const { getByText, getAllByText, getByRole } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
-
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -94,16 +106,14 @@ describe("Import default theme", () => {
     expect(getByRole("textbox").value).toBe("");
   });
 
-  it("Should close the import dialog when Cancel button is clicked", async () => {
-    const { getByText, queryByText, findByText } = render(
+  it("Should close the import dialog when Cancel button is clicked", () => {
+    const { getByText, queryByText } = render(
       <Router history={history}>
         <Route>
           <ThemeBuilder />
         </Route>
       </Router>
     );
-    await findByText("next");
-
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -115,17 +125,14 @@ describe("Import default theme", () => {
     expect(getByText("Accordion component")).toBeTruthy();
   });
 
-  it("Should show the JSON error message", async () => {
-    const { getByText, getByRole, getAllByText, queryByText, findByText } =
-      render(
-        <Router history={history}>
-          <Route>
-            <ThemeBuilder />
-          </Route>
-        </Router>
-      );
-    await findByText("next");
-
+  it("Should show the JSON error message", () => {
+    const { getByText, getByRole, getAllByText, queryByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -143,17 +150,14 @@ describe("Import default theme", () => {
     expect(getAllByText("Import")[1].closest("button").disabled).toBeTruthy();
   });
 
-  it("Should show the component error message", async () => {
-    const { getByText, getByRole, getAllByText, queryByText, findByText } =
-      render(
-        <Router history={history}>
-          <Route>
-            <ThemeBuilder />
-          </Route>
-        </Router>
-      );
-    await findByText("next");
-
+  it("Should show the component error message", () => {
+    const { getByText, getByRole, getAllByText, queryByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
     act(() => {
       fireEvent.click(getByText("Import"));
     });
@@ -171,16 +175,14 @@ describe("Import default theme", () => {
     expect(getAllByText("Import")[1].closest("button").disabled).toBeTruthy();
   });
 
-  it("Should show the theme input error message", async () => {
-    const { getByText, getByRole, getAllByText, queryByText, findByText } =
-      render(
-        <Router history={history}>
-          <Route>
-            <ThemeBuilder />
-          </Route>
-        </Router>
-      );
-    await findByText("next");
+  it("Should show the theme input error message", () => {
+    const { getByText, getByRole, getAllByText, queryByText } = render(
+      <Router history={history}>
+        <Route>
+          <ThemeBuilder />
+        </Route>
+      </Router>
+    );
 
     act(() => {
       fireEvent.click(getByText("Import"));
@@ -196,27 +198,20 @@ describe("Import default theme", () => {
       fireEvent.click(getAllByText("Import")[1].closest("button"));
     });
     expect(
-      getByText("Invalid theme input name in component accordion.")
+      getByText("Invalid theme input name in the accordion component.")
     ).toBeTruthy();
     expect(getAllByText("Import")[1].closest("button").disabled).toBeTruthy();
   });
 
-  it("Should import a valid json and update the current theme of the builder", async () => {
-    const {
-      getByText,
-      getByRole,
-      getAllByText,
-      queryByText,
-      findByText,
-      getAllByRole,
-    } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
+  it("Should import a valid json and update the current theme of the builder", () => {
+    const { getByText, getByRole, getAllByText, queryByText, getAllByRole } =
+      render(
+        <Router history={history}>
+          <Route>
+            <ThemeBuilder />
+          </Route>
+        </Router>
+      );
 
     act(() => {
       fireEvent.click(getByText("Import"));
@@ -253,23 +248,15 @@ describe("Import default theme", () => {
     );
   });
 
-  it("Should reset an imported json and update the current theme of the builder", async () => {
-    const {
-      getByText,
-      getByRole,
-      getAllByRole,
-      getAllByText,
-      queryByText,
-      findByText,
-    } = render(
-      <Router history={history}>
-        <Route>
-          <ThemeBuilder />
-        </Route>
-      </Router>
-    );
-    await findByText("next");
-
+  it("Should reset an imported json and update the current theme of the builder", () => {
+    const { getByText, getByRole, getAllByRole, getAllByText, queryByText } =
+      render(
+        <Router history={history}>
+          <Route>
+            <ThemeBuilder />
+          </Route>
+        </Router>
+      );
     act(() => {
       fireEvent.click(getByText("Import"));
     });

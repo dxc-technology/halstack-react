@@ -4,6 +4,7 @@ import {
   DxcHeading,
   DxcAlert,
   HalstackProvider,
+  DxcFlex,
 } from "@dxc-technology/halstack-react";
 import componentsPreview from "./ComponentsPreviewMap";
 import { capitalizeText } from "../utils";
@@ -28,14 +29,14 @@ const ComponentPreview = ({ customTheme, componentId }) => {
       <PreviewContainer>
         <ErrorBoundary
           fallbackRender={() => (
-            <ErrorContainer>
+            <DxcFlex alignItems="center" justifyContent="center">
               <DxcAlert
                 type="error"
                 mode="inline"
                 inlineText="Unable to render the theme."
                 margin="xxlarge"
               />
-            </ErrorContainer>
+            </DxcFlex>
           )}
           resetKeys={[customTheme]}
         >
@@ -84,19 +85,12 @@ const ComponentPreviewContainer = styled.div`
 `;
 
 const PreviewContainer = styled.div`
-  margin-left: 8%;
-  padding-right: 8%;
+  margin: 0 8% 8% 8%;
 `;
 
 const ComponentHeader = styled.div`
+  display: flex;
   margin: 36px 8% 0 8%;
-  display: flex;
-`;
-
-const ErrorContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export default ComponentPreview;

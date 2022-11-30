@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcCheckbox, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcCheckbox } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Checkbox = () => {
@@ -8,13 +8,9 @@ const Checkbox = () => {
   const onChange = (newValue) => {
     changeChecked(newValue);
   };
+
   return (
     <CheckboxContainer>
-      <DxcHeading
-        text="Light Mode"
-        level={5}
-        margin={{ top: "xsmall", bottom: "xxsmall" }}
-      />
       <Mode text="Default">
         <DxcCheckbox
           checked={checked}
