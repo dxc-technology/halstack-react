@@ -20,6 +20,12 @@ const rightCaret = (
   </svg>
 );
 
+const downCaret = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M7.5 10L12.5 15L17.5 10H7.5Z" fill="black" />
+  </svg>
+);
+
 const DxcDatePicker = ({
   date,
   onDateSelect,
@@ -66,26 +72,28 @@ const DxcDatePicker = ({
   return (
     <DatePicker id={id} ref={ref}>
       <PickerHeader>
-        <PickerHeaderButton
+        <HeaderButton
           aria-label={translatedLabels.calendar.previousMonthTitle}
           title={translatedLabels.calendar.previousMonthTitle}
           onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") - 1))}
         >
           {leftCaret}
-        </PickerHeaderButton>
-        <HeaderMonthYear
+        </HeaderButton>
+        <HeaderYearTrigger
           aria-live="polite"
           onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
         >
+          {/* add month translation */}
           {innerDate.format("MMMM YYYY")}
-        </HeaderMonthYear>
-        <PickerHeaderButton
+          {downCaret}
+        </HeaderYearTrigger>
+        <HeaderButton
           aria-label={translatedLabels.calendar.nextMonthTitle}
           title={translatedLabels.calendar.nextMonthTitle}
           onClick={() => handleMonthChange(innerDate.set("month", innerDate.get("month") + 1))}
         >
           {rightCaret}
-        </PickerHeaderButton>
+        </HeaderButton>
       </PickerHeader>
       {content === "calendar" && (
         <Calendar
@@ -124,23 +132,28 @@ const PickerHeader = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0px 16px;
+  gap: 8px;
 `;
 
-const PickerHeaderButton = styled.button`
+const HeaderButton = styled.button`
   display: flex;
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   padding: 0px;
   font-size: 1.5rem;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 4px;
   border: none;
   background: ${(props) => props.theme.dateInput.pickerMonthArrowsBackgroundColor};
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.54);
+  color: #000000;
+  outline-offset: -2px;
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
+  }
+  &:hover {
+    background: #e5d5f6;
   }
   svg {
     width: 1em;
@@ -152,9 +165,29 @@ const PickerHeaderButton = styled.button`
   }
 `;
 
-const HeaderMonthYear = styled.span`
+const HeaderYearTrigger = styled.button`
   color: ${(props) => props.theme.dateInput.pickerMonthFontColor};
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  height: 40px;
+  width: 172px;
+  border-radius: 4px;
+  outline-offset: -2px;
+  &:hover {
+    background: #e5d5f6;
+  }
+  &:focus {
+    outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
+  }
 `;
 
 export default React.memo(DxcDatePicker);
