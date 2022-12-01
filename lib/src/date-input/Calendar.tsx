@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
@@ -6,10 +6,10 @@ import useTranslatedLabels from "../useTranslatedLabels";
 
 const isDaySelected = (date: { day: number; month: number }, selectedDate, innerDate) => {
   if (
-    selectedDate.get("month") === innerDate.get("month") &&
-    selectedDate.get("month") === date.month &&
-    selectedDate.get("year") === innerDate.get("year") &&
-    selectedDate.get("date") === date.day
+    selectedDate?.get("month") === innerDate.get("month") &&
+    selectedDate?.get("month") === date.month &&
+    selectedDate?.get("year") === innerDate.get("year") &&
+    selectedDate?.get("date") === date.day
   ) {
     return true;
   }
@@ -18,11 +18,12 @@ const isDaySelected = (date: { day: number; month: number }, selectedDate, inner
 
 const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: CalendarPropsType): JSX.Element => {
   const [dateToFocus, setDateToFocus] = useState(
-    selectedDate.get("month") === innerDate.get("month") && selectedDate.get("year") === innerDate.get("year")
+    selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")
       ? selectedDate
-      : innerDate.set("date", 1)
+      : dayjs()
   );
   const [toFocus, setToFocus] = useState(false);
+  const today = dayjs();
   const dayCells = useMemo(() => {
     const monthDayCells = [];
     const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
@@ -46,7 +47,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   const weekDays = translatedLabels.calendar.daysShort;
 
   const onDateClickHandler = (date: { day: number; month: number }) => {
-    const newDate = innerDate.set("date", date.day).set("month", date.month);
+    const newDate = innerDate.set("month", date.month).set("date", date.day);
     onDaySelect(newDate);
     focusDate(newDate);
   };
@@ -147,9 +148,15 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
               onClick={() => onDateClickHandler(date)}
               selected={isDaySelected(date, selectedDate, innerDate)}
               actualMonth={date.month === innerDate.get("month")}
-              autoFocus={isDaySelected(date, selectedDate, innerDate)}
+              autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
               aria-selected={isDaySelected(date, selectedDate, innerDate)}
               tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
+              isCurrentDay={
+                today.get("date") === date.day &&
+                today.get("month") === innerDate.get("month") &&
+                today.get("month") === date.month &&
+                today.get("year") === innerDate.get("year")
+              }
             >
               {date.day}
             </DayCell>
@@ -206,6 +213,7 @@ const DayCellsContainer = styled.div`
 type DayCellPropsType = {
   selected?: boolean;
   actualMonth: boolean;
+  isCurrentDay: boolean;
 };
 
 const DayCell = styled.button<DayCellPropsType>`
@@ -238,6 +246,7 @@ const DayCell = styled.button<DayCellPropsType>`
     color: ${(props) =>
       props.selected ? props.theme.dateInput.pickerSelectedDateColor : props.theme.dateInput.pickerHoverDateFontColor};
   }
+  ${(props) => props.isCurrentDay && !props.selected && `border: 1px solid #CBACEC;`}
   ${(props) => (!props.actualMonth ? `color: #999999;` : ``)}
 `;
 

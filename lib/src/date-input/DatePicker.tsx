@@ -28,9 +28,8 @@ const DxcDatePicker = ({
   id,
 }: DatePickerPropsType): JSX.Element => {
   const [innerDate, setInnerDate] = useState(date.isValid() ? date : dayjs());
-  const [dateToFocus, setDateToFocus] = useState(date.isValid() ? date : dayjs());
   const [content, setContent] = useState("calendar");
-  const selectedDate = date.isValid() ? date : dayjs();
+  const selectedDate = date.isValid() ? date : null;
   const ref = useRef(null);
   const translatedLabels = useTranslatedLabels();
 
@@ -55,24 +54,8 @@ const DxcDatePicker = ({
     };
   }, [onCloseCalendar]);
 
-  const handleOnYearShiftTab = (event) => {
-    if (event.key === "Tab" && event.shiftKey) {
-      if (selectedDate.get("month") !== innerDate.get("month") || selectedDate.get("year") !== innerDate.get("year")) {
-        setDateToFocus(innerDate.set("date", 1));
-      } else {
-        setDateToFocus(selectedDate);
-      }
-    }
-  };
-
-  useEffect(() => {
-    document.getElementById(`day_${dateToFocus.get("date")}`)?.focus();
-  }, [dateToFocus]);
-
   const handleDateSelect = (date: Dayjs) => {
-    // const newDate = innerDate.set(unit, date);
     setInnerDate(date);
-    // setSelectedDate(date);
     onDateSelect(date);
   };
 
@@ -116,7 +99,7 @@ const DxcDatePicker = ({
       {content === "yearPicker" && (
         <YearPicker
           onYearSelect={(year) => {
-            handleDateSelect(innerDate.set("year", year));
+            setInnerDate(innerDate.set("year", year));
             setContent("calendar");
           }}
           selectedDate={selectedDate}
@@ -129,17 +112,16 @@ const DxcDatePicker = ({
 const DatePicker = styled.div`
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  border: 1px solid #000000;
   border-radius: 4px;
+  padding-top: 16px;
+  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
 `;
 
 const PickerHeader = styled.div`
   display: flex;
-  margin-top: 16px;
   align-items: center;
   height: 40px;
   justify-content: space-between;
-  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   box-sizing: border-box;
   padding: 0px 16px;
 `;
