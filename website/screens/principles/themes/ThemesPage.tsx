@@ -6,6 +6,7 @@ import {
   DxcParagraph,
   DxcBulletedList,
 } from "@dxc-technology/halstack-react";
+import Link from "next/link";
 import QuickNavContainer from "@/common/QuickNavContainer";
 import PageHeading from "@/common/PageHeading";
 import DocFooter from "@/common/DocFooter";
@@ -64,12 +65,9 @@ const sections = [
             about the ones we consider fundamental. The list of configurable
             properties is small, but it applies at the component level. You can
             generate the theme object using our{" "}
-            <DxcLink
-              href="https://developer.dxc.com/tools/react/next/#/themeBuilder"
-              newWindow
-            >
-              opinionated theme generator
-            </DxcLink>
+            <Link href="/theme-generator/opinionated-theme" passHref>
+              <DxcLink>opinionated theme generator</DxcLink>
+            </Link>
             .
           </DxcBulletedList.Item>
           <DxcBulletedList.Item>
@@ -81,12 +79,9 @@ const sections = [
             decisions are structural to the component. The list of configurable
             properties is large, and it applies at the component level. You can
             generate the theme object using our{" "}
-            <DxcLink
-              href="https://developer.dxc.com/tools/react/next/#/themeBuilder/advancedTheme"
-              newWindow
-            >
-              advanced theme generator
-            </DxcLink>
+            <Link href="/theme-generator/advanced-theme" passHref>
+              <DxcLink>advanced theme generator</DxcLink>
+            </Link>
             .
           </DxcBulletedList.Item>
         </DxcBulletedList>
