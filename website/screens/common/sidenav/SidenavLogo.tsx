@@ -5,7 +5,13 @@ import StatusTag from "@/common/StatusTag";
 import React from "react";
 import { useRouter } from "next/router";
 
-const SidenavLogo = () => {
+type SidenavLogoProps = {
+  version?: "Design System" | "Theme generator";
+};
+
+const SidenavLogo = ({
+  version = "Design System",
+}: SidenavLogoProps): JSX.Element => {
   const { basePath } = useRouter();
   const siteVersion = basePath.split("/")[2];
 
@@ -21,7 +27,7 @@ const SidenavLogo = () => {
           />
           <Title>Halstack</Title>
         </Header>
-        <Subtitle>Design system</Subtitle>
+        <Subtitle>{version}</Subtitle>
       </LogoContainer>
       <StatusTag>
         {basePath

@@ -2,7 +2,6 @@
 import React from "react";
 import styled from "styled-components";
 import ThemeInput from "./ThemeInput";
-import { responsiveSizes } from "../../common/variables";
 
 const ThemeInputsConfig = ({
   componentInputs,

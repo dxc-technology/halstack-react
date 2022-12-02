@@ -5,7 +5,10 @@ import {
   DxcButton,
   DxcInset,
   DxcFlex,
+  DxcLink,
+  DxcTypography,
 } from "@dxc-technology/halstack-react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import opinionatedTheme from "./themes/opinionated-theme.json";
 import advancedTheme from "./themes/advanced-theme.json";
@@ -16,6 +19,7 @@ import ImportDialog from "./ImportDialog";
 import defaultSchema from "./themes/schemas/opinionated.schema.json";
 import advancedSchema from "./themes/schemas/advanced.schema.json";
 import icons from "./images/GlobalActionsIcons";
+import SidenavLogo from "@/common/sidenav/SidenavLogo";
 
 const ThemeGenerator = () => {
   const { asPath } = useRouter();
@@ -50,14 +54,25 @@ const ThemeGenerator = () => {
       sidenav={
         <DxcApplicationLayout.SideNav
           title={
-            <DxcApplicationLayout.SideNav.Title>
-              Global theme actions
-            </DxcApplicationLayout.SideNav.Title>
+            <DxcFlex direction="column" gap="16px">
+              <DxcTypography fontSize="0.75rem" fontWeight="600">
+                <Link href="/overview/introduction/" passHref>
+                  <DxcLink>Home</DxcLink>
+                </Link>
+                {type === "advanced-theme"
+                  ? ` > Advanced theme generator`
+                  : ` > Opinionated theme generator`}
+              </DxcTypography>
+              <SidenavLogo version="Theme generator" />
+            </DxcFlex>
           }
         >
           <DxcApplicationLayout.SideNav.Section>
             <DxcInset space="1rem">
-              <DxcFlex direction="column">
+              <DxcFlex direction="column" gap="6px">
+                <DxcApplicationLayout.SideNav.Title>
+                  Global theme actions
+                </DxcApplicationLayout.SideNav.Title>
                 <DxcButton
                   mode="text"
                   label="Reset"
@@ -77,7 +92,6 @@ const ThemeGenerator = () => {
                   onClick={() => {
                     setDialogVisible(true);
                   }}
-                  margin={{ top: "xxsmall", bottom: "xxsmall" }}
                   icon={icons.import}
                   size="fillParent"
                 />
