@@ -169,6 +169,15 @@ const sections = [
               </tr>
               <tr>
                 <td>
+                  <Code>months</Code>
+                </td>
+                <td>
+                  [ January, February, March, April, May, June, July, August,
+                  September, October, November, December ]
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <Code>monthsShort</Code>
                 </td>
                 <td>

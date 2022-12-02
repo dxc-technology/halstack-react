@@ -83,8 +83,9 @@ const DxcDatePicker = ({
           aria-live="polite"
           onClick={() => setContent((content) => (content === "yearPicker" ? "calendar" : "yearPicker"))}
         >
-          {/* add month translation */}
-          {innerDate.format("MMMM YYYY")}
+          <HeaderYearTriggerLabel>
+            {translatedLabels.calendar.months[innerDate.get("month")]} {innerDate.format("YYYY")}
+          </HeaderYearTriggerLabel>
           {downCaret}
         </HeaderYearTrigger>
         <HeaderButton
@@ -166,11 +167,6 @@ const HeaderButton = styled.button`
 `;
 
 const HeaderYearTrigger = styled.button`
-  color: ${(props) => props.theme.dateInput.pickerMonthFontColor};
-  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 19px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,6 +184,17 @@ const HeaderYearTrigger = styled.button`
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
   }
+`;
+
+const HeaderYearTriggerLabel = styled.span`
+  color: ${(props) => props.theme.dateInput.pickerMonthFontColor};
+  font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default React.memo(DxcDatePicker);
