@@ -28,8 +28,12 @@ const FontWeightInput = ({
         onChangeCustomTheme(propertyName, event.target.value);
       }}
     >
-      {weightOptions.map((weightOption) => (
-        <option value={weightOption} selected={weightOption === propertyValue}>
+      {weightOptions.map((weightOption, index) => (
+        <option
+          key={`font-weight-option-${index}`}
+          value={weightOption}
+          selected={weightOption === propertyValue}
+        >
           {weightOption}
         </option>
       ))}

@@ -43,8 +43,8 @@ const FontFamilyInput = ({
           );
         }}
       >
-        {fontFamilyOptions.map((familyOption) => (
-          <option value={familyOption} selected={familyOption === unitValue}>
+        {fontFamilyOptions.map((familyOption, index) => (
+          <option key={`font-family-option-${index}`} value={familyOption} selected={familyOption === unitValue}>
             {familyOption}
           </option>
         ))}

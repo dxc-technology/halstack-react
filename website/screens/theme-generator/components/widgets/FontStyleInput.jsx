@@ -14,8 +14,12 @@ const FontStyleInput = ({
         onChangeCustomTheme(propertyName, event.target.value);
       }}
     >
-      {styleOptions.map((styleOption) => (
-        <option value={styleOption} selected={styleOption === propertyValue}>
+      {styleOptions.map((styleOption, index) => (
+        <option
+          key={`font-style-option-${index}`}
+          value={styleOption}
+          selected={styleOption === propertyValue}
+        >
           {styleOption}
         </option>
       ))}

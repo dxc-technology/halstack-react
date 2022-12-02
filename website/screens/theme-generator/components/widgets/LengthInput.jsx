@@ -54,8 +54,8 @@ const LengthInput = ({ propertyName, propertyValue, onChangeCustomTheme }) => {
           onChangeCustomTheme(propertyName, value + val);
         }}
       >
-        {unitOptions.map((unitOption) => (
-          <option value={unitOption} selected={unitOption === unitValue}>
+        {unitOptions.map((unitOption, index) => (
+          <option key={`length-unit-option-${index}`} value={unitOption} selected={unitOption === unitValue}>
             {unitOption}
           </option>
         ))}
