@@ -75,8 +75,8 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
       line-height: 33px;`
       : `transparent;`}
   &:hover {
-    background: #e5d5f6;
-    color: #000000;
+    background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
+    color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 33px;

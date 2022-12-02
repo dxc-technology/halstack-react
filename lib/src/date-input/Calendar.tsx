@@ -246,6 +246,10 @@ const DayCell = styled.button<DayCellPropsType>`
     color: ${(props) =>
       props.selected ? props.theme.dateInput.pickerSelectedDateColor : props.theme.dateInput.pickerHoverDateFontColor};
   }
+  &:active {
+    background: #4b1c7d;
+    color: #ffffff;
+  }
   ${(props) => props.isCurrentDay && !props.selected && `border: 1px solid #CBACEC;`}
   ${(props) => (!props.actualMonth ? `color: #999999;` : ``)}
 `;

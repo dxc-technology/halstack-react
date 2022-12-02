@@ -148,13 +148,12 @@ const HeaderButton = styled.button`
   border: none;
   background: ${(props) => props.theme.dateInput.pickerMonthArrowsBackgroundColor};
   cursor: pointer;
-  color: #000000;
   outline-offset: -2px;
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
   }
   &:hover {
-    background: #e5d5f6;
+    background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
   svg {
     width: 1em;
@@ -179,7 +178,7 @@ const HeaderYearTrigger = styled.button`
   border-radius: 4px;
   outline-offset: -2px;
   &:hover {
-    background: #e5d5f6;
+    background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
