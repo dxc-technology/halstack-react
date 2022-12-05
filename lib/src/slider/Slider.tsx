@@ -260,7 +260,7 @@ const SliderInput = styled.input<SliderInputPropsType>`
         : props.theme.disabledTotalLineColor + "61"
       : props.backgroundType === "dark"
       ? props.theme.totalLineColorOnDark + "61"
-      : props.theme.totalLineColor + "61"};
+      : props.theme.totalLineColor};
   background-image: ${(props) =>
     props.disabled
       ? props.backgroundType === "dark"
