@@ -165,7 +165,6 @@ const parseTheme = (theme) => {
 
   const quickNavTokens = componentTokensCopy.quickNav;
   quickNavTokens.fontColor = theme?.quickNav?.fontColor ?? quickNavTokens.fontColor;
-  quickNavTokens.selectedFontColor = theme?.quickNav?.accentColor ?? quickNavTokens.selectedFontColor;
   quickNavTokens.hoverFontColor = setOpacity(theme?.quickNav?.accentColor, 0.7) ?? quickNavTokens.hoverFontColor;
 
   const radioGroupTokens = componentTokensCopy.radioGroup;
@@ -270,7 +269,7 @@ const parseTheme = (theme) => {
 
   const wizardTokens = componentTokensCopy.wizard;
   wizardTokens.selectedStepBackgroundColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBackgroundColor;
-  wizardTokens.selectedStepFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedStepFontColor;
+  wizardTokens.selectedStepFontColor = theme?.wizard?.selectedFontColor ?? wizardTokens.selectedStepFontColor;
   wizardTokens.selectedStepBorderColor = theme?.wizard?.baseColor ?? wizardTokens.selectedStepBorderColor;
   wizardTokens.visitedLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.visitedLabelFontColor;
   wizardTokens.selectedLabelFontColor = theme?.wizard?.fontColor ?? wizardTokens.selectedLabelFontColor;

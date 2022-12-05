@@ -1,16 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { DxcDateInput, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcDateInput } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const DateInput = () => {
   return (
     <DateInputContainer>
-      <DxcHeading
-        text="Light Mode"
-        level={5}
-        margin={{ top: "xsmall", bottom: "xxsmall" }}
-      />
       <Mode text="Default">
         <DxcDateInput
           label="Format"

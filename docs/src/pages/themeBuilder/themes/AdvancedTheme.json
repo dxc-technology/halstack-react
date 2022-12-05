@@ -536,7 +536,6 @@
   "quickNav": {
     "fontColor": "#666666",
     "hoverFontColor": "#9A6BB2",
-    "selectedFontColor": "#5f249f",
     "dividerBorderColor": "#bfbfbf",
     "focusBorderColor": "#0095ff",
     "focusBorderStyle": "solid",

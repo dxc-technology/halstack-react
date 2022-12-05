@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcTextarea, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcTextarea } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Textarea = () => {
@@ -14,11 +14,6 @@ const Textarea = () => {
 
   return (
     <TextareaContainer>
-      <DxcHeading
-        text="Light Mode"
-        level={5}
-        margin={{ top: "xsmall", bottom: "xxsmall" }}
-      />
       <Mode text="Default">
         <DxcTextarea
           label="Regular textarea"

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { DxcSlider, DxcHeading } from "@dxc-technology/halstack-react";
+import { DxcSlider } from "@dxc-technology/halstack-react";
 import Mode from "../Mode";
 
 const Slider = () => {
@@ -14,11 +14,6 @@ const Slider = () => {
 
   return (
     <SliderContainer>
-      <DxcHeading
-        text="Light Mode"
-        level={5}
-        margin={{ top: "xsmall", bottom: "xxsmall" }}
-      />
       <Mode text="Default">
         <DxcSlider
           label="Select a value"
