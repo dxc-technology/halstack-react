@@ -110,7 +110,7 @@ export const Chromatic = () => (
 const DatePicker = () => (
   <ExampleContainer expanded>
     <Title title="Show date picker" theme="light" level={4} />
-    <DxcDateInput label="Date input" defaultValue="10-06-2023" />
+    <DxcDateInput label="Date input" defaultValue="06-04-2027" />
   </ExampleContainer>
 );
 
@@ -125,7 +125,7 @@ ShowDatePicker.play = async ({ canvasElement }) => {
 const YearPicker = () => (
   <ExampleContainer expanded>
     <Title title="Show year picker" theme="light" level={4} />
-    <DxcDateInput label="Date input" defaultValue="10-06-2023" />
+    <DxcDateInput label="Date input" defaultValue="06-04-2027" />
   </ExampleContainer>
 );
 
@@ -133,13 +133,13 @@ export const ShowYearPicker = YearPicker.bind({});
 ShowYearPicker.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("combobox"));
-  await fireEvent.click(screen.getByText("2023"));
+  await fireEvent.click(screen.getByText("April 2027"));
 };
 
 const YearPickerFocus = () => (
   <ExampleContainer expanded>
     <Title title="Show year picker and focus" theme="light" level={4} />
-    <DxcDateInput label="Date input" defaultValue="10-06-2023" />
+    <DxcDateInput label="Date input" defaultValue="06-04-2027" />
   </ExampleContainer>
 );
 
@@ -147,21 +147,6 @@ export const ShowYearPickerFocus = YearPickerFocus.bind({});
 ShowYearPickerFocus.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByRole("combobox"));
-  await fireEvent.click(screen.getByText("2023"));
-  await userEvent.tab();
-};
-
-const MonthPicker = () => (
-  <ExampleContainer expanded>
-    <Title title="Show month picker" theme="light" level={4} />
-    <DxcDateInput label="Date input" defaultValue="10-06-2023" />
-  </ExampleContainer>
-);
-
-export const ShowMonthPicker = MonthPicker.bind({});
-ShowMonthPicker.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await userEvent.click(canvas.getByRole("combobox"));
-  await fireEvent.click(screen.getByText("June"));
+  await fireEvent.click(screen.getByText("April 2027"));
   await userEvent.tab();
 };
