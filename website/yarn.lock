@@ -144,10 +144,10 @@
   dependencies:
     "@date-io/core" "^1.3.13"
 
-"@dxc-technology/halstack-react@0.0.0-824a373":
-  version "0.0.0-824a373"
-  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-0.0.0-824a373.tgz#963d9f337dd191120c73de02ffb4bf00638bdfec"
-  integrity sha512-hX3/Jiitl+jSGhveORtrl1gj+9VQxwM9d5RjOa6j1gP1dO/mYClJGV9tpm97cAlnOhvI8m2Cc/N9p60oUpRGeA==
+"@dxc-technology/halstack-react@0.0.0-4d1b970":
+  version "0.0.0-4d1b970"
+  resolved "https://registry.yarnpkg.com/@dxc-technology/halstack-react/-/halstack-react-0.0.0-4d1b970.tgz#c3b5b123c750beb27c802f1114d9f5df6163cbf7"
+  integrity sha512-W+ZsbLYAlqqYae4goUxMKN6Cb7IHMzIQHeYdaUhem4LCYRKjlsqvsgt/0xSSzAqh7r9mpYyz5agYdC7sAGUtdg==
   dependencies:
     "@date-io/dayjs" "^1.3.9"
     "@material-ui/core" "4.11.1"
