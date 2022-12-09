@@ -172,7 +172,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 const CalendarContainer = styled.div`
   // width: ${(props) => props.theme.dateInput.pickerWidth};
   // height: ${(props) => props.theme.dateInput.pickerHeight};
-  width: 268px;
+  width: ${(props) => props.theme.dateInput.pickerWidth};
   height: 260px;
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
@@ -247,11 +247,12 @@ const DayCell = styled.button<DayCellPropsType>`
       props.selected ? props.theme.dateInput.pickerSelectedDateColor : props.theme.dateInput.pickerHoverDateFontColor};
   }
   &:active {
-    background: #4b1c7d;
-    color: #ffffff;
+    background: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
+    color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
   }
-  ${(props) => props.isCurrentDay && !props.selected && `border: 1px solid #CBACEC;`}
-  ${(props) => (!props.actualMonth ? `color: #999999;` : ``)}
+  ${(props) =>
+    props.isCurrentDay && !props.selected && `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
+  ${(props) => (!props.actualMonth ? `color: ${props.theme.dateInput.pickerOtherMonthDateFontColor};` : ``)}
 `;
 
 const EmptyDayCell = styled.div`

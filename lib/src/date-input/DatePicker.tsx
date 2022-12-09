@@ -21,8 +21,8 @@ const rightCaret = (
 );
 
 const downCaret = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M7.5 10L12.5 15L17.5 10H7.5Z" fill="black" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M7.5 10L12.5 15L17.5 10H7.5Z" fill="currentColor" />
   </svg>
 );
 
@@ -155,6 +155,10 @@ const HeaderButton = styled.button`
   &:hover {
     background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
+  &:active {
+    background: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
+    color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
+  }
   svg {
     width: 1em;
     height: 1em;
@@ -177,16 +181,20 @@ const HeaderYearTrigger = styled.button`
   width: 172px;
   border-radius: 4px;
   outline-offset: -2px;
+  color: ${(props) => props.theme.dateInput.pickerMonthFontColor};
   &:hover {
     background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
   }
+  &:active {
+    background: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
+    color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
+  }
 `;
 
 const HeaderYearTriggerLabel = styled.span`
-  color: ${(props) => props.theme.dateInput.pickerMonthFontColor};
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
   font-size: 0.875rem;
   font-weight: 400;
