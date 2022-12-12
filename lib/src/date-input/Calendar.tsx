@@ -170,8 +170,6 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 };
 
 const CalendarContainer = styled.div`
-  // width: ${(props) => props.theme.dateInput.pickerWidth};
-  // height: ${(props) => props.theme.dateInput.pickerHeight};
   width: ${(props) => props.theme.dateInput.pickerWidth};
   height: 260px;
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};

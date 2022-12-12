@@ -35,8 +35,6 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
 };
 
 const YearPickerContainer = styled.div`
-  /* width: ${(props) => props.theme.dateInput.pickerWidth};
-  height: ${(props) => props.theme.dateInput.pickerHeight}; */
   width: ${(props) => props.theme.dateInput.pickerWidth};
   height: 288px;
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
