@@ -7,6 +7,7 @@ import {
   DxcFlex,
   DxcLink,
   DxcTypography,
+  DxcHeading,
 } from "@dxc-technology/halstack-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -54,10 +55,10 @@ const ThemeGenerator = () => {
       sidenav={
         <DxcApplicationLayout.SideNav
           title={
-            <DxcFlex direction="column" gap="16px">
+            <DxcFlex direction="column" gap="1rem">
               <DxcTypography fontSize="0.75rem" fontWeight="600">
-                <Link href="/overview/introduction/" passHref>
-                  <DxcLink>Home</DxcLink>
+                <Link href="/principles/themes/" passHref>
+                  <DxcLink>Themes</DxcLink>
                 </Link>
                 {type === "advanced-theme"
                   ? ` > Advanced theme generator`
@@ -68,42 +69,42 @@ const ThemeGenerator = () => {
           }
         >
           <DxcApplicationLayout.SideNav.Section>
-            <DxcInset space="1rem">
-              <DxcFlex direction="column" gap="6px">
-                <DxcApplicationLayout.SideNav.Title>
-                  Global theme actions
-                </DxcApplicationLayout.SideNav.Title>
-                <DxcButton
-                  mode="text"
-                  label="Reset"
-                  onClick={() => {
-                    setCustomTheme(
-                      type === "advanced-theme"
-                        ? advancedTheme
-                        : opinionatedTheme
-                    );
-                  }}
-                  icon={icons.reset}
-                  size="fillParent"
-                />
-                <DxcButton
-                  mode="secondary"
-                  label="Import"
-                  onClick={() => {
-                    setDialogVisible(true);
-                  }}
-                  icon={icons.import}
-                  size="fillParent"
-                />
-                <DxcButton
-                  mode="primary"
-                  label="Export"
-                  onClick={() => {
-                    downloadFile(customTheme);
-                  }}
-                  icon={icons.export}
-                  size="fillParent"
-                />
+            <DxcInset space="1rem" top="2rem">
+              <DxcFlex direction="column" gap="1rem">
+                <DxcHeading text="Global theme actions" level={3} />
+                <DxcFlex direction="column" gap="6px">
+                  <DxcButton
+                    mode="text"
+                    label="Reset"
+                    onClick={() => {
+                      setCustomTheme(
+                        type === "advanced-theme"
+                          ? advancedTheme
+                          : opinionatedTheme
+                      );
+                    }}
+                    icon={icons.reset}
+                    size="fillParent"
+                  />
+                  <DxcButton
+                    mode="secondary"
+                    label="Import"
+                    onClick={() => {
+                      setDialogVisible(true);
+                    }}
+                    icon={icons.import}
+                    size="fillParent"
+                  />
+                  <DxcButton
+                    mode="primary"
+                    label="Export"
+                    onClick={() => {
+                      downloadFile(customTheme);
+                    }}
+                    icon={icons.export}
+                    size="fillParent"
+                  />
+                </DxcFlex>
               </DxcFlex>
             </DxcInset>
           </DxcApplicationLayout.SideNav.Section>

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from "react";
 import styled from "styled-components";
 import {
@@ -12,7 +11,15 @@ import { capitalizeText } from "../utils";
 import { ErrorBoundary } from "react-error-boundary";
 import { useRouter } from "next/router";
 
-const ComponentPreview = ({ customTheme, componentId }) => {
+type ComponentPreviewProps = {
+  customTheme: object;
+  componentId: string;
+};
+
+const ComponentPreview = ({
+  customTheme,
+  componentId,
+}: ComponentPreviewProps) => {
   const { asPath } = useRouter();
   const pages = asPath.split("/");
   const type = pages[pages.length - 2];
@@ -52,7 +59,7 @@ const ComponentPreview = ({ customTheme, componentId }) => {
             }
             advancedTheme={type === "advanced-theme" ? customTheme : undefined}
           >
-            <preview.preview />
+            {preview != null && <preview.preview />}
           </HalstackProvider>
         </ErrorBoundary>
       </PreviewContainer>
