@@ -3,7 +3,7 @@ name: Lighthouse CI
 on:
   push:
     branches:
-      - marcialfps-lighthouse
+      - aef-lighthouse
 
 jobs:
   lhci:
