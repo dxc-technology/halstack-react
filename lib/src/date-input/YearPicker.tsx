@@ -76,6 +76,7 @@ const YearPickerContainer = styled.div`
   padding: 0px 8px 8px 8px;
   border-radius: 4px;
   overflow-y: scroll;
+  box-sizing: border-box;
 `;
 
 type YearPickerButtonPropsType = { selected: boolean; isCurrentYear: boolean };

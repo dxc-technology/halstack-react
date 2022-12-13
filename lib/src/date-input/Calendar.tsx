@@ -178,6 +178,7 @@ const CalendarContainer = styled.div`
   padding: 0px 8px 8px 8px;
   justify-content: center;
   border-radius: 4px;
+  box-sizing: border-box;
 `;
 
 const WeekHeader = styled.div`
