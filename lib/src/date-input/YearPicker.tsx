@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { YearPickerPropsType } from "./types";
 
@@ -13,6 +13,34 @@ const getYearsArray = () => {
 const yearList = getYearsArray();
 
 const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.Element => {
+  const [yearToFocus, setYearToFocus] = useState(selectedDate ? selectedDate.get("year") : dayjs().get("year"));
+  useEffect(() => {
+    document.getElementById(`year_${yearToFocus}`)?.focus();
+  }, [yearToFocus]);
+
+  const handleDayKeyboardEvent = (event) => {
+    switch (event.key) {
+      case "ArrowUp":
+        setYearToFocus((prev) => {
+          if (prev > 1899) {
+            return prev - 1;
+          } else {
+            return prev;
+          }
+        });
+        break;
+      case "ArrowDown":
+        setYearToFocus((prev) => {
+          if (prev < 2100) {
+            return prev + 1;
+          } else {
+            return prev;
+          }
+        });
+        break;
+    }
+  };
+
   const date = selectedDate?.isValid() ? selectedDate : dayjs();
   return (
     <YearPickerContainer>
@@ -21,8 +49,12 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
           aria-label={year}
           key={year}
           selected={selectedDate?.get("year") === year}
+          aria-selected={selectedDate?.get("year") === year}
           autoFocus={date.get("year") === year}
+          tabIndex={yearToFocus === year ? 0 : -1}
           isCurrentYear={dayjs().get("year") === year}
+          onKeyDown={(event) => handleDayKeyboardEvent(event)}
+          id={`year_${year}`}
           onClick={() => {
             onYearSelect(year);
           }}
