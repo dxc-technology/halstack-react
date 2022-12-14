@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useState, useCallback } from "react";
 import {
   DxcApplicationLayout,
@@ -22,16 +21,17 @@ import advancedSchema from "./themes/schemas/advanced.schema.json";
 import icons from "./images/GlobalActionsIcons";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import styled from "styled-components";
+import { IThemeDictionary } from "./types";
 
 const ThemeGenerator = () => {
   const { asPath } = useRouter();
   const pages = asPath.split("/");
   const type = pages[pages.length - 2];
-
-  const [customTheme, setCustomTheme] = useState(
+  
+  const [customTheme, setCustomTheme] = useState<IThemeDictionary>(
     type === "advanced-theme" ? advancedTheme : opinionatedTheme
   );
-  const customThemeSchema =
+  const customThemeSchema: IThemeDictionary =
     type === "advanced-theme" ? advancedSchema : defaultSchema;
 
   const [currentComponent, setCurrentComponent] = useState("accordion");

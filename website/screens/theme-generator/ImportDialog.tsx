@@ -1,23 +1,29 @@
-//@ts-nocheck
 import React, { useState } from "react";
 import {
   DxcButton,
   DxcDialog,
   DxcTextarea,
   DxcHeading,
-  DxcAlert,
   DxcFlex,
   DxcInset,
 } from "@dxc-technology/halstack-react";
 import { deepMerge } from "./utils";
+import ImportDialogProps, {
+  IInputThemeDictionary,
+  IThemeDictionary,
+} from "./types";
 
-const validateInputTheme = (json, customThemeSchema) => {
-  let inputTheme = [];
+const isArrayIncluded = (object1: {}, object2: {}) =>
+  Object.keys(object1).every((element) =>
+    Object.keys(object2).includes(element)
+  );
+
+const validateInputTheme = (
+  json: string,
+  customThemeSchema: IThemeDictionary
+) => {
+  let inputTheme: IInputThemeDictionary = {};
   let errMessage = "";
-  const isArrayIncluded = (array1, array2) =>
-    Object.keys(array1).every((element) =>
-      Object.keys(array2).includes(element)
-    );
 
   try {
     inputTheme = JSON.parse(json);
@@ -36,7 +42,7 @@ const validateInputTheme = (json, customThemeSchema) => {
 
       if (errorMessage) throw new Error(errorMessage);
     });
-  } catch (e) {
+  } catch (e: any) {
     errMessage = e.name === "SyntaxError" ? "Invalid JSON input." : e.message;
   }
   return { inputTheme, errMessage };
@@ -46,11 +52,11 @@ const ImportDialog = ({
   customThemeSchema,
   setCustomTheme,
   setDialogVisible,
-}) => {
+}: ImportDialogProps): JSX.Element => {
   const [value, setValue] = useState("");
   const [validationErrorMessage, setValidationErrorMessage] = useState("");
 
-  const onChange = ({ value }) => {
+  const onChange = ({ value }: { value: string }) => {
     setValue(value);
     if (validationErrorMessage !== "") setValidationErrorMessage("");
   };
@@ -66,7 +72,9 @@ const ImportDialog = ({
     );
 
     if (errMessage === "") {
-      setCustomTheme((prevTheme) => deepMerge({}, prevTheme, inputTheme));
+      setCustomTheme((prevTheme: IThemeDictionary) =>
+        deepMerge({}, prevTheme, inputTheme)
+      );
       closeDialog();
     } else setValidationErrorMessage(errMessage);
   };
@@ -81,18 +89,10 @@ const ImportDialog = ({
             value={value}
             onChange={onChange}
             rows={24}
-            error={validationErrorMessage !== ""}
+            error={validationErrorMessage}
             size="fillParent"
             verticalGrow="none"
           />
-          {validationErrorMessage !== "" && (
-            <DxcAlert
-              type="error"
-              mode="inline"
-              inlineText={validationErrorMessage}
-              size="fillParent"
-            />
-          )}
           <DxcFlex alignItems="center" justifyContent="right" gap="0.5rem">
             <DxcButton mode="text" label="Cancel" onClick={closeDialog} />
             <DxcButton
