@@ -45,6 +45,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const [innerValue, setInnerValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
     const [calendarId] = useState(`date-picker-${uuidv4()}`);
+    const colorsTheme = useTheme();
+    const translatedLabels = useTranslatedLabels();
+    const refDate = useRef(null);
 
     useLayoutEffect(() => {
       if (!disabled) {
@@ -61,10 +64,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         actionButtonRef?.setAttribute("aria-describedby", calendarId);
       }
     }, [isOpen, disabled, calendarId]);
-
-    const colorsTheme = useTheme();
-    const translatedLabels = useTranslatedLabels();
-    const refDate = useRef(null);
 
     const handleCalendarOnClick = (newDate) => {
       const newValue = newDate.format(format.toUpperCase());
@@ -107,34 +106,30 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
           })
         : onBlur?.(callbackParams);
     };
-
     const openCalendar = () => {
       setIsOpen(!isOpen);
     };
     const closeCalendar = () => {
       setIsOpen(false);
     };
-
     const calendarAction = {
       onClick: openCalendar,
       icon: calendarIcon,
     };
-
     const handleEscCalendar = () => {
       closeCalendar();
       refDate?.current.getElementsByTagName("input")[0].focus();
     };
-
     const handleFocusOutside = (event) => {
       if (event?.target.getAttribute("aria-controls") !== calendarId) {
         closeCalendar();
       }
     };
-
+    window.addEventListener("blur", closeCalendar);
     return (
       <ThemeProvider theme={colorsTheme}>
         <Popover.Root open={isOpen}>
-          <Popover.Trigger asChild aria-controls={undefined}>
+          <Popover.Trigger asChild aria-controls={undefined} ref={ref}>
             <DxcTextInput
               label={label}
               name={name}

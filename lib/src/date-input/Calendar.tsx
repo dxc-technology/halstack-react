@@ -4,11 +4,10 @@ import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
 
-const isDaySelected = (date: { day: number; month: number }, selectedDate, innerDate) => {
+const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) => {
   if (
-    selectedDate?.get("month") === innerDate.get("month") &&
     selectedDate?.get("month") === date.month &&
-    selectedDate?.get("year") === innerDate.get("year") &&
+    selectedDate?.get("year") === date.year &&
     selectedDate?.get("date") === date.day
   ) {
     return true;
@@ -33,12 +32,21 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
       if (i < firstDayOfMonth) {
         monthDayCells.push({
           day: lastMonthNumberOfDays.get("date") - firstDayOfMonth + i + 1,
-          month: innerDate.get("month") - 1,
+          month: innerDate.get("month") ? innerDate.get("month") - 1 : 11,
+          year: innerDate.set("month", innerDate.get("month") - 1).get("year"),
         });
       } else if (i < daysInMonth) {
-        monthDayCells.push({ day: i - firstDayOfMonth + 1, month: innerDate.get("month") });
+        monthDayCells.push({
+          day: i - firstDayOfMonth + 1,
+          month: innerDate.get("month"),
+          year: innerDate.get("year"),
+        });
       } else {
-        monthDayCells.push({ day: i - daysInMonth + 1, month: innerDate.get("month") + 1 });
+        monthDayCells.push({
+          day: i - daysInMonth + 1,
+          month: innerDate.get("month") === 11 ? 0 : innerDate.get("month") + 1,
+          year: innerDate.set("month", innerDate.get("month") + 1).get("year"),
+        });
       }
     }
     return monthDayCells;
@@ -46,7 +54,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
 
-  const onDateClickHandler = (date: { day: number; month: number }) => {
+  const onDateClickHandler = (date: { day: number; month: number; year: number }) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);
     onDaySelect(newDate);
     focusDate(newDate);
@@ -68,8 +76,16 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   }, [dateToFocus]);
 
   useEffect(() => {
-    if (dateToFocus.get("month") !== innerDate.get("month") || dateToFocus.get("year") !== innerDate.get("year"))
+    if (selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")) {
+      setDateToFocus(selectedDate);
+    } else if (today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")) {
+      setDateToFocus(today);
+    } else if (
+      dateToFocus.get("month") !== innerDate.get("month") ||
+      dateToFocus.get("year") !== innerDate.get("year")
+    ) {
       setDateToFocus(innerDate.set("date", 1));
+    }
   }, [innerDate]);
 
   const handleDayKeyboardEvent = (event, date) => {
@@ -146,10 +162,10 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
               id={`day_${date.day}_month${date.month}`}
               key={`day_${index}`}
               onClick={() => onDateClickHandler(date)}
-              selected={isDaySelected(date, selectedDate, innerDate)}
+              selected={isDaySelected(date, selectedDate)}
               actualMonth={date.month === innerDate.get("month")}
               autoFocus={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month")}
-              aria-selected={isDaySelected(date, selectedDate, innerDate)}
+              aria-selected={isDaySelected(date, selectedDate)}
               tabIndex={date.day === dateToFocus.get("date") && date.month === dateToFocus.get("month") ? 0 : -1}
               isCurrentDay={
                 today.get("date") === date.day &&
@@ -171,7 +187,6 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 
 const CalendarContainer = styled.div`
   width: ${(props) => props.theme.dateInput.pickerWidth};
-  height: 260px;
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
   flex-direction: column;
@@ -185,7 +200,7 @@ const WeekHeader = styled.div`
   display: flex;
   height: 36px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 const WeekHeaderCell = styled.span`
@@ -197,16 +212,15 @@ const WeekHeaderCell = styled.span`
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
-  letter-spacing: 0.03333em;
 `;
 
 const DayCellsContainer = styled.div`
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
-  height: 224px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   box-sizing: border-box;
+  gap: 4px;
 `;
 
 type DayCellPropsType = {
@@ -217,10 +231,7 @@ type DayCellPropsType = {
 
 const DayCell = styled.button<DayCellPropsType>`
   display: inline-flex;
-  background-color: ${(props) =>
-    props.selected ? props.theme.dateInput.pickerSelectedDateBackgroundColor : "transparent"};
-  color: ${(props) =>
-    props.selected ? props.theme.dateInput.pickerSelectedDateColor : props.theme.dateInput.pickerDayFontColor};
+
   justify-content: center;
   align-items: center;
   vertical-align: top;
@@ -232,7 +243,6 @@ const DayCell = styled.button<DayCellPropsType>`
   font-weight: 500;
   border: none;
   border-radius: 50%;
-  outline-offset: -2px;
   cursor: pointer;
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
@@ -251,7 +261,14 @@ const DayCell = styled.button<DayCellPropsType>`
   }
   ${(props) =>
     props.isCurrentDay && !props.selected && `border: 1px solid ${props.theme.dateInput.pickerCurrentDateBorderColor};`}
-  ${(props) => (!props.actualMonth ? `color: ${props.theme.dateInput.pickerOtherMonthDateFontColor};` : ``)}
+  background-color: ${(props) =>
+    props.selected ? props.theme.dateInput.pickerSelectedDateBackgroundColor : "transparent"};
+  color: ${(props) =>
+    props.selected
+      ? props.theme.dateInput.pickerSelectedDateColor
+      : !props.actualMonth
+      ? props.theme.dateInput.pickerOtherMonthDateFontColor
+      : props.theme.dateInput.pickerDayFontColor};
 `;
 
 const EmptyDayCell = styled.div`

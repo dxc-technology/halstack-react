@@ -124,6 +124,7 @@ const DatePicker = styled.div`
   border-radius: 4px;
   padding-top: 16px;
   background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
+  border: 1px solid #bfbfbf;
 `;
 
 const PickerHeader = styled.div`
@@ -148,7 +149,6 @@ const HeaderButton = styled.button`
   border: none;
   background: ${(props) => props.theme.dateInput.pickerMonthArrowsBackgroundColor};
   cursor: pointer;
-  outline-offset: -2px;
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
   }
@@ -180,7 +180,6 @@ const HeaderYearTrigger = styled.button`
   height: 40px;
   width: 172px;
   border-radius: 4px;
-  outline-offset: -2px;
   color: ${(props) => props.theme.dateInput.pickerMonthFontColor};
   &:hover {
     background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};

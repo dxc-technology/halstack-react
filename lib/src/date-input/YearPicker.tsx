@@ -50,7 +50,6 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
           key={year}
           selected={selectedDate?.get("year") === year}
           aria-selected={selectedDate?.get("year") === year}
-          autoFocus={date.get("year") === year}
           tabIndex={yearToFocus === year ? 0 : -1}
           isCurrentYear={dayjs().get("year") === year}
           onKeyDown={(event) => handleDayKeyboardEvent(event)}
@@ -68,7 +67,7 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
 
 const YearPickerContainer = styled.div`
   width: ${(props) => props.theme.dateInput.pickerWidth};
-  height: 288px;
+  height: 312px;
   background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
   flex-direction: column;
@@ -77,6 +76,7 @@ const YearPickerContainer = styled.div`
   border-radius: 4px;
   overflow-y: scroll;
   box-sizing: border-box;
+  gap: 4px;
 `;
 
 type YearPickerButtonPropsType = { selected: boolean; isCurrentYear: boolean };
