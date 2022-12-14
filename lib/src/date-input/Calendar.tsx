@@ -54,7 +54,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   const [toFocus, setToFocus] = useState(false);
   const today = dayjs();
   const dayCells = useMemo(() => {
-    getDays(innerDate);
+    return getDays(innerDate);
   }, [innerDate]);
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
