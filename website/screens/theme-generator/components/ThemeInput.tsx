@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from "react";
 import styled from "styled-components";
 import ImageConfig from "./widgets/ImageConfig";
@@ -17,13 +16,20 @@ import TextAlignInput from "./widgets/TextAlignInput";
 import { makeReadable } from "../utils";
 import { DxcFlex } from "@dxc-technology/halstack-react";
 
+type ThemeInputProps = {
+  propertyName: string;
+  propertyValue: string;
+  onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
+  tokenType: string;
+};
+
 const ThemeInput = ({
   propertyName,
   propertyValue,
   onChangeCustomTheme,
   tokenType,
-}) => (
-  <DxcFlex alignItems="center" justifyContent="flex-start" gap="10px">
+}: ThemeInputProps): JSX.Element => (
+  <DxcFlex alignItems="center" justifyContent="flex-start" gap="0.5rem">
     <PropertyName>{makeReadable(propertyName)}</PropertyName>
     {(() => {
       switch (tokenType) {
@@ -137,11 +143,11 @@ const ThemeInput = ({
 );
 
 const PropertyName = styled.div`
+  width: 160px;
+  margin-right: 0.25rem;
   font: normal 13px Open Sans;
   color: #000000;
-  width: 160px;
-  line-height: 13px;
-  margin-right: 5px;
+  line-height: 14px;
 `;
 
 export default React.memo(ThemeInput);

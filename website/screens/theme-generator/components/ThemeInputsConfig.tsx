@@ -1,16 +1,24 @@
-//@ts-nocheck
 import React from "react";
 import styled from "styled-components";
 import ThemeInput from "./ThemeInput";
+
+interface IDictionary {
+  [key: string]: string;
+}
+type ThemeInputsConfigProps = {
+  componentInputs: IDictionary;
+  componentInputsTypes: IDictionary;
+  onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
+};
 
 const ThemeInputsConfig = ({
   componentInputs,
   componentInputsTypes,
   onChangeCustomTheme,
-}) => (
+}: ThemeInputsConfigProps): JSX.Element => (
   <ThemeInputsConfigContainer>
     <Title>Theme Inputs</Title>
-    <InputsList>
+    <ThemeInputsList>
       {Object.keys(componentInputs).map((propertyName, index) => (
         <ThemeInput
           key={`themeInput-${index}`}
@@ -20,18 +28,9 @@ const ThemeInputsConfig = ({
           tokenType={componentInputsTypes[propertyName]}
         />
       ))}
-    </InputsList>
+    </ThemeInputsList>
   </ThemeInputsConfigContainer>
 );
-
-const Title = styled.h3`
-  font-size: 16px;
-  font-weight: 600;
-  color: #5f249f;
-  margin: 0px;
-  padding: 12px 24px;
-  border-bottom: 1px solid rgb(191, 191, 191);
-`;
 
 const ThemeInputsConfigContainer = styled.div`
   position: sticky;
@@ -49,7 +48,16 @@ const ThemeInputsConfigContainer = styled.div`
   margin: 25px;
 `;
 
-const InputsList = styled.div`
+const Title = styled.h3`
+  font-size: 16px;
+  font-weight: 600;
+  color: #5f249f;
+  margin: 0px;
+  padding: 12px 24px;
+  border-bottom: 1px solid rgb(191, 191, 191);
+`;
+
+const ThemeInputsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;

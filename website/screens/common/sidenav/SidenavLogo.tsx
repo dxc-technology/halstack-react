@@ -6,7 +6,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 type SidenavLogoProps = {
-  version?: "Design System" | "Theme generator";
+  version?: string;
 };
 
 const SidenavLogo = ({

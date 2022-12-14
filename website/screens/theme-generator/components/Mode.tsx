@@ -1,15 +1,19 @@
-//@ts-nocheck
 import React from "react";
 import styled from "styled-components";
 
-const Mode = ({ text, mode, children }) => (
+type ModeProps = {
+  text: string;
+  mode: string;
+  children: React.ReactNode;
+};
+const Mode = ({ text, mode, children }: ModeProps): JSX.Element => (
   <ModeContainer mode={mode}>
     <Title mode={mode}>{text}</Title>
-    <PreviewsContainer mode={mode}>{children}</PreviewsContainer>
+    <PreviewsContainer>{children}</PreviewsContainer>
   </ModeContainer>
 );
 
-const ModeContainer = styled.div`
+const ModeContainer = styled.div<{ mode: string }>`
   background-color: ${(props) =>
     props.mode === "dark" ? "#000000" : "transparent"};
   padding-bottom: 10px;
@@ -21,7 +25,7 @@ const PreviewsContainer = styled.div`
   padding-left: 10px;
 `;
 
-const Title = styled.div`
+const Title = styled.div<{ mode: string }>`
   font: Bold 12px/17px Open Sans;
   letter-spacing: 1.88px;
   color: ${(props) => (props.mode === "dark" ? "#FFFFFF" : "#000000")};

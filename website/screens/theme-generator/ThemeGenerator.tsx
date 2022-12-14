@@ -21,6 +21,7 @@ import defaultSchema from "./themes/schemas/opinionated.schema.json";
 import advancedSchema from "./themes/schemas/advanced.schema.json";
 import icons from "./images/GlobalActionsIcons";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
+import styled from "styled-components";
 
 const ThemeGenerator = () => {
   const { asPath } = useRouter();
@@ -55,24 +56,30 @@ const ThemeGenerator = () => {
       sidenav={
         <DxcApplicationLayout.SideNav
           title={
-            <DxcFlex direction="column" gap="1rem">
-              <DxcTypography fontSize="0.75rem" fontWeight="600">
-                <Link href="/principles/themes/" passHref>
-                  <DxcLink>Themes</DxcLink>
-                </Link>
-                {type === "advanced-theme"
-                  ? ` > Advanced theme generator`
-                  : ` > Opinionated theme generator`}
+            <DxcFlex direction="column" gap="0.5rem">
+              <DxcTypography fontSize="0.75rem" fontWeight="600" as="nav">
+                <Breadcrumbs>
+                  <li>
+                    <Link href="/principles/themes/" passHref>
+                      <DxcLink>Themes</DxcLink>
+                    </Link>
+                  </li>
+                  <li>
+                    {type === "advanced-theme"
+                      ? "Advanced Theme Generator"
+                      : "Opinionated Theme Generator"}
+                  </li>
+                </Breadcrumbs>
               </DxcTypography>
-              <SidenavLogo version="Theme generator" />
+              <SidenavLogo version="Theme Generator" />
             </DxcFlex>
           }
         >
           <DxcApplicationLayout.SideNav.Section>
             <DxcInset space="1rem" top="2rem">
-              <DxcFlex direction="column" gap="1rem">
-                <DxcHeading text="Global theme actions" level={3} />
-                <DxcFlex direction="column" gap="6px">
+              <DxcFlex direction="column" gap="0.5rem">
+                <DxcHeading text="Global Theme Actions" level={3} />
+                <DxcFlex direction="column" gap="0.375rem">
                   <DxcButton
                     mode="text"
                     label="Reset"
@@ -158,5 +165,17 @@ const ThemeGenerator = () => {
     </DxcApplicationLayout>
   );
 };
+
+const Breadcrumbs = styled.ol`
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+
+  > li:not(:first-child):before {
+    content: ">";
+    padding: 0 0.5rem;
+  }
+`;
 
 export default ThemeGenerator;
