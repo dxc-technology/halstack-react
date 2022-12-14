@@ -68,7 +68,7 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
 const YearPickerContainer = styled.div`
   width: ${(props) => props.theme.dateInput.pickerWidth};
   height: 312px;
-  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
+  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +86,7 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
   align-items: center;
   justify-content: center;
   border: none;
-  background: transparent;
+  background-color: transparent;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.75;
@@ -110,7 +110,7 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
       line-height: 33px;`
       : `transparent;`}
   &:hover {
-    background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
     color: ${(props) => props.theme.dateInput.pickerHoverDateFontColor};
     font-weight: 400;
     font-size: 1.5rem;
@@ -124,7 +124,7 @@ const YearPickerButton = styled.button<YearPickerButtonPropsType>`
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
   }
   &:active {
-    background: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor} !important;
+    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor} !important;
     color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
     font-weight: 400;
     font-size: 1.5rem;

@@ -129,7 +129,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     return (
       <ThemeProvider theme={colorsTheme}>
         <Popover.Root open={isOpen}>
-          <Popover.Trigger asChild aria-controls={undefined} ref={ref}>
+          <Popover.Trigger asChild aria-controls={undefined}>
             <DxcTextInput
               label={label}
               name={name}

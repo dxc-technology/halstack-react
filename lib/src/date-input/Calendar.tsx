@@ -3,6 +3,36 @@ import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { CalendarPropsType } from "./types";
 import useTranslatedLabels from "../useTranslatedLabels";
+import { DxcFlex } from "../main";
+
+const getDays = (innerDate: Dayjs) => {
+  const monthDayCells = [];
+  const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
+  const firstDayOfMonth = innerDate.startOf("month").day() === 0 ? 6 : innerDate.startOf("month").day() - 1;
+  const daysInMonth = firstDayOfMonth + innerDate.daysInMonth();
+  for (let i = 0; i < 42; i++) {
+    if (i < firstDayOfMonth) {
+      monthDayCells.push({
+        day: lastMonthNumberOfDays.get("date") - firstDayOfMonth + i + 1,
+        month: innerDate.get("month") ? innerDate.get("month") - 1 : 11,
+        year: innerDate.set("month", innerDate.get("month") - 1).get("year"),
+      });
+    } else if (i < daysInMonth) {
+      monthDayCells.push({
+        day: i - firstDayOfMonth + 1,
+        month: innerDate.get("month"),
+        year: innerDate.get("year"),
+      });
+    } else {
+      monthDayCells.push({
+        day: i - daysInMonth + 1,
+        month: innerDate.get("month") === 11 ? 0 : innerDate.get("month") + 1,
+        year: innerDate.set("month", innerDate.get("month") + 1).get("year"),
+      });
+    }
+  }
+  return monthDayCells;
+};
 
 const isDaySelected = (date: { day: number; month: number; year: number }, selectedDate) => {
   if (
@@ -24,32 +54,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   const [toFocus, setToFocus] = useState(false);
   const today = dayjs();
   const dayCells = useMemo(() => {
-    const monthDayCells = [];
-    const lastMonthNumberOfDays = innerDate.set("month", innerDate.get("month") - 1).endOf("month");
-    const firstDayOfMonth = innerDate.startOf("month").day() === 0 ? 6 : innerDate.startOf("month").day() - 1;
-    const daysInMonth = firstDayOfMonth + innerDate.daysInMonth();
-    for (let i = 0; i < 42; i++) {
-      if (i < firstDayOfMonth) {
-        monthDayCells.push({
-          day: lastMonthNumberOfDays.get("date") - firstDayOfMonth + i + 1,
-          month: innerDate.get("month") ? innerDate.get("month") - 1 : 11,
-          year: innerDate.set("month", innerDate.get("month") - 1).get("year"),
-        });
-      } else if (i < daysInMonth) {
-        monthDayCells.push({
-          day: i - firstDayOfMonth + 1,
-          month: innerDate.get("month"),
-          year: innerDate.get("year"),
-        });
-      } else {
-        monthDayCells.push({
-          day: i - daysInMonth + 1,
-          month: innerDate.get("month") === 11 ? 0 : innerDate.get("month") + 1,
-          year: innerDate.set("month", innerDate.get("month") + 1).get("year"),
-        });
-      }
-    }
-    return monthDayCells;
+    getDays(innerDate);
   }, [innerDate]);
   const translatedLabels = useTranslatedLabels();
   const weekDays = translatedLabels.calendar.daysShort;
@@ -148,11 +153,11 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   };
   return (
     <CalendarContainer>
-      <WeekHeader>
+      <DxcFlex alignItems="center" justifyContent="space-between">
         {weekDays.map((weekDay) => (
           <WeekHeaderCell key={weekDay}>{weekDay}</WeekHeaderCell>
         ))}
-      </WeekHeader>
+      </DxcFlex>
       <DayCellsContainer>
         {dayCells.map((date, index) =>
           date !== 0 ? (
@@ -187,7 +192,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 
 const CalendarContainer = styled.div`
   width: ${(props) => props.theme.dateInput.pickerWidth};
-  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
+  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
   flex-direction: column;
   padding: 0px 8px 8px 8px;
@@ -196,26 +201,20 @@ const CalendarContainer = styled.div`
   box-sizing: border-box;
 `;
 
-const WeekHeader = styled.div`
-  display: flex;
-  height: 36px;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 const WeekHeaderCell = styled.span`
   color: ${(props) => props.theme.dateInput.pickerWeekFontColor};
   width: 36px;
-  text-align: center;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-style: normal;
-  font-weight: 400;
   font-size: 14px;
   line-height: 19px;
 `;
 
 const DayCellsContainer = styled.div`
-  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
+  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -231,10 +230,8 @@ type DayCellPropsType = {
 
 const DayCell = styled.button<DayCellPropsType>`
   display: inline-flex;
-
   justify-content: center;
   align-items: center;
-  vertical-align: top;
   width: 36px;
   height: 36px;
   padding: 0;
@@ -256,7 +253,7 @@ const DayCell = styled.button<DayCellPropsType>`
       props.selected ? props.theme.dateInput.pickerSelectedDateColor : props.theme.dateInput.pickerHoverDateFontColor};
   }
   &:active {
-    background: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
     color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
   }
   ${(props) =>

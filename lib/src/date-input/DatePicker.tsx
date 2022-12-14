@@ -120,7 +120,6 @@ const DxcDatePicker = ({
 
 const DatePicker = styled.div`
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  background: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   border-radius: 4px;
   padding-top: 16px;
   background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
@@ -147,16 +146,16 @@ const HeaderButton = styled.button`
   justify-content: center;
   border-radius: 4px;
   border: none;
-  background: ${(props) => props.theme.dateInput.pickerMonthArrowsBackgroundColor};
+  background-color: ${(props) => props.theme.dateInput.pickerMonthArrowsBackgroundColor};
   cursor: pointer;
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
   }
   &:hover {
-    background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
   &:active {
-    background: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
     color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
   }
   svg {
@@ -175,20 +174,20 @@ const HeaderYearTrigger = styled.button`
   justify-content: center;
   gap: 8px;
   border: none;
-  background: transparent;
+  background-color: transparent;
   cursor: pointer;
   height: 40px;
   width: 172px;
   border-radius: 4px;
   color: ${(props) => props.theme.dateInput.pickerMonthFontColor};
   &:hover {
-    background: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
   }
   &:active {
-    background: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
+    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
     color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
   }
 `;
