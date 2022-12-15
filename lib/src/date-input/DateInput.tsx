@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import dayjs from "dayjs";
 import styled, { ThemeProvider } from "styled-components";
 import useTheme from "../useTheme";
@@ -47,7 +47,6 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const [calendarId] = useState(`date-picker-${uuidv4()}`);
     const colorsTheme = useTheme();
     const translatedLabels = useTranslatedLabels();
-    const refDate = useRef(null);
 
     useLayoutEffect(() => {
       if (!disabled) {
@@ -114,7 +113,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     };
     const handleEscCalendar = () => {
       closeCalendar();
-      refDate?.current.getElementsByTagName("input")[0].focus();
+      ref?.current.getElementsByTagName("input")[0].focus();
     };
     const handleFocusOutside = (event) => {
       if (event?.target.getAttribute("aria-controls") !== calendarId) {

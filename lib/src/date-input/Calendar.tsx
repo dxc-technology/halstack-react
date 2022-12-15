@@ -62,7 +62,22 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   const onDateClickHandler = (date: { day: number; month: number; year: number }) => {
     const newDate = innerDate.set("month", date.month).set("date", date.day);
     onDaySelect(newDate);
-    focusDate(newDate);
+  };
+
+  const calendarOnBlur = (event?) => {
+    if (!event?.currentTarget.contains(event.relatedTarget)) {
+      updateDateToFocus();
+    }
+  };
+
+  const updateDateToFocus = () => {
+    if (selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")) {
+      setDateToFocus(selectedDate);
+    } else if (today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")) {
+      setDateToFocus(today);
+    } else {
+      setDateToFocus(innerDate.set("date", 1));
+    }
   };
 
   const focusDate = (date: Dayjs) => {
@@ -81,16 +96,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
   }, [dateToFocus]);
 
   useEffect(() => {
-    if (selectedDate?.get("month") === innerDate.get("month") && selectedDate?.get("year") === innerDate.get("year")) {
-      setDateToFocus(selectedDate);
-    } else if (today.get("month") === innerDate.get("month") && today.get("year") === innerDate.get("year")) {
-      setDateToFocus(today);
-    } else if (
-      dateToFocus.get("month") !== innerDate.get("month") ||
-      dateToFocus.get("year") !== innerDate.get("year")
-    ) {
-      setDateToFocus(innerDate.set("date", 1));
-    }
+    updateDateToFocus();
   }, [innerDate]);
 
   const handleDayKeyboardEvent = (event, date) => {
@@ -158,7 +164,7 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
           <WeekHeaderCell key={weekDay}>{weekDay}</WeekHeaderCell>
         ))}
       </DxcFlex>
-      <DayCellsContainer>
+      <DayCellsContainer onBlur={calendarOnBlur}>
         {dayCells.map((date, index) =>
           date !== 0 ? (
             <DayCell
