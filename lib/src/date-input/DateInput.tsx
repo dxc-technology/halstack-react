@@ -52,9 +52,9 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     useLayoutEffect(() => {
       if (!disabled) {
         let actionButtonRef = document.querySelector(`[title="Open calendar"]`);
-        actionButtonRef?.setAttribute("aria-haspopup", true);
+        actionButtonRef?.setAttribute("aria-haspopup", "true");
         actionButtonRef?.setAttribute("role", "combobox");
-        actionButtonRef?.setAttribute("aria-expanded", isOpen);
+        actionButtonRef?.setAttribute("aria-expanded", `${isOpen}`);
         actionButtonRef?.setAttribute("aria-controls", calendarId);
         actionButtonRef?.setAttribute("aria-describedby", calendarId);
       }
