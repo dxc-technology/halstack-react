@@ -63,6 +63,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         actionButtonRef?.setAttribute("aria-controls", calendarId);
         actionButtonRef?.setAttribute("aria-describedby", calendarId);
       }
+      ref = refDate;
     }, [isOpen, disabled, calendarId]);
 
     const handleCalendarOnClick = (newDate) => {
@@ -125,31 +126,33 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         closeCalendar();
       }
     };
-    window.addEventListener("blur", closeCalendar);
+    // window.addEventListener("blur", closeCalendar);
     return (
       <ThemeProvider theme={colorsTheme}>
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild aria-controls={undefined}>
-            <DxcTextInput
-              label={label}
-              name={name}
-              defaultValue={defaultValue}
-              value={value ?? innerValue}
-              helperText={helperText}
-              placeholder={placeholder ? format.toUpperCase() : null}
-              action={calendarAction}
-              clearable={clearable}
-              disabled={disabled}
-              optional={optional}
-              onChange={handleIOnChange}
-              onBlur={handleIOnBlur}
-              error={error}
-              autocomplete={autocomplete}
-              margin={margin}
-              size={size}
-              tabIndex={tabIndex}
-              ref={refDate}
-            />
+            <DxcDateInputContainer ref={ref}>
+              <DxcTextInput
+                label={label}
+                name={name}
+                defaultValue={defaultValue}
+                value={value ?? innerValue}
+                helperText={helperText}
+                placeholder={placeholder ? format.toUpperCase() : null}
+                action={calendarAction}
+                clearable={clearable}
+                disabled={disabled}
+                optional={optional}
+                onChange={handleIOnChange}
+                onBlur={handleIOnBlur}
+                error={error}
+                autocomplete={autocomplete}
+                margin={margin}
+                size={size}
+                tabIndex={tabIndex}
+                ref={refDate}
+              />
+            </DxcDateInputContainer>
           </Popover.Trigger>
           <StyledContent
             sideOffset={error ? -18 : 2}
@@ -177,5 +180,7 @@ const StyledContent = styled(Popover.Content)`
     outline: none;
   }
 `;
+
+const DxcDateInputContainer = styled.div``;
 
 export default DxcDateInput;

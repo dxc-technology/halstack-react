@@ -237,7 +237,7 @@ const DayCell = styled.button<DayCellPropsType>`
   padding: 0;
   font-size: 0.875rem;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
-  font-weight: 500;
+  font-weight: 400;
   border: none;
   border-radius: 50%;
   cursor: pointer;
