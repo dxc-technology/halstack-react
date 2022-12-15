@@ -191,35 +191,35 @@ const Calendar = ({ selectedDate, innerDate, onInnerDateChange, onDaySelect }: C
 };
 
 const CalendarContainer = styled.div`
-  width: ${(props) => props.theme.dateInput.pickerWidth};
-  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
   flex-direction: column;
-  padding: 0px 8px 8px 8px;
   justify-content: center;
-  border-radius: 4px;
   box-sizing: border-box;
+  padding: 0px 8px 8px 8px;
+  width: ${(props) => props.theme.dateInput.pickerWidth};
+  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
+  border-radius: 4px;
 `;
 
 const WeekHeaderCell = styled.span`
-  color: ${(props) => props.theme.dateInput.pickerWeekFontColor};
-  width: 36px;
-  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
   font-size: 14px;
   line-height: 19px;
+  color: ${(props) => props.theme.dateInput.pickerWeekFontColor};
 `;
 
 const DayCellsContainer = styled.div`
-  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
   display: flex;
+  gap: 4px;
   flex-wrap: wrap;
   justify-content: space-between;
   box-sizing: border-box;
-  gap: 4px;
+  background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
 `;
 
 type DayCellPropsType = {

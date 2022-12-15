@@ -119,34 +119,34 @@ const DxcDatePicker = ({
 };
 
 const DatePicker = styled.div`
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
   padding-top: 16px;
   background-color: ${(props) => props.theme.dateInput.pickerBackgroundColor};
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid #bfbfbf;
+  border-radius: 4px;
 `;
 
 const PickerHeader = styled.div`
   display: flex;
+  gap: 8px;
   align-items: center;
-  height: 40px;
   justify-content: space-between;
   box-sizing: border-box;
+  height: 40px;
   padding: 0px 16px;
-  gap: 8px;
 `;
 
 const HeaderButton = styled.button`
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
   padding: 0px;
+  background-color: ${(props) => props.theme.dateInput.pickerMonthArrowsBackgroundColor};
   font-size: 1.5rem;
-  align-items: center;
-  justify-content: center;
   border-radius: 4px;
   border: none;
-  background-color: ${(props) => props.theme.dateInput.pickerMonthArrowsBackgroundColor};
   cursor: pointer;
   &:focus {
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
@@ -159,27 +159,27 @@ const HeaderButton = styled.button`
     color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
   }
   svg {
+    display: inline-block;
+    flex-shrink: 0;
     width: 1em;
     height: 1em;
-    display: inline-block;
     font-size: 1.5rem;
-    flex-shrink: 0;
     user-select: none;
   }
 `;
 
 const HeaderYearTrigger = styled.button`
   display: flex;
+  gap: 8px;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
   height: 40px;
   width: 172px;
-  border-radius: 4px;
   color: ${(props) => props.theme.dateInput.pickerMonthFontColor};
+  background-color: transparent;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
   &:hover {
     background-color: ${(props) => props.theme.dateInput.pickerHoverDateBackgroundColor};
   }
@@ -187,19 +187,19 @@ const HeaderYearTrigger = styled.button`
     outline: ${(props) => props.theme.dateInput.pickerFocusColor + " solid 2px"};
   }
   &:active {
-    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
     color: ${(props) => props.theme.dateInput.pickerActiveDateFontColor};
+    background-color: ${(props) => props.theme.dateInput.pickerActiveDateBackgroundColor};
   }
 `;
 
 const HeaderYearTriggerLabel = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: ${(props) => props.theme.dateInput.pickerFontFamily};
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 19px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export default React.memo(DxcDatePicker);
