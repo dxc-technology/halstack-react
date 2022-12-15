@@ -21,17 +21,17 @@ import advancedSchema from "./themes/schemas/advanced.schema.json";
 import icons from "./images/GlobalActionsIcons";
 import SidenavLogo from "@/common/sidenav/SidenavLogo";
 import styled from "styled-components";
-import { IThemeDictionary } from "./types";
+import { IndexedTheme } from "./types";
 
 const ThemeGenerator = () => {
   const { asPath } = useRouter();
   const pages = asPath.split("/");
   const type = pages[pages.length - 2];
   
-  const [customTheme, setCustomTheme] = useState<IThemeDictionary>(
+  const [customTheme, setCustomTheme] = useState<IndexedTheme>(
     type === "advanced-theme" ? advancedTheme : opinionatedTheme
   );
-  const customThemeSchema: IThemeDictionary =
+  const customThemeSchema: IndexedTheme =
     type === "advanced-theme" ? advancedSchema : defaultSchema;
 
   const [currentComponent, setCurrentComponent] = useState("accordion");

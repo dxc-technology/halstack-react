@@ -9,8 +9,8 @@ import {
 } from "@dxc-technology/halstack-react";
 import { deepMerge } from "./utils";
 import ImportDialogProps, {
-  IInputThemeDictionary,
-  IThemeDictionary,
+  IndexedThemeInput,
+  IndexedTheme,
 } from "./types";
 
 const isArrayIncluded = (object1: {}, object2: {}) =>
@@ -20,9 +20,9 @@ const isArrayIncluded = (object1: {}, object2: {}) =>
 
 const validateInputTheme = (
   json: string,
-  customThemeSchema: IThemeDictionary
+  customThemeSchema: IndexedTheme
 ) => {
-  let inputTheme: IInputThemeDictionary = {};
+  let inputTheme: IndexedThemeInput = {};
   let errMessage = "";
 
   try {
@@ -72,7 +72,7 @@ const ImportDialog = ({
     );
 
     if (errMessage === "") {
-      setCustomTheme((prevTheme: IThemeDictionary) =>
+      setCustomTheme((prevTheme: IndexedTheme) =>
         deepMerge({}, prevTheme, inputTheme)
       );
       closeDialog();

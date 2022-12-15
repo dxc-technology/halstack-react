@@ -1,13 +1,13 @@
-export interface IInputThemeDictionary {
+export type IndexedThemeInput = {
   [key: string]: string;
 }
-export interface IThemeDictionary {
-  [key: string]: IInputThemeDictionary;
+export type IndexedTheme = {
+  [key: string]: IndexedThemeInput;
 }
 
 type ImportDialogProps = {
-  customThemeSchema: IThemeDictionary;
-  setCustomTheme: React.Dispatch<React.SetStateAction<IThemeDictionary>>;
+  customThemeSchema: IndexedTheme;
+  setCustomTheme: React.Dispatch<React.SetStateAction<IndexedTheme>>;
   setDialogVisible: (isVisible: boolean) => void;
 };
 

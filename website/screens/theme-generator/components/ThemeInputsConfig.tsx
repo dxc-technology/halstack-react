@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { IInputThemeDictionary } from "../types";
+import { IndexedThemeInput } from "../types";
 import ThemeInput from "./ThemeInput";
 
 type ThemeInputsConfigProps = {
-  componentInputs: IInputThemeDictionary;
-  componentInputsTypes: IInputThemeDictionary;
+  componentInputs: IndexedThemeInput;
+  componentInputsTypes: IndexedThemeInput;
   onChangeCustomTheme: (propertyName: string, propertyValue: string) => void;
 };
 
