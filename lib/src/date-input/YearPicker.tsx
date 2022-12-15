@@ -41,7 +41,6 @@ const YearPicker = ({ onYearSelect, selectedDate }: YearPickerPropsType): JSX.El
     }
   };
 
-  const date = selectedDate?.isValid() ? selectedDate : dayjs();
   return (
     <YearPickerContainer>
       {yearList.map((year) => (

@@ -51,19 +51,13 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
 
     useLayoutEffect(() => {
       if (!disabled) {
-        let actionButtonRef;
-        if (clearable) {
-          actionButtonRef = refDate?.current.getElementsByTagName("button")[1];
-        } else {
-          actionButtonRef = refDate?.current.getElementsByTagName("button")[0];
-        }
+        let actionButtonRef = document.querySelector(`[title="Open calendar"]`);
         actionButtonRef?.setAttribute("aria-haspopup", true);
         actionButtonRef?.setAttribute("role", "combobox");
         actionButtonRef?.setAttribute("aria-expanded", isOpen);
         actionButtonRef?.setAttribute("aria-controls", calendarId);
         actionButtonRef?.setAttribute("aria-describedby", calendarId);
       }
-      ref = refDate;
     }, [isOpen, disabled, calendarId]);
 
     const handleCalendarOnClick = (newDate) => {
@@ -116,6 +110,7 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
     const calendarAction = {
       onClick: openCalendar,
       icon: calendarIcon,
+      title: "Open calendar",
     };
     const handleEscCalendar = () => {
       closeCalendar();
@@ -126,33 +121,32 @@ const DxcDateInput = React.forwardRef<RefType, DateInputPropsType>(
         closeCalendar();
       }
     };
-    // window.addEventListener("blur", closeCalendar);
+    window.addEventListener("blur", closeCalendar);
+
     return (
       <ThemeProvider theme={colorsTheme}>
         <Popover.Root open={isOpen}>
           <Popover.Trigger asChild aria-controls={undefined}>
-            <DxcDateInputContainer ref={ref}>
-              <DxcTextInput
-                label={label}
-                name={name}
-                defaultValue={defaultValue}
-                value={value ?? innerValue}
-                helperText={helperText}
-                placeholder={placeholder ? format.toUpperCase() : null}
-                action={calendarAction}
-                clearable={clearable}
-                disabled={disabled}
-                optional={optional}
-                onChange={handleIOnChange}
-                onBlur={handleIOnBlur}
-                error={error}
-                autocomplete={autocomplete}
-                margin={margin}
-                size={size}
-                tabIndex={tabIndex}
-                ref={refDate}
-              />
-            </DxcDateInputContainer>
+            <DxcTextInput
+              label={label}
+              name={name}
+              defaultValue={defaultValue}
+              value={value ?? innerValue}
+              helperText={helperText}
+              placeholder={placeholder ? format.toUpperCase() : null}
+              action={calendarAction}
+              clearable={clearable}
+              disabled={disabled}
+              optional={optional}
+              onChange={handleIOnChange}
+              onBlur={handleIOnBlur}
+              error={error}
+              autocomplete={autocomplete}
+              margin={margin}
+              size={size}
+              tabIndex={tabIndex}
+              ref={ref}
+            />
           </Popover.Trigger>
           <StyledContent
             sideOffset={error ? -18 : 2}
@@ -180,7 +174,5 @@ const StyledContent = styled(Popover.Content)`
     outline: none;
   }
 `;
-
-const DxcDateInputContainer = styled.div``;
 
 export default DxcDateInput;
