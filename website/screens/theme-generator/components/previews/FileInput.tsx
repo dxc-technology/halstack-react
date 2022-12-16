@@ -1,29 +1,30 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { DxcFileInput } from "@dxc-technology/halstack-react";
-
 import Mode from "../Mode";
+import ExamplesContainer from "./ExamplesContainer";
+
+type FileData = {
+  file: File;
+  error?: string;
+  preview?: string;
+};
 
 const FileInput = () => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<FileData[]>([]);
 
-  const callbackFile = (files) => {
-    const updatedFiles = files.map((file, index) => {
-      if (index === 1) {
-        return { ...file, error: "Error message" };
-      }
-      return { ...file };
-    });
+  const callbackFile = (files: FileData[]) => {
+    const updatedFiles = files.map((file: FileData, index: number) =>
+      index === 1 ? { ...file, error: "Error message" } : { ...file }
+    );
     setFiles(updatedFiles);
   };
 
   return (
-    <FileInputContainer>
+    <ExamplesContainer>
       <Mode text="Default">
         <DxcFileInput
           label="Multiple file"
           helperText="Please select files"
-          margin="medium"
           value={files}
           callbackFile={callbackFile}
         />
@@ -35,7 +36,6 @@ const FileInput = () => {
           value={files}
           callbackFile={callbackFile}
           multiple={false}
-          margin="medium"
         />
       </Mode>
       <Mode text="With preview">
@@ -46,7 +46,6 @@ const FileInput = () => {
           callbackFile={callbackFile}
           multiple
           showPreview
-          margin="medium"
         />
       </Mode>
       <Mode text="Accept file formats">
@@ -56,7 +55,6 @@ const FileInput = () => {
           value={files}
           callbackFile={callbackFile}
           accept=".pdf"
-          margin="medium"
         />
       </Mode>
       <Mode text="Min file size, max file size">
@@ -67,7 +65,6 @@ const FileInput = () => {
           callbackFile={callbackFile}
           minSize={100000}
           maxSize={200000}
-          margin="medium"
         />
       </Mode>
       <Mode text="Filedrop">
@@ -77,7 +74,6 @@ const FileInput = () => {
           value={files}
           callbackFile={callbackFile}
           mode="filedrop"
-          margin="medium"
         />
       </Mode>
       <Mode text="Dropzone">
@@ -87,21 +83,19 @@ const FileInput = () => {
           value={files}
           callbackFile={callbackFile}
           mode="dropzone"
-          margin="medium"
         />
       </Mode>
       <Mode text="Disabled">
         <DxcFileInput
           label="File Input"
           helperText="Please select files"
-          margin="medium"
           disabled
+          value={files}
+          callbackFile={callbackFile}
         />
       </Mode>
-    </FileInputContainer>
+    </ExamplesContainer>
   );
 };
-
-const FileInputContainer = styled.div``;
 
 export default FileInput;

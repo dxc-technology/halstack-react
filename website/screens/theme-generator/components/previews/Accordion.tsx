@@ -3,47 +3,41 @@ import styled from "styled-components";
 import {
   DxcAccordion,
   DxcAccordionGroup,
+  DxcInset,
 } from "@dxc-technology/halstack-react";
-
 import Mode from "../Mode";
 import facebookIcon from "../../images/FacebookIcon";
+import ExamplesContainer from "./ExamplesContainer";
 
 const Accordion = () => {
-  const onChange = () => {};
   const [indexAccordion, setIndexAccordion] = useState(0);
 
-  const onActiveChange = (i) => {
-    setIndexAccordion((prevValue) => (prevValue === i ? null : i));
+  const onActiveChange = (index: number) => {
+    setIndexAccordion((currentIndex) => (currentIndex === index ? -1 : index));
   };
 
   return (
-    <AccordionContainer>
+    <ExamplesContainer>
       <Mode text="Default">
         <DxcAccordion
           label="Default Accordion"
           assistiveText="Assistive text"
-          onChange={onChange}
-          margin="medium"
-          padding="medium"
         >
-          <div>
+          <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
+          </DxcInset>
         </DxcAccordion>
       </Mode>
       <Mode text="Icon">
         <DxcAccordion
           label="Default Accordion"
-          onChange={onChange}
           icon={facebookIcon}
-          margin="medium"
-          padding="medium"
         >
-          <div>
+          <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
+          </DxcInset>
         </DxcAccordion>
       </Mode>
       <Mode text="Disabled">
@@ -52,42 +46,36 @@ const Accordion = () => {
           icon={facebookIcon}
           label="Default Accordion"
           assistiveText="Assistive text"
-          onChange={onChange}
-          margin="medium"
-          padding="medium"
         >
-          <div>
+          <DxcInset space="2rem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </div>
+          </DxcInset>
         </DxcAccordion>
       </Mode>
       <Mode text="Accordion Group">
         <DxcAccordionGroup
           indexActive={indexAccordion}
           onActiveChange={onActiveChange}
-          margin="medium"
         >
-          <DxcAccordionGroup.Accordion label="Accordion1" padding="medium">
-            <div>
+          <DxcAccordionGroup.Accordion label="Accordion1">
+            <DxcInset space="2rem">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
-            </div>
+            </DxcInset>
           </DxcAccordionGroup.Accordion>
-          <DxcAccordionGroup.Accordion label="Accordion2" padding="medium">
-            <div>
+          <DxcAccordionGroup.Accordion label="Accordion2">
+            <DxcInset space="2rem">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
               eget.
-            </div>
+            </DxcInset>
           </DxcAccordionGroup.Accordion>
         </DxcAccordionGroup>
       </Mode>
-    </AccordionContainer>
+    </ExamplesContainer>
   );
 };
-
-const AccordionContainer = styled.div``;
 
 export default Accordion;

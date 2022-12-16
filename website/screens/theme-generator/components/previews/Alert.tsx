@@ -1,22 +1,21 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { DxcAlert, DxcButton } from "@dxc-technology/halstack-react";
-
 import Mode from "../Mode";
+import ExamplesContainer from "./ExamplesContainer";
 
 const Alert = () => {
   const [isVisible, changeIsVisible] = useState(false);
   const handleVisibility = () => {
     changeIsVisible(!isVisible);
   };
+
   return (
-    <AlertContainer>
+    <ExamplesContainer>
       <Mode text="Information Alert">
         <DxcAlert
           type="info"
           mode="inline"
           inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          margin={{ top: "xsmall" }}
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           malesuada lacus ex.
@@ -27,7 +26,6 @@ const Alert = () => {
           type="confirm"
           mode="inline"
           inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          margin={{ top: "xsmall" }}
         />
       </Mode>
       <Mode text="Warning Alert">
@@ -35,7 +33,6 @@ const Alert = () => {
           type="warning"
           mode="inline"
           inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          margin={{ top: "xsmall" }}
         />
       </Mode>
       <Mode text="Error Alert">
@@ -43,30 +40,21 @@ const Alert = () => {
           type="error"
           mode="inline"
           inlineText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-          margin={{ top: "xsmall" }}
         />
       </Mode>
       <Mode text="Modal Alert">
-        <DxcButton
-          theme="light"
-          label="Overlay Alert"
-          onClick={handleVisibility}
-          margin={{ top: "xsmall" }}
-        />
+        <DxcButton label="Overlay Alert" onClick={handleVisibility} />
         {isVisible && (
           <DxcAlert
             type="info"
             mode="modal"
             onClose={handleVisibility}
             inlineText=" Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            margin={{ top: "xsmall" }}
-          ></DxcAlert>
+          />
         )}
       </Mode>
-    </AlertContainer>
+    </ExamplesContainer>
   );
 };
-
-const AlertContainer = styled.div``;
 
 export default Alert;

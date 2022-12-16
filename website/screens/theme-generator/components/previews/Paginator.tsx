@@ -1,22 +1,21 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { DxcPaginator } from "@dxc-technology/halstack-react";
-
 import Mode from "../Mode";
+import ExamplesContainer from "./ExamplesContainer";
 
 const Paginator = () => {
   const [page, changePage] = useState(1);
   const [items, changeItems] = useState(10);
 
-  const itemsPerPageClick = (value) => {
+  const itemsPerPageClick = (value: number) => {
     changeItems(value);
   };
-  const goToPageFunc = (value) => {
+  const goToPageFunc = (value: number) => {
     changePage(value);
   };
 
   return (
-    <PaginatorContainer>
+    <ExamplesContainer>
       <Mode text="Default">
         <DxcPaginator
           currentPage={page}
@@ -26,12 +25,10 @@ const Paginator = () => {
           totalItems={27}
           showGoToPage={true}
           onPageChange={goToPageFunc}
-        ></DxcPaginator>
+        />
       </Mode>
-    </PaginatorContainer>
+    </ExamplesContainer>
   );
 };
-
-const PaginatorContainer = styled.div``;
 
 export default Paginator;

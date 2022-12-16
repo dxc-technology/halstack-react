@@ -1,8 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { DxcChip } from "@dxc-technology/halstack-react";
-
 import Mode from "../Mode";
+import ExamplesContainer from "./ExamplesContainer";
 
 const deleteIcon = (
   <svg height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
@@ -17,7 +16,7 @@ const Chip = () => {
   };
 
   return (
-    <ChipContainer>
+    <ExamplesContainer>
       <Mode text="Default">
         <DxcChip label="Default chip" margin={{ top: "xsmall" }} />
       </Mode>
@@ -25,7 +24,6 @@ const Chip = () => {
         <DxcChip
           label="Chip with suffix"
           suffixIcon={deleteIcon}
-          margin={{ top: "xsmall" }}
           onClickSuffix={onClick}
         />
       </Mode>
@@ -33,30 +31,22 @@ const Chip = () => {
         <DxcChip
           label="Chip with prefix"
           prefixIcon={deleteIcon}
-          margin={{ top: "xsmall" }}
           onClickPrefix={onClick}
         />
       </Mode>
       <Mode text="Only icon">
-        <DxcChip
-          prefixIcon={deleteIcon}
-          margin={{ top: "xsmall" }}
-          onClickPrefix={onClick}
-        />
+        <DxcChip prefixIcon={deleteIcon} onClickPrefix={onClick} />
       </Mode>
       <Mode text="Disabled">
         <DxcChip
           label="Chip disabled"
           disabled
           prefixIcon={deleteIcon}
-          margin={{ top: "xsmall" }}
           onClickPrefix={onClick}
         />
       </Mode>
-    </ChipContainer>
+    </ExamplesContainer>
   );
 };
-
-const ChipContainer = styled.div``;
 
 export default Chip;

@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  DxcHeading,
-  DxcAlert,
-  HalstackProvider,
-  DxcFlex,
-} from "@dxc-technology/halstack-react";
 import componentsPreview from "./ComponentsPreviewMap";
 import { capitalizeText } from "../utils";
 import { ErrorBoundary } from "react-error-boundary";
 import { useRouter } from "next/router";
+import {
+  DxcInset,
+  DxcHeading,
+  DxcFlex,
+  DxcAlert,
+  HalstackProvider,
+} from "@dxc-technology/halstack-react";
 
 type ComponentPreviewProps = {
   customTheme: object;
@@ -30,45 +31,41 @@ const ComponentPreview = ({
 
   return (
     <ComponentPreviewContainer>
-      <ComponentHeader>
-        <DxcHeading
-          text={`${capitalizeText(componentId)} component`}
-          level={4}
-          margin={{ top: "xsmall", bottom: "xsmall" }}
-        />
-      </ComponentHeader>
-      <PreviewContainer>
-        <ErrorBoundary
-          fallbackRender={() => (
-            <DxcFlex alignItems="center" justifyContent="center">
-              <DxcAlert
-                type="error"
-                mode="inline"
-                inlineText="Unable to render the theme."
-                margin="xxlarge"
-              />
-            </DxcFlex>
-          )}
-          resetKeys={[customTheme]}
+      <DxcHeading text={`${capitalizeText(componentId)} component`} level={3} />
+      <ErrorBoundary
+        fallbackRender={() => (
+          <DxcFlex alignItems="center" justifyContent="center">
+            <DxcAlert
+              type="error"
+              mode="inline"
+              inlineText="Unable to render the theme."
+              margin="xxlarge"
+            />
+          </DxcFlex>
+        )}
+        resetKeys={[customTheme]}
+      >
+        <HalstackProvider
+          theme={
+            type === "opinionated-theme" || type == null
+              ? customTheme
+              : undefined
+          }
+          advancedTheme={type === "advanced-theme" ? customTheme : undefined}
         >
-          <HalstackProvider
-            theme={
-              type === "opinionated-theme" || type == null
-                ? customTheme
-                : undefined
-            }
-            advancedTheme={type === "advanced-theme" ? customTheme : undefined}
-          >
-            {preview != null && <preview.preview />}
-          </HalstackProvider>
-        </ErrorBoundary>
-      </PreviewContainer>
+          {preview != null && <preview.preview />}
+        </HalstackProvider>
+      </ErrorBoundary>
     </ComponentPreviewContainer>
   );
 };
 
 const ComponentPreviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  gap: 2.25rem;
+  margin: 4% 8% 8% 8%;
   overflow-x: auto;
 
   /* width */
@@ -93,15 +90,6 @@ const ComponentPreviewContainer = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-`;
-
-const PreviewContainer = styled.div`
-  margin: 0 8% 8% 8%;
-`;
-
-const ComponentHeader = styled.div`
-  display: flex;
-  margin: 36px 8% 0 8%;
 `;
 
 export default ComponentPreview;
